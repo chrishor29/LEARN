@@ -1,0 +1,500 @@
+﻿<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="../style.css">
+	<link rel="shortcut icon" href="favicon.bmp?v=2">
+	<title>&lrm;</title>
+</head>
+
+<input onclick="toggleAll();" type="button" id="input_toggleAll" value="0" style="position:fixed; right: 0px;"><div id="quest" style="display:none;">
+	
+	<details><summary class="phase">tételek</summary><div id="container"></div></details>
+	<input type="checkbox" id="miss_checkbox"/><input type="button" class="MISS" onclick="show_Status('miss');" id="show_miss" value="0">
+	<input type="checkbox" id="fix_checkbox"/><input type="button" class="FIX" onclick="show_Status('fix');" id="show_fix" value="0">
+	<input type="checkbox" id="progress_checkbox"/><input type="button" class="progress" onclick="show_Status('progress');" id="show_progress" value="0">
+	<input type="checkbox" id="checkbox_skipID"/><input class="dark" onclick="show_StatusSkip;" type="button" id="show_skipID" value="&nbsp;">
+
+	<input type="checkbox" id="checkbox_New"/><span class="WHITE" id="cont_New"></span><span class="VOCAB" id="cont_Old"></span>
+	<span class="WHITE" id="span_Jegy"></span><span class="VOCAB" id="span_Date"></span>
+
+
+	<br>
+	<center>
+		<input onclick="toggleNote();" type="button" value="&#10045;"> &nbsp;
+		<label>Jegy:<input type="text" id="jegy" size="1" maxlength="1" style="width:30px;"></label> &nbsp;&nbsp;&nbsp;&nbsp;
+		<input onclick="missFix();" type="button" id="button_missFix" style="background-color:lightgrey; height:25px; width:30px;">&nbsp;&nbsp;
+		<input onclick="func_skipID();" type="button" id="button_skipID" style="background-color:lightgrey; height:25px; width:30px;">
+		<label>Rank:<input type="text" id="rank" size="1" maxlength="1" style="width:30px;"></label> &nbsp;&nbsp;&nbsp;&nbsp;
+		<span id="repeat" class="WHITE">&nbsp; &nbsp;</span>
+		<input onclick="koviKerdes();" type="button" value="következő kérdés">
+	</center>
+	<center><textarea style="display:none; position:fixed; left: 40%; top: 70%;" id="note" rows="4" cols="40"></textarea></center>
+	<div style="font-weight: bold;font-size: large;" id="questTitle"></div>
+	<div id="kerdeslocation"></div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+
+
+
+
+
+
+<table><tr>
+	<td class="miss">2</td>
+	<td class="done">3</td>
+	<td class="done">4</td>
+	<td class="done">5</td>
+	<td class="done">6</td>
+	<td class="miss">7</td>
+	<td class="miss">8</td>
+	<td class="done">9</td>
+	<td class="miss">10</td>
+	<td class="miss">11</td>
+	<td class="miss">12</td>
+	<td class="miss">13</td>
+</tr></table>
+
+<!--///--><details><summary class="phase">3. Ontogenezist szabályozó faktorok I. Transzkripciós faktorok és a Hox gének, a test
+szegmentálódása</summary><div class="normal">
+	<div><span class="vocab">&#9775;</span> Az, hogy a gének irányítják, vezérlik a fejlődést, elég félrevezető meghatározás.</div>
+	<div>Inkább úgy érdemes felfogni, hogy a gének biztosítják a fejlődés "anyagi szükségleteit".</div>
+	<div><span class="vocab">&#9775;</span> Az ontogenezis(egyedfejlődés) során kialakuló különböző féle sejttípusoknak(pl.fibrocita,hepatocita) eltérő a fehérjekészlete, de génállományuk azonos.</div>
+	<div>Vagyis az egyes sejttípusok kialakulása (differenciáció) során nem változik a kromoszómák összetétele.</div>
+	<div>Ám a sejtek a rendelkezésre álló génkészletnek csak bizonyos részét használják fel (génexpresszió) (fejlődésük során és kifejlett állapotban is).</div>
+	<div>Tehét a különböző sejttípusok eltérései: fehérjekészlet, és ennek következtébeni génexpressziós mintázatuk is eltér.</div>
+	<div><span class="vocab">&#9775;</span> Génexpresszió szabályozásának szintjei.</div>
+	<div>Transzkripciós, poszt-transzkripciós, transzlációs, poszt-transzlációs.</div>
+	<div><span class="vocab">&#9775;</span> Transzkripciós szabályozást lényegében 2féle csoportra lehet osztani: "durva" és "finom".</div>
+	<div><span class="vocab">&#9775;</span> "Durva" szabályozás: hiszton acetiláció és deacetiláció, metiláció, foszforiláció</div>
+	<div>Acetilációnál acetilcsoport <span class="WHITE">-COCH3</span> adódik <span class="WHITE">K</span>lizin vagy <span class="WHITE">R</span>arginin aminósavhoz és ezáltal fellazítja a kromatint, és így serkenti a transzkripciót.</div>
+	<div>Deacetiláció pont az ellentetjét váltja ki, tehát a kromatin kondenzálódik (visszafűződik), gátolja a transzkripciót.</div>
+	<div>Metilációnál <span class="WHITE">-CH<sub>3</sub></span> adódik a hisztonhoz, és ezáltal inaktívvá teszi a DNS ezen részét.</div>
+	<div><span class="vocab">&#9775;</span> Finom szabályozás.</div>
+	<div>Résztvevők 2 csoportja van: cisz és transz.</div>
+	<div>Transz-elemek pl. génreguláló_fehérjék és TF-ek.</div>
+	<div>Cisz-elemek = DNS-szekvenciák, tehát ilyenek pl. génkontroll régiók: <span class="WHITE">UPE</span>, <span class="WHITE">promoter</span>, <span class="WHITE">enhancer vs. silencer</span>, <span class="WHITE">szabályozó-elemek</span>. <a href="images/génkontroll.png">kép</a></div>
+	<div>A transzkripciós faktorok olyan fehérjék, amelyek a gének szabályozó régióihoz képesek kötődni és ezzel aktiválják, vagy gátolják az adott gén átírását.</div>
+	<div>Két típusa: általános, és specifikus.</div>
+	<div>Spec_TF-ek  kötődnek a gén <span class="WHITE">enhancer vs. silencer</span> és <span class="WHITE">szabályozó-elemek</span> régióihoz.</div>
+	<div>Ezáltal fogják befolyásolni az RNS-polimeráz II és a promoter_régióhoz kötődő ált_TF aktivitását.</div>
+	<div>Enhancer régió távol van a promoter régiótol (akár 50000bázis távolságra, és mind1 hogy 5' vagy 3' irányba).</div>
+	<div>Alapvetően spec_TF-et megkötve serkenti a transzkripciót.</div>
+	<div>Azonban egyes géneknél gátolja a transzkripciót, ilyenkor a neve silencer-régió.</div>
+	<div>UPE és a hozzákötődő TAF-ok alapfeltételei a transzkripciónak (promotert erősítik).</div>
+	<div><span class="vocab">&#9775;</span> A transzkripciós faktorok génjeinek szabályozó régióiban előfordulhatnak az általuk kódolt fehérje által felismert szekvenciák is, ezáltal saját transzkripciójukat folyamatosan képesek fenntartani (pozitív visszacsatolás).</div>
+	<div><span class="vocab">&#9775;</span> TF-ek szerkezete.</div>
+	<div>DNS-kötő domén: ezzel kötődik a génszabályozó régióhoz.</div>
+	<div>Transz-aktivátor domén: ezzel befolyásolja a transzkripciót.</div>
+	<div>Fehérje-fehérje interakciós domén: ha ezen része is van, akkor ezen keresztül más fehérje képes befolyásolni aktivitását.</div>
+	<div><span class="vocab">&#9775;</span> Legismertebb DNS-kötő domén típusok: Hélix-kanyar-hélix <abbr title="kanyar = Turn">HTH</abbr> | Cinkujj <span class="WHITE">Zn-finger</span> | Leucin-cippzár <span class="WHITE">Leu-zipper</span> | Hélix-hurok-hélix <abbr title="hurok = Loop">HLH</abbr></div>
+	<div>HTH-szerű pl. a homeodomén</div>
+	<div>Zn-finger pl. a GATA TF-ek (ezek a szívfejlődés és embrionális vérképzésben játszanak szerepet)</div>
+	<div><span class="vocab">&#9775;</span> Hox-gének<abbr title="homeobox gének">(=)</abbr> olyan gének, melyek szelvény-szegmentáltak.</div>
+	<div>Ezekben található egy DNS-szakasz, melynek neve homeobox.</div>
+	<div>Ez kódolja a homeodomént.</div>
+	<div>Homeodomén: hox-gének TF-einek azon része, mely HTH-szerű.</div>
+	<div>..........</div>
+	<div>Ezek a gének irányítják az embrió eredetileg egyforma szegmentumaiban eltérő szervek kialakulását pl. a bélcső szakaszai, az ősvese származékai, a kopoltyúívek, az agytörzs, stb.</div>
+	<div>Tehát ezek mutációja esetén a test egy régiója átalakul egy másik régióvá.</div>
+	<div>pl. Hoxc8 génkiütés eredményeképpen az első lumbális csigolya átalakul bordát hordozó csigolyává.</div>
+	<div><span class="vocab">&#9775;</span> TF-ek komplexeket alkotnak.</div>
+	<div>A fejlődés során a komplexek bizonyos elemei kicserélődnek. <a href="images/sejdfifftf.png">kép</a></div>
+	<div><span class="vocab">&#9775;</span> Poszt-transzkripciós szabályozás lényege: sapkaképzés,splicing,poliA-farokképzés.</div>
+	<div>Sapkaképzésnél pre_mRNS <span class="WHITE">5'</span>-végén képződik egy "sapka".</div>
+	<div>Splicing-nál az intronok kivágása megy végbe, és a fehérjét kódoló exonok maradnak meg.</div>
+	<div>PoliA-farokképzésnél egy ~200adenin tartalmú "farok" adódik a pre_mRNS <span class="WHITE">3'</span>-végéhez.</div>
+<!--///--></div></details>
+
+<!--///--><details><summary class="phase">4. Ontogenezist szabályozó faktorok II. Jelátviteli molekulák. Növekedési faktorok.</summary><div class="normal">
+	<div><span class="vocab">&#9775;</span> Fejlődést irányító molekulák két nagy csoportja: <span class="WHITE">TF-ek</span> és a <span class="WHITE">jelátvívő molekulák</span></div>
+	<div><span class="WHITE">Jelátvívő Molekulák</span> funkciója, hogy a TF-ek átalakuljanak az adott fejlődési stádiumban (lásd 3. TF-komplex)</div>
+	<div>Jelátvívő molekulák &#10140; <span class="WHITE">ligandum=szignál</span>(pl.GF-ek) + <span class="WHITE">receptor</span>.</div>
+	<div>Receptor ha megköti a ligandumot, akkor elindul az ún. <span class="WHITE">szignáltranszdukciós_útvonal = jelátviteli_útvonal</span>, mely által szabályozzák majd a TF-eket <a href="images/szignáltranszd.png">kép</a></div>
+
+	<div><span class="vocab">&#9775;</span> Embrionális indukció során egy <span class="WHITE">sejtcsoport (inducer)</span> szekretál valamilyen <span class="WHITE">ligandumot</span>, és ez fog hatni egy másik <span class="WHITE">sejtcsoportra (responder)</span></div>
+	<div>Az inducer alakváltozást, mitotikus ráta változást vagy sejtsors változást képes indukálni a responderben.</div>
+	<div><span class="WHITE">Szignálmolekulák</span> pl. BMP, SHH(SonicHedgeHog).</div>
+	<div>pl. chorda_dorsalis indukálja az ectoderma neuroectodermává válását.</div>
+	<div><span class="vocab">&#9775;</span> A kompetencia egy adott sejtcsoport válaszadási képessége egy bizonyos szignálra.</div>
+	<div>pl. szemhólyag fejlődésnél szemhólyag<abbr title="telencephalon származéka">&#10045;</abbr> indukálja az ektoderma szemlencsévé alakulását. <a href="images/opticvescile.png">kép</a></div>
+	<div>(2) ha a szemhólyagot ektoderma más része alá teszem, ott a szignál nem váltja ki átalakulását szemlencsévé, ugyanis az inkompetens</div>
+	<div><abbr title="szemhólyag nélkül, a következtébeni szignál hiányában nem alakul ki a szemlencse">(3)</abbr> & <abbr title="ha mást teszek szemhólyag helyébe, az sem termel szignált, tehát ugyanúgy nem lesz szemlence">(4)</abbr> </div>
+	<div>Tanúlság: csak a Pax6 (TF) expresszáló ektoderma képes szemlencsévé alakulni szignál hatására, a (2)es ezért nem ment végbe</div>
+	<div>Megfigyelhető később a reciprok indukció, vagyis a képződött szemlencse visszahat a szemhólyagra és kialakul belőle a retina. <a href="images/recpitrokindukc.png">kép</a></div>
+	<div><span class="vocab">&#9775;</span> A fejlődésben szerepet játszó fontosabb szignáltranszdukciós_útvonalak: <span class="WHITE">Citokinin</span> <span class="WHITE">RPTK</span> <span class="WHITE">TGF&beta;</span> <abbr title="(valójában Hg-R volt, szóval az lehet nagyobb csoportot jelöl, vagy valami gént mittudomén, de ez a lényege csak)">HH</abbr> <span class="WHITE">Wnt</span> <span class="WHITE">Notch</span></div>
+	<div>Ezeknél az elsődleges eredmény a célgének transzkripciójának megváltozása a jel által szabályozott TF által</div>
+	<div><span class="vocab">&#9775;</span> Jelátviteli_útvonalak csoportosítása a szignálmolekula alapján: juxtakrin, parakrin, endokrin. <a href="images/jxtkrnprkn.png">kép</a></div>
+	<div>Juxtakrin: a ligandum is a sejtmembránban van kihorgonyozva, tehát a ligandumot kibocsátó és a receptort tartalmazó sejtek közvetlenül kell érintkezzenek egymással</div>
+	<div>Parakrin: jelkibocsátó sejt az extracelluláris térbe szekretálja a ligandumot.</div>
+	<div>Endokrin: az endokrin sejtek által termelt ligandum – hormon – a véráramon keresztül jut el a test távolabbi pontjaira.</div>
+	<div><span class="vocab">&#9775;</span> TGF&beta; jelátviteli_útvonal</div>
+	<div>Negatív befolyással vannak a növekedésre.</div>
+	<div>A ligandumokról kapta az elnevezést, ugyanis azok a TGF&beta;-(szuper)család. Ebbe családba tartoznak pl. <span class="WHITE">BMP</span>-k, <span class="WHITE">Nodal</span></div>
+	<div>Nodal részt vesz a jobb-bal asszimetria kialakulásában (lásd még HH-jeltáviteli_útvonal).</div>
+	<div>BMP részt vesz pl. velőcső indukcióban, és csontfejlődésben is (+másban is). Velőcső indukciót gátolják, azonban egy másik gátló szignál hatására gátolva lesz a BMP, és megindul a neuroektoderma fejlődése</div>
+	<div>Lényege: receptor megköti a ligandumot, hatására a receptor intracelluláris része foszforilálódik. Majd ezután a Smad-nevű fehérje<abbr title="5típusa van">&#10045;</abbr> (az is foszforilálódott) bejut a sejtmagba és ott a génreguláló régióra hat. <a href="images/fgfjltvtl.png">kép</a></div>
+	<div><span class="vocab">&#9775;</span> RPTK (receptor-protein-tirozin-kináz) jelátviteli_útvonal.</div>
+	<div>Nevét a receptorrol kapták: receptor-tirozin-kináz(RTK).<abbr title="tirozint ne keverd:  trijód-tironin(T3) és tiroxin(T4)">&#10045;</abbr> <abbr title="alapvetően ezen az útvonalon 2féle lehet a receptor: RTK vagy nRTK. Lásd:Receptor tyrosine kinase. De ezzel nem kell foglalkoznom, ugyanis nekem elég az RTK.">&#10045;</abbr></div>
+	<div>Ligandumok a GF-ek.<abbr title="persze nem az összes GF ezen megy, illetve van egyéb is (de elég így felfogni)">&#10045;</abbr></div>
+	<div>pl. FGF &#10140; Pozitív befolyással vannak a növekedésre. ECM-ben heparán-szulfát nevű proteoglikánhoz kötődnek, és így kapcsolódnak majd a receptorhoz. <a href="images/heprnsulft.png">kép</a></div>
+	<div>Megjegyzendő, hogy az útvonal végén az inaktív TF azért lesz aktív, mert foszforilálva lesz egy magban lévő kináz által (kináz = fehérjét foszforiláló enzim). <a href="images/rtksngl.png">kép</a></div>
+	<div><span class="vocab">&#9775;</span> HH = HedgeHog jelátviteli_útvonal</div>
+	<div>Ligandumok: <abbr title="SonicHedgeHog">SonicHH</abbr> (,DesertHH, IndianHH).</div>
+	<div>Receptorok: patched.</div>
+	<div>Lefutásának lényege: ha a receptor megfogta a ligandumot, akkor annak <abbr title="közvetett-hatására, tehát van közte még egyéb lépés(ek)">&#10045;</abbr>hatására a mikrotubulusról leválik a TF, ami majd bejut a magba. <a href="images/shhsptwy.png">kép</a></div>
+	<div>Jelentősége pl. bal-jobb aszimmetria kialakítása, ennek lényege: primitív csomó környékén vannak csillók, melyek átáramoltatják bal_oldalra az SHH-t<abbr title="és egyéb">&#10045;</abbr>, aminek következtében a nodal(szignálmolekula=ligandum) expresszió bal oldalt fog történni. <a href="images/ndlcdllk.png">kép</a></div>
+	<div><span class="vocab">&#9775;</span> WNT jelátviteli_útvonal</div>
+	<div>Ligandumok neve is WNT.</div>
+	<div>Lefutásának lényege: ha receptor megfogta a ligandumot, akkor annak <abbr title="közvetett-hatására, tehát van közte még egyéb lépés(ek)">&#10045;</abbr>hatására egy citoszolikus-komplexről leválik a &Beta;-catenin<abbr title="TF kofaktora, így azzal egyesülve aktiválja">&#10045;</abbr>, ami majd bejut a magba, és ott a TF-el egyesülve aktiválja azt.</div>
+	<div>Jelentősége pl. gasztruláció. <a href="images/wntsgnlpwy.png">kép</a></div>
+	<div><span class="vocab">&#9775;</span> Notch jelátviteli_útvonal</div>
+	<div>Receptor neve is Notch.</div>
+	<div>Fontos, hogy ez juxtakrin jelátviteli-útvonal az eddigiekkel ellentétben.</div>
+	<div>Tehát a ligandumot kibocsátó sejt, és az azt receptorral fogadó sejt egymással érintkezik.</div>
+	<div>Ennek hatását legjobban a drosophila(muslica) idegrendszerénék fejlődésében lehet kimutatni.</div>
+	<div>Itt jól megfigyelhető az ún. laterális-gátlás: tehát a egy sejt elkezd expresszálni ligandumot, melyet a környező sejtek Notch-receptorai megfognak. Enne következménye az expresszáló sejt átalakul neuronná, míg a körülötte lévők glia-sejtekké. <a href="images/nrglsjtkxpr.png">kép</a></div>
+<!--///--></div></details>
+
+<!--///--><details><summary class="phase">5. Ontogenezist szabályozó mechanizmusok III. Epigenetikus hatások, DNS metiláció, imprinting</summary><div class="normal">
+	<div><span class="vocab">&#9775;</span> Drosophila(muslica) szelvényezettségének kialakulásán keresztül lehet jól bemutatni a morfogének hatását. <a href="images/sszfgll.png">kép</a></div>
+	<div><span class="Important">//továbbiakban Drosophila-ról van van szó, egész addig, amíg nem jelzem!//</span></div>
+	<div><span class="important">&#9775;</span> Morfogének.</div>
+	<div>Ligandumok, melyet valamely sejtcsoport expresszál, majd onnan diffúzióval távolodnak.</div>
+	<div>A koncentrációja az expresszáló sejtcsoportoktól távolodva folyamatosan csökken.</div>
+	<div>Közben hatnak az adott helyen kialakuló sejtekre és kölcsönhatásuk, mennyiségi arányuk meghatározza azok további sorsát az embriogenezis során.</div>
+	<div>Típusai: maternális és szegmentális.</div>
+	<div><span class="vocab">&#9775;</span> Maternális gének.</div>
+	<div>Pete = 1primer_oocita + 15db nutritív_sejt</div>
+	<div>A petében már kialakul az Anterior/Posterior polaritás és kicsivel később (embriogenezis kezdetén) a Dorsalis/Ventralis is. <a href="images/apdvtngly.png">kép</a></div>
+	<div>Mindkettőt meghatározó gének az anyai szervezet genomjáról íródnak át, még mielőtt a megtermékenyítés megtörténne.</div>
+	<div>Ezért ezen gének neve maternális gének.</div>
+	<div>Ezek határozzák meg három csíralemez kialakulását(ennek következtében A/P & D/V), tehát a szervezet alapvázát.</div>
+	<div>pl. bicoid, nanos.</div>
+	<div><span class="vocab">&#9775;</span> Maternális gének koncentrációja és hatása egymásra.</div>
+	<div>Bicoid mRNS-t expresszálnak a primer_oocyta anterior része előtti nutritív_sejtek. (ha mutáltatjuk a nutritív sejtek bicoid-génjét, akkor nem lesz feje!)</div>
+	<div>Nanos mRNS-t expresszálnak a primer_oocyta posterior része mögötti nutritív_sejtek. <a href="images/bcdnns.png">kép</a></div>
+	<div>Kezdetben az egyes mRNS koncentrációk, majd röviddel utána a következtükben szintetizálódott fehérje-koncentrációk az embrióban anterior-posterior irányban. <a href="images/gtlsdrsp.png">kép</a></div>
+	<div>Látható, hogy a nanos fehérjék gátolták a Hunchback-mRNS következtébeni Hunchback-fehérje transzkripciót.</div>
+	<div>Illetve, a bicoid fehérjék gátolták a caudal-mRNS(caudal = posterior) következtébeni caudal-fehérje transzkripciót.</div>
+	<div><span class="vocab">&#9775;</span> Maternális gének mutációja.</div>
+	<div>Ha mutáltatjuk a nutritív sejtek bicoid-génjét, akkor nem lesz feje.</div>
+	<div>Ha mutáltatjuk a nutritív sejtek nanos-génjét, akkor a posterior része nem fejlődik ki normálisan.</div>
+	<div><span class="vocab">&#9775;</span> Szegmentális gének.</div>
+	<div>Típusai: gap gének, pair-rule gének, szegment-polaritás gének.</div>
+	<div>Gap-gének mutációja több szelvény kiesését okozza.</div>
+	<div>Pair-rule-gének mutációja minden 2. szelvény kiesését okozza.</div>
+	<div>Szegment-polaritás-gének mutációja minden szelvény egy részének kiesését okozza.</div>
+	<div>(egyre kisebb hatással van mutációjuk)</div>
+	<div><span class="vocab">&#9775;</span> Hox-gének.</div>
+	<div>DNS 3' vége felé lévők expresszálódnak előbb, és anteriorabban, mint az 5' irányba lévők.</div>
+	<div>Mutációjuk következtében az egyes szelvények úgy fejlődnek, hogy más szelvényekre jellemző struktúrák alakulnak ki rajtuk.</div>
+	<div><span class="Important">//továbbiakban már nem Drosophila, hanem ember!//</span></div>
+	<div><span class="vocab">&#9775;</span> Emberben bonyolultabban alakul ki az Anterior/Posterior tengely.</div>
+	<div>pl. Az anterior mikor már meghatározódott, a posterior még nem.</div>
+	
+	<br>
+	<div><span class="vocab">&#9775;</span> Epigenetikus hatások.</div>
+	<div>Nem a bászissorendben történik változás (DNS szerkezete változatlan), hanem a szabályozó régiók hozzáférhetősségében.</div>
+	<div>Ide tartoznak pl. a hiszton-módosítások.</div>
+	<div><span class="vocab">&#9775;</span> Hiszton-módosítások.</div>
+	<div>Hiszton fehérjéken történik a változás, és ez lesz <abbr title="de bázissorendje nemváltozik">hatással</abbr> a DNS-szakaszra (pl. lefűződik).</div>
+	<div>Típusai: acetiláció, deacetiláció, metiláció, foszforliáció.</div>
+	<div>Acetiláció kibontja a kromatint, ezzel transzkripcióhoz hozzáférhetővé válik a DNS azon szakasza. Deacetiláció az ellentetje, tehát visszafűzi és ezáltal hozzáférhetetlenné válik ismét.</div>
+	<div>Metiláció inaktívvá teszi a DNS azon részét.</div>
+	<div><span class="vocab">&#9775;</span> Metiláció ivarsejtek és fertilizáció után röviddel. <a href="images/metiláció.png">kép</a></div>
+	<div>Ivarsejteknél gátolt a transzkripciót, mert DNS-ük metiláltsága magasszintű</div>
+	<div>Majd megtermékenyítés után ismét megindul a transzkripció, amikor elkezdődik az osztódás. (előtte lévő leugrást nemértem, de ne érdekeljen!)</div>
+	<div><span class="vocab">&#9775;</span> Kísérlet <a href="images/nypprnklsz.png">kép</a></div>
+	<div>Ha a zigótába 2 apai eredetű pronukleuszt teszek,(ezek egyesülnek 1 nucleussá) akkor az embrió abnormális lesz, de a placenta normál méretű.</div>
+	<div>Ha a zigótába 2 anyai eredetű pronukleuszt teszek, akkor az embrió normális lesz, de a placenta kis méretű.</div>
+	<div>Tehát az apai nukleusz inkább az extraembrionális részek fejlődéséhez kell, az anyai embrióéhez.</div>
+	<div>Ennek feltételezhető oka a metilációban keresendő (pl. az előbbi képen lévő grafikonon látszik, hogy különböző mértékben metiláltak megtermékenyítés után).</div>
+	<div>pl. Mola-terhesség esetében az figyelhető meg, hogy a trophoblast igen fejlett, az embrió viszont nem. Ennek feltétezhető oka a paternális imprinting, tehát az apai eredetű genom érvényesült túlzottan.</div>
+	<div><span class="vocab">&#9775;</span> Szülői(parentális) imprintinghez kötött kórképek.</div>
+	<div>Mola-terhességen kívül még ezekhez kapcsolják a Beckwith-Wiedemann szindrómát, Angelman szindrómát, Prader-Willi szindrómát.</div>
+	<div><span class="vocab">&#9775;</span> X-kromoszóma inaktiváció.</div>
+	<div>Nőkben a 23as kromoszóma 2X kromoszóma.</div>
+	<div>Ha mindkettő aktív lenne, akkor 2x annyi termék lenne mint kéne, ezért az egyik inaktíválódik.</div>
+	<div>Ez úgy történik, hogy amelyik inaktív lesz, transzkriptál egy nagy RNS-t (XIST a neve), amely nem fog transzlációt csinálni, hanem inaktívvá teszi az X-kromoszómát.</div>
+	<div>Az, hogy az apai vagy anyai lesz-e inaktív blastocysta-stádium után dől el (előtte még az apai inaktív mindenképp és utána derül ki). <a href="images/xkrmszm.png">kép</a></div>
+
+	<br>
+	<div>(Embernél szelvényezettséget mutatnak pl. szomiták, kopoltyúívek)</div>
+<!--///--></div></details>
+
+<!--///--><details><summary class="phase">6. Sejt-sejt kölcsönhatások, extracelluláris mátrix és integrinek az embrióban</summary><div class="normal">
+	<div><span class="vocab">&#9775;</span>ECM már van embrióban is (legelejétől eltekintve)</div>
+	<div><span class="vocab">&#9775;</span>ECM általános funkciói pl. szövetek határait meghatározza, GF-eket tárol és biztosít sejtek számára</div>
+	<div><span class="important">&#9775;</span>ECM a fejlődési stádiumtól függően különböző hatással lehet a sejtekre is: proliferáció, differenciálódás, apoptózis irányába "terelheti"</div>
+	<div><span class="important">&#9775;</span>ECM-t az alábbi molekulák építik fel: (1)proteogilánok, (2)hyaluronsav, (3)kollagének, (4)elasztin, (5)glikoproteinek</div>
+	<div>Alapállolámányát az (1)-(2) alkotja, a többi ebbe van beágyzódva</div>
+	<div><span class="important">&#9775;</span>Főbb glikoproteinek a laminin,fibronektin,thrombospondin</div>
+	<div>Neurolatio során pl. a thrombospondin a laminin és fibronektinnel kooperálva engedélyezi a crista_neuralis-sejtek migrációját a sclerotom anterior részén át</div>
+	<div><span class="vocab">&#9775;</span>Fogbimbó fejlődésnél a szindekán és tenaszcin nevű proteoglikénoknak van fontos szerepe</div>
+	<div><span class="vocab">&#9775;</span>Nefron fejlődésnél megfigyelhető, hogy az eleinte mesenchyma-sejtek átalakulnak hámsejtekké. A sejtek eleinte kollagén 1/3-at epressszálnak majd laminint/kollagén 4 (tehát változik a fejlődés során)</div>
+	<div>A sejtek eleinte kollagén 1/3-at epressszálnak majd laminint/kollagén 4 (tehát változik a fejlődés során)</div>
+	<div><span class="important">&#9775;</span>Emlőmirigy sejtek fejlődése a membrana_basalistól függ</div>
+	<div>Ha elválasztom az emlőmirigysejteket a membrana_basalistól &#10140; sejtosztódó gének aktivak, "anyatej"-szintetizáló gének inaktivak (pl. laktoferrin)</div>
+	<div>Ha ismét a membrana_basalishoz teszem &#10140; sejtosztódó gének inaktivak, "anyatej"-szintetizáló gének aktivak (pl. laktoferrin)</div>
+	<div><span class="vocab">&#9775;</span>Proteoglikánok felépítése: 1fehérje-szál és hozzá kovalens-kötéssel kapcsolódva legalább 1db glükózaminoglikán-oldallánc</div>
+	<div>Fontos proteoglikán pl. aggrekán, mely porcokban (és perineurális nedvben is van) fordul elő, ahol hyaluronsavhoz kapcsolódva nagy vízmegkötőképességű</div>
+	<div>Ezért rugalmas és egyben szilárd a porc</div>
+	<div><span class="vocab">&#9775;</span>Fibronektin már gasztruláció során megjelenik az ECM-ben</div>
+	<div>Szerkezete "V-alakú",(diszulfid-híd) és kötőszöveti vagy sejtes elemhez tud kötődni a két végével</div>
+	<div>Ezáltal 2ECM elemet köt össze vagy 1ECM-1sejt elemmel</div>
+	<div><span class="important">&#9775;</span>lamina_basalis főbb alkotói a lamininek, kollagén IV</div>
+	<div>Két rétege lamina densa és lamina rara.</div>
+	<div>2 kollagén IV egymáson tekeredve létrehoz 1 "rácskeritést", ez adja a vázat</div>
+	<div>Lamina densa amit a kollagén IV alkot (rácskerités oldalról)</div>
+	<div>Lamina rara-ban lévő lamininek kapcsolják lamina_densat a sejthez</div>
+	<div>Lamina densa-t fibronektin kapcsolja a lamina_fibroreticularishoz</div>
+	<div>membrana basalis a lamina_fibroreticlaris és lamina basalis együtt</div>
+	<div>laminin(✝) megjelenik már gastrulatio-nál</div>
+	<div>lamina basalis a hámsejtek alatt van illetve az alábbiak körül &#10140; zsirsejt, simaizomsejt, Schwann-sejt, harántcsikolt-izomsejt</div>
+	<div><span class="important">&#9775;</span>muszkuláris disztrófia oka, a disztrofint kódoló gén hibája</div>
+	<div>Disztrofin részt vesz a harántcsikolt izomsejt lamina_basalishoz kötésében</div>
+	<div>Következtében az izomösszehúdást a lamina_basalis alig követi, amihez pedig az in kapcsolódik</div>
+	<div>Páciensek fiatalon meghalnak légzési elégtelenségben (gyógyithatatlan)</div>
+	<div>X-kromoszómához kötötten recessziven öröklődik</div>
+	<div><span class="vocab">&#9775;</span>Sejtadhéziós molekulák: Ig-szerűek, kadherinek, integrinek, szelektinek, proteoglikánok</div>
+	<div>Proteoglikánok és integrinek SAM-ok. Kadherinek, szelektinek, Ig-szerű molekulák pedig CAM-ok.</div>
+	<div><span class="important">&#9775;</span>Kadherinek (Ca<sup>2+</sup> függőek) a zonula_adherens alkotói.</div>
+	<div>(blastula előtti) morula stádiumnál a blastula képződés első lépése a kompaktizáció</div>
+	<div>kompaktizáció lényege, hogy a morula "kidudoródó szedercsírából" lesimult felszín lesz</div>
+	<div>ezt a sejtek lateralis felszínén az E-kadherinekkel létrejövő zonula_adherensekkel való egymáshoz kapcsolódásuk eredményezik</div>
+	<div><span class="important">&#9775;</span>Integrinek transzmembrán heterodimer fehérjék.</div>
+	<div>Heterodimer, ugyanis két különböző (&alpha;,&beta;) alegységből épülnek fel.</div>
+	<div>&alpha;-alegység 2 részből áll, melyet diszulfid-híd köt össze</div>
+	<div>&alpha;-alegységnek és &beta;-alegységnek vannak különböző típusai (&alpha;1,&alpha;2 stb. &beta;-nál ugyanez)</div>
+	<div>Attól függően, hogy milyen 2fajta alegység kapcsolódik (pl. &alpha;2-&beta;3), attól függ, hogy az ECM mely alkotójához fog kötődni (fibronektin, laminin, kollagén stb.)</div>
+	<div><span class="important">&#9775;</span>Integrinek az intracelluláris részen a citoszkeletonhoz<abbr title="mikro/intermedier filamentum">&#10045;</abbr> vagy a sejten belüli jelátvivő folyamatokhoz képesek csatlakozni</div>
+	<div>Utóbbi következtében az integrinhez kinntről kötődő molekula, be tud indítani jelátviteli-kaszkádokat, és ezzel képes befolyásolni pl. transzkripciót</div>
+	<div><span class="important">&#9775;</span>Integrinek alkotják a hámsejtek bazális felszínén lévő hemidezmoszómát, melyek ezáltal a lamina_basalishoz kötik a hámsejtet</div>
+	<div>Ez esetben intermedier_filamentumhoz kötődik intracellulárisan</div>
+	<div><span class="important">&#9775;</span>Integrinek nem hámsejtek esetében, hanem pl. fibrocitáknál, osteoblastoknál, Fokális Adhéziós Komplexet alkotnak</div>
+	<div>Ez esetben &beta;-alegységgel kapcsolódik a mikrofilamentumhoz(aktin) intracellulárisan</div>
+	<div>Funkciója, hogy a sejtezáltal képes vándorolni a mátrixon</div>
+	<div><span class="important">&#9775;</span>Integrineknek tehát fontos szerepe van a sejtmigrációban, az ECM-hez kötésben, és a transzkripció szabályozásában (ECM által)</div>
+
+<!--///--></div></details>
+
+<!--///--><details><summary class="phase">7. Őssejt biológia</summary><div class="normal">
+<!--///--></div></details>
+
+<!--///--><details><summary class="phase">8. Ősivarsejtek differenciálódása: specifikálódás, migráció, fejlődés</summary><div class="normal">
+<!--///--></div></details>
+
+<!--///--><details><summary class="phase">9. Mintázatképződés az emlősembryóban: antero-posterior és dorso-ventralis tengelyek kialakulása</summary><div class="normal">
+	<div><span class="important">&#9775;</span>Embriónál anteroposterior alatt a cranial-caudalt értjük, tehát a feji vége anterior. <a href="images/antepostdoven.png">kép</a> <abbr title="képen látszik embernél, hogy felnőttben az anterior már">&#10045;</abbr></div>
+	<div><span class="important">&#9775;</span>Fertilizáció során a polaritás. <a href="images/polocyte.png">kép</a></div>
+	<div>Petesejtnek már a feritilizáció előtt van a citoplazmájának összetétele alapján bizonyos polaritása, azaz 2 részre osztható: van egy animális fele, és egy vegetális fele (utóbbiban több a szikanyag, míg előbbiben a maganyag több).</div>
+	<div>Fertilizáció során a spermium pronucleusa a petesejt animális felében lép be.</div>
+	<div><span class="Important">A belépési pont lesz az embrió ventralis része, azzal szemben pedig a dorsalis része</span> (dorsalisnál lesz majd a blasztopórus).</div>
+	<div>Zigóta első osztódása a dorso-ventral pontokat összekötő tengelyre merőleges síkon keresztül, a hossztengellyel párhuzamosan történik (azaz szvsz első után még mindkét sejtben animális és vegetális kb ugyanannyi), (szvsz hossztengely = anteroposterior-tengely).</div>
+	<div><span class="vocab">&#9775;</span>(Barázdálódás.)</div>
+	<div>(4 osztódás történik, tehát kialakul a 16sejtű morula = szedercsíra állapot).</div>
+	<div>(Ezután megtörténik a kompaktizáció (lásd 6.tétel)).</div>
+	<div>(Végül kialakul a blastula).</div>
+	<div>Amely sejtek kívül vannak, azokból lesznek trophoblast-sejtek.</div>
+	<div>Amely sejtek kívül vannak, azokból lesznek embrioblast-sejtek<abbr title="ezek összesége az ún. embriocsomó">&#10045;</abbr>.</div>
+
+	<div><span class="vocab">&#9775;</span><span class="MISS">Gasztruláció</span> <span class="MISS">dolgozzam át innentől a november 16.ai előadás alapján!</span>.</div>
+	<div>Ilyenkor lesz 2 csíralemezből (epi/hypoblast) 3 csíralemez(ecto/mezo/endoderma).</div>
+	<div>Kialakul a 3 tengely: anteroposterior-tengely és dorsoventral-tengely és bal-jobb oldal.</div>
+	<div>// Primitív-csomó(=blastoporus) és primitív-csík kialakulásakor már az anteroposterior és dorsoventral-tengely egyértelműen leolvasható.</div>
+	<div>Ez hogyan határozódik meg?</div>
+	<div><span class="vocab">&#9775;</span>anteroposterior-tengely.</div>
+	<div>A gastruláció kezdetén megindul a chorda_dorsalis(dúcléc) általi indukció (szignálokat küld) az ektodermára.</div>
+	<div>Így ektoderma egyrésze átalakul neuroektodermává, ami később velőcső lesz (többi része marad ektoderma).</div>
+	<div>A velőcsőnél már megfigyelhető az anteroposterior-tengely.</div>
+	<div>A gasztruláció folyamatával párhuzamosan, a környező szövetekből (axiális mezoderma  – prekorda, notokord  - , nem  neurális ektoderma, Hensen csomó  (csirke)  – rágcsáló esetében organizátor  - ) származó  szignálok    hatására    meghatározódik    és    a    rosztrokaudális   illetve mediolaterális / dorzoventrális tengelyek  mentén  polarizálódik  az  idegrendszer  telepe.</div>
+
+	<div><span class="important">&#9775;</span>korai AnteroPosterior-tengely kialakulása. <span class="MISS">(innentől már nem kell átdolgoznom)</span></div>
+	<div>A gastruláció során zajlik a neurolatio "előkészítése"(neuroektoderma-kialakulás, ami utána majd lefűződik).</div>
+	<div>Primitív-csomó(=blastoporus) és primitív-csík kialakulásakor már az anteroposterior (és dorsoventral-tengely is) egyértelműen leolvasható.</div>
+	<div>Ez hogyan határozódik meg?</div>
+	<div>Alapvetően az ectoderma azért nem alakul át neuroektodermává(későbbi velőcső lesz), mert a BMP-4 gátolja ezt.</div>
+	<div>Azonban a 2 csíralamezes állapotban már anterior irányban látható egy ún. anterovisceralis endoderma. <a href="images/anteroviscend.png">kép</a></div>
+	<div>Ez indukálja a primitív csík és primitív csomó kialakulását.</div>
+	<div>Azonban a chorda_dorsalis és primitív_csomó olyan szignálokat (pl.chordin) küld, ami gátolja a BMP-4et. <a href="images/nrlti.png">kép</a></div>
+	<div>Ezek a faktorok csak az előagy és a középagy fejlődését indukálják. Az utóagy és a gerincvelő kialakulása a WNT3 és az FGF hatására történik!</div>
+	<div>Ennek következtében az ectoderma egy része átalakul neuroektodermává.</div>
+	<div><span class="important">&#9775;</span>késői anteroposterior-mintázat kialakulása</div>
+	<div>Ez alatt a szegmentációt, tehát a szelvényezettség kialakulását értem.</div>
+	<div>Ezt a HOX gének irányítják.</div>
+	<div>Megjegyzendő, hogy a retinsav szabályozza a HOX gének expresszióját.</div>
+	<div><span class="vocab">&#9775;</span>Spemann kísérlete <a href="images/spemann.png">kép</a></div>
+	<div>1 Blastoporust tett egy másik gasztrulációban lévő embrióba, és ennek következtében azon mentén is elkezdett fejlődni az idegrendszer stb.</div>
+	<div><span class="important">&#9775;</span>dorsoventral-tengely. <a href="images/neurulatioshhbmp.png">kép</a></div>
+	<div>Epiblast és hypoblast réteg kialakulánásnál már meghatározódott az embrió dorsoventral tengelye.</div>
+	<div>De fontos jelentősége van még a velőcső dorsoventral-tengelyének kialakulásának (továbbiakban erről lesz szó).</div>
+	<div>Ennek a lényege, hogy a chorda_dorsalis SHH-t expresszál.</div>
+	<div>SHH-nak a koncentráció fv-ében ventralizáló hatása van (minél nagyobb koncentrációjú, akkor ventrálisabb lesz).</div>
+	<div>Így a chorda_dorsalis "felett" lévő fejlődő velőcső lesz ventralis, a tőle egyre távolabbi pedig dorsalis.</div>
+	<div>A velőcső bezáródása után megjelenik az ún. floor_plate és roof_plate.</div>
+	<div>A floor_plate és is ugyanúgy expresszálja tovább SHH-t, csakúgy mint chorda_dorsalis</div>
+	<div>A roof_plate azonban BMP-4et expresszál.</div>
+	<div>Ennek hatása pont ellentétes az SHH-éval, tehát dorzalizál.</div>
+	<div>(Érdekesség, hogyha egy másik chorda_dorsalist ültetünk a velőcső mellé, akkor megjelenik még1 floor_plate <a href="images/chordadorsalis.png">kép</a>)</div>
+	<div><span class="important">&#9775;</span>Bal-jobb asszimetria kialakulása <a href="images/ndlcdllk.png">kép</a></div>
+	<div>Primitív csomó környékén lévő sejteken vannak csillók, melyek átáramoltatják bal_oldalra az SHH-t, aminek következtében a nodal(szignálmolekula=ligandum) expresszió bal oldalt fog történni.</div>
+	<div>Primitív_csomó és primitív csík expresszálja a nodalt.</div>
+	<div>Primitív_csomó és chorda_dorsalis expresszálja az SHH-t.</div>
+	<div>Situs inversus &#10140; fejlődési rendellenesség, amikor jobb oldalon vannak az eredetileg bal oldali szervek (pl. szív) (ilyenje van pl. Enrique Iglesias-nak).</div>
+<!--///--></div></details>
+
+
+
+
+
+<br><br><br><br>
+<!--///<details><summary class="phase">6.előadás.</summary><div class="normal">
+ <div><div class="title">általános</div>
+	<li>embrióban is (legelejétől eltekintve) már van ECM</li>
+	<details class="kerdes" id="fb.9"><summary>ECM funkciói?</summary><ul class="normal">
+		<li>sejtek kapcsolódnak hozzá</li>
+		<li>szövetek határait meghatározza &#10140; bizonyos fejlődési folyamatokban/betegségekben ezek lebomlanak</li>
+		<li>növekedési hormonokokat</li><ul>
+			<li>sejtek számára biztosítja (azok "receptorral veszik át")</li>
+			<li>tárolja, és csak bizonyos hatásra engedi ki őket</li>
+		</ul>
+		<li>sejtre következő hatásokkal lehet</li><ul>
+		</ul>
+	</ul></details>
+	<details class="kerdes" id="fb.8"><summary>ECM felépítő molekulák felsorolása csoportosítva<span class="Important">?</span></summary><ul class="normal">
+		<li>alapállományt felépítők &#10140; <span class="WHITE">proteoglikánok</span> <span class="WHITE">hyaluronsav</span></li>
+		<li>szerkezeti elemek &#10140; <span class="WHITE">kollagén<strong>ek</strong></span> <span class="WHITE">elasztin</span></li>
+		<li>adhéziós elemek &#10140; (egyes) glikoproteinek = <span class="WHITE">laminin</span> <span class="WHITE">fibronektin</span> <span class="WHITE">thrombospondin</span> stb.</li>
+		<li><abbr title="szerkezeti elemek is részt vesznek adhézióban, de fő funkciójuk nem az">&#10045;</abbr> <abbr title="lehet nem csak glikoproteinek tartoznak adhéziósba, de elég azokat tudnom">&#10045;</abbr></li>
+		<div>/// alapállományba van beágyazódva a többi</div>
+	</ul></details>
+	<details class="kerdes" id="fb.10"><summary>ECM milyen hatással lehet a sejtre?</summary><ul class="normal">
+		<li>proliferáció (szaporodás) <abbr title="mármint a sejtet ebbe az irányba tolja">&#10045;</abbr></li>
+		<li>differenciálódás</li>
+		<li>apoptózis (sejthalál)</li>
+		<div>(ez épp attól függ milyen fejlődési stádium van)</div>
+	</ul></details>
+	<details class="kerdes" id="fb.11"><summary>ECM felépítő molekulák csoportosítása funkció alapján?</summary><ul class="normal">
+		<li>gátló</li>
+		<li>serkentő</li>
+		<div> ~~~~~~~~~~~~~~ </div>
+		<li>pl. laminin általában sejtek mozgását segíti elő (de ez is fejlődési stádium stb. függő)</li>
+	</ul></details>
+	<details class="kerdes" id="fb.12"><summary>thrombospondin jelentősége?</summary><ul class="normal">
+		<li>laminin és fibronektinnel kooperálva engedélyezi a crista_neuralis-sejtek migrációját a sclerotom anterior részén át</li>
+		<li>thrombospondin a sclerotom anterior részén van</li>
+		<li><abbr title="képet se értem, mi keresnek ott dúcléc sejtek?">&#10045;</abbr></li>
+		<li><abbr title="One additional extracellular matrix molecule that appears to stimulate migration and is present only in the anterior half of the somite is thrombospondin-1. It is distributed in the basal lamina of the neural tube along which neural crest cells first migrate and is associated with the basal surface of the myotome, on which the neural crest cells spread once they enter the somite">(ezt próbáltam meg leforditani, de feladtam)</abbr></li>
+		<li>(3 glikoprotein!)</li>
+		<img src="images/ncmgrtn.png">
+	</ul></details>
+	<details class="kerdes" id="fb.13"><summary><span class="Miss">&#9775;</span>tüdőfejlődésnél?</summary><ul class="normal">
+		<li>bronchus-bimbó csúcsán expresszálódnak bizonyos molekulák belőle</li>
+		<li>ezek FGF-10-el együttműküdve okozzák a bronchus-bimbó előrefele növekedését</li>
+		<li>FGF-10 &#10140; csúcs körül lévő mesenchymalis-sejtek termelik</li>
+		<li>azonban ha gátlódik az FGF-10 termelődése, akkor megáll a folyamat, és helyette 2oldalt fog expresszálni újra molekulákat a bronchus-bimbó  &#10140; 2é oszlik</li>
+		<div> ~~~~~~~~~~~~~~ </div>
+		<li>pl. laminin általában sejtek mozgását segíti elő (de ez is fejlődési stádium stb. függő)</li>
+	</ul></details>
+	<details class="kerdes" id="fb.14"><summary>fogfejlődés?</summary><ul class="normal">
+		<li>fogbimbó fejlődésnél a szindekán és tenaszcin nevű proteoglikénoknak van fontos szerepe</li>
+	</ul></details>
+	<details class="kerdes" id="fb.15"><summary>nefron-fejlődés?</summary><ul class="normal">
+		<li>eleinte mesenchyma-sejek majd hámsejtekké alakulnak</li>
+		<li>eleinte kollagén 1/3-at epressszálnak majd laminint/kollagén 4 (tehát változik a fejlődés során)</li>
+	</ul></details>
+	<details class="kerdes" id="fb.16"><summary>emlőmirigy<span class="Important">?</span></summary><ul class="normal">
+		<li>emlőmirigy-sejek működése a membrana_basalistól függ</li>
+		<li>ha elválasztom az emlőmirigysejteket a membrana_basalistól &#10140; sejtosztódó gének aktivak, "anyatej"-szintetizáló gének inaktivak (pl. laktoferrin)</li>
+		<li>ha ismét a membrana_basalishoz teszem &#10140; sejtosztódó gének inaktivak, "anyatej"-szintetizáló gének aktivak (pl. laktoferrin)</li>
+	</ul></details>
+ </div>
+ <div><div class="title">kollagén</div>
+	<details class="kerdes" id="fb.17"><summary><span class="Miss">&#9775;</span>felépitése?</summary><ul class="normal">
+		<li>fehérje, melyben van tripla hélix, melyben van glicin és ???</li>
+		<img src="images/collagen.png">
+	</ul></details>
+	<details class="kerdes" id="fb.18"><summary><span class="Miss">&#9775;</span>jelölése és előfordulásra 2példa?</summary><ul class="normal">
+		<li>pl. I-kollagén: &alpha;1<sub>2</sub>&alpha;2 &#10140; tripla hélixben 2azonos,de a 3.másik fajta <div class="mirror">&#10140;</div> csont, őr, izület, </li>
+		<li>pl. II-kollagén: &alpha;1<sub>3</sub> &#10140; tripla hélixben mnd3 azonos <div class="mirror">&#10140;</div> porcokban fordul elő (és egyéb)</li>
+		<li>pl. IV-kollagén: <div class="mirror">&#10140;</div> lamina_basalis alkotója</li>
+	</ul></details>
+	<details class="kerdes" id="fb.19"><summary><span class="Miss">&#9775;</span>szintéziséhez mi kell?</summary><ul class="normal">
+		<li>pl. C-vitamin, hiánya skorbutot okoz</li>
+	</ul></details>
+ </div>
+ <div><div class="title">proteoglikán</div>
+	<details class="kerdes" id="fb.21"><summary>felépitése?</summary><ul class="normal">
+		<li>1fehérje-szál és hozzá kovalens-kötéssel kapcsolódva legalább 1db glükózaminoglikán-oldallánc</li>
+	</ul></details>
+	<details class="kerdes" id="fb.20"><summary>1pl. és hol fordul elő?</summary><ul class="normal">
+		<li>aggrekán &#10140; porcokban, perineurális_nedv</li>
+		<li>porcokban hialuronsavhoz kapcsolódva nagy vizmegkötőképességű</li>
+		<img src="images/agrecan.png">
+	</ul></details>
+	<details class="kerdes" id="fb.22"><summary><span class="Miss">&#9775;</span>jellegzetessége?</summary><ul class="normal">
+		<li>fehérje-láncokon van Ig-domain stb. &#10140; ha a környező sejten van receptor akkor ezzel hatással van rájuk</li>
+		<img src="images/agrecan.png">
+	</ul></details>
+ </div>
+ <div><div class="title">egyéb <abbr title="nemigen folytattam, mert áttértem mondatosra, de néhányat idedobtam">&#10045;</abbr></div>
+	<details class="kerdes" id="fb.23"><summary>muszkuláris disztrófia</summary><ul class="normal">
+		<li>oka, a disztrofint kódoló gén hibája</li>
+		<li>Disztrofin részt vesz a harántcsikolt izomsejt lamina_basalishoz kötésében</li>
+		<li>Következtében az izomösszehúdást a lamina_basalis alig követi, amihez pedig az in kapcsolódik</li>
+		<li>Páciensek fiatalon meghalnak légzési elégtelenségben</li>
+		<li>X-kromoszómához kötötten recessziven öröklődik</li>
+		<img src="images/muszulardisztofia.png">
+	</ul></details>
+	<details class="kerdes" id="fb.24"><summary>kompaktizáció</summary><ul class="normal">
+		<li><span class="vocab">&#9775;</span>Kadherinek pl. zonula_adherens alkotói.</li>
+		<li><a href="images/kzdtlépsk.png">(blastula előtti) morula stádiumnál</a> a blastula képződés első lépése a kompaktizáció</li>
+		<li>kompaktizáció lényege, hogy a morula "kidudoródó szedercsírából" lesimult felszín lesz</li>
+		<li>ezt a sejtek lateralis felszínén az E-kadherinekkel létrejövő zonula_adherensekkel való egymáshoz kapcsolódásuk eredményezik</li>
+		<img src="images/kmpktzc.png">
+	</ul></details>
+	<details class="kerdes" id="fb.25"><summary>integrin v1</summary><ul class="normal">
+		<li><span class="important">&#9775;</span>Integrinek transzmembrán heterodimer fehérjék.</li>
+		<li>Heterodimer, ugyanis két különböző (&alpha;,&beta;) alegységből épülnek fel.</li>
+		<li>&alpha;-alegység 2 részből áll, melyet diszulfid-híd köt össze</li>
+		<li>&alpha;-alegységnek és &beta;-alegységnek vannak különböző típusai (&alpha;1,&alpha;2 stb. &beta;-nál ugyanez)</li>
+		<li>Attól függően, hogy milyen 2fajta alegység kapcsolódik (pl. &alpha;2-&beta;3), attól függ, hogy az ECM mely alkotójához fog kötődni (fibronektin, laminin, kollagén stb.)</li>
+		<img src="images/integrinek.png">
+	</ul></details>
+	<details class="kerdes" id="fb.26"><summary>integrin v2</summary><ul class="normal">
+		<li><span class="important">&#9775;</span>Integrinek alkotják a hámsejtek bazális felszínén lévő hemidezmoszómát, melyek ezáltal a lamina_basalishoz kötik a hámsejtet</li>
+		<li>Ez esetben intermedier_filamentumhoz kötődik intracellulárisan</li>
+		<li><span class="important">&#9775;</span>Integrinek nem hámsejtek esetében, hanem pl. fibrocitáknál, osteoblastoknál, Fokális Adhéziós Komplexet alkotnak</li>
+		<li>Ez esetben &beta;-alegységgel kapcsolódik a mikrofilamentumhoz(aktin) intracellulárisan</li>
+		<li>Funkciója, hogy a sejtezáltal képes vándorolni a mátrixon</li>
+		<img src="images/hmdfak.png">
+	</ul></details>
+	<details class="kerdes" id="fb.27"><summary>integrin v3</summary><ul class="normal">
+		<li><span class="important">&#9775;</span>Integrinek az intracelluláris részen a citoszkeletonhoz<abbr title="mikro/intermedier filamentum">&#10045;</abbr> vagy a sejten belüli jelátvivő folyamatokhoz képesek csatlakozni</li>
+		<li>Utóbbi következtében az integrinhez kinntről kötődő molekula, be tud indítani jelátviteli-kaszkádokat, és ezzel képes befolyásolni pl. transzkripciót</li>
+		<img src="images/integrinkaszkád.png">
+	</ul></details>
+ </div>
+ <div><div class="title"> </div>
+	<details class="kerdes" id="fb.7"><summary> kadherin - Darvas?</summary><ul class="normal">
+		<li>kadherinek alapvető fontosságú szerepet töltenek be a gerincesek embrionális fejlődséi folyamataiban. Összefüggés mutatható ki az egyes molekulák plazmamembránban történő megjelenése - eltűnése vagy esetleges újra megjelenése -, valamint a legfontosabb fejlődési folyamatok között. Pl. neuroláció során az ektodermáról lefűződő velőcső sejtjeinek membránjából eltűnik az E kadherin és megjelenik az N kadherin, míg a felette elhelyezkedő ektoderma sejtjeiben továbbra is E kadherin mutatható ki a fejlődésnek ebben a szakaszában.</li>
+	</ul></details>
+ </div>
+</div></details>///-->
+
+
+
+
+
+
+
+<script src="../javascript.js"></script> 
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+
+
+
+
