@@ -96,7 +96,7 @@ demonstrációk összege ha <span class="WHITE">48+</span> &#10140; felmentés <
 		<td class="done">7</td>
 		<td class="done">8</td>
 		<td>9</td>
-		<td>10</td>
+		<td class="done">10</td>
 		<td>11</td>
 		<td>12</td>
 		<td>13</td>
@@ -3566,8 +3566,8 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 		<img src="images/homohetero.png">
 		<li>gyökös = homolízis</li>
 		<li>ionos = heterolízis</li><ul>
-			<li>elektrofil &#10140; támadó ágens + töltésű</li>
-			<li>nukleofil &#10140; támadó ágens - töltésű</li>
+			<li>elektrofil &#10140; támadó ágens + töltésű (szvsz a lennti alapján, ez se feltétlen)</li>
+			<li>nukleofil &#10140; támadó ágens - töltésű (nem feltétlen, lásd tk.64o! szvsz inkább nemkötő elektronpárja van)</li>
 			<div>támadó ágens = mindig a kisebb (lásd pl. szerves 6.tétel)</div>
 		</ul>
 	</ul></details>
@@ -3633,6 +3633,7 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 <!----><details><summary class="phase">1. A konfiguráció és a konformáció fogalma. Példák különböző konformációjú alifás és aliciklusos vegyületekre.</summary><div class="normal">
  <div><div class="title">konfiguráció<abbr title="ennek részletes tárgyalása a 3. és 4.tételben van (ugyanis a geometriai és optikai izoméria ilyen)">&#10045;</abbr> & konformáció</div>
 	<details class="kerdes" id="ok.450"><summary>konfiguráció & konformáció fogalma?</summary><ul class="normal">
+		<img src="images/izomertype.png">
 		<li>konfiguráció &#10140; különböző szerkezetek nem alakulnak át egymásba szobahőmérsékleten</li>
 		<li>konformáció &#10140; különböző szerkezetek képesek átalakulni egymásba szobahőmérsékleten</li>
 	</ul></details>
@@ -4467,9 +4468,390 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 <!----></div></details>
 
 <!----><details><summary class="phase">10. Halogéntartalmú szerves vegyületek. A nukleofil szubsztitúció lehetséges mechanizmusai (SN<sub>1</sub>, SN<sub>2</sub>).</summary><div class="normal">
+ <details open><summary><font class="title">szöveg</font></summary><ul class="normal">
+	<div style="float:right;max-width:25%">
+		<img src="images/metil.png">
+		<img src="images/sn1sn2.png">
+	</div>
+	<div class="title">Halogéntartalmű szerves vegyületek</div>
+	A halogéntartalmú szerves vegyületek a szénhidrogének olyan származékai, melyekben a hidrogénatomok egy részét halogénatomok helyettesítik. pl. CHCl<sub>3</sub>,CH<sub>3</sub>Cl,C<sub>6</sub>H<sub>5</sub>Cl. Halogének a 7.főcsoport elemei: F,Cl,Br,I. 
+	<span class="Important">Fő képviselőjük az alkil-halogenidek</span><abbr title="alkil-haloid">(=)</abbr>. Ezeknél halogén nem aromás szénhez kapcsolódik, pl. CH<sub>3</sub>Cl, CHCl<sub>3</sub>. Másik csoportjuk az aril-halogenidek. Ez esetben a halogén aromás szénhez kapcsolódik, pl. C<sub>6</sub>H<sub>5</sub>Cl.
+	
+	<br><br><div class="title">Előállításuk</div>
+	Előállításukra 2pl-t mutatnék (mind2 szerepel másik tételben is: 6+8). Alkil-halogenidek előállíthatók alkánok gyökös szubsztitúciójával pl. CH<sub>4</sub> + Cl<sub>2</sub>-ből. Aril-halogenid előállítható az aromás vegyületek elektrofil szubsztitúciójával pl. C<sub>6</sub>H<sub>6</sub> + Cl<sub>2</sub> &#10140; C<sub>6</sub>H<sub>5</sub>Cl + HCl. <span class="Important">Továbbiakban már csak alkil-halogenidekről lesz szó</span>.
+
+	<br><br><span class="MISS">//</span> Alkil(csoport), az egy hidrogénatomtól megfosztott alkán: pl. metil<abbr title="jelölése nem teljesen tiszta számomra, hogy minek kell oda az a kötés, mikor ez lényegében csak CH3, lásd kép (még nem jártam utána)">(–CH<sub>3</sub>)</abbr>, etil.
+
+	<br><br>Ezek a természetben nem fordulnak elő maguktól (csak mióta ember van jelent meg). Mérgezőek<abbr title="nem mindegyik, de nagyrészük">&#10045;</abbr>. Vannak köztük nagyon jó oldószerek, ezeket fontos vegyipari alapanyagként használják. Olvadáspontjuk és forráspontjuk magasabb, mint az ugyanezen nem halogénezet szénhidrogéneké (tehát pl. CH<sub>3</sub>Cl-nek magasabb, mint CH<sub>4</sub>-nek). Gyökös és nukleofilos szubsztitúció jellemző rá.
+
+	<br><br><div class="title">nukleofil szubsztitúció</div>
+	Alapvetően a szubsztrátnak(=kiindulási_vegyület) van egy polaritása a C és halogén közti nagy EN különbség következtében. Ha a támadó ágens a halogén<span class="WHITE">δ-</span> felől érkezik akkor nem történik semmi (hiszen azonos töltések taszítják egymást). Ha a másik oldalról, akkor lehet reakció. Azonban számít a sztérikus hatás is &#10140; ez az, hogy a nukleofil a 3 ligandum mellett odafér-e a szénhez. Ettől függ, hogy S<sub>N</sub>1 vagy S<sub>N</sub>2 reakció lesz-e. pl. metil-klorid esetében odafér, így az S<sub>N</sub>2 fog lejátszódni. pl. tertier-butil-klorid esetében nem fér oda, így az S<sub>N</sub>1 fog lejátszódni.
+
+	<br><br><div class="title">S<sub>N</sub>1</div>
+	Tercier alkil-halogenid (pl.tercier-butil-klorid lásd kép) esetében nem fér oda a támadó_ágens, mert a 3db metilcsoport nem hagy neki helyet. Azonban ettől még végbe fog menni a reakció itt is, csak 2 lépésben. Első lépésben a <span class="WHITE">–Cl</span> leválik és így keletkezik egy 1x pozitív töltésű C-atom melyhez 3 ligandum kapcsolódik. Így kötésszögei 120°osak. Második lépésben a támadó ágens így 2 oldalról támadhatja meg 50-50% eséllyel &#10140; a reakció ezért nem sztereospecifikus. Ha onnan támadja, ahonnan a halogén levált, akkor nincs konfiguráció-változás. Ha ellenkező oldalról támadja, akkor megváltozik a konfiguráció. Ezek eredményeképp racém elegy fog keletkezni. A reakció 2 lépésben zajlik. Első lépésben lebomlik a szubsztrát (tertier-butil-klorid) &#10140; lassú, külön melegítés szükséges, hogy végbemenjen. Második lépésben ehhez hozzáadódik a nukleofil &#10140; nagyon gyors, ugyanis ilyenkor pozitív töltése van az "átmeneti terméknek" és vonzza a nukleofilt. Így a reakciósebesség kizárólag az első lépéstől függ. Az első lépés pedig monomolekulás, ugyanis egyszerű bomlás történik.
+
+	<br><br><div class="title">S<sub>N</sub>2</div>
+	Metil-klorid esetében odafér a támadó_ágens(OH<sup>-</sup>) a C-atomhoz a 3db H-között. <span class="WHITE">–Cl</span> folyamatosan távolodik, míg OH<sup>-</sup> közeledik. Először létrejön egy intermedier(átmeneti) állapot, amikor a C-nek 5db liganduma van. Végül <span class="WHITE">–Cl</span> eltávozik, és OH<sup>-</sup> ottmarad. Reakció lezajlása folyamán a 3db hidrogén átbillen a másik oldalra. Ez az ún. Walden-féle inverzió (mintha egy esernyő a szélben kifordulna. Ha a molekula királis, akkor a konfigurációja megváltozna: egyik enantiomerből másik lenne. Tehát, ha volt valamilyen R-enantiomer, akkor a reakció után S-enantiomer lesz belőle. A reakció ezért sztereospecifikus.Ez lép fel, bármely királis molekula S<sub>N</sub>2-je során. Azért bimolekulás, mert a reakció 1lépésben zajlik és ebben a lépésben 2részecske reagál egymással és keletkeznek a termékek &#10140; így a reakciósebességet meghatározza a kiinduló anyag (metil-klorid) és a támadó_ágens(OH<sup>-</sup>) koncentrációja is.
+ </ul></details>
+ <div><div class="title">halogénezett szénhidrogének</div>
+	<details class="kerdes" id="ok.642"><summary>min keresztül mutatom majd be őket részletesen?</summary><ul class="normal">
+		<li>alkil-halogenideken keresztül</li>
+	</ul></details>
+	<details class="kerdes" id="ok.641"><summary><span class="Important">F</span> nevezéktan</summary><ul class="normal">
+		<img src="images/nmnkltfldt.png">
+		<details><summary>triklórmetán képlete?</summary><ul class="normal">
+			<li>CHCl<sub>3</sub></li>
+		</ul></details>
+		<details><summary>1,1,2-triklóretán képlete?</summary><ul class="normal">
+			<li>CHCl<sub>2</sub>–CH<sub>2</sub>Cl</li>
+		</ul></details>
+		<details><summary>képen(1)-(2) lévő neve?</summary><ul class="normal">
+			<li><span class="Important">2bróm-5metil-hexán</span></li>
+			<li><span class="Important">2bróm-5klór-hexán</span></li>
+			<li>halogének mondják meg honnan kezdjük a számozást <abbr title="szvsz nem teljesen igaz, lásd legalsó kép">&#10045;</abbr></li>
+			<li>ha több halogén van akkor, ABC sorrend számít: Br > Cl (2)</li>
+			<li><abbr title="azonban megjegyzem, hogy a kettős kötés prioritásban a halogén előtt van, tehát /2,4dibróm-but1én/">(legalsókép)</abbr></li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes" id="ok.635"><summary>orvosi jelentőségűre melyet hozzam fel?</summary><ul class="normal">
+		<li>kloroform = CHCl<sub>3</sub> = triklórmetán &#10140; használták altatásban régen</li>
+	</ul></details>
+ </div>
+ <div><div class="title">alkil-halogenid</div>
+	<details class="kerdes" id="ok.636"><summary>mi? 2pl?</summary><ul class="normal">
+		<li>halogéntartalmú szerves vegyület, melyben nem aromás C-atomhoz kapcsolódik a halogén (ugyanis az esetben aril-halogenidről beszüléünk)</li>
+		<li>pl. CH<sub>3</sub>Cl, CHCl<sub>3</sub></li>
+		<li>/// halogének a 7.főcsoport elemei: F,Cl,Br,I</li>
+		<li>/// alkil pl. metil(CH3), etil(C2H5)</li>
+	</ul></details>
+	<details class="kerdes" id="ok.640"><summary>hogy jönnek létre? bemutatása 1pl-val?</summary><ul class="normal">
+		<li>alkán halogénatommal történő <span class="Important">gyökös szubsztitúció</span>jával</li>
+		<li>pl. CH<sub>4</sub>(g) + Cl<sub>2</sub>(g) &#10140; CH<sub>3</sub>(g)Cl + HCl(g)</li>
+		<details><summary>reakció lépései és jellemzése?</summary><ul class="normal">
+			<li>kiindulás &#10140; gyök létrehozása</li><ul>
+				<li>Cl atomrádiusza nagyobb <abbr title="hisz nagyobb periódusban van">&#10045;</abbr>, így kötésének felszakításához kisebb energia kell, mint metánnak</li>
+				<li><span class="Important">Cl-Cl &#10140; Cl• + •Cl</span></li>
+				<li>(ez a reakció UV-fény elnyeléssel végbemegy)</li>
+			</ul>
+			<li><span class="Important">1</span> Cl• + H-CH<sub>3</sub> &#10140; •CH<sub>3</sub> + HCl</li>
+			<li><span class="Important">2</span> •CH<sub>3</sub> + Cl-Cl &#10140; CH<sub>3</sub>Cl + Cl•</li>
+			<li>ez az egész egy láncreakció, hisz a 1.-2. lépés folyamatosan ismétlődik <abbr title="amíg van CH4 és Cl2">&#10045;</abbr> (mert ami elveszett első lépésben Cl•, az második végén pótlódik)</li>
+			<li>mivel gyökök nagyon-extra-giga-nagy reakciókészségűek, ezért az egész nagyon gyorsan játszódik le</li>
+			<li>a folyamat során hő termelődik (exoterm!)</li>
+			<div>&#10140; előbbi 3 következtében robbanással jár a reakció</div>
+			<div>–––––––––––nohde!–––––––––––––––––</div>
+			<li>tudni kell azt is, hogy pl. a keletkezett Cl• nem csak CH<sub>4</sub>el tud reagálni</li>
+			<li>szóval nekimehet pl. •CH<sub>3</sub>, CH<sub>3</sub>Cl, másik Cl• stb.</li>
+		</ul></details>
+		<details><summary>mi állítja le a reakciót?</summary><ul class="normal">
+			<li>az, ha csökken a gyökök száma, pl.</li>
+			<li>Cl• + •CH<sub>3</sub> &#10140; CH<sub>3</sub>Cl</li>
+			<li>Cl• + •Cl &#10140; Cl<sub>2</sub></li>
+		</ul></details>
+		<details><summary>mik keletkeznek?</summary><ul class="normal">
+			<li>CH3Cl</li>
+			<li>CH2Cl2</li>
+			<li>CHCl3</li>
+			<li>CCl4</li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes" id="ok.637"><summary>általános jellemzésük?</summary><ul class="normal">
+		<li>természetben nem fordulnak elő maguktól (csak mióta ember van jelent meg)</li>
+		<li><span class="Important">mérgezőek</span> <abbr title="nem mindegyik, de nagyrészük">&#10045;</abbr></li>
+		<li>vannak köztük nagyon jó oldószerek, ezeket fontos vegyipari alapanyagként használják</li>
+	</ul></details>
+	<details class="kerdes" id="ok.638"><summary>fizikai tulajdonságai?</summary><ul class="normal">
+		<li>olvadáspontjuk és forráspontjuk magasabb, mint az ugyanezen nem halogénezet szénhidrogéneké</li>
+		<li>tehát pl. CH<sub>3</sub>Cl-nek magasabb, mint CH<sub>4</sub>-nek</li>
+	</ul></details>
+	<details class="kerdes" id="ok.639"><summary>kémiai tulajdonságai?</summary><ul class="normal">
+		<li>két reakció jellemző rá &#10140; <abbr title="nemcsak képződésekor képes rá, hisz pl. CH3Cl + Clből lesz CH2Cl2 H is lehet simán (lásd képződése)">Sr</abbr>  & <span class="WHITE">Sn</span></li>
+	</ul></details>
+ </div>
+ <div><div class="title">nukleofil szubsztitúció</div>
+	<details class="kerdes" id="ok.643"><summary>miért ez jellemző rá? lényege?</summary><ul class="normal">
+		<li>azért, mert az alkil-halogenidben a halogén EN-je nagy, ennek következtében a kötőelektronpár eltolódik irányába és negatív polaritásúvá válik, míg a szén pozitív polaritásúvá</li>
+		<li>a szén így könnyen fog reagálni az <span class="WHITE">:Y</span>-al (nemkötőelektronpárral rendelkező részecskével)</li>
+		<li>így az fog történni, hogy a <span class="WHITE">–X</span> (halogén az elektronpárral együtt) eltávozik a széntől, és helyére az <span class="WHITE">:Y</span> lép be</li>
+		<li>így az <span class="WHITE">:Y</span> lesz az elektronpárdonor, tehát Lewis-bázis, míg az szén az akceptor, tehát Lewis-sav</li>
+		<div><span class="WHITE">Y:</span> + <span class="WHITE">R–X</span> &#10140; <span class="WHITE">Y–R</span> + <span class="WHITE">:X</span></div>
+	</ul></details>
+	<details class="kerdes" id="ok.644"><summary>támadó ágensre pl-k, hogy mi lehet?</summary><ul class="normal">
+		<div><span class="WHITE">Y:</span> + <span class="WHITE">R–X</span> &#10140; <span class="WHITE">Y–R</span> + <span class="WHITE">:X</span></div>
+		<details><summary>főbb nukleofilek(Y)?(6pl.)</summary><ul class="normal">
+			<li>F<sup>-</sup>,Cl<sup>-</sup>,Br<sup>-</sup>,I<sup>-</sup>,H<sub>2</sub>O,OH<sup>-</sup>,H<sub>2</sub>O,CN<sup>-</sup> stb.</li>
+		</ul></details>
+		<details><summary>X mi lehet?(4pl.)</summary><ul class="normal">
+			<li>F<sup>-</sup>,Cl<sup>-</sup>,Br<sup>-</sup>,I<sup>-</sup></li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes" id="ok.645"><summary>típusainak felsorolása?</summary><ul class="normal">
+		<li>S<sub>N</sub>1 &#10140; monomolekulás(1) nukleofil(n) szubsztitúció(S)</li>
+		<li>S<sub>N</sub>2 &#10140; bimolekulás(2) nukleofil(n) szubsztitúció(S)</li>
+	</ul></details>
+	<details class="kerdes" id="ok.648"><summary>sztérikus hatás befolyása a reakció szempontjából?</summary><ul class="normal">
+		<img src="images/sn12ns.png">
+		<li>a C atom rendűsége minél nagyobb, annál inkább S<sub>N</sub>1 reakciók lesznek</li>
+		<details><summary>szép és jó de, miért?</summary><ul class="normal">
+			<li>C lehet primer,szekunder vagy tertier, hisz a negyedik kötése halogénnal van mindenképpen</li>
+			<li>nukleofil ha halogén felől érkezik akkor nem történik semmi, hisz a halogén <span class="WHITE">δ-</span> töltésű</li>
+			<li>ezért a másik oldalról kell érkeznie</li>
+			<li>azonban ha pl. 3metilcsoport van a másik oldalon (tehát tertier C-atom van), akkor egyszerűen nem fog odaférni a C-hez</li>
+			<li>így csak a kétlépéses S<sub>N</sub>1 reakció fog tudni szinte végbemenni</li>
+			<li>ellenben ha 3hidrogénatomhoz kapcsolódik(primer C atom), akkor odafér, és S<sub>N</sub>2 lesz</li>
+		</ul></details>
+		<li>a C atom rendűsége minél kisebb, annál inkább S<sub>N</sub>2 reakciók lesznek</li>
+	</ul></details>
+	<details class="kerdes" id="ok.649"><summary>melyik sztereospecifikus? miért?</summary><ul class="normal">
+		<li>S<sub>N</sub>2 sztereospecifikus, ugyanis a termék mindig a <abbr title="azaz ha a szubsztrát S-enantiomer, akkor a termék R-enantiomer">szubsztrátnak az inverze</abbr> <div class="mirror">&#10140;</div> lásd Walder-inverzió</li>
+		<li>S<sub>N</sub>1 nem sztereospecifikus, ugyanis a termék nem lesz mindig a szubsztrát inverze <div class="mirror">&#10140;</div> ugyanis a termék racém-elegy, tehát csak kb. 50% lesz a szubsztrátnak az inverze</li>
+		<li><span class="MISS">szvsz a megfogalmazás nembiztos, hogy jó!</span></li>
+	</ul></details>
+	<details class="kerdes" id="ok.651"><summary>melyik monomolekulás és bimolekulás indokolva?</summary><ul class="normal">
+		<li>S<sub>N</sub>1 monomolekulás</li><ul>
+			<li>a reakció 2 lépésben zajlik</li>
+			<li>első lépésben lebomlik a szubsztrát (tertier-butil-klorid) &#10140; lassú, külön melegítés szükséges, hogy végbemenjen</li>
+			<li>második lépésben ehhez hozzáadódik a nukleofil &#10140; nagyon gyors, ugyanis ilyenkor pozitív töltése van az "átmeneti terméknek" és vonzza a nukleofilt</li>
+			<li>így a reakciósebesség kizárólag az első lépéstől függ</li>
+			<li>az első lépés pedig monomolekulás, ugyanis egyszerű bomlás történik</li>
+		</ul>
+		<li>S<sub>N</sub>2 bimolekulás, mert a reakció 1lépésben zajlik és ebben a lépésben 2részecske reagál egymással és keletkeznek a termékek &#10140; így a reakciósebességet meghatározza a kiinduló anyag (metil-klorid) és a támadó_ágens(OH<sup>-</sup>) koncentrációja is</li>
+	</ul></details>
+	<details class="kerdes" id="ok.646"><summary>S<sub>N</sub>1 és S<sub>N</sub>2 reakciók levezetése!</summary><ul class="normal">
+		<div style="max-width:40%; float:right">
+			<img src="images/sn1sn2.png">
+		</div>
+		<li>alapvetően a szubsztrátnak(=kiindulási_vegyület) van egy polaritása a C és halogén közti nagy EN különbség következtében</li>
+		<li>ha a támadó ágens a halogén<span class="WHITE">δ-</span> felől érkezik akkor nem történik semmi (hiszen azonos töltések taszítják egymást)</li>
+		<li>ha a másik oldalról, akkor lesz reakció</li>
+		<li>azonban számít a sztérikus hatás is &#10140; ez az, hogy a 3 ligandum mellett odafér-e a szénhez</li>
+		<li>ettől függ, hogy S<sub>N</sub>1 vagy S<sub>N</sub>2 reakció lesz-e</li>
+		<li>pl. metil-klorid esetében odafér, így az S<sub>N</sub>2 fog lejátszódni</li>
+		<li>pl. tertier-butil-klorid esetében nem fér oda, így az S<sub>N</sub>1 fog lejátszódni</li>
+		<li><span class="Important">S<sub>N</sub>2</span> &#10140; pl. CH<sub>3</sub>Cl + OH<sup>-</sup> &#10140; CH<sub>3</sub>OH + Cl<sup>-</sup></li><ul>
+			<li>metil-klorid esetében odafér a támadó_ágens(OH<sup>-</sup>) a C-atomhoz a 3db H-között</li>
+			<li><span class="WHITE">–Cl</span> folyamatosan távolodik, míg OH<sup>-</sup> közeledik</li>
+			<li>először létrejön egy intermedier(átmeneti) állapot, amikor a C-nek 5db liganduma van</li>
+			<li>végül <span class="WHITE">–Cl</span> eltávozik, és OH<sup>-</sup> ottmarad</li>
+			<li>reakció lezajlása folyamán a 3db hidrogén átbillen a másik oldalra</li>
+			<li>ez az ún. Walden-féle inverzió (mintha egy esernyő a szélben kifordulna)</li>
+			<li>ha a molekula királis, akkor a konfigurációja megváltozna: egyik enantiomerből másik lenne</li>
+			<li>tehát, ha volt valamilyen R-enantiomer, akkor a reakció után S-enantiomer lesz belőle</li>
+			<li>a reakció ezért sztereospecifikus</li>
+			<li>ez lép fel, bármely királis molekula S<sub>N</sub>2-je során</li>
+			<li>azért bimolekulás, mert a reakció 1lépésben zajlik és ebben a lépésben 2részecske reagál egymással és keletkeznek a termékek &#10140; így a reakciósebességet meghatározza a kiinduló anyag (metil-klorid) és a támadó_ágens(OH<sup>-</sup>) koncentrációja is</li>
+		</ul>
+		<li><span class="Important">S<sub>N</sub>1</span> &#10140; pl. C<sub>4</sub>H<sub>9</sub>Cl + OH<sup>-</sup> &#10140; C<sub>4</sub>H<sub>9</sub>OH + Cl<sup>-</sup></li><ul>
+			<li>Tercier alkil-halogenid (pl.tercier-butil-klorid lásd kép) esetében nem fér oda a támadó_ágens, mert a 3db metilcsoport nem hagy neki helyet</li>
+			<li>azonban ettől még végbe fog menni a reakció itt is, csak 2 lépésben</li>
+			<li>első lépésben a <span class="WHITE">–Cl</span> leválik és így keletkezik egy 1x pozitív töltésű C-atom melyhez 3 ligandum kapcsolódik</li>
+			<li>így kötésszögei 120°osak</li>
+			<li>második lépésben a támadó ágens így 2 oldalról támadhatja meg 50-50% eséllyel &#10140; a reakció ezért nem sztereospecifikus</li><ul>
+				<li>ha onnan támadja, ahonnan a halogén levált, akkor nincs konfiguráció-változás</li>
+				<li>ha ellenkező oldalról támadja, akkor megváltozik a konfiguráció</li>
+			</ul>
+			<li>&#10140; ezért racém elegy fog eredményezni</li>
+			<details><summary>miért monomolekulás?</summary><ul class="normal">
+				<li>a reakció 2 lépésben zajlik</li>
+				<li>első lépésben lebomlik a szubsztrát (tertier-butil-klorid) &#10140; lassú, külön melegítés szükséges, hogy végbemenjen</li>
+				<li>második lépésben ehhez hozzáadódik a nukleofil &#10140; nagyon gyors, ugyanis ilyenkor pozitív töltése van az "átmeneti terméknek" és vonzza a nukleofilt</li>
+				<li>így a reakciósebesség kizárólag az első lépéstől függ</li>
+				<li>az első lépés pedig monomolekulás, ugyanis egyszerű bomlás történik</li>
+			</ul></details>
+		</ul>
+	</ul></details>
+	<details class="kerdes" id="ok.647"><summary>nukleofilek erőssége?</summary><ul class="normal">
+		<li>báziserősséggel arányos, kivéve halogenidionoknál</li>
+		<li>ugyanis halogenidionoknál pont fordítva van &#10140; tehát F<sup>-</sup> hiába erősebb bázis, mint Cl<sup>-</sup>, gyengébb nukleofil</li><ul>
+			<li>báziserősség F<sup>-</sup> > Cl<sup>-</sup> > Br<sup>-</sup> > I<sup>-</sup></li>
+			<li>nukleofil-erősség F<sup>-</sup> &lt; Cl<sup>-</sup> &lt; Br<sup>-</sup> &lt; I<sup>-</sup></li>
+		</ul>
+	</ul></details>
+	<details class="kerdes" id="ok.652"><summary>poláros oldószerben melyik játszódik le inkább?</summary><ul class="normal">
+		<li>S<sub>N</sub>2</li>
+	</ul></details>
+	<details class="kerdes" id="ok.656"><summary>mi befolyásolja a reakciósebességét?</summary><ul class="normal">
+		<li>S<sub>N</sub>1 esetében a szubsztituens koncentrációja</li>
+		<li>S<sub>N</sub>2 esetében a szubsztituens és nukleofil koncentrációja</li>
+		<li>S<sub>N</sub>2 esetében a halogén(távozó) és nukleofil báziserőssége közti összefüggés</li>
+		<li>oldószer</li>
+	</ul></details>
+	<details class="kerdes" id="ok.653"><summary>reakciók &#10140; mik állíthatók elő?<abbr title="persze más is nyilván előállatható, illetve máshogy is keletkezhet, de ezek a fontosak">&#10045;</abbr></summary><ul class="normal">
+		<img src="images/trsztrlkhlrjz.png">
+		<li>S<sub>N</sub>2 reakcióval mutatom be, <abbr title="hiszen">ezért</abbr> egy primer alkil-halogenidet választok kiindulásnak <span class="WHITE">R–CH<sub>2</sub>Cl</span></li>
+		<li>észter <span class="WHITE">R-CH<sub>2</sub>Cl</span> + <span class="WHITE">CH<sub>3</sub>COO<sup>-</sup></span> &#10140; R-CH<sub>2</sub>–OOC-CH<sub>3</sub></li>
+		<li>éter <span class="WHITE">R-CH<sub>2</sub>Cl</span> + <span class="WHITE">CH<sub>3</sub>CH<sub>2</sub>O<sup>-</sup></span> &#10140; R-CH<sub>2</sub>–OCH<sub>2</sub>CH<sub>3</sub></li>
+		<li>alkohol <span class="WHITE">R-CH<sub>2</sub>Cl</span> + <span class="WHITE">OH<sup>-</sup></span> &#10140; R-CH<sub>2</sub>–OH</li>
+	</ul></details>
+	<details class="kerdes" id="ok.654"><summary>báziserősségel való összefüggésről mit kell tudni?</summary><ul class="normal">
+		<img src="images/bzsrrsgsn2.png">
+		<li>S<sub>N</sub>2 akkor megy végre, ha nukleofil erősebb bázis, mint a kilépő halogenidion</li>
+		<div> ~~~~~~~~~~~~~~~~~~~~~~ </div>
+		<li>nohde! mit jelent ez?</li>
+		<li>a táblázaton a pKa látható, ami a savi konstans negatív alapú logaritmusa &#10140; Ka = [H+][A-]/[HA] &#10140; tehát a Ka minél nagyobb, annál erősebb a sav &#10140; minél kisebb annál erősebb bázis &#10140; ha veszem a negatív alapú logaritmusát az egész megfordul, tehát minél nagyobb pKa, annál erősebb bázis</li>
+		<li>tehát ha a OH<sup>-</sup> a nukleofil, és a szubsztituens R-CH<sub>2</sub>-Cl akkor a reakció végbe fog menni, hisz OH<sup>-</sup> pKa-ja nagyobb</li>
+		<li>tehát ha a I<sup>-</sup> a nukleofil, és a szubsztituens R-CH<sub>2</sub>-Cl akkor a reakció NEM fog végbe fog menni, hisz I<sup>-</sup> gyengébb bázis</li>
+		<li>(táblázat első oszlopával ne foglalkozzak)</li>
+	</ul></details>
+	<details class="kerdes" id="ok.655"><summary>bázikusság és nukleofilitás közi összefüggés?</summary><ul class="normal">
+		<img src="images/nklfltsbzkssg.png">
+		<li>bázikusság &#10140; proton megkötő képesség</li>
+		<li>nukleofilitás &#10140; (+)C-hez való kötődés gyorsasága</li>
+		<li>nukleofilitás nem csak a bázikusságtól (pKa) függ &#10140; tehát, hiába nagyobb egyik bázikussága a másikénál, a nukleofilitása lehet kisebb</li>
+		<li>ugyanis a részecskeméret is beleszámít</li>
+		<li>/pirosaknak kb ugyanakkora/</li>
+	</ul></details>
+ </div>
 <!----></div></details>
 
-<!----><details><summary class="phase">11. Hidroxilcsoportot tartalmazó szerves vegyületek csoportosítása és összehasonlítása, főbb reakcióik. Éterképzés, éterek tulajdonságai és reakciói. Fontosabb éterek.</summary><div class="normal">
+<!----><details open><summary class="phase"><span class="Important">42:00</span> 11. Hidroxilcsoportot tartalmazó szerves vegyületek csoportosítása és összehasonlítása, főbb reakcióik. Éterképzés, éterek tulajdonságai és reakciói. Fontosabb éterek.</summary><div class="normal">
+ <details open><summary><font class="title">szöveg</font></summary><ul class="normal">
+	<div style="float:right;max-width:25%">
+		<img src="images/mttnl.png">
+		<img src="images/hidroxibutirát.png">
+		<img src="images/etan12diol.png">
+		<img src="images/gmnlshdr.png">
+		<img src="images/lkhlrndsg.png">
+		<img src="images/lkhlfrrspnt.png">
+		<img src="images/krbnsvsztr.png">
+		<img src="images/lkhkdhdrtc.png">
+	</div>
+	<div class="title">Alkoholok</div>
+	1 vagy több <span class="WHITE">-OH</span> csoportot tartalmazó <abbr title="=szerves vegyület">szénhidrogén</abbr>. <abbr title="nem teljesen jól írtam le, de ne érdekeljen. így tanuljam meg azt kész, amíg nem ugrik elém egy normálisabb felfogás">?!</abbr>Elnevezésük alapvetően a következő: <span class="WHITE">-ol</span> végződést írunk a szénhidrogén neve mögé, pl. metanol,etanol. Lehet úgyis nevezni, hogy alkil-csoport neve után írom azt, hogy alkohol. pl. metanol = metil-alkohol. Azonban ha a vegyületnek van más funkciós csoportja, akkor <span class="WHITE">hidroxi-</span> előtagot írunk a szénhidrogén neve elé. Pl. γ-hidroxibutirát esetében, mert van a végén karbonsav. 
+	
+	<br><br>Az <span class="WHITE">-OH</span> csoport elhelyezkedése adott vegyületen belül nem mindegy. pl. γ-hidroxibutirát és β-hidroxibutirát csupán ebben különböznek élettani hatásuk azonban teljesen más. Ugyanis β jelentősége csupán annyi, hogy a vérben lévő koncentrációját mérik a cukorbetegségben szenvedők. γ ezzel szemben egy drog.
+
+	<br><br><div class="title">Csoportosításuk</div>
+	Csoportosításuk történhet többféleképpen. 
+	<br><span class="Important">(A)</span> Lehet az <span class="WHITE">-OH</span> csoportok száma szerint: egyértékű, kétértékű, többértékű. pl. etanol egyértékű, etan-1,2diol kétértékű, glicerin háromértékű. Ha nem egyértékű, akkor lehet tovább csoportosítani őket a <span class="Important">(A')</span> hidroxilcsoportok egymáshoz viszonyított elhelyezkedése alapján. Vicinális ha egymás melletti C-atomokhoz kapcsolódnak, pl. glicerin. Diszjunkt, ha az előbb említett két C-atom közt van legalább 1 C-atom, pl. HO-CH<sub>2</sub>-CH<sub>2</sub>-H<sub>2</sub>C-OH. Geminális, ha egy C-atomhoz kapcsolódik a két hidroxilcsoport. Geminálisak rettenetesen rövid életűek, ugyanis 1H<sub>2</sub>O kilépésével aldehided hoznak létre spontán. 
+	<br><span class="Important">(B)</span> Rendűség alapján is lehet csoportosítani őket: azaz hanyadrendű C-atomhoz kapcsolódik az <span class="WHITE">-OH</span> csoport. pl. a képen látható etanol(a) elsőrendű, propan-2ol(b) másodrendű, 1metil-propan-2ol(c) harmadrendű.
+
+	<br><br><div class="title">Fizikai tulajdonságai</div>
+	Forráspontjuk arányos az <span class="WHITE">-OH</span> számmal. Tehát ha felrajzolom a grafikont (tudjam felrajzolni), akkor látható, hogy pl. propáné alacsonym propanolé ugársszerűen magasabb, propan-1,2diolé (vagy 1,3) szintén ugrik egyet, és gliceriné megint csak. (Az, hogy C-atomszámmal is nő, az evidens, hisz előző tételben már volt róla szó, itt most az -OH számtól való függés volt a lényeg). Ennek magyarázata, hogy az <span class="WHITE">-OH</span>-t alkotó oxigénnek van 2db nemkötő elektronpárja &#10140; H-híd kötések alakulnak ki másik alkohollal, mert az -OH és a -H között (tehát az intermolekuláris kölcsönhatások erősebbek).
+	
+	<br><br><div class="title">Kémiai tulajdonságai</div>
+	Hasonlóan a vízhez ez is <span class="Important">amfoter jellegű</span> &#10140; savakkal szemben bázisként, bázisokkal szemben savként viselkednek. Ugyanis az -OH csoport erős polaritása következtében a protont le tudja adni. De az -OH csoportban lévő oxigén emelett képes proton megkötésre, hiszen erősen negatív, és van 2 nemkötő eletronpárja. pKa-juk 16-18 között van.
+	<br><span class="Important">Keletkezésükre</span> jó példa a már előzőekben (10.tétel) említett módszer: alkilhalogenidekből S<sub>N</sub>2-el. <br><span class="WHITE">R-CH<sub>2</sub>Cl</span> + <span class="WHITE">OH<sup>-</sup></span> &#10140; R-CH<sub>2</sub>–OH
+	<br><span class="Important">Éterképzésre</span> alkalmasak a következőképpen: alkil-halogenid S<sub>N</sub>2 reakciója alkoxiddal. Támadó ágens az alkoxid, távozó csoport a halogenidion. Alkoxid = az alkohol <span class="WHITE">-OH</span>-jából le lett vonva a proton, pl. CH<sub>3</sub>CH<sub>2</sub>O<sup>-</sup>. (Ezenkívül intermolekuláris dehidratálással is lehet, lásd majd lentebb.)
+	<br> pl. <span class="WHITE">R-CH<sub>2</sub>Cl</span> + <span class="WHITE">CH<sub>3</sub>CH<sub>2</sub>O<sup>-</sup></span> &#10140; R-CH<sub>2</sub>–OCH<sub>2</sub>CH<sub>3</sub>
+	<br>Alkoholt savval reagáltatva <span class="Important">észter képződik</span>. Észtereknek 2 típusa van &#10140; karbonsavészter, szervetlen savak észterei. Karbonsavészter keletkezésénél az alkohol karbonsavval reagál. <span class="WHITE">R-OH + R'-COOH &#10140; R'-COOR + H<sub>2</sub>O</span> pl. glicerin + 2zsírsav &#10140; lipid (de ide még kell kolin is vagy vmi más)
+	<br>Szervetlen_sav esetében szervetlen észter keletkezik. <span class="WHITE">R-OH + HNO<sub>3</sub> &#10140; R-O–NO<sub>2</sub> + H<sub>2</sub>O</span> pl. glicerin + 3HNO<sub>3</sub> &#10140; glicerin-trinitrát(nitroglicerin)
+	<br><span class="Important">Dehidratációval</span>, azaz vízelvonással alkén vagy éter képződik. Intermolekuláris esetben fog éter képződni. Ez azt jelenti hogy 2 alkoholmolekulából lép majd ki 1H<sub>2</sub>O és lesz belőlük éter. pl. CH<sub>3</sub>OH + CH<sub>3</sub>OH &#10140; CH<sub>3</sub>O-CH<sub>3</sub>. Ez savas közegben megy végbe: (1) CH<sub>3</sub>OH hoz kötődik 1 proton, ennek következtében 1x pozitív töltésű lesz, (2) kiválik belőle 1H<sub>2</sub>O, így marad CH<sub>3</sub><sup>+</sup>, (3) ez a CH<sub>3</sub><sup>+</sup> csatlakozik a másik CH<sub>3</sub>OH-hoz és így keletkezik CH<sub>3</sub>-OH-CH<sub>3</sub><sup>+</sup> amiből egy proton leválik majd. Intramolekuláris esetében a 1 alkoholmolekulából fog kiválni 1H<sub>2</sub>O és keletkezik alkén. pl. etanolból így keletkezik etilén, ez is savas közegben! (lefutását lásd a képen!).
+ </ul></details>
+ <div><div class="title">Alkoholok</div>
+	<details class="kerdes" id="ok.657"><summary>alkoholok definíciója?</summary><ul class="normal">
+		<li>1 vagy több <span class="WHITE">-OH</span> csoportot tartalmazó <abbr title="=szerves vegyület">szénhidrogén</abbr></li>
+	</ul></details>
+	<details class="kerdes" id="ok.658"><summary>alkoholok elnevezése? 1-1pl?</summary><ul class="normal">
+		<img src="images/mttnl.png">
+		<li>alapvetően <span class="WHITE">-ol</span> végződést kapnak &#10140; pl. metanol, etanol</li>
+		<li>de <span class="WHITE">hidroxi-</span> előtagot kapnak az <span class="WHITE">-ol</span> helyett akkor, ha van más funkciós csoport &#10140; pl. γ-hidroxibutirát esetében van a végén karbonsav</li>
+		<img src="images/hidroxibutirát.png">
+	</ul></details>
+	<details class="kerdes" id="ok.659"><summary>metanol orvosi jelentősége?</summary><ul class="normal">
+		<li>nagyon toxikus, ugyanis szervezetben átalakul formaldehiddé és az erős méreg</li>
+		<li>az enzim ami átalakítja formaldehiddé, ugyanúgy az etanolt is lebontja</li>
+		<li>ezért ha valakinek metanol mérgezése van, akkor azt etanollal lehet kezelni</li>
+		<li>hiszen így az enzimek csak igen kis mennyiségű metanolt fognak időegység alatt átalakítani formaldehiddé, mert nagyrészük etanollal lesz elfoglalva</li>
+	</ul></details>
+	<details class="kerdes" id="ok.660"><summary>-OH csoport elhelyezkedési jelentőségének bemutatása 1pl-n?</summary><ul class="normal">
+		<img src="images/hidroxibutirát.png">
+		<li>γ-hidroxibutirát &#10140; drog</li>
+		<li>β-hidroxibutirát &#10140; cukorbetegek vérvizsgálatnál (ujjhegyből vett friss vérből) nézik a mennyiségét</li>
+		<div>&#10140; -OH csoport elhelyezkedése fontos (nem mind1 melyik C-atomhoz kapcsolódik)</div>
+	</ul></details>
+	<details class="kerdes" id="ok.663"><summary>csoportosítási módszerek típusainak felsorolása?</summary><ul class="normal">
+		<li><span class="WHITE">-OH</span> száma alapján</li>
+		<li>hanyadrendű C-atomhoz kapcsolódik az <span class="WHITE">-OH</span></li>
+	</ul></details>
+	<details class="kerdes" id="ok.664"><summary>rendűség alapján csoportosítás 1-1pl-val?</summary><ul class="normal">
+		<img src="images/lkhlrndsg.png">
+		<li>elsőrendű pl. etanol (a)</li>
+		<li>másodrendű pl. propan-2ol (b)</li>
+		<li>harmadrendű pl. 1metil-propan-2ol (c)</li>
+	</ul></details>
+	<details class="kerdes" id="ok.665"><summary><span class="WHITE">-OH</span> szám alapján csoportosításra 1-1pl?</summary><ul class="normal">
+		<img src="images/etan12diol.png">
+		<li>egyértékű pl.etanol</li>
+		<li>kétértékű pl.etan-1,2diol</li>
+		<li>háromértékű pl.glicerin</li>
+	</ul></details>
+	<details class="kerdes" id="ok.666"><summary>többértékűek tovább csoportosítási módja?</summary><ul class="normal">
+		<img src="images/gmnlshdr.png">
+		<li>vicinális &#10140; egymás melletti C-atomokhoz kapcsolódnak, pl. glicerin</li>
+		<li>diszjunkt &#10140; előbb említett két C-atom közt van legalább 1 C-atom, pl. HO-CH<sub>2</sub>-CH<sub>2</sub>-H<sub>2</sub>C-OH</li>
+		<li>geminális &#10140; egy C-atomhoz kapcsolódik a két hidroxilcsoport</li>
+		<details><summary>geminálisról mit illik tudni?</summary><ul class="normal">
+			<li>rettenetesen rövid életűek, ugyanis 1H<sub>2</sub>O kilépésével aldehided hoznak létre spontán</li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes" id="ok.667"><summary><span class="Vocab">RAJZ</span> fizikai tulajdonságaik?</summary><ul class="normal">
+		<img src="images/lkhlfrrspnt.png">
+		<li>forráspontjuk arányos az <span class="WHITE">-OH</span> számmal</li>
+		<li>tehát ha felrajzolom a grafikont (tudjam felrajzolni), akkor látható, hogy pl. propáné alacsonym propanolé ugársszerűen magasabb, propan-1,2diolé (vagy 1,3) szintén ugrik egyet, és gliceriné megint csak</li>
+		<li>// az, hogy C-atomszámmal is nő, az evidens, hisz előző tételben már volt róla szó, itt most az -OH számtól való függés volt a lényeg</li>
+		<details><summary>magyarázata?</summary><ul class="normal">
+			<li>-OH-t alkotó oxigénnek van 2db nemkötő elektronpárja &#10140; H-híd kötések alakulnak ki másik alkohollal, mert az -OH és a -H között </li>
+			<li>(tehát az intermolekuláris kölcsönhatások erősebbek)</li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes" id="ok.668"><summary>megemlítendő kémiai tulajdonságainak felsorolása?</summary><ul class="normal">
+		<li>amfoter jelleg</li>
+		<li>keletkezésük</li>
+		<li>éterképzés</li>
+		<li>észterképzés</li>
+		<li>dehidratálás</li>
+		<li>oxidáció & redukció</li>
+	</ul></details>
+	<details class="kerdes" id="ok.670"><summary>keletkezésükre 1pl?</summary><ul class="normal">
+		<li>alkilhalogenidekből S<sub>N</sub>2-el</li>
+		<div>alkohol <span class="WHITE">R-CH<sub>2</sub>Cl</span> + <span class="WHITE">OH<sup>-</sup></span> &#10140; R-CH<sub>2</sub>–OH</div>
+	</ul></details>
+	<details class="kerdes" id="ok.671"><summary>amfoter jellege?</summary><ul class="normal">
+		<li>hasonlóan a vízhez ez is amfoter jellegű &#10140; savakkal szemben bázisként, bázisokkal szemben savként viselkednek</li>
+		<li>ugyanis az -OH csoport erős polaritása következtében a protont le tudja adni</li>
+		<li>de az -OH csoportban lévő oxigén emelett képes proton megkötésre, hiszen erősen negatív, és van 2 nemkötő eletronpárja</li>
+		<li>pKa-juk 16-18 között van</li>
+	</ul></details>
+	<details class="kerdes" id="ok.672"><summary>éterképzés?</summary><ul class="normal">
+		<li>alkil-halogenid S<sub>N</sub>2 reakciója alkoxiddal</li>
+		<li>támadó ágens az alkoxid, távozó csoport a halogenidion</li>
+		<li>alkoxid = az alkohol <span class="WHITE">-OH</span>-jából le lett vonva a proton, pl. CH<sub>3</sub>CH<sub>2</sub>O<sup>-</sup></li>
+		<li>pl. <span class="WHITE">R-CH<sub>2</sub>Cl</span> + <span class="WHITE">CH<sub>3</sub>CH<sub>2</sub>O<sup>-</sup></span> &#10140; R-CH<sub>2</sub>–OCH<sub>2</sub>CH<sub>3</sub></li>
+	</ul></details>
+	<details class="kerdes" id="ok.669"><summary>észterképzés?</summary><ul class="normal">
+		<li>alkoholt savval reagáltatva észter képződik</li>
+		<li>észtereknek 2 típusa van &#10140; karbonsavészter, szervetlen savak észterei</li>
+		<li>karbonsavészter keletkezésénél az alkohol karbonsavval reagál</li><ul>
+			<li>R-OH + R'-COOH &#10140; R'-COOR + H<sub>2</sub>O</li>
+			<li>pl. glicerin + 2zsírsav &#10140; lipid (de ide még kell kolin is vagy vmi más)</li>
+		</ul>
+		<li>szervetlen_sav esetében szervetlen észter</li><ul>
+			<li>R-OH + HNO<sub>3</sub> &#10140; R-O–NO<sub>2</sub> + H<sub>2</sub>O</li>
+			<li>pl. glicerin + 3HNO<sub>3</sub> &#10140; glicerin-trinitrát(nitroglicerin)</li>
+		</ul>
+	</ul></details>
+	<details><summary>reakciók &#10140; hogy keletkeznek? mik állíthatók elő?<abbr title="persze más is nyilván előállatható, illetve máshogy is keletkezhet, de ezek a fontosak">&#10045;</abbr></summary><ul class="normal">
+		<img src="images/trsztrlkhlrjz.png">
+		<img src="images/krbnsvsztr.png">
+	</ul></details>
+	<details class="kerdes" id="ok.661"><summary><span class="Important">F</span> propánol és prop-2-anol szerkezete?</summary><ul class="normal">
+		<img src="images/prpnl.png">
+	</ul></details>
+	<details class="kerdes" id="ok.662"><summary><span class="Important">F</span> nevezd el</summary><ul class="normal">
+		<img src="images/2mtl2prpnl.png">
+		<br><br><details><summary>megoldás?(1)</summary><ul class="normal">
+			<li>2metil-propan-2ol</li>
+		</ul></details>
+		<br><br><details><summary>megoldás?(2)</summary><ul class="normal">
+			<li>ciklohexanol</li>
+		</ul></details>
+		<br><br><details><summary>megoldás?(3)</summary><ul class="normal">
+			<li>3pentin-1ol</li>
+			<li>&#10140; <span class="WHITE">-ol</span> nagyobb prioritású, mint a <span class="WHITE">2x/3x-kötés</span> helyzete a számozás irányának meghatározásában</li>
+		</ul></details>
+	</ul></details>
+ </div>
 <!----></div></details>
 
 <!----><details><summary class="phase">12. Oxocsoportot tartalmazó szerves vegyületek csoportosítása és összehasonlítása. Fontosabb oxovegyületek. Az enol-oxo tautoméria. Az aldehidek és ketonok reakciói. A nukleofil addíció mechanizmusa.</summary><div class="normal">

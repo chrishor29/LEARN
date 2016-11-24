@@ -398,7 +398,8 @@ function func_markCount(jegy){
 	} else {
 		markCount = jegy
 	}
-	markCount = Math.floor(markCount); 
+	//markCount = Math.floor(markCount); 
+	markCount = jegy
 }
 
 function func_prevQuestion(){
