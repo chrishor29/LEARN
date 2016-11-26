@@ -8,7 +8,6 @@
 	</style>
 </head>
 
-
 <input onclick="toggleAll();" type="button" id="input_toggleAll" value="0" style="position:fixed; right: 0px;"><div id="quest" style="display:none;">
 	
 	<details><summary class="phase">tételek</summary><div id="container"></div></details>
@@ -97,7 +96,7 @@ demonstrációk összege ha <span class="WHITE">48+</span> &#10140; felmentés <
 		<td class="done">8</td>
 		<td>9</td>
 		<td class="done">10</td>
-		<td>11</td>
+		<td class="done">11</td>
 		<td>12</td>
 		<td>13</td>
 		<td>14</td>
@@ -128,11 +127,11 @@ demonstrációk összege ha <span class="WHITE">48+</span> &#10140; felmentés <
 </div>
 
 <details><summary class="phase">kidolgozandók</summary><div class="normal">
+	<li><span class="WHITE">sz0</span> oxigéntartalmú vegyületek tk91o</li>
+	<li><span class="WHITE">sz.tk58o</span> funkcios csoportok</li>
 	<li>képletek táblázat, kérdések</li>
-	<li>gyakorló feleletválogatós kérdések</li>
 	<li>fémes kötés</li>
 	<li>fémes tulajdonságai röviden &#10140; dolgozzam ki valahol /dillard.621 első mondata/</li>
-	<li>termodinamika.pdf &#10140; reakciók: spontán, reverzibilis, irreverzibilis</li>
 	<li>szervetlen &#10140; vegyületeknél minden tételnél legyen legalább 4db, aminek jelentőségére/felhasználásra is tudok példát</li>
 </div></details>
 
@@ -318,6 +317,7 @@ demonstrációk összege ha <span class="WHITE">48+</span> &#10140; felmentés <
 </div></details>
 
 <div class="phase">kérdéseim</div><div class="normal">
+ <li><span class="WHITE">389</span> &#10140; elektródpotenciál miktől függ</li>
  <li><span class="WHITE">81</span> &#10140; gramm-egyenértéktömegű elektrolitra 1példa?</li>
  <li>(puffer feladat <a href="images/F_megldkdpzt.png">4.2.3.9</a>)</li>
 </div>
@@ -1757,8 +1757,9 @@ demonstrációk összege ha <span class="WHITE">48+</span> &#10140; felmentés <
 		<li>rengeteg redox-reakció</li>
 		<li>gyakorlatilag nincs sav-bázis reakció (enzim által katalizált)</li>
 	</ul></details>
- 	<details class="kerdes" id="ok.311"><summary>égés milyen reakció?</summary><ul class="normal">
-		<li>redox-reakció</li>
+ 	<details class="kerdes" id="ok.311"><summary>égés &#10140; milyen reakció? 1pl?</summary><ul class="normal">
+		<li>redox-reakció, mindig exoterm <abbr title="szvsz ettől még nembiztos, hogy az összes exoterm redox reakció égés, de az égés mindig exoterm redox reakció">(!!)</abbr></li>
+		<li>pl. CH<sub>4</sub> + O<sub>2</sub> &#10140; CO<sub>2</sub> + H<sub>2</sub>O</li>
 	</ul></details>
  	<details class="kerdes" id="ok.318"><summary>redox-reakció definíciója?</summary><ul class="normal">
 		<li>ha egy reakció során változik az oxidációs-szám, akkor az redox reakció</li>
@@ -1790,7 +1791,7 @@ demonstrációk összege ha <span class="WHITE">48+</span> &#10140; felmentés <
 			<li>oxigén redukálódik <div class="mirror">&#10140;</div> osz: 0ról -2re változik</li>
 		</ul>
 		<li>Zn(s) + CuSO<sub>4</sub>(aq) &#10140; Cu(s) + ZnSO<sub>4</sub>(aq)</li><ul>
-			<li>Zn(s) + Cu<sup>2+</sup>(aq) + SO<sub>4</sub><sup>2-</sup>(aq) &#10140; Cu(s) + Zn<sup>2+</sup> + SO<sub>4</sub><sup>2-</sup>(aq)</li>
+			<li>Zn(s) + Cu<sup>2+</sup>(aq) + SO<sub>4</sub><sup>2-</sup>(aq) &#10140; Cu(s) + Zn<sup>2+</sup>(aq) + SO<sub>4</sub><sup>2-</sup>(aq)</li>
 			<li>cink oxidálódik <div class="mirror">&#10140;</div> osz: 0ról +2re változik</li>
 			<li>réz redukálódik <div class="mirror">&#10140;</div> osz: 0ról -2re változik</li>
 			<li><abbr title="szulfátionnal nem történik semmi">&#10045;</abbr> <abbr title="képen az, hogy a réz fekete, ne zavarjon meg">&#10045;</abbr></li>
@@ -1829,19 +1830,15 @@ demonstrációk összege ha <span class="WHITE">48+</span> &#10140; felmentés <
 		<li>oxigéné mindig <span class="WHITE">-2</span>, kivéve peroxidokban <span class="WHITE">–O–O–</span> <span class="WHITE">-1</span> <abbr title="pl. O2, HO2">&#10045;</abbr></li>
 		<li>hidrogéné mindig <span class="WHITE">+1</span>, kivéve hidridekben (fémekkel alkotott vegyülete, pl.NaH) <span class="WHITE">-1</span></li>
 		<li>alkáli_fémeké (I/A főcsoport, kivéve hidrogén) mindig <span class="WHITE">+1</span></li>
-		<li>alkáli_földfémeké (II/A főcsoport) mindig <span class="WHITE">+1</span></li>
+		<li>alkáli_földfémeké (II/A főcsoport) mindig <span class="WHITE">+2</span></li>
 		<div>/// kivételek persze az összes szabálynál még az elemi formák(F2, H2 stb.), hisz ott mindig 0</div>
 	</ul></details>
 	<details class="kerdes" id="ok.320"><summary><span class="Important">F</span> reakcióegyenletek levezetése?</summary><ul class="normal">
-		<li>prioritási sorrend</li><ul>
-			<li><span class="WHITE">1.</span> oxidációs szám</li>
-			<li><span class="WHITE">2.</span> töltésszám</li>
-			<li><span class="WHITE">3.</span> db-szám</li>
-		</ul>
-		<li>oxidációs szám</li><ul>
-			<li>számolásnál &#10140; <span class="Important">eredő oxidációs_szám változás ZÉRUS</span></li>
-			<li>ellenőrzésnél &#10140; <span class="Important">két oldalon megegyezik az oxidációs_számok összege</span></li>
-		</ul>
+		<li>prioritási sorrend</li><ol>
+			<li>eredő <span class="Important">oxidációs szám változás</span> 0 legyen (amennyivel nő az egyik atomé, annyival csökkenjen a másiké)</li>
+			<li><span class="Important">töltésszám</span> &#10140; megnézem a két oldalt, és amelyik negatívabb, oda H<sup>+</sup>-t teszek <abbr title="elvileg hidroxiddal kell egyes esetkeben oldani, de jelen esetben nekem  mindig csak protonnal kell, szóval nem bonyolítom">&#10045;</abbr></li>
+			<li><span class="Important">db-szám</span> &#10140; kiegészítem vízmolekulákkal</li>
+		</ol>
 		<img src="images/stchmrtrfldt.png">
 		<details><summary>KÉP (1) feladat megoldása</summary><ul class="normal">
 			<img src="images/megldsszthcmfldtpld.png">
@@ -1917,30 +1914,33 @@ demonstrációk összege ha <span class="WHITE">48+</span> &#10140; felmentés <
 		<li>(tehát a lemez redukált, az oldat az oxidált forma)</li>
 		<a href="images/elsőfajúfémelektród.png"><img src="images/elsőfajúfémelektród.png"></a>
 	</ul></details>
- 	<details class="kerdes" id="ok.330"><summary><a href="images/elsőfajúfémelektród.png">lemez itt</a> oxidál vagy redukál-e?</summary><ul class="normal">
-		<div>másik elektródtól függ</div>
-		<li>oxidál, ha elektródpotenciálja másiknak nagyobb</li>
-		<li>redukál, ha elektródpotenciálja ennek nagyobb</li>
+ 	<details class="kerdes" id="ok.330"><summary>nyisd meg!</summary><ul class="normal">
+		<img src="images/ffmlktrdk.png">
+		<details><summary>elektród &#10140; milyen típusú? itt oxidál vagy redukál-e?</summary><ul class="normal">
+			<li>elsőfajú fémelektród</li>
+			<div>másik elektródtól függ</div>
+			<li>oxidál, ha elektródpotenciálja másiknak nagyobb</li>
+			<li>redukál, ha elektródpotenciálja ennek nagyobb</li>
+		</ul></details>
 	</ul></details>
  	<details class="kerdes" id="ok.331"><summary>gázelektród típusai?</summary><ul class="normal">
 		<div>2típusa van, az alapján, hogy az oldatban a gáz kationjai, vagy anionjai vannak-e</div>
-		<li>ha a gáz "fémes karakterű" &#10140; kationjai vannak</li>
-		<li>ha a gáz "nem fémes karakterű" &#10140; anionjai vannak</li>
+		<li>ha a gáz "fémes karakterű" &#10140; kationjai vannak pl. hidrogén-elektród</li>
+		<li>ha a gáz "nem fémes karakterű" &#10140; anionjai vannak, pl. klór-elektród</li>
 		<img src="images/gázelektród.png">
 	</ul></details>
- 	<details class="kerdes" id="ok.332"><summary><span class="Vocab">JR</span> gázelektród működésének lényege</summary><ul class="normal">
-		<li>vagy az oldatban lévő oldott gázionok(aq) elektront (ha kation)vesznek fel/adnak le(ha anion) és gázmolekula(g) lesz belőle</li>
-		<li>vagy a gázmolekula(g) elektront ad le/vesz fel, és az oldatba kerül ionos formába</li>
+ 	<details class="kerdes" id="ok.332"><summary>gázelektród működésének lényege?</summary><ul class="normal">
+		<li>vagy az oldatban lévő oldott <span class="Important">gázionok(aq) elektront (ha kation)vesznek fel/adnak le(ha anion) és gázmolekula(g) lesz belőle</span></li>
+		<li>vagy a <span class="Important">gázmolekula(g) elektront ad le/vesz fel, és az oldatba kerül ionos formába</span></li>
+		<div> ~~~~~~~~~ </div>
+		<li><span class="Important">ezenfelül szükséges egy platina-drót</span> (azért nem lemez, mert drága lenne)</li>
+		<li>ugyanis az a probléma, hogy gázmolekulák(g) nem tudnak lemezként funkciónálni... (hiszen buborék formájában kijönne az oldatból, illetve krokodilcsipeszt is lehet próbálni rátenni, de sok szerencsét:))</li>
+		<li>erre lesz a megoldás a platina &#10140; <span class="Important">felületén gázmolekulák(g) megkötődnek, illetve vezeti az áramot</span></li>
 		<img src="images/gázelektród.png">
-	</ul></details>
- 	<details class="kerdes" id="ok.333"><summary><span class="Vocab">JR</span> gázelektródnál mi a platina funkciója</summary><ul class="normal">
-		<li>probléma &#10140; gázmolekulák(g) nem tudnak lemezként funkciónálni... (hiszen buborék formájában kijönne az oldatból, illetve krokodilcsipeszt is lehet próbálni rátenni, de sok szerencsét:))</li>
-		<li>megoldás a platina &#10140; felületén gázmolekulák(g) megkötődnek, illetve vezeti az áramot</li>
-		<a href="images/gázelektród.png"><img src="images/gázelektród.png"></a>
 	</ul></details>
  	<details class="kerdes" id="ok.334"><summary><span class="Important">F</span> <a href="images/gázelektród.png">két fajta gázelektród</a> esetében mikor melyik az oxidált/redukált állapota a gáznak?</summary><ul class="normal">
-		<li><span class="WHITE">I</span> &#10140; oldatban lévő gáz-kationok az oxidált, és a gázmolekulák(g) a redukált</li>
-		<li><span class="WHITE">II</span> &#10140; oldatban lévő gáz-anionok a redukált, és a gázmolekulák(g) az oxidált</li>
+		<li><span class="WHITE">I</span> &#10140; oldatban lévő gáz-kationok az oxidált, és a gázmolekulák(g) a redukált, pl. hidrogén-elektród</li>
+		<li><span class="WHITE">II</span> &#10140; oldatban lévő gáz-anionok a redukált, és a gázmolekulák(g) az oxidált, pl. klór-elektród</li>
 		<a href="images/gázelektród.png"><img src="images/gázelektród.png"></a>
 	</ul></details>
  </div>
@@ -1953,8 +1953,15 @@ demonstrációk összege ha <span class="WHITE">48+</span> &#10140; felmentés <
 	<details class="kerdes" id="ok.383"><summary>elektródpotenciál jele?</summary><ul class="normal">
 		<li>&epsilon;</li>
 	</ul></details>
-	<details class="kerdes" id="ok.377"><summary>elektródpotenciál mit jelöl?</summary><ul class="normal">
-		<li>redukcióra való hajlamot &#10140; amelyiknek nagyobb az fog redukálódni</li>
+	<details class="kerdes" id="ok.377"><summary>elektródpotenciál &#10140; mit jelöl? definíció?(meghatározása)</summary><ul class="normal">
+		<li><span class="Important">redukcióra való hajlamot jelöli &#10140; amelyik elektródnak nagyobb az &epsilon; az fog redukálódni, tehát az lesz a katód</span> <abbr title="galváncella esetében, hisz elektrolizáló cellánál fordítva">&#10045;</abbr></li>
+		<div> ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– </div>
+		<li>elektródpotenciál abszolút értéke nem határozható meg, hiszen a félcella magában nemcsinál semmit</li>
+		<li>azonban önkényesen ki lett választva a standard_hidrogénelektród &#10140; <span class="Important">adott félcella elektródpotenciálja a standard_hidrogén-eletróddal összekapcsolva mért EME</span></li>
+		<div> ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– </div>
+		<li>ezalatt redukciós elektródpotenciált értünk &#10140; tehát <span class="Important">ha értéke negatív, akkor a standard_hidrogén-elektródon történt a redukció (ha pozitív akkor fordítva)</span> <abbr title="tehát a képen látható cink pl.oxidálódik ha hidrogénelektródhoz kapcsolom">&#10045;</abbr></li>
+		<li><abbr title="ha oxidációs elektródpotenciál lenne, akkor csak az előjel változna meg">&#10045;</abbr></li>
+		<img src="images/rltclktrdptnc.png">
 	</ul></details>
 	<details class="kerdes" id="ok.381"><summary>redoxpotenciál mi?</summary><ul class="normal">
 		<li>redox-elektród elektródpotenciálja</li>
@@ -1963,13 +1970,7 @@ demonstrációk összege ha <span class="WHITE">48+</span> &#10140; felmentés <
 	<details class="kerdes" id="ok.378"><summary>EME képlete?</summary><ul class="normal">
 		<li>EME = &epsilon;<sub>katód</sub> - &epsilon;<sub>anód</sub></li>
 	</ul></details>
-	<details class="kerdes" id="ok.379"><summary>elektródpotenciál definíció?(meghatározása)</summary><ul class="normal">
-		<li>elektródpotenciál abszolút értéke nem határozható meg, hiszen a félcella magában nemcsinál semmit</li>
-		<li>azonban önkényesen ki lett választva a standard_hidrogénelektród &#10140; <span class="Important">adott félcella elektródpotenciálja a standard_hidrogén-eletróddal összekapcsolva mért EME</span></li>
-		<div> ~~~~~~~~~~~~ </div>
-		<li>ezalatt redukciós elektródpotenciált értünk &#10140; tehát <span class="Important">ha értéke negatív, akkor a standard_hidrogén-elektródon történt a redukció (ha pozitív akkor fordítva)</span> <abbr title="tehát a képen látható cink pl.oxidálódik ha hidrogénelektródhoz kapcsolom">&#10045;</abbr></li>
-		<li><abbr title="ha oxidációs elektródpotenciál lenne, akkor csak az előjel változna meg">&#10045;</abbr></li>
-		<img src="images/rltclktrdptnc.png">
+	<details class="kerdes" id="ok.379"><summary>elektródpotenciál</summary><ul class="normal">
 	</ul></details>
 	<details class="kerdes" id="ok.388"><summary>elektródpotenciál képlete?</summary><ul class="normal">
 		<li>Nerst-egyenlet</li>
@@ -1988,11 +1989,11 @@ demonstrációk összege ha <span class="WHITE">48+</span> &#10140; felmentés <
 	</ul></details>
  	<details class="kerdes" id="ok.382"><summary>standardpotenciál <abbr title="standard elektródpotenciál">(=)</abbr> &#10140; jele? mi?</summary><ul class="normal">
 		<li>&epsilon;<sup>0</sup></li>
-		<li><span class="WHITE">1M</span> <span class="WHITE">25°C</span> <span class="WHITE">0,1MPa</span> mért elektródpotenciál</li>
+		<li><span class="WHITE">1M</span> <span class="WHITE">25°C</span> <span class="WHITE">0,1MPa</span> mért elektródpotenciál &#10140; tehát az ilyen adatokkal bíró elektród standard_hidrogénelektróddal való összekapcsolásakor mért EME</li>
 	</ul></details>
 	<details class="kerdes" id="ok.384"><summary>elektródpotenciál és a szabadenergia változás összefüggése?</summary><ul class="normal">
 		<div><span class="WHITE">1</span> a maximum elérhető elektromos_munka megegyezik a szabadentalpiaváltozással(-1el szorozva)</li>
-		<div><span class="WHITE">2</span> <span class="Important">spontán folyamat feltétele &Delta;G &lt; 0</span> &#10140; z és F csak pozitív lehet, amiből az következik &#10140; <span class="Important">EME > 0 spontán folyamatoknál</span></div>
+		<div><span class="WHITE">2</span> <span class="Important">spontán folyamat feltétele &Delta;G &lt; 0</span>, illetve z és F csak pozitív lehet, tehát ezekből az következik &#10140; <span class="Important">EME > 0 spontán folyamatoknál</span></div>
 		<li>/// Q behelyettesítésekor a kitevőben azért nincs semmi, mert most <abbr title="tehát nincs az, hogy 2A + B --> C">"1:1 az arány"</abbr></li>
 		<img src="images/lvztsnrstgynlt.png">
 	</ul></details>
@@ -2004,16 +2005,18 @@ demonstrációk összege ha <span class="WHITE">48+</span> &#10140; felmentés <
 		<li>oxidációsszám-változást!!!! (ugyanis nincs feltétlen töltésszám-változás<abbr title="pl. redox-elektródnál, mikor oxigéngázból lesz víz">&#10045;</abbr>)</li>
 		<img src="images/nsrtgynlt.png">
 	</ul></details>
-	<details class="kerdes" id="ok.389"><summary>elektródpotenciál mitől függ?</summary><ul class="normal">
+	<details class="kerdes" id="ok.389"><summary>elektródpotenciál mitől függ? <span class="Miss">&#9775;</span></summary><ul class="normal">
 		<li>hőmérséklet, nyomás, koncentráció</li>
+		<li><span class="FIX">nyomástól nemvilágos miért függ, hacsak nem gázelektródról van épp szó, és annál a "koncentráció" (atm)-ben</span></li>
+		<li><span class="FIX">z-től (oxidációsz-számváltozás) nem függ?</span></li>
 		<img src="images/nsrtgynlt.png">
 	</ul></details>
-	<details class="kerdes" id="ok.390"><summary><span class="Vocab">JR</span> feladatok megoldása útmutató</summary><ul class="normal">
+	<details class="kerdes" id="ok.390"><summary>feladatok megoldása útmutató</summary><ul class="normal">
 		<a href="images/nrstgynlt.png"><img src="images/nrstgynlt.png"></a>
 		<li>kérdés &#10140; mennyi az elektromotors-erő a galvánelemben?</li>
 		<div class="title">adatok</div>
-		<li>egyik elektród 0,25M HCl oldatot tartalmaz &#10140; &epsilon;<sup>0</sup> = 0V</li>
-		<li>másik elektród 0,75M CuSO<sub>4</sub> oldatot tartalmaz &#10140; &epsilon;<sup>0</sup> = 0,34V</li>
+		<li>egyik elektród hidrogéngázt és 0,25M HCl oldatot tartalmaz &#10140; &epsilon;<sup>0</sup> = 0V</li>
+		<li>másik elektród rézlemezt és 0,75M CuSO<sub>4</sub> oldatot tartalmaz &#10140; &epsilon;<sup>0</sup> = 0,34V</li>
 		<div class="title">megoldás</div>
 		<li>EME = &epsilon;<sub>katód</sub> - &epsilon;<sub>anód</sub></li>
 		<li>azt, hogy melyik elektród lesz katód, úgy tudom eldönteni, hogy megnézem melyiknek nagyobb az elektródpotenciálja</li>
@@ -2050,7 +2053,7 @@ demonstrációk összege ha <span class="WHITE">48+</span> &#10140; felmentés <
 <!----><details><summary class="phase">20. A koncentrációs elemek fogalma és elektromotoros erejének kiszámítása. A hidrogén-elektród elvi alkalmazása a pH-mérésben. Referencia (másodfajú) elektródok. A kalomel- és az ezüst-elektród működési elve.</summary><div class="normal">
  <div><div class="title">koncentrációs elem</div>
 	<details class="kerdes" id="ok.391"><summary>fogalma?</summary><ul class="normal">
-		<li>két félcella közt csupán a koncentrációban van eltérés (lemez & oldat megegyezik)</li>
+		<li>két félcella csak az oldatuk koncentrációjában tér el egymástól</li>
 	</ul></details>
 	<details class="kerdes" id="ok.393"><summary>EME-jének kiszámítása?</summary><ul class="normal">
 		<li>pl. két különböző koncentrációjú cinkszulfát-oldatnál</li>
@@ -2069,16 +2072,21 @@ demonstrációk összege ha <span class="WHITE">48+</span> &#10140; felmentés <
 	<details class="kerdes" id="ok.392"><summary>hidrogén-elektród elvi alkalmazása a pH-mérésben?</summary><ul class="normal">
 		<li>egy ismeretlen koncentrációjú [H<sup>+</sup>] oldat koncentrációját akarom meghatározni</li>
 		<li>készítek belőle elektródot (teszek bele Pt-lemezt + H<sub>2</sub>(g))</li>
-		<li>majd összekötöm fémes vezetővel a egy másik ismert (pl. standard) koncentrációjú hidrogén elektróddal</li>
-		<li>megmérve az elektromotoros erőt, a Nerst-egyenlettel meghatározható az ismeretlen koncentráció</li>
-		<li>standard_hidrogén_elektród redukciós potenciálja = 0</li>
-		<li>ismeretlen koncentrációjú hidrogén_elektród redukciós potenciálja</li><ul>
-			<li>&epsilon; = 0 + (0,06/1) · log([H<sup>+</sup>]/1)</li>
-			<li>&epsilon; = 0,06 · log([H<sup>+</sup>])</li>
+		<li>majd összekötöm <abbr title="fémes vezetővel">&#10045;</abbr> egy standard hidrogén-elektróddal <abbr title="vagy legalábbis ismert koncentrációjúval (de standarddel folytattam a kidolgozást az egyszerűség kedvéért)">&#10045;</abbr></li>
+		<li>elektródpotenciálok</li><ul>
+			<li>standardé nulla</li>
+			<li>ismeretlené </li><ul>
+				<li>&epsilon; = 0 + (0,06/1) · log([H<sup>+</sup>]/1) = 0,06 · log([H<sup>+</sup>])</li>
+				<li>pH = -log[H<sup>+</sup>]</li>
+				<li>&epsilon; = -0,06pH</li>
+			</ul>
 		</ul>
-		<li>elektromotoros_erő <abbr title="vagy epsilon - 0, attól függ amelyik pozitívabb az van elől">=</abbr> 0 - &epsilon; = -(0,06·log([H<sup>+</sup>]))</li>
-		<li>mivel pH = -log[H<sup>+</sup>]</li>
-		<li>elektromotoros_erő = -0,06 · -pH = 0,06pH</li>
+		<li>megmérve az elektromotoros erőt, a Nerst-egyenlettel meghatározható az ismeretlen koncentráció</li>
+		<li>ugyanis EME = &epsilon;<sub>katód</sub> - &epsilon;<sub>anód</sub></li>
+		<li>mért EME előjele alapján meghatározom, hogy melyik volt a katód <abbr title="szinte tutti, hogy a standard, mert amelyiknek nagyobb a koncentrációja az lesz katód jelen esetben, pH pedig nem lesz kisebb mint 1 valószínűleg">&#10045;</abbr></li><ul>
+			<li>ha katód a standard, akkor EME = 0 - &epsilon; = 0 – (-0,06pH) = 0,06pH</li>
+			<li>ha katód az ismeretlen, akkor EME = (-0,06pH) - 0 = -0,06pH</li>
+		</ul>
 		<li><span class="Important">elektromotoros_erő arányos pH-val</span></li>
 	</ul></details>
  </div>
@@ -2088,38 +2096,53 @@ demonstrációk összege ha <span class="WHITE">48+</span> &#10140; felmentés <
 		<li>tehát nem állandó az elektródpotenciálja, így mérés során referenciaelektródnak nem használható</li>
 		<li>másodfaú fémelektród azonban már használható referenciaelektródként</li>
 	</ul></details>
-	<details class="kerdes" id="ok.400"><summary><span class="Vocab">JR</span> másodfajú fémelektród definíciója</summary><ul class="normal">
+	<details class="kerdes" id="ok.400"><summary>másodfajú fémelektród definíciója?</summary><ul class="normal">
 		<li>olyan fémelektród, melynek ionkoncentrációját <abbr title="(közel, hisz kicsit változik ez is)">&#10045;</abbr> állandó értéken tartja a kicsapódás/oldódás</li>
 	</ul></details>
-	<details class="kerdes" id="ok.399"><summary>másodfajú fémelektród felépítése és működése?</summary><ul class="normal">
-		<li>elsőfajú fémelektród + csapadék(AgCl)</li>
-		<li>AgCl &#10140; gyenge elektrolit, azaz nagyon rosszul oldódik vízben</li>
-		<li>L = 1,77*10<sup>-10</sup> = [Ag<sup>+</sup>] * [Cl<sup>-</sup>]</li>
-		<li>pl. ha 1M Cl<sup>-</sup> van oldódva, akkor [Ag<sup>+</sup>] = 1,77*10<sup>-10</sup>M</li>
-		<div> ~~~~~~~~~~~~~~~~~~ </div>
+	<details class="kerdes" id="ok.401"><summary>másodfajú fémelektród elektródpotenciáljának képlete?</summary><ul class="normal">
+		<div><span class="Vocab">1</span> szimplán behelyettesítve az [Ag<sup>+</sup>] helyére</div>
+		<div><span class="Vocab">2</span> meghatározzuk a másodfajú standard elektródpotenciálját (0,222V), az elsőfajúéból (0,8V) konstansokkal átszámítva</div>
+		<div><span class="Vocab">3</span> &epsilon;<sub>AgCl</sub> = &epsilon;°<sub>AgCl</sub> - 0,06lg[Cl<sup>-</sup>]</div>
+		<img src="images/msdfjflktrd.png">
+	</ul></details>
+	<details class="kerdes" id="ok.402"><summary>másodfajú fémelektródok közül melyeket kell ismerni?</summary><ul class="normal">
+		<li>kalomel-elektród</li>
+		<li>ezüstklorid-elektród</li>
+	</ul></details>
+	<details class="kerdes" id="ok.403"><summary>kalomel-elektród felhasználása?</summary><ul class="normal">
+		<li>galván-elektródok és redox-elektródok elektródpotenciáljának meghatározásánál gyakorlaton(12) ez volt a referencia-elektród</li>
+	</ul></details>
+	<details class="kerdes" id="ok.399"><summary>ezüstklorid felépítése és működése?</summary><ul class="normal">
+		<div><strong>Felépítése</strong></div>
+		<li>ezüstlemez</li>
+		<li>oldat &#10140; KCl, majd ehhez hozzáöntve AgCl</li>
+		<div> ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– </div>
+		<li>KCl 100%ig disszociált</li>
+		<li>a hozzáöntött AgCl gyenge elektrolit, azaz nagyon rosszul oldódik vízben, és mivel [Cl<sup>-</sup>] már magas, ezért &#10140; nagyon kismértékben fog disszociálni, vagyis nagyrésze csapadék formában úszik a felszínen</li>
+		<div> ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– </div>
+		<li>AgCl oldékonysági szorzata L = 1,77*10<sup>-10</sup> = [Ag<sup>+</sup>] * [Cl<sup>-</sup>]</li>
+		<li>pl. ha KCl az oldatban (1 – 1,77*10<sup>-10</sup>)mólaritású, akkor AgCl-ből pont 1,77*10<sup>-10</sup>M-nyi fog disszociálni &#10140; tehát 1M Cl<sup>-</sup> lesz és 1,77*10<sup>-10</sup> Ag<sup>+</sup>, tehát szorzatuk pont L</li>
+		<div> ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– </div>
+		<div><strong>Működése</strong></div>
 		<li>ha anódként működik a félcella, akkor [Ag<sup>+</sup>] elkezd nőni, ám!</li>
 		<li>az L nem változhat, tehát egyből ki is válik Cl<sup>-</sup>-al együtt <abbr title="nem az összes, csak a nagyrésze, tehát lényegében a változás elhanyagolható (hisz gondoljak csak bele, utána Cl- már nem lesz 1M, tehát Ag+-nak nagyobbnak kell lennie)">&#10045;</abbr></li>
 		<li>ha katódként működik a félcella, akkor [Ag<sup>+</sup>] csökkene, ám a csapadékból disszociációval pótolja <abbr title="itt se pont annyit, mivel közben nő Cl- is">&#10045;</abbr></li>
 		<li>így [Ag<sup>+</sup>] állandónak tekinthető, aminek következtében az elektródpotenciál is állandó</li>
 	</ul></details>
-	<details class="kerdes" id="ok.401"><summary>másodfajú fémelektród elektródpotenciáljának képlete?</summary><ul class="normal">
-		<div><span class="Vocab">1</span> szimplán behelyettesítve az [Ag<sub>+</sub>] helyére</div>
-		<div><span class="Vocab">2</span> meghatározzuk a másodfajú standard elektródpotenciálját (0,222V), az elsőfajúéból (0,8V) konstansokkal átszámítva</div>
-		<div><span class="Vocab">3</span> &epsilon;<sub>AgCl</sub> = &epsilon;°<sub>AgCl</sub> - 0,06lg[Cl<sup>-</sup>]</div>
-		<img src="images/msdfjflktrd.png">
-	</ul></details>
-	<details class="kerdes" id="ok.402"><summary>kalomel- és az ezüst-elektród működési elve?</summary><ul class="normal">
-		<li>másodfajú fémelektródok (működési elvüket lásd 399)</li>
-	</ul></details>
-	<details class="kerdes" id="ok.403"><summary>gyakorlati mérésnél mi a referencia-elektród?</summary><ul class="normal">
-		<li>kalomel-elektród (másodfajú-fémelektród)</li>
-	</ul></details>
-	<details class="kerdes" id="ok.404"><summary><span class="Vocab">JR</span> kalomel-elektród</summary><ul class="normal">
-		<div>ha anód...</div>
-		<li>Hg(lennti sötétszürke) oxidálódik Hg<sup>+</sup>(platina melletti telített Hg2Cl2)</li>
-		<li>Hg<sup>+</sup> ha nő, akkor Cl<sup>-</sup>-al együtt kiválik csapadékként (kalomel, világosszürke a higany felett)</li>
+	<details class="kerdes" id="ok.404"><summary>kalomel-elektród felépítése és működése?</summary><ul class="normal">
 		<img src="images/kalomel.png">
-		<div>(telített KCl funkciójára csak tippem van)</div>
+		<div><strong>Felépítése</strong></div>
+		<li><abbr title="kép alján sötétszürke">Higany(Hg)</abbr> folyékony halmazállapotú (nem lemez)</li>
+		<li>oldat &#10140; KCl, majd ehhez hozzáöntve Hg<sub>2</sub>Cl<sub>2</sub></li>
+		<div> ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– </div>
+		<li>KCl 100%ig disszociált</li>
+		<li>a hozzáöntött Hg<sub>2</sub>Cl<sub>2</sub> gyenge elektrolit, azaz nagyon rosszul oldódik vízben, és mivel [Cl<sup>-</sup>] már magas, ezért &#10140; nagyon kismértékben fog disszociálni, vagyis nagyrésze csapadék formában úszik a felszínen</li>
+		<div> ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– </div>
+		<div><strong>Működése</strong></div>
+		<li>ha anódként működik a félcella, akkor <abbr title="kép alján sötétszürke">Higany(Hg)</abbr> oxidálódik [Hg<sup>+</sup>] elkezd nőni, ám!</li>
+		<li>az L nem változhat, tehát egyből ki is válik Cl<sup>-</sup>-al együtt <abbr title="nem az összes, csak a nagyrésze, tehát lényegében a változás elhanyagolható (hisz gondoljak csak bele, utána Cl- már nem lesz 1M, tehát Ag+-nak nagyobbnak kell lennie)">&#10045;</abbr></li>
+		<li>ha katódként működik a félcella, akkor [Hg<sup>+</sup>] csökkene, ám a csapadékból disszociációval pótolja <abbr title="itt se pont annyit, mivel közben nő Cl- is">&#10045;</abbr></li>
+		<li>így [Hg<sup>+</sup>] állandónak tekinthető, aminek következtében az elektródpotenciál is állandó</li>
 	</ul></details>
  </div>
 <!----></div></details>
@@ -3592,8 +3615,8 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 		</tr>
 	</table>
 	</ul></details>
-	<details class="kerdes" id="ok.525"><summary>típus és mechanizmus kombó?</summary><ul class="normal">
-		<div>mind1ik típus mind3féleképp végigmehet, ez azt jelenti hogy 9kombó van <abbr title="r=gyökös(radix), n=nukleofil heterolízis, e=elektrofil heterolízis">&#10045;</abbr></div>
+	<details class="kerdes" id="ok.525"><summary>típus és mechanizmus "kombó"?</summary><ul class="normal">
+		<div>mind1ik típus mind3féleképp végigmehet, ez azt jelenti hogy 9db "kombó" van <abbr title="r=gyökös(radix), n=nukleofil heterolízis, e=elektrofil heterolízis">&#10045;</abbr></div>
 		<li>Szubsztitúció &#10140; <span class="Important">Sr</span> <span class="Important">Se</span> <span class="Important">Sn</span></li>
 		<li>Addíció &#10140; <span class="WHITE">Ar</span> <span class="Important">Ae</span> <span class="Important">An</span></li>
 		<li>Elimináció &#10140; <span class="WHITE">Er</span> <span class="WHITE">Ee</span> <span class="WHITE">En</span></li>
@@ -3601,9 +3624,6 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 	</ul></details>
  </div>
  <div><div class="title">szerves vegyületek csoportositása</div>
-	<details class="kerdes" id="ok.544"><summary><span class="MISS">58o.funkcios csoport</span></summary><ul class="normal">
-		<li>)</li>
-	</ul></details>
 	<details class="kerdes" id="ok.569"><summary>szénhidrogének csoportosítási módszerei?</summary><ul class="normal">
 		<li>telített vs telítettlen &#10140; van-e kettő kötés C-atomok között</li>
 		<li>nyílt_láncú vs ciklusos &#10140; van-e gyűrű</li>
@@ -3627,6 +3647,8 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 		<li>(többi ne érdekeljen + logikát se keressek a képben. ezeket tudjam és kész)</li>
 		<img src="images/sznhdrgnktltln.png">
 	</ul></details>
+ </div>
+ <div><div class="title"><span class="MISS">oxigéntartalmú vegyületek tk.91o</span></div>
  </div>
 <!----></div></details>
 
@@ -4467,7 +4489,7 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 <!----><details><summary class="phase">9. Heterociklusos öt- és hattagú gyűrűk egy vagy több heteroatommal, policiklusos heteroaromás vegyületek. Szerepük biológiailag fontos vegyületek felépítésében. Az imidazol protonizomériája, az uracil latim-laktám tautomériája.</summary><div class="normal">
 <!----></div></details>
 
-<!----><details><summary class="phase">10. Halogéntartalmú szerves vegyületek. A nukleofil szubsztitúció lehetséges mechanizmusai (SN<sub>1</sub>, SN<sub>2</sub>).</summary><div class="normal">
+<!----><details><summary class="phase">10. Halogéntartalmú szerves vegyületek. A nukleofil szubsztitúció lehetséges mechanizmusai (S<sub>N</sub>1, S<sub>N</sub>2).</summary><div class="normal">
  <details open><summary><font class="title">szöveg</font></summary><ul class="normal">
 	<div style="float:right;max-width:25%">
 		<img src="images/metil.png">
@@ -4494,8 +4516,11 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 	Metil-klorid esetében odafér a támadó_ágens(OH<sup>-</sup>) a C-atomhoz a 3db H-között. <span class="WHITE">–Cl</span> folyamatosan távolodik, míg OH<sup>-</sup> közeledik. Először létrejön egy intermedier(átmeneti) állapot, amikor a C-nek 5db liganduma van. Végül <span class="WHITE">–Cl</span> eltávozik, és OH<sup>-</sup> ottmarad. Reakció lezajlása folyamán a 3db hidrogén átbillen a másik oldalra. Ez az ún. Walden-féle inverzió (mintha egy esernyő a szélben kifordulna. Ha a molekula királis, akkor a konfigurációja megváltozna: egyik enantiomerből másik lenne. Tehát, ha volt valamilyen R-enantiomer, akkor a reakció után S-enantiomer lesz belőle. A reakció ezért sztereospecifikus.Ez lép fel, bármely királis molekula S<sub>N</sub>2-je során. Azért bimolekulás, mert a reakció 1lépésben zajlik és ebben a lépésben 2részecske reagál egymással és keletkeznek a termékek &#10140; így a reakciósebességet meghatározza a kiinduló anyag (metil-klorid) és a támadó_ágens(OH<sup>-</sup>) koncentrációja is.
  </ul></details>
  <div><div class="title">halogénezett szénhidrogének</div>
-	<details class="kerdes" id="ok.642"><summary>min keresztül mutatom majd be őket részletesen?</summary><ul class="normal">
-		<li>alkil-halogenideken keresztül</li>
+	<details class="kerdes" id="ok.642"><summary>csoportosításuk? min keresztül kerül bemutatsára részletesen?</summary><ul class="normal">
+		<img src="images/hlgnztsznhdrgnk.png">
+		<li>alkil-halogenidek &#10140; halogéntartalmú szerves vegyület, melyben NEM aromás C-atomhoz kapcsolódik a halogén, pl. CH<sub>3</sub>Cl, CHCl<sub>3</sub></li>
+		<li>aril-halogenidek &#10140; halogéntartalmú szerves vegyület, melyben aromás C-atomhoz kapcsolódik a halogén pl. C<sub>6</sub>H<sub>5</sub>Cl</li>
+		<div>&#10140; alkil-halogenideken keresztül lesznek bemutatva részletesen</div>
 	</ul></details>
 	<details class="kerdes" id="ok.641"><summary><span class="Important">F</span> nevezéktan</summary><ul class="normal">
 		<img src="images/nmnkltfldt.png">
@@ -4704,7 +4729,7 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
  </div>
 <!----></div></details>
 
-<!----><details open><summary class="phase"><span class="Important">42:00</span> 11. Hidroxilcsoportot tartalmazó szerves vegyületek csoportosítása és összehasonlítása, főbb reakcióik. Éterképzés, éterek tulajdonságai és reakciói. Fontosabb éterek.</summary><div class="normal">
+<!----><details open><summary class="phase">11. Hidroxilcsoportot tartalmazó szerves vegyületek csoportosítása és összehasonlítása, főbb reakcióik. Éterképzés, éterek tulajdonságai és reakciói. Fontosabb éterek.</summary><div class="normal">
  <details open><summary><font class="title">szöveg</font></summary><ul class="normal">
 	<div style="float:right;max-width:25%">
 		<img src="images/mttnl.png">
@@ -4715,6 +4740,8 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 		<img src="images/lkhlfrrspnt.png">
 		<img src="images/krbnsvsztr.png">
 		<img src="images/lkhkdhdrtc.png">
+		<img src="images/lkhlxdcrdkc.png">
+		<img src="images/sclchl.png">
 	</div>
 	<div class="title">Alkoholok</div>
 	1 vagy több <span class="WHITE">-OH</span> csoportot tartalmazó <abbr title="=szerves vegyület">szénhidrogén</abbr>. <abbr title="nem teljesen jól írtam le, de ne érdekeljen. így tanuljam meg azt kész, amíg nem ugrik elém egy normálisabb felfogás">?!</abbr>Elnevezésük alapvetően a következő: <span class="WHITE">-ol</span> végződést írunk a szénhidrogén neve mögé, pl. metanol,etanol. Lehet úgyis nevezni, hogy alkil-csoport neve után írom azt, hogy alkohol. pl. metanol = metil-alkohol. Azonban ha a vegyületnek van más funkciós csoportja, akkor <span class="WHITE">hidroxi-</span> előtagot írunk a szénhidrogén neve elé. Pl. γ-hidroxibutirát esetében, mert van a végén karbonsav. 
@@ -4736,9 +4763,16 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 	<br> pl. <span class="WHITE">R-CH<sub>2</sub>Cl</span> + <span class="WHITE">CH<sub>3</sub>CH<sub>2</sub>O<sup>-</sup></span> &#10140; R-CH<sub>2</sub>–OCH<sub>2</sub>CH<sub>3</sub>
 	<br>Alkoholt savval reagáltatva <span class="Important">észter képződik</span>. Észtereknek 2 típusa van &#10140; karbonsavészter, szervetlen savak észterei. Karbonsavészter keletkezésénél az alkohol karbonsavval reagál. <span class="WHITE">R-OH + R'-COOH &#10140; R'-COOR + H<sub>2</sub>O</span> pl. glicerin + 2zsírsav &#10140; lipid (de ide még kell kolin is vagy vmi más)
 	<br>Szervetlen_sav esetében szervetlen észter keletkezik. <span class="WHITE">R-OH + HNO<sub>3</sub> &#10140; R-O–NO<sub>2</sub> + H<sub>2</sub>O</span> pl. glicerin + 3HNO<sub>3</sub> &#10140; glicerin-trinitrát(nitroglicerin)
-	<br><span class="Important">Dehidratációval</span>, azaz vízelvonással alkén vagy éter képződik. Intermolekuláris esetben fog éter képződni. Ez azt jelenti hogy 2 alkoholmolekulából lép majd ki 1H<sub>2</sub>O és lesz belőlük éter. pl. CH<sub>3</sub>OH + CH<sub>3</sub>OH &#10140; CH<sub>3</sub>O-CH<sub>3</sub>. Ez savas közegben megy végbe: (1) CH<sub>3</sub>OH hoz kötődik 1 proton, ennek következtében 1x pozitív töltésű lesz, (2) kiválik belőle 1H<sub>2</sub>O, így marad CH<sub>3</sub><sup>+</sup>, (3) ez a CH<sub>3</sub><sup>+</sup> csatlakozik a másik CH<sub>3</sub>OH-hoz és így keletkezik CH<sub>3</sub>-OH-CH<sub>3</sub><sup>+</sup> amiből egy proton leválik majd. Intramolekuláris esetében a 1 alkoholmolekulából fog kiválni 1H<sub>2</sub>O és keletkezik alkén. pl. etanolból így keletkezik etilén, ez is savas közegben! (lefutását lásd a képen!).
+	<br><span class="Important">Dehidratációval</span>, azaz vízelvonással alkén vagy éter képződik. Intermolekuláris esetben fog éter képződni. Ontermolekuláris azt jelenti, hogy 2 alkoholmolekulából lép majd ki 1H<sub>2</sub>O és lesz belőlük éter. pl. CH<sub>3</sub>OH + CH<sub>3</sub>OH &#10140; CH<sub>3</sub>O-CH<sub>3</sub>. Ez savas közegben megy végbe: (1) CH<sub>3</sub>OH hoz kötődik 1 proton, ennek következtében 1x pozitív töltésű lesz, (2) kiválik belőle 1H<sub>2</sub>O, így marad CH<sub>3</sub><sup>+</sup>, (3) ez a CH<sub>3</sub><sup>+</sup> csatlakozik a másik CH<sub>3</sub>OH-hoz és így keletkezik CH<sub>3</sub>-OH-CH<sub>3</sub><sup>+</sup> amiből egy proton leválik majd. Intramolekuláris esetében a 1 alkoholmolekulából fog kiválni 1H<sub>2</sub>O és keletkezik alkén. pl. etanolból így keletkezik etilén, ez is savas közegben! (lefutását lásd a képen!).
+	<br>Alkoholok <span class="Important">oxidációja</span> zajlik pl. a szőlőcukor lebontásakor (hiszen az is alkohol!). Tehát végső soron szén-dioxid és víz lesz belőle. Azonban most az alkoholok oxidációjának kezdeti lépései során keletkező termékekről lesz szó. Elsőrendű alkohol esetében először keletkezik belőle aldehid, majd utána karbonsav. Másodrendű alkohol oxidációja során keton keletkezik belőle. Harmadrendő alkoholok esetében lánchasadás megy végbe, és keton vagy aldehid keletkezik.
+
+	<br><br><div class="title">Fenolok</div>
+	Olyan alkoholok, melyeknél az <span class="WHITE">-OH</span> közvetlenül az aromás gyűrű C-atomjához kapcsolódik. Tehát kapcsolódhatnak pl. benzolhoz, naftalinhoz. Mérgezőek.
+
+	<br><br><div class="title">Éterek</div>
+	Éterek általános képlete <span class="WHITE">R–O–R'</span>. Elnevezésük: az <span class="WHITE">–O–</span> két oldalán megnézem milyen csoport van, azokat <abbr title="elvileg abc-sorrendtől függ melyiket írom előbbre, de ne érdekeljen! nemisbiztos hogy úgyvan">&#10045;</abbr>leírom, majd a végére, hogy éter. pl. CH<sub>3</sub>–O–C<sub>2</sub>H<sub>5</sub> esetében metil-etil-éter. Ellenben az alkohollal, ezek nemképesek hidrogén-híd kötés kialakítására. Így forráspontjuk alacsonyabb, mint az alkoholé (közel megegyeznek a megegyező számú szénatomos szénhidrogénével).
  </ul></details>
- <div><div class="title">Alkoholok</div>
+ <div><div class="title">Alkoholok - általános</div>
 	<details class="kerdes" id="ok.657"><summary>alkoholok definíciója?</summary><ul class="normal">
 		<li>1 vagy több <span class="WHITE">-OH</span> csoportot tartalmazó <abbr title="=szerves vegyület">szénhidrogén</abbr></li>
 	</ul></details>
@@ -4795,6 +4829,54 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 			<li>(tehát az intermolekuláris kölcsönhatások erősebbek)</li>
 		</ul></details>
 	</ul></details>
+	<details class="kerdes" id="ok.661"><summary><span class="Important">F</span> propánol és prop-2-anol szerkezete?</summary><ul class="normal">
+		<img src="images/prpnl.png">
+	</ul></details>
+	<details class="kerdes" id="ok.662"><summary><span class="Important">F</span> nevezd el</summary><ul class="normal">
+		<img src="images/2mtl2prpnl.png">
+		<br><br><details><summary>megoldás?(1)</summary><ul class="normal">
+			<li>2metil-propan-2ol</li>
+		</ul></details>
+		<br><br><details><summary>megoldás?(2)</summary><ul class="normal">
+			<li>ciklohexanol</li>
+		</ul></details>
+		<br><br><details><summary>megoldás?(3)</summary><ul class="normal">
+			<li>3pentin-1ol</li>
+			<li>&#10140; <span class="WHITE">-ol</span> nagyobb prioritású, mint a <span class="WHITE">2x/3x-kötés</span> helyzete a számozás irányának meghatározásában</li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes" id="ok.676"><summary><span class="Important">F</span> nevezd el</summary><ul class="normal">
+		<img src="images/trifenolok.png">
+		<br><details><summary>(1) neve?</summary><ul class="normal">
+			<li>benzol-1,2,3-triol</li>
+		</ul></details>
+		<br><details><summary>(2) neve?</summary><ul class="normal">
+			<li>benzol-1,2,5-triol</li>
+		</ul></details>
+		<br><details><summary>(3) neve?</summary><ul class="normal">
+			<li>benzol-1,3-diol</li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes" id="ok.678"><summary><span class="Important">F</span> nevezd el</summary><ul class="normal">
+		<img src="images/trlnvzs.png">
+		<br><details><summary>megoldás?(1)</summary><ul class="normal">
+			<li>dimetil-éter</li>
+		</ul></details>
+		<br><details><summary>megoldás?(2)</summary><ul class="normal">
+			<li>dietil-éter</li>
+		</ul></details>
+		<br><details><summary>megoldás?(3)</summary><ul class="normal">
+			<li>fenil-metil-éter</li>
+		</ul></details>
+		<br><details><summary>megoldás?(4)</summary><ul class="normal">
+			<li>etilén-oxid</li>
+		</ul></details>
+		<br><details><summary>megoldás?(5)</summary><ul class="normal">
+			<li>dioxán</li>
+		</ul></details>
+	</ul></details>
+ </div>
+ <div><div class="title">Alkoholok - reakció</div>
 	<details class="kerdes" id="ok.668"><summary>megemlítendő kémiai tulajdonságainak felsorolása?</summary><ul class="normal">
 		<li>amfoter jelleg</li>
 		<li>keletkezésük</li>
@@ -4820,6 +4902,7 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 		<li>pl. <span class="WHITE">R-CH<sub>2</sub>Cl</span> + <span class="WHITE">CH<sub>3</sub>CH<sub>2</sub>O<sup>-</sup></span> &#10140; R-CH<sub>2</sub>–OCH<sub>2</sub>CH<sub>3</sub></li>
 	</ul></details>
 	<details class="kerdes" id="ok.669"><summary>észterképzés?</summary><ul class="normal">
+		<img src="images/krbnsvsztr.png">
 		<li>alkoholt savval reagáltatva észter képződik</li>
 		<li>észtereknek 2 típusa van &#10140; karbonsavészter, szervetlen savak észterei</li>
 		<li>karbonsavészter keletkezésénél az alkohol karbonsavval reagál</li><ul>
@@ -4831,25 +4914,51 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 			<li>pl. glicerin + 3HNO<sub>3</sub> &#10140; glicerin-trinitrát(nitroglicerin)</li>
 		</ul>
 	</ul></details>
-	<details><summary>reakciók &#10140; hogy keletkeznek? mik állíthatók elő?<abbr title="persze más is nyilván előállatható, illetve máshogy is keletkezhet, de ezek a fontosak">&#10045;</abbr></summary><ul class="normal">
-		<img src="images/trsztrlkhlrjz.png">
-		<img src="images/krbnsvsztr.png">
+	<details class="kerdes" id="ok.673"><summary>dehidratálás lényege?</summary><ul class="normal">
+		<img src="images/lkhkdhdrtc.png">
+		<li>dehidratáció = vízelvonás</li>
+		<li><span class="Important">intermolekuláris esetben éter képződik</span></li><ul>
+			<li>intermolekuláris azt jelenti, hogy 2 alkoholmolekulából lép majd ki 1H<sub>2</sub>O és lesz belőlük éter</li>
+			<li>pl. CH<sub>3</sub>OH + CH<sub>3</sub>OH &#10140; CH<sub>3</sub>O-CH<sub>3</sub></li>
+			<li>ez savas közegben megy végbe</li>
+			<li>(1) CH<sub>3</sub>OH hoz kötődik 1 proton, ennek következtében 1x pozitív töltésű lesz</li>
+			<li>(2) kiválik belőle 1H<sub>2</sub>O, így marad CH<sub>3</sub><sup>+</sup></li>
+			<li>(3) ez a CH<sub>3</sub><sup>+</sup> csatlakozik a másik CH<sub>3</sub>OH-hoz és így keletkezik CH<sub>3</sub>-OH-CH<sub>3</sub><sup>+</sup> amiből egy proton leválik majd.</li>
+		</ul>
+		<li><span class="Important">intramolekuláris esetében a 1 alkoholmolekulából fog kiválni 1H<sub>2</sub>O és keletkezik alkén</span> &#10140; pl. etanolból így keletkezik etilén, ez is savas közegben! (lefutását lásd a képen!)</li>
 	</ul></details>
-	<details class="kerdes" id="ok.661"><summary><span class="Important">F</span> propánol és prop-2-anol szerkezete?</summary><ul class="normal">
-		<img src="images/prpnl.png">
+	<details class="kerdes" id="ok.674"><summary>oxidáció-redukció?</summary><ul class="normal">
+		<details><summary>elsőrendű alkohol oxidációja?</summary><ul class="normal">
+			<img src="images/lkhlxdcrdkc.png">
+			<li>metanol ugyan nem elsőrendű, de arra is igaz</li>
+		</ul></details>
+		<details><summary>másodrendű alkohol oxidációja?</summary><ul class="normal">
+			<img src="images/sclchl.png">
+		</ul></details>
+		<details><summary>harmadrendű alkohol oxidációja?</summary><ul class="normal">
+			<li>lánchasadás megy végbe és így keletkezhet aldehid vagy keton is <span class="MISS">(egyenlőre nemgondoltam végig de biztos van logikája)</span></li>
+		</ul></details>
 	</ul></details>
-	<details class="kerdes" id="ok.662"><summary><span class="Important">F</span> nevezd el</summary><ul class="normal">
-		<img src="images/2mtl2prpnl.png">
-		<br><br><details><summary>megoldás?(1)</summary><ul class="normal">
-			<li>2metil-propan-2ol</li>
-		</ul></details>
-		<br><br><details><summary>megoldás?(2)</summary><ul class="normal">
-			<li>ciklohexanol</li>
-		</ul></details>
-		<br><br><details><summary>megoldás?(3)</summary><ul class="normal">
-			<li>3pentin-1ol</li>
-			<li>&#10140; <span class="WHITE">-ol</span> nagyobb prioritású, mint a <span class="WHITE">2x/3x-kötés</span> helyzete a számozás irányának meghatározásában</li>
-		</ul></details>
+ </div>
+ <div><div class="title">Alkoholok - fenolok</div>
+	<details class="kerdes" id="ok.675"><summary>mik?</summary><ul class="normal">
+		<li>melyeknél az <span class="WHITE">-OH</span> közvetlenül az aromás gyűrű C-atomjához kapcsolódik</li>
+	</ul></details>
+	<details class="kerdes" id="ok.679"><summary>2pl.?</summary><ul class="normal">
+		<img src="images/fnlk.png">
+	</ul></details>
+	<details class="kerdes" id="ok.677"><summary>fő tulajdonságuk?</summary><ul class="normal">
+		<li>mérgező</li>
+	</ul></details>
+ </div>
+ <div><div class="title">Éterek</div>
+	<details class="kerdes" id="ok.680"><summary>általános képletük?</summary><ul class="normal">
+		<li><span class="WHITE">R–O–R'</span></li>
+	</ul></details>
+	<details class="kerdes" id="ok.681"><summary>fő tulajdonságaik?</summary><ul class="normal">
+		<li>ellenben az alkohollal, ezek nemképesek hidrogén-híd kötés kialakítására &#10140; forráspontjuk alacsonyabb, mint az alkoholoké (közel megegyeznek a megegyező számú szénatomos szénhidrogénével)</li>
+		<li>altatóként használják halogenizált formájukat, ugyanis apoláris tulajdonságúak</li>
+		<li>éter-lipidek találhatók pl. szívizomban</li>
 	</ul></details>
  </div>
 <!----></div></details>

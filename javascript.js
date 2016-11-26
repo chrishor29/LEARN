@@ -4,7 +4,6 @@
 	kép 
 		addig terjedhet ki balra, amíg szövegbe nem ütközik, de min 40%-ot kaphat.
 		kép oldala piros-színű legyen, ha le lett a fennti miatt kicsinyítve.
-		bal-klikkre nagyítsa ki a képernyő közepére (de marad az oldalon).
 		középső-klikkre nyissa meg újablak.
 	
 	hide all onClick: jobb felső kérdésszám buttonra klikkelve mindent hideljen el, és showolja a következő kérdést majd, ne copyzza!
@@ -35,8 +34,8 @@
 // }
 
 
-var markCount = 0
-
+var markCount_A = 0
+var markCount_B = 0
 
 
 function func_calcJegy() { // átlagJegyet kiszámolja
@@ -103,6 +102,41 @@ function func_calcDate() { // átlagIdőt kiszámolja
 	date = parseFloat(Math.round(date * 100) / 100).toFixed(1);
 	document.getElementById("span_Date").innerHTML = date
 }
+
+
+
+
+// képnagyítás balKlikkel középre
+var imagesAll = document.images
+var imgStatus
+document.body.onclick=function(){
+	if ( imgStatus == "hide" ) {
+		centerImage.style.visibility = "hidden"
+	}
+	if ( imgStatus == "show" ) {
+		imgStatus = "hide"
+	}
+};
+for ( var i = 0;   i < imagesAll.length;   i++ ) {
+	imagesAll[i].onclick=function(){
+		imgStatus = "show"
+		centerImage.style.visibility = "visible";
+		centerImage.src = this.src
+		centerImage.style.maxHeight = "100%";
+		centerImage.style.maxWidth = "100%";
+		centerImage.style.position = "fixed";
+		centerImage.style.display = "block";
+		centerImage.style.left = "0px";
+		centerImage.style.right = "0px";
+		centerImage.style.bottom = "0px";
+		centerImage.style.top = "0px";
+		centerImage.style.margin = "auto";
+	};
+}
+centerImage = document.createElement("img")
+document.body.appendChild(centerImage)
+centerImage.style.visibility = "hidden";
+
 
 
 
@@ -390,16 +424,27 @@ function func_calcOldNew(){
 	document.getElementById("cont_Old").innerHTML = kerdesOld 
 }
 
-function func_markCount(jegy){
+function func_markCount(jegy){ // következő kérdés nehézségét beállítja, az előző sikere alapján
 	jegy = parseInt(jegy,10)
-	markCount = parseInt(markCount,10)
-	if ( markCount != 0 ) {
+	if ( jegy == 1 ) {
+		markCount_A = 3
+		markCount_B = 4
+	} else if ( jegy == 2 ) {
+		markCount_A = 2
+		markCount_B = 2
+	} else if ( jegy == 3 ) {
+		markCount_A = 1
+		markCount_B = 2
+	} else if ( jegy == 4 ) {
+		markCount_A = 1
+		markCount_B = 1
+	}
+	/*if ( markCount != 0 ) {
 		markCount = (markCount+jegy)/2
 	} else {
 		markCount = jegy
 	}
-	//markCount = Math.floor(markCount); 
-	markCount = jegy
+	markCount = Math.floor(markCount); */
 }
 
 function func_prevQuestion(){
@@ -473,11 +518,11 @@ function koviKerdes(){
 	// előző kérdés
 	if ( priorKerdesID != "nincs" ) {
 		if ( false == document.getElementById('jegy').disabled && 0 == document.getElementById("jegy").value.length ) {
-			alert("nincs jegy")
+			alert("nincs jegy (1<2<3<4)")
 			return
 		}
 		if ( false == document.getElementById('rank').disabled && 0 == document.getElementById("rank").value.length ) {
-			alert("nincs rank")
+			alert("nincs rank(1<2<3<4<5)")
 			return
 		}
 		func_prevQuestion();
@@ -544,7 +589,7 @@ function koviKerdes(){
 							if ( priorType == 1 ) { // régi kérdés
 								var jegy = localStorage.getItem(kerdes+'_jegy_'+count)
 								var rank = localStorage.getItem(kerdes+'_rank')
-								if ( jegy == 5-markCount || jegy == 4-markCount || markCount == 0 ) { 
+								if ( jegy == markCount_A || jegy == markCount_B || markCount_A == 0 || priorKerdesID == "nincs" ) { 
 									if ( rank == "J" ) { // ez az if-es fázis megismétlődik lennt még1x, tehát ha módosítom, akkor azt is!
 										checkValue = 3 * idopont / jegy
 									} else {
@@ -564,13 +609,13 @@ function koviKerdes(){
 										}
 									}
 								}
-								if ( priorKerdesID == "nincs" ) {
-									if ( rank == "J" ) { // itt ismétlődik a fennti if-es fázis!
+								/*if ( priorKerdesID == "nincs" ) {
+									if ( rank == "J" ) {
 										checkValue = 3 * idopont / jegy
 									} else {
 										checkValue = rank * idopont / jegy
 									}
-									if ( checkValue > priorValue ) { // itt ismétlődik a fennti if-es fázis!
+									if ( checkValue > priorValue ) {
 										if ( localStorage.getItem(kerdes+"_skip") == "true" ) {
 											if ( localStorage.getItem("checkbox_skipID") == "true" ) {
 												priorValue = checkValue;
@@ -583,7 +628,7 @@ function koviKerdes(){
 											priorKerdesID = kerdes;
 										}
 									}
-								}
+								}*/
 							}
 						}
 					}
