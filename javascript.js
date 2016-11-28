@@ -590,26 +590,6 @@ function koviKerdes(){
 								var jegy = localStorage.getItem(kerdes+'_jegy_'+count)
 								var rank = localStorage.getItem(kerdes+'_rank')
 								if ( jegy == markCount_A || jegy == markCount_B || markCount_A == 0 || priorKerdesID == "nincs" ) { 
-									if ( rank == "J" ) { // ez az if-es fázis megismétlődik lennt még1x, tehát ha módosítom, akkor azt is!
-										checkValue = 3 * idopont / jegy
-									} else {
-										checkValue = rank * idopont / jegy
-									}
-									if ( checkValue > priorValue ) { // ez az if-es fázis megismétlődik lennt még1x, tehát ha módosítom, akkor azt is!
-										if ( localStorage.getItem(kerdes+"_skip") == "true" ) {
-											if ( localStorage.getItem("checkbox_skipID") == "true" ) {
-												priorValue = checkValue;
-												document.getElementById("button_skipID").style.backgroundColor = "black"
-												priorKerdesID = kerdes;
-											}
-										} else {
-											priorValue = checkValue;
-											document.getElementById("button_skipID").style.backgroundColor = "lightgrey"
-											priorKerdesID = kerdes;
-										}
-									}
-								}
-								/*if ( priorKerdesID == "nincs" ) {
 									if ( rank == "J" ) {
 										checkValue = 3 * idopont / jegy
 									} else {
@@ -628,7 +608,7 @@ function koviKerdes(){
 											priorKerdesID = kerdes;
 										}
 									}
-								}*/
+								}
 							}
 						}
 					}
