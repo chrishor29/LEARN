@@ -37,6 +37,8 @@
 var markCount_A = 0
 var markCount_B = 0
 
+document.getElementById("lastmodified").innerHTML = document.lastModified;
+
 
 function func_calcJegy() { // átlagJegyet kiszámolja
 	var maxJegy = 0
