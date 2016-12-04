@@ -301,6 +301,14 @@ for ( var fotema in kerdesID ) {
 }
 
 
+// tooltip
+var abbrok = document.getElementsByTagName("ABBR");
+for(var i = 0; i < abbrok.length; i++) {
+	abbrok[i].onclick = function () {
+		alert(abbrok[i].title)
+	}
+}
+
 
 // checkboxok: missFix & skipID
 document.getElementById("checkbox_skipID").onclick = function() {
@@ -421,6 +429,7 @@ function func_calcOldNew(){
 	document.getElementById("cont_Old").innerHTML = kerdesOld 
 }
 
+var markCount_A, markCount_B
 function func_markCount(jegy){ // következő kérdés nehézségét beállítja, az előző sikere alapján
 	jegy = parseInt(jegy,10)
 	if ( jegy == 1 ) {
@@ -492,7 +501,7 @@ function func_prevQuestion(){
 	localStorage.setItem(priorKerdesID+'_note', document.getElementById("note").value);
 
 	document.getElementById("questTitle").innerHTML = "";		// hide előző megoldás
-	cloneKerdes.style.display = 'none';								// hide előző megoldás
+	document.getElementById("kerdeslocation").style.display = 'none';								// hide előző megoldás
 	
 	func_valStatus("fix");
 	func_valStatus("miss");
@@ -503,6 +512,7 @@ function func_prevQuestion(){
 	document.getElementById("note").value = ""
 	document.getElementById("note").style.display = 'none';
 }
+
 
 
 
@@ -586,7 +596,7 @@ function koviKerdes(){
 							if ( priorType == 1 ) { // régi kérdés
 								var jegy = localStorage.getItem(kerdes+'_jegy_'+count)
 								var rank = localStorage.getItem(kerdes+'_rank')
-								if ( jegy == markCount_A || jegy == markCount_B || markCount_A == 0 || priorKerdesID == "nincs" ) { 
+								if ( jegy == markCount_A || jegy == markCount_B || priorKerdesID == "nincs" ) { 
 									if ( rank == "J" ) {
 										checkValue = 3 * idopont / jegy
 									} else {
@@ -621,11 +631,34 @@ function koviKerdes(){
 		var cimTitle = priorKerdesID.slice(priorKerdesID.indexOf(".")+1)
 		document.getElementById("questTitle").innerHTML = "(" + cimTitle + ") " + fullTema.slice(0,fullTema.indexOf("/")) + ": " + fullTema.slice(fullTema.indexOf("/")+1,fullTema.indexOf(".")) + " &#10140; " + fullTema.slice(fullTema.indexOf(".")+1);
 
-		cloneKerdes = document.getElementById(priorKerdesID).cloneNode(true);
-		cloneKerdes.id = "clone";
-		document.getElementById("kerdeslocation").appendChild(cloneKerdes)
-		cloneKerdes.style.display = 'block';
-		
+		//cloneKerdes = document.getElementById(priorKerdesID).cloneNode(true);
+		//cloneKerdes.id = "clone";
+		//document.getElementById("kerdeslocation").appendChild(cloneKerdes)
+		//cloneKerdes.style.display = 'block';
+		document.getElementById("kerdeslocation").innerHTML = document.getElementById(priorKerdesID).innerHTML;
+		document.getElementById("kerdeslocation").style.display = 'block';
+		if ( document.getElementById(priorKerdesID).className == "kerdes open" ) {
+			document.getElementById("kerdeslocation").open = true;
+			var c = document.getElementById("kerdeslocation").children;
+			for (i = 0; i < c.length; i++) {
+				if ( "SUMMARY" == c[i].tagName ) {
+					c[i].innerHTML = "kérdés"
+				}
+				if ( "UL" == c[i].tagName ) {
+					var x = c[i].children;
+					for (j = 0; j < x.length; j++) {
+						alert(x[j].tagName)
+						if ( "DETAILS" == x[j].tagName ) {
+							x[j].open = false
+						}
+					}
+				}
+			}
+		} else {
+			document.getElementById("kerdeslocation").open = false;
+		}
+
+	 
 		if ( localStorage.getItem(priorKerdesID+'_note') == " " ) {
 			localStorage.setItem(priorKerdesID+'_note', "");
 		}
