@@ -301,13 +301,19 @@ for ( var fotema in kerdesID ) {
 }
 
 
-// tooltip
+
+
+// clear old history
+
+
+
+/* tooltip
 var abbrok = document.getElementsByTagName("ABBR");
 for(var i = 0; i < abbrok.length; i++) {
 	abbrok[i].onclick = function () {
-		alert(abbrok[i].title)
+		alert(abbrok[i].title) //nemjó, mert mindig a legelsőjét mutatja
 	}
-}
+}*/
 
 
 // checkboxok: missFix & skipID
