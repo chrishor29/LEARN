@@ -229,7 +229,7 @@ for ( var i = 0;   i < elements.length;   i++ ) {
 	var fotema = 		document.getElementById(id).parentElement.parentElement.parentElement.parentElement.id
 
 	if ( !temakor[fotema] ) {
-		temakor[fotema] =  []
+		temakor[fotema]  = []
 		kerdesID[fotema] = []
 	}
 
@@ -304,7 +304,38 @@ for ( var fotema in kerdesID ) {
 
 
 // clear old history
-
+//localStorage.clear();
+//localStorage.removeItem("item_name");
+for ( var fotema in kerdesID ) { 
+	for ( var temaKerdes in kerdesID[fotema] ) { 
+		for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
+			var count = parseInt(localStorage.getItem(kerdes+'_repeat'));
+			var date = new Date();
+			var min_diff = date.getMinutes() - localStorage.getItem(kerdes+'_min_'+count);
+			var hour_diff = date.getHours() - localStorage.getItem(kerdes+'_hour_'+count);
+			var day_diff = date.getDate() - localStorage.getItem(kerdes+'_day_'+count);
+			var month_diff = 1 + date.getMonth() - localStorage.getItem(kerdes+'_month_'+count);
+			var year_diff = date.getFullYear() - localStorage.getItem(kerdes+'_year_'+count);
+			var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
+			if ( idopont > 10080 ) {
+				for ( var i = 1;   i < count+1;   i++  ) {
+					localStorage.removeItem(kerdes+'_jegy_'+count);
+				}
+				localStorage.removeItem(kerdes+'_repeat');
+			} 
+			if ( localStorage.getItem(kerdes+"_skip") == "true" ) {
+				if ( idopont < 1040 ) {
+				} else { //azért így oldottam meg, mertha időpont == null vagy mi akkor is működjön
+					for ( var i = 1;   i < count+1;   i++  ) {
+						localStorage.removeItem(kerdes+'_jegy_'+count);
+					}
+					localStorage.removeItem(kerdes+'_repeat');
+					localStorage.removeItem(kerdes+'_skip');
+				}
+			}
+		}
+	}
+}
 
 
 /* tooltip
@@ -412,7 +443,6 @@ function func_valStatusSkip(){
 func_valStatusSkip();
 
 
-
 function func_calcOldNew(){
 	var kerdesNew = 0
 	var kerdesOld = 0
@@ -434,6 +464,7 @@ function func_calcOldNew(){
 	document.getElementById("cont_New").innerHTML = kerdesNew
 	document.getElementById("cont_Old").innerHTML = kerdesOld 
 }
+
 
 var markCount_A, markCount_B
 function func_markCount(jegy){ // következő kérdés nehézségét beállítja, az előző sikere alapján
@@ -458,6 +489,7 @@ function func_markCount(jegy){ // következő kérdés nehézségét beállítja
 	}
 	markCount = Math.floor(markCount); */
 }
+
 
 function func_prevQuestion(){
 	var count = 1+parseInt(localStorage.getItem(priorKerdesID+'_repeat'));
@@ -520,8 +552,6 @@ function func_prevQuestion(){
 }
 
 
-
-
 // question
 var fullTema
 var priorKerdesID = "nincs"
@@ -577,16 +607,8 @@ function koviKerdes(){
 				if ( localStorage.getItem(fotema+" / "+temaKerdes+"_button") == "true" ) {
 					for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
 						if ( kerdesID[fotema][temaKerdes][kerdes] == true ) {
-							var count = parseInt(localStorage.getItem(kerdes+'_repeat'));
-							var date = new Date();
-							var min_diff = date.getMinutes() - localStorage.getItem(kerdes+'_min_'+count);
-							var hour_diff = date.getHours() - localStorage.getItem(kerdes+'_hour_'+count);
-							var day_diff = date.getDate() - localStorage.getItem(kerdes+'_day_'+count);
-							var month_diff = 1 + date.getMonth() - localStorage.getItem(kerdes+'_month_'+count);
-							var year_diff = date.getFullYear() - localStorage.getItem(kerdes+'_year_'+count);
-							var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
 
-							if ( localStorage.getItem(kerdes+"_repeat") == null | localStorage.getItem(kerdes+"_repeat") == 0 ) {
+							if ( localStorage.getItem(kerdes+"_repeat") == null || localStorage.getItem(kerdes+"_repeat") == 0 || isNaN(localStorage.getItem(kerdes+"_repeat")) == true ) {
 								if ( localStorage.getItem("checkbox_New") == "true" && priorType < 2 ) {
 									localStorage.setItem(kerdes+"_repeat", 0);
 									priorType = 2
@@ -599,7 +621,16 @@ function koviKerdes(){
 								priorValue = 0
 							}
 
-							if ( priorType == 1 ) { // régi kérdés
+							if ( priorType == 1 && localStorage.getItem(kerdes+"_repeat") > 0 ) { // régi kérdés
+								var count = parseInt(localStorage.getItem(kerdes+'_repeat'));
+								var date = new Date();
+								var min_diff = date.getMinutes() - localStorage.getItem(kerdes+'_min_'+count);
+								var hour_diff = date.getHours() - localStorage.getItem(kerdes+'_hour_'+count);
+								var day_diff = date.getDate() - localStorage.getItem(kerdes+'_day_'+count);
+								var month_diff = 1 + date.getMonth() - localStorage.getItem(kerdes+'_month_'+count);
+								var year_diff = date.getFullYear() - localStorage.getItem(kerdes+'_year_'+count);
+								var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
+
 								var jegy = localStorage.getItem(kerdes+'_jegy_'+count)
 								var rank = localStorage.getItem(kerdes+'_rank')
 								if ( jegy == markCount_A || jegy == markCount_B || priorKerdesID == "nincs" ) { 
