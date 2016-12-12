@@ -34,7 +34,6 @@
 // }
 
 
-
 function func_calcJegy() { // átlagJegyet kiszámolja
 	var maxJegy = 0
 	var trueJegy = 0
@@ -224,7 +223,6 @@ var temakor = []
 var usedID = [] // ebbe elmenti az eddig felhasznált id-ket, hogy lecheckolja, nem-e használt a következő már
 for ( var i = 0;   i < elements.length;   i++ ) {
 	var id = elements[i].id
-	var fullTema = 	document.getElementById(id).parentElement.id
 	var temaKerdes = 	document.getElementById(id).parentElement.parentElement.parentElement.id
 	var fotema = 		document.getElementById(id).parentElement.parentElement.parentElement.parentElement.id
 
@@ -404,7 +402,6 @@ var table_Status = []
 var table_StatusSkip = []
 for ( var i = 0;   i < elements.length;   i++ ) {
 	var id = elements[i].id
-	var fullTema = 	document.getElementById(id).parentElement.id
 	var temaKerdes = 	document.getElementById(id).parentElement.parentElement.parentElement.id
 	var fotema = 		document.getElementById(id).parentElement.parentElement.parentElement.parentElement.id
 	var cimTitle = id.slice(id.indexOf(".")+1)
@@ -466,7 +463,7 @@ function func_calcOldNew(){
 }
 
 
-var markCount_A, markCount_B
+var markCount_A, markCount_B = null
 function func_markCount(jegy){ // következő kérdés nehézségét beállítja, az előző sikere alapján
 	jegy = parseInt(jegy,10)
 	if ( jegy == 1 ) {
@@ -633,7 +630,7 @@ function koviKerdes(){
 
 								var jegy = localStorage.getItem(kerdes+'_jegy_'+count)
 								var rank = localStorage.getItem(kerdes+'_rank')
-								if ( jegy == markCount_A || jegy == markCount_B || priorKerdesID == "nincs" ) { 
+								if ( jegy == markCount_A || jegy == markCount_B || markCount_A == null ) { 
 									if ( rank == "J" ) {
 										checkValue = 3 * idopont / jegy
 									} else {
