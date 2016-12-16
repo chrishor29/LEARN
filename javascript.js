@@ -1,20 +1,24 @@
 
 /* FELADATOK
-	Szöveg legyen egy tétel, és utána kérdések. X(pl.1hét) idő után mindig kelljen elolvasnom egy tételt és utána azt kérdezze ki. Lehessen bejelölni, mikor kívánom igénybe venni ezt a módszert.
+
+	kép --> működjön a nagyítás funkció az aktív kérdésnél is
+	ismétlés funkció: kérdést ha nemtudtam pontosan akkor jelöljem be, hogy ismétlendő (mint miss/fixnél) --> ha ismétlendő kérdések be vannak pipálva, akkor azokat kérdezi előbb, de min. 30perc-1óra el kell teljen mielőtt kidobja, és utána ne adhassak rá jegyet, csak kerüljön le az ismétlendő listáról. 
+	ABBR script --> rákattintva megjelenjen egyből, ráhúzva is
 	kép 
 		addig terjedhet ki balra, amíg szövegbe nem ütközik, de min 40%-ot kaphat.
 		kép oldala piros-színű legyen, ha le lett a fennti miatt kicsinyítve.
 		középső-klikkre nyissa meg újablak.
 	
 	hide all onClick: jobb felső kérdésszám buttonra klikkelve mindent hideljen el, és showolja a következő kérdést majd, ne copyzza!
-	ABBR script --> rákattintva megjelenjen egyből, ráhúzva is
 
+	1kérdés lehessen többhelyen is, és a kódban azonban csak a szöveg egy helyen legyen megadva hozzá (hogy csak egy helyen kelljen átírnom, ha változtatok rajta)
 	alertbe mutassa, ha valamely kérdésID üres már! és mellette localstoraget törölje!
 	több jegyet mentsen le (egy feladaton belül!), és tudjak velük külön-külön számolni
 	1órán belül ha mutatja, ne adhassak rá jegyet
 	localstorage helyét megkeresni és folyamatosan csináljon róla safety copyt
 	lehessen RESET-elni egy témán belüli kérdés jegyeit (ha már jó rég csináltam meg őket, attól még ne legyen 65% stb.)
 	DETAILS script
+	Szöveg legyen egy tétel, és utána kérdések. X(pl.1hét) idő után mindig kelljen elolvasnom egy tételt és utána azt kérdezze ki. Lehessen bejelölni, mikor kívánom igénybe venni ezt a módszert.
 
 	miss/fix-nél növekvő sorrendbe nézze őket
 	lehessen beállítani: rövid_kérdés / hosszú_kérdés
@@ -321,13 +325,9 @@ for ( var fotema in kerdesID ) {
 				}
 				localStorage.removeItem(kerdes+'_repeat');
 			} 
-			if ( localStorage.getItem(kerdes+"_skip") == "true" ) {
+			if ( localStorage.getItem(kerdes+"_skip") == "skip" ) {
 				if ( idopont < 1040 ) {
 				} else { //azért így oldottam meg, mertha időpont == null vagy mi akkor is működjön
-					for ( var i = 1;   i < count+1;   i++  ) {
-						localStorage.removeItem(kerdes+'_jegy_'+count);
-					}
-					localStorage.removeItem(kerdes+'_repeat');
 					localStorage.removeItem(kerdes+'_skip');
 				}
 			}
@@ -381,6 +381,13 @@ document.getElementById("checkbox_New").onclick = function() {
 		localStorage.setItem(this.id,false)
 	}
 }
+document.getElementById("checkbox_RepNew").onclick = function() {
+	if ( this.checked ) {
+		localStorage.setItem(this.id,true)
+	} else {
+		localStorage.setItem(this.id,false)
+	}
+}
 if ( localStorage.getItem("checkbox_skipID") == "true" ) {
 	document.getElementById("checkbox_skipID").checked = true;
 }
@@ -395,6 +402,9 @@ if ( localStorage.getItem("progress_checkbox") == "true" ) {
 }
 if ( localStorage.getItem("checkbox_New") == "true" ) {
 	document.getElementById("checkbox_New").checked = true;
+}
+if ( localStorage.getItem("checkbox_RepNew") == "true" ) {
+	document.getElementById("checkbox_RepNew").checked = true;
 }
 
 var elements = document.getElementsByClassName("kerdes")
@@ -430,12 +440,14 @@ func_valStatus("progress");
 
 function func_valStatusSkip(){
 	var x = 0
+	var y = 0
 	for ( var id in table_StatusSkip ) {
-		if ( table_StatusSkip[id] == "true" ) {
+		if ( table_StatusSkip[id] == "skip" ) {
 			x = x+1
 		}
 	}
 	document.getElementById("show_skipID").value = x;
+	
 }
 func_valStatusSkip();
 
@@ -443,6 +455,8 @@ func_valStatusSkip();
 function func_calcOldNew(){
 	var kerdesNew = 0
 	var kerdesOld = 0
+	var repNew = 0
+	var repOld = 0
 	for ( var fotema in kerdesID ) {
 		for ( var temaKerdes in kerdesID[fotema] ) {
 			if ( localStorage.getItem(fotema+" / "+temaKerdes+"_button") == "true" ) {
@@ -454,12 +468,30 @@ function func_calcOldNew(){
 							kerdesNew = kerdesNew +1
 						}
 					}
+					if ( localStorage.getItem(kerdes + "_skip") == "repeat" ) {
+						var count = parseInt(localStorage.getItem(kerdes+'_repeat'));
+						var date = new Date();
+						var min_diff = date.getMinutes() - localStorage.getItem(kerdes+'_min_'+count);
+						var hour_diff = date.getHours() - localStorage.getItem(kerdes+'_hour_'+count);
+						var day_diff = date.getDate() - localStorage.getItem(kerdes+'_day_'+count);
+						var month_diff = 1 + date.getMonth() - localStorage.getItem(kerdes+'_month_'+count);
+						var year_diff = date.getFullYear() - localStorage.getItem(kerdes+'_year_'+count);
+						var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
+
+						if ( idopont < 30 ) {
+							repOld = repOld +1
+						} else {
+							repNew = repNew +1
+						}
+					}
 				}
 			}
 		}
 	}
 	document.getElementById("cont_New").innerHTML = kerdesNew
 	document.getElementById("cont_Old").innerHTML = kerdesOld 
+	document.getElementById("cont_RepNew").innerHTML = repNew;
+	document.getElementById("cont_RepOld").innerHTML = repOld;
 }
 
 
@@ -519,8 +551,10 @@ function func_prevQuestion(){
 	}
 
 	if ( document.getElementById("button_skipID").style.backgroundColor == "black" ) {
-		localStorage.setItem(priorKerdesID+"_skip","true")
-	} else {
+		localStorage.setItem(priorKerdesID+"_skip","skip")
+	} else if ( document.getElementById("button_skipID").style.backgroundColor == "yellow" ) {
+		localStorage.setItem(priorKerdesID+"_skip","repeat")
+	} else if ( document.getElementById("button_skipID").style.backgroundColor == "lightgrey" ) {
 		localStorage.setItem(priorKerdesID+"_skip","false")
 	}
 
@@ -605,6 +639,22 @@ function koviKerdes(){
 					for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
 						if ( kerdesID[fotema][temaKerdes][kerdes] == true ) {
 
+							if ( localStorage.getItem("checkbox_RepNew") == "true" && priorType < 3 && localStorage.getItem(kerdes+"_skip") == "repeat" ) {
+								var count = parseInt(localStorage.getItem(kerdes+'_repeat'));
+								var date = new Date();
+								var min_diff = date.getMinutes() - localStorage.getItem(kerdes+'_min_'+count);
+								var hour_diff = date.getHours() - localStorage.getItem(kerdes+'_hour_'+count);
+								var day_diff = date.getDate() - localStorage.getItem(kerdes+'_day_'+count);
+								var month_diff = 1 + date.getMonth() - localStorage.getItem(kerdes+'_month_'+count);
+								var year_diff = date.getFullYear() - localStorage.getItem(kerdes+'_year_'+count);
+								var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
+
+								if ( idopont > 30 ) {
+									priorType = 3
+									priorKerdesID = kerdes;
+								}
+							}
+
 							if ( localStorage.getItem(kerdes+"_repeat") == null || localStorage.getItem(kerdes+"_repeat") == 0 || isNaN(localStorage.getItem(kerdes+"_repeat")) == true ) {
 								if ( localStorage.getItem("checkbox_New") == "true" && priorType < 2 ) {
 									localStorage.setItem(kerdes+"_repeat", 0);
@@ -637,15 +687,13 @@ function koviKerdes(){
 										checkValue = rank * idopont / jegy
 									}
 									if ( checkValue > priorValue ) {
-										if ( localStorage.getItem(kerdes+"_skip") == "true" ) {
+										if ( localStorage.getItem(kerdes+"_skip") == "skip" ) {
 											if ( localStorage.getItem("checkbox_skipID") == "true" ) {
 												priorValue = checkValue;
-												document.getElementById("button_skipID").style.backgroundColor = "black"
 												priorKerdesID = kerdes;
 											}
 										} else {
 											priorValue = checkValue;
-											document.getElementById("button_skipID").style.backgroundColor = "lightgrey"
 											priorKerdesID = kerdes;
 										}
 									}
@@ -671,6 +719,23 @@ function koviKerdes(){
 		//cloneKerdes.style.display = 'block';
 		document.getElementById("kerdeslocation").innerHTML = document.getElementById(priorKerdesID).innerHTML;
 		document.getElementById("kerdeslocation").style.display = 'block';
+		var aktivimages = document.getElementById("kerdeslocation").getElementsByTagName("img");
+		for ( var i = 0;   i < aktivimages.length;   i++ ) {
+			aktivimages[i].onclick=function(){
+				imgStatus = "show"
+				centerImage.style.visibility = "visible";
+				centerImage.src = this.src
+				centerImage.style.maxHeight = "100%";
+				centerImage.style.maxWidth = "100%";
+				centerImage.style.position = "fixed";
+				centerImage.style.display = "block";
+				centerImage.style.left = "0px";
+				centerImage.style.right = "0px";
+				centerImage.style.bottom = "0px";
+				centerImage.style.top = "0px";
+				centerImage.style.margin = "auto";
+			};
+		}
 		if ( document.getElementById(priorKerdesID).className == "kerdes open" ) {
 			document.getElementById("kerdeslocation").open = true;
 			var c = document.getElementById("kerdeslocation").children;
@@ -692,7 +757,12 @@ function koviKerdes(){
 			document.getElementById("kerdeslocation").open = false;
 		}
 
-	 
+		if ( localStorage.getItem(priorKerdesID+"_skip") == "skip" ) {
+			document.getElementById("button_skipID").style.backgroundColor = "black"
+		} else {
+			document.getElementById("button_skipID").style.backgroundColor = "lightgrey"
+		}
+
 		if ( localStorage.getItem(priorKerdesID+'_note') == " " ) {
 			localStorage.setItem(priorKerdesID+'_note', "");
 		}
@@ -705,10 +775,12 @@ function koviKerdes(){
 			var_note = false
 		}
 
-		if ( localStorage.getItem(priorKerdesID+'_missFix') == "progress" ) {
+		if ( localStorage.getItem(priorKerdesID+'_missFix') == "progress" || localStorage.getItem(priorKerdesID+"_skip") == "repeat" ) {
 			document.getElementById('jegy').disabled = true;
 			document.getElementById('rank').disabled = true;
-			document.getElementById("button_missFix").style.backgroundColor = "purple";
+			if ( localStorage.getItem(priorKerdesID+'_missFix') == "progress" ) {
+				document.getElementById("button_missFix").style.backgroundColor = "purple";
+			}
 		} else {
 			document.getElementById('jegy').disabled = false;
 			document.getElementById('rank').disabled = false;
@@ -760,7 +832,9 @@ function func_skipID(){
 	if ( priorKerdesID != "nincs") {
 		if ( document.getElementById("button_skipID").style.backgroundColor == "black" ) {
 			document.getElementById("button_skipID").style.backgroundColor = "lightgrey";
-		} else {
+		} else if ( document.getElementById("button_skipID").style.backgroundColor == "lightgrey" ) {
+			document.getElementById("button_skipID").style.backgroundColor = "yellow";
+		} else if ( document.getElementById("button_skipID").style.backgroundColor == "yellow" ) {
 			document.getElementById("button_skipID").style.backgroundColor = "black";
 		}
 	}

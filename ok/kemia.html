@@ -8,7 +8,6 @@
 	</style>
 </head>
 
-•• » ♫ &#9775;
 
 <input onclick="toggleAll();" type="button" id="input_toggleAll" value="0" style="position:fixed; right: 0px;"><div id="quest" style="display:none;">
 	
@@ -20,6 +19,7 @@
 
 	<input type="checkbox" id="checkbox_New"/><span class="WHITE" id="cont_New"></span><span class="VOCAB" id="cont_Old"></span>
 	<span class="WHITE" id="span_Jegy"></span><span class="VOCAB" id="span_Date"></span>
+	<input type="checkbox" id="checkbox_RepNew"/><span class="WHITE" id="cont_RepNew"></span><span class="VOCAB" id="cont_RepOld"></span>
 
 
 	<br>
@@ -66,7 +66,7 @@
 		<td class="important">24</td>
 		<td class="done">25</td>
 		<td class="done">26</td>
-		<td class="miss">27</td>
+		<td class="done">27</td>
 	</tr>
 	<tr><td class="dark">szervetlen</td>
 		<td>1</td>
@@ -89,14 +89,14 @@
 		<td class="done">6</td>
 		<td class="done">7</td>
 		<td class="done">8</td>
-		<td class="miss">9</td>
+		<td class="done">9</td>
 		<td class="done">10</td>
 		<td class="done">11</td>
 		<td class="done">12</td>
 		<td class="done">13</td>
 		<td class="done">14</td>
 		<td class="done">15</td>
-		<td>16</td>
+		<td class="done">16</td>
 	</tr>
 	<tr><td class="dark">gyakorlati</td>
 		<td class="important">1</td>
@@ -121,16 +121,18 @@
 	<li>könyvek: általános és bioszervetlen kémia, bioorganikus kémia, dillard-goldberg kémia</li>
 </div>
 
-<summary class="phase">Megjegyzések</summary><ul class="normal">
+<div class="header"><strong>Megjegyzések</strong>
 	<li>Sajnos hibák vannak benne, az ember bármennyire is próbálja (tartalmi és helyesírási egyaránt), megértést köszönöm</li>
 	<li>tételekre klikk és megnyílik || képekre klikk és nagyítva lesz || (jobb felső sarokban lévő számmal nem kell foglalkozni!)</li>
 	<li>tétel kidolgozottsága a tetején lévő táblázatban van jelölve színekkel &#10140; <span class="Done">teljesen</span> <span class="Important">nagyjából</span> <span class="miss">kevés</span> <span class="white">nincs</span></li>
+	<li>(LP) = nem annyira fontos(lowprior) // (HP) = nagyon fontos(highprior)</li>
 	<li><span class="MISS">rózsaszín</span> <span class="FIX">piros</span> &#10140; nem pontosan értem, félig kidolgozott</li>
 	<li><span class="Important">kék</span> &#10140; különösen fontosnak gondoltam</li>
 	<li><span class="vocab">szürke</span> &#10140; nem annyira fontosnak gondoltam</li>
 	<li><abbr title="szöveg">sárga</abbr> <abbr title="ez alacsony prioritású megjegyzés">&#10045;</abbr> &#10140; egeret ráhúzva szöveg jelenik meg</li>
 	<li>szerkesztette: Horváth Kristóf 2016/2017 Orvosi Kémia (főként előadások és internet alapján)</li>
-</ul>
+</div>
+
 
 <details open><summary class="phase">kidolgozandók</summary><ul class="normal">
 	<li>szerves vegyületek reakciói táblázat, pl-kal</li>
@@ -350,7 +352,10 @@
 	<details class="kerdes" id="ok.685"><summary>keto/enol piroszőlősav?</summary><ul class="normal">
 		<img src="images/pirsozőlősav.png">
 	</ul></details>
-	<details class="kerdes" id="ok.686"><summary>uracil & timin &#10140; laktám & laktim?</summary><ul class="normal">
+	<details class="kerdes" id="ok.686"><summary>uracil?</summary><ul class="normal">
+		<img src="images/lktmlktm.png">
+	</ul></details>
+	<details class="kerdes" id="ok.905"><summary>timin?</summary><ul class="normal">
 		<img src="images/lktmlktm.png">
 	</ul></details>
 	<details class="kerdes" id="ok.687"><summary>cisz-/transz-2-butén?</summary><ul class="normal">
@@ -359,7 +364,7 @@
 	<details class="kerdes" id="ok.688"><summary>Z-/E-1-klór-propenol?</summary><ul class="normal">
 		<img src="images/zepropenol.png">
 	</ul></details>
-	<details class="kerdes" id="ok.689"><summary>imidazol & 4-/5-metil-imidazol?</summary><ul class="normal">
+	<details class="kerdes" id="ok.689"><summary>imidazol?</summary><ul class="normal">
 		<img src="images/ttmr.png">
 	</ul></details>
 	<details class="kerdes" id="ok.690"><summary>D-/L-glicerinaldehid?</summary><ul class="normal">
@@ -372,25 +377,29 @@
 	<details class="kerdes" id="ok.692"><summary>dekalin<span class="MISS">?</span> <abbr title="cisz/transzt megkéne értenem">&#10045;</abbr></summary><ul class="normal">
 	</ul></details>
 	<details class="kerdes" id="ok.695"><summary>pirimidin?</summary><ul class="normal">
-		<img src="images/pirimidin.png">
+		<img src="images/htrtmsckls.png">
 	</ul></details>
 	<details class="kerdes" id="ok.696"><summary>piridin?</summary><ul class="normal">
-		<img src="images/pirimidin.png">
+		<img src="images/htrtmsckls.png">
 	</ul></details>
 	<details class="kerdes" id="ok.697"><summary>pirrol?</summary><ul class="normal">
-		<img src="images/pirimidin.png">
+		<img src="images/pirrol.png">
+		<img src="images/oxazol.png">
+		<img src="images/tiazol.png">
 	</ul></details>
 	<details class="kerdes" id="ok.698"><summary>pirazin?</summary><ul class="normal">
-		<img src="images/pirimidin.png">
+		<img src="images/pirazin.png">
 	</ul></details>
 	<details class="kerdes" id="ok.699"><summary>pteridin?</summary><ul class="normal">
-		<img src="images/pirimidin.png">
+		<img src="images/purin.png">
+		<img src="images/pteridin.png">
 	</ul></details>
 	<details class="kerdes" id="ok.700"><summary>indol?</summary><ul class="normal">
 		<img src="images/indol.png">
 	</ul></details>
 	<details class="kerdes" id="ok.701"><summary>purin?</summary><ul class="normal">
 		<img src="images/purin.png">
+		<img src="images/pteridin.png">
 	</ul></details>
 	<details class="kerdes" id="ok.703"><summary>glicerol?</summary><ul class="normal">
 		<img src="images/glcrnldghd.png">
@@ -417,9 +426,11 @@
 	</ul></details>
 	<details class="kerdes" id="ok.726"><summary>furán?</summary><ul class="normal">
 		<img src="images/furán.png">
+		<img src="images/tiofén.png">
 	</ul></details>
 	<details class="kerdes" id="ok.727"><summary>tiofén?</summary><ul class="normal">
 		<img src="images/tiofén.png">
+		<img src="images/furán.png">
 	</ul></details>
 	<details class="kerdes" id="ok.760"><summary>formil csoport?</summary><ul class="normal">
 		<img src="images/formil.png">
@@ -485,6 +496,17 @@
 	<details class="kerdes" id="ok.789"><summary>glicerinsav?</summary><ul class="normal">
 		<img src="images/glcrnldghd.png">
 	</ul></details>
+	<details class="kerdes" id="ok.892"><summary>ATP?</summary><ul class="normal">
+		<li>foszforsav + alkohol &#10140; foszforsav-észter + H<sub>2</sub>O</li>
+		<li>foszforsav-észter + alkohol &#10140; foszforsav-diészter + H<sub>2</sub>O</li>
+		<div><span class="white">&#9775;</span> foszforsav-észter és foszforsav-diészter kötések delokalizációra képesek, így stabilak</div>
+		<div><span class="white">&#9775;</span> nukleinsavak polinukleotid lánca foszforsav-diészter kötésekkel jön létre</div>
+		<div> –––––––––––––––––––––––––––––––– </div>
+		<li>foszforsav-észter + foszforsav &#10140; foszforsav-észter és foszforsav-anhidrid kötések + H<sub>2</sub>O</li>
+		<li>foszforsav-anhidrid kötés <span class="Important">nem képes delokalizációra,</span> (ugyanúgy mint karbonsavnál!!!) így instabil, azaz makroerg! tehát magas energiatartalmú kötés &#10140; tehát hidrolízissel a kötés felszakad és nagy energia szabadul fel</li>
+		<li>ATP esetében pl. 2 foszforsav-anhidrid és 1 foszforsav-észter kötés van (tudjam lerajzolni!)</li>
+		<img src="images/atrfszft.png">
+	</ul></details>
 	<details class="kerdes" id="ok.806"><summary>oxaloborostyánkősav?</summary><ul class="normal">
 		<img src="images/ctrccl.png">
 	</ul></details>
@@ -511,8 +533,28 @@
 		<img src="images/kctklon.png">
 	</ul></details>
 	<details class="kerdes" id="ok.851"><summary>kreatinin?</summary><ul class="normal">
-		<li>kreatin(izmokban van!) lebomlási terméke a kreatinin(visszafele nem játszódik), vizelettel távozik</li>
+		<li>kreatin izmokban van, és energia rövidtávú tárolására szolgál &#10140; ugyanis kreatin + foszforsav &#10140; kreatin-foszfát + H<sub>2</sub>O &#10140; kreatin-foszfátban lévő <strong>foszforsav-amid</strong>-kötés makroerg (nincs delokalizációja!)</li>
+		<li>kreatin lebomlási terméke a kreatinin(visszafele nem játszódik), vizelettel távozik</li>
+		<img src="images/kretnsfzst.png">
 		<img src="images/kreatin.png">
+	</ul></details>
+	<details class="kerdes" id="ok.896"><summary>5foszfo-adenozin-5foszfoszulfát?</summary><ul class="normal">
+		<li>vegyes-anhidrid hiszen nem foszforsav-O-foszforsav, hanem kénsav-O-foszforsav <abbr title="van karbonsav-O-foszforsav is (lásd előadás 16/17)">&#10045;</abbr></li>
+		<img src="images/fszfszlfnsv.png">
+	</ul></details>
+	<details class="kerdes" id="ok.899"><summary>oxazol?</summary><ul class="normal">
+		<img src="images/oxazol.png">
+		<img src="images/tiazol.png">
+		<img src="images/pirrol.png">
+	</ul></details>
+	<details class="kerdes" id="ok.900"><summary>tiazol?</summary><ul class="normal">
+		<img src="images/tiazol.png">
+		<img src="images/oxazol.png">
+		<img src="images/pirrol.png">
+	</ul></details>
+	<details class="kerdes" id="ok.901"><summary>pirazol?</summary><ul class="normal">
+		<img src="images/pirazol.png">
+		<img src="images/imidazol.png">
 	</ul></details>
 	<details class="kerdes" id="ok.849"><summary>guanidin?</summary><ul class="normal">
 		<img src="images/sznmsvszrmzkk.png">
@@ -547,14 +589,19 @@
 	<details class="kerdes" id="ok.865"><summary>xilol?</summary><ul class="normal">
 		<img src="images/xilol.png">
 	</ul></details>
-	<details class="kerdes" id="ok.864"><summary>adenin & guanin?</summary><ul class="normal">
+	<details class="kerdes" id="ok.864"><summary>guanin?</summary><ul class="normal">
+		<img src="images/adguan.png">
+	</ul></details>
+	<details class="kerdes" id="ok.904"><summary>adenin?</summary><ul class="normal">
 		<img src="images/adguan.png">
 	</ul></details>
 	<details class="kerdes" id="ok.847"><summary>urea?</summary><ul class="normal">
 		<img src="images/sznmsvszrmzkk.png">
 	</ul></details>
 	<details class="kerdes" id="ok.850"><summary>kreatin?</summary><ul class="normal">
-		<li>kreatin(izmokban van!) lebomlási terméke a kreatinin(visszafele nem játszódik), vizelettel távozik</li>
+		<li>kreatin izmokban van, és energia rövidtávú tárolására szolgál &#10140; ugyanis kreatin + foszforsav &#10140; kreatin-foszfát + H<sub>2</sub>O &#10140; kreatin-foszfátban lévő <strong>foszforsav-amid</strong>-kötés makroerg (nincs delokalizációja!)</li>
+		<li>kreatin lebomlási terméke a kreatinin(visszafele nem játszódik), vizelettel távozik</li>
+		<img src="images/kretnsfzst.png">
 		<img src="images/kreatin.png">
 	</ul></details>
 	<details class="kerdes" id="ok.855"><summary>glicin?</summary><ul class="normal">
@@ -1702,6 +1749,11 @@
 	<details class="kerdes" id="ok.110"><summary>saverősség (/báziserősség) és Ks (/Kb) közti összefüggés?</summary><ul class="normal">
 		<li>Ks minél nagyobb, annál nagyobb a saverősség (&#10140; pKs minél kisebb, annál nagyobb)</li>
 		<li>Kb minél nagyobb, annál nagyobb a báziserősség</li>
+	</ul></details>
+	<details class="kerdes" id="ok.873"><summary>mitől függ hogy egy molekula/ion sav vagy bázis-e?</summary><ul class="normal">
+		<li>attól, hogy pKs-e kisebb-e, mint a p(vízionszorzat), akkor sav</li>
+		<li>p(vízionszorzat) = 14</li>
+		<li>(szvsz ha nagyobb akkor nem ad le protont, és szvsz bázis /// ha pKb-je kisebb mint 14, akkoris bázis) <span class="MISS">járjak utána!</span></li>
 	</ul></details>
 	<details class="kerdes" id="ok.70"><summary>Saverősség, báziserősség vizes oldatokban példákkal<span class="MISS">?</span></summary><ul class="normal">
 	</ul></details>
@@ -3376,6 +3428,10 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 		<li><span class="vocab">k</span> reakciósebességi_konstans &#10140; <span class="WHITE">sikeres ütközések száma / sec</span></li>
 		<li><span class="vocab">A</span> akció_konstans &#10140; <span class="WHITE">megfelelő_orientációjú ütközések száma / sec</span></li>
 		<li><span class="vocab">e<sup>-E<sub>a</sub>/RT</sup></span> &#10140; <span class="WHITE">annak valószínűsége, hogy a megfelelő_orientációjú_ütközés (A) reakciót vált ki</span></li>
+		<details><summary>hőmérséklettől és aktiválási energiától hogy függ a reakciósebesség_konstans?</summary><ul class="normal">
+			<li>hőmérséklettel arányos &#10140; minél nagyobb T, annál nagyobb k</li>
+			<li>aktiválási_energiával fordítottan arányos &#10140; minél nagyobb Ea, annál kisebb k</li>
+		</ul></details>
 		<img src="images/arrhenius.png">
 	</ul></details>
 	<details class="kerdes" id="ok.424"><summary>hőmérséklet reakciósebességre gyakorolt hatását mely 2 elmélet magyarázza?</summary><ul class="normal">
@@ -3457,8 +3513,8 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 		</ul>
 	</ul></details>
 	<details class="kerdes" id="ok.433"><summary>emberben katalizátorok?(LP)</summary><ul class="normal">
-		<li>ribozim &#10140; RNS alapú katalizátor</li>
-		<li>enzim &#10140; fehérje alapú katalizátor, vagy van benne mind2(RNS is) (pl. riboszóma)</li>
+		<li>ribozim &#10140; RNS alapú katalizátor (transzkripciót katalizálja)</li>
+		<li>enzim &#10140; fehérje alapú katalizátor (de lehet benne RNS is, pl.riboszóma)</li>
 		<li>pl. H<sub>2</sub>O<sub>2</sub> bontását kataláz enzim végzi</li>
 	</ul></details>
  </div>
@@ -3495,8 +3551,177 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
  </div>
 <!----></div></details>
 
-<!----><details><summary class="phase">27. Az enzimek mint katalizátorok. A Michaelis-Menten modell. Összefüggés az enzimreakció sebessége és a szubsztrát-koncentráció között. A Michaelis-konstans (KM) és a vMax fogalma. A reverzibilis enzimgátlások (kompetitív, nonkompetitív).</summary><div class="normal">
-<!----></div></details>
+<!----><details><summary class="phase">27. Az enzimek mint katalizátorok. A Michaelis-Menten modell. Összefüggés az enzimreakció sebessége és a szubsztrát-koncentráció között. A Michaelis-konstans (KM) és a vMax fogalma. A reverzibilis enzimgátlások (kompetitív, nonkompetitív).</summary><div class="normal"><div><div class="title">enzimkinetika</div>
+ 	<details class="kerdes" id="ok.906"><summary>enzim katalizációra egy pl.?</summary><ul class="normal">
+		<li>H<sub>2</sub>O<sub>2</sub> lebontását H<sub>2</sub>O + 1/2O<sub>2</sub>-re kataláz enzim végzi (Ea-t 75kJ/molról 21kJ/molra csökkenti)</li>
+	</ul></details>
+	<details class="kerdes" id="ok.908"><summary>enzim által végbement reakciók tulajdonságai?</summary><ul class="normal">
+		<div>katalizált reakció, tehát...</div>
+		<li>aktiválási_energia csökken &#10140; reakciósebesség növekszik <abbr title="tehát ha meglehet fordítani a reakciót, akkor visszafele is gyorsabb lesz">(oda-vissza)</abbr></li>
+		<li>egyensúlyi_konstans és szabadentalpia_változás nem változik</li>
+		<img src="images/kltzrkcaktnrg.png">
+	</ul></details>
+ 	<details class="kerdes" id="ok.909"><summary>szubsztrát, ribozim, enzim?</summary><ul class="normal">
+		<li>ribozim &#10140; RNS alapú katalizátor &#10140; transzkripciót katalizálja</li>
+		<li>enzim &#10140; fehérje alapú katalizátor (de lehet benne RNS is, pl.riboszóma) &#10140; anyagcsere-reakciókat katalizálja</li>
+		<li>szubsztrát &#10140; enzim által átalakított anyag</li>
+	</ul></details>
+ 	<details class="kerdes" id="ok.910"><summary>domén?</summary><ul class="normal">
+		<li>valamilyen funkció elvégzésre alkalmas peptid-szakasz</li>
+		<li>pl. szubsztrátkötő, katalitikus <abbr title="ugyanazok, mint anno Fejlődésbiológia I.nél">&#10045;</abbr></li>
+		<li>aktív-centrum pl. a fennti két példának felhozott domén együtt</li>
+	</ul></details>
+ 	<details class="kerdes" id="ok.911"><summary>fémion?</summary><ul class="normal">
+		<div>egyes fehérjék felépítésében megtalálhatók, szerepük:</div>
+		<li>vagy stabilizálják a fehérje szerkezetét</li>
+		<li>vagy katalízisben részt vesznek (nyilván a fehérjék enzimek ez esetben)</li>
+	</ul></details>
+ 	<details class="kerdes" id="ok.912"><summary>koenzimek?</summary><ul class="normal">
+		<li>enzimhez kapcsolódik (nem peptid-szakasz!), és szükséges a katalízishez</li>
+	</ul></details>
+ 	<details class="kerdes" id="ok.913"><summary>aktív-centrum?</summary><ul class="normal">
+		<li>enzim 2 doménje együtt &#10140; szubsztrátkötő + katalitikus</li>
+		<img src="images/szbsztrkkltk.png">
+	</ul></details>
+ 	<details class="kerdes" id="ok.914"><summary>enzimek specifitása?</summary><ul class="normal">
+		<li>szűk &#10140; 1/néhány típusú szubsztrátot képesek átalakítani</li>
+		<li>széles &#10140; többféle szubsztrátot képesek átalakítani</li>
+		<img src="images/szbsztrkkltk.png">
+	</ul></details>
+ 	<details class="kerdes" id="ok.915"><summary>enzimek elnevezése?(1-1pl)</summary><ul class="normal">
+		<li>triviális &#10140; tripszin, NO-szintáz</li>
+		<li>szisztematikus &#10140; kép, tudjam a példát!!!</li>
+		<img src="images/enzimnevek.png">
+	</ul></details>
+ 	<details class="kerdes" id="ok.916"><summary>enzimek típusai?</summary><ul class="normal">
+		<img src="images/enzimtipus.png">
+	</ul></details>
+ 	<details class="kerdes" id="ok.917"><summary>enzimkinetika mivel foglalkozik?</summary><ul class="normal">
+		<li>enzimkatalizálta reakciók reakciósebessége mitől-hogyan függenek (ugyanaz lényegében, mint reakciókinetika)</li>
+		<div>reakciókinetika &#10140; reakciósebesség hogyan függ az állapothatározóktól</div>
+	</ul></details>
+ 	<details class="kerdes" id="ok.918"><summary>enzim aktivitása &#10140; mi? mértékegysége?(HP)</summary><ul class="normal">
+		<li>termék vagy reagens <span class="Important">anyagmennyiségének</span> időegység alatti változásának abszolút értéke</li>
+		<li>mértékegysége &#10140; egység = unit = átalakult anyag &micro;mol/perc <abbr title="van egyéb is, de kihagytam">&#10045;</abbr></li>
+	</ul></details>
+ 	<details class="kerdes" id="ok.922"><summary>többszubsztrátos enzim-reakcióra 1pl? képlete?(LP)</summary><ul class="normal">
+		<li>itt az egyenlet nagyon összetett már</li>
+		<li>ezért azt leegyszerűsítve egy összetett_sebességi_konstanst k<sub>cat</sub> használunk</li>
+		<img src="images/tbsztznzkn.png">
+	</ul></details>
+ 	<details class="kerdes" id="ok.923"><summary>enzimaktivitás szabályozásának módjai?</summary><ul class="normal">
+		<li>K<sub>M</sub> csökkentésével növelhető az aktivitás (ugyanez fordítva)</li>
+		<li>[E] növelésével növelhető az aktivitás (ugyanez fordítva)</li>
+	</ul></details>
+ 	<details class="kerdes" id="ok.924"><summary><span class="Important">RAJZ</span> <strong>A reverzibilis enzimgátlások (kompetitív, nonkompetitív)?</strong>(HP)</summary><ul class="normal">
+		<li>reverzibilis enzimgátlás &#10140; inhibitor eltávolítása után a gátlás megszűnik</li>
+		<li>irreverzibilis enzimgátlás &#10140; inhibitor eltávolítása után a gátlás megmarad</li>
+		<details><summary>inhibitor mi?</summary><ul class="normal">
+			<li>ami hozzákötődve az enzimhez gátolja annak aktivitását (pl. aktív centrumban elfoglalja a helyét a szubsztrátnak)</li>
+			<img src="images/inhibitor.png">
+		</ul></details>
+		<details><summary>irreverzibilis gátlásra példa?</summary><ul class="normal">
+			<li>aszpirin így csökkenti a gyulladást</li>
+		</ul></details>
+		<div><strong>reverzibilis enzimgátlás típusok</strong></div>
+		<li>kompetitív gátlás</li><ul>
+			<li><span class="Important">K<sub>M</sub> nő</span> &#10140; inhibitor elfoglalja az enzim aktív_centrumát &#10140; k1 értéke csökken (k2 ás k3 nemváltozik) &#10140; K<sub>M</sub> értéke nő</li>
+			<li><span class="Important">v<sub>max</sub> nemváltozik</span> <abbr title="k3 nemváltozik azt értem, de hogy [E] miért nem változik azt nem">(!?)</abbr></li>
+			<li><span class="WHITE">1.pl</span> metanol lebontását alkohol-dehidrogenáz enzim végzi &#10140; a keletkező formaldehid erősen mérgező &#10140; azonban etanol lebontását is ugyanez az enzim végzi &#10140; ha etanolt iszunk, akkor az időegység alatt keletkező formaldehid száma jelentősen csökken, és azt a szervezet még "elbír(hat)ja"</li>
+			<li><span class="WHITE">2.pl</span> metotrexát(inhibitor) hasonlít a fólsavhoz(szubsztrát) &#10140; fólsav kell DNS-szintézishez &#10140; daganat esetében a DNS-szintézis túlzottan aktív &#10140; gyógyszerrel (kemoterápia) bejuttatva a metotrexát gátolható valamelyest</li>
+		</ul>
+		<li>nonkompetitív gátlás</li><ul>
+			<li>K<sub>M</sub> nemváltozik &#10140; k1,k2,k3 nemváltozik</li>
+			<li>v<sub>max</sub> csökken &#10140; [E] csökken (ugyanis az "aktív"-enzimek koncentrációját jelöli ez)</li>
+		</ul>
+		<li>unkompetitív gátlás</li><ul>
+			<li>K<sub>M</sub> csökken</li>
+			<li>v<sub>max</sub> csökken</li>
+			<li>(itt ugyanis k2 és k3 fog csökkeni, mert az inhibitor az enzim-szubsztrát komplexhez kötődik <abbr title="nemértem [E] miért nem">(!?)</abbr>)</li>
+		</ul>
+		<li>kevert típusú gátlás</li><ul>
+			<li>K<sub>M</sub> nő</li>
+			<li>v<sub>max</sub> csökken</li>
+		</ul>
+		<details><summary>kép</summary><ul class="normal">
+			<img src="images/knknkpt.png">
+		</ul></details>
+		<img src="images/kmptpttvgtl.png">
+	</ul></details>
+	<details class="kerdes" id="ok.919"><summary><strong>Michaelis-Menten modell?</strong>(HP)</summary><ul class="normal">
+		<div> –––––––––––––––––––––––––––––––– </div>
+		<details><summary>ők írtak fel először egyenletet az aktivitás meghatározására...</summary><ul class="normal">
+			<li>szacharóz lebontását végezték enzimmel &#10140; legegyszerűbb enzim katalizálta reakció</li>
+			<li>első lépésben a szubsztrát és enzim összekapcsolódik &#10140; ezután vagy egyből disszociálnak és nem történt semmi /vagy/ átalakul a szubsztrát termékké, és utána disszociálnak</li>
+			<li>három sebességi_konstant felírtak rá</li>
+			<img src="images/szchrmmmnmnhp.png">
+		</ul></details>
+		<div> –––––––––––––––––––––––––––––––– </div>
+		<details><summary>azonban ez csak azon egyéb enzim által katalizált reakciónál használható fel, ahol az alábbi feltételek teljesülnek</summary><ul class="normal">
+			<div><span class="Important">&#9775;</span> egyszubsztrátos</div>
+			<div><span class="Important">&#9775;</span> egy termék képződik</span></div>
+			<div><span class="white">&#9775;</span> egyirányú (termék ne alakulhasson vissza!)
+			<div><span class="Important">&#9775;</span> [S] >> [E]</div>
+			<div><span class="Important">&#9775;</span> [ES] állandó <div class="mirror">&#10140;</div> k1/k2>>k3</div>
+			<div><span class="white">&#9775;</span> (enzim monomerként működik)</div>
+			<div><span class="white">&#9775;</span> (hőmérséklet, pH, ionerősség állandó &#10140; hisz a fehérje(enzim) szerkezete függ ettől)</div>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes" id="ok.920"><summary><span class="Important">RAJZ</span> <strong>Összefüggés az enzimreakció sebessége és a szubsztrát-koncentráció között</strong>?(HP)</summary><ul class="normal">
+		<li>v<sub>max</sub></li><ul>
+			<li><span class="Important">adott [E] esetében úgy érhető el a maximális reakciósebesség, ha [E] = [ES], tehát minden enzim "telített"</span></li>
+			<li><span class="Important">v<sub>max</sub> = k3*[E] = k3*[ES]</span></li>
+			<li><span class="Important">ha [E] 2x annyi, akkor v és v<sub>max</sub> is 2x annyi lesz</span></li>
+		</ul>
+		<li><span class="Important">v képlete képen</span></li>
+		<li>K<sub>M</sub> = Michaelis-konstans</li><ul>
+			<li>K<sub>M</sub> <span class="Important">az a szubsztrátkoncentráció, ami mellett v = v<sub>max</sub>/2</span></li>
+			<li>értéke a <span class="Important">képen látható képlettel</span> számítható ki</li>
+			<li><span class="Important">amely reakciónak kisebb a K<sub>M</sub> értéke annak nagyobb a sebessége</span></li><ul>
+				<li><span class="Important">v képletéből leolvasható</span> (hisz annál közelebb van v<sub>max</sub>hoz)</li>
+				<li>magyarázata &#10140; akkor lesz v=v<sub>max</sub>, ha [S] = végtelen</li>
+			</ul>
+		</ul>
+		<li><span class="Important">2 kép!!!</span></li>
+		<img src="images/sdfrhs.png">
+		<img src="images/Kmszerpe.png">
+	</ul></details>
+	<details class="kerdes" id="ok.921"><summary><strong><span class="Important">RAJZ</span> A Michaelis-konstans (KM) és a vMax fogalma</strong>?(HP)</summary><ul class="normal">
+		<li>v<sub>max</sub></li><ul>
+			<li><span class="Important">adott [E] esetében úgy érhető el a maximális reakciósebesség, ha [E] = [ES], tehát minden enzim "telített"</span></li>
+			<li><span class="Important">v<sub>max</sub> = k3*[E] = k3*[ES]</span></li>
+			<li><span class="Important">ha [E] 2x annyi, akkor v és v<sub>max</sub> is 2x annyi lesz</span></li>
+		</ul>
+		<li><span class="Important">v képlete képen</span></li>
+		<li>K<sub>M</sub> = Michaelis-konstans</li><ul>
+			<li>K<sub>M</sub> <span class="Important">az a szubsztrátkoncentráció, ami mellett v = v<sub>max</sub>/2</span></li>
+			<li>értéke a <span class="Important">képen látható képlettel</span> számítható ki</li>
+			<li><span class="Important">amely reakciónak kisebb a K<sub>M</sub> értéke annak nagyobb a sebessége</span></li><ul>
+				<li><span class="Important">v képletéből leolvasható</span> (hisz annál közelebb van v<sub>max</sub>hoz)</li>
+				<li>magyarázata &#10140; akkor lesz v=v<sub>max</sub>, ha [S] = végtelen</li>
+			</ul>
+		</ul>
+		<li><span class="Important">2 kép!!!</span></li>
+		<img src="images/sdfrhs.png">
+		<img src="images/Kmszerpe.png">
+	</ul></details>
+	<details class="kerdes" id="ok.907"><summary><span class="Miss">&#9775;</span><strong>Az enzimek mint katalizátorok</strong>?(HP)</summary><ul class="normal">
+		<div style="float:right;max-width:50%">
+			<img src="images/kpcsltrekc.png">
+		</div>
+		<li>szervezetben az anyagcsere-reakciókat enzimek katalizálják</li>
+		<li>pl. H<sub>2</sub>O<sub>2</sub> lebontását H<sub>2</sub>O + 1/2O<sub>2</sub>-re kataláz enzim végzi (Ea-t 75kJ/molról 21kJ/molra csökkenti)</li>
+		<div><strong>kapcsolt-reakció</strong></div>
+		<li>endergónikus reakciók is végbemehet, ha olyan exergónikussal együtt megy végbe, amelynél több energia szabadul fel <span class="important">RAJZ.képen!</span></li>
+		<li>eredő szabadentalpiabáltozás így kisebb mint 0 (termodinamika II.főtételének nem mond ellent)</li>
+	</ul></details>
+	<div><span class="MISS">kihagytam</span></div>
+	<li>enzimek számozását (24:00) 13/63.pdf</li>
+	<li>izoenzimeket (25:00) 15/63.pdf</li>
+	<li>E<sub>akt.</sub> mértékegység spec. típusai (30:00) 18/63.pdf</li>
+	<li>enzimgátlásokat nem teljesen dolgoztam ki (55:00) 30-32/53.pdf</li>
+	<li>46/63.pdf innentől nemdolgozam ki (1:08:00)</li>
+<!----></div></div></details>
 
 
 
@@ -4124,10 +4349,14 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 			<img src="images/lkhlfrrspnt.png">
 			<img src="images/frspntmnknk.png">
 		</div>
+		<div><strong>általános "szabályok"</strong><abbr title="lehet nem mindig, de esetek nagyrészében beválik">&#10045;</abbr></div>
 		<li>intermolekuláris kölcsönhatások szabják meg</li>
+		<li>minél hosszabb a szénlánc, annál nagyobb a FP (szvsz azért, mert egyre több van der Waals kötés jut 1db molekulára) <abbr title="tesztelve alkán, alkohol, aldehid">&#10045;</abbr></li>
+		<li>alkoholok esetében a forráspont arányos a hidroxilcsoportok számával &#10140; pl. propáné alacsony, propanolé <span class="Important">ugrásszerűen</span> magasabb, propan-1,2diolé (vagy 1,3) szintén ugrik egyet, és gliceriné megint csak &#10140; szvsz ez oxovegyületek és karbonsavak esetében is ugyanúgy igaz!!!</li>
+		<li>Ha összehasonlítom a következő kb. azonos molekulatömegű vegyületeken keresztül őket: n-bután, propanal, propanon, propanol, etantiol. FP-jük a  következő: <span class="WHITE">ecetsav & propanol ~100°C</span> >>> <span class="WHITE">propanon & propanal ~50°C</span> > <span class="WHITE">etantiol 35°C</span> > <span class="WHITE">bután ~0°C</span> /// aminokét náluk leírtam mert változó</li>
+		<div> ––––––––––––––––––––––––– </div>
 		<li>alkánok</li><ul>
 			<li>apolárosak, így csak London-féle erő lép fel a molekulák között &#10140; ennek a legalacsonyabb</li>
-			<li><span class="Important">minél hoszabb a szénlánc, annál magasabb a forráspont</span>, ugyanis 1 molekulára jutó van der Waals kötések száma annál nagyobb &#10140; összes többinek is ezért nő a szénlánc növekedésével</li>
 		</ul>
 		<li>éterek</li><ul>
 			<li>H-kötés kialakítására NEM képesek</li>
@@ -4137,7 +4366,6 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 			<li>karbonilcsoportban lévő C pozitívan poláros, míg az oxigén negatívan &#10140; képesek dipol-dipol kölcsönhatásra, de H-kötésre <abbr title="ugyanis csak akceptorként funkcionál az =O, de mivel csak azonos típusú oxovegyületek vannak egymás mellett forráspont nézésnél, ezért nincs donor, így H-kötés nem tud kialakulni">nem</abbr></li>
 			<li>ezek forráspontja így magasabb, mint alkánoké</li>
 			<li>(ketonnak kicsivel nagyobb, mint "azonos molekulatömegű" aldehidnek, mert a <abbr title="ez a másik ami az EN-en kívül számít!!! mint pl.CO2 esetében hiába van EN, a molekulageometria következtében a dipolusmomentum 0">molekulageometria</abbr> "neki kedvez")</li>
-			<li>minél hoszabb a szénlánc, annál magasabb a forráspont <abbr title="illetve szvsz értelemszerűen ha több karbonilcsoport van akkor ugrásszerűen nő megint, mint alkoholoknál">&#10045;</abbr></li>
 		</ul>
 		<li>aminok</li><ul>
 			<li>minél nagyobb rendű, annál kisebb a forráspontja!</li>
@@ -4150,20 +4378,20 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 			<li>(képen azonos molekulatömegűek vannak ábrázolva, nem kell tudni őket, csak azért van, hogy értsem mit írtam le)</li>
 		</ul>
 		<li>alkoholok és karbonsavak</li><ul>
-			<li>alkohol és karbonsav esetében kialakul H-kötés is már (mert donor és akceptorok is egyben) <abbr title="alkohol azért, mert a hidroxilcsoport hidrogénja erősen pozitív, oxigén erősen negatív // karbonsavnál pedig csak =O lesz akceptor(-OH oxigénje nem!!!) és -OH hidrogénje a donor">&#10045;</abbr></li>
+			<li>H-kötésre képesek (mert donor és akceptorok is egyben) <abbr title="alkohol azért, mert a hidroxilcsoport hidrogénja erősen pozitív, oxigén erősen negatív // karbonsavnál pedig csak =O lesz akceptor(-OH oxigénje nem!!!) és -OH hidrogénje a donor">&#10045;</abbr></li>
 			<li>ezek forráspontja magasabb, mint oxovegyületeké</li>
-			<li>minél hoszabb a szénlánc, annál magasabb a forráspont</li>
 		</ul>
-		<li>alkoholok esetében a forráspont arányos a hidroxilcsoportok számával &#10140; pl. propáné alacsony, propanolé <span class="Important">ugrásszerűen</span> magasabb, propan-1,2diolé (vagy 1,3) szintén ugrik egyet, és gliceriné megint csak &#10140; szvsz ez oxovegyületek és karbonsavak esetében is ugyanúgy igaz!!!</li>
-		<li>Ha összehasonlítom a következő kb. azonos molekulatömegű vegyületeken keresztül őket: n-bután, propanal, propanon, propanol. FP-jük a  következő: <span class="WHITE">ecetsav & propanol ~100°C</span> >>> <span class="WHITE">propanon & propanal ~50°C</span> >>> <span class="WHITE">bután ~0°C</span></li>
 	</ul></details>
-	<details class="kerdes" id="ok.766"><summary>olvadáspont?(HP)</summary><ul class="normal">
+	<details class="kerdes" id="ok.766"><summary>olvadáspont?</summary><ul class="normal">
 		<div style="float:right;max-width:50%">
 			<img src="images/olvadáspontok.png">
 		</div>
-		<div><strong>karbonsavak esetében 4 dolog szabja meg (szvsz igaz a többire is!!!)</strong></div>
+		<div><strong>általános</strong></div>
+		<li>minél hosszabb a szénlánc, annál nagyobb az OP &#10140; alkoholok, alkánok, tiolok esetében tesztelve /karbonsavaknál nemteljesen ilyen!/</li>
+		<li>páros számú C-atomosak olvadáspontja magasabb &#10140; alkánoknál ás karbonsavaknál tesztelve</li>
+		<li>páratlan számú C-atomosak olvadáspontja magasabb &#10140; tioloknál és alkoholoknál tesztelve</li>
+		<div><strong>karbonsavak esetében 4 dolog szabja meg (csekkoljam melyekre igazak még!)</strong></div>
 		<li>kis szénatomszámúak olvadáspontja még magasabb mint alkánoké &#10140; azonban minél hosszabb a szénlánc, annál inkább közeledik az alkánok OP-ja fele &#10140; eleinte csökken(C~14,16-ig), utána viszont már nő, ahogy alkánoknál is</li>
-		<li>páros számú C-atomosak olvadáspontja magasabb (alkánoknál is látható volt már!!) <abbr title="mert jobban tudnak kristályrácsba rendeződni">&#10045;</abbr></li>
 		<li>a karboxilcsoportok száma szvsz ugyanúgy ugrásszerűen növeli az olvadáspontot (mint forráspont növekedés alkoholoknál)</li>
 		<li>minél több kettős kötés, annál alacsonyabb az olvadáspont</li><ul>
 			<li>telítettlenek jók, mert olvadáspontja alacsonyabb &#10140; kisebb az esélye, hogy "megfagyva" érelmeszesedést váltson ki</li>
@@ -5052,7 +5280,7 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
  </div>
 <!----></div></details>
 
-<!----><details open><summary class="phase"><span class="MISS">9.</span> Heterociklusos öt- és hattagú gyűrűk egy vagy több heteroatommal, policiklusos heteroaromás vegyületek. Szerepük biológiailag fontos vegyületek felépítésében. Az imidazol protonizomériája, az uracil laktim-laktám tautomériája. <span class="MISS">tk 84-90</span></summary><div class="normal">
+<!----><details><summary class="phase">9. Heterociklusos öt- és hattagú gyűrűk egy vagy több heteroatommal, policiklusos heteroaromás vegyületek. Szerepük biológiailag fontos vegyületek felépítésében. Az imidazol protonizomériája, az uracil laktim-laktám tautomériája.</summary><div class="normal">
  <details><summary><font class="title">szöveg</font></summary><ul class="normal">
 	<div style="float:right;max-width:25%">
 		<img src="images/hetromon.png">
@@ -5066,11 +5294,7 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 	<div class="title">monociklusos vegyületek egy heteroatommal</div>
 	1 heteroatomot tartalmazó főbb monociklusos &#10140; <strong>piridin</strong>, <strong>pirrol</strong>, <strong>furán</strong>, <strong>tiofén</strong>. Heterociklusos gyűrűt tartalmazó oxo-vegyület a <strong>nikotinsavamid</strong>, illetve a <strong>piridoxálfoszfát</strong> (B6-vitaminból keletkezik!).<span class="FIX">nemdolgoztamki</span>
  </ul></details>
- <div><div class="title">monociklusos egy heteroatommal</div>
-	<details class="kerdes" id="ok.722"><summary>heterociklusos_vegyület és heteroatom mi?</summary><ul class="normal">
-		<li>heteroatom &#10140; szénen és hidrogénen kívüli más atom (pl.nitrogén,oxigén stb.)</li>
-		<li>heterociklusos_vegyület &#10140; gyűrűben valamely (1 vagy több) C helyén heteroatom van</li>
-	</ul></details>
+ <div><div class="title"> </div>
 	<details class="kerdes" id="ok.719"><summary>sav-bázis tulajdonságuk?</summary><ul class="normal">
 		<div><strong>egyrészt függ attól, hogy aromás-e</strong></div>
 		<li><span class="Important">aromás szerkezetű N-tartalmúak gyengébb bázisok, mert a nemkötő elektronpár a delokalizáció következtében már sokkal kevésbé képes protont befogadni</span> (mert stabilabb szintre jutott)</li>
@@ -5090,16 +5314,65 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 		<img src="images/piridinanilin.png">
 		<img src="images/hetromon.png">
 	</ul></details>
-	<details class="kerdes" id="ok.720"><summary>szerepük biológiailag fontos vegyületek felépítésében?</summary><ul class="normal">
+	<details class="kerdes" id="ok.720"><summary><span class="Important">RAJZ</span> Heterociklusos öt- és hattagú gyűrűk egy vagy több heteroatommal, policiklusos heteroaromás vegyületek?(HP)</summary><ul class="normal">
+		<div><strong>főbb monociklusosok</strong></div>
+		<li>1 heteroatomot tartalmazók &#10140; <strong>piridin</strong>, <span class="Important"><strong>pirrol</strong></span>, <strong>furán</strong>, <strong>tiofén</strong></li>
+		<li>több heteroatomot tartalmazók &#10140; <span class="Important"><strong>pirimidin</strong>, <strong>imidazol</strong></span>, <strong>pirazin</strong>, <strong>tiazol</strong>, <strong>oxazol</strong>, <strong>pirazol</strong></li>
+		<div><strong>főbb policiklusosok</strong></div>
+		<li><span class="Important"><strong>purin</strong></span> & <strong>pteridin</strong></li>
+		<img src="images/pirrol.png">
+		<img src="images/piridin.png">
+		<img src="images/furán.png">
+		<img src="images/tiofén.png">
+		<img src="images/pirazol.png">
+		<img src="images/oxazol.png">
+		<img src="images/tiazol.png">
+		<img src="images/pirazin.png">
+		<img src="images/imidazol.png">
+		<img src="images/pirimidin.png">
+		<img src="images/purin.png">
+		<img src="images/pteridin.png">
+	</ul></details>
+	<details class="kerdes" id="ok.902"><summary><span class="Important">RAJZ</span> Szerepük biológiailag fontos vegyületek felépítésében?(HP)</summary><ul class="normal">
+		<details><summary><span class="Important">RAJZ</span> purin &#10140; adenin & guanin felépítésében részt vesz</summary><ul class="normal">
+			<img src="images/adguan.png">
+		</ul></details>
+		<details><summary><span class="Important">RAJZ</span> pirimidin &#10140; citozin & timin(/uracil) felépítésében részt vesz</summary><ul class="normal">
+			<img src="images/lktmlktm.png">
+		</ul></details>
+		<li>imidazol &#10140; hisztidin nevű aminósav alkozója (és annak a dekarobxilált változatának, a hisztaminnak is)</li>
+		<details><summary><span class="Important">RAJZ</span> pirrol &#10140; porfirinváz felépítésében részt vesz</summary><ul class="normal">
+			<li>4pirrol, melyeket -C= (ún. metin-csoport) kapcsol össze</li>
+			<li>2pirrol-ban nincs hidrogén</li>
+			<li>az elektronok nagyon jól delokalizáltak, stabil</li>
+			<li>másik 2pirrol, ha lead 2protont, akkor 2x negatív töltésű lesz &#10140; eloszlik a 4 N-on, így középen Fe<sup>2+</sup>/Fe<sup>3+</sup> képesek megkötni &#10140; együtt alkotják a hem-komplexet</li>
+			<img src="images/porfirin.png">
+		</ul></details>
+		<li><abbr title="heterociklusos gyűrűt tartalmazó oxo-vegyület a <strong>nikotinsavamid</strong>, illetve a <strong>piridoxálfoszfát</strong> (B6-vitaminból keletkezik!)">&#10045;</abbr></li>
+	</ul></details>
+	<details class="kerdes" id="ok.903"><summary><span class="Important">RAJZ</span> uracil laktim-laktám tautomériája?(HP)</summary><ul class="normal">
+		<img src="images/lktmlktm.png">
+	</ul></details>
+	<details class="kerdes" id="ok.722"><summary>heterociklusos_vegyület és heteroatom mi?(1-1pl!)</summary><ul class="normal">
+		<li>heteroatom &#10140; szénen és hidrogénen kívüli más atom (pl.nitrogén,oxigén stb.)</li>
+		<li>heterociklusos_vegyület &#10140; gyűrűben valamely (1 vagy több) C helyén heteroatom van</li>
+		<div><span class="white">&#9775;</span> legjelentősebbek az aromások (és azok közül is a nitrogéntartalmúak)</div>
 		<img src="images/hetromon.png">
-		<li>1 heteroatomot tartalmazó főbb monociklusos vegyületek &#10140; <strong>piridin</strong>, <strong>pirrol</strong>, <strong>furán</strong>, <strong>tiofén</strong></li>
-		<li>heterociklusos gyűrűt tartalmazó oxo-vegyület a <strong>nikotinsavamid</strong>, illetve a <strong>piridoxálfoszfát</strong> (B6-vitaminból keletkezik!)</li>
+	</ul></details>
+	<details class="kerdes" id="ok.898"><summary><span class="Important">RAJZ</span> Az imidazol protonizomériája?(HP)</summary><ul class="normal">
+		<li>EN<sub>N</sub>(3) nagyobb, mint a C-é(2,5) &#10140; amelyiken nincs hidrogén, az erősen magára húzza az elektronfelhőt, másik N-től is "ellopja részben" &#10140; utóbbi így könnyen leadja a protont</li>
+		<li>hisztidin aminosavban megtalálható</li><ul>
+			<li><span class="Important">pufferhatású ennek következtében ez az aminósav (pKs=6,1)</span></li>
+			<li>(egyes enzimekben melyekben megtalálható, ennek segítségével katalizálnak protoncserét) <abbr title="lehet ez ugyanaz, mint az  előző más nyelven, de passz">!?</abbr></li>
+		</ul>
+		<img src="images/ttmr.png">
 	</ul></details>
  </div>
+	<span class="MISS">(88.oldal purin & petridin számozást kihagytam)</span>
 <!----></div></details>
 
 <!----><details><summary class="phase">10. Halogéntartalmú szerves vegyületek. A nukleofil szubsztitúció lehetséges mechanizmusai (S<sub>N</sub>1, S<sub>N</sub>2).</summary><div class="normal">
- <details open><summary><font class="title">szöveg</font></summary><ul class="normal">
+ <details><summary><font class="title">szöveg</font></summary><ul class="normal">
 	<div style="float:right;max-width:25%">
 		<img src="images/metil.png">
 		<img src="images/sn1sn2.png">
@@ -5551,6 +5824,7 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 	<details class="kerdes" id="ok.860"><summary>nitroglicerin orvosi jelentősége?</summary><ul class="normal">
 		<li>gyógyszerként használják szívkoszorúér szűkület esetében</li>
 		<li>ugyanis NO szabadul fel belőle &#10140; értágító hatású (ugyanis neurotranszmitter))</li>
+		<img src="images/nitroglicerin.png">
 	</ul></details>
 	<details class="kerdes" id="ok.672"><summary>éterképzés?(HP)</summary><ul class="normal">
 		<li>2módja van</li>
@@ -5567,19 +5841,27 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 		</ul>
 	</ul></details>
 	<details class="kerdes" id="ok.669"><summary>észterképzés?(HP)</summary><ul class="normal">
-		<div style="float:right;max-width:50%">
+		<div style="float:right;max-width:35%">
+			<img src="images/ztskpdhtn.png">
+			<img src="images/észterképződés.png">
+			<img src="images/éztknkfnt.png">
 			<img src="images/krbnsvsztr.png">
 		</div>
 		<li>alkoholt savval reagáltatva észter képződik</li>
 		<li>észtereknek 2 típusa van &#10140; karbonsavészter, szervetlen savak észterei</li>
-		<li>karbonsavészter keletkezésénél az alkohol karbonsavval reagál</li><ul>
-			<li>R-OH + R'-COOH &#10140; R'-COOR + H<sub>2</sub>O</li>
-			<li>pl. glicerin + 2zsírsav &#10140; lipid (de ide még kell kolin is vagy vmi más)</li>
-		</ul>
-		<li>szervetlen_sav esetében szervetlen észter</li><ul>
-			<li>R-OH + HNO<sub>3</sub> &#10140; R-O–NO<sub>2</sub> + H<sub>2</sub>O</li>
-			<li>pl. glicerin + 3HNO<sub>3</sub> &#10140; glicerin-trinitrát(nitroglicerin)</li>
-		</ul>
+		<div><strong>karbonsavészter</strong></div>
+		<li>alkohol + karbonsav &#10140; krabonsavészter (+ H<sub>2</sub>O)</li>
+		<li><span class="Important">savas közegben megy észter irányba</span>, ugyanis az indítja el a reakciót, hogy felvesz egy protont az =O &#10140; C már nemcsak pozitívan poláros, hanem pozitív töltésű &#10140; ezután alkohol hozzákapcsolódik &#10140; oxigén töltése pozitív lenne, a datív kötés következtében, de ő ezt nem engedheti meg magának, így egyből le is ad egy protont &#10140; geminális diol jön létre ami lead egy protont és hidroxidiont <abbr title="az nemértem mondjuk, hogy miértnem csinálja meg mégegyszer ugyanezt utána, hisz ha a C megint pozitív...">&#10045;</abbr></li>
+		<li>keletkezett észterben is van delokalizáció &#10140; észter stabil kötés</li>
+		<li>lúgos közegben indul meg visszafele, ugyanis, a C-atom még pozitívan poláros és ennek következtében OH<sup>-</sup> fogja támadni</li>
+		<li>(észterképződés endergónikus &#10140; triglicerid szvsz ezért alkalmas az energia tárolásra)</li>
+		<li><span class="important">1.pl</span> etil-formiát, etil-acetát, butil-acetát, butil-butirát (alkil-csoport neve + karbonsav savmaradék ionjának neve)</li>
+		<li><span class="important">2.pl</span> glicerin + 3zsírsav &#10140; triglicerid (+3H<sub>2</sub>O)</li>
+		<li><span class="important">3.pl</span> lakton képződés (pl. C-vitamin) (<div class="mirror">&#10140;</div> ez inkább 14.tételbe való, hisz szubsztituált_karbonsav reakciója, de itt is megemlíthető)</li>
+		<li><span class="WHITE">4.pl</span> glicerin + 2zsírsav &#10140; lipid (de ide még kell kolin is vagy vmi más)</li>
+		<div><strong>szervetlen észter</strong></div>
+		<li>alkohol + szervetlen_sav &#10140; szervetlen észter (+H<sub>2</sub>O)</li>
+		<li><span class="Important">pl</span> glicerin + 3HNO<sub>3</sub> &#10140; glicerin-trinitrát(nitroglicerin)  (+3H<sub>2</sub>O)</li>
 	</ul></details>
 	<details class="kerdes" id="ok.673"><summary>dehidratálás?</summary><ul class="normal">
 		<img src="images/lkhkdhdrtc.png">
@@ -5596,11 +5878,12 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 	</ul></details>
 	<details class="kerdes" id="ok.674"><summary>oxidáció-redukció?(HP)</summary><ul class="normal">
 		<details><summary>elsőrendű alkohol oxidációja 1pl-val?</summary><ul class="normal">
-			<img src="images/lkhlxdcrdkc.png">
 			<li>metanol ugyan nem elsőrendű, de arra is igaz</li>
+			<img src="images/xrdxgntrtvgy.png">
 		</ul></details>
 		<details><summary>másodrendű alkohol oxidációja 1pl-val?</summary><ul class="normal">
-			<img src="images/sclchl.png">
+			<li>glicerin esetében primer és szekunder alkoholcsoport is van &#10140; 1keton/2aldehid is keletkezhet</li>
+			<img src="images/szkndrlkhlrdx.png">
 		</ul></details>
 		<details><summary>harmadrendű alkohol oxidációja?(LP)</summary><ul class="normal">
 			<li>lánchasadás megy végbe és így keletkezhet aldehid vagy keton is <span class="MISS">(egyenlőre nemgondoltam végig de biztos van logikája)</span></li>
@@ -5725,7 +6008,7 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 	<details class="kerdes" id="ok.818"><summary>vízben oldva az sav vagy bázis, miért?(LP)</summary><ul class="normal">
 		<li>vízben oldva az oxovegyületek képesek gyenge bázisként funkcionálni, mert az erősen negatívan poláros oxigén képes elvenni protont a H<sub>2</sub>O-tól</li>
 	</ul></details>
-	<details class="kerdes" id="ok.731"><summary>Az aldehidek és ketonok reakciói. Az enol-oxo tautoméria. A nukleofil addíció mechanizmusa. &#10140; utóbbi kettőn kívül milyen reakciókat mutassak be?(HP)</summary><ul class="normal">
+	<details class="kerdes" id="ok.731"><summary><strong>Az aldehidek és ketonok reakciói. Az enol-oxo tautoméria. A nukleofil addíció mechanizmusa.</strong> &#10140; utóbbi kettőn kívül milyen reakciókat mutassak be?(HP)</summary><ul class="normal">
 		<div><strong>oxidáxió-redukció</strong></div>
 		<li>"primer/secunder alkohol ... aldehid/keton ... karbonsav" ––– "útvonal"</li>
 		<li>glicerin-oxidáció</li>
@@ -5748,12 +6031,19 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 			<img src="images/rezorcin.png">
 		</ul></details>
 	</ul></details>
-	<details class="kerdes" id="ok.820"><summary>"primer/secunder alkohol ... aldehid/keton ... karbonsav" ––– "útvonal"?(HP)</summary><ul class="normal">
+	<details class="kerdes" id="ok.820"><summary>"primer/secunder alkohol ... aldehid/keton ... karbonsav" ––– "útvonal"? 2-2pl!!(HP)</summary><ul class="normal">
 		<div style="float:right;max-width:30%">
 			<img src="images/xrdxgntrtvgy.png">
+			<img src="images/szkndrlkhlrdx.png">
 		</div>
+		<li><span class="Important">metanol ugyan nem elsőrendű,</span> de arra is igaz</li>
 		<li>ketonok csak <abbr title="+3O és +2H, tehát nem 1lépésnyi (szvsz abszolút értékben 2lépésnyi)">erélyes</abbr> oxidációval történő lánchasadással tudnak 2 karbonilcsoportra tovább oxidálni</li>
-		<details><summary>acetaldehid orvosi jelentősége?</summary><ul class="normal">
+		<li>glicerin esetében primer és szekunder alkoholcsoport is van &#10140; 1keton/2aldehid is keletkezhet</li>
+		<details><summary>formaldehid és acetaldehid orvosi jelentősége?</summary><ul class="normal">
+			<div><strong>formaldehid</strong></div>
+			<li>nagyon mérgező (vakságot,halált okoz)</li>
+			<li>azonban alkohol-dehidrogenáz nevű enzim végzi mind a metanol és etanol lebontását &#10140; ha etanolt fogyasztunk közbe, akkor kompetetív-gátlás(reverzibilis 1 típusa) megy végbe, amivel csökkenthető/megelőzhető a károsodás</li>
+			<div><strong>acetaldehid</strong></div>
 			<li>alkoholfogyasztás után ez váltja ki a másnaposságot <abbr title="egyik oka legalábbis ez">&#10045;</abbr></li>
 			<li>(leszokásnál ezért szoktak a betegnek olyan gyógyszert adni, ami gátolja az acetaldehid lebontó enzim aktivitását. de a betegnek kötelező tudni róla, különben a nagy mennyiségben felhalmozódó acetaldehid toxikus lenne)</li>
 		</ul></details>
@@ -5762,7 +6052,7 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 		<li>glicerin = 3értékű, primer/szekunder alkoholcsoport &#10140; 1keton/2aldehid keletkezhet</li>
 		<img src="images/glicerinoxidc.png">
 	</ul></details>
-	<details class="kerdes" id="ok.732"><summary>Az enol-oxo tautoméria.</summary><ul class="normal">
+	<details class="kerdes" id="ok.732"><summary><strong>Az enol-oxo tautoméria?</strong>(HP)</summary><ul class="normal">
 		<div style="float:right;max-width:40%">
 			<img src="images/oxoenoltautomer.png">
 			<img src="images/spcxnlttr.png">
@@ -5776,7 +6066,7 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 		<li>pl. dihidroxi-aceton-foszfát az oxo forma, mely először átalakul enol formává &#10140; ha ismét átalakul oxo formává, akkor vagy ismét dihidroxi-acetát-foszfát lesz, vagy D-glicerin-aldehid-foszfát</li>
 		<li>(glicerin-aldehid-foszfát a glikolízisben részt vesz)</li>
 	</ul></details>
-	<details class="kerdes" id="ok.734"><summary>A nukleofil addíció mechanizmusa.</summary><ul class="normal">
+	<details class="kerdes" id="ok.734"><summary><strong>A nukleofil addíció mechanizmusa?</strong>(HP)</summary><ul class="normal">
 		<div style="float:right;max-width:40%">
 			<img src="images/nkddclf.png">
 			<img src="images/vzddc.png">
@@ -5824,7 +6114,6 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 		<li>tartalmaznak karboxilcsoportot</li>
 	</ul></details>
 	<details class="kerdes" id="ok.761"><summary>savasságuk mivel magyarázható?</summary><ul class="normal">
-		<img src="images/krbsnvkvksg.png">
 		<li>alapvetően úgy néz ki a karboxilcsoport, hogy az =O az egyik kötőelektronpárt magára húzza</li>
 		<li>ennek következtében a C pozitív töltésű lesz (1), és az -OH oxigénjének egy nemkötő elektronpárjának elhúzásával "fixálhatja a dolgot"</li>
 		<li>akkor pedig az -OH oxigénje lesz pozitív töltésű (2)</li>
@@ -5832,6 +6121,7 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 		<li>ezt úgy lehet felírni egyben, hogy az =O negatívan poláros, a C pozitívan poláros, és az -OH oxigénje is inkább pozitívan poláros</li>
 		<li>a protont leadva azonban viszonylag stabil konjugált állapotba jut</li>
 		<li>&#10140; ezért !nemszabad! azt mondani, hogy karboxilcsoport egy hidroxilcsoport + karbonilcsoport, ugyanis alkoholok esetében a hidroxilcsoportban lévő O simán lehet H-kötésben akceptor, hiszen negatívan poláros és 2 nemkötő elektronpárja van, de! karbonsavaknál ez már nem mondható el a fenntiek miatt</li>
+		<img src="images/krbsnvkvksg.png">
 	</ul></details>
 	<details class="kerdes" id="ok.767"><summary>telített vagy telítettlen zsírsavak jók a szervezetnek, miért?</summary><ul class="normal">
 		<div style="float:right;max-width:30%">
@@ -5866,7 +6156,7 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 			<img src="images/éztknkfnt.png">
 		</div>
 		<div><strong>reakció lefutása</strong></div>
-		<li>alkohol + karbonsav &#10140; észter</li>
+		<li>alkohol + karbonsav &#10140; észter (+H<sub>2</sub>O)</li>
 		<li><span class="Important">savas közegben megy észter irányba</span>, ugyanis az indítja el a reakciót, hogy felvesz egy protont az =O &#10140; C már nemcsak pozitívan poláros, hanem pozitív töltésű &#10140; ezután alkohol hozzákapcsolódik &#10140; oxigén töltése pozitív lenne, a datív kötés következtében, de ő ezt nem engedheti meg magának, így egyből le is ad egy protont &#10140; geminális diol jön létre ami lead egy protont és hidroxidiont <abbr title="az nemértem mondjuk, hogy miértnem csinálja meg mégegyszer ugyanezt utána, hisz ha a C megint pozitív...">&#10045;</abbr></li>
 		<li>keletkezett észterben is <span class="Important">van delokalizáció &#10140; észter stabil</span> kötés</li>
 		<li>lúgos közegben indul meg visszafele, ugyanis, a C-atom még pozitívan poláros és ennek következtében OH<sup>-</sup> fogja támadni</li>
@@ -5914,7 +6204,7 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 <!----></div></details>
 
 <!----><details><summary class="phase">14. A di- és trikarbonsavak fontosabb képviselői, reakcióik. Karbonsavszármazékok. A szénláncban szubsztituált karbonsavak.</summary><div class="normal"><div><div class="title">szubsztituált karbonsavak</div>
-	<details class="kerdes" id="ok.810"><summary>mely képviselőket,reakciókat mutatom be?(HP)</summary><ul class="normal">
+	<details class="kerdes" id="ok.810"><summary>A di- és trikarbonsavak fontosabb képviselői, reakcióik. Karbonsavszármazékok. A szénláncban szubsztituált karbonsavak &#10140; mely reakciókat mutatom be?(HP)</summary><ul class="normal">
 		<li><span class="Important">citromsav-ciklus</span></li>
 		<li><span class="Important">&alpha;/&beta;-ketosavak</span> &#10140; ketontestek, piroszőlősav/ecetsav</li>
 		<li>aromás-karbonsav példáján sav-bázis reakció (benzoesav+NaOH)</li>
@@ -6013,7 +6303,7 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 			<li>laktonok = intramolekuláris_észterek pl. L-aszkorbinsav = C-vitamin</li>
 		</ul>
 	</ul></details>
-	<details class="kerdes" id="ok.780"><summary>Di- és trikarbonsavak fontosabb képviselői. A szénláncban szubsztituált karbonsavak.(HP)</summary><ul class="normal">
+	<details class="kerdes" id="ok.780"><summary><strong>Di- és trikarbonsavak fontosabb képviselői. A szénláncban szubsztituált karbonsavak.</strong>(HP)</summary><ul class="normal">
 		<details><summary>telített dikarbonsavak?(képletek felsorolása)</summary><ul class="normal">
 			<img src="images/dikarbonsavkal.png">
 			<li><span class="Important">zárójelben lévő név mindig az anionos formája (tehát -2H<sup>+</sup>)</span></li>
@@ -6025,13 +6315,20 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 			<li><span class="Important">maleinsav</span> és <span class="Important">fumársav</span></li>
 			<li>ezek borostyánkősav oxidációjával keletkezhetnek</li>
 			<li>maleinsav cisz helyzetű &#10140; könnyen képződhet belőle intramolekuláris észter!! ezért enzimek fumársavat állítanak elő, mert maleinsav esetében a citromsav-ciklus megakadna</li>
+			<li>egyéb pl. <span class="Important">enol-piroszőlősav</span></li>
 			<img src="images/mlfmrsv.png">
+			<img src="images/pirsozőlősav.png">
 		</ul></details>
 		<details><summary>hidroxi-karbonsavak?(képletek felsorolása)</summary><ul class="normal">
 			<img src="images/almasav.png">
 			<li><span class="Important">citromsav-ciklusból kinézhetem</span> ezeket &#10140; almasav,citromsav,izocitromsav</li>
-			<li>egyéb &#10140; borkősav,glicerinsav</li>
-			<img src="images/ctrccl.png">
+			<li>egyéb &#10140; borkősav,glicerinsav,tejsav,enol-piroszőlősav</li>
+			<details><summary>kép1</summary><ul class="normal">
+				<img src="images/ctrccl.png">
+			</ul></details>
+			<details><summary>kép1</summary><ul class="normal">
+				<img src="images/pirsozőlősav.png">
+			</ul></details>
 		</ul></details>
 		<details><summary>oxo-karbonsavak(képletek felsorolása)</summary><ul class="normal">
 			<li>4 legfontosabb &alpha;- és &beta;-ketosavak &#10140; acetecetsav beta-ketosav, másik 3 alpha-ketosav</li>
@@ -6041,7 +6338,7 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 			<details><summary>oxálecetsav?</summary><ul class="normal">
 				<img src="images/ctrccl.png">
 			</ul></details>
-			<details><summary>piroszőlősav?</summary><ul class="normal">
+			<details><summary>oxo-piroszőlősav?</summary><ul class="normal">
 				<img src="images/pirsozőlősav.png">
 			</ul></details>
 			<details><summary>acetecetsav?</summary><ul class="normal">
@@ -6305,7 +6602,135 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
  </div>
 <!----></div></details>
 
-<!----><details open><summary class="phase">16. Kéntartalmú szerves vegyületek (tiolok, tioéterek, tioészterek, szulfonok, szulfonsavak, szulfoxidok, szulfinsavak), szerkezetük, tulajdonságaik, reakcióik. Szerves foszforsav-észterek, foszforsav-amidok, foszforsav-anhidridek, a foszfo-szulfonsav vegyes anhidrid, és a bennük található kötések jellemzői.</summary><div class="normal">
+<!----><details><summary class="phase">16. Kéntartalmú szerves vegyületek (tiolok, tioéterek, tioészterek, szulfonok, szulfonsavak, szulfoxidok, szulfinsavak), szerkezetük, tulajdonságaik, reakcióik. Szerves foszforsav-észterek, foszforsav-amidok, foszforsav-anhidridek, a foszfo-szulfonsav vegyes anhidrid, és a bennük található kötések jellemzői.</summary><div class="normal">
+ <div><div class="title">kéntartalmú szerves vegyületek szerkezete</div>
+	<details class="kerdes" id="ok.866"><summary>tiolok képlete?</summary><ul class="normal">
+		<img src="images/tiolok.png">
+	</ul></details>
+	<details class="kerdes" id="ok.867"><summary>tiéterek képlete?</summary><ul class="normal">
+		<img src="images/tiolok.png">
+	</ul></details>
+	<details class="kerdes" id="ok.868"><summary>tioészterek képlete?</summary><ul class="normal">
+		<img src="images/tiolok.png">
+	</ul></details>
+	<details class="kerdes" id="ok.869"><summary>szulfinsavak képlete?</summary><ul class="normal">
+		<img src="images/szlfnsvk.png">
+	</ul></details>
+	<details class="kerdes" id="ok.870"><summary>szulfonsavak képlete?</summary><ul class="normal">
+		<img src="images/szlfnsvk.png">
+	</ul></details>
+	<details class="kerdes" id="ok.871"><summary>szulfonok képlete?</summary><ul class="normal">
+		<img src="images/szlfnsvk.png">
+	</ul></details>
+	<details class="kerdes" id="ok.872"><summary>szulfoxidok képlete?</summary><ul class="normal">
+		<img src="images/szlfnsvk.png">
+	</ul></details>
+	<details class="kerdes" id="ok.879"><summary>glutation szerepe?(LP)</summary><ul class="normal">
+		<li>redox-rendszer</li>
+		<li>nem ion, hanem TIO!!! mert van benne -SH</li>
+	</ul></details>
+	<details class="kerdes" id="ok.880"><summary>merkaptoetanol képlete, szerepe?</summary><ul class="normal">
+		<li>HS-CH<sub>2</sub>-CH<sub>2</sub>-OH</li>
+		<li>laboratóriumi munkában fehérjék kimutatására használják &#10140; diszulfid hídakat felbontja</li>
+	</ul></details>
+ </div>
+ <div><div class="title">kéntartalmú szerves vegyületek tulajdonságai</div>
+	<details class="kerdes" id="ok.874"><summary>tiolok sav-bázis tulajdonsága?</summary><ul class="normal">
+		<li>pKs ~ 11 &#10140; gyenge savak</li>
+		<div>(ugyanis S atomorbitálja igen nagy)</div>
+	</ul></details>
+	<details class="kerdes" id="ok.881"><summary>tioészter tulajdonságai?</summary><ul class="normal">
+		<li>észternél delokalizáció van, tioészternél azonban nincs</li>
+		<li>(ugyanis az S-túl nagy, és a nemkötő e-pár túl messze van így már)</li>
+		<img src="images/sztrtsztr.png">
+	</ul></details>
+	<details class="kerdes" id="ok.875"><summary>peroxid vs diszulfid?(LP)</summary><ul class="normal">
+		<li>peroxid bomlékony</li>
+		<li>diszulfit stabil</li>
+		<div>ugyanis EN<sub>S</sub> ~= EN<sub>C</sub></div>
+		<img src="images/tlprxd.png">
+	</ul></details>
+	<details class="kerdes" id="ok.887"><summary>tioészter-kötést mi képes kialakítani?(LP)</summary><ul class="normal">
+		<li>CoA = Coenzym-A &#10140; ez képes kialakítani</li>
+	</ul></details>
+	<details class="kerdes" id="ok.889"><summary>taurin szerepe?(LP)</summary><ul class="normal">
+		<li>aminocsoportjával hozzákapcsolódik vízben nem oldódó vegyülethez, és ezzel az vízzel oldhatóvá válnak (mert a szulffátcsoport jól disszociál)</li>
+		<li>így meglehet tőlük szabadulni</li>
+		<li>májban ez történik méregtelenítésnél a xenobiotikumokkal (taurin végzi vagy glutation)</li>
+	</ul></details>
+ </div>
+ <div><div class="title">kéntartalmú szerves vegyületek reakciói</div>
+	<details class="kerdes" id="ok.877"><summary>milyen reakciókat mutassak be?(HP)</summary><ul class="normal">
+		<li>ciszterin &#10140; diszulfidhíd & cisztein-szulfonsav</li>
+		<li>képződésük &#10140; szulfinsav, szulfonsav, szulfoxid, szulfon</li>
+		<li>tioészter képződés</li>
+	</ul></details>
+	<details class="kerdes" id="ok.878"><summary>diszulfidhíd képződésre 1pl?(HP)</summary><ul class="normal">
+		<li>2 tiol összekapcsolódik oxidációjával(-2H)</li>
+		<li><span class="WHITE">pl</span> 2cisztein &#10140; cisztin+2H</li>
+		<li>fehérjék szerkezetében létrejövő legfontosabb kovalens kötés</li>
+		<img src="images/tlprxd.png">
+		<img src="images/dszlfdhdkpzds.png">
+	</ul></details>
+	<details class="kerdes" id="ok.882"><summary>szulfonsav képződés?</summary><ul class="normal">
+		<img src="images/szlfnsvkpzs.png">
+	</ul></details>
+	<details class="kerdes" id="ok.883"><summary>szulfinsav képződés?</summary><ul class="normal">
+		<img src="images/szlfnsvkpzs.png">
+	</ul></details>
+	<details class="kerdes" id="ok.884"><summary>szulfoxid képződés?</summary><ul class="normal">
+		<img src="images/tioétre.png">
+	</ul></details>
+	<details class="kerdes" id="ok.885"><summary>szulfon képződés?</summary><ul class="normal">
+		<img src="images/tioétre.png">
+	</ul></details>
+	<details class="kerdes" id="ok.886"><summary>tioészter képződés?</summary><ul class="normal">
+		<img src="images/tlsztr.png">
+	</ul></details>
+	<details class="kerdes" id="ok.888"><summary>cisztein-szulfonsav képződés?</summary><ul class="normal">
+		<img src="images/cztsztlfnsv.png">
+		<li><span class="white">&#9775;</span> szulfátcsoportot tartalmaznak a szulfatált-cukrok (kondroitin-szulfát, heparin, mielin)</li>
+	</ul></details>
+ </div>
+ <div><div class="title">foszfortartalmú szerves vegyületek</div>
+	<details class="kerdes" id="ok.891"><summary><span class="Important">RAJZ</span> foszforsav-észterek?</summary><ul class="normal">
+		<li>foszforsav + alkohol &#10140; foszforsav-észter + H<sub>2</sub>O</li>
+		<li>foszforsav-észter + alkohol &#10140; foszforsav-diészter + H<sub>2</sub>O</li>
+		<div><span class="white">&#9775;</span> foszforsav-észter és foszforsav-diészter kötések delokalizációra képesek, így stabilak</div>
+		<div><span class="white">&#9775;</span> nukleinsavak polinukleotid lánca foszforsav-diészter kötésekkel jön létre</div>
+		<div> –––––––––––––––––––––––––––––––– </div>
+		<li>foszforsav-észter + foszforsav &#10140; foszforsav-észter és foszforsav-anhidrid kötések + H<sub>2</sub>O</li>
+		<li>foszforsav-anhidrid kötés <span class="Important">nem képes delokalizációra,</span> (ugyanúgy mint karbonsavnál!!!) így instabil, azaz makroerg! tehát magas energiatartalmú kötés &#10140; tehát hidrolízissel a kötés felszakad és nagy energia szabadul fel</li>
+		<li>ATP esetében pl. 2 foszforsav-anhidrid és 1 foszforsav-észter kötés van (tudjam lerajzolni!)</li>
+		<img src="images/atrfszft.png">
+	</ul></details>
+	<details class="kerdes" id="ok.897"><summary><span class="Important">RAJZ</span> foszforsav-anhidridek?</summary><ul class="normal">
+		<li>foszforsav + alkohol &#10140; foszforsav-észter + H<sub>2</sub>O</li>
+		<li>foszforsav-észter + alkohol &#10140; foszforsav-diészter + H<sub>2</sub>O</li>
+		<div><span class="white">&#9775;</span> foszforsav-észter és foszforsav-diészter kötések delokalizációra képesek, így stabilak</div>
+		<div><span class="white">&#9775;</span> nukleinsavak polinukleotid lánca foszforsav-diészter kötésekkel jön létre</div>
+		<div> –––––––––––––––––––––––––––––––– </div>
+		<li>foszforsav-észter + foszforsav &#10140; foszforsav-észter és foszforsav-anhidrid kötések + H<sub>2</sub>O</li>
+		<li>foszforsav-anhidrid kötés <span class="Important">nem képes delokalizációra,</span> (ugyanúgy mint karbonsavnál!!!) így instabil, azaz makroerg! tehát magas energiatartalmú kötés &#10140; tehát hidrolízissel a kötés felszakad és nagy energia szabadul fel</li>
+		<li>ATP esetében pl. 2 foszforsav-anhidrid és 1 foszforsav-észter kötés van (tudjam lerajzolni!)</li>
+		<img src="images/atrfszft.png">
+	</ul></details>
+	<details class="kerdes" id="ok.893"><summary>foszforsav-diészter kötések jelentősége?(LP)</summary><ul class="normal">
+		<div>nukleinsavak polinukleotid lánca foszforsav-diészter kötésekkel jön létre</div>
+	</ul></details>
+	<details class="kerdes" id="ok.894"><summary><span class="Important">RAJZ</span> foszforsav-amidok?</summary><ul class="normal">
+		<li>kreatin izmokban van, és energia rövidtávú tárolására szolgál &#10140; ugyanis kreatin + foszforsav &#10140; kreatin-foszfát + H<sub>2</sub>O &#10140; kreatin-foszfátban lévő <strong>foszforsav-amid</strong>-kötés makroerg (nincs delokalizációja!)</li>
+		<li>kreatin lebomlási terméke a kreatinin(visszafele nem játszódik), vizelettel távozik</li>
+		<img src="images/kretnsfzst.png">
+		<img src="images/kreatin.png">
+	</ul></details>
+	<details class="kerdes" id="ok.895"><summary><span class="Important">RAJZ</span> foszfo-szulfonsav?</summary><ul class="normal">
+		<li>vegyes-anhidrid hiszen nem foszforsav-O-foszforsav, hanem kénsav-O-foszforsav <abbr title="van karbonsav-O-foszforsav is (lásd előadás 16/17)">&#10045;</abbr></li>
+		<img src="images/fszfszlfnsv.png">
+	</ul></details>
+ </div>
+	<li><span class="MISS">kéntartalmú.pdf 8/17 cc-nyitányt kihagytam :( (nemvolt idő!)</span></li>
+	<li><span class="MISS">♫ 1:07 &#10140; kihagytam a foszforsav-anhidrid delokalizációra való képtelenségének okát (LP)</span></li>
 <!----></div></details>
 
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
@@ -8275,9 +8700,8 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 	<li><span class="Book">GyakKem</span> Orvosi kémiai és biokémiai gyakorlatok c. jegyzet, 2006 (szerk.: Keszler Gergely)</li>
 	<li><span class="WHITE">SzerKem</span> Csermely Péter, Hrabák András, Idei Miklós, Mészáros György: Bioorganikus kémia – jegyzet, 2005 (szerk.: Mandl József)</li>
 	<li><span class="WHITE">JegyKem</span> Tóth Miklós: Szervetlen kémia – jegyzet, 2006</li>
-	<div>&#9733; &#9775; &#10004; &#10006; &#10010; &#10033; &#10041; &#10045; &#10067; &#10070; » későbbiekben használhatók</div>
+	<div>•• » ♫ &#9775; &#9733; &#10004; &#10006; &#10010; &#10033; &#10041; &#10045; &#10067; &#10070; későbbiekben használhatók</div>
 </div>
-
 
 
 
