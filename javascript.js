@@ -326,7 +326,7 @@ for ( var fotema in kerdesID ) {
 				localStorage.removeItem(kerdes+'_repeat');
 			} 
 			if ( localStorage.getItem(kerdes+"_skip") == "skip" ) {
-				if ( idopont < 1040 ) {
+				if ( idopont < 90 ) {
 				} else { //azért így oldottam meg, mertha időpont == null vagy mi akkor is működjön
 					localStorage.removeItem(kerdes+'_skip');
 				}
@@ -503,7 +503,7 @@ function func_markCount(jegy){ // következő kérdés nehézségét beállítja
 		markCount_B = 4
 	} else if ( jegy == 2 ) {
 		markCount_A = 2
-		markCount_B = 2
+		markCount_B = 3
 	} else if ( jegy == 3 ) {
 		markCount_A = 1
 		markCount_B = 2
