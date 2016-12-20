@@ -1,6 +1,6 @@
 ﻿<head>
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<link rel="stylesheet" type="text/css" href="../style.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="shortcut icon" href="favicon.bmp?v=2">
 	<title>&lrm;</title>
 	<style>
@@ -45,7 +45,7 @@
 		<td class="important">3</td>
 		<td class="important">4</td>
 		<td class="done">5</td>
-		<td class="important">6</td>
+		<td class="miss">6</td>
 		<td class="done">7</td>
 		<td class="done">8</td>
 		<td class="done">9</td>
@@ -131,6 +131,7 @@
 	<li><span class="vocab">szürke</span> &#10140; nem annyira fontosnak gondoltam</li>
 	<li><abbr title="szöveg">sárga</abbr> <abbr title="ez alacsony prioritású megjegyzés">&#10045;</abbr> &#10140; egeret ráhúzva szöveg jelenik meg</li>
 	<li>szerkesztette: Horváth Kristóf 2016/2017 Orvosi Kémia (főként előadások és internet alapján)</li>
+	<li>Utolsó frissítés: 2016.10.20</li>
 </div>
 
 
@@ -1150,28 +1151,28 @@
 <!----></div></div></details>
 
 <!----><details><summary class="phase">6. Gázkeverékek komponenseinek koncentrációja: parciális nyomás, térfogatszázalék. Levegő összetétele. Gázok oldódása folyadékokban. Henry törvénye. Abszorpciós koefficiens.</summary><div class="normal"><div><div class="title"> </div>
-	<details class="kerdes" id="ok.261"><summary>parciális nyomás?</summary><ul class="normal">
+	<details class="kerdes" id="ok.261"><summary><strong>Parciális nyomás?</strong></summary><ul class="normal">
 		<li>gázelegy egy komponensének nyomása</li>
 		<li>mivel gázrészecskék között nincs kölcsönhatás &#10140; komponens parciális nyomása pont annyi, mintha egyedül lenne a szobában</li>
 		<li>(pl. egy 20°C 10köbméteres szobában lévő levegőben lévő 20mol O<sub>2</sub> parciális &#10140; p=20·8,314·293/10)</li>
 		<li>(gázelegyet alkotó komponensek parciális nyomásának összege adja a gázelegy nyomását)</li>
 	</ul></details>
-	<details class="kerdes" id="ok.713"><summary>Térfogatszázalék?</summary><ul class="normal">
+	<details class="kerdes" id="ok.713"><summary><strong>Térfogatszázalék?</strong></summary><ul class="normal">
 		<li>tf% = 100 · oldott anyag térfogata (ml) / oldat térfogata (ml)</li>
 		<li>molszázalék hasonló &#10140; pl. 12 mol% azt jelenti 12mol oldott anyag van 100mol oldatban</li>
 		<li>gázok esetében a térfogatszázalék megegyezik a molszázalékkal, ezért a gázok összetételét általában térfogatszázalékban szokás megadni</li>
 	</ul></details>
-	<details class="kerdes" id="ok.714"><summary>levegő összetétele?</summary><ul class="normal">
+	<details class="kerdes" id="ok.714"><summary><strong>levegő összetétele?</strong></summary><ul class="normal">
 		<li>O<sub>2</sub> tf% = 21</li>
 		<li>N<sub>2</sub> tf% = 78</li>
 		<li>egyéb tf% = 1</li>
 	</ul></details>
-	<details class="kerdes" id="ok.262"><summary>Gázok oldódása folyadékokban?</summary><ul class="normal">
+	<details class="kerdes" id="ok.262"><summary><strong>Gázok oldódása folyadékokban?</strong></summary><ul class="normal">
 		<li>víz pl. szobahőmérsékleten oldott levegőt tartalmaz</li>
 		<li><span class="Important">hőmérséklet növelésével csökken a gázok oldhatósága folyadékban</span> <abbr title="általában">&#10045;</abbr></li>
 		<li>pl. ha vizet felforralom, akkor kiűzöm belőle a levegőt (buborékok) &#10140; ha gyorsan utána visszahűtöm és beleteszek egy halat, felmegy a felszínre levegőt nyelni, nehogy megfulladjon</li>
 	</ul></details>
-	<details class="kerdes" id="ok.263"><summary>Henry-törvénye &#10140; definíció? képlet?</summary><ul class="normal">
+	<details class="kerdes" id="ok.263"><summary><strong>Henry-törvénye. Abszorpciós koefficiens?</strong></summary><ul class="normal">
 		<li>definíció &#10140; egy gáz oldhatósága (c) egy folyadékban adott hőmérsékleten egyenesen arányos a gáznak a folyadék feletti parciális nyomásával (p)</li>
 		<li>képlet &#10140; <span class="WHITE">c = K * p</span></li>
 		<li>pl. ha egy gázelegy parciális nyomása p=1000Pa, ezután megmérem, hogy a folyadékban az oldott_gáz koncentrációja c=1M &#10140; akkor ha a gáz parciális nyomása 2x akkora p=2000Pa, akkor c=2M lesz az oldatban <abbr title="ha hőmérséklet nem változott">&#10045;</abbr>)</li>
@@ -1183,7 +1184,76 @@
 <!----></div></div></details>
 
 <!----><details><summary class="phase">7. Híg oldatok törvényei. Oldatok tenziója. Fagyáspont-csökkenés, forráspont-emelkedés. Az ozmotikus nyomás hőmérsékleti és koncentrációfüggése, biológiai jelentősége. Izotóniás, hipotóniás és hipertóniás oldatok.</summary><div class="normal">
- <div><span class="MISS">SZÉPÍTSEK AZ ÁLTALÁNOS RÉSZÉN, MERT CSAK GYORS ÖSSZEDOBTAM (JÓK AMIKET LEÍRTAM, CSAK KÖNNYEN ÉRTHETŐ LEGYEN)</span></div>
+ <div><div class="title">Híg oldatok törvényei. Oldatok tenziója. Fagyáspont-csökkenés, forráspont-emelkedés. Az ozmotikus nyomás hőmérsékleti és koncentrációfüggése, biológiai jelentősége. Izotóniás, hipotóniás és hipertóniás oldatok.</div>
+	<details class="kerdes" id="ok.954"><summary><strong>Híg oldatok törvényei?</strong> (HP)</summary><ul class="normal">
+		<li>híg_oldatok tövényei, azaz kolligatív_tulajdonságai &#10140; csak az oldott anyag részecskeszámától függ, anyagi minőségétől nem</li>
+		<li>feltételei</li><ul>
+			<li>oldott anyag ne párologjon (nem illékony)</li>
+			<li>oldott anyag "híg oldata legyen" (alacsony koncentráció)</li>
+		</ul>
+		<img src="images/oldkklgtvtljdnsg.png">
+	</ul></details>
+	<details class="kerdes" id="ok.955"><summary><strong>Oldatok tenziója?</strong> (HP)</summary><ul class="normal">
+		<div style="float:right;max-width:30%">
+			<img src="images/tlttgzkndprlg.png">
+			<img src="images/rlttrvnyhgtnz.png">
+		</div>
+		<li><span class="Important">Raoult-törvény</span> &#10140; minden egyes komponens <span class="WHITE">tiszta állapotban mért tenziójának</span> es <span class="WHITE">móltörtjenek</span> szorzatát összegezve kapjuk az oldat tenzioját &#10140; oldószer tenziója arányos a móltörtjével</li>
+		<li>tehát, ha van 4mol oldószerem és annak a tenziója 1000Pa(p<sup>0</sup>) &#10140; akkor ha van 4mol oldószerem és 1mol oldott_anyag(móltört x=4/5), akkor annak tenziója 800Pa(p)</li>
+		<div> ~~~~~~~~~~~ </div>
+		<li>tenzió &#10140; telített gőz (parciális) nyomása</li>
+		<li>telített gőz &#10140; zárt térben a párolgás és kondenzáció mértéke megegyezik</li>
+		<div> ~~~~~ gőznyomáscsökkenés = tenziócsökkenés ~~~~~~ </div>
+		<li><span class="Important">nem illékony, híg oldatok tenziócsökkenése az oldott_anyag molalitásával arányos</span> ... ugyanis ...</li>
+		<li>ha az oldott anyag <span class="Important">nem illékony</span>(tehát nem párolog), akkor ha hozzáadom, akkor az oldat tenziója csökkeni fog</li>
+		<li>hiszen akkor csak az oldószer "adja a tenziót", azé pedig csökkent a Raoult-törvény értelmében</li>
+		<li>az oldószer legyen víz, és mennyisége 1kg &#10140; mol<sub>A</sub> = 55,5 mol</li>
+		<li>így igaz lesz, hogy &#10140; oldott anyag molalitása = mol<sub>B</sub></li>
+		<li>tenziócsökkenés = &Delta;p =  p<sup>0</sup><sub>A</sub> - p</li>
+		<li>tehát ha az <span class="Important">oldat híg</span>, 1 >> mol<sub>B</sub> &#10140; akkor <span class="WHITE">&Delta;p &asymp; p<sup>0</sup><sub>A</sub> · mol<sub>B</sub> / 55,5</span></li>
+	</ul></details>
+	<details class="kerdes" id="ok.956"><summary><strong>Fagyáspont-csökkenés, forráspont-emelkedés?</strong> (HP)</summary><ul class="normal">
+		<div style="float:right;max-width:30%">
+			<img src="images/tnzgrbfrpfsgyp.png">
+			<img src="images/tnzcsknkvhgld.png">
+		</div>
+		<li><span class="Important">1.rajz</span> tenzió a hőmérséklet fv-ében adott anyag (pl.víz) szilárd és folyadék halmazállapotában</li>
+		<li>fagyáspont &#10140; 2 tenzió-görbe metszéspontjánál lévő hőmérséklet</li>
+		<li>forráspont</li><ul>
+			<li>tenzió = p<sub>külső-légnyomás</sub></li>
+			<li>ennek következtében a folyadék belsejében telitett gőzbuborékok a felszínre jutnak</li>
+		</ul>
+		<div> –––––––––––––––– </div>
+		<div><span class="Important">2.rajz</span> tenziócsökkenés következtében az ...</div>
+		<li>oldat fagyáspontja csökken</li>
+		<li>oldat forráspontja nő</li>
+	</ul></details>
+	<details class="kerdes" id="ok.957"><summary><strong>Az ozmotikus nyomás <span class="Important">hőmérsékleti és koncentrációfüggése</span>, biológiai jelentősége?</strong> (HP)</summary><ul class="normal">
+		<li><span class="WHITE">pV = nRT</span> &#10140; p = nRT/V</li>
+		<li>n/V &#10140; mol/m<sup>3</sup> = 1000*mol/dm<sup>3</sup> &#10140; n/V = 1000*c<sub>osm</sub></li>
+		<li>c<sub>osm</sub> = ozmolaritás = molaritás * értékűség &#10140; összes részecskeszám kocentrációja</li><ul>
+			<li>pl. 0,1M NaCl &#10140; c<sub>osm</sub> = 2 * 0,1mol/l</li>
+			<li>(i=2)</li>
+		</ul>
+		<li>p = 1000*c<sub>osm</sub>RT</li>
+		<li>sok komponensű oldatok ozmózisnyomása az összetevők ozmózisnyomásának összege</li>
+	</ul></details>
+	<details class="kerdes" id="ok.959"><summary><strong>Izotóniás, hipotóniás és hipertóniás oldatok?</strong> (HP)</summary><ul class="normal">
+		<li>ha az oldat ozmózisnyomása a másik oldatéhoz képest...</li><ul>
+			<li>kisebb &#10140; akkor az oldat hipotóniás</li>
+			<li>megegyező &#10140; akkor az oldat izotóniás</li>
+			<li>nagyobb &#10140; akkor az oldat hipertóniás</li>
+		</ul>
+		<li>fiziológiás (izotóniás egy típusa) &#10140; vérrel azonos ozmolaritású oldat, pl. 0,9v% (0,009g/ml) NaCl</li>
+		<li>pl. ha a vért hipotóniás oldatba teszem, tehát az oldat ozmózisnyomása nagyobb, mint a sejtnedvé &#10140; sejtbe áramlik a vér és kipukkad</li>
+		<img src="images/zmzsjlnsg.png">
+	</ul></details>
+	<details class="kerdes" id="ok.958"><summary><strong>Az ozmotikus nyomás hőmérsékleti és koncentrációfüggése, <span class="Important">biológiai jelentősége</span>?</strong> (HP)</summary><ul class="normal">
+		<li>ha alacsony a vér ozmózisnyomása (hipotóniás), a vörösvérsejtek kipukkadnak</li>
+		<li>hashajtók &#10140; fel nem szívódó ozmotikus hatású sók jutnak a 'képződő székletbe', így a vastagbélben kevesebb vízvisszaszívás megy végbe</li>
+		<li>(szöveti vizenyők kezelése)</li>
+	</ul></details>
+ </div>
  <div><div class="title">Általános</div>
 	<details class="kerdes" id="ok.145"><summary>híg oldatok törvényei avagy oldatok kolligatív tulajdonságai?(felsorolás)</summary><ul class="normal">
 		<li>kolligatív_tulajdonság &#10140; csak az oldott anyag részecskék számától függ, részecskék anyagi minőségétől nem</li>
@@ -1238,7 +1308,7 @@
 		<li>víz oldószer esetében a...</li>
 		<li>1,86°C &#10140; molális fagyáspontcsökkenés</li>
 		<li>0,52°C &#10140; molális forráspontemelkedés</li>
-		<li>(tehát ha 1mol nem illékony oldott anyagot teszek 1kg vízbe, akkor az oldat molalitása 1mol/kg, és a fennti lettő ennyivel nő/csökken)</li>
+		<li>(tehát ha 1mol nem illékony oldott anyagot teszek 1kg vízbe, akkor az oldat molalitása 1mol/kg, és a fennti kettő ennyivel nő/csökken)</li>
 	</ul></details>
  </div>
  <div><div class="title">Az ozmotikus nyomás, biológiai jelentősége</div>
@@ -1248,12 +1318,12 @@
 	</ul></details>
 	<details class="kerdes" id="ok.138"><summary>oldatok típusai?(ozmózisnyomás alapján)</summary><ul class="normal">
 		<li>ha az oldat ozmózisnyomása a másik oldatéhoz képest...</li><ul>
-			<li>nagyobb &#10140; hipotóniás</li>
-			<li>megegyező &#10140; izotóniás</li>
-			<li>kisebb &#10140; hipertóniás</li>
+			<li>kisebb &#10140; akkor az oldat hipotóniás</li>
+			<li>megegyező &#10140; akkor az oldat izotóniás</li>
+			<li>nagyobb &#10140; akkor az oldat hipertóniás</li>
 		</ul>
 		<li>fiziológiás (izotóniás egy típusa) &#10140; vérrel azonos ozmolaritású oldat, pl. 0,9v% (0,009g/ml) NaCl</li>
-		<li>pl. ha a vér hipotóniás a sejtnedvhez viszonyítva, akkor a sejtnedvnek kisebb az ozmózisnyomása &#10140; sejtbe áramlik a vér és kipukkad</li>
+		<li>pl. ha a vért hipotóniás oldatba teszem, tehát az oldat ozmózisnyomása nagyobb, mint a sejtnedvé &#10140; sejtbe áramlik a vér és kipukkad</li>
 		<img src="images/zmzsjlnsg.png">
 	</ul></details>
 	<details class="kerdes" id="ok.139"><summary>oldat ozmózisnyomása mitől függ?</summary><ul class="normal">
@@ -1327,15 +1397,14 @@
 	</ul></details>
  </div>
  <div><div class="title">egyensúlyi konstans</div>
-	<details class="kerdes" id="ok.40"><summary>jele? mely képlet kapcsolódik ide?</summary><ul class="normal">
+	<details class="kerdes" id="ok.40"><summary><strong>jele? mely képlet kapcsolódik ide?</strong></summary><ul class="normal">
 		<img src="images/tmghtstrvny.png">
-		<li><span class="WHITE">KÉP</span> tömeghatás törvénye</li><ul>
-			<li>ez azt mondja meg, hogy a reakció során <span class="WHITE">K</span> értéke állandó</li>
-			<li><span class="WHITE">K</span> az egyensúlyi_konstans</li>
-			<li>(ha egész pontos akarok lenni, akkor nem koncentrációban (vagy nyomásban) fejezem ki, hanem aktivitásban. azonban a továbbiakban koncentrációban lesz mindig az egyszerűség kedvéért, és az eltérésből adódó hiba minimális.)</li>
-		</ul>
+		<div><span class="WHITE">KÉP</span> tömeghatás törvénye</div>
+		<li>ez azt mondja meg, hogy a reakció során <span class="WHITE">K</span> értéke állandó</li>
+		<li><span class="WHITE">K</span> az egyensúlyi_konstans</li>
+		<li>(ha egész pontos akarok lenni, akkor nem koncentrációban (vagy nyomásban) fejezem ki, hanem aktivitásban. azonban a továbbiakban koncentrációban lesz mindig az egyszerűség kedvéért, és az eltérésből adódó hiba minimális.)</li>
 	</ul></details>
-	<details class="kerdes" id="ok.51"><summary>mik származnak belőle?(4)</summary><ul class="normal">
+	<details class="kerdes" id="ok.51"><summary><strong>mik származnak belőle?(4)</strong></summary><ul class="normal">
 		<li><span class="WHITE">ált.9</span> vízionszorzat</li>
 		<li><span class="WHITE">ált.10-12</span> disszociációs_konstans</li><ul>
 			<li>savi</li>
@@ -1344,11 +1413,11 @@
 		<li><span class="WHITE">ált.8</span> Le Chatelier elv koncentrációra nézve</li>
 		<li><span class="WHITE">gyak.7</span> oldhatósági szorzat</li>
 	</ul></details>
-	<details class="kerdes" id="ok.52"><summary>mitől függ?</summary><ul class="normal">
+	<details class="kerdes" id="ok.52"><summary><strong>mitől függ?</strong></summary><ul class="normal">
 		<li>hőmérséklet</li>
 		<li>anyagi minőség</li>
 	</ul></details>
-	<details class="kerdes" id="ok.53"><summary>mire használható?</summary><ul class="normal">
+	<details class="kerdes" id="ok.53"><summary><strong>mire használható?</strong></summary><ul class="normal">
 		<li>reakció irányának meghatározása</li>
 		<li>koncentrációk meghatározása egyensúly beálltakor</li>
 	</ul></details>
@@ -1363,13 +1432,13 @@
 	</ul></details>
  </div>
  <div><div class="title">A Le Chatelier elv</div>
-	<details class="kerdes" id="ok.112"><summary>milyen rendszerre érvényes?</summary><ul class="normal">
+	<details class="kerdes" id="ok.112"><summary><strong>milyen rendszerre érvényes?</strong></summary><ul class="normal">
 		<li>egyensúlyban lévő rendszer</li>
 	</ul></details>
 	<details class="kerdes" id="ok.47"><summary>hogy ejted?</summary><ul class="normal">
 		<li>"lö sátelié"</li>
 	</ul></details>
-	<details class="kerdes" id="ok.48"><summary>Le_Chatelier_elv definíció?</summary><ul class="normal">
+	<details class="kerdes" id="ok.48"><summary><strong>Le_Chatelier_elv definíció?</strong></summary><ul class="normal">
 		<li>egyensúlyban lévő rendszert, ha külső_hatás ér, akkor a reakció olyan lesz, hogy a változás minél kisebb legyen</li>
 		<li>külső_hatás lehet</li><ul>
 			<li>koncentrációváltozás</li>
@@ -1377,7 +1446,7 @@
 			<li>hőmérsékletváltozás</li>
 		</ul>
 	</ul></details>
-	<details class="kerdes" id="ok.55"><summary>koncentráció-változásra 1pl?</summary><ul class="normal">
+	<details class="kerdes" id="ok.55"><summary><strong>koncentráció-változásra 1pl?</strong></summary><ul class="normal">
 		<li>CH<sub>3</sub>COOH + H<sub>2</sub>O ⇄ CH<sub>3</sub>COO<sup>-</sup> + H<sub>3</sub>O<sup>+</sup></li>
 		<li>K = [CH<sub>3</sub>COO<sup>-</sup>] * [H<sub>3</sub>O<sup>+</sup>] / [CH<sub>3</sub>COOH] * [H<sub>2</sub>O]</li>
 		<div>-----------------------</div>
@@ -1386,7 +1455,7 @@
 		<li>ennek következtében acetátionok és oxóniumionok egész addig asszociálnak, "míg K értéke vissza nem áll"</li>
 		<li>tehát teljesült az elv, hiszen ennek következtében csökkent a H<sub>3</sub>O<sup>+</sup> növekedése</li>
 	</ul></details>
-	<details class="kerdes" id="ok.56"><summary>hőmérséklet-változásra 1pl?</summary><ul class="normal">
+	<details class="kerdes" id="ok.56"><summary><strong>hőmérséklet-változásra 1pl?</strong></summary><ul class="normal">
 		<li>CH<sub>3</sub>COOH + H<sub>2</sub>O ⇄ CH<sub>3</sub>COO<sup>-</sup> + H<sub>3</sub>O<sup>+</sup></li>
 		<li>-----------------------</li>
 		<li>ha növelem a hőmérsékletet, azon reakció fog lejátszódni, amelyik endoterm &#10140; ionok ecetsavra elkezdenek asszociálni &#10140; kevésbé nő a hőmérséklet</li>
@@ -1394,7 +1463,7 @@
 		<li>-----------------------</li>
 		<li>(azt hogy ecetsav disszociációja vagy asszociációja endoterm, nem kell tudjam, csak értsem és mondjak valami képzeletbeli molekulát)</li>
 	</ul></details>
-	<details class="kerdes" id="ok.57"><summary>nyomás-változásra 1pl?</summary><ul class="normal">
+	<details class="kerdes" id="ok.57"><summary><strong>nyomás-változásra 1pl?</strong></summary><ul class="normal">
 		<li>N<sub>2</sub> + 3H<sub>2</sub> ⇄ 2NH<sub>3</sub></li>
 		<li>-----------------------</li>
 		<li>ha növelem a nyomást, azon reakció fog lejátszódni, amelyik következtében kevesebb molekula lesz, így csökken a nyomás &#10140; ionok ecetsavvá asszociáciálnak &#10140; kevésbé nő a nyomás</li>
@@ -1441,7 +1510,7 @@
 		<li>a számítás abból adódik, hogy a vízből származó [H+] elhanyagolhatóan kicsi</li>
 		<li>így a kapott érték igazából felfele van kerekítve &#10140; pl. 10<sup>-2</sup>M HCl pH-ja kicsivel kevesebb lenne mint 2</li>
 	</ul></details>
-	<details class="kerdes" id="ok.45"><summary>pontos számítással határozzam meg mennyi 0,01M HCl oldat pH-ja?</summary><ul class="normal">
+	<details class="kerdes" id="ok.45"><summary><strong>pontos számítással határozzam meg mennyi 0,01M HCl oldat pH-ja?</strong></summary><ul class="normal">
 		<li>vízionszorzat = 10<sup>-14</sup> = [H<sup>+</sup>] * [OH<sub>-</sub>]</li>
 		<li><span class="Important">víz disszociációját mindig visszaszorítja a hozzáadott sav/bázis &#10140; hisz vízionszorzat 10<sup>-14</sup> kell maradjon</span> <span class="Important">4.2.2.12 !!!!!!!!!!LEGFONTOSABB az egészben!!!!!!!!!!!!</span></li>
 		<li>a HCl 1értékű erős sav, ennyi oxóniumion keletkezik a disszociációja során &#10140; 10<sup>-2</sup> = [H<sup>+</sup>]<sub>HCl</sub></li>
@@ -1466,7 +1535,7 @@
 	<details class="kerdes" id="ok.94"><summary>titrálási görbén mit ábrázolok?</summary><ul class="normal">
 		<li>oldat pH-ja, a hozzáadott mérőoldat térfogatának fv-ében</li>
 	</ul></details>
-	<details class="kerdes" id="ok.86"><summary><span class="WHITE">RAJZ</span> erős_sav titrálása erős_bázissal / erős_bázis erős_savval</summary><ul class="normal">
+	<details class="kerdes" id="ok.86"><summary><span class="WHITE">RAJZ</span> <strong>erős_sav titrálása erős_bázissal / erős_bázis erős_savval</strong></summary><ul class="normal">
 		<img src="images/rssvttrltscpdgrm.png">
 		<li>ekvivalenciapont = neutralizációs_pont &#10140; pH = 7</li>
 		<li>ekvivalenciapont +- minimális <abbr title="titrálóoldatból">térfogat</abbr> &#10140; pH-t 4-10 között változtatja</li>
@@ -1489,7 +1558,7 @@
 			</ul>
 		</ul>
 	</ul></details>
-	<details class="kerdes" id="ok.74"><summary>disszociációs konstans &#10140; levezetése? fok és konstans közti összefüggés? konstans mitől függ?</summary><ul class="normal">
+	<details class="kerdes" id="ok.74"><summary><strong>disszociációs konstans &#10140; levezetése? fok és konstans közti összefüggés? konstans mitől függ?</strong></summary><ul class="normal">
 		<img src="images/dzskncstns.png">
 		<li><abbr title="disszociációs konstans">K<sub>d</sub></abbr> = <abbr title="egyensúlyi_konstans">K</abbr> · [H<sub>2</sub>O] &#10140; ugyanis a H<sub>2</sub>O kerekítve konstansnak tekinthető <span class="WHITE">55,5M</span></li>
 		<li><abbr title="keletkezett A-ion koncentráció">[A<sup>-</sup>]</abbr> <abbr title="keletkezett B-ion koncentráció">[B<sup>+</sup>]</abbr> <abbr title="megmaradt disszociálatlan AB koncentráció">[AB]</abbr> <abbr title="kezdeti koncentráció">c</abbr></li>
@@ -1522,7 +1591,7 @@
 		<details><summary>erős_savat öntök hozzá</summary>asszociációja nő</details>
 		<details><summary>erős_bázist öntök hozzá</summary>asszociációja csökken</details>
 	</ul></details>
-	<details class="kerdes" id="ok.97"><summary>gyenge_savhoz erős bázist adok (pl. 0,1M ecetsav mellé 0,1M NaOH) &#10140; gyenge_sav disszociációfoka hogyan változik? pH milyen irányba tolódik? matematikailag bizonyítsd mind2t!</summary><ul class="normal">
+	<details class="kerdes" id="ok.97"><summary><strong>gyenge_savhoz erős bázist adok (pl. 0,1M ecetsav mellé 0,1M NaOH) &#10140; gyenge_sav disszociációfoka hogyan változik? pH milyen irányba tolódik? matematikailag bizonyítsd mind2t!</strong></summary><ul class="normal">
 		<li>disszociációfoka nő</li>
 		<li>alaphelyzet &#10140; vízben a gyenge sav kis része disszociál csak <abbr title="számlálóban a [H+] nem egyezik meg [A-]-al, mert [H+] vízből is származik">&#10045;</abbr></li>
 		<li>ha hozzáadok erős_bázist (pl. NaOH), a bázis 100% disszociál</li>
@@ -1533,7 +1602,7 @@
 		<li>ugyanis, ha a [H+] nem változna <abbr title="és ennek következtében [OH-] se, illetve a pH-se, hisz vízionszorzat">&#10045;</abbr>, akkor az ecetsav egyensúlyánál a következő változások mennének végbe &#10140; [H+] nemváltozott, [A-] nőtt, [HA] csökkent &#10140; konstans nőne, ami nem történhet meg</li>
 		<li><span class="Important">Ostwald-higítási törvény NE használjam itt!!! mert [H+] kisebb már mint [A-]</span></li>
 	</ul></details>
-	<details class="kerdes" id="ok.116"><summary>gyenge_savhoz erős savat adok (pl. 0,1M ecetsav és 0,1M HCl) &#10140; gyenge_sav disszociációfoka hogyan változik? pH milyen irányba tolódik? matematikailag bizonyítsd mind2t!</summary><ul class="normal">
+	<details class="kerdes" id="ok.116"><summary><strong>gyenge_savhoz erős savat adok (pl. 0,1M ecetsav és 0,1M HCl) &#10140; gyenge_sav disszociációfoka hogyan változik? pH milyen irányba tolódik? matematikailag bizonyítsd mind2t!</strong></summary><ul class="normal">
 		<li>disszociációfoka csökken</li>
 		<li>pH csökkenn</li>
 		<div> ~~~~~~~~ </div>
@@ -1553,7 +1622,7 @@
 			<li>kiszámolom [H+]</li>
 		</ul>
 	</ul></details>
-	<details class="kerdes" id="ok.114"><summary>gyenge_sav koncentrációját növelem, akkor disszociációfoka hogyan változik? bizonyítsd "matematikailag"!(pl. 0,1M ecetsavból lesz 0,2M)</summary><ul class="normal">
+	<details class="kerdes" id="ok.114"><summary><strong>gyenge_sav koncentrációját növelem, akkor disszociációfoka hogyan változik? bizonyítsd "matematikailag"!(pl. 0,1M ecetsavból lesz 0,2M)</strong></summary><ul class="normal">
 		<li>disszociációfoka csökken</li>
 		<li>ecetsav Ks = 10<sup>-4,7</sup></li>
 		<li>0,1M esetén akkor a disszociációfokát kitudom számolni az Ostwald-higítási_törvénnyel</li>
@@ -1577,7 +1646,7 @@
 		<li>erős_sav & erős_bázis &alpha; = 1 <abbr title="minimálissal kevesebb csak, szóval lényegében 100% disszociál">&#10045;</abbr></li>
 		<li>gyenge_sav & gyenge_bázis &alpha; &lt; 1 (csak végtelen híg oldat esetében lesz 1)</li>
 	</ul></details>
-	<details class="kerdes" id="ok.107"><summary>gyenge sav(/bázis) pH számítási módszerek &#10140; felsorolásuk? képletek?</summary><ul class="normal">
+	<details class="kerdes" id="ok.107"><summary><strong>gyenge sav(/bázis) pH számítási módszerek &#10140; felsorolásuk? képletek?</strong></summary><ul class="normal">
 		<li>(gyenge sav/bázis nem 100% disszociál)/</li>
 		<li><span class="Book">1</span></li><ul>
 			<li>(kevésbé pontos, de az eltérés minimális, így mindig ez lesz használva)</li>
@@ -1594,7 +1663,7 @@
 		</ul></details>
 		<img src="images/gyngsvphszmts.png">
 	</ul></details>
-	<details class="kerdes" id="ok.75"><summary>"becslő számítás" levezetése?</summary><ul class="normal">
+	<details class="kerdes" id="ok.75"><summary><strong>"becslő számítás" levezetése?</strong></summary><ul class="normal">
 		<li><span class="WHITE">1</span> vízkoncentrációt állandónak (55,55M) vettük (mint savi konstansnál)</li>
 		<li><span class="WHITE">2</span></li><ul>
 			<li>[HA] ~= c <div class="mirror">&#10140;</div> azon a feltevésen alapulva, hogy szinte alig ad le protont a gyenge_sav</li>
@@ -1606,7 +1675,7 @@
  </div>
  <div><div class="title">Gyenge savak és bázisok disszociációs egyensúlya.</div>
 	<details class="kerdes" id="ok.108"><summary>gyenge_sav és konjugált_bázisának konstansa? (ugyanez bázisnál)</summary><ul class="normal">
-		<li>t</li>
+		<li></li>
 	</ul></details>
 	<details class="kerdes" id="ok.190"><summary>kis méretű nagy töltésű ionok gyenge_sav-ként viselkedésére 1 példa?</summary><ul class="normal">
 		<li>Al<sup>3+</sup> &#10140; erősen vonzza vízmolekula OH- részét, ezért H+t képes leadni</li>
@@ -1615,7 +1684,37 @@
  </div>
 <!----></div></details>
 
-<!----><details><summary class="phase">11. Erős és gyenge elektrolitok fajlagos és ekvivalens vezetőképessége. <span class="MISS">Összefüggés a gyenge savak ekvivalens vezetőképessége, a disszociációfok és a disszociációs állandó között.</span></summary><div class="normal">
+<!----><details><summary class="phase">11. Erős és gyenge elektrolitok fajlagos és ekvivalens vezetőképessége. Összefüggés a gyenge savak ekvivalens vezetőképessége, a disszociációfok és a disszociációs állandó között.</summary><div class="normal">
+ <div><div class="title">Erős és gyenge elektrolitok fajlagos és ekvivalens vezetőképessége. Összefüggés a gyenge savak ekvivalens vezetőképessége, a disszociációfok és a disszociációs állandó között.</div>
+	<details class="kerdes" id="ok.951"><summary><strong>erős és gyenge elektrolitok?</strong> (HP)</summary><ul class="normal">
+		<li>elektrolit &#10140; vízben oldva anionra és kationra disszociál</li>
+		<li>erős Kd > 10<sup>-1</sup> &#10140; <abbr title="99,9999...">100%</abbr> disszociál</li>
+		<li>gyenge Kd &lt; 10<sup>-3</sup> &#10140; nagy koncentráció (0,1M+) mellett kismértékben disszociál (lásd 11.tétel) &#10140; csak végtelen híg oldat esetében lesz &alpha;=1</li>
+	</ul></details>
+	<details class="kerdes" id="ok.950"><summary><strong>fajlagos vezetőképesség?</strong> (HP)</summary><ul class="normal">
+		<li>vezetőképesség</li><ul>
+			<li>képlete &#10140; S = ellenállás reciproka = A/(l·&rho;)</li>
+			<li>(hisz ellenállás &rho;*l/A)</li>
+		</ul>
+		<li>fajlagos vezetőképesség</li><ul>
+			<li>képlete &#10140; Ҡ = fajlagos_ellenállás reciproka</li>
+			<li>definíció &#10140; két egymástól 1cm-re lévő 1cm<sup>2</sup> elektróda közti oldat vezetőképessége</li>
+		</ul>
+	</ul></details>
+	<details class="kerdes" id="ok.953"><summary><strong>ekvivalens vezetőképesség?</strong> (HP)</summary><ul class="normal">
+		<li>definíció &#10140;<abbr title="1értékűből 1mól / 2értékűből 0,5mól">gramm-egyenértéktömegnyi</abbr> elektrolitot tartalmazó oldat vezetőképessége</li>
+		<li>pl. ha 1x töltésú az anion/kation, akkor az oldat 1molt tartalmaz belőlük, pl. NaCl-nek 58,5g, HCl 36,5g</li>
+		<li><span class="Important">fajlagos_vezetőképesség szorozva gramm-egyenértéktömegnyi elektrolitot tartalmazó oldat térfogatával KÖBCENTIBEN</span></li>
+		<li>pl. 0,1N 10.000_cm<sup>3</sup> kéne / <abbr title="1N">3g</abbr> szénből 1000_cm<sup>3</sup></li>
+	</ul></details>
+	<details class="kerdes" id="ok.952"><summary><strong>Összefüggés a gyenge savak ekvivalens vezetőképessége, a disszociációfok és a disszociációs állandó között?</strong> (HP)</summary><ul class="normal">
+		<li>erős_elektrolitok esetében koncentrációtól független</li>
+		<li>gyenge_elektrolitok esetében koncentrációtól függ &#10140; hisz kisebb koncentráción nagyobb a disszociációs_fok</li>
+		<li>gyenge_elektrolitok esetében a következő összefüggés felírható <span class="Important">Λ<sub>c</sub>/Λ<sub>végtelen</sub> = &alpha;</span></li>
+		<div>/// 0,1N-ig van ábrázolva, ugyanis felette már az erős elektrolitok közti kölcsönhatások gátolják az ionok szabad mozgását</div>
+		<img src="images/kvvlnsveztksltrklt.png">
+	</ul></details>
+ </div>
  <div><div class="title">Erős és gyenge elektrolitok fajlagos és ekvivalens vezetőképessége.</div>
 	<details class="kerdes" id="ok.168"><summary>elektrolit definíció?</summary><ul class="normal">
 		<li>elektrolit &#10140; vízben oldva anionra és kationra disszociál</li>
@@ -1656,7 +1755,7 @@
 	<details class="kerdes" id="ok.81"><summary>ekvivalens_vezetőképesség &#10140; definíció? képlet? mértékegység? képlet?</summary><ul class="normal">
 		<li>definíció &#10140;<abbr title="1értékűből 1mól / 2értékűből 0,5mól">gramm-egyenértéktömegnyi</abbr> elektrolitot tartalmazó oldat vezetőképessége</li>
 		<li>pl. ha 1x töltésú az anion/kation, akkor az oldat 1molt tartalmaz belőlük, pl. NaCl-nek 58,5g</li>
-		<li><span class="Important">speciális_vezetőképesség szorozva gramm-egyenértéktömegnyi elektrolitot tartalmazó oldat térfogatával KÖBCENTIBEN</span></li>
+		<li><span class="Important">fajlagos_vezetőképesség szorozva gramm-egyenértéktömegnyi elektrolitot tartalmazó oldat térfogatával KÖBCENTIBEN</span></li>
 		<li>pl. 0,1N 10.000_cm<sup>3</sup> kéne / <abbr title="1N">3g</abbr> szénből 1000_cm<sup>3</sup></li>
 		<li>&Lambda; = Ҡ·1000/<abbr title="normalitás">c</abbr> = Ҡ·<abbr title="térfogat köbcentiben, melyben 1gramm-egyenértéktömegnyi van oldva">V</abbr></li>
 		<div>/// <span class="WHITE">c</span> normalitás</div>
@@ -1687,6 +1786,72 @@
 <!----></div></details>
 
 <!----><details><summary class="phase">12. Sav-bázis elméletek. Sav és bázis fogalma. Konjugált sav-bázis pár. A pKs és pKb összefüggése. <span class="MISS">Saverősség, báziserősség vizes oldatokban példákkal.</span> A sav-bázis egyensúlyok pH-függése az ecetsav és az ammónia példáján. Gyenge savak és bázisok titrálási görbéi.</summary><div class="normal">
+ <div><div class="title">Sav-bázis elméletek. Sav és bázis fogalma. Konjugált sav-bázis pár. A pKs és pKb összefüggése. Saverősség, báziserősség vizes oldatokban példákkal. A sav-bázis egyensúlyok pH-függése az ecetsav és az ammónia példáján. Gyenge savak és bázisok titrálási görbéi.</div>
+	<details class="kerdes" id="ok.949"><summary><strong>Gyenge savak és bázisok titrálási görbéi?</strong></summary><ul class="normal">
+		<details><summary>definíció &#10140; ekvivalenciapont? neutralizációs pont?</summary><ul class="normal">
+			<li>ekvivalenciapont &#10140; titrálóoldat azon térfogata, mikor megegyezik a titrálóoldat és titrálandó-oldat normalitása</li>
+			<li>neutralizációs pont &#10140; titrálóoldat azon térfogata, mikor a pH = 7</li>
+		</ul></details>
+		<details><summary><span class="WHITE">RAJZ</span> Gyenge savak és bázisok titrálási görbéi &#10140; ekvivalenciapontról mit kell tudni?</summary><ul class="normal">
+			<li>ekvivalenciapont =/= neutralizációs_pont</li>
+			<details><summary>ecetsav + NaOH esetében miért lúgos az ekvivalenciapont?</summary><ul class="normal">
+				<li>azért, mert ha belegondolok, ekvivalenciaponton 100% disszociált az ecetsav</li>
+				<li>ezzel semlegesítette pH-t</li>
+				<li>így az oldatban maradt mindössze nátrium-acetát</li>
+				<li>azonban ha belegondolok, ha vízbe nátrium-acetátot teszek, akkor egy kevés átalakul ecetsavvá belőle megint</li>
+			</ul></details>
+			<li>ekvivalenciapont &#10140; pH-t 4-10 között változtatja</li><ul>
+				<li><abbr title="titrálandó-oldat">ecetsav</abbr> esetén pH ~= 8,5  (+-min.térfogat pH = 7-10)</li>
+				<li>ammónia esetén pH ~= 5,5 (+-min.térfogat pH = 4-7)</li>
+				<div>/// <span class="Important">ez nemigaz! hisz kitudom pontosan számolni értékük, de megjegyezni így egyszerűbb!!</span></div>
+			</ul>
+			<li>kép</li><ul>
+				<li>piros = gyenge_bázis titrálása erős_savval <span class="WHITE">jobbról-balra</span></li>
+				<li>zöld = gyenge_sav titrálása erős_bázissal <span class="WHITE">balról-jobbra</span></li>
+			</ul>
+			<img src="images/ttrlgrbgynbzsvrsbzsv.png">
+		</ul></details>
+		<details><summary><span class="WHITE">RAJZ</span> Gyenge savak és bázisok titrálási görbéi &#10140; inflexiós pont?(4)</summary><ul class="normal">
+			<li>inflexiós pont</li><ul>
+				<li>ekvivalenciapont eléréséhez szükséges térfogat felét adtuk csak még hozzá a mérőoldatnak</li>
+				<li><span class="Important">pH = pKs</span> <abbr title="gyenge_sav esetében, gyenge bázisnál pH = pKb">&#10045;</abbr></li>
+				<li><span class="Important">gyenge_sav és konjugált_bázisának koncentrációja megegyezik</span></li>
+				<li>itt működik legjobban a puffer (itt a leglaposabb a szakasz is)</li>
+			</ul>
+			<li>kép</li><ul>
+				<li>piros = gyenge_bázis titrálása erős_savval</li>
+				<li>zöld = gyenge_sav titrálása erős_bázissal</li>
+			</ul>
+			<img src="images/ttrlgrbgynbzsvrsbzsv.png">
+		</ul></details>
+		<details><summary>nevezetes_pontok(görbén) felsorolása?</summary><ul class="normal">
+			<li>inflexiós_pont = félekvivalenciapont (pH = pKs, térfogata a titrálandó konjugált sav = konjugált bázis)</li>
+			<li>neutralizácós_pont (pH=7)</li>
+			<li>ekvivalencia_pont (normalitása a tritráló = titrálandó)</li>
+		</ul></details>
+		<details><summary>görbe rajzolást hogy végezzem?</summary><ul class="normal">
+			<li>3db nevezetes_pontot bejelölöm</li>
+			<li>puffertartományt bejelölöm (inflexiós +-1pH)</li>
+		</ul></details>
+		<details><summary>gyenge_sav(/bázis) titrálás esetében indikátor átcsapási zónája milyen pH-tartományba essen?(LP)</summary><ul class="normal">
+			<li>gyenge_sav esetében a pH 7-10 közé essen</li>
+			<li>gyenge_bázis esetében a pH 4-7 közé essen</li>
+			<div>/// ekvivalenciapontba essen az indikátor puffertartománya</div>
+		</ul></details>
+		<details><summary>gyenge_sav és erős_sav titrálási görbéi közti különbség?</summary><ul class="normal">
+			<li>gyenge_sav esetében az ekvivalenciapont nem pH=7 - nél van, hanem a kémhatás lúgos (nem egyezik neutralizációs ponttal)</li>
+			<li>gyenge_sav esetében kapunk puffertartományt</li>
+			<img src="images/gyngrssvttrlgrb.png">
+		</ul></details>
+		<details><summary>puffertartomány a görbén?</summary><ul class="normal">
+			<li>görbe &#10140; eleinte emelkedik kissé, utána alig változik, majd felugrik</li>
+			<li><span class="WHITE">puffertaromány</span> &#10140; szakasz, ahol alig változik a görbe (pH szinte nemváltozik)</li><ul>
+				<li>középpontjában az inflexiós_pont</li>
+				<li>itt a pH = pKd +- 1</li>
+			</ul>
+		</ul></details>
+	</ul></details>
+ </div>
  <div><div class="title">Sav-bázis elméletek. Sav és bázis fogalma. Konjugált sav-bázis pár</div>
 	<details class="kerdes" id="ok.58"><summary>felsorolásuk?</summary><ul class="normal">
 		<li>Arrhenius</li>
@@ -1834,6 +1999,78 @@
 <!----></div></details>
 
 <!----><details><summary class="phase">13. Pufferek. A Henderson-Hasselbalch egyenlet. Az ecetsav/acetát és az ammónia/NH<sub>4</sub>Cl puffer működési elve. A pH-kiegyenlítés elvi alapja, a pH-változás kiszámítása. Pufferkapacitás.</summary><div class="normal">
+ <div><div class="title">Pufferek. A Henderson-Hasselbalch egyenlet. Az ecetsav/acetát és az ammónia/NH<sub>4</sub>Cl puffer működési elve. A pH-kiegyenlítés elvi alapja, a pH-változás kiszámítása. Pufferkapacitás</div>
+	<details class="kerdes" id="ok.945"><summary><strong>A Henderson-Hasselbalch egyenlet?</strong> (HP)</summary><ul class="normal">
+		<li>levezetése a képen</li>
+		<li>sav/bázis esetén ugyanúgy alkalmazható!!!!!!!!!!!!!!!!!!! (pKb = 14-pKs elven le van az is vezetve)</li>
+		<img src="images/hndrsnhslbch.png">
+	</ul></details>
+	<details class="kerdes" id="ok.946"><summary><strong>Pufferek?</strong> (HP)</summary><ul class="normal">
+		<li><span class="WHITE">gyenge_sav</span> és <span class="WHITE">ugyanezen gyenge_sav erős_bázissal alkotott sójának</span> vizes oldata &#10140; pl. CH<sub>3</sub>COOH + CH<sub>3</sub>COONa</li>
+		<li><span class="WHITE">gyenge_bázis</span> és <span class="WHITE">ugyanezen gyenge_bázis erős_savval alkotott sójának</span> vizes oldata &#10140; pl. NH<sub>3</sub> + NH<sub>4</sub>Cl</li>
+		<div> ––––––––––––––– </div>
+		<details><summary>pufferoldat funkciója?</summary><ul class="normal">
+			<li>erős sav és bázis <abbr title="vizes oldatra kifejtett">()</abbr> pH változtató hatását csökkenti</li>
+			<li>így az oldat pH értékét közel azonos szinten tartja <abbr title="bizonyos mértékig persze, tehát ha már igen sok erős savat teszek bele, akkor már nem">&#10045;</abbr></li>
+		</ul></details>
+		<div> ––––––––––––––– </div>
+		<details><summary>pufferoldat létrehozásának módjai?</summary><ul class="normal">
+			<li>gyenge_sav + erős_bázis (vagy gyenge_bázis + erős_sav)</li>
+			<li>gyenge_sav + konjugált-bázisát összeöntöm (vagy gyenge_bázis + konjugált_savát) &#10140; pl. ecetsav + nátrium-acetát</li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes" id="ok.947"><summary><strong>Az ecetsav/acetát és az ammónia/NH<sub>4</sub>Cl puffer működési elve?</strong> (HP)</summary><ul class="normal">
+		<div style="float:right;max-width:25%">
+			<img src="images/pfrbvztrkcpld.png">
+		</div>
+		<div> –––– kiinduló helyzet –––– </div>
+		<li>beleteszek 0,1mol ecetsavat</li>
+		<li>ecetsavat Ks = 10<sup>-4,7</sup></li>
+		<li>ebből disszociációfoka kiszámolva másodfokú egyenlettel &#10140; c * &alpha;<sup>2</sup>/1-&alpha; = Ks &#10140; &alpha; = 0,01425 <abbr title="víz disszociációjából származó protontól eltekintettem!">&#10045;</abbr></li>
+		<li>ez azt jelenti, hogy lesz [CH<sub>3</sub>COO<sup>-</sup>] = 0,001425M [CH<sub>3</sub>COOH] = 0,098575M</li>
+		<div> –––– hozzáteszek 0,2mol nátrium-acetát –––– </div>
+		<li>só 100%ban disszociál &#10140; Na<sup>+</sup> nak további szerepe nincs</li>
+		<li>[CH<sub>3</sub>COO<sup>-</sup>] így 0,001425M-ról felugik 0,201425M-ra</li>
+		<li>Le Chatelier-elv érvénybe lép &#10140; [CH<sub>3</sub>COO<sup>-</sup>] nagy mértékben nőtt, ezért CH<sub>3</sub>COO<sup>-</sup> egy része elkezd asszociálni, hogy annyira mégse nőljön a számuk</li>
+		<li>ugyanis a gyenge_sav savi konstansa nem változhat</li>
+		<li>azonban az CH<sub>3</sub>COO<sup>-</sup> csak kevesebb, mint 0,001425M-nyi fog visszaállni CH<sub>3</sub>COOH-ra</li>
+		<li><span class="Important">ugyanis ha 0,001425M-nyi CH<sub>3</sub>COO<sup>-</sup> visszaállna, akkor az [CH<sub>3</sub>COO<sup>-</sup>] = 0,2 a [CH<sub>3</sub>COOH]=0,1 és a [H<sup>+</sup>] = 10<sup>-7</sup> &#10140; Ks ilyenkor már túl kicsi lenne 2·10<sup>-7</sup></span></li>
+		<div> –––– ezután hozzátéve erős_savat pl. HCl –––– </div>
+		<li><span class="WHITE">1</span> HCl 100% disszociál &#10140; nő a [H<sup>+</sup>]</li>
+		<li>ennek következménye, hogyha nem történne változás, akkor a vízionszorzat és az ecetsav diszzociációs_konstansának értéke is megváltozna, ami nem történhet meg</li>
+		<li><span class="WHITE">2</span> ezért két folyamat indul, meg melyek közül az ecetsavé lesz igazából jelentős <abbr title="mert az erősebb sav?">!?</abbr></li><ul>
+			<li><span class="WHITE">KÉP</span> csökkeni fog az [CH<sub>3</sub>COO<sup>-</sup>], és nőni [CH<sub>3</sub>COOH]</li>
+			<li>vízben is közben az ionok összeállnak vízmolekulává</li>
+			<li><abbr title="bizonyítást lásd lentebb">#1</abbr> (mindkét folyamat lejátszódik mindenképpen!!)</li>
+		</ul>
+		<li>tehát a <span class="Important">hozzáadott HCl a kémhatást nem tolja nagyon savasra</span>, mert a hidrogénionok egy részét az acetátion "közömbösíti" <abbr title="tehát a sósav a kémhatást kevésbé tolja savasra, mintha a víz egyedül dolgozott volna">&#10045;</abbr></li>
+		<li><abbr title="bizonyítást lásd lentebb">#2</abbr> ettől függetlenül a kémhatás mindenképp a savas irányába tolódik, csak sokkal kisebb mértékben mintha nem lett volna benne acetátion</li>
+		<li>(bizonyítások)</li><ul>
+			<li><span class="WHITE">#1</span> mivel a [H+] mindenképpen nő (#2), ezért mindkét konstans megtartása érdekében kell változás mind2nél</li>
+			<li><span class="WHITE">#2</span> azért tolódik savas felé biztosan a pH ettől még, mert amikor bekerül HCl, nő a hidrogénion koncentráció</li><ul>
+				<li>ha az acetátion az összeset közömbösítené ami bekerült, akkor az <span class="WHITE">KÉP</span>-nél annyi változás történne csak, hogy acetátion csökken, ecetsav nő, hidrogénion nem változik, aminek következményeként csökken a konstans</li>
+				<li>víznél ugyanez</li>
+			</ul>
+		</ul>
+		<li>összefoglalva &#10140; <span class="Important">csökkenti az erős_sav pH csökkentő hatását</span> <abbr title="kisebb, mintha a HCl-t pusztán vízbe tettem volna">&#10045;</abbr></li>
+	</ul></details>
+	<details class="kerdes" id="ok.948"><summary><strong>Pufferkapacitás?</strong> (HP)</summary><ul class="normal">
+		<div> –––––––––––––––––––––––– </div>
+		<details><summary>defincíció? mértékegysége?</summary><ul class="normal">
+			<li>egyértékű erős_sav(erős_bázis) mennyisége mólban, amely 1l puffer_oldat pH értékét 1 pH egységgel megváltoztatja</li>
+			<li>mértékegysége &#10140; mol/l</li>
+		</ul></details>
+		<div> –––––––––––––––––––––––– </div>
+		<details><summary>mitől függ?</summary><ul class="normal">
+			<li>puffer-alkotóinak koncentrációjának összegével <abbr title="minél nagyobb a koncentráció, annál nagyobb a kapacitás">arányos</abbr></li>
+			<li>puffer-alkotóinak koncentrációjának arányától</li><ul>
+				<li>adott koncentráción akkor a legnagyobb, ha arányuk 1:1 &#10140; ilyenkor a pH megegyezik a pKs-al <abbr title="pl. ecetsav esetében, ha a bázis(acetátion):sav(ecetsav) arány 1:1, akkor a pH 4,7">KÉP</abbr> <abbr title="ugyanis HH-egyenletben a képletre gondoljak csak!!!">mindig pKs, sose pKb!!!</abbr></li>
+				<li>pl. <span class="WHITE">KÉP</span> &#10140; ecetsav esetében, ha a <abbr title="acetátion">bázis</abbr>:<abbr title="ecetsav">sav</abbr> arány 1:1, akkor a pH 4,7</li>
+			</ul>
+			<img src="images/pfrkpctdgrm.png">
+		</ul></details>
+	</ul></details>
+ </div>
  <div><div class="title">Pufferek. Henderson-Hasselbalch egyenlet.</div>
 	<details class="kerdes" id="ok.91"><summary>Henderson-Hasselbalch egyenlet levezetése?</summary><ul class="normal">
 		<li>sav/bázis esetén ugyanúgy alkalmazható!!!!!!!!!!!!!!!!!!! (pKb = 14-pKs elven le van az is vezetve)</li>
@@ -1842,10 +2079,9 @@
 	<details class="kerdes" id="ok.155"><summary><span class="Vocab">JR</span> Ha van egy oldat, mely 0,2M ecetsavat és 0,1M nátrium-acetátot tartalmaz, akkor miért számolhatok ezen értékekkel a Henderson-Hasselbalch egyenletnél. Tehát miért tehetem meg azt, hogy [puffer-bázis] helyére behelyettesítem 0,1M és [puffer-sav] helyére behelyettesítem 0,2M? Hiszen ha belegondolok pl. ecetsav-molekula koncentráció nem lesz 0,2M, mert egy része disszociál (3okot írjak!)?</summary><ul class="normal">
 		<li>azért egyszerűsíthetünk így, mert...</li>
 		<div><span class="WHITE">#</span> alapból olyan kismértékű a gyenge-sav(ecetsav) disszociációja, hogy elhanyagolható lenne <abbr title="pl. van 1000db ecetsav, és abból 1fog disszociálni, akkor az kb tökmind1">&#10045;</abbr></div>
-		<li>emelett ha hozzáöntöm a sót, akkor további 2dolog lesz kedvező az egyszerűsítés szempontjából</li><ul>
-			<div><span class="WHITE">#</span> méginkább visszaszorítja a gyenge_sav disszociációját</div>
-			<div><span class="WHITE">#</span> a gyenge_bázisok (acetátionok) egy része visszasszociál gyenge_savvá (ecetsavvá) <abbr title="tehát, ha eddig mondjuk 1000db ecetsavból 5db disszociált, viszont az 500db acetátionnól meg 2db asszociál, akkor még inkább enyhíti az alapból elenyésző eltérést">&#10045;</abbr></div>
-		</ul>
+		<div><span class="WHITE">#</span> acetátion amit hozzáöntök sosem fog tudni olyan mértékben asszociálni (lásd 99), hogy az ecetsav olyan nagy mennyiségben legyen acetátionhoz képest, mintha 0,3M ecetsavat tettem volna be</div>
+		<div><span class="WHITE">#</span> emelett az acetátion méginkább visszaszorítja a gyenge_sav disszociációját</div>
+		<div><abbr title="tehát, ha eddig mondjuk 1000db ecetsavból 5db disszociált, viszont az 500db acetátionnól meg 2db asszociál, akkor még inkább enyhíti az alapból elenyésző eltérést">&#10045;</abbr></div>
 		<div>-------------</div>
 		<li>[puffer-SAV] = 0,2M - [x] + [y] = [CH3COOH]</li>
 		<li>[puffer-BÁZIS] = 0,1M + [x] - [y] = [CH3COO-]</li>
@@ -1988,6 +2224,76 @@
 <!----></div></details>
 
 <!----><details><summary class="phase">15. Fiziológiai jelentőségű pufferek. A szénsav/hidrogén-karbonát puffer.</summary><div class="normal">
+ <div><div class="title">Fiziológiai jelentőségű pufferek. A szénsav/hidrogén-karbonát puffer.</div>
+	<details class="kerdes" id="ok.943"><summary><strong>Fiziológiai jelentőségű pufferek?</strong> (HP)</summary><ul class="normal">
+		<div style="float:right;max-width:25%">
+			<img src="images/fzlgspfrdszrk.png">
+			<img src="images/bkrntpfrgrfkn.png">
+			<img src="images/fszftdgrmm.png">
+		</div>
+		<div> ––––––––––––––– </div>
+		<li>vér pH-ja 7,35-7,45</li>
+		<li>kémiai pufferek így &#10140; mivel grafikonokat(foszforsav+bikarbonát) <span class="Important">felrajzolva</span> ezek vannak ilyen pH-n</li><ul>
+			<li>szénsav &rlarr; bikarbonátion <abbr title="hidrogén-karbonátion">(=)</abbr></li>
+			<li>dihidrogén-foszfát &rlarr; hidrogén-foszfát</li>
+			<li>hisztidin(aminosav)</li>
+		</ul>
+		<div> ––––––––––––––– </div>
+		<details><summary>vér pH-jának normálistól eltérése?</summary><ul class="normal"><table>
+			<tr><th></th>   <th>acidózis pH &lt; 7,35</th>   <th>alkalózis pH > 7,45</th></tr>
+			<tr><td>respiratorikus(légzési)</td>   
+				<td>
+					<li>oka &#10140; kevés CO<sub>2</sub> távozik (pl. lassan veszel levegőt)</li>
+					<li>következménye &#10140; pCO2 növekszik &#10140; [CO<sub>2</sub>(aq)] növekszik &#10140; [H<sub>2</sub>CO<sub>3</sub>] növekszik &#10140; pH csökken</li>
+				</td>   
+				<td>
+					<li>oka &#10140; sok CO<sub>2</sub> távozik (gyorsan lihegsz)</li>
+					<li>következménye &#10140; pCO2 csökken &#10140; [CO<sub>2</sub>(aq)] csökken &#10140; [H<sub>2</sub>CO<sub>3</sub>] csökken &#10140; pH nő</li>
+				</td>   
+			</tr>
+			<tr><td>metabolikus</td>   
+				<td>szerves_savak (pl.tejsav) koncentrációja növekszik pl. inzulinhiány miatt &#10140; pH csökken</td>   
+				<td><abbr title="ilyen is van, de kihagytam">&#10045;</abbr></td>   
+			</tr>
+		</table></ul></details>
+		<div> ––––––––––––––– </div>
+		<details><summary>pH és ingerelhetőség közti öszefüggés?(ember)</summary><ul class="normal">
+			<li>alacsony pH &#10140; alacsony ingerelhetőség</li>
+			<li>magas pH &#10140; magas ingerelhetőség</li>
+		</ul></details>
+		<div> ––––––––––––––– </div>
+		<details><summary>milyen pH halálos?</summary><ul class="normal">
+			<li>7 > pH</li>
+			<li>pH > 7,8</li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes" id="ok.944"><summary><strong>A szénsav/hidrogén-karbonát puffer?</strong> (HP)</summary><ul class="normal">
+		<div style="float:right;max-width:25%">
+			<img src="images/krbntpfrk.png">
+			<img src="images/cbntrttn.png">
+		</div>
+		<li>[HCO<sub>3</sub><sup>-</sup>] &#10140; vérben lévő koncentrációja</li>
+		<li>[H<sub>2</sub>CO<sub>3</sub>] &#10140; vérben lévő koncentrációja</li>
+		<li>[CO<sub>2</sub>(aq)] &#10140; vérben lévő CO<sub>2</sub> koncentrációja , mely H<sub>2</sub>CO<sub>3</sub> és CO<sub>2</sub> formában is jelen van</li>
+		<li>pCO<sub>2</sub>(g) &#10140; tüdőben lévő CO<sub>2</sub> parciális nyomása</li>
+		<div>~~~~~~~~~~~~~~~~~~~~~~~~~</div>
+		<li>a pCO<sub>2</sub>(g) arányos a [CO<sub>2</sub>aq] -val &#10140; f=0,03M/Hgmm</li>
+		<div>/tehát ha a pCO<sub>2</sub>=5Hgmm, akkor [CO<sub>2</sub>(aq)] = f*pCO2 = 0,15M</div>
+		<li>[CO<sub>2</sub>(aq)] tartalmaz 680:1 arányban CO<sub>2</sub>:H<sub>2</sub>CO<sub>3</sub> molekulát</li><ul>
+			<li>tehát ha CO<sub>2</sub>(aq) = 0,681M, akkor CO<sub>2</sub>=0,68 és H<sub>2</sub>CO<sub>3</sub>=0,001</li>
+			<li>(ugyanis itt enzim-reakció megy végbe elvileg) <abbr title="gyakjegyzetem">&#10045;</abbr></li>
+		</ul>
+		<div>~~~~~~~~~~~~~~~~~~~~~~~~~</div>
+		<li><span class="Important">1</span> H<sub>2</sub>CO<sub>3</sub> pKs=3,6 &#10140; felirom az egyenletet</li>
+		<li><span class="Important">2</span> azonban H<sub>2</sub>CO<sub>3</sub> helyett CO<sub>2</sub>(aq)-t irok alulra</li>
+		<li>igy lennt 681szeresére nőtt az érték, ezért pKs helyére beirok egy "látszólagos" pKs'-t</li>
+		<li>pKs' = pKs - log(1/681) = 3,6+2,8 = 6,4</li>
+		<li>ez 25°ra vonatkozott, igy átirva 37°ra már csak <span class="Important">6,1</span></li>
+		<li><span class="Important">amikor kiszámolom és megkapom, hogy bikarbonát/szénsav arány 20:1, akkor szénsav alatt CO<sub>2</sub>(aq) van értve!!!!!!!!!!</span></li>
+		<div>~~~~~~~~~~~~~~~~~~~~~~~~~</div>
+		<li>jelenleg használt műszerek általában a vér pH- és pCO<sub>2</sub>-értékét határozzák meg, és ebből számítják a [HCO<sub>3</sub><sup>–</sup>] értékét &#10140; ez az egész levezetésnek az oka</li>
+	</ul></details>
+ </div>
  <div><div class="title">Fiziológiai jelentőségű pufferek.</div>
 	<details class="kerdes" id="ok.179"><summary>vér pH-ja?</summary><ul class="normal">
 		<li>7,35-7,45</li>
@@ -2010,7 +2316,7 @@
 	</ul></details>
 	<details class="kerdes" id="ok.180"><summary>fiziológiai jelentőségű puffer feltétele?</summary><ul class="normal">
 		<li>puffertartományba essen a pH=7,4</li>
-		<li>(karbonát illetve hisztadinnál nem teljesül konkrétan, de nagyjából passzolnak)</li>
+		<li>(karbonát illetve hisztidinnél nem teljesül konkrétan, de nagyjából passzolnak)</li>
 	</ul></details>
 	<details class="kerdes" id="ok.185"><summary>vér pH-jának normálistól eltérése?</summary><ul class="normal">
 		<table>
@@ -2072,7 +2378,7 @@
  </div>
 <!----></div></details>
 
-<!----><details><summary class="phase">16. Sóoldatok pH-ja: savanyú sók kémhatása a NaHCO<sub>3</sub>, Na<sub>2</sub>HPO<sub>4</sub> és NaH<sub>2</sub>PO<sub>4</sub> példáin.</summary><div class="normal"><div><div class="title"> </div>
+<!----><details><summary class="phase">16. Sóoldatok pH-ja: savanyú sók kémhatása a NaHCO<sub>3</sub>, Na<sub>2</sub>HPO<sub>4</sub> és NaH<sub>2</sub>PO<sub>4</sub> példáin.</summary><div class="normal"><div><div class="title">Sóoldatok pH-ja: savanyú sók kémhatása a NaHCO<sub>3</sub>, Na<sub>2</sub>HPO<sub>4</sub> és NaH<sub>2</sub>PO<sub>4</sub> példáin.</div>
 	<details class="kerdes" id="ok.715"><summary>só definíció?(HP)</summary><ul class="normal">
 		<li>semleges töltésű vegyület, mely kationokból és anionokból áll</li>
 	</ul></details>
@@ -2098,7 +2404,7 @@
 		<li><span class="Important">savanhidrid + bázisanhidrid = só</span></li>
 		<div>(mészkő CaCO<sub>3</sub> &#10140; égetés &#10140; égetett mész CaO &#10140; +víz &#10140; kalcium-hidroxid Ca(OH)2)</div>
 	</ul></details>
-	<details class="kerdes" id="ok.92"><summary>sóoldatok pH-ja?(HP)</summary><ul class="normal">
+	<details class="kerdes" id="ok.92"><summary><strong>sóoldatok pH-ja?</strong>(HP)</summary><ul class="normal">
 		<li><span class="Important">ez EGYÉRTÉKŰ savak és bázisok által létrehozott sóknál van így!!!!</span></li>
 		<table>
 			<tr><th>oldat kémhatása</th>
@@ -2162,7 +2468,7 @@
 			</ul>
 		</ul></details>
 	</ul></details>
-	<details class="kerdes" id="ok.304"><summary>savanyú sók kémhatása a NaHCO<sub>3</sub>, Na<sub>2</sub>HPO<sub>4</sub> és NaH<sub>2</sub>PO<sub>4</sub> példáin.?(HP)</summary><ul class="normal">
+	<details class="kerdes" id="ok.304"><summary><strong>savanyú sók kémhatása a NaHCO<sub>3</sub>, Na<sub>2</sub>HPO<sub>4</sub> és NaH<sub>2</sub>PO<sub>4</sub> példáin?</strong>(HP)</summary><ul class="normal">
 		<div style="float:right;max-width:25%">
 			<img src="images/fszftdgrmm.png">
 			<img src="images/bkrntpfrgrfkn.png">
@@ -2212,7 +2518,56 @@
 	</ul></details>
 <!----></div></div></details>
 
-<!----><details><summary class="phase">17. Komplex vegyületek: központi ion, ligandumok, koordinációs szám. Komplexek stabilitása. Kelát-komplexek és gyakorlati alkalmazásuk a komplexometriás titrálásban.</summary><div class="normal"><div><div class="title">komplex vegyületek <abbr title="koordinációs-vegyületek">(=)</abbr></div>
+<!----><details><summary class="phase">17. Komplex vegyületek: központi ion, ligandumok, koordinációs szám. Komplexek stabilitása. Kelát-komplexek és gyakorlati alkalmazásuk a komplexometriás titrálásban.</summary><div class="normal">
+ <div><div class="title">Komplex vegyületek: központi ion, ligandumok, koordinációs szám. Komplexek stabilitása. Kelát-komplexek és gyakorlati alkalmazásuk a komplexometriás titrálásban.</div>
+	<details class="kerdes" id="ok.940"><summary><strong>Komplex vegyületek: központi ion, ligandumok, koordinációs szám?</strong> (HP)</summary><ul class="normal">
+		<img src="images/fecn6képlt.png">
+		<div> ––––––– komplex_vegyület ––––––––– </div>
+		<li>központi fémion/fématom és a hozzá <abbr title="datív">(=)</abbr>koordinatív-kötéssel kapcsolódó ligandumok</li>
+		<li>pl. [Fe(CN)<sub>6</sub>]<sup>3-</sup></li>
+		<div> ––––––– koordinációs_szám ––––––––– </div>
+		<li>központi fématomhoz/fémionhoz kapcsolódó <abbr title="koordinatív">(=)</abbr>datív-kötések száma</li>
+		<li>[Fe(CN)<sub>6</sub>]<sup>3-</sup> koordinációs száma 6</li>
+		<div>(1fogú ligandumok esetében a ligandumok számával megegyezik, tehát kelát-komplexeknél nem)</div>
+		<div> –––––––––––––––– </div>
+	</ul></details>
+	<details class="kerdes" id="ok.941"><summary><strong>Kelát-komplexek és gyakorlati alkalmazásuk a komplexometriás titrálásban?</strong> (HP)</summary><ul class="normal">
+		<div style="float:right;max-width:40%">
+			<img src="images/edta.png">
+			<img src="images/fgkszmfklt.png">
+			<img src="images/cuedta.png">
+		</div>
+		<div> ––––––– kelát-komplex ––––––––– </div>
+		<li>olyan komplex, melyben többfogú ligandum van &#10140; azaz több datív-kötéssel kapcsolódik egyes liganduma</li>
+		<div> ––––––– ligandum hány fogú? ––––––––– </div>
+		<li>attól függ, hány datív-kötéssel kapcsolódik a központi fématom/fémion-hoz</li>
+		<li>pl. [Fe(CN)<sub>6</sub>]<sup>3-</sup> &#10140; CN<sup>-</sup> 1fogú</li>
+		<li>pl. [Cu<abbr title="EthyleneDiamineTetraAcetic">EDTA</abbr>]<sup>2-</sup> &#10140; EDTA 6fogú <span class="Important">RAJZ</span></li>
+		<li>(EthyleneDiamineTetraAcetic)</li>
+		<div> ––––––– gyakorlati alkalmazásuk komplexometriás titrálásnál <span class="Important">RAJZ</span> ––––––––– </div>
+		<li>EDTA a mérőoldat</li>
+		<li>indikátorok is komplexképző vegyületek (murexid és eriokróm-fekete-T)</li>
+		<li>ennek segítségével lehet meghatározni fémion koncentrációját pl. Cu<sup>2+</sup> &#10140; továbbiakban erről lesz szó</li>
+		<li>kiindulóállapot &#10140; Cu<sup>2+</sup>-oldat és NH<sub>4</sub>OH-oldat összeöntése</li>
+		<li>utóbbi azért kell, hogy lúgos legyen a kémhatás és ennek következtében EDTA disszociáljon, és 6fokú ligandum legyen</li>
+		<li>ugyanis így nagyobb lesz a stabilitási_konstansa, mint a murexidnek(indikátor)</li>
+		<li>mivel nagyobb az EDTA stabilitási állandója, így ellopja a rézionokat a murexid-Cu2+(~rózsaszín) komplexből és ismét alapformába kezd átállni az indikátor, aminek más a színe(~lila)</li>
+		<li>(EDTA-Cu színtelen!)</li>
+		<div> ––––––– kelát komplexek biológiai jelentősége ––––––––– </div>
+		<li>hemoglobin is ilyen (porfirinváz + Fe<sup>2+</sup>/Fe<sup>3+</sup> <span class="Important">RAJZ</span>!!)</li>
+		<li>EDTA mivel megköti a fémionokat véralvadásgátló</li>
+		<div> –––––––––––––––– </div>
+	</ul></details>
+	<details class="kerdes" id="ok.942"><summary><strong>Komplexek stabilitása?</strong> (HP)</summary><ul class="normal">
+		<img src="images/kplxstblts.png">
+		<li><span class="WHITE">1</span> komplex</li>
+		<li><span class="WHITE">2</span> komplex képződése</li>
+		<li><span class="WHITE">3</span> K = stabilitási_konstans = disszociációs_konstans reciproka</li><ul>
+			<li><span class="Important">ettől függ!!</span> minél nagyobb, annál stabilabb</li>
+		</ul>
+	</ul></details>
+ </div>
+ <div><div class="title">komplex vegyületek <abbr title="koordinációs-vegyületek">(=)</abbr></div>
 	<details class="kerdes" id="ok.527"><summary>komplex vegyület felépítése? 1pl?</summary><ul class="normal">
 		<li>központi fémion/fématom és a hozzá <abbr title="datív">(=)</abbr>koordinatív-kötéssel kapcsolódó ligandumok</li>
 		<li>pl. [Fe(CN)<sub>6</sub>]<sup>3-</sup> <a href="images/fecn6képlt.png">(kép)</a></li>
@@ -2259,7 +2614,8 @@
 			<li><span class="Important">ettől függ!!</span> minél nagyobb, annál stabilabb</li>
 		</ul>
 	</ul></details>
-<!----></div></div></details>
+ </div>
+<!----></div></details>
 
 <!----><details><summary class="phase">18. A galvánelemek. Elektromotoros erő számítása. Kémiai reakciók a galvánelem működése során. <br>19. Az elektródpotenciál és a standard (redukciós) potenciál fogalma. A Nernst-egyenlet és az elektródpotenciál nagyságát meghatározó tényezők. Az egyensúlyi állandó, a redoxpotenciál és a szabadenergia változás összefüggése.</summary><div class="normal">
  	<details><summary><span class="Important">SZÖVEG</span></summary><ul class="normal">
@@ -2589,6 +2945,7 @@
 		<li>anyagi_minőségtől</span> &#10140; z, <span class="Important">de &epsilon;° már nem!!</span></li>
 		<li>állapotjelzők esetében itt pedig a <span class="Important">koncentráció helyett a koncentrációk arányától függ!</span></span></li>
 		<li><span class="WHITE">c1 > c2</span> hiszen nyilványvaló, hogy a nagyobb koncentrációjú fog redukálódni (hogy csökkenjen koncentrációja), így az lesz a katód</li>
+		<li><span class="MISS">képet fix! második anód!</span></li>
 		<img src="images/gy12_emeképlet.png">
 	</ul></details>
 	<details class="kerdes" id="ok.405"><summary>redox-reakciója?</summary><ul class="normal">
@@ -2604,11 +2961,8 @@
 		<li>egy ismeretlen koncentrációjú [H<sup>+</sup>] oldat koncentrációját akarom meghatározni</li>
 		<li>készítek belőle elektródot (teszek bele Pt-lemezt + H<sub>2</sub>(g))</li>
 		<li>majd összekötöm <abbr title="fémes vezetővel">&#10045;</abbr> egy standard hidrogén-elektróddal <abbr title="vagy legalábbis ismert koncentrációjúval (de standarddel folytattam a kidolgozást az egyszerűség kedvéért)">&#10045;</abbr></li>
-		<li>így létrehoztam egy koncentrációs elemet, ennek képlete 0,06/z*log(c<sub>red</sub>/c<sub>ox</sub>)</li>
-		<li>Z=1 &#10140; 0,06*log(c<sub>ox</sub>/c<sub>red</sub>)</li>
-		<li>a töményebb redukálódik (hisz annak a koncentrációja fog csökkenni, hisz ez koncentrációkiegyenlítődés) &#10140; szinte tutti, hogy a standard lesz a katód, mert a pH csak nem lesz kisebb mint 1 (de ha mégse, akkor a mérés során az EME előjele alapján meghatározható)</li><ul>
-			<li>ha a standard volt a katód &#10140; 0,06*log(H+/1) = 0,06*log[H+]</li>
-		</ul>
+		<li>így létrehoztam egy koncentrációs elemet</li>
+		<li>z=1</li>
 		<li>elektródpotenciálok</li><ul>
 			<li>standardé nulla</li>
 			<li>ismeretlené </li><ul>
@@ -2619,7 +2973,7 @@
 		</ul>
 		<li>megmérve az elektromotoros erőt, a Nerst-egyenlettel meghatározható az ismeretlen koncentráció</li>
 		<li>ugyanis EME = &epsilon;<sub>katód</sub> - &epsilon;<sub>anód</sub></li>
-		<li>mért EME előjele alapján meghatározom, hogy melyik volt a katód <abbr title="szinte tutti, hogy a standard, mert amelyiknek nagyobb a koncentrációja az lesz katód jelen esetben, pH pedig nem lesz kisebb mint 1 valószínűleg">&#10045;</abbr></li><ul>
+		<li>mért <span class="Important">EME előjele alapján</span> meghatározom, hogy melyik volt a katód <abbr title="szinte tutti, hogy a standard, mert amelyiknek nagyobb a koncentrációja az lesz katód jelen esetben, pH pedig nem lesz kisebb mint 1 valószínűleg">&#10045;</abbr></li><ul>
 			<li>ha katód a standard, akkor EME = 0 - &epsilon; = 0 – (-0,06pH) = 0,06pH</li>
 			<li>ha katód az ismeretlen, akkor EME = (-0,06pH) - 0 = -0,06pH</li>
 		</ul>
@@ -2685,6 +3039,45 @@
 <!----></div></details>
 
 <!----><details><summary class="phase">21. Redoxelemek. <span class="MISS">Standard redoxpotenciál és annak összefüggése az oxidációval és redukcióval.</span> Biológiailag fontos reverzibilis és irreverzibilis redox rendszerek.</summary><div class="normal">
+ <div><div class="title">Redoxelemek. Standard redoxpotenciál és annak összefüggése az oxidációval és redukcióval. Biológiailag fontos reverzibilis és irreverzibilis redox rendszerek.</div>
+	<details class="kerdes" id="ok.939"><summary><strong>Redoxelemek?</strong> (HP)</summary><ul class="normal">
+		<details><summary>redoxelem alkotói?</summary><ul class="normal">
+			<li>2 redox-elektród</li>
+		</ul></details>
+		<details><summary>redox-elektród &#10140; redox mire utal? 1példa?</summary><ul class="normal">
+			<li>anyagnak mind az oxidált, mind a redukált formája egyaránt megtalálható az oldatban <abbr title="tehát a redukált forma (pl. Fe2+ nem külön lemez, hanem az is az oldatban van">&#10045;</abbr></li>
+			<li>pl. Fe<sup>2+</sup>(redukált) és Fe<sup>3+</sup>(oxidált) van az oldatban, köztük játszódik le az oxidáció vagy redukció, platina lemez<abbr title="képen kisebb akart lenni, de nemszámít">&#10045;</abbr> pedig szállítja az elektronokat <div class="mirror">&#10140;</div> az, hogy oxidáció/redukció lesz-e, a partner elektródtól függ</li>
+			<li><abbr title="tehát nem arról van szó, hogy redox-reakció elven működik, hisz többi elektród típusra(elsőfajú_fém/gáz) is az igaz">&#10045;</abbr> <abbr title="többi elektród típusra(elsőfajú_fém/gáz) nem igaz, hogy mind2 forma megtalálható az oldatban(hiszen csak egyik)">&#10045;</abbr></li>
+			<img src="images/redeoxelektród.png">
+		</ul></details>
+		<details><summary>koncentrációtól hogyan függ a redoxpotenciál?</summary><ul class="normal">
+			<img src="images/Nerst.png">
+			<li>csak az arányuk számít</li>
+			<div>(ha 1M Fe3+ és 0,5M Fe2+ van az ugyanakkora EME lesz, mintha 0,0001M Fe3+ és 0,00005M Fe2+ lenne)</div>
+			<div>(azért csak redox-elektródnál mondható ez, mert gázelektród + fémelektród esetében az redox-pár egyik tagja mindig 1)</div>
+			<div>(koncentrációs elem esetében az EME ami a koncentrációk arányától függ, itt viszont az egyes elektródpotenciál függ attól!)</div>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes" id="ok.938"><summary><strong>Biológiailag fontos reverzibilis és irreverzibilis redox rendszerek?</strong> (HP)</summary><ul class="normal">
+		<div style="float:right;max-width:40%">
+			<img src="images/rdxptkoncen.png">
+		</div>
+		<li>reverzibilis, pl. NAD<sup>+</sup> + H<sup>-</sup> <div class="mirror">&#10140;</div>&#10140; NADH</li>
+		<li>irreverzibilis, pl. glükóz + foszfát &#10140; glükóz-6-foszfát</li>
+		<div> –––––––––––––––––––––––––––––––––––––––– </div>
+		<li>sejtlégzés részét képező glikolízis és citromsav-ciklus kofaktora</li>
+		<li>reverzibilis, tehát redukálódhat és oxidálódhat is &#10140; koncentrációarány fv-ében mutatnám be pl. (lehet hőmérséklet is, illetve szvsz pH aminek a megváltozása elég, hogy megfordítsa a folyamatot)</li>
+		<div><strong>pl. <span class="WHITE">piruvát + 2H &#10140; laktát</span> (balról jobbra redukció!!!! hiszem C-atom oxidációs száma 2vel csökken)</strong></div>
+		<li>&epsilon;<sup>0</sup><sub>piruvát-laktát</sub> > &epsilon;<sup>0</sup><sub>NAD<sup>+</sup>-NADH</sub></li>
+		<li>elektródpotenciál (jelen esetben redoxpotenciál elnevezés szebb) akkor lesz egyenlő standardpotenciállal, ha c<sub>ox</sub> = c<sub>red</sub> (redox-elektródnál csak a koncentráció aránytól függ)</li>
+		<li>ez azt jelenti, hogyha a c<sub>piruvát</sub> = c<sub>laktát</sub> és c<sub>NAD<sup>+</sup></sub> = c<sub>NADH </sub>, akkor a piruvát redukálódik laktáttá, míg NADH oxidálódik NAD<sup>+</sup>-á</li>
+		<li>hiszen amely "elektród" redoxpotenciálja nagyobb, az redukálódik!! (lásd 18-19tétel)</li>
+		<li><span class="Important">azonban!</span> ha a 2 redoxpotenciál nem egyezik meg a standardpotenciállal, tehát a koncentráciarányok másmilyenek, történhet fordítva is</li>
+		<li>tehát pl. ha <span class="WHITE">c<sub>piruvát</sub> / c<sub>laktát</sub> &lt; ~0,5</span> és <span class="WHITE">c<sub>NAD<sup>+</sup></sub> / c<sub>NADH</sub> > ~1,5</span></li>
+		<div><span class="white">&#9775;</span> ha épp kb. ~0,5 és ~1,5 a koncentráció-arányok, akkor van egyensúly (de ez lehet más koncentráció arány esetében (pl. 0,2 vs 1) is természetesen, csak ezt könnyű megjegyezni))</div>
+		<div><span class="white">&#9775;</span> tehát ha a laktáz/piruvát esetében nagyon sok redukált van, NAD+/NADH estében pedig nagyon sok oxidált, akkor értelemszerűen megfordul a folyamat (logikus, ha végiggondolja az ember)</div>
+	</ul></details>
+ </div>
  <div><div class="title">redoxelemek</div>
 	<details class="kerdes" id="ok.629"><summary>redoxelem alkotói?</summary><ul class="normal">
 		<li>2 redox-elektród</li>
@@ -2765,6 +3158,83 @@
 <!----></div></details>
 
 <!----><details><summary class="phase">22. Reakcióhő, égéshő, képződéshő, oldáshő fogalma. Hess tétele és alkalmazása. Termokémiai egyenletek. Kötési energia és képződéshő összefüggése.</summary><div class="normal">
+ <div><div class="title">Reakcióhő, égéshő, képződéshő, oldáshő fogalma. Hess tétele és alkalmazása. Termokémiai egyenletek. Kötési energia és képződéshő összefüggése.</div>
+	<details class="kerdes" id="ok.932"><summary><strong>Reakcióhő, égéshő, képződéshő, oldáshő fogalma?</strong> (HP)</summary><ul class="normal">
+		<div> –––––––––––––––––––– </div>
+		<details><summary>reakcióhő</summary><ul class="normal">
+			<li>kémiai folyamatot kísérő hőváltozás &#10140; tehát a Q(hő)</li>
+			<li>jele Q</li>
+			<li>Q = &Delta;H <abbr title="izobár reakciónál">&#10045;</abbr></li>
+			<li>típusai a reakciótól függően:</li><ul>
+				<li>égéshő</li>
+				<li>oldáshő</li>
+				<li>képződéshő</li>
+				<div>(mértékegységük már nem pusztán Joule)</div>
+			</ul>
+		</ul></details>
+		<div> –––––––––––––––––––– </div>
+		<details><summary>égéshő</summary><ul class="normal">
+			<li>hő, mely egy 1kg anyagból szabadul fel, mikor elég(oxigénnel reagál), ha a termékeket a kiindulási hőmérsékletre hűtjük vissza</li>
+			<div>(mértékegysége J/kg)</div>
+		</ul></details>
+		<div> –––––––––––––––––––– </div>
+		<details><summary>oldáshő</summary><ul class="normal">
+			<li>anyag oldódásakor energetikailag 2 esemény játszódik le – só oldódásának példáján bemutatva</li><ul>
+				<li>rácsenergia &#10140; az az energia, mely a kezdetei kötések felszakításához kell</li>
+				<li>hidratációs hő &#10140; a létrejött ionok körül kialakuló hidrátburok kialakulásakor energia szabadul fel</li>
+			</ul>
+			<li>oldáshő &#10140; hő, melyet átad 1mol anyag az oldódása során a környezetnek</li>
+			<li>ha a rácsenergia nagyobb akkor endoterm a reakció (oldáshő > 0), ha fordítva akkor exoterm (0 > oldáshő)</li>
+			<li>J/mol</li>
+		</ul></details>
+		<div> –––––––––––––––––––– </div>
+		<details><summary>képződéshő</summary><ul class="normal">
+			<li><span class="Important">olyan reakcióhő, mikor 1mól terméket létrehozunk az őt felépítő referenciaállapotú_elemekből</span></li>
+			<li>/tehát a terméket felépítő elemek standardek! (terméknek nem kell annak lenni, csak 1mól legyen!)</li>
+			<li>/képet just_read</li>
+			<img src="images/képződéshődef.png">
+		</ul></details>
+		<div> –––––––––––––––––––– </div>
+	</ul></details>
+	<details class="kerdes" id="ok.933"><summary><strong>Hess tétele és alkalmazása?</strong> (HP)</summary><ul class="normal">
+		<div style="float:right;max-width:40%">
+			<img src="images/hsttl.png">
+			<img src="images/képződéshő.png">
+		</div>
+		<li>belső_energiaváltozás és entalpiaváltozás független a reakcióúttól (hogy a reakció egy vagy több lépésben játszódik-e le)</li>
+		<li>csak a <span class="WHITE">termékek_entalpiája</span> - <span class="WHITE">reagens_entalpiája</span> szabja meg (ugyanez belső_energiánál)</li>
+		<li>(oka &#10140; extenzív állapotfüggvények)</li>
+		<div> –––––––––––––––––––– </div>
+		<li>szép és jó a tétel, csakhogy a rendszer entalpiája nem határozható meg sem a kiindulási, sem a végső állapotban</li>
+		<li>azonban kiválasztva egy viszonyítási_pontot, a probléma orvosolható</li>
+		<li>viszonyítási_pont &#10140; A és B (így C és D-t is!!) felépítő referenciaállapotú_elemek entalpiája</li>
+		<li>képződéshők</li><ul>
+			<li>pl. <abbr title="legstabilabb allotróp az elemnek">C(grafit)</abbr> + O<sub>2</sub>(gáz) &#10140; CO<sub>2</sub></li>
+			<li>CO<sub>2</sub> standard_képződéshője &Delta;H° = -393,5kJ/mol</li>
+			<li>O<sub>2</sub>(gáz) képződéshője &Delta;H° = 0kJ/mol (legstabilabb allotróp standard elemeké mindig 0!!!!!)</li>
+			<li>C(grafit) képződéshője &Delta;H° = 0kJ/mol</li>
+		</ul>
+		<li>pl. A=CO2 | B=H2O | C=H2CO3</li><ul>
+			<li>kiszámolható hogy <span class="WHITE">A + B &#10140; C </span>mennyi lesz a reakcióhő, ha meghatározom a 3komponens képződéshőjét, majd behelyettesítem</li>
+		</ul>
+		<li><span class="Important">reakcióhő = termékek_képződéshő - reagensek_képződéshője</span></li>
+		<li>tehát <span class="Important">Q = &Delta;H = &Sigma;&Delta;H<sub>termék</sub> - &Delta;H = &Sigma;&Delta;H<sub>reagens</sub></span></li>
+		<li>(&Sigma;&Delta;H<sub>termék</sub> = &Delta;H<sub>C</sub> + &Delta;H<sub>D</sub>)</li>
+		<li><abbr title="felmerülhet a kérdés, hogy a legstabilatt_allotrópú_standard_elemek entalpiája miért ugyanannyi? Erre előadásban adott választ (2016.10.05), de ne foglakozzak vele, csak el lett magyarázva.">&#10045;</abbr></li>
+	</ul></details>
+	<details class="kerdes" id="ok.934"><summary><strong>Kötési energia és képződéshő összefüggése?</strong> (HP)</summary><ul class="normal">
+		<details><summary>képződéshő meghatározásának módszerei</summary><ul class="normal">
+			<li>direkt_mérés</li>
+			<li>indirekt_mérés égéshő felhasználásával</li>
+			<li>egyéb adatokból, pl. kötési_energia</li>
+		</ul></details>
+		<div> –––––––––––––––––––– </div>
+		<details><summary>kötési_energiával képződéshő meghatározás lényege?</summary><ul class="normal">
+			<li>ha van egy vegyület, melyiknél sem a <span class="WHITE">direkt_mérés</span> sem az <span class="WHITE">indirekt_mérés égéshő felhasználásával</span> nem működik...</li>
+			<li>akkor még ha kiszámolom a vegyületben lévő kötések energiáját (ami felszakításukhoz szükséges), azzal nagyjából be lehet lőni a képződéshő értékét</li>
+		</ul></details>
+	</ul></details>
+ </div>
  <div><div class="title">Általános.</div>
 	<details class="kerdes" id="ok.217"><summary>reakcióhő mi? jele? mivel ekvivalens?</summary><ul class="normal">
 		<li>kémiai folyamatot kísérő hőváltozás &#10140; tehát a Q(hő)</li>
@@ -2929,6 +3399,81 @@
 <!----></div></details>
 
 <!----><details><summary class="phase">23. Exoterm és endoterm reakciók. Az entalpia, entrópia, szabadenergia és szabadentalpia fogalma. Reakciók entalpiaváltozása és számítása a standard képződési entalpiákból, illetve moláris égéshőből.</summary><div class="normal">
+ <div><div class="title">Exoterm és endoterm reakciók. Az entalpia, entrópia, szabadenergia és szabadentalpia fogalma. Reakciók entalpiaváltozása és számítása a standard képződési entalpiákból, illetve moláris égéshőből.</div>
+ 	<details class="kerdes" id="ok.930"><summary><strong>Exoterm és endoterm reakciók?</strong> (HP)</summary><ul class="normal">
+		<details><summary>reakciók energiaigényessége? hőcsere a rendszer-környezet között? rendszer entalpiaváltozása?</summary><ul class="normal">
+			<table>
+				<tr><th>endoterm</th>
+					<td>reakció energiaigényes</td>
+					<td>rendszer hőt vesz fel környezettől <span class="WHITE">Q > 0</span></td>
+					<td>rendszer entalpiája növekszik <span class="WHITE">&Delta;H > 0</span></td>
+				</tr>
+				<tr><th>exoterm</th>
+					<td>reakció energiafelszabadulással jár</td>
+					<td>rendszer hőt ad le környezetnek <span class="WHITE">0 > Q</span></td>
+					<td>rendszer entalpiája csökken <span class="WHITE">0 > &Delta;H</span></td>
+				</tr>
+			</table>
+		</ul></details>
+		<li>van egy pohár benne A és B anyag, szoba és a pohár(A és B) hőmérséklete 25°C</li>
+		<li>ezután 1 pillanat alatt lejátszódik a reakció, aminek következtében lesz C termék, és a pohár hőmérséklete 20°C</li>
+		<li>ezután felvesz Q hőt a környezettől(szoba) hogy visszaáljon 25°C-ra a hőmérséklete</li>
+		<li>amennyi Q hőt vett fel, annyival nőtt az entalpiája &Delta;H</li>
+		<li>reakció endoterm volt</li>
+	</ul></details>
+ 	<details class="kerdes" id="ok.929"><summary><strong>Az entalpia, entrópia, szabadenergia és szabadentalpia fogalma?</strong> (HP)</summary><ul class="normal">
+		<div> –––––––––––– <strong>entalpia</strong> –––––––––––– </div>
+		<li>extenzív + állapotfüggvény</li>
+		<li>H (J)</li>
+		<li>rendszer létrehozásához szükséges belső_energia, és a térfoglalásához szükséges térfogati_energia összege</li>
+		<li>(tehát a rendszer összes energiája, ami a belső_energián (a rendszer létrehozásához szükséges energia) kívül még azt az extra energiát is tartalmazza, ami ahhoz kell, hogy a V térfogatú rendszer számára helyet készítsünk egy állandó p nyomású környezetben)</li>
+		<li>H = U + pV &#10140; abszolút értéke nem határozható meg</li>
+		<details><summary>&Delta;H = Q <abbr title="izobár reakció esetében, ha a térfogati_munkán kívül nincs más munkavégzés">&#10045;</abbr> &#10140; hogyhogy csak a rendszer hőcseréjétől függ?</summary><ul class="normal">
+			<li>mivel ha csökken térfogata a rendszernek, tehát "munkát kap" &#10140; de épp ennyivel csökken az a térfogati_munka is így, ami térfoglaláshoz volt szükséges <abbr title="őszinte legyek, ezt most nemértem, de a matek része elég (egyenlőre nem pazarlok időt ennek a felfogására)">&#10045;</abbr></li>
+			<li> ~~~matematikailag~~~~ </li>
+			<li>H = U + pV</li>
+			<li>&Delta;H = &Delta;U + pV</li>
+			<li>&Delta;U = Q - pV</li>
+			<li>&Delta;H = Q</li>
+		</ul></details>
+		<div> –––––––––––– <strong>entrópia</strong> –––––––––––– </div>
+		<li>extenzív + állapotfüggvény</li>
+		<li>S (J/K)</li>
+		<li>rendezetlenség_mértéke = valószínűség_mértéke</li>
+		<details><summary>entrópia és valószínűség közti összefüggés</summary><ul class="normal">
+			<img src="images/statent.png">
+			<li>ha veszek egy izolált rendszert amibe van 8db részecske felének E1 felének E2 energiája (legyen E1&lt;E2)</li>
+			<li>ezek 8helyen lehetnek (egyszerűség kedvéért)</li>
+			<li>rendszert középen elválasztom képzeletben 2részrendszerre</li>
+			<li>egy részrendszer hőmérséklete 5féle lehet &#10140; makroállapotok száma 5 &#10140; T1~(4E1) &lt; T2~(3E1+E2) &lt; T3~(2E1+2E2) &lt; T4~(E1+3E2) &lt; T5~(4E2)</li>
+			<li>ha felírom statisztikailag az egyes hőmérsékletek hányféleképpen lehetnek, akkor ezt kapom (kép)</li>
+			<li>utolsó oszlop magyarázata &#10140; mivel bármelyiket bármelyikkel összepárosíthatjuk, ezért Ω<sub>AB</sub> = Ω<sub>A</sub>·Ω<sub>B</sub>(pl.4·4=16)</li>
+			<li>Ω<sub>AB</sub> &#10140; valószínűség <abbr title="Ez csak abban tér el a megszokott matematikai valószínűségtől (P-től), hogy értékei a (0–1) intervallum helyett az (1 –Z) intervallumba esnek, ahol Z az összes lehetséges mikroállapot számát jelenti, így P = Ω/Z &#10140; pl. itt annak, hogy A rendszer T1 legyen a termodinamikai_valószínűsége=1 a matematikai_valószínűsége=1/(36+16+16+1+1)">&#10045;</abbr></li>
+			<li>valószínűség &#10140; adott makroállapothoz hány mikroállapotok tartozhat ("elrendeződési lehetőségek száma")</li>
+			<li>akkor láthatóan a legnagyobb a valószínűsége, mikor a 2 részrendszer hőmérséklete megegyezik</li>
+			<li>tehát T3 makroállapot valószínűsége a legnagyobb 36/70 <div class="mirror">&#10140;</div> hiszen minden mikroállapot valószínűsége azonos</li>
+			<li>a valószínűség arányos az entrópiával &#10140; T3 makroállapot entrópiája a legnagyobb szintén</li>
+			<li><span class="Important">arányosság logaritmikus &#10140;</span> S=<abbr title="Boltzmann-állandó ">k</abbr>·ln<abbr title="valószínűség">Z</abbr></li><ul>
+				<li>pl. tehát I.makroállapot esetében Z=1 &#10140; S=k·ln1</li>
+				<li>pl. II.makroállapot esetében Z=16 &#10140; S=k·ln16</li>
+			</ul>
+			<li>ha van egy tartály benne 1fajta gáz &#10140; (a legvalószínűbb) makroállapotát a Maxwell-Boltzmann sebesség-eloszlás mutatja</li>
+			<li>makroállapota csak az, hogy hány db részecske van x energiával &#10140; az nincs benne, hogy ha minden részecskét elnevezném, akkor pl. Jani részecskének épp mekkora a sebessége</li>
+			<li>mikroállapotnál már ez utóbbit értjük</li>
+			<img src="images/statnt.png">
+		</ul></details>
+		<details><summary>III. főtétel? mi következik belőle?</summary><ul class="normal">
+			<li>tökéletes_kristályos anyagok <abbr title="nincs rácshiba stb.">&#10045;</abbr> entrópiája 0K-en nulla (ugyanis 0K-en a makroállapothoz csak 1mikroállapot tartozik &#10140; S=k·ln1 = 0) <abbr title="0K-n illetve tökéletes kristály csak elméletben hozható létre persze">&#10045;</abbr></li>
+			<li>így az abszolút_entrópia meghatározható!</li>
+			<li><span class="Vocab">JR</span> KÉP</li>
+			<li><abbr title="érdekesség: tehát ha tökéletes kristály és T=0K, akkor S=0. Entrópiája ettől még van ugye(kötési energia stb), és az ezekszerint ilyenkor az egész átalakítható, tehát H = G">&#10045;</abbr></li>
+			<img src="images/entrpmghtrzs.png">
+		</ul></details>
+		<div> –––––––––––– <strong>szabadenergia = szabadentalpia</strong> –––––––––––– </div>
+	</ul></details>
+ 	<details class="kerdes" id="ok.931"><summary><strong>Reakciók entalpiaváltozása és számítása a standard képződési entalpiákból, illetve moláris égéshőből?</strong> (HP)</summary><ul class="normal">
+	</ul></details>
+ </div>
  <div><div class="title">általános.</div>
  	<details class="kerdes" id="ok.195"><summary>állapotjelzők felsorolása?</summary><ul class="normal">
 		<li><span class="WHITE">p</span> <span class="WHITE">T</span> <span class="WHITE">c</span></li>
@@ -3177,7 +3722,7 @@
 	</ul></details>
 	<details class="kerdes" id="ok.367"><summary>entrópiaváltozás 2 képlete?</summary><ul class="normal">
 		<li>mivel állapotfüggvény &#10140; &Delta;S = S<sub>végállapot</sub> - S<sub>kezdet</sub></li>
-		<li>isoterm reakció esetében &#10140; Q = &Delta;S·T <abbr title="T ugye azért egy érték és nem változik, mert a rendszer hőmérséklete hiába változik, a végén ugyis visszaáll a környezetére, ami ugyanaz mint a kiindulási">&#10045;</abbr></li>
+		<li><span class="FIX">isoterm reakció esetében &#10140; Q = &Delta;S·T</span> <abbr title="T ugye azért egy érték és nem változik, mert a rendszer hőmérséklete hiába változik, a végén ugyis visszaáll a környezetére, ami ugyanaz mint a kiindulási">&#10045;</abbr></li>
 	</ul></details>
 	<details class="kerdes" id="ok.247"><summary>standard_képződési_entrópiaváltozás képlete?</summary><ul class="normal">
 		<img src="images/ntrpfggs.png">
@@ -3193,7 +3738,78 @@
  </div>
 <!----></div></details>
 
-<!----><details><summary class="phase">24. Spontán végbemenő reakciók. Kémiai reakciók entrópia változása (ΔS) és szabadenergia változása (ΔG). Gibbs egyenlet.</summary><div class="normal"><div><div class="title">II.főtétel.</div>
+<!----><details><summary class="phase">24. Spontán végbemenő reakciók. Kémiai reakciók entrópia változása (ΔS) és szabadenergia változása (ΔG). Gibbs egyenlet.</summary><div class="normal">
+  <div><div class="title">Spontán végbemenő reakciók. Kémiai reakciók entrópia változása (ΔS) és szabadenergia változása (ΔG). Gibbs egyenlet.</div>
+	<details class="kerdes" id="ok.935"><summary>Spontán végbemenő reakciók?</summary><ul class="normal">
+		<li>II. főtétel foglalkozik azzal, hogy egy reakció végbemegy-e vagy sem</</li>
+		<li>definíció &#10140; csak azon reakciók mehetnek végbe, melyeknél az <abbr title="kettő összege növekszik">(entrópiarendszer + entrópiakörnyezet)</abbr> növekszik &#10140; tehát univerzum entrópiaváltozása mindenképp pozitív <abbr title="elvileg spontán reakcióra van konkrétan értve, de egyébként sincs olyan reakció">&#10045;</abbr></li>
+		<div> –––––––––––––––––––––––– </div>
+		<li>spontán folyamat, mely a természetben önmagától, energiabefektetés nélkül végbemegy</li>
+		<li>pl. ha van egy 20°C-os szoba és benne egy tál 0°C-os félig víz-félig jég &#10140; jég megolvad (víz nemfog megfagyni)</li>
+	</ul></details>
+	<details class="kerdes" id="ok.936"><summary>Kémiai reakciók entrópia változása (ΔS) és szabadenergia változása (ΔG)?</summary><ul class="normal">
+		<div> –––––––––––––––––––––––– </div>
+		<details><summary>képlet átrendezése, hogy rendszerrel legyen kifejezve &#10140; milyen feltételek szükségesek? levezetése!<span class="Miss">&#9775;</span></summary><ul class="normal">
+			<div>feltételek a reakcióval szemben &#10140; <span class="Important">izobár</span> és egyben <span class="Important">izoterm</span>, és a <span class="Important">környezet és a rendszer hőmérséklete megegyezik!</span></div>
+			<div>eze feltételek esetében a reakció, akkor spontán</div>
+			<li>(pl) van egy <abbr title="rendszer">üvegedény, benne 25°C os A és B anyag,</abbr> körbevesziegy <abbr title="környezet">25°C hőmérsékletű szoba</abbr></li> 
+			<li>reakció végbemegy és létrejön C és D</li> 
+			<li>a rendszer hőmérséklete mondjuk megnőtt/vagy csökkent, de!</li> 
+			<li>ezután megvárom amíg a a reakció során keletkezett hőt leadja a környezetnek, és így hőmérséklete visszaáll 25°C (szoba akkora, hogy annak végig 25°C a hőmérséklete)</li> 
+			<li>ezért <span class="Important">T<sub>könyezet</sub> = T</span></li> 
+			<div> –––––––––––––––––––––––––––––––– </div> 
+			<li><span class="Important">&Delta;G<sub>körny</sub> = 0</span>, minden reakció esetében (szvsz ennek oka is hasonló, minthogy a hőmérséklete állandó)</li> 
+			<img src="images/gbssvltzspntn.png">
+		</ul></details>
+		<div> –––––––––––––––––––––––– </div>
+		<details><summary>szabadentalpia-változás képlete?</summary><ul class="normal">
+			<li>&Delta;G = &Delta;H - T·&Delta;S</li>
+			<li>(entalpiaváltozás – entrópiaváltozás*T)</li>
+		</ul></details>
+		<div> –––––––––––––––––––––––– </div>
+		<li>szabadentalpiaváltozás fogalma &#10140; kémiai folyamat során befektetett energia</li>
+		<div> –––––––––––––––––––––––– </div>
+		<details><summary><abbr title="izobár & izoterm">&#10045;</abbr> reakció milyen, ha &Delta;G nagyobb / kisebb / egyenlő nullával?</summary><ul class="normal">
+			<li>reverzibilis</li><ul>
+				<li>igen kis változás elterelheti bármely irányba a reakciót</li>
+				<li>pl. 0°C 0,1MPa víz-jég &#10140; kis nyomásnövekedéssel jég megolvad, csökkenéssel pedig víz fagy meg</li>
+			</ul>
+			<li>&Delta;G &lt; 0 &#10140; <span class="WHITE">spontán</span></li>
+			<li>&Delta;G > 0 &#10140; <span class="WHITE">folyamat nem játszódhat le önmagától, energiabefektetés nélkül</span></li>
+			<img src="images/reakcirány.png">
+		</ul></details>
+		<div> –––––––––––––––––––––––– </div>
+	</ul></details>
+	<details class="kerdes" id="ok.937"><summary>Gibbs egyenlet?</summary><ul class="normal">
+		<div> –––––––––––––––––––––––– </div>
+		<details><summary><span class="Vocab">TAB</span> tételhez kapcsolódó táblázat! (dolgozzam ki szebben!)</summary><ul class="normal">
+			<div><span class="Important">entalpiaváltozás/entrópiaváltozás/szabadenergiaváltozás</span></div>
+			<div>magyarázat - szimpla matek!</div>
+			<li>csak akkor spontán a reakció, ha 0 > &Delta;G, azaz &Delta;G negatív</li>
+			<li>&Delta;G = &Delta;H-T*&Delta;S</li>
+			<li>1. sor &#10140; ha &Delta;H negatív, és &Delta;S pozitív, akkor &Delta;G csak negatív lehet, ami következtében a reakció mindenképpen spontán</li>
+			<li>2. sor &#10140; ha &Delta;H negatív, és &Delta;S negatív, akkor </li><ul>
+				<li>ha T nem túl nagy, tehát kisebb mint &Delta;H/&Delta;S, akkor &Delta;G negatív</li>
+				<li>ha T már túl nagy, tehát nagyobb mint &Delta;H/&Delta;S, akkor &Delta;G pozitív</li>
+			</ul>
+			<li>...és így tovább...</li>
+			<div> –––––––––––––––––––––––––––––– </div>
+			<li>(megyjegyzési tipp)</li><ul>
+				<li>ha a reakció endoterm, azaz hőre van szükség, akkor a környezet hőmérséklete magas kell legyen, hogy spontán végbemenjen</li>
+				<li>ha a reakció exoterm, tehát hő keletkezik, akkor a környezet hőmérséklete alacsony kell legyen, hogy spontán végbemenjen</li>
+			</ul>
+			<img src="images/tab_reakcspnt.png">
+		</ul></details>
+		<div> –––––––––––––––––––––––– </div>
+		<details><summary>képletek (HP)<span class="Miss">&#9775;</span></summary><ul class="normal">
+			<li>&Delta;G = &Delta;G<sup>0</sup> + RT*ln(Q)</li>
+			<li>&Delta;G = RT*ln(Q/K)</li>
+			<li>&Delta;G<sup>0</sup> = -RT*ln(K)</li>
+		</ul></details>
+		<div> –––––––––––––––––––––––– </div>
+	</ul></details>
+  </div>
+  <div><div class="title">II.főtétel.</div>
 	<details class="kerdes" id="ok.233"><summary>milyen kérdéssel foglalkozik a II.főtétel?</summary><ul class="normal">
 		<li>hogy egy reakció végbemegy-e vagy sem?</li>
 		<li>így spontán végbemenő reakciók irányát mutatja meg (A+B-ből lesz C+D, vagy C+D-ből lesz A+B)</li>
@@ -3348,7 +3964,8 @@
 			<li>&Delta;G = -17,1J</li>
 		</ul></details>
 	</ul></details>
-<!----></div></div></details>
+  </div>
+<!----></div></details>
 
 <!----><details><summary class="phase">25. A kémiai reakciók sebessége és rendűsége; a reakció molekularitásának fogalma.
 A reakciósebességi állandó jelentősége és a sebességi állandót befolyásoló tényezők. A felezési idő fogalma.</summary><div class="normal">
@@ -5445,6 +6062,7 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 		<li>több heteroatomot tartalmazók &#10140; <span class="Important"><strong>pirimidin</strong>, <strong>imidazol</strong></span>, <strong>pirazin</strong>, <strong>tiazol</strong>, <strong>oxazol</strong>, <strong>pirazol</strong></li>
 		<div><strong>főbb policiklusosok</strong></div>
 		<li><span class="Important"><strong>purin</strong></span> & <strong>pteridin</strong></li>
+		<li>adenin / guanin / citozin / timin(/uracil)</li>
 		<img src="images/pirrol.png">
 		<img src="images/piridin.png">
 		<img src="images/furán.png">
@@ -5466,6 +6084,7 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 			<img src="images/lktmlktm.png">
 		</ul></details>
 		<li>imidazol &#10140; hisztidin nevű aminósav alkotója, mely pH-puffer!!! (és annak a dekarboxilált változatának, a hisztaminnak is)</li>
+		<li>piridin &#10140; piridoxamin/piridoxál-foszfát felépítésében részt vesz</li>
 		<details><summary><span class="Important">RAJZ</span> pirrol &#10140; porfirinváz felépítésében részt vesz</summary><ul class="normal">
 			<li>4pirrol, melyeket -C= (ún. metin-csoport) kapcsol össze</li>
 			<li>2pirrol-ban nincs hidrogén</li>
@@ -6537,9 +7156,9 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 		<div><strong>osztályozásuk értékűség alapján (hány amino-csoport)</strong></div>
 		<li>egyértékűek(monoamin) pl. a fenntiek</li>
 		<details><summary>poliaminok &#10140; példák?(2+2)</summary><ul class="normal">
-			<li>kétértékűek pl. putriszcin, kadaverin &#10140; ezek az arginin, illetve a lizin bomlási termékei</li>
+			<li>kétértékűek pl. putreszcin, kadaverin &#10140; ezek az arginin, illetve a lizin bomlási termékei</li>
 			<li>háromértékűek pl. spermidin, spermin</li>
-			<div>putriszcin NH<sub>2</sub>-CH<sub>2</sub>(4)-NH<sub>2</sub></div>
+			<div>putreszcin NH<sub>2</sub>-CH<sub>2</sub>(4)-NH<sub>2</sub></div>
 			<div>kadaverin NH<sub>2</sub>-CH<sub>2</sub>(5)-NH<sub>2</sub></div>
 		</ul></details>
 		<img src="images/aminrend.png">
@@ -8850,7 +9469,7 @@ A reakciósebességi állandó jelentősége és a sebességi állandót befoly�
 
 
 
-<script src="../javascript.js"></script> 
+<script src="javascript.js"></script> 
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
