@@ -1,29 +1,26 @@
 
 /* FELADATOK
 
-	kép --> működjön a nagyítás funkció az aktív kérdésnél is
-	ismétlés funkció: kérdést ha nemtudtam pontosan akkor jelöljem be, hogy ismétlendő (mint miss/fixnél) --> ha ismétlendő kérdések be vannak pipálva, akkor azokat kérdezi előbb, de min. 30perc-1óra el kell teljen mielőtt kidobja, és utána ne adhassak rá jegyet, csak kerüljön le az ismétlendő listáról. 
+	LocalStorage lehessen átmásolni Tabletről/gépre odavissza
 	ABBR script --> rákattintva megjelenjen egyből, ráhúzva is
 	kép 
 		addig terjedhet ki balra, amíg szövegbe nem ütközik, de min 40%-ot kaphat.
 		kép oldala piros-színű legyen, ha le lett a fennti miatt kicsinyítve.
 		középső-klikkre nyissa meg újablak.
-	
-	hide all onClick: jobb felső kérdésszám buttonra klikkelve mindent hideljen el, és showolja a következő kérdést majd, ne copyzza!
 
+
+	kémiában (ahol megvannak adva a tételek), legyenek összetett kérdések. tehát a tételcímrészlet a kérdés. nekem erről eszembe kell jutni a válasznak. azért összetett, mert több pontos (nemcsak 1-4 osztályzás) (azaz több jegyet mentsen el egy feladaton belül!!. így a rankja is nagyobb, hiszen az a max pontok száma lesz). ha nemjut eszembe minden, attól még az adott alkérdésre kaphatok 50%nyi pontot ha tudtam azt is, csak elfelejtettem felhozni. végül a tétel státuszát (osztályzását), csak ezen kérdések alapján tegye.
 	1kérdés lehessen többhelyen is, és a kódban azonban csak a szöveg egy helyen legyen megadva hozzá (hogy csak egy helyen kelljen átírnom, ha változtatok rajta)
-	alertbe mutassa, ha valamely kérdésID üres már! és mellette localstoraget törölje!
-	több jegyet mentsen le (egy feladaton belül!), és tudjak velük külön-külön számolni
 	1órán belül ha mutatja, ne adhassak rá jegyet
-	localstorage helyét megkeresni és folyamatosan csináljon róla safety copyt
-	lehessen RESET-elni egy témán belüli kérdés jegyeit (ha már jó rég csináltam meg őket, attól még ne legyen 65% stb.)
-	DETAILS script
-	Szöveg legyen egy tétel, és utána kérdések. X(pl.1hét) idő után mindig kelljen elolvasnom egy tételt és utána azt kérdezze ki. Lehessen bejelölni, mikor kívánom igénybe venni ezt a módszert.
 
+	lehessen RESET-elni egy témán belüli kérdés jegyeit (ha már jó rég csináltam meg őket, attól még ne legyen 65% stb.)
+	alertbe mutassa, ha valamely kérdésID üres már! és mellette localstoraget törölje!
 	miss/fix-nél növekvő sorrendbe nézze őket
 	lehessen beállítani: rövid_kérdés / hosszú_kérdés
-	lehessen beállítani IF / RAJZ stb. kategóriát is
 
+	DETAILS script
+	lehessen beállítani IF / RAJZ stb. kategóriát is
+	hide all onClick: jobb felső kérdésszám buttonra klikkelve mindent hideljen el, és showolja a következő kérdést majd, ne copyzza!
 	lehessen látni jegy(1-2-3) hány feladat van és ki lehessen jelölni /checkbox/ melyeket akarom (ez nembiztos kell)
 	kérdést más html-ből olvassa be
 	rankot html-ben adhassam meg (ez nembiztos kell)
@@ -36,6 +33,8 @@
 //	 alert('Error message: '+msg+'\nLine Number: '+linenumber);
 //	 return true;
 // }
+
+
 
 
 function func_calcJegy() { // átlagJegyet kiszámolja
@@ -258,10 +257,10 @@ document.getElementById("input_toggleAll").value = highestID
 function func_clickTemaButton(button){
 	if ( localStorage.getItem(button.id) == "true" ) {
 		localStorage.setItem(button.id,false)
-		button.style.backgroundColor = "black";
+		document.getElementById(button.id+"_label").style.color = "black";
 	} else {
 		localStorage.setItem(button.id,true)
-		button.style.backgroundColor = "springgreen";
+		document.getElementById(button.id+"_label").style.color= "limegreen";
 	}
 }
 
@@ -283,26 +282,88 @@ for ( var fotema in kerdesID ) {
 		button.style.height = "20px";
 		button.style.width = "20px";
 		button.id = fotema+" / "+temaKerdes+"_button";
+
+		var label = document.createElement("label")
+		label.id = fotema+" / "+temaKerdes+"_button_label";
+		var text = temaKerdes+"<br>"
+		label.innerHTML = text.bold();
+
 		button.onclick = function() {
 			func_clickTemaButton(this);
 			func_calcOldNew();
 		}
 
-		var label = document.createElement("label")
-		label.innerHTML = temaKerdes+"<br>";
+
 
 		container.appendChild(button);
 		container.appendChild(label);
 
 		if ( localStorage.getItem(button.id) == "true" ) {
-			button.style.backgroundColor = "springgreen";
+			label.style.color = "limegreen";
 		} else {
-			button.style.backgroundColor = "black";
+			label.style.color = "black";
 		}
 	}
 }
 
 
+// Tétel hány %-on áll? --> beállítja a buttonColort ez alapján
+function func_temakorStatus(){
+	for ( var fotema in kerdesID ) {
+		for ( var temaKerdes in kerdesID[fotema] ) {
+			var button = document.getElementById(fotema+" / "+temaKerdes+"_button")
+			
+			var maxJegy = 0
+			var trueJegy = 0
+			for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
+				var count = parseInt(localStorage.getItem(kerdes+'_repeat'));
+				var jegy = localStorage.getItem(kerdes+'_jegy_'+count)
+				var rank = localStorage.getItem(kerdes+'_rank')
+				if ( rank == null ) {
+					rank = 3
+					jegy = 0
+				}
+				if ( localStorage.getItem(kerdes+'_rank') != 'J' ) {
+					if ( jegy == 1 ) {
+						jegy = 0
+					} else if ( jegy == 2 ) {
+						jegy = 5
+					} else if ( jegy == 3 ) {
+						jegy = 8
+					} else if ( jegy == 4 ) {
+						jegy = 10
+					}
+
+
+					var date = new Date();
+					var min_diff = date.getMinutes() - localStorage.getItem(kerdes+'_min_'+count);
+					var hour_diff = date.getHours() - localStorage.getItem(kerdes+'_hour_'+count);
+					var day_diff = date.getDate() - localStorage.getItem(kerdes+'_day_'+count);
+					var month_diff = 1 + date.getMonth() - localStorage.getItem(kerdes+'_month_'+count);
+					var year_diff = date.getFullYear() - localStorage.getItem(kerdes+'_year_'+count);
+					var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
+
+					maxJegy = maxJegy + rank * 10
+					trueJegy = trueJegy + rank * jegy
+				}
+			}
+			var red
+			var green
+
+			if ( 2*trueJegy/maxJegy > 1 ) {
+				var more = 2*trueJegy/maxJegy -1
+				red = Math.round(255*(1-more))
+				green = 255
+			} else {
+				var less = 2*trueJegy/maxJegy
+				green = Math.round(255*less)
+				red = 255
+			}
+			button.style.backgroundColor = "rgb("+red+", "+green+", 0)";
+		}
+	}
+}
+func_temakorStatus()
 
 
 // clear old history
@@ -503,24 +564,20 @@ function func_calcOldNew(){
 
 var markCount_A, markCount_B = null
 function func_markCount(jegy){ // következő kérdés nehézségét beállítja, az előző sikere alapján
+	var varB = Math.floor(Math.random() * 4) + 1
 	jegy = parseInt(jegy,10)
 	if ( jegy == 1 ) {
 		markCount_A = 3
-		markCount_B = 4
+		markCount_B = varB 
 	} else if ( jegy == 2 ) {
 		markCount_A = 2
-		markCount_B = 3
+		markCount_B = varB 
 	} else if ( jegy == 3 ) {
 		markCount_A = 1
-		var x = Math.floor((Math.random() * 10) + 1)
-		if ( x % 2 == 1 ) { 
-			markCount_B = 2 
-		} else { 
-			markCount_B = 3 
-		}
+		markCount_B = varB 
 	} else if ( jegy == 4 ) {
 		markCount_A = 1
-		markCount_B = 1
+		markCount_B = varB 
 	}
 	/*if ( markCount != 0 ) {
 		markCount = (markCount+jegy)/2
@@ -874,5 +931,19 @@ function show_StatusSkip(){
 func_calcOldNew();
 func_calcJegy()
 func_calcDate()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
