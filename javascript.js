@@ -1,7 +1,7 @@
 
 /* FELADATOK
+	következő problémát orvosoljam: 2 kérdés van 1 témán belül: egyik 1pontos, másik 10. 1pontosra 4est adok, 10pontosra 1est. Akkor a témát ne 50%ra értékelje.
 
-	LocalStorage lehessen átmásolni Tabletről/gépre odavissza
 	ABBR script --> rákattintva megjelenjen egyből, ráhúzva is
 	kép 
 		addig terjedhet ki balra, amíg szövegbe nem ütközik, de min 40%-ot kaphat.
@@ -47,6 +47,13 @@ function func_calcJegy() { // átlagJegyet kiszámolja
 					if ( kerdesID[fotema][temaKerdes][kerdes] == true ) {
 						var count = parseInt(localStorage.getItem(kerdes+'_repeat'));
 						var jegy = localStorage.getItem(kerdes+'_jegy_'+count)
+
+						var vClass = document.getElementById(kerdes).className
+						var vLength = vClass.match(/^\d+|\d+\b|\d+(?=\w)/g)
+						if ( vLength == null ) {
+							vLength = 1
+						}
+
 						if ( localStorage.getItem(kerdes+'_rank') != 'J' ) {
 							if ( jegy == 1 ) {
 								jegy = 0
@@ -60,8 +67,8 @@ function func_calcJegy() { // átlagJegyet kiszámolja
 							if ( jegy == 4 ) {
 								jegy = 10
 							}
-							maxJegy = maxJegy + localStorage.getItem(kerdes+'_rank') * 10
-							trueJegy = trueJegy + localStorage.getItem(kerdes+'_rank') * jegy
+							maxJegy = maxJegy + localStorage.getItem(kerdes+'_rank') * 10 * vLength
+							trueJegy = trueJegy + localStorage.getItem(kerdes+'_rank') * jegy * vLength
 						}
 					}
 				}
@@ -318,6 +325,11 @@ function func_temakorStatus(){
 			for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
 				var count = parseInt(localStorage.getItem(kerdes+'_repeat'));
 				var jegy = localStorage.getItem(kerdes+'_jegy_'+count)
+				var vClass = document.getElementById(kerdes).className
+				var vLength = vClass.match(/^\d+|\d+\b|\d+(?=\w)/g)
+				if ( vLength == null ) {
+					vLength = 1
+				}
 				var rank = localStorage.getItem(kerdes+'_rank')
 				if ( rank == null ) {
 					rank = 3
@@ -343,8 +355,8 @@ function func_temakorStatus(){
 					var year_diff = date.getFullYear() - localStorage.getItem(kerdes+'_year_'+count);
 					var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
 
-					maxJegy = maxJegy + rank * 10
-					trueJegy = trueJegy + rank * jegy
+					maxJegy = maxJegy + rank * 10 * vLength
+					trueJegy = trueJegy + rank * jegy * vLength
 				}
 			}
 			var red
@@ -367,8 +379,6 @@ func_temakorStatus()
 
 
 // clear old history
-//localStorage.clear();
-//localStorage.removeItem("item_name");
 for ( var fotema in kerdesID ) { 
 	for ( var temaKerdes in kerdesID[fotema] ) { 
 		for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
@@ -651,7 +661,17 @@ function func_prevQuestion(){
 }
 
 
-// question
+/*
+	var vClass = document.getElementById(id).className
+	var vLength = vClass.match(/^\d+|\d+\b|\d+(?=\w)/g)
+	if ( vLength != null ) {
+		alert(vLength)
+	}
+*/
+
+
+
+
 var fullTema
 var priorKerdesID = "nincs"
 var checkNum
@@ -748,11 +768,18 @@ function koviKerdes(){
 
 								var jegy = localStorage.getItem(kerdes+'_jegy_'+count)
 								var rank = localStorage.getItem(kerdes+'_rank')
+
+								var vClass = document.getElementById(kerdes).className
+								var vLength = vClass.match(/^\d+|\d+\b|\d+(?=\w)/g)
+								if ( vLength == null ) {
+									vLength = 1
+								}
+
 								if ( jegy == markCount_A || jegy == markCount_B || markCount_A == null ) { 
 									if ( rank == "J" ) {
-										checkValue = 3 * idopont / jegy
+										checkValue = vLength * 3 * idopont / jegy
 									} else {
-										checkValue = rank * idopont / jegy
+										checkValue = vLength * rank * idopont / jegy
 									}
 									if ( checkValue > priorValue ) {
 										if ( localStorage.getItem(kerdes+"_skip") == "skip" ) {
