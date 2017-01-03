@@ -389,6 +389,11 @@ for ( var fotema in kerdesID ) {
 			var day_diff = date.getDate() - localStorage.getItem(kerdes+'_day_'+count);
 			var month_diff = 1 + date.getMonth() - localStorage.getItem(kerdes+'_month_'+count);
 			var year_diff = date.getFullYear() - localStorage.getItem(kerdes+'_year_'+count);
+			/*if ( kerdes == "sb.333" ) {
+				alert(date.getMonth())
+				alert(localStorage.getItem(kerdes+'_month_1') + " - " + date.getMonth())
+				alert(count + " + " + kerdes + " + " + month_diff + " + " + idopont)
+			}*/ //333
 			var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
 			if ( idopont > 10080 ) {
 				for ( var i = 1;   i < count+1;   i++  ) {
