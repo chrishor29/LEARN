@@ -1,7 +1,6 @@
 
 /* FELADATOK
-	következő problémát orvosoljam: 2 kérdés van 1 témán belül: egyik 1pontos, másik 10. 1pontosra 4est adok, 10pontosra 1est. Akkor a témát ne 50%ra értékelje.
-
+	1órán belül ha mutatja, ne adhassak rá jegyet
 	ABBR script --> rákattintva megjelenjen egyből, ráhúzva is
 	kép 
 		addig terjedhet ki balra, amíg szövegbe nem ütközik, de min 40%-ot kaphat.
@@ -11,7 +10,6 @@
 
 	kémiában (ahol megvannak adva a tételek), legyenek összetett kérdések. tehát a tételcímrészlet a kérdés. nekem erről eszembe kell jutni a válasznak. azért összetett, mert több pontos (nemcsak 1-4 osztályzás) (azaz több jegyet mentsen el egy feladaton belül!!. így a rankja is nagyobb, hiszen az a max pontok száma lesz). ha nemjut eszembe minden, attól még az adott alkérdésre kaphatok 50%nyi pontot ha tudtam azt is, csak elfelejtettem felhozni. végül a tétel státuszát (osztályzását), csak ezen kérdések alapján tegye.
 	1kérdés lehessen többhelyen is, és a kódban azonban csak a szöveg egy helyen legyen megadva hozzá (hogy csak egy helyen kelljen átírnom, ha változtatok rajta)
-	1órán belül ha mutatja, ne adhassak rá jegyet
 
 	lehessen RESET-elni egy témán belüli kérdés jegyeit (ha már jó rég csináltam meg őket, attól még ne legyen 65% stb.)
 	alertbe mutassa, ha valamely kérdésID üres már! és mellette localstoraget törölje!
@@ -54,12 +52,12 @@ function func_calcJegy() { // átlagJegyet kiszámolja
 							vLength = 1
 						}
 
-						if ( localStorage.getItem(kerdes+'_rank') != 'J' ) {
+						if ( localStorage.getItem(kerdes+'_rank') != 'J' & localStorage.getItem(kerdes+'_rank') != 'j' ) {
 							if ( jegy == 1 ) {
 								jegy = 0
 							}
 							if ( jegy == 2 ) {
-								jegy = 5
+								jegy = 6
 							}
 							if ( jegy == 3 ) {
 								jegy = 8
@@ -287,7 +285,7 @@ for ( var fotema in kerdesID ) {
 		var button = document.createElement("input");
 		button.type = "button";
 		button.style.height = "20px";
-		button.style.width = "20px";
+		button.style.width = "30px";
 		button.id = fotema+" / "+temaKerdes+"_button";
 
 		var label = document.createElement("label")
@@ -335,11 +333,11 @@ function func_temakorStatus(){
 					rank = 3
 					jegy = 0
 				}
-				if ( localStorage.getItem(kerdes+'_rank') != 'J' ) {
+				if ( localStorage.getItem(kerdes+'_rank') != 'J' & localStorage.getItem(kerdes+'_rank') != 'j' ) {
 					if ( jegy == 1 ) {
 						jegy = 0
 					} else if ( jegy == 2 ) {
-						jegy = 5
+						jegy = 6
 					} else if ( jegy == 3 ) {
 						jegy = 8
 					} else if ( jegy == 4 ) {
@@ -356,7 +354,7 @@ function func_temakorStatus(){
 					var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
 
 					maxJegy = maxJegy + rank * 10 * vLength
-					trueJegy = trueJegy + rank * jegy * vLength
+					trueJegy = trueJegy + Math.pow(0.8, idopont / 1440) * rank * jegy * vLength
 				}
 			}
 			var red
@@ -372,6 +370,7 @@ function func_temakorStatus(){
 				red = 255
 			}
 			button.style.backgroundColor = "rgb("+red+", "+green+", 0)";
+			button.value = Math.round(100 * trueJegy/maxJegy)
 		}
 	}
 }
@@ -781,7 +780,7 @@ function koviKerdes(){
 								}
 
 								if ( jegy == markCount_A || jegy == markCount_B || markCount_A == null ) { 
-									if ( rank == "J" ) {
+									if ( rank == "J" || rank == "j" ) {
 										checkValue = vLength * 3 * idopont / jegy
 									} else {
 										checkValue = vLength * rank * idopont / jegy
@@ -836,7 +835,8 @@ function koviKerdes(){
 				centerImage.style.margin = "auto";
 			};
 		}
-		if ( document.getElementById(priorKerdesID).className == "kerdes open" ) {
+		var n = document.getElementById(priorKerdesID).className.search("open");
+		if ( n != -1 ) {
 			document.getElementById("kerdeslocation").open = true;
 			var c = document.getElementById("kerdeslocation").children;
 			for (i = 0; i < c.length; i++) {
@@ -846,7 +846,7 @@ function koviKerdes(){
 				if ( "UL" == c[i].tagName ) {
 					var x = c[i].children;
 					for (j = 0; j < x.length; j++) {
-						alert(x[j].tagName)
+						//alert(x[j].tagName)
 						if ( "DETAILS" == x[j].tagName ) {
 							x[j].open = false
 						}
