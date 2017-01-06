@@ -1,27 +1,29 @@
 
 /* FELADATOK
-	1órán belül ha mutatja, ne adhassak rá jegyet
-	ABBR script --> rákattintva megjelenjen egyből, ráhúzva is
-	kép 
+	(#) összes kérdéssel megcsinálja azt, hogyha van repeat countja, akkor reseteli azokat és csak legutolsót őrzi meg
+	(#) Csak az előző dátumot mentse el, illetve azt, hogy az előtte lévő ismétléshez képest mennyi idő telt el, és a jegy javult/nemváltozott/romlott. Amennyiben nem változott vagy javult, akkor az új "80%os jegycsökkenést" ennyi idő legyen ennél a kérdésnél, illetve ennyi időn belül ne ismételhessem. Amennyiben romlott álljon vissza arra, hogy 6óránként csökken 90%ra. Tehát az, hogy hányszor ismételtem a kérdést, nem kell!! illetve elég 1 dátum és 1 időkülönbség.
+
+	(#) ABBR script
+
+	(#) ne pusztán 80%al csökkenjen naponta, hanem nézze, hogy adott kérdés milyen időközönként/hányszor volt ismételve, és az alapján számolja ki az adott kérdés optimális "időkopását" (tehát ha van egy kérdés, amit két nap után is 3asra csinálok, illetve van egy kérdés amit két óra után már csak 1esre csinálok, akkor nyilván utóbbi jobban romlik, míg előbbi kevésbé)
+	(#) 3as jegyű kérdést ha megismétlek x időn belül és megint minimum 3as, akkor legközelebb akkor dobja ki, ha legalább x idő eltelt ismét
+	(#) kép 
 		addig terjedhet ki balra, amíg szövegbe nem ütközik, de min 40%-ot kaphat.
 		kép oldala piros-színű legyen, ha le lett a fennti miatt kicsinyítve.
 		középső-klikkre nyissa meg újablak.
+	(#) kémiában (ahol megvannak adva a tételek), legyenek összetett kérdések. tehát a tételcímrészlet a kérdés. nekem erről eszembe kell jutni a válasznak. azért összetett, mert több pontos (nemcsak 1-4 osztályzás) (azaz több jegyet mentsen el egy feladaton belül!!. így a rankja is nagyobb, hiszen az a max pontok száma lesz). ha nemjut eszembe minden, attól még az adott alkérdésre kaphatok 50%nyi pontot ha tudtam azt is, csak elfelejtettem felhozni. végül a tétel státuszát (osztályzását), csak ezen kérdések alapján tegye.
+	(#) rankot html-ben adhassam meg (ez nembiztos kell)
 
+	(#) 1kérdés lehessen többhelyen is, és a kódban azonban csak a szöveg egy helyen legyen megadva hozzá (hogy csak egy helyen kelljen átírnom, ha változtatok rajta)
+	(#) alertbe mutassa, ha valamely kérdésID üres már! és mellette localstoraget törölje!
+	(#) miss/fix-nél növekvő sorrendbe nézze őket
+	(#) lehessen beállítani: rövid_kérdés / hosszú_kérdés
 
-	kémiában (ahol megvannak adva a tételek), legyenek összetett kérdések. tehát a tételcímrészlet a kérdés. nekem erről eszembe kell jutni a válasznak. azért összetett, mert több pontos (nemcsak 1-4 osztályzás) (azaz több jegyet mentsen el egy feladaton belül!!. így a rankja is nagyobb, hiszen az a max pontok száma lesz). ha nemjut eszembe minden, attól még az adott alkérdésre kaphatok 50%nyi pontot ha tudtam azt is, csak elfelejtettem felhozni. végül a tétel státuszát (osztályzását), csak ezen kérdések alapján tegye.
-	1kérdés lehessen többhelyen is, és a kódban azonban csak a szöveg egy helyen legyen megadva hozzá (hogy csak egy helyen kelljen átírnom, ha változtatok rajta)
-
-	lehessen RESET-elni egy témán belüli kérdés jegyeit (ha már jó rég csináltam meg őket, attól még ne legyen 65% stb.)
-	alertbe mutassa, ha valamely kérdésID üres már! és mellette localstoraget törölje!
-	miss/fix-nél növekvő sorrendbe nézze őket
-	lehessen beállítani: rövid_kérdés / hosszú_kérdés
-
-	DETAILS script
-	lehessen beállítani IF / RAJZ stb. kategóriát is
-	hide all onClick: jobb felső kérdésszám buttonra klikkelve mindent hideljen el, és showolja a következő kérdést majd, ne copyzza!
-	lehessen látni jegy(1-2-3) hány feladat van és ki lehessen jelölni /checkbox/ melyeket akarom (ez nembiztos kell)
-	kérdést más html-ből olvassa be
-	rankot html-ben adhassam meg (ez nembiztos kell)
+	(#) DETAILS script
+	(#) lehessen beállítani IF / RAJZ stb. kategóriát is
+	(#) hide all onClick: jobb felső kérdésszám buttonra klikkelve mindent hideljen el, és showolja a következő kérdést majd, ne copyzza!
+	(#) lehessen látni jegy(1-2-3) hány feladat van és ki lehessen jelölni /checkbox/ melyeket akarom (ez nembiztos kell)
+	(#) kérdést más html-ből olvassa be
 */
 
 
@@ -33,6 +35,31 @@
 // }
 
 
+function func_removeRepeat(){ //ha már elkészült a script, és removeltam mind1iket törölhető ez a funkció!
+	for ( var fotema in kerdesID ) { 
+		for ( var temaKerdes in kerdesID[fotema] ) { 
+			for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
+				var count = parseInt(localStorage.getItem(kerdes+'_repeat'))
+				localStorage.setItem(kerdes+'_min', localStorage.getItem(kerdes+'_min_'+count))
+				localStorage.setItem(kerdes+'_hour', localStorage.getItem(kerdes+'_hour_'+count))
+				localStorage.setItem(kerdes+'_day', localStorage.getItem(kerdes+'_day_'+count))
+				localStorage.setItem(kerdes+'_month', localStorage.getItem(kerdes+'_month_'+count))
+				localStorage.setItem(kerdes+'_year', localStorage.getItem(kerdes+'_year_'+count))
+				if ( count > 1 ) {
+					var min_diff = localStorage.getItem(kerdes+'_min_'+count) - localStorage.getItem(kerdes+'_min_'+count-1);
+					var hour_diff = localStorage.getItem(kerdes+'_hour_'+count) - localStorage.getItem(kerdes+'_hour_'+count-1);
+					var day_diff = localStorage.getItem(kerdes+'_day_'+count) - localStorage.getItem(kerdes+'_day_'+count-1);
+					var month_diff = localStorage.getItem(kerdes+'_month_'+count) - localStorage.getItem(kerdes+'_month_'+count-1);
+					var year_diff = localStorage.getItem(kerdes+'_year_'+count) - localStorage.getItem(kerdes+'_year_'+count-1);
+					var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
+					localStorage.setItem(kerdes+'_idopont', idopont);
+				}
+				localStorage.removeItem(kerdes+'_repeat');
+			}
+		}
+	}
+}
+//func_removeRepeat()
 
 
 function func_calcJegy() { // átlagJegyet kiszámolja
@@ -394,12 +421,6 @@ for ( var fotema in kerdesID ) {
 				alert(count + " + " + kerdes + " + " + month_diff + " + " + idopont)
 			}*/ //333
 			var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
-			if ( idopont > 10080 ) {
-				for ( var i = 1;   i < count+1;   i++  ) {
-					localStorage.removeItem(kerdes+'_jegy_'+count);
-				}
-				localStorage.removeItem(kerdes+'_repeat');
-			} 
 			if ( localStorage.getItem(kerdes+"_skip") == "skip" ) {
 				if ( idopont < 90 ) {
 				} else { //azért így oldottam meg, mertha időpont == null vagy mi akkor is működjön
@@ -662,6 +683,8 @@ function func_prevQuestion(){
 	document.getElementById("rank").value = ""
 	document.getElementById("note").value = ""
 	document.getElementById("note").style.display = 'none';
+
+	func_temakorStatus()
 }
 
 
@@ -892,6 +915,20 @@ function koviKerdes(){
 				document.getElementById("button_missFix").style.backgroundColor = "lightgrey";
 			}
 		}
+
+		var count = parseInt(localStorage.getItem(priorKerdesID+'_repeat'));
+		var date = new Date();
+		var min_diff = date.getMinutes() - localStorage.getItem(priorKerdesID+'_min_'+count);
+		var hour_diff = date.getHours() - localStorage.getItem(priorKerdesID+'_hour_'+count);
+		var day_diff = date.getDate() - localStorage.getItem(priorKerdesID+'_day_'+count);
+		var month_diff = 1 + date.getMonth() - localStorage.getItem(priorKerdesID+'_month_'+count);
+		var year_diff = date.getFullYear() - localStorage.getItem(priorKerdesID+'_year_'+count);
+		var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
+		if ( 60 > idopont ) {
+			document.getElementById('jegy').disabled = true;
+			document.getElementById('rank').disabled = true;
+		}
+
 		//document.getElementById("questTitle").innerHTML = priorKerdesID.slice(0,priorKerdesID.indexOf("_"))
 		//document.getElementById(priorKerdesID).style.position  = 'absolute';
 		//document.getElementById(priorKerdesID).style.top = '20px';
