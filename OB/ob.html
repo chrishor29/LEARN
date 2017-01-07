@@ -25,8 +25,8 @@
 		<input onclick="missFix();" type="button" id="button_missFix" style="background-color:lightgrey; height:25px; width:30px;">&nbsp;&nbsp;
 		<input onclick="func_skipID();" type="button" id="button_skipID" style="background-color:lightgrey; height:25px; width:30px;">
 		<label>Rank:<input type="text" id="rank" size="1" maxlength="1" style="width:30px;"></label> &nbsp;&nbsp;&nbsp;&nbsp;
-		<span id="repeat" class="WHITE">&nbsp; &nbsp;</span>
 		<input onclick="koviKerdes();" type="button" value="következő kérdés">
+		<span id="repeat" class="WHITE">&nbsp; &nbsp;</span>
 	</center>
 	<center><textarea style="display:none; position:fixed; left: 40%; top: 70%;" id="note" rows="4" cols="40"></textarea></center>
 	<div style="font-weight: bold;font-size: large;" id="questTitle"></div>
@@ -152,12 +152,12 @@
 		<li>mit kell bizonyítani? &#10140; aminósavak létrejötte, nukleinsavak létrejötte <abbr title="előbbi bizonyítva van már, utóbbi még nincs">&#10045;</abbr></li>
 		<div><span class="white">§</span> aminosavak összeállítását proteinekké minden esetben nukleinsavak irányítják, így a legfontosabb kérdés az, hogy a nukleinsavak miként jöttek létre</div>
 	</ul></details>
-	<details class="kerdes 1" id="sb.113"><summary>Miller-kísérlet &#10140; mit igazol? lényege? fennálló probléma?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.113"><summary>Miller-kísérlet &#10140; mit igazol? lényege?</summary><ul class="normal">
+		<img src="images/e1_mlrrksrét.png">
 		<li>igazolja, hogy <strong>aminosavak</strong> abiogén úton is létrejöhettek</li>
 		<li>abiogén úton = éllettelen anyagokból jön létre <abbr title="élettől független, tehát pl. villámcsapás ilyen, de fotoszintézis nem">természetes</abbr> kémiai reakcióval (nincs szükség élő rendszerre hozzá)</li>
 		<li>lényege ➜ bal alsó "ősóceán" lombik forralása + fölötte őslégköri gázok ➜ csövön eljutva elektródák elektromos kisülései (szimbolizálva villám stb.) hatnak rájuk ➜ 2hét után keletkeztek molekulák (aminosav)</li>
 		<li><i>Oparin-elmélet "aminosav részét" bizonyítja</i></li>
-		<a href="images/e1_mlrrksrét.png"><img src="images/e1_mlrrksrét.png"></a>
 	</ul></details>
 	<details class="kerdes 1" id="sb.646"><summary>mi volt az első makromolekula?(LP)</summary><ul class="normal">
 		<li>egyenlőre nem lehet biztosan tudni</li>
@@ -254,6 +254,9 @@
 		<li>eukaryota gének többsége a bakteriális homológiát mutat, kevés az archaea-homológ gén</li>
 		<li>archaea-homológ gének az információ-feldolgozás fehérjéit kódolják (pl. transzláció, transzkripció és replikáció)</li>
 		<li>baktérium-homológ gének többnyire alapműködéssel összefüggő fehérjéket kódolnak (pl. metabolikus enzimek, membrán transzporterek)</li>
+	</ul></details>
+	<details class="kerdes 1" id="sb.686"><summary>megjelenés alapján tedd sorrendbe &#10140; mitokondrium, sejtváz, peroxiszóma</summary><ul class="normal">
+		<li><i>előbb sejtváz, aztán peroxiszóma, végül mitokondrium</i></li>
 	</ul></details>
  </div>
 <!-- ///--></div></details>
@@ -789,11 +792,13 @@
 	</ul></details>
  </div>
  <div><div class="title">kaputranszport</div>
-	<details class="kerdes 1" id="sb.4"><summary>mi? funkció?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.4"><summary>mik áramolnak ki/be és hol?</summary><ul class="normal">
 		<li>centralis csatornán át...</li><ul>
 			<li>fehérjék/RNS ki citoplazmába</li>
 			<li>fehérjék be nucleusba</li>
 		</ul>
+	</ul></details>
+	<details class="kerdes 1" id="sb.681"><summary>funkció?</summary><ul class="normal">
 		<li>biztosítja, a citoplazma és nucleus eltérő makromolekuláris szerkezetét (szabályozott transzport)</li>
 	</ul></details>
 	<details class="kerdes 2" id="sb.3"><summary>résztvevők felsorolása?(4)</summary><ul class="normal">
@@ -991,7 +996,7 @@
 		<li>fehérjét kódoló DNS-szakasz</li>
 	</ul></details>
 	<details class="kerdes 2" id="sb.64"><summary style="color:Magenta"><font color="Green">poszt-transzkripciós_szabályozás(mRNS) &#10140; 2pl?</font></summary><ul class="normal">
-		<div><span class="WHITE">1.pl</span> <i>poliadeniláció ide tartozik</i></div>
+		<div><span class="WHITE">1.pl</span> <i>poliadeniláció</i></div>
 		<div><span class="WHITE">2.pl</span> mikroRNS és/vagy siRNS lebontja/elcsendesíti az mRNS-t</div>
 		<details><summary>mRNS magpóruson átjutásának feltétele?</summary><ul class="normal">
 			<li>csak az érett_mRNS (poliA-farok + sapkával rendelkező) jut el magpórushoz, és azon át</li>
@@ -1040,7 +1045,7 @@
 		<li>cisz-elemek = génszabályozó-régiók &#10140; DNS része(szekvencia), melyhez transzkripciós-faktorok és génreguláló-fehérjék kötődnek majd</li>
 		<li>transz-elemek = génreguláló_fehérjék</li>
 	</ul></details>
-	<details class="kerdes 2" id="sb.71"><summary>cisz-elemekre példák?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.71"><summary>cisz-elemekre 3pl?</summary><ul class="normal">
 		<li>promoter-régió és TATA-box</li>
 		<li>enchancer-régió</li>
 		<li>silencer-régió</li>
@@ -1800,32 +1805,56 @@
 <!----></div></details>
 
 <!----><details><summary class="phase">10. A sejtváz.</summary><div class="normal">
- <div><div class="title">általános.</div>
-	<details class="kerdes" id="sb.357"><summary>másnéven?</summary><ul class="normal">
+ <div><div class="title">sejtváz.</div>
+	<details class="kerdes 1" id="sb.357"><summary>másnéven?</summary><ul class="normal">
 		<li>citoszkeleton</li>
 	</ul></details>
-	<details class="kerdes" id="sb.351"><summary><span class="Vocab">JR</span> eredete</summary><ul class="normal">
+	<details class="kerdes 2 open" id="sb.687"><summary><span class="WHITE">IF</span> (LP2)</summary><ul class="normal">
+		<img src="images/10_iflkmnt.png">
+		<br><details><summary>megoldás</summary><ul class="normal">
+			<div><span class="WHITE">1</span> mikrofilamentum</div>
+			<div><span class="WHITE">2</span> mikrotubulus</div>
+			<div><span class="WHITE">3</span> intermedier filamentum</div>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 2 open" id="sb.688"><summary><span class="WHITE">IF</span> (LP2)</summary><ul class="normal">
+		<img src="images/10_filifmnt.png">
+		<br><details><summary>megoldás</summary><ul class="normal">
+			<div><span class="WHITE">1</span> mikrofilamentum</div>
+			<div><span class="WHITE">2</span> intermedier filamentum</div>
+			<div><span class="WHITE">3</span> mikrotubulus</div>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 2 open" id="sb.689"><summary><span class="WHITE">IF</span> (LP2)</summary><ul class="normal">
+		<img src="images/10_flmnt.png">
+		<br><details><summary>megoldás</summary><ul class="normal">
+			<div><span class="WHITE">1</span> mikrofilamentum</div>
+			<div><span class="WHITE">2</span> intermedier filamentum</div>
+			<div><span class="WHITE">3</span> mikrotubulus</div>
+		</ul></details>
+	</ul></details>
+	<details><summary><span class="white">JR</span> eredete</summary><ul class="normal">
 		<li>evolúció során előbb megjelent mint pl. peroxiszóma, mitokondrium</li>
 	</ul></details>
-	<details class="kerdes" id="sb.352"><summary>baktériumokban van?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.352"><summary>baktériumokban van?</summary><ul class="normal">
 		<li>nincs, de a sejtváz két elemének (aktin + tubulin) őse kimutatható bennük</li>
 	</ul></details>
-	<details class="kerdes" id="sb.353"><summary>sejtváz elemei?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.353"><summary>sejtváz elemeinek felsorolása? (HP)</summary><ul class="normal">
 		<li>intermedier filamentum</li>
 		<li>mikrofilamentum</li>
 		<li>mikrotubulus</li>
 		<img src="images/10_elemek.png">
 	</ul></details>
-	<details class="kerdes" id="sb.376"><summary>sejtváz elemeinek funkcióit hogy érdemes felfogni?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.376"><summary>sejtváz elemeinek (imf-mf-mt) funkcióit hogy érdemes felfogni?</summary><ul class="normal">
 		<li>intermedier filamentum &#10140; szilárd váz</li>
 		<li>mikrofilamentum & mikrotubulus &#10140; sejt alakváltozása, sejtorganellumok mozgatása</li>
 	</ul></details>
-	<details class="kerdes" id="sb.354"><summary>asszociált proteinek &#10140; funkció? 1pl?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.354"><summary>asszociált proteinek &#10140; funkció?(3) 2pl?</summary><ul class="normal">
 		<li>szabályozzák az elemek(pl.mikrofilamentum) felépülését / lebomlását</li>
 		<li>kapcsolódásukért felelősek &#10140; pl. plektin kapcsolja egymáshoz a sejtváz elemeit(imf-mf-mt)</li>
 		<li>motoros_proteinek <abbr title="asszociált egy típusa, de lehet külön csoportba is venni">&#10045;</abbr> pedig pl. mozgatnak valamilyen anyagot a mikrotubulus/mikrofilamentum mentén</li>
 	</ul></details>
-	<details class="kerdes" id="sb.356"><summary>felépítésük/alkotóik &#10140; mikrotubulus / intermedier_filamentum / mikrofilamentum?</summary><ul class="normal">
+	<details class="kerdes 3" id="sb.356"><summary>mt/mf/imf &#10140; felépítésük jellemzése?(2) alkotóik?(2) polarizáció? átmérő?</summary><ul class="normal">
 		<table>
 			<tr><th bgcolor="black"></th>
 				<th>mikrotubulus</th>
@@ -1849,14 +1878,14 @@
 				<td>nincs</td>
 			</tr>
 			<tr><th>átmérő</th>
-				<td colspan="3">mikrotubulus 24nm <span class="WHITE">></span> intermedier 8-10nm  <span class="WHITE">></span> aktin <abbr title="ez nembiztos, de enneka legkisebb">1-2nm</abbr></td>
+				<td colspan="3">mikrotubulus 24nm <strong>></strong> intermedier 10nm <strong>></strong> aktin 8nm</td>
 			</tr>
 		</table>
 		<img src="images/10_felepetis.png">
 	</ul></details>
  </div>
  <div><div class="title">mikrotubulus.</div>
-	<details class="kerdes" id="sb.358"><summary>szerkezete?</summary><ul class="normal">
+	<details class="kerdes 3" id="sb.358"><summary>szerkezete?</summary><ul class="normal">
 		<li>13 protofilamentumból áll 1mikrotubulus</li>
 		<li>1protofilamentum sok dimer-ből áll</li>
 		<li>1dimer = 1&alpha;-tubulin és 1&beta;-tubulin</li>
@@ -1868,10 +1897,10 @@
 		</ul></details>
 		<img src="images/10_microtbulue.png">
 	</ul></details>
-	<details class="kerdes" id="sb.359"><summary>átmérője?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.359"><summary>átmérője?</summary><ul class="normal">
 		<li>24nm</li>
 	</ul></details>
-	<details class="kerdes" id="sb.360"><summary>felépülés/lebomlás?</summary><ul class="normal">
+	<details class="kerdes 3" id="sb.360"><summary>felépülés/lebomlás?</summary><ul class="normal">
 		<li>mikrobubulus 2 végén illetve a citoszolban lévő tubulinok GTP-t tartalmaznak</li>
 		<li>amikor egy dimer a citoszolból ráépül a mikrobulus egyik végére, akkor amelyik kettő között létrejön a kovalens kötés, azoknál a GTP hidrolizál GDP-re</li>
 		<li>pl. mikrotubulus pozitív végén &alpha;-tubulinok vannak GTP-vel &#10140; dimer &beta;-tubulinrésszel kapcsolódik hozzá, és mind2 GTP hidrolizál GDP-re, így megint egy GTP-s &alpha;-tubulin (dimernek ez a tubulinja nem hidrolizált GDP-re) lesz legkívül</li>
@@ -1879,25 +1908,25 @@
 		<li>(épülés sebessége 1,5m/perc –––––– lebomlásé 25m/perc)</li>
 		<li>polimerizáció = épülés ///// depolimerizáció = lebomlás</li>
 	</ul></details>
-	<details class="kerdes" id="sb.361"><summary>MAP-ok &#10140; minek a rövidítése? melyeket sorolom fel?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.361"><summary>MAP-ok &#10140; minek a rövidítése? melyeket sorolom fel?</summary><ul class="normal">
 		<div>MAP = Mikrotubulus Asszociált Proteinek</div>
 		<li>kapcsolódásukért felelős pl. tau</li>
 		<li>motorfehérjék &#10140; pl. kinezin & dinein</li>
 	</ul></details>
-	<details class="kerdes" id="sb.362"><summary>toxikus anyagok?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.362"><summary>toxikus anyagok?</summary><ul class="normal">
 		<li>taxol &#10140; tiszafa anyaga &#10140; depolimerizációt gátolja</li>
 		<li>kolhicin &#10140; őszi kikerics anyaga &#10140; polimerizációt gátolja (ennek következtében a sejtosztódást!)</li>
 	</ul></details>
-	<details class="kerdes" id="sb.363"><summary>MTOC?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.363"><summary>MTOC?</summary><ul class="normal">
 		<li>mikrotubulus organizáló centrum = sejtközpont</li>
 		<li>ez a mikrotubulusok szerveződési és eredési helye</li>
 		<li>mikrotubulus negatív vége néz MTOC irányába</li>
 	</ul></details>
-	<details class="kerdes" id="sb.364"><summary>tau?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.364"><summary>tau?</summary><ul class="normal">
 		<li>ez közreműködik az idegsejtek axonjában lévő sok mikrotubulus kötegbe rendezésében</li>
 		<li>a mikrotulus-kötegek pedig közreműködnek a neurotranszmitter(ingerületátvivő anyag) tartalmú vezikulumok szállításában</li>
 	</ul></details>
-	<details class="kerdes" id="sb.365"><summary>kinezin + dinein &#10140; mik? + funkció?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.365"><summary>kinezin + dinein &#10140; mik? + funkció?</summary><ul class="normal">
 		<div>motorfehérjék</div>
 		<li>kinezin &#10140; sejtorganellumokat a mikrotubulus + vége felé mozgatják</li>
 		<li>dinein</li><ul>
@@ -1908,27 +1937,27 @@
 	</ul></details>
  </div>
  <div><div class="title">mikrofilamentum.</div>
-	<details class="kerdes" id="sb.366"><summary>másik neve?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.366"><summary>másik neve?</summary><ul class="normal">
 		<div>aktin_filamentum</div>
 	</ul></details>
-	<details class="kerdes" id="sb.367"><summary>monomerje?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.367"><summary>monomerje?</summary><ul class="normal">
 		<div>G-aktin</div>
 		<img src="images/10_felepetis.png">
 	</ul></details>
-	<details class="kerdes" id="sb.369"><summary>felépülés/lebomlás?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.369"><summary>felépülés/lebomlás?</summary><ul class="normal">
 		<li>2 G-aktin összekapcsolódásakor 1 ATP hidrolizál ADP-re</li>
 		<li>+ végén a polimerizáció(felépülés) kb. 10x gyorsabb</li>
 	</ul></details>
-	<details class="kerdes" id="sb.355"><summary>szerkezet?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.355"><summary>szerkezet?</summary><ul class="normal">
 		<li>aktin_fehérjék egymáshoz kapcsolódva létrehoznak egy szálat</li>
 		<li>2 szál hélixszerű összekapcsolódásából jön létre a mikrofilamentum &#10140; - és + vége szintén van(mikrotubulusnál is)</li>
 	</ul></details>
-	<details class="kerdes" id="sb.370"><summary>toxikus anyagok?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.370"><summary>toxikus anyagok?</summary><ul class="normal">
 		<li>citokalazin &#10140; polimerizációt gátolja</li>
 		<li>falloidin &#10140; depolimerizációt gátolja</li>
 		<div><span class="white">§</span> mindkettő egyes gombákban fordul elő &#10140; falloidin pl. van gyilkos galócában (de konkrétan nem ettől olyan halálos)</div>
 	</ul></details>
-	<details class="kerdes" id="sb.371"><summary>ABP-k &#10140; minek a rövidítése? felsorolásuk?</summary><ul class="normal">
+	<details class="kerdes 3" id="sb.371"><summary>ABP-k &#10140; minek a rövidítése? felsorolásuk?</summary><ul class="normal">
 		<div>Actin Binding Protein -ek</div>
 		<li>felépülés / lebomlást szabályozzák</li><ul>
 			<div><span class="WHITE">pl</span> timozin &#10140; polimerizációt gátolja</div>
@@ -1944,7 +1973,7 @@
 		</ul>
 		<img src="images/10_moizosn.png">
 	</ul></details>
-	<details class="kerdes" id="sb.372"><summary>mikroboholy felépítése?</summary><ul class="normal">
+	<details class="kerdes 3" id="sb.372"><summary>mikroboholy felépítése?</summary><ul class="normal">
 		<li>20-30 aktin filamentumból áll</li>
 		<li>pozitív végük van a csúcs résznél mindig</li>
 		<li>ezeket <strong>villin</strong> és <strong>fimbrin</strong> kapcsolja egymáshoz (így egy kötegnek tekinthetők lényegében)</li>
@@ -1952,7 +1981,7 @@
 		<li>terminal_web területen spektrin kapcsolja a citoszkeletonhoz (intermedier- & mikrofilamentumokhoz)</li>
 		<img src="images/10_microvillus.png">
 	</ul></details>
-	<details class="kerdes" id="sb.373"><summary><span class="Vocab">JR</span> funkció, elrendeződés</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.373"><summary><span class="Vocab">JR</span> funkció, elrendeződés</summary><ul class="normal">
 		<li>stress-fonalak &#10140; egész sejtet átérik, pl. sebgyógyuláskor összehúzódnak</li>
 		<li>amöboid mozgás</li>
 		<li>izommozgás</li>
@@ -1964,31 +1993,31 @@
 	</ul></details>
  </div>
  <div><div class="title">intermedier-filamentumok.</div>
-	<details class="kerdes" id="sb.368"><summary>monomer mi?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.368"><summary>monomer mi?</summary><ul class="normal">
 		<li>fibrilláris-fehérje &#10140; 7aminósavból áll</li>
 		<li>egyik vége <span class="WHITE">-NH<sub>2</sub></span> másik <span class="WHITE">-COOH</span></li>
 	</ul></details>
-	<details class="kerdes" id="sb.374"><summary>monomer sejttípustól függése mire használható fel?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.374"><summary>monomer sejttípustól függése mire használható fel?</summary><ul class="normal">
 		<div>tumorsejt eredete meghatározható, hisz olyat termel, amilyen szövetből származott</div>
 	</ul></details>
-	<details class="kerdes" id="sb.375"><summary>felépítés?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.375"><summary>felépítés?</summary><ul class="normal">
 		<li>monomerek egyik végén <span class="Book">NH2</span>, másik végén <span class="Book">COOH</span></li>
 		<li>dimer &#10140; 2monomer összecsavarodik</li>
 		<li>tetramer = protofilamentum</li>
 		<li>8protofilamentum &#10140; intermedier filamentum</li>
 		<img src="images/10_intremdfl.png">
 	</ul></details>
-	<details class="kerdes" id="sb.377"><summary>osztályaik?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.377"><summary>osztályaik?</summary><ul class="normal">
 		<li>keratinok &#10140; hámszövet</li>
 		<li>neurofilamentumok &#10140; könnyű / közepes / nehéz &#10140; idegsejteknél</li>
 		<li>lamin &#10140; pl. A/B/C lamina_fibrosa</li>
 	</ul></details>
-	<details class="kerdes" id="sb.378"><summary>szerepük, előfordulásuk?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.378"><summary>szerepük, előfordulásuk?</summary><ul class="normal">
 		<li>pl. dezmoszómákhoz vannak horgonyozva</li>
 		<li>pl. lamina_fibrosa a magmembrán stabilitását biztosítja</li>
 		<li>(pl. tumorsejtek eredete ebből meghatározható, mert minden sejtben más a monomer &#10140; tumorsejt monomerje megegyezik azzal a szövetével, ahonnan származik)</li>
 	</ul></details>
-	<details class="kerdes" id="sb.379"><summary>IFAP-ok?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.379"><summary>IFAP-ok?</summary><ul class="normal">
 		<li>Intermedier Filamentum Asszociált Protein</li>
 		<li>pl. plektin &#10140; összekapcsolja egymással a sejtváz elemeit (imf-mf-mt)</li>
 	</ul></details>
@@ -2001,7 +2030,7 @@
 		<li>sejt-sejt (másik sejttel)</li>
 		<li>sejt-ECM (ECM-el)</li>
 	</ul></details>
-	<details class="kerdes" id="sb.235"><summary>lamina_basalis milyen sejtek körül van?</summary><ul class="normal">
+	<details class="kerdes" id="sb.235"><summary>lamina_basalis milyen sejtek körül van?(4)</summary><ul class="normal">
 		<li>izom (sima+haránt)</li>
 		<li>hám (nem körül, hanem alatt)</li>
 		<li>zsír</li>
@@ -2500,7 +2529,7 @@ A sejtciklus fogalma (interfázis: G1-, S-, G2- valamint az M-fázis). Szabályo
 		<li>vagy a sejtciklus valamely fázisában</li>
 		<li>vagy a G0 fázisban &#10140; legtöbb sejt ebben a fázisban van (felnőtt szervezetben)</li>
 	</ul></details>
-	<details class="kerdes 1" id="sb.424"><summary>miért van a legtöbb sejt G0 fázisban?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.424"><summary style="color:Magenta"><font color="Green">miért van a legtöbb sejt G0 fázisban?</font> <abbr title="elég hülyén van megfogalmazva a kérdés">&#10045;</abbr></summary><ul class="normal">
 		<li>mert a ciklinek hiányoznak</li>
 	</ul></details>
 	<details class="kerdes 1" id="sb.425"><summary>milyen szignál kell a G0 fázisból kilépéshez?</summary><ul class="normal">
@@ -2861,8 +2890,8 @@ A sejtmozgás biológiai és orvosi jelentősége; típusai: taxisok, kinezisek 
 
 <!----><details><summary class="phase">15. Sejtek közti kommunikáció, extracelluláris vezikula szekréció, trogocitózis.</summary><div class="normal">
 Kommunikáció prokaryota és eukaryota sejtek között. Juxtakrin, autokrin, parakrin és endokrin kommunikáció. Trogocytosis, membrán nanocsövek. Az extracelluláris vezikulák alapszerkezete, termelődési mechanizmusai és fő típusai (exoszómák, mikrovezikulák, apoptotikus testek). Extracelluláris ligandok és receptoraik (citoszól/magreceptorok, membránreceptorok (ioncsatorna receptorok, trimer G fehérjéhez kötött receptorok, enzimkötött receptorok)).
- <div><div class="title">általános.</div>
-	<details class="kerdes 2" id="sb.454"><summary>jelátviteli folyamatok által kiváltott sejtválasz típusai?</summary><ul class="normal">
+ <div><div class="title">sejtek közti kommunikáció.</div>
+	<details class="kerdes 2" id="sb.454"><summary>jelátviteli folyamatok által kiváltott sejtválasz típusai?(4)</summary><ul class="normal">
 		<li>túlélés</li>
 		<li>osztódás</li>
 		<li>differenciálódás</li>
@@ -2875,25 +2904,25 @@ Kommunikáció prokaryota és eukaryota sejtek között. Juxtakrin, autokrin, pa
 		<li>pl. kis létszám esetén nem, de nagy létszám esetében a biofilmképzés, toxin termelés megindul</li>
 		<div><span class="white">§</span> biofilm &#10140; mikroorganizmusok egy felületen összetapadt, egybefüggő bevonatot képező sejtjeiből áll. A sejtek gyakran az általuk termelt, nyálkának is nevezett extracelluláris polimer anyagokba (extracellular polymeric substance, EPS) ágyazódva helyezkednek el.</div>
 	</ul></details>
-	<details class="kerdes 2" id="sb.456"><summary>eukarióták közti kommunikáció típusainak felsorolása?</summary><ul class="normal">
+	<details class="kerdes 3" id="sb.456"><summary>eukarióták közti kommunikáció típusainak felsorolása?(5)</summary><ul class="normal">
 		<li>juxtakrin</li>
 		<li>parakrin</li>
 		<li>endokrin</li>
 		<li>autokrin</li>
 		<li>trogocytosis</li>
 	</ul></details>
-	<details class="kerdes 1" id="sb.457"><summary>juxtakrin típusainak felsorolása?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.457"><summary>juxtakrin típusainak felsorolása?(2<sub>+1</sub>)</summary><ul class="normal">
 		<img src="images/15_plsdmds.png">
-		<li>membránban van a receptor és ligandum is</li>
-		<li>GAP junction</li>
-		<li>plasmodesmata (növényeknél)</li>
+		<li><span class="Important">membránban van a receptor és ligandum is</span></li>
+		<li><span class="Important">GAP junction</span></li>
+		<li>plasmodesmata &#10140; növényeknél</li>
 	</ul></details>
 	<details class="kerdes 1" id="sb.458"><summary>juxtakrin "membránban van a receptor és ligandum" jelátvitelre 1pl?</summary><ul class="normal">
 		<img src="images/15_reclig.png">
 		<div><span class="WHITE">1.pl</span> Notch-jelátvitel</div>
 		<div><span class="WHITE">2.pl</span> immunológiai szinapszis</div>
 	</ul></details>
-	<details class="kerdes 1" id="sb.459"><summary>trogocitózis lényege?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.459"><summary style="color:Magenta"><font color="Green">trogocitózis lényege?</font></summary><ul class="normal">
 		<img src="images/15_trgctzs.png">
 		<li>membránrészletek átjutása egyik sejtről a másikra</li>
 		<li><i>ez történik, amikor lymphocyta találkozik olyan sejttel melyben van antigén &#10140; összekapcsolódnak, majd a lymphocyta kivág az "antigénes-sejt" membránjából egy részt és a sajátjába teszi &#10140; immunológiai_szinapszisnak is nevezik, csak akkor azt nem értem előadáson miért van az a juxtakrinnél példaként</i> (wikipediat fordítottam)</li>
@@ -2928,22 +2957,44 @@ Kommunikáció prokaryota és eukaryota sejtek között. Juxtakrin, autokrin, pa
 			<li>extracelluláris vezikulák</li>
 		</ul></details>
 	</ul></details>
-	<details class="kerdes 1" id="sb.465"><summary>jel hatásának sebessége?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.465"><summary>jel hatásának sebessége?</summary><ul class="normal">
 		<li><i>gyors, amennyiben a citoplazmában található fehérjék funkciójának megváltoztatása megy végbe</i></li>
 		<li><i>lassú, amennyiben a génexpresszión keresztül változik meg a citoplazmában lévő fehérjék</i></li>
 		<img src="images/15_jelhtsseb.png">
 	</ul></details>
-	<details class="kerdes 1" id="sb.466"><summary><span class="WHITE">JR</span> jelátvitel definíció</summary><ul class="normal">
-		<li>azt a több lépcsős folyamatot, melyben a <abbr title="ez a 2 szvsz ugyanaz, ezenkívül nevezhető elsődleges_hírvívőnek és mivel receptor fogja meg ligandumnak is">jelek/szignálok</abbr> hatására a sejtválasz létrejön, jelátvitelnek (szignál transzdukciónak) nevezzük</li>
+	<details class="kerdes 1" id="sb.466"><summary>jelátvitel definíció?</summary><ul class="normal">
+		<li>az a több lépcsős folyamat, melyben a <abbr title="ez a 2 szvsz ugyanaz, ezenkívül nevezhető elsődleges_hírvívőnek és mivel receptor fogja meg ligandumnak is">jelek/szignálok</abbr> hatására a sejtválasz létrejön</li>
 	</ul></details>
-	<details class="kerdes 1" id="sb.468"><summary>receptorok csoportosítása?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.682"><summary>jelátvitel szinonima?</summary><ul class="normal">
+		<li>szignál transzdukció</li>
+	</ul></details>
+	<details class="kerdes 2" id="sb.468"><summary>receptorok csoportosítása?</summary><ul class="normal">
 		<li>sejtfelszíni = membránreceptorok &#10140; amennyiben a szignál hifrofil</li>
 		<li>intracelluláris <abbr title="citoszol/magreceptorok">(=)</abbr> &#10140; amennyiben a szignál hirofób (hisz apoláros molekula átjut a plazmamembránon)</li>
 		<img src="images/15_recptrtp.png">
 	</ul></details>
+	<details class="kerdes 2" id="sb.496"><summary>intracelluláris receptor ligandumok &#10140; jellemzőjük? 2pl?</summary><ul class="normal">
+		<li>hidrofóbok &#10140; ezért jutnak át plazmamembránon</li>
+		<li>pl. tiroxin(=T4), tesztoszteron, kortizol, retinsav</li>
+		<img src="images/15_ligdnas.png">
+	</ul></details>
+	<details class="kerdes 1" id="sb.497"><summary>kortizol &#10140; mi?</summary><ul class="normal">
+		<li>intracelluláris receptor <span class="Important">ligand</span>ja</li>
+		<img src="images/15_kortizol.png">
+	</ul></details>
+	<details class="kerdes 3" id="sb.683"><summary>alábbi hírvívők besorolása receptor (és enzim) &#10140; kortizol? ADH? acetil-kolin? tesztoszteron? T4? GF? retinsav? adrenalin? thrombin?</summary><ul class="normal">
+		<li>membránreceptor</li><ul>
+			<li>GPCR</li><ul>
+				<li>adenilát-cikláz &#10140; <span class="WHITE">adrenalin</span></li>
+				<li>PLC &#10140; <span class="WHITE">acetil-kolin</span> <span class="WHITE">ADH</span> <span class="WHITE">thrombin</span></li>
+			</ul>
+			<li>RTK &#10140; <span class="WHITE">GF</span></li>
+		</ul>
+		<li>intracelluláris receptor &#10140; <span class="WHITE">kortizol</span> <span class="WHITE">tesztoszteron</span> <span class="WHITE">retinsav</span> <span class="WHITE">T4</span></li>
+	</ul></details>
  </div>
  <div><div class="title">membránreceptorok.</div>
-	<details class="kerdes 3" id="sb.469"><summary>csoportosításuk?</summary><ul class="normal">
+	<details class="kerdes 4" id="sb.469"><summary>csoportosításuk?</summary><ul class="normal">
 		<br><details><summary>ioncsatornák &#10140; lényege?</summary><ul class="normal">
 			<img src="images/15_ioncsat.png">
 		</ul></details>
@@ -2961,7 +3012,7 @@ Kommunikáció prokaryota és eukaryota sejtek között. Juxtakrin, autokrin, pa
 	<details class="kerdes 3" id="sb.467"><summary>hírvívők csoportosítása?</summary><ul class="normal">
 		<br><details><summary>elsődleges hírvívő &#10140; mi? 1pl?</summary><ul class="normal">
 			<li>ezt köti meg a receptor</li>
-			<li>pl. citokinek, adrenalin</li>
+			<li>pl. citokinek, adrenalin, neurotranszmitterek</li>
 		</ul></details>
 		<br><details><summary>másodlagos hírvívő &#10140; mi? 5pl?</summary><ul class="normal">
 			<li>átalakítja, felerősíti a jelet (sejtválaszra lefordítja)</li>
@@ -2999,13 +3050,13 @@ Kommunikáció prokaryota és eukaryota sejtek között. Juxtakrin, autokrin, pa
 	<details class="kerdes 1" id="sb.490"><summary><span class="WHITE">JR</span> szignál amplifikáció, azaz 1db szignál molekulából "hány lesz"</summary><ul class="normal">
 		<img src="images/15_adrnempr.png">
 	</ul></details>
-	<details class="kerdes 3" id="sb.478"><summary>PLC enzimes jelátvitel &#10140; receptor mi? ligandra 2pl? lényege?</summary><ul class="normal">
+	<details class="kerdes 3" id="sb.478"><summary>PLC enzimes jelátvitel &#10140; receptor mi? ligandra 1pl? lényege?</summary><ul class="normal">
 		<img src="images/15_foszplcl.png">
 		<li>GPCR a receptor</li>
 		<li>ligand pl. acetil-kolin, <abbr title="vazopresszin = anti-diuretikus-hormon">ADH</abbr>, thrombin</li>
 		<div><strong>lényege</strong></div>
 		<li>receptor megköti a ligandot</li>
-		<li>G-protein aktiválja PLC enzimet &#10140; addig membránban horgyonyzott IP<sub>2</sub> kettéválik két másodlagos hírvívőre: IP<sub>3</sub>-ra és -ra</li><ul>
+		<li>G-protein aktiválja PLC enzimet &#10140; addig membránban horgyonyzott IP<sub>2</sub> kettéválik két másodlagos hírvívőre:</li><ul>
 			<li><abbr title="diacil-glicerin">DAG</abbr> ( &#10140; PKC nevű kinázt aktiválja)</li>
 			<li>IP<sub>3</sub> &#10140; sER Ca<sup>2+</sup>-csatornáját megnyitja</li>
 		</ul>
@@ -3035,17 +3086,6 @@ Kommunikáció prokaryota és eukaryota sejtek között. Juxtakrin, autokrin, pa
 		<img src="images/15_jrlp.png">
 	</ul></details>
  </div>
- <div><div class="title">intracelluláris receptorok.</div>
-	<details class="kerdes 2" id="sb.496"><summary>ligandumok &#10140; jellemzőjük? 3pl?</summary><ul class="normal">
-		<li>hidrofóbok &#10140; ezért jutnak át plazmamembránon</li>
-		<li>pl. tiroxin(=T4), tesztoszteron, kortizol</li>
-		<img src="images/15_ligdnas.png">
-	</ul></details>
-	<details class="kerdes 1" id="sb.497"><summary>kortizol &#10140; mi?</summary><ul class="normal">
-		<li>intracelluláris receptor <span class="Important">ligand</span>ja</li>
-		<img src="images/15_kortizol.png">
-	</ul></details>
- </div>
  <div><div class="title">extracelluláris vezikulák</div>
 	<details class="kerdes 2" id="sb.498"><summary>csoportosításuk?(HP)</summary><ul class="normal">
 		<li>exoszóma <span class="WHITE">30-100nm</span></li>
@@ -3053,7 +3093,7 @@ Kommunikáció prokaryota és eukaryota sejtek között. Juxtakrin, autokrin, pa
 		<li>apoptotikus test <span class="FIX">vagy</span> nagy onkoszóma <span class="WHITE">800nm-5&micro;m</span></li>
 		<img src="images/15_extracelvezk.png">
 	</ul></details>
-	<details class="kerdes 2" id="sb.499"><summary>szerkezetük?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.499"><summary style="color:Magenta"><font color="Green">főbb alkotóik?(4)</font></summary><ul class="normal">
 		<img src="images/15_extrsclszkr.png">
 	</ul></details>
 	<details class="kerdes 1" id="sb.500"><summary><span class="WHITE">JR</span> definíció (LP)</summary><ul class="normal">
@@ -3065,7 +3105,7 @@ Kommunikáció prokaryota és eukaryota sejtek között. Juxtakrin, autokrin, pa
 	<details class="kerdes 1" id="sb.502"><summary><span class="WHITE">JR</span> extrcelluláris vezikulák funkciói</summary><ul class="normal">
 		<img src="images/15_ecsfnk.png">
 	</ul></details>
-	<details class="kerdes 2" id="sb.503"><summary>mely sejtek termelik?(6)(HP)</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.503"><summary>4pl mely sejtek termelik?(HP)</summary><ul class="normal">
 		<img src="images/15_extrclvezkl.png">
 	</ul></details>
 	<details class="kerdes 1" id="sb.504"><summary><span class="WHITE">JR</span> emberben extracelluláris_vezikula miben van</summary><ul class="normal">
@@ -3080,7 +3120,7 @@ Kommunikáció prokaryota és eukaryota sejtek között. Juxtakrin, autokrin, pa
 <!----><details><summary class="phase">16. A sejtöregedés és a sejthalál.</summary><div class="normal">
 A sejtek öregedését okozó magyarázó elméletek; külső és genetikai tényezők szerepe. A sejtek halála: a nekrózis és apoptózis definiciója és összehasonlítása. az apoptotikus vezikulák létrejöttének mechanizmusai Az apoptózist kiváltó és gátló szignálok, receptorok, jelátviteli útvonalak (<span class="MISS">TNF receptor család /haláldomén/</span>, mitokondriális útvonal, túlélési faktorok. Az apoptózis effektor mechanizmusai: kaszpázok, transzglutaminázok és endo-nukleázok. Az apoptózis jelentősége az egyedfejlődésben és a betegségekben. A nekroptózis és piroptózis definiciója és előfordulásuk.
  <div><div class="title">sejtek öregedését magyarázó elméletek.</div>
-	<details class="kerdes 2" id="sb.506"><summary>felgyorsult öregedés szindrómák és lényegük 1 mondatban?(2+2)</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.506"><summary>2pl felgyorsult öregedés <strong>szindrómára</strong> és lényegük 1 mondatban?</summary><ul class="normal">
 		<li>Hutchinson-Gilford szindróma &#10140; lamin_A gén mutációja</li>
 		<li>Werner szindróma &#10140; helikáz mutációja</li>
 		<details><summary>helikáz mi?</summary><ul class="normal">
@@ -3116,7 +3156,7 @@ A sejtek öregedését okozó magyarázó elméletek; külső és genetikai tén
 	<details class="kerdes 1" id="sb.512"><summary>mire támaszkodik az elmélet?</summary><ul class="normal">
 		<li>antioxidánsok megnövelik az élettartamot (késleltetik pl. szív-érrendszeri betegség, rák megjelenését)</li>
 	</ul></details>
-	<details class="kerdes 2" id="sb.516"><summary>kalória megvonás elmélet lényege?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.516"><summary>kalória megvonás elmélet &#10140; lényege? bizonyíték(2)</summary><ul class="normal">
 		<li>tápanyagok lebontása során a mitokondriumban szabad gyökök keletkeznek</li>
 		<li>ezért minél több tápanyagot fogyasztunk, annál nagyobb az esély a mutációra (főként mtDNS)</li>
 		<li>tehát ha diétára fogják az az állatot, akkor nő az életkora</li>
@@ -3134,7 +3174,7 @@ A sejtek öregedését okozó magyarázó elméletek; külső és genetikai tén
 	</ul></details>
 	<details class="kerdes 2" id="sb.513"><summary>"mitokondriumok száma" lényege?</summary><ul class="normal">
 		<li>mutációkat a repair enzimek korrigálják</li>
-		<li>azonban az mtDNS mutációk száma nagyobb, és kevésbé hatékonyan javítódnak ki <abbr title="nohde wtf? a zigótában lévő mitokondrium DNS-ek ha annyira elmutálódtak, akkor a következő gyereknek a mtDNS-e már olyan gatyi állapotról indul, szóval nemigen kapizsgálom ennek mi értelme van">!?</abbr></li><ul>
+		<li>azonban az mtDNS mutációk száma nagyobb, és kevésbé hatékonyan javítódnak ki <abbr title="nohde wtf? a zigótában lévő mitokondrium DNS-ek ha annyira elmutálódtak, akkor a következő gyereknek a mtDNS-e már olyan gatyi állapotról indul, szóval nemigen kapizsgálom ennek mi értelme van --> közbe asszem rájöttem, mert ha nem kerül kijatívásra, attól még apoptózist kapnak, és ezért számuk csökken, de ettől még a normálisak öröklődnek tovább">(!?)</abbr></li><ul>
 			<li>mivel 93% exon &#10140; mutáció szinte biztosan a gént éri</li>
 			<li>nincs hiszton &#10140; nincs védve</li>
 			<li>oxidatív_foszforiláció során mellette keletkeznek szabad oxigén gyökök</li>
@@ -3165,7 +3205,7 @@ A sejtek öregedését okozó magyarázó elméletek; külső és genetikai tén
 	<details class="kerdes 1" id="sb.519"><summary>telomeráz funkciója?</summary><ul class="normal">
 		<li>őssejtekben, tumorsejtekben ez pótolja az osztódás után az elveszett telomer részt</li>
 	</ul></details>
-	<details class="kerdes 1" id="sb.520"><summary>telomer rövidülés mit eredményez?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.520"><summary>telomer rövidülés mit eredményez?(2)</summary><ul class="normal">
 		<li>maximálisan kivitelezhető osztódások száma csökken &#10140; ugyanis egy hossz után nem osztódhat tovább a sejt, ha mégis akkor elhal <i>(hisz onnantól az "értékes rész tűnne el fokozatosan")</i></li>
 		<li>ahogy rövidül egyre több tumor szupresszor gén expressziója megy végbe</li>
 	</ul></details>
@@ -3195,11 +3235,11 @@ A sejtek öregedését okozó magyarázó elméletek; külső és genetikai tén
 	<details class="kerdes 1" id="sb.525"><summary>apoptózis &#10140; sejtmag sorsa?</summary><ul class="normal">
 		<li>kromatinállomány kondenzálódik, magmembránhoz kapcsolódik, majd feldarabolódik</li>
 	</ul></details>
-	<details class="kerdes 1" id="sb.526"><summary>apoptózist mi válthatja ki?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.526"><summary>apoptózist kiváltó okok csoportosítása?(2)</summary><ul class="normal">
 		<li>genetikailag programozva van</li>
 		<li>környezeti hatás</li>
 	</ul></details>
-	<details class="kerdes 1" id="sb.527"><summary>apoptózisban résztvevő enzimcsaládok felsorolása?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.527"><summary>apoptózisban résztvevő enzimcsaládok felsorolása?(3)</summary><ul class="normal">
 		<li>endonukleázok</li>
 		<li>transzglutaminázok</li>
 		<li>kaszpázok</li>
@@ -3214,30 +3254,29 @@ A sejtek öregedését okozó magyarázó elméletek; külső és genetikai tén
 		<li>fehérjék között keresztkötéseket alakítanak ki</li>
 		<div><span class="white">§</span> véralvadásban a fibrinszálak összekötésében és a keratinociták elszarusodásában is részt vesznek</div>
 	</ul></details>
-	<details class="kerdes 1" id="sb.530"><summary>kaszpázok funkciója?</summary><ul class="normal">
-		<li>két csoportra oszthatók</li>
-		<li>iniciátorok &#10140; folyamatot elindítják (aktiválják egymást)</li>
-		<li>effektorok &#10140; folyamatot végrhajtják</li>
+	<details class="kerdes 2" id="sb.530"><summary>kaszpázok csoportosításuk?</summary><ul class="normal">
+		<li>iniciátorok &#10140; apoptózist elindítják (aktiválják egymást)</li>
+		<li>effektorok &#10140; apoptózist végrehajtják</li>
 	</ul></details>
-	<details class="kerdes 1" id="sb.531"><summary>IAP?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.531"><summary>IAP?</summary><ul class="normal">
 		<div><strong>IAP = inhibitor of apoptosis</strong></div>
 		<li>kaszpázhoz kötődve gátolják annak aktivitását</li>
 		<li>vírusokban is van, ezzel meggátolják a gazdasejt apoptózisát, ami által a vírus élettere megszűnne</li>
 	</ul></details>
-	<details class="kerdes 3" id="sb.532"><summary>pro-apoptotikus hatások felsorolása?<abbr title="nyilván nem az összes">&#10045;</abbr></summary><ul class="normal">
-		<li>extracelluláris &#10140; <span class="WHITE">T-limfociták</span> <span class="WHITE">FASL</span> <span class="WHITE">TNF-&alpha;</span> </li>
+	<details class="kerdes 3" id="sb.532"><summary>pro-apoptotikus hatások felsorolása csoportosítva?(5) <abbr title="nyilván nem az összes">&#10045;</abbr></summary><ul class="normal">
+		<li>extracelluláris &#10140; <span class="WHITE">T-limfociták</span> <span class="WHITE">FasL</span> <span class="WHITE">TNF-&alpha;</span> </li>
 		<li>intracelluláris &#10140; <span class="WHITE">"mitokondriumos"</span> <span class="WHITE">"DNS & p-53"</span></li>
 	</ul></details>
-	<details class="kerdes 2" id="sb.538"><summary>anti-apoptotikus hatások felsorolása?<abbr title="nyilván nem az összes">&#10045;</abbr></summary><ul class="normal">
+	<details class="kerdes 2" id="sb.538"><summary>anti-apoptotikus hatások felsorolása csoportosítva?(3) <abbr title="nyilván nem az összes">&#10045;</abbr></summary><ul class="normal">
 		<li>intracelluláris &#10140; <span class="WHITE">IAP</span> <span class="WHITE">Bcl-2</span></li>
 		<li>extracelluláris &#10140; túlélési növekedési faktorok, pl. NGF</li>
 	</ul></details>
-	<details class="kerdes 1" id="sb.533"><summary>T-limfociták extracelluláris pro-apoptotikus hatása?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.533"><summary>T-limfociták extracelluláris pro-apoptotikus hatása?</summary><ul class="normal">
 		<div>kétféleképp teszik:</div>
-		<li>T-limfocita perforinnal lyukat képez a célsejt plazmamembránjában, melyen keresztül a granzim bejut és aktiválja a kaszpázokat, és apoptózist vált ki</li>
-		<li>ezenkívül membránjukon <span class="WHITE">FasL</span> nevű ligandum van, melyet a célsejt <span class="WHITE">Fas</span> nevű receptor megköti, és ez benne apoptózist vált ki</li>
+		<li>T-limfocita <strong>perforinnal</strong> lyukat képez a célsejt plazmamembránjában, melyen keresztül a <strong>granzim</strong> bejut és (kaszpázok aktiválásával) apoptózist vált ki</li>
+		<li>ezenkívül membránjukon <span class="WHITE">FasL</span> nevű ligandum van, melyet a célsejt <span class="WHITE">Fas</span> nevű receptora megköti, és ez benne apoptózist vált ki <div class="mirror">&#10140;</div> <i>juxtakrin</i></li>
 	</ul></details>
-	<details class="kerdes 1" id="sb.534"><summary>TNF receptor család /haláldomén/ <span class="MISS">?</span></summary><ul class="normal">
+	<details class="kerdes 2" id="sb.534"><summary style="color:Magenta"><font color="Green">TNF receptor család /haláldomén/ ?</font></summary><ul class="normal">
 		<li>zöld beindítja apoptózist, piros gátolja</li>
 		<li>TRADD = TNF receptor associated death domain</li>
 		<li>FADD = Fas associated death domain</li>
@@ -3247,8 +3286,8 @@ A sejtek öregedését okozó magyarázó elméletek; külső és genetikai tén
 		<li>death domaines</li>
 		<li>mitokondriumos</li>
 	</ul></details>
-	<details class="kerdes 1" id="sb.536"><summary>mitokondriumos apoptózis indukáló útvonal lényege?</summary><ul class="normal">
-		<li>mitokondrium intermembrán teréből kiszabadulnak fehérjék, köztük kiemelkedő jelentőségű a <span class="WHITE">citokróm-C</span></li>
+	<details class="kerdes 2" id="sb.536"><summary>mitokondriumos apoptózis indukáló útvonal lényege?</summary><ul class="normal">
+		<li>mitokondrium <strong>intermembrán ter</strong>éből kiszabadulnak fehérjék, köztük kiemelkedő jelentőségű a <span class="WHITE">citokróm-C</span></li>
 		<li>ez kapcsolódik a citoszolban lévő <span class="WHITE">Apaf-1</span> és így megindítják az apoptózist (aktiválják a kaszpáz-9et)</li>
 		<li><abbr title="van egyéb is 228o">&#10045;</abbr></li>
 	</ul></details>
@@ -3256,14 +3295,22 @@ A sejtek öregedését okozó magyarázó elméletek; külső és genetikai tén
 		<li>amennyiben a DNS káros, és nem sikerül kijavítani...</li>
 		<li>... akkor a p53 fokozza a pro-apoptotikus hatású fehérjék szintézisét, míg az anti-apoptotikusokét <span class="WHITE">pl. Bcl-2</span> csökkenti</li>
 	</ul></details>
-	<details class="kerdes 2" id="sb.539"><summary>piroptózis &#10140; lényege? 2pl?</summary><ul class="normal">
-		<li>a programozott sejthalál erősen gyulladásos formája, főleg intracelluláris kórokozóval történt fertőzés során. (Lásd Immunológiában!)</li>
-		<li>kaszpáz 1 aktiváció történik (apoptózis során kaszpáz 7, 8, 9, 3 stb.)</li>
+	<details class="kerdes 1" id="sb.684"><summary>piroptózis, apoptózis, nekrózis, nekroptózis &#10140; melyik programozott?</summary><ul class="normal">
+		<li>összes, kivéve nekrózis</li>
+	</ul></details>
+	<details class="kerdes 1" id="sb.685"><summary>piroptózis, apoptózis, nekrózis, nekroptózis &#10140; melyik vált ki gyulladást?</summary><ul class="normal">
+		<li>nekrózis és piroptózis biztosan, illetve nekroptózis is feltételezhetően <abbr title="nem számomra feltételezhetően, hanem a tudomány számára">&#10045;</abbr></li>
+	</ul></details>
+	<details class="kerdes 3" id="sb.539"><summary>piroptózis &#10140; lényege?(3) 2pl?</summary><ul class="normal">
+		<li><strong>gyulladással jár</strong></li>
+		<li>főleg <strong>intracelluláris kórokozó</strong>val történt fertőzés során megy végbe (Lásd Immunológiában!)</li>
+		<li><strong>kaszpáz 1 aktiváció történik</strong> (apoptózis során kaszpáz 8, 9, 7, 3 stb.)</li>
 		<li>pl. Salmonella fertőzött makrofág, HIV fertőzött T-sejt</li>
+		<div><span class="white">§</span> programozott sejthalál</div>
 		<div><span class="white">§</span> (képen látható oldalon van részletesebben, de azt nem kell csak megőriztem)</div>
 		<img src="images/16_piroptózis.png">
 	</ul></details>
-	<details class="kerdes 1 open " id="sb.545"><summary>kép - nyisd meg</summary><ul class="normal">
+	<details class="kerdes 2 open " id="sb.545"><summary>kép - nyisd meg</summary><ul class="normal">
 		<img src="images/16_gyullads.png">
 		<br><details><summary>mit kell tudni leolvasni róla?</summary><ul class="normal">
 			<li>apoptózis "eat-me" szignálokat "eredményez"</li>
@@ -3271,9 +3318,9 @@ A sejtek öregedését okozó magyarázó elméletek; külső és genetikai tén
 			<li><i>nekroptózis feltételezhetően szintúgy gyulladást(inflamattory) kiváltó szignálokat "eredményez"</i></li>
 		</ul></details>
 	</ul></details>
-	<details class="kerdes 2" id="sb.540"><summary>nekroptózis?</summary><ul class="normal">
-		<li>a nekrózis programozott formája</li>
-		<li>nincs kaszpáz aktiváció, nincsnek apoptotikus testek &#10140; a sejt tartalma a extracelluláris térbe „folyik”</li>
+	<details class="kerdes 2" id="sb.540"><summary>nekroptózis &#10140; definíció? lényege? orvosi jelentősége?</summary><ul class="normal">
+		<li>definíció &#10140; nekrózis programozott formája</li>
+		<li>death-receptorok aktiválásán keresztül megy végbe de úgy, hogy a kaszpázok gátolva vannak &#10140; nekrózis fenotípusú, tehát nincsenek apoptotikus testek, hanem  a sejt tartalma a extracelluláris térbe „folyik”</li>
 		<li>orvosi jelentőség &#10140; vírus fertőzött sejtek halála lehetséges akkor is, ha a vírus kaszpáz gátlókat termeltet</li>
 		<div><span class="white">§</span> (képen látható oldalon van részletesebben, de azt nem kell csak megőriztem)</div>
 		<img src="images/16_nekroptózis.png">
@@ -3282,11 +3329,11 @@ A sejtek öregedését okozó magyarázó elméletek; külső és genetikai tén
 		<li>apoptózis és az osztódás kiegyenlíti egymást (egészséges felnőttben)</li>
 	</ul></details>
  </div>
- <div><div class="title">betegségek.</div>
+ <div><div class="title">"sejthalálhoz kapcsolódó betegségek".</div>
 	<details class="kerdes 2" id="sb.542"><summary>degeneratív betegségek &#10140; hátterükben mi állhat? 1pl és lényege?</summary><ul class="normal">
 		<li>fokozott mértékű apoptózis</li>
-		<li>pl. SMA = spinal_muscular_atrophy &#10140; IAP-ok hiánya/rossz működése következtében az apoptózis nincs rendesen gátolva &#10140; gerincvelő mozgatóneuronjai elhalnak</li>
-		<div><span class="white">§</span> apoptózis és az osztódás kiegyenlíti egymást (egészséges felnőttben)</div>
+		<li>pl. <strong>SMA = spinal_muscular_atrophy</strong> &#10140; <strong>IAP-ok hiánya/rossz működése</strong> következtében az apoptózis nincs rendesen gátolva &#10140; <strong>gerincvelő mozgatóneuronjai</strong> elhalnak</li>
+		<div><span class="white">§</span> normál esetben az apoptózis és az osztódás kiegyenlíti egymást (egészséges felnőttben)</div>
 	</ul></details>
 	<details class="kerdes 1" id="sb.543"><summary>HIV-fetőzés ezzel való összefüggése?</summary><ul class="normal">
 		<li>immunrendszer CD4,CD8 sejtjei apoptózissal elhalnak</li>
@@ -3300,7 +3347,7 @@ A sejtek öregedését okozó magyarázó elméletek; külső és genetikai tén
 <!----><details><summary class="phase">17. Őssejtbiológia, differenciáció.</summary><div class="normal">
 Sejtsors, sejtdifferenciáció. Totipotens, pluripotens, multipotens, oligopotens és unipotens sejtek. Az őssejtek típusai (embrionális, magzati, felnőtt, indukált pluripotens őssejtek). Az őssejtek fogalma, jellegzetességeik. Az őssejtek sejtciklusa és annak szabályozása. Az őssejt niche. Az őssejtek biológiai és terápiás jelentősége. Regeneratív medicina.
  <div><div class="title"></div>
-	<details class="kerdes 1" id="sb.547"><summary>sejt potenciálja &#10140; mit értünk alatta? tipusai?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.547"><summary>sejt potenciálja &#10140; mit értünk alatta? tipusainak felsorolása?</summary><ul class="normal">
 		<li>adott sejtből még hány fajta sejt képes kifejlődni</li>
 		<li>minél nagyobb, annál többféle tud még</li>
 		<li>ez alapján a sejteket 4 csoportba osztjuk: totipotens > pluripotens > multipotens > unipotens</li>
@@ -3322,7 +3369,7 @@ Sejtsors, sejtdifferenciáció. Totipotens, pluripotens, multipotens, oligopoten
 	<details class="kerdes 1" id="sb.551"><summary>unipotens_sejtek?</summary><ul class="normal">
 		<li>már sejtspecifikus, tehát egyféle sejtté tud már csak differenciálódni</li>
 	</ul></details>
-	<details class="kerdes 1" id="sb.546"><summary>őssejtek fogalma, jellegzetességeik?(3)</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.546"><summary>őssejtek jellegzetességeik?(3)</summary><ul class="normal">
 		<li>korlátlan osztódóképességgel rendelkeznek &#10140; ömegújúlás (fenntartják az "őssejt készletet")</li>
 		<li>emelett képesek differenciálódni különböző tipusú sejtekké &#10140; az, hogy hány fajtára a potenciáljáól(toti/pluri) függ</li>
 		<li>csak akkor differenciálódik, ha valamilyen szignált kap</li>
@@ -3333,12 +3380,12 @@ Sejtsors, sejtdifferenciáció. Totipotens, pluripotens, multipotens, oligopoten
 		<li>foetalis = köldökzsinóri</li>
 		<li>indukált</li>
 	</ul></details>
-	<details class="kerdes 1" id="sb.553"><summary>felnőttkori őssejtek &#10140; fő tulajdonsága 1pl-val bemutatva?</summary><ul class="normal">
-		<li>nagyrészük már szövetspecifikus &#10140; egy szövetet alkotó sejtek létrehozására képesek csak</li>
-		<li>pl. hematopoetikus őssejtből determinációval kialakulhat többféle progenitor-sejt &#10140; ezekből differenciációval már csak egyféle sejttípus alakul ki, tehát azok már sejtspecifikusak</li>
-		<li>ha a felnőttkori őssejt nem szövetspecifikus, akkor az nagy valószínűséggel tumor őssejt</li>
+	<details class="kerdes 2" id="sb.553"><summary>felnőttkori őssejtek &#10140; fő tulajdonsága 1pl-val bemutatva?</summary><ul class="normal">
+		<li>nagyrészük már <strong>szövetspecifikus</strong> &#10140; egy szövetet alkotó sejtek létrehozására képesek csak</li>
+		<li>pl. <strong>hematopoetikus őssejt</strong>ből determinációval <strong>kialakulhat többféle progenitor-sejt</strong> &#10140; ezekből differenciációval már csak egyféle sejttípus alakul ki, tehát azok már sejtspecifikusak</li>
+		<div><span class="white">§</span> ha a felnőttkori őssejt nem szövetspecifikus, akkor az nagy valószínűséggel tumor őssejt</div>
 	</ul></details>
-	<details class="kerdes 1" id="sb.554"><summary>felnőttkor differenciál sejtet mi pótolja?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.554"><summary>felnőttkori differenciált sejtet mi pótolja?</summary><ul class="normal">
 		<li>adott szövethez tartozó felnőttkori őssejt</li>
 		<li>vagy a fenntiből származó progenitor sejt</li>
 	</ul></details>
@@ -3353,22 +3400,22 @@ Sejtsors, sejtdifferenciáció. Totipotens, pluripotens, multipotens, oligopoten
 		<li>embrionális őssejt esetében még mind2 X-kromoszóma aktív</li>
 		<img src="images/17_xinactiv.png">
 	</ul></details>
-	<details class="kerdes 1" id="sb.557"><summary>embirionális őssejtek terápiás felhasználásának problémája és következménye?<abbr title="van egyéb is">&#10045;</abbr></summary><ul class="normal">
+	<details class="kerdes 1" id="sb.557"><summary>embrionális őssejtek terápiás felhasználásának problémája és következménye?<abbr title="van egyéb is">&#10045;</abbr></summary><ul class="normal">
 		<li>kevés emberi embrionális őssejt van</li>
 		<li>ugyanis nem megengedett létrehozásuk (etikailag)</li>
-		<li>&#10140; felnőttkori őssejtekkel foglalkozik a kutatás inkább</li>
+		<div>&#10140; felnőttkori őssejtekkel foglalkozik a kutatás inkább</div>
 	</ul></details>
 	<details class="kerdes 1" id="sb.558"><summary>legrégebbi felnőttkori őssejt, melyet terápiára használnak?</summary><ul class="normal">
 		<li>csontvelő átültetésnél a hematopoeticus_őssejtek kerülnek át</li>
 		<img src="images/17_hematop.png">
 	</ul></details>
 	<details class="kerdes 2" id="sb.559"><summary>mesenchymalis őssejtek terápiára való felhasználása a jövőben &#10140; előnyök?</summary><ul class="normal">
-		<li>multipotens, ugyanis több irányba képes még differenciálni (csont,porc,izom,zsírsejt,ínak)</li>
-		<li>immunszupresszív tulajdonságúak &#10140; elnyomják az ellenük irányuló immunválaszt &#10140; nincs szöveti összeférhetetlenség</li>
+		<li><strong>multipotens, ugyanis több irányba képes még differenciálni</strong> (csont,porc,izom,zsírsejt,ínak)</li>
+		<li>immunszupresszív tulajdonságúak &#10140; <strong>elnyomják az ellenük irányuló immunválaszt &#10140; nincs szöveti összeférhetetlenség</strong></li>
 	</ul></details>
 	<details class="kerdes 2" id="sb.560"><summary>szív őssejt terápia problémái?</summary><ul class="normal">
 		<li>amennyiben csontvelőből való őssejt átültetéssel probálják "pótolni/fixálni" a károsodást felléphet pl.arritmia, stb.</li>
-		<li>amennyiben szív progenitor átültetéssel probálják "pótolni/fixálni" &#10140; hogyan kell kiszedni a progenitort, amelyre tényleg szükség van (meg kell találni a megfelelő a markert, amivel kimutathatók)</li>
+		<li>amennyiben szív progenitor átültetéssel probálják "pótolni/fixálni" &#10140; hogyan kell kiszedni a progenitort, amelyre szükség van? (meg kéne találni a megfelelő a markert, amivel kimutathatók)</li>
 		<img src="images/17_szivprog.png">
 	</ul></details>
 	<details class="kerdes 2" id="sb.561"><summary>mi teszi lehetővé az őssejtek egyszerre képesek ömegújulásra és differenciálódásra?</summary><ul class="normal">
@@ -3389,7 +3436,7 @@ Sejtsors, sejtdifferenciáció. Totipotens, pluripotens, multipotens, oligopoten
 		<li>ezenkívül az osztódás síkja sem feltétlen szimmetrikus pl. neuroblast-osztódás, <i>szekunder_oocyta és sarki_sejt</i></li>
 		<img src="images/17_polus.png">
 	</ul></details>
-	<details class="kerdes 1" id="sb.564"><summary><span class="WHITE">JR</span> citoplazmában lévő TF-ek hatása</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.564"><summary>citoplazmában lévő TF-ek hatása?</summary><ul class="normal">
 		<li>DNS ugye megegyezik, de az eltérő utódsejtekben más TF-ek vannak, melyek más gének expresszióját engedélyezik majd</li>
 		<img src="images/17_tfszab.png">
 	</ul></details>
@@ -3404,8 +3451,8 @@ Sejtsors, sejtdifferenciáció. Totipotens, pluripotens, multipotens, oligopoten
 		<img src="images/17_niche.png">
 	</ul></details>
 	<details class="kerdes 1" id="sb.567"><summary><span class="WHITE">JR</span> (indukált pluripotens sejtek)</summary><ul class="normal">
-		<li>https://rawgit.com/chrishor29/learn/master/fb/FejlBiosz.html &#10140; 1.tétel legalsó bekezdés</li>
 		<li>terápiás felhasználása még "in progress", okai ♫</li>
+		<img src="images/17_ipsc.png">
 	</ul></details>
  </div>
  http://web.med.u-szeged.hu/mdbio/hun/anyagok/2011-2012/II.felev/smge/12/1.Ossejtek-es-Regenerativ-Medicina-word.pdf
@@ -3556,7 +3603,7 @@ A tumorok keletkezésének többlépcsős elmélete. A sejtciklus ellenőrzési 
 		<li>pl. kolorektális_karcinóma esetében, ha differenciált sejt vissza-differenciálódásával megy végbe, akkor "top-down" lesz</li>
 		<img src="images/18_corlcetcrn.png">
 	</ul></details>
-	<details class="kerdes 1" id="sb.600"><summary>miért ezek a "kritikus problémák"?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.600"><summary style="color:Magenta"><font color="Green">miért ezek a "kritikus problémák"?</font></summary><ul class="normal">
 		<li>ezek képesek önmegújításra &#10140; hosszú távú fenntartására a tumornak ezek képesek</li>
 		<li>logika a kép alapján &#10140; ha ezek el vannak távolítva, akkor pl. ha megnézem a legfelső szürke-sejtet, oké hogy az is sok tumorsejtet létrehoz még, de következtében a számuk csökkeni fog &#10140; tehát ha nincs több tumor őssejt, akkor ha folyamatosan megfelezem a tumorsejtek számát, akkor egy idő után elfogynak <i>&#10140; ugyanis a többi tumorsejtnél pl. nincs telomeráz így meg van szabva, hogy hány osztódásra képesek max</i></li>
 		<img src="images/18_tumrpathc.png">
@@ -3610,7 +3657,7 @@ A biológiai evolúció definiciója és bizonyítékai. Evolúció és kreáci�
 		<li>mutáció &#10140; új genetikai változatok jönnek létre <span class="WHITE">random</span></li>
 		<li>szelekció &#10140; következtében a nagyobb rátermettségű genetikai változat terjed el <span class="WHITE">NEM random</span> ("optimum-keresés")</li>
 	</ul></details>
-	<details class="kerdes 2" id="sb.612"><summary>mutáció &#10140; oka?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.612"><summary style="color:Magenta"><font color="Green">mutáció &#10140; oka?</font></summary><ul class="normal">
 		<li><abbr title="szvsz haploid">egy sejtben</abbr> 3,2milliárd bázispárhossznyi DNS van</li>
 		<li>minden másolása során történik másolási hiba &#10140; ugyanis lehetetlen, hogy ne történjen (még ha minden környezeti feltétel jó lenne akkoris)</li>
 		<li>egy DNS-replikáció során 4<sup>3,2milliárd</sup> variáció keletkezhet &#10140; ezek közül 1 egyezik meg az eredetivel, összes többi mutáns</li>
@@ -3635,7 +3682,7 @@ A biológiai evolúció definiciója és bizonyítékai. Evolúció és kreáci�
 		<li><span class="Important">élővilág genetikai transzformációja</span> &#10140; diverzitás (sokféleség) növekszik</li>
 		<div><span class="white">§</span> fejlődésről szó sincs <abbr title="pl. pinty vs virág vs hölgy --> nemlehet azt mondani egyikre, hogy fejletebb lenne mint a másik">!!!</abbr> &#10140; lényeg, hogy nem szabad magasabbrendűnek tekinteni pl. az emlőst a baktériumnál, ugyanis a komplexitás más egyiknél és más másiknál</div>
 	</ul></details>
-	<details class="kerdes 2" id="sb.615"><summary>Lamarck evolúciós elmélete &#10140; mikor? lényege? 1pl?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.615"><summary style="color:Red"><font color="Green">Lamarck evolúciós elmélete &#10140; mikor? lényege? 1pl?</font></summary><ul class="normal">
 		<li>1800 tájékán</li>
 		<li>a szerzett tulajdonságok öröklése az utódokra</li>
 		<li>pl. a zsiráf nyaka azért lett hosszú, mert azok maradtak életbe melyek nyújtva tartották a nyakukat és tudtak enni, így ezek tudtak utódott létrehozni</li>
@@ -3702,14 +3749,15 @@ A biológiai evolúció definiciója és bizonyítékai. Evolúció és kreáci�
 		<li>humán genom &#10140; 25.000 <abbr title="elvileg ennyi fehérjét kódóló van, és ezenkívül kb ennyi RNS-t">"saját"</abbr>-gén</li>
 		<li>mikrobiom &#10140; 8millió mikróba gén</li>
 	</ul></details>
-	<details class="kerdes 1" id="sb.628"><summary>mikrobiom mi?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.628"><summary>mikrobiom &#10140; mi? száma? humán genom száma?</summary><ul class="normal">
+		<li><i>mikroorganizmusok(vírus,baktérium) genomja az adott ember szervezetében(/szervében)</i></li>
 		<li>mikrobiom &#10140; 8millió mikróba gén &#10140; egy emberben ennyi van</li>
 		<li>humán genom &#10140; 25.000 <abbr title="elvileg ennyi fehérjét kódóló van, és ezenkívül kb ennyi RNS-t">"saját"</abbr>-gén  &#10140; egy emberben ennyi van</li>
 	</ul></details>
 	<details class="kerdes 1" id="sb.629"><summary>mikrobiom apai és/vagy anyai eredetű?</summary><ul class="normal">
 		<li>elsősorban anyai</li>
 	</ul></details>
-	<details class="kerdes 1" id="sb.630"><summary>mikrobiom elsősorban mi szabja meg? 1pl? <font color="red">•</font> </summary><ul class="normal">
+	<details class="kerdes 1" id="sb.630"><summary style="color:Magenta"><font color="Green">mikrobiom elsősorban mi szabja meg? 1pl?</font></summary><ul class="normal">
 		<li>epigenetikus hatások</li>
 		<li>pl. ha van egy egypetéjű ikerpár és közülük egyik elhízik másik nem, akkor nagyban különbözni fog a mikrobiomjuk</li>
 		<li>pl. valaki antibiotikumos kezelést kap az is befolyásolja</li>
@@ -3834,23 +3882,23 @@ Az FM részei és legfontosabb paraméterei (feloldás, Abbe-képlet és nagyít
 		<li><span class="Important">festés</span></li>
 		<li><span class="Important">lefedés</span></li>
 	</ul></details>
-	<details class="kerdes" id="sb.90"><summary>fixálás célja?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.90"><summary>fixálás célja?</summary><ul class="normal">
 		<li>eredeti, élőre jellemző szerkezet megőrzése ...</li>
 		<li>... ugyanis fehérjék denaturálódnak, illetve enzimek működése megváltoztatja a szerkezetet</li>
 	</ul></details>
-	<details class="kerdes" id="sb.91"><summary>fixálás módjainak csoportosítása?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.91"><summary>fixálás módjainak csoportosítása?</summary><ul class="normal">
 		<li>fizikai &#10140; pl. fagyasztás (ez után rögtön a metszés jön)</li>
 		<li>kémiai &#10140; fixálószerekkel</li>
 	</ul></details>
-	<details class="kerdes" id="sb.92"><summary>fixálószerek funkciója?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.92"><summary>fixálószerek funkciója?</summary><ul class="normal">
 		<li>keresztkötik a molekulákat &#10140; stabilizálja szerkezetük és helyük</li>
 	</ul></details>
-	<details class="kerdes" id="sb.93"><summary>fixálószerek típusai?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.93"><summary>fixálószerek típusai?</summary><ul class="normal">
 		<li>aldehidek (pl.formaldehid)</li>
 		<li>vízelvonó szerek (pl.alkohol) &#10140; zsugorít</li>
 		<li>szerves savak (pl.ecetsav) &#10140; duzzaszt</li>
 	</ul></details>
-	<details class="kerdes" id="sb.94"><summary>kémiai_fixálás módjai &#10140; felsorolás? lényege? előny/hátrány?</summary><ul class="normal">
+	<details class="kerdes 3" id="sb.94"><summary>kémiai_fixálás módjai &#10140; felsorolás? lényege? előny/hátrány?</summary><ul class="normal">
 		<table>
 			<tr><th></th>  <th>immerziós</th>  <th>perfúziós</th></tr>
 			
@@ -3860,27 +3908,26 @@ Az FM részei és legfontosabb paraméterei (feloldás, Abbe-képlet és nagyít
 		</table>
 		<a href="images/gy3_immerziosfixálás.png"><img src="images/gy3_immerziosfixálás.png"></a>
 	</ul></details>
-	<details class="kerdes" id="sb.95"><summary>beágyazás lényege?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.95"><summary>beágyazás lényege?</summary><ul class="normal">
 		<li>infiltrálás &#10140; paraffint folyékonnyá téve (56°) benne áztatom a mintát</li>
 		<li>blokk létrehozása &#10140; ezután szobahőmérsékleten visszanyeri szilárd halmazállapotát</li>
 		<li><abbr title="ez a paraffinba ágyazás, mert lehet másba is egyébként">&#10045;</abbr></li>
 	</ul></details>
-	<details class="kerdes" id="sb.96"><summary>metszés típusai?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.96"><summary>metszés típusai?(2)</summary><ul class="normal">
 		<li>mikrotómmal(speciális kés) történő</li>
 		<li>kriosztát &#10140; ez akkor, ha fagyasztással történt a fixálás</li>
-		<li><abbr title="ez a paraffinba ágyazás, mert lehet másba is egyébként">&#10045;</abbr></li>
 	</ul></details>
-	<details class="kerdes" id="sb.97"><summary>fagyasztva metszés lépései?</summary><ul class="normal">
+	<details class="kerdes 2" id="sb.97"><summary>fagyasztva metszés lépései?</summary><ul class="normal">
 		<li>(mintavétel)</li>
 		<li><span class="Important">fixálás</span></li>
 		<li><span class="Important">metszés</span></li>
 		<li><span class="Important">festés</span></li>
 		<li><span class="Important">lefedés</span></li>
 	</ul></details>
-	<details class="kerdes" id="sb.98"><summary>fagyasztva metszést mikor végeznek? miért</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.98"><summary>fagyasztva metszést mikor végeznek? miért</summary><ul class="normal">
 		<li>biopsziánál, ugyanis ez gyors (nem kell beágyazás stb.)</li>
 	</ul></details>
-	<details class="kerdes" id="sb.99"><summary>lefedés lényege?</summary><ul class="normal">
+	<details class="kerdes 1" id="sb.99"><summary>lefedés lényege?</summary><ul class="normal">
 		<li>tárgylemez és fedőlemez közé műgyantával a mintát &#10140; összeragadnak</li>
 	</ul></details>
  </div>
