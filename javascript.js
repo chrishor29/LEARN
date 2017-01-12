@@ -1,50 +1,59 @@
 
 /* FELADATOK
-	(#) mutassa hány kérdést lehet megoldani (nem kevesebb mint 1órás ismétlése van, illetve good esetében időpont > timeDiff), és hány kérdés van CD-n
-	(#) repeatre állított kérdést mindenképp dobhassa, ne legyen feltétele a kérdés tételének aktivitása
-	(#) ha jegynek/ranknak nem jót írtam alert!
+	(-) 5secen belül ne lehessen következő kérdésre klikkelni
+	(-) rank: html-ben adjam meg (x/3 < x/1,5 < x < 1,5x < 3x), csak azét mutassa melyiké nem x
+	(-) 3óránként növekedhessen a timeDiff-jük, amennyiben elérték legalább azt
+	(-) 1es és 2es jegy lehet nem feltétlen kell visszaállítsa 0ra a timeDiff-jük (ezen még gondolkodom, hogy lenne pontos)
+	
+	(-) lehessen visszatölteni az előző kérdést (jegyek stb-t is töltse vissza localstoragebe)
+	(-) repeatre állított kérdést mindenképp dobhassa, ne legyen feltétele a kérdés tételének aktivitása
+	(-) ha jegynek/ranknak nem jót írtam alert!
+	(-) altételcímet ne feltétlen mutassa
 
-	(#) ABBR script
-	(#) kép 
+	(-) ABBR script
+	(-) kép 
 		addig terjedhet ki balra, amíg szövegbe nem ütközik, de min 40%-ot kaphat.
 		kép oldala piros-színű legyen, ha le lett a fennti miatt kicsinyítve.
 		középső-klikkre nyissa meg újablak.
-	(#) kémiában (ahol megvannak adva a tételek), legyenek összetett kérdések. tehát a tételcímrészlet a kérdés. nekem erről eszembe kell jutni a válasznak. azért összetett, mert több pontos (nemcsak 1-4 osztályzás) (azaz több jegyet mentsen el egy feladaton belül!!. így a rankja is nagyobb, hiszen az a max pontok száma lesz). ha nemjut eszembe minden, attól még az adott alkérdésre kaphatok 50%nyi pontot ha tudtam azt is, csak elfelejtettem felhozni. végül a tétel státuszát (osztályzását), csak ezen kérdések alapján tegye.
+	(-) kémiában (ahol megvannak adva a tételek), legyenek összetett kérdések. tehát a tételcímrészlet a kérdés. nekem erről eszembe kell jutni a válasznak. azért összetett, mert több pontos (nemcsak 1-4 osztályzás) (azaz több jegyet mentsen el egy feladaton belül!!. így a rankja is nagyobb, hiszen az a max pontok száma lesz). ha nemjut eszembe minden, attól még az adott alkérdésre kaphatok 50%nyi pontot ha tudtam azt is, csak elfelejtettem felhozni. végül a tétel státuszát (osztályzását), csak ezen kérdések alapján tegye.
 
-	(#) rank: html-ben adjam meg (x/3 < x/1,5 < x < 1,5x < 3x), csak azét mutassa melyiké nem x
+	(-) 1kérdés lehessen többhelyen is, és a kódban azonban csak a szöveg egy helyen legyen megadva hozzá (hogy csak egy helyen kelljen átírnom, ha változtatok rajta)
+	(-) alertbe mutassa, ha valamely kérdésID üres már! és mellette localstoraget törölje!
+	(-) miss/fix-nél növekvő sorrendbe nézze őket
+	(-) lehessen beállítani: rövid_kérdés / hosszú_kérdés
 
-	(#) 1kérdés lehessen többhelyen is, és a kódban azonban csak a szöveg egy helyen legyen megadva hozzá (hogy csak egy helyen kelljen átírnom, ha változtatok rajta)
-	(#) alertbe mutassa, ha valamely kérdésID üres már! és mellette localstoraget törölje!
-	(#) miss/fix-nél növekvő sorrendbe nézze őket
-	(#) lehessen beállítani: rövid_kérdés / hosszú_kérdés
+	(-) DETAILS script
+	(-) lehessen beállítani IF / RAJZ stb. kategóriát is
+	(-) hide all onClick: jobb felső kérdésszám buttonra klikkelve mindent hideljen el, és showolja a következő kérdést majd, ne copyzza!
+	(-) lehessen látni jegy(1-2-3) hány feladat van és ki lehessen jelölni /checkbox/ melyeket akarom (ez nembiztos kell)
+	(-) kérdést más html-ből olvassa be
 
-	(#) DETAILS script
-	(#) lehessen beállítani IF / RAJZ stb. kategóriát is
-	(#) hide all onClick: jobb felső kérdésszám buttonra klikkelve mindent hideljen el, és showolja a következő kérdést majd, ne copyzza!
-	(#) lehessen látni jegy(1-2-3) hány feladat van és ki lehessen jelölni /checkbox/ melyeket akarom (ez nembiztos kell)
-	(#) kérdést más html-ből olvassa be
+	(+) max 1,5nap legyen az a timeDiff ami alatt nem teheti fel a kérdést, illetve ami alapján %-ot számol
+	(+) kérdésPRIORT ugy számoljon, hogy elosztja a legutóbbi ismétlés óta eltelt időt a kérdés timeDiff-jével (majd elosztja a jeggyel)
 */
 
 
 
 
-window.onerror = function(msg, url, linenumber) {
+/*window.onerror = function(msg, url, linenumber) {
 	 alert('Error message: '+msg+'\nLine Number: '+linenumber);
 	 return true;
- }
+ }*/
 
-//ha már elkészült a script, és removeltam mind1iket törölhető ez a funkció!
+//ha már elkészült a script, és removeltam mind1iket törölhető ez a funkció! lentebb van rá egy hivatkozás azt is !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function func_removeRepeat(){ 
 	for ( var fotema in kerdesID ) { 
 		for ( var temaKerdes in kerdesID[fotema] ) { 
 			for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
 				if ( kerdes+'_timeDiff' in localStorage ) {
-					if ( localStorage.getItem(kerdes+'_timeDiff') > 100000 ) {
-						localStorage.removeItem(kerdes+'_timeDiff');
-						localStorage.removeItem(kerdes+'_jegyDiff');
+					if ( localStorage.getItem(kerdes+'_jegy') == "1" || localStorage.getItem(kerdes+'_jegy') == "2" ) {
+						localStorage.setItem(kerdes+'_timeDiff', 30)
 					}
 				}
-				if ( kerdes+'_repeat' in localStorage ) {
+				if ( localStorage.getItem(kerdes+'_timeDiff') > 600 ) {
+					localStorage.setItem(kerdes+'_timeDiff', 600)
+				}
+				/*if ( kerdes+'_repeat' in localStorage ) {
 					var count = parseInt(localStorage.getItem(kerdes+'_repeat'))
 					localStorage.setItem(kerdes+'_jegy', localStorage.getItem(kerdes+'_jegy_'+count))
 
@@ -55,7 +64,7 @@ function func_removeRepeat(){
 					localStorage.setItem(kerdes+'_year', localStorage.getItem(kerdes+'_year_'+count))
 
 					localStorage.removeItem(kerdes+'_repeat');
-				}
+				}*/
 			}
 		}
 	}
@@ -394,9 +403,9 @@ function func_temakorStatus(){
 					var year_diff = date.getFullYear() - localStorage.getItem(kerdes+'_year');
 					var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
 
-					var timeDiff = 400
+					var timeDiff = 200
 					if ( kerdes+'_timeDiff' in localStorage ) {
-						if ( localStorage.getItem(kerdes+'_timeDiff') > 400 && localStorage.getItem(kerdes+'_jegyDiff') == "good" ) {
+						if ( localStorage.getItem(kerdes+'_timeDiff') > 1 && localStorage.getItem(kerdes+'_jegyDiff') == "good" ) {
 							timeDiff = localStorage.getItem(kerdes+'_timeDiff')
 						}
 					}
@@ -612,14 +621,13 @@ function func_calcOldNew(){
 }
 
 
+// következő kérdés nehézségét beállítja, az előző sikere alapján
 var markCount = 0
-function func_markCount(jegy){ // következő kérdés nehézségét beállítja, az előző sikere alapján
+function func_markCount(jegy){
 	jegy = parseInt(jegy,10)
 	if ( Math.random() > 0.5 ) {
 		if ( jegy == 1 ) {
 			markCount = 3
-		} else if ( jegy == 2 ) {
-			markCount = 2
 		} else if ( jegy == 3 || jegy == 4 ) {
 			markCount = 1
 		}
@@ -645,11 +653,10 @@ function func_prevQuestion(){
 
 		if ( priorKerdesID+'_jegy' in localStorage ) {
 			if ( document.getElementById("jegy").value == "3" || document.getElementById("jegy").value == "4" ) {
-				jegyDiff = "good"
+				localStorage.setItem(priorKerdesID+'_jegyDiff', "good");
 			} else {
-				jegyDiff = "bad"
+				localStorage.setItem(priorKerdesID+'_jegyDiff', "bad");
 			}
-			localStorage.setItem(priorKerdesID+'_jegyDiff', jegyDiff);
 		}
 		localStorage.setItem(priorKerdesID+'_jegy', document.getElementById("jegy").value);
 		if ( document.getElementById("button_missFix").style.backgroundColor == "lightgrey" ) {
@@ -680,6 +687,12 @@ function func_prevQuestion(){
 		var month_diff = 1 + date.getMonth() - localStorage.getItem(priorKerdesID+'_month');
 		var year_diff = date.getFullYear() - localStorage.getItem(priorKerdesID+'_year');
 		var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
+		if ( idopont > 600 ) {
+			idopont = 600
+		}
+		if ( localStorage.getItem(priorKerdesID+'_jegyDiff') == "bad" ) {
+			idopont = 30
+		}
 		localStorage.setItem(priorKerdesID+'_timeDiff', idopont);
 	}
 	localStorage.setItem(priorKerdesID+'_min', date.getMinutes());
@@ -813,7 +826,7 @@ function koviKerdes(){
 								var shouldBreak = false
 								if ( kerdes+'_timeDiff' in localStorage ) {
 									if ( localStorage.getItem(kerdes+'_timeDiff') > idopont && localStorage.getItem(kerdes+'_jegyDiff') == "good" ) {
-										shouldBreak = true
+										//shouldBreak = true
 									}
 								}
 								if ( 31 > idopont ) {
@@ -824,6 +837,13 @@ function koviKerdes(){
 									var jegy = localStorage.getItem(kerdes+'_jegy')
 									var rank = localStorage.getItem(kerdes+'_rank')
 
+									var timeDiff = 30
+									if ( kerdes+'_timeDiff' in localStorage ) {
+										if ( localStorage.getItem(kerdes+'_jegy') == "3" || localStorage.getItem(kerdes+'_jegy') == "4" ) {
+											timeDiff = localStorage.getItem(kerdes+'_timeDiff')
+										}
+									}
+
 									var vClass = document.getElementById(kerdes).className
 									var vLength = vClass.match(/^\d+|\d+\b|\d+(?=\w)/g)
 									if ( vLength == null ) {
@@ -831,10 +851,13 @@ function koviKerdes(){
 									}
 
 									if ( rank == "J" || rank == "j" ) {
-										checkValue = vLength * 3 * idopont / jegy
-									} else {
-										checkValue = vLength * rank * idopont / jegy
+										rank = 3
 									}
+
+									//checkValue = rank / Math.pow(0.8, idopont / timeDiff) / jegy
+									checkValue = rank * idopont / timeDiff / jegy
+									//checkValue = vLength * rank * idopont / timeDiff / jegy
+
 									if ( checkValue > priorValue_X ) {
 										if ( localStorage.getItem(kerdes+"_skip") == "skip" ) {
 											if ( localStorage.getItem("checkbox_skipID") == "true" ) {
