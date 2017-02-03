@@ -1,0 +1,226 @@
+<head>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="favicon.bmp">
+	<link rel="stylesheet" type="text/css" href="../../style.css">
+	<title>&lrm;</title>
+	<style>*{line-height: 130%;}</style>
+</head>
+
+ <!-- onmouseover="func_span('miss');" -->
+<input onclick="toggleAll();" type="button" id="input_toggleAll" value="0" style="position:fixed; right: 0px;"><div id="quest" style="display:none;">
+	
+	<details><summary class="phase">tételek</summary><div id="container"></div></details>
+	<input type="button" class="MISS" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'miss');" id="btn_miss" value="0">
+	<input type="button" class="FIX" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'fix');" id="btn_fix" value="0">
+	<input type="button" class="skip" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_spanSkip" id="btn_skip" value="0">
+	<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'progress')" id="btn_progress" value="0">
+
+	<input type="checkbox" id="checkbox_New"/><span class="WHITE" id="cont_New"></span><span class="VOCAB" id="cont_Old"></span>
+	<span class="WHITE" id="span_Jegy"></span><span class="VOCAB" id="span_Date"></span>
+	<input type="checkbox" id="checkbox_RepNew"/><span class="WHITE" id="cont_RepNew"></span><span class="VOCAB" id="cont_RepOld"></span>
+
+	<span id="repeat" class="WHITE" style="position: absolute;left: 45%;">&nbsp; &nbsp; &nbsp;</span>
+	<br>
+	<div align="center">
+		<span style="border: 0px;" id="rank">&nbsp; &nbsp; &nbsp;</span> &nbsp;
+		<input onclick="toggleNote();" type="button" value="&#10045;"> &nbsp; &nbsp;
+		<select id="jegy"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; &nbsp;
+		<span id="pJegy">&nbsp; </span> &nbsp; &nbsp;
+		<input onclick="func_buttonFix();" type="button" id="buttonFix" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp; &nbsp;
+		<input onclick="func_buttonSkip();" type="button" id="buttonSkip" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp; &nbsp;
+		<input onclick="koviKerdes();" type="button" value="következő kérdés">
+	</div>
+	<center><textarea style="display:none; position:fixed; left: 40%; top: 70%;" id="note" rows="4" cols="40"></textarea></center>
+	
+	<div style="font-weight: bold;font-size: large;" id="questTitle"></div>
+	<details id="kerdeslocation"></details>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+
+<table><tr>
+	<td class="">1</td>
+	<td class="">2</td>
+</tr></table>
+
+<!--//////////////////////////////////////-->  <div><div class="mainTitle">előadások</div>  <!--//////////////////////////////////////-->
+
+<!----><details open><summary class="phase">#1 Eukarióta és prokarióta sejt, a genetikai információ</summary><div class="normal"><div><div class="title"></div>
+	<details class="kerdes J/1" id="mc.1"><summary><span class="WHITE">JR</span> miért tanuljuk a molekuláris sejtbiológiát</summary><ul class="normal">
+		<li>molekuláris medicina felé halad az orvostudomány</li>
+		<li>ugyanis ezekkel egyre újabb és hatásosabb diagnosztikai és terápiás stb. módszerek jönnek létre</li>
+		<li><span class="WHITE">pl</span> molekuláris diagnosztika alapja, hogy a humán kórkép a génexpressziós mintázat megváltozásával jár (bizonyos fehérjékből több lesz, másokból meg kevesebb mint egészséges esetben) &#10140; kikövetkeztethető mely gének működnek hibásan és génterápiával orvosolható (ez lenne az alapja)</li>
+		<li><span class="WHITE">pl</span> enzimhiányos kórképek &#10140; fenilketonúria (fenil-alanin hiány)</li>
+		<li><span class="WHITE">pl</span> daganat &#10140; daganatsejt génjei közül több is mutálódik &#10140; azt kell megtalálni ami a legpenetránsabb, az ún <strong>driver</strong> gént (pl. Ras,p53,pRb) &#10140; ezek száma nem nagy, 2-11/tumor &#10140; ha ezeket sikerül szelektív terápiával "gátolni/megjavítani/eliminálni", akkor gyógyítható a daganat, mellékhatások nélkül</li>
+		<li><span class="WHITE">pl</span> fertőző betegség diagnosztikája &#10140; pl. TBC-t régen több hét után tudták kimutatni &#10140; ma azonban orrváladékból kimutatható 3órán belül, PCR-technikával (az derül vele ki, hogy ott van-e a genomja vagy nincs) &#10140; terápia jóval előbb kezdődik meg</li>
+		<li><span class="WHITE">pl</span> antibiotikum &#10140; fehérjéket/nukleinsavakat támadnak (ez is molekuláris sejtbiológia)</li>
+	</ul></details>
+	<details class="kerdes 2/3" id="mc.2"><summary>génváltozatok?</summary><ul class="normal">
+		<div>2 ember genomja kb. 0,1%-ban különbözik &#10140; tehát a 3milliárd bázispárból 3millió különbözik &#10140; ezért...</div>
+		<li>máshogy nézünk ki, gondolkodunk</li>
+		<li>betegségre való fogékonyság is különbözik &#10140; pl. érelmeszesedés esélye van akinél nagyobb, depresszió stb.</li>
+		<li>gyógyszerhatékonyság &#10140; különböző dózist kell felírni, mert van akinek lassabban szívja fel a gyomor-bél traktus, van akinek gyorsan</li>
+		<li>személyazonosság megállapítására is felhasználható</li>
+	</ul></details>
+	<details class="kerdes 3/4" id="mc.3"><summary>genom-fenom átmenet?</summary><ul class="normal">
+		<li>genom <div class="mirror">&#10140;</div>&#10140; transzkriptom &#10140; proteom &#10140; metabolom &#10140; fenom</li>
+		<div>––––––––––––––––––––</div>
+		<li>reverz transzkripció &#10140; RNS-ből is lehet DNS <abbr title="tehát visszafele is lehetséges">&#10045;</abbr></li>
+		<div>––––––––––––––––––––</div>
+		<li>genom &#10140; egy kromoszómakészlet teljes DNS-szekvenciája (beleértve a nem kódolókat is!)</li>
+		<li>transzkriptom &#10140; RNS-készlet, tehát összes típusú RNS-ből 1</li>
+		<li>proteom &#10140; fehérjekészlet, tehát összes típusú fehérjéből 1</li>
+		<li>metabolom &#10140; kismolekulás metabolitok (anyagcseretermékek) összessége, pl. hormonok, jelzőmolekulák, aminosavak, egyszerű cukrok stb.</li>
+		<li>fenomot a proteom és metabolom szabja meg</li>
+		<div>––––––––––––––––––––</div>
+		<li>környezet &#10140; befolyásolja a genom-transzkriptom-proteomot és ezáltal a fenom különbözni fog egypetéjű ikreknél (hiába volt azonos a genom kezdetben)</li>
+		<div>––––––––––––––––––––</div>
+		<li>Mai ismereteink szerint a humán fehérjekészletet (proteom) mintegy 1 000 000 különböző fehérje alkotja. Könnyen belátható, hogy ennyi fehérje kódolására a körülbelül 21 000 fehérje-kódoló gént tartalmazó emberi genom nem képes. Olyan, a molekuláris komplexitást fokozó folyamatokra van tehát szükség, amelyek – a genomtól a proteomig – megsokszorozzák (k. 50-szerezik) a különböző molekulaféleségeket</li>
+		<img src="images/gnmfnm.png">
+	</ul></details>
+	<details class="kerdes 3/1" id="mc.4"><summary>prokatrióta és eukarióta szerveződés szintje?</summary><ul class="normal">
+		<li>eukarióta eggyel magasabb szerveződési szintű</li>
+		<li>ugyanis a membránok biztosítanak térben és időben differenciált működést</li>
+		<img src="images/prkrktdftmdbn.png">
+	</ul></details>
+	<details class="kerdes 3/3" id="mc.5"><summary>membránok csoportosítása?</summary><ul class="normal">
+		<li>plazmamembrán</li>
+		<li>intracelluláris membránok</li><ul>
+			<li>mitokondrium</li>
+			<li>endomembránrendszer</li><ul>
+				<li>magmembrán és ER egymás folytatása</li>
+				<li>vezikuláris transzport ER és Golgi között</li><ul>
+					<li>anterográd(ER&#10140;G)</li>
+					<li>retrográd(G&#10140;ER)</li>
+				</ul>
+				<li>peroxiszóma és lizoszóma membránja az ER-ből származik <abbr title="gondolom nem evolúciós eredetét tekintve, hanem amikor létrejön, akkor az ER-ből kiválik">!!</abbr></li>
+			</ul>
+		</ul>
+		<img src="images/ndplzmrndmsnd.png">
+	</ul></details>
+	<details class="kerdes 5/1" id="mc.6"><summary>sejgmag fő funkciói?(2)</summary><ul class="normal">
+		<li>replikáció &#10140; DNS megkettőzés</li>
+		<li>transzkripció &#10140; RNS-szintézis</li>
+	</ul></details>
+	<details class="kerdes 4/1" id="mc.7"><summary>mitokondrium fő funkciói?(2)</summary><ul class="normal">
+		<li>mitokondriális DNS/RNS/fehérje-szintézis</li>
+		<li>ATP-termelés</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="mc.8"><summary>Golgi fő funkciója?</summary><ul class="normal">
+		<li>ER-ből érkező fehérjéket és lipideket átalakítja és válogatja &#10140; továbbküldi (ER/plazmamembrán/késői_endoszóma)</li>
+		<li>átalakítás során szénhidrátot adhat az anyaghoz ➜ pl. glikolipidet készít lipidből, glikoproteint fehérjéből</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="mc.9"><summary>lizoszóma fő funkciója<span class="MISS">?</span></summary><ul class="normal">
+		<li><span class="MISS">savi hidrolázok,</span> endogén és exogén anyagok lebontása <abbr title="előadás pdf-ből írtam ki">&#10045;</abbr></li>
+	</ul></details>
+	<details class="kerdes 3/1" id="mc.10"><summary>peroxiszóma fő funkciói?(1<sub>+2</sub>)</summary><ul class="normal">
+		<li>oxidációval lebontása az alábbiaknak &#10140; zsírsavak, purin bázisok, aminosavak</li>
+		<li>egyes toxikus anyagokat pl. etanolt,formaldehidet eloxidálva eliminálja</li>
+		<li>alábbiak szintézise</li><ul>
+			<li>koleszterinéhez hozzájárul</li>
+			<li>epesavakéhoz hozzájárul</li>
+			<li>éter-lipidek szintézise csak itt van</li>
+			<li>plazmalogén-szintézis első lépése</li>
+		</ul>
+	</ul></details>
+	<details class="kerdes 2/3" id="mc.11"><summary>sER funkciói?(6)</summary><ul class="normal"><table>
+		<tr><th>általános</th>  <th>speciális</th></tr>
+		<tr><td>
+			<div><span class="WHITE">#</span> foszfolipid-szintézis</div>
+			<div><span class="WHITE">#</span> lipid-szintézis &#10140; pl. koleszterin (májban különösen intenzív)</div>
+			<div><span class="WHITE">#</span> Ca<sup>2+</sup> tárolás &#10140; harántcsíkolt izomban különösen intenzív!!!!</div>
+			</td><td>
+			<div><span class="WHITE">#</span> szteroid-szintézis (mellékvesében,herékben,petefészekben)</div>
+			<div><span class="WHITE">#</span> "méregtelenítés" (májban)</div>
+			<div><span class="WHITE">#</span> glükóz-6-foszfát "lebontása" glükózzá + foszfátionná (májban)</div>
+		</td></tr>
+		</table></ul></details>
+	<details class="kerdes 5/1" id="mc.12"><summary>rER funkciója?</summary><ul class="normal">
+		<li>transzláció</li>
+	</ul></details>
+	<details class="kerdes 4/3" id="mc.13"><summary>sejtorganellumok felsorolása?</summary><ul class="normal">
+		<li>sejtmag</li>
+		<li>mitokondrium</li>
+		<li>ER</li>
+		<li>Golgi</li>
+		<li>lizoszóma</li>
+		<li>peroxiszóma</li>
+	</ul></details>
+<!----></div></div></details>
+
+
+<!----><details open><summary class="phase">1.gyak 01.31 feherje vizsgalat</summary><div class="normal"><div><div class="title"></div>
+	<details class="kerdes 4/1" id="mc.14"><summary>cél?</summary><ul class="normal">
+		<li>fehérje JELENLÉTÉNEK kimutatása kicsapódással</li>
+	</ul></details>
+	<details class="kerdes 4/3" id="mc.15"><summary>módszerek?</summary><ul class="normal">
+		<div>fehérjeoldathoz adok...</div>
+		<li>alkoholt</li>
+		<li>nehézfémsót</li><ul>
+			<li>ólom</li>
+			<li>higany</li>
+			<li>réz</li>
+                            </ul>
+		<li>ásványi savat</li><ul>
+			<li>kénsav</li>
+			<li>salétromsav</li>
+                            </ul>
+		<li>szerves savat: TCA</li>
+		<div>"melegítéses módszer"</div>
+	</ul></details>
+	<details class="kerdes 4/1" id="mc.16"><summary>melegítéses "módszer" lényege?</summary><ul class="normal">
+		<li>először a fehérje másodlagos, majd utána a harmadlagos szerkezete változik meg</li>
+		<li>tegyek 4 kémcső mindegyikébe 2-3ml 1% BSA fehérjét</li>
+		<li>majd ezek közül egyiket hagyjam így, másik 3ba az alábbiakat külön-külön</li><ul>
+			<li>1csepp ecetsav</li>
+			<li>3-4csepp ecetsav</li>
+			<li>több csepp NaOH</li>
+                            </ul>
+		<li>ezeket melegítsem</li>
+	</ul></details>
+<!----></div></div></details>
+
+<!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
+
+
+
+
+
+
+<script src="../../javascript.js"></script> 
+
+<br><br><br><br><br><br><center><a href="../../targyvalasztas.html"><strong style="font-size: 150%;">tárgyválasztás</strong></a></center>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

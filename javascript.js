@@ -1,16 +1,14 @@
-
+﻿
 /* FELADATOK
-	(-) 5secen belül ne lehessen következő kérdésre klikkelni
-	(-) rank: html-ben adjam meg (x/3 < x/1,5 < x < 1,5x < 3x), csak azét mutassa melyiké nem x
 	(-) 3óránként növekedhessen a timeDiff-jük, amennyiben elérték legalább azt
 	(-) 1es és 2es jegy lehet nem feltétlen kell visszaállítsa 0ra a timeDiff-jük (ezen még gondolkodom, hogy lenne pontos)
-	
+	(-) alján a func_span rész sztem buggos, tehát pl. nemhiszem hogy minden jól megy ott! majd amikor tesztelem már, mert tanulok akkor figyeljek rá
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 	(-) lehessen visszatölteni az előző kérdést (jegyek stb-t is töltse vissza localstoragebe)
 	(-) repeatre állított kérdést mindenképp dobhassa, ne legyen feltétele a kérdés tételének aktivitása
 	(-) ha jegynek/ranknak nem jót írtam alert!
 	(-) altételcímet ne feltétlen mutassa
-
-	(-) ABBR script
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 	(-) kép 
 		addig terjedhet ki balra, amíg szövegbe nem ütközik, de min 40%-ot kaphat.
 		kép oldala piros-színű legyen, ha le lett a fennti miatt kicsinyítve.
@@ -21,15 +19,17 @@
 	(-) alertbe mutassa, ha valamely kérdésID üres már! és mellette localstoraget törölje!
 	(-) miss/fix-nél növekvő sorrendbe nézze őket
 	(-) lehessen beállítani: rövid_kérdés / hosszú_kérdés
-
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 	(-) DETAILS script
 	(-) lehessen beállítani IF / RAJZ stb. kategóriát is
 	(-) hide all onClick: jobb felső kérdésszám buttonra klikkelve mindent hideljen el, és showolja a következő kérdést majd, ne copyzza!
 	(-) lehessen látni jegy(1-2-3) hány feladat van és ki lehessen jelölni /checkbox/ melyeket akarom (ez nembiztos kell)
 	(-) kérdést más html-ből olvassa be
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	(+) gettime
+	(+) purple legyen másik buttonon
+	(+) ABBR script (tooltip)
 
-	(+) max 1,5nap legyen az a timeDiff ami alatt nem teheti fel a kérdést, illetve ami alapján %-ot számol
-	(+) kérdésPRIORT ugy számoljon, hogy elosztja a legutóbbi ismétlés óta eltelt időt a kérdés timeDiff-jével (majd elosztja a jeggyel)
 */
 
 
@@ -45,14 +45,17 @@ function func_removeRepeat(){
 	for ( var fotema in kerdesID ) { 
 		for ( var temaKerdes in kerdesID[fotema] ) { 
 			for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
-				if ( kerdes+'_timeDiff' in localStorage ) {
+				/*if ( kerdes+'_timeDiff' in localStorage ) {
 					if ( localStorage.getItem(kerdes+'_jegy') == "1" || localStorage.getItem(kerdes+'_jegy') == "2" ) {
 						localStorage.setItem(kerdes+'_timeDiff', 30)
 					}
-				}
-				if ( localStorage.getItem(kerdes+'_timeDiff') > 600 ) {
+				}*/
+				//localStorage.setItem(kerdes+'_timeDiff', "0")
+				localStorage.removeItem(kerdes+'_idopont');
+				localStorage.removeItem(kerdes+'_timeDiff');
+				/*if ( localStorage.getItem(kerdes+'_timeDiff') > 600 ) {
 					localStorage.setItem(kerdes+'_timeDiff', 600)
-				}
+				}*/
 				/*if ( kerdes+'_repeat' in localStorage ) {
 					var count = parseInt(localStorage.getItem(kerdes+'_repeat'))
 					localStorage.setItem(kerdes+'_jegy', localStorage.getItem(kerdes+'_jegy_'+count))
@@ -81,13 +84,22 @@ function func_calcJegy() { // átlagJegyet kiszámolja
 					if ( kerdesID[fotema][temaKerdes][kerdes] == true ) {
 						var jegy = localStorage.getItem(kerdes+'_jegy')
 
-						var vClass = document.getElementById(kerdes).className
-						var vLength = vClass.match(/^\d+|\d+\b|\d+(?=\w)/g)
-						if ( vLength == null ) {
-							vLength = 1
+						var num = document.getElementById(kerdes).className.search("/");
+						var prior = document.getElementById(kerdes).className.substring(num-1,num);
+						var hossz = document.getElementById(kerdes).className.substring(num+1,num+2);
+						if ( prior == 1 ) {
+							prior = 0.33
+						} else if ( prior == 2 ) {
+							prior = 0.66 
+						} else if ( prior == 4 ) {
+							prior = 1.5
+						} else if ( prior == 5 ) {
+							prior = 3
+						} else {
+							prior = 1
 						}
 
-						if ( localStorage.getItem(kerdes+'_rank') != 'J' & localStorage.getItem(kerdes+'_rank') != 'j' ) {
+						if ( prior != 'J' & prior != 'j' ) {
 							if ( jegy == 1 ) {
 								jegy = 0
 							}
@@ -100,8 +112,8 @@ function func_calcJegy() { // átlagJegyet kiszámolja
 							if ( jegy == 4 ) {
 								jegy = 10
 							}
-							maxJegy = maxJegy + localStorage.getItem(kerdes+'_rank') * 10 * vLength
-							trueJegy = trueJegy + localStorage.getItem(kerdes+'_rank') * jegy * vLength
+							maxJegy = maxJegy + prior * hossz * 10
+							trueJegy = trueJegy + prior * hossz * jegy
 						}
 					}
 				}
@@ -120,12 +132,7 @@ function func_calcDate() { // átlagIdőt kiszámolja
 					if ( kerdesID[fotema][temaKerdes][kerdes] == true ) {
 						if ( kerdes+'_jegy' in localStorage ) {
 							var date = new Date();
-							var min_diff = date.getMinutes() - localStorage.getItem(kerdes+'_min');
-							var hour_diff = date.getHours() - localStorage.getItem(kerdes+'_hour');
-							var day_diff = date.getDate() - localStorage.getItem(kerdes+'_day');
-							var month_diff = 1 + date.getMonth() - localStorage.getItem(kerdes+'_month');
-							var year_diff = date.getFullYear() - localStorage.getItem(kerdes+'_year');
-							var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
+							var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont')
 							allDate = allDate + idopont
 							countDate = countDate + 1
 						}
@@ -146,13 +153,15 @@ function func_calcDate() { // átlagIdőt kiszámolja
 // képnagyítás balKlikkel középre
 var imagesAll = document.images
 var imgStatus
+var tooltipStatus
 document.body.onclick=function(){
 	if ( imgStatus == "hide" ) {
 		centerImage.style.visibility = "hidden"
 	}
-	if ( imgStatus == "show" ) {
-		imgStatus = "hide"
-	}
+	imgStatus = "hide"
+
+	tooltipSpan.style.visibility = "hidden";
+	tooltipStatus = "hide"
 };
 for ( var i = 0;   i < imagesAll.length;   i++ ) {
 	imagesAll[i].onclick=function(){
@@ -292,16 +301,18 @@ for ( var i = 0;   i < elements.length;   i++ ) {
 document.getElementById("input_toggleAll").value = highestID
 
 
-
-
-
+function func_spanClick(element){
+	if ( element.style.borderColor == "limegreen" ) {
+		element.style.borderColor = "black"
+		//localStorage.setItem(element,false)
+	} else {
+		element.style.borderColor = "limegreen"
+		//localStorage.setItem(element,true)
+	}
+}
 
 
 //func_removeRepeat()
-
-
-
-
 
 
 
@@ -316,7 +327,7 @@ function func_clickTemaButton(button){
 	}
 }
 
-// témakör checkboxok
+// témakör buttonok
 for ( var fotema in kerdesID ) {
 	var button = document.createElement("input");
 	button.type = "button";
@@ -358,11 +369,6 @@ for ( var fotema in kerdesID ) {
 	}
 }
 
-
-
-
-
-
 // Tétel hány %-on áll? --> beállítja a buttonColort ez alapján
 function func_temakorStatus(){
 	for ( var fotema in kerdesID ) {
@@ -373,17 +379,24 @@ function func_temakorStatus(){
 			var trueJegy = 0
 			for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
 				var jegy = localStorage.getItem(kerdes+'_jegy')
-				var vClass = document.getElementById(kerdes).className
-				var vLength = vClass.match(/^\d+|\d+\b|\d+(?=\w)/g)
-				if ( vLength == null ) {
-					vLength = 1
+				var num = document.getElementById(kerdes).className.search("/");
+				var prior = document.getElementById(kerdes).className.substring(num-1,num);
+				var hossz = document.getElementById(kerdes).className.substring(num+1,num+2);
+				if ( prior == 1 ) {
+					prior = 0.33
+				} else if ( prior == 2 ) {
+					prior = 0.66 
+				} else if ( prior == 4 ) {
+					prior = 1.5
+				} else if ( prior == 5 ) {
+					prior = 3
+				} else {
+					prior = 1
 				}
-				var rank = localStorage.getItem(kerdes+'_rank')
-				if ( rank == null ) {
-					rank = 3
-					jegy = 0
-				}
-				if ( localStorage.getItem(kerdes+'_rank') != 'J' & localStorage.getItem(kerdes+'_rank') != 'j' ) {
+
+				if ( prior != 'J' ) {
+					var rank = prior*hossz
+
 					if ( jegy == 1 ) {
 						jegy = 0
 					} else if ( jegy == 2 ) {
@@ -396,23 +409,18 @@ function func_temakorStatus(){
 
 
 					var date = new Date();
-					var min_diff = date.getMinutes() - localStorage.getItem(kerdes+'_min');
-					var hour_diff = date.getHours() - localStorage.getItem(kerdes+'_hour');
-					var day_diff = date.getDate() - localStorage.getItem(kerdes+'_day');
-					var month_diff = 1 + date.getMonth() - localStorage.getItem(kerdes+'_month');
-					var year_diff = date.getFullYear() - localStorage.getItem(kerdes+'_year');
-					var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
+					var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont')
 
-					var timeDiff = 200
+					var timeDiff = 30
 					if ( kerdes+'_timeDiff' in localStorage ) {
-						if ( localStorage.getItem(kerdes+'_timeDiff') > 1 && localStorage.getItem(kerdes+'_jegyDiff') == "good" ) {
+						if ( localStorage.getItem(kerdes+'_timeDiff') > 1 ) {
 							timeDiff = localStorage.getItem(kerdes+'_timeDiff')
 						}
 					}
+					trueJegy = trueJegy + Math.pow(0.8, idopont / timeDiff) * rank * jegy
 					
 					
-					maxJegy = maxJegy + rank * 10 * vLength
-					trueJegy = trueJegy + Math.pow(0.8, idopont / timeDiff) * rank * jegy * vLength
+					maxJegy = maxJegy + rank * 10
 				}
 			}
 			var red
@@ -434,23 +442,17 @@ function func_temakorStatus(){
 }
 func_temakorStatus()
 
-
 // clear old history
 for ( var fotema in kerdesID ) { 
 	for ( var temaKerdes in kerdesID[fotema] ) { 
 		for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
 			var date = new Date();
-			var min_diff = date.getMinutes() - localStorage.getItem(kerdes+'_min');
-			var hour_diff = date.getHours() - localStorage.getItem(kerdes+'_hour');
-			var day_diff = date.getDate() - localStorage.getItem(kerdes+'_day');
-			var month_diff = 1 + date.getMonth() - localStorage.getItem(kerdes+'_month');
-			var year_diff = date.getFullYear() - localStorage.getItem(kerdes+'_year');
+			var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont')
 			/*if ( kerdes == "sb.333" ) {
 				alert(date.getMonth())
 				alert(localStorage.getItem(kerdes+'_month_1') + " - " + date.getMonth())
 				alert(count + " + " + kerdes + " + " + month_diff + " + " + idopont)
 			}*/ //333
-			var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
 			if ( localStorage.getItem(kerdes+"_skip") == "skip" ) {
 				if ( idopont < 90 ) {
 				} else { //azért így oldottam meg, mertha időpont == null vagy mi akkor is működjön
@@ -463,44 +465,110 @@ for ( var fotema in kerdesID ) {
 }
 
 
-/* tooltip
-var abbrok = document.getElementsByTagName("ABBR");
-for(var i = 0; i < abbrok.length; i++) {
-	abbrok[i].onclick = function () {
-		alert(abbrok[i].title) //nemjó, mert mindig a legelsőjét mutatja
+
+/* tooltip*/
+var tooltipSpan = document.createElement("span");
+document.body.appendChild(tooltipSpan)
+tooltipSpan.style.visibility = "hidden";
+tooltipSpan.style.border = "2px solid black";
+tooltipSpan.style.backgroundColor = "azure";
+tooltipSpan.style.position = "absolute";
+tooltipSpan.style.left = "50%";
+tooltipSpan.style.top = "50%";
+tooltipSpan.style.fontSize = "smaller";
+tooltipSpan.style.padding = "2px 2px 2px 5px";
+
+function func_showTooltip(element){
+	defText = element.title
+	tooltipSpan.style.visibility = "visible";
+	tooltipSpan.innerHTML = element.title
+		
+	var posX = element.offsetLeft
+	var posY = element.offsetTop 
+	var par = element.offsetParent
+	//alert(par)
+
+	tooltipSpan.style.minWidth = null;
+	tooltipSpan.style.maxWidth = 300;
+	if ( tooltipSpan.offsetWidth > 100 ) {
+		tooltipSpan.style.minWidth = 100;
+	} else {
+		tooltipSpan.style.minWidth = tooltipSpan.offsetWidth
 	}
-}*/
+	if ( tooltipSpan.offsetWidth > par.offsetWidth - posX -10 ) {
+		tooltipSpan.style.left = posX - tooltipSpan.offsetWidth + par.offsetWidth - posX - 10
+	} else {
+		tooltipSpan.style.left = posX;
+	}
+	tooltipSpan.style.top = posY +20;
+	element.title = '';
+}
+
+//var abbrok = document.getElementsByTagName("ABBR");
+var abbrok = document.querySelectorAll("*[title]");
+var table_defText = []
+for ( var i = 0; i < abbrok.length; i++ ) {
+	table_defText[abbrok[i]] = abbrok[i].title
+	abbrok[i].onclick = function(ev){
+		tooltipSpan.style.visibility = "visible";
+		tooltipSpan.innerHTML = table_defText[this]
+		tooltipStatus = "show"
+		ev.stopPropagation();
+//alert(tooltipSpan.innerHTML)
+			
+		var posX = this.offsetLeft
+		var posY = this.offsetTop 
+		var par = this.offsetParent
+
+		tooltipSpan.style.minWidth = null;
+		tooltipSpan.style.maxWidth = 300;
+		if ( tooltipSpan.offsetWidth > 100 ) {
+			tooltipSpan.style.minWidth = 100;
+		} else {
+			tooltipSpan.style.minWidth = tooltipSpan.offsetWidth
+		}
+		if ( tooltipSpan.offsetWidth > par.offsetWidth - posX -10 ) {
+			tooltipSpan.style.left = posX - tooltipSpan.offsetWidth + par.offsetWidth - posX - 10
+		} else {
+			tooltipSpan.style.left = posX;
+		}
+		tooltipSpan.style.top = posY +20;
+	};
+	abbrok[i].onmouseover = function(){
+		tooltipSpan.style.visibility = "visible";
+		tooltipSpan.innerHTML = this.title
+			
+		var posX = this.offsetLeft
+		var posY = this.offsetTop
+		var par = this.offsetParent
+
+		tooltipSpan.style.minWidth = null;
+		tooltipSpan.style.maxWidth = 300;
+		if ( tooltipSpan.offsetWidth > 100 ) {
+			tooltipSpan.style.minWidth = 100;
+		} else {
+			tooltipSpan.style.minWidth = tooltipSpan.offsetWidth
+		}
+		if ( tooltipSpan.offsetWidth > par.offsetWidth - posX -10 ) {
+			tooltipSpan.style.left = posX - tooltipSpan.offsetWidth + par.offsetWidth - posX - 10
+		} else {
+			tooltipSpan.style.left = posX;
+		}
+		tooltipSpan.style.top = posY +20;
+
+		table_defText[this] = this.title;
+		this.title = '';
+	};
+	abbrok[i].onmouseout = function(){
+		this.title = table_defText[this];
+		if ( tooltipStatus != "show" ) {
+			tooltipSpan.style.visibility = "hidden";
+		}
+	};
+}
 
 
 // checkboxok: missFix & skipID
-document.getElementById("checkbox_skipID").onclick = function() {
-	if ( this.checked ) {
-		localStorage.setItem(this.id,true)
-	} else {
-		localStorage.setItem(this.id,false)
-	}
-}
-document.getElementById("miss_checkbox").onclick = function() {
-	if ( this.checked ) {
-		localStorage.setItem(this.id,true)
-	} else {
-		localStorage.setItem(this.id,false)
-	}
-}
-document.getElementById("fix_checkbox").onclick = function() {
-	if ( this.checked ) {
-		localStorage.setItem(this.id,true)
-	} else {
-		localStorage.setItem(this.id,false)
-	}
-}
-document.getElementById("progress_checkbox").onclick = function() {
-	if ( this.checked ) {
-		localStorage.setItem(this.id,true)
-	} else {
-		localStorage.setItem(this.id,false)
-	}
-}
 document.getElementById("checkbox_New").onclick = function() {
 	if ( this.checked ) {
 		localStorage.setItem(this.id,true)
@@ -515,8 +583,8 @@ document.getElementById("checkbox_RepNew").onclick = function() {
 		localStorage.setItem(this.id,false)
 	}
 }
-if ( localStorage.getItem("checkbox_skipID") == "true" ) {
-	document.getElementById("checkbox_skipID").checked = true;
+if ( localStorage.getItem("checkboxSkip") == "true" ) {
+	document.getElementById("checkboxSkip").checked = true;
 }
 if ( localStorage.getItem("miss_checkbox") == "true" ) {
 	document.getElementById("miss_checkbox").checked = true;
@@ -524,8 +592,8 @@ if ( localStorage.getItem("miss_checkbox") == "true" ) {
 if ( localStorage.getItem("fix_checkbox") == "true" ) {
 	document.getElementById("fix_checkbox").checked = true;
 }
-if ( localStorage.getItem("progress_checkbox") == "true" ) {
-	document.getElementById("progress_checkbox").checked = true;
+if ( localStorage.getItem("checkboxProgress") == "true" ) {
+	document.getElementById("checkboxProgress").checked = true;
 }
 if ( localStorage.getItem("checkbox_New") == "true" ) {
 	document.getElementById("checkbox_New").checked = true;
@@ -543,9 +611,9 @@ for ( var i = 0;   i < elements.length;   i++ ) {
 	var fotema = 		document.getElementById(id).parentElement.parentElement.parentElement.parentElement.id
 	var cimTitle = id.slice(id.indexOf(".")+1)
 	
-	table_Status[id] = localStorage.getItem(id + "_missFix")
+	table_Status[id] = localStorage.getItem(id + "_fix")
 	table_StatusSkip[id] = localStorage.getItem(id + "_skip")
-	if ( localStorage.getItem(id + "_missFix") == "progress" ) {
+	if ( localStorage.getItem(id + "_skip") == "progress" ) {
 		kerdesID[fotema][temaKerdes][id] = false
 	} else {
 		kerdesID[fotema][temaKerdes][id] = true
@@ -559,13 +627,14 @@ function func_valStatus(status){
 			x = x+1
 		}
 	}
-	document.getElementById("show_"+status).value = x;
+	document.getElementById("btn_"+status).value = x;
 }
 func_valStatus("fix");
 func_valStatus("miss");
+//func_valStatus("Skip");
 func_valStatus("progress");
 
-function func_valStatusSkip(){
+function func_valStatusSkip(status){
 	var x = 0
 	var y = 0
 	for ( var id in table_StatusSkip ) {
@@ -573,11 +642,9 @@ function func_valStatusSkip(){
 			x = x+1
 		}
 	}
-	document.getElementById("show_skipID").value = x;
-	
+	document.getElementById("btn_progress").value = x;
 }
-func_valStatusSkip();
-
+func_valStatusSkip("skip");
 
 function func_calcOldNew(){
 	var kerdesNew = 0
@@ -597,12 +664,7 @@ function func_calcOldNew(){
 					}
 					if ( localStorage.getItem(kerdes + "_skip") == "repeat" ) {
 						var date = new Date();
-						var min_diff = date.getMinutes() - localStorage.getItem(kerdes+'_min');
-						var hour_diff = date.getHours() - localStorage.getItem(kerdes+'_hour');
-						var day_diff = date.getDate() - localStorage.getItem(kerdes+'_day');
-						var month_diff = 1 + date.getMonth() - localStorage.getItem(kerdes+'_month');
-						var year_diff = date.getFullYear() - localStorage.getItem(kerdes+'_year');
-						var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
+						var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont')
 
 						if ( idopont < 30 ) {
 							repOld = repOld +1
@@ -620,7 +682,6 @@ function func_calcOldNew(){
 	document.getElementById("cont_RepOld").innerHTML = repOld;
 }
 
-
 // következő kérdés nehézségét beállítja, az előző sikere alapján
 var markCount = 0
 function func_markCount(jegy){
@@ -636,70 +697,113 @@ function func_markCount(jegy){
 	}
 }
 
+// _missFix
 
 function func_prevQuestion(){
 	func_markCount(document.getElementById("jegy").value);
-	if ( document.getElementById("button_missFix").style.backgroundColor == "purple" ) {
+
+	if ( priorKerdesID+'_jegy' in localStorage ) {
+		if ( document.getElementById("jegy").value == "3" || document.getElementById("jegy").value == "4" ) {
+			localStorage.setItem(priorKerdesID+'_jegyDiff', "good");
+		} else {
+			localStorage.setItem(priorKerdesID+'_jegyDiff', "bad");
+		}
+	}
+
+	localStorage.setItem(priorKerdesID+'_jegy', document.getElementById("jegy").value);
+	if ( document.getElementById("buttonFix").style.backgroundColor == "lightgrey" ) {
+		table_Status[priorKerdesID] = "normal"
+		localStorage.setItem(priorKerdesID + "_fix","")
+	} else if ( document.getElementById("buttonFix").style.backgroundColor == "lightpink" ) {
+		table_Status[priorKerdesID] = "miss"
+		localStorage.setItem(priorKerdesID + "_fix","miss") 
+	} else if ( document.getElementById("buttonFix").style.backgroundColor == "red" ) {
+		table_Status[priorKerdesID] = "fix"
+		localStorage.setItem(priorKerdesID + "_fix","fix")
+	}
+
+	if ( document.getElementById("buttonSkip").style.backgroundColor == "black" ) {
 		localStorage.setItem(priorKerdesID+'_jegy', "");
-		localStorage.setItem(priorKerdesID+'_rank', "");
-		localStorage.setItem(priorKerdesID + "_missFix","progress")
+		localStorage.setItem(priorKerdesID+'_jegyDiff', "");
+		localStorage.setItem(priorKerdesID + "_skip","progress")
 
 		table_Status[priorKerdesID] = "progress"
 		var temaKerdes = 	document.getElementById(priorKerdesID).parentElement.parentElement.parentElement.id
 		var fotema = 		document.getElementById(priorKerdesID).parentElement.parentElement.parentElement.parentElement.id
 		kerdesID[fotema][temaKerdes][priorKerdesID] = false
 	} else {
-		localStorage.setItem(priorKerdesID+'_rank', document.getElementById("rank").value);
-
-		if ( priorKerdesID+'_jegy' in localStorage ) {
-			if ( document.getElementById("jegy").value == "3" || document.getElementById("jegy").value == "4" ) {
-				localStorage.setItem(priorKerdesID+'_jegyDiff', "good");
-			} else {
-				localStorage.setItem(priorKerdesID+'_jegyDiff', "bad");
-			}
+		if ( document.getElementById("buttonSkip").style.backgroundColor == "dodgerblue" ) {
+			localStorage.setItem(priorKerdesID+"_skip","skip")
+		} else if ( document.getElementById("buttonSkip").style.backgroundColor == "yellow" ) {
+			localStorage.setItem(priorKerdesID+"_skip","repeat")
+		} else if ( document.getElementById("buttonSkip").style.backgroundColor == "lightgrey" ) {
+			localStorage.setItem(priorKerdesID+"_skip","false")
 		}
-		localStorage.setItem(priorKerdesID+'_jegy', document.getElementById("jegy").value);
-		if ( document.getElementById("button_missFix").style.backgroundColor == "lightgrey" ) {
-			table_Status[priorKerdesID] = "normal"
-			localStorage.setItem(priorKerdesID + "_missFix","")
-		} else if ( document.getElementById("button_missFix").style.backgroundColor == "lightpink" ) {
-			table_Status[priorKerdesID] = "miss"
-			localStorage.setItem(priorKerdesID + "_missFix","miss") 
-		} else if ( document.getElementById("button_missFix").style.backgroundColor == "red" ) {
-			table_Status[priorKerdesID] = "fix"
-			localStorage.setItem(priorKerdesID + "_missFix","fix")
-		}
-	}
-
-	if ( document.getElementById("button_skipID").style.backgroundColor == "black" ) {
-		localStorage.setItem(priorKerdesID+"_skip","skip")
-	} else if ( document.getElementById("button_skipID").style.backgroundColor == "yellow" ) {
-		localStorage.setItem(priorKerdesID+"_skip","repeat")
-	} else if ( document.getElementById("button_skipID").style.backgroundColor == "lightgrey" ) {
-		localStorage.setItem(priorKerdesID+"_skip","false")
 	}
 
 	var date = new Date();
 	if ( priorKerdesID+'_jegyDiff' in localStorage ) {
-		var min_diff = date.getMinutes() - localStorage.getItem(priorKerdesID+'_min');
-		var hour_diff = date.getHours() - localStorage.getItem(priorKerdesID+'_hour');
-		var day_diff = date.getDate() - localStorage.getItem(priorKerdesID+'_day');
-		var month_diff = 1 + date.getMonth() - localStorage.getItem(priorKerdesID+'_month');
-		var year_diff = date.getFullYear() - localStorage.getItem(priorKerdesID+'_year');
-		var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
-		if ( idopont > 600 ) {
-			idopont = 600
+		var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(priorKerdesID+'_idopont')
+
+		var numberX = Number(localStorage.getItem(priorKerdesID+'_timeDiff'))
+		
+		if ( numberX < 30 || localStorage.getItem(priorKerdesID+'_timeDiff') === "0" ) {
+			if ( idopont > 30 ) {
+				idopont = 30
+			}
+		/*} else if ( numberX > 30 || numberX == 30 ) {
+			if ( idopont > 50 ) {
+				idopont = 50
+			}*/
+		} else {
+			var asdNum = Math.floor(numberX/50)
+			asdNum = (asdNum+1)*50
+			if ( idopont > asdNum ) {
+				idopont = asdNum
+			}
+			if ( idopont > 200 ) {
+				idopont = 200
+			}
 		}
-		if ( localStorage.getItem(priorKerdesID+'_jegyDiff') == "bad" ) {
+		if ( idopont < numberX ) {
+			idopont = numberX
+		}
+		//alert(idopont)
+		
+		/*
+		//alert(idopont + " " + localStorage.getItem(priorKerdesID+'_timeDiff'))
+		if ( localStorage.getItem(priorKerdesID+'_timeDiff') === "0" ) {
+			//alert("0")
+			if ( idopont > 30 ) {
+				idopont = 30
+			}
+		} else if ( numberX < 30 && idopont > 30 ) {
 			idopont = 30
+		} else if ( numberX == 30 ) {
+			//alert("30")
+			if ( idopont > 200 ) {
+				idopont = 200
+			}
+		} else {
+			//alert("else")
+			var xyz = 200+numberX
+			if ( idopont > xyz ) {
+				//alert(idopont + " " + localStorage.getItem(priorKerdesID+'_timeDiff'))
+				idopont = xyz
+				//alert(idopont + " " + localStorage.getItem(priorKerdesID+'_timeDiff'))
+			}
 		}
-		localStorage.setItem(priorKerdesID+'_timeDiff', idopont);
+		*/
+
+		//alert(localStorage.getItem(priorKerdesID+'_jegyDiff'))
+		if ( localStorage.getItem(priorKerdesID+'_jegyDiff') == "bad" ) {
+			localStorage.setItem(priorKerdesID+'_timeDiff', "0");
+		} else {
+			localStorage.setItem(priorKerdesID+'_timeDiff', idopont);
+		}
+		//alert(localStorage.getItem(priorKerdesID+'_timeDiff'))
 	}
-	localStorage.setItem(priorKerdesID+'_min', date.getMinutes());
-	localStorage.setItem(priorKerdesID+'_hour', date.getHours());
-	localStorage.setItem(priorKerdesID+'_day', date.getDate());
-	localStorage.setItem(priorKerdesID+'_month', 1 + date.getMonth());
-	localStorage.setItem(priorKerdesID+'_year', date.getFullYear());
+	localStorage.setItem(priorKerdesID+'_idopont', Math.floor(date.getTime()/60000));
 
 	localStorage.setItem(priorKerdesID+'_note', document.getElementById("note").value);
 
@@ -709,15 +813,13 @@ function func_prevQuestion(){
 	func_valStatus("fix");
 	func_valStatus("miss");
 	func_valStatus("progress");
-	func_valStatusSkip();
+	func_valStatusSkip("skip");
 	document.getElementById("jegy").value = ""
-	document.getElementById("rank").value = ""
 	document.getElementById("note").value = ""
 	document.getElementById("note").style.display = 'none';
 
 	func_temakorStatus()
 }
-
 
 /*
 	var vClass = document.getElementById(id).className
@@ -727,30 +829,33 @@ function func_prevQuestion(){
 	}
 */
 
-
-
-
 var fullTema
 var priorKerdesID = "nincs"
 var checkNum
 var cloneKerdes
+var lastTime = 0
 function koviKerdes(){
+	var date = new Date();
+	var newTime = Math.floor(date.getTime()/1000)
+	var diffTime = newTime - lastTime
+	if ( diffTime < 3 ) {
+		alert("2fast 2furious")
+		return;
+	} else {
+		lastTime = newTime
+	}
+
 	// előző kérdés
 	if ( priorKerdesID != "nincs" ) {
 		if ( false == document.getElementById('jegy').disabled && 0 == document.getElementById("jegy").value.length ) {
-			alert("nincs jegy (1<2<3<4)")
-			return
-		}
-		if ( false == document.getElementById('rank').disabled && 0 == document.getElementById("rank").value.length ) {
-			alert("nincs rank(1<2<3<4<5)")
+			alert("nincs jegy")
 			return
 		}
 		func_prevQuestion();
 	}
 
 	// kovetkező kérdés
-	document.getElementById("jegy").value = "";
-	document.getElementById("rank").value = "";
+	document.getElementById("pJegy").textContent = "\xa0 "
 	document.getElementById("repeat").innerHTML = "&nbsp; &nbsp;";
 	priorKerdesID = "nincs";
 	var priorKerdesID_X = "nincs"
@@ -789,12 +894,7 @@ function koviKerdes(){
 
 							if ( localStorage.getItem("checkbox_RepNew") == "true" && priorType < 3 && localStorage.getItem(kerdes+"_skip") == "repeat" ) {
 								var date = new Date();
-								var min_diff = date.getMinutes() - localStorage.getItem(kerdes+'_min');
-								var hour_diff = date.getHours() - localStorage.getItem(kerdes+'_hour');
-								var day_diff = date.getDate() - localStorage.getItem(kerdes+'_day');
-								var month_diff = 1 + date.getMonth() - localStorage.getItem(kerdes+'_month');
-								var year_diff = date.getFullYear() - localStorage.getItem(kerdes+'_year');
-								var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
+								var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont')
 
 								if ( idopont > 30 ) {
 									priorType = 3
@@ -816,17 +916,16 @@ function koviKerdes(){
 
 							if ( priorType == 1 && localStorage.getItem(kerdes+"_jegy") > 0 ) { // régi kérdés
 								var date = new Date();
-								var min_diff = date.getMinutes() - localStorage.getItem(kerdes+'_min');
-								var hour_diff = date.getHours() - localStorage.getItem(kerdes+'_hour');
-								var day_diff = date.getDate() - localStorage.getItem(kerdes+'_day');
-								var month_diff = 1 + date.getMonth() - localStorage.getItem(kerdes+'_month');
-								var year_diff = date.getFullYear() - localStorage.getItem(kerdes+'_year');
-								var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
+								var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont')
 
 								var shouldBreak = false
+								var timeDiff = 30
 								if ( kerdes+'_timeDiff' in localStorage ) {
 									if ( localStorage.getItem(kerdes+'_timeDiff') > idopont && localStorage.getItem(kerdes+'_jegyDiff') == "good" ) {
 										//shouldBreak = true
+									}
+									if ( localStorage.getItem(kerdes+'_jegy') == "3" || localStorage.getItem(kerdes+'_jegy') == "4" ) {
+										timeDiff = localStorage.getItem(kerdes+'_timeDiff')
 									}
 								}
 								if ( 31 > idopont ) {
@@ -835,32 +934,32 @@ function koviKerdes(){
 								
 								if ( shouldBreak == false ) {
 									var jegy = localStorage.getItem(kerdes+'_jegy')
-									var rank = localStorage.getItem(kerdes+'_rank')
 
-									var timeDiff = 30
-									if ( kerdes+'_timeDiff' in localStorage ) {
-										if ( localStorage.getItem(kerdes+'_jegy') == "3" || localStorage.getItem(kerdes+'_jegy') == "4" ) {
-											timeDiff = localStorage.getItem(kerdes+'_timeDiff')
-										}
+									var num = document.getElementById(kerdes).className.search("/");
+									var prior = document.getElementById(kerdes).className.substring(num-1,num);
+									if ( prior == 1 ) {
+										prior = 0.33
+									} else if ( prior == 2 ) {
+										prior = 0.66 
+									} else if ( prior == 4 ) {
+										prior = 1.5
+									} else if ( prior == 5 ) {
+										prior = 3
+									} else {
+										prior = 1
 									}
 
-									var vClass = document.getElementById(kerdes).className
-									var vLength = vClass.match(/^\d+|\d+\b|\d+(?=\w)/g)
-									if ( vLength == null ) {
-										vLength = 1
-									}
-
-									if ( rank == "J" || rank == "j" ) {
-										rank = 3
+									if ( prior == "J" || prior == "j" ) {
+										prior = 1
 									}
 
 									//checkValue = rank / Math.pow(0.8, idopont / timeDiff) / jegy
-									checkValue = rank * idopont / timeDiff / jegy
+									checkValue = prior * idopont / timeDiff / jegy
 									//checkValue = vLength * rank * idopont / timeDiff / jegy
 
 									if ( checkValue > priorValue_X ) {
 										if ( localStorage.getItem(kerdes+"_skip") == "skip" ) {
-											if ( localStorage.getItem("checkbox_skipID") == "true" ) {
+											if ( localStorage.getItem("checkboxSkip") == "true" ) {
 												priorValue_X = checkValue;
 												priorKerdesID_X = kerdes;
 											}
@@ -872,7 +971,7 @@ function koviKerdes(){
 									if ( jegy == markCount || markCount == 0 ) { 
 										if ( checkValue > priorValue ) {
 											if ( localStorage.getItem(kerdes+"_skip") == "skip" ) {
-												if ( localStorage.getItem("checkbox_skipID") == "true" ) {
+												if ( localStorage.getItem("checkboxSkip") == "true" ) {
 													priorValue = checkValue;
 													priorKerdesID = kerdes;
 												}
@@ -898,6 +997,7 @@ function koviKerdes(){
 		}
 	}
 	if ( priorKerdesID != "nincs" ) {
+		document.getElementById('jegy').disabled = false;
 		fullTema = document.getElementById(priorKerdesID).parentElement.id
 		var cimTitle = priorKerdesID.slice(priorKerdesID.indexOf(".")+1)
 		document.getElementById("questTitle").innerHTML = "(" + cimTitle + ") " + fullTema.slice(0,fullTema.indexOf("/")) + ": " + fullTema.slice(fullTema.indexOf("/")+1,fullTema.indexOf(".")) + " &#10140; " + fullTema.slice(fullTema.indexOf(".")+1);
@@ -929,8 +1029,16 @@ function koviKerdes(){
 		if ( n != -1 ) {
 			document.getElementById("kerdeslocation").open = true;
 			var c = document.getElementById("kerdeslocation").children;
+			var d = document.getElementById(priorKerdesID).parentNode.parentNode.parentNode.children
+			var titleText
+			for (k = 0; k < d.length; k++) {
+				if ( "SUMMARY" == d[k].tagName ) {
+					titleText = d[k].innerHTML
+				}
+			}
 			for (i = 0; i < c.length; i++) {
 				if ( "SUMMARY" == c[i].tagName ) {
+					titleText = c[i].innerHTML + " " + titleText
 					c[i].innerHTML = "kérdés"
 				}
 				if ( "UL" == c[i].tagName ) {
@@ -938,6 +1046,7 @@ function koviKerdes(){
 					for (j = 0; j < x.length; j++) {
 						//alert(x[j].tagName)
 						if ( "DETAILS" == x[j].tagName ) {
+							x[j].insertAdjacentHTML('afterbegin', '<strong>'+titleText+'</strong>');
 							x[j].open = false
 						}
 					}
@@ -947,10 +1056,14 @@ function koviKerdes(){
 			document.getElementById("kerdeslocation").open = false;
 		}
 
-		if ( localStorage.getItem(priorKerdesID+"_skip") == "skip" ) {
-			document.getElementById("button_skipID").style.backgroundColor = "black"
+
+		if ( localStorage.getItem(priorKerdesID+"_skip") == "progress" ) {
+			document.getElementById("buttonSkip").style.backgroundColor = "black"
+			document.getElementById('jegy').disabled = true;
+		} else if ( localStorage.getItem(priorKerdesID+"_skip") == "skip" ) {
+			document.getElementById("buttonSkip").style.backgroundColor = "dodgerblue"
 		} else {
-			document.getElementById("button_skipID").style.backgroundColor = "lightgrey"
+			document.getElementById("buttonSkip").style.backgroundColor = "lightgrey"
 		}
 
 		if ( localStorage.getItem(priorKerdesID+'_note') == " " ) {
@@ -965,39 +1078,42 @@ function koviKerdes(){
 			var_note = false
 		}
 
-		if ( localStorage.getItem(priorKerdesID+'_missFix') == "progress" || localStorage.getItem(priorKerdesID+"_skip") == "repeat" ) {
-			document.getElementById('jegy').disabled = true;
-			document.getElementById('rank').disabled = true;
-			if ( localStorage.getItem(priorKerdesID+'_missFix') == "progress" ) {
-				document.getElementById("button_missFix").style.backgroundColor = "purple";
-			}
+		/*var num = document.getElementById(priorKerdesID).className.search("/");
+		var prior = document.getElementById(priorKerdesID).className.substring(num-1,num);
+		var hossz = document.getElementById(priorKerdesID).className.substring(num+1,num+2);
+		if ( prior == 1 ) {
+			prior = 0.33
+		} else if ( prior == 2 ) {
+			prior = 0.66 
+		} else if ( prior == 4 ) {
+			prior = 1.5
+		} else if ( prior == 5 ) {
+			prior = 3
 		} else {
-			document.getElementById('jegy').disabled = false;
-			document.getElementById('rank').disabled = false;
-			if ( localStorage.getItem(priorKerdesID+'_missFix') == "miss" ) {
-				document.getElementById("button_missFix").style.backgroundColor = "lightpink";
-			} else if ( localStorage.getItem(priorKerdesID+'_missFix') == "fix" ) {
-				document.getElementById("button_missFix").style.backgroundColor = "red";
-			} else {
-				document.getElementById("button_missFix").style.backgroundColor = "lightgrey";
-			}
+			prior = 1
+		}*/
+
+		if ( localStorage.getItem(priorKerdesID+"_skip") == "repeat" ) {
+			document.getElementById('jegy').disabled = true;
+		}
+
+		if ( localStorage.getItem(priorKerdesID+'_fix') == "miss" ) {
+			document.getElementById("buttonFix").style.backgroundColor = "lightpink";
+		} else if ( localStorage.getItem(priorKerdesID+'_fix') == "fix" ) {
+			document.getElementById("buttonFix").style.backgroundColor = "red";
+		} else {
+			document.getElementById("buttonFix").style.backgroundColor = "lightgrey";
 		}
 
 		var date = new Date();
-		var min_diff = date.getMinutes() - localStorage.getItem(priorKerdesID+'_min');
-		var hour_diff = date.getHours() - localStorage.getItem(priorKerdesID+'_hour');
-		var day_diff = date.getDate() - localStorage.getItem(priorKerdesID+'_day');
-		var month_diff = 1 + date.getMonth() - localStorage.getItem(priorKerdesID+'_month');
-		var year_diff = date.getFullYear() - localStorage.getItem(priorKerdesID+'_year');
-		var idopont = min_diff + hour_diff*60 + day_diff*24*60 + month_diff*30*24*60 + year_diff*365*30*24*60; // kicsit hibás, mert egy honap nem feltétlen 30nap illetve év se 365
+		var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(priorKerdesID+'_idopont')
 		/*if ( 60 > idopont ) {
 			document.getElementById('jegy').disabled = true;
 			document.getElementById('rank').disabled = true;
 		}*/
 
 		if ( priorKerdesID+'_jegy' in localStorage ) {
-			document.getElementById("jegy").value = localStorage.getItem(priorKerdesID+'_jegy');
-			document.getElementById("rank").value = localStorage.getItem(priorKerdesID+'_rank');
+			document.getElementById("pJegy").textContent = localStorage.getItem(priorKerdesID+'_jegy');
 			if ( priorKerdesID+'_jegy' in localStorage ) {
 				if ( priorKerdesID+'_timeDiff' in localStorage ) {
 					document.getElementById("repeat").textContent = idopont + " vs " + localStorage.getItem(priorKerdesID+'_timeDiff')
@@ -1020,49 +1136,100 @@ function koviKerdes(){
 	func_calcOldNew();
 }
 
-function missFix(){
+/*function missFix(){
 	if ( priorKerdesID != "nincs") {
-		if ( document.getElementById("button_missFix").style.backgroundColor == "lightpink" ) {
-			document.getElementById("button_missFix").style.backgroundColor = "red";
-		} else if ( document.getElementById("button_missFix").style.backgroundColor == "red" ) {
+		if ( document.getElementById("buttonFix").style.backgroundColor == "lightpink" ) {
+			document.getElementById("buttonFix").style.backgroundColor = "red";
+		} else if ( document.getElementById("buttonFix").style.backgroundColor == "red" ) {
 			document.getElementById('jegy').disabled = true;
-			document.getElementById('rank').disabled = true;
-			document.getElementById("button_missFix").style.backgroundColor = "purple";
+			document.getElementById("buttonFix").style.backgroundColor = "purple";
 		} else {
 			document.getElementById('jegy').disabled = false;
-			document.getElementById('rank').disabled = false;
-			if ( document.getElementById("button_missFix").style.backgroundColor == "lightgrey" ) {
-				document.getElementById("button_missFix").style.backgroundColor = "lightpink";
-			} else if ( document.getElementById("button_missFix").style.backgroundColor == "purple" ) {
-				document.getElementById("button_missFix").style.backgroundColor = "lightgrey";
+			if ( document.getElementById("buttonFix").style.backgroundColor == "lightgrey" ) {
+				document.getElementById("buttonFix").style.backgroundColor = "lightpink";
+			} else if ( document.getElementById("buttonFix").style.backgroundColor == "purple" ) {
+				document.getElementById("buttonFix").style.backgroundColor = "lightgrey";
+			}
+		}
+	}
+}*/
+
+function func_buttonFix(){
+	if ( priorKerdesID != "nincs") {
+		if ( document.getElementById("buttonFix").style.backgroundColor == "lightpink" ) {
+			document.getElementById("buttonFix").style.backgroundColor = "red";
+		} else if ( document.getElementById("buttonFix").style.backgroundColor == "red" ) {
+			document.getElementById("buttonFix").style.backgroundColor = "lightgrey";
+		} else {
+			document.getElementById("buttonFix").style.backgroundColor = "lightpink";
+		}
+	}
+}
+
+/*function func_skipID(){
+	if ( priorKerdesID != "nincs") {
+		if ( document.getElementById("buttonSkip").style.backgroundColor == "black" ) {
+			document.getElementById("buttonSkip").style.backgroundColor = "lightgrey";
+		} else if ( document.getElementById("buttonSkip").style.backgroundColor == "lightgrey" ) {
+			document.getElementById("buttonSkip").style.backgroundColor = "yellow";
+		} else if ( document.getElementById("buttonSkip").style.backgroundColor == "yellow" ) {
+			document.getElementById("buttonSkip").style.backgroundColor = "black";
+		}
+	}
+}*/
+
+function func_buttonSkip(){
+	if ( priorKerdesID != "nincs") {
+		if ( document.getElementById("buttonSkip").style.backgroundColor == "dodgerblue" ) {
+			document.getElementById('jegy').disabled = true;
+			document.getElementById("buttonSkip").style.backgroundColor = "black";
+		} else {
+			document.getElementById('jegy').disabled = false;
+			if ( document.getElementById("buttonSkip").style.backgroundColor == "lightgrey" ) {
+				document.getElementById("buttonSkip").style.backgroundColor = "yellow";
+			} else if ( document.getElementById("buttonSkip").style.backgroundColor == "yellow" ) {
+				document.getElementById("buttonSkip").style.backgroundColor = "dodgerblue";
+			} else if ( document.getElementById("buttonSkip").style.backgroundColor == "black" ) {
+				document.getElementById("buttonSkip").style.backgroundColor = "lightgrey";
 			}
 		}
 	}
 }
 
-function func_skipID(){
-	if ( priorKerdesID != "nincs") {
-		if ( document.getElementById("button_skipID").style.backgroundColor == "black" ) {
-			document.getElementById("button_skipID").style.backgroundColor = "lightgrey";
-		} else if ( document.getElementById("button_skipID").style.backgroundColor == "lightgrey" ) {
-			document.getElementById("button_skipID").style.backgroundColor = "yellow";
-		} else if ( document.getElementById("button_skipID").style.backgroundColor == "yellow" ) {
-			document.getElementById("button_skipID").style.backgroundColor = "black";
-		}
-	}
-}
 
-function show_Status(status){
+// innentől
+function func_span(element,status){
 	var string = ""
 	for ( var id in table_Status ) {
 		if ( table_Status[id] == status ) {
 			string += id.slice(id.indexOf(".")+1) + ', '
 		}
 	}
-	alert(string)
+	element.title = string
+	func_showTooltip(element)
+	//alert(string)
 }
-
-function show_StatusSkip(){
+document.getElementById("btn_fix").onmouseout = function() {
+	if ( tooltipStatus != "show" ) {
+		tooltipSpan.style.visibility = "hidden";
+	}
+}
+document.getElementById("btn_miss").onmouseout = function() {
+	if ( tooltipStatus != "show" ) {
+		tooltipSpan.style.visibility = "hidden";
+	}
+}
+document.getElementById("btn_skip").onmouseout = function() {
+	if ( tooltipStatus != "show" ) {
+		tooltipSpan.style.visibility = "hidden";
+	}
+}
+document.getElementById("btn_progress").onmouseout = function() {
+	if ( tooltipStatus != "show" ) {
+		tooltipSpan.style.visibility = "hidden";
+	}
+}
+function func_spanSkip(){
 	var string = ""
 	for ( var id in table_StatusSkip ) {
 		if ( table_StatusSkip[id] == "true" ) {
@@ -1071,6 +1238,7 @@ function show_StatusSkip(){
 	}
 	alert(string)
 }
+// idáig
 
 func_calcOldNew();
 func_calcJegy()

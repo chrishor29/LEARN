@@ -1,8 +1,46 @@
-copy F:\LEARN\javascript.js I:\Users\chrishor29\Desktop\learn\javascript.js
-copy F:\LEARN\style.css I:\Users\chrishor29\Desktop\learn\style.css
+copy C:\Kristof\MIRROR\LEARN\javascript.js C:\Users\chrishor29\Desktop\LEARN\javascript.js
+copy C:\Kristof\MIRROR\LEARN\style.css C:\Users\chrishor29\Desktop\LEARN\style.css
+copy C:\Kristof\MIRROR\LEARN\targyvalasztas.html C:\Users\chrishor29\Desktop\LEARN\targyvalasztas.html
 
-robocopy F:\LEARN\OB\images I:\Users\chrishor29\Desktop\learn\OB\images /mir
-copy F:\LEARN\OB\ob.html I:\Users\chrishor29\Desktop\learn\OB\ob.html
+robocopy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\images C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Biologia\images /mir
+copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\ob.html C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Biologia\ob.html
+copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\ob.html C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Biologia\favicon.bmp
+copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\ob.html C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Biologia\javascript.js
+copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\ob.html C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Biologia\style.css
+
+robocopy C:\Kristof\MIRROR\LEARN\done\FejlodesBiologia_I\images C:\Users\chrishor29\Desktop\LEARN\done\FejlodesBiologia_I\images /mir
+copy C:\Kristof\MIRROR\LEARN\done\FejlodesBiologia_I\FejlBiosz.html C:\Users\chrishor29\Desktop\LEARN\done\FejlodesBiologia_I\FejlBiosz.html
+copy C:\Kristof\MIRROR\LEARN\done\FejlodesBiologia_I\favicon.bmp C:\Users\chrishor29\Desktop\LEARN\done\FejlodesBiologia_I\favicon.bmp
+copy C:\Kristof\MIRROR\LEARN\done\FejlodesBiologia_I\style.css C:\Users\chrishor29\Desktop\LEARN\done\FejlodesBiologia_I\style.css
+
+robocopy C:\Kristof\MIRROR\LEARN\done\Orvosi_Kemia\images C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Kemia\images /mir
+copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Kemia\kemia.html C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Kemia\kemia.html
+copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Kemia\favicon.bmp C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Kemia\favicon.bmp
+copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Kemia\javascript.js C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Kemia\javascript.js
+copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Kemia\style.css C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Kemia\style.css
+
+robocopy C:\Kristof\MIRROR\LEARN\done\Biofizika\images C:\Users\chrishor29\Desktop\LEARN\done\Biofizika\images /mir
+copy C:\Kristof\MIRROR\LEARN\done\Biofizika\kemia.html C:\Users\chrishor29\Desktop\LEARN\done\Biofizika\kemia.html
+copy C:\Kristof\MIRROR\LEARN\done\Biofizika\favicon.bmp C:\Users\chrishor29\Desktop\LEARN\done\Biofizika\favicon.bmp
+copy C:\Kristof\MIRROR\LEARN\done\Biofizika\style.css C:\Users\chrishor29\Desktop\LEARN\done\Biofizika\style.css
+
+robocopy C:\Kristof\MIRROR\LEARN\ANAT\images C:\Users\chrishor29\Desktop\LEARN\ANAT\images /mir
+copy C:\Kristof\MIRROR\LEARN\ANAT\anat.html C:\Users\chrishor29\Desktop\LEARN\ANAT\anat.html 
+copy C:\Kristof\MIRROR\LEARN\ANAT\favicon.bmp C:\Users\chrishor29\Desktop\LEARN\ANAT\favicon.bmp
+
+robocopy C:\Kristof\MIRROR\LEARN\ANAT\Histology\100 C:\Users\chrishor29\Desktop\LEARN\ANAT\Histology\100 /mir
+copy C:\Kristof\MIRROR\LEARN\ANAT\Histology\histo.html C:\Users\chrishor29\Desktop\LEARN\ANAT\Histology\histo.html 
+copy C:\Kristof\MIRROR\LEARN\ANAT\Histology\favicon.bmp C:\Users\chrishor29\Desktop\LEARN\ANAT\Histology\favicon.bmp
+
+robocopy C:\Kristof\MIRROR\LEARN\BioKemia\I\images C:\Users\chrishor29\Desktop\LEARN\BioKemia\I\images /mir
+copy C:\Kristof\MIRROR\LEARN\BioKemia\I\biokemia.html C:\Users\chrishor29\Desktop\LEARN\BioKemia\I\biokemia.html 
+copy C:\Kristof\MIRROR\LEARN\BioKemia\I\favicon.bmp C:\Users\chrishor29\Desktop\LEARN\BioKemia\I\favicon.bmp
+
+robocopy C:\Kristof\MIRROR\LEARN\SejtBiosz\I\images C:\Users\chrishor29\Desktop\LEARN\SejtBiosz\I\images /mir
+copy C:\Kristof\MIRROR\LEARN\SejtBiosz\I\sejtbiosz.html C:\Users\chrishor29\Desktop\LEARN\SejtBiosz\I\sejtbiosz.html 
+copy C:\Kristof\MIRROR\LEARN\SejtBiosz\I\favicon.bmp C:\Users\chrishor29\Desktop\LEARN\SejtBiosz\I\favicon.bmp
+
+
 
 git add .
 git commit -m "make some changes"

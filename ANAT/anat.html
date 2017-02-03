@@ -1,0 +1,451 @@
+﻿<head>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="favicon.bmp">
+	<link rel="stylesheet" type="text/css" href="../style.css">
+	<title>Anat</title>
+	<style>*{line-height: 130%;}</style>
+</head>
+
+ <!-- onmouseover="func_span('miss');" -->
+<input onclick="toggleAll();" type="button" id="input_toggleAll" value="0" style="position:fixed; right: 0px;"><div id="quest" style="display:none;">
+	
+	<details><summary class="phase">tételek</summary><div id="container"></div></details>
+	<input type="button" class="MISS" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'miss');" id="btn_miss" value="0">
+	<input type="button" class="FIX" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'fix');" id="btn_fix" value="0">
+	<input type="button" class="skip" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_spanSkip" id="btn_skip" value="0">
+	<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'progress')" id="btn_progress" value="0">
+
+	<input type="checkbox" id="checkbox_New"/><span class="WHITE" id="cont_New"></span><span class="VOCAB" id="cont_Old"></span>
+	<span class="WHITE" id="span_Jegy"></span><span class="VOCAB" id="span_Date"></span>
+	<input type="checkbox" id="checkbox_RepNew"/><span class="WHITE" id="cont_RepNew"></span><span class="VOCAB" id="cont_RepOld"></span>
+
+	<span id="repeat" class="WHITE" style="position: absolute;left: 45%;">&nbsp; &nbsp; &nbsp;</span>
+	<br>
+	<div align="center">
+		<span style="border: 0px;" id="rank">&nbsp; &nbsp; &nbsp;</span> &nbsp;
+		<input onclick="toggleNote();" type="button" value="&#10045;"> &nbsp; &nbsp;
+		<select id="jegy"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; &nbsp;
+		<span id="pJegy">&nbsp; </span> &nbsp; &nbsp;
+		<input onclick="func_buttonFix();" type="button" id="buttonFix" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp; &nbsp;
+		<input onclick="func_buttonSkip();" type="button" id="buttonSkip" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp; &nbsp;
+		<input onclick="koviKerdes();" type="button" value="következő kérdés">
+	</div>
+	<center><textarea style="display:none; position:fixed; left: 40%; top: 70%;" id="note" rows="4" cols="40"></textarea></center>
+	
+	<div style="font-weight: bold;font-size: large;" id="questTitle"></div>
+	<details id="kerdeslocation"></details>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+
+<table><tr>
+	<td class="" title="2funkc: 238-269">apparatus uropoeticus</td>
+</tr></table>
+
+<details><summary class="MISS">kérdések</summary><ul>
+	<li>s</li>
+</ul></details><br>
+
+<!--//////////////////////////////////////-->  <div><div class="mainTitle">ágyból felkeltve is...</div>  <!--//////////////////////////////////////-->
+
+<!----><details open><summary class="phase">apparatus uropoeticus</summary><div class="normal">
+ <span class="FIX">ANAT 3D ehhez kapcsolódó részeket!!!!!!</span>
+ <div><div class="title">általános</div>
+	<details class="kerdes 4/1" id="anat.1"><summary>jelentése? általános funkciója?</summary><ul class="normal">
+		<li>vizeleti rendszer</li>
+		<li>kiüríti a felesleges <strong>vizet</strong> és a <strong>benne oldható anyagokat</strong> (pl.sók)</li>
+	</ul></details>
+	<details class="kerdes 4/3" id="anat.2"><summary><abbr title="nembiztos, hogy mind szerv (nemjártam utána)">részeinek</abbr> felsorolása és funkciója?</summary><ul class="normal"><table>
+		<tr><th>rész</th>   <th>funkció</th></tr>
+		
+		<tr><td>ren = vese</td>   <td>excretio</td></tr>
+		<tr><td>pelvis_renalis = vesemedence <span class="WHITE">6</span>+<span class="WHITE">5</span>+<span class="WHITE">4</span> <img style="float:none; max-height:15px" src="images/rajz_rntmtszt.png"></td>   <td rowspan="3">vizeletelvezetés</td></tr>
+		<tr><td>ureter = húgyvezeték</td></tr>
+		<tr><td>urethra = húgycső (&#9794; genitalis-kivezetőcső is egyben)</td></tr>
+		<tr><td>vesica_urinaria = húgyhólyag</td>   <td>vizelettárolás</td></tr>
+	</table></ul></details>
+ </div>
+ <div><div class="title">vese</div>
+	<details class="kerdes 5/1" id="anat.3"><summary>latinul & angolul?</summary><ul class="normal">
+		<li>ren</li>
+		<li>kidney</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="anat.4"><summary style="color:Magenta"><font color="Green">felosztás?</font></summary><ul class="normal">
+		<li>stroma</li><ul>
+			<li>vesetok</li>
+			<li><span class="WHITE">17</span> sinus_renalis <abbr title="funkc úgy osztotta fel, hogy sinus_renalis + parenchmya. pdf pedig parenchyma+stroma(tok+interstitium) részre. ergó szerintem interstitium = sinus_renalis">?=?</abbr> interstitium</li>
+		</ul>
+		<li>parenchyma<abbr title="veseállomány">(=)</abbr></li><ul>
+			<li>cortex = kéregállomány</li>
+			<li>medulla = velőállomány</li>
+		</ul>
+		<img style="max-width:40%" src="images/rajz_transvese.png">
+		<img style="max-width:40%" src="images/rntkhrm.png">
+	</ul></details>
+	<details class="kerdes 2/1" id="anat.5"><summary>topográfia?(2)</summary><ul class="normal">
+		<img src="images/rnml.png">
+		<li>facies_anterior kissé lateral fele tekint / facies_posterior kissé medial fele tekint</li>
+		<li>bal oldali van kicsit feljebb &#10140; jobb oldalit a máj fél-csigolyatestnyire leszorítja</li>
+	</ul></details>
+	<details class="kerdes 2/4" id="anat.6"><summary>tokjai &#10140; felsorolás? hely? szövet?</summary><ul class="normal">
+		<li>capsula_fibrosa &#10140; cortexet fedi ("legbelső tokja") &#10140; tömött_rostos_ktsz</li>
+		<li>capsula_adiposa &#10140; capsula_fibrosat kívülről fedi &#10140; szírszövet(sárga)</li>
+		<li>fascia_renalis &#10140; capsula_adiposat kívülről fedi</li>
+		<details><summary>fascia_renalis &#10140; lemezei és összenövésük?</summary><ul class="normal">
+			<li>2lemezre osztjuk &#10140; <span class="WHITE">7-lamina_praerenalis</span> és <span class="WHITE">8-lamina_retrorenalis</span></li>
+			<li>lateralisan és <abbr title="mellékvese fölött, tehát azt becsomagolva">felül</abbr> összenőttek</li>
+			<li><abbr title="hiszen ott hilus_renalis van!">medialisan</abbr> és alul nem nőttek össze</li>
+			<img src="images/vstrn.png">
+		</ul></details>
+		<img style="max-width:40%" src="images/vstkrképk.png">
+		<img style="max-width:40%" src="images/vktpskp.png">
+	</ul></details>
+	<details class="kerdes 3/2" id="anat.7"><summary>hilus_renalis képletek?(2<sub>+1</sub>)</summary><ul class="normal">
+		<li><span class="Important">av.renalis</span></li>
+		<li><span class="Important">ureter</span></li>
+		<li>plexus_renalis</li>
+		<li>(nodi_lymphatici_renales)</li>
+	</ul></details>
+	<details class="kerdes 3/3" id="anat.8"><summary>sinus_renalis képletek?(5<sub>+1</sub>)</summary><ul class="normal">
+		<li>capsula_adiposa</li>
+		<li>pelvis_renalis</li>
+		<li>hilus_renalis képletek</li><ul>
+			<li><span class="Important">av.renalis</span></li>
+			<li><span class="Important">ureter</span></li>
+			<li>plexus_renalis</li>
+			<li>(nodi_lymphatici_renales)</li>
+		</ul>
+	</ul></details>
+	<details class="kerdes 3/3" id="anat.9"><summary><span class="Vocab">IF</span> vese átmetszeti kép?</summary><ul class="normal">
+		<img src="images/rajz_rntmtszt.png">
+		<div><span class="WHITE"><abbr title="szürke 8asok közötti része">1</abbr></span> columna_renalis_Bertini</div>
+		<div>cortex = <span class="WHITE">szürke</span> + <span class="WHITE">2</span> + <span class="WHITE">10</span></div>
+		<div><span class="WHITE">2</span> cortex_corticis</div>
+		<div><span class="WHITE">3</span> capsula_adiposa</div>
+		<div><span class="WHITE">4</span> calyx_minor</div>
+		<div><span class="WHITE">5</span> calyx_major</div>
+		<div><span class="WHITE">6</span> + <span class="WHITE">5</span> + <span class="WHITE">4</span> = pelvis_renalis</div>
+		<div><span class="WHITE">7</span> ureter</div>
+		<div><span class="WHITE">8</span> pyramidis_renalis <abbr title="összes együtt">(medulla)</abbr></div>
+		<div><span class="WHITE">9</span> capsula_fibrosa <abbr title="szvsz sinus_renalisban már nincs">!!!</abbr></div>
+		<div><span class="WHITE">10</span> stria_medullaris <abbr title="csak a kérgi(szürke) része stria_medullaris">!!!</abbr> <abbr title="histonál leírva">&#10045;</abbr></div>
+	</ul></details>
+	<details class="kerdes 3/4" id="anat.10"><summary><span class="Vocab">IF</span> vese - transversal (tokok)?</summary><ul class="normal">
+		<img src="images/rajz_transvese.png">
+		<div><span class="WHITE">1</span> m.psoas_major</div>
+		<div><span class="WHITE">2</span> m.quadratus_lumborum</div>
+		<div><span class="WHITE">3</span> m.transversus_abdominis</div>
+		<div><span class="WHITE">4</span> m.obturator_internus_abdominis</div>
+		<div><span class="WHITE">5</span> m.obturator_externus_abdominis</div>
+		<div><span class="WHITE">6</span> fascia_transversalis</div>
+		<div><span class="WHITE">7</span> v.cava_inferior</div>
+		<div><span class="WHITE">8</span> v.renalis</div>
+		<div><span class="WHITE">9</span> aorta_abominalis</div>
+		<div><span class="WHITE">10</span> a.renalis</div>
+		<div><span class="WHITE">11</span> capsula_adiposa</div>
+		<div><span class="WHITE">12</span> <abbr title="erős összenövés a fascia_transversalis-al">lamina_retrorenalis</abbr></div>
+		<div><span class="WHITE">13</span> hilus_renalis</div>
+		<div><span class="WHITE">14</span> ren</div>
+		<div><span class="WHITE">15</span> peritoneum_parietale</div>
+		<div><span class="WHITE">16</span> <abbr title="gyengébb összeköttetés a peritoneum_parietaleval">lamina_prerenalis</abbr></div>
+		<div><span class="WHITE">12 + 16</span> fascia_renalis</div>
+		<div><span class="WHITE">17</span> sinus renalis</div>
+	</ul></details>
+ </div>
+<!----></div></details>
+
+
+<!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
+
+<!--//////////////////////////////////////-->  <div><div class="mainTitle">apparatus uropoeticus</div>  <!--//////////////////////////////////////-->
+
+<!----><details><summary class="phase">általános</summary><div class="normal"><div><div class="title"></div>
+	<details class="sedrek 4/1" id="anat.2"><summary>jelentése? általános funkciója?</summary><ul class="normal">
+		<li>vizeleti rendszer</li>
+		<li>kiürítse a felesleges vizet, és benne oldható anyagokat</li>
+		<div><span class="white">§</span> vízben oldható anyagok &#10140; sók és anyagcseretermékek (pl. ureum, húgysavszármazékok stb.)</div>
+	</ul></details>
+	<details class="sedrek 4/3" id="anat.3"><summary>szervek felsorolása és funkciója?</summary><ul class="normal"><table>
+		<tr><th>szerv</th>   <th>funkció</th></tr>
+		
+		<tr><td>ren</td>   <td>excretio</td></tr>
+		<tr><td>pelvis_renalis</td>   <td rowspan="3">vizeletelvezetés</td></tr>
+		<tr><td>ureter</td></tr>
+		<tr><td>urethra (&#9794; genitalis-kivezetőcső is egyben)</td></tr>
+		<tr><td>vesica_urinaria</td>   <td>vizelettárolás</td></tr>
+	</table></ul></details>
+	<details class="sedrek 2/2" id="anat.4"><summary>vese funkciója bővebben?</summary><ul class="normal">
+		<li>testnedvek koncentrációját állandó szinten tartsa</li>
+		<li>tudniillik</li><ul>
+			<li>víz mennyisége csökken &#10140; verejtékezzéskor és légzéskor<abbr title="cserélt levegő páradúsítása">()</abbr> is</li>
+			<li>víz mennyisége növekszik &#10140; sejtlégzésnél</li>
+		</ul>
+		<li>általánosan azonban elmondható, hogy az esetek <abbr title="kivéve sok sörfogyasztás stb">nagyrészében</abbr> a vizelet koncentrációja nagyobb lesz, mint a testnedvé (tehát vízből relatív keveset választ ki, a benne oldahtó anyagokhoz képest)</li>
+	</ul></details>
+<!----></div></div></details>
+
+<!----><details open><summary class="phase">vese</summary><div class="normal"><div><div class="title"></div>
+	<details class="sedrek 5/1" id="anat.5"><summary>latinul & angolul?</summary><ul class="normal">
+		<li>ren</li>
+		<li>kidney</li>
+	</ul></details>
+	<details class="sedrek 3/1" id="anat.6"><summary>"definíció"?</summary><ul class="normal">
+		<li>bab alakú, páros szerv</li>
+	</ul></details>
+	<details class="sedrek 2/1" id="anat.7"><summary>tömege?</summary><ul class="normal">
+		<li>120-300g</li>
+	</ul></details>
+	<details class="sedrek 2/2" id="anat.8"><summary>mérete?</summary><ul class="normal">
+		<li>12cm hosszú / 6cm széles / 3cm vastag</li>
+	</ul></details>
+	<details class="sedrek 3/3" id="anat.9"><summary>topográfia?</summary><ul class="normal">
+		<img src="images/rnml.png">
+		<li>Th12-L3</li>
+		<li>facies_anterior kissé lateral fele tekint / facies_posterior kissé medial fele tekint</li>
+		<li>bal oldali van kicsit feljebb &#10140; jobb oldalit a máj fél-csigolyatestnyire leszorítja</li>
+		<li>felső rész &#10140; hátul a diaphragma, és amögött a sinus_phrenicocostalis</a> <img style="max-height:15px;float:none;" src="images/dhrsphrcre.png"></li>
+		<li>izmok</li><ul>
+			<li>m.psoas_major &#10140; medialisan határolja</li>
+			<li>m.quadratus_lumborum &#10140; hátulról határolja</li>
+			<li>m.transversus_abdominis</li>
+		</ul>
+		<div><span class="white">§</span> ehhez kapcsolódik a: <span class="WHITE">RAJZ</span> vese anterior/posterior (benyomatok)</div>
+		<img src="images/vstkrképk.png">
+		<img src="images/tnrpg.png">
+	</ul></details>
+	<details class="sedrek 3/2" id="anat.10"><summary style="color:Magenta"><font color="Green">felosztás?</font></summary><ul class="normal">
+		<li>stroma</li><ul>
+			<li>vesetok</li>
+			<li><span class="WHITE">17</span> sinus_renalis <abbr title="funkc úgy osztotta fel, hogy sinus_renalis + parenchmya. pdf pedig parenchyma+stroma(tok+interstitium) részre. ergó szerintem interstitium = sinus_renalis">?=?</abbr> interstitium</li>
+		</ul>
+		<li>parenchyma<abbr title="veseállomány">(=)</abbr></li><ul>
+			<li>cortex = kéregállomány</li>
+			<li>medulla = velőállomány</li>
+		</ul>
+		<img style="max-width:40%" src="images/rajz_transvese.png">
+		<img style="max-width:40%" src="images/rntkhrm.png">
+	</ul></details>
+	<details class="sedrek 2/1" id="anat.11"><summary>felszíne?</summary><ul class="normal">
+		<li>sima</li>
+		<li>de újszülött veséje még világosan mutatja a vese eredeti lebenyezett szerkezetét <span class="WHITE">ren_lobatus</span></li>
+	</ul></details>
+	<details class="sedrek 3/3" id="anat.15"><summary><span class="Vocab">R</span> vese átmetszeti kép?</summary><ul class="normal">
+		<img src="images/rajz_rntmtszt.png">
+		<div><abbr title="szürke 8asok közötti része">1</abbr> columna_renalis_Bertini</div>
+		<div>cortex = <span class="WHITE">szürke</span> + <span class="WHITE">2</span> + <span class="WHITE">10</span></div>
+		<div><span class="WHITE">2</span> cortex_corticis</div>
+		<div><span class="WHITE">3</span> capsula_adiposa</div>
+		<div><span class="WHITE">4</span> calyx_minor</div>
+		<div><span class="WHITE">5</span> calyx_major</div>
+		<div><span class="WHITE">6</span> + <span class="WHITE">5</span> + <span class="WHITE">4</span> = pelvis_renalis</div>
+		<div><span class="WHITE">7</span> ureter</div>
+		<div><span class="WHITE">8</span> pyramidis_renalis <abbr title="összes együtt">(medulla)</abbr></div>
+		<div><span class="WHITE">9</span> capsula_fibrosa <abbr title="szvsz sinus_renalisban már nincs">!!!</abbr></div>
+		<div><span class="WHITE">10</span> stria_medullaris <abbr title="csak a kérgi(szürke) része stria_medullaris">!!!</abbr> <abbr title="histonál leírva">&#10045;</abbr></div>
+	</ul></details>
+	<details class="sedrek 3/4" id="anat.13"><summary><span class="Vocab">R</span> vese - transversal (tokok)?</summary><ul class="normal">
+		<img src="images/rajz_transvese.png">
+		<div><span class="WHITE">1</span> m.psoas_major</div>
+		<div><span class="WHITE">2</span> m.quadratus_lumborum</div>
+		<div><span class="WHITE">3</span> m.transversus_abdominis</div>
+		<div><span class="WHITE">4</span> m.obturator_internus_abdominis</div>
+		<div><span class="WHITE">5</span> m.obturator_externus_abdominis</div>
+		<div><span class="WHITE">6</span> fascia_transversalis</div>
+		<div><span class="WHITE">7</span> v.cava_inferior</div>
+		<div><span class="WHITE">8</span> v.renalis</div>
+		<div><span class="WHITE">9</span> aorta_abominalis</div>
+		<div><span class="WHITE">10</span> a.renalis</div>
+		<div><span class="WHITE">11</span> capsula_adiposa</div>
+		<div><span class="WHITE">12</span> <abbr title="erős összenövés a fascia_transversalis-al">lamina_retrorenalis</abbr></div>
+		<div><span class="WHITE">13</span> hilus_renalis</div>
+		<div><span class="WHITE">14</span> ren</div>
+		<div><span class="WHITE">15</span> peritoneum_parietale</div>
+		<div><span class="WHITE">16</span> <abbr title="gyengébb összeköttetés a peritoneum_parietaleval">lamina_prerenalis</abbr></div>
+		<div><span class="WHITE">12 + 16</span> fascia_renalis</div>
+		<div><span class="WHITE">17</span> sinus renalis</div>
+	</ul></details>
+	<details class="sedrek 3/4" id="anat.14"><summary><span class="Vocab">R</span> vese - anterior/posterior (benyomatok)?</summary><ul class="normal">
+		<img src="images/rajz_imporen.png">
+		<div><span class="WHITE">1</span> impressio_lienalis</div>
+		<div><span class="WHITE">2</span> impressio_gastricae</div>
+		<div><span class="WHITE">3</span> impressio_jejunalis</div>
+		<div><span class="WHITE">4</span> impressio_duodenalis(pars_descendens)</div>
+		<div><span class="WHITE">5</span> impressio_colica(flexura_hepatica)</div>
+		<div><span class="WHITE">6</span> impressio_colica(flexura_lienalis)</div>
+		<div><span class="WHITE">7</span> impressio_pancreatica(cauda_pancreatica)</div>
+		<div><span class="WHITE">8</span> impressio_hepatica <abbr title="felül &#10140; impressio_renalis(hepar)">&#10045;</abbr> <abbr title="elülső felszínén &#10140; lig.hepatorenale">&#10045;</abbr></div>
+		<div><span class="WHITE">9</span> 12.costa</div><ul>
+			<li>ren_dexter &#10140; alját éri el</li>
+			<li>ren_sinister &#10140; 1/3a felette, 2/3a alatta</li>
+		</ul>
+		<div><span class="WHITE">10</span> diaphragma</div>
+		<div><span class="WHITE">11</span> m.transversus_abdominis</div>
+		<div><span class="WHITE">12</span> m.psoas_major</div>
+		<div><span class="WHITE">13</span> m.quadratus_lumborum</div>
+		<div><span class="WHITE">14</span> glandula_suprarenalis</div>
+		<div><span class="WHITE">15</span> subcostalis-sík <abbr title="itt a bal oldali alja">&#10045;</abbr></div>
+		<div><span class="WHITE">16</span> supracristalis-sík <abbr title="15-16 között a jobb oldali alja">&#10045;</abbr></div>
+		<li>forrás &#10140; <a href="images/imnpbr.png">&#9775;</a> <a href="images/rimpnm.png">&#9775;</a></li>
+	</ul></details>
+	<details class="sedrek 3/5" id="anat.12"><summary>tokjai?</summary><ul class="normal">
+		<img style="max-width:30%" src="images/rntkhrm.png">
+		<div><strong>capsula_fibrosa</strong></div><div>
+			<li>cortexet fedi ("legbelső tokja") <abbr title="veseállományt kívülről fedi (tulajdonképpeni tokja)">&#10045;</abbr> <abbr title="felmetszése után a veseállomány sérülése nélkül le lehet vonni">()</abbr></li>
+			<li>tömött_rostos_ktsz</li>
+		</div>
+		<div><span class="WHITE">5</span><strong>capsula_adiposa</strong></div><div>
+			<li>capsula_fibrosat kívülről fedi</li>
+			<li>szírszövet(sárga)</li>
+			<li>hilus_renalisnal bemegy a sinus_renalisba és kitöltésében részt vesz (erek és idegek mellett)</li>
+			<li>sinus_renalisban a papillia_renalist nem burkolja (azt calyx_renalis minor, lásd kép)</li>
+			<li>felül a mellékvesét is magába foglalja</li>
+			<li>alul ék alakba végződik 4-5cm-re a vese alsó pólusa alatt</li>
+		</div>
+		<div><strong>fascia_renalis</strong></div><div>
+			<li>capsula_adiposat kívülről fedi</li>
+			<li>2lemezre osztjuk &#10140; <span class="WHITE">7-lamina_praerenalis</span> és <span class="WHITE">8-lamina_retrorenalis</span></li>
+			<li>lateralisan összenőttek <span class="WHITE">elülső-hátulsó</span></li>
+			<li>medialisan nem nőttek össze, sinus_renalist hagynak (aorta_abdominalis és v.cava_inferior mögött/előtt futnak)</li>
+			<li>felül összenőttek <span class="WHITE">elülső-hátulsó</span> (mellékvese fölött!)</li>
+			<li>alul NEM nőttek össze &#10140; párhuzamosan futva, fokozatosan elvékonyodnak (nincs zárt tok)</li>
+		</div>
+		<img style="max-width:20%" src="images/vstkrképk.png">
+		<img style="max-width:20%" src="images/vktpskp.png">
+		<img style="max-width:20%" src="images/vstrn.png">
+		<img style="max-width:20%" src="images/rtl2trn.png">
+	</ul></details>
+	<details class="sedrek 3/2" id="anat.16"><summary>hilus_renalis képletek?</summary><ul class="normal">
+		<li>av.renalis</li>
+		<li>ureter</li>
+		<li>plexus_renalis</li>
+		<li>(nodi_lymphatici_renales)</li>
+	</ul></details>
+	<details class="sedrek 3/2" id="anat.17"><summary>sinus_renalis képletek?</summary><ul class="normal">
+		<li>hilus_renalis képletek</li>
+		<li>capsula_adiposa</li>
+		<li>pelvis_renalis</li>
+	</ul></details>
+	<details><summary><font color="Black">&#9609;</font> vese rögzítése?</summary><ul class="normal">
+		<li>fascia_renalis</li><ul>
+			<li><span class="Important">lamina_retrorenalis &#10140; erősen összenőtt a fascia_transversalisszal</span>(hasfal belső fasciája)</li>
+			<li>lamina_praerenalis &#10140; helyenként összenőtt a peritoneum_parietale-val</li>
+		</ul>
+		<li>capsula_adiposa &#10140; úgy rögzíti, mint műanyag szivacs a dobozba becsomagolt törékeny tárgyat</li> 
+		<li>kötőszöveti rostrendszer a fascia_renalis és capsula_fibrosa között (capsula_adiposaban)</li> 
+		<li>vándorvese &#10140; soványoknál a capsula_adiposa elvékonyodása következtében elhagyhatja helyét</li> 
+	</ul></details>
+	<details><summary><font color="Black">&#9609;</font> átmetszeti kép?</summary><ul class="normal">
+		<a href="images/rnszrk.png"><img src="images/rnszrk.png"></a>
+		<li>medulla = 10-18db pyramidis_renalis</li>
+		<li>pyramidis_renalist a csúcsa kivételével körbeveszi a cortex_renalis</li>
+		<li>lobus_renalis<abbr title="veselebeny">()</abbr> = pyramidis_renalis + körülötte lévő cortex_renalis</li>
+		<li>eleinte lebenyezett szerkezet &#10140; eleinte kb.30db pyramidis_renalis van, de <abbr title="méhen kívüli, azaz születés utáni">extrauterin_életkorban</abbr> a csúcsi részeik, melyekkel a sinus_renalisba torkollnak ~3asával összeforrnak 1db papilla_renalis-ba<abbr title="veseszemölcs">()</abbr></li>
+		<li>papilla_renalis &#10140; piramydis_renalis elkeskenyedő belső része</li>
+		<li>1db papilla_renalis "nyílik" 1db calyx_renalis_minorba</li>
+		<li>"nyílik" &#10140; area_cribrosa</li><ul>
+			<li>köztük a papilla_renalis felszínén lévő ~30db apró_lyukacs</li>
+			<li>ezen nyílnak &#10140; ~30 <span class="WHITE">ductus_papillaris</span> & <span class="Miss">húgycsatornák</span> <abbr title="2funkc241">&#10045;</abbr></li>
+		</ul>
+		<li><a href="images/clxcymjrni.png">végül ~3db <span class="WHITE">2</span>calyx_minor nyílik 1db <span class="WHITE">1</span>calyx_majorba</a></li>
+		<li>(tehát ~30pyramidis_renalis & ~10lobus_renalis &#10140; ~10calyx_minor &#10140; ~3calyx_majorba)</li>
+	</ul></details>
+	<details><summary><font color="Black">&#9609;</font> vérkeringés?</summary><ul class="normal">
+		<div><strong>cortex_renalis</strong></div>
+		<li><span class="WHITE">8</span>a.renalis &#10140; <span class="WHITE">11</span>a.interlobaris &#10140; <span class="WHITE">12</span>a.arcuata &#10140; <span class="WHITE">13</span>a.interlobularis &#10140; <span class="WHITE">14</span>vas_afferens</li>
+		<li><span class="WHITE">15</span>glomerulus</li>
+		<li><span class="WHITE">9</span>v.renalis <div class="mirror">&#10140;</div> <span class="WHITE">19</span>v.interlobaris <div class="mirror">&#10140;</div> <span class="WHITE">18</span>v.arcuata <div class="mirror">&#10140;</div> <span class="WHITE">17</span>v.interlobularis <div class="mirror">&#10140;</div> <span class="WHITE">16</span>vas_efferens</li>
+		<li>leírás</li><ul>
+			<li>a.renalis a hiatus_renalison át <span class="WHITE">7</span>sinus_renalisba lép &#10140; elágazik r.posterior & r.anterior</li>
+			<li>ezekből indulnak a.interlobarisok a velőállományba sugár irányban a capsula_fibrosa felé a pyramidis_renalisok között <abbr title="nem teljesen értem akkor hol, de nem columna_renalis_Bertinii-ben elvileg (wiki+SH néztem)">&#10045;</abbr></li>
+			<li>azonban a medulla_renalis <abbr title=",,legszélesebb domború alja''">bázisát</abbr> elérve <abbr title="ez NEM alkot teljes ívet, de a v.arcuata igen"><a href="images/varcuta.png">a.arcuata</a></abbr>-kra ágazódnak</li>
+			<li>ezek futnak a cortex és medulla között</li>
+			<li>aa.interlobulares a kéregben futnak sugár irányban</li>
+			<li>(további semmi extra)</li>
+			<li><span class="WHITE">&#9775;</span> egyes a.interlobularisok küldenek <span class="Important">r.capsularis</span>-okat, v.interlobularisok pedig <span class="WHITE">20</span><span class="Important">venula_stellata</span>-kat a capsula_fibrosaba</li>
+			<li><span class="WHITE">&#9775;</span> a.renalis elágazása r.anteriorra és r.posteriorra következtében a <span class="Important">vese felezhető lap szerint nagyobb artériás vérzés nélkül</span></li>
+			<li><span class="WHITE">&#9775;</span> <span class="WHITE">1</span>pars_convolutában a hajszálerek sok helyen a glomerulusok hajszálereihez hasonlóan <span class="Important">fenestrált_endothellal</span> bírnak (pars_radiatában és medullában nem)</li>
+		</ul>
+		<div><strong>medulla_renalis</strong></div>
+		<li><abbr title="medulla közelében lévő">juxtamedullaris_glomerulusokból</abbr> eredő vas_efferensekből erednek <span class="WHITE">21</span><span class="Important">arteriola_recta</span>-k</li>
+		<li>innen a <span class="WHITE">22</span><span class="Important">venula_recta</span>-kon keresztül jut vissza a v.arcuata-kba és így tovább</li>
+		<a href="images/vrkrnt.png"><img src="images/vrkrnt.png"></a>
+		<div><strong>kép-számok</strong></div>
+		<li><span class="WHITE">2</span>pars_radiata</li>
+		<li><span class="WHITE">3</span>columna_renalis_Bertinii</li>
+		<li><span class="WHITE">4</span>capsula_fibrosa</li>
+		<li><span class="WHITE">5</span>medulla_renalis</li>
+		<li><span class="WHITE">6</span>papilla_renalis</li>
+		<li><span class="WHITE">10</span>capsula_adiposa</li>
+	</ul></details>
+	<details><summary><font color="Gainsboro">&#9609;</font> vese részei(makroszkopikus)?</summary><ul class="normal">
+		<li>hilus_renalis</li>
+		<li>sinus_renalis</li>
+		<li>facies_anterior</li>
+		<li>facies_posterior</li>
+		<li>extremitas_superior</li>
+		<li>extremitas_inferior</li>
+	</ul></details>
+	<div><strong>vesemedence</strong></div>
+	<details><summary><font color="Black">&#9609;</font> neve?</summary><ul class="normal">
+		<li>pelvis_renalis</li>
+	</ul></details>
+	<details><summary><font color="LimeGreen">&#9609;</font> definíció?</summary><ul class="normal">
+		<li>lapos, 3szögletű, izmos falú tömlő(cső)</li>
+	</ul></details>
+	<details><summary><font color="Black">&#9609;</font> alkotói?</summary><ul class="normal">
+		<li>sinus_renalisban összeszedődik &#10140; <a href="images/clxcymjrni.png">~9db <span class="WHITE">2</span>calyx_renalis_minor nyílik ~3db <span class="WHITE">1</span>calyx_renalis_majorba</a></li>
+		<li>sinus_renalisból kilépve keskenyedik, lefordul és átmegy ureterbe (nincs éles határ)</li>
+		<li>vesekehely = calyx_renalis</li>
+	</ul></details>
+	<details><summary><font color="Black">&#9609;</font> sphincterek<span class="Miss">?</span></summary><ul class="normal">
+		<li><span class="Miss">m.sphincter_fornicis &#10140; ampulla_renalis körül</span></li>
+		<li>m.sphincter_calycis &#10140; calyxok körül</li>
+		<li>m.sphincter_pelvicis &#10140; ureter-átmenetnél</li>
+	</ul></details>
+<!----></div></div></details>
+
+
+<!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
+
+
+
+
+
+
+<script src="../javascript.js"></script> 
+
+<br><br><br><br><br><br><center><a href="../targyvalasztas.html"><strong style="font-size: 150%;">tárgyválasztás</strong></a></center>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,531 @@
+<head>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="favicon.bmp">
+	<link rel="stylesheet" type="text/css" href="../../style.css">
+	<title>Orvosi BioKémia I.</title>
+	<style>*{line-height: 130%;}</style>
+</head>
+
+ <!-- onmouseover="func_span('miss');" -->
+<input onclick="toggleAll();" type="button" id="input_toggleAll" value="0" style="position:fixed; right: 0px;"><div id="quest" style="display:none;">
+	
+	<details><summary class="phase">tételek</summary><div id="container"></div></details>
+	<input type="button" class="MISS" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'miss');" id="btn_miss" value="0">
+	<input type="button" class="FIX" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'fix');" id="btn_fix" value="0">
+	<input type="button" class="skip" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_spanSkip" id="btn_skip" value="0">
+	<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'progress')" id="btn_progress" value="0">
+
+	<input type="checkbox" id="checkbox_New"/><span class="WHITE" id="cont_New"></span><span class="VOCAB" id="cont_Old"></span>
+	<span class="WHITE" id="span_Jegy"></span><span class="VOCAB" id="span_Date"></span>
+	<input type="checkbox" id="checkbox_RepNew"/><span class="WHITE" id="cont_RepNew"></span><span class="VOCAB" id="cont_RepOld"></span>
+
+	<span id="repeat" class="WHITE" style="position: absolute;left: 45%;">&nbsp; &nbsp; &nbsp;</span>
+	<br>
+	<div align="center">
+		<span style="border: 0px;" id="rank">&nbsp; &nbsp; &nbsp;</span> &nbsp;
+		<input onclick="toggleNote();" type="button" value="&#10045;"> &nbsp; &nbsp;
+		<select id="jegy"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; &nbsp;
+		<span id="pJegy">&nbsp; </span> &nbsp; &nbsp;
+		<input onclick="func_buttonFix();" type="button" id="buttonFix" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp; &nbsp;
+		<input onclick="func_buttonSkip();" type="button" id="buttonSkip" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp; &nbsp;
+		<input onclick="koviKerdes();" type="button" value="következő kérdés">
+	</div>
+	<center><textarea style="display:none; position:fixed; left: 40%; top: 70%;" id="note" rows="4" cols="40"></textarea></center>
+	
+	<div style="font-weight: bold;font-size: large;" id="questTitle"></div>
+	<details id="kerdeslocation"></details>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+
+<table><tr>
+	<th>EA</th>
+	<td class="miss">1</td>
+	<td class="">2</td>
+</tr><tr><th>GY</th>
+	<td class="miss">1</td>
+	<td class="">2</td>
+</tr></table>
+
+szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt mondták)!
+
+
+<!----><details open><summary class="phase">Képletek.</summary><div class="normal"><div><div class="title"></div>
+	<details class="kerdes 4/1" id="bKI.1"><summary>glicin</summary><ul class="normal">
+		<img src="images/kplt_Gly.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.2"><summary>alanin</summary><ul class="normal">
+		<img src="images/kplt_Ala.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.3"><summary>valin</summary><ul class="normal">
+		<img src="images/kplt_Val.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.4"><summary>leucin</summary><ul class="normal">
+		<img src="images/kplt_Leu.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.5"><summary>izoleucin</summary><ul class="normal">
+		<img src="images/kplt_Ile.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.17"><summary>szerin</summary><ul class="normal">
+		<img src="images/kplt_Ser.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.18"><summary>treonin</summary><ul class="normal">
+		<img src="images/kplt_Thr.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.19"><summary>cisztein & cisztin</summary><ul class="normal">
+		<img src="images/kplt_Cys.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.20"><summary>metionin</summary><ul class="normal">
+		<img src="images/kplt_Met.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.48"><summary>aszparaginsav</summary><ul class="normal">
+		<img src="images/kplt_Asp.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.49"><summary>aszparagin</summary><ul class="normal">
+		<img src="images/kplt_Asn.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.50"><summary>glutaminsav</summary><ul class="normal">
+		<img src="images/kplt_Glu.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.51"><summary>glutamin</summary><ul class="normal">
+		<img src="images/kplt_Gln.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.52"><summary>szelenocisztein</summary><ul class="normal">
+		<img src="images/kplt_Sec.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.63"><summary>citozin</summary><ul class="normal">
+		<li>5metil-citozin és 5hidroxi-metil-citozin &#10140; ritka bázisok (azért tudjam képletük, hogy a számozást tudjam mihez kötni)</li>
+		<img src="images/kplt_5mtlctzn.png">
+		<img src="images/kplt_citozin.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.61"><summary>timin</summary><ul class="normal">
+		<img src="images/kplt_timinuracil.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.62"><summary>uracil</summary><ul class="normal">
+		<img src="images/kplt_timinuracil.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.64"><summary>adenin</summary><ul class="normal">
+		<img src="images/kplt_adguan.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.65"><summary>guanin</summary><ul class="normal">
+		<img src="images/kplt_adguan.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.72"><summary>ribóz</summary><ul class="normal">
+		<img src="images/kplt_riboz.png">
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.13"><summary>ammónium-szulfát</summary><ul class="normal">
+		[(NH<sub>4</sub>)<sub>2</sub>SO<sub>4</sub>]
+	</ul></details>
+<!----></div></div></details>
+
+
+
+
+<!--//////////////////////////////////////-->  <div><div class="mainTitle">előadások</div>  <!--//////////////////////////////////////-->
+
+<!----><details open><summary class="phase">Fehérjék. <span class="FIX">1:09:00</span></summary><div class="normal">
+ <div><div class="title">bevezetés.</div>
+	<details class="kerdes J/1" id="bKI.21"><summary><span class="WHITE">JR</span> jelentőségük</summary><ul class="normal">
+		<li>gyakorlatilag nincs olyan folyamat (biokémiai/élettani) amiben ne venne részt fehérje</li>
+	</ul></details>
+	<details class="kerdes J/2" id="bKI.22"><summary><span class="WHITE">JR</span> protein elnevezés</summary><ul class="normal">
+		<li>tej hevítés hatására fehér színű csapadék válik ki</li>
+		<li>1839-ben Mullder felfedezte ennek összegképletét C<sub>40</sub>H<sub>62</sub>O<sub>12</sub>N<sub>10</sub></li>
+		<li>Berzelius-ban ez érdeklődést váltott ki &#10140; javasolta, hogy a vegyület neve legyen protein (elsődleges,legfontosabb)</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.23"><summary>szervezet fehérjetartalma mennyi?</summary><ul class="normal">
+		<li>élő szervezet szárazanyagának 50% fehérje</li>
+		<div>szárazanyag &#10140; összes víz elpárologtatása után visszamaradt</div>
+	</ul></details>
+	<details class="kerdes 3/6" id="bKI.24"><summary>fehérjék típusai &#10140; számuk, csoportosítáuk?</summary><ul class="normal">
+		<li>kb. 100 ezer különböző típusú fehérje van az emberben <abbr title="a világban 10<sup>10</sup>-10<sup>12</sup>">()</abbr></li>
+		<li>csoportosításuk</li><ul>
+			<details><summary>egyszerű fehérjék &#10140; csak fehérje alkotja &#10140; tudnivaló összetételükről?</summary><ul class="normal">
+				<li>50% C</li>
+				<li>16% N &#10140; fehérjék mennyiségi meghatározására használták következőképp &#10140; elroncsolták a fehérjéket &#10140; szabaddá váló nitrogéntartalmat meghatározva visszaszámolták a fehérjék</li>
+				<li>23% O</li>
+				<li>7% H</li>
+			</ul></details>
+			<details><summary>összetett fehérjék &#10140; más is van benne &#10140; típusaik?</summary><ul class="normal">
+				<li>nukleoproteinek</li>
+				<li>glikoproteinek</li>
+				<li>lipoproteinek</li>
+				<li>foszfoproteinek</li>
+				<li>metalloproteinek</li>
+			</ul></details>
+		</ul>
+	</ul></details>
+	<details class="kerdes 2/1" id="bKI.25"><summary>molekulatömeg?</summary><ul class="normal">
+		<li>átlagosan 12-36 k<abbr title="C atomtömege /12">Da</abbr> (100-300db aminósav alkotja) <abbr title="ugyanis egyébként van 5kDa - 1000kDa-ig">()</abbr></li>
+	</ul></details>
+	<details class="kerdes 3/7" id="bKI.27"><summary>fehérjék alakjainak típusai &#10140; jellemzésük(4)?</summary><ul class="normal">
+		<table><tr><th width="40%">fibrózus = fibrilláris</th>   <th width="40%">globuláris</th>   <th width="40%">átmenet a kettő közt</th></tr>
+			<tr><td colspan="3"><details><summary>hosszanti/haránt átmérő?</summary>
+				<font style="float: left">nagyobb, mint 10</font>  
+				kisebb, mint 10  
+				<font style="float: right">"fibrózus alakú"</font>
+			</details></td></tr>
+			<tr><td colspan="3"><details><summary>híg sóoldatban ("testi víz") oldódás?</summary>
+				<font style="float: left">nem oldódik</font>  
+				jól oldódik
+				<font style="float: right">jól oldódik</font>
+			</details></td></tr>
+			<tr><td colspan="3"><details><summary>előfordulás?</summary>
+				<font style="float: left">struktúrális fehérjék &#10140; kötőszövet fő alkotói <abbr title="&alpha;-keratin, kollagén, elasztin">3pl?</abbr></font>  
+				funkcionális fehérjék <abbr title="enzimek, antitestek, hormonok, albumin, globulinok, hemoglobin, mioglobin">7pl?</abbr>
+				<font style="float: right"><abbr title="miozin, fibrinogen">2pl?</abbr></font>
+			</details></td></tr>
+		</table>
+		<img src="images/fbrzsglblrs.png">
+	</ul></details>
+	<details class="kerdes 3/3" id="bKI.28"><summary>"funkcionális fehérjék & kéz kapcsolat"?</summary><ul class="normal">
+		<li>tevékenységük végrehajtása során a fehérjék mozognak, aminek pedig feltétele az alakváltoztatás &#10140; ez bizonyos mértékig nem megy a rovására</li>
+		<li>érdemes úgy felfogni mint pl. kéz (fehérjéknél hasonló a helyzet)</li><ul>
+			<li>alapvetően tudom mozgatni &#10140; azt is megtudom csinálni hogy hátra feszítve először kibicsaklik, és tovább feszítve eltöröm, azonban ez a funkció rovására megy már, mert utána nemtudom normálisan mozgatni</li>
+			<li>kézzel rengeteg dolgot eltudunk végezni</li><ul>
+				<li>van amit magától pl. megkötöm a cipőfűzőm</li>
+				<li>van amit csak eszközökkel pl. vágás szikével</li>
+			</ul>
+		</ul>
+	</ul></details>
+ </div>
+ <div><div class="title">funkciók.</div>
+	<details class="kerdes 3/4" id="bKI.26"><summary>felsorolásuk?</summary><ul class="normal">
+		<li>enzimek</li>
+		<li>tárolás</li>
+		<li>transzportálás</li>
+		<li>kontraktilitás</li>
+		<li>védekezés</li>
+		<li>struktúra</li>
+		<li>hormonok</li>
+		<li>mérgek</li>
+	</ul></details>
+	<details class="kerdes 3/4" id="bKI.29"><summary>enzimek &#10140; funkció & szükségessége? típusuk száma? csoportosításuk(4<sub>+3</sub>)?</summary><ul class="normal">
+		<li>biokatalízist végeznek, azaz növelik a reakció sebességét (1milliószoros a legegyszerűbb esetben is)</li>
+		<li>mi szükség ekkora sebességre? &#10140; pl. közismert, "ha kapok egy pofont rögtön vissza is adom" &#10140; hátterében az enzimek állnak, ugyanis azok azonnal aktiválódnak a pofon hatására, és felgyorsítják azon reakciókat, amelyek végeredményében izomösszehúzódás és vissza-pofon lesz :)</li>
+		<li>~2000 féle enzim van</li>
+		<li>csoportosításuk a kémiai reakció alapján &#10140; nukleázok, proteázok, transzferázok, kinázok, dekarboxilázok, polimerázok, dehidrogenázok</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="bKI.30"><summary>tárolás?</summary><ul class="normal">
+		<li><strong>önmagukban</strong> tartalék tápanyagok az alábbi fehérjék pl.</li><ul>
+			<li>ovalbumin(=tojásfehérje) &#10140; tojásban van</li>
+			<li>kazein(=tejfehérje) &#10140; tejben van</li>
+		</ul>
+		<li>egyéb anyagot tárol az alábbi fehérje pl.</li><ul>
+			<li>ferritin &#10140; májban található, és vasat tárol</li>
+		</ul>
+	</ul></details>
+	<details class="kerdes 3/4" id="bKI.31"><summary style="color:Magenta"><font color="Green">transzportálás &#10140; jelentősége? pl-k?(4<sub>+3</sub>)</font></summary><ul class="normal">
+		<div>jelentőségének szemléltetése 1pl-n &#10140; gyomor-bél traktusnál a tápanyag apoláros formában szívódik fel &#10140; a testnedv azonban poláros &#10140; fehérjék becsomagolják őket és elszállítják</div>
+		<li><strong>hemoglobin</strong> O<sub>2</sub>-t szállít a vérben</li>
+		<li><strong>mioglobin</strong> O<sub>2</sub>-t szállít az izomban</li>
+		<li><strong>lipoprotein</strong> &#10140; lipideket szállít</li>
+		<li><strong>transzferrin</strong> &#10140; vasat szállít a vérben</li>
+		<li>ceruloplasmin &#10140; rezet szállít a vérben</li>
+		<li>szérum albumin (zsírsavak,aromás aminosavak, Ca<sup>2+</sup>) <abbr title="ezt nemértem, de nem néztem még utána">!?</abbr></li>
+		<li>sejtmembránokon keresztül történő transzport</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="bKI.32"><summary>kontraktilitás lényege példákkal?(2)</summary><ul class="normal">
+		<li>izomműködés kivitelezése &#10140; aktin & miozin</li>
+		<li>sejtmozgás kivitelezése &#10140; tubulin a mikrotubulus alkotója<i>, és azáltali sejtmozgás</i></li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.33"><summary>védekezés lényege?(2)</summary><ul class="normal">
+		<li>immunfehérjék (antitestek)</li>
+		<li>véralvadás</li>
+	</ul></details>
+	<details class="kerdes 3/3" id="bKI.34"><summary>struktúra &#10140; 4pl?</summary><ul class="normal">
+		<li>kollagén (csont-, porc-, inakban)</li>
+		<li>elasztin (ligamentumokban)</li>
+		<li>α-keratin (bőr-, köröm-, hajban)</li>
+		<li>mukoproteinek az ízületi_nedvben(=synovia!)</li>
+	</ul></details>
+	<details class="kerdes 3/5" id="bKI.35"><summary>hormonok &#10140; termelődésük helye? általános funkciójuk? alkotóik(2+2pl funkcióval)? megjegyzés?</summary><ul class="normal">
+		<li>belső elválasztású mirigyek termelik őket</li>
+		<li>szabályozást végeznek</li>
+		<li>egy részük fehérje</li><ul>
+			<li>inzulin &#10140; glükóz anyagcserét szabályozza</li>
+			<li>ACTH &#10140; mellékvesekéreg működését szabályozza</li>
+			<li>szomatotropin &#10140; csontnövekedést fokozza</li>
+		</ul>
+		<li>másik részük peptid</li><ul>
+			<li>oxitocin &#10140; <abbr title="kontrakció=összehúzódás, szülés megindulásánál szükséges">méhkontrakciót</abbr> okoz</li>
+			<li><abbr title="anti-diuretikus-hormon">ADH</abbr> = vazopresszin &#10140; <abbr title="vesével nemtudom mit csinál, kizárólagosan erekhez írtam összehúzódást (járjak utána!!!)">vese,</abbr> erek összehúzódását szabályozza (ezáltal vérnyomást)</li>
+		</ul>
+		<li>hormonreceptorok kivétel nélkül fehérjék!!</li><ul>
+			<li>poláros hormon esetében a receptor a sejtfelszínen <abbr title="hisz poláros molekula nem juthat át a membránon (kivéve CO2)">!!!</abbr></li>
+			<li>apoláros hormon esetében a receptor intracelluláris helyzetű</li>
+		</ul>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.36"><summary>mérgek &#10140; 2<sub>+1</sub>pl?</summary><ul class="normal">
+		<li>diftéria toxin &#10140; diftériát okoz</li>
+		<li>kígyómérgek egy része</li>
+		<li>Clostridium botulinum baktérium által toxin ételmérgezést okoz</li>
+	</ul></details>
+ </div>
+ <div><div class="title">aminosavak.</div>
+	<span class="FIX">gyak-oldalláncnév & előadás-"reálisnév"  &#10140; járjak utána van-e értelmük!!(tk, pl. szintézisük)</span>
+	<details class="kerdes 3/1" id="bKI.37"><summary>mit jelent az hogy polimer?</summary><ul class="normal">
+		<li>több azonos típusú atomcsoportból, ún. monomer egységből épülnek fel és ezeket primer kémiai kötések kapcsolják össze</li>
+		<li>fehérjék polimerek, mert több(100-300) aminosavból(monomer) épülnek fel, melyek peptidkötésekkel kapcsolódnak egymáshoz</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.38"><summary>hány féle aminosav építi fel az emberben található fehérjéket? nevük?</summary><ul class="normal">
+		<li>21féle</li>
+		<li>proteinogén aminosavak</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="bKI.39"><summary>hány féle aminosav építi fel az emberben található fehérjéket? nevük? konkrétan mit értünk ezalattM</summary><ul class="normal">
+		<div>21féle &#10140; ezek az ún. proteinogén aminosavak</div>
+		<li>DE! ez nem azt jelenti, hogyha szétszedek egy fehérjét, akkor max 21félét találok benne</li>
+		<li>ugyanis a DNS-ben mindössze 21féle aminosav van kódolva &#10140; transzláció során csak a 21féle közül tud valamilyen formában beépülni</li>
+		<li>azonban utólagos módosításokkal (érési folyamatok), enzimek hatására módosulhatnak</li>
+	</ul></details>
+	<details class="kerdes 4/3" id="bKI.40"><summary style="color:Red"><font color="Green">általános tulajdonságaik?(4)</font></summary><ul class="normal">
+		<li>&alpha;-aminosavak</li>
+		<li>L-konfigurációjúak (Fischer-féle), mert NH<sub>2</sub> balra</li><ul>
+			<li>kivétel glycin(nincs királis centrum!)</li>
+			<li><span class="FIX"><i>kivétel prolin(nincs királis centrum!)</i></span></li>
+		</ul>
+		<li>Cahn–Ingold–Prelog-nevezéktan alapján az S-sorozatba tartoznak a Cys kivételével (az R konfigurációjú)</li>
+		<li>optikai forgatóképességük lehet <span class="WHITE">+ / –</span> egyaránt, ugyanis 2 dologtól függ</li><ul>
+			<li>térszerkezet (D vagy L)</li>
+			<li>ligandumok minősége, ami alatt jelen esetben az oldallánc minőségét kell érteni (hisz abba különböznek)</li>
+		</ul>
+		<div><span class="white">§</span> D-konfigurációjú aminosavakból álló fehérjékkel a szervezet nemtudna mit kezdeni, mert L-konfigurációjú a beállítottsága az enzimeknek</div>
+		<img src="images/dlfschrmnsv.png">
+	</ul></details>
+	<details class="kerdes 4/2" id="bKI.41"><summary>csoportosítási lehetőségek felsorolása?</summary><ul class="normal">
+		<li>oldallánc(R) típusa alapján</li>
+		<li>polaritás alapján</li>
+		<li>előállításuk alapján</li>
+	</ul></details>
+	<details class="kerdes 2/4" id="bKI.42"><summary>oldallánc típusa alapján csoportosításuk?<span class="MISS">nincs befejezve</span></summary><ul class="normal">
+		<li>monoamino-monokarbonsavak &#10140; Gly, Ala, Val, Leu, Ile</li>
+		<li>monoamino-dikarbonsavak &#10140; Asp, Glu</li>
+		<li>diamino-monokarbonsavak &#10140; </li>
+		<li>hidroxi-aminosavak</li>
+		<li>kéntartalmú-aminosavak &#10140; Cis, Met</li>
+		<li>szeléntartalmú-aminosavak &#10140; Sec</li>
+		<li>aromás-aminosavak</li>
+		<li>iminosavak &#10140; Pro</li>
+	</ul></details>
+	<details class="kerdes 4/3" id="bKI.43"><summary>oldallánc polaritása alapján csoportosításuk?<span class="MISS">nincs befejezve</span></summary><ul class="normal">
+		<li>apoláros &#10140; <abbr title="valójában erősen poláros hiszen karboxil és aminocsoport, de! R alapján (1hidrogén) vannak sorolva">Gly</abbr>, Ala, Val, Leu, Ile</li>
+		<li>poláros: töltéssel nem rendelkező</li>
+		<li>poláros: savas</li>
+		<li>poláros: bázikus</li>
+	</ul></details>
+	<details class="kerdes 4/3" id="bKI.44"><summary>előállításuk alapján csoportosításuk?</summary><ul class="normal">
+		<li><abbr title="emberi szervezet nem képes előállítani">esszenciális</abbr> &#10140; valin, leucin, izoleucin, lizin, treonin, metionin, fenilalanin, triptofán, hisztidin</li>
+		<li>nem-esszenciális &#10140; többi</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.45"><summary>iminocsoport mi? prolin mi?</summary><ul class="normal">
+		<li>C=N-</li>
+		<li>prolin szekunder_amin (tévesen lett iminosav a neve) &#10140; C-NH-C &#10140; N két C-atomhoz kapcsolódik</li>
+	</ul></details>
+	<details class="kerdes 2/1" id="bKI.46"><summary>leucin és izoleucin között van összefüggés?</summary><ul class="normal">
+		<li>konstitúciós izomerek (azonos összegképlet, de eltérő kapcsolódási sorrend)</li>
+	</ul></details>
+	<details class="kerdes 2/1" id="bKI.47"><summary>melyiknek van nem 1 királis centruma?<span class="MISS">nincs befejezve</span></summary><ul class="normal">
+		<li>Gly &#10140; 0</li>
+		<li>Ile &#10140; 2</li>
+		<img src="images/kplt_Gly.png">
+		<img src="images/kplt_Ile.png">
+	</ul></details>
+ </div>
+<!----></div></details>
+
+<!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
+
+
+
+<!--//////////////////////////////////////-->  <div><div class="mainTitle">gyakorlat</div>  <!--//////////////////////////////////////-->
+
+<!----><details open><summary class="phase">1. Nukleotidok és szénhidrát komponenseik.</summary><div class="normal">
+ <div><div class="title">általános.</div>
+	<details class="kerdes 4/1" id="bKI.53"><summary>DNS & RNS & fehérjék mit végeznek a programmal?</summary><ul class="normal">
+		<li>DNS kódolja</li>
+		<li>RNS közvetíti</li>
+		<li>fehérje végrehajtja</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.54"><summary>nukleinsavak milyen vegyületek? <abbr title="kérdés lehet nem a legjobb: az a része, hogy 'milyen vegyületek'">"</abbr></summary><ul class="normal">
+		<li>polimerek (fehérjék is)</li>
+		<li>monomerjei a nukleotidok</li>
+	</ul></details>
+	<details class="kerdes 3/4" id="bKI.55"><summary>nukleotidok funkcióinak felsorolása?(6)</summary><ul class="normal">
+		<li>nukleinsavak monomerjei</li>
+		<li>kémiai energia közvetítés és közben csoportátvitel &#10140; pl. ATP-ből mikor ADP lesz, foszfátcsoportot és kémiai energiát ad át</li>
+		<li>sejten belüli jelátvitel &#10140; pl. cAMP, cGMP szekunder_messengerek (lásd "GPCR receptoros jelátvitel" OrvosiBiológia.html)</li>
+		<li>koenzimek alkotói (pl. CoA)</li>
+		<li>metabolitok aktiválása &#10140; az alapvetően endergónikus folyamatban résztvevő metabolitokat magasabb energiaszintre véve (aktiválva) biztosítják a folyamat végbemenetelét (azáltal, hogy így már nettó exergónikus lett)</li>
+		<li>szabályozás (folyamatok gyorsítása/lassítása)</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.56"><summary>koenzimek?</summary><ul class="normal">
+		<li>olyan <abbr title="hisz az enzim alapvetően fehérje, de ez nem">nem</abbr> peptid-szakasz,(nem fehérje) mely az enzimhez kapcsolódva azt aktiválja (szükséges a katalízishez)</li>
+		<div><span class="white">§</span> úgy érdemes felfogni, mint eszköz &#10140; pl. kéz az enzim, koenzim pedig a szike, ami nélkül "nehezen" lehetne boncolni</div>
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.57"><summary>nukleotidot felépítő molekulák?</summary><ul class="normal">
+		<li>bázis &#10140; purin / pirimidin</li>
+		<li>szénhidrát &#10140; ribóz / dezoxiribóz</li>
+		<li><abbr title="foszfát alatt itt hidrogén-foszfát és dihidrogén-foszfátot értünk, hiszen 7,4 pH-n ilyen formában van">foszfát</abbr> &#10140; HPO<sub>4</sub><sup><sub>-</sub>-</sup> / H<sub>2</sub>PO<sub>4</sub><sup>-</sup> (hisz pH!)</li>
+	</ul></details>
+ </div>
+ <div><div class="title">bázisok.</div>
+	<details class="kerdes 3/1" id="bKI.58"><summary>milyen típusú vegyületek?</summary><ul class="normal">
+		<li>heterociklusos aromás vegyületek</li>
+		<div>heterociklusos_vegyület ➜ gyűrűben valamely (1 vagy több) C helyén heteroatom van</div>
+		<div>aromás vegyület ➜ ciklusos telítettlen szénvegyület, melyekre érvényes a Hückel-szabály (delokalizált elektronok száma = 4n+2)</div>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.59"><summary style="color:Magenta"><font color="Green">nevük <i>"mit takar"</i>?</font></summary><ul class="normal">
+		<li>nagyon gyenge bázisok<i>, mert a N nemkötő e-párjai részt vesznek a konjugációban</i> <abbr title="gyakorlaton nemtudtam leírni rendesen, előadáson is volt róla szó, az alapján majd írjam le">!!!</abbr></li>
+	</ul></details>
+	<details class="kerdes 2/1" id="bKI.60"><summary>1pl arra, hogy képezhetek uracilt?</summary><ul class="normal">
+		<li>citozin oxidatív(+O) dezaminálásával(-NH)</li>
+		<img src="images/kplt_citozin.png">
+		<img src="images/kplt_timinuracil.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.66"><summary style="color:Magenta"><font color="Green">tautomériáik?</font></summary><ul class="normal">
+		<li>laktám-laktim &#10140; <span class="WHITE">=O & -NH-</span> vs <span class="WHITE">-OH & =N-</span> <abbr title="van egyéb tautomériájuk is? azt írtam gyakon, hogy 'purin bázisoknál az aminocsoportnál van tautoméria(laktám-laktim)', de nem találtam róla képet/leírást">!?</abbr></li>
+		<img src="images/kplt_citozin.png">
+		<img src="images/kplt_timinuracil.png">
+		<img src="images/kplt_adguan.png">
+	</ul></details>
+ </div>
+ <div><div class="title">szénhidrátok.</div>
+	<details class="kerdes 3/1" id="bKI.67"><summary>csoportosításuk?</summary><ul class="normal">
+		<li>monoszacharid</li>
+		<li>diszacharid</li>
+		<li>oligoszacharid (~1000-ig)</li>
+		<li>poliszacharid (~1000 fölöttiek)</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.68"><summary>monoszacharid feltétele?</summary><ul class="normal">
+		<li>van benne legalább két <span class="WHITE">–OH</span> és 1 aldehid/ketóz</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.69"><summary>monoszacharid csoportosítás?</summary><ul class="normal">
+		<li>szénatomszám alapján &#10140; trióz(3), tetróz, pentóz, hexóz, heptóz(7)</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.70"><summary>számozásuk?</summary><ul class="normal">
+		<li>aldehidcsoporttól kezdődően</li>
+		<li>' ot teszünk mögé, pl. <abbr title="5. C-atom">5'</abbr> &#10140; bázisok C-atom számozásától így különböztethetők meg, mert ott nincs '</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="bKI.71"><summary>sztereoizomériájuk?</summary><ul class="normal">
+		<li>Fischer-szabály alapján D/L-nomenklatúrát alkalmazzuk</li>
+		<li>lényege:</li>
+		<div><span class="Vocab">1</span> legoxidáltabb C felül kell legyen &#10140; aldehid ezért felül van!</div>
+		<div><span class="Vocab">2</span> leghosszabb ligandum legyen alul <abbr title="értelemszerűen a legoxidáltabb után, ha az esetleg hosszabb lenne">&#10045;</abbr></div>
+		<div><span class="Vocab">3</span> <abbr title="aldehidtől legtávolabb lévő">legalsó</abbr> királis C atomon, ha jobbra áll az -OH, akkor D &#10140; ha balra akkor L</div>
+		<div><span class="white">§</span> tehát ha visszavezetem (először oxidáció +O, utána oxidatív_dekarbociláció –CO<sub>2</sub> és ezt repeat) glicerin-aldehidig, akkor megnézem az D-e vagy L-e</div>
+		<li>emberi szervezetben csak D monoszacharidok fordulnak elő</li>
+		<img src="images/glrncldhd.png">
+	</ul></details>
+ </div>
+<!----></div></details>
+
+<!----><details open><summary class="phase">Fehérjék vizsgálata.</summary><div class="normal">
+ <div><div class="title">általános.</div>
+	<details class="kerdes 3/2" id="bKI.6"><summary>vízben oldódásuk szerkezete? <span class="FIX">KÉP - android</span></summary><ul class="normal">
+		<li>globuláris alakot vesznek fel</li>
+		<li>a gömb közepén vannak az apoláros oldalláncú aminosavak</li>
+		<li>a gömb felszínén vannak a poláros és ionizált oldalláncú aminosavak</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="bKI.7"><summary>membránfehérjék szerkezete? <span class="FIX">KÉP - android</span></summary><ul class="normal">
+		<li>apoláros oldalláncú aminosavak vannak a membránba</li>
+		<li>poláros és ionizált oldalláncú aminosavak vannak "kívül/belül"</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="bKI.8"><summary>hidrátburok funkciója?</summary><ul class="normal">
+		<li>megakadályozza a fehérje kicsapódását <i>&#10140; tehát az oldhatóságukkal arányos</i></li>
+		<li>tehát a hidrátburok lazítása/megszüntetése a kicsapódási hajlamot fokozza</li>
+	</ul></details>
+	<details class="kerdes 3/5" id="bKI.9"><summary>oldhatóság miktől függ?</summary><ul class="normal">
+		<details><summary>oldat pH-ja &#10140; lényege?</summary><ul class="normal">
+			<li>hidrátburok kialakulásának feltétele a poláros és ionizált aminosavak jelenléte</li>
+			<li>az ionizáció függ a pH-tól</li>
+			<li>izoelektromos_pont &#10140; pH, mikor a fehérje nettó töltése 0</li>
+		</ul></details>
+		<details><summary>könnyűfémsók koncentrációjától?</summary><ul class="normal">
+			<li>könnyűfémek az első két <abbr title="oszlop">főcsoport</abbr> a periódusos_rendszerben (pl. Na, K, Ca, Mg) <abbr title="Al, Ti, Si is még könnyűfém">&#10045;</abbr></li>
+			<li>maximális oldékonyság egy adott könnyűfémsó koncentrációjú oldat esetében &#10140; ennél nagyobb/kisebb koncentrációnál csökken</li>
+			<li>különböző fehérjéknek különböző mértékben változik oldékonyságuk &#10140; a különböző fehérjék elválaszthatók</li>
+		</ul></details>
+		<details><summary>oldószer dielektromos_állandója <span class="WHITE">k<sub>&epsilon;</sub></span> &#10140; lényege?</summary><ul class="normal">
+			<li>dielektromos_állandó &#10140; molekulák polaritásának mértékének kifejezője</li>
+			<li>pl. aceton és etanolé 20, míg vízé 80 (víznek nagyobb, ahogy a polaritása is)</li>
+			<li>dielektromos állandó csökkentésével csökken a fehérjék oldékonysága <abbr title="általában">()</abbr></li>
+			<li>különböző fehérjéknek különböző mértékben változik oldékonyságuk &#10140; a különböző fehérjék elválaszthatók</li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 3/2" id="bKI.10"><summary>natív, de/renaturáció, (ir)reverzibilis &#10140; lényegük?</summary><ul class="normal">
+		<li>natív szerkezet &#10140; fehérje aktív állapotában(enzim,immun stb.) lévő szerkezete</li>
+		<li>denaturáció &#10140; szerkezete megváltozik, többé már nem natív</li><ul>
+			<li>reverzibilis &#10140; képes még renaturációra (spontán a denaturációt kiváltó hatás megszüntetésével /vagy/ adott módszerrel)</li>
+			<li>irreverzibilis &#10140; nem képes már renaturációra <i>(pl. 45°C-on)</i></li>
+		</ul>
+		<li>renaturáció &#10140; szerkezete visszaáll natívra</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="bKI.11"><summary>oldékonyság és natív állapot közti összefüggés?</summary><ul class="normal">
+		<li>általában denaturáláskor csökken a fehérjék oldékonysága</li>
+		<li>azonban ez nem általános &#10140; kicsapódott fehérje is lehet natív, illetve oldott fehérje is lehet denaturált</li>
+	</ul></details>
+ </div>
+ <div><div class="title">kisózás.</div>
+	<details class="kerdes 3/2" id="bKI.12"><summary>lényege?</summary><ul class="normal">
+		<li>könnyűfémsók pl. <abbr title="ammónium-szulfát">[(NH)<sub>2</sub>SO<sub>4</sub>]</abbr>, MgSO<sub>4</sub>, NaCl vízben ionokra disszociálnak</li>
+		<li>ezek körül hidrátburok keletkezik</li>
+		<li>ha elég nagy a koncentrációjuk, akkor elkezdik elvonni a fehérjék hidrátburkát alkotó vízmolekulákat</li>
+		<li>&#10140; fehérje kicsapódik</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.14"><summary>ammónium-szulfáttal történő előnye?</summary><ul class="normal">
+		<li>kíméletes &#10140; reverzibilis a denaturáció, sőt gyakran megőrzi natív szerkezetét</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.15"><summary>tisztítás <i>szinonimák</i>?</summary><ul class="normal">
+		<li>elválasztás = frakcionálás <abbr title="tehát ez az, amit végzünk most kisózással: a fehérjéket külön választjuk">&#10045;</abbr></li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.16"><summary>mely két telítési értéket adják meg tisztításkor?</summary><ul class="normal">
+		<li>azokat, melyek között a tisztítandó fehérje szelektíven kicsapódik</li>
+		<li>telítési érték = koncentrációja az ammónium-szulfátnak <abbr title="ez őő nem szentírás, de egyenlőre így fogom fel">!?</abbr></li>
+	</ul></details>
+ </div>
+<!----></div></details>
+
+<!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
+
+
+
+
+
+
+<script src="../../javascript.js"></script> 
+
+<br><br><br><br><br><br><center><a href="../../targyvalasztas.html"><strong style="font-size: 150%;">tárgyválasztás</strong></a></center>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

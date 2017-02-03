@@ -76,8 +76,8 @@ span {
 	color: white;
 	font-weight: bold;
 }
-.progress { 
-	background-color: purple;
+.skip { 
+	background-color: dodgerblue;
 	color: white;
 	font-weight: bold;
 }
@@ -252,3 +252,12 @@ div.erettsegi {
 	padding-left: 5px;
 	padding-right: 5px;
 }
+
+
+
+
+
+
+
+
+
