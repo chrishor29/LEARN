@@ -41,8 +41,9 @@ copy C:\Kristof\MIRROR\LEARN\SejtBiosz\I\sejtbiosz.html C:\Users\chrishor29\Desk
 copy C:\Kristof\MIRROR\LEARN\SejtBiosz\I\favicon.bmp C:\Users\chrishor29\Desktop\LEARN\SejtBiosz\I\favicon.bmp
 
 
-
+git remote add origin
+git pull origin master
 git add .
 git commit -m "make some changes"
-git push
+git push origin master
 Pause
