@@ -4,9 +4,9 @@ copy C:\Kristof\MIRROR\LEARN\targyvalasztas.html C:\Users\chrishor29\Desktop\LEA
 
 robocopy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\images C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Biologia\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\ob.html C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Biologia\ob.html
-copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\ob.html C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Biologia\favicon.bmp
-copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\ob.html C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Biologia\javascript.js
-copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\ob.html C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Biologia\style.css
+copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\favicon.bmp C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Biologia\favicon.bmp
+copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\javascript.js C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Biologia\javascript.js
+copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\style.css C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Biologia\style.css
 
 robocopy C:\Kristof\MIRROR\LEARN\done\FejlodesBiologia_I\images C:\Users\chrishor29\Desktop\LEARN\done\FejlodesBiologia_I\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\FejlodesBiologia_I\FejlBiosz.html C:\Users\chrishor29\Desktop\LEARN\done\FejlodesBiologia_I\FejlBiosz.html
@@ -20,7 +20,7 @@ copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Kemia\javascript.js C:\Users\chrishor29
 copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Kemia\style.css C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Kemia\style.css
 
 robocopy C:\Kristof\MIRROR\LEARN\done\Biofizika\images C:\Users\chrishor29\Desktop\LEARN\done\Biofizika\images /mir
-copy C:\Kristof\MIRROR\LEARN\done\Biofizika\kemia.html C:\Users\chrishor29\Desktop\LEARN\done\Biofizika\kemia.html
+copy C:\Kristof\MIRROR\LEARN\done\Biofizika\bifiz.html C:\Users\chrishor29\Desktop\LEARN\done\Biofizika\bifiz.html
 copy C:\Kristof\MIRROR\LEARN\done\Biofizika\favicon.bmp C:\Users\chrishor29\Desktop\LEARN\done\Biofizika\favicon.bmp
 copy C:\Kristof\MIRROR\LEARN\done\Biofizika\style.css C:\Users\chrishor29\Desktop\LEARN\done\Biofizika\style.css
 

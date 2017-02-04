@@ -55,6 +55,8 @@ span {
 	padding-right: 2px; 
 	padding-top: 1px; 
 	padding-bottom: 1px; 
+}
+span.WHITE { 
 	border: Black 1px solid; 
 }
 .Vocab { 
