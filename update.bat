@@ -19,10 +19,10 @@ copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Kemia\favicon.bmp C:\Users\chrishor29\D
 copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Kemia\javascript.js C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Kemia\javascript.js
 copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Kemia\style.css C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Kemia\style.css
 
-robocopy C:\Kristof\MIRROR\LEARN\done\Biofizika\images C:\Users\chrishor29\Desktop\LEARN\done\Biofizika\images /mir
-copy C:\Kristof\MIRROR\LEARN\done\Biofizika\bifiz.html C:\Users\chrishor29\Desktop\LEARN\done\Biofizika\bifiz.html
-copy C:\Kristof\MIRROR\LEARN\done\Biofizika\favicon.bmp C:\Users\chrishor29\Desktop\LEARN\done\Biofizika\favicon.bmp
-copy C:\Kristof\MIRROR\LEARN\done\Biofizika\style.css C:\Users\chrishor29\Desktop\LEARN\done\Biofizika\style.css
+robocopy C:\Kristof\MIRROR\LEARN\done\BioFizika\images C:\Users\chrishor29\Desktop\LEARN\done\BioFizika\images /mir
+copy C:\Kristof\MIRROR\LEARN\done\BioFizika\bifiz.html C:\Users\chrishor29\Desktop\LEARN\done\BioFizika\bifiz.html
+copy C:\Kristof\MIRROR\LEARN\done\BioFizika\favicon.bmp C:\Users\chrishor29\Desktop\LEARN\done\BioFizika\favicon.bmp
+copy C:\Kristof\MIRROR\LEARN\done\BioFizika\style.css C:\Users\chrishor29\Desktop\LEARN\done\BioFizika\style.css
 
 robocopy C:\Kristof\MIRROR\LEARN\ANAT\images C:\Users\chrishor29\Desktop\LEARN\ANAT\images /mir
 copy C:\Kristof\MIRROR\LEARN\ANAT\anat.html C:\Users\chrishor29\Desktop\LEARN\ANAT\anat.html 
