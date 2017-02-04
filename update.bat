@@ -45,6 +45,6 @@ git remote add origin
 git pull origin master
 git add .
 git commit -m "make some changes"
-git mv Biofizika bfiz
+git mv bfiz BioFizika
 git push origin master
 Pause
