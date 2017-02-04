@@ -1,13 +1,13 @@
 ﻿
 /* FELADATOK
-	(-) 3óránként növekedhessen a timeDiff-jük, amennyiben elérték legalább azt
-	(-) 1es és 2es jegy lehet nem feltétlen kell visszaállítsa 0ra a timeDiff-jük (ezen még gondolkodom, hogy lenne pontos)
 	(-) alján a func_span rész sztem buggos, tehát pl. nemhiszem hogy minden jól megy ott! majd amikor tesztelem már, mert tanulok akkor figyeljek rá
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 	(-) lehessen visszatölteni az előző kérdést (jegyek stb-t is töltse vissza localstoragebe)
 	(-) repeatre állított kérdést mindenképp dobhassa, ne legyen feltétele a kérdés tételének aktivitása
 	(-) ha jegynek/ranknak nem jót írtam alert!
 	(-) altételcímet ne feltétlen mutassa
+	(-) legyen multi-kérdés: több kérdés egyszerre, külön számolja priorjukat ugye (legnagyobb alapján kerülhet kérdésbe), és megválaszolásukkor mindegyikét elmenti --> pl. aminosav: képlete?(HP) oldalláncának neve?(LP) 
+	(-) 1es és 2es jegy lehet nem feltétlen kell visszaállítsa 0ra a timeDiff-jük (ezen még gondolkodom, hogy lenne pontos)
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 	(-) kép 
 		addig terjedhet ki balra, amíg szövegbe nem ütközik, de min 40%-ot kaphat.
@@ -26,10 +26,10 @@
 	(-) lehessen látni jegy(1-2-3) hány feladat van és ki lehessen jelölni /checkbox/ melyeket akarom (ez nembiztos kell)
 	(-) kérdést más html-ből olvassa be
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	(+) óránként növekedhessen a timeDiff-jük, amennyiben elérték legalább azt
 	(+) gettime
 	(+) purple legyen másik buttonon
 	(+) ABBR script (tooltip)
-
 */
 
 
@@ -466,7 +466,7 @@ for ( var fotema in kerdesID ) {
 
 
 
-/* tooltip*/
+/* ToolTip BEGIN */
 var tooltipSpan = document.createElement("span");
 document.body.appendChild(tooltipSpan)
 tooltipSpan.style.visibility = "hidden";
@@ -504,68 +504,72 @@ function func_showTooltip(element){
 	element.title = '';
 }
 
-//var abbrok = document.getElementsByTagName("ABBR");
-var abbrok = document.querySelectorAll("*[title]");
-var table_defText = []
-for ( var i = 0; i < abbrok.length; i++ ) {
-	table_defText[abbrok[i]] = abbrok[i].title
-	abbrok[i].onclick = function(ev){
-		tooltipSpan.style.visibility = "visible";
-		tooltipSpan.innerHTML = table_defText[this]
-		tooltipStatus = "show"
-		ev.stopPropagation();
-//alert(tooltipSpan.innerHTML)
-			
-		var posX = this.offsetLeft
-		var posY = this.offsetTop 
-		var par = this.offsetParent
+function func_TitleChange(){
+	//var abbrok = document.getElementsByTagName("ABBR");
+	var abbrok = document.querySelectorAll("*[title]");
+	var table_defText = []
+	for ( var i = 0; i < abbrok.length; i++ ) {
+		table_defText[abbrok[i]] = abbrok[i].title
+		abbrok[i].onclick = function(ev){
+			tooltipSpan.style.visibility = "visible";
+			tooltipSpan.innerHTML = table_defText[this]
+			tooltipStatus = "show"
+			ev.stopPropagation();
+	//alert(tooltipSpan.innerHTML)
+				
+			var posX = this.offsetLeft
+			var posY = this.offsetTop 
+			var par = this.offsetParent
 
-		tooltipSpan.style.minWidth = null;
-		tooltipSpan.style.maxWidth = 300;
-		if ( tooltipSpan.offsetWidth > 100 ) {
-			tooltipSpan.style.minWidth = 100;
-		} else {
-			tooltipSpan.style.minWidth = tooltipSpan.offsetWidth
-		}
-		if ( tooltipSpan.offsetWidth > par.offsetWidth - posX -10 ) {
-			tooltipSpan.style.left = posX - tooltipSpan.offsetWidth + par.offsetWidth - posX - 10
-		} else {
-			tooltipSpan.style.left = posX;
-		}
-		tooltipSpan.style.top = posY +20;
-	};
-	abbrok[i].onmouseover = function(){
-		tooltipSpan.style.visibility = "visible";
-		tooltipSpan.innerHTML = this.title
-			
-		var posX = this.offsetLeft
-		var posY = this.offsetTop
-		var par = this.offsetParent
+			tooltipSpan.style.minWidth = null;
+			tooltipSpan.style.maxWidth = 300;
+			if ( tooltipSpan.offsetWidth > 100 ) {
+				tooltipSpan.style.minWidth = 100;
+			} else {
+				tooltipSpan.style.minWidth = tooltipSpan.offsetWidth
+			}
+			if ( tooltipSpan.offsetWidth > par.offsetWidth - posX -10 ) {
+				tooltipSpan.style.left = posX - tooltipSpan.offsetWidth + par.offsetWidth - posX - 10
+			} else {
+				tooltipSpan.style.left = posX;
+			}
+			tooltipSpan.style.top = posY +20;
+		};
+		abbrok[i].onmouseover = function(){
+			tooltipSpan.style.visibility = "visible";
+			tooltipSpan.innerHTML = this.title
+				
+			var posX = this.offsetLeft
+			var posY = this.offsetTop
+			var par = this.offsetParent
 
-		tooltipSpan.style.minWidth = null;
-		tooltipSpan.style.maxWidth = 300;
-		if ( tooltipSpan.offsetWidth > 100 ) {
-			tooltipSpan.style.minWidth = 100;
-		} else {
-			tooltipSpan.style.minWidth = tooltipSpan.offsetWidth
-		}
-		if ( tooltipSpan.offsetWidth > par.offsetWidth - posX -10 ) {
-			tooltipSpan.style.left = posX - tooltipSpan.offsetWidth + par.offsetWidth - posX - 10
-		} else {
-			tooltipSpan.style.left = posX;
-		}
-		tooltipSpan.style.top = posY +20;
+			tooltipSpan.style.minWidth = null;
+			tooltipSpan.style.maxWidth = 300;
+			if ( tooltipSpan.offsetWidth > 100 ) {
+				tooltipSpan.style.minWidth = 100;
+			} else {
+				tooltipSpan.style.minWidth = tooltipSpan.offsetWidth
+			}
+			if ( tooltipSpan.offsetWidth > par.offsetWidth - posX -10 ) {
+				tooltipSpan.style.left = posX - tooltipSpan.offsetWidth + par.offsetWidth - posX - 10
+			} else {
+				tooltipSpan.style.left = posX;
+			}
+			tooltipSpan.style.top = posY +20;
 
-		table_defText[this] = this.title;
-		this.title = '';
-	};
-	abbrok[i].onmouseout = function(){
-		this.title = table_defText[this];
-		if ( tooltipStatus != "show" ) {
-			tooltipSpan.style.visibility = "hidden";
-		}
-	};
+			table_defText[this] = this.title;
+			this.title = '';
+		};
+		abbrok[i].onmouseout = function(){
+			this.title = table_defText[this];
+			if ( tooltipStatus != "show" ) {
+				tooltipSpan.style.visibility = "hidden";
+			}
+		};
+	}
 }
+func_TitleChange()
+/* ToolTip END */
 
 
 // checkboxok: missFix & skipID
@@ -756,14 +760,14 @@ function func_prevQuestion(){
 				idopont = 50
 			}*/
 		} else {
-			var asdNum = Math.floor(numberX/50)
-			asdNum = (asdNum+1)*50
-			if ( idopont > asdNum ) {
-				idopont = asdNum
+			numberX = Math.floor(numberX/60)
+			numberX = (numberX+1)*60
+			if ( idopont > numberX ) {
+				idopont = numberX
 			}
-			if ( idopont > 200 ) {
+			/*if ( idopont > 200 ) {
 				idopont = 200
-			}
+			}*/
 		}
 		if ( idopont < numberX ) {
 			idopont = numberX
@@ -1055,6 +1059,7 @@ function koviKerdes(){
 		} else {
 			document.getElementById("kerdeslocation").open = false;
 		}
+		func_TitleChange()
 
 
 		if ( localStorage.getItem(priorKerdesID+"_skip") == "progress" ) {
