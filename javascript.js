@@ -567,6 +567,21 @@ function func_TitleChange(){
 			}
 		};
 	}
+
+	var abbrSpan = document.getElementById("kerdeslocation").getElementsByClassName("abbr")
+	var table_defTextSpan = []
+	for ( var j = 0; j < abbrSpan.length; j++ ) {
+		if ( !abbrSpan[j].Text ) {
+			abbrSpan[j].Text = abbrSpan[j].innerHTML
+			abbrSpan[j].innerHTML = abbrSpan[j].innerHTML.slice(0,abbrSpan[j].innerHTML.indexOf("►")+1)
+		}
+		abbrSpan[j].onclick = function(){
+			if ( this.Shown != "true" ) { 
+				this.innerHTML = this.Text.replace('►','');
+				this.Shown = "true"
+			}
+		}
+	}
 }
 func_TitleChange()
 /* ToolTip END */

@@ -59,6 +59,9 @@ span {
 span.WHITE { 
 	border: Black 1px solid; 
 }
+span.abbr { 
+	border: Black 1px solid; 
+}
 .Vocab { 
 	background-color: Gainsboro
 }
