@@ -1,13 +1,16 @@
 ﻿
 /* FELADATOK
+	(-) js-be írjam, ne html-be a kérdés-részt (tehát ahova a kérdést kidobja) --> így ha változtatok rajta, elég egy helyen, nem kell minden aktív fájlban átírnom
+	(-) legyen multi-kérdés: több kérdés egyszerre, külön számolja priorjukat ugye (legnagyobb alapján kerülhet kérdésbe), és megválaszolásukkor mindegyikét elmenti --> pl. aminosav: képlete?(HP) oldalláncának neve?(LP) 
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+	(-) 1 Repeat 30perc után, ha jó akkor felezi a múltkori RepeatTimest
+	(-) 1kérdés lehessen többhelyen is, és a kódban azonban csak a szöveg egy helyen legyen megadva hozzá (hogy csak egy helyen kelljen átírnom, ha változtatok rajta)
+	(-) Skip funkció
 	(-) alján a func_span rész sztem buggos, tehát pl. nemhiszem hogy minden jól megy ott! majd amikor tesztelem már, mert tanulok akkor figyeljek rá
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 	(-) lehessen visszatölteni az előző kérdést (jegyek stb-t is töltse vissza localstoragebe)
-	(-) repeatre állított kérdést mindenképp dobhassa, ne legyen feltétele a kérdés tételének aktivitása
-	(-) ha jegynek/ranknak nem jót írtam alert!
+	(-) repeatre állított (vagy miss/fix/etc. checkbox true) kérdést mindenképp dobhassa, ne legyen feltétele a kérdés tételének aktivitása
 	(-) altételcímet ne feltétlen mutassa
-	(-) legyen multi-kérdés: több kérdés egyszerre, külön számolja priorjukat ugye (legnagyobb alapján kerülhet kérdésbe), és megválaszolásukkor mindegyikét elmenti --> pl. aminosav: képlete?(HP) oldalláncának neve?(LP) 
-	(-) 1es és 2es jegy lehet nem feltétlen kell visszaállítsa 0ra a timeDiff-jük (ezen még gondolkodom, hogy lenne pontos)
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 	(-) kép 
 		addig terjedhet ki balra, amíg szövegbe nem ütközik, de min 40%-ot kaphat.
@@ -15,44 +18,43 @@
 		középső-klikkre nyissa meg újablak.
 	(-) kémiában (ahol megvannak adva a tételek), legyenek összetett kérdések. tehát a tételcímrészlet a kérdés. nekem erről eszembe kell jutni a válasznak. azért összetett, mert több pontos (nemcsak 1-4 osztályzás) (azaz több jegyet mentsen el egy feladaton belül!!. így a rankja is nagyobb, hiszen az a max pontok száma lesz). ha nemjut eszembe minden, attól még az adott alkérdésre kaphatok 50%nyi pontot ha tudtam azt is, csak elfelejtettem felhozni. végül a tétel státuszát (osztályzását), csak ezen kérdések alapján tegye.
 
-	(-) 1kérdés lehessen többhelyen is, és a kódban azonban csak a szöveg egy helyen legyen megadva hozzá (hogy csak egy helyen kelljen átírnom, ha változtatok rajta)
 	(-) alertbe mutassa, ha valamely kérdésID üres már! és mellette localstoraget törölje!
 	(-) miss/fix-nél növekvő sorrendbe nézze őket
 	(-) lehessen beállítani: rövid_kérdés / hosszú_kérdés
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 	(-) DETAILS script
 	(-) lehessen beállítani IF / RAJZ stb. kategóriát is
-	(-) hide all onClick: jobb felső kérdésszám buttonra klikkelve mindent hideljen el, és showolja a következő kérdést majd, ne copyzza!
+	(-) hide all onClick: jobb felső kérdésszám buttonra klikkelve mindent hideljen el, és showolja(így a scripteket nem kell újra megadni) a következő kérdést majd, ne copyzza!
 	(-) lehessen látni jegy(1-2-3) hány feladat van és ki lehessen jelölni /checkbox/ melyeket akarom (ez nembiztos kell)
 	(-) kérdést más html-ből olvassa be
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	(+) óránként növekedhessen a timeDiff-jük, amennyiben elérték legalább azt
-	(+) gettime
-	(+) purple legyen másik buttonon
-	(+) ABBR script (tooltip)
+	(+) jelenleg akkoris megkapják a bónuszt +1et, ha időpont nem volt elég hozzá
+	(+) 2es jeggyel átlag repeat fele menjen egyet
 */
 
 
 
 
-/*window.onerror = function(msg, url, linenumber) {
-	 alert('Error message: '+msg+'\nLine Number: '+linenumber);
-	 return true;
- }*/
+window.onerror = function(msg, url, linenumber) {
+	//alert('Error message: '+msg+'\nLine Number: '+linenumber);
+}
+
 
 //ha már elkészült a script, és removeltam mind1iket törölhető ez a funkció! lentebb van rá egy hivatkozás azt is !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function func_removeRepeat(){ 
 	for ( var fotema in kerdesID ) { 
 		for ( var temaKerdes in kerdesID[fotema] ) { 
 			for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
-				/*if ( kerdes+'_timeDiff' in localStorage ) {
-					if ( localStorage.getItem(kerdes+'_jegy') == "1" || localStorage.getItem(kerdes+'_jegy') == "2" ) {
-						localStorage.setItem(kerdes+'_timeDiff', 30)
-					}
-				}*/
 				//localStorage.setItem(kerdes+'_timeDiff', "0")
-				localStorage.removeItem(kerdes+'_idopont');
-				localStorage.removeItem(kerdes+'_timeDiff');
+				//localStorage.removeItem(kerdes+'_idopont');
+				//localStorage.removeItem(kerdes+'_repeat');
+				if ( kerdes+'_timeDiff' in localStorage ) {
+					var count = localStorage.getItem(kerdes+'_timeDiff')/60
+					Math.floor(count) = count
+					localStorage.setItem(kerdes+'_repeat', count)
+					localStorage.removeItem(kerdes+'_timeDiff');
+				}
+				localStorage.removeItem(kerdes+'_jegyDiff');
 				/*if ( localStorage.getItem(kerdes+'_timeDiff') > 600 ) {
 					localStorage.setItem(kerdes+'_timeDiff', 600)
 				}*/
@@ -145,6 +147,25 @@ function func_calcDate() { // átlagIdőt kiszámolja
 	date = date / 60 / 24
 	date = parseFloat(Math.round(date * 100) / 100).toFixed(1);
 	document.getElementById("span_Date").innerHTML = date
+}
+function func_calcRepeat() { // átlagIsmétlések számát kiszámolja
+	var questCount = 0
+	var allRepVal = 0
+	for ( var fotema in kerdesID ) { 
+		for ( var temaKerdes in kerdesID[fotema] ) { 
+			//if ( localStorage.getItem(fotema+" / "+temaKerdes+"_button") == "true" ) {
+				for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
+					if ( kerdesID[fotema][temaKerdes][kerdes] == true ) {
+						questCount = questCount +1
+						allRepVal = allRepVal +Number(localStorage.getItem(kerdes+'_repeat'))
+					}
+				}
+			/*}*/
+		}
+	}
+	var atlag = allRepVal / questCount
+	atlag = +atlag.toFixed(1);
+	document.getElementById("span_Repeat").innerHTML = atlag
 }
 
 
@@ -268,6 +289,7 @@ for ( var i = 0;   i < tableSummary.length;   i++ ) {
 // kérdések változói
 var elements = document.getElementsByClassName("kerdes")
 var highestID = 0
+var questCount = 0 // egyenlőre csak Anat.html-nél számolom
 var kerdesID = []
 var temakor = []
 var usedID = [] // ebbe elmenti az eddig felhasznált id-ket, hogy lecheckolja, nem-e használt a következő már
@@ -285,18 +307,33 @@ for ( var i = 0;   i < elements.length;   i++ ) {
 		temakor[fotema][temakor[fotema].length] = temaKerdes
 		kerdesID[fotema][temaKerdes] = []
 	}
-	//var j = kerdesID[fotema][temaKerdes].length // ez lehet fölös és törölhetem (mármint ezt az 1 sort)
 	kerdesID[fotema][temaKerdes][id] = true
-	
 	if ( Number(id.slice(id.indexOf(".")+1)) > highestID ) { 
 		highestID = Number(id.slice(id.indexOf(".")+1))
 	}
+	questCount = questCount +1 // egyenlőre csak Anat.html-nél számolom
 
 	if ( !usedID[id] ) {
 		usedID[id] = true
 	} else {
 		alert("foglalt az id már:"+id)
 	}
+}
+
+if ( document.title == "Anat" ) {
+	var sedreks = document.getElementsByClassName("sedrek")
+	for ( var i = 0;   i < sedreks.length;   i++ ) {
+		var id = sedreks[i].id
+		if ( Number(id.slice(id.indexOf(".")+1)) > highestID ) { 
+			highestID = Number(id.slice(id.indexOf(".")+1))
+		}
+		if ( !usedID[id] ) {
+			usedID[id] = true
+		} else {
+			alert("foglalt az id már:"+id)
+		}
+	}
+	highestID = highestID + " / " + questCount
 }
 document.getElementById("input_toggleAll").value = highestID
 
@@ -407,19 +444,21 @@ function func_temakorStatus(){
 						jegy = 10
 					}
 
-
 					var date = new Date();
 					var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont')
 
-					var timeDiff = 30
-					if ( kerdes+'_timeDiff' in localStorage ) {
-						if ( localStorage.getItem(kerdes+'_timeDiff') > 1 ) {
-							timeDiff = localStorage.getItem(kerdes+'_timeDiff')
-						}
+					if ( localStorage.getItem(kerdes+'_repeat') == null) {
+						localStorage.setItem(kerdes+'_repeat', 0);
 					}
-					trueJegy = trueJegy + Math.pow(0.8, idopont / timeDiff) * rank * jegy
-					
-					
+					var repCount = Number(localStorage.getItem(kerdes+'_repeat'))
+					var timeDiff
+					if ( repCount >= 3 ) {
+						timeDiff = 1000 * (repCount-2)
+					} else {
+						timeDiff = 15 * Math.pow(4,repCount)
+					}
+
+					trueJegy = trueJegy + Math.pow(0.9, idopont / timeDiff) * rank * jegy
 					maxJegy = maxJegy + rank * 10
 				}
 			}
@@ -571,12 +610,14 @@ function func_TitleChange(){
 	var abbrSpan = document.getElementById("kerdeslocation").getElementsByClassName("abbr")
 	var table_defTextSpan = []
 	for ( var j = 0; j < abbrSpan.length; j++ ) {
+		abbrSpan[j].style.cursor = "pointer"
 		if ( !abbrSpan[j].Text ) {
 			abbrSpan[j].Text = abbrSpan[j].innerHTML
 			abbrSpan[j].innerHTML = abbrSpan[j].innerHTML.slice(0,abbrSpan[j].innerHTML.indexOf("►")+1)
 		}
 		abbrSpan[j].onclick = function(){
 			if ( this.Shown != "true" ) { 
+				this.style.cursor = ""
 				this.innerHTML = this.Text.replace('►','');
 				this.Shown = "true"
 			}
@@ -588,13 +629,6 @@ func_TitleChange()
 
 
 // checkboxok: missFix & skipID
-document.getElementById("checkbox_New").onclick = function() {
-	if ( this.checked ) {
-		localStorage.setItem(this.id,true)
-	} else {
-		localStorage.setItem(this.id,false)
-	}
-}
 document.getElementById("checkbox_RepNew").onclick = function() {
 	if ( this.checked ) {
 		localStorage.setItem(this.id,true)
@@ -608,14 +642,8 @@ if ( localStorage.getItem("checkboxSkip") == "true" ) {
 if ( localStorage.getItem("miss_checkbox") == "true" ) {
 	document.getElementById("miss_checkbox").checked = true;
 }
-if ( localStorage.getItem("fix_checkbox") == "true" ) {
-	document.getElementById("fix_checkbox").checked = true;
-}
 if ( localStorage.getItem("checkboxProgress") == "true" ) {
 	document.getElementById("checkboxProgress").checked = true;
-}
-if ( localStorage.getItem("checkbox_New") == "true" ) {
-	document.getElementById("checkbox_New").checked = true;
 }
 if ( localStorage.getItem("checkbox_RepNew") == "true" ) {
 	document.getElementById("checkbox_RepNew").checked = true;
@@ -667,23 +695,38 @@ func_valStatusSkip("skip");
 
 function func_calcOldNew(){
 	var kerdesNew = 0
-	var kerdesOld = 0
 	var repNew = 0
 	var repOld = 0
+	var repFast = 0
+	var repSlow = 0
 	for ( var fotema in kerdesID ) {
 		for ( var temaKerdes in kerdesID[fotema] ) {
 			if ( localStorage.getItem(fotema+" / "+temaKerdes+"_button") == "true" ) {
 				for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
+
+					var repCount = Number(localStorage.getItem(kerdes+'_repeat'))
+					var timeDiff
+					var date = new Date();
+					var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont')
+					if ( repCount >= 3 ) {
+						timeDiff = 1000 * (repCount-2)
+					} else {
+						timeDiff = 15 * Math.pow(4,repCount)
+					}
+
 					if ( localStorage.getItem(kerdes+"_jegy") >= 1 ) {
-						kerdesOld = kerdesOld +1
+						if ( timeDiff >= idopont ) {
+							repFast = repFast +1
+						} else {
+							repSlow = repSlow +1
+						}
 					} else {
 						if ( table_Status[kerdes] != "progress" ) {
 							kerdesNew = kerdesNew +1
 						}
 					}
-					if ( localStorage.getItem(kerdes + "_skip") == "repeat" ) {
-						var date = new Date();
-						var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont')
+					
+					if ( localStorage.getItem(kerdes+"_skip") == "repeat" ) {
 
 						if ( idopont < 30 ) {
 							repOld = repOld +1
@@ -695,10 +738,11 @@ function func_calcOldNew(){
 			}
 		}
 	}
-	document.getElementById("cont_New").innerHTML = kerdesNew
-	document.getElementById("cont_Old").innerHTML = kerdesOld 
+	document.getElementById("btn_newQuest").value = kerdesNew
 	document.getElementById("cont_RepNew").innerHTML = repNew;
 	document.getElementById("cont_RepOld").innerHTML = repOld;
+	document.getElementById("cont_RepFast").value = repFast;
+	document.getElementById("cont_RepSlow").innerHTML = repSlow;
 }
 
 // következő kérdés nehézségét beállítja, az előző sikere alapján
@@ -721,13 +765,13 @@ function func_markCount(jegy){
 function func_prevQuestion(){
 	func_markCount(document.getElementById("jegy").value);
 
-	if ( priorKerdesID+'_jegy' in localStorage ) {
+	/*if ( priorKerdesID+'_jegy' in localStorage ) {
 		if ( document.getElementById("jegy").value == "3" || document.getElementById("jegy").value == "4" ) {
 			localStorage.setItem(priorKerdesID+'_jegyDiff', "good");
 		} else {
 			localStorage.setItem(priorKerdesID+'_jegyDiff', "bad");
 		}
-	}
+	}*/
 
 	localStorage.setItem(priorKerdesID+'_jegy', document.getElementById("jegy").value);
 	if ( document.getElementById("buttonFix").style.backgroundColor == "lightgrey" ) {
@@ -743,7 +787,6 @@ function func_prevQuestion(){
 
 	if ( document.getElementById("buttonSkip").style.backgroundColor == "black" ) {
 		localStorage.setItem(priorKerdesID+'_jegy', "");
-		localStorage.setItem(priorKerdesID+'_jegyDiff', "");
 		localStorage.setItem(priorKerdesID + "_skip","progress")
 
 		table_Status[priorKerdesID] = "progress"
@@ -761,69 +804,47 @@ function func_prevQuestion(){
 	}
 
 	var date = new Date();
-	if ( priorKerdesID+'_jegyDiff' in localStorage ) {
-		var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(priorKerdesID+'_idopont')
+	var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(priorKerdesID+'_idopont')
+	var repCount = Number(localStorage.getItem(priorKerdesID+'_repeat'))
+	var jegy = localStorage.getItem(priorKerdesID+'_jegy')
+	var timeDiff
+	if ( repCount >= 3 ) {
+		timeDiff = 1000 * (repCount-2)
+	} else {
+		timeDiff = 15 * Math.pow(4,repCount)
+	}
 
-		var numberX = Number(localStorage.getItem(priorKerdesID+'_timeDiff'))
-		
-		if ( numberX < 30 || localStorage.getItem(priorKerdesID+'_timeDiff') === "0" ) {
-			if ( idopont > 30 ) {
-				idopont = 30
-			}
-		/*} else if ( numberX > 30 || numberX == 30 ) {
-			if ( idopont > 50 ) {
-				idopont = 50
-			}*/
-		} else {
-			numberX = Math.floor(numberX/60)
-			numberX = (numberX+1)*60
-			if ( idopont > numberX ) {
-				idopont = numberX
-			}
-			/*if ( idopont > 200 ) {
-				idopont = 200
-			}*/
+	if ( jegy == 1 ) {
+		localStorage.setItem(priorKerdesID+'_repeat', 0)
+	} else if ( jegy == 2 ) {
+		var atlag = Number(document.getElementById("span_Repeat").innerHTML)
+		if ( Math.floor(atlag) > repCount ) {
+			localStorage.setItem(priorKerdesID+'_repeat', repCount +1);
+		} else if ( Math.floor(atlag) < repCount ) {
+			localStorage.setItem(priorKerdesID+'_repeat', repCount -1);
 		}
-		if ( idopont < numberX ) {
+	} else if ( jegy == 3 || jegy == 4 ) {
+		if ( idopont > timeDiff ) {
+			localStorage.setItem(priorKerdesID+'_repeat', repCount +1);
+		}
+	}
+	
+	/*if ( numberX < 30 ) {
+		if ( idopont > 30 ) {
+			idopont = 30
+		}
+	} else {
+		numberX = Math.floor(numberX/60)
+		numberX = (numberX+1)*60
+		if ( idopont > numberX ) {
 			idopont = numberX
 		}
-		//alert(idopont)
-		
-		/*
-		//alert(idopont + " " + localStorage.getItem(priorKerdesID+'_timeDiff'))
-		if ( localStorage.getItem(priorKerdesID+'_timeDiff') === "0" ) {
-			//alert("0")
-			if ( idopont > 30 ) {
-				idopont = 30
-			}
-		} else if ( numberX < 30 && idopont > 30 ) {
-			idopont = 30
-		} else if ( numberX == 30 ) {
-			//alert("30")
-			if ( idopont > 200 ) {
-				idopont = 200
-			}
-		} else {
-			//alert("else")
-			var xyz = 200+numberX
-			if ( idopont > xyz ) {
-				//alert(idopont + " " + localStorage.getItem(priorKerdesID+'_timeDiff'))
-				idopont = xyz
-				//alert(idopont + " " + localStorage.getItem(priorKerdesID+'_timeDiff'))
-			}
-		}
-		*/
-
-		//alert(localStorage.getItem(priorKerdesID+'_jegyDiff'))
-		if ( localStorage.getItem(priorKerdesID+'_jegyDiff') == "bad" ) {
-			localStorage.setItem(priorKerdesID+'_timeDiff', "0");
-		} else {
-			localStorage.setItem(priorKerdesID+'_timeDiff', idopont);
-		}
-		//alert(localStorage.getItem(priorKerdesID+'_timeDiff'))
 	}
-	localStorage.setItem(priorKerdesID+'_idopont', Math.floor(date.getTime()/60000));
+	if ( idopont < numberX ) {
+		idopont = numberX
+	}*/
 
+	localStorage.setItem(priorKerdesID+'_idopont', Math.floor(date.getTime()/60000));
 	localStorage.setItem(priorKerdesID+'_note', document.getElementById("note").value);
 
 	document.getElementById("questTitle").innerHTML = "";		// hide előző megoldás
@@ -848,6 +869,7 @@ function func_prevQuestion(){
 	}
 */
 
+var tableMulti= {}
 var fullTema
 var priorKerdesID = "nincs"
 var checkNum
@@ -922,7 +944,7 @@ function koviKerdes(){
 							}
 
 							if ( localStorage.getItem(kerdes+"_jegy") == null || isNaN(localStorage.getItem(kerdes+"_jegy")) == true ) {
-								if ( localStorage.getItem("checkbox_New") == "true" && priorType < 2 ) {
+								if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" && priorType < 2 ) {
 									priorType = 2
 									priorKerdesID = kerdes;
 								}
@@ -936,23 +958,31 @@ function koviKerdes(){
 							if ( priorType == 1 && localStorage.getItem(kerdes+"_jegy") > 0 ) { // régi kérdés
 								var date = new Date();
 								var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont')
-
+								var jegy = localStorage.getItem(kerdes+'_jegy')
 								var shouldBreak = false
-								var timeDiff = 30
-								if ( kerdes+'_timeDiff' in localStorage ) {
-									if ( localStorage.getItem(kerdes+'_timeDiff') > idopont && localStorage.getItem(kerdes+'_jegyDiff') == "good" ) {
-										//shouldBreak = true
-									}
-									if ( localStorage.getItem(kerdes+'_jegy') == "3" || localStorage.getItem(kerdes+'_jegy') == "4" ) {
-										timeDiff = localStorage.getItem(kerdes+'_timeDiff')
-									}
+
+								var repCount = Number(localStorage.getItem(kerdes+'_repeat'))
+
+								var timeDiff
+								if ( repCount >= 3 ) {
+									timeDiff = 1000 * (repCount-2)
+								} else {
+									timeDiff = 15 * Math.pow(4,repCount)
 								}
-								if ( 31 > idopont ) {
-									shouldBreak = true
+								/*if ( timeDiff > 1000) {
+									timeDiff = 1000
+								}*/
+
+								if ( document.getElementById("cont_RepFast").style.borderColor != "limegreen" ) {
+									if ( timeDiff > idopont ) {
+										shouldBreak = true
+									}
+									if ( 31 > idopont ) {
+										shouldBreak = true
+									}
 								}
 								
 								if ( shouldBreak == false ) {
-									var jegy = localStorage.getItem(kerdes+'_jegy')
 
 									var num = document.getElementById(kerdes).className.search("/");
 									var prior = document.getElementById(kerdes).className.substring(num-1,num);
@@ -1052,30 +1082,27 @@ function koviKerdes(){
 			var titleText
 			for (k = 0; k < d.length; k++) {
 				if ( "SUMMARY" == d[k].tagName ) {
-					titleText = d[k].innerHTML
+					titleText = d[k].innerHTML.replace('.','')
 				}
 			}
+			var hide = false 
 			for (i = 0; i < c.length; i++) {
 				if ( "SUMMARY" == c[i].tagName ) {
-					titleText = c[i].innerHTML + " " + titleText
-					c[i].innerHTML = "kérdés"
-				}
-				if ( "UL" == c[i].tagName ) {
-					var x = c[i].children;
-					for (j = 0; j < x.length; j++) {
-						//alert(x[j].tagName)
-						if ( "DETAILS" == x[j].tagName ) {
-							x[j].insertAdjacentHTML('afterbegin', '<strong>'+titleText+'</strong>');
-							x[j].open = false
-						}
+					titleText = titleText + " &#10140; " + c[i].innerHTML
+					if ( c[i].innerHTML.search("[?=]") == -1 ) {
+						c[i].innerHTML = "kérdés"
+						hide = true 
 					}
+				}
+				if ( "UL" == c[i].tagName && "normal" == c[i].className && hide == true ) {
+					c[i].insertAdjacentHTML('afterbegin', '<span class="abbr"><strong><span class="Important">►</span>'+titleText+'</strong></span><br>');
+					c[i].open = false
 				}
 			}
 		} else {
 			document.getElementById("kerdeslocation").open = false;
 		}
 		func_TitleChange()
-
 
 		if ( localStorage.getItem(priorKerdesID+"_skip") == "progress" ) {
 			document.getElementById("buttonSkip").style.backgroundColor = "black"
@@ -1135,16 +1162,7 @@ function koviKerdes(){
 		if ( priorKerdesID+'_jegy' in localStorage ) {
 			document.getElementById("pJegy").textContent = localStorage.getItem(priorKerdesID+'_jegy');
 			if ( priorKerdesID+'_jegy' in localStorage ) {
-				if ( priorKerdesID+'_timeDiff' in localStorage ) {
-					document.getElementById("repeat").textContent = idopont + " vs " + localStorage.getItem(priorKerdesID+'_timeDiff')
-				} else {
-					document.getElementById("repeat").textContent = idopont
-				}
-				if ( localStorage.getItem(priorKerdesID+'_jegyDiff') == "good" ) {
-					document.getElementById("repeat").className = "done";
-				} else {
-					document.getElementById("repeat").className = "white";
-				}
+				document.getElementById("repeat").textContent = idopont + " vs " + localStorage.getItem(priorKerdesID+'_repeat')
 			} else {
 				document.getElementById("repeat").textContent = "\xa0 \xa0"
 			}
@@ -1154,6 +1172,7 @@ function koviKerdes(){
 	func_calcJegy()
 	func_calcDate()
 	func_calcOldNew();
+	func_calcRepeat()
 }
 
 /*function missFix(){
@@ -1263,6 +1282,7 @@ function func_spanSkip(){
 func_calcOldNew();
 func_calcJegy()
 func_calcDate()
+func_calcRepeat()
 
 
 

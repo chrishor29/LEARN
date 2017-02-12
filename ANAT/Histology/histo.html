@@ -10,18 +10,25 @@
 <input onclick="toggleAll();" type="button" id="input_toggleAll" value="0" style="position:fixed; right: 0px;"><div id="quest" style="display:none;">
 	
 	<details><summary class="phase">tételek</summary><div id="container"></div></details>
-	<input type="button" class="MISS" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'miss');" id="btn_miss" value="0">
-	<input type="button" class="FIX" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'fix');" id="btn_fix" value="0">
-	<input type="button" class="skip" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_spanSkip" id="btn_skip" value="0">
-	<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'progress')" id="btn_progress" value="0">
 
-	<input type="checkbox" id="checkbox_New"/><span class="WHITE" id="cont_New"></span><span class="VOCAB" id="cont_Old"></span>
-	<span class="WHITE" id="span_Jegy"></span><span class="VOCAB" id="span_Date"></span>
-	<input type="checkbox" id="checkbox_RepNew"/><span class="WHITE" id="cont_RepNew"></span><span class="VOCAB" id="cont_RepOld"></span>
+	<div align="center" style="position:absolute; left:10%; top:1.5%;">
+		<input type="button" class="MISS" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'miss');" id="btn_miss" value="0">
+		<input type="button" class="FIX" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'fix');" id="btn_fix" value="0">
+		<input type="button" class="skip" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_spanSkip" id="btn_skip" value="0">
+		<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'progress')" id="btn_progress" value="0">
+	</div>
+	<div align="center" style="position:absolute; left:44%; top:3%;">
+		<span id="repeat" class="WHITE">&nbsp; &nbsp; &nbsp;</span>
+	</div>
 
-	<span id="repeat" class="WHITE" style="position: absolute;left: 45%;">&nbsp; &nbsp; &nbsp;</span>
-	<br>
-	<div align="center">
+	<input type="button" class="white" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_newQuest" value="0">
+	<span class="vocab" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="cont_RepSlow"></span>
+	<input type="button" class="MISS" style="border: 3px solid black;" onclick="func_spanClick(this)" id="cont_RepFast" value="0">
+	&nbsp; &nbsp;
+	<span class="WHITE" id="span_Date"></span><span class="vocab" id="span_Jegy"></span><span class="WHITE" id="span_Repeat"></span>
+	&nbsp; &nbsp;
+	<input type="checkbox" id="checkbox_RepNew"><span class="WHITE" id="cont_RepNew"></span><span class="VOCAB" id="cont_RepOld"></span>
+	<span style="position:absolute; left:30%;">
 		<span style="border: 0px;" id="rank">&nbsp; &nbsp; &nbsp;</span> &nbsp;
 		<input onclick="toggleNote();" type="button" value="&#10045;"> &nbsp; &nbsp;
 		<select id="jegy"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; &nbsp;
@@ -29,7 +36,7 @@
 		<input onclick="func_buttonFix();" type="button" id="buttonFix" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp; &nbsp;
 		<input onclick="func_buttonSkip();" type="button" id="buttonSkip" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp; &nbsp;
 		<input onclick="koviKerdes();" type="button" value="következő kérdés">
-	</div>
+	</span>
 	<center><textarea style="display:none; position:fixed; left: 40%; top: 70%;" id="note" rows="4" cols="40"></textarea></center>
 	
 	<div style="font-weight: bold;font-size: large;" id="questTitle"></div>
@@ -37,18 +44,19 @@
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
 
-<table><tr>
-	<td class="vocab">2</td>
-	<td class="vocab">3</td>
-	<td class="vocab">4</td>
-	<td class="vocab">5</td>
+<table>
+<tr>
+	<td style="border-color:red; background-color:LightSkyBlue">2</td>
+	<td style="border-color:pink; background-color:LightSkyBlue">3</td>
+	<td style="border-color:red; background-color:LightSkyBlue">4</td>
+	<td style="border-color:red; background-color:LightSkyBlue">5</td>
 	<td class="">6</td>
-	<td class="Important">7</td>
+	<td style="border-color:red; background-color:LightSkyBlue">7</td>
 	<td class="done">8</td>
-	<td class="done">9</td>
-	<td class="">10</td>
+	<td style="background-color:Aquamarine">9</td>
+	<td style="border-color:red; background-color:LightSkyBlue">10</td>
 	<td class="">11</td>
-	<td class="">12</td>
+	<td style="border-color:pink;" class="done">12</td>
 	<td class="">13</td>
 	<td class="">14</td>
 	<td class="">15</td>
@@ -70,8 +78,9 @@
 	<td class="">31</td>
 	<td class="">32</td>
 	<td class="">33</td>
-	<td class="">34</td>
-</tr><tr>
+	<td title="asdasdadasdasd aasdasd adasdasda" class="">34</td>
+</tr>
+<tr>
 	<td class="">35</td>
 	<td class="">36</td>
 	<td class="">37</td>
@@ -105,7 +114,8 @@
 	<td class="">65</td>
 	<td class="">66</td>
 	<td class="">67</td>
-</tr><tr>
+</tr>
+<tr>
 	<td class="">68</td>
 	<td class="">69</td>
 	<td class="">70</td>
@@ -115,7 +125,7 @@
 	<td class="">74</td>
 	<td class="">75</td>
 	<td class="">76</td>
-	<td class="Important">77</td>
+	<td style="border-color:red; background-color:LightSkyBlue">77</td>
 	<td class="">78</td>
 	<td class="">79</td>
 	<td class="">80</td>
@@ -134,378 +144,1047 @@
 	<td class="">93</td>
 	<td class="miss">94</td>
 	<td class="miss">95</td>
-	<td class="important">96</td>
+	<td style="border-color:red; background-color:LightSkyBlue">96</td>
 	<td class="">97</td>
 	<td class="miss">98</td>
 	<td class="miss">99</td>
 	<td class="miss">100</td>
-</tr></table>
+</tr>
+</table>
 
-<details open><summary><strong>project</strong></summary>
-	<li>megoldás fix &#10140; csak 1x kelljen beírnom a címet a summarybe és onnan másolja ki az aktuális kérdés <span class="Important">►</span></li>
-	<li>Elmélet a metszetek mellé, amit elmondok (tehát 1 kérdés legyen az egész mindössze, és párosítva legyen az IF-hez)</li>
-	<li>2-5</li>
-	<li>urethra!!!!</li>
-</details>
+<details open><summary><strong>project</strong></summary><ul class="normal">
+	<li>urethra ELMÉLET legyen külön (lásd pl. 7 & 12)</li>
+	<li>multiple kérdés</li><ul>
+		<li>adott tárgy html-jében legyen elmentve, hogyha a pl. 15ös kérdést dobja ki, akkor mellette dobja a 25öst is &#10140; több mark/skip stb. lehetőség legyen &#10140; pl. ismerd fel vesica_urinaria az első kérdés, de alatta az elméletét is dobja ki (és lehessen külön skippelni pl. elméletet)</li>
+		<li>kérdésre hivatkozással importáljam a kérdést (tehát ezzel megoldom az 1 kérdés 2tárgyban is problémát is)</li>
+		<li>legyen olyan is, hogy egy kérdés magába foglal több alkérdést &#10140; pl. elmélet nevű kérdést az alapján osztályozom, hogy eszembe jutott-e, hogy miről kell beszélnem (alkérdések címe) &#10140; alkérdéseket pedig külön</li>
+		<div><abbr title="cél: ennek megvalósítása">&#10140;</abbr> Elmélet a metszetek mellé, amit elmondok (tehát 1 kérdés legyen az egész mindössze, és párosítva legyen az IF-hez)</div>
+	</ul>
+</ul></details>
 
-<details open><summary><strong>Források</strong></summary>
-	<div><span class="Vocab">#1</span> Kálmán-program & tavalyi jegyzet</div>
-	<div><span class="Important">#2</span>tavalyi jegyzet</div>
-	<div><span class="done">#3</span> Hajdú-gyak</div>
-	<div><span style="background-color:gold">#4</span> Röhlich-tk</div>
-</details>
+<details open><summary><strong>Források</strong></summary><ul class="normal">
+	<div><span class="Vocab">#1</span> Kálmán & Patonay</div>
+	<div><span style="background-color:LightSkyBlue">#2</span> tavalyi jegyzet</div>
+	<div><span style="background-color:Aquamarine">#3</span> Hajdú-gyk., DE még kell hozzá Röchlich-tk., mert így kevés</div>
+	<div><span class="done">#4</span> ELMÉLET kész</div>
+	<div>ELMÉLET kidolgozottságámak minősége (nem mennyisége, mert azt a fenntiek mutatják) <span style="border:3px solid red">rossz</span> <span style="border:3px solid pink">elégséges</span> <span style="border:3px solid black">jó</span></div>
+</ul></details>
 
 <details><summary class="MISS">kérdések</summary><ul>
 	<li></li>
 </ul></details><br>
 
-<!--//////////////////////////////////////-->  <div><div class="mainTitle">ismerd fel</div>  <!--//////////////////////////////////////-->
+<!--//////////////////////////////////////-->  <div><div class="mainTitle">ismerd fel & elmélet</div>  <!--//////////////////////////////////////-->
 
 <!----><details><summary class="phase">.(2) ren</summary><div class="normal"><div><div class="title"></div>
-	<details class="kerdes open" id="histo.1"><summary>vesepapilla, gyűjtőcsatornák beszájadzása</summary><ul class="normal">
+	<details class="kerdes 3/15" id="histo.58"><summary><strong>ELMÉLET</strong></summary><ul class="normal">
+
+		<br><details><summary><span class="Vocab">R</span> nephron?</summary><ul class="normal">
+			<a href="images/rajz_nephron.png"><img src="images/rajz_nephron.png"></a>
+			<li>egyik nephron legyen <abbr title="medullahoz közeli">juxtamedullaris</abbr> / másik <abbr title="medullátol távoli">corticális</abbr>!</li>
+			<li><span class="WHITE">1</span> tubulus_proximalis pars_convoluta</li>
+			<li><span class="WHITE">2</span> tubulus_proximalis pars_recta</li>
+			<li><span class="WHITE">3</span> tubulus_intermedius crus_descendens</li>
+			<li><span class="WHITE">4</span> tubulus_intermedius crus_ascendens</li>
+			<li><span class="WHITE">5</span> tubulus_distalis pars_recta</li>
+			<li><span class="WHITE">6</span> tubulus_distalis pars_recta</li>
+			<li><span class="WHITE">7</span> tubulus_reuniens</li>
+			<li><span class="WHITE">8</span> tubulus_colligens</li>
+			<li><span class="WHITE">9</span> ductus_papillaris</li>
+			<li><span class="WHITE">10</span> corpusculum_renale_Malpighi</li>
+			<li><span class="WHITE">A</span> zona_interna(medulla)</li>
+			<li><span class="WHITE">B</span> zona_externa(medulla) BELSŐ</li>
+			<li><span class="WHITE">C</span> zona_externa(medulla) KÜLSŐ</li>
+			<li><span class="WHITE">D</span> cortex</li>
+		  ––––––––––––––––––––––––––––––––––––––––––––––––
+			<div><span class="vocab"><strong>§</strong></span> A nephronok különböző lokalizációja (kortikális vs juxtamedullaris) miatt a Henle kacsok velőállományi extenziója is különböző (hosszabb és rövidebb) <img class="mini" src="images/krtklsjxtmdllrsglm.png"> <abbr title="a képen a belső sávig lemegy ugyan, de gondolom más forrás (amely alapján készítettem a rajzot), mutatott olyat, ahol csak külső sávba megy, ergó különböző hosszúságúak vannak &#10140; két ''szélsőségesebbet'' ábrázolok">&#10045;</abbr></div>
+		</ul></details>
+		
+		<br><details><summary style="color:Magenta"><font color="Green"><span class="Vocab">R</span> <abbr title="egyik részén látszódjon a 2v.interlobularis közti kapillárishálózat / másik részén a glomerulus(histonál van róla kép)">vérkeringés?</abbr> <abbr title="az a gond a vérkeringés?-abbrev szöveget nemértem (tavaly írtam): tehát hogy miket kell rajzolni (kapillárishálózat + glomerulus histonál)">!?</abbr></font></summary><ul class="normal">
+			<div><strong>cortex_renalis</strong></div>
+			<li><span class="WHITE">8</span>a.renalis &#10140; <span class="WHITE">11</span>a.interlobaris &#10140; <span class="WHITE">12</span>a.arcuata &#10140; <span class="WHITE">13</span>a.interlobularis &#10140; <span class="WHITE">14</span>vas_afferens</li>
+			<li><span class="WHITE">15</span>glomerulus</li>
+			<li><span class="WHITE">9</span>v.renalis <div class="mirror">&#10140;</div> <span class="WHITE">19</span>v.interlobaris <div class="mirror">&#10140;</div> <span class="WHITE">18</span>v.arcuata <div class="mirror">&#10140;</div> <span class="WHITE">17</span>v.interlobularis <div class="mirror">&#10140;</div> <span class="WHITE">16</span>vas_efferens</li>
+			<li>leírás</li><ul>
+				<li>a.renalis a hiatus_renalison át <span class="WHITE">7</span>sinus_renalisba lép &#10140; elágazik r.posterior & r.anterior</li>
+				<li>ezekből indulnak a.interlobarisok a velőállományba sugár irányban a capsula_fibrosa felé a pyramidis_renalisok között <abbr title="nem teljesen értem akkor hol, de nem columna_renalis_Bertinii-ben elvileg (wiki+SH néztem)">&#10045;</abbr></li>
+				<li>azonban a medulla_renalis <abbr title=",,legszélesebb domború alja''">bázisát</abbr> elérve a.arcuata-kra ágazódnak</li>
+				<li><div><span class="vocab"><strong>§</strong></span> a.arcuata NEM alkot teljes ívet, de a v.arcuata igen <img class="mini" src="images/varcuta.png"></div></li>
+				<li>ezek futnak a cortex és medulla között</li>
+				<li>aa.interlobulares a kéregben futnak sugár irányban</li>
+				<li>(további semmi extra)</li>
+				<li><span class="WHITE">&#9775;</span> egyes a.interlobularisok küldenek <span class="Important">r.capsularis</span>-okat, v.interlobularisok pedig <span class="WHITE">20</span><span class="Important">venula_stellata</span>-kat a capsula_fibrosaba</li>
+				<li><span class="WHITE">&#9775;</span> a.renalis elágazása r.anteriorra és r.posteriorra következtében a <span class="Important">vese felezhető lap szerint nagyobb artériás vérzés nélkül</span></li>
+				<li><span class="WHITE">&#9775;</span> <span class="WHITE">1</span>pars_convolutában a hajszálerek sok helyen a glomerulusok hajszálereihez hasonlóan <span class="Important">fenestrált_endothellal</span> bírnak (pars_radiatában és medullában nem)</li>
+			</ul>
+			<div><strong>medulla_renalis</strong></div>
+			<li><abbr title="medulla közelében lévő">juxtamedullaris_glomerulusokból</abbr> eredő vas_efferensekből erednek <span class="WHITE">21</span><span class="Important">arteriola_recta</span>-k</li>
+			<li>innen a <span class="WHITE">22</span><span class="Important">venula_recta</span>-kon keresztül jut vissza a v.arcuata-kba és így tovább</li>
+			<img src="images/vrkrnt.png"><img src="images/hdertgsf.png">
+			<div><strong>kép-számok</strong></div>
+			<li><span class="WHITE">2</span>pars_radiata</li>
+			<li><span class="WHITE">3</span>columna_renalis_Bertinii</li>
+			<li><span class="WHITE">4</span>capsula_fibrosa</li>
+			<li><span class="WHITE">5</span>medulla_renalis</li>
+			<li><span class="WHITE">6</span>papilla_renalis</li>
+			<li><span class="WHITE">10</span>capsula_adiposa</li>
+		</ul></details>
+		
+		<br><details><summary><span class="Vocab">R</span> corpusculum_renale_Malpighi?</summary><ul class="normal">
+			<img src="images/rajz_crnlmlph.png">
+			<li>capsula_glomeruli_Bowman</li><ul>
+				<li><span class="WHITE">5</span> lamina_parietalis(külső) &#10140; 1rétegű_laphám (epithelium)</li>
+				<li><span class="WHITE">8</span> lamina_visceralis(belső) &#10140; <span class="WHITE">7</span> podocyták <img class="mini" src="images/cplsrvisbwm.png"> alkotják</li>
+				<li>köztük üreg</li>
+			</ul>
+			<li>hilus_glomeruli(érpólus) &#10140; "polus_glomeruli(vizeleti_pólus) másik oldala"</li><ul>
+				<li>tehát kb. ahol extraglomerularis-mesangium sejtekből sok van</li>
+				<li>capsula_glomeruli_Bowman 2lemeze itt megy át egymásba</li>
+			</ul>
+			<li>glomerulus</li><ul>
+				<li>vas_afferens(arteriola) &#10140; kapillárisok &#10140; vas_efferens(arteriola)</li>
+				<li><span class="WHITE">13</span> juxtaglomerularis_sejtek</li><ul>
+					<li>vas_afferens simaizomsejtjei az érpólus környékén módosultak</li>
+					<li>renin nevű <abbr title="proteolitikus-enzimet">()</abbr> enzimet tartalmazó szemcsék vannak benne</li>
+				</ul>
+				<li>kapillárisok fala fenesztrált_endothel</li>
+			</ul>
+			<li>mesangium-sejtek</li><ul>
+				<li><span class="WHITE">12</span> intraglomerularis</li>
+				<li><span class="WHITE">2</span> extraglomerularis</li>
+			</ul>
+			<li><span class="WHITE">1</span> tubulus_distalis & <abbr title="tubulus_distalis azon része a pars_recta és pars_convoluta határán, mely hozzáfekszik az érpólushoz">macula_densa</abbr></li>
+			<li><span class="WHITE">3</span> 1rétegű laphám (endothel)</li>
+			<li><span class="WHITE">4</span> simaizomsejt</li>
+			<li><span class="WHITE">6</span> idegrost</li>
+			<li><span class="WHITE">9</span> fenesztrált endothel</li>
+			<li><span class="WHITE">10</span> kefeszegélyes 1rétegű kh (tubulus_proximalis pars_convoluta)</li>
+			<li><span class="WHITE">11</span> lamina_basalis</li>
+			<div><span class="vocab"><strong>§</strong></span> FORRÁS: <img class="mini" src="images/crpscmmlpgh.png"></div>
+		</ul></details>
+		
+		<br><details><summary>alkotói?</summary><ul class="normal">
+			<li>kötőszövet</li>
+			<li>erek</li>
+			<li>nephron</li>
+			<li>gyüjtőcsatornák</li>
+		</ul></details>
+		
+		<br><details><summary>csatornák csoportosítása?</summary><ul class="normal">
+			<li>tubuli_nephroni</li>
+			<li>gyüjtőcsatornák</li>
+		</ul></details>
+		
+		<br><details><summary>nephronok és gyűjtőcsatornák származása?</summary><ul class="normal">
+			<li>nephron <div class="mirror">&#10140;</div> metanephrogén_blastéma</li>
+			<li>gyüjtőcsatornák <div class="mirror">&#10140;</div> ureterbimbó</li>
+		</ul></details>
+		
+		<br><details><summary>nephron &#10140; száma? felosztás?</summary><ul class="normal">
+			<li>~1,5millió/vese (számuk a korral csökken)</li>
+			<li>1nephron = 1corpusculum_renale_Malpighi(vesetestecske) + tubuli_nephroni</li>
+			<li>(funkciós egység<abbr title="ereken kívüli résznek">()</abbr>)</li>
+		</ul></details>
+		
+		<br><details><summary>vesecsatornák &#10140; felsorolás & bélelésük?</summary><ul class="normal">
+			<img src="images/frsadgb.png">
+			<table><tr><th colspan="4">tubuli_nephroni</th></tr>
+				<tr><td rowspan="2">tubulus_proximalis</td>
+					<td colspan="2"><span class="WHITE">1</span>pars_<abbr title="= contorta = kanyarulatos">convoluta</abbr></td>
+					<td rowspan="2">
+						<li>egyrétegű_köbhám</li>
+						<li>kefeszegély borítja</li>
+					</td>
+				</tr>
+				<tr><td><span class="WHITE">2</span>pars_recta</td>   <td rowspan="4">ansa_nephroni <br>=<br> Henle-kacs</td>
+				</tr>
+				<tr><td rowspan="2">tubulus_intermedius</td>
+					<td><span class="WHITE">3</span>crus_descendens</td>
+					<td rowspan="2">egyrétegű laphám</td>
+						</tr><tr>
+					<td><span class="WHITE">4</span>crus_ascendens</td>
+				</tr>
+				<tr><td rowspan="3">tubulus_distalis</td>
+					<td><span class="WHITE">5</span>pars_recta</td>
+					<td rowspan="3">
+						<li>egyrétegű_köbhám</li>
+						<li>köztes sötét sejtek</li>
+						<li>nincs kefeszegély (csak néhány)</li>
+					</td>
+				</tr>
+				<tr><td colspan="2">macula_densa</td>
+				</tr>
+				<tr><td colspan="2"><span class="WHITE">6</span>pars_convoluta</td></tr>
+			<tr><th colspan="4">gyűjtőcsatornák</th></tr>
+				<tr><td colspan="3"><span class="WHITE">7</span>tubulus_reuninens<abbr title="gyűjtőcsatornába volt sorolva: szote + histo-kálmán-program. nephronba volt sorolva: SzövGyak + egyéb(?asszem funkc) helyen">&#10045;</abbr></td>
+					<td rowspan="4">
+						<li>egyrétegű köbhám</li>
+						<li>ductus már 1rétegű_hengerhám</li>
+					</td>
+				</tr>
+				<tr><td colspan="3"><span class="WHITE">8</span>tubulus_colligens</td></tr>
+				<tr><td colspan="3"><span class="WHITE">9</span>ductus_papillaris<abbr title="határ nem egyértelmű a 2ő között (legalábbis számomra)">&#10045;</abbr> <img class="mini" src="images/gyjtvscst.png"></td></tr>
+			</table>
+			<li>tubulus_convoluta<abbr title="tehát a pars_convoluta része a tubulus proximalis/distalisnak">&#10045;</abbr> proximalis/distalis is a corpusculum_renale_Malphigi melletti területen van</li>
+			<li>tehát a tubulus_convoluta_distalis is visszamegy oda &#10140; sőt macula_densa részével hozzáfekszik a vesetestecskének ún.érpólusához</li>
+			<li>---------------</li>
+			<li>több tubulus_reuniens nyílik 1 tubulus_collectivus-ba &#10140; több tubulus_colligens nyílik 1 ductus_papillaris-ba</li>
+			<li>~30 ductus_papillaris van a papilla_renalisnál és alkotják a felszínén az area_cribrosa-t</li>
+		</ul></details>
+		
+		<br><details><summary>gyűjtőcsatornák jellemzése?</summary><ul class="normal">
+			<li>halvány festődésű citoplazma (kevés sejtszervecske)</li>
+			<li>sejthatárok jól kivehetők</li>
+			<li>sejtmag kerek és középen helyezkedik el</li>
+		</ul></details>
+		
+		<br><details><summary>nephron típusok?</summary><ul class="normal">
+			<img src="images/gyjtvscst.png">
+			<table>
+				<tr><th>juxtamedullaris</td>   <th>corticalis</td></tr>
+				<tr><td>medullához közeli a vesetestecske</td>   <td>capsula_fibrosához közeli a vesetestecske</td></tr>
+				<tr><td>kb. 20% ilyen</td>   <td>kb. 80% ilyen</td></tr>
+				<tr>
+					<td>az ansa_nephroni hosszú és belóg egészen a zona_interna-ig
+						<li>zona_externa KÜLSŐ és BELSŐ része közti határig tart a pars_recta tubulus_proximalis</li>
+						<li>zona_externa és zona_interna határától kezdődik a pars_recta tubulus_distalis</li>
+					</td>  
+					<td>az ansa_nephroni rövid &#10140; csak zóna_externaig lóg be <abbr title="képen a medullat a legkülső el se éri, de mind1 ...">&#10045;</abbr></td>
+				</tr>
+				<tr><td><abbr title="jobb oldali képen, ahol a római számok is. Lófarokszerű érköteg, mely kíséri ansa_nephronit. arteriola_recta és venula_recta tartozik bele">4</abbr>vasa_recta VAN</td>   <td>vasa_recta NINCS</td></tr>
+			</table>
+			<img src="images/glmrs.png">
+			<li><span class="WHITE">I</span>pars_convoluta(cortex)</li>
+			<li><span class="WHITE">II</span>pars_radiata(cortex)</li>
+			<li><span class="WHITE">III</span>zona_externa(medulla) KÜLSŐ része</li>
+			<li><span class="WHITE">IV</span>zona_externa(medulla) BELSŐ része</li>
+			<li><span class="WHITE">V</span>zona_interna(medulla) &#10140; csak tubulus_intermedius van <abbr title="externaban van pars_recta(tubulus_distalis)">&#10045;</abbr></li>
+		</ul></details>
+		
+		<br><details><summary>funkciós leírás (csak főbb dolgok)</summary><ul class="normal">
+			<li>naponta ~180liter fehérjementes <abbr title="átszűrt folyadék">filtrátum</abbr> jut a kapillárisokból a podocyta alkotta lamina_visceralison keresztül a Bowman-tok üregbe</li>
+			<li>ez tovább folyik a polus_glomerulin keresztül, és a visszaszívás következtében csak napi 1,5liter lesz vizelet</li>
+			<li>tubulus_proximalis &#10140; glükózt 100%ba visszaszívja</li>
+			<li>filtrátum ?ozmotikus_koncentrációja?</li><ul>
+				<li>izotóniás</li>
+				<li>hipotóniás<abbr title=",,híg''">&#10045;</abbr> &#10140; tubulus_distalis kezdeténél</li>
+				<li>izotóniás &#10140; tubulus_collectivus</li>
+			</ul>
+			<li>tubulus_distalis pars_convoluta-nál ADH hatására víz-visszaszívás<abbr title="proximalisnal a filtrátum 7/8a vissza lett már szívva, szóval nem csak itt történik, de jelentős attól még">&#10045;</abbr></li>
+			<li>arteriola_recta és venula_recta közti kapillárisok elszállítja a visszaszívott folyadékot</li>
+		</ul></details>
+		
+		<br><details><summary>tubulus proximalis vs distalis megkülönböztetése mikroszkópban?</summary><ul class="normal">
+			<img src="images/tblspxdst.png">
+			<table>
+				<tr><th>szempont</th>   <th>tubulus_proximalis</th>   <th>tubulus_distalis</th></tr>
+				<tr><td>festődés</td>
+					<td>sötétebb(<abbr title="mert sok mitokondrium">erősebb acidophil</abbr>)</td>
+					<td>világosabb</td>
+				</tr>
+				<tr><td>sejt</td>
+					<td>magasabb<abbr title=",,hengerhámosabb''">&#10045;</abbr></td>
+					<td>alacsonyabb</td>
+				</tr>
+				<tr><td>lumen</td>
+					<td>csillag alakú</td>
+					<td>tágabb kerek</td>
+				</tr>
+				<tr><td>sejthatár</td>
+					<td>alig,nem kivehető</td>
+					<td>jobban kivehető</td>
+				</tr>
+				<tr><td>kefeszegély</td>
+					<td>van(de nem látható, csak sejthető)</td>
+					<td>nincs</td>
+				</tr>
+			</table>
+			<li>(bazális csíkolat &#10140; mitokondriumok alkotják a sejt bazális=külső részén) <img class="mini" src="images/bzlscsk.png"></li>
+		</ul></details>
+		
+		<br><details><summary>tubulus_intermedius &#10140; hol keressem metszeten? mitől különböztessem meg és hogyan?</summary><ul class="normal">
+			<li>medullaban találom</li>
+			<li>kapilláristól kell megkülönböztetni</li>
+			<li>tubulus_intermedius</li><ul>
+				<li>sejtmagja jobban benyúlik a lumenbe</li>
+				<li>nincs benne eritrocita</li>
+				<li>citoplazma vastagabb</li>
+			</ul>
+		</ul></details>
+		
+		<br><details><summary>macula_densa &#10140; hol keressem metszeten? mitől különböztessem meg és hogyan? mely arteriola van mellette?</summary><ul class="normal">
+			<li>érpólusnál &#10140; tubulus_distalis azon része a pars_recta és pars_convoluta határán, mely hozzáfekszik az érpólushoz</li>
+			<li>kis, ovális sejtlemez</li>
+			<li>keskeny, magas, sűrűn elhelyezkedő sejtek</li>
+			<li>sejtmag nagyobb sűrűsége miatt festődik sötétebbre, mint a környezete</li>
+			<li>afferens mellett van, efferens nincs mellette <abbr title="forrás: kálmán - 14.6">&#10045;</abbr></li>
+			<li>(nincs bazális csíkolat)</li>
+		</ul></details>
+		
+		<br><details><summary>vesemedence</summary><ul class="normal">
+			<li>(2.funkc)</li>
+			<li>urothelium borított nyálkahártya béleli</li>
+			<li>papilla_renalisnál hámátmenet &#10140; papilla_renalis még egyrétegű_hengerhám &#10140; calyx_minor már urothelium</li>
+			<li>A nyálkahártya lamina propriája erős, sűrű szövésű elaszticus rostokban bővelkedik, csak külső rétegei lazulnak fel. Igazi submucosa nincs, a lamina propria éles határ nélkül megy át az izomfalba. Az izomfal nem nagyon erős, belső rétegeiben inkább körkörös, külső rétegeiben inkább hosszanti irányú. A vesekelyheknek a papillán való tapadása körül erősebb körkörös simaizomnyalábok fordulnak elő. Az izomfalat gyenge adventitialis kötőszövet rögzíti a vesemedencét mindenütt körülvevő zsírszövethez, ti. a vesesinust kitöltő, majd a vesekapun kívüli zsíros tokhoz.</li>
+		</ul></details>
+		
+		<br><details><summary>vesetestecske és vesecsatornák hol fordulnak elő?</summary><ul class="normal"><table>
+			<tr><th>rész</th><th>előfordul</th></tr>
+			<tr><td>corpusculum_renale_Malpighi</td>
+				<td rowspan="2">cortex &#10140; pars_convoluta (lobularis_corticalis)</td>
+			</tr>
+			<tr><td>tubulus_proximalis - pars_convoluta</td></tr>
+			<tr><td>tubulus_proximalis - pars_recta</td>
+				<td rowspan="3">
+					<li>cortex &#10140; pars_radiata (lobularis_corticalis)</li>
+					<li>medulla</li>
+				</td>
+			</tr>
+			<tr><td>tubulus_intermedius</td></tr>
+			<tr><td>tubulus_proximalis - pars_recta</td></tr>
+			<tr><td>tubulus_proximalis - pars_convoluta</td>
+				<td>cortex &#10140; pars_convoluta (lobularis_corticalis)</td>
+			</tr>
+			<tr><td>tubulus_reuniens</td>
+				<td>cortex</td>
+			</tr>
+			<tr><td>tubulus_colligens</td>
+				<td>
+					<li>cortex &#10140; pars_radiata (lobularis_corticalis)</li>
+					<li>medulla</li>
+				</td>
+			</tr>
+			<tr><td>ductus_papillaris</td>
+				<td>medulla</td>
+			</tr>
+		</table></ul></details>
+		
+		<br><details><summary>juxtaglomerularis_apparatus &#10140; funkció? részei?</summary><ul class="normal">
+			 <li>funkció &#10140; vérnyomás-szabályozásban & vese-működés-szabályozásban részt vesz</li>
+			<div><strong>részei</strong></div>
+			 <li>juxtaglomerularis-sejtek</li>
+			 <li>macula_densa</li>
+			 <li>extraglomerularis-mesangiumsejtek</li>
+			<div><strong>leírás</strong></div>
+			 <li>juxtaglomerularis-sejtek</li><ul>
+				<li>vas_afferens simaizomsejtjei az érpólus környékén módosultak</li>
+				<li>tartalmaz &#10140; renin<abbr title="proteolytikus_enzim">(=)</abbr> & lizoszómális_enzim</li>
+			 </ul>
+			 <li>extraglomerularis-mesangiumsejtek &#10140; információt kizvetít a <abbr title="macula_densa & juxtaglomerularis-sejtek">másik 2</abbr> között</li>
+			 <li>macula_densa &#10140; érzékel & szabályoz <abbr title="vizelet csökkenő natriumtartalmát, csökkenő vérnyomást érzékeli &#10140; fokozza a renin leadást">(pl)</abbr></li>
+		</ul></details>
+		
+		<br><details><summary>kéregállomány?</summary><ul class="normal">
+			<img src="images/hgjtkasd.png">
+			<div><strong>felosztás</strong></div>
+			 <li>columna_renalis_Bertini</li>
+			 <li>cortex_corticis <img class="mini" src="images/rnszrk.png"> &#10140; <span class="Important">nincs benne</span>:</li><ul>
+				<li>corpusculum_renale_Malpighi</li>
+				<li>stria_medullaris</li>
+			 </ul>
+			 <li><abbr title="kb. ezt mutatja (bár az pars_radiata, de nemtudom van-e különbség)">35</abbr>stria_medullaris<abbr title="velősugár">(=)</abbr></li><ul>
+				<li>medullából érkező <img class="mini" src="images/frsadgb.png"> <abbr title="egyenes csatornák">pars_recta(t.p/d)</abbr> & <span class="WHITE">tubulus_collectivus</span> kérgi kötege</li>
+				<li>vese felszínt nem éri el</li>
+			 </ul>
+			<div><strong><span class="WHITE">31</span><span class="Important">lobulus_corticalis</span> a szövetegysége</strong></div>
+			 <li><span class="WHITE">32</span>pars_radiata = 1db centralis stria_medullaris képezi a tengelyét</li>
+			 <li><span class="WHITE">33</span>pars_convoluta</li><ul>
+				<li>2pars_radiata közti terület, melyet <span class="WHITE">38</span>a.interlobularis kettéoszt</li>
+				<li>tehát a nephron közepén pars_radiata, két oldalon a határát 1-1a.interlobularis képezi, és köztük fél-fél pars_convoluta</li>
+				<li>benne</li><ul>
+					<li><span class="WHITE">35</span>corpusculum_renale_Malpighi</li>
+					<li><abbr title="kanyarulatos csatornák">pars_convoluta(t.p/d)</abbr></li>
+				</ul>
+			 </ul>
+			<div><strong>egyéb a képen</strong></div>
+			 <li><span class="WHITE">34</span> venula_stellata</li>
+			 <li><span class="WHITE">36</span> vas_afferens</li>
+			 <li><span class="WHITE">37</span> vas_efferens<abbr title="képen látszik, hogy jut majd vissza v.interlobularisba">&#10045;</abbr> <img class="mini" src="images/hdertgsf.png"></li>
+			 <li><span class="WHITE">38</span> a.interlobularis</li>
+			 <li><span class="WHITE">39</span> v.interlobularis</li>
+			 <li><span class="WHITE">40</span> av.arcuata</li>
+			 <li><span class="WHITE">41</span> capsula_fibrosa</li>
+			 <li><span class="WHITE">42</span> a.interlobaris</li>
+			 <li><span class="WHITE">43</span> v.interlobaris</li>
+		</ul></details>
+
+	</ul></details>
+	<details><summary><strong>FM</strong> – tavalyi jegyzeteim</summary><ul class="normal">
+		<li>tubulus proximalis vs distalis</li>
+		<li>"rétegek"</li><ul>
+			<li>cortex</li>
+			<li>medulla</li><ul>
+				<li>zona interna</li>
+				<li>zona externa</li>
+			</ul>
+		</ul>
+		<li>gyüjtőcsatornák</li>
+		<li>kapillárisok</li>
+		<li>lamina parietalis vs visceralis (capsula_glomeruli_Bowman)</li>
+		--------------------<br> 
+		<li>pars recta vs convoluta</li>
+		<li>macula_densa</li>
+		<li>vas afferens vs efferens</li>
+		<li>vízelvezetőpólus & érpólus</li>
+		<li>sejtmag &#10140; podocyta vs fenesztrált_endothel</li>
+		--------------------<br> 
+		<li>(tubulus_reuniens)</li>
+		<li>(mesangiumsejtek &#10140; extraglomerularis vs intraglomerularis)</li>
+		<li>(juxtaglomerularis-sejtek)</li>
+	</ul></details>
+	<details class="kerdes open 3/3" id="histo.59"><summary>vesepapilla, gyűjtőcsatornák beszájadzása</summary><ul class="normal">
 		<img src="100/02_01.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> pelvis_renalis (calyx_minor) lumene</div>
-			<div><span class="WHITE">2</span> 1rKh a vesepapilla csúcsán</div>
-			<div><span class="WHITE">3</span> ductus_papillaris(Bellini)</div>
-			<div><span class="WHITE">4</span> gyűjtőcsatorna beszájadzása</div>
-			<div><span class="WHITE">5</span> tubulus_intermedius</div>
-			<div><span class="WHITE">6</span> kapilláris</div>
-			<div><abbr title="hyalin = kicsapódott fehérje">(7)</abbr></div>
-		</ul></details>
+		<div class="abbr"><span class="WHITE">1</span>► pelvis_renalis (calyx_minor) lumene</div>
+		<div class="abbr"><span class="WHITE">2</span>► 1rKh a vesepapilla csúcsán</div>
+		<div class="abbr"><span class="WHITE">3</span>► ductus_papillaris(Bellini)</div>
+		<div class="abbr"><span class="WHITE">4</span>► gyűjtőcsatorna beszájadzása</div>
+		<div class="abbr"><span class="WHITE">5</span>► tubulus_intermedius</div>
+		<div class="abbr"><span class="WHITE">6</span>► kapilláris</div>
+		<div class="abbr">(7)► hyalin = kicsapódott fehérje</div>
 	</ul></details>
-	<details class="kerdes open" id="histo.2"><summary>zona_interna(medulla) (hosszmetszet)</summary><ul class="normal">
+	<details class="kerdes open 3/2" id="histo.2"><summary>zona_interna(medulla) (hosszmetszet)</summary><ul class="normal">
 		<img src="100/02_02.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> gyűjtőcsatorna</div>
-			<div><span class="WHITE">2</span> tubulus_intermedius</div>
-			<div><span class="WHITE">3</span> kapilláris</div>
-			<div><span class="WHITE">4</span> (gyűjtőcsatorna fala)</div>
-		</ul></details>
+		<div class="abbr"><span class="WHITE">1</span>► gyűjtőcsatorna</div>
+		<div class="abbr"><span class="WHITE">2</span>► tubulus_intermedius</div>
+		<div class="abbr"><span class="WHITE">3</span>► kapilláris</div>
+		<div class="abbr">(4)► gyűjtőcsatorna fala</div>
 	</ul></details>
-	<details class="kerdes open" id="histo.3"><summary>zona_externa(medulla)</summary><ul class="normal">
+	<details class="kerdes open 3/2" id="histo.3"><summary>zona_externa(medulla)</summary><ul class="normal">
 		<img src="100/02_03.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> gyűjtőcsatorna</div>
-			<div><span class="WHITE">2</span> pars_recta tubulus proximalis/distalis</div>
-			<div><span class="WHITE">3</span> tubulus_intermedius</div>
-			<div><span class="WHITE">4</span> kapilláris</div>
-		</ul></details>
+		<div class="abbr"><span class="WHITE">1</span>► gyűjtőcsatorna</div>
+		<div class="abbr"><span class="WHITE">2</span>► pars_recta tubulus proximalis/distalis</div>
+		<div class="abbr"><span class="WHITE">3</span>► tubulus_intermedius</div>
+		<div class="abbr"><span class="WHITE">4</span>► kapilláris</div>
 	</ul></details>
-	<details class="kerdes open" id="histo.4"><summary>zona_interna(medulla)</summary><ul class="normal">
+	<details class="kerdes open 3/2" id="histo.4"><summary>zona_interna(medulla)</summary><ul class="normal">
 		<img src="100/02_04.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> gyűjtőcsatorna</div>
-			<div><span class="WHITE">2</span> tubulus_intermedius</div>
-			<div><span class="WHITE">3</span> kapilláris</div>
-			<div><span class="WHITE">4</span> venula</div>
-		</ul></details>
+		<div class="abbr"><span class="WHITE">1</span>► gyűjtőcsatorna</div>
+		<div class="abbr"><span class="WHITE">2</span>► tubulus_intermedius</div>
+		<div class="abbr"><span class="WHITE">3</span>► kapilláris</div>
+		<div class="abbr"><span class="WHITE">4</span>► venula</div>
 	</ul></details>
-	<details class="kerdes open" id="histo.5"><summary>zona_externa(medulla)</summary><ul class="normal">
+	<details class="kerdes open 3/2" id="histo.5"><summary>zona_externa(medulla)</summary><ul class="normal">
 		<img src="100/02_05.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> gyűjtőcsatorna</div>
-			<div><span class="WHITE">2</span> pars_recta</div>
-			<div><span class="WHITE">3</span> tubulus_intermedius</div>
-			<div><span class="WHITE">4</span> kapilláris</div>
-		</ul></details>
+		<div class="abbr"><span class="WHITE">1</span>► gyűjtőcsatorna</div>
+		<div class="abbr"><span class="WHITE">2</span>► pars_recta</div>
+		<div class="abbr"><span class="WHITE">3</span>► tubulus_intermedius</div>
+		<div class="abbr"><span class="WHITE">4</span>► kapilláris</div>
 	</ul></details>
-	<details class="kerdes open" id="histo.6"><summary>cortex</summary><ul class="normal">
+	<details class="kerdes open 3/4" id="histo.6"><summary>cortex</summary><ul class="normal">
 		<img src="100/02_06.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> glomerulus</div>
-			<div><span class="WHITE">2</span> lamina_parietalis capsula_glomeruli_Bowman</div>
-			<div><span class="WHITE">3</span> pars_convoluta tubulus_proximalis</div>
-			<div><span class="WHITE">4</span> pars_convoluta tubulus_distalis</div>
-			<div><span class="WHITE">5</span> efferens arteriola</div>
-			<div><span class="WHITE">6</span> polus_glomeruli = vizeleti_pólus &#10140; tubulus_proximalis kezdete</div>
-			<div><span class="WHITE">(7-9)</span> (kapilláris)</div>
-			<div><span class="WHITE">10</span> podocyta ~ lamina_visceralis capsula_glomeruli_Bowman</div>
-			<div><span class="WHITE">11</span> mesangiumsejtek</div>
-			<div><span class="WHITE">(12)</span> (fibrocyta)</div>
-		</ul></details>
+		<div class="abbr"><span class="WHITE">1</span>► glomerulus</div>
+		<div class="abbr"><span class="WHITE">2</span>► lamina_parietalis capsula_glomeruli_Bowman</div>
+		<div class="abbr"><span class="WHITE">3</span>► pars_convoluta tubulus_proximalis</div>
+		<div class="abbr"><span class="WHITE">4</span>► pars_convoluta tubulus_distalis</div>
+		<div class="abbr"><span class="WHITE">5</span>► efferens arteriola</div>
+		<div class="abbr"><span class="WHITE">6</span>► polus_glomeruli = vizeleti_pólus &#10140; tubulus_proximalis kezdete</div>
+		<div class="abbr">(7)► kapilláris</div>
+		<div class="abbr">(8)► kapilláris</div>
+		<div class="abbr">(9)► kapilláris</div>
+		<div class="abbr"><span class="WHITE">10</span>► podocyta ~ lamina_visceralis capsula_glomeruli_Bowman</div>
+		<div class="abbr"><span class="WHITE">11</span>► mesangiumsejtek</div>
+		<div class="abbr">(12)► fibrocyta</div>
 	</ul></details>
-	<details class="kerdes open" id="histo.7"><summary>cortex</summary><ul class="normal">
+	<details class="kerdes open 3/6" id="histo.7"><summary>cortex</summary><ul class="normal">
 		<img src="100/02_07.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> glomerulus</div>
-			<div><span class="WHITE">2</span> lamina_parietalis capsula_glomeruli_Bowman</div>
-			<div><span class="WHITE">3</span> pars_convoluta tubulus_proximalis</div>
-			<div><span class="WHITE">4</span> pars_convoluta tubulus_distalis</div>
-			<div><span class="WHITE">5</span> afferens arteriola <abbr title="belépése a glomerulusba">&#10045;</abbr></div>
-			<div><span class="WHITE">6</span> macula_densa</div>
-			<div><span class="WHITE">7</span> polus_glomeruli = vizeleti_pólus &#10140; tubulus_proximalis kezdete</div>
-			<div><span class="WHITE">8</span> endothelsejt</div>
-			<div><span class="WHITE">9</span> podocyta ~ lamina_visceralis capsula_glomeruli_Bowman</div>
-			<div><span class="WHITE">10</span> precapillaris arteriola</div>
-			<div><span class="WHITE">11</span> postcapillaris venula</div>
-		</ul></details>
+		<div class="abbr"><span class="WHITE">1</span>► glomerulus</div>
+		<div class="abbr"><span class="WHITE">2</span>► lamina_parietalis capsula_glomeruli_Bowman</div>
+		<div class="abbr"><span class="WHITE">3</span>► pars_convoluta tubulus_proximalis</div>
+		<div class="abbr"><span class="WHITE">4</span>► pars_convoluta tubulus_distalis</div>
+		<div class="abbr"><span class="WHITE">5</span>► afferens arteriola <abbr title="belépése a glomerulusba">&#10045;</abbr></div>
+		<div class="abbr"><span class="WHITE">6</span>► macula_densa</div>
+		<div class="abbr"><span class="WHITE">7</span>► polus_glomeruli = vizeleti_pólus &#10140; tubulus_proximalis kezdete</div>
+		<div class="abbr"><span class="WHITE">8</span>► endothelsejt</div>
+		<div class="abbr"><span class="WHITE">9</span>► podocyta ~ lamina_visceralis capsula_glomeruli_Bowman</div>
+		<div class="abbr"><span class="WHITE">10</span>► precapillaris arteriola</div>
+		<div class="abbr"><span class="WHITE">11</span>► postcapillaris venula</div>
 	</ul></details>
-	<details class="kerdes open" id="histo.8"><summary>cortex</summary><ul class="normal">
+	<details class="kerdes open 3/5" id="histo.8"><summary>cortex</summary><ul class="normal">
 		<img src="100/02_08.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> glomerulus</div>
-			<div><span class="WHITE">2</span> lamina_parietalis capsula_glomeruli_Bowman</div>
-			<div><span class="WHITE">3</span> pars_convoluta tubulus_proximalis</div>
-			<div><span class="WHITE">4</span> pars_convoluta tubulus_distalis</div>
-			<div><span class="WHITE">5</span> afferens arteriola</div>
-			<div><span class="WHITE">6</span> macula_densa</div>
-			<div><span class="WHITE">7</span> polus_glomeruli = vizeleti_pólus &#10140; tubulus_proximalis kezdete</div>
-			<div><span class="WHITE">8</span> kapilláris</div>
-			<div><span class="WHITE">(9)</span> (fibrocyta)</div>
-			<div><span class="WHITE">10</span> macula_densa <abbr title="glomerulus nem esett a metszés síkjába">&#10045;</abbr></div>
-		</ul></details>
+		<div class="abbr"><span class="WHITE">1</span>► glomerulus</div>
+		<div class="abbr"><span class="WHITE">2</span>► lamina_parietalis capsula_glomeruli_Bowman</div>
+		<div class="abbr"><span class="WHITE">3</span>► pars_convoluta tubulus_proximalis</div>
+		<div class="abbr"><span class="WHITE">4</span>► pars_convoluta tubulus_distalis</div>
+		<div class="abbr"><span class="WHITE">5</span>► afferens arteriola</div>
+		<div class="abbr"><span class="WHITE">6</span>► macula_densa</div>
+		<div class="abbr"><span class="WHITE">7</span>► polus_glomeruli = vizeleti_pólus &#10140; tubulus_proximalis kezdete</div>
+		<div class="abbr"><span class="WHITE">8</span>► kapilláris</div>
+		<div class="abbr">(9)► fibrocyta</div>
+		<div class="abbr"><span class="WHITE">10</span>► macula_densa <abbr title="glomerulus nem esett a metszés síkjába">()</abbr></div>
 	</ul></details>
-	<details class="kerdes open" id="histo.9"><summary>cortex</summary><ul class="normal">
+	<details class="kerdes open 3/4" id="histo.9"><summary>cortex</summary><ul class="normal">
 		<img src="100/02_09.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> glomerulus</div>
-			<div><span class="WHITE">2</span> lamina_parietalis capsula_glomeruli_Bowman</div>
-			<div><span class="WHITE">3</span> pars_convoluta tubulus_proximalis</div>
-			<div><span class="WHITE">4</span> pars_convoluta tubulus_distalis</div>
-			<div><span class="WHITE">5</span> hilus_glomeruli = érpólus ~ afferens arteriola</div>
-			<div><span class="WHITE">6</span> macula_densa</div>
-			<div><span class="WHITE">7</span> polus_glomeruli = vizeleti_pólus &#10140; tubulus_proximalis kezdete</div>
-			<div><span class="WHITE">8</span> tubulus_reuniens</div>
-		</ul></details>
+		<div class="abbr"><span class="WHITE">1</span>► glomerulus</div>
+		<div class="abbr"><span class="WHITE">2</span>► lamina_parietalis capsula_glomeruli_Bowman</div>
+		<div class="abbr"><span class="WHITE">3</span>► pars_convoluta tubulus_proximalis</div>
+		<div class="abbr"><span class="WHITE">4</span>► pars_convoluta tubulus_distalis</div>
+		<div class="abbr"><span class="WHITE">5</span>► hilus_glomeruli = érpólus ~ afferens arteriola</div>
+		<div class="abbr"><span class="WHITE">6</span>► macula_densa</div>
+		<div class="abbr"><span class="WHITE">7</span>► polus_glomeruli = vizeleti_pólus &#10140; tubulus_proximalis kezdete</div>
+		<div class="abbr"><span class="WHITE">8</span>► tubulus_reuniens</div>
 	</ul></details>
 <!----></div></div></details>
 
 <!----><details><summary class="phase">.(3) vesica_biliaris</summary><div class="normal"><div><div class="title"></div>
-	<details class="kerdes open" id="histo.10"><summary>vesica_biliaris</summary><ul class="normal">
-		<img src="100/03_01.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> epithelium = 1rHh</div>
-			<div><abbr title="nyálkahártyafülke, melyet a metszési sík izolált, és így önálló lumennek tűnik, stb. (lényeg, hogy a redő a metszési sík következtében lesz ilyen a képen)">(2-3)</abbr></div>
-			<div><span class="WHITE">4</span> nyálkahártyaredő</div>
-			<div><span class="WHITE">5</span> tunica_muscularis</div>
-			<div><span class="WHITE">6</span> tela_subserosa</div>
-			<div><span class="WHITE">7</span> tunica_serosa, hashártya</div>
+	<details class="kerdes 3/2" id="histo.49"><summary>ELMÉLET - tavalyi jegyzet alapján</summary><ul class="normal">
+		<li>tunica_mucosa</li><ul>
+			<li>1rHh mikrobolyhos</li>
+			<li>lamina_propria &#10140; nyálkahártya-redők</li>
+		</ul>
+		<li>tunica_muscularis (réteg nincs) (simaizom)</li>
+		<li>tunica_adventitia / (sub)serosa</li>
+		<details><summary style="color:Red"><font color="Green">epeút?</font></summary><ul class="normal">
+			<li><span class="WHITE">intrahepatikus</span>::: epekapilláris &#10140; Hering-csatorna &#10140; <abbr title="ductus_biliferus">(=)</abbr> ductus_interlobularis &#10140; ductus_hepaticus dexter/sinister &#10140; ductus_hepaticus_communis <span class="WHITE">2</span></li>
+			<li><span class="WHITE">extrahepatikus::: képen</span></li>
+		</ul></details>
+		<details><summary>epehólyagot mi béleli?</summary><ul class="normal">
+			<li>1rHh kutikulával</li>
+		</ul></details>
+		<details><summary>epehólyagban mely rétegek hiányoznak?</summary><ul class="normal">
+			<li>lamina_muscularis</li>
+			<li>tela_submucosa</li>
+			<div>(azért, mert csupán egy kivezetőcső megvastagodása) <span class="Vocab">HistoCD + füzet</span></div>
 		</ul></details>
 	</ul></details>
-	<details class="kerdes open" id="histo.11"><summary>vesica_biliaris</summary><ul class="normal">
+	<details class="kerdes open 3/3" id="histo.10"><summary>ismerdfel</summary><ul class="normal">
+		<img src="100/03_01.png">
+		<span class="abbr"><span class="WHITE">1</span>► epithelium = 1rHh</span><br>
+		<span class="abbr">(2-3)► </span><br>
+		<span class="abbr"><span class="WHITE">4</span>► nyálkahártyaredő</span><br>
+		<span class="abbr"><span class="WHITE">5</span>► tunica_muscularis</span><br>
+		<span class="abbr"><span class="WHITE">6</span>► tela_subserosa</span><br>
+		<span class="abbr"><span class="WHITE">7</span>► tunica_serosa, hashártya</span><br>
+	</ul></details>
+	<details class="kerdes open 3/2" id="histo.11"><summary>ismerdfel</summary><ul class="normal">
 		<img src="100/03_02.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> epithelium = 1rHh</div>
-			<div><span class="WHITE">2</span> tunica_muscularis</div>
-			<div><span class="WHITE">3</span> lamina_propria</div>
-			<div><span class="WHITE">4</span> lamina_propria</div>
-			<div><abbr title="nyálkahártyafülke, melyet a metszési sík izolált, és így önálló lumennek tűnik, stb. (lényeg, hogy a redő a metszési sík következtében lesz ilyen a képen)">(5-7)</abbr></div>
-		</ul></details>
+		<span class="abbr"><span class="WHITE">1</span>►  epithelium = 1rHh</span><br>
+		<span class="abbr"><span class="WHITE">2</span>►  tunica_muscularis</span><br>
+		<span class="abbr"><span class="WHITE">3</span>►  lamina_propria</span><br>
+		<span class="abbr"><span class="WHITE">4</span>►  lamina_propria</span><br>
+		<span class="abbr">(5-7)► nyálkahártyafülke, melyet a metszési sík izolált, és így önálló lumennek tűnik, stb. (lényeg, hogy a redő a metszési sík következtében lesz ilyen a képen)</span><br>
 	</ul></details>
 <!----></div></div></details>
 
 <!----><details><summary class="phase">.(4) epididymis</summary><div class="normal"><div><div class="title"></div>
-	<details class="kerdes open" id="histo.12"><summary>mellékhere csatornái</summary><ul class="normal">
+	<details class="kerdes 3/2" id="histo.50"><summary style="color:Red"><font color="Green">ELMÉLET - tavalyi jegyzet alapján</font></summary><ul class="normal">
+		<details><summary style="color:Magenta"><font color="Green"><span class="Vocab">R</span> testis - transversal</font></summary><ul class="normal">
+			<img src="images/rajz_tstkrzstmtzst.png">
+			<li><span class="MISS">FONTOS!!!</span> <span class="Important">téglalapot rajzoljak inkább, aminek alja és teteje kissé domború</span></li>
+			<div><span class="WHITE">1</span> septula_testis</div>
+			<div><span class="WHITE">2</span> lubulus_testis</div>
+			<div><span class="WHITE">3</span> mediastinum_testis</div>
+			<div><span class="WHITE">4</span> plexus_pampiniformis</div>
+			<div><span class="WHITE">5</span> a.testicularis</div>
+			<div><span class="WHITE">6</span> fascia_spermatica_interna</div>
+			<div><span class="WHITE">7</span> cavitas_scroti</div>
+			<div><span class="WHITE">8</span> tunica_vaginalis_testis l.p./l.v.</div>
+			<div><span class="WHITE">9</span> tunica_albuginea</div>
+			<div><span class="WHITE">10</span> m.cremaster</div>
+			<div><span class="WHITE">11</span> fascia_spermatica_externa</div>
+			<div><span class="WHITE">12</span> tunica_dartos</div>
+			<div><span class="WHITE">13</span> cutis</div>
+			<div><span class="WHITE">14</span> septum_scrotis</div>
+			<div><span class="WHITE">15</span> epididymis</div>
+			<div><span class="WHITE">16</span> ductus_deferens</div>
+		</ul></details>
+		<details><summary><span class="Vocab">R</span> testis - saggital</summary><ul class="normal">
+			<img src="images/rajz_rtstsggtl.png">
+			<div><span class="WHITE">1</span> septula_testis</div>
+			<div><span class="WHITE">2</span> lobuli_testis</div>
+			<div><span class="WHITE">3</span> mediastinum_testis</div>
+			<div><span class="WHITE">4</span> rete_testis</div>
+			<div><span class="WHITE">5</span> tunica_albuginea</div>
+			<div><span class="WHITE">6</span> tubulus_seminiferus_contortus</div>
+			<div><span class="WHITE">7</span> tubulus_seminiferus_rectus</div>
+			<div><span class="WHITE">8</span> tunica_vaginalis_testis lamina_visceralis <abbr title="epiorchium">(=)</abbr></div>
+			<div><span class="WHITE">9</span> caput_epididymidis</div>
+			<div><span class="WHITE">10</span> ductulus_efferens_testis</div>
+			<div><span class="WHITE">11</span> ductus_epididymidis</div>
+			<div><span class="WHITE">12</span> ductus_deferens</div>
+		</ul></details>
+		<details><summary>FM-nél figyelnivalók</summary><ul class="normal">
+			<li>ductulus_efferens_testis vs ductus_epididymis</li><ul>
+				<li>ductus_epididymis &#10140; 2mHH + stereocilium</li>
+				<li>ductulus_efferens_testis &#10140; 1m/2m-Hh/Kh + kinocilium</li>
+			</ul>
+			<li>2mHH &#10140; fősejt & bazális sejt</li>
+			<li>simaizom + ktsz (veszi körbe a csatornákat)</li>
+			--------------------<br> 
+			<li>tunica_albuginea &#10140; kollagénrostos kötőszövet</li>
+			<li>tunica_vaginalis_testis lamina_parietalis &#10140; mesothel-sejtek</li>
+			</ul></details>
+	  <strong>here</strong>
+		<details><summary><font color="Black">&#9609;</font> tunica_albuginea milyen szövet? septula_testis milyen szövet?</summary><ul class="normal">
+			<li>tömött kollagénrostos kötőszövet</li>
+		</ul></details>
+		<details><summary><font color="Black">&#9609;</font> csatornák típusa & elhelyezkedés?</summary><ul class="normal">
+			<li>tubulus_seminiferus_convolutus<abbr title="contortus">(=)</abbr> (kanyarulatos)</li><ul>
+				<li>1zárt hurkot alkotó kanyarulatos csatornából áll 1lobulus</li>
+				<li>mediastinum_testisnél összefutnak</li>
+			</ul>
+			<li>tubulus_seminiferus_rectus (egyenes)</li>
+			<li>rete_testis (hálózat)</li>
+		</ul></details>
+		<details><summary><font color="Black">&#9609;</font> parenchymát mi alkotja?</summary><ul class="normal">
+			<li>tubulus_seminiferus_convolutus</li>
+		</ul></details>
+		<details><summary><font color="Black">&#9609;</font> tubulus_seminiferus_convolutus mi veszi körül?</summary><ul class="normal">
+			<li>laza kötőszövet, benne:</li><ul>
+				<li>Leydig-sejtek (szigetet alkotnak)</li>
+				<li>erek</li>
+			</ul>
+		</ul></details>
+		<details><summary><font color="Black">&#9609;</font> tubulus_seminiferus_rectus mi béleli?</summary><ul class="normal">
+			<li>1rétegű köbhám</li>
+		</ul></details>
+		<details><summary><font color="Black">&#9609;</font> rete_testis_Hallerit mi béleli?</summary><ul class="normal">
+			<li>1rétegű köbhám/laphám</li>
+		</ul></details>
+		<details><summary><font color="Black">&#9609;</font> Leydig-sejtek szerepe?</summary><div class="normal">
+			<li>tesztoszteront termelnek</li>
+			<li>(Reinke-fehérjekristalloidokat tartalmaznak, de nemlátszik, csak elektronmikroszkóppal)</li>
+		</div></details>
+	  <strong>hímivarsejtképzés</strong>
+		<details><summary><font color="Orange">&#9609;</font> neve? mikor? hol történik?</summary><div class="normal">
+			<li>spermatogenesis</li>
+			<li>pubertáskorban kezdődik el</li>
+			<li>tubulus_seminiferus_contortus</li>
+		</div></details>
+		<details><summary><font color="Orange">&#9609;</font> leírása?</summary><ul class="normal">
+			<li>spermatogonium<abbr title="spermiogonium, de ezt alig használják net alapján, szóval ne így">(=)</abbr></li><ul>
+				<li>lamina_limitans mellett találhatók közvetlen (Sertolli-sejteken kívül)</li>
+				<li>osztódik mitózissal &#10140; kb fele <span class="WHITE">A</span> típusú, fele <span class="WHITE">B</span> típusú lesz</li>
+				<li><span class="WHITE">A</span> típusúnál nem történik változás, csinálja tovább ugyanezt</li>
+				<li><span class="WHITE">B</span> típusú 1szer osztódva mitózissal 2primer_spermatocitává válik</li>
+			</ul>
+			<li>primer_spermatocita<abbr title="spermiocita, de ezt alig használják net alapján, szóval ne így">(=)</abbr> &#10140; megkezdi meiózist</li><ul>
+				<li>primer_spermatocita &#10140; meiózis I &#10140; 2db szekunder_spermatocita</li>
+				<li>szekunder_spermatocita &#10140; meiózis II &#10140; 2db sperm<abbr title="at">()</abbr>ida</li>
+			</ul>
+			<li>spermio<abbr title="histo">()</abbr>genesis &#10140; kb. 2hónap alatt a spermatida átalakul spermiummá (sejtdifferenciálódás útján, tehát osztódás nincs már!)</li>
+			<a href="images/spermiogenezis.png"><img src="images/spermiogenezis.png"></a>
+		</ul></details>
+		<details><summary><font color="Gainsboro">&#9609;</font> képen milyen spermatocita látható?</summary><div class="normal">
+			<li>kettő egymástól nehezen különböztethető meg, ezért...</li>
+			<li>...mivel secunder állapot csak nagyon-rövid ideig van, ezért feltételezhetően primer lesz látható</li>
+		</div></details>
+		<details><summary><font color="Gainsboro">&#9609;</font> Sertolli dajkasejtek szerepe?(4)</summary><div class="normal">
+			<li>kitöltik a herecsatornát &#10140; lamina_limitanstól a lumenig nyúlik</li>
+			<li>termelnek &#10140; piruvát, laktát, inhibin <abbr title="van egylb is szövGyak">&#10045;</abbr></li>
+			<li>fagocitózis</li>
+			<li>citoplazmájukban zajlik a spermiogenezis</li>
+		</div></details>
+		<details><summary><font color="Gainsboro">&#9609;</font> hímivarsejt felépítése?</summary><div class="normal">
+			<a href="images/sprmm.png"><img src="images/sprmm.png"></a>
+			<li>fej</li><ul>
+				<li>sejtmag [n]</li>
+				<li>kívülről acrosoma borítja &#10140; benne lévő enzimek biztosítják zona_pellucidán való átjutást megtermékenyítés során</li>
+			</ul>
+			<li>nyak &#10140; mitokondriumok ölelik körbe az ostort benne</li>
+			<li>farok</li><ul>
+				<li>ostoros mozgást ezzel végzi</li>
+				<li>keresztmetszet &#10140; 9pár mikrotubulus körben, 2db középen <span class="Miss">(kinocilium, undulipódium)</span></li>
+			</ul>
+		</div></details>
+		<details><summary><font color="Gainsboro">&#9609;</font> spermiogenesis &#10140; leírás? szabályozása?</summary><div class="normal">
+			<li>Golgi-készülékből fejlődött ki a spermiogenesis során</li>
+			<li>magtól távolabbi centriolum &#10140; farok</li>
+			<li>citoplazmája nagyrésze lelökődik <abbr title="csak a spermium nyakát alkotó és a farkát egy darabon vékony plasmafilmként befedő kis rész marad meg">&#10045;</abbr></li>
+			<li>FSH hormon szabályozza (hipofízis termeli)</li>
+		</div></details>
+		<details><summary><font color="Gainsboro">&#9609;</font> mozgáshoz energiaszükségletét mi biztosítja?</summary><div class="normal">
+			<li>mitokondriumokban glikolízis</li>
+		</div></details>
+		<details><summary><font color="Gainsboro">&#9609;</font> hímivarsejt száma / kiürített ondó?</summary><div class="normal">
+			<li>normál &#10140; 100millió/ml (1erekciónál 2-3ml ondó ürítés van)</li>
+			<li>terméketlen &#10140; 20millió/ml</li>
+		</div></details>
+	  <strong>mellékhere</strong>
+		<details><summary><font color="Black">&#9609;</font> vesecsatornák a mellékhere mely részeiben találhatók?</summary><ul class="normal">
+			<li>ductulus_efferens_testis &#10140; caput</li>
+			<li>ductus_epidiymidis &#10140; caput & corpus & cauda</li>
+		</ul></details>
+		<details><summary><font color="Black">&#9609;</font> ductulus_efferens_testis jellemzés?</summary><ul class="normal">
+			<li>csillag alakú lumen</li>
+			<li>magas hengerhámsejtek / alacsony köbhámsejtek</li>
+			<li>kinocilium borítja egy részét</li>
+			<li>körülveszi vékony simaizomréteg</li>
+			<li>lumenben spermiumok</li>
+		</ul></details>
+		<details><summary><font color="Black">&#9609;</font> ductulus_epididymidis jellemzés?</summary><ul class="normal">
+			<li>kétmagsoros stereociliumos hengerhám</li>
+			<li>körülveszi vékony simaizomréteg</li>
+			<li>lumenben spermiumok (+makrophagok)</li>
+		</ul></details>
+		<details><summary><font color="Black">&#9609;</font> kinociliumok szerepe?</summary><ul class="normal">
+			<li>tereli a spermiumokat rete_testisből ductus_epididymidis fele</li>
+		</ul></details>
+		<details><summary><font color="Black">&#9609;</font> ductulus_epididymidis változása cauda irányába?</summary><ul class="normal">
+			<li>egyre vastagabb a simaizomréteg</li>
+			<li>egyre vékonyabb a hámréteg</li>
+			<li>egyre kevésbé kanyargós a csatorna</li>
+		</ul></details>
+		<details><summary><font color="Black">&#9609;</font> mely szakaszon készült a metszet és miért?</summary><ul class="normal">
+			<li>caput &#10140; corpus & caudaban már nem lenne ductulus_efferens_testis</li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes open 3/2" id="histo.12"><summary>mellékhere csatornái</summary><ul class="normal">
 		<img src="100/04_01.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> ductulus_efferens_testis &#10140; kinociliumos 1m/2m-Kh/Hh</div>
-			<div><span class="WHITE">2</span> ductus_epididymidis &#10140; stereocilium TmHh</div>
-			<div><span class="WHITE">3</span> simaizom</div>
-			<div><span class="WHITE">4</span> precapillaris arteriola</div>
-			<div><abbr title="postcapillaris venula">(5)</abbr></div>
-		</ul></details>
+		<span class="abbr"><span class="WHITE">1</span>► ductulus_efferens_testis &#10140; kinociliumos 1m/2m-Kh/Hh</span><br>
+		<span class="abbr"><span class="WHITE">2</span>► ductus_epididymidis &#10140; stereocilium TmHh</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► simaizom</span><br>
+		<span class="abbr"><span class="WHITE">4</span>► precapillaris arteriola</span><br>
+		<span class="abbr">(5)► postcapillaris venula</span><br>
 	</ul></details>
-	<details class="kerdes open" id="histo.13"><summary>ductulus_efferens_testis</summary><ul class="normal">
+	<details class="kerdes open 3/2" id="histo.13"><summary>ductulus_efferens_testis</summary><ul class="normal">
 		<img src="100/04_02.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> (Kh-sejt)</div>
-			<div><span class="WHITE">2</span> (Hh-sejt)</div>
-			<div><span class="WHITE">3</span> TmHh</div>
-			<div><span class="WHITE">4</span> kinocilium</div>
-			<div><span class="WHITE">5</span> simaizom</div>
-			<div><span class="WHITE">6</span> postcapillaris venula</div>
+		<span class="abbr">(1)► Kh-sejt</span><br>
+		<span class="abbr">(2)► Hh-sejt</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► TmHh</span><br>
+		<span class="abbr"><span class="WHITE">4</span>► kinocilium</span><br>
+		<span class="abbr"><span class="WHITE">5</span>► simaizom</span><br>
+		<span class="abbr"><span class="WHITE">6</span>► postcapillaris venula</span><br>
 	</ul></details>
-	</ul></details>
-	<details class="kerdes open" id="histo.14"><summary>ductus_epididymidis</summary><ul class="normal">
+	<details class="kerdes open 3/2" id="histo.14"><summary>ductus_epididymidis</summary><ul class="normal">
 		<img src="100/04_03.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> fősejt</div>
-			<div><span class="WHITE">2</span> bazális sejt</div>
-			<div>TmHh = <span class="WHITE">1</span> + <span class="WHITE">2</span></div>
-			<div><span class="WHITE">3</span> simaizomsejt</div>
-			<div><span class="WHITE">4</span> stereocilium</div>
-		</ul></details>
+		<span class="abbr"><span class="WHITE">1</span>► fősejt</span><br>
+		<span class="abbr"><span class="WHITE">2</span>► bazális sejt</span><br>
+		<span class="abbr"><span class="WHITE">1</span>+<span class="WHITE">2</span>► TmHh</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► simaizomsejt</span><br>
+		<span class="abbr"><span class="WHITE">4</span>► stereocilium</span><br>
 	</ul></details>
 <!----></div></div></details>
 
 <!----><details><summary class="phase">.(5) oesophagus</summary><div class="normal"><div><div class="title"></div>
-	<details class="kerdes open" id="histo.15"><summary>kezdeti szakasza</summary><ul class="normal">
+	<details class="kerdes 3/4" id="histo.51"><summary>ELMÉLET - tavalyi jegyzet alapján</summary><ul class="normal">
+		<details><summary>epithelium mi alkotja?</summary><ul class="normal">
+			<li>TENSLh</li>
+		</ul></details>
+		<details><summary>kezdeti szakaszában mely réteg hiányzik?</summary><ul class="normal">
+			<li>lamina_muscularis <span class="Vocab">SzövettanCD</span></li>
+		</ul></details>
+		<details><summary>2 előforduló mirigyet hogy tudom egymástól elkülöníteni?</summary><ul class="normal">
+			<li>glandulae_oesophagae &#10140; tela_submucosa-ban van</li>
+			<li>glandulae_cardiacae = Schaffer-mirigy &#10140; lamina_propria-ban van</li>
+		</ul></details>
+		<details><summary>lamina propria-ban mi található?</summary><ul class="normal">
+			<li>solitaer_nyirokfolliculus (MALT)</li>
+			<li>glandulae_cardiacae = Schaffer-mirigyek &#10140; felső és alsó részénél fordulnak csak elő</li>
+		</ul></details>
+		<details><summary>tela_submucosa-ban mi található?</summary><ul class="normal">
+			<li>kötőszövet</li>
+			<li>glandulae_oesophagae &#10140; mucosus-mirigyek, oesophagus fő mirigyei</li>
+			<li>plexus_submucosus_Meissneri</li>
+		</ul></details>
+		<details><summary><span class="WHITE">tunica_adventitia</span> vagy <span class="WHITE">tela_subserosa és tunica_serosa</span> van benne?</summary><ul class="normal">
+			<li>pars_abdominalist leszámítva adventitia (annál ugyanis "serosák")</li>
+		</ul></details>
+	</ul></details>
+	<details><summary>FM – tavalyi jegyzeteim</summary><ul class="normal">
+		<li>tunica_mucosa</li><ul>
+			<li>eipthelium TENSLH</li>
+			<li>lamina_propria</li>
+			<li>lamina_muscularis</li>
+		</ul>
+		<li>tela_submucosa</li>
+		<li>tunica_muscularis</li><ul>
+			<li>stratum_circulare</li>
+			<li>stratum_longitudinale</li>
+		</ul>
+		<li>tunica_adventitia</li>
+		--------------------<br> 
+		<li>glandulae_oesophagae &#10140; tela_submucosaban</li>
+		<li>glandulae_cardiacae(Schaffer)</li><ul>
+			<li>lamina_propria-ban</li>
+			<li>de csak a nyelőcső felső és alsó részénél fordulnak elő</li>
+		</ul>
+		<li>plexus_submucosus_Meissneri &#10140; tela_submucosaban</li>
+		<li>plexus_mientericus_Auerbachi &#10140; tunica_muscularis 2rétege közt</li>
+		--------------------<br> 
+		<li>(harántcsíkolt vs simaizom)</li>
+	</ul></details>
+	<details class="kerdes open 3/3" id="histo.15"><summary>kezdeti szakasza</summary><ul class="normal">
 		<img src="100/05_01.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> TEnsLh</div>
-			<div><span class="WHITE">2</span> lamina_propria</div>
-			<div><span class="WHITE">3</span> tela_submucosa</div>
-			<div><span class="WHITE">4</span> tunica_muscularis &#10140; harántcsíkolt</div>
-			<div><span class="WHITE">5</span> tunica_adventitia</div>
-			<div>nincs még lamina_muscularis</div>
-			<div>nincs még tunica_muscularis-nak 2jól elkülönülő stratumja</div>
-		</ul></details>
+		<span class="abbr"><span class="WHITE">1</span>► TeNsLh</span><br>
+		<span class="abbr"><span class="WHITE">2</span>► lamina_propria</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► tela_submucosa</span><br>
+		<span class="abbr"><span class="WHITE">4</span>► tunica_muscularis &#10140; harántcsíkolt</span><br>
+		<span class="abbr"><span class="WHITE">5</span>► tunica_adventitia</span><br>
+		<div>nincs még lamina_muscularis</div>
+		<div>nincs még tunica_muscularis-nak 2jól elkülönülő stratumja</div>
 	</ul></details>
-	<details class="kerdes open" id="histo.16"><summary>középső szakasza</summary><ul class="normal">
+	<details class="kerdes open 3/5" id="histo.16"><summary>középső szakasza</summary><ul class="normal">
 		<img src="100/05_02.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> TEnsLh <abbr title="kötőszöveti_papillák láthatók benne">!!!</abbr></div>
-			<div><span class="WHITE">2</span> stratum_germinativum</div>
-			<div><span class="WHITE">3</span> lamina_propria</div>
-			<div><span class="WHITE">4</span> lamina_muscularis</div>
-			<div><span class="WHITE">5</span> glandula_oesophagae (mucosus)</div>
-			<div><span class="WHITE">6</span> kivezetőcső lumene</div>
-			<div><span class="WHITE">7</span> kivezetőcső</div>
-			<div><span class="WHITE">8</span> tela_submucosa</div>
-			<div><span class="WHITE">9 + 10</span> tunica_muscularis = harántcsíkolt + sima</div>
-			<div><abbr title="venula">(11)</abbr> <abbr title="leváló hámsejtek">(12)</abbr></div>
-		</ul></details>
+		<span class="abbr"><span class="WHITE">1</span>► TeNsLh <abbr title="kötőszöveti_papillák láthatók benne">!!!</abbr></span><br>
+		<span class="abbr"><span class="WHITE">2</span>► stratum_germinativum</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► lamina_propria</span><br>
+		<span class="abbr"><span class="WHITE">4</span>► lamina_muscularis</span><br>
+		<span class="abbr"><span class="WHITE">5</span>► glandula_oesophagae (mucosus)</span><br>
+		<span class="abbr"><span class="WHITE">6</span>► kivezetőcső lumene</span><br>
+		<span class="abbr"><span class="WHITE">7</span>► kivezetőcső</span><br>
+		<span class="abbr"><span class="WHITE">8</span>► tela_submucosa</span><br>
+		<span class="abbr"><span class="WHITE">9</span> + <span class="WHITE">10</span>► tunica_muscularis = harántcsíkolt + sima</span><br>
+		<span class="abbr">(11)► venula</span><br>
+		<span class="abbr">(12)► leváló hámsejtek</span><br>
 	</ul></details>
-	<details class="kerdes open" id="histo.17"><summary>középső szakasza</summary><ul class="normal">
+	<details class="kerdes open 3/3" id="histo.17"><summary>középső szakasza</summary><ul class="normal">
 		<img src="100/05_03.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> TEnsLh <abbr title="kötőszöveti_papillák láthatók benne">!!!</abbr></div>
-			<div><span class="WHITE">2</span> solitaer nyiroktüsző</div>
-			<div><span class="WHITE">3</span> lamina_propria</div>
-			<div><span class="WHITE">4</span> tela_submucosa</div>
-			<div>tunica_muscularis</div><ul>
-				<li><span class="WHITE">5</span> stratum_circulare (tunica_muscularis)</li>
-				<li><span class="WHITE">6</span> stratum_longitudinale (tunica_muscularis)</li>
-				<li>harántcsíkolt + sima</li>
-			</ul>
-			<div><span class="WHITE">7</span> tunica_adventitia</div>
-		</ul></details>
+		<span class="abbr"><span class="WHITE">1</span>► TeNsLh <abbr title="kötőszöveti_papillák láthatók benne">!!!</abbr></span><br>
+		<span class="abbr"><span class="WHITE">2</span>► solitaer nyiroktüsző</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► lamina_propria</span><br>
+		<span class="abbr"><span class="WHITE">4</span>► tela_submucosa</span><br>
+		<span class="abbr"><span class="WHITE">5</span>► stratum_circulare (tunica_muscularis)</span><br>
+		<span class="abbr"><span class="WHITE">6</span>► stratum_longitudinale (tunica_muscularis)</span><br>
+		<span class="abbr"><span class="WHITE">7</span>► tunica_adventitia</span><br>
+		<div>tunica_muscularis &#10140; harántcsíkolt + sima</div>
 	</ul></details>
-	<details class="kerdes open" id="histo.18"><summary>oesophagus</summary><ul class="normal">
+	<details class="kerdes open 3/3" id="histo.18"><summary>oesophagus</summary><ul class="normal">
 		<img src="100/05_04.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> glandulae_cardiacae(Schaffer) <abbr title="nyelőcső felső és alsó részében fordulnak csak elő">&#10045;</abbr></div>
-			<div><abbr title="kötőszöveti papillák">(2)</abbr> <abbr title="kivezetőcső">(3)</abbr></div>
-			<div><span class="WHITE">4</span> stratum_germinativum</div>
-			<div><span class="WHITE">5</span> stratum_spinosum</div>
-			<div><span class="WHITE">6</span> stratum_superficiale</div>
-			<div><span class="WHITE">7</span> lamina_muscularis</div>
-		</ul></details>
+		<span class="abbr"><span class="WHITE">1</span>► glandulae_cardiacae(Schaffer) <abbr title="nyelőcső felső és alsó részében fordulnak csak elő">&#10045;</abbr></span><br>
+		<span class="abbr">(2)► kötőszöveti papillák</span><br>
+		<span class="abbr">(3)► kivezetőcső</span><br>
+		<span class="abbr"><span class="WHITE">4</span>► stratum_germinativum</span><br>
+		<span class="abbr"><span class="WHITE">5</span>► stratum_spinosum</span><br>
+		<span class="abbr"><span class="WHITE">6</span>► stratum_superficiale</span><br>
+		<span class="abbr"><span class="WHITE">7</span>► lamina_muscularis</span><br>
 	</ul></details>
 <!----></div></div></details>
 
 <!----><details><summary class="phase">.(7) penis</summary><div class="normal"><div><div class="title"></div>
 	<details class="kerdes open 3/3" id="histo.26"><summary>széli része</summary><ul class="normal">
 		<img src="100/07_01.png">
-		<div class="abbr"><strong><span class="Important">►</span> (7) penis &#10140; széli része</strong></div>
-		<div class="abbr"><span class="WHITE">1</span>► cutis</div>
-		<div class="abbr"><span class="WHITE">2</span>► fascia_penis</div>
-		<div class="abbr"><span class="WHITE">3</span>► tunica_albuginea</div>
-		<div class="abbr"><span class="WHITE">4</span>► corpus_cavernosum</div>
-		<div class="abbr">(5)► csökevényes szőrtüsző fagggyúmirigyekkel</div>
-		<div class="abbr">(6)► verejtékmirigy</div>
-		<div class="abbr"><span class="WHITE">7</span>► nn.dorsales_penis</div>
-		<div class="abbr"><span class="WHITE">8</span>► kis véna</div>
+		<span class="abbr"><span class="WHITE">1</span>► cutis</span><br>
+		<span class="abbr"><span class="WHITE">2</span>► fascia_penis</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► tunica_albuginea</span><br>
+		<span class="abbr"><span class="WHITE">4</span>► corpus_cavernosum</span><br>
+		<span class="abbr">(5)► csökevényes szőrtüsző fagggyúmirigyekkel</span><br>
+		<span class="abbr">(6)► verejtékmirigy</span><br>
+		<span class="abbr"><span class="WHITE">7</span>► nn.dorsales_penis</span><br>
+		<span class="abbr"><span class="WHITE">8</span>► kis véna</span><br>
 		<img src="100/asd3.png">
 	</ul></details>
-	<details class="kerdes open 3/2" id="histo.28"><summary>mély része</summary><ul class="normal">
+	<details class="kerdes open 3/3" id="histo.28"><summary>mély része</summary><ul class="normal">
 		<img src="100/07_02.png">
-		<div class="abbr"><strong><span class="Important">►</span> (7) penis &#10140; mély része</strong></div>
-		<div class="abbr"><span class="WHITE">1</span>► corpus_cavernosum</div>
-		<div class="abbr"><span class="WHITE">2</span>► septum_penis</div>
-		<div class="abbr">(3)► összeköttetés a két corpus_cavernosum között</div>
-		<div class="abbr"><span class="Vocab">4</span>► járulékos septum</div>
-		<div class="abbr"><span class="WHITE">5</span>► tunica_albuginea</div>
-		<div class="abbr"><span class="WHITE">6</span>► <abbr title="Kálmán-programnál tunica_albuginea(corpus_spongiosum), és az 5ös pedig a tunica_albuginea(corpus_cavernosum). a lényeg, hogy szerkezetük eltérő, és külön meg is említi, hogy egyes szerzők ezt már nem is tekintik tunica_albuginea-nak. (én fascia_profundanal maradok, mert neten az a gyakori)">fascia_profunda(Buck)</abbr></div>
-		<div class="abbr"><span class="Vocab">7</span>► paraurethralis járatok, maga a húgycső már nem látszik</div>
+		<span class="abbr"><span class="WHITE">1</span>► corpus_cavernosum</span><br>
+		<span class="abbr"><span class="WHITE">2</span>► septum_penis</span><br>
+		<span class="abbr">(3)► összeköttetés a két corpus_cavernosum között</span><br>
+		<span class="abbr"><span class="Vocab">4</span>► járulékos septum</span><br>
+		<span class="abbr"><span class="WHITE">5</span>► tunica_albuginea</span><br>
+		<span class="abbr"><span class="WHITE">6</span>► <abbr title="Kálmán-programnál tunica_albuginea(corpus_spongiosum), és az 5ös pedig a tunica_albuginea(corpus_cavernosum). a lényeg, hogy szerkezetük eltérő, és külön meg is említi, hogy egyes szerzők ezt már nem is tekintik tunica_albuginea-nak. (én fascia_profundanal maradok, mert neten az a gyakori)">fascia_profunda(Buck)</abbr></span><br>
+		<span class="abbr"><span class="Vocab">7</span>► paraurethralis járatok, maga a húgycső már nem látszik</span><br>
 		<img src="100/asd4.png">
 	</ul></details>
-	<details class="kerdes open 3/2" id="histo.29"><summary>corpus_spongiosum</summary><ul class="normal">
+	<details class="kerdes open 3/3" id="histo.29"><summary>corpus_spongiosum</summary><ul class="normal">
 		<img src="100/07_03.png">
-		<div class="abbr"><strong><span class="Important">►</span> (7) penis &#10140; corpus_spongiosum</strong></div>
-		<div class="abbr"><span class="WHITE">1</span>► urethra</div>
-		<div class="abbr"><span class="WHITE">2</span>► paraurethralis járat</div>
-		<div class="abbr"><span class="WHITE">3</span>► glandulae_urethrales_Littré (mucosus) ➜ paraurethrális járatokba nyílik</div>
-		<div class="abbr"><span class="WHITE">4</span>► <abbr title="Kálmán-programnál tunica_albuginea(corpus_spongiosum), és az 5ös pedig a tunica_albuginea(corpus_cavernosum). a lényeg, hogy szerkezetük eltérő, és külön meg is említi, hogy egyes szerzők ezt már nem is tekintik tunica_albuginea-nak. (én fascia_profundanal maradok, mert neten az a gyakori)">fascia_profunda(Buck)</abbr></div>
-		<div class="abbr"><span class="WHITE">5</span>► tunica_albuginea</div>
-		<div class="abbr"><span class="WHITE">6</span>► fascia_penis</div>
+		<span class="abbr"><span class="WHITE">1</span>► urethra</span><br>
+		<span class="abbr"><span class="WHITE">2</span>► paraurethralis járat</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► glandulae_urethrales_Littré (mucosus) ➜ paraurethrális járatokba nyílik</span><br>
+		<span class="abbr"><span class="WHITE">4</span>► <abbr title="Kálmán-programnál tunica_albuginea(corpus_spongiosum), és az 5ös pedig a tunica_albuginea(corpus_cavernosum). a lényeg, hogy szerkezetük eltérő, és külön meg is említi, hogy egyes szerzők ezt már nem is tekintik tunica_albuginea-nak. (én fascia_profundanal maradok, mert neten az a gyakori)">fascia_profunda(Buck)</abbr></span><br>
+		<span class="abbr"><span class="WHITE">5</span>► tunica_albuginea</span><br>
+		<span class="abbr"><span class="WHITE">6</span>► fascia_penis</span><br>
 	</ul></details>
-	<details class="kerdes open 3/2" id="histo.30"><summary>urethra(pars_spongiosa) - TrHh</summary><ul class="normal">
+	<details class="kerdes open 3/3" id="histo.30"><summary>urethra(pars_spongiosa) - TrHh</summary><ul class="normal">
 		<img src="100/07_04.png">
-		<div class="abbr"><strong><span class="Important">►</span> (7) penis &#10140; urethra(pars_spongiosa) - TrHh</strong></div>
-		<div class="abbr"><span class="WHITE">1</span>► TrHh</div>
-		<div class="abbr"><span class="WHITE">2</span>► mucosus endoepithelialis mirigy</div>
-		<div class="abbr"><span class="WHITE">3</span>► paraurethralis járat, falában endoepithelialis mirigy(nyíl)</div>
-		<div class="abbr"><span class="WHITE">4</span>► glandulae_urethrales_Littré (mucosus!) &#10140; paraurethrális járatokba nyílik</div>
-		<div class="abbr"><span class="WHITE">5</span>► intimapárna az erekben</div>
+		<span class="abbr"><span class="WHITE">1</span>► TrHh</span><br>
+		<span class="abbr"><span class="WHITE">2</span>► mucosus endoepithelialis mirigy</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► paraurethralis járat, falában endoepithelialis mirigy(nyíl)</span><br>
+		<span class="abbr"><span class="WHITE">4</span>► glandulae_urethrales_Littré (mucosus!) &#10140; paraurethrális járatokba nyílik</span><br>
+		<span class="abbr"><span class="WHITE">5</span>► intimapárna az erekben</span><br>
 		<li class="abbr">Megjegyzés► endoepithelialis-mirigy és glandulae_urethrales_Littré ugyanolyan mucosus-sejtekből épül fel csak helyzetük más!</li>
 	</ul></details>
 	<details class="kerdes open 3/1" id="histo.31"><summary>intimapárna</summary><ul class="normal">
 		<img src="100/07_05.png">
-		<div class="abbr"><strong><span class="Important">►</span> (7) penis &#10140; intimapárna</strong></div>
-		<div class="abbr"><span class="WHITE">1</span>► intimapárna, a belsejében simaizom</div>
-		<div class="abbr"><span class="WHITE">2</span>► arteriola</div>
+		<span class="abbr"><span class="WHITE">1</span>► intimapárna, a belsejében simaizom</span><br>
+		<span class="abbr"><span class="WHITE">2</span>► arteriola</span><br>
 		<img src="100/asd_5.png">
 	</ul></details>
 <!----></div></div></details>
 
 <!----><details><summary class="phase">.(8) vesica_urinaria</summary><div class="normal"><div><div class="title"></div>
-	<details open class="kerdes open rank3" id="histo.25"><summary> </summary><ul class="normal">
-		<img src="100/08.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> urothelium <abbr title="nyíl egy ernyősejt magjára mutat">&#10045;</abbr></div>
-			<div><span class="WHITE">2</span> lamina propria (tömöttebb szerkezetű)</div>
-			<div><span class="WHITE">3</span> tela_submucosa (lazább szerkezetű)</div>
-			<div><span class="WHITE">4</span> tunica_muscularis – stratum_circulare</div>
-			<div><span class="WHITE">5</span> tunica_muscularis – stratum_longitudinale</div>
-			–––––––––––––––––––––––––––––––––––––
-			<li>lamina_muscularis nincs <abbr title="ritkán van">&#10045;</abbr></li>
-			<li>tela_submucosa nincs a trigonum_vesicae területén (trigonum vesicae mesodermális eredetű)</li>
-			–––––––––––––––––––––––––––––––––––––
-			 <div><strong>rétegek</strong></div>
-			 <li>tunica_mucosa &#10140; <abbr title="(SzövGyak)a mesodermális eredetű trigonum_vesicae... (dolgozzam ki fejlődéstanba!)">!?</abbr> trigonum_vesicae területét leszámítva redőzött</li><ul>
-				 <li>epithelium &#10140; urothelium</li><ul>
-					<li>ernyősejtek (csak ez nem ér le közülök a bazális membránra)</li>
-					<li>polygonális</li>
-					<li>bazális</li>
-				 </ul>
-				<li>lamina_propria &#10140; laza rostos ktsz (sok elasztikus rost) <abbr title="papillák nélkül kapcsolódik a hámhoz">()</abbr></li>
+	<details class="kerdes open 3/3" id="histo.25"><summary> </summary><ul class="normal">
+		<img src="100/08_01.png">
+		<span class="abbr"><span class="WHITE">1</span>► urothelium <abbr title="nyíl egy ernyősejt magjára mutat">&#10045;</abbr></span><br>
+		<span class="abbr"><span class="WHITE">2</span>► lamina propria (tömöttebb szerkezetű)</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► tela_submucosa (lazább szerkezetű)</span><br>
+		<span class="abbr"><span class="WHITE">4</span>► tunica_muscularis – stratum_circulare</span><br>
+		<span class="abbr"><span class="WHITE">5</span>► tunica_muscularis – stratum_longitudinale</span><br>
+	</ul></details>
+	<details class="kerdes 3/4" id="histo.46"><summary>ELMÉLET</summary><ul class="normal">
+		<li>lamina_muscularis nincs <abbr title="ritkán van">&#10045;</abbr></li>
+		<li>tela_submucosa nincs a trigonum_vesicae területén (trigonum vesicae mesodermális eredetű)</li>
+		–––––––––––––––––––––––––––––––––––––
+		 <div><strong>rétegek</strong></div>
+		 <li>tunica_mucosa &#10140; <abbr title="(SzövGyak)a mesodermális eredetű trigonum_vesicae... (dolgozzam ki fejlődéstanba!)">!?</abbr> trigonum_vesicae területét leszámítva redőzött</li><ul>
+			 <li>epithelium &#10140; urothelium</li><ul>
+				<li>ernyősejtek (csak ez nem ér le közülök a bazális membránra)</li>
+				<li>polygonális</li>
+				<li>bazális</li>
 			 </ul>
-			 <li>tela_submucosa &#10140; laza rostos ktsz (sok elasztikus rost)</li>
-			 <li>tunica_muscularis (sok kollagénrost)</li><ul>
-				<li>stratum_longitudinale_internum</li>
-				<li>stratum_circulare</li>
-				<li>stratum_longitudinale_externum</li>
-			 </ul>
-			 <li>tunica_adventitia (esetleg subserosa, <abbr title="infraperitoneális">fennti</abbr> részén)</li><ul>
-				<li>laza ktsz</li>
-				<li>erek</li>
-				<li>idegek</li>
-				<li>zsírszövet</li>
-				<li>esetleg ganglion-sejt található</li>
-			 </ul>
-		</ul></details>
+			<li>lamina_propria &#10140; laza rostos ktsz (sok elasztikus rost) <abbr title="papillák nélkül kapcsolódik a hámhoz">()</abbr></li>
+		 </ul>
+		 <li>tela_submucosa &#10140; laza rostos ktsz (sok elasztikus rost)</li>
+		 <li>tunica_muscularis (sok kollagénrost)</li><ul>
+			<li>stratum_longitudinale_internum</li>
+			<li>stratum_circulare</li>
+			<li>stratum_longitudinale_externum</li>
+		 </ul>
+		 <li>tunica_adventitia (esetleg subserosa, <abbr title="infraperitoneális">fennti</abbr> részén)</li><ul>
+			<li>laza ktsz</li>
+			<li>erek</li>
+			<li>idegek</li>
+			<li>zsírszövet</li>
+			<li>esetleg ganglion-sejt található</li>
+		 </ul>
 	</ul></details>
 <!----></div></div></details>
 
 <!----><details><summary class="phase">.(9) szem</summary><div class="normal"><div><div class="title"></div>
-	<details open class="kerdes open" id="histo.21"><summary>pigmenthám – <span class="Important">natív</span></summary><ul class="normal">
+	<details class="kerdes 3/2" id="histo.47"><summary>ELMÉLET</summary><ul class="normal">
+		<li>1rKh felülről nézve</li>
+		<li>natív &#10140; nincs festve</li>
+		<li>a sejteket melaninszemcsék töltik ki &#10140; ezeket látjuk sötét színűnek, minden más világos</li>
+		<li>sejthártyában és sejtmagban nincs melaninszemcse &#10140; azok világosak</li>
+	</ul></details>
+	<details class="kerdes open 3/1" id="histo.21"><summary>pigmenthám – <span class="Important">natív</span></summary><ul class="normal">
 		<img src="100/09_01.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> sejtmag</div>
-			<div><span class="WHITE">2</span> sejthatár</div>
-			<div><span class="WHITE">3</span> melaninszemcsék</div>
-			–––––––––––––––––––––––––––––––––––––
-			<li>1rKh felülről nézve</li>
-			<li>natív &#10140; nincs festve</li>
-			<li>a sejteket melaninszemcsék töltik ki &#10140; ezeket látjuk sötét színűnek, minden más világos</li>
-			<li>sejthártyában és sejtmagban nincs melaninszemcse &#10140; azok világosak</li>
+		<span class="abbr"><span class="WHITE">1</span>► sejtmag</span><br>
+		<span class="abbr"><span class="WHITE">2</span>► sejthatár</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► melaninszemcsék</span><br>
+	</ul></details>
+<!----></div></div></details>
+
+<!----><details><summary class="phase">.(10) colon</summary><div class="normal"><div><div class="title"></div>
+	<details class="kerdes 3/?" id="histo.52"><summary style="color:Red"><font color="Green">ELMÉLET</font></summary><ul class="normal">
+		<li></li>
+	</ul></details>
+	<details><summary>FM – tavalyi jegyzeteim</summary><ul class="normal">
+		<li>lamina_epithelialis = 1HH + kehelysejt</li>
+		<li>Lieberkühn-crypták</li>
+		<li>solitaer_folliculus</li>
+		<li>lamina_muscularis</li>
+		<li>tela_submucosa</li>
+		<li>tunica_muscularis</li><ul>
+			<li>stratum_circulare</li>
+			<li>plexus_myentericus_Auerbachi</li>
+			<li>stratum_longitudinale <span class="Important">TENIA</span></li>
+		</ul>
+		<li>tela_subserosa & tunica_serosa</li>
+	</ul></details>
+	<details class="kerdes open 3/4" id="histo.53"><summary> </summary><ul class="normal">
+		<img src="100/10_01.png">
+		<span class="abbr"><span class="WHITE">1</span>► Lieberkühn-kripták &#10140; lamina_epithelialis = 1rHh kehelysejtekkel</span><br>
+		<span class="abbr"><span class="WHITE">2</span>► tunica_mucosa &#10140; lamina_muscularis</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► tela_submucosa</span><br>
+		<span class="abbr"><span class="WHITE">4</span>► soliter-nyiroktüsző</span><br>
+		<span class="abbr"><span class="WHITE">5</span>► tunica_muscularis &#10140; stratum_circulare</span><br>
+		<span class="abbr"><span class="WHITE">6</span>► tunica_muscularis &#10140; stratum_longitudinale</span><br>
+		<span class="abbr"><span class="WHITE">7</span>► plexus_myentericus_Auerbachii</span><br>
+	</ul></details>
+<!----></div></div></details>
+
+<!----><details><summary class="phase">.(12) prostata</summary><div class="normal"><div><div class="title"></div>
+	<details class="kerdes 3/6" id="histo.54"><summary>ELMÉLET</summary><ul class="normal">
+		<details><summary>mi alkotja &#10140; stroma? tok?</summary><ul class="normal">
+			<li>tömött_fibroelasztikus_ktsz</li>
+			<li>simaizomsejt</li>
+			<img src="images/psttkstrm.png">
 		</ul></details>
+		<details><summary>mirigyek száma?</summary><ul class="normal">
+			<li>20-30db</li>
+		</ul></details>
+		<details><summary>mirigyek típusai?</summary><ul class="normal">
+			<li>periurethal = mucosus</li>
+			<li>central = submucosus</li>
+			<li>periferias (=fő)</li>
+			<img src="images/sprttrsprpfr.png">
+		</ul></details>
+		<details><summary>corpus_amylaceum &#10140; magyarul? "összetétele mi"?</summary><ul class="normal">
+			<li>prostatakő</li>
+			<li>besűrűsödött váladék</li>
+		</ul></details>
+		<details><summary>mirigyhám alkotója?</summary><ul class="normal">
+			<li>1r/Tm Kh/Hh</li>
+		</ul></details>
+		<details><summary>milyen szekréció zajlik? magyarázd!</summary><ul class="normal">
+			<li>pseudoapokrin &#10140; valójában merokrin</li>
+			<li>ugyanis apokrin esetében a membrannal együtt válna le a szekrétum</li>
+			<li>merokrin esetében pedig csak exocitózissal jut ki a szekrétum <abbr title="membran nem válik le">&#10045;</abbr></li>
+		</ul></details>
+		<details><summary>haráncsíkolt izmok a szélén?</summary><ul class="normal">
+			<li>medencefenék izomzata (nem mindig van benne)</li>
+		</ul></details>
+	  <strong>urethra</strong>
+		<details><summary>&#9792; hámja?</summary><ul class="normal">
+			<li>felső 1/3 &#10140; urothelium</li>
+			<li>középső 1/3 &#10140; Tr/Tm Hh</li>
+			<li>alsó 1/3 &#10140; TENSLH</li>
+			<li><abbr title="lamina_propria venákban igen gazdag, a venák itt valóságos corpus_spongiosumot képeznek">()</abbr> <abbr title="1izomréteg &#10140; belső hosszanti / külső körkörös">()</abbr></li>
+		</ul></details>
+		<details><summary>&#9794; hámja?</summary><ul class="normal">
+			<li>pars_prostatica &#10140; urothelium</li>
+			<li>pars_membranacea &#10140; TrHh</li>
+			<li>pars_spongiosa</li><ul>
+				<li>többrétegű hh + néhány kehelysejt benne</li>
+				<li>fossa_navicularistól már TENSLH</li>
+			</ul>
+		</ul></details>
+		<details><summary style="color:Red"><font color="Green">&#9794; 2.funkc.290</font></summary><ul class="normal">
+			<li>A húgycső nyálkahártyájának proximal felé benyúló vak mellékjáratai a lacunae urethrales. Ezek mellett a corpus spongiosumban kétféle, nagyobbára mucinosus, mirigy található: a hámon belüli, ún. endoepithelialis mirigyek és a submucosába benyomuló nagyobb, elágazó mucinosus mirigyek, a Littre-féle mirigyek</li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes open 3/4" id="histo.55"><summary>széli része, főmirigyek</summary><ul class="normal">
+		<img src="100/12_01.png">
+		<span class="abbr"><span class="WHITE">1</span>► végkamrák <abbr title="tág,szabálytalan alakú">()</abbr></span><br>
+		<span class="abbr"><span class="WHITE">2</span>► simaizom</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► végkamra részlete, mely a metszési sík miatt különállónak tűnik</span><br>
+		<span class="abbr"><span class="WHITE">4</span>► ferde metszési síkban az egyrétegű hám többrétegűnek tűnik</span><br>
+		<span class="abbr"><span class="vocab">JR</span>► végkamrák között simaizom van &#10140; ez segít elkülöníteni a vesicula_seminalistól</span><br>
+	</ul></details>
+	<details class="kerdes open 3/4" id="histo.56"><summary>húgycső részletével</summary><ul class="normal">
+		<img src="100/12_02.png">
+		<span class="abbr"><span class="WHITE">1</span>► urethra epitheliuma - <abbr title="ezt ekkora nagyításban nem kell tudnom megállapítani, de! szövgyak és jegyzet alapján itt urothelium van, szóval majd FM-nél döntsem el mi van itt">TrHh</abbr></span><br>
+		<span class="abbr"><span class="WHITE">2</span>► főmirigyek kivezetőcsövének benyílása</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► colliculus_seminalis</span><br>
+		<span class="abbr"><span class="WHITE">4</span>► colliculus_seminalis mirigyei</span><br>
+		<span class="abbr"><span class="WHITE">5</span>► tokszerűen rendeződött simaizom</span><br>
+		<span class="abbr"><span class="WHITE">6</span>► submucosus mirigyek</span><br>
+		<span class="abbr"><span class="WHITE">7</span>► mucosus mirigyek</span><br>
+	</ul></details>
+	<details class="kerdes open 3/4" id="histo.57"><summary>idősebb korban</summary><ul class="normal">
+		<img src="100/12_03.png">
+		<span class="abbr"><span class="WHITE">1</span>► végkamrák <abbr title="tág,szabálytalan alakú">()</abbr></span><br>
+		<span class="abbr"><span class="WHITE">2</span>► corpus_amylaceum = prostatakő</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► simaizom</span><br>
+		<span class="abbr"><span class="vocab">JR</span>► 
+			<br>• idősebb korban több az izom, kevesebb a mirigyállomány
+			<br>• "kövek" (azaz besűrűsödött váladékok) más mirigyekben (vesicula_seminalis, nyálmirigyek) is előfordulhatnak
+		</span><br>
+	</ul></details>
+	<details><summary>FM – tavalyi jegyzeteim</summary><ul class="normal">
+		<li>corpus_amylaceum-ok = prostatakövek <abbr title="besűrűsödött válaékból származnak valószínűleg (SzövGyak)">&#10045;</abbr></li>
+		<li>mirigyhám &#10140; 1r/Tm-Kh/Hh</li>
+		<li>stroma = tömött_fibroelasztikus_ktsz + simaizomsejtek</li>
+		<li><abbr title="valójában merokrin, ugyanis apokrin esetében a membrannal együtt válna le a szekrétum, merokrin esetében pedig csak exocitózissal jut ki a szekrétum (tehát membrán nem válik le)">pseudoapokrin-mirigyek</abbr> (valójában merokrin)</li>
+		<li>urethra (pars_prostatica) &#10140; epithelium TrHh</li>
+		<li><a href="images/clcsmsmls.png">colliculus_seminalis</a></li>
+		<li>haráncsíkolt izmok a szélén <div class="mirror">&#10140;</div> medencefenék izomzata (nem mindig van benne)</li>
+		-------------------- ezek lehetnek benne, de nem feltétlen<br> 
+		<li>(ductus_ejaculatorius)</li>
+		<li>(tok &#10140; tömött_fibroelasztikus_ktsz és simaizomsejtek)</li>
+		<li>(vegetatív ganglionsejtek &#10140; prostata adventitiajaban)</li>
 	</ul></details>
 <!----></div></div></details>
 
 <!----><details><summary class="phase">.(77) glans_penis</summary><div class="normal"><div><div class="title"></div>
-	<details class="kerdes open 3/" id="histo.32"><summary>praeputium & glans_penis</summary><ul class="normal">
+	<details class="kerdes open 3/3" id="histo.32"><summary>praeputium & glans_penis</summary><ul class="normal">
 		<img src="100/77_01.png">
-		<div class="abbr"><strong><span class="Important">►</span> (77) glans_penis &#10140; praeputium & glans_penis</strong></div>
-		<div class="abbr"><span class="WHITE">1</span>► praeputium külső hámja &#10140; TESLH</div>
-		<div class="abbr"><span class="WHITE">2</span>► praeputium belső hámja &#10140; TESLH (enyhén S)</div>
-		<div class="abbr"><span class="WHITE">3</span>► glans_penis hámja &#10140; TESLH (enyhén S)</div>
-		<div class="abbr"><span class="WHITE">4</span>► cutis</div>
-		<div class="abbr"><span class="WHITE">5</span>► glans_penis felszíne (corpus_spongiosum folytatása)</div>
-		<div class="abbr"><span class="vocab">6</span>► metszési sík itt ferdén érte a bőrt</div>
-		<div class="abbr">(7)► <abbr title="ezzel ne foglalkozzak!!! mert elvileg nincs szőrtüsző, a jegyzetem alapján legalábbis">!!!csökevényes szőrtüsző faggyúmiriggyel!!!</abbr></div>
+		<span class="abbr"><span class="WHITE">1</span>► praeputium külső hámja &#10140; TESLH</span><br>
+		<span class="abbr"><span class="WHITE">2</span>► praeputium belső hámja &#10140; TESLH (enyhén S)</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► glans_penis hámja &#10140; TESLH (enyhén S)</span><br>
+		<span class="abbr"><span class="WHITE">4</span>► cutis</span><br>
+		<span class="abbr"><span class="WHITE">5</span>► glans_penis felszíne (corpus_spongiosum folytatása)</span><br>
+		<span class="abbr"><span class="vocab">6</span>► metszési sík itt ferdén érte a bőrt</span><br>
+		<span class="abbr">(7)► <abbr title="ezzel ne foglalkozzak!!! mert elvileg nincs szőrtüsző, a jegyzetem alapján legalábbis">!!!csökevényes szőrtüsző faggyúmiriggyel!!!</abbr></span><br>
 		<img src="100/asd_6.png">
 	</ul></details>
 	<details><summary>FM-nél további figyelnivalók</summary><ul class="normal">
@@ -519,96 +1198,91 @@
 <!----></div></div></details>
 
 <!----><details><summary class="phase">.(91) ureter</summary><div class="normal"><div><div class="title"></div>
-	<details open class="kerdes open" id="histo.24"><summary> </summary><ul class="normal">
+	<details class="kerdes 3/2" id="histo.48"><summary>ELMÉLET</summary><ul class="normal">
+		<li><span class="Important">mirigyek nincsenek</span></li>
+		<li>tela_submucosa & lamina_muscularis nincs</li>
+		<li>csillag alakú lumen</li>
+		–––––––––––––––––––––––––––––––––––––
+		 <div><strong>rétegek</strong></div>
+		 <li>tunica_mucosa</li><ul>
+			 <li>epithelium &#10140; urothelium</li>
+			 <li>lamina_propria</li><ul>
+				<li>laza rostos kötőszövet (sok elasztikus rost)</li>
+				<li>redőzött &#10140; csillag alakú lumen</li>
+			 </ul>
+		 </ul>
+		 <li>tunica_muscularis (sok kollagénrost)</li><ul>
+			<li>stratum_longitudinale_internum (gyengébb)</li>
+			<li>stratum_circulare (erősebb)</li>
+			<li>stratum_longitudinale_externum &#10140; <span class="Important">ostium_ureter környéki szakasza tartalmazza csak!!!!</span></li>
+		 </ul>
+		 <li>tunica_adventitia</li><ul>
+			<li>laza ktsz</li>
+			<li>erek</li>
+			<li>idegek</li>
+		 </ul>
+	</ul></details>
+	<details class="kerdes open 3/5" id="histo.24"><summary> </summary><ul class="normal">
 		<img src="100/91.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> urothelium <abbr title="nyíl egy ernyősejt magjára mutat">&#10045;</abbr></div>
-			<div><span class="WHITE">2</span> lamina propria</div>
-			<div><span class="WHITE">3</span> tunica_muscularis – stratum_longitudinale</div>
-			<div><span class="WHITE">4</span> tunica_muscularis – stratum_circulare</div>
-			<div><span class="WHITE">5</span> kis véna</div>
-			<div><span class="WHITE">6</span> arteriola</div>
-			<div><span class="WHITE">7</span> precapillaris_arteriola</div>
-			<div><span class="WHITE">8</span> venula</div>
-			<div><span class="WHITE">9</span> postcapillaris_venula</div>
-			<div><span class="WHITE">10</span> ideg</div>
-			–––––––––––––––––––––––––––––––––––––
-			<li><span class="Important">mirigyek nincsenek</span></li>
-			<li>tela_submucosa & lamina_muscularis nincs</li>
-			<li>csillag alakú lumen</li>
-			–––––––––––––––––––––––––––––––––––––
-			 <div><strong>rétegek</strong></div>
-			 <li>tunica_mucosa</li><ul>
-				 <li>epithelium &#10140; urothelium</li>
-				 <li>lamina_propria</li><ul>
-					<li>laza rostos kötőszövet (sok elasztikus rost)</li>
-					<li>redőzött &#10140; csillag alakú lumen</li>
-				 </ul>
-			 </ul>
-			 <li>tunica_muscularis (sok kollagénrost)</li><ul>
-				<li>stratum_longitudinale_internum (gyengébb)</li>
-				<li>stratum_circulare (erősebb)</li>
-				<li>stratum_longitudinale_externum &#10140; <span class="Important">ostium_ureter környéki szakasza tartalmazza csak!!!!</span></li>
-			 </ul>
-			 <li>tunica_adventitia</li><ul>
-				<li>laza ktsz</li>
-				<li>erek</li>
-				<li>idegek</li>
-			 </ul>
-		</ul></details>
+		<span class="abbr"><span class="WHITE">1</span>► urothelium <abbr title="nyíl egy ernyősejt magjára mutat">&#10045;</abbr></span><br>
+		<span class="abbr"><span class="WHITE">2</span>► lamina_propria</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► tunica_muscularis – stratum_longitudinale</span><br>
+		<span class="abbr"><span class="WHITE">4</span>► tunica_muscularis – stratum_circulare</span><br>
+		<span class="abbr"><span class="WHITE">5</span>► kis véna</span><br>
+		<span class="abbr"><span class="WHITE">6</span>► arteriola</span><br>
+		<span class="abbr"><span class="WHITE">7</span>► precapillaris_arteriola</span><br>
+		<span class="abbr"><span class="WHITE">8</span>► venula</span><br>
+		<span class="abbr"><span class="WHITE">9</span>► postcapillaris_venula</span><br>
+		<span class="abbr"><span class="WHITE">10</span>► ideg</span><br>
 	</ul></details>
 <!----></div></div></details>
 
 <!----><details><summary class="phase">.(96) szem</summary><div class="normal"><div><div class="title"></div>
-	<details class="kerdes open" id="histo.19"><summary>elülső és hátulsó szemcsarnok</summary><ul class="normal">
+	<details class="kerdes open 3/8" id="histo.19"><summary>elülső és hátulsó szemcsarnok</summary><ul class="normal">
 		<img src="100/96_01.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> cornea hámja</div>
-			<div><span class="WHITE">2</span> lamina limitans anterior (Bowmann-hártya)</div>
-			<div><span class="WHITE">3</span> substantia_propria_corneae</div>
-			<div><span class="WHITE">4</span> lamina limitans posterior (Descemet-hártya) és a cornea endothel-sejtjei</div>
-			<div><span class="WHITE">5</span> iris endothelje</div>
-			<div><span class="WHITE">6</span> iris pigmenthámja</div>
-			<div><span class="WHITE">7</span> szemlencse része, mely hozzátapadt az irishez, és levált a lencséről</div>
-			<div><span class="WHITE">8</span> corpus_ciliare</div>
-			<div><span class="WHITE">9</span> processus_ciliares</div>
-			<div><span class="WHITE">10</span> pars_coeca_retinae</div>
-			<div><span class="WHITE">11</span> Schlemm-csatorna</div>
-			<div><span class="WHITE">12</span> ligamentum pectinatum iridis</div>
-			<div><span class="WHITE">13</span> csarnokzug</div>
-			<div><span class="WHITE">14</span> kötőhártya - TENSLH!</div>
-			<div><span class="WHITE">15</span> episcleralis laza ktsz</div>
-			<div><span class="WHITE">16</span> sclera</div>
-			<img src="100/asd1.png">
-		</ul></details>
+		<span class="abbr"><span class="WHITE">1</span>► cornea hámja</span><br>
+		<span class="abbr"><span class="WHITE">2</span>► lamina limitans anterior (Bowmann-hártya)</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► substantia_propria_corneae</span><br>
+		<span class="abbr"><span class="WHITE">4</span>► lamina limitans posterior (Descemet-hártya) és a cornea endothel-sejtjei</span><br>
+		<span class="abbr"><span class="WHITE">5</span>► iris endothelje</span><br>
+		<span class="abbr"><span class="WHITE">6</span>► iris pigmenthámja</span><br>
+		<span class="abbr"><span class="WHITE">7</span>► szemlencse része, mely hozzátapadt az irishez, és levált a lencséről</span><br>
+		<span class="abbr"><span class="WHITE">8</span>► corpus_ciliare</span><br>
+		<span class="abbr"><span class="WHITE">9</span>► processus_ciliares</span><br>
+		<span class="abbr"><span class="WHITE">10</span>► pars_coeca_retinae</span><br>
+		<span class="abbr"><span class="WHITE">11</span>► Schlemm-csatorna</span><br>
+		<span class="abbr"><span class="WHITE">12</span>► ligamentum pectinatum iridis</span><br>
+		<span class="abbr"><span class="WHITE">13</span>► csarnokzug</span><br>
+		<span class="abbr"><span class="WHITE">14</span>► kötőhártya - TENSLH!</span><br>
+		<span class="abbr"><span class="WHITE">15</span>► episcleralis laza ktsz</span><br>
+		<span class="abbr"><span class="WHITE">16</span>► sclera</span><br>
+		<img src="100/asd1.png">
 	</ul></details>
-	<details class="kerdes open" id="histo.20"><summary>szemfenék rétegei</summary><ul class="normal">
+	<details class="kerdes open 3/8" id="histo.20"><summary>szemfenék rétegei</summary><ul class="normal">
 		<img src="100/97_01.png">
-		<details open><summary>megoldás</summary><ul class="normal">
-			<div><span class="WHITE">1</span> sclera</div>
-			<div><span class="WHITE">2</span> stratum_suprachoroidale (lamina_fusca_sclerae)</div>
-			<div><span class="WHITE">3</span> stratum_vasculare</div>
-			<div><span class="WHITE">4</span> stratum_chorocapillare</div>
-			<div><span class="WHITE">5</span> lamina_basalis(Bruch-membrán)</div>
-			<div><span class="WHITE">6</span> retina_pigmenthámja</div>
-			<div><span class="WHITE">7</span> pálcikák és csapok rétege</div>
-			<div><span class="WHITE">8</span> membrana_limitans_externa</div>
-			<div><span class="WHITE">9</span> stratum_granulosum_externum</div>
-			<div><span class="WHITE">10</span> stratum_plexiforme_externum</div>
-			<div><span class="WHITE">11</span> stratum_granulosum_internum</div>
-			<div><span class="WHITE">12</span> stratum_plexiforme_internum</div>
-			<div><span class="WHITE">13</span> stratum_ganglionare</div>
-			<div><span class="WHITE">14</span> n.opticus idegrostjainak rétege, velőtlen idegrostok</div>
-			<div><span class="WHITE">15</span> membrana_limitans_interna</div>
-			<div>choroidea = <span class="WHITE">2</span> + <span class="WHITE">4</span></div>
-			<img src="100/asd2.png">
-		</ul></details>
+		<span class="abbr"><span class="WHITE">1</span>► sclera</span><br>
+		<span class="abbr"><span class="WHITE">2</span>► stratum_suprachoroidale (lamina_fusca_sclerae)</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► stratum_vasculare</span><br>
+		<span class="abbr"><span class="WHITE">4</span>► stratum_chorocapillare</span><br>
+		<span class="abbr"><span class="WHITE">5</span>► lamina_basalis(Bruch-membrán)</span><br>
+		<span class="abbr"><span class="WHITE">6</span>► retina_pigmenthámja</span><br>
+		<span class="abbr"><span class="WHITE">7</span>► pálcikák és csapok rétege</span><br>
+		<span class="abbr"><span class="WHITE">8</span>► membrana_limitans_externa</span><br>
+		<span class="abbr"><span class="WHITE">9</span>► stratum_granulosum_externum</span><br>
+		<span class="abbr"><span class="WHITE">10</span>► stratum_plexiforme_externum</span><br>
+		<span class="abbr"><span class="WHITE">11</span>► stratum_granulosum_internum</span><br>
+		<span class="abbr"><span class="WHITE">12</span>► stratum_plexiforme_internum</span><br>
+		<span class="abbr"><span class="WHITE">13</span>► stratum_ganglionare</span><br>
+		<span class="abbr"><span class="WHITE">14</span>► n.opticus idegrostjainak rétege, velőtlen idegrostok</span><br>
+		<span class="abbr"><span class="WHITE">15</span>► membrana_limitans_interna</span><br>
+		<span class="abbr"><span class="WHITE">2</span>+<span class="WHITE">4</span>► choroidea</span><br>
+		<img src="100/asd2.png">
 	</ul></details>
 <!----></div></div></details>
 
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
 
-<!--//////////////////////////////////////-->  <div><div class="mainTitle">elmélet</div>  <!--//////////////////////////////////////-->
+<!--//////////////////////////////////////-->  <div><div class="mainTitle">elmélet (ez nem kell külön)</div>  <!--//////////////////////////////////////-->
 
 <!----><details><summary class="phase">szem.</summary><div class="normal"><div><div class="title"></div>
 	<details class="kerdes" id="histo.22"><summary style="color:Red"><font color="Green">szem</font></summary><ul class="normal">
@@ -628,20 +1302,20 @@
 <!----><details><summary class="phase">penis.</summary><div class="normal"><div><div class="title"></div>
 	<details class="kerdes 3/4" id="histo.27"><summary><span class="Vocab">R</span> keresztmetszet</summary><ul class="normal">
 		<img src="images/rajz_pnskrsztmszt.png">
-		<div class="abbr"><span class="WHITE">1</span>► cutis</div>
-		<div class="abbr"><span class="WHITE">2</span>► v.dorsalis_superficialis_penis</div>
-		<div class="abbr"><span class="WHITE">3</span>► v.dorsalis_profunda_penis</div>
-		<div class="abbr"><span class="WHITE">4</span>► aa.dorsales_penis</div>
-		<div class="abbr"><span class="WHITE">5</span>► nn.dorsales_penis</div>
-		<div class="abbr"><span class="WHITE">6</span>► fascia_profunda(Buck)</div>
-		<div class="abbr"><span class="WHITE">7</span>► tunica_albuginea</div>
-		<div class="abbr"><span class="WHITE">8</span>► corpus_cavernosum_penis</div>
-		<div class="abbr"><span class="WHITE">9</span>► a.profunda_penis</div>
-		<div class="abbr"><span class="WHITE">10</span>► urethra(pars_spongiosa)</div>
-		<div class="abbr"><span class="WHITE">11</span>► corpus_spongiosum_penis</div>
-		<div class="abbr"><span class="WHITE">12</span>► septum_penis</div>
-		<div class="abbr"><span class="WHITE">13</span>► fascia_superficialis(Dartos)</div>
-		<div class="abbr"><span class="WHITE">6</span>+<span class="WHITE">13</span>► fascia_penis</div>
+		<span class="abbr"><span class="WHITE">1</span>► cutis</span><br>
+		<span class="abbr"><span class="WHITE">2</span>► v.dorsalis_superficialis_penis</span><br>
+		<span class="abbr"><span class="WHITE">3</span>► v.dorsalis_profunda_penis</span><br>
+		<span class="abbr"><span class="WHITE">4</span>► aa.dorsales_penis</span><br>
+		<span class="abbr"><span class="WHITE">5</span>► nn.dorsales_penis</span><br>
+		<span class="abbr"><span class="WHITE">6</span>► fascia_profunda(Buck)</span><br>
+		<span class="abbr"><span class="WHITE">7</span>► tunica_albuginea</span><br>
+		<span class="abbr"><span class="WHITE">8</span>► corpus_cavernosum_penis</span><br>
+		<span class="abbr"><span class="WHITE">9</span>► a.profunda_penis</span><br>
+		<span class="abbr"><span class="WHITE">10</span>► urethra(pars_spongiosa)</span><br>
+		<span class="abbr"><span class="WHITE">11</span>► corpus_spongiosum_penis</span><br>
+		<span class="abbr"><span class="WHITE">12</span>► septum_penis</span><br>
+		<span class="abbr"><span class="WHITE">13</span>► fascia_superficialis(Dartos)</span><br>
+		<span class="abbr"><span class="WHITE">6</span>+<span class="WHITE">13</span>► fascia_penis</span><br>
 		<li><a href="images/pnssrc.png">(forrás)</a></li>
 	</ul></details>
 	<details class="kerdes 3/2" id="histo.33"><summary><span class="MISS">3D</span> erek & idegek</summary><ul class="normal">

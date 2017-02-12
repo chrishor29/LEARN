@@ -59,9 +59,9 @@ span {
 span.WHITE { 
 	border: Black 1px solid; 
 }
-span.abbr { 
+/*span.abbr { 
 	border: Black 1px solid; 
-}
+}*/
 .Vocab { 
 	background-color: Gainsboro
 }
@@ -138,6 +138,12 @@ img.HUN {
 	max-width: 98%;
 	float: none;
 	content:url(hun.png);
+}
+img.mini {
+	border: 2px solid DeepSkyBlue;
+	max-height: 14px;
+	float: none;
+	bottom: 5px
 }
 
 .mirror {
