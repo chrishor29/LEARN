@@ -63,7 +63,7 @@ span.WHITE {
 	border: Black 1px solid; 
 }*/
 .Vocab { 
-	background-color: Gainsboro
+	background-color: gainsboro
 }
 .Important { 
 	background-color: Aqua /*PaleTurquoise*/
@@ -160,7 +160,7 @@ summary {
 
 * {
  font-size: 100%;
- font-family: Arial;
+ font-family: Tahoma;
 }
 sup, sub {
  font-size: 80%;

@@ -6,30 +6,37 @@
 	<style>*{line-height: 130%;}</style>
 </head>
 
- <!-- onmouseover="func_span('miss');" -->
 <input onclick="toggleAll();" type="button" id="input_toggleAll" value="0" style="position:fixed; right: 0px;"><div id="quest" style="display:none;">
 	
 	<details><summary class="phase">tételek</summary><div id="container"></div></details>
-	<input type="button" class="MISS" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'miss');" id="btn_miss" value="0">
-	<input type="button" class="FIX" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'fix');" id="btn_fix" value="0">
-	<input type="button" class="skip" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_spanSkip" id="btn_skip" value="0">
-	<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'progress')" id="btn_progress" value="0">
+	<input type="file" id="fileinput" style="display:none;">
+	<input style="position:absolute; left:35%; top:1%;" type="button" value="load LS" onclick="document.getElementById('fileinput').click();">
+	<input style="position:absolute; left:50%; top:1%;" type="button" value="save LS" onclick="func_saveLS()">
 
-	<input type="checkbox" id="checkbox_New"/><span class="WHITE" id="cont_New"></span><span class="VOCAB" id="cont_Old"></span>
-	<span class="WHITE" id="span_Jegy"></span><span class="VOCAB" id="span_Date"></span>
-	<input type="checkbox" id="checkbox_RepNew"/><span class="WHITE" id="cont_RepNew"></span><span class="VOCAB" id="cont_RepOld"></span>
 
-	<span id="repeat" class="WHITE" style="position: absolute;left: 45%;">&nbsp; &nbsp; &nbsp;</span>
-	<br>
-	<div align="center">
+	<input type="button" class="white" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_newQuest" value="0">
+	<span class="vocab" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="cont_RepSlow"></span>
+	<input type="button" class="MISS" style="border: 3px solid black;" onclick="func_spanClick(this)" id="cont_RepFast" value="0">
+	&nbsp; &nbsp;
+	<!--<input type="checkbox" id="checkbox_RepNew">--><span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="cont_RepNew"></span><span class="VOCAB" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="cont_RepOld"></span>
+	&nbsp; &nbsp;
+	<span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Date"></span><span class="vocab" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Jegy"></span><span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Repeat"></span>
+	<span style="position:absolute; left:30%;">
 		<span style="border: 0px;" id="rank">&nbsp; &nbsp; &nbsp;</span> &nbsp;
 		<input onclick="toggleNote();" type="button" value="&#10045;"> &nbsp; &nbsp;
 		<select id="jegy"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; &nbsp;
 		<span id="pJegy">&nbsp; </span> &nbsp; &nbsp;
-		<input onclick="func_buttonFix();" type="button" id="buttonFix" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp; &nbsp;
-		<input onclick="func_buttonSkip();" type="button" id="buttonSkip" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp; &nbsp;
-		<input onclick="koviKerdes();" type="button" value="következő kérdés">
-	</div>
+		<input onclick="func_buttonFix();" type="button" id="buttonFix" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp;
+		<input onclick="func_buttonSkip();" type="button" id="buttonSkip" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp; &nbsp; &nbsp;
+		<input onclick="koviKerdes();" type="button" value=" ► ">
+	</span>
+	<span style="position:absolute; right:0%;">
+		<span id="repeat" class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;">&nbsp; &nbsp; &nbsp;</span>
+		<input type="button" class="MISS" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'miss');" id="btn_miss" value="0">
+		<input type="button" class="FIX" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'fix');" id="btn_fix" value="0">
+		<input type="button" class="skip" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_spanSkip" id="btn_skip" value="0">
+		<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'progress')" id="btn_progress" value="0">
+	</span>
 	<center><textarea style="display:none; position:fixed; left: 40%; top: 70%;" id="note" rows="4" cols="40"></textarea></center>
 	
 	<div style="font-weight: bold;font-size: large;" id="questTitle"></div>
@@ -43,7 +50,7 @@
 	<td class="important">2</td>
 	<td class="miss">3</td>
 	<td class="miss">4</td>
-	<td class="">5</td>
+	<td class="miss">5</td>
 	<td class="">6</td>
 	<td class="">7</td>
 	<td class="">8</td>
@@ -52,7 +59,7 @@
 </tr><tr><th>GY</th>
 	<td class="important" title="gyakjegyzetem alapján dolgoztam ki, lehet hozzá kéne még venni tankönyvet is">1</td>
 	<td class="miss">2</td>
-	<td class="">3</td>
+	<td class="important"><abbr title="dolgozzam ki kicsit szebben (egybe legyen inkább az egész szöveg, ahogy előadom majd vizsgán)">3</abbr></td>
 	<td class="">4</td>
 	<td class="">5</td>
 	<td class="">6</td>
@@ -419,7 +426,7 @@
 
 <!--//////////////////////////////////////-->  <div><div class="mainTitle">gyakorlatok</div>  <!--//////////////////////////////////////-->
 
-<!----><details open><summary class="phase">1. feherjék jelenlétének kimutatása (01.31)</summary><div class="normal"><div><div class="title"></div>
+<!----><details><summary class="phase">1. feherjék jelenlétének kimutatása (01.31)</summary><div class="normal"><div><div class="title"></div>
 	<details class="kerdes 5/1" id="msb.14"><summary>cél?</summary><ul class="normal">
 		<li>fehérje JELENLÉTÉNEK kimutatása kicsapódással &#10140; tehát se nem minőségük, se nem mennyiségük, pusztán az, hogy VAN-e?</li>
 		<li><i>ez is kvalitatív, csakúgy mint a 2.tételnél</i> ?!</li>
@@ -429,14 +436,16 @@
 		<li>ezt okozhatja vese-gyulladás <abbr title="vérből átengedi a fehérjéket a lamina_basalison">()</abbr></li>
 		<li>vagy húgyuti fertőzés <abbr title="fehérvérsejtek ott támadják a kórokozókat">()</abbr></li>
 	</ul></details>
-	<details class="kerdes 4/1" id="msb.42"><summary>vízben oldódásuk szerkezete? <span class="FIX">KÉP - android</span></summary><ul class="normal">
+	<details class="kerdes 4/1" id="msb.42"><summary>vízben oldódásuk szerkezete?</summary><ul class="normal">
 		<li>globuláris alakot vesznek fel</li>
 		<li>a gömb közepén vannak az apoláros oldalláncú aminosavak</li>
 		<li>a gömb felszínén vannak a poláros és ionizált oldalláncú aminosavak</li>
+		<img src="images/gy1_glpbfrzsfhr.png.png">
 	</ul></details>
-	<details class="kerdes 2/1" id="msb.43"><summary>membránfehérjék szerkezete? <span class="FIX">KÉP - android</span></summary><ul class="normal">
+	<details class="kerdes 2/1" id="msb.43"><summary>membránfehérjék szerkezete?</summary><ul class="normal">
 		<li>apoláros oldalláncú aminosavak vannak a membránba</li>
 		<li>poláros és ionizált oldalláncú aminosavak vannak "kívül/belül"</li>
+		<img src="images/gy1_glpbfrzsfhr.png.png">
 	</ul></details>
 	<details class="kerdes 3/2" id="msb.44"><summary>hidrátburok funkciója?</summary><ul class="normal">
 		<li>megakadályozza a fehérje kicsapódását <i>&#10140; tehát az oldhatóságukkal arányos</i></li>
@@ -493,6 +502,117 @@
 		<li>ezt a jól ismert Lambert-Beer törvény írja le &#10140; <abbr title="abszorbancia = OptikaiDenzitás = extinkció">A</abbr> = <abbr title="koncentráció">c</abbr>*<abbr title="moláris extinkciós koefficiens (adott hullámhosszon)">ε</abbr>*<abbr title="elnyelő réteg vastagsága">x</abbr></li>
 		<li>(első lépésben meghatározandó az abszorpciós_maximum, tehát a hullámhossz, amelyen a legnagyobb az ε)</li>
 	</ul></details>
+<!----></div></div></details>
+
+<!----><details><summary class="phase">3. SDS–PAGE (02.14)</summary><div class="normal">   <div><div class="title"> </div>
+	<details class="kerdes 3/1" id="msb.64"><summary>SDS–PAGE jelentése?</summary><ul class="normal">
+		<li><abbr title="nátrium"><strong>s</strong>odium</abbr> <abbr title="12"><strong>d</strong>uodecil</abbr> <strong>s</strong>zulfát <strong>p</strong>oli<strong>a</strong>krilamid <strong>g</strong>él<strong>e</strong>lektroforézis</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="msb.65"><summary>cél 1 mondatban?</summary><ul class="normal">
+		<li>fehérjék elválasztása méretük alapján</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="msb.66"><summary>gélt mi alkotja?</summary><ul class="normal">
+		<li><strong>poli</strong>akril<strong>amid</strong> <abbr title="könnyebb olvashatóság érdekében vastagítottam csak meg">&#10045;</abbr> <abbr title="ez akrilamid formában még rákkeltő">&#10045;</abbr></li>
+		<div><span class="vocab"><strong>§</strong></span> gél az "félig szilárd, félig folyékony" (kocsonyás)</div>
+	</ul></details>
+	<details class="kerdes 3/2" id="msb.67"><summary>gél &#10140; hol van? mi van benne?</summary><ul class="normal">
+		<li>két üveglap közé van téve, melyek között 1mm rés van</li>
+		<li><abbr title="képen a fekete színű hosszabb mint a piros">egyik</abbr> üveglap hosszabb mint a másik</li>
+		<li>kétoldalt rögzítve van a két üveglap, hogy oldalra ne folyjon ki semmi</li>
+		<li class="abbr">ezenkívül van benne egy fésű, aminek a funkciója, hogy annak helyén nem lesz gél <abbr title="ugyanis a gél mikor 'megszilárdulása' után lesz kivéve">()</abbr>  &#10140; zsebek lesznek ott, amiket majd fel lehet később tölteni &#10140; mivel? ► 1-4 fehérje-mintával külön-külön <img class="mini" src="images/gy3_mrsmnt.png"></li>
+		<img src="images/gy3_fsk.png">
+	</ul></details>
+	<details class="kerdes 3/2" id="msb.68"><summary>gél funkció?</summary><ul class="normal">
+		<li>a poliakrilamid egy hálózatot alkot, amely lassítja a rajta áthaladó molekulák mozgását</li>
+		<li>2 dolog alapján történik a lassítás: méret és alak <abbr title="FONTOS: a mérés során az alakot, mint szempont, ki fogjuk lőni, és csak a mérettől fog függeni">!!!</abbr></li>
+		<li>pl. ha van egy lombkorona és kitátott karral+lábbal zuhanok, akkor lassabban érek le a földre, mintha behúzott karral-lábbal esnék (ez az alak különbséget szimbolizálja)</li>
+		<li>pl. méret pedig szintúgy &#10140; minél nagyobb a méret, annál lassabban jut át a molekula, hisz annál inkább feltartja a háló</li>
+		<img src="images/gy3_vndrlsrny.png">
+	</ul></details>
+	<details class="kerdes 3/3" id="msb.69"><summary>két <abbr title="ez eléggé szvsz alapján történt, de sztem nem nagy hülyeség">&#10045;</abbr>fázisra osztottam a mérést. első fázisban mit végzünk?</summary><ul class="normal">
+		<li>először is 2db gél van, és mindegyik ugye 2üveglap között, 1-1fésűvel &#10140; első fázisban mindkettővel ugyanazt végzem</li>
+		<div><span class="WHITE">#1</span> fésűket kiveszem &#10140; üres zsebek maradnak ott</div>
+		<div><span class="WHITE">#2</span> pipettát használva a fehérje-mintákkal feltöltöm a zsebeket, utolsó zsebbe ún. létra-mintát teszek <abbr title="bár gyakon elvileg 8db volt, de azzal nincs értelme foglalkozni!! (ott is így ábrázoltuk, és ebben van a lényeg)">/lásd kép/</abbr></div>
+		<div><span class="WHITE">#3</span> ezután a futtatókádba teszem a <abbr title="ezeket a képen látható ilyen lila cucc fogja egybe &#10140; ezt nem kell tudnom, csak a kép értelmezése érdekében írtam le, ha később érteni szeretném">két üveglapot</abbr>, és feltöltöm pufferoldattal (ionos víz)</div>
+		<div><span class="WHITE">#4</span> feszültséget<abbr title="90V">()</abbr> kapcsolok rá, alul lesz a <span class="WHITE"><strong>+</strong></span> és felül a <span class="WHITE"><strong>&#8722;</strong></span> &#10140; ez fontos!!!</div>
+		<details><summary>miért fontos, hogy alul legyen a pozitív töltés?</summary><ul class="normal">
+			<li>mert a fehérje-minták<abbr title="vagy DNS vagy RNS-minta">()</abbr> töltése <abbr title="okát lásd később">negatív</abbr>, és azoknak lefele kell majd áramlaniuk</li>
+			<li>(ugyanis ha felfele áramlanának, akkor egyből kijutnának a pufferoldatba, és akkor nem lehetne folytatni a mérést)</li>
+		</ul></details>
+		<div><span class="WHITE">#5</span> ezután hagyom így kb 40percig</div>
+		<img style="max-width:20%" src="images/gy3_zsbfltlts.png">
+		<img style="max-width:20%" src="images/gy3_fttkd.png">
+		<img style="max-width:20%" src="images/gy3_mrswt.png">
+		<img style="max-width:20%" src="images/gy3_mrsmnt.png">
+	</ul></details>
+	<details class="kerdes 3/3" id="msb.70"><summary><i>első fázis</i> alatt mi zajlik? milyen eredményt várok?</summary><ul class="normal">
+		<li>negatív töltésű fehérjék elkezdenek a pozitív töltés fele vándorolni</li>
+		<li>a kis méretűek közelebb jutnak az aljához, mint a nagy méretűek, hisz a gél alkotta háló kevésbé gátolja őket</li>
+		<details><summary>nohde, "csak a méret a lényeg"?</summary><ul class="normal">
+			<li>hát jelen esetben elvileg 3 dologtól kéne függjön: méret, alak, és töltés</li>
+			<li>alaktól való függését<abbr title="lásd gél funkció kérdés">()</abbr> kilőjjök azáltal, hogy a fehérje-minták már denaturált állapotban vannak, egész pontosan csak a másodlagos szerkezetük marad meg (harmadlagos, negyedleges eltűnik) <abbr title="szvsz tehát így mindegyik alakja lényegében ugyanaz kb (egy vonal)">&#10045;</abbr></li>
+			<li>töltéstől való függését szintén kilőjjük a fehérje minták készítése során</li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 3/8" id="msb.71"><summary>fehérje minták készítése &#10140; célok? lépések?(3+3)</summary><ul class="normal">
+		<li>célok</li><ul>
+			<li>vándorlás <strong>töltés</strong>től függésének kilővése</li>
+			<li>vándorlás <strong>alak</strong>tól függés kilővése</li>
+		</ul>
+		<li>így először hevítéssel denaturáció történik &#10140; harmadlagos (és negyedleges) szerkezet megszűnik &#10140; <i>így mindegyik alakja lényegében ugyanaz kb. (egy vonal)</i></li>
+		<li>utána SDS-el kezelés</li>
+		<li>ezenkívül festés is történik</li>
+		<details><summary>fehérjék töltése milyen alapvetően?</summary><ul class="normal">
+			<li>változó, van amelyik pozitív, van amelyik negatív (függ aminosav összetétel & pH) <abbr title="DNS és RNS negatív a foszfát következtében, szóval ott nincs ilyen probléma">&#10045;</abbr></li>
+		</ul></details>
+		<details><summary>fehérjék töltése hogyan állítom be és milyenre?</summary><ul class="normal">
+			<li>SDS = <abbr title="nátrium">sodium</abbr> <abbr title="12">duodecil</abbr> szulfát</li>
+			<li>a szulfátionok hozzákapcsolódnak a fehérjékhez, és erősen negatív töltésűvé alakítják</li>
+			<li>így a kezdtben elenyésző töltéskülönbség megszűnik</li>
+			<li>sőt a hozzákapcsolódó anionok száma arányos a fehérje méretével &#10140; így nem jön létre újabb töltéskülönbség <abbr title="mert ha pl. m méretű az egyik fehérje, akkor annak a töltése mondjuk q, ha egy másik 2m akkor annak 2q &#10140; a rá ható 'feszültség kövekeztébeni gyorsító erő' F ugyan utóbbira kétszer nagyobb lesz, de mivel annak tömege is kétszer akkora így ugyanúgy fog gyorsulni, azaz vándorolni (F=m*a)">&#10045;</abbr></li>
+			<img src="images/gy3_sds.png">
+		</ul></details>
+		<details><summary>SDS kezelés után, ha visszahűl akkor renaturálódik?</summary><ul class="normal">
+			<li>nem, mert negatív töltésűvé váltak, és az megakadályozza (taszítják egymást)</li>
+		</ul></details>
+		<details><summary>festés célja?</summary><ul class="normal">
+			<li>kék színűre<abbr title="egész pontosan Brohm-fenol kék">()</abbr> festjük a fehérjét</li>
+			<li>ez a vándorlás során elől fog haladni, ugyanis ennek a legeslegkisebb a mérete</li>
+			<li>tehát a célja csupán annyi, hogy látszódjon hol tarthat max a legelső fehérje // ezenkívül pipettázásnál, hogy zsebbe ment-e</li>
+			<div><span class="Vocab">fontos!</span> vándorlásnál ez halad legelől, ez azzal is jár, hogy a lemaradt fehérjék ismét színtelenné válnak&#10140; azokat "újra" kell festeni majd a vándorlás után</div>
+			<img src="images/gy3_rdmny.png">
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 3/3" id="msb.72"><summary style="color:Magenta"><font color="Green">vándorlás során a fehérje minták milyen eredményt adnak?</font></summary><ul class="normal">
+		<li>mintákat nemtudom pontosan mik voltak &#10140; 1. vérszérum <span class="MISS">2. <abbr title="centrifugált csapadék">??</abbr> 3. ??</span> 4. BSA</li>
+		<li>annyit tudok, hogy elsőnél lesz mondjuk 10db csík</li>
+		<li>4.nél 1db lesz csak (járjak utána gyakkönyv)</li>
+		<li>2.nál lesz mondjuk 4db &#10140; 3.nál akkor az a 6db lesz ami nem volt a másodiknál (mert a 2. és a 3. az első különválasztva)</li>
+		<li>létra &#10140; tele van nagyon sok méretű fehérjével, amihez viszonyítva be lehet lőni a többit, hogy mi lehet (hisz a létra fehérjék meg vannak adva, és tömegük is) <abbr title="ha látom hogy az 1.-nél az egyik csík ugyanaddig jutott el, mint az egyik csík a 4esen, és a 4esen az egy 48kDa fehérje, akkor mivel az albumin annyi, ezért tudhatom, hogy az 1.esnél albuminnak van az a csíkja ott">(pl)</abbr></li>
+		<li><span class="MISS">gyakkönyvben még nemjártam utána!</span></li>
+		<img src="images/gy3_rdmny.png">
+	</ul></details>
+	<details class="kerdes 3/3" id="msb.73"><summary><i>második fázis</i> lényege?</summary><ul class="normal">
+		<li>egyik üveglap párban lévő gélt kiveszem és beleteszem egy kék színű festékoldatba &#10140; 5percig otthagyom &#10140; fehérjecsíkok kék színűek lesznek</li>
+		<li>másik gélnél kissé bonyolultabb a helyzet &#10140; ún. <span class="Important">Western-blottolást</span> kell még végezni (ez jobb felbontást fog eredményezni)</li>
+		<li>először kiveszem a gélt és ráteszem egy nitrocellulóz tartalmú membránra &#10140; ez a membrán nem ereszti át a fehérjét</li>
+		<li>töltéseket itt is hasonlóan mint az első fázisban: futtatókádban lesz pufferoldattal feltöltve + feszültség rákapcsolva</li>
+		<li>közben történik egy festés (fekete színre)</li>
+		<li>itt az a fontos, hogy a membrán van a pozitív töltés fele, hiszen a fehérje abba az irányba vándorol és a cél, hogy a membránra menjen át a fehérje</li>
+		<img src="images/gy3_glmmbrnf.png">
+		<img src="images/gy3_mrsdlényg.png">
+	</ul></details>
+	<details class="kerdes 3/3" id="msb.74"><summary>orvosi felhasználás?</summary><ul class="normal">
+		<div>pl. egészséges vérrel készítettett összehasonlítva egy beteg vérével készülttel...</div>
+		<li>ha a betegében hiányzik egy csík &#10140; lehet pl. immunfehérje-hiány (genetikai)</li>
+		<li>ha a betegében plusz van egy csík &#10140; lehet pl. baktérium toxinfehérje</li>
+	</ul></details>
+	<details><summary><span class="Vocab">Megj</span> &#10140; video is van róla elvileg (papírra leírtam őket, majd nézzek esetleg utána)</summary><ul class="normal">
+	</ul></details>
+	<details class="kerdes 3/?" id="msb.75"><summary><span class="FIX">"antitest-antigén elsődleges másodlagos technikák"</span> lényege?</summary><ul class="normal">
+		<li>(gyakjegyzet + record!)</li>
+	</ul></details>
+ http://elte.prompt.hu/sites/default/files/tananyagok/BevBiokemGyak/ch07s03.html
 <!----></div></div></details>
 
 <!----><details open><summary class="phase">Fehérjék vizsgálata.</summary><div class="normal">

@@ -1,16 +1,19 @@
 ﻿
 /* FELADATOK
-	(-) js-be írjam, ne html-be a kérdés-részt (tehát ahova a kérdést kidobja) --> így ha változtatok rajta, elég egy helyen, nem kell minden aktív fájlban átírnom
 	(-) legyen multi-kérdés: több kérdés egyszerre, külön számolja priorjukat ugye (legnagyobb alapján kerülhet kérdésbe), és megválaszolásukkor mindegyikét elmenti --> pl. aminosav: képlete?(HP) oldalláncának neve?(LP) 
+	(-) 1kérdés lehessen többhelyen is a kódban, azonban a szöveg csak egy helyen legyen megadva hozzá (hogy csak egy helyen kelljen átírnom, ha változtatok rajta)
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-	(-) 1 Repeat 30perc után, ha jó akkor felezi a múltkori RepeatTimest
-	(-) 1kérdés lehessen többhelyen is, és a kódban azonban csak a szöveg egy helyen legyen megadva hozzá (hogy csak egy helyen kelljen átírnom, ha változtatok rajta)
 	(-) Skip funkció
 	(-) alján a func_span rész sztem buggos, tehát pl. nemhiszem hogy minden jól megy ott! majd amikor tesztelem már, mert tanulok akkor figyeljek rá
-––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-	(-) lehessen visszatölteni az előző kérdést (jegyek stb-t is töltse vissza localstoragebe)
 	(-) repeatre állított (vagy miss/fix/etc. checkbox true) kérdést mindenképp dobhassa, ne legyen feltétele a kérdés tételének aktivitása
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+	(-) 1 Repeat 30perc után, ha jó akkor felezi a múltkori RepeatTimest
+	(-) js-be írjam, ne html-be a kérdés-részt (tehát ahova a kérdést kidobja) --> így ha változtatok rajta, elég egy helyen, nem kell minden aktív fájlban átírnom
+	(-) lehessen visszatölteni az előző kérdést (jegyek stb-t is töltse vissza localstoragebe)
 	(-) altételcímet ne feltétlen mutassa
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+	(-) jobb felső kérdésszám buttonra klikkelve mindent hideljen el, és showolja a következő kérdést majd, ne copyzza! --> így a scripteket nem kell újra megadni
+	(-) amikor visszarakja a kérdést a helyére akkor a legaljára teszi, ezt preventáljam azzal, hogy az összes kérdést (témán belül) újra oda helyezi, a kezdeti sorrend szerint
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 	(-) kép 
 		addig terjedhet ki balra, amíg szövegbe nem ütközik, de min 40%-ot kaphat.
@@ -24,12 +27,11 @@
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 	(-) DETAILS script
 	(-) lehessen beállítani IF / RAJZ stb. kategóriát is
-	(-) hide all onClick: jobb felső kérdésszám buttonra klikkelve mindent hideljen el, és showolja(így a scripteket nem kell újra megadni) a következő kérdést majd, ne copyzza!
 	(-) lehessen látni jegy(1-2-3) hány feladat van és ki lehessen jelölni /checkbox/ melyeket akarom (ez nembiztos kell)
 	(-) kérdést más html-ből olvassa be
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	(+) jelenleg akkoris megkapják a bónuszt +1et, ha időpont nem volt elég hozzá
-	(+) 2es jeggyel átlag repeat fele menjen egyet
+	(+) tooltip az abbr-ban elrejtetteknél nem műxik
 */
 
 
@@ -207,6 +209,72 @@ centerImage.style.visibility = "hidden";
 
 
 
+
+// SAVE LS
+function setItem(key, value){
+	if (typeof value === 'object') {
+		value = JSON.stringify(value);
+	}
+	localStorage.setItem(key, value);
+}
+function getItem(key){
+	if (key){
+		try{
+			return JSON.parse(localStorage.getItem(key));
+		}
+		catch(e){
+			return localStorage.getItem(key);
+		}
+	}
+}
+function func_saveLS() {
+	var objects = {};
+	var text = ""
+	for (var i = 0, len = localStorage.length; i < len; i++) {
+		objects[localStorage.key(i)] = getItem(localStorage.key(i));
+		text = text + localStorage.key(i) + " = " + getItem(localStorage.key(i)) + " NEXTONE "
+	}
+	console.log(objects);
+	window.location = "data:text/plain,"+text
+}
+//func_saveLS()
+// LOAD LS
+function func_loadLS(content) {
+	do {
+		var phaseText = content.slice(0,content.indexOf(" NEXTONE "));
+		content = content.slice(content.indexOf(" NEXTONE ") +9)
+		var variable = phaseText.slice(0,phaseText.indexOf(" = "));
+		var price = phaseText.slice(phaseText.indexOf(" = ") +3);
+		localStorage.setItem(variable, price)
+	}
+	while (phaseText.length > 1);
+}
+var fileInput = document.getElementById('fileinput');
+fileInput.addEventListener('change', function(e) {
+	var file = fileInput.files[0];
+	var textType = /text.*/;
+	var content
+
+	if (file.type.match(textType)) {
+		 var reader = new FileReader();
+
+		 reader.onload = function(e) {
+			content = reader.result
+			func_loadLS(content)
+		 }
+
+		 reader.readAsText(file);    
+	} else {
+		alert("File not supported!")
+	}
+});
+
+
+
+
+
+
+
 // toggle checkbox/note
 var var_toggleAll = false
 function toggleAll() {
@@ -253,7 +321,7 @@ function func_titleID() {
 		var minorID = Table[i].innerHTML
 		var majorID = Table[i].parentElement.parentElement.parentElement.id
 		var mainID = Table[i].parentElement.parentElement.parentElement.parentElement.id
-		minorID = majorID.slice(0,majorID.indexOf(".")) + ". " + minorID
+		minorID = majorID.slice(0,majorID.indexOf(".")) + " &#10140; " + minorID
 		minorID = mainID + "/" + minorID
 		Table[i].parentElement.id = minorID;
 	}
@@ -311,7 +379,9 @@ for ( var i = 0;   i < elements.length;   i++ ) {
 	if ( Number(id.slice(id.indexOf(".")+1)) > highestID ) { 
 		highestID = Number(id.slice(id.indexOf(".")+1))
 	}
-	questCount = questCount +1 // egyenlőre csak Anat.html-nél számolom
+	if ( temaKerdes != "3D." ) {
+		questCount = questCount +1 // egyenlőre csak Anat.html-nél számolom
+	}
 
 	if ( !usedID[id] ) {
 		usedID[id] = true
@@ -324,6 +394,14 @@ if ( document.title == "Anat" ) {
 	var sedreks = document.getElementsByClassName("sedrek")
 	for ( var i = 0;   i < sedreks.length;   i++ ) {
 		var id = sedreks[i].id
+
+		var d = document.getElementById(id).children
+		for (k = 0; k < d.length; k++) {
+			if ( "SUMMARY" == d[k].tagName ) {
+				d[k].style.backgroundColor = "LightCyan"
+			}
+		}
+
 		if ( Number(id.slice(id.indexOf(".")+1)) > highestID ) { 
 			highestID = Number(id.slice(id.indexOf(".")+1))
 		}
@@ -543,111 +621,122 @@ function func_showTooltip(element){
 	element.title = '';
 }
 
+var table_defText = []
+function func_titleVerChange(velement){
+	table_defText[velement] = velement.title
+	velement.onclick = function(ev){
+		tooltipSpan.style.visibility = "visible";
+		tooltipSpan.innerHTML = table_defText[this]
+		tooltipStatus = "show"
+		ev.stopPropagation();
+//alert(tooltipSpan.innerHTML)
+			
+		var posX = this.offsetLeft
+		var posY = this.offsetTop 
+		var par = this.offsetParent
+
+		tooltipSpan.style.minWidth = null;
+		tooltipSpan.style.maxWidth = 300;
+		if ( tooltipSpan.offsetWidth > 100 ) {
+			tooltipSpan.style.minWidth = 100;
+		} else {
+			tooltipSpan.style.minWidth = tooltipSpan.offsetWidth
+		}
+		if ( tooltipSpan.offsetWidth > par.offsetWidth - posX -10 ) {
+			tooltipSpan.style.left = posX - tooltipSpan.offsetWidth + par.offsetWidth - posX - 10
+		} else {
+			tooltipSpan.style.left = posX;
+		}
+		tooltipSpan.style.top = posY +20;
+	};
+	velement.onmouseover = function(){
+		tooltipSpan.style.visibility = "visible";
+		tooltipSpan.innerHTML = this.title
+			
+		var posX = this.offsetLeft
+		var posY = this.offsetTop
+		var par = this.offsetParent
+
+		tooltipSpan.style.minWidth = null;
+		tooltipSpan.style.maxWidth = 300;
+		if ( tooltipSpan.offsetWidth > 100 ) {
+			tooltipSpan.style.minWidth = 100;
+		} else {
+			tooltipSpan.style.minWidth = tooltipSpan.offsetWidth
+		}
+		if ( tooltipSpan.offsetWidth > par.offsetWidth - posX -10 ) {
+			tooltipSpan.style.left = posX - tooltipSpan.offsetWidth + par.offsetWidth - posX - 10
+		} else {
+			tooltipSpan.style.left = posX;
+		}
+		tooltipSpan.style.top = posY +20;
+
+		table_defText[this] = this.title;
+		this.title = '';
+	};
+	velement.onmouseout = function(){
+		this.title = table_defText[this];
+		if ( tooltipStatus != "show" ) {
+			tooltipSpan.style.visibility = "hidden";
+		}
+	};
+}
+
 function func_TitleChange(){
 	//var abbrok = document.getElementsByTagName("ABBR");
 	var abbrok = document.querySelectorAll("*[title]");
-	var table_defText = []
 	for ( var i = 0; i < abbrok.length; i++ ) {
-		table_defText[abbrok[i]] = abbrok[i].title
-		abbrok[i].onclick = function(ev){
-			tooltipSpan.style.visibility = "visible";
-			tooltipSpan.innerHTML = table_defText[this]
-			tooltipStatus = "show"
-			ev.stopPropagation();
-	//alert(tooltipSpan.innerHTML)
-				
-			var posX = this.offsetLeft
-			var posY = this.offsetTop 
-			var par = this.offsetParent
-
-			tooltipSpan.style.minWidth = null;
-			tooltipSpan.style.maxWidth = 300;
-			if ( tooltipSpan.offsetWidth > 100 ) {
-				tooltipSpan.style.minWidth = 100;
-			} else {
-				tooltipSpan.style.minWidth = tooltipSpan.offsetWidth
-			}
-			if ( tooltipSpan.offsetWidth > par.offsetWidth - posX -10 ) {
-				tooltipSpan.style.left = posX - tooltipSpan.offsetWidth + par.offsetWidth - posX - 10
-			} else {
-				tooltipSpan.style.left = posX;
-			}
-			tooltipSpan.style.top = posY +20;
-		};
-		abbrok[i].onmouseover = function(){
-			tooltipSpan.style.visibility = "visible";
-			tooltipSpan.innerHTML = this.title
-				
-			var posX = this.offsetLeft
-			var posY = this.offsetTop
-			var par = this.offsetParent
-
-			tooltipSpan.style.minWidth = null;
-			tooltipSpan.style.maxWidth = 300;
-			if ( tooltipSpan.offsetWidth > 100 ) {
-				tooltipSpan.style.minWidth = 100;
-			} else {
-				tooltipSpan.style.minWidth = tooltipSpan.offsetWidth
-			}
-			if ( tooltipSpan.offsetWidth > par.offsetWidth - posX -10 ) {
-				tooltipSpan.style.left = posX - tooltipSpan.offsetWidth + par.offsetWidth - posX - 10
-			} else {
-				tooltipSpan.style.left = posX;
-			}
-			tooltipSpan.style.top = posY +20;
-
-			table_defText[this] = this.title;
-			this.title = '';
-		};
-		abbrok[i].onmouseout = function(){
-			this.title = table_defText[this];
-			if ( tooltipStatus != "show" ) {
-				tooltipSpan.style.visibility = "hidden";
-			}
-		};
+		func_titleVerChange(abbrok[i])
 	}
+}
+func_TitleChange()
 
-	var abbrSpan = document.getElementById("kerdeslocation").getElementsByClassName("abbr")
+function func_abbrSet(){
+	var abbrSpan = document.getElementsByClassName("abbr")
 	var table_defTextSpan = []
 	for ( var j = 0; j < abbrSpan.length; j++ ) {
 		abbrSpan[j].style.cursor = "pointer"
 		if ( !abbrSpan[j].Text ) {
-			abbrSpan[j].Text = abbrSpan[j].innerHTML
-			abbrSpan[j].innerHTML = abbrSpan[j].innerHTML.slice(0,abbrSpan[j].innerHTML.indexOf("►")+1)
+			abbrSpan[j].parentElement.style.visibility = "hidden"
+			abbrSpan[j].style.visibility = "visible"
+			abbrSpan[j].style.backgroundColor = "Bisque";
 		}
 		abbrSpan[j].onclick = function(){
 			if ( this.Shown != "true" ) { 
 				this.style.cursor = ""
-				this.innerHTML = this.Text.replace('►','');
+				this.style.backgroundColor = "";
+				this.parentElement.style.visibility = "visible"
 				this.Shown = "true"
 			}
 		}
 	}
 }
-func_TitleChange()
+func_abbrSet()
+
+
 /* ToolTip END */
 
 
 // checkboxok: missFix & skipID
-document.getElementById("checkbox_RepNew").onclick = function() {
+if ( localStorage.getItem("checkboxSkip") == "true" ) {
+	document.getElementById("checkboxSkip").checked = true;
+}
+if ( localStorage.getItem("miss_checkbox") == "true" ) {
+	//document.getElementById("miss_checkbox").checked = true;
+}
+if ( localStorage.getItem("checkboxProgress") == "true" ) {
+	document.getElementById("checkboxProgress").checked = true;
+}
+/*if ( localStorage.getItem("checkbox_RepNew") == "true" ) {
+	document.getElementById("checkbox_RepNew").checked = true;
+}*/
+/*document.getElementById("checkbox_RepNew").onclick = function() {
 	if ( this.checked ) {
 		localStorage.setItem(this.id,true)
 	} else {
 		localStorage.setItem(this.id,false)
 	}
-}
-if ( localStorage.getItem("checkboxSkip") == "true" ) {
-	document.getElementById("checkboxSkip").checked = true;
-}
-if ( localStorage.getItem("miss_checkbox") == "true" ) {
-	document.getElementById("miss_checkbox").checked = true;
-}
-if ( localStorage.getItem("checkboxProgress") == "true" ) {
-	document.getElementById("checkboxProgress").checked = true;
-}
-if ( localStorage.getItem("checkbox_RepNew") == "true" ) {
-	document.getElementById("checkbox_RepNew").checked = true;
-}
+}*/
 
 var elements = document.getElementsByClassName("kerdes")
 var table_Status = []
@@ -726,7 +815,7 @@ function func_calcOldNew(){
 						}
 					}
 					
-					if ( localStorage.getItem(kerdes+"_skip") == "repeat" ) {
+					if ( localStorage.getItem(kerdes+"_jegy") == 1 ) {
 
 						if ( idopont < 30 ) {
 							repOld = repOld +1
@@ -772,6 +861,8 @@ function func_prevQuestion(){
 			localStorage.setItem(priorKerdesID+'_jegyDiff', "bad");
 		}
 	}*/
+
+	document.getElementById(oldParent).appendChild(document.getElementById(priorKerdesID))
 
 	localStorage.setItem(priorKerdesID+'_jegy', document.getElementById("jegy").value);
 	if ( document.getElementById("buttonFix").style.backgroundColor == "lightgrey" ) {
@@ -875,6 +966,7 @@ var priorKerdesID = "nincs"
 var checkNum
 var cloneKerdes
 var lastTime = 0
+var oldParent
 function koviKerdes(){
 	var date = new Date();
 	var newTime = Math.floor(date.getTime()/1000)
@@ -906,7 +998,7 @@ function koviKerdes(){
 	var checkValue = 0
 	
 	function func_checkStatus(status){
-		if ( priorKerdesID == "nincs" && localStorage.getItem(status+"_checkbox") == "true" ) {
+		if ( priorKerdesID == "nincs" && document.getElementById("btn_"+status).style.borderColor == "limegreen" ) {
 			function func_priorStatus() {
 				var table_IDs = []
 				for ( var id in table_Status ) {
@@ -933,7 +1025,7 @@ function koviKerdes(){
 					for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
 						if ( kerdesID[fotema][temaKerdes][kerdes] == true ) {
 
-							if ( localStorage.getItem("checkbox_RepNew") == "true" && priorType < 3 && localStorage.getItem(kerdes+"_skip") == "repeat" ) {
+							/*if ( localStorage.getItem("checkbox_RepNew") == "true" && priorType < 3 && localStorage.getItem(kerdes+"_jegy") == 1 ) {
 								var date = new Date();
 								var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont')
 
@@ -941,7 +1033,7 @@ function koviKerdes(){
 									priorType = 3
 									priorKerdesID = kerdes;
 								}
-							}
+							}*/
 
 							if ( localStorage.getItem(kerdes+"_jegy") == null || isNaN(localStorage.getItem(kerdes+"_jegy")) == true ) {
 								if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" && priorType < 2 ) {
@@ -1046,17 +1138,46 @@ function koviKerdes(){
 		}
 	}
 	if ( priorKerdesID != "nincs" ) {
-		document.getElementById('jegy').disabled = false;
 		fullTema = document.getElementById(priorKerdesID).parentElement.id
 		var cimTitle = priorKerdesID.slice(priorKerdesID.indexOf(".")+1)
-		document.getElementById("questTitle").innerHTML = "(" + cimTitle + ") " + fullTema.slice(0,fullTema.indexOf("/")) + ": " + fullTema.slice(fullTema.indexOf("/")+1,fullTema.indexOf(".")) + " &#10140; " + fullTema.slice(fullTema.indexOf(".")+1);
+		document.getElementById("questTitle").innerHTML = "(" + cimTitle + ") " + fullTema.slice(0,fullTema.indexOf("/")-1) + " &#10140; " + fullTema.slice(fullTema.indexOf(".")+2);
+		
+		var n = document.getElementById(priorKerdesID).className.search("open");
+		if ( n != -1 ) {
+			document.getElementById(priorKerdesID).open = true;
+			var c = document.getElementById(priorKerdesID).children;
+			var d = document.getElementById(priorKerdesID).parentNode.parentNode.parentNode.children
+			var titleText = ""
+			for (k = 0; k < d.length; k++) {
+				if ( "SUMMARY" == d[k].tagName ) {
+					if ( d[k].innerHTML.slice(0,1) == "." ) {
+						titleText = d[k].innerHTML.replace('.','') + " &#10140; "
+					}
+				}
+			}
+			var hide = false 
+			for (i = 0; i < c.length; i++) {
+				if ( "SUMMARY" == c[i].tagName ) {
+					titleText = titleText + c[i].innerHTML
+					if ( c[i].innerHTML.search("[?=]") == -1 ) {
+						c[i].innerHTML = "kérdés"
+						hide = true 
+					}
+				}
+				if ( "UL" == c[i].tagName && "normal" == c[i].className && hide == true ) {
+					c[i].insertAdjacentHTML('afterbegin', '<span class="abbr"><strong><span class="Important">►</span>'+titleText+'</strong></span><br>');
+					c[i].open = false
+					func_abbrSet()
+				}
+			}
+		} else {
+			document.getElementById(priorKerdesID).open = false;
+		}
+		
+		oldParent = document.getElementById(priorKerdesID).parentElement.id
+		document.getElementById("kerdeslocation").appendChild(document.getElementById(priorKerdesID))
 
-		//cloneKerdes = document.getElementById(priorKerdesID).cloneNode(true);
-		//cloneKerdes.id = "clone";
-		//document.getElementById("kerdeslocation").appendChild(cloneKerdes)
-		//cloneKerdes.style.display = 'block';
-		document.getElementById("kerdeslocation").innerHTML = document.getElementById(priorKerdesID).innerHTML;
-		document.getElementById("kerdeslocation").style.display = 'block';
+		/*document.getElementById("kerdeslocation").innerHTML = document.getElementById(priorKerdesID).innerHTML;
 		var aktivimages = document.getElementById("kerdeslocation").getElementsByTagName("img");
 		for ( var i = 0;   i < aktivimages.length;   i++ ) {
 			aktivimages[i].onclick=function(){
@@ -1074,35 +1195,8 @@ function koviKerdes(){
 				centerImage.style.margin = "auto";
 			};
 		}
-		var n = document.getElementById(priorKerdesID).className.search("open");
-		if ( n != -1 ) {
-			document.getElementById("kerdeslocation").open = true;
-			var c = document.getElementById("kerdeslocation").children;
-			var d = document.getElementById(priorKerdesID).parentNode.parentNode.parentNode.children
-			var titleText
-			for (k = 0; k < d.length; k++) {
-				if ( "SUMMARY" == d[k].tagName ) {
-					titleText = d[k].innerHTML.replace('.','')
-				}
-			}
-			var hide = false 
-			for (i = 0; i < c.length; i++) {
-				if ( "SUMMARY" == c[i].tagName ) {
-					titleText = titleText + " &#10140; " + c[i].innerHTML
-					if ( c[i].innerHTML.search("[?=]") == -1 ) {
-						c[i].innerHTML = "kérdés"
-						hide = true 
-					}
-				}
-				if ( "UL" == c[i].tagName && "normal" == c[i].className && hide == true ) {
-					c[i].insertAdjacentHTML('afterbegin', '<span class="abbr"><strong><span class="Important">►</span>'+titleText+'</strong></span><br>');
-					c[i].open = false
-				}
-			}
-		} else {
-			document.getElementById("kerdeslocation").open = false;
-		}
 		func_TitleChange()
+		*/
 
 		if ( localStorage.getItem(priorKerdesID+"_skip") == "progress" ) {
 			document.getElementById("buttonSkip").style.backgroundColor = "black"
@@ -1125,21 +1219,6 @@ function koviKerdes(){
 			var_note = false
 		}
 
-		/*var num = document.getElementById(priorKerdesID).className.search("/");
-		var prior = document.getElementById(priorKerdesID).className.substring(num-1,num);
-		var hossz = document.getElementById(priorKerdesID).className.substring(num+1,num+2);
-		if ( prior == 1 ) {
-			prior = 0.33
-		} else if ( prior == 2 ) {
-			prior = 0.66 
-		} else if ( prior == 4 ) {
-			prior = 1.5
-		} else if ( prior == 5 ) {
-			prior = 3
-		} else {
-			prior = 1
-		}*/
-
 		if ( localStorage.getItem(priorKerdesID+"_skip") == "repeat" ) {
 			document.getElementById('jegy').disabled = true;
 		}
@@ -1154,10 +1233,6 @@ function koviKerdes(){
 
 		var date = new Date();
 		var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(priorKerdesID+'_idopont')
-		/*if ( 60 > idopont ) {
-			document.getElementById('jegy').disabled = true;
-			document.getElementById('rank').disabled = true;
-		}*/
 
 		if ( priorKerdesID+'_jegy' in localStorage ) {
 			document.getElementById("pJegy").textContent = localStorage.getItem(priorKerdesID+'_jegy');
@@ -1283,7 +1358,6 @@ func_calcOldNew();
 func_calcJegy()
 func_calcDate()
 func_calcRepeat()
-
 
 
 
