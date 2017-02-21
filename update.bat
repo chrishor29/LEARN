@@ -1,6 +1,5 @@
 copy C:\Kristof\MIRROR\LEARN\javascript.js C:\Users\chrishor29\Desktop\LEARN\javascript.js
 copy C:\Kristof\MIRROR\LEARN\style.css C:\Users\chrishor29\Desktop\LEARN\style.css
-copy C:\Kristof\MIRROR\LEARN\targyvalasztas.html C:\Users\chrishor29\Desktop\LEARN\targyvalasztas.html
 
 robocopy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\images C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Biologia\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\ob.html C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Biologia\ob.html

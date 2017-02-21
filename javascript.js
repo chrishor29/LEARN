@@ -302,28 +302,34 @@ function toggleNote() {
 function func_phaseID() {
 	var Table = document.getElementsByClassName("phase")
 	for ( var i = 0;   i < Table.length;   i++ ) {
-		var minorID = Table[i].innerHTML
-		Table[i].parentElement.id = minorID
+		Table[i].parentElement.id = Table[i].innerHTML
 	}
 }
 func_phaseID()
 function func_mainID() {
 	var Table = document.getElementsByClassName("mainTitle")
 	for ( var i = 0;   i < Table.length;   i++ ) {
-		var minorID = Table[i].innerHTML
-		Table[i].parentElement.id = minorID
+		Table[i].parentElement.id = Table[i].innerHTML
 	}
 }
 func_mainID()
 function func_titleID() {
 	var Table = document.getElementsByClassName("title")
 	for ( var i = 0;   i < Table.length;   i++ ) {
-		var minorID = Table[i].innerHTML
-		var majorID = Table[i].parentElement.parentElement.parentElement.id
-		var mainID = Table[i].parentElement.parentElement.parentElement.parentElement.id
-		minorID = majorID.slice(0,majorID.indexOf(".")) + " &#10140; " + minorID
-		minorID = mainID + "/" + minorID
-		Table[i].parentElement.id = minorID;
+		var mainID = " "
+		if ( Table[i].parentElement.parentElement.parentElement.parentElement.nodeName == "DIV" ) {
+			mainID = Table[i].parentElement.parentElement.parentElement.parentElement.id
+			mainID = mainID + " &#10140; "
+		}
+		var phaseTextD = Table[i].parentElement.parentElement.parentElement.id
+		var titleText = Table[i].innerHTML
+		if ( titleText != "" ) {
+			titleText = " &#10140; " + titleText
+		}
+		titleText = phaseTextD + titleText
+		titleText = mainID + titleText
+		//alert(titleText)
+		Table[i].parentElement.id = titleText;
 	}
 }
 func_titleID()
@@ -939,7 +945,7 @@ function func_prevQuestion(){
 	localStorage.setItem(priorKerdesID+'_note', document.getElementById("note").value);
 
 	document.getElementById("questTitle").innerHTML = "";		// hide előző megoldás
-	document.getElementById("kerdeslocation").style.display = 'none';								// hide előző megoldás
+	//document.getElementById("kerdeslocation").style.display = 'none';								// hide előző megoldás
 	
 	func_valStatus("fix");
 	func_valStatus("miss");
@@ -1140,7 +1146,7 @@ function koviKerdes(){
 	if ( priorKerdesID != "nincs" ) {
 		fullTema = document.getElementById(priorKerdesID).parentElement.id
 		var cimTitle = priorKerdesID.slice(priorKerdesID.indexOf(".")+1)
-		document.getElementById("questTitle").innerHTML = "(" + cimTitle + ") " + fullTema.slice(0,fullTema.indexOf("/")-1) + " &#10140; " + fullTema.slice(fullTema.indexOf(".")+2);
+		document.getElementById("questTitle").innerHTML = "(" + cimTitle + ") " + fullTema;
 		
 		var n = document.getElementById(priorKerdesID).className.search("open");
 		if ( n != -1 ) {
