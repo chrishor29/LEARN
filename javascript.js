@@ -35,6 +35,10 @@
 */
 
 
+/* Replace text (regular expression)
+	<li><span class="WHITE">(.*?)</span>(.*?)</li>
+	<div><font class="abbr"><span class="WHITE">\1</span> ►</font>\2</div>
+*/
 
 
 window.onerror = function(msg, url, linenumber) {
@@ -206,10 +210,32 @@ centerImage = document.createElement("img")
 document.body.appendChild(centerImage)
 centerImage.style.visibility = "hidden";
 
+var downloadFile = function(filename, content) {
+  var blob = new Blob([content]);
+  var evt = document.createEvent("HTMLEvents");
+  evt.initEvent("click");
+  $("<a>", {
+    download: filename,
+    href: webkitURL.createObjectURL(blob)
+  }).get(0).dispatchEvent(evt);
+};
 
 
+// download funkció (netről copyztam) --> Save LS-nél ezt hívja le (azért kellett, mert androidon máshogy nemtudom lementeni)
+function download(filename, text) {
+    var pom = document.createElement('a');
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    pom.setAttribute('download', filename);
 
-
+    if (document.createEvent) {
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        pom.dispatchEvent(event);
+    }
+    else {
+        pom.click();
+    }
+}
 // SAVE LS
 function setItem(key, value){
 	if (typeof value === 'object') {
@@ -234,10 +260,10 @@ function func_saveLS() {
 		objects[localStorage.key(i)] = getItem(localStorage.key(i));
 		text = text + localStorage.key(i) + " = " + getItem(localStorage.key(i)) + " NEXTONE "
 	}
-	console.log(objects);
-	window.location = "data:text/plain,"+text
+	download('localStorage.txt', text);
+	//console.log(objects);
+	//window.location = "data:text/plain,"+text
 }
-//func_saveLS()
 // LOAD LS
 function func_loadLS(content) {
 	do {
@@ -326,10 +352,10 @@ function func_titleID() {
 		if ( titleText != "" ) {
 			titleText = " &#10140; " + titleText
 		}
-		titleText = phaseTextD + titleText
-		titleText = mainID + titleText
-		//alert(titleText)
+		titleText = mainID + phaseTextD + titleText
+		//Table[i].parentElement.id = titleText;
 		Table[i].parentElement.id = titleText;
+		//alert(Table[i].parentElement.id)
 	}
 }
 func_titleID()
@@ -708,11 +734,10 @@ function func_abbrSet(){
 			abbrSpan[j].style.backgroundColor = "Bisque";
 		}
 		abbrSpan[j].onclick = function(){
-			if ( this.Shown != "true" ) { 
+			if ( this.parentElement.style.visibility != "visible" ) { 
 				this.style.cursor = ""
 				this.style.backgroundColor = "";
 				this.parentElement.style.visibility = "visible"
-				this.Shown = "true"
 			}
 		}
 	}
@@ -868,12 +893,14 @@ function func_prevQuestion(){
 		}
 	}*/
 
+	document.getElementById(priorKerdesID).open = false;
 	document.getElementById(oldParent).appendChild(document.getElementById(priorKerdesID))
+	func_abbrSet()
 
 	localStorage.setItem(priorKerdesID+'_jegy', document.getElementById("jegy").value);
 	if ( document.getElementById("buttonFix").style.backgroundColor == "lightgrey" ) {
 		table_Status[priorKerdesID] = "normal"
-		localStorage.setItem(priorKerdesID + "_fix","")
+		localStorage.removeItem(priorKerdesID + "_fix")
 	} else if ( document.getElementById("buttonFix").style.backgroundColor == "lightpink" ) {
 		table_Status[priorKerdesID] = "miss"
 		localStorage.setItem(priorKerdesID + "_fix","miss") 
@@ -1171,7 +1198,7 @@ function koviKerdes(){
 					}
 				}
 				if ( "UL" == c[i].tagName && "normal" == c[i].className && hide == true ) {
-					c[i].insertAdjacentHTML('afterbegin', '<span class="abbr"><strong><span class="Important">►</span>'+titleText+'</strong></span><br>');
+					c[i].insertAdjacentHTML('afterbegin', '<div><font class="abbr"><strong><span class="Important">►</span></font>'+titleText+'</strong></div>');
 					c[i].open = false
 					func_abbrSet()
 				}
