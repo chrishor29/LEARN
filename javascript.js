@@ -80,6 +80,7 @@ function func_removeRepeat(){
 		}
 	}
 }
+//func_removeRepeat()
 
 
 function func_calcJegy() { // átlagJegyet kiszámolja
@@ -175,8 +176,6 @@ function func_calcRepeat() { // átlagIsmétlések számát kiszámolja
 }
 
 
-
-
 // képnagyítás balKlikkel középre
 var imagesAll = document.images
 var imgStatus
@@ -209,16 +208,6 @@ for ( var i = 0;   i < imagesAll.length;   i++ ) {
 centerImage = document.createElement("img")
 document.body.appendChild(centerImage)
 centerImage.style.visibility = "hidden";
-
-var downloadFile = function(filename, content) {
-  var blob = new Blob([content]);
-  var evt = document.createEvent("HTMLEvents");
-  evt.initEvent("click");
-  $("<a>", {
-    download: filename,
-    href: webkitURL.createObjectURL(blob)
-  }).get(0).dispatchEvent(evt);
-};
 
 
 // download funkció (netről copyztam) --> Save LS-nél ezt hívja le (azért kellett, mert androidon máshogy nemtudom lementeni)
@@ -294,10 +283,6 @@ fileInput.addEventListener('change', function(e) {
 		alert("File not supported!")
 	}
 });
-
-
-
-
 
 
 
@@ -411,9 +396,7 @@ for ( var i = 0;   i < elements.length;   i++ ) {
 	if ( Number(id.slice(id.indexOf(".")+1)) > highestID ) { 
 		highestID = Number(id.slice(id.indexOf(".")+1))
 	}
-	if ( temaKerdes != "3D." ) {
-		questCount = questCount +1 // egyenlőre csak Anat.html-nél számolom
-	}
+	questCount = questCount +1 // egyenlőre csak Anat.html-nél számolom
 
 	if ( !usedID[id] ) {
 		usedID[id] = true
@@ -459,11 +442,6 @@ function func_spanClick(element){
 }
 
 
-//func_removeRepeat()
-
-
-
-
 function func_clickTemaButton(button){
 	if ( localStorage.getItem(button.id) == "true" ) {
 		localStorage.setItem(button.id,false)
@@ -489,7 +467,7 @@ for ( var fotema in kerdesID ) {
 	for ( var temaKerdes in kerdesID[fotema] ) {
 		var button = document.createElement("input");
 		button.type = "button";
-		button.style.height = "20px";
+		button.style.height = "23px";
 		button.style.width = "30px";
 		button.id = fotema+" / "+temaKerdes+"_button";
 
@@ -501,6 +479,8 @@ for ( var fotema in kerdesID ) {
 		button.onclick = function() {
 			func_clickTemaButton(this);
 			func_calcOldNew();
+			func_calcDate()
+			func_calcJegy()
 		}
 
 
@@ -614,7 +594,6 @@ for ( var fotema in kerdesID ) {
 }
 
 
-
 /* ToolTip BEGIN */
 var tooltipSpan = document.createElement("span");
 document.body.appendChild(tooltipSpan)
@@ -723,7 +702,7 @@ function func_TitleChange(){
 }
 func_TitleChange()
 
-function func_abbrSet(){
+function func_abbrSet(){ // azt csináljam, hogy a li textet írja át alapból: <span tyle="color:0"> ..text.. <span>, majd amikor ráklikkelek removeolja a spant --> megmaradnak a pontok
 	var abbrSpan = document.getElementsByClassName("abbr")
 	var table_defTextSpan = []
 	for ( var j = 0; j < abbrSpan.length; j++ ) {
@@ -743,8 +722,6 @@ function func_abbrSet(){
 	}
 }
 func_abbrSet()
-
-
 /* ToolTip END */
 
 
@@ -893,8 +870,16 @@ function func_prevQuestion(){
 		}
 	}*/
 
+	// kerdesek visszahelyezése BEGIN
 	document.getElementById(priorKerdesID).open = false;
 	document.getElementById(oldParent).appendChild(document.getElementById(priorKerdesID))
+	var elotag = priorKerdesID.substring(0,priorKerdesID.indexOf('.')+1);
+	if ( altKerdesIDs != null ) {
+		for (k = 0; k < altKerdesIDs.length; k++) {
+			document.getElementById(oldAltParents[k]).appendChild(document.getElementById(elotag+altKerdesIDs[k]))
+		}
+	}
+	// kerdesek visszahelyezése END
 	func_abbrSet()
 
 	localStorage.setItem(priorKerdesID+'_jegy', document.getElementById("jegy").value);
@@ -993,13 +978,14 @@ function func_prevQuestion(){
 	}
 */
 
-var tableMulti= {}
 var fullTema
 var priorKerdesID = "nincs"
+var altKerdesIDs = {}
 var checkNum
 var cloneKerdes
 var lastTime = 0
 var oldParent
+var oldAltParents = {}
 function koviKerdes(){
 	var date = new Date();
 	var newTime = Math.floor(date.getTime()/1000)
@@ -1206,9 +1192,25 @@ function koviKerdes(){
 		} else {
 			document.getElementById(priorKerdesID).open = false;
 		}
-		
+
+		// kerdes(ek) áthelyezése BEGIN
+		var string_Class = document.getElementById(priorKerdesID).className
+		string_Class = string_Class.substring(0,string_Class.search("/")-1);
+		altKerdesIDs = string_Class.match(/\d+/g)
+
+		var elotag = priorKerdesID.substring(0,priorKerdesID.indexOf('.')+1);
+
 		oldParent = document.getElementById(priorKerdesID).parentElement.id
 		document.getElementById("kerdeslocation").appendChild(document.getElementById(priorKerdesID))
+
+		if ( altKerdesIDs != null ) {
+			for (k = 0; k < altKerdesIDs.length; k++) {
+				oldAltParents[k] = document.getElementById(elotag+altKerdesIDs[k]).parentElement.id
+				document.getElementById("kerdeslocation").appendChild(document.getElementById(elotag+altKerdesIDs[k]))
+			}
+		}
+		// kerdes(ek) áthelyezése END
+
 
 		/*document.getElementById("kerdeslocation").innerHTML = document.getElementById(priorKerdesID).innerHTML;
 		var aktivimages = document.getElementById("kerdeslocation").getElementsByTagName("img");
@@ -1245,10 +1247,10 @@ function koviKerdes(){
 		}
 		if ( localStorage.getItem(priorKerdesID+'_note') != "" && localStorage.getItem(priorKerdesID+'_note') != null ) {
 			document.getElementById("note").value = localStorage.getItem(priorKerdesID+'_note')
-			document.getElementById("note").style.display = 'block';
+			document.getElementById("note").style.borderColor = "red";
 			var_note = true
 		} else {
-			document.getElementById("note").style.display = 'none';
+			document.getElementById("note").style.borderColor = "black";
 			var_note = false
 		}
 

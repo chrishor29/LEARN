@@ -50,6 +50,10 @@ div.normal {
 	padding-right: 5px;
 }
 
+.abbr{
+	line-height: 35px;
+}
+
 span { 
 	padding-left: 2px; 
 	padding-right: 2px; 
