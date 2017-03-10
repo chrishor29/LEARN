@@ -35,9 +35,9 @@ robocopy C:\Kristof\MIRROR\LEARN\BioKemia\I\images C:\Users\chrishor29\Desktop\L
 copy C:\Kristof\MIRROR\LEARN\BioKemia\I\biokemia.html C:\Users\chrishor29\Desktop\LEARN\BioKemia\I\biokemia.html 
 copy C:\Kristof\MIRROR\LEARN\BioKemia\I\favicon.bmp C:\Users\chrishor29\Desktop\LEARN\BioKemia\I\favicon.bmp
 
-robocopy C:\Kristof\MIRROR\LEARN\SejtBiosz\I\images C:\Users\chrishor29\Desktop\LEARN\SejtBiosz\I\images /mir
-copy C:\Kristof\MIRROR\LEARN\SejtBiosz\I\sejtbiosz.html C:\Users\chrishor29\Desktop\LEARN\SejtBiosz\I\sejtbiosz.html 
-copy C:\Kristof\MIRROR\LEARN\SejtBiosz\I\favicon.bmp C:\Users\chrishor29\Desktop\LEARN\SejtBiosz\I\favicon.bmp
+robocopy C:\Kristof\MIRROR\LEARN\SejtBiosz\images C:\Users\chrishor29\Desktop\LEARN\SejtBiosz\images /mir
+copy C:\Kristof\MIRROR\LEARN\SejtBiosz\sejtbiosz.html C:\Users\chrishor29\Desktop\LEARN\SejtBiosz\sejtbiosz.html 
+copy C:\Kristof\MIRROR\LEARN\SejtBiosz\favicon.bmp C:\Users\chrishor29\Desktop\LEARN\SejtBiosz\favicon.bmp
 
 
 git remote add origin

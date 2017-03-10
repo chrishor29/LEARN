@@ -25,7 +25,7 @@
 	<span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Date"></span><span class="vocab" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Jegy"></span><span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Repeat"></span>
 	<span style="position:absolute; left:30%;">
 		<span style="border: 0px;" id="rank">&nbsp; &nbsp; &nbsp;</span> &nbsp;
-		<input style="border: 3px solid black;" onclick="toggleNote();" type="button" value="&#10045;"> &nbsp; &nbsp;
+		<input style="border: 3px solid black;" id="btn_Note" onclick="toggleNote();" type="button" value="&#10045;"> &nbsp; &nbsp;
 		<select id="jegy"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; &nbsp;
 		<span id="pJegy">&nbsp; </span> &nbsp; &nbsp;
 		<input onclick="func_buttonFix();" type="button" id="buttonFix" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp;
@@ -54,7 +54,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	<td class="done">2</td>
 	<td class="done">3</td>
 	<td class="done">4</td>
-	<td class="">5</td>
+	<td class="done">5</td>
 	<td class="">6</td>
 	<td class="">7</td>
 </tr><tr><th>GY</th>
@@ -62,7 +62,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	<td class="important">2</td>
 	<td class="important">3</td>
 	<td class="important">4</td>
-	<td class="">5</td>
+	<td class="miss">5</td>
 	<td class="">6</td>
 	<td class="">7</td>
 </tr></table>
@@ -74,7 +74,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	<li>msb 80. vs bk.137 &#10140; itt lehet van különbség, előbb a replikációt nézzem meg</li>
 </ul></details>
 
-<!----><details><summary class="phase">Képletek</summary><div class="normal"><div><div class="title"></div>
+<!----><details><summary class="phase">Képletek</summary><div><div class="title"></div>
 	<details class="kerdes 4/1" id="bKI.1"><summary>glicin</summary><ul class="normal">
 		<img src="images/kplt_Gly.png">
 	</ul></details>
@@ -208,12 +208,12 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	<details class="kerdes 3/1" id="bKI.260"><summary>2,3BPG</summary><ul class="normal">
 		<img src="images/kplt_23bpg.png">
 	</ul></details>
-<!----></div></div></details>
+<!----></div></details>
 
 
 <!--//////////////////////////////////////-->  <div><div class="mainTitle">előadások</div>  <!--//////////////////////////////////////-->
 
-<!----><details><summary class="phase">Általános</summary><div class="normal"><div><div class="title"></div>
+<!----><details><summary class="phase">Általános</summary><div><div class="title"></div>
 	<details class="kerdes 3/1" id="bKI.73"><summary>tautomériák megjegyzése?</summary><ul class="normal">
 		<li>keto-enol / oxo-enol / laktám-laktim</li>
 		<li>keto = oxo világos, hisz enol a másik</li>
@@ -231,9 +231,9 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<div><span class="Vocab">3</span> <abbr title="aldehidtől legtávolabb lévő">legalsó</abbr> királis C atomon, ha jobbra áll az -OH, akkor D &#10140; ha balra akkor L</div>
 		<img src="images/glcrnldghd.png">
 	</ul></details>
-<!----></div></div></details>
+<!----></div></details>
 
-<!----><details><summary class="phase">Fehérjék</summary><div class="normal">
+<!----><details><summary class="phase">Fehérjék</summary>
  <div><div class="title">általános.</div>
 	<details class="kerdes J/1" id="bKI.21"><summary><span class="WHITE">JR</span> jelentőségük</summary><ul class="normal">
 		<li>gyakorlatilag nincs olyan folyamat (biokémiai/élettani) amiben ne venne részt fehérje <abbr title="asd">&#10045;</abbr></li>
@@ -593,21 +593,104 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<li>így nem minimális az energiaszintje, ugyanis akkor olyan stabil lenne, hogy nem lenne képes semmilyen mozgásra, ami a működésének feltétele</li>
 		<li>másképpen fogalmazva, ha nagyon stabil kötések kapcsolnák, akkor nem lenne képes rotációval konformáció-változtatásra</li>
 	</ul></details>
-	<details class="kerdes 3/5" id="bKI.140"><summary>primer szerkezet &#10140; mi határozza meg? milyen kötések vannak?</summary><ul class="normal">
-		<li>aminosavak kapcsolódási sorrendje határozza meg</li>
-		<li>peptidkötések vannak az aminósavak között</li>
+	<details class="open kerdes 4/5" id="bKI.295"><summary>szerkezetek</summary><ul class="normal">
+		<table>
+			<tr><th></th>
+				<th>mi határozza meg</th>
+				<th>kötések</th>
+			</tr>
+			
+			<tr><th>primer</th>
+				<td style="text-align:left"><details><summary style="align:center">––––––––––––––</summary> 
+					aminosavak kapcsolódási sorrendje
+				</details></td>
+				<td style="text-align:left"><details><summary style="align:center">–––––</summary> 
+					peptidkötések az aminósavak között
+				</details></td>
+			</tr>
+			<tr><th>szekunder</th>
+				<td style="text-align:left"><details><summary style="align:center">––––––––––––––</summary> 
+					<li>attől függ, hogy a forgásszögek (sok &Phi; & &psi;) értéke mennyi &#10140; ugyanis különböző konformációk jöhetnek létre, melyek energetikailag kedvezőek/kedvezőtlenek</li>
+					<li>csoportosítás</li><ul>
+						<li>szabályos szerkezetek &#10140; bizonyos forgásszögek ismétlődnek szakaszonként</li>
+						<li>szabálytalan szerkezetek = random coil &#10140; nincs forgásszög ismétlődés</li>
+					</ul>
+					<img src="images/ptpdskj.png">
+				</details></td>
+				<td style="text-align:left"><details><summary style="align:center">–––––</summary> 
+					peptidsíkok között kialakuló H-hidak a karbonil-O és amid-N atomok között
+					<li>&alpha;-helix esetében ezek a hossztengellyel párhuzamosak</li>
+					<li>&beta;-redő-helix esetében ezek a hossztengelyre merőlegesek</li>
+					<img src="images/lphhlxbrd.png">
+				</details></td>
+			</tr>
+			<tr><th>tertier</th>
+				<td style="text-align:left"></td>
+				<td style="text-align:left"><details><summary style="align:center">–––––</summary> 
+					<li>London-erők &#10140; apoláros oldalláncok között (gömb belsejében vannak!)</li>
+					<li>H-kötések &#10140; <abbr title="Gln,Asn">(mik között, 2pl?)</abbr></li>
+					<li>ionos-kötések &#10140; azon ionos oldalláncok között, melyek <abbr title="hiszen 1-2 kivétel mindig van, pl. 10apoláros között van 1ionos oldallánc, akkor az is bennt lesz nyilván">bekerültek</abbr> a gömb belsejébe</li>
+					<li>S-S híd &#10140; nem mindegyiknél van <abbr title="döntő többségben azoknál vannak, melyek kijutnak a sejtből, ugyanis ott 'nagyobb hatások' érik a fehérjét, így erősebb stabilitás szükséges ahhoz, hogy megőrizze natív konformációját">&#10045;</abbr></li>
+				</details></td>
+			</tr>
+			<tr><th>kvaterner</th>
+				<td style="text-align:left"></td>
+				<td style="text-align:left"><details><summary style="align:center">–––––</summary> 
+					<div>ugyanazok mint tertiernél</div>
+					<li>London-erők</li>
+					<li>H-kötések</li>
+					<li>ionos-kötések</li>
+					<li>S-S híd <abbr title="ritka">()</abbr></li>
+				</details></td>
+			</tr>
+		</table>
 		<details><summary>klasszikus dogma?</summary><ul class="normal">
 			<li>primer szerkezet határozza meg a szekunder, tertier, és negyedlegest is, tehát a natív_konformációt</li>
 			<li>tehát ha valami apró változás következik be pl. aminosav-sorrendbe, az drámai hatással lesz a többi "szerkezeti szintre"</li>
 			<li>azonban kiderült, hogy akár az 50%-a is megváltozhat az aminosavaknak, anélkül, hogy a struktúrájában és ennek következtében funkciójában bármi változás történne</li>
 			<li>tehát nem minden aminosav jelentősége azonos a primer szerkezetben</li>
 		</ul></details>
-		<br><details><summary>mutációk csoportosítása?</summary><ul class="normal">
-			<li>konzervatív &#10140; aminosav azonos típusúra cserélődik (pl. apoláros helyett apoláros)</li>
-			<li>non-konzervatív &#10140; aminosav másik típusúra cserélődik (pl. apoláros helyett ionos)</li>
-			<li><font class="abbr">kitüntetett aminosavak ►</font> bizonyos helyen lévő, bizonyos aminosavak minden fajban megegyeznek (ha a fehérje többi aminosava más is) &#10140; ezek mutációja funkciós változással jár</li>
-			<li><font class="abbr">tehát hogy fogjam fel ►</font> kitüntetett aminosavak mutációja tönkreteszi, konzervatív aminosavaké jelentéktelen szinte (non-konzervatív a kettő között gondolom)</li>
-		</ul></details>
+	</ul></details>
+	<details class="open kerdes 3/5" id="bKI.297"><summary>kötések</summary><ul class="normal"><table>
+			<tr><td style="text-align:left"><details><summary style="align:center">&alpha;-helix</summary> 
+				<span class="Important">H-kötések</span><br>
+				<strong>egyrészt a peptidsíkok között </strong> &#10140; hossztengellyel párhuzamosak, stabilizálásban részt vesznek
+				<li>1.sík =O-ja és 4.sík NH-je között</li>
+				<li>2.sík =O-ja és 5.sík NH-je között</li>
+				<li>3.sík =O-ja és 6.sík NH-je között</li>
+				<li>stb.</li>
+				<li><font class="abbr"><span class="WHITE">&delta;+</span> és <span class="WHITE">&delta;-</span> mi? ►</font> az első 3 -NH még nem vesz részt H-kötésben, ezért ott pozitív parciális töltés, míg az utolsó 3 =O nemkötő e-párja sem vesz részt, ezért ott negatív parciális töltés (így dipólus karaktere van az &alpha;-hélixnek)</li>
+				<strong>másrészt az oldalláncok között is</strong> &#10140; de ezek <strong>NEM</strong> vesznek részt a szekunder szerkezet kialakításában és stabilizálásában
+				<img src="images/hktslfhlx.png">
+			</details></td></tr>
+			<tr><td style="text-align:left"><details><summary style="align:center">&beta;-redő</summary> 
+				<li>H-kötések a párhuzamosan futó láncok peptid síkjai között (<strong>karbonil O és amid N</strong>) a láncok hossztengelyére kb. merőlegesen</li>
+				<li>R oldalláncok váltakozva a lemez síkja fölé és alá orientálódnak</li>
+				<img style="max-width:25%" src="images/brdtkp.png">
+				<img style="max-width:30%" src="images/btrdszrk.png">
+				<img style="max-width:30%" src="images/Rldlnck.png">
+			</details></td></tr>
+			<tr><td style="text-align:left"><details><summary style="align:center">kollagén<strong>ek</strong></summary> 
+				<li>H-kötések <i>(főként Gly és Pro között)</i></li>
+				<li>kovalens_kötések a tropokollagénen belül, és a tropokollagének között &#10140; két típusa</li><ul>
+					<li>allizin-lizin keresztkötés</li>
+					<li>allizin-allizin keresztkötés</li>
+				</ul>
+				<img src="images/klgnkvlnskts.png">
+			</details></td></tr>
+			<tr><td style="text-align:left"><details><summary style="align:center">elasztin</summary> 
+				<img src="images/prmdn.png">
+				<div><strong>kovalens_kötések kapcsolják össze a polipeptidláncokat</strong></div>
+				<li>lizin-allizin és/vagy allizin-allizin (csakúgy mint kollagénnél!)</li>
+				<li>itt azonban 4db polipeptidlánc is összekapcsolódhat ha elég közel vannak egymáshoz, egy középen lévő pirimidinen keresztül (kép)</li>
+				<li><font class="abbr">kötések száma mivel arányos? ►</font> minél kevesebb van, annál rugalmasabb</li>
+			</details></td></tr>
+	</table></ul></details>
+	<details class="kerdes 1/2" id="bKI.296"><summary>mutációk csoportosítása?</summary><ul class="normal">
+		<li>konzervatív &#10140; aminosav azonos típusúra cserélődik (pl. apoláros helyett apoláros)</li>
+		<li>non-konzervatív &#10140; aminosav másik típusúra cserélődik (pl. apoláros helyett ionos)</li>
+		<li><font class="abbr">kitüntetett aminosavak ►</font> bizonyos helyen lévő, bizonyos aminosavak minden fajban megegyeznek (ha a fehérje többi aminosava más is) &#10140; ezek mutációja funkciós változással jár</li>
+		<li><font class="abbr">tehát hogy fogjam fel ►</font> kitüntetett aminosavak mutációja tönkreteszi, konzervatív aminosavaké jelentéktelen szinte (non-konzervatív a kettő között gondolom)</li>
 	</ul></details>
 	<details class="kerdes 3/2" id="bKI.143"><summary>primer szerkezet &#10140; miket kódol?</summary><ul class="normal">
 		<details><summary>fehérje élettartamát &#10140; hogy?</summary><ul class="normal">
@@ -650,26 +733,10 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<img src="images/ptpdskj.png">
 		<img src="images/zgzgrkytk.png">
 	</ul></details>
-	<details class="kerdes 4/3" id="bKI.147"><summary>másodlagos szerkezet &#10140; "mi határozza meg?" csoportosításuk?</summary><ul class="normal">
-		<li>attől függ, hogy a forgásszögek (sok &Phi; & &psi;) értéke mennyi &#10140; ugyanis különböző konformációk jöhetnek létre, melyek energetikailag kedvezőek/kedvezőtlenek</li>
-		<li>csoportosítás</li><ul>
-			<li>szabályos szerkezetek &#10140; bizonyos forgásszögek ismétlődnek szakaszonként</li>
-			<li>szabálytalan szerkezetek = random coil &#10140; nincs forgásszög ismétlődés</li>
-		</ul>
-		<img src="images/ptpdskj.png">
-	</ul></details>
 	<details class="kerdes 4/2" id="bKI.148"><summary>szabályos másodlagos szerkezetek típusai?</summary><ul class="normal">
 		<li>&alpha;-helix</li>
 		<li>&beta;-redő</li>
 		<li>kanyarulatok,hurkok pl. &beta;-kanyarulat</li>
-	</ul></details>
-	<details class="kerdes 5/2" id="bKI.149"><summary>másodlagos szerkezet &#10140; milyen kötések tartják fennt?</summary><ul class="normal">
-		<li>a peptidsíkok között kialakuló H-hidak a karbonil-O és amid-N atomok között</li>
-		<details><summary>&alpha;-helix és &beta;-redő esetében ezek milyenek</summary><ul class="normal">
-			<li>hossztengellyel párhuzamos</li>
-			<li>hossztengelyre merőleges</li>
-			<img src="images/lphhlxbrd.png">
-		</ul></details>
 	</ul></details>
 	<details class="kerdes 3/1" id="bKI.150"><summary>forgásszögek koordinátarendszerben ábrázolása?</summary><ul class="normal">
 		<img src="images/rmchdnrdnlpt.png">
@@ -835,14 +902,6 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	<details class="kerdes 3/1" id="bKI.179"><summary>lánc típusok?</summary><ul class="normal">
 		<li>&alpha;1 és &alpha;2 &#10140; de! ezek egyike sem &alpha;-helix (elnevezés csak véletlen hasonló, de nincs egymáshoz közük)<abbr title="leszámítva hogy alakjuk helikális, de más közös nincs, ezek nem &alpha;-helixek!">&#10045;</abbr></li>
 	</ul></details>
-	<details class="kerdes 3/1" id="bKI.181"><summary>kötések?</summary><ul class="normal">
-		<li>H-kötések <i>(főként Gly és Pro között)</i></li>
-		<li>kovalens_kötések a tropokollagénen belül, és a tropokollagének között &#10140; két típusa</li><ul>
-			<li>allizin-lizin keresztkötés</li>
-			<li>allizin-allizin keresztkötés</li>
-		</ul>
-		<img src="images/klgnkvlnskts.png">
-	</ul></details>
 	<details class="kerdes 2/3" id="bKI.182"><summary>keresztkötések kialakulása &#10140; allizin-lizin & allizin-allizin?</summary><ul class="normal">
 		<li>lizin utólagos módosításon esik át &#10140; oxidatív dezaminálás (lizil_oxidáz enzim által) &#10140; így keletkezik belőle allizin</li>
 		<li>allizin oldallánca így oxocsoporttal végződik...</li>
@@ -902,13 +961,6 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	<details class="kerdes 2/2" id="bKI.199"><summary>aminósav összetétele?</summary><ul class="normal">
 		<li>Gly és Pro van sok &#10140; apoláros tulajdonságú</li>
 		<li>OH&minus;Lys nincs, nemúgy mint kollagénnél &#10140; szénhidrátok nem is nagyon kapcsolódnak hozzá</li>
-	</ul></details>
-	<details class="kerdes 3/1" id="bKI.200"><summary>milyen kötések kapcsolják össze a polipeptidláncokat?</summary><ul class="normal">
-		<img src="images/prmdn.png">
-		<div><strong>kovalens_kötések:</strong></div>
-		<li>lizin-allizin és/vagy allizin-allizin (csakúgy mint kollagénnél!)</li>
-		<li>itt azonban 4db polipeptidlánc is összekapcsolódhat ha elég közel vannak egymáshoz, egy középen lévő pirimidinen keresztül (kép)</li>
-		<li><font class="abbr">kötések száma mivel arányos? ►</font> minél kevesebb van, annál rugalmasabb</li>
 	</ul></details>
  </div>
  <div><div class="title">globularis fehérjék.</div>
@@ -973,12 +1025,6 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<li><font class="abbr">vízben oldékonysága akkor a legkisebb, mikor a fehérje töltése 0 &#10140; miért? ►</font> ilyenkor nem alakul ki körülötte a hidrátburok, mely megakadályozná, hogy más fehérjékkbel összekapcsolódva nagy aggregátumok alakuljanak ki</li>
 		<img src="images/lkdnyzlktrmpn.png">
 	</ul></details>
-	<details class="kerdes 3/2" id="bKI.212"><summary>tercier szerkezetet milyen kötések stabilizálják?</summary><ul class="normal">
-		<li>London-erők &#10140; apoláros oldalláncok között (gömb belsejében vannak!)</li>
-		<li>H-kötések &#10140; <abbr title="Gln,Asn">(mik között, 2pl?)</abbr></li>
-		<li>ionos-kötések &#10140; azon ionos oldalláncok között, melyek <abbr title="hiszen 1-2 kivétel mindig van, pl. 10apoláros között van 1ionos oldallánc, akkor az is bennt lesz nyilván">bekerültek</abbr> a gömb belsejébe</li>
-		<li>S-S híd &#10140; nem mindegyiknél van <abbr title="döntő többségben azoknál vannak, melyek kijutnak a sejtből, ugyanis ott 'nagyobb hatások' érik a fehérjét, így erősebb stabilitás szükséges ahhoz, hogy megőrizze natív konformációját">&#10045;</abbr></li>
-	</ul></details>
 	<details class="kerdes 4/2" id="bKI.213"><summary>fehérjék denaturációja mi?</summary><ul class="normal">
 		<li>konformáció olyan megváltozása, mely a funkciójának elvesztésével jár <abbr title="hisz alapból is történik konformáció változás a normál működése sorány">&#10045;</abbr></li>
 		<li><font class="abbr">natív konformáció? ►</font> képes funkciójának elvégzésére vele</li>
@@ -1034,13 +1080,6 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<li>ugyanaz, mint a <strong>multifunkcionális_enzim</strong>eknél &#10140; tehát az egyik globulus terméke, a másik szubsztrátja lesz</li>
 		<li>a különbség, hogy itt <strong>nem 1db polipeptidlánc</strong> az összes globulus &#10140; hanem külön-külön polipeptidláncok alkotnak globulusokat, melyek egybekapcsolódnak</li>
 		<li>így ezeket <strong>multienzim_komplex</strong>eknek nevezzük</li>
-	</ul></details>
-	<details class="kerdes 3/2" id="bKI.226"><summary>negyedleges szerkezetet milyen kötések stabilizálják?</summary><ul class="normal">
-		<div>ugyanazok mint tertiernél</div>
-		<li>London-erők</li>
-		<li>H-kötések</li>
-		<li>ionos-kötések</li>
-		<li>S-S híd <abbr title="ritka">()</abbr></li>
 	</ul></details>
  </div>
  <div><div class="title">myoglobin.</div>
@@ -1176,8 +1215,8 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<li>ionpárok</li>
 		<li><span class="Important">nincs</span> kovalens kötés</li>
 	</ul></details>
-	<details class="kerdes 4/1" id="bKI.253"><summary style="color:Magenta"><font color="Green">mennyi oxigént tud megkötni 1db?</font></summary><ul class="normal">
-		<li><font class="abbr">4db O<sub>2</sub>-t, mert ... ►</font>  mindegyik alegység tartalmaz hem <span class="MISS">prosztetikus</span> csoportot</li>
+	<details class="kerdes 4/1" id="bKI.253"><summary>mennyi oxigént tud megkötni 1db?</summary><ul class="normal">
+		<li><font class="abbr">4db O<sub>2</sub>-t, mert ... ►</font>  mindegyik alegység tartalmaz hem <abbr title="lásd enzimek:kofaktorok">prosztetikus_csoportot</abbr></li>
 	</ul></details>
 	<details class="kerdes open 3/5" id="bKI.254"><summary>mioglobin és hemoglobin telítési görbéjének összehasonlítása</summary><ul class="normal">
 		<img src="images/hmmglbn.png">
@@ -1287,7 +1326,227 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<li><font class="abbr">emellett a hemoglobin is szállítja kb. a CO<sub>2</sub> 10%át &#10140; milyen módon ►</font> N-temrminális végén lévő aminocsoporthoz kapcsolódik a CO<sub>2</sub>, és így karbaminsav formában szállítódik <img class="mini" src="images/krbmnsv.png"></li>
 	</ul></details>
  </div>
-<!----></div></details>
+<!----></details>
+
+<!----><details open><summary class="phase">Enzimek</summary>
+ <div><div class="title">általános</div>
+	<details class="kerdes 3/2" id="bKI.269"><summary>ribozim, enzim &#10140; molekula? funkció?</summary><ul class="normal">
+		<li>enzim &#10140; fehérje alapú katalizátor (de lehet benne RNS is, pl.riboszóma) &#10140; anyagcserét katalizálja</li>
+		<li>ribozimok &#10140; RNS alapú katalizátor (ezis enzimbe sorolható) &#10140; pl. hnRNS splicingjában játszanak szerepet</li>
+		<li><font class="abbr">szubsztrát ►</font> enzim által átalakított anyag</li>
+	</ul></details>
+	<details class="kerdes 2/1" id="bKI.270"><summary>enzimek elnevezése?(1-1pl)</summary><ul class="normal">
+		<li>triviális &#10140; tripszin, NO-szintáz</li>
+		<li>szisztematikus &#10140; kép, tudjam a példát!!!</li>
+		<img src="images/enzimnevek.png">
+	</ul></details>
+	<details class="kerdes 1/1" id="bKI.286"><summary>enzim denaturációja során mi történik?</summary><ul class="normal">
+		<li>az aktív_centrum konformációváltozása következtében már nem képes elvégezni funkcióját</li>
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.287"><summary>funkció?</summary><ul class="normal">
+		<li>reakciósebesség növelése (aktiválási energia csökkentésével) == egyensúly elérését gyorsítják</li>
+		<li>fontos &#10140; nem változik a szubsztrát és termék egyensúlyi koncentrációja</li>
+	</ul></details>
+	<details class="kerdes 3/3" id="bKI.288"><summary style="color:Magenta"><font color="Green">képletek?</font></summary><ul class="normal">
+		<li><span class="WHITE"><abbr title="entrópiaváltozás(rendszer)">&Delta;S</abbr> = <abbr title="rendszerrel közölt hő">q</abbr>/<abbr title="rendszer hőmérséklete">T</abbr></span></li>
+		<li><span class="WHITE"><abbr title="szabadenergiaváltozás(rendszer)">&Delta;G</abbr> = <abbr title="entalpiaváltozás(rendszer)">&Delta;H</abbr>-T&Delta;S &lt; 0</span> reakcióknál mindig ez lesz</li>
+		<li><span class="WHITE">&Delta;S<sub>körny</sub> = -&Delta;H/T</span> környezet entrópiaváltozása megegyezik a rendszer entalpiaváltozása osztva a hőmérséklettel (és szorozva -1el!)</li>
+	  <hr>
+		<li>&Delta;G = &Delta;G<sup>0</sup> + RT*ln(Q)</li>
+		<li>&Delta;G = RT*ln(Q/K)</li>
+		<li>&Delta;G<sup>0</sup> = -RT*ln(K)</li>
+	</ul></details>
+  <hr>
+	<details class="kerdes 4/2" id="bKI.271"><summary>enzimaktivitás &#10140; mi? mértékegysége? mitől függ?(pH-t is dobjam majd bele a válaszba!)</summary><ul class="normal">
+		<li>termék vagy szubsztrát <span class="Important">anyagmennyiségének</span> időegység alatti változásának abszolút értéke</li>
+		<li>mértékegysége &#10140; &micro;mol/perc</li>
+		<li><abbr title="enzimaktivitás">v</abbr> = <abbr title="reakciósebességi konstans">k</abbr>*<abbr title="szubsztrátkoncentráció">[S]</abbr></li>
+		<details><summary>aktiválási energia csökkentés miért növeli a reakciósebességet? (matematikailag bizonyítsd)</summary><ul class="normal">
+			<img src="images/rhhnsgynlt.png">
+			<li><abbr title="enzimaktivitás">v</abbr> = <abbr title="reakciósebességi konstans">k</abbr>*<abbr title="szubsztrátkoncentráció">[S]</abbr></li>
+			<li>a reakciósebességi konstanst a képen látható Arrhenius-egyenlet írja le &#10140; ha csökken Ea, akkor nő a k &#10140; nő az enzimaktivitás</li>
+			<details><summary>hőmérséklettől és aktiválási energiától hogy függ a reakciósebesség_konstans?</summary><ul class="normal">
+				<li>hőmérséklettel arányos &#10140; minél nagyobb T, annál nagyobb k</li>
+				<li>aktiválási_energiával fordítottan arányos &#10140; minél nagyobb Ea, annál kisebb k</li>
+			</ul></details>
+		  <hr>
+			<li><span class="vocab">k</span> reakciósebességi_konstans &#10140; <span class="WHITE">sikeres ütközések száma / sec</span></li>
+			<li><span class="vocab">A</span> akció_konstans &#10140; <span class="WHITE">megfelelő_orientációjú ütközések száma / sec</span></li>
+			<li><span class="vocab">e<sup>-E<sub>a</sub>/RT</sup></span> &#10140; <span class="WHITE">annak valószínűsége, hogy a megfelelő_orientációjú_ütközés (A) reakciót vált ki</span></li>
+			<li>az e,R állandók, minden reakcióban ugyanannyi &#10140; hőmérséklet ami megszabja, aktiválási energia, illetve az A, ami az adott reakciót jellemző állandó &#10140; tehát egy adott reakciónál k csak Ea és T-től függ</li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 4/2" id="bKI.272"><summary>hogy növelik a reakciósebességet?</summary><ul class="normal">
+		<li>aktiválási energiát csökkentik</li>
+		<li>ugyanis ahhoz, hogy a szubsztrátból termék legyen, először el kell érnie egy magasabb energiaszintet &#10140; ezért alapvetően kevés termék keletkezne időegység alatt</li>
+		<li><font class="abbr">hogy csökkentik az aktiválási_energiát ►</font> enzimek szerkezetének bizonyos része pontos kiegészítője a tranzíciós állapotban levő szubsztrátja(i) szerkezetének, ezáltal stabilizálni képes a tranzíciós állapotot és így csökkenti az (annak eléréséhez szükséges) aktiválási_energiát</li>
+		<details><summary>aktiválási energia csökkentás miért növeli a reakciósebességet? (matematikailag bizonyítsd)</summary><ul class="normal">
+			<img src="images/rhhnsgynlt.png">
+			<li><abbr title="enzimaktivitás">v</abbr> = <abbr title="reakciósebességi konstans">k</abbr>*<abbr title="szubsztrátkoncentráció">[S]</abbr></li>
+			<li>a reakciósebességi konstanst a képen látható Arrhenius-egyenlet írja le &#10140; ha csökken Ea, akkor nő a k &#10140; nő az enzimaktivitás</li>
+			<details><summary>hőmérséklettől és aktiválási energiától hogy függ a reakciósebesség_konstans?</summary><ul class="normal">
+				<li>hőmérséklettel arányos &#10140; minél nagyobb T, annál nagyobb k</li>
+				<li>aktiválási_energiával fordítottan arányos &#10140; minél nagyobb Ea, annál kisebb k</li>
+			</ul></details>
+		  <hr>
+			<li><span class="vocab">k</span> reakciósebességi_konstans &#10140; <span class="WHITE">sikeres ütközések száma / sec</span></li>
+			<li><span class="vocab">A</span> akció_konstans &#10140; <span class="WHITE">megfelelő_orientációjú ütközések száma / sec</span></li>
+			<li><span class="vocab">e<sup>-E<sub>a</sub>/RT</sup></span> &#10140; <span class="WHITE">annak valószínűsége, hogy a megfelelő_orientációjú_ütközés (A) reakciót vált ki</span></li>
+			<li>az e,R állandók, minden reakcióban ugyanannyi &#10140; hőmérséklet ami megszabja, aktiválási energia, illetve az A, ami az adott reakciót jellemző állandó &#10140; tehát egy adott reakciónál k csak Ea és T-től függ</li>
+		</ul></details>
+		<img src="images/nzmktlzktlgrf.png">
+	</ul></details>
+	<details class="kerdes 4/2" id="bKI.289"><summary>hőmérsékletfüggése?</summary><ul class="normal">
+		<img src="images/rksbshmrkltf.png">
+		<li>enzimaktivitás = reakciósebesség <abbr title="enzim által katalizált reakció sebesség">&#10045;</abbr></li>
+		<li>enzimaktivitás EGYENESEN arányos a reakciósebességi_konstanssal &#10140; v = k*[S]</li>
+		<li>a reakciósebességi_konstans <i>EXPONENCIÁLISAN_</i>arányos a hőmérséklettel &#10140; exponenciálisanan nő a reakciósebességi_konstans a hőmérsékletnöveléssel &#10140; okát lásd Arrhenius-egyenlet <img class="mini" src="images/rhhnsgynlt.png"></li>
+		<li>a reakciósebességi_konstans EGYENESEN arányos a reakciósebességgel &#10140; tehát a <span class="Important">hőmérsékletnöveléssel exponenciálisan nő a reakciósebesség=enzimaktivitás</span></li>
+		<li>ezt ábrázolja a képen látható <span class="WHITE">1</span> szakasz</li>
+	  <hr>
+		<li><span class="WHITE">2-4</span>-re pedig a magyarázat, hogy <span class="Important">denaturálódik a fehérje</span></li>
+	  <hr>
+		<li>hőméréklet_optimum NINCS!</li>
+	</ul></details>
+	<details class="kerdes 4/2" id="bKI.292"><summary>pH függés?</summary><ul class="normal">
+		<img src="images/phptommm.png">
+		<li>enzimaktivitás = reakciósebesség <abbr title="enzim által katalizált reakció sebesség">&#10045;</abbr></li>
+		<li>enzimaktivitás függ a pH-tól (lásd grafikon)</li>
+		<li>pH optimum &#10140; az a pH, ahol az adott enzim aktivitása a legnagyobb</li>
+		<li>különböző enzimek pH optimuma igen eltérő &#10140; pl. pepsziné (gyomor) 1-3 között van (tehát nem kell 7,4 legyen)</li>
+		<details><summary>(miért függ pH-tól?) (engem érdekelt csak, így utánajártam, hogy akkor ez is legyen már matematikailag értelmezve)</summary><ul class="normal">
+			<li>vannak <abbr title="1pl?">disszociábilis csoportok</abbr> az enzimen,szubsztráton,koenzimen &#10140; pH befolyásolja ezek állapotát</li>
+			<li>ez pedig a funkcióképes konformáció fennmaradására van hatással</li>
+			<li>&#10140; <i><span class="WHITE">A</span> és <span class="WHITE">[S]</span> értékét fogja változtatja a pH (hiszen [S]-nek csak az a szubsztrát vehető, ami "normális")</i></li>
+		</ul></details>
+	</ul></details>
+  <hr>
+	<details class="kerdes 3/2" id="bKI.290"><summary>enzim katalizálta reakciók feltételei?</summary><ul class="normal">
+		<li>szubsztrát és enzim legyen egymás közelében</li>
+		<li>térbeli orientáltság (szubsztrát megfelelő felszíne nézzen az enzim megfelelő felszíne felé)</li>
+		<li>kényszer pozícionálási feszültség a kémiai kötésben (?!)</li>
+		<li>kölcsönhatások további funkciós csoportokkal (?!)</li>
+	</ul></details>
+	<details class="kerdes J/1" id="bKI.291"><summary><span class="Vocab">J</span> fehérjék emésztése</summary><ul class="normal">
+		<li>denaturált fehérje könyebben emészthető (mert könnyebben hozzáfér az enzim)</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.273"><summary>specifitásuk?</summary><ul class="normal">
+		<li>szűk &#10140; 1/néhány típusú szubsztrátot képesek átalakítani &#10140; pl. thrombin csak fibrinogént képes</li>
+		<li>széles &#10140; többféle szubsztrátot képesek átalakítani &#10140; pl. egyes proteázok nem adott fehérjére specifikusak, hanem egy funkcionális csoportot ismernek fel a fehérjében, és az alapján bontják le (lásd pl. kimotripszin)</li>
+		<img src="images/szbsztrkkltk.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.274"><summary>szubsztrát és termék egyensúlyi koncentrációja változik?</summary><ul class="normal">
+		<li>nem</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.275"><summary>aktív-centrum?</summary><ul class="normal">
+		<li>enzim 2 doménje együtt &#10140; szubsztrátkötő + katalitikus</li><ul>
+			<li>szubsztrátkötő &#10140; megköti a szubsztrátot</li>
+			<li>katalitikus &#10140; részt vesznek a szubsztrátok átalakításának folyamatában</li>
+		</ul>
+		<img src="images/szbsztrkkltk.png">
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.277"><summary>indukált illesztés mi?</summary><ul class="normal">
+		<img src="images/nklklcszr.png">
+		<li>indukált illesztés megy végbe, amikor az enzim megköti a szubsztrátot, nem a kulcs-zár modell</li>
+		<li>indukált illesztés &#10140; szubsztrát kötődése módosítja az enzim szerkezetét az aktív hely közelében</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.278"><summary>katalízisek típusainak felsorolása?</summary><ul class="normal">
+		<li>általános sav-bázis katalízis</li>
+		<li>kovalens_katalízis</li>
+		<li>entrópia_effektus</li>
+	</ul></details>
+	<details class="kerdes 2/3" id="bKI.279"><summary>általános sav-bázis katalízis bemutatása 1pl-n?</summary><ul class="normal">
+		<img class="mini" src="images/rkchsztdn.png"> <img class="mini" src="images/rkclpsk.png">
+		<li>ribonukleáz(enzim) ezzel a módszerrel bontja az RNS-eket</li>
+		<li>ribonukleáznak két hisztidinje vesz részt benne</li>
+		<li>első lépés</li><ul>
+			<li>egyik hisztidin(12) elvesz egy protont a 5' irányba lévő ribóz 2' C-hez kapcsolódó hidroxilcsoportjától</li>
+			<li>2'-őn maradt -O<sup>-</sup> hozzákapcsolódik a foszfáthoz, és közben a másik hisztidin(119) lead egy protont és így felszakad a foszfodiészter kötés a 3' felőli nukleotiddal</li>
+			<li>ezután az RNS 3' része le is válik az enzimről</li>
+		</ul>
+		<li>második lépés</li><ul>
+			<li>egyik hisztidin(119) protont vesz fel egy vízmolekulától</li>
+			<li>-OH<sup>-</sup> kapcsolódik a 2'-höz</li>
+			<li>másik hisztidin (12) lead egy protont a foszfátnak</li>
+		</ul>
+		<li><i>(szvsz enzim szerkezete a folyamat végén visszaállt a kezdetire, hisz a hisztidinek protonáltsága ugyanaz lett, mint az elején volt)</i></li>
+		<div><span class="vocab"><strong>§</strong></span> általános savnak, illetve általános bázisnak nevezik a gyengén disszociáló csoportokat, általános sav minden csoport, amely az adott pH-n és adott körülmények között protont tud leadni és általános bázis minden csoport, amely protont tud felvenni &#10140; pl. protonált hisztidin általános sav, nem protonált hisztidin általános bázis</div>
+	</ul></details>
+	<details class="kerdes 3/5" id="bKI.280"><summary>kovalens katalízis bemutatása 1pl-n?</summary><ul class="normal">
+		<li>kimotripszin(enzim) működése</li>
+		<li>(kezdésnél ezt nézzem csak! <img class="mini" src="images/klnsktsrkc.png"> )</li>
+		<li>Asp(102) H-kötést alakít Hys(57)-el &#10140; "elvonva a protont", növeli a Hys(57) bázikusságát (protonfelvevő képességét)</li>
+		<li>1.lépés</li><ul>
+			<li>Hys(57) protont vesz el a Ser(195)-től</li>
+			<li>így a Ser(195) oxigénje már "erősen <abbr title=",,negatív töltésű'', nemkötő e-párja van">nukleofil</abbr>" &#10140; megtámadja a peptid-kötést &#10140; létrejön az 1. tetraéderes_intermedier állapot</li>
+		</ul>
+		<li>2.lépés &#10140; tetraéderes szerkezet szétesik egy acil-enzimre és egy N-terminális peptidre</li>
+		<li>3.lépés</li><ul>
+			<li>víz belép, és egy protonja a Hys-hez kapcsolódik</li>
+			<li>-OH pedig megtámadja az észterkötést &#10140; létrejön a 2. tetraéderes_intermedier állapotát</li>
+		</ul>
+		<li>4.lépés &#10140; tetraéderes szerkezet szétesik egy C-terminális peptid leválik</li>
+		<li><font class="abbr">specifitása ►</font> felszakítandó peptidkötésben résztvevő karboxilcsoport aromás aminosavtól származó legyen</li>
+		<img style="max-width:45%" src="images/szbtklktlcn.png">
+		<img style="max-width:45%" src="images/szprtzk.png">
+	</ul></details>
+	<details class="kerdes 3/2" id="bKI.281"><summary>entrópia_effektus lényege?</summary><ul class="normal">
+		<li>több szubsztrátos reakcióknál érvényesül</li>
+		<li>ha két szubsztrát oldatban van, annak valószínűsége, hogy egy orientációban kerülnek egymás közelébe, nagyon kicsi</li>
+		<li>Az enzimhez történő kötődéskor viszont éppen a megfelelő pozicióban kerülnek egymás közelébe a reagáló partnerek</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="bKI.282"><summary>fémion?</summary><ul class="normal">
+		<div>egyes fehérjék felépítésében megtalálhatók, szerepük:</div>
+		<li>vagy stabilizálják a fehérje harmadlagos szerkezetét</li>
+		<li>vagy katalízisben részt vesznek</li>
+	</ul></details>
+	<details class="kerdes 3/4" id="bKI.283"><summary>osztályaik(6)?</summary><ul class="normal">
+		<table>
+			<tr><th>oxidoreduktázok</th>
+				<td>oxidációs-redukció</td>
+				<td>etanol + NAD<sup>+</sup> &#10140; acetaldehid + NADH + H<sup>+</sup></td>
+			</tr>
+			<tr><th>transzferázok</th>
+				<td>funkciós csoport átvitel</td>
+				<td>glükóz + ATP &#10140; glükóz-6-foszfát + ADP</td>
+			</tr>
+			<tr><th>hidrolázok</th>
+				<td>víz segítségével kötéshasítás</td>
+				<td>glükóz-6-foszfát + H<sub>2</sub>O &#10140; glükóz + anorganikus foszfát</td>
+			</tr>
+			<tr><th>liázok</th>
+				<td>viz, ammónia, szén-dioxid stb. adódik egy molekulához, vagy vonódik el egy molekulából</td>
+				<td>2-foszfoglicerát &#10140; foszfoenol-piruvát + H<sub>2</sub>0</td>
+			</tr>
+			<tr><th>izomerázok</th>
+				<td>izomerizáció (cisz-transz, aldóz-ketóz, epimerizáció stb.)</td>
+				<td>glukóz-6-foszfát &#10140; fruktóz-6-foszfát</td>
+			</tr>
+			<tr><th>ligázok</th>
+				<td>molekulák összekapcsolódása nagy energiájú foszfátkötés hasításával</td>
+				<td>glutamát + NH<sub>3</sub> + ATP &#10140; glutamin + ADP + anorganikus foszfát</td>
+			</tr>
+		</table>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.284"><summary>izoenzimek?</summary><ul class="normal">
+		<li>különböző enzimek, melyek azonos szubsztrát azonos reakcióját katalizálják</li>
+	</ul></details>
+	<details class="kerdes 3/4" id="bKI.285"><summary>kofaktor? koenzim? prosztetikus_csoport? &#10140; 3pl</summary><ul class="normal">
+		<li>kofaktor &#10140; nem-fehérje természetű anyag, mely jelenléte az enzimműködéshez szükséges</li>
+		<li>holoenzim &#10140; enzim, melyhez kapcsolódik a kofaktora</li>
+		<li>apoenzim &#10140; enzim, melyhez NEM kapcsolódik a kofaktora</li>
+	  <hr>
+		<div>kofaktoroknak 3 típusa &#10140; koenzim, prosztetikus_csoport, fémion</div>
+		<li>koenzim &#10140; kofaktor, mely szerves molekula</li>
+		<li>prosztetikus_csoport &#10140; kofaktor, mely szorosan kapcsolódik az enzimhez (olyan szorosan, hogy csak denaturálással választható el tőle) &#10140; pl. ilyen a hem</li>
+		http://elte.prompt.hu/sites/default/files/tananyagok/ABiokemiaEsMolekularisBiologiaAlapjai/ch08s02.html
+	  <hr>
+		<li><span class="Important">kép</span> &#10140; főbb koenzimek</li>
+		<li>legtöbb koenzim vitamin átalakulásával jön létre</li>
+		<img src="images/kfktkrk.png">
+	</ul></details>
+ </div>
+<!----></details>
 
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
 
@@ -1295,7 +1554,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 
 <!--//////////////////////////////////////-->  <div><div class="mainTitle">gyakorlat</div>  <!--//////////////////////////////////////-->
 
-<!----><details><summary class="phase">1. Nukleotidok és szénhidrát komponenseik</summary><div class="normal">
+<!----><details><summary class="phase">1. Nukleotidok és szénhidrát komponenseik</summary>
  <div><div class="title">általános.</div>
 	<details class="kerdes 4/1" id="bKI.53"><summary>DNS & RNS & fehérjék mit végeznek a programmal?</summary><ul class="normal">
 		<li>DNS kódolja</li>
@@ -1601,9 +1860,9 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<div><span class="vocab"><strong>§</strong></span> denaturácio gondolom egyenesen arányos abszorpcióval (y tengely)</div>
 	</ul></details>
  </div>
-<!----></div></details>
+<!----></details>
 
-<!----><details><summary class="phase">2. Aminosavak sav-bázis karaktere. Aminosavak titrálási görbéinek ismertetése, az izoelektromos pont fogalma, kiszámítása</summary><div class="normal"> <div><div class="title"></div>
+<!----><details><summary class="phase">2. Aminosavak sav-bázis karaktere. Aminosavak titrálási görbéinek ismertetése, az izoelektromos pont fogalma, kiszámítása</summary> <div><div class="title"></div>
 	<embed style="border-style: solid;" src="sources/HU_szem_m0102_02_aminosavak_20170206.pdf" width="800px" height="800px">
 	<details class="kerdes 3/2" id="bKI.187"><summary>aminosavak sav-bázis karaktere?</summary><ul class="normal">
 		<li>az aminosavak ikerionos jellegűek &#10140; &alpha;-karboxil &#8722;COOH és &alpha;-aminocsoport van az összesnél (kivéve prolin) &#10140; ezek pH-tól függően vannak protonált/deprotonált formában</li>
@@ -1612,9 +1871,9 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 			<li>Asp, Glu<i>, Tyr</i> &#10140; savak <abbr title="Tyr-t előadás jegyzetem alapján írtam, de nem checkoltam le még1x">()</abbr></li>
 		</ul>
 	</ul></details>
-<!----></div></div></details>
+<!----></div></details>
 
-<!----><details><summary class="phase">3. Fehérjék elválasztása – <span class="Important">MolSejtBiosznál is van róla szó</span></summary><div class="normal">
+<!----><details><summary class="phase">3. Fehérjék elválasztása – <span class="Important">MolSejtBiosznál is van róla szó</span></summary>
  <div><div class="title"></div>
 	<details><summary><strong>PDF</strong></summary><ul class="normal">
 		<embed style="border-style: solid;" src="sources/HU_szem_m0102_03_fehvizsgalat_20170206.pdf" width="800px" height="800px">
@@ -1713,14 +1972,28 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<li>radioaktív anyag hozzáadása (érzékeny, tehát kis mennyiséget is képes kimutatni)</li>
 	</ul></details>
  </div>
-<!----></div></details>
+<!----></details>
 
-<!----><details><summary class="phase">4. Fehérje izolálási módszerek és a fehérjék mennyiségi meghatározása</summary><div class="normal"> <div><div class="title"></div>
+<!----><details><summary class="phase">4. Fehérje izolálási módszerek és a fehérjék mennyiségi meghatározása</summary><div><div class="title"></div>
 	<embed style="border-style: solid;" src="sources/HU_szem_m0102_04_fehizolalas_20170206.pdf" width="800px" height="800px">
   <br><!--<hr style="height:5px; background-color:black;">--><br>
 	<img src="images/gy4_jegyzt.png">
 	<img src="images/gy4_jgyzt2.png">
-<!----></div></div></details>
+<!----></div></details>
+
+<!----><details><summary class="phase">5. Biokémiai számítások</summary><div><div class="title"></div>
+	<details class="kerdes 3/1" id="msb.294"><summary>átviteli szám?</summary><ul class="normal">
+		<li>1db enzim hány db szubsztrátot alakít át időegység alatt</li>
+	</ul></details>
+	<details class="kerdes 4/1" id="msb.293"><summary>specifikus enzimaktivitás &#10140; mi? mitől függ?</summary><ul class="normal">
+		<li>specifikus enzimaktivitás &#10140; enzimaktivitás / fehérjetömeg</li>
+	  <hr>
+		<li>tisztítás során nő a specifikus enzimaktivitás egy értékig &#10140; a max értéknél már feltétekezhetően a fehérjék tömegét az enzimek alkotják</li>
+		<li>tehát alapvetően ha csak enzim van, akkor annak tömege a fehérjetömeg</li>
+	  <hr>MAGYARÁZATA (forrás)
+		<li>A specifikus aktivitás értéke “indikátora” az enzimkészítmény tisztaságának. Tekintve, hogy legtöbbször csak az enzimkészítményben levő összes fehérjét tudjuk analitikailag mérni (nem specifikusan a jelenlévő enzimfehérjét), minél nagyobb specifikus aktivitást mutat egy enzimkészítmény a preparálás során, annál tisztább. Ha a specifikus aktivitás értéke további tisztítási lépésekkel már nem növelhetı, az enzim feltehetıleg homogén</li>
+	</ul></details>
+<!----></div></details>
 
 
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->

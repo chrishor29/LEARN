@@ -315,6 +315,22 @@ function func_phaseID() {
 	for ( var i = 0;   i < Table.length;   i++ ) {
 		Table[i].parentElement.id = Table[i].innerHTML
 	}
+	var Table = document.getElementsByClassName("phaseA")
+	for ( var i = 0;   i < Table.length;   i++ ) {
+		Table[i].parentElement.id = Table[i].innerHTML
+	}
+	var Table = document.getElementsByClassName("phaseB")
+	for ( var i = 0;   i < Table.length;   i++ ) {
+		Table[i].parentElement.id = Table[i].innerHTML
+	}
+	var Table = document.getElementsByClassName("phaseC")
+	for ( var i = 0;   i < Table.length;   i++ ) {
+		Table[i].parentElement.id = Table[i].innerHTML
+	}
+	var Table = document.getElementsByClassName("phaseD")
+	for ( var i = 0;   i < Table.length;   i++ ) {
+		Table[i].parentElement.id = Table[i].innerHTML
+	}
 }
 func_phaseID()
 function func_mainID() {
@@ -380,8 +396,8 @@ var temakor = []
 var usedID = [] // ebbe elmenti az eddig felhasznált id-ket, hogy lecheckolja, nem-e használt a következő már
 for ( var i = 0;   i < elements.length;   i++ ) {
 	var id = elements[i].id
-	var temaKerdes = 	document.getElementById(id).parentElement.parentElement.parentElement.id
-	var fotema = 		document.getElementById(id).parentElement.parentElement.parentElement.parentElement.id
+	var temaKerdes = 	document.getElementById(id).parentElement.parentElement.id
+	var fotema = 		document.getElementById(id).parentElement.parentElement.parentElement.id
 
 	if ( !temakor[fotema] ) {
 		temakor[fotema]  = []
@@ -751,8 +767,8 @@ var table_Status = []
 var table_StatusSkip = []
 for ( var i = 0;   i < elements.length;   i++ ) {
 	var id = elements[i].id
-	var temaKerdes = 	document.getElementById(id).parentElement.parentElement.parentElement.id
-	var fotema = 		document.getElementById(id).parentElement.parentElement.parentElement.parentElement.id
+	var temaKerdes = 	document.getElementById(id).parentElement.parentElement.id
+	var fotema = 		document.getElementById(id).parentElement.parentElement.parentElement.id
 	var cimTitle = id.slice(id.indexOf(".")+1)
 	
 	table_Status[id] = localStorage.getItem(id + "_fix")
@@ -1247,10 +1263,10 @@ function koviKerdes(){
 		}
 		if ( localStorage.getItem(priorKerdesID+'_note') != "" && localStorage.getItem(priorKerdesID+'_note') != null ) {
 			document.getElementById("note").value = localStorage.getItem(priorKerdesID+'_note')
-			document.getElementById("note").style.borderColor = "red";
+			document.getElementById("btn_Note").style.borderColor = "red";
 			var_note = true
 		} else {
-			document.getElementById("note").style.borderColor = "black";
+			document.getElementById("btn_Note").style.borderColor = "black";
 			var_note = false
 		}
 
@@ -1281,8 +1297,9 @@ function koviKerdes(){
 
 	func_calcJegy()
 	func_calcDate()
-	func_calcOldNew();
+	func_calcOldNew()
 	func_calcRepeat()
+
 }
 
 /*function missFix(){

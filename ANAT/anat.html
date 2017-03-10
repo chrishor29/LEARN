@@ -23,7 +23,7 @@
 	<span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Date"></span><span class="vocab" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Jegy"></span><span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Repeat"></span>
 	<span style="position:absolute; left:30%;">
 		<span style="border: 0px;" id="rank">&nbsp; &nbsp; &nbsp;</span> &nbsp;
-		<input onclick="toggleNote();" type="button" value="&#10045;"> &nbsp; &nbsp;
+		<input style="border: 3px solid black;" id="btn_Note" onclick="toggleNote();" type="button" value="&#10045;"> &nbsp; &nbsp;
 		<select id="jegy"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; &nbsp;
 		<span id="pJegy">&nbsp; </span> &nbsp; &nbsp;
 		<input onclick="func_buttonFix();" type="button" id="buttonFix" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp;
@@ -81,7 +81,7 @@
 
 <!--//////////////////////////////////////-->  <div><div class="mainTitle">általános</div>  <!--//////////////////////////////////////-->
 
-<!----><details><summary class="phase">3D</summary><div class="normal"> <div><div class="title"></div>
+<!----><details><summary class="phase">3D</summary><div><div class="title"></div>
 	<details class="open kerdes 3/1" id="anat.29"><summary>linea_alba</summary><ul class="normal">
 		<video muted controls><source src="3D/lnlb.mp4" type="video/mp4">hiba.</video>
 	</ul></details>
@@ -92,9 +92,9 @@
 	<details class="open kerdes 3/5" id="anat.146"><summary>izmok, artériák – húgyhólyag tájékán</summary><ul class="normal">
 		<video muted controls><source src="3D/rtrvscrnr.mp4" type="video/mp4">hiba.</video>
 	</ul></details>
-<!----></div></div></details>
+<!----></div></details>
 
-<!----><details><summary class="phase">vérkeringés</summary><div class="normal"><div><div class="title"></div>
+<!----><details><summary class="phase">vérkeringés</summary><div><div class="title"></div>
 	<details class="sedrek 2/2" id="anat.47"><summary>húgyvezeték &#10140; artériák(3<sub>+3</sub>)</summary><ul class="normal">
 		<div>környező erekből kap kis ágakat, köztük hosszanti anastomosis rendszer:</div>
 		<li>a.renalis <div class="mirror">&#10140;</div> aorta</li>
@@ -195,17 +195,17 @@
 		<br><details><summary><font color="DeepPink">&#9609;</font> vénák?</summary><ul class="normal">
 		</ul></details>
 	</ul></details>
-<!----></div></div></details>
+<!----></div></details>
 
 
-<!----><details><summary class="phase">nyirokkeringés</summary><div class="normal"><div><div class="title"></div>
+<!----><details><summary class="phase">nyirokkeringés</summary><div><div class="title"></div>
 	<details class="sedrek 2/1" id="anat.48"><summary>húgyhólyag</summary><ul class="normal">
 		<li>a nyirokerek az <strong>a.iliaca interna/externa körüli nyirokcsomókba</strong> (= nodi lymphatici iliaci interni et externi) vezetődnek</li>
 	</ul></details>
 	<details class="sedrek 2/1" id="anat.77"><summary>vese</summary><ul class="normal">
 		<li>a nyirokerek az <strong>aorta körüli nyirokcsomókba</strong> vezetődnek</li>
 	</ul></details>
-<!----></div></div></details>
+<!----></div></details>
 
 	<details><summary><span class="dark"><i>"fej innervatio"</i></span></summary><ul class="normal">
 		<img src="images/nnrvtfj.png">
@@ -251,7 +251,7 @@
 	</ul></details>
 
 <br>
-<!----><details open><summary class="phase">izmok</summary><div class="normal"><div><div class="title"></div>
+<!----><details open><summary class="phase">izmok</summary><div><div class="title"></div>
 	<details class="sedrek 2/4" id="anat.142"><summary>gégeizmok felsorolása?(7+)</summary><ul class="normal">
 		<li>m.cricothyroideus &#10140; <span class="WHITE">pars_recta</span> <span class="WHITE">pars_obliqua</span></li>
 		<li>m.cricoarytenoideus_posterior</li>
@@ -376,7 +376,7 @@
 			</details></td>
 		</tr>
 	</table>
-<!----></div></div></details>
+<!----></div></details>
 
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
 
@@ -384,7 +384,7 @@
 
 <!--//////////////////////////////////////-->  <div><div class="mainTitle">II. félév</div>  <!--//////////////////////////////////////-->
 
-<!----><details><summary class="phase">szív</summary><div class="normal">
+<!----><details><summary class="phase">szív</summary>
  <div><div class="title">általános</div>
 	<details><summary>(kopogtatási pontok)</summary><ul class="normal">
 		<li>ezt elvileg kérdezik</li>
@@ -460,9 +460,9 @@
 		<img class="mini" src="images/serosus_átmenetek.png">
 	</ul></details>
  </div>
-<!----></div></details>
+<!----></details>
 
-<!----><details><summary class="phase">apparatus_uropoeticus</summary><div class="normal">
+<!----><details><summary class="phase">apparatus_uropoeticus</summary>
  <div><div class="title">általános</div>
 	<details class="kerdes 4/1" id="anat.1"><summary>jelentése? általános funkciója?</summary><ul class="normal">
 		<li>vizeleti rendszer</li>
@@ -911,9 +911,9 @@
 		<li>ostium_urethrae_externával érkezik a vestibulum_vaginae-ba</li>
 	</ul></details>
  </div>
-<!----></div></details>
+<!----></details>
 
-<!----><details open><summary class="phase">respiratorius</summary><div class="normal">
+<!----><details open><summary class="phase">respiratorius</summary>
  <div><div class="title">általános</div>
 	<details class="kerdes 2/3" id="anat.79"><summary>felső / alsó légutak?</summary><ul class="normal">
 		<li>cavum_nasi</li>
@@ -1584,9 +1584,9 @@
 		<li>v.hemiazygos</li>
 	</ul></details>
  </div>
-<!----></div></details>
+<!----></details>
 
-<!----><details open><summary class="phase">digestorius</summary><div class="normal">
+<!----><details open><summary class="phase">digestorius</summary>
  <div><div class="title">garat</div>
 	<details class="open kerdes 2/3" id="anat.153"><summary><span class="Vocab">IF</span> <i>garat"tető"</i></summary><ul class="normal">
 		<img src="images/if_kpkgrt.png">
@@ -1681,14 +1681,14 @@
 		<li>ritkán az a.carotis_interna</li>
 	</ul></details>
  </div>
-<!----></div></details>
+<!----></details>
 
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
 
 
 
 <!--//////////////////////////////////////-->  <div><div class="mainTitle">IV. félév</div>  <!--//////////////////////////////////////-->
-<!----><details open><summary class="phase">tájanatómia</summary><div class="normal">
+<!----><details open><summary class="phase">tájanatómia</summary>
  <div><div class="title">nyak</div>
 	<details class="open kerdes 2/3" id="anat.150"><summary><span class="important">IF</span> nyaki 3szögek</summary><ul class="normal">
 		<img src="images/rajz_nyak3szogek.png">
@@ -1721,14 +1721,14 @@
 		<img src="images/rajz_sptmrtrphfgnm.png">
 	</ul></details>
  </div>
-<!----></div></details>
+<!----></details>
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
 
 
 
 <!--//////////////////////////////////////-->  <div><div class="mainTitle">oldone</div>  <!--//////////////////////////////////////-->
 
-<!----><details open><summary class="phase">apparatus uropoeticus.</summary><div class="normal">
+<!----><details open><summary class="phase">apparatus uropoeticus.</summary>
  <div><div class="title">vese</div>
 	<details class="sedrek 2/2" id="anat.4"><summary>vese funkciója bővebben?</summary><ul class="normal">
 		<li>testnedvek koncentrációját állandó szinten tartsa</li>
@@ -1836,7 +1836,7 @@
 		<img src="images/rtrkrszt.png">
 	</ul></details>
  </div>
-<!----></div></details>
+<!----></details>
 
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
 
