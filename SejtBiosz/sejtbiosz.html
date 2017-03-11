@@ -55,8 +55,8 @@
 	<td class="done">7</td>
 	<td class="done">8</td>
 	<td class="done">9</td>
-	<td class="">10</td>
-	<td class="">11</td>
+	<td class="done">10</td>
+	<td class="done">11</td>
 	<td class="done">12</td>
 	<td class="done">13</td>
 	<td class="done">14</td>
@@ -981,17 +981,104 @@
 	</ul></details>
 <!----></div></details>
 
-<!----><details open><summary class="phaseD">#10 A timin dimerek kialakulása és javítása. A „mismatch repair”.</summary><div><div class="title"> </div>
-	<details open class="kerdes 5/25" id="msb.158"><summary>A timin dimerek kialakulása és javítása. A „mismatch repair”.</summary><ul class="normal">
+<!----><details><summary class="phase">#10 A timin dimerek kialakulása és javítása. A „mismatch repair”.</summary><div><div class="title"> </div>
+	<details class="kerdes 5/25" id="msb.158"><summary><strong>A timin dimerek kialakulása és javítása.</strong> A „mismatch repair”.</summary><ul class="normal">
 		<img src="images/tmndmrzck.png">
 		<li>leggyakrabban UV-fény hatására következik be</li>
 		<li><span class="Vocab">R</span> lényege &#10140; két szomszédos timin között történik meg: a gyûrûk 5-ös, illetve 6-os C-atomjai között alakul ki egy-egy kovalens kötés</li>
 		<li>(két egymás mellett elhelyezkedõ citozin, vagy egy citozin és egy timin is képezhet dimert hasonló módon)</li>
-	  <hr><strong>hibák javítása = repair</strong>
+	  <hr>
+		<li>fényre aktiválódó fotoliáz enzim végzi</li>
+		<li>ez elhasítja két pirimidin közötti kovalens kötéseket</li>
+		<li>ha ez nem működik megfelelően, akkor xeroderma pigmentosum nevű betegséget okoz</li><ul>
+			<li>tünetei &#10140; extrém fényérzékenység, a bőrdaganatok kialakulásának valószínűsége nagy</li>
+			<li>öröklődése &#10140; autoszomális recesszív</li>
+		</ul>
+	</ul></details>
+	<details class="kerdes 5/25" id="msb.160"><summary>A timin dimerek kialakulása és javítása. <strong>A „mismatch repair”</strong>.</summary><ul class="normal">
+		<div style="float:right;max-width:30%">
+			<img src="images/bzsprk.png">
+			<img src="images/ttmrmtc.png">
+		</div>
+		<strong><span class="Vocab">R</span> mismatch</strong>
+		<li>alapja az oxo-enol tautoméria</li>
+		<li>replikáció során a minta szálon lévő bázis enol tautomériát vesz fel &#10140; hisz ez is végremegy spontán néha egy rövid ideig, és ha pont akkor illeszti a DNS-polimeráz III/&delta; a komplementer bázist, akkor rosszat illeszt mellé (lásd kép)</li>
+		<li>adenin citozinnal kapcsolódik hasonlóképpen <img class="mini" src="images/srctmrmtcc.png"></li>
+		<li><i>"megjegyzési szabályok"</i> <abbr title="ezek ilyen magam alkotta szabályok, a megjegyzésre!">&#10045;</abbr></li><ul>
+			<li>pirimidint tükrözzem függőlegesen</li>
+			<li>mindig azonos szinten lévők között vannak a H-kötések</li>
+			<li>–OH alapvetően mindig =O formában, mutációnál <strong>egyet</strong> kell megváltoztatni =O-ra</li>
+			<li>–NH<sub>2</sub> mindig NH<sub>2</sub></li>
+		</ul>
+		<li>következménye &#10140; ha nem javítódik ki, akkor mutáció lesz, és sok mutáció vastagbéldaganatot okoz. Ha jó irányba változik (kicsi esély), akkor evolúciós lépés</li>
+	  <hr><strong>repair</strong>
+		<li>két szempontból is eltér a többi felsorolt DNS-károsodás repairjaitól</li><ul>
+			<li>replikáció során megy végbe, amikor a polimeráz épp odaért &#10140; kevés idő van a javítására</li>
+			<li>egyik szálon sincs idegen bázis <abbr title="mondjuk a citozinból lesz uracilnál sincs szvsz">&#10045;</abbr> &#10140; azt kell eldönteni, hogy melyik szálat kell javítani</li>
+		</ul>
+		<div>/az 'új' szálon lévő bázis hibás, hisz a szülőin lévő bázis jó, csak enol tautomér volt, mikor a bázispárosodás történt &#10140; ezért rossz bázis került mellé az 'új'-szálra !!!/</div>
+		<li>melyik szál az 'új', tehát melyiken van a hibás bázis, azt a következőképpen tudja eldönteni E.coli</li>
+		<li>GATC szekvenciák Adeninje metilálva van mindkét minta(='szülő') szálon</li>
+		<li>az új szálakon a metiláz a replikáció után fogja metilálni a GATC-ket az 'új'-szálakon</li>
+		<li>mielőtt a metilálás végbemenne, a mismatch_hibajavító_rendszer képes ezt azonosítani, és ezáltal az hibás 'új'-szálból kivágni a hibás bázist (+környező bázisokból párat)</li>
+		<li>ezután a DNS-polimeráz I + ligáz pótolja helyükre a jó bázisokat</li>
+		<li>eukariótáknál hasonlóképpen mehet végbe, pontos mechanizmusa nem ismert &#10140; itt DNS-polimeráz &delta;(vagy &epsilon;) építi be kivágás után a jó bázisokat</li>
 	</ul></details>
 <!----></div></details>
 
-<!----><details open><summary class="phaseD">#11 A pontmutációk. A spontán pontmutációk kialakulása. A polimorfizmusok. A DNS-variációk lehetséges hatása a képződő RNS-re, illetve fehérjére.</summary><div><div class="title"> </div>
+<!----><details><summary class="phase">#11 A pontmutációk. A spontán pontmutációk kialakulása. A polimorfizmusok. A DNS-variációk lehetséges hatása a képződő RNS-re, illetve fehérjére.</summary><div><div class="title"> </div>
+	<details class="kerdes 5/25" id="msb.161"><summary><strong>A pontmutációk. A spontán pontmutációk kialakulása. A polimorfizmusok</strong>. A DNS-variációk lehetséges hatása a képződő RNS-re, illetve fehérjére.</summary><ul class="normal">
+		<li>a DNS-hibákat a repair rendszerek a replikáció előtt (vagy közvetlenül utána, lásd mismatch-reapir) nem javítják ki, akkor mutáció vagy polimorfizmus lesz</li><ul>
+			<li>mutáció &#10140; gyakorisága 1% alatti, következménye betegség</li>
+			<li>polimorfizmus &#10140; gyakorisága 1% feletti, következménye tulajdonság(haj színe stb.), rizikó(sarlósejtes_anaemia)</li>
+		</ul>
+	  <hr><strong>polimorfizmusra 1pl.</strong>
+		<li>polimorfizmus pl. a sarlósejtes anaemia is</li>
+		<li>ugyanis ez is nagy arányban elterjedt, mert védettséget nyújt a maláriával szemben</li>
+		<li>pontmutáció ez is, mert a Glu helyet Val van &#10140; hemogobin szerkezetét befolyásolja</li>
+	  <hr><strong>pontmutáció</strong>
+		<li>egyetlen bp megváltozása</li>
+		<li>típusai</li><ul>
+			<li>szubsztitúció &#10140; egy bp egy másikra cserélődik ki &#10140; típusai</li><ul>
+				<li>tranzíció &#10140; purin-purinra(A<>G) vagy pirimidin-pirimidinre(T<>C) cserélődik ki  vagy &#10140; pl. oxo-enol tautoméria, oxidatív_dezamináció</li>
+				<li>transzverzió &#10140; purin-pirimidinre cserélődik ki (A<>T) vagy fordítva (G<>C) <abbr title="csak ez a kettő van? tehát olyan nincs, hogy Adenin Citozinra?">(?!)</abbr> &#10140; ennek oka a DNS-polimeráz tévedése</li>
+			</ul>
+			<li>deléció</li><ul>
+				<li>lényege &#10140; 1bp kiesik</li>
+				<li>oka &#10140; depurinizáció (DNS-polimeráz a bázis nélküli dezoxiribózt átugorja, vele szembe nem épít be semmilyen nukleotid egységet)</li>
+			</ul>
+			<li>inzerció</li><ul>
+				<li>lényege &#10140; 1bp hozzáadódik</li>
+				<li>oka &#10140; policiklusos aromás szénhidrogének (pl. benzopirén!!!) a DNS bázispárjai közé ékelődnek, és ezt a DNS-polimeráz tévesen bázisként értelmezi, és így +1 nukleotidot épít be</li>
+			</ul>
+		</ul>
+	</ul></details>
+	<details class="kerdes 5/25" id="msb.162"><summary>A pontmutációk. A spontán pontmutációk kialakulása. A polimorfizmusok. <strong>A DNS-variációk lehetséges hatása a képződő RNS-re, illetve fehérjére</strong>.</summary><ul class="normal">
+		pontmutáció hatása függ...
+		<li>egyrészt attól, hogy a DNS mely szakaszát éri &#10140; ha gént, akkor jelentősebb változás várható, mintha egyéb helyen</li>
+		<li>másrészt attól, hogy a pontmutáció mely típusa éri</li><ul>
+			<li>szubsztitúció vs. deléció & inzerció &#10140; deléció és inzerció "sokkal durvább", ugyanis így elcsúszik 1bp az utána következő rész &#10140; mivel az aminosavak 3asával vannak kódolva, így az onnan következő összes aminosav hibás lesz már</li>
+			<li>szubsztitúció esetében először attól függ a hatása, hogy a triplet mire cserélődik</li><ul>
+				<li><strong>nonsense</strong> &#10140; tripletből STOP kodon lesz &#10140; súlyos következmény, mert transzláció ezen a ponton befejezõdik, csonkolt-működésképtelen fehérje jön létre</li>
+				<li><strong>missense</strong> &#10140; egy másik aminósav lesz helyette</li>
+			  <hr>
+				<li>missense esetében a további tényezőktől függ</li>
+				<li>egyrész milyen másik aminósav lesz helyette</li><ul>
+					<li>konzervatív ➜ aminosav azonos típusúra cserélődik (pl. apoláros helyett apoláros)</li>
+					<li>non-konzervatív ➜ aminosav másik típusúra cserélődik (pl. apoláros helyett ionos)</li>
+					<div>non-konzervatív jelentősebb következménnyel jár</div>
+				</ul>
+				<li>másrészt melyik aminósav cserélődik ki &#10140; ha a fehérje aktív centrumában lévő aminósav cserélődik ki, annak súlyos következménye van (ellenben egyéb helyen lévők alig okoznak problémát)</li>
+			  <hr>
+				<li><strong>samesense</strong></li><ul>
+					<li>az, amikor a megváltozott DNS-szekvencia ellenére a kódolt fehérje szerkezete nem módosul (tehát pl. konzervatív, és nem fontos aminosavat ért)</li>
+					<li>azonban ezeknek is van hatása &#10140; az mRNS stabilitásának megváltozása révén a képződő fehérje mennyiségét befolyásolhatják</li>
+				</ul>
+			  <hr>
+				<li>ezenkívül a gének szabályozó régióiban bekövetkezett változás is hasonló a samesense-hez &#10140; fehérje ugyanolyan készül, mint kell, azonban a TF-ek stb. máshogy működnek ezáltal a termelődő fehérjék mennyisége fog megváltozni</li>
+			</ul>
+		</ul>
+	</ul></details>
 <!----></div></details>
 
 <!----><details><summary class="phase">#12 Az E. coli RNS‑polimeráz szerkezete és működése. A transzkripció iniciációja és terminációja prokarióta sejtekben, a prokarióta transzkripciós egység.</summary><div><div class="title"> </div>
