@@ -54,7 +54,7 @@
 	<td class="done">6</td>
 	<td class="done">7</td>
 	<td class="done">8</td>
-	<td class="">9</td>
+	<td class="done">9</td>
 	<td class="">10</td>
 	<td class="">11</td>
 	<td class="done">12</td>
@@ -931,8 +931,10 @@
 		<li>a telomeráz ezt képes pótolni, azonban ez az enzim csak őssejtekben és tumorsejtekben expresszálódik</li>
 	  <strong>minden osztódásnál csökken a telomer hossza &#10140; oka</strong>
 		<li>genom a prokariótáknál cirkuláris, tehát nem volt 5' / 3' vége &#10140; eukariótáknál lineáris: 23db interfázisos_kromoszóma, mindegyiknek van 5' és 3' vége</li>
-		<li>ennek az a következménye, hogy eukariótáknál a késlekedő szál 5' vége rövidülni fog minden egyes osztódásnál <abbr title="tehát ha a képen megnézem, akkor a vezető szálon úgy néz ki nem történne gond &#10140; azonban ha belegondolok, következő osztódásnál amikor kettéválik az előzőnél késlekedő szál, akkor ott a megrövidült (előzőben 'új' késlekedő) lesz a vezető szálban a minta('szülő')-DNS, tehát az 'új' vezető szál már hiába lesz olyan hosszú mint a minta, ha a minta már alapból rövidebb, mint kéne legyen">&#10045;</abbr></li>
-		<li>ugyanis az 5' végén lévő RNS-t miután leválik, nem tudja semmi pótolni &#10140; hiszen 5'-3' irányba történik csak szintézis, és nincs előtte 3' vég, ami hosszabítható lenne</li>
+		<li>ennek az a következménye, hogy eukariótáknál a késlekedő szál 5' vége rövidülni fog minden egyes osztódásnál</li><ul>
+			<li>ez a következő osztódásnál lesz a vezető szálnak lesz a mintája, ami így már szintén rövidebb, mint kéne legyen (tehát az 'új' vezető szál, hiába olyan hosszú mint a 'szülő', ha egyszer a szülő már rövidebb, mint kéne legyen) <img class="mini" src="images/vztzsklsz.png"></li>
+		</ul>
+		<li>ugyanis az 5' végén lévő RNS-primer miután leválik, nem tudja semmi pótolni &#10140; hiszen 5'-3' irányba történik csak szintézis, és nincs előtte 3' vég, ami hosszabítható lenne</li>
 		<li>(prokariótáknál azonban cirkuláris, így nem lesz probléma <abbr title="szvsz ha végiggondolom: kört rajzoljak, majd az iniciációs_buboréktól egyik irányba 1 vezető, másik irányba 1 késlekedő szál megindul, és ezek fognak egymással találkozni (tehát a vezettő szál hosszabodása fogja tudni pótolni)">&#10045;</abbr>)</li>
 		<li>a telomeráz enzim működésének köszönhetõen azonban a kromoszómák ezen elkerülhetetlen rövidülése mégsem jelenti a genetikai információ fokozatos elvesztését. Az enzim a kromoszómák 3’-végét meghosszabbítja minden osztódásnál <abbr title="szvsz így van, lásd képek, illetve előadáson is az volt, hogy a 3' vég mindig rövidebb kb. 2 TTAGGG szekvenciával (tehát így logikus, az hogy TK-ban több ezer van azis igaz, de az alapból megvan, ez csak kettőt ad mindig hozzá)"><i>két</i></abbr> TTAGGG szekvenciával</li>
 		<li>a telomeráz egy RNS-függõ DNS-polimeráz (azaz egyfajta reverz transzkriptáz), s a mintául szolgáló RNS pedig az enzim saját prosztetikus csoportja &#10140; lásd kép</li>
@@ -940,13 +942,53 @@
 			<li>differenciált sejtekben a telomeráz enzim már nem expresszálódik, így a sejt lehetséges osztódásainak száma korlátozott &#10140; kb 50-100x osztódhat</li>
 			<li>ugyanis ha a telomer hossza egy adott érték alá csökken, akkor apoptózis indukálódik, a sejt elpusztul</li>
 		</ul>
+		<li>a telomeráz csak őssejtekben és tumorsejtekben expresszálódik &#10140; daganatos megbetegedések kemoterápiás kezelésének egyik módja ez&#10140; legaktívabban osztódó sejteket, azaz éppen a tumorsejteket károsítja</li>
 	</ul></details>
 <!----></div></details>
 
-<!----><details open><summary class="phaseD">#9 A legfontosabb DNS-károsodások. A dezamináció javításának mechanizmusa.</summary><div><div class="title"> </div>
+<!----><details><summary class="phase">#9 A legfontosabb DNS-károsodások. A dezamináció javításának mechanizmusa.</summary><div><div class="title"> </div>
+	<details class="kerdes 5/25" id="msb.157"><summary><strong>A legfontosabb DNS-károsodások.</strong> A dezamináció javításának mechanizmusa.</summary><ul class="normal">
+		<div style="float:right;max-width:30%">
+			<img src="images/xdtvdzmncrjt.png">
+		</div>
+		<li>károsodását okozhatják</li><ul>
+			<li>külső tényezõk &#10140; pl. sugárzás</li>
+			<li>belső tényezõk &#10140; pl. oxigén tartalmú szabad gyökök keletkezése</li>
+		</ul>
+		<li>hibajavító mechanizmusok ezeket folyamatosan javítják azon egyszerű elv alapján, hogy a párhuzamos ép DNS lánc alapján a károsodott szakasz eredeti szerkezete visszaállítható</li>
+		<li>osztódás előtt még javíthatók a károsodások &#10140; utána már nem, mutációvá válik</li>
+	  <hr><strong>oxidatív_dezamináció</strong>
+		<li>(spontán megy végbe)</li>
+		<li><span class="Vocab">R</span> adenin,guanin,citozinból lesz &#10140; hipoxantin,xantin,uracil</li>
+		<li>hipoxantin azonban citozinnal fog timin helyett, uracil pedig adeninnel fog guanin helyett</li>
+		<li>guanin javítása nem okoz hibát, mert a xantin is csak citozinnal képes ezután párosodni (bár ott szvsz 2x H-kötés lesz csak)</li>
+		<li>(Feltételezhető, hogy éppen ezen viszonylag gyakori – minden sejtben naponta több ezerszer lejátszódó –, spontán folyamattal magyarázható, hogy a DNS-ben uracil helyett fiziológiásan timin fordul elõ, azaz az uracil a DNS-ben idegen bázis, hibának számít. Ha ugyanis ez nem így lenne, akkor a javító mechanizmusok a citozin dezaminálódása révén keletkezõ uracilt a többi uraciltól nehezen tudnák elkülöníteni)</li>
+		<li>guanin javítása nem okoz hibát, mert a xantin is csak citozinnal képes ezután párosodni (bár ott szvsz 2x H-kötés lesz csak)</li>
+	  <hr><strong>depurinizáció</strong>
+		<li>lényege &#10140; dezoxiribóz és a purin bázis közötti &beta;-N-glikozidos kötés elhasad</li>
+		<li>egy sejtben naponta 5000x megy végbe</li>
+		<li>(ennél ritkábban végbemegy pirimidin tartalmú nukleotidoknál is, akkor gondolom depirimidinizációnak nevezik)</li>
+	  <hr><strong>timin dimerek &#10140; lásd 10.tétel</strong>
+	</ul></details>
+	<details class="kerdes 5/25" id="msb.159"><summary>A legfontosabb DNS-károsodások. <strong>A dezamináció javításának mechanizmusa.</strong></summary><ul class="normal">
+		<div style="float:right;max-width:30%">
+			<img src="images/dprnzcjvts.png">
+		</div>
+		<li><span class="Vocab">R</span> első lépés a hibás bázis eltávolítás (depurinizációnál ez nem is kell) &#10140; glikozidáz szakítja fel &beta;-N-glikozidos kötést, és ezzel eltávolítja a hibás bázist</li>
+		<li>második lépésben az AP-endonukleáz a bázis nélküli dezoxiribózt a láncból kihasítja &#10140; ilyen lánchiányt "gap"-nek nevezzük</li>
+		<li>harmadik lépésben prokariótáknál DNS polimeráz I, eukariótáknál a DNS polimeráz &beta; odailleszti a komplementer nukleotidot &#10140; azonban így még a foszfodiészter hiányzik (szomszédos 3' irányba lévő bázishoz való kötődése a beillesztettnek) &#10140; "nick" a neve ennek a helyzetnek</li>
+		<li>negyedik lépésben a ligáz létrehozza a foszfodiésztert &#10140; prokariótákban NAD<sup>+</sup> hidrolízisével, eukariótákban ATP fedezi az energiát</li>
+	</ul></details>
 <!----></div></details>
 
 <!----><details open><summary class="phaseD">#10 A timin dimerek kialakulása és javítása. A „mismatch repair”.</summary><div><div class="title"> </div>
+	<details open class="kerdes 5/25" id="msb.158"><summary>A timin dimerek kialakulása és javítása. A „mismatch repair”.</summary><ul class="normal">
+		<img src="images/tmndmrzck.png">
+		<li>leggyakrabban UV-fény hatására következik be</li>
+		<li><span class="Vocab">R</span> lényege &#10140; két szomszédos timin között történik meg: a gyûrûk 5-ös, illetve 6-os C-atomjai között alakul ki egy-egy kovalens kötés</li>
+		<li>(két egymás mellett elhelyezkedõ citozin, vagy egy citozin és egy timin is képezhet dimert hasonló módon)</li>
+	  <hr><strong>hibák javítása = repair</strong>
+	</ul></details>
 <!----></div></details>
 
 <!----><details open><summary class="phaseD">#11 A pontmutációk. A spontán pontmutációk kialakulása. A polimorfizmusok. A DNS-variációk lehetséges hatása a képződő RNS-re, illetve fehérjére.</summary><div><div class="title"> </div>
