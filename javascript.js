@@ -1,9 +1,10 @@
 ﻿
 /* FELADATOK
+	(-) Skip funkció
+	(-) jobbfelsőre klikkelve "úgy jelenjen ez meg, mint a kép" --> tehát 1 réteget tegyen rá az egészre
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 	(-) legyen multi-kérdés: több kérdés egyszerre, külön számolja priorjukat ugye (legnagyobb alapján kerülhet kérdésbe), és megválaszolásukkor mindegyikét elmenti --> pl. aminosav: képlete?(HP) oldalláncának neve?(LP) 
 	(-) 1kérdés lehessen többhelyen is a kódban, azonban a szöveg csak egy helyen legyen megadva hozzá (hogy csak egy helyen kelljen átírnom, ha változtatok rajta)
-––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-	(-) Skip funkció
 	(-) alján a func_span rész sztem buggos, tehát pl. nemhiszem hogy minden jól megy ott! majd amikor tesztelem már, mert tanulok akkor figyeljek rá
 	(-) repeatre állított (vagy miss/fix/etc. checkbox true) kérdést mindenképp dobhassa, ne legyen feltétele a kérdés tételének aktivitása
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -54,13 +55,19 @@ function func_removeRepeat(){
 				//localStorage.setItem(kerdes+'_timeDiff', "0")
 				//localStorage.removeItem(kerdes+'_idopont');
 				//localStorage.removeItem(kerdes+'_repeat');
-				if ( kerdes+'_timeDiff' in localStorage ) {
+				//localStorage.removeItem(kerdes+'_jegyDiff');
+				if ( kerdes+'_fix' in localStorage ) {
+					localStorage.removeItem(kerdes+'_fix')
+				}
+				if ( kerdes+'_skip' in localStorage ) {
+					localStorage.removeItem(kerdes+'_skip')
+				}
+				/*if ( kerdes+'_timeDiff' in localStorage ) {
 					var count = localStorage.getItem(kerdes+'_timeDiff')/60
 					Math.floor(count) = count
 					localStorage.setItem(kerdes+'_repeat', count)
 					localStorage.removeItem(kerdes+'_timeDiff');
-				}
-				localStorage.removeItem(kerdes+'_jegyDiff');
+				}*/
 				/*if ( localStorage.getItem(kerdes+'_timeDiff') > 600 ) {
 					localStorage.setItem(kerdes+'_timeDiff', 600)
 				}*/
@@ -80,7 +87,6 @@ function func_removeRepeat(){
 		}
 	}
 }
-//func_removeRepeat()
 
 
 function func_calcJegy() { // átlagJegyet kiszámolja
@@ -160,14 +166,14 @@ function func_calcRepeat() { // átlagIsmétlések számát kiszámolja
 	var allRepVal = 0
 	for ( var fotema in kerdesID ) { 
 		for ( var temaKerdes in kerdesID[fotema] ) { 
-			//if ( localStorage.getItem(fotema+" / "+temaKerdes+"_button") == "true" ) {
+			if ( localStorage.getItem(fotema+" / "+temaKerdes+"_button") == "true" ) {
 				for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
 					if ( kerdesID[fotema][temaKerdes][kerdes] == true ) {
 						questCount = questCount +1
 						allRepVal = allRepVal +Number(localStorage.getItem(kerdes+'_repeat'))
 					}
 				}
-			/*}*/
+			}
 		}
 	}
 	var atlag = allRepVal / questCount
@@ -466,6 +472,10 @@ function func_clickTemaButton(button){
 		localStorage.setItem(button.id,true)
 		document.getElementById(button.id+"_label").style.color= "limegreen";
 	}
+	func_calcOldNew();
+	func_calcJegy()
+	func_calcDate()
+	func_calcRepeat()
 }
 
 // témakör buttonok
@@ -741,6 +751,11 @@ func_abbrSet()
 /* ToolTip END */
 
 
+
+func_removeRepeat()
+
+
+
 // checkboxok: missFix & skipID
 if ( localStorage.getItem("checkboxSkip") == "true" ) {
 	document.getElementById("checkboxSkip").checked = true;
@@ -763,16 +778,22 @@ if ( localStorage.getItem("checkboxProgress") == "true" ) {
 }*/
 
 var elements = document.getElementsByClassName("kerdes")
+var table_fixNote = []
+//var table_StatusSkip = []
 var table_Status = []
-var table_StatusSkip = []
 for ( var i = 0;   i < elements.length;   i++ ) {
 	var id = elements[i].id
 	var temaKerdes = 	document.getElementById(id).parentElement.parentElement.id
 	var fotema = 		document.getElementById(id).parentElement.parentElement.parentElement.id
-	var cimTitle = id.slice(id.indexOf(".")+1)
+	//var cimTitle = id.slice(id.indexOf(".")+1)
 	
-	table_Status[id] = localStorage.getItem(id + "_fix")
-	table_StatusSkip[id] = localStorage.getItem(id + "_skip")
+	if ( localStorage.getItem(id+'_note') != "" && localStorage.getItem(id+'_note') != null ) {
+		table_fixNote[id] = true
+	} else {
+		table_fixNote[id] = false
+	}
+	//table_Status[id] = localStorage.getItem(id + "_fix")
+	//table_StatusSkip[id] = localStorage.getItem(id + "_skip")
 	if ( localStorage.getItem(id + "_skip") == "progress" ) {
 		kerdesID[fotema][temaKerdes][id] = false
 	} else {
@@ -780,19 +801,16 @@ for ( var i = 0;   i < elements.length;   i++ ) {
 	}
 }
 
-function func_valStatus(status){
+function func_valFix(){
 	var x = 0
-	for ( var id in table_Status ) {
-		if ( table_Status[id] == status ) {
+	for ( var id in table_fixNote ) {
+		if ( table_fixNote[id] == true ) {
 			x = x+1
 		}
 	}
-	document.getElementById("btn_"+status).value = x;
+	document.getElementById("btn_fix").value = x;
 }
-func_valStatus("fix");
-func_valStatus("miss");
-//func_valStatus("Skip");
-func_valStatus("progress");
+func_valFix()
 
 function func_valStatusSkip(status){
 	var x = 0
@@ -804,7 +822,7 @@ function func_valStatusSkip(status){
 	}
 	document.getElementById("btn_progress").value = x;
 }
-func_valStatusSkip("skip");
+//func_valStatusSkip("skip");
 
 function func_calcOldNew(){
 	var kerdesNew = 0
@@ -878,14 +896,6 @@ function func_markCount(jegy){
 function func_prevQuestion(){
 	func_markCount(document.getElementById("jegy").value);
 
-	/*if ( priorKerdesID+'_jegy' in localStorage ) {
-		if ( document.getElementById("jegy").value == "3" || document.getElementById("jegy").value == "4" ) {
-			localStorage.setItem(priorKerdesID+'_jegyDiff', "good");
-		} else {
-			localStorage.setItem(priorKerdesID+'_jegyDiff', "bad");
-		}
-	}*/
-
 	// kerdesek visszahelyezése BEGIN
 	document.getElementById(priorKerdesID).open = false;
 	document.getElementById(oldParent).appendChild(document.getElementById(priorKerdesID))
@@ -899,7 +909,7 @@ function func_prevQuestion(){
 	func_abbrSet()
 
 	localStorage.setItem(priorKerdesID+'_jegy', document.getElementById("jegy").value);
-	if ( document.getElementById("buttonFix").style.backgroundColor == "lightgrey" ) {
+	/*if ( document.getElementById("buttonFix").style.backgroundColor == "lightgrey" ) {
 		table_Status[priorKerdesID] = "normal"
 		localStorage.removeItem(priorKerdesID + "_fix")
 	} else if ( document.getElementById("buttonFix").style.backgroundColor == "lightpink" ) {
@@ -908,7 +918,7 @@ function func_prevQuestion(){
 	} else if ( document.getElementById("buttonFix").style.backgroundColor == "red" ) {
 		table_Status[priorKerdesID] = "fix"
 		localStorage.setItem(priorKerdesID + "_fix","fix")
-	}
+	}*/
 
 	if ( document.getElementById("buttonSkip").style.backgroundColor == "black" ) {
 		localStorage.setItem(priorKerdesID+'_jegy', "");
@@ -953,32 +963,14 @@ function func_prevQuestion(){
 			localStorage.setItem(priorKerdesID+'_repeat', repCount +1);
 		}
 	}
-	
-	/*if ( numberX < 30 ) {
-		if ( idopont > 30 ) {
-			idopont = 30
-		}
-	} else {
-		numberX = Math.floor(numberX/60)
-		numberX = (numberX+1)*60
-		if ( idopont > numberX ) {
-			idopont = numberX
-		}
-	}
-	if ( idopont < numberX ) {
-		idopont = numberX
-	}*/
 
 	localStorage.setItem(priorKerdesID+'_idopont', Math.floor(date.getTime()/60000));
 	localStorage.setItem(priorKerdesID+'_note', document.getElementById("note").value);
 
 	document.getElementById("questTitle").innerHTML = "";		// hide előző megoldás
-	//document.getElementById("kerdeslocation").style.display = 'none';								// hide előző megoldás
 	
-	func_valStatus("fix");
-	func_valStatus("miss");
-	func_valStatus("progress");
-	func_valStatusSkip("skip");
+	func_valFix()
+	//func_valStatusSkip("skip");
 	document.getElementById("jegy").value = ""
 	document.getElementById("note").value = ""
 	document.getElementById("note").style.display = 'none';
@@ -1052,7 +1044,7 @@ function koviKerdes(){
 	}
 	func_checkStatus("progress")
 	func_checkStatus("fix")
-	func_checkStatus("miss")
+	//func_checkStatus("miss")
 	if ( priorKerdesID == "nincs" ) { // végignézi az összes kérdés priorját, és kiválasztja a legnagyobbat
 		for ( var fotema in kerdesID ) { 
 			for ( var temaKerdes in kerdesID[fotema] ) { 
@@ -1274,13 +1266,13 @@ function koviKerdes(){
 			document.getElementById('jegy').disabled = true;
 		}
 
-		if ( localStorage.getItem(priorKerdesID+'_fix') == "miss" ) {
+		/*if ( localStorage.getItem(priorKerdesID+'_fix') == "miss" ) {
 			document.getElementById("buttonFix").style.backgroundColor = "lightpink";
 		} else if ( localStorage.getItem(priorKerdesID+'_fix') == "fix" ) {
 			document.getElementById("buttonFix").style.backgroundColor = "red";
 		} else {
 			document.getElementById("buttonFix").style.backgroundColor = "lightgrey";
-		}
+		}*/
 
 		var date = new Date();
 		var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(priorKerdesID+'_idopont')
@@ -1302,47 +1294,7 @@ function koviKerdes(){
 
 }
 
-/*function missFix(){
-	if ( priorKerdesID != "nincs") {
-		if ( document.getElementById("buttonFix").style.backgroundColor == "lightpink" ) {
-			document.getElementById("buttonFix").style.backgroundColor = "red";
-		} else if ( document.getElementById("buttonFix").style.backgroundColor == "red" ) {
-			document.getElementById('jegy').disabled = true;
-			document.getElementById("buttonFix").style.backgroundColor = "purple";
-		} else {
-			document.getElementById('jegy').disabled = false;
-			if ( document.getElementById("buttonFix").style.backgroundColor == "lightgrey" ) {
-				document.getElementById("buttonFix").style.backgroundColor = "lightpink";
-			} else if ( document.getElementById("buttonFix").style.backgroundColor == "purple" ) {
-				document.getElementById("buttonFix").style.backgroundColor = "lightgrey";
-			}
-		}
-	}
-}*/
 
-function func_buttonFix(){
-	if ( priorKerdesID != "nincs") {
-		if ( document.getElementById("buttonFix").style.backgroundColor == "lightpink" ) {
-			document.getElementById("buttonFix").style.backgroundColor = "red";
-		} else if ( document.getElementById("buttonFix").style.backgroundColor == "red" ) {
-			document.getElementById("buttonFix").style.backgroundColor = "lightgrey";
-		} else {
-			document.getElementById("buttonFix").style.backgroundColor = "lightpink";
-		}
-	}
-}
-
-/*function func_skipID(){
-	if ( priorKerdesID != "nincs") {
-		if ( document.getElementById("buttonSkip").style.backgroundColor == "black" ) {
-			document.getElementById("buttonSkip").style.backgroundColor = "lightgrey";
-		} else if ( document.getElementById("buttonSkip").style.backgroundColor == "lightgrey" ) {
-			document.getElementById("buttonSkip").style.backgroundColor = "yellow";
-		} else if ( document.getElementById("buttonSkip").style.backgroundColor == "yellow" ) {
-			document.getElementById("buttonSkip").style.backgroundColor = "black";
-		}
-	}
-}*/
 
 function func_buttonSkip(){
 	if ( priorKerdesID != "nincs") {
@@ -1376,11 +1328,6 @@ function func_span(element,status){
 	//alert(string)
 }
 document.getElementById("btn_fix").onmouseout = function() {
-	if ( tooltipStatus != "show" ) {
-		tooltipSpan.style.visibility = "hidden";
-	}
-}
-document.getElementById("btn_miss").onmouseout = function() {
 	if ( tooltipStatus != "show" ) {
 		tooltipSpan.style.visibility = "hidden";
 	}
