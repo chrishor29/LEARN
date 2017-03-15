@@ -62,8 +62,8 @@
 	<td class="done">15</td>
 	<td class="done">16</td>
 	<td class="done">17</td>
-	<td class="">18</td>
-	<td class="">19</td>
+	<td class="done">18</td>
+	<td class="important">19</td>
 	<td class="done">20</td>
 	<td class="done">21</td>
 	<td class="">22</td>
@@ -99,13 +99,6 @@
   </tr>
 </table>
 
-<span class="WHITE">18 + 19 + 20</span><ul>
-	<li>03_01</li>
-	<li>TK I/9</li>
-</ul>
-<span class="WHITE">21</span><ul>
-	<li>03_06</li>
-</ul>
 <span class="FIX">KÉPLETEK &#10140; nukleinsavak + aminosavak (bk. copy!)</span>
 <div><span class="MISS">diasztereomer 2 típusa &#10140; pimer & anomer</span></div>
 
@@ -1163,7 +1156,7 @@
 <!----></div></details>
 
 <!----><details><summary class="phase">#13 Az RNS típusai, a különböző RNS-ek funkciója. Az rRNS és a tRNS szintézise.</summary><div><div class="title"> </div>
-	<details class="kerdes 3/7" id="msb.126"><summary><strong>Az RNS típusai, a különböző RNS-ek funkciója</strong>. Az rRNS és a tRNS szintézise</summary><ul class="normal">
+	<details class="kerdes 4/10" id="msb.126"><summary><strong>Az RNS típusai, a különböző RNS-ek funkciója</strong>. Az rRNS és a tRNS szintézise</summary><ul class="normal">
 		<li>csoportosításuk</li><ul>
 			<li>kódoló &#10140; mRNS</li>
 			<li>nem kódoló &#10140; összes többi</li>
@@ -1182,14 +1175,23 @@
 		<li><abbr title="small nuclear">sn</abbr>RNS &#10140; splicing (lásd 17.tétel)</li>
 		<li><abbr title="small nucleOLar">sno</abbr>RNS &#10140; ezek más RNS-eket módosítanak, pl. rRNS-ek érését végzik, pszeudouridint építenek be tRNS</li>
 		<li>telomeráz-RNS &#10140; telomeráz alkotója, mely telomer "pótlását" végzi</li>
-		<li>mikroRNS &#10140; RNS-eket 3'-végéhez csatlakoznak, aminek következtében azokat <abbr title="ribonukleázok">RNázok</abbr> lebontanak</li>
+		<details><summary>mikroRNS</summary><ul class="normal">
+			<li>kb. 20 nukleotidból áll</li>
+			<li>fehérjét kódoló gének 30–40%-át tudják szabályozni</li>
+			<li>szintézisük</li><ul>
+				<li>vagy külön van génjük a DNS-ben &#10140; RNS polimeráz II elkészíti, majd éréssel elnyeri végleges szerkezetét <abbr title="erről lehetne még bőven írni a TK alapján, de nekem ennyi elég volt belőle, mert előadásokon kb. szó se volt a mikroRNS-ekről">!!!</abbr></li>
+				<li>vagy a kivágott intronokból lesznek &#10140; azonban mindig más mRNS intronjából, mint amit szabályozni fognak</li>
+			</ul>
+			<li>gátolják a fehérjeszintézist &#10140; innen az elnevezése "post-transcriptional silencing"</li>
+			<li>ez úgy történik, hogy az mRNS 3'UTR régiójához kapcsolódnak &#10140; ez indukálja RNáz odakapcsolódását, ami levágja a 3'poliA farkat</li>
+		</ul></details>
 		<li>scRNS &#10140; szekretálódó fehérjéket szintetizáló riboszómákat irányítják az ER-hez</li>
 		<li>antiszensz RNS-ek &#10140; génexpresszió gátlása</li>
 		<li>XIST RNS &#10140; nőkben van, inaktívvá teszi az egyik X-kromoszómát</li>
 		<li>mitokondriális tRNS(22féle) & rRNS(2féle)</li>
 		<img src="images/rbszmrszkt.png">
 	</ul></details>
-	<br><details class="kerdes 3/7" id="msb.127"><summary>Az RNS típusai, a különböző RNS-ek funkciója. <strong>Az rRNS és a tRNS szintézise</strong></summary><ul class="normal">
+	<br><details class="kerdes 4/8" id="msb.127"><summary>Az RNS típusai, a különböző RNS-ek funkciója. <strong>Az rRNS és a tRNS szintézise</strong></summary><ul class="normal">
 		<img src="images/rnssstrns.png">
 	  <div><strong>prokariótáknál pl. E.coli</strong></div>
 		<li>egy ún. elsődleges_transzkriptum (1lánc) kódol egyaránt rRNS-eket és tRNS-eket is <abbr title="ezeket elválasztó szakaszok 'spacer'-eknek nevezik">()</abbr></li>
@@ -1391,11 +1393,11 @@
 		<li>mediátor_komplex &#10140; ez közvetíti a szabályozást</li>
 	  <hr>
 		<li>extended_promoter = core promoter + szabályozó szekvenciák</li>
-		<li>szabályozó szekvenciák &#10140; cisz-elemek (mert ezek közel vannak a corePromoterhez)</li><ul>
+		<li>szabályozó szekvenciák &#10140; cisz-elemek (ezen DNS-régiók az összehajtogatáskor a corePromoter közelébe kerülnek)</li><ul>
 			<li>enchancer</li>
 			<li>silencer</li>
 		</ul>
-		<li>szabályozó fehérjék = <abbr title="speciális TF-ek">sTF-ek</abbr> &#10140; ezeket kódoló szekvenciák transz-elemek (mert messze is lehetnek kódoltak a corePromotertől)</li><ul>
+		<li>szabályozó fehérjék = <abbr title="speciális TF-ek">sTF-ek</abbr> &#10140; ezeket kódoló szekvenciák a transz-elemek (ezen DNS-régiók nem kerülnek közel a corePromoterhez, "függetlenek tőle")</li><ul>
 			<li>aktivátor</li>
 			<li>represszor</li>
 		</ul>
@@ -1410,17 +1412,16 @@
 		<strong>fellazul a DNS &#10140; 2pl</strong>
 		<li>hiszton kovalens módosítások <img class="mini" src="images/hsztknvlnsdm.png"></li><ul>
 			<li>egy nukleoszómát 4fajta hisztonból áll, mindegyikből kettő van egy nukleoszómában &#10140; H2A,H2B,H3,H4</li>
-			<li>ezen hisztonok N-terminális vége "kilóg belőlük" <abbr title="a H2A és H2B-nek van 1-1 C-re végződő kilógó része is">()</abbr> &#10140; ún. 'hiszton-farok'</li>
+			<li>core hisztonok N-terminális vége "kilóg belőlük" <abbr title="a H2A és H2B-nek van 1-1 C-re végződő kilógó része is">()</abbr> &#10140; ún. 'hiszton-farok'</li>
 			<li>'hiszton-farok' &#10140; ezek kb 20-35aminosavból állnak, és itt történnek a módosítások</li>
 		  <hr>
-			<li>koaktivátor pl. <span class="Important">hiszton-acetil-transzferáz</span>(, hiszton-kináz)</li>
-			<li>a hiszton-acetil-transzferáz a hiszton oldalláncán lévő egyes <span class="Important">Lys</span> aminosavakat acetilál <div class="mirror">&#10140;</div> acetil-KoA-ról viszi át az acetil-csoportot</li>
-			<li>a hiszton-kináz a hiszton oldalláncán lévő egyes Ser/Thr aminosavakat foszforilálja</li>
-			<div>&#10140; kromatint fellazul...</div><ul>
-				<li>egyrészt mert az acetilált Lys már nem bázikus karakterű, és nem képes a foszfátcsoporthoz oly mértéékben kötődni</li>
+			<li>a <span class="Important">hiszton-acetil-transzferáz</span> aktivitással rendelkező koaktivátor a hiszton oldalláncán lévő egyes <span class="Important">Lys</span> aminosavakat acetilál <div class="mirror">&#10140;</div> acetil-KoA-ról viszi át az acetil-csoportot</li>
+			<li><abbr title="a hiszton-kináz nevű koaktivátor pedig a hiszton oldalláncán lévő egyes Ser/Thr aminosavakat foszforilálja">&#10045;</abbr></li>
+			<div>&#10140; így a kromatin fellazul, ugyanis...</div><ul>
+				<li>egyrészt az acetilált Lys már nem bázikus karakterű, és így már nem képes a savas(negatív töltésű) foszfátcsoporthoz kötődni</li>
 				<li>másrészt az acetilált hisztonhoz ún. kromatinfellazítió_komplexek fognak kötődni</li>
 			</ul>
-			<div>&#10140; <abbr title="hisz ez az első kötődő áTF">TFIID</abbr> képes kötődni a core_promoterhez (és egyben az acetilált hisztonhoz is kötődik)</div>
+			<div>&#10140; <abbr title="hisz ez az első kötődő áTF">TFIID</abbr> képes kötődni a core_promoterhez (és egyben az acetilált hisztonhoz is)</div>
 		</ul>
 		<li>ún. hiszton_chaperon nevű fehérjékkel is történhet &#10140; ezek kivesznek hisztonokat, és így lazul fel a kromatin</li>
 	  <hr>
@@ -1432,7 +1433,7 @@
 <!----></div></details>
 
 <!----><details><summary class="phase">#17 Az eukarióta mRNS érése.</summary><div><div class="title"> </div>
-	<details class="kerdes 3/20" id="msb.137"><summary><strong>Az eukarióta mRNS érése</strong></summary><ul class="normal">
+	<details open class="kerdes 3/20" id="msb.137"><summary><strong>Az eukarióta mRNS érése</strong></summary><ul class="normal">
 		<div style="float:right;max-width:30%">
 			<img src="images/hnrnsszrk.png">
 			<img src="images/képlet_mgspk.png">
@@ -1519,7 +1520,7 @@
 	</ul></details>
 <!----></div></details>
 
-<!----><details open><summary class="phaseC">#18 Az eukarióta géneszpresszió transzkripciót követő lépéseinek szabályozása.</summary><div><div class="title"> </div>
+<!----><details><summary class="phase">#18 Az eukarióta géneszpresszió transzkripciót követő lépéseinek szabályozása.</summary><div><div class="title"> </div>
 	<details open class="kerdes 3/20" id="msb.163"><summary><strong>Az eukarióta géneszpresszió transzkripciót követő lépéseinek szabályozása.</strong></summary><ul class="normal">
 		<div style="float:right;max-width:30%">
 			<img src="images/ktprsnzptr.png">
@@ -1539,11 +1540,6 @@
 			<li>több ilyen lépésben megy végbe</li>
 		</ul>
 		<div><span class="vocab"><strong>§</strong></span> magpóruson fehérjék is képesek hasonlóan átjutni (ezek nemcsak ki, hanem be is juthatnak a magba)</div>
-	</ul></details>
-<!----></div></details>
-
-<!----><details open><summary class="phaseC">#19 Az eukarióta mRNS poszttranszkripciós módosításai és stabilitásának szabályozása.</summary><div><div class="title"> </div>
-	<details open class="kerdes 3/20" id="msb.167"><summary><strong>Az eukarióta mRNS poszttranszkripciós módosításai és stabilitásának szabályozása.</strong></summary><ul class="normal">
 		<div style="float:right;max-width:30%">
 			<img src="images/hshtlhszblyzs.png">
 		</div>
@@ -1572,7 +1568,21 @@
 			<li>bal oldali esetében kihagyta az elsőt &#10140; intron kivágódott &#10140; utolsó exonja a "halványkék" &#10140; hidrofób lett a fehérje</li>
 			<li>jobb oldali esetében az elsőnél megállt &#10140; intron nem vágódott ki &#10140; utolsó exonja az intron "fele" &#10140; hidrofil lett a fehérje</li>
 		</ul>
-	  <hr><strong>mRNS élettartama</strong>
+	  <hr><strong>RNS-editing</strong>
+		<div style="float:right;max-width:30%">
+			<img src="images/xdtvdzmnls.png">
+		</div>
+		<li><span class="Vocab">R</span> egy gén 2 fehérjét kódol &#10140; Apo B-48 és Apo B-100</li>
+		<li>az érett mRNS teljesen ugyanúgy néz ki, és ki jut a citoplazmába</li>
+		<li>májban itt nem is történik vele semmi és elkészül transzlációval az Apo B-100</li>
+		<li>bélben azonban a 48%-nál (5'-3' irányba!!) lévő CAA nevű szekvenciában lévő Citozin <span class="Vocab">R</span> oxidatív_dezaminálása lesz</li>
+		<li>így UAA lesz belőle, ami már egy STOP-kodon, tehát a transzláció ott fog befejeződni</li>
+	</ul></details>
+<!----></div></details>
+
+<!----><details><summary class="phaseC">#19 Az eukarióta mRNS poszttranszkripciós módosításai és stabilitásának szabályozása.</summary><div><div class="title"> </div>
+	<details open class="kerdes 4/10" id="msb.167"><summary><strong>Az eukarióta mRNS poszttranszkripciós módosításai és stabilitásának szabályozása.</strong></summary><ul class="normal">
+	  <strong>mRNS élettartama</strong>
 		<div style="float:right;max-width:20%">
 			<img src="images/ndnklzrmns.png">
 			<img src="images/vstrnszfrn.png">
@@ -1590,15 +1600,15 @@
 			<li>így transzferrin-receptor transzlációja zajlik</li>
 			<li>azonban ha sok Fe van, akkor az hozzákötődve a IREBP-hez, leválnak az IRE-ról, és endonukleáz kettévágja az mRNS-t, ami ezután lebomlik és így nem lesz transzláció</li>
 		</ul>
-	  <hr><strong>RNS-editing</strong>
-		<div style="float:right;max-width:30%">
-			<img src="images/xdtvdzmnls.png">
-		</div>
-		<li><span class="Vocab">R</span> egy gén 2 fehérjét kódol &#10140; Apo B-48 és Apo B-100</li>
-		<li>az érett mRNS teljesen ugyanúgy néz ki, és ki jut a citoplazmába</li>
-		<li>májban itt nem is történik vele semmi és elkészül transzlációval az Apo B-100</li>
-		<li>bélben azonban a 48%-nál (5'-3' irányba!!) lévő CAA nevű szekvenciában lévő Citozin <span class="Vocab">R</span> oxidatív_dezaminálása lesz</li>
-		<li>így UAA lesz belőle, ami már egy STOP-kodon, tehát a transzláció ott fog befejeződni</li>
+	  <hr><strong>mikroRNS és hatása</strong>
+		<li>kb. 20 nukleotidból áll</li>
+		<li>fehérjét kódoló gének 30–40%-át tudják szabályozni</li>
+		<li>szintézisük</li><ul>
+			<li>vagy külön van génjük a DNS-ben &#10140; RNS polimeráz II elkészíti, majd éréssel elnyeri végleges szerkezetét <abbr title="erről lehetne még bőven írni a TK alapján, de nekem ennyi elég volt belőle, mert előadásokon kb. szó se volt a mikroRNS-ekről">!!!</abbr></li>
+			<li>vagy a kivágott intronokból lesznek &#10140; azonban mindig más mRNS intronjából, mint amit szabályozni fognak</li>
+		</ul>
+		<li>gátolják a fehérjeszintézist &#10140; innen az elnevezése "post-transcriptional silencing"</li>
+		<li>ez úgy történik, hogy az mRNS 3'UTR régiójához kapcsolódnak &#10140; ez indukálja RNáz odakapcsolódását, ami levágja a 3'poliA farkat</li>
 	</ul></details>
 <!----></div></details>
 
@@ -1637,7 +1647,7 @@
 		</ul>
 		<li><abbr title="RNS-polimeráz &alpha;-alegységéhez is kapcsolódik(ha köt cAMP-ot), és ezáltal serkenti a transzkripciót">()</abbr></li>
 	</ul></details>
-	<details class="kerdes 4/10" id="msb.169"><summary>A DNS-kötő fehérjék és jellegzetes szerkezeti elemeik prokariótákban (hélix-kanyar-hélix) és eukariótákban (<strong>hiszton-fold</strong>, hélix-hurok-hélix, cink-ujj, leucin cipzár) példákkal</summary><ul class="normal">
+	<br><details class="kerdes 4/10" id="msb.169"><summary>A DNS-kötő fehérjék és jellegzetes szerkezeti elemeik prokariótákban (hélix-kanyar-hélix) és eukariótákban (<strong>hiszton-fold</strong>, hélix-hurok-hélix, cink-ujj, leucin cipzár) példákkal</summary><ul class="normal">
 		<div style="float:right;max-width:10%">
 			<img src="images/3_nukleoszoma.png">
 			<img src="images/crhsztnk.png">
@@ -1670,7 +1680,7 @@
 	  <strong>hiszton kovalens módosítások</strong> 
 		<li>core hisztonok N-terminális vége "kilóg belőlük" <abbr title="a H2A és H2B-nek van 1-1 C-re végződő kilógó része is">()</abbr> &#10140; ún. 'hiszton-farok'</li>
 		<li>'hiszton-farok' &#10140; ezek kb 20-35aminosavból állnak, és itt történnek a módosítások</li>
-		<li>a <span class="Important">hiszton-acetil-transzferáz</span> nevű koaktivátor a hiszton oldalláncán lévő egyes <span class="Important">Lys</span> aminosavakat acetilál <div class="mirror">&#10140;</div> acetil-KoA-ról viszi át az acetil-csoportot</li>
+		<li>a <span class="Important">hiszton-acetil-transzferáz</span> aktivitással rendelkező koaktivátor a hiszton oldalláncán lévő egyes <span class="Important">Lys</span> aminosavakat acetilál <div class="mirror">&#10140;</div> acetil-KoA-ról viszi át az acetil-csoportot</li>
 		<li><abbr title="a hiszton-kináz nevű koaktivátor pedig a hiszton oldalláncán lévő egyes Ser/Thr aminosavakat foszforilálja">&#10045;</abbr></li>
 		<div>&#10140; így a kromatin fellazul, ugyanis...</div><ul>
 			<li>egyrészt az acetilált Lys már nem bázikus karakterű, és így már nem képes a savas(negatív töltésű) foszfátcsoporthoz kötődni</li>
@@ -1678,7 +1688,7 @@
 		</ul>
 		<div>&#10140; <abbr title="hisz ez az első kötődő áTF">TFIID</abbr> képes kötődni a core_promoterhez (és egyben az acetilált hisztonhoz is)</div>
 	</ul></details>
-	<details class="kerdes 4/3" id="msb.175"><summary>A DNS-kötő fehérjék és jellegzetes szerkezeti elemeik prokariótákban (hélix-kanyar-hélix) és eukariótákban (hiszton-fold, hélix-hurok-hélix, <strong>cink-ujj</strong>, leucin cipzár) példákkal</summary><ul class="normal">
+	<br><details class="kerdes 4/3" id="msb.175"><summary>A DNS-kötő fehérjék és jellegzetes szerkezeti elemeik prokariótákban (hélix-kanyar-hélix) és eukariótákban (hiszton-fold, hélix-hurok-hélix, <strong>cink-ujj</strong>, leucin cipzár) példákkal</summary><ul class="normal">
 		<li>funkció &#10140; DNS-kötés & dimerizáció</li>
 		<li>1&alpha;-helix és 1 &beta;-redő alkotja</li>
 		<li>"közöttük" egy cinkion</li>
@@ -1690,7 +1700,7 @@
 		</ul>
 		<img src="images/cnkzzncn.png">
 	</ul></details>
-	<details class="kerdes 4/2" id="msb.177"><summary>A DNS-kötő fehérjék és jellegzetes szerkezeti elemeik prokariótákban (hélix-kanyar-hélix) és eukariótákban (hiszton-fold, <strong>hélix-hurok-hélix</strong>, cink-ujj, leucin cipzár) példákkal</summary><ul class="normal">
+	<br><details class="kerdes 4/2" id="msb.177"><summary>A DNS-kötő fehérjék és jellegzetes szerkezeti elemeik prokariótákban (hélix-kanyar-hélix) és eukariótákban (hiszton-fold, <strong>hélix-hurok-hélix</strong>, cink-ujj, leucin cipzár) példákkal</summary><ul class="normal">
 		<li>funkció &#10140; DNS-kötés & dimerizáció</li>
 		<li>bázikus</li>
 		<li>2 hélixből áll</li><ul>
@@ -1700,7 +1710,7 @@
 		<li>pl. AH-receptor = xenobiotikum-receptor</li>
 		<img src="images/hlhlhlhlhlh.png">
 	</ul></details>
-	<details class="kerdes 4/3" id="msb.178"><summary>A DNS-kötő fehérjék és jellegzetes szerkezeti elemeik prokariótákban (hélix-kanyar-hélix) és eukariótákban (hiszton-fold, hélix-hurok-hélix, cink-ujj, <strong>leucin cipzár</strong>) példákkal</summary><ul class="normal">
+	<br><details class="kerdes 4/3" id="msb.178"><summary>A DNS-kötő fehérjék és jellegzetes szerkezeti elemeik prokariótákban (hélix-kanyar-hélix) és eukariótákban (hiszton-fold, hélix-hurok-hélix, cink-ujj, <strong>leucin cipzár</strong>) példákkal</summary><ul class="normal">
 		<li>funkció &#10140; dimerizáció</li>
 		<li>&alpha;-helix kb. 50aminosavból áll</li>
 		<li>ebben minden 7. aminosav Leu <abbr title="2 csavarulatonként vannak, egymás fölött (hisz egy csavarulat 3,6aminosav)">&#10045;</abbr></li>
@@ -1708,8 +1718,8 @@
 		<li>ilyen van pl. CREB fehérjében (mely a cAMP pályájában játszik szerepet)</li>
 		<img src="images/lzncpzr.png">
 	</ul></details>
-<br><hr><br>
-	<details class="kerdes 2/3" id="msb.168"><summary>DNS-fehérje komplexek &#10140; típusai funkcióval és példával</summary><ul class="normal">
+
+	<br><details class="kerdes 2/3" id="msb.168"><summary style="color:MediumBlue">DNS-fehérje komplexek &#10140; típusai funkcióval és példával</summary><ul class="normal">
 		<table><tr><th colspan="3">DNS-fehérje komplexek funkciói</th></tr>
 			<tr><th>típus</th><th>funkció</th><th>pl</th></tr>
 			<tr><td>strukturális</td>
@@ -1729,10 +1739,10 @@
 			</tr>
 		</table>
 	</ul></details>
-	<details class="kerdes 5/1" id="msb.171"><summary>transzkripciós faktor <i>definíció</i></summary><ul class="normal">
+	<br><details class="kerdes 5/1" id="msb.171"><summary style="color:MediumBlue">transzkripciós faktor <i>definíció</i></summary><ul class="normal">
 		<li>DNS-kötő fehérje</li>
 	</ul></details>
-	<details class="kerdes 3/4" id="msb.172"><summary>TF-ek csoportosítása</summary><ul class="normal">
+	<br><details class="kerdes 3/4" id="msb.172"><summary style="color:MediumBlue">TF-ek csoportosítása</summary><ul class="normal">
 		<li>általános <abbr title="általános = obligát = kötelező">(=)</abbr> TF-ek (áTF)</li><ul>
 			<li>szükségesek ahhoz, hogy a DNS-függő RNS polimeráz megtalálja a transzkripció kezdőpontját</li>
 			<li>áTF-ek felismerik a promoter régióban lévő konszenzus szekvenciákat</li>
@@ -1755,12 +1765,12 @@
 			</ul>
 		</ul>
 	</ul></details>
-	<details class="kerdes 2/3" id="msb.173"><summary>TF-ek általános felépítése</summary><ul class="normal">
+	<br><details class="kerdes 2/3" id="msb.173"><summary style="color:MediumBlue">TF-ek általános felépítése</summary><ul class="normal">
 		<li>bázikus aminosav oldalláncok (Lyz,Arg) &#10140; ezekkel képesek kötődni a DNS felszínét borító savas karakterű foszfátcsoportokhoz</li>
 		<li>megfelelő aminosav oldalláncokkal rendelkező 1db alfa-hélix rész &#10140; ez belefél a DNS nagy-árok részébe, és másodlagos kötéseket alakít ki az ott lévő bázis-szekvenciával</li>
 		<li>DNS-ben a szabályozó szekvenciák gyakran ismétlődnek, egymástól kb. 10bázis távolságra vannak, két szomszédos nagy árokban &#10140; dimer szerkezetűek a TF-ek (2 alegységből állnak) &#10140; ezzel ugyanis képesek kötődni a két szomszédos nagy árokban lévő azonos szekvenciákhoz</li>
 	</ul></details>
-	<details class="kerdes 4/1" id="msb.176"><summary>TBP szerkezete</summary><ul class="normal">
+	<br><details class="kerdes 4/1" id="msb.176"><summary style="color:MediumBlue">TBP szerkezete</summary><ul class="normal">
 		<li>nem dimer, mert szimmetrikus szerkezetű</li>
 		<li>&beta;-redővel kapcsolódik a TATA-boxhoz</li>
 	</ul></details>
@@ -1776,7 +1786,7 @@
 		</ul>
 		<li>a (21.tételben) a külső jelekről van szó</li>
 	</ul></details>
-	<details class="kerdes 3/3" id="msb.182"><summary style="color:MediumBlue">külső jelek típusai</summary><ul class="normal">
+	<br><details class="kerdes 3/3" id="msb.182"><summary style="color:MediumBlue">külső jelek típusai</summary><ul class="normal">
 		<div style="float:right;max-width:50%"><img src="images/jxtprknrnd.png"></div>
 		<li>endokrin &#10140; jelet kibocsátó és fogadó egymástól távol van, és a jel a véráramon keresztül jut el a fogadó sejthez, pl. szteroid_hormon</li>
 		<li>parakrin &#10140; jelet kibocsátó és fogadó egymáshoz közel vannak (diffúzióval jut el a jel)</li>
@@ -1784,7 +1794,7 @@
 		<li>juxtakrin &#10140; jelet kibocsátó sejt érintkezik a fogadó sejttel (ugyanis a jel és receptor is transzmembrán fehérje)</li>
 		<div><span class="vocab"><strong>§</strong></span> jel = ligandum &#10140; receptorhoz fog kötődni a fogadó sejtben</div>
 	</ul></details>
-	<details class="kerdes 3/3" id="msb.183"><summary style="color:MediumBlue">sejt válasza &#10140; hogy alakul ki? milyen lehet?</summary><ul class="normal">
+	<br><details class="kerdes 3/3" id="msb.183"><summary style="color:MediumBlue">sejt válasza &#10140; hogy alakul ki? milyen lehet?</summary><ul class="normal">
 		<li><strong><abbr title="ezt köti meg a receptor">elsődleges_hírvívő</abbr> megérkezik és kötődik a receptorhoz</strong></li>
 		<li>ezután <strong>jelátvitel</strong> zajlik &#10140; több lépésből áll (<abbr title="ezek felerősítik a jelet">másodlagos hírvívő</abbr> stb.)</li>
 		<li>és a végén a <strong>sejt válasz</strong>át eredményezi &#10140; ez 2 féle lehet:</li><ul>
@@ -1792,11 +1802,11 @@
 			<li>új fehérjék szintézise, azaz génexpresszió megváltozása &#10140; lassú válasz (tartósabb)</li>
 		</ul>
 	</ul></details>
-	<details class="kerdes 3/3" id="msb.184"><summary style="color:MediumBlue">elsődleges_hírvívők típusai?</summary><ul class="normal">
+	<br><details class="kerdes 3/3" id="msb.184"><summary style="color:MediumBlue">elsődleges_hírvívők típusai?</summary><ul class="normal">
 		<li>hidrofil = poláros &#10140; plazmamembránon önmaguktól nem jutnak át &#10140; membránreceptorhoz kötődnek &#10140; pl. fehérjék, peptidek (pl. inzulin)</li>
 		<li>hidrofób = apoláros &#10140; plazmamembránon önmaguktól átjutnak &#10140; intracelluláris = magi receptorhoz kötődnek &#10140; pl. lipidek</li>
 	</ul></details>
-	<details class="kerdes 3/3" id="msb.188"><summary style="color:MediumBlue">árva receptorok &#10140; mik? funkció?</summary><ul class="normal">
+	<br><details class="kerdes 3/3" id="msb.188"><summary style="color:MediumBlue">árva receptorok &#10140; mik? funkció?</summary><ul class="normal">
 		<div style="float:right;max-width:30%"><img src="images/21_hmplldnrmdmrzc.png"></div>
 		<li>olyan magi receptorok, melyeknek nincs ligandja (olyan értelemben, hogy egyáltalán nincs, tehát nincs, amit megkötnének)</li>
 		<li>funkcióezek képesek <abbr title="tehát nem szteroid típusú magi receptor">heterodimer</abbr> egyik alegységét képezni, pl. Retinoid X Receptor mellé kapcsolódnak</li><ul>
@@ -1805,7 +1815,7 @@
 		</ul>
 	</ul></details>
 
-	<details class="kerdes 4/7" id="msb.180"><summary>Az eukarióta <strong>magi receptorok</strong> (szteroid, tiroid, AH-receptor) <strong>szerkezete</strong> és működése.</summary><ul class="normal">
+	<br><details class="kerdes 4/7" id="msb.180"><summary>Az eukarióta <strong>magi receptorok</strong> (szteroid, tiroid, AH-receptor) <strong>szerkezete</strong> és működése.</summary><ul class="normal">
 		<div style="float:right;max-width:50%"><img src="images/21_szrtkztmgrcptr.png"></div>
 		<li>ezek egyben transzkripciós faktorok is</li>
 		<li>hidrofób = apoláros hírvívőket kötnek meg</li>
@@ -1825,7 +1835,7 @@
 		<li>P-box funkciója a DNS-kötés, azaz a reszponzív elem felismerése, és hozzákapcsolódás</li>
 		<li>reszponzív_elem &#10140; DNS egy szakasza, melyhez olyan magi_receptor kapcsolódik, amihez már a ligand(pl.szteroid_hormon) is csatlakozott (dia1:25-27)</li>
 	</ul></details>
-	<details class="kerdes 4/9" id="msb.185"><summary>Az eukarióta <strong>magi receptorok</strong> (szteroid, tiroid, AH-receptor) szerkezete és <strong>működése</strong>.</summary><ul class="normal">
+	<br><details class="kerdes 4/9" id="msb.185"><summary>Az eukarióta <strong>magi receptorok</strong> (szteroid, tiroid, AH-receptor) szerkezete és <strong>működése</strong>.</summary><ul class="normal">
 		<div style="float:right;max-width:30%">
 			<img src="images/ctplzmgmmgj.png">
 			<img src="images/21_sztrdnmsztrd.png">
@@ -1853,7 +1863,7 @@
 		<li><font class="abbr">palindrom ►</font> Azt jelenti, hogy a DNS bázissorrendje előre és hátrafelé olvasva (a két, komplementer láncra vonatkoztatva) ugyanaz. Pl. a KpnI nevű enzim felismerő helye az 5’-GGTACC-3’ szekvencia. Ennek a komplementer párja 3’→5’ irányban CCATGG, ami visszafelé olvasva éppen GGTACC</li>
 		<li><font class="abbr">heterodimer nem szteroid típusú jellegzetessége ►</font> kódoló szálon 5' irányba lévő alegysége a dimernek általában Retinoid X Receptor, mely 9-cisz-reténsavat kötött meg</li>
 	</ul></details>
-	<details class="kerdes 4/9" id="msb.179"><summary>Az eukarióta magi receptorok (<strong>szteroid</strong>, tiroid, AH-receptor) szerkezete és működése.</summary><ul class="normal">
+	<br><details class="kerdes 4/9" id="msb.179"><summary>Az eukarióta magi receptorok (<strong>szteroid</strong>, tiroid, AH-receptor) szerkezete és működése.</summary><ul class="normal">
 		<div style="float:right;max-width:30%"><img src="images/gmrcptsztrdmkds.png"></div>
 	  <strong>szteroid hormonok</strong>
 		<li>elsődleges hírvívők</li>
@@ -1878,14 +1888,14 @@
 		<li>ezután odakötődnek a reszponzív elemhez</li>
 		<li>hidrofób-folthoz kötődik a koaktivátor (hiszton-acetil transzferáz aktivitása van) &#10140; hiszton fellazul &#10140; transzkripció megindulhat</li>
 	</ul></details>
-	<details class="kerdes 4/2" id="msb.186"><summary>Az eukarióta magi receptorok (szteroid, <strong>tiroid</strong>, AH-receptor) szerkezete és működése.</summary><ul class="normal">
+	<br><details class="kerdes 4/2" id="msb.186"><summary>Az eukarióta magi receptorok (szteroid, <strong>tiroid</strong>, AH-receptor) szerkezete és működése.</summary><ul class="normal">
 		<li>nem szteroid típusú magi receptorokat két csoportba osztjuk</li><ul>
 			<li>tiroid szerű magi receptorok</li>
 			<li>Retinoid X Receptor szerű magi receptorok</li>
 		</ul>
 		<li>tiroid hormonok egyébként a pajzsmirigyben termelődnek &#10140; ezek a tiroxin(T4) és a trijód-tironin(T3)</li>
 	</ul></details>
-	<details class="kerdes 4/14" id="msb.187"><summary>Az eukarióta magi receptorok (szteroid, tiroid, <strong>AH-receptor</strong>) szerkezete és működése.</summary><ul class="normal">
+	<br><details class="kerdes 4/14" id="msb.187"><summary>Az eukarióta magi receptorok (szteroid, tiroid, <strong>AH-receptor</strong>) szerkezete és működése.</summary><ul class="normal">
 		<div style="float:right;max-width:30%">
 			<img src="images/hlhlhlhlhlh.png">
 			<img src="images/21_xnbrktm.png">
@@ -1945,7 +1955,7 @@
 <!----><details open><summary class="phaseD">#25 A transzláció elongációs szakasza prokariótákban és eukariótákban; a transzláció terminálása. A fehérjeszintézis gátlószerei.</summary><div><div class="title"> </div>
 <!----></div></details>
 
-<!----><details open><summary class="phaseD">GÉNEXPRESSZIÓ SZABÁLYOZÁSA - egyenlőre nem kategorizált (18 és 19.tétel része nem világos).</summary><div><div class="title"> </div>
+<!----><details><summary class="phaseD">GÉNEXPRESSZIÓ SZABÁLYOZÁSA - egyenlőre nem kategorizált (már ki se dolgozom, inkább skipp).</summary><div><div class="title"> </div>
 	<div style="float:right;max-width:30%">
 		<img src="images/rvrztrnsz.png">
 		<img src="images/gnmfnm.png">
@@ -1997,9 +2007,8 @@
 	<img src="images/gnxprsszlbyzs.png">
 <!----></div></details>
 
-
 <!----><details><summary class="phase">egyenlőre nem kategorizált, tudnivalók</summary>
- <div><div class="title"> </div>
+ <div><div class="title">mix</div>
 	<details class="kerdes 4/2" id="msb.139"><summary>fogalmak &#10140; kodon, kód, antikodon</summary><ul class="normal">
 		<img src="images/klnrsk.png">
 		<li>kód &#10140; bázishármas a DNS-ben (=> kódoló szálon lévő!)</li>
@@ -2017,6 +2026,9 @@
 		<li>folyamatos &#10140; nincs közöttük vessző</li>
 		<li>degenerált &#10140; 1 aminosavat több bázistriplet is meghatározhat (pl. Thr lehet ACU,ACC,ACG,ACA)</li>
 		<img src="images/sgnrnltkfkgnt.png">
+	</ul></details>
+	<details class="kerdes 3/1" id="msb.189"><summary>RNáz &#10140; mit rövidít és definíció?</summary><ul class="normal">
+		<li>ribonukleáz &#10140; bármely olyan enzim, amely RNS-ben található nukleotidszekvenciát hasít a nukleotidok közötti foszfodiészter kötést hidrolizálva <i>(exonukleáz ha a szélén lévőt, endonukleáz ha nem a szélén lévőt)</i></li>
 	</ul></details>
  </div>
  <div><div class="title">transzkripció.</div>
