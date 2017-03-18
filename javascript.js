@@ -1,14 +1,15 @@
 ﻿
 /* FELADATOK
 	(-) Skip funkció
-	(-) jobbfelsőre klikkelve "úgy jelenjen ez meg, mint a kép" --> tehát 1 réteget tegyen rá az egészre
+	(-) jobbfelsőre klikkelve "úgy jelenjen ez meg, mint a kép" --> tehát 1 réteget tegyen rá az egészre --> mentse el, hogy álltam legutóbb, hogy refreshnél ne kelljen mindig újra klikkelni
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 	(-) legyen multi-kérdés: több kérdés egyszerre, külön számolja priorjukat ugye (legnagyobb alapján kerülhet kérdésbe), és megválaszolásukkor mindegyikét elmenti --> pl. aminosav: képlete?(HP) oldalláncának neve?(LP) 
+	(-) kémiában (ahol megvannak adva a tételek), legyenek összetett kérdések. tehát a tételcímrészlet a kérdés. nekem erről eszembe kell jutni a válasznak. azért összetett, mert több pontos (nemcsak 1-4 osztályzás) (azaz több jegyet mentsen el egy feladaton belül!!. így a rankja is nagyobb, hiszen az a max pontok száma lesz). ha nemjut eszembe minden, attól még az adott alkérdésre kaphatok 50%nyi pontot ha tudtam azt is, csak elfelejtettem felhozni. végül a tétel státuszát (osztályzását), csak ezen kérdések alapján tegye.
 	(-) 1kérdés lehessen többhelyen is a kódban, azonban a szöveg csak egy helyen legyen megadva hozzá (hogy csak egy helyen kelljen átírnom, ha változtatok rajta)
 	(-) alján a func_span rész sztem buggos, tehát pl. nemhiszem hogy minden jól megy ott! majd amikor tesztelem már, mert tanulok akkor figyeljek rá
 	(-) repeatre állított (vagy miss/fix/etc. checkbox true) kérdést mindenképp dobhassa, ne legyen feltétele a kérdés tételének aktivitása
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-	(-) 1 Repeat 30perc után, ha jó akkor felezi a múltkori RepeatTimest
+	(-) 1es Repeat 30perc után ha jó, akkor felezi a múltkori RepeatTimest
 	(-) js-be írjam, ne html-be a kérdés-részt (tehát ahova a kérdést kidobja) --> így ha változtatok rajta, elég egy helyen, nem kell minden aktív fájlban átírnom
 	(-) lehessen visszatölteni az előző kérdést (jegyek stb-t is töltse vissza localstoragebe)
 	(-) altételcímet ne feltétlen mutassa
@@ -20,7 +21,6 @@
 		addig terjedhet ki balra, amíg szövegbe nem ütközik, de min 40%-ot kaphat.
 		kép oldala piros-színű legyen, ha le lett a fennti miatt kicsinyítve.
 		középső-klikkre nyissa meg újablak.
-	(-) kémiában (ahol megvannak adva a tételek), legyenek összetett kérdések. tehát a tételcímrészlet a kérdés. nekem erről eszembe kell jutni a válasznak. azért összetett, mert több pontos (nemcsak 1-4 osztályzás) (azaz több jegyet mentsen el egy feladaton belül!!. így a rankja is nagyobb, hiszen az a max pontok száma lesz). ha nemjut eszembe minden, attól még az adott alkérdésre kaphatok 50%nyi pontot ha tudtam azt is, csak elfelejtettem felhozni. végül a tétel státuszát (osztályzását), csak ezen kérdések alapján tegye.
 
 	(-) alertbe mutassa, ha valamely kérdésID üres már! és mellette localstoraget törölje!
 	(-) miss/fix-nél növekvő sorrendbe nézze őket
@@ -28,7 +28,6 @@
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 	(-) DETAILS script
 	(-) lehessen beállítani IF / RAJZ stb. kategóriát is
-	(-) lehessen látni jegy(1-2-3) hány feladat van és ki lehessen jelölni /checkbox/ melyeket akarom (ez nembiztos kell)
 	(-) kérdést más html-ből olvassa be
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	(+) jelenleg akkoris megkapják a bónuszt +1et, ha időpont nem volt elég hozzá
@@ -169,8 +168,13 @@ function func_calcRepeat() { // átlagIsmétlések számát kiszámolja
 			if ( localStorage.getItem(fotema+" / "+temaKerdes+"_button") == "true" ) {
 				for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
 					if ( kerdesID[fotema][temaKerdes][kerdes] == true ) {
-						questCount = questCount +1
-						allRepVal = allRepVal +Number(localStorage.getItem(kerdes+'_repeat'))
+						var num = document.getElementById(kerdes).className.search("/");
+						var prior = document.getElementById(kerdes).className.substring(num-1,num);
+						var hossz = document.getElementById(kerdes).className.substring(num+1,num+2);
+						var val = prior*hossz
+
+						questCount = questCount +val
+						allRepVal = allRepVal +val*Number(localStorage.getItem(kerdes+'_repeat'))
 					}
 				}
 			}
@@ -952,13 +956,30 @@ function func_prevQuestion(){
 	if ( jegy == 1 ) {
 		localStorage.setItem(priorKerdesID+'_repeat', 0)
 	} else if ( jegy == 2 ) {
-		var atlag = Number(document.getElementById("span_Repeat").innerHTML)
+		if ( idopont > timeDiff ) {
+			if ( 2 > repCount ) {
+				localStorage.setItem(priorKerdesID+'_repeat', repCount +1);
+			}
+			if ( 2 < repCount ) {
+				localStorage.setItem(priorKerdesID+'_repeat', repCount -1);
+			}
+		}
+		/*var atlag = Number(document.getElementById("span_Repeat").innerHTML)
 		if ( Math.floor(atlag) > repCount ) {
 			localStorage.setItem(priorKerdesID+'_repeat', repCount +1);
 		} else if ( Math.floor(atlag) < repCount ) {
 			localStorage.setItem(priorKerdesID+'_repeat', repCount -1);
+		}*/
+	} else if ( jegy == 3 ) {
+		if ( idopont > timeDiff ) {
+			if ( 3 > repCount ) {
+				localStorage.setItem(priorKerdesID+'_repeat', repCount +1);
+			}
+			if ( 3 < repCount ) {
+				localStorage.setItem(priorKerdesID+'_repeat', repCount -1);
+			}
 		}
-	} else if ( jegy == 3 || jegy == 4 ) {
+	} else if ( jegy == 4 ) {
 		if ( idopont > timeDiff ) {
 			localStorage.setItem(priorKerdesID+'_repeat', repCount +1);
 		}
