@@ -6,13 +6,15 @@
 	<style>*{line-height: 130%;}</style>
 </head>
 
+
+<div id="div_SkipFix" style="background-color:white; overflow:auto; width:80vh; height:60vh; position:fixed; top:50%; left:50%; margin-top:-30vh; margin-left:-40vh; border:10px solid black; display:none;"></div>
+
 <input onclick="toggleAll();" type="button" id="input_toggleAll" value="0" style="position:fixed; right: 0px;"><div id="quest" style="display:none;">
 	
 	<details><summary class="phase">tételek</summary><div id="container"></div></details>
 	<input type="file" id="fileinput" style="display:none;">
 	<input style="position:absolute; left:35%; top:1%;" type="button" value="load LS" onclick="document.getElementById('fileinput').click();">
 	<input style="position:absolute; left:50%; top:1%;" type="button" value="save LS" onclick="func_saveLS()">
-
 
 	<input type="button" class="white" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_newQuest" value="0">
 	<span class="vocab" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="cont_RepSlow"></span>
@@ -24,18 +26,15 @@
 	<span style="position:absolute; left:30%;">
 		<span style="border: 0px;" id="rank">&nbsp; &nbsp; &nbsp;</span> &nbsp;
 		<input style="border: 3px solid black;" id="btn_Note" onclick="toggleNote();" type="button" value="&#10045;"> &nbsp; &nbsp;
-		<select id="jegy"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; &nbsp;
-		<span id="pJegy">&nbsp; </span> &nbsp; &nbsp;
-		<input onclick="func_buttonFix();" type="button" id="buttonFix" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp;
+		<select id="jegy"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; 
+		<span class="white" id="pJegy">&nbsp; </span> &nbsp; &nbsp;
 		<input onclick="func_buttonSkip();" type="button" id="buttonSkip" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp; &nbsp; &nbsp;
 		<input onclick="koviKerdes();" type="button" value=" ► ">
 	</span>
-	<span style="position:absolute; right:0%;">
+	<span style="position:fixed; right:0px; top:50px;">
 		<span id="repeat" class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;">&nbsp; &nbsp; &nbsp;</span>
-		<input type="button" class="MISS" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'miss');" id="btn_miss" value="0">
-		<input type="button" class="FIX" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'fix');" id="btn_fix" value="0">
-		<input type="button" class="skip" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_spanSkip" id="btn_skip" value="0">
-		<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'progress')" id="btn_progress" value="0">
+		<input type="button" class="FIX" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_fix" value="0">
+		<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_skip" value="0">
 	</span>
 	<center><textarea style="display:none; position:fixed; left: 40%; top: 70%;" id="note" rows="4" cols="40"></textarea></center>
 	
@@ -48,28 +47,39 @@
 
 <table><tr>
 	<td class="" title="???">digestorius</td>
-	<td class="miss" title="???">respiratorius</td>
+	<td><details open><summary><span class="FIX">respiratorius</span></summary>
+		<strong>Funkc-2</strong><ul style="padding-left: 20px; text-align: left">
+			<div><span class="fix">3.2</span> orr</div>
+			<div><span class="done">3.3.1</span> gége</div>
+			<div><span class="done">3.3.2</span> légcső</div>
+			<div><span class="done">3.5</span> mellhártya</div>
+		</ul></details>
+	</td>
 	<td class="vocab" title="2funkc: 238-269">apparatus_uropoeticus</td>
 	<td class="" title="???">organa_genitalia</td>
 </tr></table>
 
-<div><span class="Vocab">#1</span> funkc</div>
 <details><summary><strong>egyéb Források</strong></summary><ul>
 	<li>apparatus.uropoeticus.pdf &#10140; húgyhólyag</li>
 <br></ul></details>
 
-<details open><summary class="important"><strong>Project</strong></summary><ul>
-	<li>respiratorius &#10140; légcsőtől lefelé</li>
+<details open><summary class="important"><strong>Project</strong></summary><ul class="normal">
+	<li>funkc &#10140; orr, 3.1</li>
+	<li><span class="WHITE">3D</span> izmok + erek + nerve stb. alapok!</li>
+  <hr>
+	<li>funkc &#10140; hörgők, tüdő</li>
+	<li>histo (Hgyk+Funkc+RP) &#10140; tüdő + trachea elágazódása</li>
+  <hr>
 	<li>rajzok - respiratorius</li>
 	<li>izmok</li>
-	<li>funkc check &#10140; orr + gége + légcső + tüdő</li>
+  <hr>
 	<li><span class="WHITE">3D</span> orrüreg</li>
 	<li>vérkeringés &#10140; húgycső &#10140; képeket róla!!!</li>
-  ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+  <hr>
 	<li>oldone (kérdéseket lehessen upgradelni nehezebb fokozatra)</li>
 	<li>(nyirokkeringésről majd csináljak valami egyszerű alaprajzot, ami alapján megtudom tanulni)</li>
 	<li>(trachea - elágazódás &#10140; histo)</li>
-<br></ul></details>
+</ul></details>
 
 <details open><summary class="miss"><strong>kérdések</strong></summary><ul>
 	<li>húgyhólyag &#10140; rögzítettsége (38)</li>
@@ -81,16 +91,46 @@
 
 <!--//////////////////////////////////////-->  <div><div class="mainTitle">általános</div>  <!--//////////////////////////////////////-->
 
-<!----><details><summary class="phase">3D</summary><div><div class="title"></div>
-	<details class="open kerdes 3/1" id="anat.29"><summary>linea_alba</summary><ul class="normal">
-		<video muted controls><source src="3D/lnlb.mp4" type="video/mp4">hiba.</video>
-	</ul></details>
-	<details class="open kerdes 3/6" id="anat.135"><summary>larynx</summary><ul class="normal">
+<!----><details><summary class="phase">Boncterm</summary><div><div class="title"></div>
+	<details class="open kerdes 3/6" id="anat.135"><summary><span class="Vocab">3D</span> larynx</summary><ul class="normal">
 		<li>lig.conicum <abbr title="lig.cricothyroideum_medianum">(=)</abbr></li>
-		<video muted controls><source src="3D/lrnxzmlk.mp4" type="video/mp4">hiba.</video>
+		<video muted controls onclick="this.paused ? this.play() : this.pause();"><source src="3D/lrnxzmlk.mp4" type="video/mp4">hiba.</video>
 	</ul></details>
-	<details class="open kerdes 3/5" id="anat.146"><summary>izmok, artériák – húgyhólyag tájékán</summary><ul class="normal">
-		<video muted controls><source src="3D/rtrvscrnr.mp4" type="video/mp4">hiba.</video>
+	<details class="open kerdes 3/5" id="anat.146"><summary><span class="Vocab">3D</span> izmok, artériák – húgyhólyag tájékán</summary><ul class="normal">
+		<video muted controls onclick="this.paused ? this.play() : this.pause();"><source src="3D/rtrvscrnr.mp4" type="video/mp4">hiba.</video>
+	</ul></details>
+	<details class="open kerdes 3/6" id="anat.191"><summary><span class="Vocab">3D</span> comb - szemből</summary><ul class="normal">
+		<video muted controls onclick="this.paused ? this.play() : this.pause();"><source src="3D/lbszrszmbl.mp4" type="video/mp4">hiba.</video>
+	</ul></details>
+	<details class="open kerdes 3/8" id="anat.192"><summary><span class="Vocab">3D</span> comb - hátulról</summary><ul class="normal">
+		<video muted controls onclick="this.paused ? this.play() : this.pause();"><source src="3D/lbszrhtlnzt.mp4" type="video/mp4">hiba.</video>
+	</ul></details>
+	<details class="open kerdes 3/3" id="anat.193"><summary><span class="Vocab">3D</span> lábszár - mix</summary><ul class="normal">
+		<video muted controls onclick="this.paused ? this.play() : this.pause();"><source src="3D/lbszr.mp4" type="video/mp4">hiba.</video>
+	</ul></details>
+	<details class="open kerdes 3/4" id="anat.196"><summary><span class="Vocab">3D</span> lábszár - mix</summary><ul class="normal">
+		<video muted controls onclick="this.paused ? this.play() : this.pause();"><source src="3D/lbszrvgn.mp4" type="video/mp4">hiba.</video>
+	</ul></details>
+	<details class="open kerdes 3/5" id="anat.197"><summary><span class="Vocab">3D</span> hát - mix</summary><ul class="normal">
+		<video muted controls onclick="this.paused ? this.play() : this.pause();"><source src="3D/bckmsclrm.mp4" type="video/mp4">hiba.</video>
+	</ul></details>
+	<details class="open kerdes 3/5" id="anat.197"><summary><span class="Vocab">3D</span> kar - mix</summary><ul class="normal">
+		<video muted controls onclick="this.paused ? this.play() : this.pause();"><source src="3D/krnygjbl.mp4" type="video/mp4">hiba.</video>
+	</ul></details>
+	<details class="open kerdes 3/2" id="anat.194"><summary><span class="Vocab">IF</span> lábszár tájék</summary><ul class="normal">
+		<img src="images/if_lbszrtjk.png">
+		<div><font class="abbr"><span class="WHITE">1</span> ►</font> v.tibialis_posterior</div>
+		<div><font class="abbr"><span class="WHITE">2</span> ►</font> a.tibialis_posterior</div>
+		<div><font class="abbr"><span class="WHITE">3</span> ►</font> n.tibialis</div>
+	</ul></details>
+	<details class="open kerdes 3/3" id="anat.195"><summary><span class="Vocab">IF</span> lábszár tájék</summary><ul class="normal">
+		<img src="images/if_lgszrkrkdgk.png">
+		<div><font class="abbr"><span class="WHITE">1</span> ►</font> v.saphena_magna</div>
+		<div><font class="abbr"><span class="WHITE">2</span> ►</font> v.saphena_parva</div>
+		<div><font class="abbr"><span class="WHITE">3</span> ►</font> n.suralis</div>
+		<div><font class="abbr"><span class="WHITE">4</span> ►</font> n.cutaneus_surae_lateralis</div>
+		<div><font class="abbr"><span class="WHITE">5</span> ►</font> n.cutaneus_surae_medialis</div>
+		<div><font class="abbr"><span class="WHITE">6</span> ►</font> n.fibularis_communis</div>
 	</ul></details>
 <!----></div></details>
 
@@ -109,7 +149,7 @@
 			<li>a.vesicalis_superior <div class="mirror">&#10140;</div> a.umbilicalis <div class="mirror">&#10140;</div> ACI</li>
 			<li>a.vesicalis_inferior <div class="mirror">&#10140;</div> ACI</li>
 			<li><font class="abbr">a.umbilicalis & a.vesicalis_superior Fejlődéstani tudnivaló?►</font> lig.umbilicale_mediale lesz a "distalis részéből" (lásd videó)</li>
-			<video muted controls><source src="3D/rtrvscrnr.mp4" type="video/mp4">hiba.</video>
+			<video muted controls onclick="this.paused ? this.play() : this.pause();"><source src="3D/rtrvscrnr.mp4" type="video/mp4">hiba.</video>
 		</ul></details>
 		<br><details><summary>vénák?</summary><ul class="normal">
 			<li><abbr title="kép nincs róla de ne érdekeljen, ezt csak magoljam (Anat 3D v.vesicalis inferior/superiort mutat, de wikipedia meg funkc ezt írta, szóval nyilván szerzője válogatja, oltári jelentősége gondolom nincs)">plexus_venosus_vesicalis</abbr> &#10140; v.iliaca_interna</li> 
@@ -197,8 +237,43 @@
 	</ul></details>
 <!----></div></details>
 
+<!----><details><summary class="phase">innervatio</summary><div><div class="title"></div>
+	<details class="kerdes 3/3" id="anat.143"><summary>gége (é/m)</summary><ul class="normal">
+		<img src="images/larynx_innervatio.png">
+		<table><tr><th colspan="2">érző</th></tr>
+			<tr><th>hangszalag alatti nyálkahártyát</th> 
+				<td>n.laryngeus_inferior <div class="mirror">&#10140;</div> n.laryngeus_recurrens <div class="mirror">&#10140;</div> n.vagus[X]</td>
+			</tr>
+			<tr><th>összes többit</th> 
+				<td>n.laryngeus_superior (ramus_internus) <div class="mirror">&#10140;</div> n.vagus[X]</td> 
+			</tr>
+		</table>
+		<table><tr><th colspan="2">mozgató</th></tr>
+			<tr><th>m.cricothyroideus</th> 
+				<td>n.laryngeus_superior (ramus_externus) <div class="mirror">&#10140;</div> n.vagus[X]</td> 
+			</tr>
+			<tr><th>összes többit</th> 
+				<td>n.laryngeus_inferior <div class="mirror">&#10140;</div> n.laryngeus_recurrens <div class="mirror">&#10140;</div> n.vagus[X]</td> 
+			</tr>
+		</table>
+		<div>egyéb forrás <img class="mini" src="images/larynx_innervatio2nd.png"></div>
+	</ul></details>
+  <hr>
+	<details class="sedrek 3/1" id="anat.190"><summary>n.laryngeus_recurrens hol?</summary><ul class="normal">
+		<li>n.vagus[X]-ból ered, és elindul fel <span class="FIX">... vmi arcus aortae stb /lásd szív 2.félév/ <div class="mirror">&#10140;</div>  dolgozzam ki!</span></li>
+		<li>oesophagus és trachea között fut fel</li>
+		<img src="images/fsccrvlmnt.png">
+		<img src="images/larynx_innervatio.png">
+	</ul></details>
+	<details><summary><span class="FIX"><i>"fej innervatio"</i></span></summary><ul class="normal">
+		<img src="images/nnrvtfj.png">
+	</ul></details>
+<!----></div></details>
 
 <!----><details><summary class="phase">nyirokkeringés</summary><div><div class="title"></div>
+	<details class="sedrek 2/1" id="anat.189"><summary>gége (Funkc_2)</summary><ul class="normal">
+		<li>Nyirokelvezetése sokirányú: a felső mély nyaki nyirokcsomók, a trachea körüli nyirokcsomók fő elsődleges regionalis nyirokcsomói. Nem ritka a gége előtt elhelyezkedő egy-két nyirokcsomó</li>
+	</ul></details>
 	<details class="sedrek 2/1" id="anat.48"><summary>húgyhólyag</summary><ul class="normal">
 		<li>a nyirokerek az <strong>a.iliaca interna/externa körüli nyirokcsomókba</strong> (= nodi lymphatici iliaci interni et externi) vezetődnek</li>
 	</ul></details>
@@ -207,50 +282,6 @@
 	</ul></details>
 <!----></div></details>
 
-	<details><summary><span class="dark"><i>"fej innervatio"</i></span></summary><ul class="normal">
-		<img src="images/nnrvtfj.png">
-	</ul></details>
-	<br><strong>rajzok - respiratorius</strong>
-	<details><summary><font color="Black">&#9609;</font> pulmo - saggital?</summary><ul class="normal">
-		<a href="images/rajz_pulmo_saggital.png"><img src="images/rajz_pulmo_saggital.png"></a>
-		<div><font class="abbr"><span class="WHITE">1</span> ►</font> a.pulmonalis</div>
-		<div><font class="abbr"><span class="WHITE">2</span> ►</font> vv.pulmonales</div>
-		<div><font class="abbr"><span class="WHITE">3</span> ►</font> bronchus principalis/lobaris</div>
-		<div><font class="abbr"><span class="WHITE">4</span> ►</font> fissura_horisontalis</div>
-		<div><font class="abbr"><span class="WHITE">5</span> ►</font> fissura_obliqua</div>
-		<div><font class="abbr"><span class="WHITE">6</span> ►</font> sulcus_aortae(arcus+descendens)</div>
-		<div><font class="abbr"><span class="WHITE">7</span> ►</font> sulcus v.brachiocephalica dextra/sinistra</div>
-		<div><font class="abbr"><span class="WHITE">8</span> ►</font> sulcus a.subclavia dextra/sinistra</div>
-		<div><font class="abbr"><span class="WHITE">9</span> ►</font> incissura_cardiaca</div>
-		<div><font class="abbr"><span class="WHITE">10</span> ►</font> impressio_cardiaca</div>
-		<div><font class="abbr"><span class="WHITE">11</span> ►</font> lobus_superior</div>
-		<div><font class="abbr"><span class="WHITE">12</span> ►</font> lobus_medius</div>
-		<div><font class="abbr"><span class="WHITE">13</span> ►</font> lobus_inferior</div>
-		<div><font class="abbr"><span class="WHITE">14</span> ►</font> hilus_pulmonis</div>
-		<div><font class="abbr"><span class="WHITE">15</span> ►</font> sulcus v.azygos</div>
-		<div><font class="abbr"><span class="WHITE">16</span> ►</font> sulcus v.cava_superior</div>
-		<div><font class="abbr"><span class="WHITE">17</span> ►</font> lig.pulmonale</div>
-	</ul></details>
-	<details><summary><font color="Black">&#9609;</font> pulmo - topográfia,recessusok (ventral/dorsal/horisontal) <abbr title="3.képen majd huzzam ki a belső fekete réteget, mert szvsz fölös">&#10045;</abbr> <abbr title="képek szvsz alapján leegyszerűsítve készültek, lehet belekötnek (de ne bonyolítsam túl)">&#10045;</abbr>?</summary><ul class="normal">
-		<a href="images/rajz_pulmo_topo.png"><img src="images/rajz_pulmo_topo.png"></a>
-		<div><font class="abbr"><span class="WHITE">1</span> ►</font> recessus_costodiaphragmaticus <abbr title="sinus_phrenicocostalis">(=)</abbr></div>
-		<div><font class="abbr"><span class="WHITE">2</span> ►</font> recessus_phrenicomediastinalis</div>
-		<div><font class="abbr"><span class="WHITE">3</span> ►</font> recessus_costomediastinalis</div>
-		<div><font class="abbr"><span class="WHITE">4</span> ►</font> pleura_viscerale</div>
-		<div><font class="abbr"><span class="WHITE">5</span> ►</font> pleura_parietale</div>
-		<div><font class="abbr"><span class="WHITE">6</span> ►</font> hilus_pulmonis</div>
-		<div><font class="abbr"><span class="WHITE">7</span> ►</font> cor</div>
-		<div><font class="abbr"><span class="WHITE">8</span> ►</font> sternum</div>
-		<div><font class="abbr"><span class="WHITE">9</span> ►</font> mediastinum_posterius</div>
-		<div><font class="abbr"><span class="WHITE">11</span> ►</font> 4. bordaporc</div>
-		<div><font class="abbr"><span class="WHITE">12</span> ►</font> 6. bordaporc</div>
-		<div><font class="abbr"><span class="WHITE">10</span> ►</font> scalenus-sátor</div><ul>
-			<li>mm.scalenei alkotta sátor burkolja lateralisan és felül</li>
-			<li>sátor medialis falát a lamina_prevertebralis(fascia_cervicalis) alkotja</li>
-		</ul>
-	</ul></details>
-
-<br>
 <!----><details open><summary class="phase">izmok</summary><div><div class="title"></div>
 	<details class="sedrek 2/4" id="anat.142"><summary>gégeizmok felsorolása?(7+)</summary><ul class="normal">
 		<li>m.cricothyroideus &#10140; <span class="WHITE">pars_recta</span> <span class="WHITE">pars_obliqua</span></li>
@@ -261,11 +292,89 @@
 		<li>m.thyroarytenoideus + pars_thyroepiglottica</li>
 		<li>m.aryepiglotticus</li>
 	</ul></details>
-	<details class="kerdes 3/1" id="anat.143"><summary>gégeizmok innervatio?</summary><ul class="normal">
-		<img src="images/larynx_innervatio.png">
-		<li>n.laryngeus_superior (ramus_externus) &#10140; m.cricothyriodeus</li>
-		<li>n.laryngeus_inferior &#10140; összes többit</li>
+	<details class="sedrek 3/3" id="anat.187"><summary><span class="Vocab">T</span> <span title="multipleQ legyen JS, és utána legyen a pontozás beállítva" class="FIX">gégeizmok</span></summary><ul class="normal">
+		<table><tr><th>gégeizmok</th><th>origo</th><th>insertio</th><th>function</th></tr>
+			<tr><td>m.cricothyroideus</td>
+				<td><details><summary><font color="Black">&#9609;</font></summary>
+					arcus(cartilago_cricoidea)
+					<img src="images/cricothyroideus.png">
+				</details></td>
+				<td><details><summary><font color="Black">&#9609;</font></summary>
+					cartilago_thyroidea alsó-hátsó része
+				</details></td>
+				<td><details><summary><font color="Black">&#9609;</font></summary><div style="text-align:left">
+					<li>elől közelíti egymáshoz a pajzsporcot és gyűrűporcot</li>
+					<li>lamina(cartilago_cricoidea) közben hátra billen</li>
+					<li>&#10140; <span class="Important">lig.vocale megfeszül</span> &#10140; <span class="Important">hangmagasság növelés</span></li>
+					<img src="images/m_cricothyroideus.png">
+				</div></details></td>
+			</tr>
+			<tr><td>m.cricoarytenoideus_posterior</td>
+				<td><details><summary><font color="Black">&#9609;</font></summary>
+					lamina(cartilago_cricoidea)
+					<img src="images/cricoarytenoideus.png">
+				</details></td>
+				<td><details><summary><font color="Black">&#9609;</font></summary>
+					processus_muscularis(cartilago_arytenoidea)
+				</details></td>
+				<td><details><summary><font color="Black">&#9609;</font></summary>
+					egyetlen abductor &#10140; kannaporcot kifele forgatja &#10140; 2 processus_vocalis távolodik egymástól &#10140; 2 hangszalag hátrafele V-alakban szétnyílik &#10140; rima_glottidis tágítja
+				</details></td>
+			</tr>
+			<tr><td>m.cricoarytenoideus_lateralis</td>
+				<td><details><summary><font color="Black">&#9609;</font></summary>
+					arcus(cartilago_cricoidea)
+					<video id="video" muted controls><source src="3D/lrnxzmlk.mp4" type="video/mp4">hiba.</video>
+					<script>document.getElementById("video").currentTime = 85;</script>
+				</details></td>
+				<td><details><summary><font color="Black">&#9609;</font></summary>
+					processus_muscularis(cartilago_arytenoidea)
+				</details></td>
+				<td><details><summary><font color="Black">&#9609;</font></summary>
+					adductor <abbr title="kannaporcot befele forgatja &#10140; 2 processus_vocalis közeledik egymáshoz &#10140; 2 hangszalag közti táv csökken">&#10140;</abbr> rima_glottidis <span class="WHITE">pars_intermembranaceat</span> zárja
+				</details></td>
+			</tr>
+			<tr><td>m.arytenoideus obliquus/transversus</td>
+				<td colspan="2"><details><summary><font color="Black">&#9609;</font></summary>
+					<li>hátul kapcsolják össze a két kannaporcot</li>
+					<li>az articulatio_cricoarytenoidea "tengelye előtt kapcsolják őket össze" (ezért lesz adductor)</li>
+					<img src="images/mmrtndtngly.png">
+				</details></td>
+				<td><details><summary><font color="Black">&#9609;</font></summary>
+					adductor &#10140; rima_glottidis <span class="WHITE">pars_intercartilagineat</span> zárja
+				</details></td>
+			</tr>
+			<tr><td>m.vocalis</td>
+				<td colspan="2"><details><summary><font color="Black">&#9609;</font></summary>
+					<li>hangszalag mellett fut lateralisan</li>
+					<li>origo &#10140; kannaporc elülső-lateralis része</li>
+					<li>insertio &#10140; pajzsporc elülső-belső részén, lig.vocale tapadásától kissé lateralisan</li>
+				</details></td>
+				<td><details><summary><font color="Black">&#9609;</font></summary>
+					plica_vocalist(hangredő) keményíti &#10140; jobban rezegjen
+				</details></td>
+			</tr>
+			<tr><td>m.thyroarytenoideus</td>
+				<td colspan="2"><details><summary><font color="Black">&#9609;</font></summary>
+					<li>pajzsporc elülső-belső részén, lig.vocale tapadásától kissé lateralisan &#10140; kannaporc lateralis részétől</li>
+					<li>pars_thyroepiglottica &#10140; tapadása a plica_aryepiglottica (rostok felfele futnak!! nem vízszintesek)</li>
+				</details></td>
+				<td><details><summary><font color="Black">&#9609;</font></summary>
+					<li>vestibulum_laryngist szűkíti</li>
+				</details></td>
+			</tr>
+			<tr><td>m.aryepiglotticus</td>
+				<td colspan="2"><details><summary><font color="Black">&#9609;</font></summary>
+					<li>m.arytenoideus_obliquus 1nyalábjának folytatódása</li>
+					<li>plica_aryepiglottica-ban fut</li>
+				</details></td>
+				<td><details><summary><font color="Black">&#9609;</font></summary>
+					sphincter &#10140; <span class="WHITE">aditus_laryngis</span>-t szűkíti nyeléskor
+				</details></td>
+			</tr>
+		</table>
 	</ul></details>
+
 	<details><summary><font color="Gainsboro">&#9609;</font> orrhoz tartozó mimikai_izmok felsorolása?</summary><ul class="normal">
 		<li>m.nasalis</li>
 		<li>m.depressor_septi_nasi</li>
@@ -273,83 +382,6 @@
 		<li><span class="Miss">m.levator_labii_superioris_alaeque_nasi</span></li>
 		<li><span class="Miss">m.procerus_nasi</span></li>
 	</ul></details>
-	<table><tr><th>gégeizmok</th><th>origo</th><th>insertio</th><th>function</th></tr>
-		<tr><td>m.cricothyroideus</td>
-			<td><details><summary><font color="Black">&#9609;</font></summary>
-				arcus_cartilaginis_cricoideae
-				<a href="images/cricothyroideus.png"><img src="images/cricothyroideus.png"></a>
-			</details></td>
-			<td><details><summary><font color="Black">&#9609;</font></summary>
-				cartilago_thyroidea alsó-hátsó része
-			</details></td>
-			<td><details><summary><font color="Black">&#9609;</font></summary>
-				<li>elől közelíti egymáshoz a pajzsporcot és gyűrűporcot</li>
-				<li>lamina közben hátra billen</li>
-				<li>&#10140; <span class="Important">lig.vocale megfeszül</span> &#10140; <span class="Important">hangmagasság növelés</span></li>
-				<a href="images/m_cricothyroideus.png"><img src="images/m_cricothyroideus.png"></a>
-			</details></td>
-		</tr>
-		<tr><td>m.cricoarytenoideus_posterior</td>
-			<td><details><summary><font color="Black">&#9609;</font></summary>
-				lamina_cartilaginis_cricoideae
-				<a href="images/cricoarytenoideus.png"><img src="images/cricoarytenoideus.png"></a>
-			</details></td>
-			<td><details><summary><font color="Black">&#9609;</font></summary>
-				processus_muscularis(cartilago_arytenoidea)
-			</details></td>
-			<td><details><summary><font color="Black">&#9609;</font></summary>
-				egyetlen abductor &#10140; kannaporcot kifele forgatja &#10140; 2 processus_vocalis távolodik egymástól &#10140; 2 hangszalag hátrafele V-alakban szétnyílik &#10140; rima_glottidis tágítja
-			</details></td>
-		</tr>
-		<tr><td>m.cricoarytenoideus_lateralis</td>
-			<td><details><summary><font color="Black">&#9609;</font></summary>
-				arcus_cartilaginis_cricoideae <span class="WHITE">anat 3d</span>
-			</details></td>
-			<td><details><summary><font color="Black">&#9609;</font></summary>
-				processus_muscularis(cartilago_arytenoidea) <span class="Miss">nembiztos</span>
-			</details></td>
-			<td><details><summary><font color="Black">&#9609;</font></summary>
-				adductor <abbr title="kannaporcot befele forgatja &#10140; 2 processus_vocalis közeledik egymáshoz &#10140; 2 hangszalag közti táv csökken">&#10140;</abbr> rima_glottidis <span class="WHITE">pars_intermembranaceat</span> zárja
-			</details></td>
-		</tr>
-		<tr><td>m.arytenoideus obliquus/transversus</td>
-			<td colspan="2"><details><summary><font color="Black">&#9609;</font></summary>
-				<li>hátul kapcsolják össze a két kannaporcot</li>
-				<li>feljebb(hátrébb) az obliquus / mélyebben(előrébb) a transversus</li>
-			</details></td>
-			<td><details><summary><font color="Black">&#9609;</font></summary>
-				adductor &#10140; rima_glottidis(hangrés) <span class="Important">pars_intercartilagineat</span> zárja
-			</details></td>
-		</tr>
-		<tr><td>m.vocalis</td>
-			<td colspan="2"><details><summary><font color="Black">&#9609;</font></summary>
-				<li>hangszalag mellett fut lateralisan</li>
-				<li>origo &#10140; kannaporc elülső-lateralis része</li>
-				<li>insertio &#10140; pajzsporc elülső-belső részén, lig.vocale tapadásától kissé lateralisan</li>
-			</details></td>
-			<td><details><summary><font color="Black">&#9609;</font></summary>
-				plica_vocalist(hangredő) keményíti &#10140; jobban rezegjen
-			</details></td>
-		</tr>
-		<tr><td>m.thyroarytenoideus</td>
-			<td colspan="2"><details><summary><font color="Black">&#9609;</font></summary>
-				<li>pajzsporc elülső-belső részén, lig.vocale tapadásától kissé lateralisan &#10140; kannaporc lateralis részétől</li>
-				<li>pars_thyroepiglottica &#10140; tapadása a plica_aryepiglottica (rostok felfele futnak!! nem vízszintesek)</li>
-			</details></td>
-			<td><details><summary><font color="Black">&#9609;</font></summary>
-				<li>vestibulum_laryngist szűkíti</li>
-			</details></td>
-		</tr>
-		<tr><td>m.aryepiglotticus</td>
-			<td colspan="2"><details><summary><font color="Black">&#9609;</font></summary>
-				<li>m.arytenoideus_obliquus 1nyalábjának folytatódása</li>
-				<li>plica_aryepiglottica-ban fut</li>
-			</details></td>
-			<td><details><summary><font color="Black">&#9609;</font></summary>
-				sphincter &#10140; <span class="WHITE">aditus_laryngis</span>-t szűkíti nyeléskor
-			</details></td>
-		</tr>
-	</table>
 	<table><tr><th>orr<abbr title="hoz ,,tartozó'' mimikai_">&#10045;</abbr>izmok</th><th>function</th><th>innervatio</th></tr>
 		<tr><td>m.nasalis</td>
 			<td><details><summary><font color="Gainsboro">&#9609;</font></summary>
@@ -464,7 +496,7 @@
 
 <!----><details><summary class="phase">apparatus_uropoeticus</summary>
  <div><div class="title">általános</div>
-	<details class="kerdes 4/1" id="anat.1"><summary>jelentése? általános funkciója?</summary><ul class="normal">
+	<details class="kerdes 4/1" id="anat.1"><summary>apparatus_uropoeticus &#10140; jelentése? általános funkciója?</summary><ul class="normal">
 		<li>vizeleti rendszer</li>
 		<li>kiüríti a felesleges <strong>vizet</strong> és a <strong>benne oldható anyagokat</strong></li>
 		<div><font class="abbr">(benne vízben oldható anyagok ?) ►</font> &#10140; sók és anyagcseretermékek (pl. ureum, húgysavszármazékok stb.)</div>
@@ -735,14 +767,14 @@
 		<img src="images/fascia_pelvis.png">
 		<img src="images/sgtkpmgrt.png">
 	</ul></details>
-	<details class="kerdes 3/3" id="anat.40"><summary>részei + mik nyílnak/indulnak belőlük?</summary><ul class="normal">
+	<details class="kerdes 3/3" id="anat.40"><summary>részei + mik nyílnak/indulnak belőlük? (tehát mi van medial/lateral/anterior stb.)</summary><ul class="normal">
 		<img src="images/vscrszk.png">
 		<li>corpus vesicae</li>
-		<li>fundus_vesicae &#10140; alul-hátul lévő része</li><ul>
-			<li>ureter ebbe nyílik &#10140; ostium_ureteris</li>
+		<li>fundus_vesicae &#10140; hátul lévő része</li><ul>
+			<li>2db ureter ebbe nyílik &#10140; ostium_ureteris</li>
 			<li>urethra innen indul <i>&#10140; ostium_urethrae_internum</i></li>
 		</ul>
-		<li>apex_vesicae<abbr title="vertex_vesicae">(=)</abbr> &#10140; elől-felül lévő elkeskenyedő része</li><ul>
+		<li>apex_vesicae<abbr title="vertex_vesicae">(=)</abbr> &#10140; elől lévő elkeskenyedő része</li><ul>
 			<li>ebből indul a lig.umbilicale_medianum</li>
 			<div><font class="abbr"><span class="vocab">§</span> lig.umbilicale_medianum mi? ►</font> urachus maradványa!</div>
 		</ul>
@@ -835,15 +867,19 @@
 		<li>&#9792; 3-4cm</li>
 	</ul></details>
 	<details class="kerdes 2/3" id="anat.69"><summary>colliculus_seminalis &#10140; mi? "képletei"?</summary><ul class="normal">
-		<li><span class="WHITE">9</span> colliculus_seminalis &#10140; prostata hátsó faláról beugró kiemelkedés &#10140; csak férfiaknak van! <abbr title="lumen mérete nem változik">()</abbr></li>
-		<li>2db lyuk + 1gödör</li><ul>
-			<li><span class="WHITE">10</span> 2db lyuk &#10140; ductus_ejaculatoriusok nyílnak bele</li>
-			<li><span class="WHITE">11</span> 1db gödör <span class="WHITE">utriculus_prostaticus</span></li><ul>
-				<li>nem nyílik bele semmi</li>
-				<li>Müller-cső fejlődési maradványa <img class="mini" src="images/cllscsmnlsmlr.png.png"></li>
+		<div style="float:right;max-width:30%">
+			<img src="images/vscurnrsmfl.png">
+			<img src="images/cllscsmnlsmlr.png">
+		</div>
+		<li><span class="WHITE">9</span> colliculus_seminalis</li>
+		<li>ez a <span class="Important">prostata hátsó faláról beugró kiemelkedés</span> &#10140; <span class="Important">csak férfiaknak van!</span> <abbr title="lumen mérete nem változik">()</abbr></li>
+		<li><span class="Important">2db lyuk + 1gödör van benne</span></li><ul>
+			<li>2db lyuk &#10140; <span class="WHITE">11</span> <span class="Important">ductus_ejaculatoriusok nyílnak bele</span></li>
+			<li>1db gödör &#10140; <span class="WHITE">10</span> <span class="Important">utriculus_prostaticus</span></li><ul>
+				<li><span class="Important">Müller-cső fejlődési maradványa</span></li>
+				<li>nem nyílik bele semmi (gödör, nem lyuk!)</li>
 			</ul>
 		</ul>
-		<img src="images/vscurnrsmfl.png">
 	</ul></details>
 	<details class="sedrek 3/4" id="anat.70"><summary><span class="WHITE">&#9794;</span> &#10140; lefutása?</summary><ul class="normal">
 		<img src="images/rthrlfts.png">
@@ -989,8 +1025,8 @@
 	<details class="kerdes 3/2" id="anat.80"><summary>hámátmenet?</summary><ul class="normal">
 		<img src="images/limen_nasi.png">
 		<img src="images/vstblmlnms.png">
-		<li>limen_nasi &#10140; ez a vestibulum és proprium közti határ!</li>
-		<div>/vestibulum_nasi/ <span class="WHITE">TrEs&#8722;Lh</span> &#10140; <span class="WHITE"><abbr title="Többmagsoros-Kinociliumos">TmK&#8722;Hh</abbr></span> /cavum_nasi_proprium/</div>
+		<li>limen_nasi &#10140; ez a vestibulum_nasi és cavum_nasi_proprium közti határ!</li>
+		<div>/vestibulum_nasi/ <span class="WHITE">TrEs&#8722;Lh</span> <div class="mirror">&#10140;</div> limen_nasi &#10140; <span class="WHITE"><abbr title="Többmagsoros-Kinociliumos">TmK&#8722;Hh</abbr></span> /cavum_nasi_proprium/</div>
 	</ul></details>
 	<details class="sedrek 1/2" id="anat.83"><summary>nasus_externus &#10140; szövettani felépítése (csak főbb réteg)?</summary><ul class="normal">
 		<li>belül &#10140; tunica_mucosa</li>
@@ -1013,11 +1049,21 @@
 		<li>apex_nasi</li>
 		<li>ajakhoz futó barázdák &#10140; philtrum + sulcus_nasolabialis <img class="mini" src="images/ajkak.png"></li>
 	</ul></details>
-	<details class="kerdes 1/2" id="anat.86"><summary>orrnyílás &#10140; latinul? határai?</summary><ul class="normal">
-		<img src="images/nasus_felszíni_képletek.png">
+	<details class="kerdes 1/2" id="anat.86"><summary>orrnyílás latinul?</summary><ul class="normal">
 		<div>(2db) naris = orrnyílás</div>
-		<li>középen elválasztja &#10140; pars_mobilis(septum_nasi)</li>
-		<li>oldalt határolja &#10140; 2db ala_nasi</li>
+		<details><summary>határai?</summary><ul class="normal">
+			<img src="images/nasus_felszíni_képletek.png">
+			<li>középen elválasztja &#10140; pars_mobilis(septum_nasi)</li>
+			<li>oldalt határolja &#10140; 2db ala_nasi</li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 1/2" id="anat.164"><summary>naris magyarul?</summary><ul class="normal">
+		<div>(2db) naris = orrnyílás</div>
+		<details><summary>határai?</summary><ul class="normal">
+			<img src="images/nasus_felszíni_képletek.png">
+			<li>középen elválasztja &#10140; pars_mobilis(septum_nasi)</li>
+			<li>oldalt határolja &#10140; 2db ala_nasi</li>
+		</ul></details>
 	</ul></details>
 	<details class="sedrek 2/6" id="anat.87"><summary style="color:Red"><font color="Green">cavum_nasi &#10140; tetejét(4) / oldalát(6) / alját(2) mely csontok alkotják?</font></summary><ul class="normal">
 		<li>lamina_cribrosa(os_ethmoidale) <img class="mini" src="images/os_ethmoidale.png"></li>
@@ -1032,7 +1078,7 @@
 		<li>os_palatinum(lamina_perpendicularis)</li>
 		<li>os_sphenoidale</li>
 	  ––––––––––––––––––––––––––––
-		<li><span class="Important">os_palatinum(lamina_horisontalis)</span></li>
+		<li><span class="Important">os_palatinum(lamina_horizontalis)</span></li>
 		<li><span class="Important">maxilla(processus_palatinus)</span></li>
 	</ul></details>
 	<details class="open sedrek ?/?" id="anat.88"><summary>orrüreg összeköttetései?</summary><ul class="normal"><table>
@@ -1095,13 +1141,13 @@
 		<div><font class="abbr"><span class="WHITE">5</span> ►</font> os_nasale</div>
 		<div><font class="abbr"><span class="WHITE">6</span> ►</font> sinus_frontalis</div>
 		<div><font class="abbr"><span class="WHITE">7</span> ►</font> maxilla (processus_frontalis)</div>
-		<div><font class="abbr"><span class="WHITE">8</span> ►</font> os_palatinum (lamina_horisontalis</div>
+		<div><font class="abbr"><span class="WHITE">8</span> ►</font> os_palatinum (lamina_horizontalis)</div>
 		<div><font class="abbr"><span class="WHITE">9</span> ►</font> os_palatinum (lamina_perpendicularis)</div>
 		<div><font class="abbr">(10) ►</font> os_palatinum (processus_orbitalis)</div>
 		<div><font class="abbr"><span class="WHITE">11</span> ►</font> foramen_sphenopalatinum</div>
-		<div><font class="abbr">(12) ►</font> os_palatinum (processus_sphenoidalis</div>
+		<div><font class="abbr">(12) ►</font> os_palatinum (processus_sphenoidalis)</div>
 		<div><font class="abbr"><span class="WHITE">13</span> ►</font> apertura_sinus_sphenoidalis</div>
-		<div><font class="abbr"><span class="WHITE">14</span> <span class="WHITE">15</span> <span class="WHITE">16</span> ►</font> concha&meatus nasi inferior/superior/media</div>
+		<div><font class="abbr"><span class="WHITE">14</span> <span class="WHITE">15</span> <span class="WHITE">16</span> ►</font> concha_nasalis inferior/superior/media & meatus_nasi inferior/superior/media</div>
 		<div><font class="abbr"><span class="WHITE">17</span> ►</font> <ul>
 			<li>balalsó zöld &#10140; processus_uncinatus</li>
 			<li>jobbfelső zöld &#10140; bulla_ethmoidalis</li>
@@ -1126,7 +1172,7 @@
 		<li>sinus_sphenoidalis</li>
 		<li>cellulae_ethmoidales</li>
 	</ul></details>
-	<details class="kerdes 2/1" id="anat.134"><summary>meatus vs concha nasalis inf/mes/sup?</summary><ul class="normal">
+	<details class="kerdes 2/1" id="anat.134"><summary>meatus vs concha nasalis inf/med/sup?</summary><ul class="normal">
 		<img src="images/cnchnmtsnsl.png">
 		<li><i>meatus van a concha(csont) alatt</i></li>
 	</ul></details>
@@ -1149,6 +1195,13 @@
 		<li>epiglottis = gégefedő</li>
 		<li>egyéb &#10140; <span class="WHITE">cartilago_cuneiforme</span><abbr title="/garat-hátulról/ + /rajz/ megtalálom">&#10045;</abbr> <span class="WHITE">cartilago_corniculata</span> <span class="WHITE">cartilago_triticea</span></li>
 	</ul></details>
+	<details class="kerdes 1/3" id="anat.186"><summary>szalagok(5) felsorolása?</summary><ul class="normal">
+		<li>membrana_thyrohyoidea</li>
+		<li>lig.cricotracheale</li>
+		<li>lig.thyrohyoideum medianum/laterale</li>
+		<li>lig.conicum <abbr title="lig.cricothyroideum_medianum">(=)</abbr></li>
+		<div>(hangszalagok nem ide sorolandó)</div>
+	</ul></details>
 	<details class="sedrek 1/3" id="anat.95"><summary style="color:Magenta"><font color="Green">mely porc-képletek hyalinporcok és melyek elasztikus-porc?</font></summary><ul class="normal">
 		<li>elasztikus &#10140; <span class="WHITE">epiglottis</span> <span class="WHITE">cartilago_corniculata</span> <span class="WHITE">cartilago_triticea</span> <span class="WHITE">cartilago_cuneiformis</span> <span class="WHITE">processus_vocalis(cartilago_arytenoidea)</span></li>
 		<li>többi hyalin</li>
@@ -1157,7 +1210,7 @@
 	<details class="kerdes 3/2" id="anat.98"><summary>ádámcsutka &#10140; latinul? minek a része? mérete mivel függ össze?</summary><ul class="normal">
 		<li>latinul <span class="WHITE">5</span> prominentia_laryngea</li>
 		<li>a cartilago_thyroidea része</li>
-		<li>minél nagyobb, annál hosszab a hangszalag, annál mélyebb hangú a férfi</li>
+		<li>minél nagyobb, azaz a lamina dextra & sinistra által bezárt szög minél kisebb (férfiaknál 90°, nőknél 120°) &#10140; annál hosszab a hangszalag, annál mélyebb hangú a férfi</li>
 		<img src="images/thyroidea.png">
 	</ul></details>
 	<details class="kerdes 2/1" id="anat.99"><summary>pajzsporc &#10140; cornu_superius mivel van milyen összeköttetésben?</summary><ul class="normal">
@@ -1189,18 +1242,22 @@
 		<div>cartilago_cricoidea</div>
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> facies_articularis_thyroidea</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> facies_articularis_arytenoidea</div>
-		<div><font class="abbr"><span class="WHITE">3</span> ►</font> lamina_cartilaginis_cricoideae</div>
-		<div><font class="abbr"><span class="WHITE">4</span> ►</font> arcus_cartilaginis_cricoideae</div>
+		<div><font class="abbr">(3) ►</font> lamina (cartilago_cricoidea)</div>
+		<div><font class="abbr">(4) ►</font> arcus (cartilago_cricoidea)</div>
 		<div>cartilago_arytenoidea</div>
 		<div><font class="abbr"><span class="WHITE">5</span> ►</font> processus_muscularis</div>
 		<div><font class="abbr"><span class="WHITE">6</span> ►</font> lig.vocale</div>
 		<div><font class="abbr"><span class="WHITE">7</span> ►</font> processus_vocalis</div>
-		<div><font class="abbr"><span class="WHITE">8</span> ►</font> fovea_oblonga (alsó)</div>
-		<div><font class="abbr"><span class="WHITE">9</span> ►</font> fovea_triangularis (felső)</div>
+		<div><font class="abbr">(8) ►</font> fovea_oblonga (alsó)</div>
+		<div><font class="abbr">(9) ►</font> fovea_triangularis (felső)</div>
+	  <hr>
 		<div><font class="abbr"><span class="WHITE">10</span> ►</font> cartilago_corniculata</div>
 	</ul></details>
 	<details class="kerdes 2/1" id="anat.104"><summary>gégefedő miért lyukacsos?</summary><ul class="normal">
 		<li>lyukacsos &#10140; <span class="Important">előtte</span> elhelyezkedő <span class="Important">nyálmirigyeinek kivezető csövei</span> az <span class="Important">epiglottis átfúrásával</span> vezetnek be a <span class="Important">gége üregébe</span></li>
+	</ul></details>
+	<details class="kerdes 2/2" id="anat.185"><summary><span class="Vocab">3D</span> kannaporc részei</summary><ul class="normal">
+		<video muted controls onclick="this.paused ? this.play() : this.pause();"><source src="3D/crtgrtnd.mp4" type="video/mp4">hiba.</video>
 	</ul></details>
 	<details class="open kerdes 2/3" id="anat.122"><summary><span class="Vocab">IF</span> pajzsporc?</summary><ul class="normal">
 		<img src="images/thyroidea.png">
@@ -1244,7 +1301,7 @@
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> cartilago_triticea</div>
 		<div><font class="abbr"><span class="important">2</span> ►</font> corpus_adiposum_preepiglotticum</div>
 		<div><font class="abbr"><span class="WHITE">3</span> ►</font> lig.thyrohyoideum_laterale</div>
-		<div><font class="abbr"><span class="important">4</span> ►</font> membrana_thyrhyoidea</div>
+		<div><font class="abbr"><span class="important">4</span> ►</font> membrana_thyrohyoidea</div>
 		<div><font class="abbr"><span class="WHITE">5</span> ►</font> lig.thyrohyoideum_medianum</div>
 		<div><font class="abbr"><span class="WHITE">6</span> ►</font> incissura_thyroidea_superior</div>
 		<div><font class="abbr">(7) ►</font> petiolus_epiglottidis</div>
@@ -1274,9 +1331,27 @@
 	</ul></details>
  </div>
  <div><div class="title">gége – egyéb</div>
-	<details class="kerdes 2/1" id="anat.113"><summary>hangrés &#10140; latinul? mi?</summary><ul class="normal">
-		<img src="images/rajz_larynx_horisontal.png">
-		<div><span class="WHITE">16</span> rima_glottidis</div>
+	<details class="kerdes 2/2" id="anat.113"><summary>hangrés latinul?</summary><ul class="normal">
+		<div>rima_glottidis</div>
+		<details><summary>határai?</summary><ul class="normal">
+			<div>két plica_vocalis között van</div>
+			<div><span class="WHITE">16</span> horizontal képen</div>
+			<div><span class="WHITE">15</span> frontal képen</div>
+			<img style="max-width:30%" src="images/rajz_larynx_horisontal.png">
+			<img style="max-width:30%" src="images/rajz_larynx_frontal.png">
+			<img style="max-width:30%" src="images/rmglttsds.png">
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 2/2" id="anat.163"><summary>rima_glottidis magyarul?</summary><ul class="normal">
+		<div>hangrés</div>
+		<details><summary>határai?</summary><ul class="normal">
+			<div>két plica_vocalis között van (ennyit elég tudnom, <abbr title="hogy ne segítsen különbséget tenni az aditus_laryngissal szemben">kérdést direkt fogalmaztam így</abbr>)</div>
+			<div><span class="WHITE">16</span> horizontal képen</div>
+			<div><span class="WHITE">15</span> frontal képen</div>
+			<img style="max-width:30%" src="images/rajz_larynx_horisontal.png">
+			<img style="max-width:30%" src="images/rajz_larynx_frontal.png">
+			<img style="max-width:30%" src="images/rmglttsds.png">
+		</ul></details>
 	</ul></details>
 	<details class="kerdes 2/1" id="anat.115"><summary>hangszalagok egymáshoz viszonyított távolságát mely izmok állítják be?</summary><ul class="normal">
 		<a href="images/m_posterius.png"><img src="images/m_posterius.png"></a>
@@ -1297,14 +1372,20 @@
 	<details class="kerdes 2/1" id="anat.117"><summary>hangrés teljes zárása?</summary><ul class="normal">
 		<li>m.cricoarytenoideus_lateralis &#10140; pars_intermembranace-t zárja össze</li>
 		<li>m.arytenoideus obliquus/transversus &#10140; pars_intercartilaginea-t zárják össze</li>
-		<a href="images/rima_glottidis.png"><img src="images/rima_glottidis.png"></a>
+		<img src="images/rima_glottidis.png">
 	</ul></details>
 	<details class="kerdes 2/1" id="anat.118"><summary>m.arytenoideus obliquus/transversus miért adductor(hangrést záró)?</summary><ul class="normal">
 		<li>mert az articulatio_cricoaritenoidea függőleges forgótengelye előtt helyezkednek el</li>
 	</ul></details>
-	<details class="kerdes 2/1" id="anat.121"><summary>sphincterek?(2)</summary><ul class="normal">
+	<details class="kerdes 2/1" id="anat.188"><summary>recessus_piriformis hol?</summary><ul class="normal">
+		<img src="images/if_grtkpk2.png">
+		<li>pajzspoc és plica_aryepiglottica között <img class="mini" src="images/plrpgltcc.png"></li>
+		<div><span class="WHITE">2</span> recessus_piriformis</div>
+	</ul></details>
+	<details class="kerdes 2/2" id="anat.121"><summary>sphincterek?(2)</summary><ul class="normal">
 		<li>m.aryepiglotticus &#10140; aditus_laryngist szűkíti <abbr title="nyeléskor">()</abbr></li>
-		<li>m.thyroarytenoideus &#10140; vestibulum_laryngist szűkíti</li>
+		<li>m.thyroarytenoideus &#10140; vestibulumot szűkíti</li>
+		<img src="images/mrgthygltsc.png">
 	</ul></details>
 	<details class="open kerdes 2/4" id="anat.125"><summary><span class="Vocab">IF</span> larynx - saggital</summary><ul class="normal">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> lig.hyoepiglotticum</div>
@@ -1319,17 +1400,34 @@
 		<div><font class="abbr"><span class="WHITE">10</span> ►</font> lamina_dextra (<strong>cartilago_thyroidea</strong>)</div>
 		<img src="images/gége_saggital.png">
 	</ul></details>
-	<details class="kerdes 3/2" id="anat.120"><summary>gégebemenet &#10140; latinul? határai?(3)</summary><ul class="normal">
-		<img src="images/aditus_laryngeus.png">
-		<div>aditus_laryngis = gégebemenet</div>
-		<li><span class="WHITE">12</span> incissura_arytenoidea</li>
-		<li><span class="WHITE">11</span> plica_aryepiglottica</li>
-		<li><span class="WHITE">2</span> epiglottis felső széle</li>
+	<details class="kerdes 3/3" id="anat.162"><summary>aditus_laryngis &#10140; magyarul?</summary><ul class="normal">
+		<li>gégebemenet</li>
+		<details><summary>határai?(3)</summary><ul class="normal">
+			<img style="max-width:40%" src="images/aditus_laryngeus.png">
+			<div><span class="WHITE">2</span> epiglottis felső széle</div>
+			<div><span class="WHITE">11</span> plica_aryepiglottica <img class="mini" src="images/plcrpgltc.png"> <abbr title="a két tuberculum a plica_aryepiglottica része Funkc2-ben így azért nincs külön kiemelve">()</abbr></div>
+			<div><span class="WHITE">12</span> incissura_arytenoidea</div>
+		  <hr>egyéb a képen
+			<div><font class="abbr"><span class="WHITE">9</span> ►</font>  plica_vocalis</div>
+			<div><font class="abbr"><span class="WHITE">10</span> ►</font>  plica_vestibularis</div>
+		</ul></details>
 	</ul></details>
-	<details class="kerdes 2/1" id="anat.119"><summary>kötőszöveti váza &#10140; alkotói? szerepük?</summary><ul class="normal">
+	<details class="kerdes 3/3" id="anat.120"><summary>gégebemenet &#10140; latinul?</summary><ul class="normal">
+		<li>aditus_laryngis</li>
+		<details><summary>határai?(3)</summary><ul class="normal">
+			<img style="max-width:40%" src="images/aditus_laryngeus.png">
+			<div><span class="WHITE">2</span> epiglottis felső széle</div>
+			<div><span class="WHITE">11</span> plica_aryepiglottica <img class="mini" src="images/plcrpgltc.png"> <abbr title="a két tuberculum a plica_aryepiglottica része Funkc2-ben így azért nincs külön kiemelve">()</abbr></div>
+			<div><span class="WHITE">12</span> incissura_arytenoidea</div>
+		  <hr>egyéb a képen
+			<div><font class="abbr"><span class="WHITE">9</span> ►</font>  plica_vocalis</div>
+			<div><font class="abbr"><span class="WHITE">10</span> ►</font>  plica_vestibularis</div>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 2/2" id="anat.119"><summary>kötőszöveti váza &#10140; alkotói? funkciójuk?</summary><ul class="normal">
 		<li>membrana_quadrangularis</li>
-		<li>membrana_triangularis</li>
-		<li>szerepük &#10140; sima-feszes legyen mindig a felszín</li>
+		<li>membrana_triangularis = conus_elasticus</li>
+		<div>funkciójuk &#10140; sima-feszes legyen mindig a felszín</div>
 	</ul></details>
 	<details class="open kerdes 2/2" id="anat.127"><summary><span class="Vocab">IF</span> larynx - innervatio</summary><ul class="normal">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> n.vagus</div>
@@ -1401,7 +1499,7 @@
 		<li>!!! porcok + csontok helyzete!!!</li>
 		forrás <img class="mini" src="images/source_larynx_saggital.png">
 	</ul></details>
-	<details class="open kerdes 2/6" id="anat.130"><summary><span class="important">IF</span> larynx - horisontal</summary><ul class="normal">
+	<details class="open kerdes 2/6" id="anat.130"><summary><span class="important">IF</span> larynx - horizontal</summary><ul class="normal">
 		<img src="images/rajz_larynx_horisontal.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> lamina_sinistra</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> m.thyroarytenoideus</div>
@@ -1456,7 +1554,7 @@
 		<div><font class="abbr"><span class="WHITE">6</span> ►</font> plica_vocalis</div>
 	</ul></details>
  </div>
- <div><div class="title">légcső</div>
+ <div><div class="title">légcső + főhörgők</div>
 	<details class="kerdes 4/1" id="anat.136"><summary>latinul?</summary><ul class="normal">
 		<li>trachea</li>
 	</ul></details>
@@ -1467,26 +1565,33 @@
 	<details class="kerdes 2/2" id="anat.138"><summary>mettől-meddig tart?</summary><ul class="normal">
 		<li><span class="WHITE">C7</span> lig.cricotracheale &#10140; <span class="WHITE">Th4</span> bifurcatio: bronchus_principalis dexter/sinister</li>
 	</ul></details>
-	<details><summary><font color="Black">&#9609;</font> általános felépítés?</summary><ul class="normal">
-		<div>kb. 20 porcgyűrűből áll &#10140; 1nek felépítése:</div>
-		<li>paries_cartilagineus &#10140; C alakú hyalin-porcok képezik falát elől és oldalt</li>
-		<li>paries_membranaceus &#10140; simaizom<span class="WHITE">m.trachealis</span> + ktsz egészíti falát hátul</li>
-	</ul></details>
-	<details><summary><font color="Black">&#9609;</font> szomszédos képletek(7)?</summary><ul class="normal">
-		<li><span class="WHITE">glandula_thyroidea</span> &#10140; előtte-oldalt (2–4 felső gyűrűje előtt)</li>
-		<li><span class="WHITE">pars_cervialis(oesophagus)</span> &#10140; mögötte, kissé balra a paries_membranaceushoz hozzánőve</li>
-		<li><span class="WHITE">n.laryngeus_recurrens</span> &#10140; nyelőcső és közte kétoldalt futnak felfele</li>
-		<li>oldalt &#10140; vagina_carotica, benne a medialis helyzetű <span class="WHITE">a.carotis_communis</span></li>
-		<li>mellkasban</li><ul>
-			<li>v.brachiocephalica sinistra &#10140; jobbeól_lenntről balra_fel</li>
-			<li>truncus_brachiocephalicus &#10140; balról_lenntről jobbra_fel</li>
-			<li>arcus_aortae &#10140; bal oldalán</li>
+	<details class="kerdes 3/6" id="anat.167"><summary>általános felépítés?</summary><ul class="normal">
+		<img src="images/trchszvtn.png">
+		<li>nyálkahártya(=tunica_mucosa) bélelt cső</li>
+		<li>kb. 20db cartilago_trachealeból áll, melyeket ligamenta_anularia kötnek össze</li>
+		<li>1db cartilago_tracheale két részre osztható</li><ul>
+			<li>paries_cartilagineus &#10140; <span class="WHITE">4</span> carilago_trachealis: C alakú hyalinporc (ez képezi falát elől és oldalt)</li>
+			<li>paries_membranaceus &#10140; <span class="WHITE">8</span>m.trachealis[simaizom] (ez egészíti falát hátul)</li>
 		</ul>
-		<a href="images/topo_légcső.png"><img src="images/topo_légcső.png"></a>
+		<img src="images/lggnlrcrcd.png">
 	</ul></details>
-	<details class="kerdes 3/3" id="anat.148"><summary><span class="vocab">R</span> trachea - elágazódás?</summary><ul class="normal">
+	<details class="sedrek 2/4" id="anat.169"><summary>szomszédos képletek(7)?</summary><ul class="normal">
+		<li><strong>glandula_thyroidea</strong> &#10140; előtte-oldalt (2–4 felső gyűrűje előtt)</li>
+		<li><strong>pars_cervialis(oesophagus)</strong> &#10140; mögötte, kissé balra a paries_membranaceushoz hozzánőve</li>
+		<li><strong>n.laryngeus_recurrens</strong> &#10140; nyelőcső és közte kétoldalt futnak felfele</li>
+		<li>oldalt &#10140; <strong>vagina_carotica</strong>, benne a medialis helyzetű <span class="WHITE">3</span><strong>a.carotis_communis</strong></li>
+		<li>mellkasban</li><ul>
+			<li><span class="WHITE">1</span><strong>v.brachiocephalica sinistra</strong> &#10140; jobbról_lenntről balra_fel</li>
+			<li><span class="WHITE">2</span><strong>truncus_brachiocephalicus</strong> &#10140; balról_lenntről jobbra_fel</li>
+			<li><span class="WHITE">4</span><strong>arcus_aortae</strong> &#10140; bal oldalán</li>
+		</ul>
+		<div>Minta <img class="mini" src="images/fsccrvlmnt.png"></div>
+		<img style="max-width:45%" src="images/nlrngsrcsr.png">
+		<img style="max-width:45%" src="images/topo_légcső.png">
+	</ul></details>
+	<details class="sedrek 3/3" id="anat.148"><summary><span class="vocab">R</span> trachea - elágazódás?</summary><ul class="normal">
 		<img src="images/carina_trachea.png">
-		<div><font class="abbr"><span class="WHITE">1</span> ►</font>carina_trachea &#10140; <span class="WHITE">TEns-Lh</span> van, nem <span class="WHITE">TmK-Hh</span> &#10140; ha odajut étel/ital, köhögést vált ki</div>
+		<div><font class="abbr"><span class="WHITE">1</span> ►</font>carina_trachea &#10140; <span class="WHITE">TrEns-Lh</span> van, nem <span class="WHITE">TmK-Hh</span> &#10140; ha odajut étel/ital, köhögést vált ki <img class="mini" src="images/crntrch.png"><abbr title="balra tolt helyzetű, azt írta Funkc2 + előadáson is így rajzolták">&#10045;</abbr></div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font>trachea</div>
 		<div><font class="abbr"><span class="WHITE">3</span> ►</font>bronchus_principalis_dexter</div>
 		<div><font class="abbr"><span class="WHITE">4</span> ►</font>bronchus_principalis_sinister</div>
@@ -1505,7 +1610,7 @@
 		<li>bronchus_principalis_dexter a függőlegessel kisebb szöget zár be 25° &lt; 45°, így ha táplálék jut tüdőbe, akkor nagyobb eséllyel a jobbikba kerül</li>
 		<li><font class="abbr">(melyik főhörgő átmérője nagyobb?) ►</font> bronchus_principalis_dexter</li>
 	</ul></details>
-	<details><summary><font color="Black">&#9609;</font> főhörgők fölött mi megy?</summary><ul class="normal">
+	<details class="sedrek 3/1" id="anat.170"><summary>főhörgők fölött mi megy?</summary><ul class="normal">
 		<li>bronchus_principalis_dexter &#10140; v.azygos</li>
 		<li>bronchus_principalis_sinister &#10140; arcus_aortae</li>
 		<a href="images/trachea_bifurcatio.png"><img src="images/trachea_bifurcatio.png"></a>
@@ -1520,38 +1625,144 @@
 	<details class="kerdes 4/1" id="anat.141"><summary>latinul?</summary><ul class="normal">
 		<li>pulmo</li>
 	</ul></details>
-	<details><summary><font color="Black">&#9609;</font> felosztás és felszínei?</summary><ul class="normal">
+	<details class="sedrek 2/1" id="anat.171"><summary>felosztása?</summary><ul class="normal">
 		<li>basis_pulmonis + apex_pulmonis</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="anat.172"><summary>felszínei?</summary><ul class="normal">
 		<li>facies_diaphragmatica &#10140; alul</li>
-		<li>facies_costalis &#10140; lateralis + elöl-hátul</li>
+		<li>facies_costalis &#10140; lateralis + elől-hátul</li>
 		<li>facies_mediastinalis &#10140; medialis</li>
 	</ul></details>
-	<details><summary><font color="Black">&#9609;</font> tüdőgyökér képleteinek felsorolása?</summary><ul class="normal">
-		<div>radix_pulmonis = tüdőgyökér alkotói</div>
-		<li>a.pulmonalis</li>
-		<li>2v.pulmonalis</li>
-		<li>bronchus_principalis</li>
- 	</ul></details>
+	<details class="kerdes 3/2" id="anat.173"><summary>tüdőgyökér latinul?</summary><ul class="normal">
+		<li>radix_pulmonis</li>
+		<details><summary>képleteinek felsorolása?</summary><ul class="normal">
+			<li>a.pulmonalis</li>
+			<li>2v.pulmonalis</li>
+			<li>bronchus_principalis</li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 3/2" id="anat.174"><summary>radix_pulmonis magyarul?</summary><ul class="normal">
+		<li>tüdőgyökér</li>
+		<details><summary>képleteinek felsorolása?</summary><ul class="normal">
+			<li>a.pulmonalis</li>
+			<li>2v.pulmonalis</li>
+			<li>bronchus_principalis</li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 3/2" id="anat.168"><summary>hilus_pulmonis képletei?</summary><ul class="normal">
+		<img src="images/rajz_pulmo_saggital.png">
+		<div><span class="WHITE">1</span> ► a.pulmonalis</div>
+		<div><span class="WHITE">2</span> ► vv.pulmonales</div>
+		<div><span class="WHITE">3</span> ► bronchus principalis/lobaris</div>
+		<div><span class="WHITE">14</span> ► hilus_pulmonis</div>
+		<li>jobb oldalinál az a.pulmonsalis van alul, míg a bronchus principalis/lobaris felül &#10140; bal oldalinál fordítva <abbr title="ez a boncteremben(tehát a valóságban) azért elég random ha jól emlékszem">&#10045;</abbr></li>
+		<li><font class="abbr">(hilus pulmonis magyarul?) ►</font> tüdőkapu</li>
+	</ul></details>
  </div>
- <div><div class="title">pleura</div>
-	<details><summary><font color="Black">&#9609;</font> felosztás?</summary><ul class="normal">
-		<li>pleura_visceralis</li>
-		<li>pleura_parietalis &#10140; pleura_costalis / pleura_diaphragmatica / pleura_mediastinalis</li>
+ <div><div class="title">mellhártya</div>
+	<details class="kerdes 4/1" id="anat.176"><summary>latinul?</summary><ul class="normal">
+ 		<li>pleura</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="anat.177"><summary style="color:red;font-weight:bold;">általános jellemzése?</summary><ul class="normal">
+		<li>nagy savós hártyák (peritoneum, pericardium, pleura) egyike</li>
+ 		<li><span class="fix">Finomabb szerkezet és általános funkciós jelentőség tekintetében is megegyezik a többivel, amelyek egyikét, a pericardiumot, a keringési szerveknél már megtárgyaltuk</span></li>
+		<li>páros képződmény &#10140; két zsákja közvetlen érintkezésbe nem jut, üregeik egymással nem közlekednek</li>
+	</ul></details>
+	<details class="kerdes 3/3" id="anat.179"><summary>felosztás?</summary><ul class="normal">
+		<div>másik két savós hártyához hasonlóan ez is két lemezre osztható</div>
+		<li>pleura_visceralis (zsigeri lemez) &#10140; nincs további részekre osztva</li>
+		<li>pleura_parietalis (fali lemez) &#10140; tovább van osztva attól függően, hogy tüdő mely felszínét borítja</li><ul>
+			<li>pleura_costalis</li>
+			<li>pleura_diaphragmatica</li>
+			<li>pleura_mediastinalis</li>
+		</ul>
+		<li><abbr title="pleura_visceralis nem csupán a tüdő külső felszínét borítja be, hanem behatol a tüdőlebenyek közötti ferde és vízszintes fissurákba is &#10140; Ennek mélyében a bevágás két falát borító visceralis pleurarészlet lap szerint összefekszik egymással, de normálisan nem tapad össze">&#10045;</abbr></li>
  	</ul></details>
-	<details><summary><font color="Black">&#9609;</font> pleura_costalis mi rögzíti hova?</summary><ul class="normal">
-		<a href="images/fscndthrc.png"><img src="images/fscndthrc.png"></a>
-		<li><span class="WHITE">fascia_endothoracica</span> rögzíti mm.intercostales belső felszínéhez</li>
- 	</ul></details>
-	<details><summary><font color="Black">&#9609;</font> visceralis & parietalis áthajlás?</summary><ul class="normal">
-		<a href="images/lig_pulmonale.png"><img src="images/lig_pulmonale.png"></a>
-		<li>lig.pulmonale-ban</li>
- 	</ul></details>
-	<details><summary><font color="Black">&#9609;</font> recessusok?</summary><ul class="normal">
-		<a href="images/rajz_pulmo_topo.png"><img src="images/rajz_pulmo_topo.png"></a>
-		<li><span class="WHITE">1</span> recessus_costodiaphragmaticus <abbr title="sinus_phrenicocostalis">(=)</abbr></li>
-		<li><span class="WHITE">2</span> recessus_phrenicomediastinalis</li>
-		<li><span class="WHITE">3</span> recessus_costomediastinalis</li>
- 	</ul></details>
+	<details class="kerdes 3/1" id="anat.178"><summary>pleura_costalis &#10140; hol? mi rögzíti hova?</summary><ul class="normal">
+		<li>bordák belfelületét borítja</li>
+		<li>fascia_endothoracica rögzíti a bordák, bordaporcok és a mm.intercostales_interni belső felszínéhez</li>
+		<li><abbr title="fascia_endothoracica: elég erős egységes fasciaszerű subserosus kötőszöveti lemez">&#10045;</abbr> <span class="miss" title="Az apertura thoracis superiornak a belépő légcső, nyelőcső és átlépő nagyerek által szabadon hagyott oldalsó részein a pleura costalis kúpszerűen benyomul a mm. scaleni és medialisan a lamina prevertebralis által alkotott sátorba. Ez a tüdőcsúcsot magába fogadó pleurakúp (cupula pleurae)">&#10045;</span></li>
+		<img src="images/fscndthrc.png">
+	</ul></details>
+	<details class="kerdes 3/2" id="anat.181"><summary>pleura_mediastinalis &#10140; hol? mi rögzíti hova?</summary><ul class="normal">
+		<li><span class="MISS">(a mellkas középső részét, a mediastinumot kitöltő zsigereket, a szívet és a nagyereket borító lemez a pleura_mediastinalis)</span></li>
+		<li>sagittalis állású &#10140; tüdő medialis felszínét borítja</li><ul>
+			<li>csak a hilus_pulmonis felett egységes, ugyanis a tüdőkapuban és alatta(lig.pulmonale) áthajlik a pleura_visceralisba</li>
+			<li>lig.pulmonale &#10140; hilus_pulmonis alatti pleura-kettőzet, ahol áthajlik a pleura_mediastinalis a pleura_visceralisba</li>
+			<li>(tüdőkapunál is ugyanúgy áthajlik természetesen)</li>
+		</ul>
+		<li>hilus_pulmonis előtt a pleura_mediastinalis mindkét oldalon szorosan összefekszik a szívburok külső felszínével (lamina_parietalis_pericardii) &#10140; a két savós hártya között fut le mindkét oldalon a rekesz idege <strong>n.phrenicus</strong></li>
+		<img style="max-width:45%" src="images/lig_pulmonale.png">
+		<img style="max-width:45%" src="images/nphrncs.png">
+	</ul></details>
+	<details class="kerdes 3/1" id="anat.182"><summary>lig.pulmonale mi?</summary><ul class="normal">
+		<img src="images/lig_pulmonale.png">
+		<li>hilus_pulmonis alatti pleura-kettőzet, ahol áthajlik a pleura_mediastinalis a pleura_visceralisba</li>
+		<li>(tüdőkapunál is ugyanúgy áthajlik természetesen)</li>
+	</ul></details>
+	<details class="kerdes 4/1" id="anat.183"><summary>parietalis és visceralis lemez közötti tér &#10140; neve? mi tölti ki? funkció?</summary><ul class="normal">
+ 		<li>cavum_pleurae</li>
+ 		<li>savós folyadék tölti ki &#10140; nem üreg, mert nincs benne gáz</li>
+ 		<li>légzésnél biztosítja, hogy a két lemez egymással szembeni lap szerinti elcsúszása súrlódásmentes legyen</li>
+	</ul></details>
+	<details class="sedrek 2/2" id="anat.184"><summary style="color:Magenta"><font color="Green">recessusok funkciója?</font></summary><ul class="normal">
+ 		<li>Ezekből megérthető a pleura leglényegesebb funkciós szerepe, ti. az, hogy a maximális kilégzési és belégzési állapot közötti nagy térfogatkülönbség igen jelentékeny alakváltozást okoz a mellüregben. Ehhez a tüdő szivacsszerű szövete könnyedén alkalmazkodik mindaddig, míg szabadon a szövetében levő minden irányban levő nyújthatóságának megfelelően tölti ki a mindenkor rendelkezésre álló teret. Ehhez szükséges a tüdő külső felszínének a mellkas belső felszínéhez viszonyított szabad elcsúszása. Érthető, hogy a zsigeri és a fali mellhártya részleges vagy teljes összenövése a tüdőnek ezt a szabad alkalmazkodását lerontja. Rendkívül rugalmas szövete során a tüdő ehhez, sőt még extrémebb változásokhoz is, képes alkalmazkodni (a tüdő szövete nagy részének légtelenedéséhez, eltávolításához stb.) a megmaradó szövetrészek kompenzáló kitágulásával, de ez már nem közömbös a tüdő szöveti elemeinek (rugalmas rostok) épsége és a kis vérkör szempontjából</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="anat.180"><summary>visceralis & parietalis lemez áthajlása "egymásba"?</summary><ul class="normal">
+		<img src="images/lig_pulmonale.png">
+		<li>hilus_pulmonis</li>
+		<li>lig.pulmonale</li>
+		<div>így a pleura_mediastinalis csak a hilus_pulmonis felett egységes (hisz a tüdőkapuban és alatta(lig.pulmonale) áthajlik a pleura_visceralisba)</div>
+	</ul></details>
+	<details class="sedrek 2/2" id="anat.175"><summary style="color:red;font-weight:bold;">recessusok felsorolása?</summary><ul class="normal">
+		<img style="max-width:45%" src="images/phrnclstls.png">
+		<div><span class="WHITE">1</span> recessus_costodiaphragmaticus <abbr title="sinus_phrenicocostalis">(=)</abbr></div>
+		<div><span class="WHITE">2</span> recessus_phrenicomediastinalis</div>
+		<div><span class="WHITE">3</span> recessus_costomediastinalis</div>
+	  <hr>
+		<li><span class="MISS">az a baj, ha elolvason ezt a szöveget, akkor rájövök, hogy rohadtul nem az, mint amit a képen ábrázoltam (de egyenlrőe nem írom át, mert előadásból van)</span> <img class="mini" src="images/rcsrcplsrns.png"></li>
+		<img style="max-width:45%" src="images/rajz_pulmo_topo.png">
+	</ul></details>
+	<details class="sedrek 2/4" id="anat.165"><summary style="color:red;font-weight:bold;"><span class="vocab">R</span> pulmo - topográfia,recessusok (ventral/dorsal/horizontal)?</summary><ul class="normal">
+		<div><font class="abbr"><span class="WHITE">1</span> ►</font> recessus_costodiaphragmaticus <abbr title="sinus_phrenicocostalis">(=)</abbr></div>
+		<div><font class="abbr"><span class="WHITE">2</span> ►</font> recessus_phrenicomediastinalis</div>
+		<div><font class="abbr"><span class="WHITE">3</span> ►</font> recessus_costomediastinalis</div>
+		<div><font class="abbr"><span class="WHITE">4</span> ►</font> pleura_viscerale</div>
+		<div><font class="abbr"><span class="WHITE">5</span> ►</font> pleura_parietale</div>
+		<div><font class="abbr"><span class="WHITE">6</span> ►</font> hilus_pulmonis</div>
+		<div><font class="abbr"><span class="WHITE">7</span> ►</font> cor</div>
+		<div><font class="abbr"><span class="WHITE">8</span> ►</font> sternum</div>
+		<div><font class="abbr"><span class="WHITE">9</span> ►</font> mediastinum_posterius</div>
+		<div><font class="abbr"><span class="WHITE">10</span> ►</font> scaleneus-sátor</div>
+		<div><font class="abbr"><span class="WHITE">11</span> ►</font> 4. bordaporc</div>
+		<div><font class="abbr"><span class="WHITE">12</span> ►</font> 6. bordaporc</div>
+		<li>mm.scalenei alkotta sátor burkolja lateralisan és felül</li>
+		<li>sátor medialis falát a lamina_prevertebralis(fascia_cervicalis) alkotja</li>
+		Forrás (Yokochi+Funkc) <img class="mini" src="images/srcplrktp.png">
+		<li><span class="MISS">az a baj, ha elolvason ezt a szöveget, akkor rájövök, hogy rohadtul nem az, mint amit a képen ábrázoltam (de egyenlrőe nem írom át, mert előadásból van)</span> <img class="mini" src="images/rcsrcplsrns.png"></li>
+		<li><span class="MISS">itt is ír valami ehhez kapcsolódót, de kicsit fáradt voltam és eléggé felbszott</span> <img class="mini" src="images/tőgrbmrng.png"></li>
+		<img src="images/rajz_pulmo_topo.png">
+	</ul></details>
+	<details class="sedrek 2/6" id="anat.166"><summary><span class="vocab">R</span> pulmo - saggital?</summary><ul class="normal">
+		<img src="images/rajz_pulmo_saggital.png">
+		<div><font class="abbr"><span class="WHITE">1</span> ►</font> a.pulmonalis</div>
+		<div><font class="abbr"><span class="WHITE">2</span> ►</font> vv.pulmonales</div>
+		<div><font class="abbr"><span class="WHITE">3</span> ►</font> bronchus principalis/lobaris</div>
+		<div><font class="abbr"><span class="WHITE">4</span> ►</font> fissura_horizontalis</div>
+		<div><font class="abbr"><span class="WHITE">5</span> ►</font> fissura_obliqua</div>
+		<div><font class="abbr"><span class="WHITE">6</span> ►</font> sulcus_aortae(arcus+descendens)</div>
+		<div><font class="abbr"><span class="WHITE">7</span> ►</font> sulcus v.brachiocephalica dextra/sinistra</div>
+		<div><font class="abbr"><span class="WHITE">8</span> ►</font> sulcus a.subclavia dextra/sinistra</div>
+		<div><font class="abbr"><span class="WHITE">9</span> ►</font> incissura_cardiaca</div>
+		<div><font class="abbr"><span class="WHITE">10</span> ►</font> impressio_cardiaca</div>
+		<div><font class="abbr"><span class="WHITE">11</span> ►</font> lobus_superior</div>
+		<div><font class="abbr"><span class="WHITE">12</span> ►</font> lobus_medius</div>
+		<div><font class="abbr"><span class="WHITE">13</span> ►</font> lobus_inferior</div>
+		<div><font class="abbr"><span class="WHITE">14</span> ►</font> hilus_pulmonis</div>
+		<div><font class="abbr"><span class="WHITE">15</span> ►</font> sulcus v.azygos</div>
+		<div><font class="abbr"><span class="WHITE">16</span> ►</font> sulcus v.cava_superior</div>
+		<div><font class="abbr"><span class="WHITE">17</span> ►</font> lig.pulmonale</div>
+	</ul></details>
  </div>
  <div><div class="title">egyéb</div>
 	<details><summary><font color="Gainsboro">&#9609;</font> mediastinum felosztás?</summary><ul class="normal">
@@ -1688,6 +1899,7 @@
 
 
 <!--//////////////////////////////////////-->  <div><div class="mainTitle">IV. félév</div>  <!--//////////////////////////////////////-->
+
 <!----><details open><summary class="phase">tájanatómia</summary>
  <div><div class="title">nyak</div>
 	<details class="open kerdes 2/3" id="anat.150"><summary><span class="important">IF</span> nyaki 3szögek</summary><ul class="normal">
@@ -1716,12 +1928,14 @@
 		<div><font class="abbr"><span class="WHITE">5</span> ►</font> spatium_retropharyngeum</div>
 		<div><font class="abbr"><span class="WHITE">6</span> ►</font> lamina_precvertebralis</div>
 		<div>Források <img class="mini" src="images/source_fscvrcls.png"></div>
+		<div>Minta <img class="mini" src="images/fsccrvlmnt.png"></div>
 	</ul></details>
 	<details class="open kerdes 2/2" id="anat.152"><summary><span class="dark"><span class="important">IF</span> spatium_retropharyngeum</span></summary><ul class="normal">
 		<img src="images/rajz_sptmrtrphfgnm.png">
 	</ul></details>
  </div>
 <!----></details>
+
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
 
 
@@ -1815,7 +2029,7 @@
 			<li>av.ilaca_interna &#10140; előtte megy</li>
 			<li>&#9794;ductus_defferens<abbr title="vas_deferens">=</abbr> / &#9792;lig.latum_uteri és ovarium &#10140; alattuk megy</li>
 		</ul>
-	  ––––––––––––––––––––––––––––––––––––––––––––––––
+	  <hr>
 		<div><font class="abbr">(1) ►</font> av.phrenica_inferior</div>
 		<div><font class="abbr"><span class="important">2</span> ►</font> glandula_suprarenalis</div>
 		<div><font class="abbr">(3) ►</font> a.suprarenalis_inferior & v.suprarenalis_dextra</div>

@@ -1,4 +1,5 @@
 ﻿
+
 /* FELADATOK
 	(-) Skip funkció
 	(-) jobbfelsőre klikkelve "úgy jelenjen ez meg, mint a kép" --> tehát 1 réteget tegyen rá az egészre --> mentse el, hogy álltam legutóbb, hogy refreshnél ne kelljen mindig újra klikkelni
@@ -192,7 +193,7 @@ var imgStatus
 var tooltipStatus
 document.body.onclick=function(){
 	if ( imgStatus == "hide" ) {
-		centerImage.style.visibility = "hidden"
+		centerDiv.style.visibility = "hidden"
 	}
 	imgStatus = "hide"
 
@@ -202,22 +203,26 @@ document.body.onclick=function(){
 for ( var i = 0;   i < imagesAll.length;   i++ ) {
 	imagesAll[i].onclick=function(){
 		imgStatus = "show"
-		centerImage.style.visibility = "visible";
+		centerDiv.style.visibility = "visible";
 		centerImage.src = this.src
-		centerImage.style.maxHeight = "100%";
-		centerImage.style.maxWidth = "100%";
-		centerImage.style.position = "fixed";
-		centerImage.style.display = "block";
-		centerImage.style.left = "0px";
-		centerImage.style.right = "0px";
-		centerImage.style.bottom = "0px";
-		centerImage.style.top = "0px";
-		centerImage.style.margin = "auto";
+		centerDiv.style.maxHeight = "95%";
+		centerDiv.style.maxWidth = "95%";
+		centerDiv.style.overflow = "auto";
+
+		centerDiv.style.position = "fixed";
+		centerDiv.style.left = "50%";
+		centerDiv.style.top = "50%";
+		centerDiv.style.transform = "translate(-50%, -50%)";
 	};
 }
+centerDiv = document.createElement("div")
+document.body.appendChild(centerDiv)
 centerImage = document.createElement("img")
-document.body.appendChild(centerImage)
-centerImage.style.visibility = "hidden";
+centerImage.style.maxWidth = "none";
+centerImage.style.float = "none";
+centerDiv.appendChild(centerImage)
+centerDiv.style.visibility = "hidden";
+centerDiv.style.border = "5px ridge LightGray";
 
 
 // download funkció (netről copyztam) --> Save LS-nél ezt hívja le (azért kellett, mert androidon máshogy nemtudom lementeni)
@@ -457,12 +462,43 @@ if ( document.title == "Anat" ) {
 document.getElementById("input_toggleAll").value = highestID
 
 
-function func_spanClick(element){
-	if ( element.style.borderColor == "limegreen" ) {
-		element.style.borderColor = "black"
+function func_DeleteFix(kerdes){
+	if (confirm('biztos törlöd? '+kerdes)) {
+		kerdes = kerdes.slice(0,kerdes.length-10);  // remove "_noteClear"
+		localStorage.removeItem(kerdes+'_note')
+		func_tableSkipFix()
+		func_SetTextOfSkipFixDiv("btn_fix")
+	}
+}
+
+function func_SetTextOfSkipFixDiv(SkipFix){
+	document.getElementById("div_SkipFix").innerHTML = ""
+	if ( SkipFix == "btn_fix" ) {
+		for ( var kerdes in table_fixNote ) {
+			if ( table_fixNote[kerdes] != false ) {
+				var text = document.getElementById("div_SkipFix").innerHTML
+				document.getElementById("div_SkipFix").innerHTML = text + "<br> &nbsp;•&nbsp;&nbsp;" + kerdes + " " + table_fixNote[kerdes] + " <input id='testID' class='fix' style='border: 3px solid black;' type='button' value='✖' onclick='func_DeleteFix(this.id)'>" + "<br>"
+				document.getElementById("testID").id = kerdes + "_noteClear"
+			}
+		}
+	}
+}
+
+
+function func_spanClick(button){
+	if ( document.getElementById("div_SkipFix").style.display == 'block' ) {
+		 document.getElementById("div_SkipFix").style.display = 'none';
+	} else {
+		 document.getElementById("div_SkipFix").style.display = 'block';
+	}
+
+	func_SetTextOfSkipFixDiv(button.id)
+
+	if ( button.style.borderColor == "limegreen" ) {
+		button.style.borderColor = "black"
 		//localStorage.setItem(element,false)
 	} else {
-		element.style.borderColor = "limegreen"
+		button.style.borderColor = "limegreen"
 		//localStorage.setItem(element,true)
 	}
 }
@@ -785,30 +821,36 @@ var elements = document.getElementsByClassName("kerdes")
 var table_fixNote = []
 //var table_StatusSkip = []
 var table_Status = []
-for ( var i = 0;   i < elements.length;   i++ ) {
-	var id = elements[i].id
-	var temaKerdes = 	document.getElementById(id).parentElement.parentElement.id
-	var fotema = 		document.getElementById(id).parentElement.parentElement.parentElement.id
-	//var cimTitle = id.slice(id.indexOf(".")+1)
-	
-	if ( localStorage.getItem(id+'_note') != "" && localStorage.getItem(id+'_note') != null ) {
-		table_fixNote[id] = true
-	} else {
-		table_fixNote[id] = false
-	}
-	//table_Status[id] = localStorage.getItem(id + "_fix")
-	//table_StatusSkip[id] = localStorage.getItem(id + "_skip")
-	if ( localStorage.getItem(id + "_skip") == "progress" ) {
-		kerdesID[fotema][temaKerdes][id] = false
-	} else {
-		kerdesID[fotema][temaKerdes][id] = true
+
+function func_tableSkipFix(){
+	table_fixNote = []
+	for ( var i = 0;   i < elements.length;   i++ ) {
+		var id = elements[i].id
+		var temaKerdes = 	document.getElementById(id).parentElement.parentElement.id
+		var fotema = 		document.getElementById(id).parentElement.parentElement.parentElement.id
+		//var cimTitle = id.slice(id.indexOf(".")+1)
+		
+		if ( localStorage.getItem(id+'_note') != "" && localStorage.getItem(id+'_note') != null ) {
+			table_fixNote[id] = localStorage.getItem(id+'_note')
+		} else {
+			table_fixNote[id] = false
+		}
+		//table_Status[id] = localStorage.getItem(id + "_fix")
+		//table_StatusSkip[id] = localStorage.getItem(id + "_skip")
+		if ( localStorage.getItem(id + "_skip") == "progress" ) {
+			kerdesID[fotema][temaKerdes][id] = false
+		} else {
+			kerdesID[fotema][temaKerdes][id] = true
+		}
 	}
 }
+func_tableSkipFix()
 
 function func_valFix(){
+	//table_fixNote = []
 	var x = 0
 	for ( var id in table_fixNote ) {
-		if ( table_fixNote[id] == true ) {
+		if ( table_fixNote[id] != false ) {
 			x = x+1
 		}
 	}
@@ -1045,27 +1087,6 @@ function koviKerdes(){
 	var priorType = 0
 	var checkValue = 0
 	
-	function func_checkStatus(status){
-		if ( priorKerdesID == "nincs" && document.getElementById("btn_"+status).style.borderColor == "limegreen" ) {
-			function func_priorStatus() {
-				var table_IDs = []
-				for ( var id in table_Status ) {
-					var fotema = document.getElementById(id).parentElement.parentElement.parentElement.parentElement.id
-					var temaKerdes = document.getElementById(id).parentElement.parentElement.parentElement.id
-					if ( table_Status[id] == status && localStorage.getItem(fotema+" / "+temaKerdes+"_button") == "true" ) {
-						table_IDs.push(id);
-					}
-				}
-				if ( table_IDs.length > 0 ) {
-					priorKerdesID = table_IDs[Math.floor(Math.random() * table_IDs.length)];
-				}
-			}
-			func_priorStatus();
-		}
-	}
-	func_checkStatus("progress")
-	func_checkStatus("fix")
-	//func_checkStatus("miss")
 	if ( priorKerdesID == "nincs" ) { // végignézi az összes kérdés priorját, és kiválasztja a legnagyobbat
 		for ( var fotema in kerdesID ) { 
 			for ( var temaKerdes in kerdesID[fotema] ) { 
@@ -1335,44 +1356,6 @@ function func_buttonSkip(){
 	}
 }
 
-
-// innentől
-function func_span(element,status){
-	var string = ""
-	for ( var id in table_Status ) {
-		if ( table_Status[id] == status ) {
-			string += id.slice(id.indexOf(".")+1) + ', '
-		}
-	}
-	element.title = string
-	func_showTooltip(element)
-	//alert(string)
-}
-document.getElementById("btn_fix").onmouseout = function() {
-	if ( tooltipStatus != "show" ) {
-		tooltipSpan.style.visibility = "hidden";
-	}
-}
-document.getElementById("btn_skip").onmouseout = function() {
-	if ( tooltipStatus != "show" ) {
-		tooltipSpan.style.visibility = "hidden";
-	}
-}
-document.getElementById("btn_progress").onmouseout = function() {
-	if ( tooltipStatus != "show" ) {
-		tooltipSpan.style.visibility = "hidden";
-	}
-}
-function func_spanSkip(){
-	var string = ""
-	for ( var id in table_StatusSkip ) {
-		if ( table_StatusSkip[id] == "true" ) {
-			string += id.slice(id.indexOf(".")+1) + ', '
-		}
-	}
-	alert(string)
-}
-// idáig
 
 func_calcOldNew();
 func_calcJegy()

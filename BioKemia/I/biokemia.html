@@ -7,14 +7,14 @@
 </head>
 
 
- <!-- onmouseover="func_span('miss');" -->
+<div id="div_SkipFix" style="background-color:white; overflow-y:scroll; overflow-x:scroll; width:80vh; height:60vh; position:fixed; top:50%; left:50%; margin-top:-30vh; margin-left:-40vh; border:10px solid black; display:none;"></div>
+
 <input onclick="toggleAll();" type="button" id="input_toggleAll" value="0" style="position:fixed; right: 0px;"><div id="quest" style="display:none;">
 	
 	<details><summary class="phase">tételek</summary><div id="container"></div></details>
 	<input type="file" id="fileinput" style="display:none;">
 	<input style="position:absolute; left:35%; top:1%;" type="button" value="load LS" onclick="document.getElementById('fileinput').click();">
 	<input style="position:absolute; left:50%; top:1%;" type="button" value="save LS" onclick="func_saveLS()">
-
 
 	<input type="button" class="white" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_newQuest" value="0">
 	<span class="vocab" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="cont_RepSlow"></span>
@@ -26,18 +26,15 @@
 	<span style="position:absolute; left:30%;">
 		<span style="border: 0px;" id="rank">&nbsp; &nbsp; &nbsp;</span> &nbsp;
 		<input style="border: 3px solid black;" id="btn_Note" onclick="toggleNote();" type="button" value="&#10045;"> &nbsp; &nbsp;
-		<select id="jegy"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; &nbsp;
-		<span id="pJegy">&nbsp; </span> &nbsp; &nbsp;
-		<input onclick="func_buttonFix();" type="button" id="buttonFix" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp;
+		<select id="jegy"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; 
+		<span class="white" id="pJegy">&nbsp; </span> &nbsp; &nbsp;
 		<input onclick="func_buttonSkip();" type="button" id="buttonSkip" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp; &nbsp; &nbsp;
 		<input onclick="koviKerdes();" type="button" value=" ► ">
 	</span>
 	<span style="position:absolute; right:0%;">
 		<span id="repeat" class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;">&nbsp; &nbsp; &nbsp;</span>
-		<input type="button" class="MISS" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'miss');" id="btn_miss" value="0">
-		<input type="button" class="FIX" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'fix');" id="btn_fix" value="0">
-		<input type="button" class="skip" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_spanSkip" id="btn_skip" value="0">
-		<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'progress')" id="btn_progress" value="0">
+		<input type="button" class="FIX" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_fix" value="0">
+		<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_skip" value="0">
 	</span>
 	<center><textarea style="display:none; position:fixed; left: 40%; top: 70%;" id="note" rows="4" cols="40"></textarea></center>
 	
@@ -45,7 +42,6 @@
 	<div id="kerdeslocation"></div>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
-
 
 szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt mondták)!
 <table style="border-collapse:separate; border-spacing:0px 0px;"><tr>
@@ -1546,6 +1542,98 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<img src="images/kfktkrk.png">
 	</ul></details>
  </div>
+ <div><div class="title">március 6</div>
+ </div>
+ <div><div class="title">március 13</div>
+  <ul class="normal">
+	<div style="float:right;max-width:30%">
+		<img src="images/kctsksm.png">
+		<img src="images/gtlstpsk.png">
+		<img src="images/kpmtovtgtl.png">
+		<img src="images/knmpmtovtgtl.png">
+		<img src="images/unkompetitiv.png">
+	</div>
+	<li>K<sub>M</sub> = Michaelis-konstans &#10140; az a szubsztrát-koncentráció [S], melyen a V = V<sub>max</sub>/2</li>
+	<li>specifitási_konstans &#10140; V<sub>max</sub>/K<sub>M</sub> <span title="ez nem teljesen igaz, mert elvileg k<sub>cat</sub>/K<sub>M</sub>, de nem jártam pontosabban utána (március 6 kéne hozzá)" class="MISS">(!?)</span></li>
+	<li>sebesség képlet képen <span title="dolgozzam ki érthetőbben" class="MISS">!?</span></li>
+	<li><abbr title="gátlószer">inhibitor</abbr> disszociációs konstansa = K<sub>i</sub> = [I][E] / [EI]</li>
+	<li>gátlás típusai &#10140; reverzibilis(inhibitort eltávolítva megszűnik a gátlás) / irreverzibilis(inhibitort eltávolítva nem szűnik meg a gátlás)</li>
+	<li><abbr title="A <sup>†</sup> szimbólum a Michaelis-Menten egyenletben szereplő paraméterek látszólagos (inhibitor mellett mért) jellegére utal">&#10045;</abbr></li>
+  <strong>reverzibilis</strong>
+	<li><span class="Important">következőképpen fogjam fel az inhibitor gátlását</span> &#10140; hozzákötődve az enzimhez, gátolja annak <abbr title="tehát, ha E-hez kötődik, akkor a szubsztráthoz való affinitását, ha ES-hez akkor a disszociációját illetve aktivitását. (átalakulást írtam inkább, mert az aktivitás nem tökéletes, hisz azt ES-nél illetve irreverzibilis gátlásnál csinálja)">"átalakulását"</abbr> <img class="mini" src="images/nkzmkntgtls.png"></li><ul>
+		<li>ha tehát a sima enzimhez kapcsolódik hozzá, akkor a k1 fog csökkenni</li>
+		<li>ha tehát az enzim-szubsztráthoz kapcsolódik hozzá, akkor a k2 és k-1 fog csökkenni</li>
+		<div>ezt jegyezzem meg, mert ebből már letudom vezetni gondolatban, hogy K<sub>M</sub> és V<sub>max</sub> csökkenni vagy nőni főg-e!</div>
+	</ul>
+	<li>reverzibilis gátlás típusai &#10140; kompetitív, unkompetitív, kevert, non-kompetitív</li>
+	<hr><li>kompetitív</li><ul>
+		<li>inhibitor az enzim aktív_centrumába kötődve elfoglalja a szubsztrát helyét</li>
+		<li>(van olyan is ami nem aktív_centrumba kötődik, hanem csak csökkenti az enzim affinitását csökkenti a szubsztráthoz <abbr title="ugye mindkét esetben k1-et csökkenti, de ha aktív_centrumba kötődve 100%ban gátolja, akkor az aktivitás-csökkentő képen, nem lenne az a ferde szaggatot(jobbrafel-mutató) nyíl az enzim-szubsztrát komplexhez ívelve (k1 csökken)">&#10045;</abbr>) <img class="mini" src="images/ktvnmktvcntrm.png"></li>
+		<li>ha a szubsztrát-koncentrációt magasra emelem, a gátlás megszűntethető &#10140; V<sub>max</sub> nem változik</li>
+		<li>K<sub>M</sub> nő, hisz nő az a szubsztrát-koncentráció érték, melynél a V=V<sub>max</sub>/2</li><ul>
+			<li>K<sub>M</sub><sup>†</sup> = K<sub>M</sub> × &alpha;</li>
+		</ul>
+		<li>&alpha; = 1 + [I] / <abbr title="kompetitív(c) inhibitor(i) disszociációs_konstans(K)">K<sub>ic</sub></abbr></li>
+		<li>kompetitív inhibitorok csak olyan szubsztrátkoncentráció-tartományban hatékonyak, ahol a specificitási állandó határozza meg az enzim hatékonyságát &#10140; azaz K<sub>M</sub> alatt</li>
+	</ul>
+	<li>unkompetitív</li><ul>
+		<li>&alpha; = 1 + [I] / <abbr title="unkompetitív(c) inhibitor(i) disszociációs_konstans(K)">K<sub>iu</sub></abbr></li>
+		<li>unkompetitív inhibitorok csak olyan szubsztrátkoncentráció-tartományban hatékonyak, ahol a <abbr title="k<sub>cat</sub>">katalitikus állandó</abbr> (vagyis a Vmax) határozza meg az enzim hatékonyságát (telítéshez közeli szubsztrátkoncentrációk) <div class="mirror">&#10140;</div> hisz a szubsztrátkoncentráció emelésével az enzim egyre nagyobb arányban kerül gátolt állapotba, hiszen egyre több az ES komplex, amihez kötődik az unkompetitív inhibitor&#10140; szubsztrát-koncentrációt emelésével a gátlás nem csökken, mint kompetitívnél, hanem fokozódik</li>
+	</ul>
+	<li>kevert <abbr title="leggyakoribb">()</abbr></li><ul>
+		<li>inhibitor E-hez és ES-hez is képes kötődni, és mindkettő aktivitását csökkenti</li>
+		<li>tehát ezt az unkompetitív és kompetitívből kell összeraknom &#10140; az előbbi kettőt kell egybevennem, vagyis pl. itt a K<sub>M</sub> egyrészt nő a kompetitív részről, másrészt csökken az unkompetitív részről &#10140; hogy az eredő K<sub>M</sub> nő-e vagy csökken az az &alpha;<sub>c</sub> és &alpha;<sub>u</sub> arányától függ <abbr title="ami egyébként csak a Kiu és Kic-től függ, mert [I] ugyanannyi mindkettőnél">&#10045;</abbr></li>
+	</ul>
+	<li>non-kompetitív <abbr title="ez leginkább csak elméletben létezik">()</abbr> &#10140; olyan kevert, mikor K<sub>ic</sub> = K<sub>iu</sub> &#10140; &alpha;<sub>c</sub> = &alpha;<sub>u</sub> &#10140; K<sub>M</sub> nem változik</li>
+	<hr><li>táblázatot hogy rakjam össze fejben</li><ul>
+		<li>először a kompetitív és unkompetitívet kell kidolgoznom a következőképp</li>
+		<li>tudjam, hogy kompetitív és unkompetitív esetében </li>
+		<li>annyit kell tudnom, hogy az inhibitor mindig úgy gátol, hogy csökkenti annak aktivitását amihez kötődik &#10140; tehát kompetitív esetében k1 csökken, unkompetitív esetében k-1 és k2 csökken</li>
+		<li>tudjam, hogy a <span class="Important">gátlás mértéke</span> <abbr title="kompetitív és unkompetitív esetében">mindig</abbr>: <img class="mini" src="images/knstngtls.png"> &#10140; tehát K<sub>M</sub> vagy V<sub>max</sub> ennyiszeresére nő, vagy ennyied részére csökken</li>
+		<li>ezenkívül tudjam a K<sub>M</sub>=(k-1+k2)/k1 és V<sub>max</sub>=k2*[E] képletet</li>
+		<li>tehát kompetitív esetében k1 csökken &#10140; ebből tudom, hogy K<sub>M</sub> nő, és V<sub>max</sub> nem változik (unkompetitívnél ugyanezen logika alapján)</li>
+		<li>kevertet &#10140; tudjam hogy "kevert=kompetitív+unkompetitív" &#10140; azokból rakjam össze</li>
+		<li>non-kompetitívről pedig annyit tudjak, hogy az a kevert, ahol &alpha;<sub>c</sub> = &alpha;<sub>u</sub></li>
+	</ul>
+	<table>
+		<tr><th></th>  <th>kompetitív</th>  <th>unkompetitív</th>  <th>kevert</th>  <th>non-kompetitív</th></tr>
+		
+		<tr><th><abbr title="inhibitor">i</abbr> hova kötődhet</th>
+			<td>csak az enzimhez</td>
+			<td>csak az enzim-szubsztrát komplexhez</td>
+			<td colspan="2">enzimhez & enzim-szubsztrát komplexhez is</td>
+		</tr>
+		<tr><th>k<sub> -1</sub> & k<sub>1</sub> & k<sub>2</sub></th>
+			<td>k<sub>1</sub> csökken</td>
+			<td>k<sub> -1</sub> & k<sub>2</sub> csökken</td>
+			<td colspan="2">mindhárom csökken</td>
+		</tr>
+		<tr><th>K<sub>M</sub></th>
+			<td>nő, K<sub>M</sub><sup>†</sup> = K<sub>M</sub> × &alpha;</td>
+			<td>csökken, K<sub>M</sub><sup>†</sup> = K<sub>M</sub> / &alpha;</td>
+			<td>nő vagy csökken, K<sub>M</sub><sup>†</sup> = K<sub>M</sub>*&alpha;<sub>c</sub> / &alpha;<sub>u</sub></td>
+			<td>nem változik</td>
+		</tr>
+		<tr><th>V<sub>M</sub></th>
+			<td>nem változik</td>
+			<td>csökken, V<sub>max</sub><sup>†</sup> = V<sub>M</sub> / &alpha;</td>
+			<td>csökken, V<sub>max</sub><sup>†</sup> = V<sub>M</sub> / &alpha;<sub>u</sub></td>
+			<td>csökken, V<sub>max</sub><sup>†</sup> = V<sub>M</sub> / &alpha;<sub>u</sub></td>
+		</tr>
+		<tr><th>specifitási_konstans</th>
+			<td>csökken, <abbr title="tehát ennyivel kell beszorozni a kezdetit (hisz s.k. = V<sub>max</sub>/K<sub>M</sub>)">1/&alpha;-ad részére</abbr></td>
+			<td>nem változik</td>
+			<td>csökken, 1/&alpha;<sub>c</sub>-ad részére</td>
+			<td>csökken, 1/&alpha;<sub>u</sub>-ad részére</td>
+		</tr>
+	</table>
+  <hr><strong>irreverzibilis</strong>
+	<img src="images/evsszstkb.png">
+	<li>általában kovalensen módosítják az enzim esszenciális funkciós csoportját <abbr title="és utána már hiába távolítjuk el az inhibitort, a gátlás megmarad">()</abbr></li>
+	<li>tehát az inhibitor hozzákötődve az enzimhez, egy inaktív_enzimet (E') <abbr title="vagy kevésbé aktív">()</abbr> hoz létre</li>
+	<li><span class="MISS">..kihagytam 2-3 dolgot..</span></li>
+  </ul>
+ </div>
 <!----></details>
 
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
@@ -1995,6 +2083,11 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	</ul></details>
 <!----></div></details>
 
+<!----><details><summary class="phase">8. "enzim" számítások</summary><div><div class="title"></div>
+	<li>1.feladat megoldás <img class="mini" src="images/mgld_1.png"></li>
+	<li>2.feladat megoldás <img class="mini" src="images/mgld_2.png"></li>
+	<li>3.feladat megoldás <img class="mini" src="images/mgld_3a.png"> <img class="mini" src="images/mgld_3b.png"></li>
+<!----></div></details>
 
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
 

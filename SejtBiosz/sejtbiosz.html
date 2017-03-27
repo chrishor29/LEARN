@@ -6,14 +6,14 @@
 	<style>*{line-height: 130%;}</style>
 </head>
 
- <!-- onmouseover="func_span('miss');" -->
+<div id="div_SkipFix" style="background-color:white; overflow-y:scroll; overflow-x:scroll; width:80vh; height:60vh; position:fixed; top:50%; left:50%; margin-top:-30vh; margin-left:-40vh; border:10px solid black; display:none;"></div>
+
 <input onclick="toggleAll();" type="button" id="input_toggleAll" value="0" style="position:fixed; right: 0px;"><div id="quest" style="display:none;">
 	
 	<details><summary class="phase">tételek</summary><div id="container"></div></details>
 	<input type="file" id="fileinput" style="display:none;">
 	<input style="position:absolute; left:35%; top:1%;" type="button" value="load LS" onclick="document.getElementById('fileinput').click();">
 	<input style="position:absolute; left:50%; top:1%;" type="button" value="save LS" onclick="func_saveLS()">
-
 
 	<input type="button" class="white" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_newQuest" value="0">
 	<span class="vocab" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="cont_RepSlow"></span>
@@ -32,9 +32,8 @@
 	</span>
 	<span style="position:absolute; right:0%;">
 		<span id="repeat" class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;">&nbsp; &nbsp; &nbsp;</span>
-		<input type="button" class="FIX" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'fix');" id="btn_fix" value="0">
-		<input type="button" class="skip" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_spanSkip" id="btn_skip" value="0">
-		<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'progress')" id="btn_progress" value="0">
+		<input type="button" class="FIX" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_fix" value="0">
+		<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_skip" value="0">
 	</span>
 	<center><textarea style="display:none; position:fixed; left: 40%; top: 70%;" id="note" rows="4" cols="40"></textarea></center>
 	
@@ -107,38 +106,34 @@
 <!--//////////////////////////////////////-->  <div><div class="mainTitle">I.demonstráció</div>  <!--//////////////////////////////////////-->
 
 <!----><details><summary class="phase">#1 A pro- és eukarióta sejtek összehasonlítása: a kompartmentáció jelentősége és a legfontosabb sejtorganellumok .szerepe</summary><div><div class="title"> </div>
-	<details class="kerdes 5/10" id="msb.100"><summary><strong>A pro- és eukarióta sejtek összehasonlítása: a kompartmentáció jelentősége</strong> és a legfontosabb sejtorganellumok szerepe</summary><ul class="normal">
-		<br><details><summary>szerveződési szint</summary><ul class="normal">
-			<li>prokariótákból evolúció során úgy lett eukarióta, hogy membránnal körülhatárolt kompartimentumok jöttek bennük létre</li>
-			<li>ezért az eukarióta eggyel magasabb szerveződési szintű</li>
-			<li>ugyanis a membránok biztosítanak térben és időben differenciált működést</li>
-		</ul></details>
-		<br><details><summary>kompartimentáció "funkcionális" szemléltetése?</summary><ul class="normal">
-			<div>"céhek(prokarióta) vs. manufaktúra(eukarióta)" példáján jól bemutatható</div>
-			<li>céhek esetében egy ember<abbr title="nincs organellum">()</abbr> végezte az egész feladatot (kivágja a fát, kifaragja, lefesti és árusítja a széket)</li>
-			<li>manufaktúra esetében csak egy szakaszát végzi egy ember(organellum) (van aki csak a fát vágja ki, van aki csak kifaragja stb.)</li>
-		</ul></details>
-		<br><details><summary>kompartimentáció előnyei?</summary><ul class="normal">
-			<li>a többi organellumra veszélyes anyagok,reakciók elkülönítése &#10140; pl. peroxiszóma: H<sub>2</sub>O<sub>2</sub>-termelés és –lebontás</li>
-			<li><abbr title="kis térfogatban(sejtorganellum) van n mennyiségű anyag, akkor nagyobb a koncentrációja, mintha az egész sejtben oszlana szét &#10140; enzimreakcióhoz szükséges (pl. ha magas a K<sub>M</sub>)">magas lokális szubsztrátkoncentrációk</abbr>, hatékony enzimreakciók (sorozatreakciók: pl. mitokondriális légzési lánc)</li>
-		</ul></details>
-		<br><details><summary>membránok csoportosítása</summary><ul class="normal">
-			<li>plazmamembrán</li>
-			<li>intracelluláris membránok</li><ul>
-				<li>mitokondrium</li>
-				<li>endomembránrendszer</li><ul>
-					<li>magmembrán és ER egymás folytatása</li>
-					<li>vezikuláris transzport ER és Golgi között</li><ul>
-						<li>anterográd(ER&#10140;G)</li>
-						<li>retrográd(G&#10140;ER)</li>
-					</ul>
-					<li>peroxiszóma és lizoszóma membránja az ER-ből származik <abbr title="gondolom nem evolúciós eredetét tekintve, hanem amikor létrejön, akkor az ER-ből kiválik">!!</abbr></li>
+	<details class="kerdes 4/9" id="msb.100"><summary><strong>A pro- és eukarióta sejtek összehasonlítása: a kompartmentáció jelentősége</strong> és a legfontosabb sejtorganellumok szerepe</summary><ul class="normal">
+	  <strong>szerveződési szint</strong>
+		<li>prokariótákból evolúció során úgy lett eukarióta, hogy membránnal körülhatárolt kompartimentumok jöttek bennük létre</li>
+		<li>ezért az eukarióta eggyel magasabb szerveződési szintű</li>
+		<li>ugyanis a membránok biztosítanak térben és időben differenciált működést</li>
+	  <strong>kompartimentáció "funkcionális" szemléltetése</strong>
+		<div>"céhek(prokarióta) vs. manufaktúra(eukarióta)" példáján jól bemutatható</div>
+		<li>céhek esetében egy ember<abbr title="nincs organellum">()</abbr> végezte az egész feladatot (kivágja a fát, kifaragja, lefesti és árusítja a széket)</li>
+		<li>manufaktúra esetében csak egy szakaszát végzi egy ember(organellum) (van aki csak a fát vágja ki, van aki csak kifaragja stb.)</li>
+	  <strong>kompartimentáció előnyei</strong>
+		<li>a többi organellumra veszélyes anyagok,reakciók elkülönítése &#10140; pl. peroxiszóma: H<sub>2</sub>O<sub>2</sub>-termelés és –lebontás</li>
+		<li><abbr title="kis térfogatban(sejtorganellum) van n mennyiségű anyag, akkor nagyobb a koncentrációja, mintha az egész sejtben oszlana szét &#10140; enzimreakcióhoz szükséges (pl. ha magas a K<sub>M</sub>)">magas lokális szubsztrátkoncentrációk</abbr>, hatékony enzimreakciók (sorozatreakciók: pl. mitokondriális légzési lánc)</li>
+	  <strong>membránok</strong>
+		<li>plazmamembrán</li>
+		<li>intracelluláris membránok</li><ul>
+			<li>mitokondrium</li>
+			<li>endomembránrendszer</li><ul>
+				<li>magmembrán és ER egymás folytatása</li>
+				<li>vezikuláris transzport ER és Golgi között</li><ul>
+					<li>anterográd(ER&#10140;G)</li>
+					<li>retrográd(G&#10140;ER)</li>
 				</ul>
+				<li>peroxiszóma és lizoszóma membránja az ER-ből származik <abbr title="gondolom nem evolúciós eredetét tekintve, hanem amikor létrejön, akkor az ER-ből kiválik">!!</abbr></li>
 			</ul>
-			<img src="images/ndplzmrndmsnd.png">
-		</ul></details>
+		</ul>
+		<img src="images/ndplzmrndmsnd.png">
 	</ul></details>
-	<br><details class="kerdes 5/15" id="msb.101"><summary>A pro- és eukarióta sejtek összehasonlítása: a kompartmentáció jelentősége és a <strong>legfontosabb sejtorganellumok szerepe</strong></summary><ul class="normal">
+	<details class="kerdes 4/15" id="msb.101"><summary>A pro- és eukarióta sejtek összehasonlítása: a kompartmentáció jelentősége és a <strong>legfontosabb sejtorganellumok szerepe</strong></summary><ul class="normal">
 		<br><details><summary>sejtorganellumok felsorolása?(6)</summary><ul class="normal">
 			<li>sejtmag</li>
 			<li>mitokondrium</li>
@@ -443,138 +438,114 @@
 <!----></div></details>
 
 <!----><details><summary class="phase">#3 A génállomány kondenzációja pro- és eukarióta sejtekben. A topoizomerázok és a kromatinfehérjék szerepe.</summary><div><div class="title"> </div>
-	<details class="kerdes 4/15" id="msb.140"><summary><strong>prokarióták</strong></summary><ul class="normal">
-		<li><font class="abbr">génállomány kondenzációjának oka ►</font>  alapvetően nem férne bele a sejtbe ("kör" jóval nagyobb mint a sejt)</li>
-		<details><summary>a két szerkezet neve?</summary><ul class="normal">
-			<li>#1 DNS-kötő fehérjék "összegyűrik" &#10140; <strong>hurokszerkezet</strong></li>
-			<li>#2 szuperspiralizációval létrejön a <strong>szuperhélix-szerkezet</strong></li>
+	<details class="kerdes 4/13" id="msb.140"><summary>A génállomány kondenzációja <strong>pro</strong>- és eu<strong>karióta</strong> sejtekben. A topoizomerázok és a kromatinfehérjék szerepe</summary><ul class="normal">
+		<div style="float:right;max-width:30%">
 			<img src="images/bkrmkdnhszprblm.png">
-		</ul></details>
-		<br><details><summary>szuperspiralizáció &#10140; mik végzik? lényege?</summary><ul class="normal">
-			<br><details><summary>mik végzik?</summary><ul class="normal">
-				<li>topoizomerázok(enzimek) végzik</li>
-			</ul></details>
-			<br><details><summary>típusai és lényegük?</summary><ul class="normal">
-				<div>lehet pozitív vagy negatív</div>
-				<li>pozitív &#10140; jobbmenetest jobbra <abbr title="tehát a kört felszakítom, tekerem tovább a kettős hélixet, majd visszazárom">csavarok</abbr> &#10140; nő a linking_number = <abbr title="tehát ha simán egy szál lenne a DNS pl, és 80bp-ól állna, akkor egy fordulat ugye 10bp (hisz 36°), tehát LK=8 lenne. Ha cirkuláris akkoris ugyanez van">fordulatszáma a kettős_hélixnek</abbr></li>
-				<li>negatív &#10140; jobbmenetest balra <abbr title="tehát a kört felszakítom, tekerem le a kettős hélixet, majd visszazárom">csavarok</abbr> &#10140; csökken a linking_number</li>
-				<div>mindkét esetben amennyivel változott az LK, annyiszor(W) fog egymás köré csavarodni utána a DNS kettős-hélix &#10140; tehát "annyiszor tekeredő" szuperhélix jön létre, és <abbr title="hisz a képen látható jobbmenetest, még 2x jobbra tekerve, egy 2x tekeredő balmenetes szuperhélixet kaptam">pont az ellentétes menetirányba</abbr> (tehát az "összfordulatszám" nem változik)</div>
-				<img src="images/sprhlxszrk.png">
-			</ul></details>
-			<br><details><summary>energetikailag milyen?</summary><ul class="normal">
-				<li>mindkét esetben nő az energiaszintje (ATP igényes a folyamat!)</li>
-			</ul></details>
-			<br><details><summary>pozitív és negatív következménye?</summary><ul class="normal">
-				<li>pozitív &#10140; silencel (heterokromatinizál)</li>
-				<li>negatív &#10140; replikáció & transzkripcióhoz előtt kell, hogy mikor helikáz szétnyitja a 2 szálat, akkor kevésbé alakuljon pozitívvá</li>
-			</ul></details>
-			––––––––––––––––––––––––––––––––––––––––––––––––––
-			<li>1:55-től kezdődik amit érdemes megnézni (kb.1perc): https://www.youtube.com/watch?v=HyP0cEbqKTc</li>
-			<li>itt igen jól le van írva de 30perc mire megértem, és annyira nem kell egyenlőre tudni http://www.tankonyvtar.hu/hu/tartalom/tamop412A/2011-0073_biokemia_molekularis_biologia_alapjai/ch12s03.html</li>
+			<img src="images/sprhlxszrk.png">
 			<img src="images/szprhlxszrk.png">
-		</ul></details>
-		<br><details><summary>topoizomeráz I & II &#10140; mik? funkciója?</summary><ul class="normal">
-			<li>enzimek</li>
-			<li>I funkció &#10140; pozitív szuperhélixet visszaállítja relaxált állapotba <abbr title="lásd 134es kérdés videója">(ez 1szálat vág el a csavarásnál)</abbr></li>
-			<li>II funkció &#10140; relaxáltból negatív szuperhélixet állapotba állítja (ez 2 szálat vág el a csavarásnál)</li>
-			<details><summary>melyik igényel ATP-t?</summary><ul class="normal">
-				<li>topoizomeráz II</li>
-			</ul></details>
-			<details><summary>miért elég 1szálat elvágni az I-esnek?</summary><ul class="normal">
-				<li>hiszen pozitív szuperhélix állapotban van, tehát energiaszintje magas</li>
-				<li>(ezért ha az egyik szál meg van fogva, és a másikat elvágja, akkor az utóbbi "visszapörög normál helyzetbe") <abbr title="kéne valami 10seces videó róla, mert elég egyszerű lenne azzal megérteni, így meg xarul van érzékeltetve eléggé (mire megfejtem ezeket...) :S">&#10045;</abbr></li>
-				<li>&#10140; ennek működése nem igényel ATP-t</li>
-			</ul></details>
-			<details><summary><span class="Important">topoizomeráz I működésére mikor van szükség?</span></summary><ul class="normal">
-				<li>replikációnál, mikor a helikáz bontja a H-kötéseket a bp-k között, akkor elkezd szétnyílni a lánc</li>
-				<li>azonban a még szét nem nyílt kettős hélix ennek következtében pozitív szuperspiralizációt szenved el</li>
-				<li>ezt kell kordában tartania</li>
-			</ul></details>
-			<details><summary>topoizomeráz II funkció?</summary><ul class="normal">
-				<li>replikáció előtt negatív szuperhélixet csinál &#10140; helikázok mikor szétnyitják a láncot, kevésbé  fog túltekeredeni, tehát kevésbé lesz pozitív szuperhélix állapotú (I-nek "kevesebbet kelljen majd dolgoznia")</li>
-			</ul></details>
-		</ul></details>
-		<br><details><summary>topoizomeráz I orvosi jelentősége?</summary><ul class="normal">
-			<li>gyógyszerrel kilőve, gátolható a baktériumok osztódása</li>
-		</ul></details>
-		<br><details><summary>topoizomeráz II szinonima baktériumoknál?</summary><ul class="normal">
-			<li>bakteriális giráz</li>
-		</ul></details>
+		</div>
+		<li>génállomány kondenzációjának oka, hogy  alapvetően nem férne bele a sejtbe ("kör" jóval nagyobb mint a sejt)</li>
+	  <strong>két szerkezet</strong>
+		<li>#1 DNS-kötő fehérjék "összegyűrik" &#10140; <strong>hurokszerkezet</strong></li>
+		<li>#2 szuperspiralizációval létrejön a <strong>szuperhélix-szerkezet</strong></li>
+	  <hr><strong>szuperspiralizáció</strong>
+		<li>topoizomerázok(enzimek) végzik</li>
+		<li>típusai és lényegük</li><ul>
+			<li>pozitív &#10140; jobbmenetest jobbra <abbr title="tehát a kört felszakítom, tekerem tovább a kettős hélixet, majd visszazárom">csavarok</abbr> &#10140; nő a linking_number = <abbr title="tehát ha simán egy szál lenne a DNS pl, és 80bp-ól állna, akkor egy fordulat ugye 10bp (hisz 36°), tehát LK=8 lenne. Ha cirkuláris akkoris ugyanez van">fordulatszáma a kettős_hélixnek</abbr></li>
+			<li>negatív &#10140; jobbmenetest balra <abbr title="tehát a kört felszakítom, tekerem le a kettős hélixet, majd visszazárom">csavarok</abbr> &#10140; csökken a linking_number</li>
+			<div>mindkét esetben amennyivel változott az LK, annyiszor(W) fog egymás köré csavarodni utána a DNS kettős-hélix &#10140; tehát "annyiszor tekeredő" szuperhélix jön létre, és <abbr title="hisz a képen látható jobbmenetest, még 2x jobbra tekerve, egy 2x tekeredő balmenetes szuperhélixet kaptam">pont az ellentétes menetirányba</abbr> (tehát az "összfordulatszám" nem változik)</div>
+		</ul>
+		<li>mindkét esetben nő az energiaszintje (ATP igényes a folyamat!)</li>
+		<li>pozitív és negatív következménye</li><ul>
+			<li>pozitív &#10140; silencel (heterokromatinizál)</li>
+			<li>negatív &#10140; replikáció & transzkripcióhoz előtt kell, hogy mikor helikáz szétnyitja a 2 szálat, akkor kevésbé alakuljon pozitívvá</li>
+		</ul>
+		--------
+		<li>1:55-től kezdődik amit érdemes megnézni (kb.1perc): https://www.youtube.com/watch?v=HyP0cEbqKTc</li>
+		<li>itt igen jól le van írva de 30perc mire megértem, és annyira nem kell tudni http://www.tankonyvtar.hu/hu/tartalom/tamop412A/2011-0073_biokemia_molekularis_biologia_alapjai/ch12s03.html</li>
+	  <hr><strong>topoizomerázok</strong>
+		<li>enzimek</li>
+		<li>I funkció</abbr></li><ul>
+			<li>pozitív szuperhélixet visszaállítja relaxált állapotba <abbr title="lásd 134es kérdés videója">(ez 1szálat vág el a csavarásnál)</li>
+			<li>működésére replikációnál szükséges &#10140; replikációnál, mikor a helikáz bontja a H-kötéseket a bp-k között, akkor elkezd szétnyílni a lánc &#10140; azonban a még szét nem nyílt kettős hélix ennek következtében pozitív szuperspiralizációt szenved el&#10140; ezt kell kordában tartania</li>
+		</ul>
+		<li>II funkció</li><ul>
+			<li>relaxáltból negatív szuperhélixet állapotba állítja (ez 2 szálat vág el a csavarásnál)</li>
+			<li>replikáció előtt negatív szuperhélixet csinál &#10140; helikázok mikor szétnyitják a láncot, kevésbé  fog túltekeredeni, tehát kevésbé lesz pozitív szuperhélix állapotú (I-nek "kevesebbet kelljen majd dolgoznia")</li>
+		</ul>
+		<li>topoizomeráz II működése ATP igényes (I-é nem)</li>
+		<li>topoizomeráz Inek elég egy szálat elvágnia</li><ul>
+			<li>hiszen pozitív szuperhélix állapotban van, tehát energiaszintje magas</li>
+			<li>(ezért ha az egyik szál meg van fogva, és a másikat elvágja, akkor az utóbbi "visszapörög normál helyzetbe") <abbr title="kéne valami 10seces videó róla, mert elég egyszerű lenne azzal megérteni, így meg xarul van érzékeltetve eléggé (mire megfejtem ezeket...) :S">&#10045;</abbr></li>
+			<li>&#10140; ennek működése nem igényel ATP-t</li>
+		</ul>
+		<li>topoizomeráz I gyógyszerrel kilőve, gátolható a baktériumok osztódása</li>
+		<li>topoizomeráz II szinonimája a bakteriális_giráz</li>
 	</ul></details>
-	<br><details class="kerdes 4/20" id="msb.141"><summary><strong>eukarióták</strong></summary><ul class="normal">
-		<br><details><summary>génállomány kondenzációjának oka?</summary><ul class="normal">
-			<li>alapvetően nem férne bele a sejtbe &#10140; haploid genom(23db DNS) hossza 2m hosszú</li>
-			<li>emelett az aktív géneket lefűzött állapotban kell tartani, amely gének "fölösek", azokat heterokromatin formában</li>
-		</ul></details>
-		<br><details><summary>kromatin mi?</summary><ul class="normal">
-			<li>interfázisos (sejtciklusban) kromoszóma &#10140; DNS + hozzá kapcsolódó fehérjék</li>
-		</ul></details>
-		<br><details><summary>kromoszóma alapegységének neve?</summary><ul class="normal">
-			<li>nukleoszóma</li>
-			<div><span class="white">§</span> eukromatin esetében <abbr title="heterokromatin pedig mégjobban feltekeredett állapotban van">is</abbr> már nukleoszómára tekeredett a DNS! &#10140; tehát kromatin alapegysége is</div>
-		</ul></details>
-		<br><details><summary>DNS szerveződési szintjei(6) &#10140; átmérővel illetve "eu/heterokromatin besorolással"?</summary><ul class="normal">
+	<details class="kerdes 4/16" id="msb.141"><summary>A génállomány kondenzációja pro- és <strong>eukarióta</strong> sejtekben. A topoizomerázok és a kromatinfehérjék szerepe</summary><ul class="normal">
+		<div style="float:right;max-width:20%">
 			<img src="images/sdnszrsznt.png">
-			<li>DNS kettős-hélix 2nm</li>
-			<li>nukleoszóma 11nm</li>
-			<li>szolenoid szál 30nm</li>
-			<li>radiális hurok 300nm &#10140; ez még lehet eukromatin</li>
-			<li>kromatinrost 700nm &#10140; ez már heterokromatin</li>
-			<li>kromoszóma 1400nm &#10140; ezt csak osztódásnál veszi fel</li>
-		</ul></details>
-		<br><details><summary>nukleoszóma szerkezete?</summary><ul class="normal">
-			<li>2*4db core hiszton alkotja a nukleoszómát &#10140; <span class="WHITE">H<sub>2A</sub></span> <span class="WHITE">H<sub>2B</sub></span> <span class="WHITE">H<sub>3</sub></span> <span class="WHITE">H<sub>4</sub></span></li>
-			<li><font class="abbr">egy nukleoszómára a DNS 2x feltekeredik &#10140; mi tartja ott? ►</font> "core" hisztonok Lys és Arg gazdagok &#10140; pozitív töltésűek &#10140; DNS negatív töltésű, és így tekeredik rá</li>
-			<li>DNS 2 régiója</li><ul>
-				<li>linker régió &#10140; ~60 bázispár hosszú</li>
-				<li>nukleoszómán lévő rész &#10140; ~146-147 bázispár hosszú</li>
-			</ul>
 			<img src="images/3_nukleoszoma.png">
-		</ul></details>
-		<br><details><summary>szolenoid tekercs lényege?</summary><ul class="normal">
-			<li><span class="WHITE">H1</span> és egyéb nem hiszton fehérjék húzzák egymáshoz közel a nukleoszómákat</li>
-			<li>így a nukleoszómák spirálisan egymás köré tekerednek (pl. a képen látható jobbmenetes)</li>
-			<li>6 nukleoszóma / 1 teljes fordulat</li>
-			<li>átmérője 30nm</li>
 			<img src="images/szolenoid.png">
-		</ul></details>
-		<br><details><summary>spiralizációk "száma"?</summary><ul class="normal">
-			<li>1.) kettős hélix</li>
-			<li>2.) egy nukleoszómára a DNS 2x feltekeredik</li>
-			<li>3.) szolenoid tekercs &#10140; nukleoszómák spiralizációja</li>
-			<img src="images/szolenoid.png">
-		</ul></details>
-		<br><details><summary>radiális hurok lényege?</summary><ul class="normal">
-			<li>nukleáris laminához kapcsolódnak a szolenoid szál egyes (CCCTC szekvenciás) részei</li>
-			<li>a CTCF nevú fehérje kapcsolja hozzá a szekvenciát a lamin-hoz</li>
-			<li><abbr title="matrix/scaffolt attached region">MAR = SAR</abbr> &#10140; szolenoid szál azon része ami nukleáris laminához kapcsolódik</li>
-			<li>lamina_fibrosa<abbr title="nukleáris lamina">(=)</abbr> &#10140; sejtmag belső membránjához kapcsoltan helyezkedik el, lamin A/B/C fehérjék alkotják <img class="mini" src="images/lmnfbvrs.png"></li>
-			<li><span class="Important">szolenoid szál...</span></li><ul>
-				<li>laminhoz kapcsolódó része &#10140; perinukleáris heterokromatin</li>
-				<li>radiális hurok (mag belsejébe nyúló része) &#10140; eukromatin &#10140; ez ugyanis az RNS-polimeráz és TF-ben gazdag területekbe nyúlik be</li>
-			</ul>
 			<img src="images/rdlshrk.png">
-		</ul></details>
-		<br><details><summary>kondenzált heterokromatin =~ kromatinrost &#10140; kialakulása?</summary><ul class="normal">
 			<img src="images/kondenzin.png">
-			<li>kondenzin nevű fehérjék végzik</li>
-			<li>csipesz alakúak &#10140; ATP-t felhasználva csökken a "csipesz szöge" &#10140; "közelebb húzza a szálakat" (lásd kép)</li>
-			<li>leginkább osztódás előtt indul meg nagy intenzitással</li>
-			<li>átmérő 700nm</li>
-		</ul></details>
-		<br><details><summary>kromoszóma?</summary><ul class="normal">
-			<li>osztódás során alakul csak ki</li>
-			<li>testvérkromatidák összekapcsolása a centromernél történik, és a kohezin nevű fehérjék végzik</li>
-			<li>kohezin ezenkívül a kinetochor-komplex belső lemezét is megköti &#10140; annak a külső lemeze pedig a mitotikus_orsó mikrotubulusaihoz kapcsolódik</li>
-			<div>testvérkromatidák &#10140; 2kromatidás kromoszómában találhatóakat nevezzük így &#10140; ezekben a szekvenciák (így allélok) <abbr title="kivéve szvsz meiózisnál a crossing-over után">azonosak</abbr></div>
 			<img src="images/khznkntkrks.png">
-		</ul></details>
+		</div>
+		<li>génállomány kondenzációjának okai</li><ul>
+			<li>alapvetően nem férne bele a sejtbe &#10140; haploid genom(23db DNS) hossza 2m hosszú</li>
+			<li>úgy kell megoldani, hogy az aktív gének lefűzött állapotban lehessenek, amely gének pedig "fölösek", azok heterokromatin formában</li>
+		</ul>
+		<li><font class="abbr">kromatin ►</font>  interfázisos (sejtciklusban) kromoszóma &#10140; DNS + hozzá kapcsolódó fehérjék</li>
+	  <strong>DNS szerveződési szintjei(6)</strong>
+		<li>DNS kettős-hélix 2nm</li>
+		<li>nukleoszóma 11nm</li>
+		<li>szolenoid szál 30nm</li>
+		<li>radiális hurok 300nm &#10140; ez még lehet eukromatin</li>
+		<li>kromatinrost 700nm &#10140; ez már heterokromatin</li>
+		<li>kromoszóma 1400nm &#10140; ezt csak osztódásnál veszi fel</li>
+	  <strong>nukleoszóma</strong>
+		<li>2*4db core hiszton alkotja a nukleoszómát &#10140; <span class="WHITE">H<sub>2A</sub></span> <span class="WHITE">H<sub>2B</sub></span> <span class="WHITE">H<sub>3</sub></span> <span class="WHITE">H<sub>4</sub></span></li>
+		<li><font class="abbr">egy nukleoszómára a DNS 2x feltekeredik &#10140; mi tartja ott? ►</font> "core" hisztonok Lys és Arg gazdagok &#10140; pozitív töltésűek &#10140; DNS negatív töltésű, és így tekeredik rá</li>
+		<li>DNS 2 régiója</li><ul>
+			<li>linker régió &#10140; ~60 bázispár hosszú</li>
+			<li>nukleoszómán lévő rész &#10140; ~146-147 bázispár hosszú</li>
+		</ul>
+	  <strong>szolenoid tekercs</strong>
+		<li><span class="WHITE">H1</span> és egyéb nem hiszton fehérjék húzzák egymáshoz közel a nukleoszómákat</li>
+		<li>így a nukleoszómák spirálisan egymás köré tekerednek (pl. a képen látható jobbmenetes)</li>
+		<li>6 nukleoszóma / 1 teljes fordulat</li>
+	  <strong>spiralizációk "száma"</strong>
+		<li>1.) kettős hélix</li>
+		<li>2.) egy nukleoszómára a DNS 2x feltekeredik</li>
+		<li>3.) szolenoid tekercs &#10140; nukleoszómák spiralizációja</li>
+	  <strong>radiális hurok</strong>
+		<li>nukleáris laminához kapcsolódnak a szolenoid szál egyes (CCCTC szekvenciás) részei</li>
+		<li>a CTCF nevú fehérje kapcsolja hozzá a szekvenciát a lamin-hoz</li>
+		<li><abbr title="matrix/scaffolt attached region">MAR = SAR</abbr> &#10140; szolenoid szál azon része ami nukleáris laminához kapcsolódik</li>
+		<li>lamina_fibrosa<abbr title="nukleáris lamina">(=)</abbr> &#10140; sejtmag belső membránjához kapcsoltan helyezkedik el, lamin A/B/C fehérjék alkotják <img class="mini" src="images/lmnfbvrs.png"></li>
+		<li><span class="Important">szolenoid szál...</span></li><ul>
+			<li>laminhoz kapcsolódó része &#10140; perinukleáris heterokromatin</li>
+			<li>radiális hurok (mag belsejébe nyúló része) &#10140; eukromatin &#10140; ez ugyanis az RNS-polimeráz és TF-ben gazdag területekbe nyúlik be</li>
+		</ul>
+	  <strong>kondenzált heterokromatin =~ kromatinrost</strong>
+		<li>kialakítását kondenzin nevű fehérjék végzik</li>
+		<li>csipesz alakúak &#10140; ATP-t felhasználva csökken a "csipesz szöge" &#10140; "közelebb húzza a szálakat" (lásd kép)</li>
+		<li>leginkább osztódás előtt indul meg nagy intenzitással</li>
+	  <strong>kromoszóma <abbr title="kinetochor-komplex & kohezin nem világos a kép alapján, járjak utána!">!?</abbr></strong>
+		<li>osztódás során alakul csak ki</li>
+		<li>testvérkromatidák összekapcsolása a centromernél történik, és a kohezin nevű fehérjék végzik</li>
+		<li>kohezin ezenkívül a kinetochor-komplex belső lemezét is megköti &#10140; annak a külső lemeze pedig a mitotikus_orsó mikrotubulusaihoz kapcsolódik</li>
+	</ul></details>
+
+	<details class="kerdes 3/1" id="msb.235"><summary style="color:MediumBlue">kromoszóma alapegységének neve?</summary><ul class="normal">
+		<li>nukleoszóma</li>
+		<div><span class="white">§</span> eukromatin esetében <abbr title="heterokromatin pedig mégjobban feltekeredett állapotban van">is</abbr> már nukleoszómára tekeredett a DNS! &#10140; tehát kromatin alapegysége is</div>
 	</ul></details>
 <!----></div></details>
 
 <!----><details><summary class="phaseC">#4 A humán kromoszómák szerkezete és sejtciklusfüggő változásai.</summary><div><div class="title"> </div>
-	<details open class="kerdes 4/20" id="msb.190"><summary><strong>A humán kromoszómák szerkezete és sejtciklusfüggő változásai</strong></summary><ul class="normal">
-		<strong>Bevezetés</strong> (szvsz írtam)
+	<details open class="kerdes 4/18" id="msb.190"><summary><strong>A humán kromoszómák szerkezete és sejtciklusfüggő változásai</strong></summary><ul class="normal">
+	  <strong>Bevezetés</strong> (szvsz írtam)
 		<li>sejtciklus fázisai</li><ul>
 			<li>interfázis &#10140; G1,S,G2 fázis</li>
 			<li>osztódás &#10140; M fázis</li>
@@ -582,79 +553,56 @@
 		<li>S fázisban zajlik a replikáció</li>
 		<li>G1 & G2 fázisban zajlik a transzkripció & transzláció</li>
 		<li>M fázisban veszi fel a kromoszóma szerkezetet</li>
-	  <hr> <strong>3.tételből átmásoltam az idevonatkozó részt</strong>. Lehet nem csak ezek kellenek <span class="MISS">!?</span>.
-		<details><summary>génállomány kondenzációjának oka?</summary><ul class="normal">
+	  <hr><strong>3.tételből átmásoltam az idevonatkozó részt</strong>. Lehet nem csak ezek kellenek <span class="MISS">!?</span>.
+		<li>génállomány kondenzációjának okai</li><ul>
 			<li>alapvetően nem férne bele a sejtbe &#10140; haploid genom(23db DNS) hossza 2m hosszú</li>
-			<li>emelett az aktív géneket lefűzött állapotban kell tartani, amely gének "fölösek", azokat heterokromatin formában</li>
-		</ul></details>
-		<br><details><summary>kromatin mi?</summary><ul class="normal">
-			<li>interfázisos (sejtciklusban) kromoszóma &#10140; DNS + hozzá kapcsolódó fehérjék</li>
-		</ul></details>
-		<br><details><summary>kromoszóma alapegységének neve?</summary><ul class="normal">
-			<li>nukleoszóma</li>
-			<div><span class="white">§</span> eukromatin esetében <abbr title="heterokromatin pedig mégjobban feltekeredett állapotban van">is</abbr> már nukleoszómára tekeredett a DNS! &#10140; tehát kromatin alapegysége is</div>
-		</ul></details>
-		<br><details><summary>DNS szerveződési szintjei(6) &#10140; átmérővel illetve "eu/heterokromatin besorolással"?</summary><ul class="normal">
-			<img src="images/sdnszrsznt.png">
-			<li>DNS kettős-hélix 2nm</li>
-			<li>nukleoszóma 11nm</li>
-			<li>szolenoid szál 30nm</li>
-			<li>radiális hurok 300nm &#10140; ez még lehet eukromatin</li>
-			<li>kromatinrost 700nm &#10140; ez már heterokromatin</li>
-			<li>kromoszóma 1400nm &#10140; ezt csak osztódásnál veszi fel</li>
-		</ul></details>
-		<br><details><summary>nukleoszóma szerkezete?</summary><ul class="normal">
-			<li>2*4db core hiszton alkotja a nukleoszómát &#10140; <span class="WHITE">H<sub>2A</sub></span> <span class="WHITE">H<sub>2B</sub></span> <span class="WHITE">H<sub>3</sub></span> <span class="WHITE">H<sub>4</sub></span></li>
-			<li><font class="abbr">egy nukleoszómára a DNS 2x feltekeredik &#10140; mi tartja ott? ►</font> "core" hisztonok Lys és Arg gazdagok &#10140; pozitív töltésűek &#10140; DNS negatív töltésű, és így tekeredik rá</li>
-			<li>DNS 2 régiója</li><ul>
-				<li>linker régió &#10140; ~60 bázispár hosszú</li>
-				<li>nukleoszómán lévő rész &#10140; ~146-147 bázispár hosszú</li>
-			</ul>
-			<img src="images/3_nukleoszoma.png">
-		</ul></details>
-		<br><details><summary>szolenoid tekercs lényege?</summary><ul class="normal">
-			<li><span class="WHITE">H1</span> és egyéb nem hiszton fehérjék húzzák egymáshoz közel a nukleoszómákat</li>
-			<li>így a nukleoszómák spirálisan egymás köré tekerednek (pl. a képen látható jobbmenetes)</li>
-			<li>6 nukleoszóma / 1 teljes fordulat</li>
-			<li>átmérője 30nm</li>
-			<img src="images/szolenoid.png">
-		</ul></details>
-		<br><details><summary>spiralizációk "száma"?</summary><ul class="normal">
-			<li>1.) kettős hélix</li>
-			<li>2.) egy nukleoszómára a DNS 2x feltekeredik</li>
-			<li>3.) szolenoid tekercs &#10140; nukleoszómák spiralizációja</li>
-			<img src="images/szolenoid.png">
-		</ul></details>
-		<br><details><summary>radiális hurok lényege?</summary><ul class="normal">
-			<li>nukleáris laminához kapcsolódnak a szolenoid szál egyes (CCCTC szekvenciás) részei</li>
-			<li>a CTCF nevú fehérje kapcsolja hozzá a szekvenciát a lamin-hoz</li>
-			<li><abbr title="matrix/scaffolt attached region">MAR = SAR</abbr> &#10140; szolenoid szál azon része ami nukleáris laminához kapcsolódik</li>
-			<li>lamina_fibrosa<abbr title="nukleáris lamina">(=)</abbr> &#10140; sejtmag belső membránjához kapcsoltan helyezkedik el, lamin A/B/C fehérjék alkotják <img class="mini" src="images/lmnfbvrs.png"></li>
-			<li><span class="Important">szolenoid szál...</span></li><ul>
-				<li>laminhoz kapcsolódó része &#10140; perinukleáris heterokromatin</li>
-				<li>radiális hurok (mag belsejébe nyúló része) &#10140; eukromatin &#10140; ez ugyanis az RNS-polimeráz és TF-ben gazdag területekbe nyúlik be</li>
-			</ul>
-			<img src="images/rdlshrk.png">
-		</ul></details>
-		<br><details><summary>kondenzált heterokromatin =~ kromatinrost &#10140; kialakulása?</summary><ul class="normal">
-			<img src="images/kondenzin.png">
-			<li>kondenzin nevű fehérjék végzik</li>
-			<li>csipesz alakúak &#10140; ATP-t felhasználva csökken a "csipesz szöge" &#10140; "közelebb húzza a szálakat" (lásd kép)</li>
-			<li>leginkább osztódás előtt indul meg nagy intenzitással</li>
-			<li>átmérő 700nm</li>
-		</ul></details>
-		<br><details><summary>kromoszóma?</summary><ul class="normal">
-			<li>osztódás során alakul csak ki</li>
-			<li>testvérkromatidák összekapcsolása a centromernél történik, és a kohezin nevű fehérjék végzik</li>
-			<li>kohezin ezenkívül a kinetochor-komplex belső lemezét is megköti &#10140; annak a külső lemeze pedig a mitotikus_orsó mikrotubulusaihoz kapcsolódik</li>
-			<div>testvérkromatidák &#10140; 2kromatidás kromoszómában találhatóakat nevezzük így &#10140; ezekben a szekvenciák (így allélok) <abbr title="kivéve szvsz meiózisnál a crossing-over után">azonosak</abbr></div>
-			<img src="images/khznkntkrks.png">
-		</ul></details>
+			<li>úgy kell megoldani, hogy az aktív gének lefűzött állapotban lehessenek, amely gének pedig "fölösek", azok heterokromatin formában</li>
+		</ul>
+		<li><font class="abbr">kromatin ►</font>  interfázisos (sejtciklusban) kromoszóma &#10140; DNS + hozzá kapcsolódó fehérjék</li>
+	  <strong>DNS szerveződési szintjei(6)</strong>
+		<li>DNS kettős-hélix 2nm</li>
+		<li>nukleoszóma 11nm</li>
+		<li>szolenoid szál 30nm</li>
+		<li>radiális hurok 300nm &#10140; ez még lehet eukromatin</li>
+		<li>kromatinrost 700nm &#10140; ez már heterokromatin</li>
+		<li>kromoszóma 1400nm &#10140; ezt csak osztódásnál veszi fel</li>
+	  <strong>nukleoszóma</strong>
+		<li>2*4db core hiszton alkotja a nukleoszómát &#10140; <span class="WHITE">H<sub>2A</sub></span> <span class="WHITE">H<sub>2B</sub></span> <span class="WHITE">H<sub>3</sub></span> <span class="WHITE">H<sub>4</sub></span></li>
+		<li><font class="abbr">egy nukleoszómára a DNS 2x feltekeredik &#10140; mi tartja ott? ►</font> "core" hisztonok Lys és Arg gazdagok &#10140; pozitív töltésűek &#10140; DNS negatív töltésű, és így tekeredik rá</li>
+		<li>DNS 2 régiója</li><ul>
+			<li>linker régió &#10140; ~60 bázispár hosszú</li>
+			<li>nukleoszómán lévő rész &#10140; ~146-147 bázispár hosszú</li>
+		</ul>
+	  <strong>szolenoid tekercs</strong>
+		<li><span class="WHITE">H1</span> és egyéb nem hiszton fehérjék húzzák egymáshoz közel a nukleoszómákat</li>
+		<li>így a nukleoszómák spirálisan egymás köré tekerednek (pl. a képen látható jobbmenetes)</li>
+		<li>6 nukleoszóma / 1 teljes fordulat</li>
+	  <strong>spiralizációk "száma"</strong>
+		<li>1.) kettős hélix</li>
+		<li>2.) egy nukleoszómára a DNS 2x feltekeredik</li>
+		<li>3.) szolenoid tekercs &#10140; nukleoszómák spiralizációja</li>
+	  <strong>radiális hurok</strong>
+		<li>nukleáris laminához kapcsolódnak a szolenoid szál egyes (CCCTC szekvenciás) részei</li>
+		<li>a CTCF nevú fehérje kapcsolja hozzá a szekvenciát a lamin-hoz</li>
+		<li><abbr title="matrix/scaffolt attached region">MAR = SAR</abbr> &#10140; szolenoid szál azon része ami nukleáris laminához kapcsolódik</li>
+		<li>lamina_fibrosa<abbr title="nukleáris lamina">(=)</abbr> &#10140; sejtmag belső membránjához kapcsoltan helyezkedik el, lamin A/B/C fehérjék alkotják <img class="mini" src="images/lmnfbvrs.png"></li>
+		<li><span class="Important">szolenoid szál...</span></li><ul>
+			<li>laminhoz kapcsolódó része &#10140; perinukleáris heterokromatin</li>
+			<li>radiális hurok (mag belsejébe nyúló része) &#10140; eukromatin &#10140; ez ugyanis az RNS-polimeráz és TF-ben gazdag területekbe nyúlik be</li>
+		</ul>
+	  <strong>kondenzált heterokromatin =~ kromatinrost</strong>
+		<li>kialakítását kondenzin nevű fehérjék végzik</li>
+		<li>csipesz alakúak &#10140; ATP-t felhasználva csökken a "csipesz szöge" &#10140; "közelebb húzza a szálakat" (lásd kép)</li>
+		<li>leginkább osztódás előtt indul meg nagy intenzitással</li>
+	  <strong>kromoszóma <abbr title="kinetochor-komplex & kohezin nem világos a kép alapján, járjak utána!">!?</abbr></strong>
+		<li>osztódás során alakul csak ki</li>
+		<li>testvérkromatidák összekapcsolása a centromernél történik, és a kohezin nevű fehérjék végzik</li>
+		<li>kohezin ezenkívül a kinetochor-komplex belső lemezét is megköti &#10140; annak a külső lemeze pedig a mitotikus_orsó mikrotubulusaihoz kapcsolódik</li>
 	</ul></details>
 <!----></div></details>
 
 <!----><details><summary class="phase">#5 A humán genom felépítése; kódoló és génexpressziót szabályzó szekvenciák. A humán genom nem-kódoló szakaszai: intronok, pszeudogének, ismétlődő szekvenciák.</summary><div><div class="title"> </div>
-	<details class="kerdes 5/15" id="msb.148"><summary><strong>A humán genom felépítése; kódoló és génexpressziót szabályzó szekvenciák. A humán genom nem-kódoló szakaszai: intronok,</strong> pszeudogének, ismétlődő szekvenciák.</summary><ul class="normal">
+	<details class="kerdes 4/8" id="msb.148"><summary><strong>A humán genom felépítése; kódoló és génexpressziót szabályzó szekvenciák. A humán genom nem-kódoló szakaszai: intronok,</strong> pszeudogének, ismétlődő szekvenciák.</summary><ul class="normal">
 		<li>1990-2001-ig tartott a human_genom szekvenálása (DNS 3millilárd bp-jének a meghatározása)</li>
 		<li>a jelenlegi feladat, hogy az egyes szekvenciák funkcióját meg kell határozni (tehát pl. van ami fehérjét kódol, stb.)</li>
 	  <hr>
@@ -675,16 +623,9 @@
 		</ul>
 		<li>intronok</li>
 		<li>pszeudogének</li>
-		<li>ismétlődő szekvenciák &#10140; genom 50%a</li><ul>
-			<li>transzpozonok</li>
-			<li>szatellita DNS-ek</li><ul>
-				<li>centromere &#10140; A és T-ben gazdag</li>
-				<li>telomer &#10140; G-ben gazdag</li>
-			</ul>
-			<li>mikroszateliták</li>
-		</ul>
+		<li>ismétlődő szekvenciák</li>
 	</ul></details>
-	<details class="kerdes 5/10" id="msb.149"><summary>A humán genom felépítése; kódoló és génexpressziót szabályzó szekvenciák. A humán genom nem-kódoló szakaszai: intronok, <strong>pszeudogének</strong>, ismétlődő szekvenciák.</summary><ul class="normal">
+	<details class="kerdes 4/7" id="msb.149"><summary>A humán genom felépítése; kódoló és génexpressziót szabályzó szekvenciák. A humán genom nem-kódoló szakaszai: intronok, <strong>pszeudogének</strong>, ismétlődő szekvenciák.</summary><ul class="normal">
 		<li>funkcióképes fehérje nem termelődik róluk &#10140; oka</li><ul>
 			<li>az általa expresszálódó fehérje funkcióképtelen (mutáció miatt, anno lehet még jó volt) &#10140; pl. STOP-kodon lett a közepén</li>
 			<li>és/vagy a promoter régió inaktív, RNS-szekvenciája nincs</li>
@@ -705,13 +646,20 @@
 		<li>ezért elkezdenek pszeudogén RNS-eket expresszálni, amelyekhez szintén kapcsolódnak a mikroRNS-ek</li>
 		<li>így azok lefoglalják a mikroRNS-eket, és az onkogén mRNS-ek nem fognak lebomlani</li>
 	</ul></details>
-	<details class="kerdes 5/15" id="msb.150"><summary>A humán genom felépítése; kódoló és génexpressziót szabályzó szekvenciák. A humán genom nem-kódoló szakaszai: intronok, pszeudogének, <strong>ismétlődő szekvenciák.</strong></summary><ul class="normal">
+	<details class="kerdes 4/13" id="msb.150"><summary>A humán genom felépítése; kódoló és génexpressziót szabályzó szekvenciák. A humán genom nem-kódoló szakaszai: intronok, pszeudogének, <strong>ismétlődő szekvenciák.</strong></summary><ul class="normal">
 		<div style="float:right;max-width:30%">
 			<img src="images/dslmcnhrk.png">
 			<img src="images/trnszpznk.png">
 		</div>
-		<li>genom ~50%a</li>
-		<strong>telomerek</strong>
+	  <strong>ismétlődő szekvenciák</strong>
+		genom ~50%a
+		<li>transzpozonok</li>
+		<li>szatellita DNS-ek</li><ul>
+			<li>centromere &#10140; A és T-ben gazdag</li>
+			<li>telomer &#10140; G-ben gazdag</li>
+		</ul>
+		<li>mikroszateliták</li>
+	  <strong>telomerek</strong>
 		<li>kromoszóma végén vannak</li>
 		<li><abbr title="centromer T és A, ez meg G-ben gazdag (megjegyzési tipp)">TTAGGG</abbr> szekvencia van 1000-2000x ismétlődve</li>
 		<li>a kromoszóma végén lévő két DNS-szál közül a 3'-re végződő hosszabb 2 TTAGGG szekvenciával</li>
@@ -747,6 +695,7 @@
 	<details class="kerdes 4/9" id="msb.152"><summary><strong>A szemikonzervatív DNS-replikáció elve.</strong> A replikációs villa, vezető és késlekedő szál.</summary><ul class="normal">
 		<img src="images/szmknzrvtv.png">
 	  <div><strong>DNS-replikációja (alábbiak prokariótára és eukariótára egyaránt igazak)</strong></div>
+		<li><span class="FIX">szigóhoz írjam ide a másik két elméletet("hibrid", 2parent & 2új) is, hogy legyen értelme (amik megdőltek már, hisz kiderült szemikonzervatív) /source:elte/</span></li>
 		<li>osztódás előtt megy végbe &#10140; S-fázisban!</li>
 		<li><span class="Important">alapelve, hogy szemikonzervatív</span> &#10140; ez azt jelenti, hogy...</li><ul>
 			<li>két "szülői" szál kettéválik</li>
@@ -1366,7 +1315,7 @@
 			<li>a teljes promoterbe már mást is beleveszünk (<i>gondolom silencer + enchancer + insulator & specTF-ek</i>)</li>
 		</ul>
 	  <hr>
-		<li>konszenzus_szekvencia &#10140; bázisok egymásutáni sorrendje, mely nem mindig egyforma &#10140; ezért a legnagyobb gyakorisággal elődordulót jelöljük mindig</li>
+		<li>konszenzus_szekvencia &#10140; bázisok egymásutáni sorrendje, mely nem mindig egyforma &#10140; ezért a konszenzus szekvencia azt jelöli, hogy melyik nukelbozázisok fordulnak elő leggyakrabban az adott helyen (tehát a TATAAC valójában nincs, csupán azon bázisok vannak legvalószínűbben az adott helyen)</li>
 		<img style="max-width:40%" src="images/ksznsnsznkv.png">
 		<img style="max-width:40%" src="images/krprmtrii.png">
 	</ul></details>
@@ -1613,7 +1562,7 @@
 		<div style="float:right;max-width:15%">
 			<img src="images/ltrntlkplrk.png">
 		</div>
-		<li>adott génben legalább két AAUAAA(poliadenilációs és egyben terminációs szekvencia!) van</li>
+		<li>adott génben legalább két AA<abbr title="UAA egyben STOP kodon is transzlációnál!!">UAA</abbr>A(poliadenilációs és egyben terminációs szekvencia!) van</li>
 		<li><span class="Vocab">R</span> sejt kihagyhatja az egyiket pl. kép</li><ul>
 			<li>bal oldali esetében kihagyta az elsőt &#10140; intron kivágódott &#10140; utolsó exonja a "halványkék" &#10140; hidrofób lett a fehérje</li>
 			<li>jobb oldali esetében az elsőnél megállt &#10140; intron nem vágódott ki &#10140; utolsó exonja az intron "fele" &#10140; hidrofil lett a fehérje</li>
@@ -1638,14 +1587,17 @@
 			<img src="images/vstrnszfrn.png">
 			<img src="images/24_vstrfrrnt.png">
 		</div>
-		<li>poliA-farok minél hosszabb, annál tovább él</li>
-		<li>exonukleázok folyamatosan bontják le a végét &#10140; egyre rövidül</li>
-		<li>ha elér egy kritikus szakaszt <abbr title="hisz különben meg lenne az esély, hogy hibás fehérje keletkezik">(még nem fehérjekódoló régiót)</abbr> akkor mRNS lebomlik</li>
+		<li><span class="Important">poliA-farok minél hosszabb, annál tovább él</span></li>
+		<li><span class="Important">exonukleázok folyamatosan bontják le a végét &#10140; egyre rövidül</span></li>
+		<li><span class="Important">ha elér egy kritikus szakaszt <abbr title="hisz különben meg lenne az esély, hogy hibás fehérje keletkezik">(még nem fehérjekódoló régiót)</abbr> akkor mRNS lebomlik</span></li>
 		<div><span class="vocab"><strong>§</strong></span> szvsz hasonlítható a telomer-sejt élettartamra (ottis, ha a telomer már túl rövid, akkor lebomlik a sejt)</div>
 	  <hr><strong>mRNS élettartamának szabályozása</strong>
-		<li>3'UTR-en lehet olyan szekvencia, mely endonukleáz kötődését indukálja</li>
-		<li>ha endonukleáz kötődik oda, akkor kettévágja &#10140; poliA farok már nincs &#10140; egyből lebomlik az mRNS</li>
-		<li>ezt azonban lehet szabályozni &#10140; transzferrin-receptor pl.-ján mutatom be</li>
+		<li><span class="Important">3'UTR-en lehet olyan szekvencia, mely endonukleáz kötődését indukálja</span></li>
+		<li><span class="Important">ha endonukleáz kötődik oda, akkor kettévágja &#10140; poliA farok már nincs &#10140; egyből lebomlik az mRNS</span></li>
+		<li><span class="Important">ezt azonban lehet szabályozni</span></li><ul>
+			<li><span class="Important">pl. transzferrin-receptor példája (lásd lentebb)</span></li>
+			<li><span class="Important">pl. mikroRNS-ek (lásd lentebb)</span></li>
+		</ul>
 	  <strong>vasion anyagcseréjében szerepet játszó fehérjék szabályozása</strong>
 		<li>A vas metabolizmus kulcsfehérjéi a vérben a vasionok szállítását végző transzferrin, a sejtbejutást biztosító transzferrin receptor és a ferritin, egy igen hatékony tárolófehérje</li>
 		<li>A sejt vasion szintje a ferritin és a transzferrin-receptor szintézisét reciprok módon szabályozza</li>
@@ -1663,13 +1615,15 @@
 		</ul>
 	  <hr><strong>mikroRNS és hatása</strong>
 		<li>kb. 20 nukleotidból áll</li>
-		<li>fehérjét kódoló gének 30–40%-át tudják szabályozni</li>
+		<li>funkció &#10140; fehérje expresszió szabályozás</li><ul>
+			<li>fehérjét kódoló gének 30–40%-át tudják szabályozni</li>
+			<li>általában gátolják &#10140; innen az elnevezése "post-transcriptional silencing"</li>
+			<li>ez úgy történik, hogy az mRNS 3'UTR régiójához kapcsolódnak &#10140; ez indukálja <abbr title="szvsz azon belül is endonukleáz">RNáz</abbr> odakapcsolódását, ami levágja a 3'poliA farkat</li>
+		</ul>
 		<li>szintézisük</li><ul>
 			<li>vagy külön van génjük a DNS-ben &#10140; RNS polimeráz II elkészíti, majd éréssel elnyeri végleges szerkezetét <abbr title="erről lehetne még bőven írni a TK alapján, de nekem ennyi elég volt belőle, mert előadásokon kb. szó se volt a mikroRNS-ekről">!!!</abbr></li>
 			<li>vagy a kivágott intronokból lesznek &#10140; azonban mindig más mRNS intronjából, mint amit szabályozni fognak</li>
 		</ul>
-		<li>gátolják a fehérjeszintézist &#10140; innen az elnevezése "post-transcriptional silencing"</li>
-		<li>ez úgy történik, hogy az mRNS 3'UTR régiójához kapcsolódnak &#10140; ez indukálja RNáz odakapcsolódását, ami levágja a 3'poliA farkat</li>
 	</ul></details>
 <!----></div></details>
 
@@ -1773,8 +1727,8 @@
 	</ul></details>
 	<br><details class="kerdes 4/3" id="msb.178"><summary>A DNS-kötő fehérjék és jellegzetes szerkezeti elemeik prokariótákban (hélix-kanyar-hélix) és eukariótákban (hiszton-fold, hélix-hurok-hélix, cink-ujj, <strong>leucin cipzár</strong>) példákkal</summary><ul class="normal">
 		<li>funkció &#10140; dimerizáció</li>
-		<li>&alpha;-helix kb. 50aminosavból áll</li>
-		<li>ebben minden 7. aminosav Leu <abbr title="2 csavarulatonként vannak, egymás fölött (hisz egy csavarulat 3,6aminosav)">&#10045;</abbr></li>
+		<li>&alpha;-helix kb. 30aminosavból áll</li>
+		<li>ebben minden 7. aminosav Leu &#10140; 2 csavarulatonként vannak, egymás fölött (hisz egy csavarulat 3,6aminosav)</li>
 		<li>dimerizáció &#10140; Leu oldalláncok között lesznek kötések</li>
 		<li>ilyen van pl. CREB fehérjében (mely a cAMP pályájában játszik szerepet)</li>
 		<img src="images/lzncpzr.png">
@@ -1831,7 +1785,7 @@
 		<li>megfelelő aminosav oldalláncokkal rendelkező 1db alfa-hélix rész &#10140; ez belefél a DNS nagy-árok részébe, és másodlagos kötéseket alakít ki az ott lévő bázis-szekvenciával</li>
 		<li>DNS-ben a szabályozó szekvenciák gyakran ismétlődnek, egymástól kb. 10bázis távolságra vannak, két szomszédos nagy árokban &#10140; dimer szerkezetűek a TF-ek (2 alegységből állnak) &#10140; ezzel ugyanis képesek kötődni a két szomszédos nagy árokban lévő azonos szekvenciákhoz</li>
 	</ul></details>
-	<br><details class="kerdes 4/1" id="msb.176"><summary style="color:MediumBlue">TBP szerkezete</summary><ul class="normal">
+	<br><details class="sedrek 4/1" id="msb.176"><summary style="color:MediumBlue">TBP szerkezete</summary><ul class="normal">
 		<li>nem dimer, mert szimmetrikus szerkezetű</li>
 		<li>&beta;-redővel kapcsolódik a TATA-boxhoz</li>
 	</ul></details>
@@ -1870,7 +1824,7 @@
 	<br><details class="kerdes 3/3" id="msb.188"><summary style="color:MediumBlue">árva receptorok &#10140; mik? funkció?</summary><ul class="normal">
 		<div style="float:right;max-width:30%"><img src="images/21_hmplldnrmdmrzc.png"></div>
 		<li>olyan magi receptorok, melyeknek nincs ligandja (olyan értelemben, hogy egyáltalán nincs, tehát nincs, amit megkötnének)</li>
-		<li>funkcióezek képesek <abbr title="tehát nem szteroid típusú magi receptor">heterodimer</abbr> egyik alegységét képezni, pl. Retinoid X Receptor mellé kapcsolódnak</li><ul>
+		<li>funkciói</li><ul>
 			<li>egyik csoportjukba tartozók képesek dimerizálódni egy másik liganddal rendelkező nem_szteroid_típusú_magi_receptorral (pl. Retinoid X Receptor) &#10140; heterodimer egyik alegységét képezik &#10140; génszelektivítást biztosítanak (mert képesek olyan reszponzív elemhez kötődni így, melyhez alapból az RXR nemlett volna képes)</li>
 			<li>másik részük "igazán árvák", mert homodimerek &#10140; alapból kötődnek a DNS-hez, és ezenekívül koaktivátort/korepresszort is már kötnek &#10140; transzkripció bazális szintjét szabályozzák <i>(tehát ligandtól függetlenül már egyes gének be vannak valamelyest állítva, hogy nagyjából mennyire lehessen transzkripció belőlük)</i></li>
 		</ul>
@@ -1984,7 +1938,7 @@
 	  <strong>AH-receptor = Aryl-Hidrokarbon receptor = xenobiotikum-receptor</strong>
 		<li><span class="Important">ez köti meg a xenobiotikumokat!!</span></li>
 		<li>ez a heterodimer egyik alegysége, másik alegység az ARNT<abbr title="aryl hydrocarbon receptor nuclear translocator">()</abbr></li>
-		<li>bHLH = bázikus Hélix-Kanyar(Loop)-Hélix motívum található meg benne</li><ul>
+		<li>bHLH = bázikus Hélix-Hurok(Loop)-Hélix motívum található meg benne</li><ul>
 			<li>egyik hélix bázikus aminosavakat tartalmaz ➜ ezzel kötődik a DNS nagy árok részébe</li>
 			<li>másik hélix dimerizációt biztosítja</li>
 		</ul>
@@ -2452,7 +2406,6 @@
 		<li>iniciáció &#10140; lánckezdés</li>
 		<li>elongáció &#10140; lánchosszabítás</li>
 		<li>termináció &#10140; befejezés</li>
-		<img src="images/trnsztkr.png">
 	</ul></details>
 	<details class="kerdes 2/1" id="msb.78"><summary>átírás sebessége?</summary><ul class="normal">
 		<li>50nukleotid/sec</li>
@@ -2829,6 +2782,9 @@
 		</ul>
 		<img src="images/3_nukleoszoma.png">
 	</ul></details>
+	<details class="kerdes 3/1" id="msb.236"><summary style="color:MediumBlue">testvérkromatidák?</summary><ul class="normal">
+		<div>2kromatidás kromoszómában találhatóakat nevezzük így &#10140; ezekben a szekvenciák (így allélok) <abbr title="kivéve szvsz meiózisnál a crossing-over után">azonosak</abbr></div>
+	</ul></details>
 	<details class="kerdes 3/1" id="msb.63"><summary><span class="FIX">hiszton fehérjék &#10140; felsorolás & funkció?</span></summary><ul class="normal">
 		<li>core hisztonok &#10140; <span class="WHITE">H<sub>2A</sub></span> <span class="WHITE">H<sub>2B</sub></span> <span class="WHITE">H<sub>3</sub></span> <span class="WHITE">H<sub>4</sub></span> &#10140; nukleoszómákat alkotják</li>
 		<li><span class="WHITE">H<sub>1</sub></span> &#10140; nukleoszómákat kapcsolják össze &#10140; kialakul a kromatin-szál = szolenoid (30nm átmérőjú)</li>
@@ -2844,89 +2800,10 @@
 	</ul></details>
 <!----></div></details>
 
-<!----><details><summary class="phaseD">#7-9 Transzkripció</summary>
+<!----><details><summary class="phase">#7-9 Transzkripció</summary>
  <div><div class="title">prokarióták.</div>
-	<details class="kerdes 3/3" id="msb.81"><summary>transzkripciós_egység mi?</summary><ul class="normal">
-		<li>transzripciós_egység = egy lépésben részben átírandó rész</li>
-		<li><font class="abbr">részei? ►</font> <ul>
-			<img src="images/rtrszksz.png">
-			<li>promoter &#10140; -10 & -35</li>
-			<li>RNS-re átírt szakasz &#10140; +1-től tart a <i>terminációs szignálig</i></li>
-		</ul></li>
-		<li><font class="abbr">számok mit jelölnek? ►</font> bázisokat &#10140; +1 az első ami átíródik RNS-re, -10 az előbbitől <abbr title="átírással elentétes irányba!">5' irányba</abbr> a 10edik stb.</li>
-		<li><font class="abbr">promoter funkció? ►</font> nem íródik át, csak szabályoz</li>
-	</ul></details>
-	<details class="kerdes 3/2" id="msb.82"><summary>konszenzus szekvencia mi?</summary><ul class="normal">
-		<li>bázisok egymásutáni sorrendje, mely nem mindig egyforma &#10140; ezért a legnagyobb gyakorisággal elődordulót jelöljük mindig</li>
-		<li>pl. -10 & -35 régiók szekvenciája ilyen &#10140; annyit jegyezzek meg róluk (kép csak ábrázolja, nem kell tudnom)</li><ul>
-			<li>mind2 6bázisból áll</li>
-			<li>-10 &#10140; timinben és adeninben gazdag!! (pl. TATAAT stb.)</li>
-		</ul>
-		<img src="images/ksznsnsznkv.png">
-	</ul></details>
-	<details class="kerdes 3/7" id="msb.83"><summary>RNS polimeráz felépítése (E.coli példáján)?</summary><ul class="normal">
-		<img src="images/plmrzszrk.png">
-		<li>felépítése &#10140; 2&alpha; + 1&beta;; + 1&beta;' alegységből tevődik ki (a szigmát is hozzászokták venni, de jobb azt faktorként felfogni)</li>
-		<li>másképpen fogalmazva az RNS polimeráz apoenzim egészen addig, amíg a &sigma;-alegység hozzá nem kapcsolódik &#10140; akkor holoenzim</li><ul>
-			<li>apoenzim = 2&alpha; + 1&beta;; + 1&beta;'</li>
-			<li>holoenzim = 2&alpha; + 1&beta;; + 1&beta;' + 1&sigma;</li>
-			<div>(kép <img class="mini" src="images/pnzmhlnzm.png">)</div>
-		</ul>
-		<details><summary>apoenzim vs holoenzim funkciója?</summary><ul class="normal">
-			<li>apoenzim &#10140; képes lánchosszabításra (elongáció)</li>
-			<li>holoenzim &#10140; képes pontos lánckezdésra (iniciáció)</li>
-		</ul></details>
-		<details><summary>alegységek funkciója?</summary><ul class="normal">
-			<li>&alpha; &#10140; enzim összetartása</li>
-			<li>&beta; & &beta;' &#10140; egymással kialakítják a katalitikus centrumot</li>
-			<li>&sigma; &#10140; felismeri a promotert, azaz megköti a -10 és -35 szekvenciákat &#10140; biztosítja a pontoc lánckezdést</li>
-		</ul></details>
-		<details><summary>&sigma; alegység (faktor!) funkciójának szemléltetése?</summary><ul class="normal">
-			<li>apoenzim nagy affinitással köt bármilyen DNS szakaszt &#10140; ha véletlen hozzákötődik, akkor a disszociációs féléletideje kb. 60perc, és utána leválik</li>
-			<li>holoenzim</li><ul>
-				<li>általános (nem a "Nagy Ő") DNS-szakasz kötő affinitása 1000x kisebb &#10140; ha véletlen hozzákötődik, akkor a disszociációs féléletideje kb. 1sec, és utána leválik</li>
-				<li>megfelelő DNS-szakaszra az affinitása viszont nagyobb &#10140; tehát ha megtalálja a Nagy Ő-t, akkor az ahhoz való kötődés után a leválása lassabb: disszociációs féléletideje kb. néhány óra</li>
-			</ul>
-		</ul></details>
-		<details><summary>&sigma; alegység (faktor!) típusai?</summary><ul class="normal">
-			<li>általános &sigma;<sup>70</sup> &#10140; -10 szekvenciája a TATAAT, -35 szekcenciája a TTGACA</li>
-			<li>ezenkívül vannak olyanok, melyek nem nomál körülményekben fognak működni, hanem pl. hőemelkedés, nitroénhiány esetében &#10140; más gének expresszálódnak (képen lévők adatait ne tanuljam, max a számukat egy-kettőnek)</li>
-			<img src="images/szmgfktrk.png">
-		</ul></details>
-	</ul></details>
-	<details class="kerdes 3/2" id="msb.84"><summary>iniciáció lényege?</summary><ul class="normal">
-		<li>holoenzim addig próbálkozik DNS-kötéssel, amíg meg nem találja a megfelelő promotert (tehát hozzákötődik, ha nem az, akkor elengedi 1secen belül, és repeat)</li>
-		<li>ha megtalálta az igazit, akkor a holoenzim a promoterrel ún. <strong>zárt_komplexet</strong> alkot</li>
-		<li>ezután konformációváltozás révén, egy rövid (kb. 1 fordulatnyi) DNS-szakasz széttekeredik &#10140; majd a nyitott komplexben megkezdődik az RNS-lánc szintézis</li>
-		<li>a &sigma;-alegység(faktor!) az <abbr title="első pár nukleotid beépüléséig tart">iniciáció végén</abbr> leválik és elmegy keresni másik apoenzimet, hogy annál is meginduljon &#10140; elongációt már csak az apoenzim végzi (segédfehérjékkel)</li>
-		<div><span class="vocab"><strong>§</strong></span> kb.10nukleotid után a konformációnak megint változnia kell</div>
-		<img src="images/ncndnglny.png">
-	</ul></details>
 	<details class="kerdes open J/1" id="msb.86"><summary>EM kép</summary><ul class="normal">
 		<img src="images/trnszkrpc.png">
-	</ul></details>
-	<details class="kerdes 3/1" id="msb.87"><summary>terminálások típusainak felsorolása?</summary><ul class="normal">
-		<li>&rho;(ejtsd:"ró")-faktor nélküli &#10140; azaz semmilyen faktor nem kell hozzá</li>
-		<li>&rho;-faktoros</li>
-	</ul></details>
-	<details class="kerdes 3/2" id="msb.88"><summary>&rho;-faktor nélküli termináció lényege?</summary><ul class="normal">
-		<li>hajtűkanyar keletkezik a képződő RNS szálon belül</li>
-		<li>a hajtűkanyar sok G≡C bázispárt tartalmaz, illetve utána több U adódik majd hozzá (3'irányba)</li>
-		<li>ennek a következménye, hogy a hajtűkanyar képződése az uridilátok átírása után lelassítja, szinte megállítja a polimerázt</li>
-		<li>eután pedig a hurok kihúzza a laza DNS-RNS (hisz A=U kötések, szvsz az uridilátok következtében) hibrid kettős hélixből az RNS szálat</li>
-		<img src="images/kttshrk.png">
-	</ul></details>
-	<details class="kerdes 3/2" id="msb.89"><summary>&rho;-faktoros termináció lényege?</summary><ul class="normal">
-		<li>&rho;-faktor 6alegységből áll</li>
-		<li>követi az RNS-polimerázt &#10140; alapvetően a távolság azonos köztük</li>
-		<li>azonban, mikor a hurok szintézis végbement, akkor lelassul a polimeráz, így utoléri a &rho;-faktor</li>
-		<li>így a &rho;-faktor fogja az RNS-szálat és kihúzza a mintaDNS mellől, azaz polimerázból</li>
-		<img src="images/rhktrktrmnc.png">
-	</ul></details>
-	<details class="kerdes 2/2" id="msb.90"><summary>gyógyszeres gátlása &#10140; gyógyszer neve? lényege? mi ellen?</summary><ul class="normal">
-		<li>pl. rifamicin és rifampicin nevű gyógyszerekkel lehet</li>
-		<li>ezek a polimeráz &beta;-alegységéhez kötődve meggátolják az iniciációt</li>
-		<li>mikrobaktérium (tuberkolózis és lepra) ellen használják</li>
 	</ul></details>
  </div>
 <!----></details>
