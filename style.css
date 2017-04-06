@@ -8,13 +8,20 @@ a.source {
 	text-decoration: none;
 }
 
+
+video::-webkit-media-controls-panel {
+	display: flex !important;
+	opacity: 1 !important;
+	bottom: -30px;
+}
+
 abbr {
 	position: relative;
 	text-decoration: none;
-	padding-left: 2px; 
-	padding-right: 2px; 
-	padding-top: 1px; 
-	padding-bottom: 1px; 
+	padding-left: 1px; 
+	padding-right: 1px; 
+	padding-top: 0px; 
+	padding-bottom: 0px; 
 	background-color: yellow;
 }
 abbr:hover{
@@ -55,17 +62,16 @@ div.normal {
 }
 
 span { 
-	padding-left: 2px; 
-	padding-right: 2px; 
-	padding-top: 1px; 
-	padding-bottom: 1px; 
+	padding-left: 0px; 
+	padding-right: 0px; 
+	padding-top: 0px; 
+	padding-bottom: 0px; 
 }
 span.WHITE { 
 	border: Black 1px solid; 
+	padding-top: -1px; 
 	padding-left: 1px; 
 	padding-right: 1px; 
-	padding-top: 0px; 
-	padding-bottom: 0px; 
 }
 /*span.abbr { 
 	border: Black 1px solid; 
@@ -151,7 +157,7 @@ img.mini {
 	border: 2px solid DeepSkyBlue;
 	max-height: 14px;
 	float: none;
-	bottom: 5px
+	margin-bottom: -2px
 }
 
 .mirror {

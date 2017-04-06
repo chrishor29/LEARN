@@ -6,7 +6,7 @@
 	<style>*{line-height: 130%;}</style>
 </head>
 
-<div id="div_SkipFix" style="background-color:white; overflow-y:scroll; overflow-x:scroll; width:80vh; height:60vh; position:fixed; top:50%; left:50%; margin-top:-30vh; margin-left:-40vh; border:10px solid black; display:none;"></div>
+<div id="div_SkipFix" style="background-color:white; overflow:auto; width:80vh; height:60vh; position:fixed; top:50%; left:50%; margin-top:-30vh; margin-left:-40vh; border:10px solid black; display:none;"></div>
 
 <input onclick="toggleAll();" type="button" id="input_toggleAll" value="0" style="position:fixed; right: 0px;"><div id="quest" style="display:none;">
 	
@@ -26,11 +26,11 @@
 		<span style="border: 0px;" id="rank">&nbsp; &nbsp; &nbsp;</span> &nbsp;
 		<input style="border: 3px solid black;" id="btn_Note" onclick="toggleNote();" type="button" value="&#10045;"> &nbsp; &nbsp;
 		<select id="jegy"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; 
-		<span class="white" id="pJegy">&nbsp; </span> &nbsp; &nbsp;
+		<span class="white" id="pJegy" style="font-weight:bold; padding-left:3px; padding-right:3px;">&nbsp; </span> &nbsp; &nbsp;
 		<input onclick="func_buttonSkip();" type="button" id="buttonSkip" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp; &nbsp; &nbsp;
 		<input onclick="koviKerdes();" type="button" value=" ► ">
 	</span>
-	<span style="position:absolute; right:0%;">
+	<span style="position:fixed; right:0px; top:50px;">
 		<span id="repeat" class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;">&nbsp; &nbsp; &nbsp;</span>
 		<input type="button" class="FIX" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_fix" value="0">
 		<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_skip" value="0">
@@ -99,8 +99,6 @@
 	<td class="">10</td>
   </tr>
 </table>
-
-<div><span class="MISS">diasztereomer 2 típusa &#10140; pimer & anomer</span></div>
 
 
 <!--//////////////////////////////////////-->  <div><div class="mainTitle">I.demonstráció</div>  <!--//////////////////////////////////////-->
@@ -1875,7 +1873,7 @@
 				<td>egyenesen ismétlődő DNS-szekvenciákhoz kötődnek</td>
 			</tr>
 		</table>
-		<li><font class="abbr">palindrom ►</font> Azt jelenti, hogy a DNS bázissorrendje előre és hátrafelé olvasva (a két, komplementer láncra vonatkoztatva) ugyanaz. Pl. a KpnI nevű enzim felismerő helye az 5’-GGTACC-3’ szekvencia. Ennek a komplementer párja 3’→5’ irányban CCATGG, ami visszafelé olvasva éppen GGTACC</li>
+		<li><font class="abbr">palindrom ►</font> Azt jelenti, hogy a DNS bázissorrendje előre és hátrafelé olvasva (a két, komplementer láncra vonatkoztatva) ugyanaz. Pl. egy enzim felismeri a 5’-GGTACC-3’ szekvenciát. Ennek a komplementer párja 3’→5’ irányban CCATGG, ami visszafelé olvasva éppen GGTACC</li>
 		<li><font class="abbr">heterodimer nem szteroid típusú jellegzetessége ►</font> kódoló szálon 5' irányba lévő alegysége a dimernek általában Retinoid X Receptor, mely 9-cisz-reténsavat kötött meg</li>
 	</ul></details>
 	<br><details class="kerdes 4/9" id="msb.179"><summary>Az eukarióta magi receptorok (<strong>szteroid</strong>, tiroid, AH-receptor) szerkezete és működése.</summary><ul class="normal">
@@ -3068,7 +3066,7 @@ http://elte.prompt.hu/sites/default/files/tananyagok/BevBiokemGyak/ch07s03.html
  </div>
 <!----></details>
 
-<!----><details open><summary class="phase">6. &beta;-galaktozidáz</summary>
+<!----><details><summary class="phase">6. &beta;-galaktozidáz</summary>
  <div><div class="title">gyak-jegyzeteim</div><ul class="normal">
 	<li>A transzkripció szabályozása prokariótákban (14.tétel) van kapcsolatban ez a mérés &#10140; itt csak "kiegészítem" pár dologgal</li>
 	<li>operon = operátor(lac) + struktúrgének(lacZ+lacY+lacA) (tehát a promoter + operátort kódoló gén szvsz nem tartozik bele)</li>
@@ -3115,6 +3113,75 @@ http://elte.prompt.hu/sites/default/files/tananyagok/BevBiokemGyak/ch07s03.html
  </ul></div>
 	<li>megjegyzés &#10140; 14.tétel + gyakfüzet + jegyzeteim alapján könnyen megértem</li>
 <!----></details>
+
+<!----><details open><summary class="phase">9-10. PCR. (gyak-jegyzet + pdf alapján)</summary><ul class="normal">
+	<strong>Célja</strong><div>
+	 Öt féle alapíz van: édes,sós,savanyú,keserű,umami. Ezeket G-fehérjéhez kötött receptorok érzékelik. A keserű íz "egyik típusát" az emberek 70%a érzékeli és 30%a nem. Ez attól függ, hogy az egyed génje milyen. A mérés során azt vizsgáljuk meg, hogy a csoportban 12 ember közül ki érzékeli és ki nem. Tehát megnézzük, hogy a génben "jól van-e kódolva".
+	</div>
+
+	<strong>Bevezetés</strong><div>
+	 A keserű ízt érzékelő <abbr title="(kemoreceptorok)">receptorok</abbr> <abbr title="TASte Receptor (2=keserű)">(TAS2R)</abbr> egyik típusa a glükózinolátot köti meg (az a ligand). Ezt az ízt PTC-íznek nevezzük Ennek hátterében single_nukleotid-polimorfizmus(SNP) áll. Tehát egy nukleotid helyett más van a DNS-ben, mint kéne (pl. C helyett T van). Jelen esetben 3 helyen történhet meg a kicserélődés. A három hely alapvetően a következő aminósavakat kódolja Pro-Ala-Val. Ha SNP van, akkor helyettük Ala-Val-Ile lesz. A nukleotidok pedig alapból (C...C...G), kicserélődve pedig (G...T...A). Ez a polimorfizmus csak úgy fordulhat elő, hogy vagy mindhárom kicserélődik vagy egyik sem. Ha kicserélődik akkor a genotípus <strong>t</strong>, ha nem akkor <strong>T</strong> &#10140; így <strong>TT</strong>,<strong>Tt</strong>,<strong>tt</strong> genotípusok lehetnek (hisz diploidok a testi sejtek, tehát 2x van bennük meg a gén: egyik apai másik anyai eredetű). Amennyiben <strong>TT</strong>, jól érzik a PTC-ízt, <strong>Tt</strong> esetében kevésbé, <strong>tt</strong> esetében pedig egyáltalán nem. A genotípust a PCR eljárással határozzuk meg. Az eljárás négy lépésből áll.
+	</div>
+
+	<strong>(1) DNS izolálás</strong><div>
+	 <span class="WHITE">1</span> Első lépésben a vattapálcával a száj nyálkahártyjából hámsejteket szedünk le (fél percig dörzsölve vele a buccat, fogíny külsejét). A vattapálcát ezután egy <abbr title="Eppendorf-csőbe">()</abbr>csőbe tesszük. <span class="WHITE">2</span> A sejteket ezután PBS-oldattal lemossuk a vattáról. <span class="WHITE">3</span> Majd a membránokat(sejt & intracelluláris) és fehérjéket "felaprítjuk": membránokat lízispuferrel, a fehérjéket proteináz K-val. Így kapunk ún. sejtlizátumot. <span class="WHITE">4</span> A következő feladat, hogy ebből a DNS-t izoláljuk (tehát csak az marad, más nem). Ezt <span class="Important">affinitás-kromatográfiával</span> végezzük. Ennek lényege hogy egy műanyag oszlopba van egy pozitív töltésű mátrix, mely a negatív töltésű moleklákat megköti, pl. DNS. Ezenkívül egyes fehérjéket és egyéb molekulát is megköt, de a nagyrészét nem <img class="mini" src="images/vgcskfknmtrckrm.png">. (a) Ezért ebbe beleöntöm a sejtlizátumot. (b) Majd ezután "frissítem" tehát az oldatot elvtávolítom az üvegből, és helyére pufferoldatot öntünk. Ez lemossa a mátrixról a többi fennmaradt fehérjét és egyéb nem DNS molekulát. Azonban mivel a mátrix pólusai kicsit, így csak akkor képes átjutni rajta pufferoldat, ha (c) centrifugáljuk. A pufferoldat szvsz savas irányba változtatja a pH-t, hisz így sok proton lesz, tehát a fehérjék & egyéb negatív töltése megszűnik így leválnak a mátrixról. Végül ha ez meg volt (d), akkor a DNS-t is leválasztjuk a mátrixról bázikus pH-jú oldattal <abbr title="mármint a mátrix lesz semleges töltésű emiatt?!">(!?)</abbr>.
+	</div>
+
+  <strong>(2) <abbr title="polymerase chain reaction">PCR</abbr></strong><div>
+	 <img src="images/prndlnsskrz.png">
+	 <li>Itt a cél, hogy megsokszorozzuk a génszakaszt, mely a receptort kódolja. Ennek következtében a végén szemmel látható eredményt kapjunk. Ennek módja a következőképpen történik...</li>
+	 <li>Először szétválasztjuk a DNS-t két szálra.</li>
+	 <li>Ezután 1-1 primer fog hozzákapcsolódni a két különvált szálra. Ezek ott kapcsolódnak hozzájuk, ahol a vizsgálni kívánt gén van, előtte kicsivel 5' irányba (ennek a DNS-résznek, amihez hozzákapcsolódik legyen a neve "Jani"). A primereket amiket hozzáadunk kb. 20nukleotid hosszúak. Ez azt jelenti, hogy biztosan "Jani"-hoz fognak kapcsolódni, ugyanis... "Jani" szakasz nukleotidjainak komplemenetereit tartalmazza, és mivel kb.20 nukleotid hosszú, biztosan nincs a DNS láncon másik olyan hely, ami szintén komplementere lenne (ugyanis ha pl. csak 3nukleotidból lenne a primer, akkor rengeteg helyhez tudna kapcsolódni. Ha 10 hosszú, akkor kevesebb helyhez, de még mindig több mint 1. Azonban 13 felett már általában <abbr title="vagy egyhez se, ha olyan természetesen">csak 1 helyhez</abbr>)</li>
+	 <li>A két szálon lévő primer között így (3' irányba) 303db bp van.</li>
+	 <li>Erre a lépésre azért van szükség, mert a DNS polimeráz, mely megsokszorozza majd a gént, csak megkezdett szálat tud folytatni</li>
+	 <li>DNS polimeráznak van 3'-exonukleáz aktivitása is, így pontos másolatot képez.</li>
+	 <li>A kivitelezéshez a következőt kell tenni: mastermixet kell elkészíteni, majd hozzáadni az izolált DNS-t. Ezután a sokszorozást egy <abbr title="nevét nem tudom">"gép"</abbr> végzi el. A mastermix tartalmazza a DNS-polimerázt, a primereket illetve <abbr title="dezoxi-nukleozidtrifoszfátokat: ATP/GTP/TTP/CTP">dNTP-ket</abbr></li>
+	 <li>A sokszorozás 3óra alatt játszódik le, és közben kb 20-30 termociklus. Egy termociklus három lépésből áll: a) 95°C-on szétválik két láncra a DNS; b) 55°C-on a primerek hozzákötődnek "Jani"-khoz; c) 75°C-on a DNS-polimerázok dolgoznak. Így ez végeredményben azt jelenti, hogy a végén kb x*2<sup>25</sup>db "gént" kapunk (hisz mindig 2x annyi lesz, és kezdetben volt x darab).</li>
+  </div>
+
+  <strong>(3) restrikciós emésztés <abbr title="restriction fragment length polymorphism">(RFLP)</abbr></strong><div>
+	<li>Az alapja, hogy olyan restrikciós_endonukleázt használunk, mely elhasítja a "jó" "gént", míg a polimorfizmusost nem <abbr title="persze fordítva is jó lenne">()</abbr>. Tehát amennyiben a receptor működik és érzi az egyed az PTC-ízt, akkor 239bp és 64bp hosszú szálak lesznek, ellenben ha polimorfizmus van, akkor 303bp hosszú szálak. Azonban mivel diploid sejtek vannak, ezért ha "heterozigóta volt a gén" (tehát volt "jó", és rossz "gén" is), akkor lesz mindháromból.</li>
+	<li>A restrikciós endonukláez amit használunk az alábbi szekvenciát ismeri fel.: G<span class="Vocab">C</span><span class="Important">N</span>GC. Az <span class="Important">N</span> lehet bármilyen nukleotid. Ha van ilyen szekvencia akkor a <span class="Vocab">C</span><span class="Important">N</span> közti foszfodiészter kötést elhasítja. A <span class="Vocab">C</span> azért van kiemelve, mert ez az a nukleotid, mely a "jó" allélvátozatban megvan, ellenben a polimorfizmusosban helyette T van. (C...<span class="Vocab">C</span>...G) vs. (G...<span class="Vocab">T</span>...A). (Jelen esetben az N helyén T van a génben: tehát ha GCTGC van, tehát "jó a gén", akkor szakít. Ha GTTGC van, akkor nem szakít)</li>
+	<li>A kivitelezés lényege: a megsokszorozódott "gén-oldathoz" hozzáadjuk a restrikciós endonukleázt, majd 1óráig hadjuk 37°C-on (testhőmérséklet) dolgozni.</li>
+  </div>
+
+  <strong>(4) gélelektroforézis</strong><div>
+   <img style="max-width:30%" src="images/gy9_03.png">
+	<li>SDS-PAGE gyakorlaton már csináltunk ilyet fehérjékkel. Itt két kölönbséget említenék meg. <span class="WHITE">1</span> Most nem kell kezelés SDS-el, mert a fajlagos_töltése már alapból megegyezik a különböző hosszúságú (64,239,303) DNS-szálaknak. Hiszen fehérjéknek atöltése nem volt arányos tömegükkel előtte, így fajlagos_töltésük(=töltés/tömeg) kölönbözött, ezért SDS kezeléssel közel azonos értékre lett beállítva a fajlagos töltésük. Azonban a különböző hosszúságú (64,239,303bp) DNS-sek fajlagos töltése már alapból megegyezik, hisz a foszfátok negatív töltése arányos a DNS hosszával <abbr title="fajlagos töltés pedig a töltés/tömeg hányados (és a tömeg is arányos a hosszal)">()</abbr>. Így jelen esetben csak a tömegtől függ az elmodulás: minél nagyobb a <abbr title="ami arányos a hosszával, így a 303 hosszú fog a legkevésbé elmozdulni">tömeg</abbr>, annál kevésbé mozdul el (hiszen a feszültség ami gyorsítja F erővel hat rá: F=ma &#10140; minél nagyobb m, annál kevésbé gyorsul). <span class="WHITE">2</span> Poliakrilamid helyett agaróz alkotja a gélt. (Ez algákból nyerhető, és olcsóbb.)</li>
+	<li>A gél DNS-festéket tartalmaz, amely a futtatás során a DNS-láncokkal nem-kovalens komplexet képez és UV-fénnyel indukálva látható tartományban fluoreszkál. Tehát a futtatás után UV-fénnyel átvilágítva láthatóvá válik az elmozdulás.</li>
+  </div>
+
+
+	<hr><strong>Második nekifutás</strong><div>
+	 <li>G-fehérjéhez kötött receptorok <abbr title="GPCR = G protein coupled receptor">(GPCR)</abbr></li><ul>
+		<li>A GPCR a membránreceptorok egy jelentős típusa (tehát nem csak ízérzékelésnél vannak)</li>
+		<li>Ezen receptorok általános tulajdonsága, hogy 7x érik át a membránt (transzmembrán fehérjék!)</li>
+		<li>A másik általános tulajdonságuk a működésük. Ennek lényege: ha megkötik a ligandot, akkor utána képesek lesznek megkötni az ún. G-fehérjét. A G-fehérje GDP-t tartalmaz. Ha megköti, akkor kicserélődik a GDP GTP-re. Ezután pedig a G-fehérje leválik a receptorrol és ha elmegy egy másik enzimhez akkor azt aktiválja. Ennek energiáját a GTP-GDP-re való visszaállás fedezi. <img class="mini" src="images/gpcrmkds.png"></li>
+	 </ul>
+	 <li>SNP 3 helyen történhet meg, azaz összesen 8 variáció lehet <abbr title="hiszen ha lerajzolom faágszerű elágazással mindig, hogy 1. helyen kicserélődött / nem (2variáció eddig). ezeke tovább ágaztatom ugyanígy, az a 2.hely(4variáció már). Majd mégegyszer és így megkapom a 8 variációt.">(2<sup>3</sup>)</abbr> Azonban ez csak elméletben lehetséges, a valóságban vagy mindhárom "jó", vagy mindhárom kicserélődött. Ennek oka, hogy úgymond "kapcsoltan öröklődnek", ugyanis a három nukleotid egymáshoz közel helyezkedik el egy kromoszómán. Tehát crossing-overnél együtt mennek át.</li>
+	 <li>A mérés előtt egy kis "papírlapka" átvolt itatva PTC-vel. Ezt mindenki a szájába vette és megízlelte. Így megsaccolhattuk, hogy ki érzi és ki nem.</li>
+	 <li>PCR - hogyhogy pont 303 nukleotid hosszú láncok fognak sokszorozódni? hisz nincs ami jelenzné a végét, csak a kiindulás van jelezve...</li><ul>
+		<li>Kétségtelenm hogy első termociklus során a DNS polimeráz amíg szintetizál (kb. 1perc) egy kicsivel hosszabb, mint 303 nukleotid hosszú láncot fog szintetizálni, hisz nincs ami jelezze a végét.</li>
+		<li>Azonban a második termociklus során már a hosszabb nukleotidlánc-hoz megint csak hozzákötődik a primer, ergó a felesleges rész arról nem fog megsokszorozódni, így egy 303nukleotid hosszú DNS lánc szintetizálódik. <img class="mini" src="images/gy10_pcr.png"></li>
+		<li>Innentől a 303 bp hosszúak száma duplázódik termociklusonként, míg a két kicsivel hosszabb típusúak száma <abbr title="+n-el nő termociklusonként, hisz mindig csak az n db teljes hosszú DNS-ről íródnak át olyanok. Pl. az ábrán abból 2db van, tehát ott minden termocklusnál +2-vel nő a számuk. (A mérés során pedig n db volt, szóval ott a végén kb. n*25 lesz belőle, míg a 303asokból n*2<sup>25</sup>)">alig</abbr> nő <abbr title="ezenkívül lesz n db teljes hosszúságú DNS is, de abból lesz a legkevesebb ugye">()</abbr></li>
+	 </ul>
+	 <li>restrikciós endonukleázok (mérésnél használt konkrét nevét ne tanuljam meg)</li><ul>
+		<li>Baktériumokban vannak. Egy baktériumfajban <abbr title=" vagy 2">1</abbr> féle restrikciós endonukleáz van. Ma már össze lett gyűjtve adatbázisba, hogy milyen restrikciós endonukleázokat lehet kinyerni, így a vizsgálni kívánt részhez <abbr title="tehát esetünkben ugye a C vs T résznél vágja el mindössze, így egyértelműen megállapítható lesz majd az eredményből">optimálisat</abbr> ki lehet választani közülük.</li>
+		<li>Funkciójuk, hogy a vírusok DNS-ét(/RNS-ét) lebontják. Nohde, mi alapján lesz az, hogy csak a vírusok DNS/RNS-ét bontják le, a baktériumét nem. Ugyanis, ha a rövid DNS-ű(pár száz bp hosszú) vírusokban megtalálja a szekvenciát, akkor a baktériumokban is meg kell (szvsz százezres ~ pár milliós nagyságrend). Hiszen a baktériumban 1 féle restrikciós endonukleáz van, mely olyan szekvenciát kell felismerjen, ami az őt fertőző vírusokban megvan, tehát benne is szinte biztosan. Így a szekvencia max 6-8bázis hosszú. A problémát úgy oldja meg, hogy a saját DNS-ében a szekvenciája metilálva van. Ezt ún. restrikciós_metiláz végzi.</li>
+		<li>Ezenkívül a szekvencia amit felismer, mindig palindrom.</li>
+		<li><font class="abbr">palindrom ►</font> Azt jelenti, hogy a DNS bázissorrendje előre és hátrafelé olvasva (a két, komplementer láncra vonatkoztatva) ugyanaz. Pl. egy enzim felismeri a 5’-GGTACC-3’ szekvenciát. Ennek a komplementer párja 3’→5’ irányban CCATGG, ami visszafelé olvasva éppen GGTACC <img class="mini" src="images/21_sztrdnmsztrd.png"></li>
+	 </ul>
+	 <li>Érdekes, hogy SNP-nél apoláros helyett apoláros aminosav lesz, mégis jelentős változással jár a fehérje működésében. Ennek oka szvsz 1) Pro mégiscsak jelentős mértékben különbözik az Ala, hiszen ciklusos vegyület; 2) kitüntetett helyen vannak az aminosavak a fehérjében.</li>
+	</div>
+
+	<hr><strong>(Kiegészítők)</strong><div>
+	 <li>A keserű ízérzetet kialakító receptorokat számos, a természetben előforduló és potenciálisan toxikus növényi hatóanyag aktiválja, így a keserű íz hatékony érzékelése az evolúció során szelekciós előnyt jelenthetett a táplálék eredetű mérgezések elkerülése révén.</li>
+	 <li>Glükózinolát van pl. fehérrépa, retek, brokkoli stb.</li>
+	 <li>PTC=feniltiokarbamid &#10140; ezzel <abbr title="de ez nem természetes kajákban van benne, hanem mesterségesen adjuk hozzá">is</abbr> lehet aktiválni a receport, nem csak glükózinoláttal (innen a neve ugye)</li>
+	 <li>proteináz K nem specifikus proteáz, tehát lebontja a legtöbb fehérjét</li>
+	 <li>proteináz K kezelés fontos, hogy gyorsan történjen, mert a membránfelszakadás után az endonukleázok különben odaférnének a DNS-hez és lebontanák</li>
+	</div>
+ </ul><!----></details>
 
 <!----><details open><summary class="phase">Fehérjék vizsgálata.</summary>
  <div><div class="title">általános</div>

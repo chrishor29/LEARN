@@ -6,13 +6,14 @@
 	<style>*{line-height: 130%;}</style>
 </head>
 
+<div id="div_SkipFix" style="background-color:white; overflow:auto; width:80vh; height:60vh; position:fixed; top:50%; left:50%; margin-top:-30vh; margin-left:-40vh; border:10px solid black; display:none;"></div>
+
 <input onclick="toggleAll();" type="button" id="input_toggleAll" value="0" style="position:fixed; right: 0px;"><div id="quest" style="display:none;">
 	
 	<details><summary class="phase">tételek</summary><div id="container"></div></details>
 	<input type="file" id="fileinput" style="display:none;">
 	<input style="position:absolute; left:35%; top:1%;" type="button" value="load LS" onclick="document.getElementById('fileinput').click();">
 	<input style="position:absolute; left:50%; top:1%;" type="button" value="save LS" onclick="func_saveLS()">
-
 
 	<input type="button" class="white" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_newQuest" value="0">
 	<span class="vocab" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="cont_RepSlow"></span>
@@ -24,18 +25,15 @@
 	<span style="position:absolute; left:30%;">
 		<span style="border: 0px;" id="rank">&nbsp; &nbsp; &nbsp;</span> &nbsp;
 		<input style="border: 3px solid black;" id="btn_Note" onclick="toggleNote();" type="button" value="&#10045;"> &nbsp; &nbsp;
-		<select id="jegy"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; &nbsp;
-		<span id="pJegy">&nbsp; </span> &nbsp; &nbsp;
-		<input onclick="func_buttonFix();" type="button" id="buttonFix" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp;
+		<select id="jegy"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; 
+		<span class="white" id="pJegy" style="font-weight:bold; padding-left:3px; padding-right:3px;">&nbsp; </span> &nbsp; &nbsp;
 		<input onclick="func_buttonSkip();" type="button" id="buttonSkip" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp; &nbsp; &nbsp;
 		<input onclick="koviKerdes();" type="button" value=" ► ">
 	</span>
-	<span style="position:absolute; right:0%;">
+	<span style="position:fixed; right:0px; top:50px;">
 		<span id="repeat" class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;">&nbsp; &nbsp; &nbsp;</span>
-		<input type="button" class="MISS" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'miss');" id="btn_miss" value="0">
-		<input type="button" class="FIX" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'fix');" id="btn_fix" value="0">
-		<input type="button" class="skip" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_spanSkip" id="btn_skip" value="0">
-		<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" onmouseover="func_span(this,'progress')" id="btn_progress" value="0">
+		<input type="button" class="FIX" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_fix" value="0">
+		<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_skip" value="0">
 	</span>
 	<center><textarea style="display:none; position:fixed; left: 40%; top: 70%;" id="note" rows="4" cols="40"></textarea></center>
 	
@@ -50,19 +48,19 @@
 	<td style="border-color:pink; background-color:rgb(200,200,200)">3</td>
 	<td style="border-color:red; background-color:rgb(200,200,200)">4</td>
 	<td style="border-color:red; background-color:rgb(200,200,200)">5</td>
-	<td class="">6</td>
+	<td class="done">6</td>
 	<td style="border-color:red; background-color:rgb(200,200,200)">7</td>
 	<td class="done">8</td>
 	<td style="background-color:LightSkyBlue">9</td>
 	<td style="border-color:red; background-color:rgb(200,200,200)">10</td>
-	<td class="">11</td>
+	<td class="done">11</td>
 	<td style="border-color:pink;" class="done">12</td>
 	<td style="border-color:pink; background-color:rgb(200,200,200)">13</td>
-	<td class="">14</td>
-	<td class="">15</td>
+	<td style="background-color:LightSkyBlue">14</td>
+	<td class="done">15</td>
 	<td style="border-color:red; background-color:rgb(200,200,200)">16</td>
-	<td class="">17</td>
-	<td class="">18</td>
+	<td class="done">17</td>
+	<td class="done">18</td>
 	<td class="">19</td>
 	<td class="">20</td>
 	<td class="">21</td>
@@ -96,8 +94,8 @@
 	<td class="">47</td>
 	<td class="">48</td>
 	<td class="">49</td>
-	<td style="border-color:red; background-color:rgb(200,200,200)">50</td>
-	<td style="border-color:red; background-color:rgb(200,200,200)">51</td>
+	<td class="done">50</td>
+	<td class="done">51</td>
 </tr>
 <tr>
 	<td class="">52</td>
@@ -119,9 +117,9 @@
 	<td style="border-color:red; background-color:rgb(200,200,200)">68</td>
 	<td style="border-color:red; background-color:rgb(200,200,200)">69</td>
 	<td class="done">70</td>
-	<td class="">71</td>
+	<td class="done">71</td>
 	<td class="done">72</td>
-	<td class="">73</td>
+	<td class="done"><strong>73</strong></td>
 	<td class="">74</td>
 	<td class="">75</td>
 	<td class="">76</td>
@@ -878,20 +876,13 @@
 		<div><font class="abbr"><span class="WHITE">7</span> ►</font> lamina_muscularis</div>
 	</ul></details>
 <!----></div></details>
-<!----><details open><summary class="phase">.(6) bőr</summary><div><div class="title"></div>
-	<details class="open kerdes 3/1" id="histo.124"><summary>ismerdfel</summary><ul class="normal">
+<!----><details><summary class="phase">.(6) TENYÉRbőr</summary><div><div class="title"></div>
+	<details><summary><strong>FM</strong></summary><ul class="normal">
+		<li>stratum_lucidum &#10140; nem mindig lehet kivenni</li>
+	</ul></details>
+	<details class="146-153 126 open kerdes 3/4" id="histo.124"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/06_01.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> stratum_germinativum</div>
-		<div><font class="abbr"><span class="WHITE">2</span> ►</font> stratum_polygonale = stratum_spinosum</div>
-		<div><font class="abbr"><span class="WHITE">3</span> ►</font> stratum_granulosum</div>
-		<div><font class="abbr"><span class="WHITE">4</span> ►</font> stratum_lucidum</div>
-		<div><font class="abbr"><span class="WHITE">5</span> ►</font> stratum_corneum</div>
-		<div><font class="abbr"><span class="WHITE">6</span> ►</font> ktsz papilla</div>
-		<div><font class="abbr"><span class="WHITE">7</span> ►</font> verejtékmirigy kivezetőcsöve</div>
-	</ul></details>
-	<details class="open kerdes 3/1" id="histo.125"><summary>ismerdfel</summary><ul class="normal">
-		<img src="100/06_01.png">
-		<div><font class="abbr"><span class="WHITE">1</span> ►</font> stratum_germinativum = stratum_basale</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> stratum_polygonale = stratum_spinosum</div>
 		<div><font class="abbr"><span class="WHITE">3</span> ►</font> stratum_granulosum</div>
 		<div><font class="abbr"><span class="WHITE">4</span> ►</font> stratum_lucidum</div>
@@ -1028,6 +1019,42 @@
 		<div><font class="abbr"><span class="WHITE">7</span> ►</font> plexus_myentericus_Auerbachi</div>
 	</ul></details>
 <!----></div></details>
+<!----><details><summary class="phase">.(11) HAJAS FEJbőr</summary><div><div class="title"></div>
+	<details class="146-153 126 open kerdes 3/4" id="histo.125"><summary>.ismerdfel</summary><ul class="normal">
+		<img src="100/11_01.png">
+		<div><font class="abbr"><span class="WHITE">1</span> ►</font> stratum_corneum</div>
+		<div><font class="abbr"><span class="WHITE">2</span> ►</font> stratum lucidum & granulosum</div>
+		<div><font class="abbr"><span class="WHITE">3</span> ►</font> stratum polygonale=spinosum</div>
+		<div><font class="abbr"><span class="WHITE">4</span> ►</font> stratum basale=germinativum</div>
+		<div><font class="abbr">(5) ►</font> ktsz papilla érintőleges metszési síkban</div>
+		<div><font class="abbr"><span class="WHITE">6</span> ►</font> faggyúmirigy</div>
+		<div><font class="abbr"><span class="WHITE">7</span> ►</font> stratum polygonale & basale folytatódása szőrtüszőben</div>
+		<div><font class="abbr"><span class="WHITE">8</span> ►</font> stratum granulosum & lucidum & stratum_corneum folytatódása szőrtüszőben</div>
+		<div><font class="abbr"><span class="WHITE">9</span> ►</font> kollagén-rostok a cutisban</div>
+		<div><font class="abbr">(10) ►</font> gyökérhüvely érintőleges metszési síkban</div>
+		<div><font class="abbr"><strong>§</strong> ►</font> szőrszál nincs a képen (mert még nem nőtt ki)</div>
+	</ul></details>
+	<details class="146-153 126 open kerdes 3/3" id="histo.145"><summary>.ismerdfel</summary><ul class="normal">
+		<img src="100/11_02.png">
+		<div><font class="abbr"><span class="WHITE">1</span> ►</font> szőrtüsző (nincs benne szőrszál!)</div>
+		<div><font class="abbr"><span class="WHITE">2</span> ►</font> matrix-sejtek, ezek osztódnak</div>
+		<div><font class="abbr"><span class="WHITE">3</span> ►</font> degenerálódó sejtek &#10140; zsírszerű anyagot termelnek, ami felhalmozódik bennük</div>
+		<div><font class="abbr"><span class="WHITE">4</span> ►</font> szétesett sejtek &#10140; ezek alkotják a sebumot=váladékot</div>
+		<div><font class="abbr"><span class="WHITE">5</span> ►</font> kollagén rostok</div>
+		<div><font class="abbr">(6) ►</font> verejtékmirigy</div>
+		<div><font class="abbr"><span class="WHITE">7</span> ►</font> m.arrector_pili</div>
+	</ul></details>
+	<details class="146-153 126 open kerdes 3/3" id="histo.169"><summary>.ismerdfel</summary><ul class="normal">
+		<img src="100/11_03.png">
+		<div><font class="abbr"><span class="WHITE">1</span> ►</font> kollagén-rostok</div>
+		<div><font class="abbr"><span class="WHITE">2</span> ►</font> szőrtüsző</div>
+		<div><font class="abbr"><span class="WHITE">3</span> ►</font> m.arrector_pili</div>
+		<div><font class="abbr"><span class="WHITE">4</span> ►</font> ideg</div>
+		<div><font class="abbr">(5) ►</font> postcapillaris_venula</div>
+		<div><font class="abbr"><span class="WHITE">6</span> ►</font> venula</div>
+		<div><font class="abbr"><span class="WHITE">7</span> ►</font> verejtékmirigy</div>
+	</ul></details>
+<!----></div></details>
 <!----><details><summary class="phase">.(12) prostata</summary><div><div class="title"></div>
 	<details class="kerdes 3/6" id="histo.54"><summary>ELMÉLET</summary><ul class="normal">
 		<details><summary>mi alkotja &#10140; stroma? tok?</summary><ul class="normal">
@@ -1078,7 +1105,7 @@
 			<li>A húgycső nyálkahártyájának proximal felé benyúló vak mellékjáratai a lacunae urethrales. Ezek mellett a corpus spongiosumban kétféle, nagyobbára mucinosus, mirigy található: a hámon belüli, ún. endoepithelialis mirigyek és a submucosába benyomuló nagyobb, elágazó mucinosus mirigyek, a Littre-féle mirigyek</li>
 		</ul></details>
 	</ul></details>
-	<details class="open kerdes 3/2" id="histo.55"><summary>széli része, főmirigyek</summary><ul class="normal">
+	<details class="open kerdes 3/2" id="histo.55"><summary>.széli része, főmirigyek</summary><ul class="normal">
 		<img src="100/12_01.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> végkamrák <abbr title="tág,szabálytalan alakú">()</abbr></div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> simaizom</div>
@@ -1086,7 +1113,7 @@
 		<div><font class="abbr"><span class="WHITE">4</span> ►</font> ferde metszési síkban az egyrétegű hám többrétegűnek tűnik</div>
 		<div><font class="abbr"><span class="vocab">JR</span> ►</font> végkamrák között simaizom van &#10140; ez segít elkülöníteni a vesicula_seminalistól</div>
 	</ul></details>
-	<details class="open kerdes 3/4" id="histo.56"><summary>húgycső részletével</summary><ul class="normal">
+	<details class="open kerdes 3/4" id="histo.56"><summary>.húgycső részletével</summary><ul class="normal">
 		<img src="100/12_02.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> urethra epitheliuma - <abbr title="ezt ekkora nagyításban nem kell tudnom megállapítani, de! szövgyak és jegyzet alapján itt urothelium van, szóval majd FM-nél döntsem el mi van itt">TrHh</abbr></div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> főmirigyek kivezetőcsövének benyílása</div>
@@ -1096,7 +1123,7 @@
 		<div><font class="abbr"><span class="WHITE">6</span> ►</font> submucosus mirigyek</div>
 		<div><font class="abbr"><span class="WHITE">7</span> ►</font> mucosus mirigyek</div>
 	</ul></details>
-	<details class="open kerdes 3/2" id="histo.57"><summary>idősebb korban</summary><ul class="normal">
+	<details class="open kerdes 3/2" id="histo.57"><summary>.idősebb korban</summary><ul class="normal">
 		<img src="100/12_03.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> végkamrák <abbr title="tág,szabálytalan alakú">()</abbr></div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> corpus_amylaceum = prostatakő</div>
@@ -1121,7 +1148,7 @@
 	</ul></details>
 <!----></div></details>
 <!----><details><summary class="phase">.(13) glandula_submandibularis</summary><div><div class="title"></div>
-	<details class="64 71 121 open kerdes 3/3" id="histo.60"><summary>(seromucosus végkamra hosszmetszet)</summary><ul class="normal">
+	<details class="64 71 121 open kerdes 3/3" id="histo.60"><summary>.(seromucosus végkamra hosszmetszet)</summary><ul class="normal">
 		<img src="100/13_01.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> mucosus_sejt (nyíl a magra mutat)</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> végkamra lumene</div>
@@ -1130,7 +1157,7 @@
 		<div><font class="abbr"><span class="WHITE">5</span> ►</font> myoepithel sejt magja</div>
 		<img src="100/asd5.png">
 	</ul></details>
-	<details class="64 71 121 open kerdes 3/7" id="histo.61"><summary>(lebenykék és interlobularis kivezetőcső)</summary><ul class="normal">
+	<details class="64 71 121 open kerdes 3/7" id="histo.61"><summary>.(lebenykék és interlobularis kivezetőcső)</summary><ul class="normal">
 		<img src="100/13_02.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> ductus_excretorius (ductus_interlobularis)</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> beléömlő interlobularis fő kivezetőcső</div>
@@ -1148,7 +1175,7 @@
 		<div><font class="abbr"><span class="WHITE">14</span> ►</font> septum_interlobulare, ebben az anyagban igen laza</div>
 		<img src="100/asd6.png">
 	</ul></details>
-	<details class="64 71 121 open kerdes 3/4" id="histo.62"><summary>_</summary><ul class="normal">
+	<details class="64 71 121 open kerdes 3/4" id="histo.62"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/13_03.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> ductus_excretorius (ductus_interlobularis), TmHh béleli</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> septum_interlobulare</div>
@@ -1190,6 +1217,30 @@
 		<li>(nucleus &#10140; myoepithel vs mucosus)</li>
 	</ul></details>
 <!----></div></details>
+<!----><details><summary class="phase">.(14) ínszövet - kollagénrostok</summary><div><div class="title"></div>
+	<details class="155 open kerdes 3/2" id="histo.156"><summary>.ismerdfel</summary><ul class="normal">
+		<img src="100/14_01.png">
+		<div><font class="abbr"><span class="WHITE">1</span> ►</font> kollagénrost</div>
+		<div><font class="abbr"><span class="WHITE">2</span> ►</font> tendocyta sejtmagja</div>
+		<div><font class="abbr"><span class="WHITE">3</span> ►</font> aktiválódott tendocyta, lazább szerkezetű sejtmag</div>
+	</ul></details>
+	<details class="155 open kerdes 3/1" id="histo.157"><summary>.ismerdfel</summary><ul class="normal">
+		<img src="100/14_02.png">
+		<div><font class="abbr"><span class="WHITE">1</span> ►</font> kollagénrost</div>
+		<div><font class="abbr"><span class="WHITE">2</span> ►</font> tendocyta sejtmagja</div>
+		<div><font class="abbr">(3) ►</font> synoviális réteg az ín felszínén</div>
+		<div><font class="abbr">(4) ►</font> ínhüvely synoviális sejtjei</div>
+		<div><font class="abbr">(5) ►</font> ínhüvely fibrosus rétegének maradványa</div>
+	</ul></details>
+<!----></div></details>
+<!----><details><summary class="phase">.(15) a.carotis - elasztikus rostok [resorcin-fuchsin]</summary><div><div class="title"></div>
+	<details class="159-168 open kerdes 3/2" id="histo.158"><summary>.ismerdfel</summary><ul class="normal">
+		<img src="100/15_01.png">
+		<div><font class="abbr"><span class="WHITE">1</span> ►</font> elasztikus rostok</div>
+		<div>(2 & 3)</div>
+		<div><font class="abbr"><span class="vocab"><strong>§</strong></span> ►</font> tunica_adventitia-t ne keressek</div>
+	</ul></details>
+<!----></div></details>
 <!----><details><summary class="phase">.(16) hepar [ezüst-impregnáció]</summary><div><div class="title"></div>
 	<details><summary><strong>FM</strong> – tavalyi jegyzeteim</summary><ul class="normal">
 		<li>reticularis-rost</li>
@@ -1198,7 +1249,7 @@
 		<li>hepatocita</li>
 		<li>sinusoid</li>
 	</ul></details>
-	<details class="open kerdes 3/2" id="histo.72"><summary>ismerdfel</summary><ul class="normal">
+	<details class="open kerdes 3/2" id="histo.72"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/16_01.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> rácsrostok</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> májsejtgerendákba rendeződött májsejtek</div>
@@ -1207,8 +1258,47 @@
 		<img src="100/asd9.png">
 	</ul></details>
 <!----></div></details>
+<!----><details><summary class="phase">.(17) HAJAS FEJbőr [Azan]</summary><div><div class="title"></div>
+	<details><summary><strong>FM</strong></summary><ul class="normal">
+		<li>Hgyk 52.oldal &#10140; ezeket keressek</li>
+	</ul></details>
+	<details class="170 146-153 126 open kerdes 3/3" id="histo.171"><summary>.ismerdfel</summary><ul class="normal">
+		<img src="100/17_01.png">
+		<div><font class="abbr"><span class="WHITE">1</span> ►</font> kollagénrostok</div>
+		<div><font class="abbr"><span class="WHITE">2</span> ►</font> m.arrector_pili</div>
+		<div><font class="abbr"><span class="WHITE">3</span> ►</font> faggyúmirigy</div>
+		<div><font class="abbr"><span class="WHITE">4</span> ►</font> verejtékmirigy (körülötte kék vonal &#10140; membrana_basalis ~ reticularis_rostok)</div>
+		<div><font class="abbr"><span class="WHITE">5</span> ►</font> venula</div>
+		<div><font class="abbr"><span class="WHITE">6</span> ►</font> szőrtüsző elszarusodott sejtjei</div>
+	</ul></details>
+<!----></div></details>
+<!----><details><summary class="phase">.(18) HAJAS FEJbőr [Hornowsky]</summary><div><div class="title"></div>
+	<details class="173 146-153 126 open kerdes 3/5" id="histo.172"><summary>.ismerdfel</summary><ul class="normal">
+		<img src="100/18_01.png">
+		<div><font class="abbr"><span class="WHITE">1</span> ►</font> kollagénrost</div>
+		<div><font class="abbr"><span class="WHITE">2</span> ►</font> elasztikus-rost</div>
+		<div><font class="abbr"><span class="WHITE">3</span> ►</font> faggyúmirigy</div>
+		<div><font class="abbr"><span class="WHITE">4</span> ►</font> verejtékmirigy (körülötte membrana_basalis ~ reticularis_rostok)</div>
+		<div><font class="abbr"><span class="WHITE">5</span> ►</font> szőrtüsző</div>
+		<div><font class="abbr"><span class="WHITE">6</span> ►</font> membrana_basalis ~ reticularis_rostok a szőrtüsző körül</div>
+		<div><font class="abbr"><span class="WHITE">7</span> ►</font> szőrtüsző elszarusodott sejtjei</div>
+		<div><font class="abbr"><span class="WHITE">8</span> ►</font> zsírsejtek</div>
+		<div><font class="abbr"><span class="WHITE">9</span> ►</font> m.arrector_pili</div>
+		<div><font class="abbr"><span class="WHITE">10</span> ►</font> venula</div>
+	</ul></details>
+<!----></div></details>
+<!----><details><summary class="phase">.(19) köldökzsinór - Wharton kocsonya</summary><div><div class="title"></div>
+	<details class="176 open kerdes 3/1" id="histo.174"><summary>.ismerdfel</summary><ul class="normal">
+		<img src="100/19_01.png">
+		<div><font class="abbr">képen mik láthatók? ►</font> 2db a.umbilicalis(muscularisak!) + 1db v.umbilicalis + <i>köztük az allantois maradványa</i>(ez elvileg nem feltétlen lesz rajta)</div>
+	</ul></details>
+	<details class="176 open kerdes 3/1" id="histo.175"><summary>.ismerdfel</summary><ul class="normal">
+		<img src="100/19_02.png">
+		<div><font class="abbr">képen mik láthatók? ►</font> amnionhám[1rKh!] + fibroblast</div>
+	</ul></details>
+<!----></div></details>
 <!----><details><summary class="phase">.(30) jejunum</summary><div><div class="title"></div>
-	<details class="open kerdes 3/4" id="histo.97"><summary>ismerdfel</summary><ul class="normal">
+	<details class="open kerdes 3/4" id="histo.97"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/30_01.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> bélboholy (sok kehelysejt!)</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> bélboholy lemetszett vége</div>
@@ -1243,64 +1333,6 @@
 	</ul></details>
 <!----></div></details>
 <!----><details><summary class="phase">.(50) elasztikus artéria</summary><div><div class="title"></div>
-	<details><summary><strong>ELMÉLET</strong></summary><ul class="normal">
-		<span class="Miss">RP.241 érzékszervek az artériákban</span>
-		<span class="Miss">RP.239 szélkazán hatás</span>
-		<details><summary>artériák csoportosítása &#10140; elasztikus vs muscularis? (felsorolás)</summary><ul class="normal">
-			<div>elasztikusak a lennt felsoroltak &#10140; többi már muscularisba sorolható, de az átmenet fokozatos <abbr title="tehát nyilván nem 1 írott szabály, hogy ezek elasztikusak, de ez simán elfogadható, hisz nagyjából kell tudni">()</abbr></div>
-			<li>aorta</li>
-			<li>a.carotis communis/interna/externa</li>
-			<li>a.iliaca communis/interna/externa</li>
-			<li>a.femoralis</li>
-			<li>a.subclavia</li>
-			<li>truncus_pulmonalis</li>
-		</ul></details>
-	  <br>
-		<details><summary><font color="Gainsboro">&#9609;</font> nagy-erek és egyediségük?</summary><ul class="normal">
-			<li>elasztikus arteria</li>
-			<li>musculáris arteria &#10140; elasztikus-artériától úgy kölönböztetem meg, hogy membrana_elastica_interna-t megkeresem tunica_intima és tunica_media határán</li>
-			<li>középnagy véna &#10140; fala vékony (adventitia > media, szvsz ráadásul adventitia általában hiányos a metszeten)</li>
-			<div>vasa_vasorum &#10140; erek falát táplálja, tunica_adventitia-ban találhatók</div>
-		</ul></details>
-		<details><summary><font color="Orange">&#9609;</font> kis-erek és egyediségük?</summary><ul class="normal">
-			<li>arteriola &#10140; 3/4 simaizomsejt-réteg</li>
-			<li>precapillaris_arteriola &#10140; 1 simaizomsejt-réteg</li>
-			<li>kapilláris &#10140; 1endothelsejt alkotja <abbr title="nem összesen, hanem rétegként">&#10045;</abbr></li>
-			<li>postcapillaris_venula</li><ul>
-				<li>több endothelsejt alkotja már</li>
-				<li>simaizomsejtek nincsenek még &#10140; tunica_media nincs</li>
-				<li>nagyobb, mint kapilláris</li>
-			</ul>
-			<li>venula &#10140; fala nagyon-vékony (méretéhez képest), néhány simaizomsejt van benne (vékony tunica_media)</li>
-		</ul></details>
-		<details><summary><font color="Gainsboro">&#9609;</font> mikroszkópban véna és artéria közti különbség?</summary><ul class="normal">
-			<li>artéria lumene kerek, vénáé lapos</li>
-		</ul></details>
-		<details><summary><font color="Gainsboro">&#9609;</font> általános felosztásuk?</summary><ul class="normal">
-			<li>tunica_intima</li>
-			<li>tunica_media</li>
-			<li>tunica_adventitia</li>
-		</ul></details>
-		<details><summary><font color="Orange">&#9609;</font> nagy_elasztikus_artéria táplálása?</summary><ul class="normal">
-			<li>vasa_vasorum</li><ul>
-				<li>érfal külső felét tápláló kis erek</li>
-				<li>tunica_adventitia-tól tunica_media-ig jutnak be</li>
-			</ul>
-			<li>érfal belső felének ellátását a lumenből történő diffúzió biztosítja</li>
-		</ul></details>
-		<details><summary><font color="Gainsboro">&#9609;</font> elasztikus-membrán &#10140; felépítése?</summary><ul class="normal">
-			<li>elasztin alkotja</li>
-			<li>rések biztosítják a diffúziót = fenesztrált membrán</li>
-		</ul></details>
-		<details><summary><font color="Gainsboro">&#9609;</font> MEI &#10140; mi? mely "réteg"ben található? felépítés?</summary><ul class="normal">
-			<li>membrana_elastica_interna</li>
-			<li>tunica intima és media határa</li>
-			<li>1réteg elasztikus-membrán alkotja</li><ul>
-				<li>elasztin alkotja</li>
-				<li>rések biztosítják a diffúziót = fenesztrált membrán</li>
-			</ul>
-		</ul></details>
-	</ul></details>
 	<details><summary><strong>FM</strong> – tavalyi jegyzeteim</summary><ul class="normal">
 		<li>tunica_intima</li><ul>
 			<li>endothelium</li>
@@ -1308,8 +1340,10 @@
 		</ul>
 		<li>tunica_media = ellasztikus rostok + simaizomsejtek</li>
 		<li>tunica_adventitia</li>
+	  <hr>
+		<li>elasztikus vs musculáris arteria &#10140; musculárist az elasztikus-artériától úgy különböztetem meg, hogy membrana_elastica_interna-t megkeresem tunica_intima és tunica_media határán (ugyanis elasztikusban nincs)</li>
 	</ul></details>
-	<details class="open kerdes 3/2" id="histo.86"><summary>ismerdfel</summary><ul class="normal">
+	<details class="open kerdes 3/2" id="histo.86"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/50_01.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> endothelsejt (magja)</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> stratum_subendotheliale</div>
@@ -1342,12 +1376,12 @@
 			<li>véna adventitiaja vastagabb</li>
 		</ul>
 	</ul></details>
-	<details class="open kerdes 3/?" id="histo.87"><summary>ismerdfel</summary><ul class="normal">
+	<details class="open kerdes 3/?" id="histo.87"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/51_01.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> artéria lumene</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> véna lumene</div>
-		<div><font class="abbr"><span class="WHITE">3</span> ►</font> membrana_elastica_interna /elasztikus-rostok!!/</div>
-		<div><font class="abbr"><span class="WHITE">4</span> ►</font> membrana_elastica_externa /elasztikus-rostok!!/</div>
+		<div><font class="abbr"><span class="WHITE">3</span> ►</font> membrana_elastica_interna</div>
+		<div><font class="abbr"><span class="WHITE">4</span> ►</font> membrana_elastica_externa</div>
 		<div><font class="abbr"><span class="WHITE">5</span> ►</font> tunica_media - simaizomsejt (magja)</div>
 		<div><font class="abbr"><span class="WHITE">6</span> ►</font> stratum_subendotheliale</div>
 		<div><font class="abbr"><span class="WHITE">7</span> ►</font> endothelsejtek (magja)</div>
@@ -1365,7 +1399,7 @@
 		<li>faggyúmirigy</li>
 		<li>szőrmerevítő izom</li>
 	</ul></details>
-	<details class="open kerdes 3/5" id="histo.80"><summary>ismerdfel</summary><ul class="normal">
+	<details class="open kerdes 3/5" id="histo.80"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/53_01.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> harántcsíkolt_izom [m.orbicularis_oris] <abbr title="főleg keresztmetszetben">()</abbr></div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> TE<span class="Important">N</span>SLH</div>
@@ -1446,14 +1480,14 @@
 		<li>ductus intercalaris/salivaris/excretorius</li>
 		<div><span class="vocab"><strong>§</strong></span> ductus_intercalaris ezen található legkönyebben (K&P írta)</div>
 	</ul></details>
-	<details class="64 71 121 123 open kerdes 3/2" id="histo.69"><summary>ismerdfel</summary><ul class="normal">
+	<details class="64 71 121 123 open kerdes 3/2" id="histo.69"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/58_01.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> serosus végkamra</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> ductus_intercalaris</div>
 		<div><font class="abbr"><span class="WHITE">3</span> ►</font> ductus_salivaris</div>
 		<div><font class="abbr"><span class="WHITE">4</span> ►</font> zsírsejtek</div>
 	</ul></details>
-	<details class="64 71 121 123 open kerdes 3/2" id="histo.70"><summary>ismerdfel</summary><ul class="normal">
+	<details class="64 71 121 123 open kerdes 3/2" id="histo.70"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/58_02.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> zsírsejt</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> zsírsejt</div>
@@ -1492,7 +1526,7 @@
 		<div><font class="abbr">(9) ►</font> sejtmag a ductus_salivarisban a basalis csíkolat miatt felfelé eltolódva</div>
 		<div><font class="abbr"><span class="WHITE">10</span> ►</font> intralobularis fő kivezetőcső &#10140; <abbr title="ductus_salivarisok!">mi nyílik ebbe?</abbr> <abbr title="nyílnál az 1r hám Tr-nek tűnik, mert a metszési sík ferde">()</abbr> </div>
 	</ul></details>
-	<details class="64 71 121 open kerdes 3/3" id="histo.67"><summary>ismerdfel</summary><ul class="normal">
+	<details class="64 71 121 open kerdes 3/3" id="histo.67"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/59_03.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> mucosus_végkamra <abbr title="keresztmetszete és a nyíl a lumenre mutat">()</abbr></div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> serosus_sapka</div>
@@ -1525,7 +1559,7 @@
 	</ul></details>
 <!----></div></details>
 <!----><details><summary class="phase">.(61) oesophagus-cardia átmenet</summary><div><div class="title"></div>
-	<details class="111 99 open kerdes 3/3" id="histo.98"><summary>ismerdfel</summary><ul class="normal">
+	<details class="111 99 open kerdes 3/3" id="histo.98"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/61_01.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> TrEnsLh</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> 1rHh</div>
@@ -1547,7 +1581,7 @@
 		<div><font class="abbr"><span class="WHITE">7</span> ►</font> foveola_gastrica</div>
 		<div><font class="abbr"><span class="WHITE">8</span> ►</font> 1rHh</div>
 	</ul></details>
-	<details class="111 110 108 open kerdes 3/3" id="histo.104"><summary>ismerdfel</summary><ul class="normal">
+	<details class="111 110 108 open kerdes 3/3" id="histo.104"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/62_02.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> 1rHh + foveola_gastrica</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> fedősejtek(fundusmirigy)</div>
@@ -1611,7 +1645,7 @@
 	</ul></details>
 <!----></div></details>
 <!----><details><summary class="phase">.(64) pylorus-duodenum átmenet</summary><div><div class="title"></div>
-	<details class="111 101 108 open kerdes 3/5" id="histo.100"><summary>ismerdfel</summary><ul class="normal">
+	<details class="111 101 108 open kerdes 3/5" id="histo.100"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/64_01.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> m.sphyncter_pylori - stratum_circulare(tunica_muscularis) megvastagodása</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> tela_submucosa</div>
@@ -1624,7 +1658,7 @@
 		<div><font class="abbr"><span class="WHITE">9</span> ►</font> solitaer nyiroktüsző</div>
 		<div><font class="abbr"><span class="WHITE">10</span> ►</font> ruga_gastrica(=gyomornyálkahártya redő)</div>
 	</ul></details>
-	<details class="111 101 108 open kerdes 3/3" id="histo.102"><summary>ismerdfel</summary><ul class="normal">
+	<details class="111 101 108 open kerdes 3/3" id="histo.102"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/64_02.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> foveola_gastrica (& 1rHh)</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> glandulae_pyloricae<abbr title="pylorusmirigyek">(=)</abbr> (lamina_propriaban)</div>
@@ -1645,7 +1679,7 @@
 	</ul></details>
 <!----></div></details>
 <!----><details><summary class="phase">.(65) duodenum</summary><div><div class="title"></div>
-	<details class="open kerdes 3/3" id="histo.88"><summary>ismerdfel</summary><ul class="normal">
+	<details class="open kerdes 3/3" id="histo.88"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/65_01.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> bélboholy</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> kehelysejt</div>
@@ -1654,7 +1688,7 @@
 		<div><font class="abbr"><span class="WHITE">5</span> ►</font> Brünner-mirigy a tela_submucosaban</div>
 		<div><font class="abbr"><span class="WHITE">6</span> ►</font> </div>
 	</ul></details>
-	<details class="open kerdes 3/2" id="histo.89"><summary>ismerdfel</summary><ul class="normal">
+	<details class="open kerdes 3/2" id="histo.89"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/65_02.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> Lieberkühn-kripta (lamina_propria-ban)</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> kehelysejt</div>
@@ -1671,7 +1705,7 @@
 	</ul></details>
 <!----></div></details>
 <!----><details><summary class="phase">.(66) ileum</summary><div><div class="title"></div>
-	<details class="open kerdes 3/4" id="histo.96"><summary>ismerdfel</summary><ul class="normal">
+	<details class="open kerdes 3/4" id="histo.96"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/66_01.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> bélboholy</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> Lieberkühn-kripta (falában kehelysejtek)</div>
@@ -1689,7 +1723,7 @@
 	</ul></details>
 <!----></div></details>
 <!----><details><summary class="phase">.(67) appendix_vermiformis</summary><div><div class="title"></div>
-	<details class="open kerdes 3/4" id="histo.112"><summary>ismerdfel</summary><ul class="normal">
+	<details class="open kerdes 3/4" id="histo.112"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/67_01.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> Lieberkühn-kripták, falukban kehelysejtek</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> nyiroktüsző</div>
@@ -1821,7 +1855,7 @@
 		<li><font color="Black">&#9609;</font> v.sublobularis</li>
 		<li><font color="Black">&#9609;</font> intramuralis_ganglion (füzet) vs Langerhans-sziget</li>
 	</ul></details>
-	<details class="120 121 122 123 open kerdes 3/3" id="histo.118"><summary>ismerdfel</summary><ul class="normal">
+	<details class="120 121 122 123 open kerdes 3/3" id="histo.118"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/70_01.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> serosus végkamra</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> Langerhans-sziget</div>
@@ -1830,7 +1864,7 @@
 		<div><font class="abbr"><span class="WHITE">5</span> ►</font> ductus_intralobularis kivezetőcső(4) mélyebb szakasza</div>
 		<div><font class="abbr"><span class="WHITE">6</span> ►</font> septum_interlobulare</div>
 	</ul></details>
-	<details class="120 121 122 123 open kerdes 3/2" id="histo.119"><summary>ismerdfel</summary><ul class="normal">
+	<details class="120 121 122 123 open kerdes 3/2" id="histo.119"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/70_02.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> serosus sejt magja</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> centroaciner sejt magja</div>
@@ -1838,22 +1872,31 @@
 	</ul></details>
 <!----></div></details>
 <!----><details><summary class="phase">.(71) larynx</summary><div><div class="title"></div>
-	<strong>Funkc 2</strong>
-	A gége szöveti szerkezete. Nyálkahártyájának hámja magas több magsoros csillószőrös hengerhám, de a
-	vestibulumban, főleg az epiglottis pereméhez közel, még többrétegű, el nem szarusodó laphámból álló szigetek
-	normálisan is előfordulnak. A plica vocalisnak a hangszalagot borító részét – tehát ahol igen erős a mechanikai
-	megterhelés – többrétegű, el nem szarusodó laphám borítja. A hámban sok kehelysejt és a tunica propriában – a 
-	plica vocalison kívül – mindenütt sok apró nyálmirigy fordul elő. A legnagyobbak az epiglottis előtt
-	helyezkednek el, de kivezető csövük az epiglottisporc átfúrásával a vestibulumba nyílik. A tunica propria
-	mucosae felületesebb, lazább része bővelkedik rugalmas rostokban és kisebb nyiroktüszőkben. Mélyebb rétege
-	az erős rugalmas rostokból álló membrana fibroelasticaként önállósodik. A ventriculus laryngis nyálkahártyája
-	alatt ez a mély réteg hiányzik
+	<details class="143 open kerdes 3/6" id="histo.142"><summary>.ismerdfel</summary><ul class="normal">
+		<img src="100/71_01.png">
+		<div><font class="abbr"><span class="important">1</span> ►</font> cartilago_thyroidea</div>
+		<div><font class="abbr"><span class="important">2</span> ►</font> cartilago_cricoidea</div>
+		<div><font class="abbr"><span class="important">3</span> ►</font> os_hyoideum, benne vörös csontvelő</div>
+		<div><font class="abbr"><span class="important">4</span> ►</font> epiglottis (benne nyálmirigyek)</div>
+		<div><font class="abbr"><span class="important">5</span> ►</font> plica_vestibularis, alatta ventriculu_laryngis bemenet</div>
+		<div><font class="abbr"><span class="important">6</span> ►</font> plica_vocalis</div>
+		<div><font class="abbr">(7) ►</font> radix_lingua részlete: izom + nyiroktüsző</div>
+		<div><font class="abbr"><span class="important">8</span> ►</font> cartilago_tracheale</div>
+		<div><font class="abbr">(9) ►</font> kis nyálmirigy kivezetőcsöve</div>
+		<div><font class="abbr">(10) ►</font> solitear nyiroktüsző(=folliculus)</div>
+		<div><font class="abbr"><span class="WHITE">11</span> ►</font> m.sternothyroideus, nyíl a linea_obliqua-ra mutat</div>
+		<div><font class="abbr"><span class="WHITE">12</span> ►</font> m.thyrohyoideus</div>
+		<div><font class="abbr">(13) ►</font> m.sternohyoideus & m.omohyoideus</div>
+		<div><font class="abbr"><span class="important">14</span> ►</font> m.cricothyroideus</div>
+		<div><font class="abbr"><span class="WHITE">15</span> ►</font> m.thyroarytenoideus és (alatta) m.cricothyroideus_lateralis</div>
+		<div><font class="abbr"><span class="important">16</span> ►</font> m.vocalis</div>
+	</ul></details>
 <!----></div></details>
 <!----><details><summary class="phase">.(72) trachea</summary><div><div class="title"></div>
 	<details><summary><strong>FM</strong> – tavalyi jegyzeteim</summary><ul class="normal">
 		<li>mirigyek a főként paries_membranaceus tájékán</li>
 	</ul></details>
-	<details class="127 128 open kerdes 3/4" id="histo.129"><summary>ismerdfel</summary><ul class="normal">
+	<details class="127 128 open kerdes 3/4" id="histo.129"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/72_01.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> TmK-Hh (benne kehelysejtek is)</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> glandula_trachealis (seromucosus)</div>
@@ -1864,6 +1907,82 @@
 		<div><font class="abbr"><span class="WHITE">7</span> ►</font> chondroblastok [hyalinporc]</div>
 		<div><font class="abbr"><span class="WHITE">8</span> ►</font> chondrociták=porcsejtek [hyalinporc]</div>
 		<div><abbr title="fibroelasticus membrán hasonló a membrana_quadrangularishoz és membrana_trinagularishoz --> megakadályozza a nyálkahártya-redők kialakulását, azaz feszesen-simán tartja a felszínt">&#10045;</abbr></div>
+	</ul></details>
+<!----></div></details>
+<!----><details><summary class="phase">.(73) pulmo</summary><div><div class="title"></div>
+	<details><summary><strong>FM</strong> – tavalyi jegyzeteim</summary><ul class="normal">
+		<li>mesothelium-ot keressek a szélén (pleura)</li>
+	  <hr> 
+		<li>pneumocyta_II &#10140; ne keressem őket, mert elvileg alig lehet őket kivenni (márha egyáltalán kilehet)</li>
+		<li><font color="Black">&#9609;</font> bronchus</li>
+		<li><font color="Black">&#9609;</font> bronchiolus</li>
+		<li><font color="Black">&#9609;</font> ductus_alveolaris</li>
+		<li><font color="Black">&#9609;</font> alveolus</li>
+	  <hr> 
+		<li><font color="Black">&#9609;</font> simaizomsejt</li>
+		<li><font color="Black">&#9609;</font> hyalinporc</li>
+		<li><font color="Black">&#9609;</font> seromucosus mirigy</li>
+		<li><font color="Black">&#9609;</font> a.pulmonalis ága</li>
+	</ul></details>
+	<details class="130 131 132 133 134 141 open kerdes 3/5" id="histo.135"><summary>.ismerdfel</summary><ul class="normal">
+		<img src="100/73_01.png">
+		<div><font class="abbr"><span class="WHITE">1</span> ►</font> hyalinporc</div>
+		<div><font class="abbr"><span class="WHITE">2</span> ►</font> [bronchus] epithelium &#10140; Tm-Kc-Hh (+kehelysejt)</div>
+		<div><font class="abbr"><span class="WHITE">3</span> ►</font> [bronchiolus] epithelium &#10140; Tm-Kc-Hh</div>
+		<div><font class="abbr"><span class="WHITE">4</span> ►</font> tunica_muscularis - simaizom</div>
+		<div><font class="abbr"><span class="WHITE">5</span> ►</font> serosus mirigy</div>
+		<div><font class="abbr"><span class="WHITE">6</span> ►</font> artéria</div>
+		<div><font class="abbr"><span class="WHITE">7</span> ►</font> (véna)</div>
+		<div><font class="abbr">(8) ►</font> ideg (nyílnál vegetatív ganglionsejt)</div>
+		<div><font class="abbr"><span class="WHITE">9</span> ►</font> zsírsejt</div>
+		<div><font class="abbr"><span class="WHITE">10</span> ►</font> alveolus</div>
+	</ul></details>
+	<details class="130 131 132 133 134 141 open kerdes 3/4" id="histo.136"><summary>.ismerdfel</summary><ul class="normal">
+		<img src="100/73_02.png">
+		<div><font class="abbr"><span class="WHITE">1</span> ►</font> perichondrium</div>
+		<div><font class="abbr"><span class="WHITE">2</span> ►</font> [bronchus] epithelium: Tm-Kc-Hh + kehelysejt</div>
+		<div><font class="abbr"><span class="WHITE">3 & 4</span> ►</font> [bronchiolus] epithelium: Tm/1r-Kc-Hh</div>
+		<div><font class="abbr"><span class="WHITE">5</span> ►</font> tunica_muscularis - simaizom</div>
+		<div><font class="abbr"><span class="WHITE">6</span> ►</font> serosus mirigy</div>
+		<div><font class="abbr"><span class="WHITE">7</span> ►</font> ductus_alveolaris</div>
+		<div><font class="abbr"><span class="WHITE">8</span> ►</font> alveolus</div>
+	</ul></details>
+	<details class="130 131 132 133 134 141 open kerdes 3/3" id="histo.139"><summary>.ismerdfel</summary><ul class="normal">
+		<img src="100/73_03.png">
+		<div><font class="abbr"><span class="WHITE">1</span> ►</font> [bronchiolus_terminalis] epithelium: 1r-Hh</div>
+		<div><font class="abbr"><span class="WHITE">2</span> ►</font> [bronchiolus_terminalis] epithelium: 1r-Kh</div>
+		<div><font class="abbr"><span class="WHITE">3</span> ►</font> alveolus</div>
+		<div><font class="abbr"><span class="WHITE">4</span> ►</font> ductus_alveolaris</div>
+		<div><font class="abbr"><span class="WHITE">5</span> ►</font> simaizom <i>- tunica_muscularis</i></div>
+		<div><font class="abbr"><span class="WHITE">6</span> ►</font> a.pulmonalis egy ága: endothelium</div>
+	</ul></details>
+	<details class="130 131 132 133 134 141 open kerdes 3/3" id="histo.137"><summary>.ismerdfel</summary><ul class="normal">
+		<img src="100/73_04.png">
+		<div><font class="abbr"><span class="WHITE">1</span> ►</font> ductus_alveolaris</div>
+		<div><font class="abbr"><span class="WHITE">2</span> ►</font> alveolus</div>
+		<div><font class="abbr"><span class="WHITE">3</span> ►</font> alveolus sphincter (simaizom + elasztikus rostok)</div>
+		<div><font class="abbr">(4) ►</font> alveolus, nyílása nem esett a metszés síkjába</div>
+		<div><font class="abbr">(5) ►</font> makrofág fagocitózis után</div>
+		<div><font class="abbr"><span class="WHITE">6</span> ►</font> artéria</div>
+	</ul></details>
+	<details class="130 131 132 133 134 141 open kerdes 3/2" id="histo.138"><summary>.ismerdfel</summary><ul class="normal">
+		<img src="100/73_05.png">
+		<div><font class="abbr"><span class="WHITE">1</span> ►</font> ductus_alveolaris</div>
+		<div><font class="abbr"><span class="WHITE">2</span> ►</font> alveolus</div>
+		<div><font class="abbr"><span class="WHITE">3</span> ►</font> alveolus sphincter (simaizom + elasztikus-rostok)</div>
+		<div><font class="abbr">(4) ►</font> alveolus, nyílása nem esett a metszés síkjába</div>
+		<div><font class="abbr">(5) ►</font> koromlerakódás</div>
+	</ul></details>
+	<details class="130 131 132 133 134 141 open kerdes 3/3" id="histo.140"><summary>.ismerdfel</summary><ul class="normal">
+		<img src="100/73_06.png">
+		<div><font class="abbr"><span class="WHITE">1</span> ►</font> [bronchiolus_terminalis] vége</div>
+		<div><font class="abbr"><span class="WHITE">2</span> ►</font> [bronchiolus_respiratorius] 1r-Kh</div>
+		<div><font class="abbr"><span class="WHITE">3</span> ►</font> ductus_alveolaris</div>
+		<div><font class="abbr"><span class="WHITE">4</span> ►</font> alveolus</div>
+		<div><font class="abbr">(5) ►</font> alveolus, nyílása nem esett a metszés síkjába</div>
+		<div><font class="abbr"><span class="WHITE">6</span> ►</font> pleura: mesothelium</div>
+		<div><font class="abbr">(7) ►</font> bronchiolus_terminalis fala érintőleges metszési síkban</div>
+		<div><font class="abbr"><span class="WHITE">8</span> ►</font> arteriola</div>
 	</ul></details>
 <!----></div></details>
 <!----><details><summary class="phase">.(77) glans_penis</summary><div><div class="title"></div>
@@ -1888,7 +2007,7 @@
 	</ul></details>
 <!----></div></details>
 <!----><details><summary class="phase">.(91) ureter</summary><div><div class="title"></div>
-	<details class="48 open kerdes 3/5" id="histo.24"><summary>ismerdfel</summary><ul class="normal">
+	<details class="48 open kerdes 3/5" id="histo.24"><summary>.ismerdfel</summary><ul class="normal">
 		<img src="100/91.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> urothelium <abbr title="nyíl egy ernyősejt magjára mutat">&#10045;</abbr></div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> lamina_propria</div>
@@ -1972,7 +2091,7 @@
 	<br><br>
 
 <!----><details open><summary class="phase">ELMÉLET</summary><div><div class="title"></div>
-	<details class="kerdes 3/3" id="histo.101"><summary>pylorus vs duodenum (64)</summary><ul class="normal">
+	<details class="kerdes 3/3" id="histo.101"><summary>pylorus vs duodenum <span class="WHITE">64</span></summary><ul class="normal">
 		<br><details><summary>metszet "tengelye"? (bizonyítva!)</summary><ul class="normal">
 			<li>hosszmetszet, hisz így látható az átmenet (keresztmetszet esetén csak egyiket látnám)</li>
 		</ul></details>
@@ -1989,7 +2108,7 @@
 		<li>(Brunner-mirigy + glandulae_pyloricae &#10140; ugyanazon pseudomucosus_mirigyek(valójában merokrinek), különböző területen)</li>
 		<img src="images/crdlyprs.png">
 	</ul></details>
-	<details class="kerdes 3/2" id="histo.99"><summary>megkülönböztetés(3) &#10140; cardia vs oesophagus (61)</summary><ul class="normal">
+	<details class="kerdes 3/2" id="histo.99"><summary>megkülönböztetés(3) &#10140; cardia vs oesophagus <span class="WHITE">61</span></summary><ul class="normal">
 		<li>TrEnsLh <div class="mirror">&#10140;</div>&#10140; 1rHh</li>
 		<li>glandulae_oesophagae(tela_submucosa) <div class="mirror">&#10140;</div>&#10140; glandulae_cardiacae(Schaffer-mirigyek)</li>
 		<li>foveolae_gastricae megjelennek a cardiaban</li>
@@ -1997,7 +2116,7 @@
 		<li><font class="abbr">(glandulae_cardiacae mit termelnek...) ►</font> mucin</li>
 		<img src="images/crdlyprs.png">
 	</ul></details>
-	<details class="kerdes 4/5" id="histo.111"><summary>gyomor - rétegek (61-64)</summary><ul class="normal">
+	<details class="kerdes 4/5" id="histo.111"><summary>gyomor - rétegek <span class="WHITE">61-64</span></summary><ul class="normal">
 		<li>tunica_mucosa</li><ul>
 			<li>epithelium &#10140; 1rHh (nyákot termel!) <abbr title="fundus esetében nyákréteg van az apikális felszínén">&#10045;</abbr></li>
 			<li>lamina_propria &#10140; foveolae_gastricae nevű gödröcskék vannak, melyeket a plicae_villosae-k választanak el egymástól <img class="mini" src="images/plcvlls.png"></li>
@@ -2023,7 +2142,7 @@
 		</ul>
 		<li><span class="Important">pylorus</span> &#10140; solitaer nyiroktüsző <abbr title="lehet lamina_propriaban & tela_submucosaban is elvileg Hgyk">()</abbr></li>
 	</ul></details>
-	<details class="kerdes 3/4" id="histo.64"><summary>exokrin mirigyek (13) (58-60)</summary><ul class="normal">
+	<details class="kerdes 3/4" id="histo.64"><summary>exokrin mirigyek <span class="WHITE">13</span> <span class="WHITE">58-60</span></summary><ul class="normal">
 		<li>interlobularis_septumok = ktsz_sövények &#10140; lebenykékre tagolják a mirigyállományt</li>
 	  <hr>
 		<li>több ductus_intercalaris ömlik &#10140; egy ductus_salivarisba, ebből több ömlik &#10140; <span class="Important">1db</span> intralobularis_fő_kivezetőcsőbe lebenyenként, és több lebenyből érkező ilyen ömlik végül &#10140; interlobularis_kivezetőcsőbe</li>
@@ -2038,16 +2157,16 @@
 		<img style="max-width:45%" src="100/59_04.png">
 		<img style="max-width:45%" src="100/mrgyklmtl.png">
 	</ul></details>
-	<details class="kerdes 2/2" id="histo.107"><summary>PAS lényege? (63)</summary><ul class="normal">
+	<details class="kerdes 2/2" id="histo.107"><summary>PAS lényege? <span class="WHITE">63</span></summary><ul class="normal">
 		<li>poliszacharidok (pl.glikogén) kimutatására alkalmas</li>
 		<div><span class="Vocab">1</span> perjódsav(PA) hozzáadása &#10140; glikogénben a hexóz(gyűrűforma) kinyílik és aldehid lesz belőle<abbr title="aldehiddé oxidálódik">()</abbr></div>
 		<div><span class="Vocab">2</span> ehhez Schiff-reagenset hozzáadva vörös színűvé válik</div>
 	</ul></details>
-	<details class="kerdes 2/1" id="histo.108"><summary style="color:Magenta"><font color="Green">1rHh funkció &#10140; gyomor vs vékonybél? (62-64)</font></summary><ul class="normal">
+	<details class="kerdes 2/1" id="histo.108"><summary style="color:Magenta"><font color="Green">1rHh funkció &#10140; gyomor vs vékonybél? <span class="WHITE">62-64</span></font></summary><ul class="normal">
 		<li>tehát 1rHh nyákot termel(szekréció) a gyomorban</li>
 		<img src="100/asd63.png">
 	</ul></details>
-	<details class="kerdes 3/4" id="histo.110"><summary><span class="vocab">R</span> fundusmirigy felépítése (62-63)</summary><ul class="normal">
+	<details class="kerdes 3/4" id="histo.110"><summary><span class="vocab">R</span> fundusmirigy felépítése <span class="WHITE">62-63</span></summary><ul class="normal">
 		<img src="images/rajz_fundusmirigy.png">
 		<table>
 			<tr><th></th>   <th>mit szekretálnak</th>   <th>festődés</th> </tr>
@@ -2070,7 +2189,7 @@
 			</tr>
 		</table>
 	</ul></details>
-	<details class="kerdes 3/3" id="histo.113"><summary><span class="vocab">R</span> hepar - EM képe (sejttípusok) (68-69)</summary><ul class="normal">
+	<details class="kerdes 3/3" id="histo.113"><summary><span class="vocab">R</span> hepar - EM képe (sejttípusok) <span class="WHITE">68-69</span></summary><ul class="normal">
 		<img style="max-width:30%" src="images/májsejttípusok.png">
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> nucleus, 2+ nucleolussal</div>
 		<div><font class="abbr"><span class="WHITE">2</span> ►</font> mikrobolyhok</div>
@@ -2084,7 +2203,7 @@
 		<div><font class="abbr"><span class="WHITE">10</span> ►</font> Disse-tér</div>
 		forrás <img class="mini" src="images/mjstjpfsr.png">
 	</ul></details>
-	<details class="kerdes 3/4" id="histo.114"><summary><span class="vocab">R</span> hepar - májlebenykék (68-69)</summary><ul class="normal">
+	<details class="kerdes 3/4" id="histo.114"><summary><span class="vocab">R</span> hepar - májlebenykék <span class="WHITE">68-69</span></summary><ul class="normal">
 		<div style="float:right; max-width:30%">
 			<img src="images/rajz_lbnykkt.png">
 			<img src="images/lebenyek.png">
@@ -2104,7 +2223,7 @@
 		<div>ez erősen idealizált elképzelés &#10140; valóságban nem feltétlen ilyen szabályos, portális triász sincs minden szögletben</div>
 		forrás <img class="mini" src="images/source_rmjlbnyk.png">
 	</ul></details>
-	<details class="kerdes 3/5" id="histo.115"><summary><span class="vocab">R</span> nephron (2)</summary><ul class="normal">
+	<details class="kerdes 3/5" id="histo.115"><summary><span class="vocab">R</span> nephron <span class="WHITE">2</span></summary><ul class="normal">
 		<img src="images/rajz_nephron.png">
 		<li>egyik nephron legyen <abbr title="medullahoz közeli">juxtamedullaris</abbr> / másik <abbr title="medullátol távoli">corticális</abbr>!</li>
 		<div><font class="abbr"><span class="WHITE">1</span> ►</font> tubulus_proximalis pars_convoluta</div>
@@ -2124,7 +2243,7 @@
 	  <hr>
 		<li>A nephronok különböző lokalizációja (kortikális vs juxtamedullaris glomerulus) miatt a Henle kacsok velőállományi extenziója is különböző (hosszabb és rövidebb) <img class="mini" src="images/krtklsjxtmdllrsglm.png"> <abbr title="a képen a belső sávig lemegy ugyan, de gondolom más forrás (amely alapján készítettem a rajzot), mutatott olyat, ahol csak külső sávba megy, ergó különböző hosszúságúak vannak &#10140; két ''szélsőségesebbet'' ábrázolok">&#10045;</abbr></li>
 	</ul></details>
-	<details class="kerdes 3/6" id="histo.116"><summary><span class="vocab">R</span> <abbr title="egyik részén látszódjon a 2v.interlobularis közti kapillárishálózat / másik részén a glomerulus(histonál van róla kép)">vese vérkeringés?</abbr> (2)</summary><ul class="normal">
+	<details class="kerdes 3/6" id="histo.116"><summary><span class="vocab">R</span> <abbr title="egyik részén látszódjon a 2v.interlobularis közti kapillárishálózat / másik részén a glomerulus(histonál van róla kép)">vese vérkeringés?</abbr> <span class="WHITE">2</span></summary><ul class="normal">
 		<div><strong>cortex_renalis</strong></div>
 		<li><span class="WHITE">8</span>a.renalis &#10140; <span class="WHITE">11</span>a.interlobaris &#10140; <span class="WHITE">12</span>a.arcuata &#10140; <span class="WHITE">13</span>a.interlobularis &#10140; <span class="WHITE">14</span>vas_afferens</li>
 		<li><span class="WHITE">15</span>glomerulus</li>
@@ -2152,7 +2271,7 @@
 		<li><span class="WHITE">6</span>papilla_renalis</li>
 		<li><span class="WHITE">10</span>capsula_adiposa</li>
 	</ul></details>
-	<details class="kerdes 3/4" id="histo.117"><summary><span class="vocab">R</span> corpusculum_renale_Malpighi? (2)</summary><ul class="normal">
+	<details class="kerdes 3/4" id="histo.117"><summary><span class="vocab">R</span> corpusculum_renale_Malpighi? <span class="WHITE">2</span></summary><ul class="normal">
 		<img src="images/rajz_crnlmlph.png">
 		<li>capsula_glomeruli_Bowman</li><ul>
 			<li><span class="WHITE">5</span> lamina_parietalis(külső) &#10140; 1rétegű_laphám (epithelium)</li>
@@ -2184,7 +2303,7 @@
 		<li><span class="WHITE">11</span> lamina_basalis</li>
 		FORRÁS <img class="mini" src="images/crpscmmlpgh.png">
 	</ul></details>
-	<details class="kerdes 3/2" id="histo.120"><summary>pancreas - K&M (70)</summary><ul class="normal">
+	<details class="kerdes 3/2" id="histo.120"><summary>pancreas - K&M <span class="WHITE">70</span></summary><ul class="normal">
 		<li>parenchymas szerv</li>
 		<li>tisztán serosus mirigy</li>
 		<li>nincs benne zsírszövet</li>
@@ -2212,11 +2331,11 @@
 		</ul>
 		<li><abbr title="ductus_excretorius sejtjei &#10140; neutrális nyákot termelnek, mikrobolyhok fedik)">()</abbr> <abbr title="kevés intralobularis kivezetőcső">()</abbr></li>
 	</ul></details>
-	<details class="kerdes 3/1" id="histo.121"><summary>nagy nyálmirigyek + pancreas ductusairól mit kell tudni (13) (58) (59) (60) (70)</summary><ul class="normal"><table>
+	<details class="kerdes 3/1" id="histo.121"><summary>nagy nyálmirigyek + pancreas ductusairól mit kell tudni <span class="WHITE">13</span> <span class="WHITE">58</span> <span class="WHITE">59</span> <span class="WHITE">60</span> <span class="WHITE">70</span></summary><ul class="normal"><table>
 		<li>intercalarist alig lehet találni glandula_lingualis</li>
 		<li>salivaris nincs pancreas</li>
 	</table></ul></details>
-	<details class="kerdes 3/2" id="histo.71"><summary>megkülönböztetés &#10140; nagy nyálmirigyek (13) (58) (59)</summary><ul class="normal"><table>
+	<details class="kerdes 3/2" id="histo.71"><summary>megkülönböztetés &#10140; nagy nyálmirigyek <span class="WHITE">13</span> <span class="WHITE">58</span> <span class="WHITE">59</span></summary><ul class="normal"><table>
 		<tr><th>szempont</th><th>sublingualis</th><th>submandibularis</th><th>parotis</th></tr>
 		<tr><th>mirigyek</td>
 			<td>sok mucosust látok, de serosust is <abbr title="elméletben 2:1 arány">&#10045;</abbr></td>
@@ -2229,29 +2348,71 @@
 			<td>van</td>
 		</tr>
 	</table></ul></details>
-	<details class="kerdes 3/1" id="histo.122"><summary>megkülönböztetés &#10140; intramuralis_ganglion vs Langerhans-sziget? <abbr title="óra + SzGy">&#9775;</abbr> (70)</summary><ul class="normal">
+	<details class="kerdes 3/1" id="histo.122"><summary>megkülönböztetés &#10140; intramuralis_ganglion vs Langerhans-sziget? <abbr title="óra + SzGy">&#9775;</abbr> <span class="WHITE">70</span></summary><ul class="normal">
 		<li>jobb a Langerhans</li>
 		<img src="images/intramural_ganglion & langerhans.png">
 		<img src="images/intramural_ganglion.png">
 	</ul></details>
-	<details class="kerdes 3/2" id="histo.123"><summary>megkülönböztetés(3<sub>+2</sub>) &#10140; glandula_parotis vs pancreas (58) (70)</summary><ul class="normal">
+	<details class="open kerdes 3/2" id="histo.144"><summary>larynx - elmélet <span class="WHITE">71</span></summary><ul class="normal">
+		<li>epithelium</li><ul>
+			<li>TrEnsLh</li><ul>
+				<li>plica_vocalis</li>
+				<li>vestibulumnak azepiglottis peremi része</li>
+			</ul>
+			<li>TmKcHh többi</li>
+			<div>kehelysejtek is vannak</div>
+		</ul>
+		<li>lamina_propria</li><ul>
+			<li>felületes része &#10140; laza, benne <abbr title="kevert seromucinosus, de javarészt mucinosus">(mucinosus)</abbr> nyálmirigyek, kivéve plica_vocalisnál</li>
+			<li>mély része <abbr title="membrana_fibroelastica">(=)</abbr> &#10140; elasztikus rostokban gazdag: membrana_quadrangularis + conus_elasticus</li>
+			<div>ventriculus_laryngisnál hiányzik a mély része</div>
+		</ul>
+	</ul></details>
+	<details class="open kerdes 3/7" id="histo.143"><summary><span class="important">IF</span> larynx - frontal <span class="WHITE">71</span></summary><ul class="normal">
+		<img src="../images/rajz_larynx_frontal.png">
+		<div><font class="abbr"><span class="important">1</span> ►</font> epiglottis</div>
+		<div><font class="abbr"><span class="WHITE">2</span> ►</font> TrEnsLh &#10140; piros x a hámátmenet, onanntól TmKcHh</div>
+		<div><font class="abbr"><span class="WHITE">3</span> ►</font> plica_vocalis TrEnsLh</div>
+		<div><font class="abbr"><span class="WHITE">4</span> ►</font> m.vocalis</div>
+		<div><font class="abbr"><span class="WHITE">5</span> ►</font> m.thyrarytenoideus <abbr title="felszálló rostjai a m.thyroepiglotticus">+</abbr></div>
+		<div><font class="abbr"><span class="WHITE">6</span> ►</font> m.cricothyroideus</div>
+		<div><font class="abbr"><span class="important">7</span> ►</font> cartilago_cricoidea</div>
+		<div><font class="abbr"><span class="important">8</span> ►</font> cartilago_thyroidea</div>
+		<div><font class="abbr"><span class="important">9</span> ►</font> os_hyoideum</div>
+		<div><font class="abbr"><span class="important">10</span> ►</font> membrana_thyrohyoidea</div>
+		<div><font class="abbr"><span class="WHITE">11</span> ►</font> membrana_quadrangularis</div>
+		<div><font class="abbr"><span class="WHITE">12</span> ►</font> membrana_triangularis</div>
+		<div><font class="abbr"><span class="important">13</span> ►</font> lig.vestibulare</div>
+		<div><font class="abbr"><span class="important">14</span> ►</font> lig.vocale</div>
+		<div><font class="abbr"><span class="WHITE">15</span> ►</font> rima_glottidis</div>
+		<div><font class="abbr"><span class="WHITE">16</span> ►</font> ventriculus_laryngis</div>
+		<div><font class="abbr"><span class="WHITE">17</span> ►</font> sacculus_laryngis</div>
+		<div><font class="abbr"><span class="WHITE">18</span> ►</font> vestibulum_laryngis</div>
+		<div><font class="abbr"><span class="WHITE">19</span> ►</font> cavum_infraglotticum</div>
+		<div><font class="abbr"><span class="important">20</span> ►</font> glandula_thyroidea</div>
+		<div><font class="abbr"><span class="important">21</span> ►</font> cartilago_trachealis</div>
+		<li>!!! lig.vestibulare kintebb legyen, mint vocale</li>
+		<li>!!! os_hyoideum-"tól indul felfele" ez epiglottis</li>
+		forrás <img class="mini" src="../images/source_larynx_frontal.png">
+	</ul></details>
+	<details class="kerdes 3/2" id="histo.123"><summary>megkülönböztetés(3<sub>+2</sub>) &#10140; glandula_parotis vs pancreas <span class="WHITE">58</span> <span class="WHITE">70</span></summary><ul class="normal">
 		<li>Langerhans-szigetek pancreasban</li>
 		<li>centroaciner sejtek pancreasban</li>
 		<li>zimogén szemcsék pancreasban</li>
 		<li>Vater-Paccini test pancreasban</li>
 		<li>zsírszövet a glandula_parotisban</li>
 	</ul></details>
-	<details class="kerdes 2/2" id="histo.128"><summary>trachea általános felépítése (72)</summary><ul class="normal">
+	<details class="kerdes 2/2" id="histo.128"><summary>trachea általános felépítése <span class="WHITE">72</span></summary><ul class="normal">
 		<img src="images/trchszvtn.png">
 		<li>nyálkahártya(tunica_mucosa) bélelt cső</li>
 		<li>kb. 20db cartilago_trachealeból áll, melyeket ligamenta_anularia kötnek össze</li>
-		<li>1db cartilago_tracheale két részre osztható</li><ul>
+		<li>1db cartilago_tracheale horizontális metszete két részre osztható</li><ul>
 			<li>paries_cartilagineus &#10140; <span class="WHITE">4</span> carilago_trachealis: C alakú hyalinporc (ez képezi falát elől és oldalt)</li>
-			<li>paries_membranaceus &#10140; <span class="WHITE">8</span>m.trachealis[simaizom] (ez egészíti falát hátul)</li>
+			<li>paries_membranaceus &#10140; <span class="WHITE">8</span>m.trachealis[simaizom] + ellasztikus_rostok "benne" (ezek egészítik ki falát hátul)</li>
 		</ul>
 		<img src="images/lggnlrcrcd.png">
 	</ul></details>
-	<details class="kerdes 3/4" id="histo.127"><summary>trachea rétegek - keresztmetszet (72)</summary><ul class="normal">
+	<details class="kerdes 3/4" id="histo.127"><summary>trachea rétegek - keresztmetszet <span class="WHITE">72</span></summary><ul class="normal">
 		<img src="images/trchszvtn.png">
 		<li>tunica_mucosa</li><ul>
 			<li><span class="WHITE">7</span>epithelium</li>
@@ -2260,7 +2421,7 @@
 		<li><span class="WHITE">5</span>tela_submucosa (laza ktsz)</li>
 		<li>tunica_fibromusculocartilaginea</li><ul>
 			<li>paries_membranaceus = <span class="WHITE">8</span>m.trachealis [simaizom]</li>
-			<li>paries_cartilagineus = <span class="WHITE">4</span>cartilago_trachealis [hyalinporc]</li><ul>
+			<li>paries_cartilagineus = <span class="WHITE">4</span>cartilago_trachealis [hyalinporc] + ellasztikus_rostok "benne"</li><ul>
 				<li>chondrociták</li>
 				<li>chondroblastok</li>
 				<li><span class="WHITE">2</span>perichondrium</li>
@@ -2272,11 +2433,436 @@
 		<li><span class="WHITE">3</span>glandulae_tracheales [seromucosus] vannak a tela_submucosaban</li>
 		<li>lamina muscularis NINCS!</li>
 	</ul></details>
-	<details open class="kerdes 3/1" id="histo.126"><summary>bőr <span class="MISS">(6) (11)</span></summary><ul class="normal">
-		<li>stratum_granulosum + stratum_lucidum színe &#10140; keratinizáció eltérő fázisaiban vannak, és pl. keratohyalin halmozódik fel bennük &#10140; stratum_lucidzmnak már nincs nucleusa!</li>
-		<img src="images/asd6_1.png">
+	<details class="kerdes 3/4" id="histo.133"><summary>hörgők elágazódása - felsorolásuk(9) <span class="WHITE">73</span></summary><ul class="normal">
+		<img style="max-width:20%" src="images/brnchsgmtnls.png">
+		<li>bronchus principalis - 2db</li>
+		<li>bronchus lobaris - 5db</li>
+		<li>bronchus segmentalis - 19db</li>
+		<li>bronchusok - egyre kisebbek</li>
+		<li>bronchus terminalis - legkisebb bronchus, még nem bronch<strong>iol</strong>us</li>
+		<li>legnagyobb bronchiolus</li>
+		<li>bronchiolus terminalis</li>
+		<li>bronchiolus respiratorius - legkisebb bronchiolus</li>
+		<li>ductus_alverolaris</li>
+		<div><span class="vocab"><strong>§</strong></span> bronchus segmentalis kb. 6-12 elágazódás után lesz bronchus terminalis, ezért a közte lévők csak szimplán bronchusok. <i>Többi esetben viszont egyből következő egységre oszlanak</i> (pl.a principalisok egyből lobarisra oszlanak)</div>
+	  <hr>
+		<li><font class="abbr">acinus ►</font> egy bronchiolus_terminalishoz tartozó szövettani egység (kb. 2-300db alveolus tartozik bele)</li>
+		<li><font class="abbr">(legnagyobb bronchiolus átmérője) ►</font> 1mm</li>
+		<li><font class="abbr">(alveolusok száma) ►</font> kb.700millió (összesen a két tüdőfélben)</li>
 	</ul></details>
+	<details class="kerdes 3/5" id="histo.132"><summary>hörgők elágazódása - szövettani alapok <span class="WHITE">73</span></summary><ul class="normal">
+		<table>
+			<tr><th></th><th>bronchusok</th><th>bronchiolusok</th><th>alveolusok</th></tr>
+			
+			<tr><th>hyalinporc</th>
+				<td rowspan="2">mennyisége csökken</td>
+				<td rowspan="2" colspan="2">már nincs</td>
+			 </tr><tr><th>mirigy</th>
+			</tr>
+			<tr><th>simaizom</th>
+				<td rowspan="2" colspan="2">mennyisége nő<ul style="text-align:left">
+					<li>(izmok spirális lefutásúak)</li>
+					<li>(rostok hosszanti lefutásúak)</li>
+				</ul></td>
+				<td rowspan="2">csak a kör alakú bejáratot gyűrűzik körbe<ul style="text-align:left">
+					<li>(főként elasztikus_rostok, de simaizomsejtek is találhatók néhol)</li>
+				</ul></td>
+			 </tr><tr><th>elasztikus rost</th>
+			</tr>
+			<tr><th>epithelium</th>
+				<td>Tm-Kc-Hh</td>
+				<td>1r-Kc-Hh (legnagyobbaknak) &#10140; 1r-Kh</td>
+				<td>1r-Lh</td>
+			</tr>
+		</table>
+	</ul></details>
+	<details class="kerdes 3/5" id="histo.134"><summary>alveolus <span class="WHITE">73</span></summary><ul class="normal">
+		<img style="max-width:50%" src="images/lvkplrtgk.png">
+		<li>ductus_alveolarisnak önálló fala gyakorlatilag nincs, hisz alveolusok nyílnak belőle kb. mindenhonnan</li>
+		<li>kör alakú nyílással nyílik a ductus_alveolarisból (+bronchiolus_respiratoriusból is kevés) <img class="mini" src="images/brnchlstrmls.png"></li>
+		<li>kör alakú nyílását elasztikus_rostgyűrű és simaizom veszi körbe <img class="mini" src="images/rglmsrtgyr.png"></li>
+		<li>1rLh béleli melyet, kétféle sejttípus alkot</li><ul>
+			<li>95%-át alkotja pneumocyta I &#10140; Lh-sejt</li>
+			<li>5%-át alkotja pneumocyta II &#10140; Kh-sejt</li>
+		</ul>
+		<li>pneumocyta II funkciója &#10140; mirigysejt, mely az alveolusok felszínére surfactant nevű réteget juttat, mely által kilégzéskor nem engedi összeesni az alveolusokat <abbr title="felületi feszültség révén vhogy (Rtk)">()</abbr> <img class="mini" src="images/pnmctkt.png"></li>
+		<li>a vér-levegő barrier, tehát amin keresztül a CO<sub>2</sub> és O<sub>2</sub> csere történik, az a következőkből tevődik ki &#10140; epithelium(pneumocita I) + lamina_basalis + endothelium</li>
+		<li>ezen a képen azt nézzem, hogy... <img class="mini" src="images/kjljtnhc.png"></li><ul>
+			<li>az alveolusok között ktsz van, illetve benne kapillárisok (amik jóval kisebbek)</li>
+			<li>ktsz = elasztikus + retciularis + kollagén rostokban gazdag</li>
+			<li>ezen is látszik, hogy az alveolusok kör alakú nyílását elasztikus_rostgyűrű veszi körbe</li>
+		</ul>
+		<li>alveolus falában lévő makrofágok eltűntetik a bejutott por-, koromszemcséket &#10140; <font style="color:deeppink;">ezután vagy a bronchusrendszer ciliaris nyálkaáramlásával bekerülnek a garatba, vagy bevándorolnak a tüdőlebenykék kötőszöveti sövényeibe, ahol lerakódnak</font></li>
+	</ul></details>
+	<details class="kerdes 3/3" id="histo.141"><summary>tüdőszövet váza <span class="WHITE">73</span></summary><ul class="normal">
+		<li>szivacsszerű</li>
+		<li>a szivacs hézagait alkotják az alveolusok/bronchiolusok/bronchusok üregei</li>
+		<li>a szivacs anyagát pedig a köztük lévő ktsz &#10140; reticularis + elasztikus + kollagén rostok</li>
+	  <hr>
+		<li>"normál" szövetben az elpusztult szövet törmelékeinek eltávolítása vagy elvezetődése után a szövetek saját nyomása és a rájuk kívülről gyakorolt nyomás az <strong>ép szövetrészeket egymás felé nyomja</strong>, ezzel mintegy megteremti a feltételeket a <strong>szövethiány eltüntetésére</strong></li>
+		<li>tüdőben ez másként van</li>
+		<li>mivel a ktsz kifeszítve tartja a tüdőszövetet, ha valamelyik része elhal, akkor onnan "megszűnik a húzóerő" &#10140; megszakadt szöveti elemek visszahúzódását okozza <abbr title="ha egy négyzetet minden irányba húzok akkor ilyen nagy négyzetem lesz &#10140; ha egyik oldalon elhal, akkor már csak 3szög">&#10045;</abbr></li>
+		<li>tehát ha valamilyen szövetpusztulás éri a tüdőt, akkor helyén üreg fog képződni, így igen rosszak a gyógyulási feltételek</li>
+	</ul></details>
+	<details class="kerdes J/4" id="histo.131"><summary style="color:Magenta"><font color="Green"><span class="Vocab">J</span> trachea elágazódás upgrade <span class="WHITE">73</span></font></summary><ul class="normal">
+		<table>
+			<tr><th rowspan="2"> </th>
+				<th colspan="5">bronchus</th>
+				<th colspan="3">bronch<strong>iol</strong>us</th>
+				<th class="fix">??</th>
+			  </tr><tr>
+				<th>principalis</th>
+				<th>lobaris</th>
+				<th>segmentalis</th>
+				<th>bronchusok</th>
+				<th>terminalis</th>
+				<th>legnagyobb</th>
+				<th>terminalis</th>
+				<th>respiratorius</th>
+				<th>ductus_alverolaris</th>
+			</tr>
+			<tr><th rowspan="2">epithelium</th>
+				<td colspan="5">Tm-Kc-Hh &#10140; egyre vékonyodik</td>
+				<td>1r-Kc-Hh</td>
+				<td colspan="2">1r-Kh</td>
+				<td><abbr title="hisz alveolusok nyílnak belől kb. mindenhonnan">nincs önálló fala</abbr></td>
+			  </tr><tr>
+				<td colspan="5">kehelysejtek száma csökken (nagyobb bronchiolusoknál van még)</td>
+				<td colspan="3">Clara-sejtek vannak</td>
+				<td class="dark"></td>
+			</tr>
+			<tr><th>hyalinporc</th>
+				<td colspan="5">van, de mennyisége egyre csökken (eleinte C-alak, majd kis porcszigetek)</td>
+				<td colspan="4">nincs</td>
+			</tr>
+			<tr><th>simaizomszövet + ellasztikus_rostok</th>
+				<td colspan="8">mennyiségük nő <abbr title="hisz egyre kisebb a falvastagság, és annak egyre nagyobb részét ezek alkotják (ettől függetlenül abszolút mennyiségbe lehet csökken)">(szvsz relatívan)</abbr></td>
+				<td class="fix"> ?? </td>
+			</tr>
+			<tr><th>nyálmirigyek a <abbr title="többnyire a simaizomnál">falban</abbr></th>
+				<td colspan="5">van</td>
+				<td colspan="4">nincs</td>
+			</tr>
+		</table>
+		<img src="images/brnchlstrmls.png">
+		<li>A trachea & bronchusok falmerevítését szolgálja a porc &#10140; ne essen össze amikor változik a légnyomás</li>
+		<li>A bronchiolusoknak már nincs falmerevítésre szükségük, mert oly módon épültek be a <span class="MISS">tüdőszövet szivacsszerű rugalmas szövedékébe</span>, hogy belégzéskor az egész tüdővel együtt tágulnak, és nincs lehetőség arra, hogy a külsőnél alacsonyabb nyomás egyiket vagy másikat összeesésre bírja</li>
+	  <hr>
+		<li>A simaizomzat önálló <font style="color:red;font-weight:bold;">tunica muscularist alkot a mucosa és submucosa hataran</font>, és a vegetativ idegrendszer kontrollja alatt all</li>
+		<li>bronchiolus_respiratorius falában helyenként már alveolusok nyílnak</li>
+		<img src="100/73.png">
+	</ul></details>
+	<details class="kerdes 3/3" id="histo.130"><summary>tüdőlebenyke <span class="WHITE">73</span></summary><ul class="normal">
+		<li><font class="abbr">latinul ►</font> lobulus pulmonis</li>
+		<li>szövettani egység, mely egy legnagyobb bronchiolus<abbr title="avagy bronchus-bronchiolus határ">&#10045;</abbr> elágazódását foglalja magába</li>
+		<li>septum_interlobulare (ktsz) határolja őket</li>
+		<li>piramis alakú</li>
+		<li>a.pulmonalis <strong>ága</strong> és a <abbr title="tehát a legnagyobb, melynek elágazódását magába foglalja">"fő"</abbr>_bronchiolus együtt lépnek be a piramis csúcsán, és együtt ágaznak el középen</li>
+		<li>v.pulmonalis <strong>ágai</strong> ezzel szemben a segmentumok közötti határvonalak mentén szedődnek össze, tehát a septum_interlobularekban (ktsz-ben) haladnak</li>
+		<li><font class="abbr">(átmérő) ►</font> 0,5-2cm</li>
+		<img src="images/lblsplmns.png">
+	</ul></details>
+	<details class="kerdes 4/2" id="histo.146"><summary>bőr rétegeinek felsorolása(3) <span class="WHITE">6</span> <span class="WHITE">11</span></summary><ul class="normal">
+		<li>epidermis &#10140; Tr<span class="Important">Es</span>Lh</li>
+		<li>dermis = cutis = irha</li>
+		<li>hypodermis = subcutis = tela_subcutanea = bőralja</li>
+	</ul></details>
+	<details class="kerdes 3/5" id="histo.147"><summary>epidermis rétegei és jellemzésük <span class="WHITE">6</span> <span class="WHITE">11</span></summary><ul class="normal">
+		<table>
+			<tr><th>stratum_basale</th><td style="text-align:left">
+				<li>itt lévő sejtek mitózisa pótolja a sejteket</li>
+				<li>(kb. 30nap alatt jutnak a felszínre)</li>
+			</td></tr>
+			<tr><th>stratum_polygonale</th><td style="text-align:left">
+				 itt lévő sejtek tüskeszerű nyúlványokkal, azaz dezmoszómákkal kapcsolódnak egymáshoz
+			</td></tr>
+			<tr><th>stratum_granulosum</th><td style="text-align:left">
+				<li>basophil festődésű</li>
+				<li>keratohyalint tartalmaznak</li>
+			</td></tr>
+			<tr><th>stratum_lucidum</th><td style="text-align:left">
+				<li>eosinophil festődésű</li>
+				<li>vékony réteg</li>
+				<li>sejteknek nucleusa nincs már, elhalásuk megkezdőtött</li>
+			</td></tr>
+			<tr><th>stratum_corneum</th><td style="text-align:left">
+				<li>vastag réteg</li>
+				<li>elhalt sejtek tömege</li>
+			</td></tr>
+			<tr><th colspan="2">felfele haladva egyre vékonyodnak a sejtek: basale Hh, polygonale Kh ... lucidum Lh</th></tr>
+		</table>
+		<img src="images/brbrlkrdh.png">
+	</ul></details>
+	<details class="kerdes 3/2" id="histo.148"><summary>dermis rétegei és jellemzésük <span class="WHITE">6</span> <span class="WHITE">11</span></summary><ul class="normal">
+		<li>(tömött, <abbr title="rostokban gazdag">rostos</abbr> ktsz)</li>
+		<table>
+			<tr><th><span class="WHITE">2</span>stratum_papillare</th><td style="text-align:left">
+				<li>ktsz papillák vannak</li>
+				<li>papillákban &#10140; erek, idegek, Meissner-féle tapintótestek</li>
+			</td></tr>
+			<tr><th><span class="WHITE">3</span>stratum_reticulare</th><td style="text-align:left">
+				(kollagén + elasztikus rostokban gazdag)
+			</td></tr>
+			<tr><th colspan="2">felfele haladva egyre vékonyodnak a sejtek: basale Hh, polygonale Kh ... lucidum Lh</th></tr>
+		</table>
+		<img src="images/strmplrrtclr.png">
+	</ul></details>
+	<details class="kerdes 3/2" id="histo.149"><summary>hypodermis jellemzése <span class="WHITE">6</span> <span class="WHITE">11</span></summary><ul class="normal">
+		<li>(laza ktsz)</li>
+		<li>zsírszövetben gazdag</li>
+		<li>Vater-Pacini testek is találhatók <abbr title="ezek módosult Schwann-sejtekből és ktsz tokból állnak">&#10045;</abbr> <img class="mini" src="images/vater_pacchini.png"></li>
+	</ul></details>
+	<details class="kerdes 3/4" id="histo.150"><summary>verejtékmirigyek jellemzése <span class="WHITE">6</span> <span class="WHITE">11</span></summary><ul class="normal">
+		<img src="images/vrjtkmgrgyk.png">
+		<li>dermis-hypodermis határon vannak</li>
+		<li>szekréció<abbr title="elválasztás">=</abbr> típusa &#10140; merokrin</li>
+		<li>feltekeredett, el nem ágazodó, <strong>tubularis</strong>-mirigyek</li>
+		<li>kolinerg sympathikus beidegzésű</li>
+		<table>
+			<tr><th>végkamra</th>
+				<td>tágabb lumen</td>
+				<td>világosabb festődésű</td>
+				<td>fala<div style="text-align:left">
+					<li>Kh & Hh sejtek</li>
+					<li>membrana_basalis</li>
+					<li>myoepithel-sejtek</li>
+				</div></td>
+			</tr>
+			<tr><th>kivezetőcső</th>
+				<td>szűkebb lumen</td>
+				<td>sötétebb festődésű</td>
+				<td>fala<div style="text-align:left">
+					<li>2rKh</li>
+					<li>membrana_basalis</li>
+					<li>NINCSENEK myoepithel-sejtek</li>
+				</div></td>
+			</tr>
+		</table>
+		<li>(ettől függetlenül még az írta, hogy a végkamrát és kivezetőcsövet nehéz elkülöníteni, szóval ne lepődjek meg, ha nem megy)</li>
+	  <hr>
+		<div><span class="WHITE">1</span> végkamra</div>
+		<div><span class="WHITE">2</span> kivezetőcső</div>
+		<div><span class="WHITE">3</span> membrana_basalis & myoepithel-sejtek nyúlványa (nem különíthetők el)</div>
+		<div><span class="WHITE">4</span> zsírsejtek</div>
+		<div><span class="WHITE">5</span> kollagén-rostok</div>
+		<div><span class="WHITE">6</span> fibrocita</div>
+		<div><span class="WHITE">7</span> venula</div>
+	</ul></details>
+	<details class="kerdes 3/4" id="histo.151"><summary>szőrtüsző jellemzése <span class="WHITE">6</span> <span class="WHITE">11</span></summary><ul class="normal">
+		<li>szőrtüsző két részre osztható</li><ul>
+			<li>folliculus_pili &#10140; epidermis alatti része</li>
+			<li>scapus_pili &#10140; epidermisből kiemelkedő szőrszál</li>
+		</ul>
+		<li>gyökérhüvelyek epidermis eredetűek</li>
+		<li>a haj színe a radix_pili-ben lévő melanin-szemcsék mennyiségétől függ</li>
+		<li>papilla &#10140; táplálja a bulbust</li>
+		<table>
+			<tr><th colspan="3">folliculus_pili további 3 része <img class="mini" src="images/fllcslpl.png"> <img class="mini" src="images/drmlsht.png"></th></tr>
+			<tr><th>bulbus + keratogén zóna</th> <th>isthmus</th> <th>infundibulum</th></tr>
+			<tr><td colspan="3">radix_pili = szőrszál</td></tr>
+			<tr><td rowspan="2" colspan="2">belső gyökérhüvely</td> <td>hézag</td></tr>
+			<tr><td>stratum granulosum + lucidum + corneum</td></tr>
+			<tr><td colspan="2">külső gyökérhüvely</td> <td>stratum basale + spinosum</td></tr>
+			<tr><td colspan="3">ktsz tok</td></tr>
+		</table>
+	</ul></details>
+	<details class="kerdes 3/3" id="histo.152"><summary>faggyúmirigy jellemzése <span class="WHITE">6</span> <span class="WHITE">11</span></summary><ul class="normal">
+		<li>faggyúmirigy = glandula_sebaceous</li>
+		<li>az isthmus - infundibulum határnál lépnek be, mindig a m.arrector_pili felett <img class="mini" src="images/mrctrlp.png"></li>
+		<li>alatta már külső és belső gyökérhüvely van, felette még epidermis &#10140; alatta már hézagmentesen illeszkedik a szőrszál a belső_gyökérhüvelyhez (tehát arra nem tud folyni a sebum)</li>
+		<li>Tr<span class="Important">Es</span>Lh és a szőrszál közötti részben jut ki a váladéka = sebum &#10140; <abbr title="epidremis illetve szőrszál">mindkét oldalról</abbr> elszarusodott réteg veszi körbe</li>
+		<li>a faggyúmirigy a külső gyökérhüvely kiboltosulásaként fejlődik ki</li><ul>
+			<li>néhány helyen előfordul szőrtüsző nélkül &#10140; ajakpír, pofa nyálkahártyája, szemhéj, emlőbimbó, kis szeméremajkak, glans_penis valamint glans_clitoridis</li>
+		</ul>
+		<li>szekréció<abbr title="elválasztás">=</abbr> típusa &#10140; holokrin /faggyúmirigy az egyedüli!/</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="histo.126"><summary>tenyérbőr & hajas fejbőr &#10140; melyiknél van szőrtüsző, faggyúmirigy, illatmirigy? <span class="WHITE">6</span> <span class="WHITE">11</span></summary><ul class="normal">
+		<li><span class="WHITE">6</span> tenyérbőrnél <span class="Important">NINCS!</span> &#10140; szőrtüsző, faggyúmirigy, illatmirigy</li>
+		<li><span class="WHITE">11</span> hajas fejbőr &#10140; itt szvsz csak illatmirigy nincs</li>
+	</ul></details>
+	<details class="kerdes 1/2" id="histo.153"><summary>nincs kidolgozva <span class="WHITE">6</span> <span class="WHITE">11</span></summary><ul class="normal">
+		<img src="100/asd6_1.png">
+	</ul></details>
+	<details class="kerdes 3/3" id="histo.155"><summary>kollagén <span class="WHITE">14</span></summary><ul class="normal">
+		<li><span class="Important">tömött</span>, <span class="Important">párhuzamos</span> <span class="Important">kollagénrostú</span> <span class="Important">ktsz</span> &#10140; ilyen az <span class="Important">ínakban és szalagok</span>ban van</li>
+		<li>tehát a kollagénrostok egymással párhuzamosan futnak</li>
+		<li>a kollagénrostok között megfigyelhetők a <span class="Important">tendocyták sejtmagja</span> &#10140; ugyanis a <span class="Important">rostok acidophil(eosinophil) festődésűek(világos,rózsaszín), míg a nucleus basophil festődésű(sötét,lila)</span></li>
+		<li>a tendocyták tulajdonképpen a fibrocyták egy típusa</li>
+		<li>ha sérülés vagy megterhelés van, és szükség van ínszövet képzésre, akkor aktiválódnak a tendocyták &#10140; sejtmagjuk lazább szerkezetűvé válik (fibroblastokhoz hasonlít)</li>
+		<li>(ínszövetet alkotó rostokat I-es típusú kollagént tartalmaznak)</li>
+		<div><span class="vocab"><strong>§</strong></span> ha rés van a metszeten, vagy a rostok összekuszálódtak és már nagyon nem párhuzamosak, akkor azok műtermékek</div>
+	</ul></details>
+	<details class="kerdes 3/4" id="histo.159"><summary>erek általános felépítése? <span class="WHITE">15</span> <span class="WHITE">50</span> <span class="WHITE">51</span></summary><ul class="normal">
+		<div>három rétegre oszthatók, kivéve a kapillárisokat!</div>
+		<li>tunica_intima</li>
+		<li>tunica_media</li>
+		<li>tunica_adventitia</li>
+		<div><span class="vocab"><strong>§</strong></span> artériák &#10140; kapillárisok &#10140; vénák</div>
+	  <hr><strong>tunica_intima</strong>
+		<li>két rétege van &#10140; endothelium & stratum_subendotheliale</li>
+		<li>stratum_subendotheliale a nagyobb erekben van csak (simaizom + laza ktsz alkotja)</li>
+	  <hr><strong>tunica_media</strong>
+		<li>elasztikus membránok és simaizomsejtek alkotják főként</li>
+		<li>(arteriakban fejlettebb, mint vénákban)</li>
+	  <hr><strong>tunica_adventitia</strong>
+		<li>kollagénrostok alkotják főként</li>
+		<li>(vénákban fejlettebb, mint arteriakban)</li>
+	</ul></details>
+	<details class="kerdes 3/3" id="histo.160"><summary>artériák & vénák típusainak felsorolása? <span class="WHITE">15</span> <span class="WHITE">50</span> <span class="WHITE">51</span></summary><ul class="normal">
+		<li><strong>elasztikus_artéria</strong></li>
+		<li>musculáris_artéria &#10140; <strong>nagy / középnagy</strong> / kis</li>
+		<li>arteriola</li>
+		<li>precapillaris_arteriola</li>
+		<li>kapilláris</li>
+		<li>postcapillaris_venula</li>
+		<li>venula</li>
+		<li><strong>középnagy véna</strong></li>
+		<div><span class="vocab"><strong>§</strong></span> vastagbetűsek nagy-erek, többi kis-erek kategória</div>
+		<img style="max-width:45%" src="images/ksrtrrlklk.png">
+	</ul></details>
+	<details class="kerdes 2/2" id="histo.161"><summary>artériák csoportosítása &#10140; elasztikus vs muscularis? (felsorolás) <span class="WHITE">15</span> <span class="WHITE">50</span> <span class="WHITE">51</span></summary><ul class="normal">
+		<div>elasztikusak a lennt felsoroltak &#10140; többi már muscularisba sorolható, de az átmenet fokozatos <abbr title="tehát nyilván nem 1 írott szabály, hogy ezek elasztikusak, de ez simán elfogadható, hisz nagyjából kell tudni">()</abbr></div>
+		<li>aorta</li>
+		<li>a.carotis communis/interna/externa</li>
+		<li>a.iliaca communis/interna/externa</li>
+		<li>a.femoralis</li>
+		<li>a.subclavia</li>
+		<li>truncus_pulmonalis</li>
+	</ul></details>
+	<details class="kerdes 3/3" id="histo.162"><summary>nagy-erek és egyediségük? <span class="WHITE">15</span> <span class="WHITE">50</span> <span class="WHITE">51</span></summary><ul class="normal">
+		<table>
+			<tr><th>elasztikus arteria</th><td style="text-align:left">
+				<li>NINCS membrana_elastica_interna</li>
+				<li>tunica_mediát elasztikus-membránok teszik ki főként, simaizomsejt kevésbé jelentős</li>
+			</td></tr>
+			<tr><th>muscularis arteria</th><td style="text-align:left">
+				<li>van membrana_elastica_interna</li>
+				<li>tunica_mediát simaizomsejtek teszik ki főként (elasztikus-membrán nincs &#10140; MEI & MEE-be van már csak)</li>
+			</td></tr>
+			<tr><th>középnagy véna</th><td style="text-align:left">
+				fala vékony (adventitia > media, szvsz ráadásul adventitia általában hiányos a metszeten)
+			</td></tr>
+		</table>
+		<details><summary>simaizomsejtek fő funkciója?</summary><ul class="normal">
+			<li>ezek termelik a ktsz-t &#10140; tehát az elasztikus-rostokat/membránokat és kollagén-rostokat</li>
+			<li>elasztikus és kollagén rost van mindegyikben <abbr title="elasztikus artéria tunica_media; muscularis artéria MEI & MEE">(elasztikus membrán azonban csak...)</abbr></li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 2/4" id="histo.163"><summary>artériákban lévő érzékszervek felsorolása? <span class="WHITE">15</span> <span class="WHITE">50</span> <span class="WHITE">51</span></summary><ul class="normal">
+		<li>glomus_caroticum</li>
+		<li>glomus_aorticum</li>
+		<li>sinus_carotcius</li>
+		<details><summary>glomus_caroticum &#10140; hol? mi? funkció?</summary><ul class="normal">
+			<li>a.carotis_communis elágazódásánál található</li>
+			<li>kemoreceptorokat tartalmaz &#10140; ezekhez n.glossopharyngeus[IX]-ból származó afferens_rostok kapcsolódnak</li>
+			<li>funkció &#10140; O<sub>2</sub> & CO<sub>2</sub> koncentrációról informálják az agyat</li>
+			<img src="images/rzkszrvkrkbn.png">
+		</ul></details>
+		<details><summary>glomus_aorticum &#10140; hol? mi? funkció?</summary><ul class="normal">
+			<li>arcus_aortae-nél található, és lényegében kb. ugyanaz mint a glomus_caroticum</li>
+			<li>itt azonban n.vagus[X]-ból érkeznek az afferens rostok</li>
+		</ul></details>
+		<details><summary>sinus_caroticus &#10140; hol? mi? funkció?</summary><ul class="normal">
+			<li>a.carotis_interna elágazódás utáni kezdeti szakasza</li>
+			<li>baroreceptorokat tartalmaz (n.glossopharyngeus[IX]-ból jövő érző idegvégződések, melyek húzásra kerülnek ingerületbe)</li>
+			<li>funkció &#10140; vérnyomásról informálja az agyat</li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 2/1" id="histo.164"><summary>nagy_erek táplálása? <span class="WHITE">15</span> <span class="WHITE">50</span> <span class="WHITE">51</span></summary><ul class="normal">
+		<li>vasa_vasorum &#10140; érfal külső felét(tunica_adventita, és tunica_media egy részét is) tápláló kis erek</li>
+		<li>érfal belső felének ellátását a lumenből történő diffúzió biztosítja</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="histo.165"><summary>FM-nél véna és artéria lumene közti különbség? <span class="WHITE">15</span> <span class="WHITE">50</span> <span class="WHITE">51</span></summary><ul class="normal">
+		<li>artéria lumene kerek, vénáé lapos</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="histo.166"><summary>MEI &#10140; mi? mely "réteg"ben található? felépítés? <span class="WHITE">15</span> <span class="WHITE">50</span> <span class="WHITE">51</span></summary><ul class="normal">
+		<li>membrana_elastica_interna</li>
+		<li>tunica intima és media határán van</li>
+		<li>muszkuláris arteriákra (nagy,középnagy) jellemző</li>
+		<li>1réteg elasztikus-membrán alkotja</li>
+	</ul></details>
+	<details class="kerdes 3/3" id="histo.167"><summary>elasztikus-membrán &#10140; hol? felépítése? funkciója? <span class="WHITE">15</span> <span class="WHITE">50</span> <span class="WHITE">51</span></summary><ul class="normal">
+		<li>hol</li><ul>
+			<li>tunica_mediat 30-70réteg ilyen alkotja elasztikus artériákban</li>
+			<li>MEI-t 1réteg ilyen alkotja muszkuláris artériában</li>
+		</ul>
+		<li>elasztin alkotja</li>
+		<li>funkciója</li><ul>
+			<li>biztosítja az érfal rugalmasságát &#10140; szélkazán-hatás!!</li>
+			<li>fenesztrált membrán &#10140; köztük rések vannak, melyek biztosítják a diffúziót a lumen felől, így a tunica_intima & tunica_mediagy része is onnan kapja az ellátást</li>
+		</ul>
+	  <hr>
+		<li><font class="abbr">szélkazán-hatás ►</font> systolé alatt alakváltozás következtében kitágul, tehát ebbe konvertálódik az energia egy része &#10140; utána amikor csökkenne a nyomás, akkor az alakváltozással visszaáll normálisra az aorta fala, tehát az energia visszakonvertálódik az egyenletes véráramlás fenntartására</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="histo.168"><summary>kis-erek és egyediségük? <span class="WHITE">15</span> <span class="WHITE">50</span> <span class="WHITE">51</span></summary><ul class="normal">
+		<li>arteriola &#10140; 3-4 simaizomsejt-réteg</li>
+		<li>precapillaris_arteriola &#10140; 1 simaizomsejt-réteg</li>
+		<li>kapilláris &#10140; 1endothelsejt alkotja <abbr title="nem összesen, hanem rétegként">&#10045;</abbr></li>
+		<li>postcapillaris_venula</li><ul>
+			<li>több endothelsejt alkotja már</li>
+			<li>simaizomsejtek nincsenek még &#10140; tunica_media nincs</li>
+			<li>nagyobb, mint kapilláris</li>
+		</ul>
+		<li>venula &#10140; fala nagyon-vékony (méretéhez képest), néhány simaizomsejt van benne (vékony tunica_media)</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="histo.170"><summary>Azan festés &#10140; célja? mit-milyen színűre? <span class="WHITE">17</span></summary><ul class="normal">
+		<li>cél &#10140; kötőszöveti elemek elkülönítése, pl. simaizom vs kollagénrost (mert HE-nél szinte ugyanolyanok!)</li>
+		<li>kékre festi</li><ul>
+			<li>kollagénrost</li>
+			<li>elasztikus-rost</li>
+			<li>reticularis-rost</li>
+		</ul>
+		<li>vörösre festi</li><ul>
+			<li>sejtmag</li>
+			<li>citoplazma</li>
+			<li>eritrociták</li>
+			<li>szaruréteg</li>
+		</ul>
+		<li>kékesrózsaszínre (átmenet a kettő között szvsz) festi</li><ul>
+			<li>hámsejtek</li>
+			<li>izomsejtek</li>
+		</ul>
+		<div>ennyire részletesen nem kell tudjam(mert amúgyse ennyire "szimpla" a szín), de azt, hogy pl. <span class="Important">kollagén kék, míg simaizomsejt nem</span>, azt igen!</div>
+	</ul></details>
+	<details class="kerdes 3/2" id="histo.173"><summary>Hornowsky festés &#10140; célja? mit-milyen színűre? <span class="WHITE">18</span></summary><ul class="normal">
+		<li>cél &#10140; kötőszöveti elemek elkülönítése, pl. simaizom vs kollagénrost (mert HE-nél szinte ugyanolyanok!)</li>
+		<li>vörösre festi</li><ul>
+			<li>kollagénrost</li>
+		</ul>
+		<li>fekete(kék)re festi</li><ul>
+			<li>elasztikus-rost</li>
+			<li>reticularis-rost</li>
+			<li>sejtmag</li>
+		</ul>
+		<li>sárga</li><ul>
+			<li>eritrociták</li>
+			<li>citoplazma</li>
+			<li>izomsejtek</li>
+		</ul>
+		<div>ennyire részletesen nem kell tudjam(mert amúgyse ennyire "szimpla" a szín), de azt, hogy pl. <span class="Important">vörös kollagén, és kék az elasztikus & retikuláris</span> azt igen</div>
+	</ul></details>
+
+
+<hr>
+
+	<details class="open kerdes 3/4" id="histo.176"><summary>köldökzsinór - elmélet (felépítése)</summary><ul class="normal">
+		<li><span class="Important">amnionhám[1rKh] fedi</span></li>
+		<li><span class="Important">Wharton kocsonya béleli</span> &#10140; ez <span class="Important">éretlen kocsonyás kötőszövet</span></li><ul>
+			<li>azon belül azonban hogy éretlen, mégis "érett"nek tekinthető, mert már nem differenciálódik tovább</li>
+			<li><span class="Important">eleinte mesenchyma-sejtek alkották, a metszeten már fibroblastok</span></li>
+			<li>így megjelentek már a kollagénrostok és retikuláris-rostok is</li>
+			<li><span class="Important">alapállománya hialuronsavban gazdag</span></li>
+		</ul>
+	  <hr>
+		<li><font class="abbr">fibroblast ►</font> ktsz rostokat és alapállományát termeli</li>
+		<li><font class="abbr">fibrocita ►</font> fibroblast inaktív formája (nem termel rost+alapállomány)</li>
+		<li><font class="abbr">mesenchyma-sejt ►</font> ez differenciálódik majd más ktsz sejtekké (pl. Wharton-kocsonyánál fibroblastokká)</li>
+		<img src="images/19_03.png">
+	</ul></details>
+
 <!----></div></details>
+
+
 <!----><details><summary class="phase">máj</summary><div><div class="title"></div>
 	<details><summary>funkciói?</summary><ul class="normal">
 		<li>anyagcsere &#10140; pl. szénhidrátok tárolása glikogén formában, koleszterin szintézis/kiválasztás, lipidek fel/le/átépítése</li>

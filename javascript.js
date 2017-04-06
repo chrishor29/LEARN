@@ -59,9 +59,9 @@ function func_removeRepeat(){
 				if ( kerdes+'_fix' in localStorage ) {
 					localStorage.removeItem(kerdes+'_fix')
 				}
-				if ( kerdes+'_skip' in localStorage ) {
+				/*if ( kerdes+'_skip' in localStorage ) {
 					localStorage.removeItem(kerdes+'_skip')
-				}
+				}*/
 				/*if ( kerdes+'_timeDiff' in localStorage ) {
 					var count = localStorage.getItem(kerdes+'_timeDiff')/60
 					Math.floor(count) = count
@@ -462,23 +462,38 @@ if ( document.title == "Anat" ) {
 document.getElementById("input_toggleAll").value = highestID
 
 
-function func_DeleteFix(kerdes){
+function func_DeleteSkipFix(kerdes){
 	if (confirm('biztos törlöd? '+kerdes)) {
-		kerdes = kerdes.slice(0,kerdes.length-10);  // remove "_noteClear"
-		localStorage.removeItem(kerdes+'_note')
+		skipfix = kerdes.slice(kerdes.indexOf("_"))
+		skipfix = skipfix.slice(1,skipfix.length-5)
+		kerdes = kerdes.slice(0,kerdes.indexOf("_"));  // remove "_skipClear" vagy "_fixClear" a nevéből és csak az id marad
+		if ( skipfix == "fix" ) {
+			localStorage.removeItem(kerdes+'_note')
+		} else if ( skipfix == "skip" ) {
+			localStorage.removeItem(kerdes+'_skip')
+		}
 		func_tableSkipFix()
-		func_SetTextOfSkipFixDiv("btn_fix")
+		func_SetTextOfSkipFixDiv("btn_"+skipfix)
 	}
 }
 
 function func_SetTextOfSkipFixDiv(SkipFix){
 	document.getElementById("div_SkipFix").innerHTML = ""
 	if ( SkipFix == "btn_fix" ) {
-		for ( var kerdes in table_fixNote ) {
-			if ( table_fixNote[kerdes] != false ) {
+		for ( var kerdes in obj_fixNote ) {
+			if ( obj_fixNote[kerdes] ) {
 				var text = document.getElementById("div_SkipFix").innerHTML
-				document.getElementById("div_SkipFix").innerHTML = text + "<br> &nbsp;•&nbsp;&nbsp;" + kerdes + " " + table_fixNote[kerdes] + " <input id='testID' class='fix' style='border: 3px solid black;' type='button' value='✖' onclick='func_DeleteFix(this.id)'>" + "<br>"
-				document.getElementById("testID").id = kerdes + "_noteClear"
+				document.getElementById("div_SkipFix").innerHTML = text + "<br> &nbsp;•&nbsp;&nbsp;" + kerdes + " " + obj_fixNote[kerdes] + " <input id='testID' class='fix' style='border: 3px solid black;' type='button' value='✖' onclick='func_DeleteSkipFix(this.id)'>" + "<br>"
+				document.getElementById("testID").id = kerdes + "_fixClear"
+			}
+		}
+	}
+	if ( SkipFix == "btn_skip" ) {
+		for ( var kerdes in obj_skip ) {
+			if ( obj_skip[kerdes] ) {
+				var text = document.getElementById("div_SkipFix").innerHTML
+				document.getElementById("div_SkipFix").innerHTML = text + "<br> &nbsp;•&nbsp;&nbsp;" + kerdes + " " + obj_skip[kerdes] + " <input id='testID' class='fix' style='border: 3px solid black;' type='button' value='✖' onclick='func_DeleteSkipFix(this.id)'>" + "<br>"
+				document.getElementById("testID").id = kerdes + "_skipClear"
 			}
 		}
 	}
@@ -486,14 +501,14 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 
 
 function func_spanClick(button){
-	if ( document.getElementById("div_SkipFix").style.display == 'block' ) {
-		 document.getElementById("div_SkipFix").style.display = 'none';
-	} else {
-		 document.getElementById("div_SkipFix").style.display = 'block';
+	if ( button.id == 'btn_skip' || button.id == 'btn_fix' ) {
+		func_SetTextOfSkipFixDiv(button.id)
+		if ( document.getElementById("div_SkipFix").style.display == 'block' ) {
+			 document.getElementById("div_SkipFix").style.display = 'none';
+		} else {
+			 document.getElementById("div_SkipFix").style.display = 'block';
+		}
 	}
-
-	func_SetTextOfSkipFixDiv(button.id)
-
 	if ( button.style.borderColor == "limegreen" ) {
 		button.style.borderColor = "black"
 		//localStorage.setItem(element,false)
@@ -792,7 +807,7 @@ func_abbrSet()
 
 
 
-func_removeRepeat()
+//func_removeRepeat()
 
 
 
@@ -818,57 +833,50 @@ if ( localStorage.getItem("checkboxProgress") == "true" ) {
 }*/
 
 var elements = document.getElementsByClassName("kerdes")
-var table_fixNote = []
-//var table_StatusSkip = []
-var table_Status = []
+var obj_fixNote = [] // object (nem table és nem array!)
+var obj_skip = [] // object (nem table és nem array!)
 
 function func_tableSkipFix(){
-	table_fixNote = []
 	for ( var i = 0;   i < elements.length;   i++ ) {
 		var id = elements[i].id
 		var temaKerdes = 	document.getElementById(id).parentElement.parentElement.id
 		var fotema = 		document.getElementById(id).parentElement.parentElement.parentElement.id
-		//var cimTitle = id.slice(id.indexOf(".")+1)
-		
-		if ( localStorage.getItem(id+'_note') != "" && localStorage.getItem(id+'_note') != null ) {
-			table_fixNote[id] = localStorage.getItem(id+'_note')
+
+		if ( localStorage.getItem(id+'_note') ) {
+			obj_fixNote[id] = localStorage.getItem(id+'_note')
 		} else {
-			table_fixNote[id] = false
+			if ( obj_fixNote[id] ) { delete obj_fixNote[id] } // remove a Table-ból
 		}
-		//table_Status[id] = localStorage.getItem(id + "_fix")
-		//table_StatusSkip[id] = localStorage.getItem(id + "_skip")
-		if ( localStorage.getItem(id + "_skip") == "progress" ) {
-			kerdesID[fotema][temaKerdes][id] = false
+		if ( localStorage.getItem(id+"_skip") ) {
+			obj_skip[id] = localStorage.getItem(id+"_skip")
 		} else {
-			kerdesID[fotema][temaKerdes][id] = true
+			if ( obj_skip[id] ) { delete obj_skip[id] } // remove a Table-ból
 		}
 	}
 }
 func_tableSkipFix()
 
 function func_valFix(){
-	//table_fixNote = []
 	var x = 0
-	for ( var id in table_fixNote ) {
-		if ( table_fixNote[id] != false ) {
+	for ( var id in obj_fixNote ) {
+		if ( obj_fixNote[id] ) {
 			x = x+1
 		}
 	}
 	document.getElementById("btn_fix").value = x;
 }
 func_valFix()
-
-function func_valStatusSkip(status){
+function func_valSkip(){
 	var x = 0
-	var y = 0
-	for ( var id in table_StatusSkip ) {
-		if ( table_StatusSkip[id] == "skip" ) {
+	for ( var id in obj_skip ) {
+		if ( obj_skip[id] ) {
 			x = x+1
 		}
 	}
-	document.getElementById("btn_progress").value = x;
+	document.getElementById("btn_skip").value = x;
 }
-//func_valStatusSkip("skip");
+func_valSkip()
+
 
 function func_calcOldNew(){
 	var kerdesNew = 0
@@ -897,10 +905,8 @@ function func_calcOldNew(){
 						} else {
 							repSlow = repSlow +1
 						}
-					} else {
-						if ( table_Status[kerdes] != "progress" ) {
-							kerdesNew = kerdesNew +1
-						}
+					} else if ( localStorage.getItem(kerdes+"_jegy") == 1 ) {
+						kerdesNew = kerdesNew +1
 					}
 					
 					if ( localStorage.getItem(kerdes+"_jegy") == 1 ) {
@@ -954,40 +960,27 @@ function func_prevQuestion(){
 	// kerdesek visszahelyezése END
 	func_abbrSet()
 
-	localStorage.setItem(priorKerdesID+'_jegy', document.getElementById("jegy").value);
-	/*if ( document.getElementById("buttonFix").style.backgroundColor == "lightgrey" ) {
-		table_Status[priorKerdesID] = "normal"
-		localStorage.removeItem(priorKerdesID + "_fix")
-	} else if ( document.getElementById("buttonFix").style.backgroundColor == "lightpink" ) {
-		table_Status[priorKerdesID] = "miss"
-		localStorage.setItem(priorKerdesID + "_fix","miss") 
-	} else if ( document.getElementById("buttonFix").style.backgroundColor == "red" ) {
-		table_Status[priorKerdesID] = "fix"
-		localStorage.setItem(priorKerdesID + "_fix","fix")
-	}*/
 
-	if ( document.getElementById("buttonSkip").style.backgroundColor == "black" ) {
-		localStorage.setItem(priorKerdesID+'_jegy', "");
-		localStorage.setItem(priorKerdesID + "_skip","progress")
-
-		table_Status[priorKerdesID] = "progress"
-		var temaKerdes = 	document.getElementById(priorKerdesID).parentElement.parentElement.parentElement.id
-		var fotema = 		document.getElementById(priorKerdesID).parentElement.parentElement.parentElement.parentElement.id
-		kerdesID[fotema][temaKerdes][priorKerdesID] = false
-	} else {
-		if ( document.getElementById("buttonSkip").style.backgroundColor == "dodgerblue" ) {
-			localStorage.setItem(priorKerdesID+"_skip","skip")
-		} else if ( document.getElementById("buttonSkip").style.backgroundColor == "yellow" ) {
-			localStorage.setItem(priorKerdesID+"_skip","repeat")
-		} else if ( document.getElementById("buttonSkip").style.backgroundColor == "lightgrey" ) {
-			localStorage.setItem(priorKerdesID+"_skip","false")
-		}
+	var skipValue = document.getElementById("skip").value
+	if ( skipValue ) {
+		localStorage.setItem(priorKerdesID+"_skip", skipValue)
 	}
+
+	var repCount = Number(localStorage.getItem(priorKerdesID+'_repeat'))
+	var jegy = document.getElementById("jegy").value
+	localStorage.setItem(priorKerdesID+'_jegy', jegy);
+	var changes
+	if ( repCount == jegy || jegy > repCount ) {
+		changes = 1
+	} else if ( jegy-repCount == -1  ) {
+		changes = 1.5
+	} else if ( jegy-repCount < -1  ) {
+		changes = 2
+	}
+	localStorage.setItem(priorKerdesID+'_changes', changes);
 
 	var date = new Date();
 	var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(priorKerdesID+'_idopont')
-	var repCount = Number(localStorage.getItem(priorKerdesID+'_repeat'))
-	var jegy = localStorage.getItem(priorKerdesID+'_jegy')
 	var timeDiff
 	if ( repCount >= 3 ) {
 		timeDiff = 1000 * (repCount-2)
@@ -996,45 +989,27 @@ function func_prevQuestion(){
 	}
 
 	if ( jegy == 1 ) {
-		localStorage.setItem(priorKerdesID+'_repeat', 0)
-	} else if ( jegy == 2 ) {
-		if ( idopont > timeDiff ) {
-			if ( 2 > repCount ) {
-				localStorage.setItem(priorKerdesID+'_repeat', repCount +1);
-			}
-			if ( 2 < repCount ) {
-				localStorage.setItem(priorKerdesID+'_repeat', repCount -1);
-			}
-		}
-		/*var atlag = Number(document.getElementById("span_Repeat").innerHTML)
-		if ( Math.floor(atlag) > repCount ) {
-			localStorage.setItem(priorKerdesID+'_repeat', repCount +1);
-		} else if ( Math.floor(atlag) < repCount ) {
-			localStorage.setItem(priorKerdesID+'_repeat', repCount -1);
-		}*/
-	} else if ( jegy == 3 ) {
-		if ( idopont > timeDiff ) {
-			if ( 3 > repCount ) {
-				localStorage.setItem(priorKerdesID+'_repeat', repCount +1);
-			}
-			if ( 3 < repCount ) {
-				localStorage.setItem(priorKerdesID+'_repeat', repCount -1);
-			}
-		}
-	} else if ( jegy == 4 ) {
-		if ( idopont > timeDiff ) {
-			localStorage.setItem(priorKerdesID+'_repeat', repCount +1);
-		}
+		repCount = repCount-2
+	} else if ( jegy < repCount ) {
+		repCount = repCount-1
+	} else if ( jegy > repCount ) {
+		repCount = repCount+1
 	}
+	if ( repCount < 0 ) {
+		repCount = 0
+	}
+	localStorage.setItem(priorKerdesID+'_repeat', repCount)
 
 	localStorage.setItem(priorKerdesID+'_idopont', Math.floor(date.getTime()/60000));
 	localStorage.setItem(priorKerdesID+'_note', document.getElementById("note").value);
 
 	document.getElementById("questTitle").innerHTML = "";		// hide előző megoldás
-	
+
+	func_tableSkipFix()
 	func_valFix()
-	//func_valStatusSkip("skip");
+	func_valSkip()
 	document.getElementById("jegy").value = ""
+	document.getElementById("skip").value = ""
 	document.getElementById("note").value = ""
 	document.getElementById("note").style.display = 'none';
 
@@ -1119,9 +1094,7 @@ function koviKerdes(){
 							if ( priorType == 1 && localStorage.getItem(kerdes+"_jegy") > 0 ) { // régi kérdés
 								var date = new Date();
 								var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont')
-								var jegy = localStorage.getItem(kerdes+'_jegy')
 								var shouldBreak = false
-
 								var repCount = Number(localStorage.getItem(kerdes+'_repeat'))
 
 								var timeDiff
@@ -1130,9 +1103,10 @@ function koviKerdes(){
 								} else {
 									timeDiff = 15 * Math.pow(4,repCount)
 								}
-								/*if ( timeDiff > 1000) {
-									timeDiff = 1000
-								}*/
+
+								if ( localStorage.getItem(kerdes+"_skip") ) {
+									shouldBreak = true
+								}
 
 								if ( document.getElementById("cont_RepFast").style.borderColor != "limegreen" ) {
 									if ( timeDiff > idopont ) {
@@ -1144,6 +1118,8 @@ function koviKerdes(){
 								}
 								
 								if ( shouldBreak == false ) {
+
+									var changes = localStorage.getItem(kerdes+'_changes')
 
 									var num = document.getElementById(kerdes).className.search("/");
 									var prior = document.getElementById(kerdes).className.substring(num-1,num);
@@ -1164,31 +1140,24 @@ function koviKerdes(){
 									}
 
 									//checkValue = rank / Math.pow(0.8, idopont / timeDiff) / jegy
-									checkValue = prior * idopont / timeDiff / jegy
+									checkValue = changes * prior * idopont / timeDiff
 									//checkValue = vLength * rank * idopont / timeDiff / jegy
 
 									if ( checkValue > priorValue_X ) {
-										if ( localStorage.getItem(kerdes+"_skip") == "skip" ) {
-											if ( localStorage.getItem("checkboxSkip") == "true" ) {
-												priorValue_X = checkValue;
-												priorKerdesID_X = kerdes;
-											}
-										} else {
+//										if ( localStorage.getItem(kerdes+"_skip") == "skip" ) {
+//											if ( localStorage.getItem("checkboxSkip") == "true" ) {
+//												priorValue_X = checkValue;
+//												priorKerdesID_X = kerdes;
+//											}
+//										} else {
 											priorValue_X = checkValue;
 											priorKerdesID_X = kerdes;
-										}
+//										}
 									}
 									if ( jegy == markCount || markCount == 0 ) { 
 										if ( checkValue > priorValue ) {
-											if ( localStorage.getItem(kerdes+"_skip") == "skip" ) {
-												if ( localStorage.getItem("checkboxSkip") == "true" ) {
-													priorValue = checkValue;
-													priorKerdesID = kerdes;
-												}
-											} else {
-												priorValue = checkValue;
-												priorKerdesID = kerdes;
-											}
+											priorValue = checkValue;
+											priorKerdesID = kerdes;
 										}
 									}
 								}
@@ -1208,14 +1177,14 @@ function koviKerdes(){
 	}
 	if ( priorKerdesID != "nincs" ) {
 		fullTema = document.getElementById(priorKerdesID).parentElement.id
-		var cimTitle = priorKerdesID.slice(priorKerdesID.indexOf(".")+1)
-		document.getElementById("questTitle").innerHTML = "(" + cimTitle + ") " + fullTema;
+		var identity = priorKerdesID.slice(priorKerdesID.indexOf(".")+1)
+		document.getElementById("questTitle").innerHTML = "(" + identity + ") " + fullTema;
 		
 		var n = document.getElementById(priorKerdesID).className.search("open");
 		if ( n != -1 ) {
 			document.getElementById(priorKerdesID).open = true;
 			var c = document.getElementById(priorKerdesID).children;
-			var d = document.getElementById(priorKerdesID).parentNode.parentNode.parentNode.children
+			var d = document.getElementById(priorKerdesID).parentNode.parentNode.children
 			var titleText = ""
 			for (k = 0; k < d.length; k++) {
 				if ( "SUMMARY" == d[k].tagName ) {
@@ -1227,8 +1196,9 @@ function koviKerdes(){
 			var hide = false 
 			for (i = 0; i < c.length; i++) {
 				if ( "SUMMARY" == c[i].tagName ) {
-					titleText = titleText + c[i].innerHTML
-					if ( c[i].innerHTML.search("[?=]") == -1 ) {
+					//if ( c[i].innerHTML.search("[?=]") == -1 ) {
+					if ( c[i].innerHTML.slice(0,1) == "." ) {
+						titleText = titleText + c[i].innerHTML.replace('.','')
 						c[i].innerHTML = "kérdés"
 						hide = true 
 					}
@@ -1243,10 +1213,37 @@ function koviKerdes(){
 			document.getElementById(priorKerdesID).open = false;
 		}
 
-		// kerdes(ek) áthelyezése BEGIN
+	  // BEGIN kerdes(ek) áthelyezése 
 		var string_Class = document.getElementById(priorKerdesID).className
 		string_Class = string_Class.substring(0,string_Class.search("/")-1);
 		altKerdesIDs = string_Class.match(/\d+/g)
+
+		  // BEGIN pl. 145-149 kérdéseket adja hozzá (ne kelljen őket felsorolnom egyesével html-ben) 
+			function isNumeric(n) {
+				return !isNaN(parseFloat(n)) && isFinite(n);
+			}
+			if ( string_Class.search("-") != -1 ) {
+				var x = 0
+				do {
+					x = x+1
+				}
+				while ( isNumeric(string_Class.substring(string_Class.search("-")-x-1,string_Class.search("-")-x)) == true )
+				var begin = Number(string_Class.substring(string_Class.search("-")-x,string_Class.search("-")))
+
+				var x = 0
+				do {
+					x = x+1
+				}
+				while ( isNumeric(string_Class.substring(string_Class.search("-")+x, string_Class.search("-")+x+1)) == true )
+				var end = Number(string_Class.substring(string_Class.search("-")+1,string_Class.search("-")+x))
+
+				do {
+					begin = begin+1
+					altKerdesIDs.push(begin)
+				}
+				while ( begin+1 < end )
+			}
+		  // END (ennek annyi hibája van, hogy egyenlőre csak 1db kötőjeles lehet benne, tehát 145-149 152-156 nemjó)
 
 		var elotag = priorKerdesID.substring(0,priorKerdesID.indexOf('.')+1);
 
@@ -1259,7 +1256,7 @@ function koviKerdes(){
 				document.getElementById("kerdeslocation").appendChild(document.getElementById(elotag+altKerdesIDs[k]))
 			}
 		}
-		// kerdes(ek) áthelyezése END
+	  // END kerdes(ek) áthelyezése 
 
 
 		/*document.getElementById("kerdeslocation").innerHTML = document.getElementById(priorKerdesID).innerHTML;
@@ -1283,14 +1280,6 @@ function koviKerdes(){
 		func_TitleChange()
 		*/
 
-		if ( localStorage.getItem(priorKerdesID+"_skip") == "progress" ) {
-			document.getElementById("buttonSkip").style.backgroundColor = "black"
-			document.getElementById('jegy').disabled = true;
-		} else if ( localStorage.getItem(priorKerdesID+"_skip") == "skip" ) {
-			document.getElementById("buttonSkip").style.backgroundColor = "dodgerblue"
-		} else {
-			document.getElementById("buttonSkip").style.backgroundColor = "lightgrey"
-		}
 
 		if ( localStorage.getItem(priorKerdesID+'_note') == " " ) {
 			localStorage.setItem(priorKerdesID+'_note', "");
@@ -1304,9 +1293,9 @@ function koviKerdes(){
 			var_note = false
 		}
 
-		if ( localStorage.getItem(priorKerdesID+"_skip") == "repeat" ) {
+		/*if ( localStorage.getItem(priorKerdesID+"_skip") == "repeat" ) {
 			document.getElementById('jegy').disabled = true;
-		}
+		}*/
 
 		/*if ( localStorage.getItem(priorKerdesID+'_fix') == "miss" ) {
 			document.getElementById("buttonFix").style.backgroundColor = "lightpink";
@@ -1320,12 +1309,20 @@ function koviKerdes(){
 		var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(priorKerdesID+'_idopont')
 
 		if ( priorKerdesID+'_jegy' in localStorage ) {
-			document.getElementById("pJegy").textContent = localStorage.getItem(priorKerdesID+'_jegy');
-			if ( priorKerdesID+'_jegy' in localStorage ) {
-				document.getElementById("repeat").textContent = idopont + " vs " + localStorage.getItem(priorKerdesID+'_repeat')
+			document.getElementById("repeat").textContent = idopont
+			document.getElementById("pJegy").textContent = localStorage.getItem(priorKerdesID+'_repeat');
+			if ( localStorage.getItem(priorKerdesID+'_jegy') == 1 ) {
+				document.getElementById("pJegy").style.backgroundColor = "red"
+				document.getElementById("pJegy").style.color = "white"
+			} else if ( localStorage.getItem(priorKerdesID+'_changes') == 1.5 ) {
+				document.getElementById("pJegy").style.backgroundColor = "pink"
+				document.getElementById("pJegy").style.color = "black"
 			} else {
-				document.getElementById("repeat").textContent = "\xa0 \xa0"
+				document.getElementById("pJegy").style.backgroundColor = "white"
+				document.getElementById("pJegy").style.color = "black"
 			}
+		} else {
+			document.getElementById("repeat").textContent = "\xa0 \xa0"
 		}
 	}
 
@@ -1334,26 +1331,6 @@ function koviKerdes(){
 	func_calcOldNew()
 	func_calcRepeat()
 
-}
-
-
-
-function func_buttonSkip(){
-	if ( priorKerdesID != "nincs") {
-		if ( document.getElementById("buttonSkip").style.backgroundColor == "dodgerblue" ) {
-			document.getElementById('jegy').disabled = true;
-			document.getElementById("buttonSkip").style.backgroundColor = "black";
-		} else {
-			document.getElementById('jegy').disabled = false;
-			if ( document.getElementById("buttonSkip").style.backgroundColor == "lightgrey" ) {
-				document.getElementById("buttonSkip").style.backgroundColor = "yellow";
-			} else if ( document.getElementById("buttonSkip").style.backgroundColor == "yellow" ) {
-				document.getElementById("buttonSkip").style.backgroundColor = "dodgerblue";
-			} else if ( document.getElementById("buttonSkip").style.backgroundColor == "black" ) {
-				document.getElementById("buttonSkip").style.backgroundColor = "lightgrey";
-			}
-		}
-	}
 }
 
 
