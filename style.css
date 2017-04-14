@@ -28,6 +28,7 @@ abbr:hover{
 	background-color: Chartreuse
 }
 
+
 li{ 
 	line-height: 24px;
 	margin-left: 15px;
@@ -35,8 +36,6 @@ li{
 div {
 	line-height: 22px;
 }
-
-
 ul, ol { 
 	margin-top: 0;
 	margin-bottom: 0;
@@ -56,6 +55,21 @@ div.normal {
 	padding-left: 5px;
 	padding-right: 5px;
 }
+
+
+hr.mini {
+    border: none;
+    height: 1px;
+    background-color: #333;
+}
+
+hr.large {
+    border: none;
+    height: 2px;
+    background-color: #333;
+}
+
+
 
 .abbr{
 	line-height: 35px;
@@ -91,9 +105,7 @@ span.WHITE {
 	font-weight: bold;
 }
 .idk { 
-	background-color: purple;
-	color: white;
-	font-weight: bold;
+	opacity: 0.7;
 }
 .skip { 
 	background-color: dodgerblue;
