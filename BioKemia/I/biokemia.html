@@ -23,7 +23,7 @@
 	<!--<input type="checkbox" id="checkbox_RepNew">--><span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="cont_RepNew"></span><span class="VOCAB" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="cont_RepOld"></span>
 	&nbsp; &nbsp;
 	<span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Date"></span><span class="vocab" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Jegy"></span><span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Repeat"></span>
-	<span style="position:absolute; left:30%;">
+	<span style="position:absolute; left:32%;">
 		<select style="visibility:hidden" id="select_lvl">
 			<option value="empty"></option>
 			<option value="40">40</option>
@@ -32,14 +32,14 @@
 			<option value="80">80</option>
 			<option value="100">100</option>
 		</select> &nbsp; 
-		<span class="white" id="rank">&nbsp; </span> &nbsp; &nbsp;
 		<input style="border: 3px solid black;" id="btn_Note" onclick="toggleNote();" type="button" value="&#10045;"> &nbsp; &nbsp;
 		<select id="jegy"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; 
 		<span class="white" id="pJegy" style="font-weight:bold; padding-left:3px; padding-right:3px;">&nbsp; </span> &nbsp; &nbsp;
-		<select id="skip"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="5">5</option><option value="10">10</option><option value="20">20</option></select> &nbsp; 
 		<input onclick="koviKerdes();" type="button" value=" ► ">
 	</span>
 	<span style="position:fixed; right:0px; top:50px;">
+		<span class="white" id="rank">&nbsp; (rank)</span>
+		<select id="skip"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="5">5</option><option value="10">10</option><option value="20">20</option></select> 
 		<span id="repeat" class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;">&nbsp; &nbsp; &nbsp;</span>
 		<input type="button" class="FIX" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_fix" value="0">
 		<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_skip" value="0">
@@ -2066,14 +2066,11 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<li>energiaraktározás &#10140; trigliceridek formájában a zsírok biztosítják az energiaraktározás leggazdaságosabb formáját</li>
 		<li>a sejtmembrán felépítésében meghatározó szerepet játszanak</li>
 	</ul></details>
-	<details class="kerdes 3/2" id="bKI.350"><summary>előfodulásukra 4pl?</summary><ul class="normal">
+	<details class="kerdes 3/2" id="bKI.350"><summary>előfordulásukra 4pl?</summary><ul class="normal">
 		<li>szteroidhormonok</li>
 		<li>epesavak</li>
 		<li>szekunder messangerek</li>
 		<li>DEKA vitamin</li>
-	</ul></details>
-	<details class="kerdes 3/1" id="bKI.351"><summary>egyetlen közös tulajdonságuk?</summary><ul class="normal">
-		<li>oldhatóságuk &#10140; hidrofóbok, azaz vízben nem, csak apoláros oldószerben oldhatók</li>
 	</ul></details>
 	<details class="kerdes 2/4" id="bKI.352"><summary>egyszerű/összetett lipid alatt mit értünk? </summary><ul class="normal">
 		<li>egyszerű &#10140; nem-hidrolizálható</li>
@@ -2095,7 +2092,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<li>telített</li>
 		<li>telítettlen &#10140; egyszeresen, többszörösen</li>
 	</ul></details>
-	<details class="kerdes 3/1" id="bKI.354"><summary>zsírsavak elődordulásáról tudnivaló?</summary><ul class="normal">
+	<details class="kerdes 3/1" id="bKI.354"><summary>zsírsavak konfigurációjáról tudnivaló?</summary><ul class="normal">
 		<li>A telítetlen zsírsavak az emlős szervezetekben cisz-konfigurációban fordulnak elő!! <abbr title="van 1-2 kivétel">§</abbr></li>
 	</ul></details>
 	<details class="kerdes 3/1" id="bKI.355"><summary>zsírsavak olvadáspontjáról tudnivaló?</summary><ul class="normal">
@@ -2214,8 +2211,8 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<img src="images/kplt_zprngysg.png">
 	</ul></details>
 	<details class="kerdes 3/3" id="bKI.369"><summary>5pl?</summary><ul class="normal">
-		<li>a képen a koleszterin-szintézis látható &#10140; ebből a pirossal bejelölteket kell tudni: nevük + C-atomszám</li>
-		<li>pirosak közül a C10től kezdődők izoprénvázas vegyületek, a C5 szvsz még nem</li>
+		<li>a képen a <span class="Important">koleszterin-szintézis</span> látható &#10140; ebből a pirossal bejelölteket kell tudni: nevük + C-atomszám</li>
+		<li>pirosak közül a C10től kezdődők izoprénvázas vegyületek (lehet, hogy a többi is), a C5 szvsz még nem</li>
 		<img src="images/klsztnsznt.png">
 	</ul></details>
 	<details class="kerdes 3/2" id="bKI.370"><summary>1pl. fehérjékkel kapcsolatos funkciójukra?</summary><ul class="normal">
@@ -2237,7 +2234,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	</ul></details>
 	<details class="kerdes 3/2" id="bKI.374"><summary>membrán-asszociált vegyületek izoprén láncokkal?</summary><ul class="normal">
 		<li>Koenzim Q = ubikinon (UQ) = Q10</li><ul>
-			<li>10db izoprénből álló láncot tartalmaz</li>
+			<li>10db izoprén egységből álló láncot tartalmaz</li>
 			<li>mitokondriális elektrontranszport láncban játszik szerepet mint elekton átvivő</li>
 		</ul>
 		<li>dolichol &#10140; az N-kötésű glikozidációban részt vevő oligoszacharidok az ER membránjának felszínén, dolicholhoz kötve szintetizálódnak (képre csak nézzek rá, hogy lássam hol van)</li>
