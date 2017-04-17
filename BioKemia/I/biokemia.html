@@ -24,11 +24,19 @@
 	&nbsp; &nbsp;
 	<span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Date"></span><span class="vocab" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Jegy"></span><span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Repeat"></span>
 	<span style="position:absolute; left:30%;">
-		<span style="border: 0px;" id="rank">&nbsp; &nbsp; &nbsp;</span> &nbsp;
+		<select style="visibility:hidden" id="select_lvl">
+			<option value="empty"></option>
+			<option value="40">40</option>
+			<option value="60">60</option>
+			<option value="70">70</option>
+			<option value="80">80</option>
+			<option value="100">100</option>
+		</select> &nbsp; 
+		<span class="white" id="rank">&nbsp; </span> &nbsp; &nbsp;
 		<input style="border: 3px solid black;" id="btn_Note" onclick="toggleNote();" type="button" value="&#10045;"> &nbsp; &nbsp;
 		<select id="jegy"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; 
 		<span class="white" id="pJegy" style="font-weight:bold; padding-left:3px; padding-right:3px;">&nbsp; </span> &nbsp; &nbsp;
-		<input onclick="func_buttonSkip();" type="button" id="buttonSkip" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp; &nbsp; &nbsp;
+		<select id="skip"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="5">5</option><option value="10">10</option><option value="20">20</option></select> &nbsp; 
 		<input onclick="koviKerdes();" type="button" value=" ► ">
 	</span>
 	<span style="position:fixed; right:0px; top:50px;">
@@ -42,6 +50,7 @@
 	<div id="kerdeslocation"></div>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
+	
 
 szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt mondták)!
 <table style="border-collapse:separate; border-spacing:0px 0px;"><tr>
@@ -54,8 +63,11 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	<td class="">6</td>
 	<td class="">7</td>
 	<td class="">8</td>
-	<td class="miss">9</td>
-	<td class="miss">10</td>
+	<td class="important">9</td>
+	<td class="done">10</td>
+	<td class="">11</td>
+	<td class="">12</td>
+	<td class="">13</td>
 </tr><tr><th>GY</th>
 	<td class="done">1</td>
 	<td class="important">2</td>
@@ -67,6 +79,9 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	<td class="important">8</td>
 	<td class="important">9</td>
 	<td class="">10</td>
+	<td class="">11</td>
+	<td class="">12</td>
+	<td class="">13</td>
 </tr></table>
 
 
@@ -218,14 +233,6 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 
 <!----><details><summary class="phase">Fehérjék</summary>
  <div><div class="title">általános.</div>
-	<details class="kerdes J/1" id="bKI.21"><summary><span class="WHITE">JR</span> jelentőségük</summary><ul class="normal">
-		<li>gyakorlatilag nincs olyan folyamat (biokémiai/élettani) amiben ne venne részt fehérje <abbr title="asd">&#10045;</abbr></li>
-	</ul></details>
-	<details class="kerdes J/2" id="bKI.22"><summary><span class="WHITE">JR</span> protein elnevezés</summary><ul class="normal">
-		<li>tej hevítés hatására fehér színű csapadék válik ki</li>
-		<li>1839-ben Mullder felfedezte ennek összegképletét C<sub>40</sub>H<sub>62</sub>O<sub>12</sub>N<sub>10</sub></li>
-		<li>Berzelius-ban ez érdeklődést váltott ki ➜ javasolta, hogy a vegyület neve legyen protein (elsődleges,legfontosabb)</li>
-	</ul></details>
 	<details class="kerdes 3/1" id="bKI.23"><summary>élő szervezet fehérjetartalma mennyi?</summary><ul class="normal">
 		<li>szárazanyagának 50% fehérje <abbr title="tömeg gondolom">(?!)</abbr></li>
 		<div>szárazanyag ➜ összes víz elpárologtatása után visszamaradt</div>
@@ -298,9 +305,9 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	<details class="kerdes 3/3" id="bKI.28"><summary>"funkcionális fehérjék & kéz kapcsolat"?</summary><ul class="normal">
 		<li>tevékenységük végrehajtása során a fehérjék mozognak, aminek pedig feltétele az alakváltoztatás ➜ ez bizonyos mértékig nem megy a rovására</li>
 		<li>kéznél ugyanez ➜ ha hátrafeszítem, akkor először kibicsaklik, de ha tovább feszítve eltöröm, az a funkció rovására megy már, mert utána nemtudom normálisan mozgatni</li>
-	  ––––––––––––––––––––
+	  <hr>
 		<li>tevékenységük végrehajtását a következtőképp érdemes felfogni ➜ kézzel megfogok valamit, majd elengedem (közben amit megfogtam meg is változtathatom stb.)</li>
-	  ––––––––––––––––––––
+	  <hr>
 		<li>kézzel rengeteg dolgot eltudunk végezni</li><ul>
 			<li>van amit magától pl. megkötöm a cipőfűzőm</li>
 			<li>van amit csak eszközökkel pl. vágás szikével ➜ fehérjéknél a koenzim az eszköz</li>
@@ -374,7 +381,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	</ul></details>
 	<details class="kerdes 3/1" id="bKI.33"><summary>védekezés lényege?(2)</summary><ul class="normal">
 		<li>immunfehérjék (antitestek)</li>
-		<li>véralvadás <abbr title="hisz itt is védekezés történik az elvérzés ellen">&#10045;</abbr></li>
+		<li>véralvadás <abbr title="hisz itt is védekezés történik az elvérzés ellen">§</abbr></li>
 	</ul></details>
 	<details class="kerdes 3/3" id="bKI.34"><summary>struktúra ➜ 4pl?</summary><ul class="normal">
 		<li>kollagén (csont-, porc-, inakban)</li>
@@ -613,7 +620,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 					<li>London-erők ➜ apoláros oldalláncok között (gömb belsejében vannak!)</li>
 					<li>H-kötések ➜ <abbr title="Gln,Asn">(mik között, 2pl?)</abbr></li>
 					<li>ionos-kötések ➜ azon ionos oldalláncok között, melyek <abbr title="hiszen 1-2 kivétel mindig van, pl. 10apoláros között van 1ionos oldallánc, akkor az is bennt lesz nyilván">bekerültek</abbr> a gömb belsejébe</li>
-					<li>S-S híd ➜ nem mindegyiknél van <abbr title="döntő többségben azoknál vannak, melyek kijutnak a sejtből, ugyanis ott 'nagyobb hatások' érik a fehérjét, így erősebb stabilitás szükséges ahhoz, hogy megőrizze natív konformációját">&#10045;</abbr></li>
+					<li>S-S híd ➜ nem mindegyiknél van <abbr title="döntő többségben azoknál vannak, melyek kijutnak a sejtből, ugyanis ott 'nagyobb hatások' érik a fehérjét, így erősebb stabilitás szükséges ahhoz, hogy megőrizze natív konformációját">§</abbr></li>
 				</details></td>
 			</tr>
 			<tr><th>kvaterner</th>
@@ -679,11 +686,11 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<details><summary>fehérje élettartamát ➜ hogy?</summary><ul class="normal">
 			<li>N-terminális végén lévő aminosav szekvencia határozza meg</li>
 			<div><span class="vocab"><strong>§</strong></span> egyes fehérjék napokig, egyesek meg percekig vannak mindössze</div>
-			<li><abbr title="valójában csak a félélettartam határozható meg">&#10045;</abbr></li>
+			<li><abbr title="valójában csak a félélettartam határozható meg">§</abbr></li>
 		</ul></details>
 		<details><summary>szignál folt ➜ jelentősége?</summary><ul class="normal">
 			<li>fehérjében lévő aminosav-szekvencia, mely alapján szignál kerül rá, mely meghatározza, hogy hova menjen (ER,ECM,Golgi etc)</li>
-			<li><abbr title="valójában csak a félélettartam határozható meg">&#10045;</abbr></li>
+			<li><abbr title="valójában csak a félélettartam határozható meg">§</abbr></li>
 		</ul></details>
 	</ul></details>
 	<details class="kerdes 3/4" id="bKI.144"><summary>primer szerkezet ➜ elektron-delokalizáció?</summary><ul class="normal">
@@ -738,7 +745,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	</ul></details>
 	<details class="kerdes 3/3" id="bKI.152"><summary>&alpha;-helix & &beta;-redő ➜ oldalláncok(R) befolyása kialakulásukra?</summary><ul class="normal">
 		<li><font class="abbr">apoláros kis térfogatú R oldalláncok stabilizálnak ➜ 3pl? ►</font> <strong>Ala</strong> <strong>Val</strong>, <strong>Met</strong> stb.</li>
-		<li><font class="abbr">polárosak nagy térfogatú R oldalláncú AS-ak destabilizálnak, így ritkák ➜ 2pl? ►</font> <strong>Lys</strong>, <strong>Arg</strong>, Tyr, Glu, Ser, Cys <abbr title="priorban nincs köztük különbség, csak azokat akarom megjegyezni">&#10045;</abbr></li>
+		<li><font class="abbr">polárosak nagy térfogatú R oldalláncú AS-ak destabilizálnak, így ritkák ➜ 2pl? ►</font> <strong>Lys</strong>, <strong>Arg</strong>, Tyr, Glu, Ser, Cys <abbr title="priorban nincs köztük különbség, csak azokat akarom megjegyezni">§</abbr></li>
 		<li><font class="abbr">nohde, ha mindkettőnél kb. ugyanaz a helyzet, akkor mégis mitől függ melyik lesz? ►</font> <i>ezek csak valószínűsítik a kialakulásukat, az, hogy melyik lesz az energetikai szempontok alapján dől el</i></li>
 		<li><font class="abbr">orvosi jelentősége? ►</font> a két konformáció átalakulhat egymásba (pl. &alpha;-helix &beta;-redővé) ➜ ez főként neurológiai(központi idegrendszer) betegségeknél fordul elő <i>(pl.prionok)</i></li>
 	</ul></details>
@@ -853,7 +860,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	</ul></details>
 	<details class="kerdes 3/1" id="bKI.173"><summary>szakítószilárdsága mekkora?</summary><ul class="normal">
 		<li>nagyon nagy (pl. Achilles-ín)</li>
-		<li><font class="abbr">oka? ►</font> tropokollagén felépítése ➜ 3db helikális_balmenetes_polipeptidlánc alkotnak egy jobbmenetes_szuperhelixet ➜ ez meg fizika, hogyha 2drótot egymás köré tekerek balmenetesen, majd veszek ilyenekből 3at és azokat jobbmenetesen (ellenkezően ugye) tekerem egymás köré, akkor jóval nagyobb lesz a szakítószilárdsága, mint a drótok szakítószilárdságának összege <abbr title="függőhidak építése ezen alapszik">&#10045;</abbr></li>
+		<li><font class="abbr">oka? ►</font> tropokollagén felépítése ➜ 3db helikális_balmenetes_polipeptidlánc alkotnak egy jobbmenetes_szuperhelixet ➜ ez meg fizika, hogyha 2drótot egymás köré tekerek balmenetesen, majd veszek ilyenekből 3at és azokat jobbmenetesen (ellenkezően ugye) tekerem egymás köré, akkor jóval nagyobb lesz a szakítószilárdsága, mint a drótok szakítószilárdságának összege <abbr title="függőhidak építése ezen alapszik">§</abbr></li>
 	</ul></details>
 	<details class="kerdes 3/4" id="bKI.174"><summary>utólagosan hidroxilált aminosavak ➜ képződésük?</summary><ul class="normal">
 		<li><font class="abbr">mikor-mik-mit? ►</font> fehérje szintézis után, a prolin és lizinek <strong>egy része</strong> (tehát van ami marad) hidroxilál enzimek hatására</li>
@@ -883,7 +890,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		</ul></details>
 	</ul></details>
 	<details class="kerdes 3/1" id="bKI.179"><summary>lánc típusok?</summary><ul class="normal">
-		<li>&alpha;1 és &alpha;2 ➜ de! ezek egyike sem &alpha;-helix (elnevezés csak véletlen hasonló, de nincs egymáshoz közük)<abbr title="leszámítva hogy alakjuk helikális, de más közös nincs, ezek nem &alpha;-helixek!">&#10045;</abbr></li>
+		<li>&alpha;1 és &alpha;2 ➜ de! ezek egyike sem &alpha;-helix (elnevezés csak véletlen hasonló, de nincs egymáshoz közük)<abbr title="leszámítva hogy alakjuk helikális, de más közös nincs, ezek nem &alpha;-helixek!">§</abbr></li>
 	</ul></details>
 	<details class="kerdes 2/3" id="bKI.182"><summary>keresztkötések kialakulása ➜ allizin-lizin & allizin-allizin?</summary><ul class="normal">
 		<li>lizin utólagos módosításon esik át ➜ oxidatív dezaminálás (lizil_oxidáz enzim által) ➜ így keletkezik belőle allizin</li>
@@ -931,12 +938,12 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
  </div>
  <div><div class="title">elasztin.</div>
 	<details class="kerdes 3/1" id="bKI.195"><summary>funkciója?(1pl)</summary><ul class="normal">
-		<li>ktsz rugalmasságát növeli ➜ pl. aorta falában az állandó nyomás fenntartás <abbr title="systolé alatt alakváltozás következtében kitágul, tehát ebbe konvertálódik az energia egy része ➜ utána amikor csökkenne a nyomás, akkor az alakváltozással visszaáll normálisra az aorta fala, tehát az energia visszakonvertálódik az egyenletes véráramlás fenntartására">(szélkazán-hatás!)</abbr> <abbr title="vagy másik pl. a tüdő hörgő(cské)k">&#10045;</abbr></li>
+		<li>ktsz rugalmasságát növeli ➜ pl. aorta falában az állandó nyomás fenntartás <abbr title="systolé alatt alakváltozás következtében kitágul, tehát ebbe konvertálódik az energia egy része ➜ utána amikor csökkenne a nyomás, akkor az alakváltozással visszaáll normálisra az aorta fala, tehát az energia visszakonvertálódik az egyenletes véráramlás fenntartására">(szélkazán-hatás!)</abbr> <abbr title="vagy másik pl. a tüdő hörgő(cské)k">§</abbr></li>
 	</ul></details>
 	<details class="kerdes 3/2" id="bKI.197"><summary>miből áll? másodlagos szerkezete?</summary><ul class="normal">
 		<li>1db polipeptidlánból áll</li>
 		<li>random coil és &beta;-spirálok teszik ki felváltva másodlagos szerkezetét</li>
-		<li><span class="abbr">&beta;-spirál mi? ►</span> több &beta;-görbület egymás után alkotja ezt <abbr title="görbületet lásd globuláris fehérjék">&#10045;</abbr></li>
+		<li><span class="abbr">&beta;-spirál mi? ►</span> több &beta;-görbület egymás után alkotja ezt <abbr title="görbületet lásd globuláris fehérjék">§</abbr></li>
 	</ul></details>
 	<details class="kerdes 1/1" id="bKI.198"><summary>molekulatömege?</summary><ul class="normal">
 		<li>~65kDa</li>
@@ -1009,7 +1016,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<img src="images/lkdnyzlktrmpn.png">
 	</ul></details>
 	<details class="kerdes 4/2" id="bKI.213"><summary>fehérjék denaturációja mi?</summary><ul class="normal">
-		<li>konformáció olyan megváltozása, mely a funkciójának elvesztésével jár <abbr title="hisz alapból is történik konformáció változás a normál működése sorány">&#10045;</abbr></li>
+		<li>konformáció olyan megváltozása, mely a funkciójának elvesztésével jár <abbr title="hisz alapból is történik konformáció változás a normál működése sorány">§</abbr></li>
 		<li><font class="abbr">natív konformáció? ►</font> képes funkciójának elvégzésére vele</li>
 		<li><font class="abbr">milyen szerkezete változik meg? ►</font> alapvetően tertier, mellette esetleg szekunder</li>
 		<li><font class="abbr">natív és denaturált állapot energetikája? ►</font> csekély, 12±5 kcal/mol (1kcal durván 4kJ) <abbr title="tehát 1 kovalens kötésnyi energiakülönbség nincs">(➜)</abbr></li>
@@ -1017,7 +1024,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	<details class="kerdes 2/4" id="bKI.214"><summary>denaturációt mi válthat ki?(4)</summary><ul class="normal">
 		<li>pH változás <abbr title="H-kötések felszakadnak, ionpárok megszűnnek(töltésváltozás következtében)">()</abbr></li>
 		<li>hőmérsékletnövelés <abbr title="gyenge_kölcsönhatások(szvsz apoláros, talán H-kötés) megszűnése (vibrációs és rotációs mozgás növekedése miatt)">()</abbr></li>
-		<li>vegyületek <abbr title="van több is (lásd pl. gyakkönyv, itt csak egy két erősen denaturáló van megemlítva)">&#10045;</abbr></li><ul>
+		<li>vegyületek <abbr title="van több is (lásd pl. gyakkönyv, itt csak egy két erősen denaturáló van megemlítva)">§</abbr></li><ul>
 			<li>urea (és guanidin-HCl) ➜ H-kötéseket felbontják (és helyettük újak alakulnak ki)</li>
 			<li><abbr title="nátrium-dodecil-szulfát">SDS</abbr> az apoláros(farok) része a fehérje apoláros oldalláncaival apoláros kölcsönhatást létesít, így a fehérje „kitekeredik" <img src="images/SDStrtn.png"></li>
 		</ul>
@@ -1075,8 +1082,8 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	<details class="kerdes 3/2" id="bKI.230"><summary>myoglobin és hemoglobin funkciója ➜ "molekuláris és élettani szinten"?</summary><ul class="normal">
 		<li>"molekuláris szinten" ➜ oxigént megkötnek / eleresztenek</li>
 		<li>"élettani szinten" ➜ </li><ul>
-			<li>oxigén transzport <abbr title="többsejtűeknél a benntlévő sejtek már nincsenek közvetlen kapcsolatban a környezettel, így valahogy el kell juttatni hozzájuk az oxigént">&#10045;</abbr> ➜ hemoglobin végzi</li>
-			<li>oxigén tárolása izmokban <abbr title="ha adott szituációban az izom intenzív aktivitást igényel, és nem lenne elég a hemoglobinnal időegység alatt érkező oxigén, akkor erre van szükség">&#10045;</abbr> ➜ myoglobin végzi</li>
+			<li>oxigén transzport <abbr title="többsejtűeknél a benntlévő sejtek már nincsenek közvetlen kapcsolatban a környezettel, így valahogy el kell juttatni hozzájuk az oxigént">§</abbr> ➜ hemoglobin végzi</li>
+			<li>oxigén tárolása izmokban <abbr title="ha adott szituációban az izom intenzív aktivitást igényel, és nem lenne elég a hemoglobinnal időegység alatt érkező oxigén, akkor erre van szükség">§</abbr> ➜ myoglobin végzi</li>
 		</ul>
 	</ul></details>
 	<details class="kerdes 1/1" id="bKI.231"><summary>myoglobin molekulatömege?</summary><ul class="normal">
@@ -1111,8 +1118,8 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<li>hemoglobin apoláros belseje védi az oxidációtól ➜ amikor az oxigén hozzákapcsolódik, akkor is csak ún. oxigenálódás történik</li>
 	</ul></details>
 	<details class="kerdes 2/1" id="bKI.240"><summary>vasion a hem síkjában hogy helyezkedik el?</summary><ul class="normal">
-		<li>ha nincs oxigén, akkor kissé kiemelkedik a proximális hisztidin irányába <abbr title="paramágneses állapotban van, és tasztítja a hem mágneses tere (könnyen megjegyezhető: para+pro vs disztál+dia)">&#10045;</abbr></li>
-		<li>ha van oxigén, akkor a síkban van <abbr title="diamágneses már a vas, és vonzza a mágneses tér">&#10045;</abbr></li>
+		<li>ha nincs oxigén, akkor kissé kiemelkedik a proximális hisztidin irányába <abbr title="paramágneses állapotban van, és tasztítja a hem mágneses tere (könnyen megjegyezhető: para+pro vs disztál+dia)">§</abbr></li>
+		<li>ha van oxigén, akkor a síkban van <abbr title="diamágneses már a vas, és vonzza a mágneses tér">§</abbr></li>
 		<img src="images/xgnhsztdn.png">
 	</ul></details>
 	<details class="kerdes 3/1" id="bKI.241"><summary>disztális hisztidin szerepe?</summary><ul class="normal">
@@ -1164,7 +1171,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 			<li>zöldnek Kd'=4, azaz 1Hgmm-nél még csak 20% telített, és 4Hgmm lesz csak 50% telítettsége</li>
 		</ul>
 		<div><span class="vocab"><strong>§</strong></span> mioblogin Kd'-je konkrétan 1Hgmm, tehát a piros pontosan azt ábrázolja</div>
-		<div><span class="vocab"><strong>§</strong></span> zöld pusztán jobbra van tolódva a piroshoz képest, de az is hiperbola <abbr title="ennek a hemoglobinnál lesz még jelentősége">&#10045;</abbr></div>
+		<div><span class="vocab"><strong>§</strong></span> zöld pusztán jobbra van tolódva a piroshoz képest, de az is hiperbola <abbr title="ennek a hemoglobinnál lesz még jelentősége">§</abbr></div>
 		<img src="images/grfknlvls.png">
 	</ul></details>
  </div>
@@ -1227,7 +1234,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	<details class="kerdes 3/7" id="bKI.257"><summary>allosztérikus ➜ kölcsönhatás,protein ➜ lényegük</summary><ul class="normal">
 		<img src="images/mhglbnszrk.png">
 		<li>allosztérikus_protein ➜ több ligandum kötőhelyet tartalmaznak, s az egyik ligandum befolyásolja a másik kötődését</li>
-		<li>allosztérikus kölcsönhatás ➜ nem a ligandum(alloszterikus_effektor) kötőhelyét érinti <abbr title="jelen esetben a hemek a felszínen vannak, azonban a kölcsönhatás a hemoglobin belsejében van">&#10045;</abbr></li>
+		<li>allosztérikus kölcsönhatás ➜ nem a ligandum(alloszterikus_effektor) kötőhelyét érinti <abbr title="jelen esetben a hemek a felszínen vannak, azonban a kölcsönhatás a hemoglobin belsejében van">§</abbr></li>
 		<li><font class="abbr">allosztérikus_effektor ►</font> nem fehérjemolekula(jelen esetben O<sub>2</sub>), mely fehérjéhez kötődve befolyásolja annak aktivitását<ul>
 			<li>lehet fokozó(aktivátor) / gátló(inhibitor)</li>
 			<li>nem kapcsol ki/be !!</li>
@@ -1242,7 +1249,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<li><font class="abbr">allosztérikus_konstans = ►</font> L = T/R</li>
 		<li><font class="abbr">L értéke hogy változik inhibitor és aktivátor hatására ►</font> inhibitor növeli, aktivátor csökkenti</li>
 		<div><span class="vocab"><strong>§</strong></span> Ha egy fehérje ligandumtelítési vagy enzim esetében szubsztráttelítési görbéje nem derékszögű hiperbola, hanem szigmoid alakú, akkor lehetséges, hogy az allosztéria jelenségével állunk szemben</div>
-		<div><abbr title="Két modell van: szekvenciális a képen látható. A másik a szegmentális, ennek lényege ugyanez, csak itt nincs átmenet, tehát vagy összes laza, vagy mindegyik feszes.">&#10045;</abbr></div>
+		<div><abbr title="Két modell van: szekvenciális a képen látható. A másik a szegmentális, ennek lényege ugyanez, csak itt nincs átmenet, tehát vagy összes laza, vagy mindegyik feszes.">§</abbr></div>
 	</ul></details>
 	<details class="kerdes 3/3" id="bKI.258"><summary>ionpárok?</summary><ul class="normal">
 		<img src="images/npkrsk.png">
@@ -1274,7 +1281,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	</ul></details>
 	<details class="kerdes 3/2" id="bKI.262"><summary>O<sub>2</sub> bekötődése konkrétan mit eredményez?</summary><ul class="normal">
 		<img src="images/rtcxhmgnbl.png">
-		<li><span class="WHITE">egyrészt</span> vas visszasüllyed a hem síkjába <abbr title="mert diamágneses lett, és oda vonzza a mágneses tér">&#10045;</abbr> ➜ magával húzza az F8-as hisztidint <abbr title="itt először elvileg tirozin H-kötése felszakad, és ennek következtében">(➜)</abbr> ➜ felszakad a 2db C-terminális ionpár <img class="mini" src="images/hmgnnprklfsj.png"></li>
+		<li><span class="WHITE">egyrészt</span> vas visszasüllyed a hem síkjába <abbr title="mert diamágneses lett, és oda vonzza a mágneses tér">§</abbr> ➜ magával húzza az F8-as hisztidint <abbr title="itt először elvileg tirozin H-kötése felszakad, és ennek következtében">(➜)</abbr> ➜ felszakad a 2db C-terminális ionpár <img class="mini" src="images/hmgnnprklfsj.png"></li>
 		<li><span class="WHITE">másrészt</span> az <span class="MISS">oxihemoglobin</span> 15°ban elmozdul &alpha;1ß1 dimer 15°-kal elfordul az a &alpha;2ß2 dimerhez képest ➜ csökken a 2ß közti rés ➜ BPG kilökődik</li>
 		<li>így csökken az allosztérikus_konstans(L=T/R) (hisz ez az alegység már laza konformációjú lett), ami növeli az affinitását</li>
 		<li><abbr title="4 kék karika a kiindulóhelyzet ➜ fekete pont a tengely, ami körül elforog a nyíl irányába a 2 monomer(&alpha;1+&beta;1), melyek új helye fekete karikával van már jelölve">(KÉP)</abbr></li>
@@ -1381,7 +1388,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	</ul></details>
 	<details class="kerdes 4/2" id="bKI.289"><summary>hőmérsékletfüggése?</summary><ul class="normal">
 		<img src="images/rksbshmrkltf.png">
-		<li>enzimaktivitás = reakciósebesség <abbr title="enzim által katalizált reakció sebesség">&#10045;</abbr></li>
+		<li>enzimaktivitás = reakciósebesség <abbr title="enzim által katalizált reakció sebesség">§</abbr></li>
 		<li>enzimaktivitás EGYENESEN arányos a reakciósebességi_konstanssal ➜ v = k*[S]</li>
 		<li>a reakciósebességi_konstans <i>EXPONENCIÁLISAN_</i>arányos a hőmérséklettel ➜ exponenciálisanan nő a reakciósebességi_konstans a hőmérsékletnöveléssel ➜ okát lásd Arrhenius-egyenlet <img class="mini" src="images/rhhnsgynlt.png"></li>
 		<li>a reakciósebességi_konstans EGYENESEN arányos a reakciósebességgel ➜ tehát a <span class="Important">hőmérsékletnöveléssel exponenciálisan nő a reakciósebesség=enzimaktivitás</span></li>
@@ -1393,7 +1400,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	</ul></details>
 	<details class="kerdes 4/2" id="bKI.292"><summary>pH függés?</summary><ul class="normal">
 		<img src="images/phptommm.png">
-		<li>enzimaktivitás = reakciósebesség <abbr title="enzim által katalizált reakció sebesség">&#10045;</abbr></li>
+		<li>enzimaktivitás = reakciósebesség <abbr title="enzim által katalizált reakció sebesség">§</abbr></li>
 		<li>enzimaktivitás függ a pH-tól (lásd grafikon)</li>
 		<li>pH optimum ➜ az a pH, ahol az adott enzim aktivitása a legnagyobb</li>
 		<li>különböző enzimek pH optimuma igen eltérő ➜ pl. pepsziné (gyomor) 1-3 között van (tehát nem kell 7,4 legyen)</li>
@@ -1544,7 +1551,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	<li>sebesség képlet képen <span title="dolgozzam ki érthetőbben" class="MISS">!?</span></li>
 	<li><abbr title="gátlószer">inhibitor</abbr> disszociációs konstansa = K<sub>i</sub> = [I][E] / [EI]</li>
 	<li>gátlás típusai ➜ reverzibilis(inhibitort eltávolítva megszűnik a gátlás) / irreverzibilis(inhibitort eltávolítva nem szűnik meg a gátlás)</li>
-	<li><abbr title="A <sup>†</sup> szimbólum a Michaelis-Menten egyenletben szereplő paraméterek látszólagos (inhibitor mellett mért) jellegére utal">&#10045;</abbr></li>
+	<li><abbr title="A <sup>†</sup> szimbólum a Michaelis-Menten egyenletben szereplő paraméterek látszólagos (inhibitor mellett mért) jellegére utal">§</abbr></li>
   <strong>reverzibilis</strong>
 	<li><span class="Important">következőképpen fogjam fel az inhibitor gátlását</span> ➜ hozzákötődve az enzimhez, gátolja annak <abbr title="tehát, ha E-hez kötődik, akkor a szubsztráthoz való affinitását, ha ES-hez akkor a disszociációját illetve aktivitását. (átalakulást írtam inkább, mert az aktivitás nem tökéletes, hisz azt ES-nél illetve irreverzibilis gátlásnál csinálja)">"átalakulását"</abbr> <img class="mini" src="images/nkzmkntgtls.png"></li><ul>
 		<li>ha tehát a sima enzimhez kapcsolódik hozzá, akkor a k1 fog csökkenni</li>
@@ -1554,7 +1561,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	<li>reverzibilis gátlás típusai ➜ kompetitív, unkompetitív, kevert, non-kompetitív</li>
 	<hr><li>kompetitív</li><ul>
 		<li>inhibitor az enzim aktív_centrumába kötődve elfoglalja a szubsztrát helyét</li>
-		<li>(van olyan is ami nem aktív_centrumba kötődik, hanem csak csökkenti az enzim affinitását csökkenti a szubsztráthoz <abbr title="ugye mindkét esetben k1-et csökkenti, de ha aktív_centrumba kötődve 100%ban gátolja, akkor az aktivitás-csökkentő képen, nem lenne az a ferde szaggatot(jobbrafel-mutató) nyíl az enzim-szubsztrát komplexhez ívelve (k1 csökken)">&#10045;</abbr>) <img class="mini" src="images/ktvnmktvcntrm.png"></li>
+		<li>(van olyan is ami nem aktív_centrumba kötődik, hanem csak csökkenti az enzim affinitását csökkenti a szubsztráthoz <abbr title="ugye mindkét esetben k1-et csökkenti, de ha aktív_centrumba kötődve 100%ban gátolja, akkor az aktivitás-csökkentő képen, nem lenne az a ferde szaggatot(jobbrafel-mutató) nyíl az enzim-szubsztrát komplexhez ívelve (k1 csökken)">§</abbr>) <img class="mini" src="images/ktvnmktvcntrm.png"></li>
 		<li>ha a szubsztrát-koncentrációt magasra emelem, a gátlás megszűntethető ➜ V<sub>max</sub> nem változik</li>
 		<li>K<sub>M</sub> nő, hisz nő az a szubsztrát-koncentráció érték, melynél a V=V<sub>max</sub>/2</li><ul>
 			<li>K<sub>M</sub><sup>†</sup> = K<sub>M</sub> × &alpha;</li>
@@ -1568,7 +1575,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	</ul>
 	<li>kevert <abbr title="leggyakoribb">()</abbr></li><ul>
 		<li>inhibitor E-hez és ES-hez is képes kötődni, és mindkettő aktivitását csökkenti</li>
-		<li>tehát ezt az unkompetitív és kompetitívből kell összeraknom ➜ az előbbi kettőt kell egybevennem, vagyis pl. itt a K<sub>M</sub> egyrészt nő a kompetitív részről, másrészt csökken az unkompetitív részről ➜ hogy az eredő K<sub>M</sub> nő-e vagy csökken az az &alpha;<sub>c</sub> és &alpha;<sub>u</sub> arányától függ <abbr title="ami egyébként csak a Kiu és Kic-től függ, mert [I] ugyanannyi mindkettőnél">&#10045;</abbr></li>
+		<li>tehát ezt az unkompetitív és kompetitívből kell összeraknom ➜ az előbbi kettőt kell egybevennem, vagyis pl. itt a K<sub>M</sub> egyrészt nő a kompetitív részről, másrészt csökken az unkompetitív részről ➜ hogy az eredő K<sub>M</sub> nő-e vagy csökken az az &alpha;<sub>c</sub> és &alpha;<sub>u</sub> arányától függ <abbr title="ami egyébként csak a Kiu és Kic-től függ, mert [I] ugyanannyi mindkettőnél">§</abbr></li>
 	</ul>
 	<li>non-kompetitív <abbr title="ez leginkább csak elméletben létezik">!?</abbr> ➜ olyan kevert, mikor K<sub>ic</sub> = K<sub>iu</sub> ➜ &alpha;<sub>c</sub> = &alpha;<sub>u</sub> ➜ K<sub>M</sub> nem változik</li><ul>
 		<li>az inhibitor nem változtatja meg a szubsztrát enzimhez kötődését, csupán annak termékké alakítását csökkenti</li>
@@ -1647,7 +1654,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<li>az első reakció S &#8652; A esetében, a v<sub>e</sub> 10ezerszerese a v<sub>h</sub>-nak (ugyanis, a keletkezett A-t az E<sub>2</sub> nagy aktivitással egyből felhasználja)</li>
 		<li>ezért az első reakció <strong>irreverzibilis</strong> ➜ mert nagyságrendekkel szükséges változtatni a reakciósebességeket ahhoz, hogy a nettó anyagáramlás megforduljon</li>
 		<li>ezzel szemben a második reakció <strong>reverzibilis</strong> ➜ <abbr title="10%-al">kis mértékben</abbr> kell megváltoztatni a reakciósebességeket ahhoz, hogy a nettó anyagáramlás megforduljon</li>
-		<li><abbr title="A reakció reverzibilitás itt ismertetett enzimkinetikai értelmezése teljes összhangban áll a 6. fejezetben szereplő termodinamikai koncepcióval, amely szerint a jelentős negatív &Delta;G-értékkel rendelkező reakciók irreverzibilisek, míg a nullához közeli &Delta;G-értékek a reverzibilis reakciókat jellemzik">&#10045;</abbr></li>
+		<li><abbr title="A reakció reverzibilitás itt ismertetett enzimkinetikai értelmezése teljes összhangban áll a 6. fejezetben szereplő termodinamikai koncepcióval, amely szerint a jelentős negatív &Delta;G-értékkel rendelkező reakciók irreverzibilisek, míg a nullához közeli &Delta;G-értékek a reverzibilis reakciókat jellemzik">§</abbr></li>
 	</ul>
 	<img src="images/dltgnzmknt.png">
 	<li>enzim vs &Delta;G</li><ul>
@@ -1703,7 +1710,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
  </ul></details>
 <!----></details>
 
-<!----><details open><summary class="phase">Szénhidrátok</summary>
+<!----><details><summary class="phase">Szénhidrátok</summary>
  <div><div class="title">általános</div>
 	<details class="kerdes 2/2" id="bKI.298"><summary>funkciói?(3<font style="font-size:11px">+4</font>)</summary><ul class="normal">
 		<li>tápanyagok (fő energiaforrásként szolgálnak)</li>
@@ -1761,7 +1768,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<div>ez jelen esetben a középső C-atom</div>
 		<li>FISCHER-szabály</li>
 		<div><span class="Vocab">1</span> legoxidáltabb C felül kell legyen ➜ aldehid ezért felül van!</div>
-		<div><span class="Vocab">2</span> leghosszabb ligandum legyen alul <abbr title="értelemszerűen a legoxidáltabb után, ha az esetleg hosszabb lenne">&#10045;</abbr></div>
+		<div><span class="Vocab">2</span> leghosszabb ligandum legyen alul <abbr title="értelemszerűen a legoxidáltabb után, ha az esetleg hosszabb lenne">§</abbr></div>
 		<div><span class="Vocab">3</span> <abbr title="aldehidtől legtávolabb lévő">legalsó</abbr> királis C atomon, ha jobbra áll az -OH, akkor D ➜ ha balra akkor L</div>
 		<div>láncnak a kiralitás centrumtól felfelé és lefelé rajzolt része egyaránt a sík mögött van, míg a jobb-bal oldalra lévők a sík előtt	<img class="mini" src="images/krlsctnmnklt.png"></div>
 		<li>glicerin-aldehid <img class="mini" src="images/glcrnldghd.png"></li>
@@ -1804,7 +1811,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<img src="images/sztrzmkrk.png">
 	</ul></details>
 	<details class="kerdes 2/2" id="bKI.308"><summary style="color:Magenta"><font color="Green">aldóz & ketóz &#10140; kiralitáscentrumok száma? sztereoizomerek száma?</font></summary><ul class="normal">
-		<li>aldóz &#10140; 1-es számú C-atom illetve a legalján lévő C-atom nem kiralitáscentrum, többi igen &#10140; <span class="Important">n-2</span> = kiralitáscentrumok &#10140;<span class="Important"> 2<sup>n-2</sup></span> = sztereoizomerek száma <abbr title="hiszen minden kiralitáscentrumnál vagy D vagy L lesz (ergó kijön ebből valahogy és elhiszem, mert most nincs 2percem se energiám végiggondolni)">&#10045;</abbr></li>
+		<li>aldóz &#10140; 1-es számú C-atom illetve a legalján lévő C-atom nem kiralitáscentrum, többi igen &#10140; <span class="Important">n-2</span> = kiralitáscentrumok &#10140;<span class="Important"> 2<sup>n-2</sup></span> = sztereoizomerek száma <abbr title="hiszen minden kiralitáscentrumnál vagy D vagy L lesz (ergó kijön ebből valahogy és elhiszem, mert most nincs 2percem se energiám végiggondolni)">§</abbr></li>
 		<li>ketóz ➜ ugyanaz 2 C-atom most sem kiralitáscentrum, ezenkívül a karbonilcsoportos C atom se &#10140; <span class="Important">n-3</span> &#10140; <span class="Important">2<sup>n-3</sup></span></li>
 		<li><font style="color:red;font-weight:bold;">!?</font> képen lévőnek akkor miért 6db sztereoizomere van, ha az egyszer egy 4 C atomos aldózként fogható fel és elvileg 4db kéne legyen <font style="color:red;font-weight:bold;">!?</font></li>
 		<img src="images/sztrzmkrk.png">
@@ -1889,7 +1896,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<details><summary>ciklohexán konformációinak felsorolása?</summary><ul class="normal">
 			<li>két jellegzetes konformációja a képen &#10140; azért jellegzetes, mert van több is (cyclohexan conformation), de azok lényegtelenek</li>
 			<img src="images/kdszkknrmc.png">
-			<li><font class="abbr">melyik stabilabb? ►</font> szék 99%, kád 1% <abbr title="ekkora % arányban fordulnak elő">&#10045;</abbr></li>
+			<li><font class="abbr">melyik stabilabb? ►</font> szék 99%, kád 1% <abbr title="ekkora % arányban fordulnak elő">§</abbr></li>
 		</ul></details>
 	</ul></details>
 
@@ -2045,13 +2052,438 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<li>emberben tápanyagraktár májban és izmokban</li>
 		<li>gyakrabban tartalmaz elágazásokat, mint a keményítő</li>
 	</ul></details>
-	<span class="MISS">1:25:00</span>
+ </div>
+<span class="MISS">1:25:00</span>
+<!----></details>
+
+<!----><details open><summary class="phase">Lipidek</summary>
+ <div><div class="title">általános</div>
+	<details class="kerdes 3/1" id="bKI.348"><summary>egyetlen közös tulajdonságuk?</summary><ul class="normal">
+		<li>oldhatóságuk &#10140; hidrofóbok, azaz vízben nem, csak apoláros oldószerben oldhatók</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="bKI.349"><summary>funkcióik?(3)</summary><ul class="normal">
+		<li>energiaforrás &#10140; zsírsavak oxidációja a sejtek számára energiát szolgáltat</li>
+		<li>energiaraktározás &#10140; trigliceridek formájában a zsírok biztosítják az energiaraktározás leggazdaságosabb formáját</li>
+		<li>a sejtmembrán felépítésében meghatározó szerepet játszanak</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="bKI.350"><summary>előfodulásukra 4pl?</summary><ul class="normal">
+		<li>szteroidhormonok</li>
+		<li>epesavak</li>
+		<li>szekunder messangerek</li>
+		<li>DEKA vitamin</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.351"><summary>egyetlen közös tulajdonságuk?</summary><ul class="normal">
+		<li>oldhatóságuk &#10140; hidrofóbok, azaz vízben nem, csak apoláros oldószerben oldhatók</li>
+	</ul></details>
+	<details class="kerdes 2/4" id="bKI.352"><summary>egyszerű/összetett lipid alatt mit értünk? </summary><ul class="normal">
+		<li>egyszerű &#10140; nem-hidrolizálható</li>
+		<li>összetett &#10140; hidrolizálható</li>
+		<div>(mást is lehetne érteni alattuk, mi most e szerint értelmezzük)</div>
+	  <hr>
+		<li>az alábbiakat melyikbe soroljuk?</li>
+		<li><font class="abbr">eikozanoidok ►</font> egyszerű</li>
+		<li><font class="abbr">plazmalogének ►</font> összetett</li>
+		<li><font class="abbr">zsírsavak ►</font> egyszerű</li>
+		<li><font class="abbr">szfingolipidek ►</font> összetett</li>
+		<li><font class="abbr">izoprének és származékaik ►</font> egyszerű</li>
+		<li><font class="abbr">glikolipidek ►</font> összetett</li>
+		<li><font class="abbr">koleszterin és származékaik ►</font> egyszerű</li>
+		<li><font class="abbr">trigliceridek ►</font> összetett</li>
+		<li><font class="abbr">(glicero)foszfolipidek ►</font> összetett</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.353"><summary>zsírsavak csoportosítása?</summary><ul class="normal">
+		<li>telített</li>
+		<li>telítettlen &#10140; egyszeresen, többszörösen</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.354"><summary>zsírsavak elődordulásáról tudnivaló?</summary><ul class="normal">
+		<li>A telítetlen zsírsavak az emlős szervezetekben cisz-konfigurációban fordulnak elő!! <abbr title="van 1-2 kivétel">§</abbr></li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.355"><summary>zsírsavak olvadáspontjáról tudnivaló?</summary><ul class="normal">
+		<li>Minél kevesebb szénatomot, minél több kettőskötést tartalmaznak, olvadáspontjuk annál alacsonyabb</li>
+	</ul></details>
+	<details class="kerdes 5/3" id="bKI.356"><summary><span class="Vocab">R</span> zsírsavak nevezéktana a linolénsav példáján?</summary><ul class="normal">
+		<li>karboxilcsoporttól kezdődik a számozás (utolsó C atomot "n"-el jelöljük)</li>
+		<li>karboxilcsoport után következő C-atommal kezdődik a görög betűvel jelölés &#10140; utoló C-atomot &omega;(omega)-val jelöljük</li>
+	  <hr>
+		<div>többféle jelölést használnak &#10140; pl. linolénsav esetében</div>
+		<li>linolénsav &omega;-3 &#10140; legutolsó kettős kötést jelöli (visszafele omegától megy a számozá és azt is belveszi!)</li>
+		<li>linolénsav &Delta;9,&Delta;12,&Delta;15 &#10140; legutolsó kettős kötést jelöli</li>
+		<li>linolénsav <abbr title="C-atomszám">18</abbr>:<abbr title="kettőskötésszám">3</abbr><abbr title="utolsó kettős kötés helye">n-3</abbr></li>
+		<img src="images/kplt_lnlsncv.png">
+	</ul></details>
+	<details class="kerdes 1/2" id="bKI.371"><summary>vitaminok &#10140; melyek lipid-oldékonyak? felszívásuk?</summary><ul class="normal">
+		<li>DEKA vitaminok lipid-oldékonyak</li>
+		<li>felszívásuk akkor megy végbe, ha mellettük lipidet is fogyasztottunk</li>
+		<div>&#10140; ha valakinek lipid felszívódási zavara van, akkor DEKA vitamin hiány is fel fog lépni</div>
+		<div>&#10045; A vitamin olyan szerves vegyület, amely kis mennyiségben ugyan, de nélkülözhetetlen az emberi szervezet számára, viszont kellő mennyiségben az előállítására nem mindig képes, ezért tápanyag formájában kénytelen hozzájutni &#10140; Van olyan vitamin, amit bizonyos feltételek mellett képes a szervezet előállítani, pl. a D-vitamint csak akkor, ha UV-fény éri az embert</div>
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.357"><summary><span class="Vocab">Képlet</span> palmitinsav</summary><ul class="normal">
+		16:0
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.363"><summary><span class="Vocab">Képlet</span> palmitoleinsav</summary><ul class="normal">
+		16:1n-7 (&Delta;9)
+		<abbr title="a kettős kötések cisz helyzetűek ugye (hisz összesnél az szinte, egy-két kivétel)!!">!!!</abbr>
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.358"><summary><span class="Vocab">Képlet</span> sztearinsav</summary><ul class="normal">
+		18:0
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.359"><summary><span class="Vocab">Képlet</span> olajsav</summary><ul class="normal">
+		18:1n-9 (&Delta;9)
+		<abbr title="a kettős kötések cisz helyzetűek ugye (hisz összesnél az szinte, egy-két kivétel)!!">!!!</abbr>
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.360"><summary><span class="Vocab">Képlet</span> linolsav</summary><ul class="normal">
+		18:2n-6 (&Delta;9,&Delta;12)
+		<abbr title="a kettős kötések cisz helyzetűek ugye (hisz összesnél az szinte, egy-két kivétel)!!">!!!</abbr>
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.361"><summary><span class="Vocab">Képlet</span> linolénsav</summary><ul class="normal">
+		18:3n-3 (&Delta;9,&Delta;12,&Delta;15)
+		<abbr title="a kettős kötések cisz helyzetűek ugye (hisz összesnél az szinte, egy-két kivétel)!!">!!!</abbr>
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.362"><summary><span class="Vocab">Képlet</span> arachidonsav</summary><ul class="normal">
+		20:4n-6 (&Delta;5,&Delta;8,&Delta;11,&Delta;14)
+		<abbr title="a kettős kötések cisz helyzetűek ugye (hisz összesnél az szinte, egy-két kivétel)!!">!!!</abbr>
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.364"><summary><span class="Vocab">Képlet</span> elaidinsav</summary><ul class="normal">
+		18:1n-9 (&Delta;9)
+		!transz-helyzetű!
+	</ul></details>
+	<details class="kerdes 5/1" id="bKI.365"><summary>esszenciális zsírsavak &#10140; mit értünk alattuk? felsorolásuk?</summary><ul class="normal">
+		<li>ember nem képes előállítani(szintetizálni) esszenciális zsírsavakat</li><ul>
+			<li>ugyanis az enzimek nem képesek kettős kötést kialakítani a <abbr title="tehát olajsavat még igen">9.C-atomtól distalisabban</abbr> (pl.12) (ezeket növények állítják elő)</li>
+			<li>arachidonsav azért nem esszenciális, mert azokat a táplálékból felvett esszenciális zsírsavból már képes szintetizálni a szervezet</li>
+		</ul>
+		<li>linolsav, linolénsav</li>
+	</ul></details>
+	<details class="kerdes 3/6" id="bKI.366"><summary>eikozanoidok &#10140; csoportosításuk? C-atomszám? prekurzoraik? termelődésük sejthez viszonyítva? mely út termékei? szubsztituensek száma? kettős kötések száma?</summary><ul class="normal">
+		<table>
+			<tr><th>prosztanoidok & tromboxánok</th><th>leukotriének</th></tr>
+			
+			<tr><td colspan="2">20C-atomosak</td></tr>
+			<tr><td colspan="2">arachidonsav</td></tr>
+			<tr><td colspan="2"><abbr title="tehát nem az van, hogy minden sejt minden típusát képes előállítani &#10140; hanem egy fajta sejt egyes típusait képes képezni, míg másik fajta más típusait">sejt-specifikusan termelődnek</abbr></td></tr>
+			<tr><td>ciklooxigenáz út termékei</td><td>lipoxigenáz út termékei</td></tr>
+			<tr><td>többnyire két kettős kötést tartalmaznak	 <img class="mini" src="images/kndjgltkrst.png"></td><td>többnyire három konjugált kettős kötést tartalmaznak</td></tr>
+			<tr><td colspan="2">számos szubsztituenst tartalmaznak</td></tr>
+			<tr><td>ciklopentán gyűrűt tartalmaznak mindig</td><td>a ciszteinil-leukotriének a glutationból (tripeptid) legalább egy ciszteint tartalmaznak <br>(ez egy szubsztituensre példa, csak ide írtam inkább)</td></tr>
+		</table>
+		Eikozanoidok &#10140; 20C-atomosak, melyek többszörösen telítetlen zsírsavak oxidálásával keletkeznek. <abbr title="leggyakoribb és legfontosabb">Legjelentősebb</abbr> prekurzora az arachidonsav. /Prekurzor &#10140; tehát ez az a  többszörösen telítetlen zsírsav, melynek oxidálásával keletkezik/. Csoportosításuk &#10140; prosztaglandinok=prosztanoidok, tromboxánok, leukotriének.
+		<li>keletkezésük útvonalának alapjai</li><ul>
+			<li>membránlipidek között van arachidonsav</li>
+			<li>ezt egy enzim (foszfolipáz A) kihasítja</li>
+			<li>innen két irányba folytatódhat</li><ul>
+				<li>ciklooxigenáz út &#10140; prosztaglandinok=prosztanoid vagy tromboxán lesz</li>
+				<li>lipoxigenáz út &#10140; leukotrién lesz</li>
+			</ul>
+		</ul>
+		<li>ezen molekulák keletkezésének útvonala jelentős gyógyszercélpont (pl.aspirin stb. befolyásolja keletkezésüket)</li>
+		<img src="images/kznsdkt.png">
+	</ul></details>
+	<details class="kerdes 3/3" id="bKI.367"><summary>példák az alábbiakra &#10140; prosztaglandin?(4) tromboxán?(1) leukotrién?(4)</summary><ul class="normal">
+		<li>leukotriének</li><ul>
+			<li>LTB<sub>4</sub> (leukotrién B<sub>4</sub>) (ez nem ciszteinil leukotrién!)</li>
+			<li>ciszteinil-leukotriének &#10140; LTC<sub>4</sub>, LTD<sub>4</sub>, LTE<sub>4</sub></li>
+			<div>(megjegyzési tipp &#10140; LT + B-E)</div>
+		</ul>
+		<li>prosztaglandinok</li><ul>
+			<li>PGI<sub>2</sub> = prosztaciklin</li>
+			<li>PGD<sub>2</sub>, PGE<sub>2</sub>, PGF<sub>2&alpha;</sub></li>
+			<div>(megjegyzési tipp &#10140; PG + <abbr title="DEFIciencia">DEFI</abbr>)</div>
+		</ul>
+		<li>tromboxán &#10140; pl. TXA<sub>2</sub> (tromboxán A<sub>2</sub>)</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.388"><summary>szteroid hormonok miből szintetizálódnak?</summary><ul class="normal">
+		<li>koleszterinből (az összes)</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.395"><summary>tesztoszteron miből szintetizálódik?</summary><ul class="normal">
+		<li>koleszterinből, ugyanis ez is szteroid hormon (azon belül androgén csoportba tartozik)</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.400"><summary>progeszteron miből szintetizálódik?</summary><ul class="normal">
+		<li>koleszterinből, hisz ez is szteroid hormon (azon belül progesztogén csoportba tartozik)</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.401"><summary>ösztradiol miből szintetizálódik?</summary><ul class="normal">
+		<li>koleszterinből, ugyanis ez is szteroid hormon (azon belül ösztrogén csoportba tartozik)</li>
+	</ul></details>
+ </div>
+ <div><div class="title">izoprének és származékaik</div>
+	<details class="kerdes 3/2" id="bKI.368"><summary><span class="Vocab">R</span> izoprén &#10140; izoprénvázas vegyület mi, 1pl?</summary><ul class="normal">
+		<li>Az izoprén öt szénatomos egység &#10140; lásd kép!</li>
+		<li>izoprénvázas vegyületek</li><ul>
+			<li>az a szénvegyület, melynek szénváza két vagy több izoprén egységet tartalmaz</li>
+			<li>pl. szteroidok</li>
+		</ul>
+		<img src="images/kplt_zprngysg.png">
+	</ul></details>
+	<details class="kerdes 3/3" id="bKI.369"><summary>5pl?</summary><ul class="normal">
+		<li>a képen a koleszterin-szintézis látható &#10140; ebből a pirossal bejelölteket kell tudni: nevük + C-atomszám</li>
+		<li>pirosak közül a C10től kezdődők izoprénvázas vegyületek, a C5 szvsz még nem</li>
+		<img src="images/klsztnsznt.png">
+	</ul></details>
+	<details class="kerdes 3/2" id="bKI.370"><summary>1pl. fehérjékkel kapcsolatos funkciójukra?</summary><ul class="normal">
+		<div>fehérjék ahhoz, hogy membránhoz kihorgonyzódásuk végbemehessen, izoprénvázas_vegyületet kötnek meg (poszttranszlációs módosítás)</li>
+		<li>1. Farneziláció: C15 <abbr title="szvsz izop<strong>rén</strong> ~ (izo)<strong>pre</strong>nil"><font style="color:red;font-weight:bold;">prenil</font></abbr> lánc kapcsolódik a fehérjéhez, pl. Ras monomer G fehérje</div>
+		<li>2. Geranilgeraniláció: egy vagy két C20 prenil lánc kapcsolódik, pl Rho monomer G fehérje</li>
+		<div>tehát a Ras monomer G fehérje farnelizációja azt jelenti, hogy hozzákapcsolódik egy <font style="color:red;font-weight:bold;">izoprenil-lánc</font> és vele kikötődik a membránhoz</li>
+		<img src="images/fhrjprnlcgl.png">
+	</ul></details>
+	<details class="kerdes 3/2" id="bKI.372"><summary>Lipid-oldékony vitaminok izoprén lánccal?</summary><ul class="normal">
+		<li><font class="abbr">E-vitamin, funkció ►</font> antioxidáns</li>
+		<li><font class="abbr">K-vitamin, funkció ►</font> véralvadásban játszik szerepet</li>
+		<li><font class="abbr">&beta;-karotin ►</font> A<sub>1</sub>-vitamin(retinol) előanyaga</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="bKI.373"><summary>A-vitamin &#10140; hol tárolódik? funkció?</summary><ul class="normal">
+		<li>májban tárolódik</li>
+		<li>génexpresszió szabályozásában vesz részt (magi receptor liganduma a retinsav)</li>
+		<li>látási ciklusban vesz részt</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="bKI.374"><summary>membrán-asszociált vegyületek izoprén láncokkal?</summary><ul class="normal">
+		<li>Koenzim Q = ubikinon (UQ) = Q10</li><ul>
+			<li>10db izoprénből álló láncot tartalmaz</li>
+			<li>mitokondriális elektrontranszport láncban játszik szerepet mint elekton átvivő</li>
+		</ul>
+		<li>dolichol &#10140; az N-kötésű glikozidációban részt vevő oligoszacharidok az ER membránjának felszínén, dolicholhoz kötve szintetizálódnak (képre csak nézzek rá, hogy lássam hol van)</li>
+		<img src="images/dlchld.png">
+	</ul></details>
+ </div>
+ <div><div class="title">koleszterin és származékaik</div>
+	<details class="kerdes 4/4" id="bKI.375"><summary><span class="Vocab">Képlet</span> koleszterin</summary><ul class="normal">
+		<img src="images/kplt_klsztrn.png">
+		<li>négy gyűrű: ABCD &#10140; transz helyzetűek, tehát a H-atom a 8-9 C atomnál ellentétes térfélen található, illetve a CH3 & H a 13-14 C atomnál ugyanígy (5,10-nél is ez van szteroidoknál, csak koleszterinnél kettős kötés van az 5-nél, ezért "itt most nincs párja a pirosnak")</li><ul>
+			<li>&beta;-helyzetű a sík felett lévő &#10140; 8,18,19</li>
+			<li>&alpha;-helyzetű a sík alatt lévő &#10140; 9,14,(21)</li>
+		</ul>
+		<li>amfipatikus &#10140; mert van poláris része is (3.C-nél lévő -OH)</li>
+		<div>amfipatikus &#10140; apoláris és poláris (vagy ionos) részt egyaránt tartalmaz</div>
+		<li>sejtmembránban megtalálható (mind2 rétegében)</li>
+		<img src="images/ktnskgksjtjj.png">
+	</ul></details>
+	<details class="kerdes 3/2" id="bKI.376"><summary>koleszterin származékainak felsorolása?(3)</summary><ul class="normal">
+		<li>epesavak</li>
+		<li>szteroidhormonok</li>
+		<li>D-vitamin</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.377"><summary>koleszterin hol szintetizálódik?</summary><ul class="normal">
+		<li>csak állati sejtekben (növényiben nem) &#10140; vvt-ben nem feltétlen (hisz az már nem sejt)</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.378"><summary>koleszterin milyen formában fordul elő?</summary><ul class="normal">
+		<li>A szervezetben előforduló koleszterin 70%-a nem szabad koleszterinként, hanem koleszterin-észterként van jelen, amelyben az alkoholos OH-csoporthoz észterkötéssel kapcsolódik egy zsírsav</li>
+		<img src="images/klsztnsztr.png">
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.379"><summary><span class="Vocab">képlet</span> kortizol C21</summary><ul class="normal">
+		<img src="images/kplt_crtsl.png">
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.380"><summary><span class="Vocab">képlet</span> kólsav</summary><ul class="normal">
+		<li>3&alpha;-7&alpha;-12&alpha;(-OH) + 27(-COOH)</li>
+		<img src="images/kplt_klsavk.png">
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.381"><summary><span class="Vocab">képlet</span> aldoszteron C21</summary><ul class="normal">
+		<img src="images/slzsrnskpl.png">
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.382"><summary><span class="Vocab">képlet</span> ösztradiol</summary><ul class="normal">
+		(A gyűrű aromás! és nincs 19-nél metilcsoport!)
+		<img src="images/kplt_sztrdl.png">
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.383"><summary><span class="Vocab">képlet</span> tesztoszteron C19</summary><ul class="normal">
+		<img src="images/kplt_tszttszrn.png">
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.392"><summary><span class="Vocab">képlet</span> dehidroepiandroszteron(DHEA) C19</summary><ul class="normal">
+		<img src="images/kplt_dhdpndrsztrn.png">
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.384"><summary><span class="Vocab">képlet</span> progeszteron C21</summary><ul class="normal">
+		<img src="images/kplt_prgsztrnl.png">
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.385"><summary><span class="Vocab">képlet</span> pregnelon C21</summary><ul class="normal">
+		<img src="images/kplt_prgnlnln.png">
+	</ul></details>
+	<details class="kerdes 3/3" id="bKI.386"><summary>epesavak &#10140; keletkezésük, tulajdonságuk, funkciójuk? 1pl?</summary><ul class="normal">
+		<li>májban keletkeznek koleszterinből</li><ul>
+			<li>szintézis közben az oldallánc rövidül (C24), és kialakul a végén egy karboxilcsoport</li>
+			<li>emelett még az A és B gyűrű cisz-konfigurációjúra alakul át transzból (ez is a szintézis közben)</li>
+		</ul>
+		<li>utóbbinak az lesz a következménye, hogy egyik oldala tisztán apoláros, míg a másik poláros &#10140; ez az amfipatikus tulajdonság meghatározó lipidek <abbr title="folyadék egy másik folyadékban való eloszlatása (jelen esetben a nagy lipidcseppeket kis apró cseppekké ''szaggatja'')">emulgeálásában</abbr></li>
+		<li>tehát a funkciójuk &#10140; lipidek emulgeálása</li>
+		<li>epesav pl. kólsav</li>
+		<div>&#10045; epesavak az epehólyagban tárolódnak és táplálékfelvételt követően, hormonok hatására a duodenumba ürülnek</div>
+		<img style="max-width:35%" src="images/pskvkfnkc.png">
+		<img style="max-width:55%" src="images/klszrmzkkl.png">
+	</ul></details>
+	<details class="kerdes 5/1" id="bKI.387"><summary>szteroid hormonok milyen receptorhoz kötődnek?</summary><ul class="normal">
+		<li>hidrofóbok, átjutnak a plazmamembránon és intracelluláris receptorokhoz kötődnek</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.389"><summary>szteroid hormonok tárolása?</summary><ul class="normal">
+		<li>gyors szintézis és kibocsátás történik, nem tároljuk őket</li>
+	</ul></details>
+	<details class="kerdes 5/4" id="bKI.391"><summary>főbb szteroid hormon csoportok?(6)</summary><ul class="normal">
+		<li><font class="abbr">mineralokortikoidok (1pl) ►</font> aldoszteron</li>
+		<li><font class="abbr">glukokortikoidok (1pl) ►</font> kortizol (, prednisone)</li>
+		<li><font class="abbr">androgének (1pl) ►</font> tesztoszteron</li>
+		<li><font class="abbr">ösztrogének (1pl) ►</font> ösztradiol (ez a legfontosabb)</li>
+		<li><font class="abbr">progesztogének (1pl) ►</font> progeszteron</li>
+		<li>neuroszteroidok</li>
+	</ul></details>
+	<details class="kerdes 3/3" id="bKI.393"><summary>mellékvese szteroidhormonok &#10140; 3pl? hol? funkció?</summary><ul class="normal">
+		<li>mineralokortikoid, pl. aldoszteron &#10140; zona_glomerulosa &#10140; só/víz háztartásért felelnek</li>
+		<li>glikokortikoidok, pl. kortizol &#10140; zona_fasciculata &#10140; <abbr title="anyag-, energia- és információáramlás">metabolizmus</abbr>, immunrendszer stb.</li>
+		<li>gyenge androgének, pl. dehidroepiandroszteron &#10140; zona_reticularis &#10140; androgén hatásúak, illetve további hormonokká (androgénekké, ösztrogénekké) tudnak alakulni (tehát előanyagok)</li>
+		<div>pregnelon képletét szintén tudni kell!</div>
+		<img src="images/mllklvmsztrhmk.png">
+	</ul></details>
+	<details class="kerdes 2/1" id="bKI.394"><summary>tesztoszteron hol termelődik?</summary><ul class="normal">
+		<li>here Leydig-sejtjei</li>
+	</ul></details>
+	<details class="kerdes 2/1" id="bKI.396"><summary>tesztoszteron funkció?</summary><ul class="normal">
+		<li>kulcsszerepet játszik a férfi reproduktív szövetek, mint például a here és a prosztata fejlődésében, a másodlagos nemi jelleg kialakításában. Befolyásolja a spermatogenezist, a szexuális érést, a (szexuális) magatartást</li>
+		<li>szabályozza a szövetek metabolizmusát: anabolikus szteroid</li>
+	</ul></details>
+	<details class="kerdes 2/1" id="bKI.397"><summary>legfontosabb nemi hormonok felsorolása?</summary><ul class="normal">
+		<li>férfi &#10140; tesztoszteron</li>
+		<li>női &#10140; ösztradiol</li>
+	</ul></details>
+	<details class="kerdes 2/1" id="bKI.398"><summary>ösztradiol hol termelődik?</summary><ul class="normal">
+		<li>ösztradiol az ovariumban és a placentában keletkezik, de egyéb ösztrogének máshol is keletkeznek (bőr, zsírszövet, máj, csontok)</li>
+	</ul></details>
+	<details class="kerdes 2/2" id="bKI.399"><summary>ösztradiol funkció?</summary><ul class="normal">
+		<li>Kulcsszerepet játszik a női reproduktív szervek fejlődésében</li>
+		<li>Szabályozza a női menstruációs ciklust és a terhességet</li>
+		<li>csontvédő hatású</li>
+		<li>jelentős extragonadális termelés és hatás (zsírszövet, máj, bőr, agy)</li>
+	</ul></details>
+	<details class="kerdes 2/1" id="bKI.402"><summary>ösztradiol hol termelődik?</summary><ul class="normal">
+		<li>a corpus luteumban ovulációt követően (a luteális fázisban), és a placentában</li>
+	</ul></details>
+	<details class="kerdes 2/1" id="bKI.403"><summary>progeszteron funkció?</summary><ul class="normal">
+		<li>A mellékvese és a nemi hormonok szintézisében fontos intermedier molekula</li>
+		<li>szabályozza a női menstruációs ciklust és kulcsszerepet játszik a terhesség során</li>
+	</ul></details>
+	<details class="kerdes 2/1" id="bKI.404"><summary>mely vitamin koleszterin származék?</summary><ul class="normal">
+		<li>D-vitamin</li>
+	</ul></details>
+ </div>
+ <div><div class="title">összetett lipidek &#10140; zsírok</div>
+	<details class="kerdes 4/1" id="bKI.405"><summary><span class="Vocab">Képlet</span> glicerin = glicerol</summary><ul class="normal">
+		<img src="images/kplt_glcrn.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.406"><summary><span class="Vocab">Képlet</span> triglicerid</summary><ul class="normal">
+		<img src="images/kplt_trglcrdk.png">
+	</ul></details>
+	<details class="kerdes 4/2" id="bKI.407"><summary>zsírok & olajok definíció?</summary><ul class="normal">
+		<li>zsírok &#10140; a glicerin zsírsavakkal alkotott háromszoros észterei, trigliceridjei</li>
+		<li>olajok lényegében ugyanez, a különbség &#10140; szobahőmérsékleten folyékony halmazállapotúak, míg a zsírok szilárd (<div class="mirror">&#10140;</div> ennek oka a zsírsavláncok eltérő telített/telítlenségében van)</li>
+		<img style="max-width:40%" src="images/kplt_trglcrdk.png">
+		<img style="max-width:40%" src="images/zskrlklkl.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.408"><summary>zsírok funkciója?</summary><ul class="normal">
+		<li>energiaraktározás</li>
+		<img src="images/kplt_trglcrdk.png">
+	</ul></details>
+	<details class="kerdes 2/1" id="bKI.409"><summary>miért zsír, miért nem glikogén formában raktározzuk?</summary><ul class="normal">
+		<li>glikogén mennyisége meg van szabva, hogy mennyi lehet maximálisan &#10140; hiába eszek többet, átalakulnak zsírrá &#10140; zsír viszont lehet akármennyi</li>
+		<li>zsír (37kJ/g) durván kétszer annyit energiát tárol, mint a glikogén (16kJ/g)</li>
+	</ul></details>
+ </div>
+ <div><div class="title">összetett lipidek &#10140; membránlipidek</div>
+	<details class="kerdes 4/1" id="bKI.410"><summary><span class="Vocab">Képlet</span> L-glicerin-3foszfát?</summary><ul class="normal">
+		<img src="images/kplt_lglcrnldhszt.png">
+		<li>(van egy D-glicerinaldehid-3-foszfát is, mely a glikolízisben vesz részt, ne keverjem azzal) <img class="mini" src="images/dglncrndzt.png"></li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.411"><summary>mit tekintünk a foszfolipidek vázának?</summary><ul class="normal">
+		<li>L-glicerin-3foszfát</li>
+		<img src="images/kplt_lglcrnldhszt.png">
+	</ul></details>
+	<details class="kerdes 2/1" id="bKI.412"><summary>glicerofoszfolipidek vs foszfolipidek?</summary><ul class="normal">
+		<li>glicerofoszfolipidek egy nagyobb csoport, azonban lényegén foszfolipid az összes amivel membránlipideknél szó van</li>
+		<li>szfingofoszfolipid a szfingomielin Wvan benne foszfát így foszfolipid, de alapváza nem glicerin, hanem szfingomielin (lásd majd lentebb)</li>
+	</ul></details>
+	<details class="kerdes 5/2" id="bKI.413"><summary><span class="Vocab">képlet</span> foszfolipid (általános képletünk)?</summary><ul class="normal">
+		<li>attól függően, hogy mi van <span class="Important">X</span> helyén, csoportosítjuk a foszfolipideket</li>
+		<li>pl. foszfatidil-kolin, mikor az "X = kolin"</li>
+		<img src="images/kplt_fszflpdltlns.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.414"><summary><span class="Vocab">képlet</span> foszfatidil-etanolamin</summary><ul class="normal">
+		<img src="images/kplt_fszftdlntlmn.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.415"><summary><span class="Vocab">képlet</span> foszfatidil-kolin (=lecitin)</summary><ul class="normal">
+		<img src="images/kplt_fszftdklknk.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.416"><summary><span class="Vocab">képlet</span> foszfatidil-szerin</summary><ul class="normal">
+		<img src="images/kplt_fszftdszrn.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.417"><summary><span class="Vocab">képlet</span> foszfatidilinozitol-4,5-biszfoszfát</summary><ul class="normal">
+		<li>(amely képeken láttam, úgy volt ábrázolva, hogy 4db OH fennt, 4. és 6. C-hez kapcsolódó -OH pedig lennt)</li>
+		<img src="images/kplt_fszftdnztl.png">
+		<img src="images/nzltkplt.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.418"><summary><span class="Vocab">képlet</span> kardiolipin (=difoszfatidil-glicerin)</summary><ul class="normal">
+		<img src="images/kplt_krdpln.png">
+		<li><span class="idk">("2 foszfolipid összekapcsolódik egy glicerinnel")</span></li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.419"><summary>kardiolipin hol található?</summary><ul class="normal">
+		<li>csak a mitokondrium belső membránjában</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="bKI.420"><summary>lipidek sajátossága töbi makromolekulával szemben?</summary><ul class="normal">
+		<li>nem hoznak létre polimereket (mint pl. nukleinsavak, fehérjék, poliszacharidok)</li>
+		<li>ezek membránokat hoznak létre, de nem kovalens kötés tartja ezt össze (fenntiekkel ellentétben)</li>
+	  <hr>
+		<li>egyetlen lipidréteg &#10140; micella, lipoprotein</li>
+		<li>kettősréteg &#10140; membrán, liposzóma</li>
+		<img src="images/mmbrnmsnmcklsz.png">
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.422"><summary>szfingolipidek vs foszfolipidek?</summary><ul class="normal">
+		<li>szfingolipidek "alapváza" a szfingozin, nem a glicerin</li>
+		<img src="images/kplt_glcrn.png">
+		<img src="images/kplt_szgfngnz.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.421"><summary><span class="Vocab">képlet</span> szfingozin?</summary><ul class="normal">
+		<img src="images/kplt_glcrn.png">
+		<img src="images/kplt_szgfngnz.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.423"><summary><span class="Vocab">képlet</span> ceramid?</summary><ul class="normal">
+		<img src="images/kplt_krmd.png">
+		<img src="images/kplt_szgfngnz.png">
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.424"><summary>ceramid jelentősége?</summary><ul class="normal">
+		<li>a szfingozin csak ceramid formában fordul elő a szervezetben (tehát ez a szfingolipidek építőeleme)</li>
+		<img src="images/kplt_krmd.png">
+		<img src="images/kplt_szgfngnz.png">
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.425"><summary>ceramid milyen molekula?</summary><ul class="normal">
+		<li>savamid</li>
+		<img src="images/kplt_krmd.png">
+		<img src="images/kplt_szgfngnz.png">
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.426"><summary>szfingolipidekre 3pl?</summary><ul class="normal">
+		<li>szfingomielin &#10140; foszfokolin van az X helyén</li>
+		<li>cerebrozid &#10140; glikocerebrozid(glükóz van az X helyén), galaktocerebrozid(galaktóz van az X helyén)</li>
+		<li>gangliozid &#10140; komplex oligoszacharid van az X helyén</li>
+		<img src="images/szgnmcrmdkptl.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.427"><summary><span class="Vocab">képlet</span> szfingomielin?</summary><ul class="normal">
+		<img src="images/szgnmcrmdkptl.png">
+	</ul></details>
+	<details class="kerdes 4/1" id="bKI.428"><summary><span class="Vocab">képlet</span> cerebrozid?</summary><ul class="normal">
+		<li>glikocerebrozid(glükóz van az X helyén)</li>
+		<li>galaktocerebrozid(galaktóz van az X helyén)</li>
+		<img src="images/szgnmcrmdkptl.png">
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.429"><summary>éter-lipidek &#10140; 2pl? funkció?</summary><ul class="normal">
+		<li>plazmalogén, PAF = trombocita(<strong>P</strong>latelet)_<strong>A</strong>ktivátor_<strong>F</strong>aktor</li>
+		<li>plazmalogén a szívizomban találhatók</li>
+	</ul></details>
  </div>
 <!----></details>
 
 
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
 
+<hr>
+II.félév anyaga lesz pl
+# metabolizmusok &#10140; szénhidrát, lipid
+# palmitinsav lebontása, szintézise <img class="mini" src="images/msdflvsnyg.png">
+# ezek szerkezetét NEM kell tudni <img class="mini" src="images/szkszrktzt.png">
+# koleszterin szintézis
+# koleszterin származékok keletkezése <img class="mini" src="images/ktnskgksjtjj.png">
+
+<hr>
+képletek vizsgákon &#10140; lerajzolni nem kell tudni őket, csak felismerni, ezenkívül nevezéktanukat(lásd pl.zsírsavak)
 
 
 <!--//////////////////////////////////////-->  <div><div class="mainTitle">gyakorlat</div>  <!--//////////////////////////////////////-->
@@ -2182,7 +2614,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	<details class="kerdes 4/2" id="bKI.109"><summary><span class="Vocab">R</span> hibás bázispárosodás ➜ lényege? neve?</summary><ul class="normal">
 		<li>neve ➜ <strong>miss-match</strong> <abbr title="Ha nem javítódik ki, akkor mutáció lesz, és sok mutáció vastagbéldaganatot okoz. Ha jó irányba változik (kicsi esély), akkor evolúciós lépés">?következménye?</abbr></li>
 		<li>adenin citozinnal kapcsolódik hasonlóképpen <a href="images/srctmrmtcc.png">(forrás)</a></li>
-		<li><i>"megjegyzési szabályok"</i> <abbr title="ezek ilyen magam alkotta szabályok, a megjegyzésre!">&#10045;</abbr></li><ul>
+		<li><i>"megjegyzési szabályok"</i> <abbr title="ezek ilyen magam alkotta szabályok, a megjegyzésre!">§</abbr></li><ul>
 			<li>pirimidint tükrözzem függőlegesen</li>
 			<li>mindig azonos szinten lévők között vannak a H-kötések</li>
 			<li>–OH alapvetően mindig =O formában, mutációnál <strong>egyet</strong> kell megváltoztatni =O-ra</li>
@@ -2213,7 +2645,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<li>Fischer-szabály alapján D/L-nomenklatúrát alkalmazzuk</li>
 		<li>lényege:</li>
 		<div><span class="Vocab">1</span> legoxidáltabb C felül kell legyen ➜ aldehid ezért felül van!</div>
-		<div><span class="Vocab">2</span> leghosszabb ligandum legyen alul <abbr title="értelemszerűen a legoxidáltabb után, ha az esetleg hosszabb lenne">&#10045;</abbr></div>
+		<div><span class="Vocab">2</span> leghosszabb ligandum legyen alul <abbr title="értelemszerűen a legoxidáltabb után, ha az esetleg hosszabb lenne">§</abbr></div>
 		<div><span class="Vocab">3</span> <abbr title="aldehidtől legtávolabb lévő">legalsó</abbr> királis C atomon, ha jobbra áll az -OH, akkor D ➜ ha balra akkor L</div>
 		<div><span class="white">§</span> tehát ha visszavezetem (először oxidáció +O, utána oxidatív_dekarboxiláció –CO<sub>2</sub> és ezt repeat) glicerin-aldehidig, akkor megnézem az D-e vagy L-e</div>
 		<li>emberi szervezetben csak D monoszacharidok fordulnak elő</li>
@@ -2226,7 +2658,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<img src="images/prnpntz.png">
 		<li>nukleofil addícióval jön létre ➜ ciklusos félacetál</li>
 		<li>így kialakul az ún. furanóz gyűrű (glükóznál piranóz gyűrű lesz)</li>
-		<li><font class="abbr">Haworth projection? ►</font> D helyzetű –OH kerül alulra, L helyzetű felülre (lásd képek) <abbr title="<i>tehát a lineáris ribóznál jobb oldalt lévő –OH a ciklusosnál alul lesz</i>">&#10045;</abbr></li>
+		<li><font class="abbr">Haworth projection? ►</font> D helyzetű –OH kerül alulra, L helyzetű felülre (lásd képek) <abbr title="<i>tehát a lineáris ribóznál jobb oldalt lévő –OH a ciklusosnál alul lesz</i>">§</abbr></li>
 		<details><summary>hidroxilcsoportról egyéb tudnivaló?</summary><ul class="normal">
 			<li>az <abbr title="képen kék-barna">1' lévőt</abbr> az ún. glikozidos –OH csoportnak hívjuk</li>
 			<li>ez, ha a konfigurációt meghatározó C-atomon <abbr title="ez jelen esetben akkor a 3' ?? (hisz a 4'-nél nincs már OH-csoport)">!?</abbr> levő OH-csoporttal azonos térállású akkor &alpha;-anomer, ha ellentétes akkor &beta;-anomer</li>
@@ -2261,7 +2693,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<li>RNS ➜ ribóz & uracil</li>
 		<li>DNS ➜ dezoxiribóz & timin</li>
 		<details><summary>("következményük aka mi szükség van rá?")</summary><ul class="normal">
-			<div>dezoxiribóz vs ribóz <abbr title="timinről későbbi előadában még lesz talán szó">&#10045;</abbr></div>
+			<div>dezoxiribóz vs ribóz <abbr title="timinről későbbi előadában még lesz talán szó">§</abbr></div>
 			<li>DNS jóval stabilabb (akár évezredekig megmaradhat, míg RNS max pár hónap)</li>
 			<li>ugyanis az RNS-ben lévő –OH csoport igen reaktáns, aminek következtében magát lebontja (foszfodiésztert támadja, és <abbr title="nem hivatalos név, de nagyjából érthető belőle, mi a lényege">3' 2' foszfodiészter</abbr> kötés lesz ➜ kettészakad az RNS)</li>
 		</ul></details>
@@ -2391,7 +2823,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	 <br><br>
 		Egy másik technika az <span class="Important"><strong>izoelektromos_fókuszálás</strong></span>. Ennek lényege, hogy készítenek egy gélhengert (lásd kép). Ebben a pH egyik végétől a másikba nő. A beletett fehérjék ezután addig fognak mozogni, amíg el nem jutnak az izoelektromos pH-jukig. <i>Itt is van katód és anód, és fontos, hogy a <strong>katód van az alacsony pH felőli oldalon</strong>. Hisz a negatív töltésű elindul arra, és ahogy felveszi a protonokat, végül semlegesnél megáll</i>.
 	 <br><br>
-		<abbr title="Ez az egész rész kissé hiányos, és szvsz alapján lett kidolgozva. De ennél jobban ne akarjam tudni, max ha lesz belőle szigorlaton tétel">!!!</abbr> Fehérjeszerkezet meghatározó módszerek: tömegspektrometria<abbr title="tömegspektroszkópia">(=)</abbr> & <span class="FIX">TOF MS</span>, illetve <abbr title="Nuclear Magnetic Resonance">NMR</abbr>. <span class="Important">Tömegspektrometria</span> lényege röviden: az fehérjék<abbr title="vagy más vizsgálni kívánt anyag">()</abbr> gáz halmazállapotban vannak vákuumban<abbr title="ez azért van, hogy a levegő részecskéivel való ütközés ne zavarjon bele a mérésbe">()</abbr>. Ezután elektronsugarakat rábocsátva az elektronok leszakítódnak róluk, és ezáltal pozitív töltésűvé válnak. Ezeket felgyorsítják és körpályára kényszerítik őket mágneses térrel. A vizsgálat a fehérje töltésétől és tömegétől függ. <span class="Important">TOF MS</span> lényege ugyanez, de itt nem térítik el a kationokat, hanem a sebesség alapján különítik el őket. <span class="Important">NMR</span> azon alapszik, hogy a magalkotóknak(p,n) is van spinjük. Ha az atom páros számú, akkor az eredőjük 0, ha páratlan akkor van spinje ➜ pl. fehérjék esetében hidrogénnek van. Ha egy hidrogént mágneses erőtérbe helyezünk, akkor kiszámolható, hogy mennyi energia kell ahhoz, hogy magasabb energiaszintre lépjen <abbr title="Ezt a képet csak megőrzésre hagytam itt, de ne próbáljam meg értelmezni, mert ezt netről töltöttem le, de valami ilyesmi volt előadáson is. A lényeg, hogy emlékezzek erre a grafikonra, és valami ilyesmivel kell párosítani a dolgot (anno a fémeknél is volt ilyen)">&#10045;</abbr> <img class="mini" src="images/kpcskkpt.png">. Azonban ez függ a hidrogén környezetétől is, hogy ott milyen atomokkal stb. van kölcsönhatásban. Így ez alapján meghatározható a szerkezete. 
+		<abbr title="Ez az egész rész kissé hiányos, és szvsz alapján lett kidolgozva. De ennél jobban ne akarjam tudni, max ha lesz belőle szigorlaton tétel">!!!</abbr> Fehérjeszerkezet meghatározó módszerek: tömegspektrometria<abbr title="tömegspektroszkópia">(=)</abbr> & <span class="FIX">TOF MS</span>, illetve <abbr title="Nuclear Magnetic Resonance">NMR</abbr>. <span class="Important">Tömegspektrometria</span> lényege röviden: az fehérjék<abbr title="vagy más vizsgálni kívánt anyag">()</abbr> gáz halmazállapotban vannak vákuumban<abbr title="ez azért van, hogy a levegő részecskéivel való ütközés ne zavarjon bele a mérésbe">()</abbr>. Ezután elektronsugarakat rábocsátva az elektronok leszakítódnak róluk, és ezáltal pozitív töltésűvé válnak. Ezeket felgyorsítják és körpályára kényszerítik őket mágneses térrel. A vizsgálat a fehérje töltésétől és tömegétől függ. <span class="Important">TOF MS</span> lényege ugyanez, de itt nem térítik el a kationokat, hanem a sebesség alapján különítik el őket. <span class="Important">NMR</span> azon alapszik, hogy a magalkotóknak(p,n) is van spinjük. Ha az atom páros számú, akkor az eredőjük 0, ha páratlan akkor van spinje ➜ pl. fehérjék esetében hidrogénnek van. Ha egy hidrogént mágneses erőtérbe helyezünk, akkor kiszámolható, hogy mennyi energia kell ahhoz, hogy magasabb energiaszintre lépjen <abbr title="Ezt a képet csak megőrzésre hagytam itt, de ne próbáljam meg értelmezni, mert ezt netről töltöttem le, de valami ilyesmi volt előadáson is. A lényeg, hogy emlékezzek erre a grafikonra, és valami ilyesmivel kell párosítani a dolgot (anno a fémeknél is volt ilyen)">§</abbr> <img class="mini" src="images/kpcskkpt.png">. Azonban ez függ a hidrogén környezetétől is, hogy ott milyen atomokkal stb. van kölcsönhatásban. Így ez alapján meghatározható a szerkezete. 
 	 <br><br>
 		Ezenívül még alkalmazható a <span class="Important"><strong>rtg-diffrakció</strong></span> is. Ennek hátránya, hogy csak kristályos anyagot lehet vizsgálni (fehérjét pedig nehéz <i>kikristályosítani</i>) Lényege: 10nm hullámhosszú sugarakat ráküldve azok az elektronfelhőkről visszaverődnek. Ha a síkok(ahonnan visszaverődött) közti távolság megfelel a hullámhossz egész számú többszörösének, akkor erősítik egymást (az interferáló hullámok !?). Ha fél hullámhossz többszöröse(0,5 & 1,5 & 2,5 stb.) akkor kioltják egymást.
 	</ul></details>
@@ -2443,7 +2875,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 	</ul></details>
 	<details class="kerdes 3/1" id="msb.99"><summary>előnyei?(2)</summary><ul class="normal">
 		<li>konrét fehérje kimutatható vele</li>
-		<li>szekunder_antitesttel a jel felerősíthető <abbr title="magyarázatot ne keressek rá, de fontos hogy szvsz nem az a magyarázata, hogy poliklonális. ugyanis az csak az ''olcsóságát befolyásolja''">&#10045;</abbr></li>
+		<li>szekunder_antitesttel a jel felerősíthető <abbr title="magyarázatot ne keressek rá, de fontos hogy szvsz nem az a magyarázata, hogy poliklonális. ugyanis az csak az ''olcsóságát befolyásolja''">§</abbr></li>
 	</ul></details>
 	<details class="kerdes 3/1" id="msb.94"><summary>antigén & antitest ➜ milyen típusú vegyületek?</summary><ul class="normal">
 		<img src="images/gy3_ntsntst.png">
@@ -2467,7 +2899,7 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 		<li>elsődleges kötődik az antigénhez, másodlagos pedig az elsődlegeshez</li>
 		<li><font class="abbr">oka ►</font> jel jelentős mértékben felerősíthető másodlagos antitest hozzáadásával. És olcsó, mert poliklonális. <abbr title="<i>Előállítása lóban/kecskében történik egér valamely antitestjének bejuttatásával.</i>">()</abbr></li>
 		<li><font class="abbr">monoklonális ►</font> adott faj <strong>EGY</strong> fehérjéje ellen. Primer antitest ilyen.</li>
-		<li><font class="abbr">poliklonális ►</font> adott faj <strong>LEGTÖBB</strong> fehérjéje ellen.<abbr title="összes egérben termelt elsődleges antitest típushoz hozzákapcsolódik. Tehát ha egyik mérésnél A antigén ellen termelt egér antitest volt használva, arra is jó, illetve a másik mérésnél használt B antitesthez is kapcsolódik">&#10045;</abbr> Szekunder antitest ilyen (ugyanis a primer nem-variábilis szakaszaihoz képes kötődni)</li>
+		<li><font class="abbr">poliklonális ►</font> adott faj <strong>LEGTÖBB</strong> fehérjéje ellen.<abbr title="összes egérben termelt elsődleges antitest típushoz hozzákapcsolódik. Tehát ha egyik mérésnél A antigén ellen termelt egér antitest volt használva, arra is jó, illetve a másik mérésnél használt B antitesthez is kapcsolódik">§</abbr> Szekunder antitest ilyen (ugyanis a primer nem-variábilis szakaszaihoz képes kötődni)</li>
 	  ––––––––––––––––––––
 		<li>enzimes</li>
 		<li>fluoreszcens <abbr title="majdnem olyan érzékeny, mint a radioaktív, de drága">()</abbr></li>
@@ -2518,17 +2950,25 @@ szigorlat elvileg ÍRÁSBELI lesz a 3félév anyagából (nyitóelőadáson azt 
 
 
 
+
 <script src="../../javascript.js"></script> 
 
 <br><br><br><br><br><br><center><a href="../../targyvalasztas.html"><strong style="font-size: 150%;">tárgyválasztás</strong></a></center>
 
+
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 
+<script>
+var body = document.body,
+	 html = document.documentElement;
 
-
+var height = Math.max( body.scrollHeight, body.offsetHeight, 
+							  html.clientHeight, html.scrollHeight, html.offsetHeight );
+//alert(height)
+</script>
 
 
 

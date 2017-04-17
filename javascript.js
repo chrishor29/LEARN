@@ -1049,6 +1049,9 @@ function func_prevQuestion(){
 	}
 */
 
+
+
+
 var fullTema
 var priorKerdesID = "nincs"
 var altKerdesIDs = {}
