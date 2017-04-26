@@ -55,8 +55,11 @@ function func_removeRepeat(){ //ha már elkészült a script, és removeltam min
 	for ( var fotema in kerdesID ) { 
 		for ( var temaKerdes in kerdesID[fotema] ) { 
 			for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
-				if ( kerdes+'_fix' in localStorage ) {
-					localStorage.removeItem(kerdes+'_fix')
+				if ( kerdes+'_repeat' in localStorage ) {
+					//localStorage.removeItem(kerdes+'_fix')
+					if ( 5 < localStorage.getItem(kerdes+'_repeat') ) {
+						localStorage.setItem(kerdes+'_repeat', 5)
+					}
 				}
 			}
 		}
@@ -65,6 +68,25 @@ function func_removeRepeat(){ //ha már elkészült a script, és removeltam min
 
 
 
+function func_putZeroQBack() { // 0-repeaten állót új kérdésbe visszateszi, ha több mint 1 napja nem ismételtem
+	for ( var fotema in kerdesID ) { 
+		for ( var temaKerdes in kerdesID[fotema] ) { 
+			if ( localStorage.getItem(fotema+" / "+temaKerdes+"_button") == "true" ) {
+				for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
+					if ( kerdesID[fotema][temaKerdes][kerdes] == true ) {
+						var repeat = localStorage.getItem(kerdes+'_repeat')
+						var date = new Date();
+						var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont')
+						if ( repeat == 0 && idopont > 1440 ) {
+							localStorage.removeItem(kerdes+'_repeat')
+							localStorage.removeItem(kerdes+'_jegy')
+						}
+					}
+				}
+			}
+		}
+	}
+}
 function func_calcJegy() { // átlagJegyet kiszámolja
 	var maxJegy = 0
 	var trueJegy = 0
@@ -1043,6 +1065,9 @@ function func_prevQuestion(){
 	if ( repCount < 0 ) {
 		repCount = 0
 	}
+	if ( repCount > 5 ) {
+		repCount = 5
+	}
 	localStorage.setItem(priorKerdesID+'_repeat', repCount)
 
 	localStorage.setItem(priorKerdesID+'_idopont', Math.floor(date.getTime()/60000));
@@ -1129,13 +1154,15 @@ function koviKerdes(){
 
 							var shouldBreak = false
 							if ( localStorage.getItem(kerdes+"_skip") ) {
-								shouldBreak == true
+								shouldBreak = true
 							}
-
+							
 							if ( localStorage.getItem(kerdes+"_jegy") == "" || localStorage.getItem(kerdes+"_jegy") == null || isNaN(localStorage.getItem(kerdes+"_jegy")) == true ) {
-								if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" && priorType < 2 ) {
-									priorType = 2
-									priorKerdesID = kerdes;
+								if ( shouldBreak == false ) {
+									if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" && priorType < 2 ) {
+										priorType = 2
+										priorKerdesID = kerdes;
+									}
 								}
 							}
 
@@ -1397,7 +1424,7 @@ function koviKerdes(){
 
 }
 
-
+func_putZeroQBack();
 func_calcOldNew();
 func_calcJegy()
 func_calcDate()
