@@ -64,6 +64,7 @@ function func_removeRepeat(){ //ha már elkészült a script, és removeltam min
 }
 
 
+
 function func_calcJegy() { // átlagJegyet kiszámolja
 	var maxJegy = 0
 	var trueJegy = 0
@@ -497,6 +498,24 @@ function func_spanClick(button){
 }
 
 
+var timeDiff
+function func_calcTimeDiff(repCount){
+	if ( repCount == 0 ) {
+		timeDiff = 15
+	} else if ( repCount == 1 ) {
+		timeDiff = 60
+	} else if ( repCount == 2 ) {
+		timeDiff = 200
+	} else if ( repCount == 3 ) {
+		timeDiff = 500
+	} else if ( repCount == 4 ) {
+		timeDiff = 1000
+	} else if ( repCount == 5 ) {
+		timeDiff = 2000
+	}
+}
+
+
 function func_clickTemaButton(button){
 	if ( localStorage.getItem(button.id) == "true" ) {
 		localStorage.setItem(button.id,false)
@@ -600,12 +619,7 @@ function func_temakorStatus(){
 						localStorage.setItem(kerdes+'_repeat', 0);
 					}
 					var repCount = Number(localStorage.getItem(kerdes+'_repeat'))
-					var timeDiff
-					if ( repCount >= 3 ) {
-						timeDiff = 1000 * (repCount-2)
-					} else {
-						timeDiff = 15 * Math.pow(4,repCount)
-					}
+					func_calcTimeDiff(repCount)
 
 					trueJegy = trueJegy + Math.pow(0.9, idopont / timeDiff) * rank * jegy
 					maxJegy = maxJegy + rank * 10
@@ -856,16 +870,25 @@ var obj_skip = [] // object (nem table és nem array!)
 function func_tableSkipFix(){
 	for ( var i = 0;   i < elements.length;   i++ ) {
 		var id = elements[i].id
-		var temaKerdes = 	document.getElementById(id).parentElement.parentElement.id
-		var fotema = 		document.getElementById(id).parentElement.parentElement.parentElement.id
+		//var temaKerdes = 	document.getElementById(id).parentElement.parentElement.id
+		//var fotema = 		document.getElementById(id).parentElement.parentElement.parentElement.id
 
 		if ( localStorage.getItem(id+'_note') ) {
 			obj_fixNote[id] = localStorage.getItem(id+'_note')
 		} else {
 			if ( obj_fixNote[id] ) { delete obj_fixNote[id] } // remove a Table-ból
 		}
+
 		if ( localStorage.getItem(id+"_skip") ) {
-			obj_skip[id] = localStorage.getItem(id+"_skip")
+			var date = new Date();
+			date = Math.floor(date.getTime()/60000)
+			var difference = date - localStorage.getItem(id+"_idopont")
+			if ( difference < localStorage.getItem(id+"_skip")*24*60 ) {
+				obj_skip[id] = localStorage.getItem(id+"_skip")
+			} else {
+				if ( obj_skip[id] ) { delete obj_skip[id] } // remove a Table-ból
+				localStorage.removeItem(id+'_skip')
+			}
 		} else {
 			if ( obj_skip[id] ) { delete obj_skip[id] } // remove a Table-ból
 		}
@@ -907,31 +930,28 @@ function func_calcOldNew(){
 				for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
 
 					var repCount = Number(localStorage.getItem(kerdes+'_repeat'))
-					var timeDiff
 					var date = new Date();
 					var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont')
-					if ( repCount >= 3 ) {
-						timeDiff = 1000 * (repCount-2)
-					} else {
-						timeDiff = 15 * Math.pow(4,repCount)
-					}
+					func_calcTimeDiff(repCount)
 
-					if ( localStorage.getItem(kerdes+"_jegy") >= 1 ) {
-						if ( timeDiff >= idopont ) {
-							repFast = repFast +1
-						} else {
-							repSlow = repSlow +1
+					if ( localStorage.getItem(kerdes+"_skip") == null ) {
+						if ( localStorage.getItem(kerdes+"_jegy") >= 1 ) {
+							if ( timeDiff >= idopont ) {
+								repFast = repFast +1
+							} else {
+								repSlow = repSlow +1
+							}
+						} else if ( localStorage.getItem(kerdes+"_jegy") == null || localStorage.getItem(kerdes+"_jegy") == "" ) {
+							kerdesNew = kerdesNew +1
 						}
-					} else if ( localStorage.getItem(kerdes+"_jegy") == null ) {
-						kerdesNew = kerdesNew +1
-					}
-					
-					if ( localStorage.getItem(kerdes+"_jegy") == 1 ) {
+						
+						if ( localStorage.getItem(kerdes+"_jegy") == 1 ) {
 
-						if ( idopont < 30 ) {
-							repOld = repOld +1
-						} else {
-							repNew = repNew +1
+							if ( idopont < 30 ) {
+								repOld = repOld +1
+							} else {
+								repNew = repNew +1
+							}
 						}
 					}
 				}
@@ -1006,12 +1026,12 @@ function func_prevQuestion(){
 
 	var date = new Date();
 	var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(priorKerdesID+'_idopont')
-	var timeDiff
+	/*var timeDiff
 	if ( repCount >= 3 ) {
 		timeDiff = 1000 * (repCount-2)
 	} else {
 		timeDiff = 15 * Math.pow(4,repCount)
-	}
+	}*/
 
 	if ( jegy == 1 ) {
 		repCount = repCount-2
@@ -1073,7 +1093,7 @@ function koviKerdes(){
 
 	// előző kérdés
 	if ( priorKerdesID != "nincs" ) {
-		if ( false == document.getElementById('jegy').disabled && 0 == document.getElementById("jegy").value.length ) {
+		if ( 0 == document.getElementById('skip').value.length && 0 == document.getElementById("jegy").value.length ) {
 			alert("nincs jegy")
 			return
 		}
@@ -1107,7 +1127,12 @@ function koviKerdes(){
 								}
 							}*/
 
-							if ( localStorage.getItem(kerdes+"_jegy") == null || isNaN(localStorage.getItem(kerdes+"_jegy")) == true ) {
+							var shouldBreak = false
+							if ( localStorage.getItem(kerdes+"_skip") ) {
+								shouldBreak == true
+							}
+
+							if ( localStorage.getItem(kerdes+"_jegy") == "" || localStorage.getItem(kerdes+"_jegy") == null || isNaN(localStorage.getItem(kerdes+"_jegy")) == true ) {
 								if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" && priorType < 2 ) {
 									priorType = 2
 									priorKerdesID = kerdes;
@@ -1122,19 +1147,9 @@ function koviKerdes(){
 							if ( priorType == 1 && localStorage.getItem(kerdes+"_jegy") > 0 ) { // régi kérdés
 								var date = new Date();
 								var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont')
-								var shouldBreak = false
 								var repCount = Number(localStorage.getItem(kerdes+'_repeat'))
 
-								var timeDiff
-								if ( repCount >= 3 ) {
-									timeDiff = 1000 * (repCount-2)
-								} else {
-									timeDiff = 15 * Math.pow(4,repCount)
-								}
-
-								if ( localStorage.getItem(kerdes+"_skip") ) {
-									shouldBreak = true
-								}
+								func_calcTimeDiff(repCount)
 
 								if ( document.getElementById("cont_RepFast").style.borderColor != "limegreen" ) {
 									if ( timeDiff > idopont ) {

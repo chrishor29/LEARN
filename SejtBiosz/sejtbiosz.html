@@ -22,15 +22,23 @@
 	<!--<input type="checkbox" id="checkbox_RepNew">--><span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="cont_RepNew"></span><span class="VOCAB" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="cont_RepOld"></span>
 	&nbsp; &nbsp;
 	<span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Date"></span><span class="vocab" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Jegy"></span><span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Repeat"></span>
-	<span style="position:absolute; left:30%;">
-		<span style="border: 0px;" id="rank">&nbsp; &nbsp; &nbsp;</span> &nbsp;
+	<span style="position:absolute; left:32%;">
+		<select style="visibility:hidden" id="select_lvl">
+			<option value="empty"></option>
+			<option value="40">40</option>
+			<option value="60">60</option>
+			<option value="70">70</option>
+			<option value="80">80</option>
+			<option value="100">100</option>
+		</select> &nbsp; 
 		<input style="border: 3px solid black;" id="btn_Note" onclick="toggleNote();" type="button" value="&#10045;"> &nbsp; &nbsp;
 		<select id="jegy"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; 
 		<span class="white" id="pJegy" style="font-weight:bold; padding-left:3px; padding-right:3px;">&nbsp; </span> &nbsp; &nbsp;
-		<input onclick="func_buttonSkip();" type="button" id="buttonSkip" value=" " style="background-color:lightgrey; height:25px; width:30px;"> &nbsp; &nbsp; &nbsp;
 		<input onclick="koviKerdes();" type="button" value=" ► ">
 	</span>
 	<span style="position:fixed; right:0px; top:50px;">
+		<span class="white" id="rank">&nbsp; (rank)</span>
+		<select id="skip"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="5">5</option><option value="10">10</option><option value="20">20</option></select> 
 		<span id="repeat" class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;">&nbsp; &nbsp; &nbsp;</span>
 		<input type="button" class="FIX" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_fix" value="0">
 		<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_skip" value="0">
@@ -42,8 +50,9 @@
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
 
+
 <table style="border-collapse:separate; border-spacing:0px 0px;">
-  <tr><th>I.DEMO</th>
+  <!--<tr><th>I.DEMO</th>
 	<td class="important">1</td>
 	<td class="important">2</td>
 	<td class="done">3</td>
@@ -97,13 +106,14 @@
 	<td class="done"><abbr title="demó">8</abbr></td>
 	<td class="done">9</td>
 	<td class="done">10</td>
-  </tr>
+  </tr>-->
 </table>
 
 
-<!--//////////////////////////////////////-->  <div><div class="mainTitle">I.demonstráció</div>  <!--//////////////////////////////////////-->
+<!--///////////////////////////-->  <div><div class="mainTitle">I. A genetikai információ tárolása és örökítése</div>  <!--///////////////////////////-->
 
-<!----><details><summary class="phase">#1 A pro- és eukarióta sejtek összehasonlítása: a kompartmentáció jelentősége és a legfontosabb sejtorganellumok .szerepe</summary><div><div class="title"> </div>
+
+<!----><details><summary class="phase">#1 A pro- és eukarióta sejtek összehasonlítása: a kompartmentáció jelentősége és a legfontosabb sejtorganellumok szerepe.</summary><div><div class="title"> </div>
 	<details class="kerdes 4/9" id="msb.100"><summary><strong>A pro- és eukarióta sejtek összehasonlítása: a kompartmentáció jelentősége</strong> és a legfontosabb sejtorganellumok szerepe</summary><ul class="normal">
 	  <strong>szerveződési szint</strong>
 		<li>prokariótákból evolúció során úgy lett eukarióta, hogy membránnal körülhatárolt kompartimentumok jöttek bennük létre</li>
@@ -1057,7 +1067,14 @@
 	</ul></details>
 <!----></div></details>
 
-<!----><details><summary class="phase">#12 Az E. coli RNS‑polimeráz szerkezete és működése. A transzkripció iniciációja és terminációja prokarióta sejtekben, a prokarióta transzkripciós egység.</summary><div><div class="title"> </div>
+
+<!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
+
+
+
+<!--///////////////////////////-->  <div><div class="mainTitle">II. A genetikai információ kifejeződése</div>  <!--///////////////////////////-->
+
+<!----><details><summary class="phase">#1 Az E. coli RNS‑polimeráz szerkezete és működése. A transzkripció iniciációja és terminációja prokarióta sejtekben, a prokarióta transzkripciós egység.</summary><div><div class="title"> </div>
 	<details class="kerdes 4/8" id="msb.123"><summary><strong>Az E. coli RNS‑polimeráz szerkezete és működése.</strong> A transzkripció iniciációja és terminációja prokarióta sejtekben, a prokarióta transzkripciós egység</summary><ul class="normal">
 		<img src="images/plmrzszrk.png">
 		<li>felépítése &#10140; 2&alpha; + 1&beta; + 1&beta;' alegységből tevődik ki (a szigmát is hozzászokták venni, de jobb azt faktorként felfogni)</li>
@@ -1143,7 +1160,7 @@
 	</ul></details>
 <!----></div></details>
 
-<!----><details><summary class="phase">#13 Az RNS típusai, a különböző RNS-ek funkciója. Az rRNS és a tRNS szintézise.</summary><div><div class="title"> </div>
+<!----><details><summary class="phase">#2 Az RNS típusai, a különböző RNS-ek funkciója. Az rRNS és a tRNS szintézise.</summary><div><div class="title"> </div>
 	<details class="kerdes 4/10" id="msb.126"><summary><strong>Az RNS típusai, a különböző RNS-ek funkciója</strong>. Az rRNS és a tRNS szintézise</summary><ul class="normal">
 		<li>csoportosításuk</li><ul>
 			<li>kódoló &#10140; mRNS</li>
@@ -1198,7 +1215,7 @@
 	</ul></details>
 <!----></div></details>
 
-<!----><details><summary class="phase">#14 A transzkripció szabályozása prokariótákban. Erős és gyenge promóterek, konstitutív gének, operon fogalma, pozitív/negatív szabályozás.</summary><div><div class="title"> </div>
+<!----><details><summary class="phase">#3 A transzkripció szabályozása prokariótákban. Erős és gyenge promóterek, konstitutív gének, operon fogalma, pozitív/negatív szabályozás.</summary><div><div class="title"> </div>
 	<details class="kerdes 4/5" id="msb.129"><summary>A transzkripció szabályozása prokariótákban. <strong>Erős és gyenge promóterek,</strong> konstitutív gének, operon fogalma, pozitív/negatív szabályozás</summary><ul class="normal">
 		<li><span class="Important">erős promoter, mely hasonlít a &sigma;("szigma!")-faktor konszenzus szekvenciájához!</span> &#10140; ehhez "jobban~könyebben" kötődik a &sigma;-faktor</li>
 		<li>ez mindössze az <span class="Important">iniciáció esélyét szabályozza</span> &#10140; tehát erős promoteres gének expressziója / perc nagyobb, mint gyenge promotereseké</li>
@@ -1290,7 +1307,7 @@
 	</ul></details>
 <!----></div></details>
 
-<!----><details><summary class="phase">#15 Az eukarióta gének szerkezete, a transzkripció iniciációja és terminációja eukarióta sejtekben.</summary><div><div class="title"> </div>
+<!----><details><summary class="phase">#4 Az eukarióta gének szerkezete, a transzkripció iniciációja és terminációja eukarióta sejtekben.</summary><div><div class="title"> </div>
 	http://elte.prompt.hu/sites/default/files/tananyagok/ABiokemiaEsMolekularisBiologiaAlapjai/ch14s06.html
 	<details class="kerdes 4/7" id="msb.135"><summary><strong>Az eukarióta gének szerkezete,</strong> a transzkripció iniciációja és terminációja eukarióta sejtekben</summary><ul class="normal">
 		<li><span class="Important">eukarióta RNS-polimeráz <abbr title="van külön I-nek, III-nak is">II</abbr> "CORE" promoterének összehasonlítása prokarióta promóterével!</span></li>
@@ -1367,7 +1384,7 @@
 	</ul></details>
 <!----></div></details>
 
-<!----><details><summary class="phase">#16 A transzkripció szabályozása eukariótákban. Specifikus transzkripciós faktorok, szabályozó szekvenciák, koaktivátorok, korepresszorok.</summary><div><div class="title"> </div>
+<!----><details><summary class="phase">#5 A transzkripció szabályozása eukariótákban. Specifikus transzkripciós faktorok, szabályozó szekvenciák, koaktivátorok, korepresszorok.</summary><div><div class="title"> </div>
 	<details open class="kerdes 4/15" id="msb.151"><summary><strong>A transzkripció szabályozása eukariótákban. Specifikus transzkripciós faktorok, szabályozó szekvenciák, koaktivátorok, korepresszorok</strong></summary><ul class="normal">
 		<div style="float:right;max-width:30%">
 			<img src="images/extndnpromtr.png">
@@ -1424,7 +1441,7 @@
 	</ul></details>
 <!----></div></details>
 
-<!----><details><summary class="phase">#17 Az eukarióta mRNS érése.</summary><div><div class="title"> </div>
+<!----><details><summary class="phase">#6 Az eukarióta mRNS érése.</summary><div><div class="title"> </div>
 	<details open class="kerdes 4/26" id="msb.137"><summary><strong>Az eukarióta mRNS érése</strong></summary><ul class="normal">
 		<div style="float:right;max-width:30%">
 			<img src="images/képlet_mgspk.png">
@@ -1517,7 +1534,7 @@
 	</ul></details>
 <!----></div></details>
 
-<!----><details><summary class="phase">#18 Az eukarióta géneszpresszió transzkripciót követő lépéseinek szabályozása.</summary><div><div class="title"> </div>
+<!----><details><summary class="phase">#7 Az eukarióta géneszpresszió transzkripciót követő lépéseinek szabályozása.</summary><div><div class="title"> </div>
 	<details open class="kerdes 4/19" id="msb.163"><summary><strong>Az eukarióta géneszpresszió transzkripciót követő lépéseinek szabályozása.</strong></summary><ul class="normal">
 		<div style="float:right;max-width:30%">
 			<img src="images/ktprsnzptr.png">
@@ -1577,7 +1594,13 @@
 	</ul></details>
 <!----></div></details>
 
-<!----><details><summary class="phaseC">#19 Az eukarióta mRNS poszttranszkripciós módosításai és stabilitásának szabályozása.</summary><div><div class="title"> </div>
+<!----><details><summary class="phaseD">#8 A mikroRNSek képződése és szabályozó mechanizmusaik eukarióta sejtekben.</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phaseD">#9 DNS metiláció és hiszton módosítások jelentősége eukariótákban.</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phaseC">#10 Az eukarióta mRNS poszttranszkripciós módosításai és stabilitásának szabályozása.</summary><div><div class="title"> </div>
 	<details open class="kerdes 4/12" id="msb.167"><summary><strong>Az eukarióta mRNS poszttranszkripciós módosításai és stabilitásának szabályozása.</strong></summary><ul class="normal">
 	  <strong>mRNS élettartama</strong>
 		<div style="float:right;max-width:20%">
@@ -1625,7 +1648,7 @@
 	</ul></details>
 <!----></div></details>
 
-<!----><details><summary class="phase">#20 A DNS-kötő fehérjék és jellegzetes szerkezeti elemeik prokariótákban (hélix-kanyar-hélix) és eukariótákban (hiszton-fold, héix-hurok-hélix, cink-ujj, leucin cipzár) példákkal.</summary><div><div class="title"> </div>
+<!----><details><summary class="phase">#11 A DNS-kötő fehérjék és jellegzetes szerkezeti elemeik prokariótákban (hélix-kanyar-hélix) és eukariótákban (hiszton-fold, héix-hurok-hélix, cink-ujj, leucin cipzár) példákkal.</summary><div><div class="title"> </div>
 	<details class="kerdes 4/10" id="msb.174"><summary>A DNS-kötő fehérjék és jellegzetes szerkezeti elemeik <strong>prokariótákban (hélix-kanyar-hélix)</strong> és eukariótákban (hiszton-fold, hélix-hurok-hélix, cink-ujj, leucin cipzár) példákkal</summary><ul class="normal">
 		<div style="float:right;max-width:20%"><img src="images/ktlfhlxdnskznv.png"></div>
 		<li>ez a legegyszerűbb DNS-kötő motívum</li>
@@ -1789,7 +1812,7 @@
 	</ul></details>
 <!----></div></details>
 
-<!----><details><summary class="phase">#21 Az eukarióta magi receptorok (szteroid, tiroid, AH-receptor) szerkezete és működése.</summary><div><div class="title"> </div>
+<!----><details><summary class="phase">#12 Az eukarióta magi receptorok (szteroid, tiroid, AH-receptor) szerkezete és működése.</summary><div><div class="title"> </div>
 	<details class="kerdes J/2" id="msb.181"><summary style="color:MediumBlue"><span class="Vocab">J</span> sejtek tájékozódása jelekből</summary><ul class="normal">
 		<div style="float:right;max-width:50%"><img src="images/jlkjkrtml.png"></div>
 		<li>sejtek három helyről nyernek információt</li><ul>
@@ -1956,7 +1979,14 @@
 	</ul></details>
 <!----></div></details>
 
-<!----><details><summary class="phase">#22 A genetikai kód. A tRNS szerepe és szerkezete; az aminoacil-tRNS-szintetázok, a kodon-antikodon kapcsolat.</summary><div><div class="title"> </div>
+<!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
+
+
+
+<!--///////////////////////////-->  <div><div class="mainTitle">III. A proteosztázis</div>  <!--///////////////////////////-->
+
+
+<!----><details><summary class="phase">#1 A genetikai kód. A tRNS szerepe és szerkezete; az aminoacil-tRNS-szintetázok, a kodon-antikodon kapcsolat.</summary><div><div class="title"> </div>
 	<details class="kerdes 4/6" id="msb.139"><summary><strong>A genetikai kód</strong>. A tRNS szerepe és szerkezete; az aminoacil-tRNS-szintetázok, a kodon-antikodon kapcsolat</summary><ul class="normal">
 		<div style="float:right;max-width:30%"><img src="images/klnrsk.png"></div>
 		<li>kód &#10140; bázishármas a DNS-ben (=> kódoló szálon lévő!)</li>
@@ -2042,7 +2072,7 @@
 	</ul></details>
 <!----></div></details>
 
-<!----><details><summary class="phase">#23 A prokarióta és az eukarióta riboszómák szerkezete, a riboszóma ciklus, a tRNS kötődése a riboszómákhoz a transzláció során.</summary><div><div class="title"> </div>
+<!----><details><summary class="phase">#2 A prokarióta és az eukarióta riboszómák szerkezete, a riboszóma ciklus, a tRNS kötődése a riboszómákhoz a transzláció során.</summary><div><div class="title"> </div>
 	<details open class="kerdes 4/9" id="msb.195"><summary><strong>A prokarióta és az eukarióta riboszómák szerkezete, a riboszóma ciklus, a tRNS kötődése a riboszómákhoz a transzláció során</strong></summary><ul class="normal">
 		<div style="float:right;max-width:30%"><img src="images/23_prkrktkrk.png"></div>
 		<li>riboszóma rRNS-ekből és fehérjékből tevődik össze</li>
@@ -2074,7 +2104,7 @@
 	</ul></details>
 <!----></div></details>
 
-<!----><details><summary class="phase">#24 A transzláció iniciációs szakasza prokariótákban és eukariótákban. A transzláció szabályozása eukariótákban, az eIF2 faktor foszforilációjának szerepe.</summary><div><div class="title"> </div>
+<!----><details><summary class="phase">#3 A transzláció iniciációs szakasza prokariótákban és eukariótákban. A transzláció szabályozása eukariótákban, az eIF2 faktor foszforilációjának szerepe.</summary><div><div class="title"> </div>
 	<details class="kerdes 4/15" id="msb.194"><summary><strong>A transzláció iniciációs szakasza prokariótákban és eukariótákban.</strong> A transzláció szabályozása eukariótákban, az eIF2 faktor foszforilációjának szerepe</summary><ul class="normal">
 		<li>csak az iniciáció tér el prokariótákban és eukariótákban, a másik kettő (elongáció+termináció) lényegében megegyezik &#10140; utóbbiakban a fehérje faktorok megnevezése az eltérő</li>
 		<table>
@@ -2186,7 +2216,7 @@
 	</ul></details>
 <!----></div></details>
 
-<!----><details><summary class="phase">#25 A transzláció elongációs szakasza prokariótákban és eukariótákban; a transzláció terminálása. A fehérjeszintézis gátlószerei.</summary><div><div class="title"> </div>
+<!----><details><summary class="phase">#4 A transzláció elongációs szakasza prokariótákban és eukariótákban; a transzláció terminálása. A fehérjeszintézis gátlószerei.</summary><div><div class="title"> </div>
 	<details class="kerdes 4/7" id="msb.196"><summary><strong>A transzláció elongációs szakasza prokariótákban és eukariótákban; a transzláció terminálása.</strong> A fehérjeszintézis gátlószerei</summary><ul class="normal">
 		<div style="float:right;max-width:30%"><img src="images/25_rttrnsstp.png"></div>
 		<li>csak az iniciáció tér el prokariótákban és eukariótákban, a másik kettő (elongáció+termináció) lényegében megegyezik &#10140; utóbbiakban a fehérje faktorok megnevezése az eltérő</li>
@@ -2224,6 +2254,650 @@
 		<li>a foszforilációt számos kináz végezheti, pl. virális fertőzésnél megjelenő PKR, vagy ER stressz következtében megjelenő PER stb.</li>
 	</ul></details>
 <!----></div></details>
+
+<!----><details><summary class="phaseD">#5 A fehérjék poszt-transzlációs módosításai.</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phaseD">#6 A proteosztázis fogalma. Intracelluláris fehérjelebontás módozatai.</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phaseD">#7 Proteaszóma felépítése és működése. Immunoproteaszóma. TAP. ERAD. Proteaszóma gátlás.</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phaseD">#8 Az autofágia fajtái, a lizoszóma szerepe.</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phaseD">#9 A bakteriofágok replikációjának lítikus és lizogén útja (a fág-represszor).</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phaseD">#10 Az állati vírusok csoportosítása replikációs mechanizmusuk szerint. A retrovírusok szerkezete és replikációja.</summary><div><div class="title"> </div>
+<!----></div></details>
+
+
+<!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
+
+
+
+<!--///////////////////////--> <div><div class="mainTitle">IV. Rendszerbiológia, molekuláris biológia a gyakorlatban</div>  <!--///////////////////////-->
+
+
+<!----><details><summary class="phaseD">#1 A humán genom. Genetikai variációk szerepe a betegségek kialakulásában, a genetikai faktorok meghatározásának jelentősége és lehetőségei.</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phaseD">#2 A polimeráz láncreakció és a real-time PCR működésének lényege, alkalmazási területei.</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phaseD">#3 Genetikai mutációk és polimorfizmusok vizsgálati módjai (RFLP, allél-specifikus PCR, DNS-szekvenálás és primerextenzió).</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phaseD">#4 A génkifejeződés vizsgálata (real-time PCR, DNS-chip, riportergén).</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phase">#5 Rekombináns DNS készítése (klónozás) és fontosabb alkalmazási területei.</summary><div><div class="title"> </div>
+	<details class="kerdes 4/15" id="msb.237"><summary><strong>Rekombináns DNS készítése (klónozás)</strong> és fontosabb alkalmazási területei.</summary><ul class="normal">
+	  <strong><u>rekombináns DNS lényege</u></strong><div>
+		<li>A <span class="WHITE">rekombináns DNS</span> = <span class="WHITE">DNS-konstrukció</span> olyan molekulát jelent, melyet laboratóriumi körülmények között hoznak létre úgy, hogy két eltérő forrásból származó DNS-t kapcsolnak össze. A két alkotórészt vektornak és inszertnek nevezzük.</li>
+		<li>A vektor lehet plazmid vagy <abbr title="bakteriális vírus">bakteriofág</abbr>. A gyakorlatunkon plazmid volt.</li>
+		<li>plazmid <img class="mini" src="images/plzmdgyk.png"></li><ul>
+			<li>baktériumokban van <abbr title="illetve archeak, egyes növények, algák, gombák">§</abbr></li>
+			<li>sejtciklustól függetlenül replikálódik</li>
+			<li>replikációja unidirekciós &#10140; csak egy replikációs villa alakul ki (tehát egy irányba történik csak, nem úgy mint a bakteriális kromoszómánál)</li>
+			<li>extrakromoszomális DNS &#10140; külön van a bakteriális kromoszómától a citoplazmában (lásd kép)</li>
+			<li>cirkuláris DNS &#10140; a vektor képen (lennt) ezért kör alakú</li>
+		</ul>
+		Ebbe építjük be az inszertet.
+	  </div>
+	  <hr><strong><u>vektor felépítése</u></strong><div>
+		<img src="images/f1orivktr.png">
+		<li>kör alakú, hiszen cirkuláris DNS a plazmid</li>
+		<li>található benne egy ún. <strong>F1-ori</strong></li><ul>
+			<li>innen indul a plazmid <abbr title="tehát a duplikációja, azaz miután végbement lesz belőle két plazmid (két teljes kör). szóval itt ne keressek semmiféle végződést (pl. poliA), hiszen a DNS-polimeráz az egészet lemásolja (tehát ez replikáció, nem transzkripció)">replikációja</abbr> (lásd hasonlóan: A szemikonzervatív DNS-replikáció elve. A replikációs villa, vezető és késlekedő szál &#10140; oriC)</li>
+			<li>szekvenciája különbözik a bakteriális kromoszómában található origó-tól(<strong>oriC</strong>), így attól függetlenül replikálódik</li>
+		</ul>
+		<li>található benne egy ún. <abbr title="multiple cloning site"><strong>MCS</strong></abbr> <abbr title="klónozó hely">(=)</abbr></li><ul>
+			<li><span class="Important">az inszert ide lesz beépítve</span> <img class="mini" src="images/nstrblszts.png"></li>
+			<li>ez ugyanis több olyan szekvenciát tartalmaz, melyet különböző II-es_típusú_restrikciós_endonukleázok felismernek, és elhasítják ott</li>
+			<li>MCS nevében is benne van, hogy több különböző ilyen szekvenciát is tartalmaz</li><ul>
+				<li>több különböző &#10140; ezalatt azt értem, hogy míg egyik szekvenciát <abbr title="direkt palindromot írtam, okát lásd lentebb">(pl.ATGCAT)</abbr> felismeri és elhasítja a "Józsi nevű" restrikciós endonukleáz, addig másikat (pl.GCATGC) a "Pista nevű" restrikciós_endonukleáz stb.</li>
+				<li>mivel sokféle restrikciós endonukleáz áll rendelkezésünkre, így ki lehet választani, melyiket használjuk, és melyik szekvencia fog <abbr title="melyiknél lesz hasítás">"felhasználásra kerülni"</abbr> közülük (lásd majd: optimális szekvenciák kiválasztása)</li>
+			</ul>
+			<li>II-es típusú restrikciós endonukleáz</li><ul>
+				<li>4-8 bp hosszú szekvenciát ismernek fel, és hasítanak</li>
+				<li>ezek mindegyik típusa egyfajta szekvenciát ismer fel (pl. "Józsi nevű" a GCATGC-t stb.)</li>
+				<li><abbr title=",,Géza kék az ég''. Tehát a komplementer szálon ugyanilyen irányba(pl.5-3) olvasva ugyanaz jön ki: ilyen pl. GCATGC">palindrom</abbr> szekvenciát ismernek fel és hasítanak</li>
+				<div>&#10140; palindromból következik, hogy ez csak úgy tud hasítani, hogy egyszerre mindkét szálat elhasítja (olyan nincs, hogy csak egyiket)</div>
+			</ul>
+			<li>hasítások</li><ul>
+				<li>a hasításokat két csoportra osztjuk <img class="mini" src="images/rstkcsndlklznk.png"></li><ul>
+					<li>ragadós vég</li>
+					<li>tompa vég (középen történik a hasítás)</li>
+				</ul>
+				<li>itt <abbr title="általában">()</abbr> ragadós véget eredményező restrikciós_endonukleázokat választunk &#10140; ugyanis az egymással komplementer végek spontán összekapcsolódnak, mert energetikailag kedvező nekik &#10140; így az inszert beépül a plazmidba</li>
+			</ul>
+			<li>optimális szekvenciák kiválasztása</li><ul>
+				<li>fontos, hogy a plazmidban lévő MCS-ben két helyen történjen hasítás &#10140; ugyanis ha csak egy helyen történne, akkor a plazmid szétnyílna ugyan, de rögtön utána össze is kapcsolódna, az inszert beépülése nélkül</li>
+				<li>fontos, hogy a plazmidban lévő MCS-ben két helyen történő hasítás különböző szekvenciáknál legyen (azaz kétféle restrikciós_endonukleázzal történjen) &#10140; ugyanis ellenkező esetben...</li><ul>
+					<li>a plazmid megintcsak összekapcsolódna, az inszert beépülése nélkül <img class="mini" src="images/kvgttszrnv.png"></li>
+					<li>mivel az inszert is ugyanazzal a restrikciós_endonukleázzal vágódik ki, így beépülése történhetne fordítva &#10140; és így már funkcióképtelen fehérjét kódolna <img class="mini" src="images/ksdfrwv.png"></li>
+					<li><abbr title="Jogosan felmerülhet a kérdés, hogy még ez se kéne feltétlen elég legyen, hisz a plazmid kis része amikor kivágódik MCS-ből, rögtön vissza is épülhetne bele, hisz energetikailag kedvezőbb. Azonban ez megvan akadályozva valahogy (gyakon volt mondva), de nem járok utána. inszertnél is szvsz ugyanez">§</abbr></li>
+				</ul>
+				<li>fontos, hogy a kiválasztott szekvenciák csak itt legyenek benne...</li><ul>
+					<li>a plazmidban &#10140; hiszen ellenkező esetben máshol is hasítanának a restrikciós_endonukleázok</li>
+					<li>az inszertben is &#10140; ugyanis az inszertnél is ugyanazon restrikciós endonukleázok lesznek felhasználva, és ellenkező esetben ugyanúgy az inszert is szétlenne hasítva</li>
+				</ul>
+			</ul>
+		</ul>
+		<li>található benne egy <strong>promoter</strong> az MCS előtt, illetve egy <strong>poliA</strong> az MCS után</li><ul>
+			<li>ezek biztosítják, hogy transzkripció legyen</li>
+			<li>van amikor a promoter szimplán erős, van amikor szabályozható (pl. lac) &#10140; attól függ mire akarjuk felhasználni</li>
+		</ul>
+		<li>található benne egy <strong>antibiotikum rezisztenciát</strong> kódoló szakasz</li><ul>
+			<li>képen az ampicillin-rezisztencia rész ez</li>
+			<li>ennek szerepe, hogy ampicillin nevű antiobiotikum ellen nyújt védelmet (gondolom olyan fehérjét kódol)</li>
+			<li>így azon baktériumok, melyekben van vektor (mely tartalmazza az inszertet) ampicillin rezisztensek &#10140; ha táptalajba teszek ampicillin, csak azok élik túl, melyekben van rekombináns DNS (ki lehet szelektálni őket)</li>
+			<li><abbr title="antibiotikum rezisztenciát kódoló szakaszból lehet akár kettő is (esetleg több)">§</abbr></li>
+		</ul>
+	  </div>
+	  <hr><strong><u>inszert létrehozása</u></strong> <img class="mini" src="images/crtngnstrt.png"><div>
+		<li>inszert &#10140; fehérjét (pl. inzulin) kódoló DNS szakasz</li>
+		<li>azonban mivel baktérium fogja expresszálni, és ott nincs külön mRNS érés &#10140; tehát ha vannak benne intron részek, akkor azok nem fognak kivágódni, és a fehérjében is benne lesz, ami így funkcióképtelen</li>
+		<li>ezért érett mRNS-t kell ún. cDNS-é(complementary) alakítani, mert az eukariótában lévő gén áthelyezése nem lenne elég, hisz abban még ott vannak az intronok</li>
+		<li>1.lépés &#10140; érett mRNS-t reverz_transzkriptáz(RNS-függő DNS-polimeráz enzim) "visszaírja" DNS-é</li>
+		<li>2.lépés &#10140; PCR-amplifikáció</li><ul>
+			<li>amplifikáció &#10140; ugyanis a cDNS-hélix két végére rá kell tenni azt a palindrom szekvenciát, amelynél a restrikciós endonukleáz általi hasítás után, komplementere lesz a vektornak</li>
+			<li>ezt a szekvenciát a primer 5' végére tesszük (Ugyanis, ha a primer elég hosszan (kb. 20 bázissal) specifikusan kapcsolódik a cDNS-hez, a primer végéhez hozzáadott, nem komplementer szekvencia nem fogja zavarni az amplifikációt, és az információ be fog épülni a PCR-termékbe)</li>
+			<li>közbe végbemegy a cDNS sokszorozás</li>
+		</ul>
+	  </div>
+	  <hr><strong><u>inszert és vektor "összeillesztése"</u></strong> <img class="mini" src="images/crtngnstrt.png"><div>
+		<li>a kétféle restrikciós endonukleáz kivágja az inszertet, és ugyanezen kettő a plazmidban a helyét</li>
+		<li>ezután energetikailag kedvező feltételek követketében spontán az inszert beilleszkedik a plazmidba</li>
+		<li>azonban ilyenkor még csak H-kötések alakulnak ki &#10140; mindkét oldalon 1-1 nick van (foszfodiészter-kötés hiány)</li>
+		<li>ezt a ligáz szünteti meg, és ezzel elkészül a rekombináns DNS</li>
+	  </div>
+	  <hr><strong><u>transzformálás</u></strong><div>
+		<li>transzformálás &#10140; kész rekombináns DNS baktériumba juttatása</li>
+		<li>lényege &#10140; van egy oldat, melyben a baktériumok, rekombináns_DNS-ek, Ca<sup>2+</sup> vannak &#10140; az oldat alacsony hőmérsékleten van &#10140; majd rövid ideig (42sec) felmelegítik 42°C-ra, és így bejutnak a rekombináns DNS-ek a baktériumokba</li>
+		<li>lényege &#10140; van egy oldat, melyben a baktériumok, rekombináns_DNS-ek, Ca<sup>2+</sup> vannak &#10140; az oldat alacsony hőmérsékleten van &#10140; majd rövid ideig (42sec) felmelegítik 42°C-ra, és így bejutnak a rekombináns DNS-ek a baktériumokba</li>
+	  </div>
+	  <hr><strong><span class="MISS"><u>egyenlőre kihagytam</u></span></strong><div>
+		<img src="images/fix_01.png">
+	  </div>
+	</ul></details>
+	<details class="kerdes 4/2" id="msb.238"><summary>Rekombináns DNS készítése (klónozás) és <strong>fontosabb alkalmazási területei</strong>.</summary><ul class="normal">
+		<li>A rekombináns DNS-ek egyik gyakori alkalmazási területe expressziós rendszerek elõállítása. Az inzulin volt az első hormon, melyet géntechnikai eljárásokkal állították elő gyógyászati felhasználásra, ma már több fehérje természetû gyógyszert készítenek így.</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="msb.239"><summary style="color:MediumBlue">restrikciós endonukleáz &#10140; mi? hol? funkció? szekvencia?</summary><ul class="normal">
+		<li>enzim, mely a foszforsavészter-kötést hasítja el (ami ugye a pentóz-foszfát között van)</li>
+		<li>baktériumokban van &#10140; funkciója, hogy a vírusok ellen védi a baktériumot</li>
+		<li><i>egy féle restrikciós endonukleáz <abbr title="esetek nagyrészében">csak</abbr> egyféle szekvenciát ismer fel</i> (ezek viszonylag rövidek, pl. II-típusúaknál 4-8bp hosszúak)</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="msb.240"><summary style="color:MediumBlue">restrikciós endonukleáz hogyhogy nem szedi szét a baktériumban lévő szekvenciákat?</summary><ul class="normal">
+		<li>azért, mert minden restrikciós_endonukleáznak van egy metiláz párja &#10140; replikáció után metilálják azon szekvenciákat</li>
+	</ul></details>
+	<details class="kerdes 5/2" id="msb.241"><summary style="color:MediumBlue">kloramfenikollal mi érhető el?</summary><ul class="normal">
+		<li>a gazdasejt fehérjeszintézisének kloramfenikollal történő gátlásával el lehet érni, hogy a sejt ne legyen képes a kromoszomális DNS-ét replikálni, de a plazmid szintézise tovább folyjék &#10140; ezzel az eljárással tovább növelhető a plazmidok sejtenkénti kópiaszáma</li>
+	</ul></details>
+	<details class="kerdes 5/2" id="msb.242"><summary style="color:MediumBlue">mivel lehet elérni, hogy plazmidok száma nőjjön/baktérium?</summary><ul class="normal">
+		<li>a gazdasejt fehérjeszintézisének <span class="Important">kloramfenikollal</span> történő gátlásával el lehet érni, hogy a sejt ne legyen képes a kromoszomális DNS-ét replikálni, de a plazmid szintézise tovább folyjék &#10140; ezzel az eljárással tovább növelhető a plazmidok sejtenkénti kópiaszáma</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="msb.243"><summary style="color:MediumBlue">plazmidok funkciója baktériumokban? 2pl</summary><ul class="normal">
+		<li><span class="Important">vannak melyek antibiotikum-rezisztens gént (pl. ampicillin ellen) kódolnak, és ha szükséges expresszálnak</span></li>
+		<li>vannak melyek toxint kódolnak, és ha szükséges expresszálnak</li>
+		<li>vannak melyek antibiotikumot kódolnak, és ha szükséges expresszálnak</li>
+		<li>(egyes restrikciós-modifikációs rendszerek enzimei szintén plazmidban kódoltak)</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="msb.244"><summary style="color:MediumBlue">vektorok csoportosítása?</summary><ul class="normal">
+		<li><strong>klónozó</strong> &#10140; itt az inszertben található <strong>DNS-szakasz</strong> sokszorosítása a cél</li>
+		<li><strong>expressziós</strong> &#10140; itt az inszert által kódolt <strong>fehérje</strong> sokszorosítása a cél &#10140; tehát a beültetett inszert, expresszálódni fog fehérjeként (pl.inzulin)</li>
+	</ul></details>
+	http://elte.prompt.hu/sites/default/files/tananyagok/ABiokemiaEsMolekularisBiologiaAlapjai/ch19s02.html
+<!----></div></details>
+
+<!----><details><summary class="phaseD">#6 Biológiai hálózatok: a kisvilágság, a csomópontok, a hálózatos csoportok és a hálózatos hierarchia. E fogalmak jellemzése és jelentősége az egyedi fehérjékben, illetve a sejtet alkotó hálózatokban (példák).</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phaseD">#7 Nódusok és hálózatos kapcsolatok jelentősége a fehérje-fehérje kölcsönhatási, a metabolikus, a jelátviteli és a génexpressziós, valamint a sejtszervecskék által alkotott hálózatokban.</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phaseD">#8 A fehérjék reverzibilis és irreverzibilis kicsapása, ennek elvi alapjai.</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phaseD">#9 A fehérjék színreakciói a bennük található aminosavaknak köszönhetően (xantoprotein-, Millon-, Adamkiewicz-reakció).</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phaseD">#10 A peptid-kötés kimutatása, a fehérjék mennyiségi meghatározása: a Biuret reakció. Az SH-csoportok mérése Ellmann szerint.</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phaseD">#11 Fehérjék elválasztása kis molekulatömegű anyagoktól, molekula-szűrés elve.</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phaseD">#12 A papír- és vékonyréteg-kromatográfia elve, aminosavak elválasztása.</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phaseD">#13 A fehérjék SDS-poliakrilamid gél-elektroforézise, szérum fehérjék elválasztása, a Western blot módszer, a fehérjék specifikus kimutatása.</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phaseD">#14 Az ureáz enzim KM és VMax értékének meghatározása, az ureáz enzim kompetitiv és nem-kompetitiv gátlása.</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phaseD">#15 A β-galaktozidáz indukciója E. coliban.</summary><div><div class="title"> </div>
+<!----></div></details>
+
+<!----><details><summary class="phase">#16 Plazmidok emésztése restrikciós endonukleázokkal, a fragmentumok analízise gél-elektroforézissel.</summary><div><div class="title"> </div>
+	<details class="kerdes 4/6" id="msb.245"><summary><strong>Rekombináns DNS készítése (klónozás)</strong> és fontosabb alkalmazási területei.</summary><ul class="normal">
+		<li>Az elmélet alapját ennél a tételnél találom &#10140; Rekombináns DNS készítése (klónozás) és fontosabb alkalmazási területei</li>
+	  <hr><strong>a képen látható a plazmid</strong>
+		<img src="images/gykrnstkznc.png">
+		<li>kb. 4500bp hosszú</li>
+		<li>origo &#10140; innen zajlik a replikáció</li>
+		<li>MCS &#10140; itt hasít az egyik restrikciós_endonukleáz (Nhe-I)</li>
+		<li>terminációs-szignál &#10140; előtte hasít a másik restrikciós_endonukleáz (Xba-I)</li>
+	  <hr><strong>első lépés &#10140; inkubáció</strong>
+		<li>4 külön pipetta lett összeállítva</li><ul>
+			<li><span class="WHITE">A</span> &#10140; marker</li>
+			<li><span class="WHITE">B</span> &#10140; emésztetlen</li>
+			<li><span class="WHITE">C</span> &#10140; csak egyik enzim (Xba-I)</li>
+			<li><span class="WHITE">D</span> &#10140; mindkét enzim</li>
+		</ul>
+		<li>inkubáció &#10140; ezeket 37°C-on 1 óráig hagytuk</li>
+	  <hr><strong>második lépés &#10140; gélelektroforézis</strong>
+		<li>csak az eredményeket ábrázoltam (a lényege másik tételben van &#10140; a legfontosabb, hogy a sebesség fordítottan arányos a mérettel)</li>
+		<li><span class="WHITE">A</span> marker esetében különböző hosszúságú DNS-láncok voltak, hogy a bp. hosszak leolvashatók legyenek</li>
+		<li><span class="WHITE">B</span> emésztetlen esetében cirkuláris DNS volt, ez gyorsabban haladt valamivel, mint a lineárisan bontott</li>
+		<li><span class="WHITE">C</span> ezt egy restrikciós_endonukleáz vágta szét, így kb. 4500bp hosszú lánc (kicsivel lassabb, mint a bontatlan cirkuláris)</li>
+		<li><span class="WHITE">D</span> egy kb 1500bp (luciferáz gén hossza) hosszú és egy 3000bp hosszú részre lett szétvágva</li>
+		<img src="images/gkktrrns.png">
+	</ul></details>
+<!----></div></details>
+
+<!----><details><summary class="phase">#17 Egy ízérző receptor genotipizálása PCR-RFLP módszerrel.</summary><div><div class="title"> </div><ul class="normal">
+  <strong><u>Célja</u></strong><div>
+	Öt féle alapíz van: édes,sós,savanyú,keserű,umami. A keserű íz "egyik típusát" az emberek 70%a érzékeli és 30%a nem. Ez attól függ, hogy az egyed génje milyen. A mérés során azt vizsgáljuk meg, hogy a csoportban 12 ember közül ki érzékeli és ki nem. Tehát megnézzük, hogy a génben "jól van-e kódolva".
+  </div>
+
+  <strong><u>Bevezetés</u></strong><div>
+	A keserű ízt érzékelő <abbr title="(kemoreceptorok)">receptorok</abbr> <abbr title="TASte Receptor (2=keserű)">(TAS2R)</abbr> egyik típusa a glükózinolátot köti meg (az a ligand). Ezt az ízt PTC-íznek nevezzük. A "hiba" (ha valaki nem érzi a PTC ízt) hátterében single_nukleotid-polimorfizmus(SNP) áll. Tehát egy nukleotid helyett más van a DNS-ben, mint kéne (pl. C helyett T van). Jelen esetben 3 helyen történhet meg a kicserélődés. A három hely alapvetően a következő aminósavakat kódolja Pro-Ala-Val. Ha SNP van, akkor helyettük Ala-Val-Ile lesz. A nukleotidok pedig alapból (C...C...G), kicserélődve pedig (G...T...A). Ez a polimorfizmus csak úgy fordulhat elő, hogy vagy mindhárom kicserélődik vagy egyik sem. Ha kicserélődik akkor a genotípus <strong>t</strong>, ha nem akkor <strong>T</strong> &#10140; így <strong>TT</strong>,<strong>Tt</strong>,<strong>tt</strong> genotípusok lehetnek (hisz diploidok a testi sejtek, tehát 2x van bennük meg a gén: egyik apai másik anyai eredetű). Amennyiben <strong>TT</strong>, jól érzik a PTC-ízt, <strong>Tt</strong> esetében kevésbé, <strong>tt</strong> esetében pedig egyáltalán nem. A genotípust a PCR eljárással határozzuk meg. Az eljárás négy lépésből áll.
+  </div>
+
+  <strong><u>(1) DNS izolálás</u></strong><div>
+	<span class="WHITE">1</span> Első lépésben a vattapálcával a száj nyálkahártyjából hámsejteket szedünk le (fél percig dörzsölve vele a buccat, fogíny külsejét). A vattapálcát ezután egy <abbr title="Eppendorf-csőbe">()</abbr>csőbe tesszük. <span class="WHITE">2</span> A sejteket ezután PBS-oldattal lemossuk a vattáról. <span class="WHITE">3</span> Majd a membránokat(sejt & intracelluláris) és fehérjéket "felaprítjuk": membránokat lízispuferrel, a fehérjéket proteináz K-val. Így kapunk ún. sejtlizátumot. <span class="WHITE">4</span> A következő feladat, hogy ebből a DNS-t izoláljuk (tehát csak az marad, más nem). Ezt <span class="Important">affinitás-kromatográfiával</span> végezzük. Ennek lényege hogy egy műanyag oszlopba van egy pozitív töltésű mátrix, mely a negatív töltésű moleklákat megköti, pl. DNS. Ezenkívül egyes fehérjéket és egyéb molekulát is megköt, de a nagyrészét nem <img class="mini" src="images/vgcskfknmtrckrm.png">. <strong>(a)</strong> Ezért ebbe beleöntöm a sejtlizátumot. <strong>(b)</strong> Majd ezután "frissítem" tehát az oldatot elvtávolítom az üvegből, és helyére pufferoldatot öntünk. Ez lemossa a mátrixról a többi fennmaradt fehérjét és egyéb nem DNS molekulát. Azonban mivel a mátrix pólusai kicsit, így csak akkor képes átjutni rajta pufferoldat, ha <strong>(c)</strong> centrifugáljuk. A pufferoldat szvsz savas irányba változtatja a pH-t, hisz így sok proton lesz, tehát a fehérjék & egyéb negatív töltése megszűnik így leválnak a mátrixról. Végül ha ez meg volt <strong>(d)</strong>, akkor a DNS-t is leválasztjuk a mátrixról bázikus pH-jú oldattal <abbr title="mármint a mátrix lesz semleges töltésű emiatt?!"><font style="color:red;font-weight:bold;">(!?)</font></abbr>.
+  </div>
+
+  <strong><u>(2) <abbr title="polymerase chain reaction">PCR</abbr></u></strong><div>
+	 <img src="images/prndlnsskrz.png">
+	 <li>Itt a cél, hogy megsokszorozzuk a génszakaszt, mely a receptort kódolja. Ennek következtében a végén szemmel látható eredményt kapjunk. Ennek módja a következőképpen történik...</li>
+	 <li>Először szétválasztjuk a DNS-t két szálra.</li>
+	 <li>Ezután 1-1 primer fog hozzákapcsolódni a két különvált szálra. Ezek ott kapcsolódnak hozzájuk, ahol a vizsgálni kívánt gén van, előtte kicsivel 5' irányba (ennek a DNS-résznek, amihez hozzákapcsolódik legyen a neve "Jani"). A primereket amiket hozzáadunk kb. 20nukleotid hosszúak. Ez azt jelenti, hogy biztosan "Jani"-hoz fognak kapcsolódni, ugyanis... "Jani" szakasz nukleotidjainak komplemenetereit tartalmazza, és mivel kb.20 nukleotid hosszú, biztosan nincs a DNS láncon másik olyan hely, ami szintén komplementere lenne (ugyanis ha pl. csak 3nukleotidból lenne a primer, akkor rengeteg helyhez tudna kapcsolódni. Ha 10 hosszú, akkor kevesebb helyhez, de még mindig több mint 1. Azonban 13 felett már általában <abbr title="vagy egyhez se, ha olyan természetesen">csak 1 helyhez</abbr>)</li>
+	 <li>A két szálon lévő primer között így (3' irányba) 303db bp van.</li>
+	 <li>Erre a lépésre azért van szükség, mert a DNS polimeráz, mely megsokszorozza majd a gént, csak megkezdett szálat tud folytatni</li>
+	 <li>DNS polimeráznak van 3'-exonukleáz aktivitása is, így pontos másolatot képez.</li>
+	 <li>A kivitelezéshez a következőt kell tenni: mastermixet kell elkészíteni, majd hozzáadni az izolált DNS-t. Ezután a sokszorozást egy <abbr title="nevét nem tudom">"gép"</abbr> végzi el. A mastermix tartalmazza a DNS-polimerázt, a primereket illetve <abbr title="dezoxi-nukleozidtrifoszfátokat: ATP/GTP/TTP/CTP">dNTP-ket</abbr></li>
+	 <li>A sokszorozás 3óra alatt játszódik le, és közben kb 20-30 termociklus. Egy termociklus három lépésből áll: <strong>(a)</strong> 95°C-on szétválik két láncra a DNS; <strong>(b)</strong> 55°C-on a primerek hozzákötődnek "Jani"-khoz; <strong>(c)</strong> 75°C-on a DNS-polimerázok dolgoznak. Így ez végeredményben azt jelenti, hogy a végén kb x*2<sup>25</sup>db "gént" kapunk (hisz mindig 2x annyi lesz, és kezdetben volt x darab).</li>
+  </div>
+
+  <strong><u>(3) restrikciós emésztés <abbr title="restriction fragment length polymorphism">(RFLP)</abbr></u></strong><div>
+	<li>Az alapja, hogy olyan restrikciós_endonukleázt használunk, mely elhasítja a "jó" "gént", míg a polimorfizmusost nem <abbr title="persze fordítva is jó lenne">()</abbr>. Tehát amennyiben a receptor működik és érzi az egyed az PTC-ízt, akkor 239bp és 64bp hosszú szálak lesznek, ellenben ha polimorfizmus van, akkor 303bp hosszú szálak. Azonban mivel diploid sejtek vannak, ezért ha "heterozigóta volt a gén" (tehát volt "jó", és rossz "gén" is), akkor lesz mindháromból.</li>
+	<li>A restrikciós endonukláez amit használunk az alábbi szekvenciát ismeri fel.: G<span class="Vocab">C</span><span class="Important">N</span>GC. Az <span class="Important">N</span> lehet bármilyen nukleotid. Ha van ilyen szekvencia akkor a <span class="Vocab">C</span><span class="Important">N</span> közti foszfodiészter kötést elhasítja. A <span class="Vocab">C</span> azért van kiemelve, mert ez az a nukleotid, mely a "jó" allélvátozatban megvan, ellenben a polimorfizmusosban helyette T van. (C...<span class="Vocab">C</span>...G) vs. (G...<span class="Vocab">T</span>...A). (Jelen esetben az N helyén T van a génben: tehát ha GCTGC van, tehát "jó a gén", akkor szakít. Ha GTTGC van, akkor nem szakít)</li>
+	<li>A kivitelezés lényege: a megsokszorozódott "gén-oldathoz" hozzáadjuk a restrikciós endonukleázt, majd 1óráig hadjuk 37°C-on (testhőmérséklet) dolgozni.</li>
+  </div>
+
+  <strong><u>(4) gélelektroforézis</u></strong><div>
+   <img style="max-width:30%" src="images/gy9_03.png">
+	<li>SDS-PAGE gyakorlaton már csináltunk ilyet fehérjékkel. Itt két kölönbséget említenék meg. <span class="WHITE">1</span> Most nem kell kezelés SDS-el, mert a fajlagos_töltése már alapból megegyezik a különböző hosszúságú (64,239,303) DNS-szálaknak. Hiszen fehérjéknek atöltése nem volt arányos tömegükkel előtte, így fajlagos_töltésük(=töltés/tömeg) kölönbözött, ezért SDS kezeléssel közel azonos értékre lett beállítva a fajlagos töltésük. Azonban a különböző hosszúságú (64,239,303bp) DNS-sek fajlagos töltése már alapból megegyezik, hisz a foszfátok negatív töltése arányos a DNS hosszával <abbr title="fajlagos töltés pedig a töltés/tömeg hányados (és a tömeg is arányos a hosszal)">()</abbr>. Így jelen esetben csak a tömegtől függ az elmodulás: minél nagyobb a <abbr title="ami arányos a hosszával, így a 303 hosszú fog a legkevésbé elmozdulni">tömeg</abbr>, annál kevésbé mozdul el (hiszen a feszültség ami gyorsítja F erővel hat rá: F=ma &#10140; minél nagyobb m, annál kevésbé gyorsul). <span class="WHITE">2</span> Poliakrilamid helyett agaróz alkotja a gélt. (Ez algákból nyerhető, és olcsóbb.)</li>
+	<li>A gél DNS-festéket tartalmaz, amely a futtatás során a DNS-láncokkal nem-kovalens komplexet képez és UV-fénnyel indukálva látható tartományban fluoreszkál. Tehát a futtatás után UV-fénnyel átvilágítva láthatóvá válik az elmozdulás.</li>
+  </div>
+
+  <hr><strong><u>Kiegészítés</u></strong><div>
+	<li>G-fehérjéhez kötött receptorok <abbr title="GPCR = G protein coupled receptor">(GPCR)</abbr></li><ul>
+		<li>A GPCR a membránreceptorok egy jelentős típusa</li>
+		<li>A keserű, édes és umami ízt ilyen receptorok érzékelik &#10140; tehát a TAS2R receptorok is ilyenek</li>
+		<div>(a savanyú és a sós ízt érzékelő receptorok ioncsatornák)</div>
+		<li>Ezen receptorok általános tulajdonsága, hogy 7x érik át a membránt (transzmembrán fehérjék!)</li>
+		<li>A másik általános tulajdonságuk a működésük. Ennek lényege: ha megkötik a ligandot, akkor utána képesek lesznek megkötni az ún. G-fehérjét. A G-fehérje GDP-t tartalmaz. Ha megköti, akkor kicserélődik a GDP GTP-re. Ezután pedig a G-fehérje leválik a receptorrol és ha elmegy egy másik enzimhez akkor azt aktiválja. Ennek energiáját a GTP-GDP-re való visszaállás fedezi. <img class="mini" src="images/gpcrmkds.png"></li>
+	</ul>
+	<li>SNP 3 helyen történhet meg, azaz összesen 8 variáció lehet <abbr title="hiszen ha lerajzolom faágszerű elágazással mindig, hogy 1. helyen kicserélődött / nem (2variáció eddig). ezeke tovább ágaztatom ugyanígy, az a 2.hely(4variáció már). Majd mégegyszer és így megkapom a 8 variációt.">(2<sup>3</sup>)</abbr> Azonban ez csak elméletben lehetséges, a valóságban vagy mindhárom "jó", vagy mindhárom kicserélődött. Ennek oka, hogy úgymond "kapcsoltan öröklődnek", ugyanis a három nukleotid egymáshoz közel helyezkedik el egy kromoszómán. Tehát crossing-overnél együtt mennek át.</li>
+	<li>A mérés előtt egy kis "papírlapka" átvolt itatva PTC-vel. Ezt mindenki a szájába vette és megízlelte. Így megsaccolhattuk, hogy ki érzi és ki nem.</li>
+	<li>PCR - hogyhogy pont 303 nukleotid hosszú láncok fognak sokszorozódni? hisz nincs ami jelenzné a végét, csak a kiindulás van jelezve...</li><ul>
+		<li>Kétségtelenm hogy első termociklus során a DNS polimeráz amíg szintetizál (kb. 1perc) egy kicsivel hosszabb, mint 303 nukleotid hosszú láncot fog szintetizálni, hisz nincs ami jelezze a végét.</li>
+		<li>Azonban a második termociklus során már a hosszabb nukleotidlánc-hoz megint csak hozzákötődik a primer, ergó a felesleges rész arról nem fog megsokszorozódni, így egy 303nukleotid hosszú DNS lánc szintetizálódik. <img class="mini" src="images/gy10_pcr.png"></li>
+		<li>Innentől a 303 bp hosszúak száma duplázódik termociklusonként, míg a két kicsivel hosszabb típusúak száma <abbr title="+n-el nő termociklusonként, hisz mindig csak az n db teljes hosszú DNS-ről íródnak át olyanok. Pl. az ábrán abból 2db van, tehát ott minden termocklusnál +2-vel nő a számuk. (A mérés során pedig n db volt, szóval ott a végén kb. n*25 lesz belőle, míg a 303asokból n*2<sup>25</sup>)">alig</abbr> nő <abbr title="ezenkívül lesz n db teljes hosszúságú DNS is, de abból lesz a legkevesebb ugye">()</abbr></li>
+	</ul>
+	<li>restrikciós endonukleázok (mérésnél használt konkrét nevét ne tanuljam meg)</li><ul>
+		<li>Baktériumokban vannak. Egy baktériumfajban <abbr title=" vagy 2">1</abbr> féle restrikciós endonukleáz van. Ma már össze lett gyűjtve adatbázisba, hogy milyen restrikciós endonukleázokat lehet kinyerni, így a vizsgálni kívánt részhez <abbr title="tehát esetünkben ugye a C vs T résznél vágja el mindössze, így egyértelműen megállapítható lesz majd az eredményből">optimálisat</abbr> ki lehet választani közülük.</li>
+		<li>Funkciójuk, hogy a vírusok DNS-ét(/RNS-ét) lebontják. Nohde, mi alapján lesz az, hogy csak a vírusok DNS/RNS-ét bontják le, a baktériumét nem. Ugyanis, ha a rövid DNS-ű(pár száz bp hosszú) vírusokban megtalálja a szekvenciát, akkor a baktériumokban is meg kell (szvsz százezres ~ pár milliós nagyságrend). Hiszen a baktériumban 1 féle restrikciós endonukleáz van, mely olyan szekvenciát kell felismerjen, ami az őt fertőző vírusokban megvan, tehát benne is szinte biztosan. Így a szekvencia max 6-8bázis hosszú. A problémát úgy oldja meg, hogy a saját DNS-ében a szekvenciája metilálva van. Ezt ún. restrikciós_metiláz végzi.</li>
+		<li>Ezenkívül a szekvencia amit felismer, mindig palindrom.</li>
+		<li><font class="abbr">palindrom ►</font> Azt jelenti, hogy a DNS bázissorrendje előre és hátrafelé olvasva (a két, komplementer láncra vonatkoztatva) ugyanaz. Pl. egy enzim felismeri a 5’-GGTACC-3’ szekvenciát. Ennek a komplementer párja 3’→5’ irányban CCATGG, ami visszafelé olvasva éppen GGTACC <img class="mini" src="images/21_sztrdnmsztrd.png"></li>
+	</ul>
+	<li>Érdekes, hogy SNP-nél apoláros helyett apoláros aminosav lesz (tehát nem változik a <span class="idk">polaritása</span>), mégis jelentős változással jár a fehérje működésében. Ennek oka szvsz 1) Pro mégiscsak jelentős mértékben különbözik az Ala, hiszen ciklusos vegyület; 2) kitüntetett helyen vannak az aminosavak a fehérjében.</li>
+  </div>
+
+  <hr><strong><u>(Egyéb kiegészítők)</u></strong><div>
+	<li>A keserű ízérzetet kialakító receptorokat számos, a természetben előforduló és potenciálisan toxikus növényi hatóanyag aktiválja, így a keserű íz hatékony érzékelése az evolúció során szelekciós előnyt jelenthetett a táplálék eredetű mérgezések elkerülése révén.</li>
+	<li>Glükózinolát van pl. fehérrépa, retek, brokkoli stb.</li>
+	<li>PTC=feniltiokarbamid &#10140; ezzel <abbr title="de ez nem természetes kajákban van benne, hanem mesterségesen adjuk hozzá">is</abbr> lehet aktiválni a receport, nem csak glükózinoláttal (innen a neve ugye)</li>
+	<li>proteináz K nem specifikus proteáz, tehát lebontja a legtöbb fehérjét</li>
+	<li>proteináz K kezelés fontos, hogy gyorsan történjen, mert a membránfelszakadás után az endonukleázok különben odaférnének a DNS-hez és lebontanák</li>
+  </div>
+</ul><!----></div></details>
+
+
+<!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
+
+
+
+<!--///////////////////////////-->  <div><div class="mainTitle">gyakorlatok</div>  <!--///////////////////////////-->
+
+<!----><details><summary class="phase">1. feherjék jelenlétének kimutatása (01.31)</summary><div><div class="title"></div>
+	<details class="kerdes 5/1" id="msb.14"><summary>cél?</summary><ul class="normal">
+		<li>fehérje JELENLÉTÉNEK kimutatása kicsapódással &#10140; tehát se nem minőségük, se nem mennyiségük, pusztán az, hogy VAN-e?</li>
+		<li><i>ez is kvalitatív, csakúgy mint a 2.tételnél</i> ?!</li>
+	</ul></details>
+	<details class="kerdes 2/1" id="msb.41"><summary>fehérje jelenlétének kimutatása a cél &#10140; orvosi jelentőségére példa?</summary><ul class="normal">
+		<div>pl. vizeletben a fehérje jelenléte nem normális</div>
+		<li>ezt okozhatja vese-gyulladás <abbr title="vérből átengedi a fehérjéket a lamina_basalison">()</abbr></li>
+		<li>vagy húgyuti fertőzés <abbr title="fehérvérsejtek ott támadják a kórokozókat">()</abbr></li>
+	</ul></details>
+	<details class="kerdes 4/1" id="msb.42"><summary>vízben oldódásuk szerkezete?</summary><ul class="normal">
+		<li>globuláris alakot vesznek fel</li>
+		<li>a gömb közepén vannak az apoláros oldalláncú aminosavak</li>
+		<li>a gömb felszínén vannak a poláros és ionizált oldalláncú aminosavak</li>
+		<img src="images/gy1_glpbfrzsfhr.png">
+	</ul></details>
+	<details class="kerdes 2/1" id="msb.43"><summary>membránfehérjék szerkezete?</summary><ul class="normal">
+		<li>apoláros oldalláncú aminosavak vannak a membránba</li>
+		<li>poláros és ionizált oldalláncú aminosavak vannak "kívül/belül"</li>
+		<img src="images/gy1_glpbfrzsfhr.png">
+	</ul></details>
+	<details class="kerdes 3/2" id="msb.44"><summary>hidrátburok funkciója?</summary><ul class="normal">
+		<li>megakadályozza a fehérje kicsapódását <i>&#10140; tehát az oldhatóságukkal arányos</i></li>
+		<li>tehát a hidrátburok lazítása/megszüntetése a kicsapódási hajlamot fokozza</li>
+	</ul></details>
+	<details class="kerdes 2/1" id="msb.47"><summary>kicsapódás szinonima?</summary><ul class="normal">
+		<li>precipitáció</li>
+	</ul></details>
+	<details class="kerdes 5/1" id="msb.48"><summary>kicsapódás mi?</summary><ul class="normal">
+		<li><i>oldat már telített, ezért kiválik a felszínen csapadék formában az oldott anyag</i></li>
+	</ul></details>
+	<details class="kerdes 5/1" id="msb.49"><summary style="color:Red"><font color="Green">kicsapódás (ir)reverizibilis 1-1pl?</font></summary><ul class="normal">
+		<li>reverzibilis &#10140; nehézfémion a diszulfid-hídakat szétszedi <span class="FIX">(kéne konkrét pl után nézni gyakkönyvben, hátha van)</span></li>
+		<li>irreverzibilis &#10140; könnyűfémion elvonja a vízmolekulákat &#10140; visszahigítva visszaáll</li>
+	</ul></details>
+	<details class="kerdes 3/2" id="msb.45"><summary>oldékonyság és natív állapot közti összefüggés (kicsapódás vs denaturáció)? (1-1-1pl)</summary><ul class="normal">
+		<li>általában denaturáláskor csökken a fehérjék oldékonysága &#10140; pl. tojásfehérje forralás</li>
+		<li>azonban ez nem általános</li><ul>
+			<li>kicsapódott fehérje is lehet natív &#10140; sok natív fehérjét beletéve egy idő után telített lesz és kicsapódik, de ugyanúgy natív marad</li>
+			<li>oldott fehérje is lehet denaturált &#10140; pl. 42°C testhőmérsékletnél fehérje kicsapódás nincs, de denaturáció van</li>
+		</ul>
+	</ul></details>
+	<details class="kerdes 3/2" id="msb.46"><summary>natív, de/renaturáció, (ir)reverzibilis &#10140; lényegük?</summary><ul class="normal">
+		<li>natív szerkezet &#10140; fehérje biológiailag természetes, funkcióképes szerkezete</li>
+		<li>denaturáció &#10140; szerkezete megváltozik, többé már nem natív (funkcióképessége csökken, megszűnik)</li><ul>
+			<li>reverzibilis &#10140; képes még renaturációra (spontán a denaturációt kiváltó hatás megszüntetésével /vagy/ adott módszerrel)</li>
+			<li>irreverzibilis &#10140; nem képes már renaturációra <i>(pl. 45°C-on)</i></li>
+		</ul>
+		<li>renaturáció &#10140; szerkezete visszaáll natívra</li>
+	</ul></details>
+	<details class="kerdes 4/3" id="msb.15"><summary>módszerek?</summary><ul class="normal">
+		<div>fehérjeoldathoz adok...</div>
+		<li>alkoholt</li>
+		<li>nehézfémsót (ólom,higany,réz)</li>
+		<li>ásványi savat (kénsav,salétromsav)</li>
+		<li>szerves savat: TCA</li>
+		<div>"melegítéses módszer"</div>
+	</ul></details>
+	<details class="kerdes 4/1" id="msb.16"><summary>melegítéses "módszer" lényege?</summary><ul class="normal">
+		<li>először a fehérje másodlagos, majd utána a harmadlagos szerkezete változik meg</li>
+		<li>tegyek 4 kémcső mindegyikébe 2-3ml 1% BSA fehérjét</li>
+		<li>majd ezek közül egyiket hagyjam így, másik 3ba az alábbiakat külön-külön</li><ul>
+			<li>1csepp ecetsav</li>
+			<li>3-4csepp ecetsav</li>
+			<li>több csepp NaOH</li>
+		</ul>
+		<li>ezeket melegítsem</li>
+	</ul></details>
+<!----></div></details>
+
+<!----><details><summary class="phase">2. feherjék mennyiségének mérése (kvalitatív) (02.07)</summary><div><div class="title"></div>
+	<details class="kerdes 4/1" id="msb.50"><summary>"milyen alapon történik"?</summary><ul class="normal">
+		<li>spektrofotometriás, ugyanis az abszorpció egyenesen arányos a koncentrációval (adott hullámhosszon)</li>
+		<li>ezt a jól ismert Lambert-Beer törvény írja le &#10140; <abbr title="abszorbancia = OptikaiDenzitás = extinkció">A</abbr> = <abbr title="koncentráció">c</abbr>*<abbr title="moláris extinkciós koefficiens (adott hullámhosszon)">ε</abbr>*<abbr title="elnyelő réteg vastagsága">x</abbr></li>
+		<li>(első lépésben meghatározandó az abszorpciós_maximum, tehát a hullámhossz, amelyen a legnagyobb az ε)</li>
+	</ul></details>
+<!----></div></details>
+
+<!----><details><summary class="phase">3. SDS–PAGE (02.14) – <span class="Important">Bikémnél is van róla szó</span></summary>
+ <div><div class="title">SDS–PAGE</div>
+	<details class="kerdes 3/1" id="msb.64"><summary>SDS–PAGE jelentése?</summary><ul class="normal">
+		<li><abbr title="nátrium"><strong>s</strong>odium</abbr> <abbr title="12"><strong>d</strong>odecil</abbr> <strong>s</strong>zulfát <strong>p</strong>oli<strong>a</strong>krilamid <strong>g</strong>él<strong>e</strong>lektroforézis</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="msb.65"><summary>cél 1 mondatban?</summary><ul class="normal">
+		<li>fehérjék elválasztása méretük alapján</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="msb.66"><summary>gélt mi alkotja?</summary><ul class="normal">
+		<li><strong>poli</strong>akril<strong>amid</strong> <abbr title="könnyebb olvashatóság érdekében vastagítottam csak meg">&#10045;</abbr> <abbr title="ez akrilamid formában még rákkeltő">&#10045;</abbr></li>
+		<div><span class="vocab"><strong>§</strong></span> gél az "félig szilárd, félig folyékony" (kocsonyás)</div>
+	</ul></details>
+	<details class="kerdes 3/2" id="msb.67"><summary>gél &#10140; hol van? mi van benne?</summary><ul class="normal">
+		<li>két üveglap közé van téve, melyek között 1mm rés van</li>
+		<li><abbr title="képen a fekete színű hosszabb mint a piros">egyik</abbr> üveglap hosszabb mint a másik</li>
+		<li>kétoldalt rögzítve van a két üveglap, hogy oldalra ne folyjon ki semmi</li>
+		<li class="abbr">ezenkívül van benne egy fésű, aminek a funkciója, hogy annak helyén nem lesz gél <abbr title="ugyanis a gél mikor 'megszilárdulása' után lesz kivéve">()</abbr>  &#10140; zsebek lesznek ott, amiket majd fel lehet később tölteni &#10140; mivel? ► 1-4 fehérje-mintával külön-külön <img class="mini" src="images/gy3_mrsmnt.png"></li>
+		<img src="images/gy3_fsk.png">
+	</ul></details>
+	<details class="kerdes 3/2" id="msb.68"><summary>gél funkció?</summary><ul class="normal">
+		<li>a poliakrilamid egy hálózatot alkot, amely lassítja a rajta áthaladó molekulák mozgását</li>
+		<li>2 dolog alapján történik a lassítás: méret és alak <abbr title="FONTOS: a mérés során az alakot, mint szempont, ki fogjuk lőni, és csak a mérettől fog függeni">!!!</abbr></li>
+		<li>pl. ha van egy lombkorona és kitátott karral+lábbal zuhanok, akkor lassabban érek le a földre, mintha behúzott karral-lábbal esnék (ez az alak különbséget szimbolizálja)</li>
+		<li>pl. méret pedig szintúgy &#10140; minél nagyobb a méret, annál lassabban jut át a molekula, hisz annál inkább feltartja a háló</li>
+		<img src="images/gy3_vndrlsrny.png">
+	</ul></details>
+	<details class="kerdes 3/3" id="msb.69"><summary>két <abbr title="ez eléggé szvsz alapján történt, de sztem nem nagy hülyeség">&#10045;</abbr>fázisra osztottam a mérést. első fázisban mit végzünk?</summary><ul class="normal">
+		<li>először is 2db gél van, és mindegyik ugye 2üveglap között, 1-1fésűvel &#10140; első fázisban mindkettővel ugyanazt végzem</li>
+		<div><span class="WHITE">#1</span> fésűket kiveszem &#10140; üres zsebek maradnak ott</div>
+		<div><span class="WHITE">#2</span> pipettát használva a fehérje-mintákkal feltöltöm a zsebeket, utolsó zsebbe ún. létra-mintát teszek <abbr title="bár gyakon elvileg 8db volt, de azzal nincs értelme foglalkozni!! (ott is így ábrázoltuk, és ebben van a lényeg)">/lásd kép/</abbr></div>
+		<div><span class="WHITE">#3</span> ezután a futtatókádba teszem a <abbr title="ezeket a képen látható ilyen lila cucc fogja egybe &#10140; ezt nem kell tudnom, csak a kép értelmezése érdekében írtam le, ha később érteni szeretném">két üveglapot</abbr>, és feltöltöm pufferoldattal (ionos víz)</div>
+		<div><span class="WHITE">#4</span> feszültséget<abbr title="90V">()</abbr> kapcsolok rá, alul lesz a <span class="WHITE"><strong>+</strong></span> és felül a <span class="WHITE"><strong>&#8722;</strong></span> &#10140; ez fontos!!!</div>
+		<details><summary>miért fontos, hogy alul legyen a pozitív töltés?</summary><ul class="normal">
+			<li>mert a fehérje-minták<abbr title="vagy DNS vagy RNS-minta">()</abbr> töltése <abbr title="okát lásd később">negatív</abbr>, és azoknak lefele kell majd áramlaniuk</li>
+			<li>(ugyanis ha felfele áramlanának, akkor egyből kijutnának a pufferoldatba, és akkor nem lehetne folytatni a mérést)</li>
+		</ul></details>
+		<div><span class="WHITE">#5</span> ezután hagyom így kb 40percig</div>
+		<img style="max-width:20%" src="images/gy3_zsbfltlts.png">
+		<img style="max-width:20%" src="images/gy3_fttkd.png">
+		<img style="max-width:20%" src="images/gy3_mrswt.png">
+		<img style="max-width:20%" src="images/gy3_mrsmnt.png">
+	</ul></details>
+	<details class="kerdes 4/3" id="msb.92"><summary><i>első fázis</i> alatt az elmozdulás mitől függ? (részletesen indokolva!)</summary><ul class="normal">
+		<div><strong>SDS kezelés nélkül 3 dologtól függene &#10140; tömeg, alak, töltés</strong></div>
+		<li>töltéssel arányos &#10140; minél nagyobb, annál nagyobb erő hat majd rá (hisz a negatív v. pozitív pólus annál jobban vonzza)</li>
+		<li>tömeggel fordítottan arányos &#10140; minél nagyobb, annál kisebb sebességgel mozog (hisz F=m*a, tehát ha két azonos töltésű fehérje van, akkor ugyanakkora erő hat rájuk, de a kisebb tömegűt ez jobban gyorsítja)</li>
+		<li>alak is számít &#10140; ugyanis a gél "hálót" alkot, és ebben az alaktól függően "akadnak el"</li>
+		<div><strong>SDS kezelés után azonban már csak a tömegtől függ</strong></div>
+		<li>ugyanis a dodecil-szulfát apoláros-farok <img class="mini" src="images/gydsszrkt.png"> része az apoláros oldaláncokkal alkot kötést &#10140; így <abbr title="Mivel a polipeptid-lánchoz az SDS molekulák igen nagy számban kötődnek, így a fehérje saját töltése elhanyagolhatóvá válik az SDS által biztosított nagyszámú negatív töltéshez képest">kb.</abbr> a fehérjék negatív töltése arányos lesz a tömegükkel <abbr title="fajlagos töltésük tehát kb megegyezik">()</abbr> &#10140; fajlagos töltésük megegyezik &#10140; <strong>töltéstől <abbr title="ami kezdetben volt ugye!!! tehát a fehérje-töltésétől">!!!</abbr> már nem fog függni</strong>, !!!tömegtől <abbr title="hisz fajlagos töltésük megegyezik, tehát ha egyik tömege: 5m, akkor töltése: 5Q, ráható erő: 5F, gyorsulása: a. Egy másiké ha 10m, akkor a töltése 10Q, rá ható erő 10F, gyorsulása ugyanúgy: a">se kéne</abbr> <abbr title=",,gyorsulás nem függ tőle, csak a lassulás''">de attól mégis!!!(lásd lentebb)</abbr></li>
+		<li>ezenkívül a negyedleges, a harmadlagos és bizonyos mértékben a másodlagos szerkezetet megbontja &#10140; kitekerednek &#10140; <strong>alaktól sem</strong> fog függni már(hisz mindegyiké azonos)</li>
+		<li><span class="Important">"csak a méret a lényeg"</span> az egyetlen amitől már csak függ, az a "lineáris" méret &#10140; ugyanis a gél alkotta "hálóban" az a fehérje, amelyik hosszabb, az jobban elakad, és lassabban mozog &#10140; a méret pedig arányos a tömeggel, így a tömegtől mégiscsak függ &#10140; <span class="Important">kizárólag a tömegtől(~méret) függ</span> az elmozdulás mértéke (fordítottan arányos!)</li>
+	</ul></details>
+	<details class="kerdes 3/3" id="msb.70"><summary><i>első fázis</i> alatt mi zajlik? milyen eredményt várok?</summary><ul class="normal">
+		<li>negatív töltésű fehérjék elkezdenek a pozitív töltés fele vándorolni</li>
+		<li>a kis méretűek közelebb jutnak az aljához, mint a nagy méretűek, hisz a gél alkotta háló kevésbé gátolja őket</li>
+	</ul></details>
+	<details class="kerdes 3/8" id="msb.71"><summary>fehérje minták készítése &#10140; célok? lépések?(3+3)</summary><ul class="normal">
+		<li>célok</li><ul>
+			<li>vándorlás <strong>töltés</strong>től függésének kilővése</li>
+			<li>vándorlás <strong>alak</strong>tól függés kilővése</li>
+		</ul>
+		<li>így először hevítéssel denaturáció történik &#10140; harmadlagos (és negyedleges) szerkezet megszűnik &#10140; <i>így mindegyik alakja lényegében ugyanaz kb. (egy vonal)</i></li>
+		<li>utána SDS-el kezelés</li>
+		<li>ezenkívül festés is történik</li>
+		<details><summary>fehérjék töltése milyen alapvetően?</summary><ul class="normal">
+			<li>változó, van amelyik pozitív, van amelyik negatív (függ aminosav összetétel & pH) <abbr title="DNS és RNS negatív a foszfát következtében, szóval ott nincs ilyen probléma">&#10045;</abbr></li>
+		</ul></details>
+		<details><summary>fehérjék töltése hogyan állítom be és milyenre?</summary><ul class="normal">
+			<li>SDS = <abbr title="nátrium">sodium</abbr> <abbr title="12">duodecil</abbr> szulfát</li>
+			<li>a szulfátionok hozzákapcsolódnak a fehérjékhez, és erősen negatív töltésűvé alakítják</li>
+			<li>így a kezdtben elenyésző töltéskülönbség megszűnik</li>
+			<li>sőt a hozzákapcsolódó anionok száma arányos a fehérje méretével &#10140; így nem jön létre újabb töltéskülönbség <abbr title="mert ha pl. m méretű az egyik fehérje, akkor annak a töltése mondjuk q, ha egy másik 2m akkor annak 2q &#10140; a rá ható 'feszültség kövekeztébeni gyorsító erő' F ugyan utóbbira kétszer nagyobb lesz, de mivel annak tömege is kétszer akkora így ugyanúgy fog gyorsulni, azaz vándorolni (F=m*a)">&#10045;</abbr></li>
+			<img src="images/gy3_sds.png">
+		</ul></details>
+		<details><summary>SDS kezelés után, ha visszahűl akkor renaturálódik?</summary><ul class="normal">
+			<li>nem, mert negatív töltésűvé váltak, és az megakadályozza (taszítják egymást)</li>
+		</ul></details>
+		<details><summary>festés célja?</summary><ul class="normal">
+			<li>kék színűre<abbr title="egész pontosan Brohm-fenol kék">()</abbr> festjük a fehérjét</li>
+			<li>ez a vándorlás során elől fog haladni, ugyanis ennek a legeslegkisebb a mérete</li>
+			<li>tehát a célja csupán annyi, hogy látszódjon hol tarthat max a legelső fehérje // ezenkívül pipettázásnál, hogy zsebbe ment-e</li>
+			<div><span class="Vocab">fontos!</span> vándorlásnál ez halad legelől, ez azzal is jár, hogy a lemaradt fehérjék ismét színtelenné válnak&#10140; azokat "újra" kell festeni majd a vándorlás után</div>
+			<img src="images/gy3_rdmny.png">
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 3/3" id="msb.72"><summary style="color:Magenta"><font color="Green">vándorlás során a fehérje minták milyen eredményt adnak?</font></summary><ul class="normal">
+		<li>mintákat nemtudom pontosan mik voltak &#10140; 1. vérszérum <span class="MISS">2. <abbr title="centrifugált csapadék">??</abbr> 3. ??</span> 4. BSA</li>
+		<li>annyit tudok, hogy elsőnél lesz mondjuk 10db csík</li>
+		<li>4.nél 1db lesz csak (járjak utána gyakkönyv)</li>
+		<li>2.nál lesz mondjuk 4db &#10140; 3.nál akkor az a 6db lesz ami nem volt a másodiknál (mert a 2. és a 3. az első különválasztva)</li>
+		<li>létra &#10140; tele van nagyon sok méretű fehérjével, amihez viszonyítva be lehet lőni a többit, hogy mi lehet (hisz a létra fehérjék meg vannak adva, és tömegük is) <abbr title="ha látom hogy az 1.-nél az egyik csík ugyanaddig jutott el, mint az egyik csík a 4esen, és a 4esen az egy 48kDa fehérje, akkor mivel az albumin annyi, ezért tudhatom, hogy az 1.esnél albuminnak van az a csíkja ott">(pl)</abbr></li>
+		<li><span class="MISS">gyakkönyvben még nemjártam utána!</span></li>
+		<img src="images/gy3_rdmny.png">
+	</ul></details>
+	<details class="kerdes 3/3" id="msb.73"><summary><i>második fázis</i> lényege?</summary><ul class="normal">
+		<li>egyik üveglap párban lévő gélt kiveszem és beleteszem egy kék színű festékoldatba &#10140; 5percig otthagyom &#10140; fehérjecsíkok kék színűek lesznek</li>
+		<li>másik gélnél kissé bonyolultabb a helyzet &#10140; ún. <span class="Important">Western-blottolást</span> kell még végezni (ez jobb felbontást fog eredményezni)</li><ul>
+			<li>először kiveszem a gélt és ráteszem egy nitrocellulóz tartalmú membránra &#10140; ez a membrán nem ereszti át a fehérjét</li>
+			<li>töltéseket itt is hasonlóan mint az első fázisban: futtatókádban lesz pufferoldattal feltöltve + feszültség rákapcsolva</li>
+			<li>közben történik egy festés (fekete színre)</li>
+			<li>itt az a fontos, hogy a membrán van a pozitív töltés fele, hiszen a fehérje abba az irányba vándorol és a cél, hogy a membránra menjen át a fehérje</li>
+		</ul>
+		<img src="images/gy3_glmmbrnf.png">
+		<img src="images/gy3_mrsdlényg.png">
+	</ul></details>
+	<details class="kerdes 2/1" id="msb.93"><summary>Western-blottolás célja?</summary><ul class="normal">
+		<li>magán a gélen - az elválasztást követően - a kezdetben egymástól élesenelváló fehérje-sávok egy idő után diffundálni kezdenek, ezzel szemben a membránon erősen megkötődnek, így az eredeti gél-mintázat <span class="Important">jobban megőrizhető</span></li>
+		<li> a membrán fizikailag <span class="Important">könnyebben is kezelhetőa továbbiakban</span>, mint a törékeny gél</li>
+	</ul></details>
+	<details class="kerdes 3/3" id="msb.74"><summary>orvosi felhasználás?</summary><ul class="normal">
+		<div>pl. egészséges vérrel készítettett összehasonlítva egy beteg vérével készülttel...</div>
+		<li>ha a betegében hiányzik egy csík &#10140; lehet pl. immunfehérje-hiány (genetikai)</li>
+		<li>ha a betegében plusz van egy csík &#10140; lehet pl. baktérium toxinfehérje</li>
+	</ul></details>
+	<details><summary><span class="Vocab">Megj</span> &#10140; video is van róla elvileg (papírra leírtam őket, majd nézzek esetleg utána)</summary><ul class="normal">
+	</ul></details>
+ </div>
+ <div><div class="title">immunfestés</div>
+	<details class="kerdes 4/1" id="msb.75"><summary>célja?</summary><ul class="normal">
+		<li>konrét fehérje kimutatása</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="msb.99"><summary>előnyei?(2)</summary><ul class="normal">
+		<li>konrét fehérje kimutatható vele</li>
+		<li>szekunder_antitesttel a jel felerősíthető <abbr title="magyarázatot ne keressek rá, de fontos hogy szvsz nem az a magyarázata, hogy poliklonális. ugyanis az csak az ''olcsóságát befolyásolja''">&#10045;</abbr></li>
+	</ul></details>
+	<details class="kerdes 3/1" id="msb.94"><summary>antigén & antitest &#10140; milyen típusú vegyületek?</summary><ul class="normal">
+		<img src="images/gy3_ntsntst.png">
+		<li>antigén általában fehérje <abbr title="pl. allergének">()</abbr></li>
+		<li>antitest(antigén ellen termelt ellenanyag) mindig fehérje &#10140; azon belül is immunoglobulinok</li>
+	</ul></details>
+	<details class="kerdes 2/1" id="msb.95"><summary>antitest előállíttatása?</summary><ul class="normal">
+		<li>a vizsgálni kívánt antigént állatba(pl.egér) juttatva, <abbr title="B-limfociták leginkább (de T-limfociták is)">az antitestet termel ellene</abbr>, és az felhasználható</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="msb.96"><summary>antitest &#10140; specifikus?</summary><ul class="normal">
+		<li>igen, tehát csak adott antigént köt meg</li>
+		<img src="images/gy3_ntsntst.png">
+	</ul></details>
+	<details class="kerdes 3/2" id="msb.97"><summary>lényege?</summary><ul class="normal">
+		<li>előállított antitestet ráviszem a membránra</li>
+		<li>csak az adott fehérjékhez fognak kötődni</li>
+		<li>ezután festés</li>
+	</ul></details>
+	<details class="kerdes 3/4" id="msb.98"><summary>festés &#10140; lényege? típusok?(3)</summary><ul class="normal">
+		<li>nem az elsődleges antitestet lesz megfestve, hanem a másodlagos antitest</li>
+		<li>elsődleges kötődik az antigénhez, másodlagos pedig az elsődlegeshez</li>
+		<li><font class="abbr">oka ►</font> jel jelentős mértékben felerősíthető másodlagos antitest hozzáadásával. És olcsó, mert poliklonális. <abbr title="<i>Előállítása lóban/kecskében történik egér valamely antitestjének bejuttatásával.</i>">()</abbr></li>
+		<li><font class="abbr">monoklonális ►</font> adott faj <strong>EGY</strong> fehérjéje ellen. Primer antitest ilyen.</li>
+		<li><font class="abbr">poliklonális ►</font> adott faj <strong>LEGTÖBB</strong> fehérjéje ellen.<abbr title="összes egérben termelt elsődleges antitest típushoz hozzákapcsolódik. Tehát ha egyik mérésnél A antigén ellen termelt egér antitest volt használva, arra is jó, illetve a másik mérésnél használt B antitesthez is kapcsolódik">&#10045;</abbr> Szekunder antitest ilyen (ugyanis a primer nem-variábilis szakaszaihoz képes kötődni)</li>
+	  ––––––––––––––––––––
+		<li>enzimes</li>
+		<li>fluoreszcens <abbr title="majdnem olyan érzékeny, mint a radioaktív, de drága">()</abbr></li>
+		<li>radioaktív anyag hozzáadása (érzékeny, tehát kis mennyiséget is képes kimutatni)</li>
+	</ul></details>
+http://elte.prompt.hu/sites/default/files/tananyagok/BevBiokemGyak/ch07s03.html
+ </div>
+<!----></details>
+
+<!----><details><summary class="phase">4. Papírkromatográfia & TLC</summary>
+ <div><div class="title"></div>
+	<details open><summary><strong>SZÖVEG</strong></summary><ul class="normal">
+		<div style="float:right;max-width:30%">
+			<img src="images/gy4_lnyg.png">
+			<img src="images/gy4_rdmny.png">
+		</div>
+		Cél: aminosavak elválasztása. Alapja az oldhatóság, tehát ezt felhasználva az apoláros aminosavak elkülöníthetők a polárosoktól. (Eddigi mérések alapja ugye az eltérő tömeg,töltés,alak volt.) Feladat: 4 féle ismert aminosavval és 2 féle ismeretlen aminosavat "mérünk meg". Majd a mérési eredményekből meghatározzuk, hogy a másik 2 ismeretlen, milyen fajta aminosav lehet.  
+
+		<br><br><strong>Kivitelezés lényege</strong><br>
+		Egy tankba öntök (kb.4cm) médiumot. Ez 2 oldószer keveréke: egyik poláros, másik apoláros. Ezek egymással keverednek, tehát nem válnak külön (mint "pl. az olaj a levesben felülre kerül"). A poláros oldószer ecetsav+víz, az apoláros pedig butanol. Ebbe fogom futtatni az aminosavakat, kétféle hordozón: papír és TLC. A papírkromatográfiás eljárást ismertetem először. Van egy téglalap alakú papír. Ezen bejelölök egy vonalat kb. 6cm-re az aljától. Erre a vonalra viszem fel a <abbr title="képen csak 3 van">6</abbr> különféle aminosavtartalmú "folyadékot" következőképp. Kiválasztom az egyiket és 2cseppet cseppentek egymásra. Ezután tőle kb. 1cm-re a következővel ugyanez és így tovább (mivel kb.8cm széles a papír, így felférnek). Ezután a tankba beleteszem a papírt <abbr title="illetve oldalról nézve a papírt, pont középen van">"hosszában"</abbr> <img class="mini" src="images/gy4_ldlnzt.png">. A papírt hozzáragasztom felül a tank fedőjéhez, így megáll majd <abbr title="nem dől el oldalra a tank falának">&#10045;</abbr>. Így hagyom kb 30-45percig. Ezután kiveszem a papírt, és először megjelölöm egy vonallal, hogy meddig "nedvesedett át". Ez az ún. frontvonal: eddig jutott el az apoláros oldószer, és egyben ez jutott legfelülre (tehát egyik aminosav se hagyja le, még a legapolárosabb se). Ezután hajszárítóval megszárítom, majd utána lefújom spray-vel (magyarázatát lásd lennt), majd újra megszárítom hajszárítóval. Végeredményben színes foltokat fogok látni. TLC-nél ugyanezt kell csinálni. /TLC <abbr title="mármint alakra">ugyanúgy</abbr> néz ki, mint a papír, csak vékonyabb, és a szélessége is kisebb (tehát az aminosavcseppeket kevesebb mint 1cm-el kell egymás mellé tenni)/
+		
+		<br><br><strong>Elméleti háttér</strong><br> 
+		Papír anyaga cellulóz. A poláros oldószer (víz+ecetsav) a papíron lassan halad felfele, mert hozzákötődik egy hidrátburok réteg a papírhoz folyamatosan. Így ezt stacionárius mozgásnak nevezzük. A poláros aminosavak szintén ugyanígy lassan mozognak. Ezzel szemben az apoláros butanol és aminosavak, gyorsan ún. mobilis mozgással haladnak felfele a papíron. Tehát minél feljebb jut egy aminosav, annál inkább apoláros. És fordítva: minél kevesebbet ment fel (közelebb van a rajtvonalhoz), annál inkább poláros. A végén a hajszárítóval szárítás és spray-vel lefújás azért kell, hogy az aminosavakat láthatóvá tegyük. A spray-vel való lefújás során ninhidrin-t juttatunk rá, ami megszínezi. TLC mérésnél ugyanez van. TLC-ről annyit kell tudni, hogy 2rétegből tevődik ki: egy alumínium, ami megtartja az egészet, és egy szilika réteg, mely következtében a felbontóképesség jobb (cellulózéhoz képest).
+		
+		<br><br><strong>Megjegyzések</strong><br>
+		<span class="WHITE">#</span> Azt fontos tudni, hogy a Gly ugyan apoláros, mégis alig mozdult el. Ennek a magyarázata, hogy alapvetően az aminosav erősen poláros, hiszen aminoscsoport és karboxilcsoportja is van, csupán oldallánca miatt került apoláros besorolásra, hiszen fehérjében <abbr title="hisz ott a peptidkötések ''kilövik'' a karboxil és aminocsoportot">tényleg az</abbr>. <span class="WHITE">#</span> Pro színe sárga volt, míg a többié lilás, ennek oka, hogy előbbiben nincs aminocsoport a többivel ellentétben. <span class="WHITE">#</span> Aromás aminosavak apolárosak.
+	</ul></details>
+ </div>
+<!----></details>
+
+<!----><details><summary class="phase">6. &beta;-galaktozidáz</summary>
+ <div><div class="title">gyak-jegyzeteim</div><ul class="normal">
+	<li>A transzkripció szabályozása prokariótákban (14.tétel) van kapcsolatban ez a mérés &#10140; itt csak "kiegészítem" pár dologgal</li>
+	<li>operon = operátor(lac) + struktúrgének(lacZ+lacY+lacA) (tehát a promoter + operátort kódoló gén szvsz nem tartozik bele)</li>
+	<li>prokariótáknál formil-metioninnal kezdődik a transzláció</li>
+	<li>lac &#10140; represszor</li>
+	<li>CAP &#10140; aktivátor</li>
+	<li>pozitív szabályozás &#10140; laktóz jelenléte és/vagy glükóz hiánya (ami cAMP jelenlétet okoz!)</li>
+	<li>negatív szabályozás &#10140; laktóz hiánya és/vagy glükóz jelenléte (ami cAMP hiányt okoz!)</li>
+	<li>(1db E.colinak csak 1 operonja van)</li>
+  <hr>
+	<li>ONPG &#10140; mesterséges szubsztrátot adok a &beta;-galaktozidázhoz &#10140; sárga színű termék lesz (minél sárgább, annál több termék keletkezett, tehát az enzimaktivitással arányos)</li>
+	<li>IPTG &#10140; induktor a laktóz helyett &#10140; ez így nem fog csökkeni a reakció során (ami enzimtermelés fokozást csökkentené), ellentétben a laktózzal ha az lenne</li>
+  <hr>
+	<li>mérés 3lépése</li><ul>
+		<li>1.lépés alapja, hogy "az enzimeket legyártjuk bizonyos idő alatt, majd minden mást elpusztítunk és csak azok maradnak" (különböző mennyiségeket gyártunk!)</li>
+		<li>2.lépés mindegyik esetben ugyanaz &#10140; szubsztrátot hozzáadva az egyes enzim-oldatokhoz, hagyom mindegyiket 15percig működni</li>
+		/ezután hozzáadok Na-karbonát &#10140; enzimműködést leállítja/
+		<li>3.lépés mindegyik esetben ugyanaz &#10140; megmérem spektrofotométerrel az oldatok abszorpcióját, ami arányos a keletkezett termékek koncentrációjával hisz A = &epsilon;*c*l !!</li>
+	</ul>
+	<img src="images/gygrfkglzn.png">
+	<li>1.lépésnél</li><ol>
+		<div>IPTG-t hozzáadva E.coli-oldathoz elkezdenek enzimet termelni</div>
+		<li>hagyom 0percig enzimet termelni</li>
+		<li>hagyom 15percig enzimet termelni</li>
+		<li>hagyom 30percig enzimet termelni</li>
+		<li>0percnél kloramfenikolt adok hozzá, majd hagyom 30percig enzimet termelni</li>
+		<li>15percnél kloramfenikolt adok hozzá, majd hagyom 30percig enzimet termelni</li>
+		<li>/vak/</li>
+		<li>0percnél rifampicint adok hozzá, majd hagyom 30percig enzimet termelni</li>
+		<li>15percnél rifampicint adok hozzá, majd hagyom 30percig enzimet termelni</li>
+		<li>/rifampicines vak/</li>
+	</ol>
+	<li><span class="Important">mérés várható eredményei grafikonon &#10140; magyarázattal</span></li><ol>
+		<li>0perc alatt semmi enzim nem termelődik, így semmi színes termék nem keletkezik, így az abszorbanciája 0</li>
+		<li>15perc alatt keletkezik valamennyi enzim &#10140; termék &#10140; abszorbancia</li>
+		<li><i>30perc alatt több mint 2x annyi enzim keletkezik, ugyanis a már meglévő mRNS-ekről is folyik transzkripció</i> <abbr title="(tehát ha egy mRNS-se lenne ismét, csak a 15perc alatt termelődött enzimek, és úgy várnék megint 15percet, akkor lenne 2x annyi, azonban itt már vannak alapból is(tehát 15perc után) mRNS-ek)">&#10045;</abbr></li>
+		<li>kloramfenikol gátolja a transzlációt &#10140; 0perc alatt semmi enzim nem termelődik &#10140; abszorbanciája 0</li>
+		<li>ugyanaz zajlik le, mint a 2esnél hiszen a 15.perctől több enzim-szintézis már nem tud végbemenni (csakúgy, mint a 2esnél amikor megszakítom)</li>
+		<li>vak oldat &#10140; 1-5 3.lépésben történő méréséhez van használva</li>
+		<li>rifampicin transzkripciót gátolja &#10140; 0 enzim termelődik</li>
+		<li><span class="Important">3 és 5 között lesz valahol</span> &#10140; ugyanis a 15percig letermelődött mRNS-elről még lesz utána is transzláció!!</li>
+		<li>vak oldat &#10140; 7-8 3.lépésben történő méréséhez, ugyanis rifampicin narancs színű</li>
+	</ol>
+ </ul></div>
+	<li>megjegyzés &#10140; 14.tétel + gyakfüzet + jegyzeteim alapján könnyen megértem</li>
+<!----></details>
+
+<!----><details open><summary class="phase">Fehérjék vizsgálata.</summary>
+ <div><div class="title">általános</div>
+	<details class="kerdes 3/5" id="bKI.9"><summary>oldhatóság miktől függ?</summary><ul class="normal">
+		<details><summary>oldat pH-ja &#10140; lényege?</summary><ul class="normal">
+			<li>hidrátburok kialakulásának feltétele a poláros és ionizált aminosavak jelenléte</li>
+			<li>az ionizáció függ a pH-tól</li>
+			<li>izoelektromos_pont &#10140; pH, mikor a fehérje nettó töltése 0</li>
+		</ul></details>
+		<details><summary>könnyűfémsók koncentrációjától?</summary><ul class="normal">
+			<li>könnyűfémek az első két <abbr title="oszlop">főcsoport</abbr> a periódusos_rendszerben (pl. Na, K, Ca, Mg) <abbr title="Al, Ti, Si is még könnyűfém">&#10045;</abbr></li>
+			<li>maximális oldékonyság egy adott könnyűfémsó koncentrációjú oldat esetében &#10140; ennél nagyobb/kisebb koncentrációnál csökken</li>
+			<li>különböző fehérjéknek különböző mértékben változik oldékonyságuk &#10140; a különböző fehérjék elválaszthatók</li>
+		</ul></details>
+		<details><summary>oldószer dielektromos_állandója <span class="WHITE">k<sub>&epsilon;</sub></span> &#10140; lényege?</summary><ul class="normal">
+			<li>dielektromos_állandó &#10140; molekulák polaritásának mértékének kifejezője</li>
+			<li>pl. aceton és etanolé 20, míg vízé 80 (víznek nagyobb, ahogy a polaritása is)</li>
+			<li>dielektromos állandó csökkentésével csökken a fehérjék oldékonysága <abbr title="általában">()</abbr></li>
+			<li>különböző fehérjéknek különböző mértékben változik oldékonyságuk &#10140; a különböző fehérjék elválaszthatók</li>
+		</ul></details>
+	</ul></details>
+ </div>
+ <div><div class="title">kisózás</div>
+	<details class="kerdes 3/2" id="bKI.12"><summary>lényege?</summary><ul class="normal">
+		<li>könnyűfémsók pl. <abbr title="ammónium-szulfát">[(NH)<sub>2</sub>SO<sub>4</sub>]</abbr>, MgSO<sub>4</sub>, NaCl vízben ionokra disszociálnak</li>
+		<li>ezek körül hidrátburok keletkezik</li>
+		<li>ha elég nagy a koncentrációjuk, akkor elkezdik elvonni a fehérjék hidrátburkát alkotó vízmolekulákat</li>
+		<li>&#10140; fehérje kicsapódik</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.14"><summary>ammónium-szulfáttal történő előnye?</summary><ul class="normal">
+		<li>kíméletes &#10140; reverzibilis a denaturáció, sőt gyakran megőrzi natív szerkezetét</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.15"><summary>tisztítás <i>szinonimák</i>?</summary><ul class="normal">
+		<li>elválasztás = frakcionálás <abbr title="tehát ez az, amit végzünk most kisózással: a fehérjéket külön választjuk">&#10045;</abbr></li>
+	</ul></details>
+	<details class="kerdes 3/1" id="bKI.16"><summary>mely két telítési értéket adják meg tisztításkor?</summary><ul class="normal">
+		<li>azokat, melyek között a tisztítandó fehérje szelektíven kicsapódik</li>
+		<li>telítési érték = koncentrációja az ammónium-szulfátnak <abbr title="ez őő nem szentírás, de egyenlőre így fogom fel">!?</abbr></li>
+	</ul></details>
+ </div>
+<!----></details>
+
+<!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
+
+
+
+<!--///////////////////////////-->  <div><div class="mainTitle">EGYÉB</div>  <!--///////////////////////////-->
 
 <!----><details><summary class="phaseD">GÉNEXPRESSZIÓ SZABÁLYOZÁSA - egyenlőre nem kategorizált (már ki se dolgozom, inkább skipp).</summary><div><div class="title"> </div>
 	<div style="float:right;max-width:30%">
@@ -2425,9 +3099,13 @@
 
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-<!--//////////////////////////////////////-->  <div><div class="mainTitle">előadások</div>  <!--//////////////////////////////////////-->
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+<!--|||||||||||||||||||||||||||||||||||||||||||-->  <div><div class="mainTitle">előadások</div>  
 
 <!----><details><summary class="phase">#1 Eukarióta és prokarióta sejt, a genetikai információ</summary>
  <div><div class="title">általános</div>
@@ -2802,426 +3480,6 @@
  <div><div class="title">prokarióták.</div>
 	<details class="kerdes open J/1" id="msb.86"><summary>EM kép</summary><ul class="normal">
 		<img src="images/trnszkrpc.png">
-	</ul></details>
- </div>
-<!----></details>
-
-<!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
-
-<!--//////////////////////////////////////-->  <div><div class="mainTitle">gyakorlatok</div>  <!--//////////////////////////////////////-->
-
-<!----><details><summary class="phase">1. feherjék jelenlétének kimutatása (01.31)</summary><div><div class="title"></div>
-	<details class="kerdes 5/1" id="msb.14"><summary>cél?</summary><ul class="normal">
-		<li>fehérje JELENLÉTÉNEK kimutatása kicsapódással &#10140; tehát se nem minőségük, se nem mennyiségük, pusztán az, hogy VAN-e?</li>
-		<li><i>ez is kvalitatív, csakúgy mint a 2.tételnél</i> ?!</li>
-	</ul></details>
-	<details class="kerdes 2/1" id="msb.41"><summary>fehérje jelenlétének kimutatása a cél &#10140; orvosi jelentőségére példa?</summary><ul class="normal">
-		<div>pl. vizeletben a fehérje jelenléte nem normális</div>
-		<li>ezt okozhatja vese-gyulladás <abbr title="vérből átengedi a fehérjéket a lamina_basalison">()</abbr></li>
-		<li>vagy húgyuti fertőzés <abbr title="fehérvérsejtek ott támadják a kórokozókat">()</abbr></li>
-	</ul></details>
-	<details class="kerdes 4/1" id="msb.42"><summary>vízben oldódásuk szerkezete?</summary><ul class="normal">
-		<li>globuláris alakot vesznek fel</li>
-		<li>a gömb közepén vannak az apoláros oldalláncú aminosavak</li>
-		<li>a gömb felszínén vannak a poláros és ionizált oldalláncú aminosavak</li>
-		<img src="images/gy1_glpbfrzsfhr.png">
-	</ul></details>
-	<details class="kerdes 2/1" id="msb.43"><summary>membránfehérjék szerkezete?</summary><ul class="normal">
-		<li>apoláros oldalláncú aminosavak vannak a membránba</li>
-		<li>poláros és ionizált oldalláncú aminosavak vannak "kívül/belül"</li>
-		<img src="images/gy1_glpbfrzsfhr.png">
-	</ul></details>
-	<details class="kerdes 3/2" id="msb.44"><summary>hidrátburok funkciója?</summary><ul class="normal">
-		<li>megakadályozza a fehérje kicsapódását <i>&#10140; tehát az oldhatóságukkal arányos</i></li>
-		<li>tehát a hidrátburok lazítása/megszüntetése a kicsapódási hajlamot fokozza</li>
-	</ul></details>
-	<details class="kerdes 2/1" id="msb.47"><summary>kicsapódás szinonima?</summary><ul class="normal">
-		<li>precipitáció</li>
-	</ul></details>
-	<details class="kerdes 5/1" id="msb.48"><summary>kicsapódás mi?</summary><ul class="normal">
-		<li><i>oldat már telített, ezért kiválik a felszínen csapadék formában az oldott anyag</i></li>
-	</ul></details>
-	<details class="kerdes 5/1" id="msb.49"><summary style="color:Red"><font color="Green">kicsapódás (ir)reverizibilis 1-1pl?</font></summary><ul class="normal">
-		<li>reverzibilis &#10140; nehézfémion a diszulfid-hídakat szétszedi <span class="FIX">(kéne konkrét pl után nézni gyakkönyvben, hátha van)</span></li>
-		<li>irreverzibilis &#10140; könnyűfémion elvonja a vízmolekulákat &#10140; visszahigítva visszaáll</li>
-	</ul></details>
-	<details class="kerdes 3/2" id="msb.45"><summary>oldékonyság és natív állapot közti összefüggés (kicsapódás vs denaturáció)? (1-1-1pl)</summary><ul class="normal">
-		<li>általában denaturáláskor csökken a fehérjék oldékonysága &#10140; pl. tojásfehérje forralás</li>
-		<li>azonban ez nem általános</li><ul>
-			<li>kicsapódott fehérje is lehet natív &#10140; sok natív fehérjét beletéve egy idő után telített lesz és kicsapódik, de ugyanúgy natív marad</li>
-			<li>oldott fehérje is lehet denaturált &#10140; pl. 42°C testhőmérsékletnél fehérje kicsapódás nincs, de denaturáció van</li>
-		</ul>
-	</ul></details>
-	<details class="kerdes 3/2" id="msb.46"><summary>natív, de/renaturáció, (ir)reverzibilis &#10140; lényegük?</summary><ul class="normal">
-		<li>natív szerkezet &#10140; fehérje biológiailag természetes, funkcióképes szerkezete</li>
-		<li>denaturáció &#10140; szerkezete megváltozik, többé már nem natív (funkcióképessége csökken, megszűnik)</li><ul>
-			<li>reverzibilis &#10140; képes még renaturációra (spontán a denaturációt kiváltó hatás megszüntetésével /vagy/ adott módszerrel)</li>
-			<li>irreverzibilis &#10140; nem képes már renaturációra <i>(pl. 45°C-on)</i></li>
-		</ul>
-		<li>renaturáció &#10140; szerkezete visszaáll natívra</li>
-	</ul></details>
-	<details class="kerdes 4/3" id="msb.15"><summary>módszerek?</summary><ul class="normal">
-		<div>fehérjeoldathoz adok...</div>
-		<li>alkoholt</li>
-		<li>nehézfémsót (ólom,higany,réz)</li>
-		<li>ásványi savat (kénsav,salétromsav)</li>
-		<li>szerves savat: TCA</li>
-		<div>"melegítéses módszer"</div>
-	</ul></details>
-	<details class="kerdes 4/1" id="msb.16"><summary>melegítéses "módszer" lényege?</summary><ul class="normal">
-		<li>először a fehérje másodlagos, majd utána a harmadlagos szerkezete változik meg</li>
-		<li>tegyek 4 kémcső mindegyikébe 2-3ml 1% BSA fehérjét</li>
-		<li>majd ezek közül egyiket hagyjam így, másik 3ba az alábbiakat külön-külön</li><ul>
-			<li>1csepp ecetsav</li>
-			<li>3-4csepp ecetsav</li>
-			<li>több csepp NaOH</li>
-		</ul>
-		<li>ezeket melegítsem</li>
-	</ul></details>
-<!----></div></details>
-
-<!----><details><summary class="phase">2. feherjék mennyiségének mérése (kvalitatív) (02.07)</summary><div><div class="title"></div>
-	<details class="kerdes 4/1" id="msb.50"><summary>"milyen alapon történik"?</summary><ul class="normal">
-		<li>spektrofotometriás, ugyanis az abszorpció egyenesen arányos a koncentrációval (adott hullámhosszon)</li>
-		<li>ezt a jól ismert Lambert-Beer törvény írja le &#10140; <abbr title="abszorbancia = OptikaiDenzitás = extinkció">A</abbr> = <abbr title="koncentráció">c</abbr>*<abbr title="moláris extinkciós koefficiens (adott hullámhosszon)">ε</abbr>*<abbr title="elnyelő réteg vastagsága">x</abbr></li>
-		<li>(első lépésben meghatározandó az abszorpciós_maximum, tehát a hullámhossz, amelyen a legnagyobb az ε)</li>
-	</ul></details>
-<!----></div></details>
-
-<!----><details><summary class="phase">3. SDS–PAGE (02.14) – <span class="Important">Bikémnél is van róla szó</span></summary>
- <div><div class="title">SDS–PAGE</div>
-	<details class="kerdes 3/1" id="msb.64"><summary>SDS–PAGE jelentése?</summary><ul class="normal">
-		<li><abbr title="nátrium"><strong>s</strong>odium</abbr> <abbr title="12"><strong>d</strong>odecil</abbr> <strong>s</strong>zulfát <strong>p</strong>oli<strong>a</strong>krilamid <strong>g</strong>él<strong>e</strong>lektroforézis</li>
-	</ul></details>
-	<details class="kerdes 3/1" id="msb.65"><summary>cél 1 mondatban?</summary><ul class="normal">
-		<li>fehérjék elválasztása méretük alapján</li>
-	</ul></details>
-	<details class="kerdes 3/1" id="msb.66"><summary>gélt mi alkotja?</summary><ul class="normal">
-		<li><strong>poli</strong>akril<strong>amid</strong> <abbr title="könnyebb olvashatóság érdekében vastagítottam csak meg">&#10045;</abbr> <abbr title="ez akrilamid formában még rákkeltő">&#10045;</abbr></li>
-		<div><span class="vocab"><strong>§</strong></span> gél az "félig szilárd, félig folyékony" (kocsonyás)</div>
-	</ul></details>
-	<details class="kerdes 3/2" id="msb.67"><summary>gél &#10140; hol van? mi van benne?</summary><ul class="normal">
-		<li>két üveglap közé van téve, melyek között 1mm rés van</li>
-		<li><abbr title="képen a fekete színű hosszabb mint a piros">egyik</abbr> üveglap hosszabb mint a másik</li>
-		<li>kétoldalt rögzítve van a két üveglap, hogy oldalra ne folyjon ki semmi</li>
-		<li class="abbr">ezenkívül van benne egy fésű, aminek a funkciója, hogy annak helyén nem lesz gél <abbr title="ugyanis a gél mikor 'megszilárdulása' után lesz kivéve">()</abbr>  &#10140; zsebek lesznek ott, amiket majd fel lehet később tölteni &#10140; mivel? ► 1-4 fehérje-mintával külön-külön <img class="mini" src="images/gy3_mrsmnt.png"></li>
-		<img src="images/gy3_fsk.png">
-	</ul></details>
-	<details class="kerdes 3/2" id="msb.68"><summary>gél funkció?</summary><ul class="normal">
-		<li>a poliakrilamid egy hálózatot alkot, amely lassítja a rajta áthaladó molekulák mozgását</li>
-		<li>2 dolog alapján történik a lassítás: méret és alak <abbr title="FONTOS: a mérés során az alakot, mint szempont, ki fogjuk lőni, és csak a mérettől fog függeni">!!!</abbr></li>
-		<li>pl. ha van egy lombkorona és kitátott karral+lábbal zuhanok, akkor lassabban érek le a földre, mintha behúzott karral-lábbal esnék (ez az alak különbséget szimbolizálja)</li>
-		<li>pl. méret pedig szintúgy &#10140; minél nagyobb a méret, annál lassabban jut át a molekula, hisz annál inkább feltartja a háló</li>
-		<img src="images/gy3_vndrlsrny.png">
-	</ul></details>
-	<details class="kerdes 3/3" id="msb.69"><summary>két <abbr title="ez eléggé szvsz alapján történt, de sztem nem nagy hülyeség">&#10045;</abbr>fázisra osztottam a mérést. első fázisban mit végzünk?</summary><ul class="normal">
-		<li>először is 2db gél van, és mindegyik ugye 2üveglap között, 1-1fésűvel &#10140; első fázisban mindkettővel ugyanazt végzem</li>
-		<div><span class="WHITE">#1</span> fésűket kiveszem &#10140; üres zsebek maradnak ott</div>
-		<div><span class="WHITE">#2</span> pipettát használva a fehérje-mintákkal feltöltöm a zsebeket, utolsó zsebbe ún. létra-mintát teszek <abbr title="bár gyakon elvileg 8db volt, de azzal nincs értelme foglalkozni!! (ott is így ábrázoltuk, és ebben van a lényeg)">/lásd kép/</abbr></div>
-		<div><span class="WHITE">#3</span> ezután a futtatókádba teszem a <abbr title="ezeket a képen látható ilyen lila cucc fogja egybe &#10140; ezt nem kell tudnom, csak a kép értelmezése érdekében írtam le, ha később érteni szeretném">két üveglapot</abbr>, és feltöltöm pufferoldattal (ionos víz)</div>
-		<div><span class="WHITE">#4</span> feszültséget<abbr title="90V">()</abbr> kapcsolok rá, alul lesz a <span class="WHITE"><strong>+</strong></span> és felül a <span class="WHITE"><strong>&#8722;</strong></span> &#10140; ez fontos!!!</div>
-		<details><summary>miért fontos, hogy alul legyen a pozitív töltés?</summary><ul class="normal">
-			<li>mert a fehérje-minták<abbr title="vagy DNS vagy RNS-minta">()</abbr> töltése <abbr title="okát lásd később">negatív</abbr>, és azoknak lefele kell majd áramlaniuk</li>
-			<li>(ugyanis ha felfele áramlanának, akkor egyből kijutnának a pufferoldatba, és akkor nem lehetne folytatni a mérést)</li>
-		</ul></details>
-		<div><span class="WHITE">#5</span> ezután hagyom így kb 40percig</div>
-		<img style="max-width:20%" src="images/gy3_zsbfltlts.png">
-		<img style="max-width:20%" src="images/gy3_fttkd.png">
-		<img style="max-width:20%" src="images/gy3_mrswt.png">
-		<img style="max-width:20%" src="images/gy3_mrsmnt.png">
-	</ul></details>
-	<details class="kerdes 4/3" id="msb.92"><summary><i>első fázis</i> alatt az elmozdulás mitől függ? (részletesen indokolva!)</summary><ul class="normal">
-		<div><strong>SDS kezelés nélkül 3 dologtól függene &#10140; tömeg, alak, töltés</strong></div>
-		<li>töltéssel arányos &#10140; minél nagyobb, annál nagyobb erő hat majd rá (hisz a negatív v. pozitív pólus annál jobban vonzza)</li>
-		<li>tömeggel fordítottan arányos &#10140; minél nagyobb, annál kisebb sebességgel mozog (hisz F=m*a, tehát ha két azonos töltésű fehérje van, akkor ugyanakkora erő hat rájuk, de a kisebb tömegűt ez jobban gyorsítja)</li>
-		<li>alak is számít &#10140; ugyanis a gél "hálót" alkot, és ebben az alaktól függően "akadnak el"</li>
-		<div><strong>SDS kezelés után azonban már csak a tömegtől függ</strong></div>
-		<li>ugyanis a dodecil-szulfát apoláros-farok <img class="mini" src="images/gydsszrkt.png"> része az apoláros oldaláncokkal alkot kötést &#10140; így <abbr title="Mivel a polipeptid-lánchoz az SDS molekulák igen nagy számban kötődnek, így a fehérje saját töltése elhanyagolhatóvá válik az SDS által biztosított nagyszámú negatív töltéshez képest">kb.</abbr> a fehérjék negatív töltése arányos lesz a tömegükkel <abbr title="fajlagos töltésük tehát kb megegyezik">()</abbr> &#10140; fajlagos töltésük megegyezik &#10140; <strong>töltéstől <abbr title="ami kezdetben volt ugye!!! tehát a fehérje-töltésétől">!!!</abbr> már nem fog függni</strong>, !!!tömegtől <abbr title="hisz fajlagos töltésük megegyezik, tehát ha egyik tömege: 5m, akkor töltése: 5Q, ráható erő: 5F, gyorsulása: a. Egy másiké ha 10m, akkor a töltése 10Q, rá ható erő 10F, gyorsulása ugyanúgy: a">se kéne</abbr> <abbr title=",,gyorsulás nem függ tőle, csak a lassulás''">de attól mégis!!!(lásd lentebb)</abbr></li>
-		<li>ezenkívül a negyedleges, a harmadlagos és bizonyos mértékben a másodlagos szerkezetet megbontja &#10140; kitekerednek &#10140; <strong>alaktól sem</strong> fog függni már(hisz mindegyiké azonos)</li>
-		<li><span class="Important">"csak a méret a lényeg"</span> az egyetlen amitől már csak függ, az a "lineáris" méret &#10140; ugyanis a gél alkotta "hálóban" az a fehérje, amelyik hosszabb, az jobban elakad, és lassabban mozog &#10140; a méret pedig arányos a tömeggel, így a tömegtől mégiscsak függ &#10140; <span class="Important">kizárólag a tömegtől(~méret) függ</span> az elmozdulás mértéke (fordítottan arányos!)</li>
-	</ul></details>
-	<details class="kerdes 3/3" id="msb.70"><summary><i>első fázis</i> alatt mi zajlik? milyen eredményt várok?</summary><ul class="normal">
-		<li>negatív töltésű fehérjék elkezdenek a pozitív töltés fele vándorolni</li>
-		<li>a kis méretűek közelebb jutnak az aljához, mint a nagy méretűek, hisz a gél alkotta háló kevésbé gátolja őket</li>
-	</ul></details>
-	<details class="kerdes 3/8" id="msb.71"><summary>fehérje minták készítése &#10140; célok? lépések?(3+3)</summary><ul class="normal">
-		<li>célok</li><ul>
-			<li>vándorlás <strong>töltés</strong>től függésének kilővése</li>
-			<li>vándorlás <strong>alak</strong>tól függés kilővése</li>
-		</ul>
-		<li>így először hevítéssel denaturáció történik &#10140; harmadlagos (és negyedleges) szerkezet megszűnik &#10140; <i>így mindegyik alakja lényegében ugyanaz kb. (egy vonal)</i></li>
-		<li>utána SDS-el kezelés</li>
-		<li>ezenkívül festés is történik</li>
-		<details><summary>fehérjék töltése milyen alapvetően?</summary><ul class="normal">
-			<li>változó, van amelyik pozitív, van amelyik negatív (függ aminosav összetétel & pH) <abbr title="DNS és RNS negatív a foszfát következtében, szóval ott nincs ilyen probléma">&#10045;</abbr></li>
-		</ul></details>
-		<details><summary>fehérjék töltése hogyan állítom be és milyenre?</summary><ul class="normal">
-			<li>SDS = <abbr title="nátrium">sodium</abbr> <abbr title="12">duodecil</abbr> szulfát</li>
-			<li>a szulfátionok hozzákapcsolódnak a fehérjékhez, és erősen negatív töltésűvé alakítják</li>
-			<li>így a kezdtben elenyésző töltéskülönbség megszűnik</li>
-			<li>sőt a hozzákapcsolódó anionok száma arányos a fehérje méretével &#10140; így nem jön létre újabb töltéskülönbség <abbr title="mert ha pl. m méretű az egyik fehérje, akkor annak a töltése mondjuk q, ha egy másik 2m akkor annak 2q &#10140; a rá ható 'feszültség kövekeztébeni gyorsító erő' F ugyan utóbbira kétszer nagyobb lesz, de mivel annak tömege is kétszer akkora így ugyanúgy fog gyorsulni, azaz vándorolni (F=m*a)">&#10045;</abbr></li>
-			<img src="images/gy3_sds.png">
-		</ul></details>
-		<details><summary>SDS kezelés után, ha visszahűl akkor renaturálódik?</summary><ul class="normal">
-			<li>nem, mert negatív töltésűvé váltak, és az megakadályozza (taszítják egymást)</li>
-		</ul></details>
-		<details><summary>festés célja?</summary><ul class="normal">
-			<li>kék színűre<abbr title="egész pontosan Brohm-fenol kék">()</abbr> festjük a fehérjét</li>
-			<li>ez a vándorlás során elől fog haladni, ugyanis ennek a legeslegkisebb a mérete</li>
-			<li>tehát a célja csupán annyi, hogy látszódjon hol tarthat max a legelső fehérje // ezenkívül pipettázásnál, hogy zsebbe ment-e</li>
-			<div><span class="Vocab">fontos!</span> vándorlásnál ez halad legelől, ez azzal is jár, hogy a lemaradt fehérjék ismét színtelenné válnak&#10140; azokat "újra" kell festeni majd a vándorlás után</div>
-			<img src="images/gy3_rdmny.png">
-		</ul></details>
-	</ul></details>
-	<details class="kerdes 3/3" id="msb.72"><summary style="color:Magenta"><font color="Green">vándorlás során a fehérje minták milyen eredményt adnak?</font></summary><ul class="normal">
-		<li>mintákat nemtudom pontosan mik voltak &#10140; 1. vérszérum <span class="MISS">2. <abbr title="centrifugált csapadék">??</abbr> 3. ??</span> 4. BSA</li>
-		<li>annyit tudok, hogy elsőnél lesz mondjuk 10db csík</li>
-		<li>4.nél 1db lesz csak (járjak utána gyakkönyv)</li>
-		<li>2.nál lesz mondjuk 4db &#10140; 3.nál akkor az a 6db lesz ami nem volt a másodiknál (mert a 2. és a 3. az első különválasztva)</li>
-		<li>létra &#10140; tele van nagyon sok méretű fehérjével, amihez viszonyítva be lehet lőni a többit, hogy mi lehet (hisz a létra fehérjék meg vannak adva, és tömegük is) <abbr title="ha látom hogy az 1.-nél az egyik csík ugyanaddig jutott el, mint az egyik csík a 4esen, és a 4esen az egy 48kDa fehérje, akkor mivel az albumin annyi, ezért tudhatom, hogy az 1.esnél albuminnak van az a csíkja ott">(pl)</abbr></li>
-		<li><span class="MISS">gyakkönyvben még nemjártam utána!</span></li>
-		<img src="images/gy3_rdmny.png">
-	</ul></details>
-	<details class="kerdes 3/3" id="msb.73"><summary><i>második fázis</i> lényege?</summary><ul class="normal">
-		<li>egyik üveglap párban lévő gélt kiveszem és beleteszem egy kék színű festékoldatba &#10140; 5percig otthagyom &#10140; fehérjecsíkok kék színűek lesznek</li>
-		<li>másik gélnél kissé bonyolultabb a helyzet &#10140; ún. <span class="Important">Western-blottolást</span> kell még végezni (ez jobb felbontást fog eredményezni)</li><ul>
-			<li>először kiveszem a gélt és ráteszem egy nitrocellulóz tartalmú membránra &#10140; ez a membrán nem ereszti át a fehérjét</li>
-			<li>töltéseket itt is hasonlóan mint az első fázisban: futtatókádban lesz pufferoldattal feltöltve + feszültség rákapcsolva</li>
-			<li>közben történik egy festés (fekete színre)</li>
-			<li>itt az a fontos, hogy a membrán van a pozitív töltés fele, hiszen a fehérje abba az irányba vándorol és a cél, hogy a membránra menjen át a fehérje</li>
-		</ul>
-		<img src="images/gy3_glmmbrnf.png">
-		<img src="images/gy3_mrsdlényg.png">
-	</ul></details>
-	<details class="kerdes 2/1" id="msb.93"><summary>Western-blottolás célja?</summary><ul class="normal">
-		<li>magán a gélen - az elválasztást követően - a kezdetben egymástól élesenelváló fehérje-sávok egy idő után diffundálni kezdenek, ezzel szemben a membránon erősen megkötődnek, így az eredeti gél-mintázat <span class="Important">jobban megőrizhető</span></li>
-		<li> a membrán fizikailag <span class="Important">könnyebben is kezelhetőa továbbiakban</span>, mint a törékeny gél</li>
-	</ul></details>
-	<details class="kerdes 3/3" id="msb.74"><summary>orvosi felhasználás?</summary><ul class="normal">
-		<div>pl. egészséges vérrel készítettett összehasonlítva egy beteg vérével készülttel...</div>
-		<li>ha a betegében hiányzik egy csík &#10140; lehet pl. immunfehérje-hiány (genetikai)</li>
-		<li>ha a betegében plusz van egy csík &#10140; lehet pl. baktérium toxinfehérje</li>
-	</ul></details>
-	<details><summary><span class="Vocab">Megj</span> &#10140; video is van róla elvileg (papírra leírtam őket, majd nézzek esetleg utána)</summary><ul class="normal">
-	</ul></details>
- </div>
- <div><div class="title">immunfestés</div>
-	<details class="kerdes 4/1" id="msb.75"><summary>célja?</summary><ul class="normal">
-		<li>konrét fehérje kimutatása</li>
-	</ul></details>
-	<details class="kerdes 3/1" id="msb.99"><summary>előnyei?(2)</summary><ul class="normal">
-		<li>konrét fehérje kimutatható vele</li>
-		<li>szekunder_antitesttel a jel felerősíthető <abbr title="magyarázatot ne keressek rá, de fontos hogy szvsz nem az a magyarázata, hogy poliklonális. ugyanis az csak az ''olcsóságát befolyásolja''">&#10045;</abbr></li>
-	</ul></details>
-	<details class="kerdes 3/1" id="msb.94"><summary>antigén & antitest &#10140; milyen típusú vegyületek?</summary><ul class="normal">
-		<img src="images/gy3_ntsntst.png">
-		<li>antigén általában fehérje <abbr title="pl. allergének">()</abbr></li>
-		<li>antitest(antigén ellen termelt ellenanyag) mindig fehérje &#10140; azon belül is immunoglobulinok</li>
-	</ul></details>
-	<details class="kerdes 2/1" id="msb.95"><summary>antitest előállíttatása?</summary><ul class="normal">
-		<li>a vizsgálni kívánt antigént állatba(pl.egér) juttatva, <abbr title="B-limfociták leginkább (de T-limfociták is)">az antitestet termel ellene</abbr>, és az felhasználható</li>
-	</ul></details>
-	<details class="kerdes 3/1" id="msb.96"><summary>antitest &#10140; specifikus?</summary><ul class="normal">
-		<li>igen, tehát csak adott antigént köt meg</li>
-		<img src="images/gy3_ntsntst.png">
-	</ul></details>
-	<details class="kerdes 3/2" id="msb.97"><summary>lényege?</summary><ul class="normal">
-		<li>előállított antitestet ráviszem a membránra</li>
-		<li>csak az adott fehérjékhez fognak kötődni</li>
-		<li>ezután festés</li>
-	</ul></details>
-	<details class="kerdes 3/4" id="msb.98"><summary>festés &#10140; lényege? típusok?(3)</summary><ul class="normal">
-		<li>nem az elsődleges antitestet lesz megfestve, hanem a másodlagos antitest</li>
-		<li>elsődleges kötődik az antigénhez, másodlagos pedig az elsődlegeshez</li>
-		<li><font class="abbr">oka ►</font> jel jelentős mértékben felerősíthető másodlagos antitest hozzáadásával. És olcsó, mert poliklonális. <abbr title="<i>Előállítása lóban/kecskében történik egér valamely antitestjének bejuttatásával.</i>">()</abbr></li>
-		<li><font class="abbr">monoklonális ►</font> adott faj <strong>EGY</strong> fehérjéje ellen. Primer antitest ilyen.</li>
-		<li><font class="abbr">poliklonális ►</font> adott faj <strong>LEGTÖBB</strong> fehérjéje ellen.<abbr title="összes egérben termelt elsődleges antitest típushoz hozzákapcsolódik. Tehát ha egyik mérésnél A antigén ellen termelt egér antitest volt használva, arra is jó, illetve a másik mérésnél használt B antitesthez is kapcsolódik">&#10045;</abbr> Szekunder antitest ilyen (ugyanis a primer nem-variábilis szakaszaihoz képes kötődni)</li>
-	  ––––––––––––––––––––
-		<li>enzimes</li>
-		<li>fluoreszcens <abbr title="majdnem olyan érzékeny, mint a radioaktív, de drága">()</abbr></li>
-		<li>radioaktív anyag hozzáadása (érzékeny, tehát kis mennyiséget is képes kimutatni)</li>
-	</ul></details>
-http://elte.prompt.hu/sites/default/files/tananyagok/BevBiokemGyak/ch07s03.html
- </div>
-<!----></details>
-
-<!----><details><summary class="phase">4. Papírkromatográfia & TLC</summary>
- <div><div class="title"></div>
-	<details open><summary><strong>SZÖVEG</strong></summary><ul class="normal">
-		<div style="float:right;max-width:30%">
-			<img src="images/gy4_lnyg.png">
-			<img src="images/gy4_rdmny.png">
-		</div>
-		Cél: aminosavak elválasztása. Alapja az oldhatóság, tehát ezt felhasználva az apoláros aminosavak elkülöníthetők a polárosoktól. (Eddigi mérések alapja ugye az eltérő tömeg,töltés,alak volt.) Feladat: 4 féle ismert aminosavval és 2 féle ismeretlen aminosavat "mérünk meg". Majd a mérési eredményekből meghatározzuk, hogy a másik 2 ismeretlen, milyen fajta aminosav lehet.  
-
-		<br><br><strong>Kivitelezés lényege</strong><br>
-		Egy tankba öntök (kb.4cm) médiumot. Ez 2 oldószer keveréke: egyik poláros, másik apoláros. Ezek egymással keverednek, tehát nem válnak külön (mint "pl. az olaj a levesben felülre kerül"). A poláros oldószer ecetsav+víz, az apoláros pedig butanol. Ebbe fogom futtatni az aminosavakat, kétféle hordozón: papír és TLC. A papírkromatográfiás eljárást ismertetem először. Van egy téglalap alakú papír. Ezen bejelölök egy vonalat kb. 6cm-re az aljától. Erre a vonalra viszem fel a <abbr title="képen csak 3 van">6</abbr> különféle aminosavtartalmú "folyadékot" következőképp. Kiválasztom az egyiket és 2cseppet cseppentek egymásra. Ezután tőle kb. 1cm-re a következővel ugyanez és így tovább (mivel kb.8cm széles a papír, így felférnek). Ezután a tankba beleteszem a papírt <abbr title="illetve oldalról nézve a papírt, pont középen van">"hosszában"</abbr> <img class="mini" src="images/gy4_ldlnzt.png">. A papírt hozzáragasztom felül a tank fedőjéhez, így megáll majd <abbr title="nem dől el oldalra a tank falának">&#10045;</abbr>. Így hagyom kb 30-45percig. Ezután kiveszem a papírt, és először megjelölöm egy vonallal, hogy meddig "nedvesedett át". Ez az ún. frontvonal: eddig jutott el az apoláros oldószer, és egyben ez jutott legfelülre (tehát egyik aminosav se hagyja le, még a legapolárosabb se). Ezután hajszárítóval megszárítom, majd utána lefújom spray-vel (magyarázatát lásd lennt), majd újra megszárítom hajszárítóval. Végeredményben színes foltokat fogok látni. TLC-nél ugyanezt kell csinálni. /TLC <abbr title="mármint alakra">ugyanúgy</abbr> néz ki, mint a papír, csak vékonyabb, és a szélessége is kisebb (tehát az aminosavcseppeket kevesebb mint 1cm-el kell egymás mellé tenni)/
-		
-		<br><br><strong>Elméleti háttér</strong><br> 
-		Papír anyaga cellulóz. A poláros oldószer (víz+ecetsav) a papíron lassan halad felfele, mert hozzákötődik egy hidrátburok réteg a papírhoz folyamatosan. Így ezt stacionárius mozgásnak nevezzük. A poláros aminosavak szintén ugyanígy lassan mozognak. Ezzel szemben az apoláros butanol és aminosavak, gyorsan ún. mobilis mozgással haladnak felfele a papíron. Tehát minél feljebb jut egy aminosav, annál inkább apoláros. És fordítva: minél kevesebbet ment fel (közelebb van a rajtvonalhoz), annál inkább poláros. A végén a hajszárítóval szárítás és spray-vel lefújás azért kell, hogy az aminosavakat láthatóvá tegyük. A spray-vel való lefújás során ninhidrin-t juttatunk rá, ami megszínezi. TLC mérésnél ugyanez van. TLC-ről annyit kell tudni, hogy 2rétegből tevődik ki: egy alumínium, ami megtartja az egészet, és egy szilika réteg, mely következtében a felbontóképesség jobb (cellulózéhoz képest).
-		
-		<br><br><strong>Megjegyzések</strong><br>
-		<span class="WHITE">#</span> Azt fontos tudni, hogy a Gly ugyan apoláros, mégis alig mozdult el. Ennek a magyarázata, hogy alapvetően az aminosav erősen poláros, hiszen aminoscsoport és karboxilcsoportja is van, csupán oldallánca miatt került apoláros besorolásra, hiszen fehérjében <abbr title="hisz ott a peptidkötések ''kilövik'' a karboxil és aminocsoportot">tényleg az</abbr>. <span class="WHITE">#</span> Pro színe sárga volt, míg a többié lilás, ennek oka, hogy előbbiben nincs aminocsoport a többivel ellentétben. <span class="WHITE">#</span> Aromás aminosavak apolárosak.
-	</ul></details>
- </div>
-<!----></details>
-
-<!----><details><summary class="phase">6. &beta;-galaktozidáz</summary>
- <div><div class="title">gyak-jegyzeteim</div><ul class="normal">
-	<li>A transzkripció szabályozása prokariótákban (14.tétel) van kapcsolatban ez a mérés &#10140; itt csak "kiegészítem" pár dologgal</li>
-	<li>operon = operátor(lac) + struktúrgének(lacZ+lacY+lacA) (tehát a promoter + operátort kódoló gén szvsz nem tartozik bele)</li>
-	<li>prokariótáknál formil-metioninnal kezdődik a transzláció</li>
-	<li>lac &#10140; represszor</li>
-	<li>CAP &#10140; aktivátor</li>
-	<li>pozitív szabályozás &#10140; laktóz jelenléte és/vagy glükóz hiánya (ami cAMP jelenlétet okoz!)</li>
-	<li>negatív szabályozás &#10140; laktóz hiánya és/vagy glükóz jelenléte (ami cAMP hiányt okoz!)</li>
-	<li>(1db E.colinak csak 1 operonja van)</li>
-  <hr>
-	<li>ONPG &#10140; mesterséges szubsztrátot adok a &beta;-galaktozidázhoz &#10140; sárga színű termék lesz (minél sárgább, annál több termék keletkezett, tehát az enzimaktivitással arányos)</li>
-	<li>IPTG &#10140; induktor a laktóz helyett &#10140; ez így nem fog csökkeni a reakció során (ami enzimtermelés fokozást csökkentené), ellentétben a laktózzal ha az lenne</li>
-  <hr>
-	<li>mérés 3lépése</li><ul>
-		<li>1.lépés alapja, hogy "az enzimeket legyártjuk bizonyos idő alatt, majd minden mást elpusztítunk és csak azok maradnak" (különböző mennyiségeket gyártunk!)</li>
-		<li>2.lépés mindegyik esetben ugyanaz &#10140; szubsztrátot hozzáadva az egyes enzim-oldatokhoz, hagyom mindegyiket 15percig működni</li>
-		/ezután hozzáadok Na-karbonát &#10140; enzimműködést leállítja/
-		<li>3.lépés mindegyik esetben ugyanaz &#10140; megmérem spektrofotométerrel az oldatok abszorpcióját, ami arányos a keletkezett termékek koncentrációjával hisz A = &epsilon;*c*l !!</li>
-	</ul>
-	<img src="images/gygrfkglzn.png">
-	<li>1.lépésnél</li><ol>
-		<div>IPTG-t hozzáadva E.coli-oldathoz elkezdenek enzimet termelni</div>
-		<li>hagyom 0percig enzimet termelni</li>
-		<li>hagyom 15percig enzimet termelni</li>
-		<li>hagyom 30percig enzimet termelni</li>
-		<li>0percnél kloramfenikolt adok hozzá, majd hagyom 30percig enzimet termelni</li>
-		<li>15percnél kloramfenikolt adok hozzá, majd hagyom 30percig enzimet termelni</li>
-		<li>/vak/</li>
-		<li>0percnél rifampicint adok hozzá, majd hagyom 30percig enzimet termelni</li>
-		<li>15percnél rifampicint adok hozzá, majd hagyom 30percig enzimet termelni</li>
-		<li>/rifampicines vak/</li>
-	</ol>
-	<li><span class="Important">mérés várható eredményei grafikonon &#10140; magyarázattal</span></li><ol>
-		<li>0perc alatt semmi enzim nem termelődik, így semmi színes termék nem keletkezik, így az abszorbanciája 0</li>
-		<li>15perc alatt keletkezik valamennyi enzim &#10140; termék &#10140; abszorbancia</li>
-		<li><i>30perc alatt több mint 2x annyi enzim keletkezik, ugyanis a már meglévő mRNS-ekről is folyik transzkripció</i> <abbr title="(tehát ha egy mRNS-se lenne ismét, csak a 15perc alatt termelődött enzimek, és úgy várnék megint 15percet, akkor lenne 2x annyi, azonban itt már vannak alapból is(tehát 15perc után) mRNS-ek)">&#10045;</abbr></li>
-		<li>kloramfenikol gátolja a transzlációt &#10140; 0perc alatt semmi enzim nem termelődik &#10140; abszorbanciája 0</li>
-		<li>ugyanaz zajlik le, mint a 2esnél hiszen a 15.perctől több enzim-szintézis már nem tud végbemenni (csakúgy, mint a 2esnél amikor megszakítom)</li>
-		<li>vak oldat &#10140; 1-5 3.lépésben történő méréséhez van használva</li>
-		<li>rifampicin transzkripciót gátolja &#10140; 0 enzim termelődik</li>
-		<li><span class="Important">3 és 5 között lesz valahol</span> &#10140; ugyanis a 15percig letermelődött mRNS-elről még lesz utána is transzláció!!</li>
-		<li>vak oldat &#10140; 7-8 3.lépésben történő méréséhez, ugyanis rifampicin narancs színű</li>
-	</ol>
- </ul></div>
-	<li>megjegyzés &#10140; 14.tétel + gyakfüzet + jegyzeteim alapján könnyen megértem</li>
-<!----></details>
-
-<!----><details open><summary class="phase">9-10. PCR. (gyak-jegyzet + pdf alapján)</summary><ul class="normal">
-	<strong><u>Célja</u></strong><div>
-	 Öt féle alapíz van: édes,sós,savanyú,keserű,umami. A keserű íz "egyik típusát" az emberek 70%a érzékeli és 30%a nem. Ez attól függ, hogy az egyed génje milyen. A mérés során azt vizsgáljuk meg, hogy a csoportban 12 ember közül ki érzékeli és ki nem. Tehát megnézzük, hogy a génben "jól van-e kódolva".
-	</div>
-
-	<strong><u>Bevezetés</u></strong><div>
-	 A keserű ízt érzékelő <abbr title="(kemoreceptorok)">receptorok</abbr> <abbr title="TASte Receptor (2=keserű)">(TAS2R)</abbr> egyik típusa a glükózinolátot köti meg (az a ligand). Ezt az ízt PTC-íznek nevezzük. A "hiba" (ha valaki nem érzi a PTC ízt) hátterében single_nukleotid-polimorfizmus(SNP) áll. Tehát egy nukleotid helyett más van a DNS-ben, mint kéne (pl. C helyett T van). Jelen esetben 3 helyen történhet meg a kicserélődés. A három hely alapvetően a következő aminósavakat kódolja Pro-Ala-Val. Ha SNP van, akkor helyettük Ala-Val-Ile lesz. A nukleotidok pedig alapból (C...C...G), kicserélődve pedig (G...T...A). Ez a polimorfizmus csak úgy fordulhat elő, hogy vagy mindhárom kicserélődik vagy egyik sem. Ha kicserélődik akkor a genotípus <strong>t</strong>, ha nem akkor <strong>T</strong> &#10140; így <strong>TT</strong>,<strong>Tt</strong>,<strong>tt</strong> genotípusok lehetnek (hisz diploidok a testi sejtek, tehát 2x van bennük meg a gén: egyik apai másik anyai eredetű). Amennyiben <strong>TT</strong>, jól érzik a PTC-ízt, <strong>Tt</strong> esetében kevésbé, <strong>tt</strong> esetében pedig egyáltalán nem. A genotípust a PCR eljárással határozzuk meg. Az eljárás négy lépésből áll.
-	</div>
-
-  <strong><u>(1) DNS izolálás</u></strong><div>
-	<span class="WHITE">1</span> Első lépésben a vattapálcával a száj nyálkahártyjából hámsejteket szedünk le (fél percig dörzsölve vele a buccat, fogíny külsejét). A vattapálcát ezután egy <abbr title="Eppendorf-csőbe">()</abbr>csőbe tesszük. <span class="WHITE">2</span> A sejteket ezután PBS-oldattal lemossuk a vattáról. <span class="WHITE">3</span> Majd a membránokat(sejt & intracelluláris) és fehérjéket "felaprítjuk": membránokat lízispuferrel, a fehérjéket proteináz K-val. Így kapunk ún. sejtlizátumot. <span class="WHITE">4</span> A következő feladat, hogy ebből a DNS-t izoláljuk (tehát csak az marad, más nem). Ezt <span class="Important">affinitás-kromatográfiával</span> végezzük. Ennek lényege hogy egy műanyag oszlopba van egy pozitív töltésű mátrix, mely a negatív töltésű moleklákat megköti, pl. DNS. Ezenkívül egyes fehérjéket és egyéb molekulát is megköt, de a nagyrészét nem <img class="mini" src="images/vgcskfknmtrckrm.png">. <strong>(a)</strong> Ezért ebbe beleöntöm a sejtlizátumot. <strong>(b)</strong> Majd ezután "frissítem" tehát az oldatot elvtávolítom az üvegből, és helyére pufferoldatot öntünk. Ez lemossa a mátrixról a többi fennmaradt fehérjét és egyéb nem DNS molekulát. Azonban mivel a mátrix pólusai kicsit, így csak akkor képes átjutni rajta pufferoldat, ha <strong>(c)</strong> centrifugáljuk. A pufferoldat szvsz savas irányba változtatja a pH-t, hisz így sok proton lesz, tehát a fehérjék & egyéb negatív töltése megszűnik így leválnak a mátrixról. Végül ha ez meg volt <strong>(d)</strong>, akkor a DNS-t is leválasztjuk a mátrixról bázikus pH-jú oldattal <abbr title="mármint a mátrix lesz semleges töltésű emiatt?!"><font style="color:red;font-weight:bold;">(!?)</font></abbr>.
-  </div>
-
-  <strong><u>(2) <abbr title="polymerase chain reaction">PCR</abbr></u></strong><div>
-	 <img src="images/prndlnsskrz.png">
-	 <li>Itt a cél, hogy megsokszorozzuk a génszakaszt, mely a receptort kódolja. Ennek következtében a végén szemmel látható eredményt kapjunk. Ennek módja a következőképpen történik...</li>
-	 <li>Először szétválasztjuk a DNS-t két szálra.</li>
-	 <li>Ezután 1-1 primer fog hozzákapcsolódni a két különvált szálra. Ezek ott kapcsolódnak hozzájuk, ahol a vizsgálni kívánt gén van, előtte kicsivel 5' irányba (ennek a DNS-résznek, amihez hozzákapcsolódik legyen a neve "Jani"). A primereket amiket hozzáadunk kb. 20nukleotid hosszúak. Ez azt jelenti, hogy biztosan "Jani"-hoz fognak kapcsolódni, ugyanis... "Jani" szakasz nukleotidjainak komplemenetereit tartalmazza, és mivel kb.20 nukleotid hosszú, biztosan nincs a DNS láncon másik olyan hely, ami szintén komplementere lenne (ugyanis ha pl. csak 3nukleotidból lenne a primer, akkor rengeteg helyhez tudna kapcsolódni. Ha 10 hosszú, akkor kevesebb helyhez, de még mindig több mint 1. Azonban 13 felett már általában <abbr title="vagy egyhez se, ha olyan természetesen">csak 1 helyhez</abbr>)</li>
-	 <li>A két szálon lévő primer között így (3' irányba) 303db bp van.</li>
-	 <li>Erre a lépésre azért van szükség, mert a DNS polimeráz, mely megsokszorozza majd a gént, csak megkezdett szálat tud folytatni</li>
-	 <li>DNS polimeráznak van 3'-exonukleáz aktivitása is, így pontos másolatot képez.</li>
-	 <li>A kivitelezéshez a következőt kell tenni: mastermixet kell elkészíteni, majd hozzáadni az izolált DNS-t. Ezután a sokszorozást egy <abbr title="nevét nem tudom">"gép"</abbr> végzi el. A mastermix tartalmazza a DNS-polimerázt, a primereket illetve <abbr title="dezoxi-nukleozidtrifoszfátokat: ATP/GTP/TTP/CTP">dNTP-ket</abbr></li>
-	 <li>A sokszorozás 3óra alatt játszódik le, és közben kb 20-30 termociklus. Egy termociklus három lépésből áll: <strong>(a)</strong> 95°C-on szétválik két láncra a DNS; <strong>(b)</strong> 55°C-on a primerek hozzákötődnek "Jani"-khoz; <strong>(c)</strong> 75°C-on a DNS-polimerázok dolgoznak. Így ez végeredményben azt jelenti, hogy a végén kb x*2<sup>25</sup>db "gént" kapunk (hisz mindig 2x annyi lesz, és kezdetben volt x darab).</li>
-  </div>
-
-  <strong><u>(3) restrikciós emésztés <abbr title="restriction fragment length polymorphism">(RFLP)</abbr></u></strong><div>
-	<li>Az alapja, hogy olyan restrikciós_endonukleázt használunk, mely elhasítja a "jó" "gént", míg a polimorfizmusost nem <abbr title="persze fordítva is jó lenne">()</abbr>. Tehát amennyiben a receptor működik és érzi az egyed az PTC-ízt, akkor 239bp és 64bp hosszú szálak lesznek, ellenben ha polimorfizmus van, akkor 303bp hosszú szálak. Azonban mivel diploid sejtek vannak, ezért ha "heterozigóta volt a gén" (tehát volt "jó", és rossz "gén" is), akkor lesz mindháromból.</li>
-	<li>A restrikciós endonukláez amit használunk az alábbi szekvenciát ismeri fel.: G<span class="Vocab">C</span><span class="Important">N</span>GC. Az <span class="Important">N</span> lehet bármilyen nukleotid. Ha van ilyen szekvencia akkor a <span class="Vocab">C</span><span class="Important">N</span> közti foszfodiészter kötést elhasítja. A <span class="Vocab">C</span> azért van kiemelve, mert ez az a nukleotid, mely a "jó" allélvátozatban megvan, ellenben a polimorfizmusosban helyette T van. (C...<span class="Vocab">C</span>...G) vs. (G...<span class="Vocab">T</span>...A). (Jelen esetben az N helyén T van a génben: tehát ha GCTGC van, tehát "jó a gén", akkor szakít. Ha GTTGC van, akkor nem szakít)</li>
-	<li>A kivitelezés lényege: a megsokszorozódott "gén-oldathoz" hozzáadjuk a restrikciós endonukleázt, majd 1óráig hadjuk 37°C-on (testhőmérséklet) dolgozni.</li>
-  </div>
-
-  <strong><u>(4) gélelektroforézis</strong></u><div>
-   <img style="max-width:30%" src="images/gy9_03.png">
-	<li>SDS-PAGE gyakorlaton már csináltunk ilyet fehérjékkel. Itt két kölönbséget említenék meg. <span class="WHITE">1</span> Most nem kell kezelés SDS-el, mert a fajlagos_töltése már alapból megegyezik a különböző hosszúságú (64,239,303) DNS-szálaknak. Hiszen fehérjéknek atöltése nem volt arányos tömegükkel előtte, így fajlagos_töltésük(=töltés/tömeg) kölönbözött, ezért SDS kezeléssel közel azonos értékre lett beállítva a fajlagos töltésük. Azonban a különböző hosszúságú (64,239,303bp) DNS-sek fajlagos töltése már alapból megegyezik, hisz a foszfátok negatív töltése arányos a DNS hosszával <abbr title="fajlagos töltés pedig a töltés/tömeg hányados (és a tömeg is arányos a hosszal)">()</abbr>. Így jelen esetben csak a tömegtől függ az elmodulás: minél nagyobb a <abbr title="ami arányos a hosszával, így a 303 hosszú fog a legkevésbé elmozdulni">tömeg</abbr>, annál kevésbé mozdul el (hiszen a feszültség ami gyorsítja F erővel hat rá: F=ma &#10140; minél nagyobb m, annál kevésbé gyorsul). <span class="WHITE">2</span> Poliakrilamid helyett agaróz alkotja a gélt. (Ez algákból nyerhető, és olcsóbb.)</li>
-	<li>A gél DNS-festéket tartalmaz, amely a futtatás során a DNS-láncokkal nem-kovalens komplexet képez és UV-fénnyel indukálva látható tartományban fluoreszkál. Tehát a futtatás után UV-fénnyel átvilágítva láthatóvá válik az elmozdulás.</li>
-  </div>
-
-
-	<hr><strong><u>Második nekifutás</strong></u><div>
-	 <li>G-fehérjéhez kötött receptorok <abbr title="GPCR = G protein coupled receptor">(GPCR)</abbr></li><ul>
-		<li>A GPCR a membránreceptorok egy jelentős típusa</li>
-		<li>A keserű, édes és umami ízt ilyen receptorok érzékelik &#10140; tehát a TAS2R receptorok is ilyenek</li>
-		<div>(a savanyú és a sós ízt érzékelő receptorok ioncsatornák)</div>
-		<li>Ezen receptorok általános tulajdonsága, hogy 7x érik át a membránt (transzmembrán fehérjék!)</li>
-		<li>A másik általános tulajdonságuk a működésük. Ennek lényege: ha megkötik a ligandot, akkor utána képesek lesznek megkötni az ún. G-fehérjét. A G-fehérje GDP-t tartalmaz. Ha megköti, akkor kicserélődik a GDP GTP-re. Ezután pedig a G-fehérje leválik a receptorrol és ha elmegy egy másik enzimhez akkor azt aktiválja. Ennek energiáját a GTP-GDP-re való visszaállás fedezi. <img class="mini" src="images/gpcrmkds.png"></li>
-	 </ul>
-	 <li>SNP 3 helyen történhet meg, azaz összesen 8 variáció lehet <abbr title="hiszen ha lerajzolom faágszerű elágazással mindig, hogy 1. helyen kicserélődött / nem (2variáció eddig). ezeke tovább ágaztatom ugyanígy, az a 2.hely(4variáció már). Majd mégegyszer és így megkapom a 8 variációt.">(2<sup>3</sup>)</abbr> Azonban ez csak elméletben lehetséges, a valóságban vagy mindhárom "jó", vagy mindhárom kicserélődött. Ennek oka, hogy úgymond "kapcsoltan öröklődnek", ugyanis a három nukleotid egymáshoz közel helyezkedik el egy kromoszómán. Tehát crossing-overnél együtt mennek át.</li>
-	 <li>A mérés előtt egy kis "papírlapka" átvolt itatva PTC-vel. Ezt mindenki a szájába vette és megízlelte. Így megsaccolhattuk, hogy ki érzi és ki nem.</li>
-	 <li>PCR - hogyhogy pont 303 nukleotid hosszú láncok fognak sokszorozódni? hisz nincs ami jelenzné a végét, csak a kiindulás van jelezve...</li><ul>
-		<li>Kétségtelenm hogy első termociklus során a DNS polimeráz amíg szintetizál (kb. 1perc) egy kicsivel hosszabb, mint 303 nukleotid hosszú láncot fog szintetizálni, hisz nincs ami jelezze a végét.</li>
-		<li>Azonban a második termociklus során már a hosszabb nukleotidlánc-hoz megint csak hozzákötődik a primer, ergó a felesleges rész arról nem fog megsokszorozódni, így egy 303nukleotid hosszú DNS lánc szintetizálódik. <img class="mini" src="images/gy10_pcr.png"></li>
-		<li>Innentől a 303 bp hosszúak száma duplázódik termociklusonként, míg a két kicsivel hosszabb típusúak száma <abbr title="+n-el nő termociklusonként, hisz mindig csak az n db teljes hosszú DNS-ről íródnak át olyanok. Pl. az ábrán abból 2db van, tehát ott minden termocklusnál +2-vel nő a számuk. (A mérés során pedig n db volt, szóval ott a végén kb. n*25 lesz belőle, míg a 303asokból n*2<sup>25</sup>)">alig</abbr> nő <abbr title="ezenkívül lesz n db teljes hosszúságú DNS is, de abból lesz a legkevesebb ugye">()</abbr></li>
-	 </ul>
-	 <li>restrikciós endonukleázok (mérésnél használt konkrét nevét ne tanuljam meg)</li><ul>
-		<li>Baktériumokban vannak. Egy baktériumfajban <abbr title=" vagy 2">1</abbr> féle restrikciós endonukleáz van. Ma már össze lett gyűjtve adatbázisba, hogy milyen restrikciós endonukleázokat lehet kinyerni, így a vizsgálni kívánt részhez <abbr title="tehát esetünkben ugye a C vs T résznél vágja el mindössze, így egyértelműen megállapítható lesz majd az eredményből">optimálisat</abbr> ki lehet választani közülük.</li>
-		<li>Funkciójuk, hogy a vírusok DNS-ét(/RNS-ét) lebontják. Nohde, mi alapján lesz az, hogy csak a vírusok DNS/RNS-ét bontják le, a baktériumét nem. Ugyanis, ha a rövid DNS-ű(pár száz bp hosszú) vírusokban megtalálja a szekvenciát, akkor a baktériumokban is meg kell (szvsz százezres ~ pár milliós nagyságrend). Hiszen a baktériumban 1 féle restrikciós endonukleáz van, mely olyan szekvenciát kell felismerjen, ami az őt fertőző vírusokban megvan, tehát benne is szinte biztosan. Így a szekvencia max 6-8bázis hosszú. A problémát úgy oldja meg, hogy a saját DNS-ében a szekvenciája metilálva van. Ezt ún. restrikciós_metiláz végzi.</li>
-		<li>Ezenkívül a szekvencia amit felismer, mindig palindrom.</li>
-		<li><font class="abbr">palindrom ►</font> Azt jelenti, hogy a DNS bázissorrendje előre és hátrafelé olvasva (a két, komplementer láncra vonatkoztatva) ugyanaz. Pl. egy enzim felismeri a 5’-GGTACC-3’ szekvenciát. Ennek a komplementer párja 3’→5’ irányban CCATGG, ami visszafelé olvasva éppen GGTACC <img class="mini" src="images/21_sztrdnmsztrd.png"></li>
-	 </ul>
-	 <li>Érdekes, hogy SNP-nél apoláros helyett apoláros aminosav lesz (tehát nem változik a <span class="idk">polaritása</span>), mégis jelentős változással jár a fehérje működésében. Ennek oka szvsz 1) Pro mégiscsak jelentős mértékben különbözik az Ala, hiszen ciklusos vegyület; 2) kitüntetett helyen vannak az aminosavak a fehérjében.</li>
-	</div>
-
-	<hr><strong><u>(Kiegészítők)</u></strong><div>
-	 <li>A keserű ízérzetet kialakító receptorokat számos, a természetben előforduló és potenciálisan toxikus növényi hatóanyag aktiválja, így a keserű íz hatékony érzékelése az evolúció során szelekciós előnyt jelenthetett a táplálék eredetű mérgezések elkerülése révén.</li>
-	 <li>Glükózinolát van pl. fehérrépa, retek, brokkoli stb.</li>
-	 <li>PTC=feniltiokarbamid &#10140; ezzel <abbr title="de ez nem természetes kajákban van benne, hanem mesterségesen adjuk hozzá">is</abbr> lehet aktiválni a receport, nem csak glükózinoláttal (innen a neve ugye)</li>
-	 <li>proteináz K nem specifikus proteáz, tehát lebontja a legtöbb fehérjét</li>
-	 <li>proteináz K kezelés fontos, hogy gyorsan történjen, mert a membránfelszakadás után az endonukleázok különben odaférnének a DNS-hez és lebontanák</li>
-	</div>
- </ul><!----></details>
-
-<!----><details open><summary class="phase">Fehérjék vizsgálata.</summary>
- <div><div class="title">általános</div>
-	<details class="kerdes 3/5" id="bKI.9"><summary>oldhatóság miktől függ?</summary><ul class="normal">
-		<details><summary>oldat pH-ja &#10140; lényege?</summary><ul class="normal">
-			<li>hidrátburok kialakulásának feltétele a poláros és ionizált aminosavak jelenléte</li>
-			<li>az ionizáció függ a pH-tól</li>
-			<li>izoelektromos_pont &#10140; pH, mikor a fehérje nettó töltése 0</li>
-		</ul></details>
-		<details><summary>könnyűfémsók koncentrációjától?</summary><ul class="normal">
-			<li>könnyűfémek az első két <abbr title="oszlop">főcsoport</abbr> a periódusos_rendszerben (pl. Na, K, Ca, Mg) <abbr title="Al, Ti, Si is még könnyűfém">&#10045;</abbr></li>
-			<li>maximális oldékonyság egy adott könnyűfémsó koncentrációjú oldat esetében &#10140; ennél nagyobb/kisebb koncentrációnál csökken</li>
-			<li>különböző fehérjéknek különböző mértékben változik oldékonyságuk &#10140; a különböző fehérjék elválaszthatók</li>
-		</ul></details>
-		<details><summary>oldószer dielektromos_állandója <span class="WHITE">k<sub>&epsilon;</sub></span> &#10140; lényege?</summary><ul class="normal">
-			<li>dielektromos_állandó &#10140; molekulák polaritásának mértékének kifejezője</li>
-			<li>pl. aceton és etanolé 20, míg vízé 80 (víznek nagyobb, ahogy a polaritása is)</li>
-			<li>dielektromos állandó csökkentésével csökken a fehérjék oldékonysága <abbr title="általában">()</abbr></li>
-			<li>különböző fehérjéknek különböző mértékben változik oldékonyságuk &#10140; a különböző fehérjék elválaszthatók</li>
-		</ul></details>
-	</ul></details>
- </div>
- <div><div class="title">kisózás</div>
-	<details class="kerdes 3/2" id="bKI.12"><summary>lényege?</summary><ul class="normal">
-		<li>könnyűfémsók pl. <abbr title="ammónium-szulfát">[(NH)<sub>2</sub>SO<sub>4</sub>]</abbr>, MgSO<sub>4</sub>, NaCl vízben ionokra disszociálnak</li>
-		<li>ezek körül hidrátburok keletkezik</li>
-		<li>ha elég nagy a koncentrációjuk, akkor elkezdik elvonni a fehérjék hidrátburkát alkotó vízmolekulákat</li>
-		<li>&#10140; fehérje kicsapódik</li>
-	</ul></details>
-	<details class="kerdes 3/1" id="bKI.14"><summary>ammónium-szulfáttal történő előnye?</summary><ul class="normal">
-		<li>kíméletes &#10140; reverzibilis a denaturáció, sőt gyakran megőrzi natív szerkezetét</li>
-	</ul></details>
-	<details class="kerdes 3/1" id="bKI.15"><summary>tisztítás <i>szinonimák</i>?</summary><ul class="normal">
-		<li>elválasztás = frakcionálás <abbr title="tehát ez az, amit végzünk most kisózással: a fehérjéket külön választjuk">&#10045;</abbr></li>
-	</ul></details>
-	<details class="kerdes 3/1" id="bKI.16"><summary>mely két telítési értéket adják meg tisztításkor?</summary><ul class="normal">
-		<li>azokat, melyek között a tisztítandó fehérje szelektíven kicsapódik</li>
-		<li>telítési érték = koncentrációja az ammónium-szulfátnak <abbr title="ez őő nem szentírás, de egyenlőre így fogom fel">!?</abbr></li>
 	</ul></details>
  </div>
 <!----></details>
