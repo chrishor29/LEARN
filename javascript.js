@@ -871,7 +871,7 @@ func_abbrSet()
 /* ToolTip END */
 
 
-//func_removeRepeat()
+func_removeRepeat()
 
 
 // checkboxok: missFix & skipID
