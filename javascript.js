@@ -527,13 +527,13 @@ function func_calcTimeDiff(repCount){
 	} else if ( repCount == 1 ) {
 		timeDiff = 60
 	} else if ( repCount == 2 ) {
-		timeDiff = 200
+		timeDiff = 150
 	} else if ( repCount == 3 ) {
-		timeDiff = 500
+		timeDiff = 300
 	} else if ( repCount == 4 ) {
-		timeDiff = 1000
+		timeDiff = 500
 	} else if ( repCount == 5 ) {
-		timeDiff = 2000
+		timeDiff = 1000
 	}
 }
 
@@ -1229,7 +1229,7 @@ function koviKerdes(){
 											priorKerdesID_X = kerdes;
 //										}
 									}
-									if ( jegy == markCount || markCount == 0 ) { 
+									if ( localStorage.getItem(kerdes+"_jegy") == markCount || markCount == 0 ) { 
 										if ( checkValue > priorValue ) {
 											priorValue = checkValue;
 											priorKerdesID = kerdes;
