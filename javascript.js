@@ -523,7 +523,7 @@ function func_spanClick(button){
 var timeDiff
 function func_calcTimeDiff(repCount){
 	if ( repCount == 0 ) {
-		timeDiff = 15
+		timeDiff = 20
 	} else if ( repCount == 1 ) {
 		timeDiff = 60
 	} else if ( repCount == 2 ) {
@@ -969,7 +969,7 @@ function func_calcOldNew(){
 						
 						if ( localStorage.getItem(kerdes+"_jegy") == 1 ) {
 
-							if ( idopont < 30 ) {
+							if ( idopont < 20 ) {
 								repOld = repOld +1
 							} else {
 								repNew = repNew +1

@@ -51,8 +51,8 @@
 </div>
 
 
-<table style="border-collapse:separate; border-spacing:0px 0px;">
-  <!--<tr><th>I.DEMO</th>
+<!--<table style="border-collapse:separate; border-spacing:0px 0px;">
+  <tr><th>I.DEMO</th>
 	<td class="important">1</td>
 	<td class="important">2</td>
 	<td class="done">3</td>
@@ -106,8 +106,8 @@
 	<td class="done"><abbr title="demó">8</abbr></td>
 	<td class="done">9</td>
 	<td class="done">10</td>
-  </tr>-->
-</table>
+  </tr>
+</table>-->
 
 
 <!--///////////////////////////-->  <div><div class="mainTitle">I. A genetikai információ tárolása és örökítése</div>  <!--///////////////////////////-->
@@ -1278,7 +1278,7 @@
 			</ul>
 		  <hr>
 			<li><abbr title="lacI által kódolt">()</abbr> a lac nevű represszor-fehérje az operátorhoz kötődve gátolja a transzkripciót egész addig, amíg nem magas a laktóz koncentráció &#10140; ugyanis az hozzá kötődve, konformációváltozást vált ki, és leválik az operátorról</li>
-			<li>enekívül az alacsony glükóz koncentráció esetében cAMP termelődik &#10140; ez hozzákapcsolódva egy ún. <abbr title="catabolite activator protein">CAP</abbr>=<abbr title="cAMP Receptor Protein">CRP</abbr>(aktivátor!!!), konformációváltozást vált ki, és képes lesz csatlakozni a promoter régió elé &#10140; növeli az RNS-polimeráz affinitását a promoterhez (serkenti az iniciációt, nő a transzkripció száma/perc, persze csak amennyiben nincs gátolva az operátor régiónál)</li>
+			<li>ezenkívül az alacsony glükóz koncentráció esetében cAMP termelődik &#10140; ez hozzákapcsolódva egy ún. <abbr title="catabolite activator protein">CAP</abbr>=<abbr title="cAMP Receptor Protein">CRP</abbr>(aktivátor!!!), konformációváltozást vált ki, és képes lesz csatlakozni a promoter régió elé &#10140; növeli az RNS-polimeráz affinitását a promoterhez (serkenti az iniciációt, nő a transzkripció száma/perc, persze csak amennyiben nincs gátolva az operátor régiónál)</li>
 		  <hr>
 			<li>amennyiben laktóz és glükóz koncentráció is magas (képen E) eset), akkoris van génexpresszió egy kis mértékben &#10140; ugyanis itt alapból gyenge a promoter <span class="WHITE">-35</span> szekvenciája, és ezért van szükség aktivátorra is</li>
 		</ul></details>
@@ -2294,7 +2294,62 @@
 <!----></div></details>
 
 <!----><details><summary class="phase">#5 Rekombináns DNS készítése (klónozás) és fontosabb alkalmazási területei.</summary><div><div class="title"> </div>
-	<details class="kerdes 4/15" id="msb.237"><summary><strong>Rekombináns DNS készítése (klónozás)</strong> és fontosabb alkalmazási területei.</summary><ul class="normal">
+	<details class="kerdes 4/10" id="msb.237"><summary><strong>Rekombináns DNS készítése (klónozás)</strong> és fontosabb alkalmazási területei. (60%)</summary><ul class="normal">
+	  <strong><u>rekombináns DNS lényege</u></strong><div>
+		<li>a <span class="WHITE">rekombináns DNS</span> olyan molekula, melyet laboratóriumi körülmények között hoznak létre vektornak és inszert összekapcsolásával</li>
+		<li>a vektor lehet plazmid vagy <abbr title="bakteriális vírus">bakteriofág</abbr> &#10140; a gyakorlatunkon plazmid volt</li>
+		<li>plazmid egy cirkuláris DNS, mely a <img class="mini" src="images/plzmdgyk.png"> baktériumokban található <abbr title="illetve archeak, egyes növények, algák, gombák">§</abbr> &#10140; extrakromoszomális, tehát külön van a bakteriális kromoszómától a citoplazmában (lásd kép)</li>
+		<li>plazmidba építjük be az inszertet</li>
+	  </div>
+	  <hr><strong><u>vektor felépítése</u></strong><div>
+		<img src="images/f1orivktr.png">
+		<li>kör alakú, hiszen cirkuláris DNS a plazmid</li>
+		<li>található benne egy ún. <strong>F1-ori</strong> &#10140; innen indul a plazmid <abbr title="tehát a duplikációja, azaz miután végbement lesz belőle két plazmid (két teljes kör). szóval itt ne keressek semmiféle végződést (pl. poliA), hiszen a DNS-polimeráz az egészet lemásolja (tehát ez replikáció, nem transzkripció)">replikációja</abbr> <abbr title="A szemikonzervatív DNS-replikáció elve. A replikációs villa, vezető és késlekedő szál">(lásd hasonlóan...oriC)</abbr> <abbr title="a plazmidok replikációja unidirekciós &#10140; csak egy replikációs villa alakul ki &#10140; tehát egy irányba történik csak, nem úgy mint a bakteriális kromoszómánál &#10140; ezért van az irány mutatva a képen">§</abbr></li>
+		<li>található benne egy ún. <abbr title="multiple cloning site"><strong>MCS</strong></abbr></li><ul>
+			<li><span class="Important">az inszert ide lesz beépítve</span> <img class="mini" src="images/nstrblszts.png"></li>
+			<li>ez – ahogyan a nevében is benne van – több olyan szekvenciát tartalmaz, melyet különböző II-es_típusú_restrikciós_endonukleázok felismernek, és elhasítják ott</li>
+			<li>így ebből lehetőség van kiválasztani a számunkra legoptimálisabbat</li>
+			<li>a II_típusú restrikciós endonukleázok <abbr title=",,Géza kék az ég''. Tehát a komplementer szálon ugyanilyen irányba(pl.5-3) olvasva ugyanaz jön ki: ilyen pl. GCATGC">palindrom</abbr> szekvenciákat ismernek fel és hasítanak, pl. ATGCAT</li>
+			<li>a palindromból következik, hogy ezek csak úgy tudnak hasítani, hogy egyszerre mindkét szálat elhasítják (olyan nincs, hogy csak egyiket</li>
+			<li>a hasításokat két csoportra osztjuk <img class="mini" src="images/rstkcsndlklznk.png"></li>
+			<li>itt <abbr title="általában">()</abbr> ragadós véget eredményező restrikciós_endonukleázokat választunk &#10140; ugyanis az egymással komplementer végek spontán összekapcsolódnak, mert energetikailag kedvező nekik &#10140; így az inszert beépül a plazmidba</li>
+			<li>optimális szekvenciák kiválasztása</li><ul>
+				<li>fontos, hogy a plazmidban lévő MCS-ben két különböző nukleotidokból álló szekvenciánál történjen 1-1 hasítás</li><ul>
+					<li>ugyanis ellenkező esetben a plazmid szétnyílna ugyan, de rögtön utána össze is kapcsolódna, az inszert beépülése nélkül <img class="mini" src="images/kvgttszrnv.png"></li>
+					<li>mivel az inszert is ugyanazzal a restrikciós_endonukleázzal vágódik ki, így beépülése történhetne fordítva &#10140; és így már funkcióképtelen fehérjét kódolna <img class="mini" src="images/ksdfrwv.png"></li>
+				</ul>
+				<li>fontos, hogy a kiválasztott szekvenciák csak itt legyenek benne az inszertben/plazmidban &#10140; hiszen ellenkező esetben máshol is hasítanának az inszertben/plazmidban a restrikciós_endonukleázok</li>
+			</ul>
+		</ul>
+		<li>található benne egy <strong>promoter</strong> az MCS előtt, illetve egy <strong>poliA</strong> az MCS után &#10140; ezek biztosítják, hogy transzkripció legyen</li>
+		<li>található benne egy <strong>antibiotikum rezisztenciát</strong> kódoló szakasz</li><ul>
+			<li>képen az ampicillin-rezisztencia rész ez</li>
+			<li>ennek szerepe, hogy ampicillin nevű antiobiotikum ellen nyújt védelmet (gondolom olyan fehérjét kódol)</li>
+			<li>így azon baktériumok, melyekben van vektor (mely tartalmazza az inszertet) ampicillin rezisztensek &#10140; ha táptalajba teszek ampicillin, csak azok élik túl, melyekben van rekombináns DNS (ki lehet szelektálni őket)</li>
+		</ul>
+	  </div>
+	  <hr><strong><u>inszert létrehozása</u></strong> <img class="mini" src="images/crtngnstrt.png"><div>
+		<li>inszert &#10140; fehérjét (pl. inzulin) kódoló DNS szakasz</li>
+		<li>azonban mivel az inszertet baktérium fogja expresszálni, ezért ott nem lesz külön mRNS érés &#10140; tehát ha az inszertben benne vannak az intron részek, akkor azok nem fognak kivágódni, és a fehérjében is benne lesz, ami így funkcióképtelen</li>
+		<li>ezért érett mRNS-t kell ún. cDNS-é(complementary) alakítani <abbr title="hisz az eukariótában lévő gén áthelyezése nem lenne elég, hisz abban még ott vannak az intronok">§</abbr></li>
+		<li>1.lépés &#10140; érett mRNS-t reverz_transzkriptáz(RNS-függő DNS-polimeráz enzim) "visszaírja" DNS-é</li>
+		<li>2.lépés &#10140; PCR-amplifikáció</li><ul>
+			<li>PCR &#10140; végbemegy a cDNS sokszorozás</li>
+			<li>amplifikáció &#10140; ugyanis a cDNS-hélix két végére rá kell tenni azt a palindrom szekvenciát, amelynél a restrikciós endonukleáz általi hasítás után, komplementere lesz a vektornak &#10140; ezt a szekvenciát a primer 5' végére tesszük</li>
+		</ul>
+	  </div>
+	  <hr><strong><u>inszert és vektor "összeillesztése"</u></strong> <img class="mini" src="images/lgzstbmkds.png"><div>
+		<li>a kétféle restrikciós endonukleáz kivágja az inszertet, és ugyanezen kettő a plazmidban a helyét</li>
+		<li>ezután energetikailag kedvező feltételek követketében spontán az inszert beilleszkedik a plazmidba</li>
+		<li>azonban ilyenkor még csak H-kötések alakulnak ki &#10140; mindkét oldalon 1-1 nick van (foszfodiészter-kötés hiány)</li>
+		<li>ezt a ligáz szünteti meg, és ezzel elkészül a rekombináns DNS</li>
+	  </div>
+	  <hr><strong><u>transzformálás</u></strong><div>
+		<li>transzformálás &#10140; kész rekombináns DNS baktériumba juttatása</li>
+		<li>lényege &#10140; van egy oldat, melyben a baktériumok, rekombináns_DNS-ek, Ca<sup>2+</sup> vannak &#10140; az oldat alacsony hőmérsékleten van &#10140; majd rövid ideig (42sec) felmelegítik 42°C-ra, és így bejutnak a rekombináns DNS-ek a baktériumokba</li>
+	  </div>
+	</ul></details>
+	<details class="kerdes 4/15" id="msb.252"><summary><strong>Rekombináns DNS készítése (klónozás)</strong> és fontosabb alkalmazási területei. (100%)</summary><ul class="normal">
 	  <strong><u>rekombináns DNS lényege</u></strong><div>
 		<li>A <span class="WHITE">rekombináns DNS</span> = <span class="WHITE">DNS-konstrukció</span> olyan molekulát jelent, melyet laboratóriumi körülmények között hoznak létre úgy, hogy két eltérő forrásból származó DNS-t kapcsolnak össze. A két alkotórészt vektornak és inszertnek nevezzük.</li>
 		<li>A vektor lehet plazmid vagy <abbr title="bakteriális vírus">bakteriofág</abbr>. A gyakorlatunkon plazmid volt.</li>
@@ -2378,7 +2433,6 @@
 	  <hr><strong><u>transzformálás</u></strong><div>
 		<li>transzformálás &#10140; kész rekombináns DNS baktériumba juttatása</li>
 		<li>lényege &#10140; van egy oldat, melyben a baktériumok, rekombináns_DNS-ek, Ca<sup>2+</sup> vannak &#10140; az oldat alacsony hőmérsékleten van &#10140; majd rövid ideig (42sec) felmelegítik 42°C-ra, és így bejutnak a rekombináns DNS-ek a baktériumokba</li>
-		<li>lényege &#10140; van egy oldat, melyben a baktériumok, rekombináns_DNS-ek, Ca<sup>2+</sup> vannak &#10140; az oldat alacsony hőmérsékleten van &#10140; majd rövid ideig (42sec) felmelegítik 42°C-ra, és így bejutnak a rekombináns DNS-ek a baktériumokba</li>
 	  </div>
 	  <hr><strong><span class="MISS"><u>egyenlőre kihagytam</u></span></strong><div>
 		<img src="images/fix_01.png">
@@ -2411,6 +2465,27 @@
 		<li><strong>klónozó</strong> &#10140; itt az inszertben található <strong>DNS-szakasz</strong> sokszorosítása a cél</li>
 		<li><strong>expressziós</strong> &#10140; itt az inszert által kódolt <strong>fehérje</strong> sokszorosítása a cél &#10140; tehát a beültetett inszert, expresszálódni fog fehérjeként (pl.inzulin)</li>
 	</ul></details>
+	<details class="kerdes 3/2" id="msb.253"><summary style="color:MediumBlue">plazmid replikációjáról tudnivalók?(3)</summary><ul class="normal">
+		<img src="images/f1orivktr.png">
+		<li><strong>F1-ori</strong>-tól indul a replikáció</li>
+		<li>az <strong>F1-ori</strong> szekvenciája különbözik a bakteriális kromoszómában található origó-tól(<strong>oriC</strong>), így attól függetlenül replikálódik</li>
+		<li>a plazmidok replikációja unidirekciós &#10140; csak egy replikációs villa alakul ki &#10140; tehát egy irányba történik csak, nem úgy mint a bakteriális kromoszómánál &#10140; ezért van az irány mutatva a képen</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="msb.255"><summary style="color:MediumBlue">PCR-amplifikációnál miért 5' végre kerül a palindrom szekvencia?</summary><ul class="normal">
+		<li>Ugyanis, ha a primer elég hosszan (kb. 20 bázissal) specifikusan kapcsolódik a cDNS-hez, a primer végéhez hozzáadott, nem komplementer szekvencia nem fogja zavarni az amplifikációt, és az információ be fog épülni a PCR-termékbe</li>
+		<img src="images/crtngnstrt.png">
+	</ul></details>
+	<details class="kerdes 3/3" id="msb.257"><summary style="color:MediumBlue">optimális szekvencia kiválasztása?</summary><ul class="normal">
+		<li>fontos, hogy a plazmidban lévő MCS-ben két különböző helyen lévő szekvenciánál történjen hasítás &#10140; ugyanis ha csak egy helyen történne, akkor a plazmid szétnyílna ugyan, de rögtön utána össze is kapcsolódna, az inszert beépülése nélkül</li>
+		<li>fontos, hogy azon szekvenciák eltérőek legyenek, azaz két különböző típusú restrikciós_endonukleáz hasítsa őket el &#10140; ugyanis ellenkező esetben...</li><ul>
+			<li>a plazmid megintcsak összekapcsolódna, az inszert beépülése nélkül <img class="mini" src="images/kvgttszrnv.png"></li>
+			<li>mivel az inszert is ugyanazzal a restrikciós_endonukleázzal vágódik ki, így beépülése történhetne fordítva &#10140; és így már funkcióképtelen fehérjét kódolna <img class="mini" src="images/ksdfrwv.png"></li>
+		</ul>
+		<li>fontos, hogy a kiválasztott szekvenciák csak itt legyenek benne...</li><ul>
+			<li>a plazmidban &#10140; hiszen ellenkező esetben máshol is hasítanának a restrikciós_endonukleázok</li>
+			<li>az inszertben is &#10140; ugyanis az inszertnél is ugyanazon restrikciós endonukleázok lesznek felhasználva, és ellenkező esetben ugyanúgy az inszert is szétlenne hasítva</li>
+		</ul>
+	</ul></details>
 	http://elte.prompt.hu/sites/default/files/tananyagok/ABiokemiaEsMolekularisBiologiaAlapjai/ch19s02.html
 <!----></div></details>
 
@@ -2432,27 +2507,154 @@
 <!----><details><summary class="phaseD">#11 Fehérjék elválasztása kis molekulatömegű anyagoktól, molekula-szűrés elve.</summary><div><div class="title"> </div>
 <!----></div></details>
 
-<!----><details><summary class="phaseD">#12 A papír- és vékonyréteg-kromatográfia elve, aminosavak elválasztása.</summary><div><div class="title"> </div>
+<!----><details open><summary class="phaseB">#12 A papír- és vékonyréteg-kromatográfia elve, aminosavak elválasztása.</summary><div><div class="title"> </div>
 <!----></div></details>
 
-<!----><details><summary class="phaseD">#13 A fehérjék SDS-poliakrilamid gél-elektroforézise, szérum fehérjék elválasztása, a Western blot módszer, a fehérjék specifikus kimutatása.</summary><div><div class="title"> </div>
+<!----><details open><summary class="phaseB">#13 A fehérjék SDS-poliakrilamid gél-elektroforézise, szérum fehérjék elválasztása, a Western blot módszer, a fehérjék specifikus kimutatása.</summary><div><div class="title"> </div>
 <!----></div></details>
 
 <!----><details><summary class="phaseD">#14 Az ureáz enzim KM és VMax értékének meghatározása, az ureáz enzim kompetitiv és nem-kompetitiv gátlása.</summary><div><div class="title"> </div>
 <!----></div></details>
 
-<!----><details><summary class="phaseD">#15 A β-galaktozidáz indukciója E. coliban.</summary><div><div class="title"> </div>
+<!----><details><summary class="phase">#15 A β-galaktozidáz indukciója E. coliban.</summary><div><div class="title"> </div>
+	<details class="kerdes 4/5" id="msb.248"><summary>RAJZ + elméleti alapok</summary><ul class="normal">
+		<img style="max-width:35%" src="images/lcszblkyz.png">
+		<strong>RAJZ <img class="mini" src="images/cpbndngst.png"></strong>
+	  <hr>
+		<li>Lac operon 3 fehérjét kódol &#10140; &beta;-galaktozidáz, galaktozid permeáz, galaktozid transzacetiláz</li>
+		<li>ezek végzik a laktóz lebontását (pontosan a &beta;-galaktozidáz, de másik kettő is szerepet játszik benne)</li>
+	  <hr>
+		<li>két dolog szabályozza a fehérjék expresszióját</li><ul>
+			<li>glükóz ha kevés van &#10140; serkenti</li>
+			<li>laktóz ha kevés van &#10140; gátolja</li>
+			<div>&#10140; tehát az optimális, ha sok laktóz és kevés glükóz (ez logikus, hisz akkor van szükség a laktóz lebontását végző enzimekre)</div>
+		</ul>
+	  <hr>
+		<li>génreguláló fehérjék &#10140; ligand &#10140; kötődésük mit okoz</li><ul>
+			<li>aktivátor: CRP=CAP &#10140; cAMP &#10140; kapcsolódik</li>
+			<li>represszor: lac &#10140; laktóz &#10140; leválik <abbr title="az operátorról &#10140; de a CAP kötődési helyét nem biztos, hogy lehet operátornak nevezni (ezen a képen legalábbis nincs annak titulálva)">&#10045;</abbr></li>
+		</ul>
+	  <hr>
+		<li><abbr title="lacI által kódolt">()</abbr> a lac nevű represszor-fehérje az operátorhoz kötődve gátolja a transzkripciót egész addig, amíg nem magas a laktóz koncentráció &#10140; ugyanis az hozzá kötődve, konformációváltozást vált ki, és leválik az operátorról</li>
+		<li>ezenkívül az alacsony glükóz koncentráció esetében cAMP termelődik &#10140; ez hozzákapcsolódva egy ún. <abbr title="catabolite activator protein">CAP</abbr>=<abbr title="cAMP Receptor Protein">CRP</abbr> nevű aktivátor fehérjéhez, konformációváltozást vált ki benne, és így az képes lesz csatlakozni a CAP binding site-hoz &#10140; növeli az RNS-polimeráz affinitását a promoterhez (serkenti az iniciációt, nő a transzkripció száma/perc, persze csak amennyiben nincs gátolva az operátor régiónál)</li>
+	  <hr>
+		<li>ezek következtében a képen látható 4 féle variáció fordulhat elő</li>
+		<li>amennyiben laktóz és glükóz koncentráció is magas (képen E) eset), akkoris van génexpresszió egy kis mértékben &#10140; ugyanis itt alapból gyenge a promoter <span class="WHITE">-35</span> szekvenciája, és ezért van szükség aktivátorra is</li>
+	</ul></details>
+	<details class="kerdes 4/5" id="msb.251"><summary>Mérés</summary><ul class="normal">
+		<li>ONPG &#10140; mesterséges szubsztrátot adok a &beta;-galaktozidázhoz &#10140; sárga színű termék lesz (minél sárgább, annál több termék keletkezett, tehát az enzimaktivitással arányos)</li>
+		<li>IPTG &#10140; induktor a laktóz helyett &#10140; ez így nem fog csökkeni a reakció során (ami enzimtermelés fokozást csökkentené), ellentétben a laktózzal ha az lenne</li>
+	  <hr><div>mérés 3 lépése</div>
+		<div><span class="WHITE">1.lépés</span> alapja, hogy "az enzimeket legyártjuk bizonyos idő alatt, majd minden mást elpusztítunk és csak azok maradnak" &#10140; itt különböző mennyiségben lesz az enzim, a 9 féle pipettában (lásd majd lentebb)</div>
+		<div><span class="WHITE">2.lépés</span> mindegyik pipetta esetében ugyanaz &#10140; szubsztrátot hozzáadva az egyes enzim-oldatokhoz, hagyom mindegyiket 15percig működni</div>
+		/ezután hozzáadok Na-karbonát &#10140; enzimműködést leállítja/
+		<div><span class="WHITE">3.lépés</span> mindegyik pipetta esetében ugyanaz &#10140; megmérem spektrofotométerrel az oldatok abszorpcióját, ami arányos a keletkezett termékek koncentrációjával, hisz Lambert-Beer törvény <span class="WHITE"><abbr title="abszorbancia = OptikaiDenzitás = extinkció">A</abbr> = <abbr title="koncentráció">c</abbr> × <abbr title="moláris extinkciós koefficiens (adott hullámhosszon)">ε</abbr> × <abbr title="elnyelő réteg vastagsága">l</abbr></span></div>
+	  <hr><div>1.lépés</div><ol>
+			<img src="images/gygrfkglzn.png">
+			<div>IPTG-t hozzáadva E.coli-oldathoz elkezdenek enzimet termelni</div>
+			<li>hagyom 0percig enzimet termelni</li>
+			<li>hagyom 15percig enzimet termelni</li>
+			<li>hagyom 30percig enzimet termelni</li>
+			<li>0percnél kloramfenikolt adok hozzá, majd hagyom 30percig enzimet termelni</li>
+			<li>15percnél kloramfenikolt adok hozzá, majd hagyom 30percig enzimet termelni</li>
+			<li>/vak/</li>
+			<li>0percnél rifampicint adok hozzá, majd hagyom 30percig enzimet termelni</li>
+			<li>15percnél rifampicint adok hozzá, majd hagyom 30percig enzimet termelni</li>
+			<li>/rifampicines vak/</li>
+		</ol>
+		<li><span class="Important">mérés várható eredményei grafikonon &#10140; magyarázattal</span></li><ol>
+			<li>0perc alatt semmi enzim nem termelődik, így semmi színes termék nem keletkezik, így az abszorbanciája 0</li>
+			<li>15perc alatt keletkezik valamennyi enzim &#10140; termék &#10140; abszorbancia</li>
+			<li><i>30perc alatt több mint 2x annyi enzim keletkezik, ugyanis a már meglévő mRNS-ekről is folyik transzkripció</i> <abbr title="(tehát ha egy mRNS-se lenne ismét, csak a 15perc alatt termelődött enzimek, és úgy várnék megint 15percet, akkor lenne 2x annyi, azonban itt már vannak alapból is(tehát 15perc után) mRNS-ek)">&#10045;</abbr></li>
+			<li>kloramfenikol gátolja a transzlációt &#10140; 0perc alatt semmi enzim nem termelődik &#10140; abszorbanciája 0</li>
+			<li>ugyanaz zajlik le, mint a 2esnél hiszen a 15.perctől több enzim-szintézis már nem tud végbemenni (csakúgy, mint a 2esnél amikor megszakítom)</li>
+			<li>vak oldat &#10140; 1-5 pipetta 3.lépésben történő méréséhez van használva</li>
+			<li>rifampicin transzkripciót gátolja &#10140; 0 enzim termelődik</li>
+			<li><span class="Important">3 és 5 között lesz valahol</span> &#10140; ugyanis a 15percig letermelődött mRNS-elről még lesz utána is transzláció!!</li>
+			<li>vak oldat &#10140; 7-8 pipetta 3.lépésben történő méréséhez kell, ugyanis rifampicin narancs színű</li>
+		</ol>
+	</ul></details>
+	<details class="kerdes 2/2" id="msb.246"><summary style="color:MediumBlue">Lac operon &#10140; mely 3 fehérjét kódolja?</summary><ul class="normal">
+		<li><font class="abbr">&beta;-galaktozidáz ►</font> laktózt <abbr title=",,1vízmolekulát hozzáadva hasítja ketté''">hidrolizálja</abbr> glükózra és galaktózra</li>
+		<li><font class="abbr">galaktozid permeáz ►</font> laktóz transzportjáért felelős</li>
+		<li><font class="abbr">galaktozid transzacetiláz ►</font> laktózra átvisz egy acetil csoportot az acetil-CoA-ról</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="msb.247"><summary style="color:MediumBlue">transzláció prokariótáknál mivel kezdődik</summary><ul class="normal">
+		<li>prokariótáknál formil-metioninnal kezdődik a transzláció</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="msb.249"><summary style="color:MediumBlue">mi a pozitív/negatív szabályozás?</summary><ul class="normal">
+		<li>pozitív szabályozás &#10140; laktóz jelenléte és/vagy glükóz hiánya (ami cAMP jelenlétet okoz!)</li>
+		<li>negatív szabályozás &#10140; laktóz hiánya és/vagy glükóz jelenléte (ami cAMP hiányt okoz!)</li>
+	</ul></details>
+	<details class="kerdes 2/1" id="msb.250"><summary style="color:MediumBlue">1db E.colinak hány db operonja van?</summary><ul class="normal">
+		<li>1db E.colinak csak 1 operonja van</li>
+	</ul></details>
+	<abbr title="megjegyzés &#10140; 14.tétel + gyakfüzet + jegyzeteim alapján könnyen megértem">§</abbr> <abbr title="operon = operátor(lac) + struktúrgének(lacZ+lacY+lacA) (tehát a promoter + operátort kódoló gén szvsz nem tartozik bele)">§</abbr>
 <!----></div></details>
 
 <!----><details><summary class="phase">#16 Plazmidok emésztése restrikciós endonukleázokkal, a fragmentumok analízise gél-elektroforézissel.</summary><div><div class="title"> </div>
-	<details class="kerdes 4/6" id="msb.245"><summary><strong>Rekombináns DNS készítése (klónozás)</strong> és fontosabb alkalmazási területei.</summary><ul class="normal">
-		<li>Az elmélet alapját ennél a tételnél találom &#10140; Rekombináns DNS készítése (klónozás) és fontosabb alkalmazási területei</li>
-	  <hr><strong>a képen látható a plazmid</strong>
+	<details class="kerdes 4/10" id="msb.254"><summary>elméleti alapok (60%)</summary><ul class="normal">
+	  <strong><u>rekombináns DNS lényege</u></strong><div>
+		<li>a <span class="WHITE">rekombináns DNS</span> olyan molekula, melyet laboratóriumi körülmények között hoznak létre vektornak és inszert összekapcsolásával</li>
+		<li>a vektor lehet plazmid vagy <abbr title="bakteriális vírus">bakteriofág</abbr> &#10140; a gyakorlatunkon plazmid volt</li>
+		<li>plazmid egy cirkuláris DNS, mely a <img class="mini" src="images/plzmdgyk.png"> baktériumokban található <abbr title="illetve archeak, egyes növények, algák, gombák">§</abbr> &#10140; extrakromoszomális, tehát külön van a bakteriális kromoszómától a citoplazmában (lásd kép)</li>
+		<li>plazmidba építjük be az inszertet</li>
+	  </div>
+	  <hr><strong><span class="Important">RAJZ</span> <u>vektor felépítése</u></strong><div>
+		<img src="images/f1orivktr.png">
+		<li>kör alakú, hiszen cirkuláris DNS a plazmid</li>
+		<li>található benne egy ún. <strong>F1-ori</strong> &#10140; innen indul a plazmid <abbr title="tehát a duplikációja, azaz miután végbement lesz belőle két plazmid (két teljes kör). szóval itt ne keressek semmiféle végződést (pl. poliA), hiszen a DNS-polimeráz az egészet lemásolja (tehát ez replikáció, nem transzkripció)">replikációja</abbr> <abbr title="A szemikonzervatív DNS-replikáció elve. A replikációs villa, vezető és késlekedő szál">(lásd hasonlóan...oriC)</abbr> <abbr title="a plazmidok replikációja unidirekciós &#10140; csak egy replikációs villa alakul ki &#10140; tehát egy irányba történik csak, nem úgy mint a bakteriális kromoszómánál &#10140; ezért van az irány mutatva a képen">§</abbr></li>
+		<li>található benne egy ún. <abbr title="multiple cloning site"><strong>MCS</strong></abbr></li><ul>
+			<li><span class="Important">az inszert ide lesz beépítve</span> <img class="mini" src="images/nstrblszts.png"></li>
+			<li>ez – ahogyan a nevében is benne van – több olyan szekvenciát tartalmaz, melyet különböző II-es_típusú_restrikciós_endonukleázok felismernek, és elhasítják ott</li>
+			<li>így ebből lehetőség van kiválasztani a számunkra legoptimálisabbat</li>
+			<li>a II_típusú restrikciós endonukleázok <abbr title=",,Géza kék az ég''. Tehát a komplementer szálon ugyanilyen irányba(pl.5-3) olvasva ugyanaz jön ki: ilyen pl. GCATGC">palindrom</abbr> szekvenciákat ismernek fel és hasítanak, pl. ATGCAT</li>
+			<li>a palindromból következik, hogy ezek csak úgy tudnak hasítani, hogy egyszerre mindkét szálat elhasítják (olyan nincs, hogy csak egyiket</li>
+			<li>a hasításokat két csoportra osztjuk <img class="mini" src="images/rstkcsndlklznk.png"></li>
+			<li>itt <abbr title="általában">()</abbr> ragadós véget eredményező restrikciós_endonukleázokat választunk &#10140; ugyanis az egymással komplementer végek spontán összekapcsolódnak, mert energetikailag kedvező nekik &#10140; így az inszert beépül a plazmidba</li>
+			<li>optimális szekvenciák kiválasztása</li><ul>
+				<li>fontos, hogy a plazmidban lévő MCS-ben két különböző nukleotidokból álló szekvenciánál történjen 1-1 hasítás</li><ul>
+					<li>ugyanis ellenkező esetben a plazmid szétnyílna ugyan, de rögtön utána össze is kapcsolódna, az inszert beépülése nélkül <img class="mini" src="images/kvgttszrnv.png"></li>
+					<li>mivel az inszert is ugyanazzal a restrikciós_endonukleázzal vágódik ki, így beépülése történhetne fordítva &#10140; és így már funkcióképtelen fehérjét kódolna <img class="mini" src="images/ksdfrwv.png"></li>
+				</ul>
+				<li>fontos, hogy a kiválasztott szekvenciák csak itt legyenek benne az inszertben/plazmidban &#10140; hiszen ellenkező esetben máshol is hasítanának az inszertben/plazmidban a restrikciós_endonukleázok</li>
+			</ul>
+		</ul>
+		<li>található benne egy <strong>promoter</strong> az MCS előtt, illetve egy <strong>poliA</strong> az MCS után &#10140; ezek biztosítják, hogy transzkripció legyen</li>
+		<li>található benne egy <strong>antibiotikum rezisztenciát</strong> kódoló szakasz</li><ul>
+			<li>képen az ampicillin-rezisztencia rész ez</li>
+			<li>ennek szerepe, hogy ampicillin nevű antiobiotikum ellen nyújt védelmet (gondolom olyan fehérjét kódol)</li>
+			<li>így azon baktériumok, melyekben van vektor (mely tartalmazza az inszertet) ampicillin rezisztensek &#10140; ha táptalajba teszek ampicillin, csak azok élik túl, melyekben van rekombináns DNS (ki lehet szelektálni őket)</li>
+		</ul>
+	  </div>
+	  <hr><strong><u>inszert létrehozása</u></strong> <img class="mini" src="images/crtngnstrt.png"><div>
+		<li>inszert &#10140; fehérjét (pl. inzulin) kódoló DNS szakasz</li>
+		<li>azonban mivel az inszertet baktérium fogja expresszálni, ezért ott nem lesz külön mRNS érés &#10140; tehát ha az inszertben benne vannak az intron részek, akkor azok nem fognak kivágódni, és a fehérjében is benne lesz, ami így funkcióképtelen</li>
+		<li>ezért érett mRNS-t kell ún. cDNS-é(complementary) alakítani <abbr title="hisz az eukariótában lévő gén áthelyezése nem lenne elég, hisz abban még ott vannak az intronok">§</abbr></li>
+		<li>1.lépés &#10140; érett mRNS-t reverz_transzkriptáz(RNS-függő DNS-polimeráz enzim) "visszaírja" DNS-é</li>
+		<li>2.lépés &#10140; PCR-amplifikáció</li><ul>
+			<li>PCR &#10140; végbemegy a cDNS sokszorozás</li>
+			<li>amplifikáció &#10140; ugyanis a cDNS-hélix két végére rá kell tenni azt a palindrom szekvenciát, amelynél a restrikciós endonukleáz általi hasítás után, komplementere lesz a vektornak &#10140; ezt a szekvenciát a primer 5' végére tesszük</li>
+		</ul>
+	  </div>
+	  <hr><strong><u>inszert és vektor "összeillesztése"</u></strong> <img class="mini" src="images/lgzstbmkds.png"><div>
+		<li>a kétféle restrikciós endonukleáz kivágja az inszertet, és ugyanezen kettő a plazmidban a helyét</li>
+		<li>ezután energetikailag kedvező feltételek követketében spontán az inszert beilleszkedik a plazmidba</li>
+		<li>azonban ilyenkor még csak H-kötések alakulnak ki &#10140; mindkét oldalon 1-1 nick van (foszfodiészter-kötés hiány)</li>
+		<li>ezt a ligáz szünteti meg, és ezzel elkészül a rekombináns DNS</li>
+	  </div>
+	  <hr><strong><u>transzformálás</u></strong><div>
+		<li>transzformálás &#10140; kész rekombináns DNS baktériumba juttatása</li>
+		<li>lényege &#10140; van egy oldat, melyben a baktériumok, rekombináns_DNS-ek, Ca<sup>2+</sup> vannak &#10140; az oldat alacsony hőmérsékleten van &#10140; majd rövid ideig (42sec) felmelegítik 42°C-ra, és így bejutnak a rekombináns DNS-ek a baktériumokba</li>
+	  </div>
+	</ul></details>
+	<details class="kerdes 4/5" id="msb.245"><summary>GYAKORLAT</summary><ul class="normal">
+	  <strong><span class="Important">RAJZ</span> a képen látható a plazmid</strong>
 		<img src="images/gykrnstkznc.png">
 		<li>kb. 4500bp hosszú</li>
-		<li>origo &#10140; innen zajlik a replikáció</li>
 		<li>MCS &#10140; itt hasít az egyik restrikciós_endonukleáz (Nhe-I)</li>
 		<li>terminációs-szignál &#10140; előtte hasít a másik restrikciós_endonukleáz (Xba-I)</li>
+		<li>(luciferáz gén elméleti jelentősége csupán annyi, hogy kb. pont előtte és utána vannak a hasítási szekvenciák &#10140; tehát luciferáz-hossznyi vágódik ki, ha mindkettőnél hasítás van)</li>
 	  <hr><strong>első lépés &#10140; inkubáció</strong>
 		<li>4 külön pipetta lett összeállítva</li><ul>
 			<li><span class="WHITE">A</span> &#10140; marker</li>
@@ -2472,73 +2674,138 @@
 <!----></div></details>
 
 <!----><details><summary class="phase">#17 Egy ízérző receptor genotipizálása PCR-RFLP módszerrel.</summary><div><div class="title"> </div><ul class="normal">
-  <strong><u>Célja</u></strong><div>
-	Öt féle alapíz van: édes,sós,savanyú,keserű,umami. A keserű íz "egyik típusát" az emberek 70%a érzékeli és 30%a nem. Ez attól függ, hogy az egyed génje milyen. A mérés során azt vizsgáljuk meg, hogy a csoportban 12 ember közül ki érzékeli és ki nem. Tehát megnézzük, hogy a génben "jól van-e kódolva".
-  </div>
+	<details class="kerdes 4/10" id="msb.258"><summary><strong>Egy ízérző receptor genotipizálása PCR-RFLP módszerrel</strong> (60%)</summary><ul class="normal">
+	  <strong><u>Bevezetés</u></strong><div>
+		<li>5 féle alapíz van: édes,sós,savanyú,keserű,umami</li>
+		<li>a keserű íz "egyik típusát", az ún. PTC-t az emberek 70% érzékeli, és 30%a nem</li>
+		<li>ennek hátterében <abbr title="tehát egy nukleotid helyett más van a DNS-ben, mint kéne (pl. C helyett T van)">single_nukleotid-polimorfizmus(SNP)</abbr> áll</li><ul>
+			<li>jelen esetben 3 helyen történhet meg a kicserélődés</li>
+			<li>alapvetően Pro-Ala-Val aminosavat kódolnak (C...C...G) &#10140; SNP esetében Ala-Val-Ile aminosavat (G...T...A)</li>
+			<li>ez a polimorfizmus csak úgy fordulhat elő, hogy vagy mindhárom kicserélődik vagy egyik sem</li>
+		</ul>
+		<li>a <abbr title="diploid sejtek vannak, így a gén kétszer van">genotípusok</abbr> így lehetnek <abbr title="mindkét gén jó">TT</abbr>, <abbr title="egyik gén rossz">Tt</abbr>, <abbr title="mindkét gén rossz">tt</abbr></li>
+		<li>gyakorlat célja: meghatározni, hogy a csoportban lévők közül kinek milyen genotípusa van</li>
+	  </div>
+	  <hr><strong><u>(1) lépés: DNS izolálás</u></strong><div>
+		<li>vattapálcával a száj nyálkahártyjából hámsejteket szedünk le</li>
+		<li>ezután PBS-oldattal lemossuk a vattáról a hámsejteket</li>
+		<li>ezután a membránokat és fehérjéket "felaprítjuk" &#10140; membránokat lízispuferrel, a fehérjéket proteináz K-val &#10140; így kapunk a végén ún. sejtlizátumot</li>
+		<li>ezután a következik a DNS-izolálás &#10140; affinitás-kromatográfiával történik</li><ul>
+			<li>ennek lényege hogy egy műanyag oszlopba van egy pozitív töltésű mátrix, mely a negatív töltésű moleklákat megköti, pl. DNS</li>
+			<li>ezenkívül egyes fehérjéket és egyéb molekulát is megköt, de a nagyrészét nem <img class="mini" src="images/vgcskfknmtrckrm.png">. </li>
+			<li>(a) ezért először ebbe beleöntöm a sejtlizátumot &#10140; DNS + egyéb megtapad mátrix &#10140; maradék sejtlizátumot kiöntöm</li>
+			<li>(b) pufferoldat-"ciklus"</li><ul>
+				<li>pufferoldatot öntök hozzá &#10140; ez lemossa a mátrixról a többi fennmaradt fehérjét és egyéb nem DNS molekulát</li>
+				<li>centrifugálás &#10140; mivel a mátrix pólusai kicsik, ez szükséges ahhoz, hogy a pufferoldat lemossa a mátrixról a nem DNS-molekulákat</li>
+				<li>pufferoldat + egyéb kiöntése</li>
+			</ul>
+			<li>a (b)-t különböző pH-jú pufferoldatokkal elvégezve a végén csak a DNS marad a mátrixon</li>
+			<li>ezután bázikus pH-jú oldattal a fennmaradt DNS-t lemossuk</li>
+		</ul>
+	  </div>
+	  <hr><strong><u>(2) lépés: <abbr title="polymerase chain reaction">PCR</abbr></u></strong><div>
+		<img src="images/prndlnsskrz.png">
+		<li>Itt a cél, hogy megsokszorozzuk a génszakaszt, mely a receptort kódolja. Ennek következtében a végén szemmel látható eredményt kapjunk. Ennek módja a következőképpen történik...</li>
+		<li>A sokszorozás 3óra alatt játszódik le, és közben kb 20-30 termociklus &#10140; egy termociklus három lépésből áll</li><ul>
+			<li>(A) 95°C-on szétválik két láncra a DNS</li>
+			<li>(B) 55°C-on a primerek hozzákötődnek a gén előtt 5' irányba kicsivel</li>
+			<li>(C) 75°C-on a DNS-polimerázok dolgoznak</li>
+		</ul>
+		<li>Így ez végeredményben azt jelenti, hogy a végén kb x*2<sup>25</sup>db "gént" kapunk (hisz mindig 2x annyi lesz, és kezdetben volt x darab)</li>
+		<li>(B) lépés kicsit részletesebben</li><ul>
+			<li>azért van rá szükség, mert a DNS polimeráz, mely megsokszorozza majd a gént, csak megkezdett szálat tud folytatni</li>
+			<li>a primerek a gén előtt 5' irányba kell kapcsolódjanak kicsivel &#10140; ezért kb. 20bp hosszúak, így biztosan nem kapcsolódnak máshova</li>
+		</ul>
+		 <li>DNS polimeráznak van 3'-exonukleáz aktivitása is, így pontos másolatot képez.</li>
+		 <li>A kivitelezéshez a következőt kell tenni: mastermixet kell elkészíteni, majd hozzáadni az izolált DNS-t. Ezután a sokszorozást egy <abbr title="nevét nem tudom">"gép"</abbr> végzi el. A mastermix tartalmazza a DNS-polimerázt, a primereket illetve <abbr title="dezoxi-nukleozidtrifoszfátokat: ATP/GTP/TTP/CTP">dNTP-ket</abbr></li>
+		 <li>a megsokszorozott szakasz 303bp hosszú</li>
+	  </div>
+	  <strong><u>(3) lépés: <abbr title="restriction fragment length polymorphism">RFLP</abbr> ~= restrikciós emésztés</u></strong><div>
+		<li>lényege &#10140; megsokszorozódott "gén-oldathoz" hozzáadjuk a restrikciós endonukleázt, majd 1óráig hadjuk 37°C-on (testhőmérséklet) dolgozni.</li>
+		<li>a restrikciós endonukleáz elhasítja a "jó" "gént", míg a polimorfizmusost nem</li>
+		<li>tehát amennyiben a receptor működik és érzi az egyed az PTC-ízt, akkor 239bp és 64bp hosszú szálak lesznek, ellenben ha polimorfizmus van, akkor 303bp hosszú szálak</li>
+		<li>azonban mivel diploid sejtek vannak, ezért ha "heterozigóta volt a gén" (tehát volt "jó", és rossz "gén" is), akkor lesz mindháromból</li>
+		<li>a restrikciós endonukláez amit használunk az alábbi szekvenciát ismeri fel.: G<span class="Vocab">C</span><span class="Important">N</span>GC &#10140; az <span class="Important">N</span> lehet bármilyen nukleotid &#10140; ha van ilyen szekvencia akkor a <span class="Vocab">C</span><span class="Important">N</span> közti foszfodiészter kötést elhasítja</li>
+		<li>A <span class="Vocab">C</span> azért van kiemelve, mert ez az a nukleotid, mely a "jó" allélvátozatban megvan, ellenben a polimorfizmusosban helyette T van &#10140; (C...<span class="Vocab">C</span>...G) vs. (G...<span class="Vocab">T</span>...A)</li>
+	  </div>
+	  <strong><u>(4) lépés: gélelektroforézis</u></strong><div>
+		<img style="max-width:30%" src="images/gy9_03.png">
+		<li>SDS-PAGE gyakorlaton már csináltunk ilyet fehérjékkel. Itt két kölönbséget említenék meg. </li><ul>
+			<li>Most nem kell kezelés SDS-el, mert a fajlagos_töltése már alapból megegyezik a különböző hosszúságú (64,239,303) DNS-szálaknak, hisz a foszfátok negatív töltése arányos a DNS hosszával <abbr title="fajlagos töltés pedig a töltés/tömeg hányados (és a tömeg is arányos a hosszal)">()</abbr>. Így jelen esetben csak a tömegtől függ az elmodulás: minél nagyobb a <abbr title="ami arányos a hosszával, így a 303 hosszú fog a legkevésbé elmozdulni">tömeg</abbr>, annál kevésbé mozdul el (hiszen a feszültség ami gyorsítja F erővel hat rá: F=ma &#10140; minél nagyobb m, annál kevésbé gyorsul).</li>
+			<li>Poliakrilamid helyett agaróz alkotja a gélt. (Ez algákból nyerhető, és olcsóbb.)</li>
+		</ul>
+		<li>A gél DNS-festéket tartalmaz, amely a futtatás során a DNS-láncokkal nem-kovalens komplexet képez és UV-fénnyel indukálva látható tartományban fluoreszkál. Tehát a futtatás után UV-fénnyel átvilágítva láthatóvá válik az elmozdulás.</li>
+	  </div>
+	</ul></details>
+	<details class="kerdes 4/20" id="msb.256"><summary><strong>Egy ízérző receptor genotipizálása PCR-RFLP módszerrel</strong> (100%)</summary><ul class="normal">
+	  <strong><u>Célja</u></strong><div>
+		Öt féle alapíz van: édes,sós,savanyú,keserű,umami. A keserű íz "egyik típusát" az emberek 70%a érzékeli és 30%a nem. Ez attól függ, hogy az egyed génje milyen. A mérés során azt vizsgáljuk meg, hogy a csoportban 12 ember közül ki érzékeli és ki nem. Tehát megnézzük, hogy a génben "jól van-e kódolva".
+	  </div>
 
-  <strong><u>Bevezetés</u></strong><div>
-	A keserű ízt érzékelő <abbr title="(kemoreceptorok)">receptorok</abbr> <abbr title="TASte Receptor (2=keserű)">(TAS2R)</abbr> egyik típusa a glükózinolátot köti meg (az a ligand). Ezt az ízt PTC-íznek nevezzük. A "hiba" (ha valaki nem érzi a PTC ízt) hátterében single_nukleotid-polimorfizmus(SNP) áll. Tehát egy nukleotid helyett más van a DNS-ben, mint kéne (pl. C helyett T van). Jelen esetben 3 helyen történhet meg a kicserélődés. A három hely alapvetően a következő aminósavakat kódolja Pro-Ala-Val. Ha SNP van, akkor helyettük Ala-Val-Ile lesz. A nukleotidok pedig alapból (C...C...G), kicserélődve pedig (G...T...A). Ez a polimorfizmus csak úgy fordulhat elő, hogy vagy mindhárom kicserélődik vagy egyik sem. Ha kicserélődik akkor a genotípus <strong>t</strong>, ha nem akkor <strong>T</strong> &#10140; így <strong>TT</strong>,<strong>Tt</strong>,<strong>tt</strong> genotípusok lehetnek (hisz diploidok a testi sejtek, tehát 2x van bennük meg a gén: egyik apai másik anyai eredetű). Amennyiben <strong>TT</strong>, jól érzik a PTC-ízt, <strong>Tt</strong> esetében kevésbé, <strong>tt</strong> esetében pedig egyáltalán nem. A genotípust a PCR eljárással határozzuk meg. Az eljárás négy lépésből áll.
-  </div>
+	  <strong><u>Bevezetés</u></strong><div>
+		A keserű ízt érzékelő <abbr title="(kemoreceptorok)">receptorok</abbr> <abbr title="TASte Receptor (2=keserű)">(TAS2R)</abbr> egyik típusa a glükózinolátot köti meg (az a ligand). Ezt az ízt PTC-íznek nevezzük. A "hiba" (ha valaki nem érzi a PTC ízt) hátterében single_nukleotid-polimorfizmus(SNP) áll. Tehát egy nukleotid helyett más van a DNS-ben, mint kéne (pl. C helyett T van). Jelen esetben 3 helyen történhet meg a kicserélődés. A három hely alapvetően a következő aminósavakat kódolja Pro-Ala-Val. Ha SNP van, akkor helyettük Ala-Val-Ile lesz. A nukleotidok pedig alapból (C...C...G), kicserélődve pedig (G...T...A). Ez a polimorfizmus csak úgy fordulhat elő, hogy vagy mindhárom kicserélődik vagy egyik sem. Ha kicserélődik akkor a genotípus <strong>t</strong>, ha nem akkor <strong>T</strong> &#10140; így <strong>TT</strong>,<strong>Tt</strong>,<strong>tt</strong> genotípusok lehetnek (hisz diploidok a testi sejtek, tehát 2x van bennük meg a gén: egyik apai másik anyai eredetű). Amennyiben <strong>TT</strong>, jól érzik a PTC-ízt, <strong>Tt</strong> esetében kevésbé, <strong>tt</strong> esetében pedig egyáltalán nem. A genotípust a PCR eljárással határozzuk meg. Az eljárás négy lépésből áll.
+	  </div>
 
-  <strong><u>(1) DNS izolálás</u></strong><div>
-	<span class="WHITE">1</span> Első lépésben a vattapálcával a száj nyálkahártyjából hámsejteket szedünk le (fél percig dörzsölve vele a buccat, fogíny külsejét). A vattapálcát ezután egy <abbr title="Eppendorf-csőbe">()</abbr>csőbe tesszük. <span class="WHITE">2</span> A sejteket ezután PBS-oldattal lemossuk a vattáról. <span class="WHITE">3</span> Majd a membránokat(sejt & intracelluláris) és fehérjéket "felaprítjuk": membránokat lízispuferrel, a fehérjéket proteináz K-val. Így kapunk ún. sejtlizátumot. <span class="WHITE">4</span> A következő feladat, hogy ebből a DNS-t izoláljuk (tehát csak az marad, más nem). Ezt <span class="Important">affinitás-kromatográfiával</span> végezzük. Ennek lényege hogy egy műanyag oszlopba van egy pozitív töltésű mátrix, mely a negatív töltésű moleklákat megköti, pl. DNS. Ezenkívül egyes fehérjéket és egyéb molekulát is megköt, de a nagyrészét nem <img class="mini" src="images/vgcskfknmtrckrm.png">. <strong>(a)</strong> Ezért ebbe beleöntöm a sejtlizátumot. <strong>(b)</strong> Majd ezután "frissítem" tehát az oldatot elvtávolítom az üvegből, és helyére pufferoldatot öntünk. Ez lemossa a mátrixról a többi fennmaradt fehérjét és egyéb nem DNS molekulát. Azonban mivel a mátrix pólusai kicsit, így csak akkor képes átjutni rajta pufferoldat, ha <strong>(c)</strong> centrifugáljuk. A pufferoldat szvsz savas irányba változtatja a pH-t, hisz így sok proton lesz, tehát a fehérjék & egyéb negatív töltése megszűnik így leválnak a mátrixról. Végül ha ez meg volt <strong>(d)</strong>, akkor a DNS-t is leválasztjuk a mátrixról bázikus pH-jú oldattal <abbr title="mármint a mátrix lesz semleges töltésű emiatt?!"><font style="color:red;font-weight:bold;">(!?)</font></abbr>.
-  </div>
+	  <strong><u>(1) DNS izolálás</u></strong><div>
+		<span class="WHITE">1</span> Első lépésben a vattapálcával a száj nyálkahártyjából hámsejteket szedünk le (fél percig dörzsölve vele a buccat, fogíny külsejét). A vattapálcát ezután egy <abbr title="Eppendorf-csőbe">()</abbr>csőbe tesszük. <span class="WHITE">2</span> A sejteket ezután PBS-oldattal lemossuk a vattáról. <span class="WHITE">3</span> Majd a membránokat(sejt & intracelluláris) és fehérjéket "felaprítjuk": membránokat lízispuferrel, a fehérjéket proteináz K-val. Így kapunk ún. sejtlizátumot. <span class="WHITE">4</span> A következő feladat, hogy ebből a DNS-t izoláljuk (tehát csak az marad, más nem). Ezt <span class="Important">affinitás-kromatográfiával</span> végezzük. Ennek lényege hogy egy műanyag oszlopba van egy pozitív töltésű mátrix, mely a negatív töltésű moleklákat megköti, pl. DNS. Ezenkívül egyes fehérjéket és egyéb molekulát is megköt, de a nagyrészét nem <img class="mini" src="images/vgcskfknmtrckrm.png">. <strong>(a)</strong> Ezért ebbe beleöntöm a sejtlizátumot. <strong>(b)</strong> Majd ezután "frissítem" tehát az oldatot eltávolítom az üvegből, és helyére pufferoldatot öntünk. Ez lemossa a mátrixról a többi fennmaradt fehérjét és egyéb nem DNS molekulát. Azonban mivel a mátrix pólusai kicsik, így csak akkor képes átjutni rajta pufferoldat, ha <strong>(c)</strong> centrifugáljuk. A pufferoldat <font style="color:red;font-weight:bold;">szvsz</font> savas irányba változtatja a pH-t, hisz így sok proton lesz, tehát a fehérjék & egyéb negatív töltése megszűnik így leválnak a mátrixról. Végül ha ez meg volt <strong>(d)</strong>, akkor a DNS-t is leválasztjuk a mátrixról bázikus pH-jú oldattal <abbr title="mármint a mátrix lesz semleges töltésű emiatt?!"><font style="color:red;font-weight:bold;">(!?)</font></abbr>.
+	  </div>
 
-  <strong><u>(2) <abbr title="polymerase chain reaction">PCR</abbr></u></strong><div>
-	 <img src="images/prndlnsskrz.png">
-	 <li>Itt a cél, hogy megsokszorozzuk a génszakaszt, mely a receptort kódolja. Ennek következtében a végén szemmel látható eredményt kapjunk. Ennek módja a következőképpen történik...</li>
-	 <li>Először szétválasztjuk a DNS-t két szálra.</li>
-	 <li>Ezután 1-1 primer fog hozzákapcsolódni a két különvált szálra. Ezek ott kapcsolódnak hozzájuk, ahol a vizsgálni kívánt gén van, előtte kicsivel 5' irányba (ennek a DNS-résznek, amihez hozzákapcsolódik legyen a neve "Jani"). A primereket amiket hozzáadunk kb. 20nukleotid hosszúak. Ez azt jelenti, hogy biztosan "Jani"-hoz fognak kapcsolódni, ugyanis... "Jani" szakasz nukleotidjainak komplemenetereit tartalmazza, és mivel kb.20 nukleotid hosszú, biztosan nincs a DNS láncon másik olyan hely, ami szintén komplementere lenne (ugyanis ha pl. csak 3nukleotidból lenne a primer, akkor rengeteg helyhez tudna kapcsolódni. Ha 10 hosszú, akkor kevesebb helyhez, de még mindig több mint 1. Azonban 13 felett már általában <abbr title="vagy egyhez se, ha olyan természetesen">csak 1 helyhez</abbr>)</li>
-	 <li>A két szálon lévő primer között így (3' irányba) 303db bp van.</li>
-	 <li>Erre a lépésre azért van szükség, mert a DNS polimeráz, mely megsokszorozza majd a gént, csak megkezdett szálat tud folytatni</li>
-	 <li>DNS polimeráznak van 3'-exonukleáz aktivitása is, így pontos másolatot képez.</li>
-	 <li>A kivitelezéshez a következőt kell tenni: mastermixet kell elkészíteni, majd hozzáadni az izolált DNS-t. Ezután a sokszorozást egy <abbr title="nevét nem tudom">"gép"</abbr> végzi el. A mastermix tartalmazza a DNS-polimerázt, a primereket illetve <abbr title="dezoxi-nukleozidtrifoszfátokat: ATP/GTP/TTP/CTP">dNTP-ket</abbr></li>
-	 <li>A sokszorozás 3óra alatt játszódik le, és közben kb 20-30 termociklus. Egy termociklus három lépésből áll: <strong>(a)</strong> 95°C-on szétválik két láncra a DNS; <strong>(b)</strong> 55°C-on a primerek hozzákötődnek "Jani"-khoz; <strong>(c)</strong> 75°C-on a DNS-polimerázok dolgoznak. Így ez végeredményben azt jelenti, hogy a végén kb x*2<sup>25</sup>db "gént" kapunk (hisz mindig 2x annyi lesz, és kezdetben volt x darab).</li>
-  </div>
+	  <strong><u>(2) <abbr title="polymerase chain reaction">PCR</abbr></u></strong><div>
+		 <img src="images/prndlnsskrz.png">
+		 <li>Itt a cél, hogy megsokszorozzuk a génszakaszt, mely a receptort kódolja. Ennek következtében a végén szemmel látható eredményt kapjunk. Ennek módja a következőképpen történik...</li>
+		 <li>Először szétválasztjuk a DNS-t két szálra.</li>
+		 <li>Ezután 1-1 primer fog hozzákapcsolódni a két különvált szálra. Ezek ott kapcsolódnak hozzájuk, ahol a vizsgálni kívánt gén van, előtte kicsivel 5' irányba (ennek a DNS-résznek, amihez hozzákapcsolódik legyen a neve "Jani"). A primereket amiket hozzáadunk kb. 20nukleotid hosszúak. Ez azt jelenti, hogy biztosan "Jani"-hoz fognak kapcsolódni, ugyanis... "Jani" szakasz nukleotidjainak komplemenetereit tartalmazza, és mivel kb.20 nukleotid hosszú, biztosan nincs a DNS láncon másik olyan hely, ami szintén komplementere lenne (ugyanis ha pl. csak 3nukleotidból lenne a primer, akkor rengeteg helyhez tudna kapcsolódni. Ha 10 hosszú, akkor kevesebb helyhez, de még mindig több mint 1)</li>
+		 <li>A két szálon lévő primer között így (3' irányba) 303db bp van.</li>
+		 <li>Erre a lépésre azért van szükség, mert a DNS polimeráz, mely megsokszorozza majd a gént, csak megkezdett szálat tud folytatni</li>
+		 <li>DNS polimeráznak van 3'-exonukleáz aktivitása is, így pontos másolatot képez.</li>
+		 <li>A kivitelezéshez a következőt kell tenni: mastermixet kell elkészíteni, majd hozzáadni az izolált DNS-t. Ezután a sokszorozást egy <abbr title="nevét nem tudom">"gép"</abbr> végzi el. A mastermix tartalmazza a DNS-polimerázt, a primereket illetve <abbr title="dezoxi-nukleozidtrifoszfátokat: ATP/GTP/TTP/CTP">dNTP-ket</abbr></li>
+		 <li>A sokszorozás 3óra alatt játszódik le, és közben kb 20-30 termociklus. Egy termociklus három lépésből áll: <strong>(a)</strong> 95°C-on szétválik két láncra a DNS; <strong>(b)</strong> 55°C-on a primerek hozzákötődnek "Jani"-khoz; <strong>(c)</strong> 75°C-on a DNS-polimerázok dolgoznak. Így ez végeredményben azt jelenti, hogy a végén kb x*2<sup>25</sup>db "gént" kapunk (hisz mindig 2x annyi lesz, és kezdetben volt x darab).</li>
+	  </div>
 
-  <strong><u>(3) restrikciós emésztés <abbr title="restriction fragment length polymorphism">(RFLP)</abbr></u></strong><div>
-	<li>Az alapja, hogy olyan restrikciós_endonukleázt használunk, mely elhasítja a "jó" "gént", míg a polimorfizmusost nem <abbr title="persze fordítva is jó lenne">()</abbr>. Tehát amennyiben a receptor működik és érzi az egyed az PTC-ízt, akkor 239bp és 64bp hosszú szálak lesznek, ellenben ha polimorfizmus van, akkor 303bp hosszú szálak. Azonban mivel diploid sejtek vannak, ezért ha "heterozigóta volt a gén" (tehát volt "jó", és rossz "gén" is), akkor lesz mindháromból.</li>
-	<li>A restrikciós endonukláez amit használunk az alábbi szekvenciát ismeri fel.: G<span class="Vocab">C</span><span class="Important">N</span>GC. Az <span class="Important">N</span> lehet bármilyen nukleotid. Ha van ilyen szekvencia akkor a <span class="Vocab">C</span><span class="Important">N</span> közti foszfodiészter kötést elhasítja. A <span class="Vocab">C</span> azért van kiemelve, mert ez az a nukleotid, mely a "jó" allélvátozatban megvan, ellenben a polimorfizmusosban helyette T van. (C...<span class="Vocab">C</span>...G) vs. (G...<span class="Vocab">T</span>...A). (Jelen esetben az N helyén T van a génben: tehát ha GCTGC van, tehát "jó a gén", akkor szakít. Ha GTTGC van, akkor nem szakít)</li>
-	<li>A kivitelezés lényege: a megsokszorozódott "gén-oldathoz" hozzáadjuk a restrikciós endonukleázt, majd 1óráig hadjuk 37°C-on (testhőmérséklet) dolgozni.</li>
-  </div>
+	  <strong><u>(3) restrikciós emésztés <abbr title="restriction fragment length polymorphism">(RFLP)</abbr></u></strong><div>
+		<li>Az alapja, hogy olyan restrikciós_endonukleázt használunk, mely elhasítja a "jó" "gént", míg a polimorfizmusost nem <abbr title="persze fordítva is jó lenne">()</abbr>. Tehát amennyiben a receptor működik és érzi az egyed az PTC-ízt, akkor 239bp és 64bp hosszú szálak lesznek, ellenben ha polimorfizmus van, akkor 303bp hosszú szálak. Azonban mivel diploid sejtek vannak, ezért ha "heterozigóta volt a gén" (tehát volt "jó", és rossz "gén" is), akkor lesz mindháromból.</li>
+		<li>A restrikciós endonukláez amit használunk az alábbi szekvenciát ismeri fel.: G<span class="Vocab">C</span><span class="Important">N</span>GC. Az <span class="Important">N</span> lehet bármilyen nukleotid. Ha van ilyen szekvencia akkor a <span class="Vocab">C</span><span class="Important">N</span> közti foszfodiészter kötést elhasítja. A <span class="Vocab">C</span> azért van kiemelve, mert ez az a nukleotid, mely a "jó" allélvátozatban megvan, ellenben a polimorfizmusosban helyette T van. (C...<span class="Vocab">C</span>...G) vs. (G...<span class="Vocab">T</span>...A). (Jelen esetben az N helyén T van a génben: tehát ha GCTGC van, tehát "jó a gén", akkor szakít. Ha GTTGC van, akkor nem szakít)</li>
+		<li>A kivitelezés lényege: a megsokszorozódott "gén-oldathoz" hozzáadjuk a restrikciós endonukleázt, majd 1óráig hadjuk 37°C-on (testhőmérséklet) dolgozni.</li>
+	  </div>
 
-  <strong><u>(4) gélelektroforézis</u></strong><div>
-   <img style="max-width:30%" src="images/gy9_03.png">
-	<li>SDS-PAGE gyakorlaton már csináltunk ilyet fehérjékkel. Itt két kölönbséget említenék meg. <span class="WHITE">1</span> Most nem kell kezelés SDS-el, mert a fajlagos_töltése már alapból megegyezik a különböző hosszúságú (64,239,303) DNS-szálaknak. Hiszen fehérjéknek atöltése nem volt arányos tömegükkel előtte, így fajlagos_töltésük(=töltés/tömeg) kölönbözött, ezért SDS kezeléssel közel azonos értékre lett beállítva a fajlagos töltésük. Azonban a különböző hosszúságú (64,239,303bp) DNS-sek fajlagos töltése már alapból megegyezik, hisz a foszfátok negatív töltése arányos a DNS hosszával <abbr title="fajlagos töltés pedig a töltés/tömeg hányados (és a tömeg is arányos a hosszal)">()</abbr>. Így jelen esetben csak a tömegtől függ az elmodulás: minél nagyobb a <abbr title="ami arányos a hosszával, így a 303 hosszú fog a legkevésbé elmozdulni">tömeg</abbr>, annál kevésbé mozdul el (hiszen a feszültség ami gyorsítja F erővel hat rá: F=ma &#10140; minél nagyobb m, annál kevésbé gyorsul). <span class="WHITE">2</span> Poliakrilamid helyett agaróz alkotja a gélt. (Ez algákból nyerhető, és olcsóbb.)</li>
-	<li>A gél DNS-festéket tartalmaz, amely a futtatás során a DNS-láncokkal nem-kovalens komplexet képez és UV-fénnyel indukálva látható tartományban fluoreszkál. Tehát a futtatás után UV-fénnyel átvilágítva láthatóvá válik az elmozdulás.</li>
-  </div>
+	  <strong><u>(4) gélelektroforézis</u></strong><div>
+		<img style="max-width:30%" src="images/gy9_03.png">
+		<li>SDS-PAGE gyakorlaton már csináltunk ilyet fehérjékkel. Itt két kölönbséget említenék meg. <span class="WHITE">1</span> Most nem kell kezelés SDS-el, mert a fajlagos_töltése már alapból megegyezik a különböző hosszúságú (64,239,303) DNS-szálaknak. Hiszen fehérjéknek atöltése nem volt arányos tömegükkel előtte, így fajlagos_töltésük(=töltés/tömeg) kölönbözött, ezért SDS kezeléssel közel azonos értékre lett beállítva a fajlagos töltésük. Azonban a különböző hosszúságú (64,239,303bp) DNS-sek fajlagos töltése már alapból megegyezik, hisz a foszfátok negatív töltése arányos a DNS hosszával <abbr title="fajlagos töltés pedig a töltés/tömeg hányados (és a tömeg is arányos a hosszal)">()</abbr>. Így jelen esetben csak a tömegtől függ az elmodulás: minél nagyobb a <abbr title="ami arányos a hosszával, így a 303 hosszú fog a legkevésbé elmozdulni">tömeg</abbr>, annál kevésbé mozdul el (hiszen a feszültség ami gyorsítja F erővel hat rá: F=ma &#10140; minél nagyobb m, annál kevésbé gyorsul). <span class="WHITE">2</span> Poliakrilamid helyett agaróz alkotja a gélt. (Ez algákból nyerhető, és olcsóbb.)</li>
+		<li>A gél DNS-festéket tartalmaz, amely a futtatás során a DNS-láncokkal nem-kovalens komplexet képez és UV-fénnyel indukálva látható tartományban fluoreszkál. Tehát a futtatás után UV-fénnyel átvilágítva láthatóvá válik az elmozdulás.</li>
+	  </div>
 
-  <hr><strong><u>Kiegészítés</u></strong><div>
-	<li>G-fehérjéhez kötött receptorok <abbr title="GPCR = G protein coupled receptor">(GPCR)</abbr></li><ul>
-		<li>A GPCR a membránreceptorok egy jelentős típusa</li>
-		<li>A keserű, édes és umami ízt ilyen receptorok érzékelik &#10140; tehát a TAS2R receptorok is ilyenek</li>
-		<div>(a savanyú és a sós ízt érzékelő receptorok ioncsatornák)</div>
-		<li>Ezen receptorok általános tulajdonsága, hogy 7x érik át a membránt (transzmembrán fehérjék!)</li>
-		<li>A másik általános tulajdonságuk a működésük. Ennek lényege: ha megkötik a ligandot, akkor utána képesek lesznek megkötni az ún. G-fehérjét. A G-fehérje GDP-t tartalmaz. Ha megköti, akkor kicserélődik a GDP GTP-re. Ezután pedig a G-fehérje leválik a receptorrol és ha elmegy egy másik enzimhez akkor azt aktiválja. Ennek energiáját a GTP-GDP-re való visszaállás fedezi. <img class="mini" src="images/gpcrmkds.png"></li>
-	</ul>
-	<li>SNP 3 helyen történhet meg, azaz összesen 8 variáció lehet <abbr title="hiszen ha lerajzolom faágszerű elágazással mindig, hogy 1. helyen kicserélődött / nem (2variáció eddig). ezeke tovább ágaztatom ugyanígy, az a 2.hely(4variáció már). Majd mégegyszer és így megkapom a 8 variációt.">(2<sup>3</sup>)</abbr> Azonban ez csak elméletben lehetséges, a valóságban vagy mindhárom "jó", vagy mindhárom kicserélődött. Ennek oka, hogy úgymond "kapcsoltan öröklődnek", ugyanis a három nukleotid egymáshoz közel helyezkedik el egy kromoszómán. Tehát crossing-overnél együtt mennek át.</li>
-	<li>A mérés előtt egy kis "papírlapka" átvolt itatva PTC-vel. Ezt mindenki a szájába vette és megízlelte. Így megsaccolhattuk, hogy ki érzi és ki nem.</li>
-	<li>PCR - hogyhogy pont 303 nukleotid hosszú láncok fognak sokszorozódni? hisz nincs ami jelenzné a végét, csak a kiindulás van jelezve...</li><ul>
-		<li>Kétségtelenm hogy első termociklus során a DNS polimeráz amíg szintetizál (kb. 1perc) egy kicsivel hosszabb, mint 303 nukleotid hosszú láncot fog szintetizálni, hisz nincs ami jelezze a végét.</li>
-		<li>Azonban a második termociklus során már a hosszabb nukleotidlánc-hoz megint csak hozzákötődik a primer, ergó a felesleges rész arról nem fog megsokszorozódni, így egy 303nukleotid hosszú DNS lánc szintetizálódik. <img class="mini" src="images/gy10_pcr.png"></li>
-		<li>Innentől a 303 bp hosszúak száma duplázódik termociklusonként, míg a két kicsivel hosszabb típusúak száma <abbr title="+n-el nő termociklusonként, hisz mindig csak az n db teljes hosszú DNS-ről íródnak át olyanok. Pl. az ábrán abból 2db van, tehát ott minden termocklusnál +2-vel nő a számuk. (A mérés során pedig n db volt, szóval ott a végén kb. n*25 lesz belőle, míg a 303asokból n*2<sup>25</sup>)">alig</abbr> nő <abbr title="ezenkívül lesz n db teljes hosszúságú DNS is, de abból lesz a legkevesebb ugye">()</abbr></li>
-	</ul>
-	<li>restrikciós endonukleázok (mérésnél használt konkrét nevét ne tanuljam meg)</li><ul>
-		<li>Baktériumokban vannak. Egy baktériumfajban <abbr title=" vagy 2">1</abbr> féle restrikciós endonukleáz van. Ma már össze lett gyűjtve adatbázisba, hogy milyen restrikciós endonukleázokat lehet kinyerni, így a vizsgálni kívánt részhez <abbr title="tehát esetünkben ugye a C vs T résznél vágja el mindössze, így egyértelműen megállapítható lesz majd az eredményből">optimálisat</abbr> ki lehet választani közülük.</li>
-		<li>Funkciójuk, hogy a vírusok DNS-ét(/RNS-ét) lebontják. Nohde, mi alapján lesz az, hogy csak a vírusok DNS/RNS-ét bontják le, a baktériumét nem. Ugyanis, ha a rövid DNS-ű(pár száz bp hosszú) vírusokban megtalálja a szekvenciát, akkor a baktériumokban is meg kell (szvsz százezres ~ pár milliós nagyságrend). Hiszen a baktériumban 1 féle restrikciós endonukleáz van, mely olyan szekvenciát kell felismerjen, ami az őt fertőző vírusokban megvan, tehát benne is szinte biztosan. Így a szekvencia max 6-8bázis hosszú. A problémát úgy oldja meg, hogy a saját DNS-ében a szekvenciája metilálva van. Ezt ún. restrikciós_metiláz végzi.</li>
-		<li>Ezenkívül a szekvencia amit felismer, mindig palindrom.</li>
-		<li><font class="abbr">palindrom ►</font> Azt jelenti, hogy a DNS bázissorrendje előre és hátrafelé olvasva (a két, komplementer láncra vonatkoztatva) ugyanaz. Pl. egy enzim felismeri a 5’-GGTACC-3’ szekvenciát. Ennek a komplementer párja 3’→5’ irányban CCATGG, ami visszafelé olvasva éppen GGTACC <img class="mini" src="images/21_sztrdnmsztrd.png"></li>
-	</ul>
-	<li>Érdekes, hogy SNP-nél apoláros helyett apoláros aminosav lesz (tehát nem változik a <span class="idk">polaritása</span>), mégis jelentős változással jár a fehérje működésében. Ennek oka szvsz 1) Pro mégiscsak jelentős mértékben különbözik az Ala, hiszen ciklusos vegyület; 2) kitüntetett helyen vannak az aminosavak a fehérjében.</li>
-  </div>
+	  <hr><strong><u>Kiegészítés</u></strong><div>
+		<li>G-fehérjéhez kötött receptorok <abbr title="GPCR = G protein coupled receptor">(GPCR)</abbr></li><ul>
+			<li>A GPCR a membránreceptorok egy jelentős típusa</li>
+			<li>A keserű, édes és umami ízt ilyen receptorok érzékelik &#10140; tehát a TAS2R receptorok is ilyenek</li>
+			<div>(a savanyú és a sós ízt érzékelő receptorok ioncsatornák)</div>
+			<li>Ezen receptorok általános tulajdonsága, hogy 7x érik át a membránt (transzmembrán fehérjék!)</li>
+			<li>A másik általános tulajdonságuk a működésük. Ennek lényege: ha megkötik a ligandot, akkor utána képesek lesznek megkötni az ún. G-fehérjét. A G-fehérje GDP-t tartalmaz. Ha megköti, akkor kicserélődik a GDP GTP-re. Ezután pedig a G-fehérje leválik a receptorrol és ha elmegy egy másik enzimhez akkor azt aktiválja. Ennek energiáját a GTP-GDP-re való visszaállás fedezi. <img class="mini" src="images/gpcrmkds.png"></li>
+		</ul>
+		<li>SNP 3 helyen történhet meg, azaz összesen 8 variáció lehet <abbr title="hiszen ha lerajzolom faágszerű elágazással mindig, hogy 1. helyen kicserélődött / nem (2variáció eddig). ezeke tovább ágaztatom ugyanígy, az a 2.hely(4variáció már). Majd mégegyszer és így megkapom a 8 variációt.">(2<sup>3</sup>)</abbr> Azonban ez csak elméletben lehetséges, a valóságban vagy mindhárom "jó", vagy mindhárom kicserélődött. Ennek oka, hogy úgymond "kapcsoltan öröklődnek", ugyanis a három nukleotid egymáshoz közel helyezkedik el egy kromoszómán. Tehát crossing-overnél együtt mennek át.</li>
+		<li>A mérés előtt egy kis "papírlapka" átvolt itatva PTC-vel. Ezt mindenki a szájába vette és megízlelte. Így megsaccolhattuk, hogy ki érzi és ki nem.</li>
+		<li>PCR - hogyhogy pont 303 nukleotid hosszú láncok fognak sokszorozódni? hisz nincs ami jelenzné a végét, csak a kiindulás van jelezve...</li><ul>
+			<li>Kétségtelenm hogy első termociklus során a DNS polimeráz amíg szintetizál (kb. 1perc) egy kicsivel hosszabb, mint 303 nukleotid hosszú láncot fog szintetizálni, hisz nincs ami jelezze a végét.</li>
+			<li>Azonban a második termociklus során már a hosszabb nukleotidlánc-hoz megint csak hozzákötődik a primer, ergó a felesleges rész arról nem fog megsokszorozódni, így egy 303nukleotid hosszú DNS lánc szintetizálódik. <img class="mini" src="images/gy10_pcr.png"></li>
+			<li>Innentől a 303 bp hosszúak száma duplázódik termociklusonként, míg a két kicsivel hosszabb típusúak száma <abbr title="+n-el nő termociklusonként, hisz mindig csak az n db teljes hosszú DNS-ről íródnak át olyanok. Pl. az ábrán abból 2db van, tehát ott minden termocklusnál +2-vel nő a számuk. (A mérés során pedig n db volt, szóval ott a végén kb. n*25 lesz belőle, míg a 303asokból n*2<sup>25</sup>)">alig</abbr> nő <abbr title="ezenkívül lesz n db teljes hosszúságú DNS is, de abból lesz a legkevesebb ugye">()</abbr></li>
+		</ul>
+		<li>restrikciós endonukleázok (mérésnél használt konkrét nevét ne tanuljam meg)</li><ul>
+			<li>Baktériumokban vannak. Egy baktériumfajban <abbr title=" vagy 2">1</abbr> féle restrikciós endonukleáz van. Ma már össze lett gyűjtve adatbázisba, hogy milyen restrikciós endonukleázokat lehet kinyerni, így a vizsgálni kívánt részhez <abbr title="tehát esetünkben ugye a C vs T résznél vágja el mindössze, így egyértelműen megállapítható lesz majd az eredményből">optimálisat</abbr> ki lehet választani közülük.</li>
+			<li>Funkciójuk, hogy a vírusok DNS-ét(/RNS-ét) lebontják. Nohde, mi alapján lesz az, hogy csak a vírusok DNS/RNS-ét bontják le, a baktériumét nem. Ugyanis, ha a rövid DNS-ű(pár száz bp hosszú) vírusokban megtalálja a szekvenciát, akkor a baktériumokban is meg kell (szvsz százezres ~ pár milliós nagyságrend). Hiszen a baktériumban 1 féle restrikciós endonukleáz van, mely olyan szekvenciát kell felismerjen, ami az őt fertőző vírusokban megvan, tehát benne is szinte biztosan. Így a szekvencia max 6-8bázis hosszú. A problémát úgy oldja meg, hogy a saját DNS-ében a szekvenciája metilálva van. Ezt ún. restrikciós_metiláz végzi.</li>
+			<li>Ezenkívül a szekvencia amit felismer, mindig palindrom.</li>
+			<li><font class="abbr">palindrom ►</font> Azt jelenti, hogy a DNS bázissorrendje előre és hátrafelé olvasva (a két, komplementer láncra vonatkoztatva) ugyanaz. Pl. egy enzim felismeri a 5’-GGTACC-3’ szekvenciát. Ennek a komplementer párja 3’→5’ irányban CCATGG, ami visszafelé olvasva éppen GGTACC <img class="mini" src="images/21_sztrdnmsztrd.png"></li>
+		</ul>
+		<li>Érdekes, hogy SNP-nél apoláros helyett apoláros aminosav lesz (tehát nem változik a <span class="idk">polaritása</span>), mégis jelentős változással jár a fehérje működésében. Ennek oka szvsz 1) Pro mégiscsak jelentős mértékben különbözik az Ala, hiszen ciklusos vegyület; 2) kitüntetett helyen vannak az aminosavak a fehérjében.</li>
+	  </div>
 
-  <hr><strong><u>(Egyéb kiegészítők)</u></strong><div>
-	<li>A keserű ízérzetet kialakító receptorokat számos, a természetben előforduló és potenciálisan toxikus növényi hatóanyag aktiválja, így a keserű íz hatékony érzékelése az evolúció során szelekciós előnyt jelenthetett a táplálék eredetű mérgezések elkerülése révén.</li>
-	<li>Glükózinolát van pl. fehérrépa, retek, brokkoli stb.</li>
-	<li>PTC=feniltiokarbamid &#10140; ezzel <abbr title="de ez nem természetes kajákban van benne, hanem mesterségesen adjuk hozzá">is</abbr> lehet aktiválni a receport, nem csak glükózinoláttal (innen a neve ugye)</li>
-	<li>proteináz K nem specifikus proteáz, tehát lebontja a legtöbb fehérjét</li>
-	<li>proteináz K kezelés fontos, hogy gyorsan történjen, mert a membránfelszakadás után az endonukleázok különben odaférnének a DNS-hez és lebontanák</li>
-  </div>
+	  <hr><strong><u>(Egyéb kiegészítők)</u></strong><div>
+		<li>A keserű ízérzetet kialakító receptorokat számos, a természetben előforduló és potenciálisan toxikus növényi hatóanyag aktiválja, így a keserű íz hatékony érzékelése az evolúció során szelekciós előnyt jelenthetett a táplálék eredetű mérgezések elkerülése révén.</li>
+		<li>Glükózinolát van pl. fehérrépa, retek, brokkoli stb.</li>
+		<li>PTC=feniltiokarbamid &#10140; ezzel <abbr title="de ez nem természetes kajákban van benne, hanem mesterségesen adjuk hozzá">is</abbr> lehet aktiválni a receport, nem csak glükózinoláttal (innen a neve ugye)</li>
+		<li>proteináz K nem specifikus proteáz, tehát lebontja a legtöbb fehérjét</li>
+		<li>proteináz K kezelés fontos, hogy gyorsan történjen, mert a membránfelszakadás után az endonukleázok különben odaférnének a DNS-hez és lebontanák</li>
+	  </div>
+	</ul></details>
 </ul><!----></div></details>
 
 
@@ -2802,54 +3069,6 @@ http://elte.prompt.hu/sites/default/files/tananyagok/BevBiokemGyak/ch07s03.html
 		<span class="WHITE">#</span> Azt fontos tudni, hogy a Gly ugyan apoláros, mégis alig mozdult el. Ennek a magyarázata, hogy alapvetően az aminosav erősen poláros, hiszen aminoscsoport és karboxilcsoportja is van, csupán oldallánca miatt került apoláros besorolásra, hiszen fehérjében <abbr title="hisz ott a peptidkötések ''kilövik'' a karboxil és aminocsoportot">tényleg az</abbr>. <span class="WHITE">#</span> Pro színe sárga volt, míg a többié lilás, ennek oka, hogy előbbiben nincs aminocsoport a többivel ellentétben. <span class="WHITE">#</span> Aromás aminosavak apolárosak.
 	</ul></details>
  </div>
-<!----></details>
-
-<!----><details><summary class="phase">6. &beta;-galaktozidáz</summary>
- <div><div class="title">gyak-jegyzeteim</div><ul class="normal">
-	<li>A transzkripció szabályozása prokariótákban (14.tétel) van kapcsolatban ez a mérés &#10140; itt csak "kiegészítem" pár dologgal</li>
-	<li>operon = operátor(lac) + struktúrgének(lacZ+lacY+lacA) (tehát a promoter + operátort kódoló gén szvsz nem tartozik bele)</li>
-	<li>prokariótáknál formil-metioninnal kezdődik a transzláció</li>
-	<li>lac &#10140; represszor</li>
-	<li>CAP &#10140; aktivátor</li>
-	<li>pozitív szabályozás &#10140; laktóz jelenléte és/vagy glükóz hiánya (ami cAMP jelenlétet okoz!)</li>
-	<li>negatív szabályozás &#10140; laktóz hiánya és/vagy glükóz jelenléte (ami cAMP hiányt okoz!)</li>
-	<li>(1db E.colinak csak 1 operonja van)</li>
-  <hr>
-	<li>ONPG &#10140; mesterséges szubsztrátot adok a &beta;-galaktozidázhoz &#10140; sárga színű termék lesz (minél sárgább, annál több termék keletkezett, tehát az enzimaktivitással arányos)</li>
-	<li>IPTG &#10140; induktor a laktóz helyett &#10140; ez így nem fog csökkeni a reakció során (ami enzimtermelés fokozást csökkentené), ellentétben a laktózzal ha az lenne</li>
-  <hr>
-	<li>mérés 3lépése</li><ul>
-		<li>1.lépés alapja, hogy "az enzimeket legyártjuk bizonyos idő alatt, majd minden mást elpusztítunk és csak azok maradnak" (különböző mennyiségeket gyártunk!)</li>
-		<li>2.lépés mindegyik esetben ugyanaz &#10140; szubsztrátot hozzáadva az egyes enzim-oldatokhoz, hagyom mindegyiket 15percig működni</li>
-		/ezután hozzáadok Na-karbonát &#10140; enzimműködést leállítja/
-		<li>3.lépés mindegyik esetben ugyanaz &#10140; megmérem spektrofotométerrel az oldatok abszorpcióját, ami arányos a keletkezett termékek koncentrációjával hisz A = &epsilon;*c*l !!</li>
-	</ul>
-	<img src="images/gygrfkglzn.png">
-	<li>1.lépésnél</li><ol>
-		<div>IPTG-t hozzáadva E.coli-oldathoz elkezdenek enzimet termelni</div>
-		<li>hagyom 0percig enzimet termelni</li>
-		<li>hagyom 15percig enzimet termelni</li>
-		<li>hagyom 30percig enzimet termelni</li>
-		<li>0percnél kloramfenikolt adok hozzá, majd hagyom 30percig enzimet termelni</li>
-		<li>15percnél kloramfenikolt adok hozzá, majd hagyom 30percig enzimet termelni</li>
-		<li>/vak/</li>
-		<li>0percnél rifampicint adok hozzá, majd hagyom 30percig enzimet termelni</li>
-		<li>15percnél rifampicint adok hozzá, majd hagyom 30percig enzimet termelni</li>
-		<li>/rifampicines vak/</li>
-	</ol>
-	<li><span class="Important">mérés várható eredményei grafikonon &#10140; magyarázattal</span></li><ol>
-		<li>0perc alatt semmi enzim nem termelődik, így semmi színes termék nem keletkezik, így az abszorbanciája 0</li>
-		<li>15perc alatt keletkezik valamennyi enzim &#10140; termék &#10140; abszorbancia</li>
-		<li><i>30perc alatt több mint 2x annyi enzim keletkezik, ugyanis a már meglévő mRNS-ekről is folyik transzkripció</i> <abbr title="(tehát ha egy mRNS-se lenne ismét, csak a 15perc alatt termelődött enzimek, és úgy várnék megint 15percet, akkor lenne 2x annyi, azonban itt már vannak alapból is(tehát 15perc után) mRNS-ek)">&#10045;</abbr></li>
-		<li>kloramfenikol gátolja a transzlációt &#10140; 0perc alatt semmi enzim nem termelődik &#10140; abszorbanciája 0</li>
-		<li>ugyanaz zajlik le, mint a 2esnél hiszen a 15.perctől több enzim-szintézis már nem tud végbemenni (csakúgy, mint a 2esnél amikor megszakítom)</li>
-		<li>vak oldat &#10140; 1-5 3.lépésben történő méréséhez van használva</li>
-		<li>rifampicin transzkripciót gátolja &#10140; 0 enzim termelődik</li>
-		<li><span class="Important">3 és 5 között lesz valahol</span> &#10140; ugyanis a 15percig letermelődött mRNS-elről még lesz utána is transzláció!!</li>
-		<li>vak oldat &#10140; 7-8 3.lépésben történő méréséhez, ugyanis rifampicin narancs színű</li>
-	</ol>
- </ul></div>
-	<li>megjegyzés &#10140; 14.tétel + gyakfüzet + jegyzeteim alapján könnyen megértem</li>
 <!----></details>
 
 <!----><details open><summary class="phase">Fehérjék vizsgálata.</summary>
