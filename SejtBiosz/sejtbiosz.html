@@ -13,6 +13,7 @@
 	<details><summary class="phase">tételek</summary><div id="container"></div></details>
 	<input type="file" id="fileinput" style="display:none;">
 	<input style="position:absolute; left:35%; top:1%;" type="button" value="load LS" onclick="document.getElementById('fileinput').click();">
+	<div style="position:absolute; left:10%; top:2%; font-weight: bold;font-size: large;" id="questLeveL"></div>
 	<input style="position:absolute; left:50%; top:1%;" type="button" value="save LS" onclick="func_saveLS()">
 
 	<input type="button" class="white" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_newQuest" value="0">
@@ -2542,12 +2543,14 @@
 		<li>amennyiben laktóz és glükóz koncentráció is magas (képen E) eset), akkoris van génexpresszió egy kis mértékben &#10140; ugyanis itt alapból gyenge a promoter <span class="WHITE">-35</span> szekvenciája, és ezért van szükség aktivátorra is</li>
 	</ul></details>
 	<details class="kerdes 4/5" id="msb.251"><summary>Mérés</summary><ul class="normal">
-		<li>ONPG &#10140; mesterséges szubsztrátot adok a &beta;-galaktozidázhoz &#10140; sárga színű termék lesz (minél sárgább, annál több termék keletkezett, tehát az enzimaktivitással arányos)</li>
-		<li>IPTG &#10140; induktor a laktóz helyett &#10140; ez így nem fog csökkeni a reakció során (ami enzimtermelés fokozást csökkentené), ellentétben a laktózzal ha az lenne</li>
+		<li>&beta;-galaktozidáz alapvetően a következő reakciót katalizálja: laktóz + H2O &#10140; glükóz + galaktóz</li>
+		<li>ONPG &#10140; jelen esetben ONPG  mesterséges szubsztrátot adok laktóz helyett &#10140; ebből ugyanis sárga színű termék lesz &#10140; minél sárgább, annál több termék keletkezett, tehát az enzimaktivitással arányos &#10140; spektrofotométerrel megmérhető</li>
+		<li>IPTG &#10140; induktor a laktóz helyett (ezzel válik le a lac, az operonról!) &#10140; ez így nem fog csökkeni a reakció során (ami enzimtermelés fokozást csökkentené), ellentétben a laktózzal ha az lenne</li>
 	  <hr><div>mérés 3 lépése</div>
-		<div><span class="WHITE">1.lépés</span> alapja, hogy "az enzimeket legyártjuk bizonyos idő alatt, majd minden mást elpusztítunk és csak azok maradnak" &#10140; itt különböző mennyiségben lesz az enzim, a 9 féle pipettában (lásd majd lentebb)</div>
+		<div><span class="WHITE">1.lépés</span> alapja, hogy "az enzimeket legyártjuk <abbr title="elsőnél 0perc, másodiknál 15perc, többinél 30perc">bizonyos idő</abbr> alatt, majd minden mást elpusztítunk és csak azok maradnak" &#10140; így különböző mennyiségekben lesz az enzim, a 9 féle pipettában (lásd majd lentebb)</div>
+		<div><span class="WHITE">&#10045;</span> amikor lejárt a <abbr title="elsőnél 0perc, másodiknál 15perc, többinél 30perc">"hagyom x percig enzimet termelni"</abbr> idő, akkor toluolt adok hozzájuk, és lehűtőm őket</div>
 		<div><span class="WHITE">2.lépés</span> mindegyik pipetta esetében ugyanaz &#10140; szubsztrátot hozzáadva az egyes enzim-oldatokhoz, hagyom mindegyiket 15percig működni</div>
-		/ezután hozzáadok Na-karbonát &#10140; enzimműködést leállítja/
+		<div><span class="WHITE">&#10045;</span> ezután hozzáadok Na-karbonát &#10140; enzimműködést leállítja</div>
 		<div><span class="WHITE">3.lépés</span> mindegyik pipetta esetében ugyanaz &#10140; megmérem spektrofotométerrel az oldatok abszorpcióját, ami arányos a keletkezett termékek koncentrációjával, hisz Lambert-Beer törvény <span class="WHITE"><abbr title="abszorbancia = OptikaiDenzitás = extinkció">A</abbr> = <abbr title="koncentráció">c</abbr> × <abbr title="moláris extinkciós koefficiens (adott hullámhosszon)">ε</abbr> × <abbr title="elnyelő réteg vastagsága">l</abbr></span></div>
 	  <hr><div>1.lépés</div><ol>
 			<img src="images/gygrfkglzn.png">
@@ -2653,7 +2656,7 @@
 		<img src="images/gykrnstkznc.png">
 		<li>kb. 4500bp hosszú</li>
 		<li>MCS &#10140; itt hasít az egyik restrikciós_endonukleáz (Nhe-I)</li>
-		<li>terminációs-szignál &#10140; előtte hasít a másik restrikciós_endonukleáz (Xba-I)</li>
+		<li>poliA-szignál &#10140; előtte hasít a másik restrikciós_endonukleáz (Xba-I)</li>
 		<li>(luciferáz gén elméleti jelentősége csupán annyi, hogy kb. pont előtte és utána vannak a hasítási szekvenciák &#10140; tehát luciferáz-hossznyi vágódik ki, ha mindkettőnél hasítás van)</li>
 	  <hr><strong>első lépés &#10140; inkubáció</strong>
 		<li>4 külön pipetta lett összeállítva</li><ul>
@@ -2673,7 +2676,7 @@
 	</ul></details>
 <!----></div></details>
 
-<!----><details><summary class="phase">#17 Egy ízérző receptor genotipizálása PCR-RFLP módszerrel.</summary><div><div class="title"> </div><ul class="normal">
+<!----><details><summary class="phase">#17 Egy ízérző receptor genotipizálása PCR-RFLP módszerrel.</summary><div><div class="title"> </div>
 	<details class="kerdes 4/10" id="msb.258"><summary><strong>Egy ízérző receptor genotipizálása PCR-RFLP módszerrel</strong> (60%)</summary><ul class="normal">
 	  <strong><u>Bevezetés</u></strong><div>
 		<li>5 féle alapíz van: édes,sós,savanyú,keserű,umami</li>
@@ -2731,7 +2734,7 @@
 	  <strong><u>(4) lépés: gélelektroforézis</u></strong><div>
 		<img style="max-width:30%" src="images/gy9_03.png">
 		<li>SDS-PAGE gyakorlaton már csináltunk ilyet fehérjékkel. Itt két kölönbséget említenék meg. </li><ul>
-			<li>Most nem kell kezelés SDS-el, mert a fajlagos_töltése már alapból megegyezik a különböző hosszúságú (64,239,303) DNS-szálaknak, hisz a foszfátok negatív töltése arányos a DNS hosszával <abbr title="fajlagos töltés pedig a töltés/tömeg hányados (és a tömeg is arányos a hosszal)">()</abbr>. Így jelen esetben csak a tömegtől függ az elmodulás: minél nagyobb a <abbr title="ami arányos a hosszával, így a 303 hosszú fog a legkevésbé elmozdulni">tömeg</abbr>, annál kevésbé mozdul el (hiszen a feszültség ami gyorsítja F erővel hat rá: F=ma &#10140; minél nagyobb m, annál kevésbé gyorsul).</li>
+			<li>Most nem kell kezelés SDS-el, mert a fajlagos_töltése már alapból megegyezik a különböző hosszúságú (64,239,303) DNS-szálaknak, hisz a foszfátok negatív töltése arányos a DNS hosszával <abbr title="fajlagos töltés pedig a töltés/tömeg hányados (és a tömeg is arányos a hosszal)">()</abbr>. Így jelen esetben csak a tömegtől függ az elmodulás: minél nagyobb a <abbr title="ami arányos a hosszával, így a 303 hosszú fog a legkevésbé elmozdulni">tömeg</abbr>, annál kevésbé mozdul el <abbr title="oka: ugyanis a gél alkotta ,,hálóban'' az a fehérje, amelyik hosszabb, az jobban elakad, és lassabban mozog ➜ a méret pedig arányos a tömeggel, így a tömegtől mégiscsak függ (lásd bővebben SDS-PAGE)">§</abbr>.</li>
 			<li>Poliakrilamid helyett agaróz alkotja a gélt. (Ez algákból nyerhető, és olcsóbb.)</li>
 		</ul>
 		<li>A gél DNS-festéket tartalmaz, amely a futtatás során a DNS-láncokkal nem-kovalens komplexet képez és UV-fénnyel indukálva látható tartományban fluoreszkál. Tehát a futtatás után UV-fénnyel átvilágítva láthatóvá válik az elmozdulás.</li>
@@ -2770,7 +2773,7 @@
 
 	  <strong><u>(4) gélelektroforézis</u></strong><div>
 		<img style="max-width:30%" src="images/gy9_03.png">
-		<li>SDS-PAGE gyakorlaton már csináltunk ilyet fehérjékkel. Itt két kölönbséget említenék meg. <span class="WHITE">1</span> Most nem kell kezelés SDS-el, mert a fajlagos_töltése már alapból megegyezik a különböző hosszúságú (64,239,303) DNS-szálaknak. Hiszen fehérjéknek atöltése nem volt arányos tömegükkel előtte, így fajlagos_töltésük(=töltés/tömeg) kölönbözött, ezért SDS kezeléssel közel azonos értékre lett beállítva a fajlagos töltésük. Azonban a különböző hosszúságú (64,239,303bp) DNS-sek fajlagos töltése már alapból megegyezik, hisz a foszfátok negatív töltése arányos a DNS hosszával <abbr title="fajlagos töltés pedig a töltés/tömeg hányados (és a tömeg is arányos a hosszal)">()</abbr>. Így jelen esetben csak a tömegtől függ az elmodulás: minél nagyobb a <abbr title="ami arányos a hosszával, így a 303 hosszú fog a legkevésbé elmozdulni">tömeg</abbr>, annál kevésbé mozdul el (hiszen a feszültség ami gyorsítja F erővel hat rá: F=ma &#10140; minél nagyobb m, annál kevésbé gyorsul). <span class="WHITE">2</span> Poliakrilamid helyett agaróz alkotja a gélt. (Ez algákból nyerhető, és olcsóbb.)</li>
+		<li>SDS-PAGE gyakorlaton már csináltunk ilyet fehérjékkel. Itt két kölönbséget említenék meg. <span class="WHITE">1</span> Most nem kell kezelés SDS-el, mert a fajlagos_töltése már alapból megegyezik a különböző hosszúságú (64,239,303) DNS-szálaknak. Hiszen fehérjéknek atöltése nem volt arányos tömegükkel előtte, így fajlagos_töltésük(=töltés/tömeg) kölönbözött, ezért SDS kezeléssel közel azonos értékre lett beállítva a fajlagos töltésük. Azonban a különböző hosszúságú (64,239,303bp) DNS-sek fajlagos töltése már alapból megegyezik, hisz a foszfátok negatív töltése arányos a DNS hosszával <abbr title="fajlagos töltés pedig a töltés/tömeg hányados (és a tömeg is arányos a hosszal)">()</abbr>. Így jelen esetben csak a tömegtől függ az elmodulás: minél nagyobb a <abbr title="ami arányos a hosszával, így a 303 hosszú fog a legkevésbé elmozdulni">tömeg</abbr>, annál kevésbé mozdul el <abbr title="oka: ugyanis a gél alkotta ,,hálóban'' az a fehérje, amelyik hosszabb, az jobban elakad, és lassabban mozog ➜ a méret pedig arányos a tömeggel, így a tömegtől mégiscsak függ (lásd bővebben SDS-PAGE)">§</abbr>. <span class="WHITE">2</span> Poliakrilamid helyett agaróz alkotja a gélt. (Ez algákból nyerhető, és olcsóbb.)</li>
 		<li>A gél DNS-festéket tartalmaz, amely a futtatás során a DNS-láncokkal nem-kovalens komplexet képez és UV-fénnyel indukálva látható tartományban fluoreszkál. Tehát a futtatás után UV-fénnyel átvilágítva láthatóvá válik az elmozdulás.</li>
 	  </div>
 
@@ -2806,7 +2809,7 @@
 		<li>proteináz K kezelés fontos, hogy gyorsan történjen, mert a membránfelszakadás után az endonukleázok különben odaférnének a DNS-hez és lebontanák</li>
 	  </div>
 	</ul></details>
-</ul><!----></div></details>
+<!----></div></details>
 
 
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->

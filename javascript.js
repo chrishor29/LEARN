@@ -323,7 +323,7 @@ function toggleNote() {
 }
 
 
-function func_phaseID() {
+function func_phaseID() {  // details_phase id-je lesz egyenlő a summary_phase textel
 	var Table = document.getElementsByClassName("phase")
 	for ( var i = 0;   i < Table.length;   i++ ) {
 		Table[i].parentElement.id = Table[i].innerHTML
@@ -346,30 +346,17 @@ function func_phaseID() {
 	}
 }
 func_phaseID()
-function func_mainID() {
+function func_mainID() { // div_mainTitle id-je lesz egyenlő a div_mainTitle textel
 	var Table = document.getElementsByClassName("mainTitle")
 	for ( var i = 0;   i < Table.length;   i++ ) {
 		Table[i].parentElement.id = Table[i].innerHTML
 	}
 }
 func_mainID()
-function func_titleID() {
+function func_titleID() { // div_title id-je lesz egyenlő a div_title textel + egy szám (ez azért kert, mert különben lennének azonos id-k)
 	var Table = document.getElementsByClassName("title")
 	for ( var i = 0;   i < Table.length;   i++ ) {
-		var mainID = " "
-		if ( Table[i].parentElement.parentElement.parentElement.parentElement.nodeName == "DIV" ) {
-			mainID = Table[i].parentElement.parentElement.parentElement.parentElement.id
-			mainID = mainID + " &#10140; "
-		}
-		var phaseTextD = Table[i].parentElement.parentElement.parentElement.id
-		var titleText = Table[i].innerHTML
-		if ( titleText != "" ) {
-			titleText = " &#10140; " + titleText
-		}
-		titleText = mainID + phaseTextD + titleText
-		//Table[i].parentElement.id = titleText;
-		Table[i].parentElement.id = titleText;
-		//alert(Table[i].parentElement.id)
+		Table[i].parentElement.id = i + "," + Table[i].innerHTML
 	}
 }
 func_titleID()
@@ -1251,16 +1238,42 @@ function koviKerdes(){
 		}
 	}
 	if ( priorKerdesID != "nincs" ) {
-		fullTema = document.getElementById(priorKerdesID).parentElement.id
+		//fullTema = document.getElementById(priorKerdesID).parentElement.id
+		
+	  // set title – BEGIN 
+		var titleText = ""
+		/* főcímet nem szükséges mutatnia
+		if ( document.getElementById(priorKerdesID).parentElement.parentElement.parentElement.nodeName == "DIV" ) {
+			titleText = document.getElementById(priorKerdesID).parentElement.parentElement.parentElement.id + "<br>"
+		}
+		*/
+		titleText = titleText + document.getElementById(priorKerdesID).parentElement.parentElement.id // phase Címet adja hozzá
+		var titleID = document.getElementById(priorKerdesID).parentElement.id // phase Címet adja hozzá
+		titleID = titleID.slice(titleID.indexOf(",")+1)
+		if ( titleID != " " ) {
+			titleText = titleText + " &#10140; " + titleID
+		}
+
+		/*var divChilds = document.getElementById(priorKerdesID).parentElement.children
+		for (i = 0; i < divChilds.length; i++) { // title Címet adja hozzá
+			if ( divChilds[i].className == "title" ) {
+				if ( divChilds[i].innerHTML != " " ) {
+					titleText = titleText + " &#10140; " + divChilds[i].innerHTML
+				}
+			}
+		}*/
+		document.getElementById("questTitle").innerHTML = titleText;
+	  // END – set title
+
 		var identity = priorKerdesID.slice(priorKerdesID.indexOf(".")+1) // identity az, amit kiír: pl. (130) ismerd fel
 		var lvl = 0
 		if ( identity.indexOf("%") != -1 ) { // ha van % a kérdésID-ben
 			identity = identity.slice(0,identity.indexOf("%")-1)
 			lvl = priorKerdesID.slice(priorKerdesID.indexOf("%")+1)
 		}
-		document.getElementById("questTitle").innerHTML = "(" + identity + ") " + fullTema;
+		document.getElementById("questLeveL").innerHTML = "(" + identity + ")"
 
-		// BEGIN  LvL
+		// LeveL – BEGIN  
 		if ( lvl != 0 ) {
 			func_checkLvL(priorKerdesID.slice(0,priorKerdesID.indexOf("%")-1),lvl)
 			document.getElementById("select_lvl").style.visibility = 'visible';
@@ -1268,7 +1281,7 @@ function koviKerdes(){
 			document.getElementById("select_lvl").style.visibility = 'hidden';
 			lvl = 100
 		}
-		// END  LvL
+		// END – LeveL
 
 		var n = document.getElementById(priorKerdesID).className.search("open");
 		if ( n != -1 ) {
