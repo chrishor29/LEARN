@@ -39,8 +39,8 @@ robocopy C:\Kristof\MIRROR\LEARN\SejtBiosz\images C:\Users\chrishor29\Desktop\LE
 copy C:\Kristof\MIRROR\LEARN\SejtBiosz\sejtbiosz.html C:\Users\chrishor29\Desktop\LEARN\SejtBiosz\sejtbiosz.html 
 copy C:\Kristof\MIRROR\LEARN\SejtBiosz\favicon.bmp C:\Users\chrishor29\Desktop\LEARN\SejtBiosz\favicon.bmp
 
-robocopy C:\Kristof\MIRROR\LEARN\ModMem\images C:\Users\chrishor29\Desktop\LEARN\ModMem\images /mir
-copy C:\Kristof\MIRROR\LEARN\ModMem\ModMem.html C:\Users\chrishor29\Desktop\LEARN\ModMem\ModMem.html 
+robocopy C:\Kristof\MIRROR\LEARN\done\ModMem\images C:\Users\chrishor29\Desktop\LEARN\done\ModMem\images /mir
+copy C:\Kristof\MIRROR\LEARN\done\ModMem\ModMem.html C:\Users\chrishor29\Desktop\LEARN\done\ModMem\ModMem.html 
 
 
 

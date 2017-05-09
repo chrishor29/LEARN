@@ -1,6 +1,6 @@
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="../style.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>ModMem</title>
 	<style>*{line-height: 130%;}
 
@@ -20,7 +20,6 @@
 	<details><summary class="phase">tételek</summary><div id="container"></div></details>
 	<input type="file" id="fileinput" style="display:none;">
 	<input style="position:absolute; left:35%; top:1%;" type="button" value="load LS" onclick="document.getElementById('fileinput').click();">
-	<div style="position:absolute; left:10%; top:2%; font-weight: bold;font-size: large;" id="questLeveL"></div>
 	<input style="position:absolute; left:50%; top:1%;" type="button" value="save LS" onclick="func_saveLS()">
 
 	<input type="button" class="white" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_newQuest" value="0">
@@ -44,10 +43,11 @@
 		<span class="white" id="pJegy" style="font-weight:bold; padding-left:3px; padding-right:3px;">&nbsp; </span> &nbsp; &nbsp;
 		<input onclick="koviKerdes();" type="button" value=" ► ">
 	</span>
-	<span style="position:fixed; right:0px; top:50px;">
-		<span class="white" id="rank">&nbsp; (rank)</span>
+	<span style="font-weight: bold;font-size: large; position:absolute; right:40px; top:9px;" id="questLeveL"></span>
+	<span style="position:absolute; right:0px; top:50px;">
+		<span id="repeat" class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:2px; padding-bottom:2px;">&nbsp; &nbsp; &nbsp;</span>
+		<span id="rank" class="white" class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:2px; padding-bottom:2px;">&nbsp; (rank)</span>
 		<select id="skip"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="5">5</option><option value="10">10</option><option value="20">20</option></select> 
-		<span id="repeat" class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;">&nbsp; &nbsp; &nbsp;</span>
 		<input type="button" class="FIX" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_fix" value="0">
 		<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_skip" value="0">
 	</span>
@@ -141,7 +141,7 @@
 	</ul></details>
 	<details class="open kerdes 3/1" id="modmem.17"><summary>teszt</summary><ul class="normal">
 		<img src="images/krd_17.png">
-		<li><font class="abbr">megoldás ►</font> <span class="WHITE"><abbr title="szvsz a részecskék méreteloszlásáról azért nem ad, mert monodiszperz esetében a méretet meghatározom, polidiszperz esetében pedig csak becsülöm, de mindkettőt a mozgásuk alapján">C</abbr></span></li>
+		<li><font class="abbr">megoldás ►</font> <span class="WHITE"><abbr title="C nemvolt legutóbbi (2017) tesztben a válaszok között, és amúgy is szvsz erről ad infot a dia alapján">A</abbr></span></li>
 	</ul></details>
 	<details class="open kerdes 3/1" id="modmem.18"><summary>teszt</summary><ul class="normal">
 		<img src="images/krd_18.png">
@@ -163,9 +163,9 @@
 		<img src="images/krd_22.png">
 		<li><font class="abbr">megoldás ►</font> <span class="WHITE">B</span> <img class="mini" src="images/mmbnrkslknt.png"></li>
 	</ul></details>
-	<details class="open kerdes 3/1" id="modmem.23"><summary style="color:red">teszt</summary><ul class="normal">
+	<details class="open kerdes 3/1" id="modmem.23"><summary>teszt</summary><ul class="normal">
 		<img src="images/krd_23.png">
-		<li><font class="abbr">megoldás ►</font> <span class="WHITE">A</span></li>
+		<li><font class="abbr">megoldás ►</font> <span class="WHITE">A</span> <abbr title="wiki: MRI kontrasztanyagok (lecsekkolva)">§</abbr></li>
 	</ul></details>
 	<details class="open kerdes 3/1" id="modmem.24"><summary>teszt</summary><ul class="normal">
 		<img src="images/krd_24.png">
@@ -194,6 +194,27 @@
 	<details class="open kerdes 3/1" id="modmem.30"><summary>teszt</summary><ul class="normal">
 		<img src="images/krd_30.png">
 		<li><font class="abbr">megoldás ►</font> <span class="WHITE">B</span></li>
+	</ul></details>
+	<details class="open kerdes 3/1" id="modmem.97"><summary>Melyikbe nem juthat be a HIV vírus CD4 receptoron keresztül?</summary><ul class="normal">
+		<li>makrofág</li>
+		<li>B-lymphocyta</li>
+		<li>T-lymphocyta</li>
+		<li>dendritikus sejt</li>
+		<li><font class="abbr">megoldás ►</font> <span class="WHITE">B-lymphocyta</span></li>
+	</ul></details>
+	<details class="open kerdes 3/1" id="modmem.98"><summary>Melyik ion tölt be meghatározó szerepet a sejten belüli jelátvitelben?</summary><ul class="normal">
+		<li>Na<sup>+</sup></li>
+		<li>K<sup>+</sup></li>
+		<li>Ca<sup>2+</sup></li>
+		<li>Mg<sup>2+</sup></li>
+		<li><font class="abbr">megoldás ►</font> <span class="WHITE">Ca<sup>2+</sup></span></li>
+	</ul></details>
+	<details class="open kerdes 3/1" id="modmem.99"><summary>GPI horgonyzó fehérje hol van?</summary><ul class="normal">
+		<li>Intracelluláris tér</li>
+		<li>Extracelluláris tér</li>
+		<li>Mindkettő</li>
+		<li>Sejttípustól függ</li>
+		<li><font class="abbr">megoldás ►</font> <span class="WHITE">Extracelluláris tér</span></li>
 	</ul></details>
 <!----></div></details>
 
@@ -396,10 +417,10 @@
 		<li>koncentrációt határoz meg, ugyanis &#10140; J<sub>szórt</sub> arányos a koncentrációval</li>
 		<img src="images/fnszrnsmrs.png">
 	</ul></details>
-	<details class="kerdes 3/2" id="modmem.83"><summary>turbidimetria &#10140; mikor használatos? mit mér? mérésből mit határoz meg és hogy?</summary><ul class="normal">
+	<details class="kerdes 3/2" id="modmem.83"><summary style="color:Magenta"><font color="Green">turbidimetria &#10140; mikor használatos? mit mér? mérésből mit határoz meg és hogy?</font></summary><ul class="normal">
 		<li>nagymértékű fényszórás esetében használatos</li>
 		<li><abbr title="eredeti irányba továbbhaladó fény intenzitása">J</abbr> &#10140; ezt méri</li>
-		<li>koncentrációt határoz meg, ugyanis &#10140; <font style="color:red;font-weight:bold;">mért optikai denzitás</font> arányos a koncentrációval</li>
+		<li>koncentrációt határoz meg, ugyanis &#10140; mért intenzitásból meghatározható az <abbr title="most akkor mégis van abszorpció? vagy mivan? ...">!?</abbr> optikai denzitás = abszorbancia = extinkció, ami pedig arányos a koncentrációval</li>
 		<img src="images/fnszrnsmrs.png">
 	</ul></details>
 	<details class="kerdes 3/2" id="modmem.84"><summary>statikus fényszórás mérésnél mit mérünk? ebből milyen információ nyerhető?</summary><ul class="normal">
@@ -601,7 +622,7 @@
 		<li>kisebb mennyiség is elég, mert "nagyobb hatásfokkal ér a célterületre"</li>
 		<li>kevesebb melléhatással jár</li>
 	</ul></details>
-	<details class="kerdes 3/2" id="modmem.93"><summary>mikor használatos?</summary><ul class="normal">
+	<details class="kerdes 3/2" id="modmem.93"><summary>mikor használatos?(3pl)</summary><ul class="normal">
 		<li>antibiotikumokat akkor zárnak liposzómába, amennyiben a terápiás koncentráció és toxikus között kicsi az eltérés &#10140; így csökkenthető a mennyiség, és kevésbé lesz toxikus a szervezet számáta</li>
 		<li>daganatterápia esetében</li>
 		<li>AIDS kezelés esetében (hosszabb távú kezelés csontvelői toxicitása megelőzhető)</li>
@@ -634,7 +655,7 @@
 
 
 
-<script src="../javascript.js"></script> 
+<script src="javascript.js"></script> 
 
 <br><br><br><br><br><br><center><a href="../targyvalasztas.html"><strong style="font-size: 150%;">tárgyválasztás</strong></a></center>
 
