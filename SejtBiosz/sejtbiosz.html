@@ -2551,32 +2551,34 @@
 	<details class="kerdes 4/8" id="msb.281"><summary><strong>Proteaszóma felépítése és működése.</strong> Immunoproteaszóma. TAP. ERAD. Proteaszóma gátlás.</summary><ul class="normal">
 		<li>a proteolítisre kijelölt fehérjék a 26S proteaszómába kerülnek</li>
 		<li>ezek megtalálhatók sejtmagban és citoszolban egyaránt</li>
-		<li>három alegységből áll</li><ul>
-			<li>20S alegység &#10140; "hordó"</li>
-			<li>két db 19S alegység &#10140; "hordó fedele alul/felül"</li>
+		<li>három részből áll <img src="images/prtszmflptss.png"></li><ul>
+			<li>20S=magrészecske &#10140; "hordó"</li>
+			<li>két db 19S=szabályozó-részecske &#10140; "hordó fedele alul/felül"</li>
 		</ul>
 		<li>20S alegység</li><ul>
-			<li>4 gyűrű építi fel, melyek egyenkét 7 fehérjéből állnak</li>
+			<li>4 gyűrű (2&alpha;+2&beta;) építi fel, melyek egyenkét 7 alegységből állnak</li>
 			<li>ez végzi a proteolízist &#10140; 7-9 aminosavból álló (oligo)peptidekre hasítja a fehérjét</li>
+			<li>ezt a &beta;1, &beta;2 és &beta;5 alegységek végzik a következőképpen &#10140; három fő peptidáz aktivitásuk van</li><ul>
+				<li>β1 &#10140; kaszpáz-szerű aktivitás &#10140; savas aminosavak (Asp,Glu) után hasít</li>
+				<li>β2 &#10140; tripszin-szerű aktivitás &#10140; bázikus aminosavak (Arg,Lys) után hasít</li>
+				<li>β5 &#10140; kimotripszin-szerű aktivitás &#10140; <abbr title="elvileg hidrofób aminosavak (Tyr,Phe) után hasít, de ezek nemtudom miért hidrofóbak">(?!)</abbr> (Tyr,Phe) után hasít</li>
+				<div>(két további specificitás jellemző: elágazó oldalláncú, illetve kis, semleges aminosavak utáni hasítás)</div>
+			</ul>
 		</ul>
 		<li>19S alegység</li><ul>
-			<li>19 peptidből áll</li>
+			<li>20 polipeptidből áll</li>
+			<li>alap + sapka részre osztható</li>
 			<li>a benne található deubikvitináz<abbr title="előadásban találok ezekről egy diát, de azt most kihagytam (mert túl részletes lenne)">(DUB2)</abbr> a poliubikvitin szignált lehasítja &#10140; így az nem kerül felaprításra <abbr title="no offense, de ez nem sorolható 3.feladatnak?">!?</abbr></li>
 			<li>két feladatot végez</li><ul>
 				<li>felismeri a megfelelő poliubikvitin-szignállal rendelkező fehérjét</li>
-				<li>kitekerve a fehérjét (csak elsődleges szerkezet marad) bejuttatja a 20S-be</li><ul>
-					<li>ezt 6db peptid végzi(19-ből), melyek ATP-ázok (és AAA családba tartoznak)</li>
-					<li>a folyamat energiáját ATP<abbr title="hidrolízise">'</abbr> fedezi</li>
-				</ul>
+				<li>kitekerve a fehérjét (csak elsődleges szerkezet marad) bejuttatja a 20S-be &#10140; ezt 6db peptid végzi(20-ból), melyek <abbr title="olyan enzim, mely ATP hidrolízist végez a katalízis során (ADP+P keletkezik) --> tehát amikor ATP fedezi az energiát">ATPáz</abbr>-ok (és AAA családba tartoznak)</li>
 			</ul>
 		</ul>
 	</ul></details>
 	<details class="kerdes 4/4" id="msb.283"><summary>Proteaszóma felépítése és működése. <strong>Immunoproteaszóma. TAP.</strong> ERAD. Proteaszóma gátlás.</summary><ul class="normal">
 		<li>immunoproteaszóma</li><ul>
 			<li><span class="Important">feladata az antigének processzálása</span> (lásd lentebb)</li>
-			<li>módosított 20S alegységet tartalmaz &#10140; hármat (&beta;1/&beta;2/&beta;5) <abbr title="...a citokinek által indukált...">...</abbr> alábbi fehérjék helyettesítenek (&beta;1i/&beta;2i/&beta;5i)</li><ul>
-				<li>feladatuk az MHC-1 nevű komplex peptid-ligandjainak előállítása a citotoxikus T limfociták stimulálására</li>
-			</ul>
+			<li>a 20S-t alkotó β1, β2 és β5 alegységek γ-interferon hatására lecserélődnek <abbr title="tehát immunoproteoszómában ezek vannak a 'normálissal' ellentétben helyettük">β1i, β2i és β5i alegységekre</abbr></li>
 			<li>a 19S alegység helyett pedig a 11S alegység található meg az egyik vagy mindkét végen</li>
 		</ul>
 		<li>az immunoproteaszómák által termelt peptidek az ER lumenébe pumpálódnak az ER-membránjában található TAP nevű transzporterrel</li>
@@ -2593,8 +2595,8 @@
 			<li>transzkripciós faktorok</li>
 			<li>ERAD = ER associated protein degradation</li><ul>
 				<li>ER lumenében leellenőrzésre kerülnek a fehérjék</li>
-				<li>melyek foldinghibásak azokat a hsp-k megpróbálják kijavítani</li>
-				<li>ha nem sikerül, akkor kijutattják a citoszolba transzlokon csarotnán keresztül</li>
+				<li>melyek folding-hibásak azokat a hsp-k megpróbálják kijavítani</li>
+				<li>ha nem sikerül, akkor kijuttatják a citoszolba transzlokon csatornán keresztül</li>
 				<li>ott rájuk kerül a poliubikvitin-szignál és a<abbr title="az ER külső felszínén lévő">z</abbr> proteaszómákba kerülnek lebontásra</li>
 			</ul>
 		</ul>
@@ -2603,17 +2605,64 @@
 	<details class="kerdes 4/2" id="msb.285"><summary>Proteaszóma felépítése és működése. Immunoproteaszóma. TAP. ERAD. <strong>Proteaszóma gátlás.</strong></summary><ul class="normal">
 		<li>gátlószerek használata általában előnytelen, mert egyszerre több folyamatot ér (pl. sejtciklus-szabályozás stb.)</li>
 		<li>mindazonáltal néhány kórképben a proteaszóma gátlószerek jótékony hatásáról számoltak be</li>
-		<li>pl. mielóma multiplex esetében egy specifikus proteaszóma gátlószert (Bortezomib) már bevezettek a terápiába.</li>
+		<li>pl. mielóma multiplex esetében a <abbr title="bor te zombi?">Bortezomib</abbr> nevű gátlószert már bevezettek a terápiába</li>
 	</ul></details>
 	<hr><strong>FORRÁSOK</strong>
 	<li>jegyzet</li>
 	<li>Patobiokémia Szarka András, Bánhegyi Gábor (2014) &#10140; 9. fejezet - Proteosztázis – az ubikvitináció/proteaszóma rendszer</li>
 	<li>előadás diák</li>
+	<li>elte &#10140; 3. A proteaszóma szerkezete és működése</li>
 <!----></div></details>
 
-<!----><details open><summary class="phaseB">#8 Az autofágia fajtái, a lizoszóma szerepe.</summary><div><div class="title"> </div>
-	<details open class="kerdes 4/?" id="msb.282"><summary><strong>Az autofágia fajtái, a lizoszóma szerepe.</strong></summary><ul class="normal">
+<!----><details><summary class="phase">#8 Az autofágia fajtái, a lizoszóma szerepe.</summary><div><div class="title"> </div>
+	<details class="kerdes 4/7" id="msb.282"><summary><strong>Az autofágia fajtái,</strong> a lizoszóma szerepe.</summary><ul class="normal">
+		<li>autofágia &#10140; folyamat, mely során a sejt saját anyagai (fehérjék,organellumok) a lizoszómába kerülnek, majd ott degradálódnak</li>
+		<li>fő funkciója &#10140; tápanyaghiány túlélése (pl. megtermékenyített petesejt, éhező felnőtt, újszülött)</li>
+		<li>három fő típusát szokás elkülöníteni annak alapján, hogy a <span class="Important">lebontandó anyag hogyan jut a lizoszómába</span></li><ul>
+			<li>chaperon-mediált autofágia <abbr title="érdekes, hogy orvosi biosznál ez carrier-mediált proteolízisnek volt nevezve (de szvsz ez az elnevezés jobb, és előadásban is így volt)">'</abbr> &#10140; a lebontandó anyag <span class="Important">közvetlenül jut a lizoszómába</span></li>
+			<li>mikroautofágia &#10140; a lebontandó anyag a <span class="Important">membrán betűrődésével jut a lizoszómába</span> <abbr title="mármint a lizoszóma membánjának betűrődésével">§</abbr></li>
+			<li>makroautofágia &#10140; a lebontandó anyag <i>"membránfúzióval jut be"</i></li>
+		</ul>
+	  <hr><img src="images/chprnmdltfgnl.png"><div class="title">chaperon-mediált autofágia</div><div>
+		<li>a lebontantó anyag olyan fehérje melyben megtalálható a <abbr title="Lys-Phe-Glu-Arg-Gln">KFERQ</abbr> aminosav szekvencia <abbr title="ezenkívül egyéb szignál is van feltételezhetően(pl. hibás folding), ugyanis ez a szekvencia a citoszolban lévő fehérjék egyharmadában megtalálható">'</abbr></li>
+		<li>ezt felismeri a citoszolikus-hsc-70(chaperon)</li>
+		<li>ezután bejut egy csatornán<abbr title="LAMP-2A egy membránban lévő glikoprotein neve (nem a csatornáé elvileg)">'</abbr> keresztül</li>
+		<li>ott "fogadja" a lizoszomális-hsc-70(chaperon)</li>
+		<li>végül a savas hidrolázok lebontják</li>
+	  </div>
+	  <hr><div class="title">mikroautofágia</div><div>
+		<li>a mikroautofágia molekuláris mechanizmusa még kevéssé ismert</li>
+		<li>a folyamat ránézésre hasonlónak tűnhet az endocitózishoz, ezért fontos kiemelni hogy a topológiája fordított, azaz ilyenkor nem a citoplazmába, hanem a külvilágnak tekinthető lizoszóma lumenébe kerül az anyag, és jelenlegi tudásunk szerint az endocitózisban szereplő fehérjék ehhez nem szükségesek</li>
+		<li>a szállított anyag mennyisége már jóval nagyobb mint a CMA-nál, ezen az úton akár teljes organellumok, például peroxiszómák is bejuthatnak lizoszómába</li>
+	  </div>
+	  <hr><div class="title">makroautofágia</div><div>
+		<li>a legjelentősebb és legjobban ismert útvonal</li>
+		<li>a citoplazma egy részletét (pl. mitokondrium) egy növekvő <abbr title="két darab kétrétegű membrán">kettős membrán</abbr>, a fagofór veszi körül</li>
+		<li>záródásával létrejön az autofagoszóma</li>
+		<li>a külső membránja fúzionál a lizoszómával, és így kialakul az autolizoszóma</li>
+		<li>ebben a savas hidrolázok lebontják a belső membránt a lebontandó anyagokkal együtt</li>
+		<img src="images/chzmrkftg.png">
+	  </div>
 	</ul></details>
+	<details class="kerdes 4/5" id="msb.286"><summary>Az autofágia fajtái, a <strong>lizoszóma szerepe.</strong></summary><ul class="normal">
+			<li>a lizoszómák <abbr title="egy darab kétrétegű membrán">egy membránnal</abbr> körülvett, 0,05 –1 &micro;m átmérőjű organellumok</li>
+			<li>funkciója az alábbi anyagok lebontása</li><ul>
+				<li>sejt számára már felesleges sejtalkotók, molekulák</li>
+				<li>extracelluláris térből felvett anyagok</li>
+			</ul>
+			<li>A katabolikus reakciókat a lizoszóma lumenében lévő savas hidrolázok (több mint 40féle) katalizálják</li><ul>
+				<li>lipideket, szénhidrátokat, fehérjéket és nukleinsavakat egyaránt képesek bontani</li>
+				<li>hidroláz &#10140; víz felhasználásával kötést bont</li>
+				<li>savas &#10140; működéséhez savas pH kell, jelen esetben pH~5 körüli</li><ul>
+					<li>ezt a pH-t a lizoszóma membránjában lévő proton-ATPáz(pumpa) biztosítja</li>
+					<li>ez a feltétel biztosítja, hogyha kijutna a citoplazmába a lumen tartalma<abbr title="pl. membrán felszakad valamiért">'</abbr>, akkor ott ne romboljanak szét mindent a hidrolázok</li>
+				</ul>
+			</ul>
+	</ul></details>
+	<hr><strong>FORRÁSOK</strong>
+	<li>előadás pdf</li>
+	<li>szubcelluláris biokémia &#10140; lizoszóma</li>
+	<li>elte &#10140; 7. Az autofág gének felfedezése és működése</li>
 <!----></div></details>
 
 <!----><details><summary class="phase">#9 A bakteriofágok replikációjának lítikus és lizogén útja (a fág-represszor).</summary><div><div class="title"> </div>
@@ -2793,10 +2842,10 @@
 		</ul>
 		<li>SOS-repair lényege</li><ul>
 			<li>baktériumban zajlik</li>
-			<li>ha súlyos DNS-károsodás van, akkor megy végbe &#10140; DNS-polimeráz II végzi</li>
+			<li>ha súlyos DNS-károsodás van, akkor megy végbe</li>
 			<li>ehhez szükséges az SOS-fehérjék expressziója</li><ul>
 				<li>ezt alapvetően az ún.LexA fehérjék gátolják</li>
-				<li>azonban ha megindul az SOS-repair, akkor ezek proteolízissel lebomlanak &#10140; <abbr title="ennek jelentőségét lásd lentebb">tehát van bennük egy szekvencia,</abbr> amihez kötődnek a "lebontófehérjék"</li>
+				<li>azonban ha megindul az SOS-repair, akkor ezeket proteolízissel lebontják a recA nevű fehérjék &#10140; <abbr title="ennek jelentőségét lásd lentebb">tehát van bennük egy szekvencia,</abbr> amihez kötődik a recA és lebontja</li>
 				<li>így megindul az SOS-fehérjék expressziója (köztük a DNS-polimeráz II)</li>
 			</ul>
 		</ul>
@@ -2833,10 +2882,10 @@
 		</ul>
 		<li>SOS-repair lényege</li><ul>
 			<li>baktériumban zajlik</li>
-			<li>ha súlyos DNS-károsodás van, akkor megy végbe &#10140; DNS-polimeráz II végzi <abbr title="tehát pl. ha olyan mértékben károsodott a DNS, hogy a DNS-polimeráz I/III nem ,,hajlandó'' elvégezni a replikációt, akkor rábízza II-re. Ez ugyan hibákat eredményez...">§</abbr></li>
+			<li>ha súlyos DNS-károsodás van, akkor megy végbe</li>
 			<li>ehhez szükséges az SOS-fehérjék expressziója</li><ul>
 				<li>ezt alapvetően az ún.LexA fehérjék gátolják</li>
-				<li>azonban ha megindul az SOS-repair, akkor ezek proteolízissel lebomlanak &#10140; <abbr title="ennek jelentőségét lásd lentebb">tehát van bennük egy szekvencia,</abbr> amihez kötődnek a "lebontófehérjék" <abbr title="ebben szerepet játszanak az ún.RecA fehérjék">'</abbr></li>
+				<li>azonban ha megindul az SOS-repair, akkor ezeket proteolízissel lebontják a recA nevű fehérjék &#10140; <abbr title="ennek jelentőségét lásd lentebb">tehát van bennük egy szekvencia,</abbr> amihez kötődik a recA és lebontja</li>
 				<li>így megindul az SOS-fehérjék expressziója (köztük a DNS-polimeráz II)</li>
 			</ul>
 		</ul>
