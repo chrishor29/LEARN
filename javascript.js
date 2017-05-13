@@ -57,6 +57,9 @@ function func_removeRepeat(){ //ha már elkészült a script, és removeltam min
 			for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
 				if ( kerdes+'_repeat' in localStorage ) {
 					//localStorage.removeItem(kerdes+'_fix')
+					if ( localStorage.getItem(kerdes+'_changes') == null ) {
+						localStorage.setItem(kerdes+'_changes',1)
+					}
 					if ( 5 < localStorage.getItem(kerdes+'_repeat') ) {
 						localStorage.setItem(kerdes+'_repeat', 5)
 					}
