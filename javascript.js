@@ -57,9 +57,14 @@ function func_removeRepeat(){ //ha már elkészült a script, és removeltam min
 			for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
 				if ( kerdes+'_repeat' in localStorage ) {
 					//localStorage.removeItem(kerdes+'_fix')
-					if ( localStorage.getItem(kerdes+'_changes') == null ) {
-						localStorage.setItem(kerdes+'_changes',1)
-					}
+					//localStorage.removeItem(kerdes+'_idopont')
+					/*var date = new Date();
+					if ( Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont') > 10000 ) {
+						localStorage.removeItem(kerdes+'_idopont')
+						localStorage.removeItem(kerdes+'_changes')
+						localStorage.removeItem(kerdes+'_repeat')
+						localStorage.removeItem(kerdes+'_jegy')
+					}*/
 					if ( 5 < localStorage.getItem(kerdes+'_repeat') ) {
 						localStorage.setItem(kerdes+'_repeat', 5)
 					}
@@ -1100,7 +1105,7 @@ function koviKerdes(){
 	var newTime = Math.floor(date.getTime()/1000)
 	var diffTime = newTime - lastTime
 	if ( diffTime < 3 ) {
-		alert("2fast 2furious")
+		//alert("2fast 2furious")
 		return;
 	} else {
 		lastTime = newTime
