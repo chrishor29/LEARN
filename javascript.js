@@ -1030,8 +1030,12 @@ function func_prevQuestion(){
 
 	var repCount = Number(localStorage.getItem(priorKerdesID+'_repeat'))
 	var jegy = document.getElementById("jegy").value
-	localStorage.setItem(priorKerdesID+'_jegy', jegy);
-	var changes
+	if ( jegy == 0 ) {
+		localStorage.setItem(priorKerdesID+'_jegy', 1);
+	} else {
+		localStorage.setItem(priorKerdesID+'_jegy', jegy);
+	}
+	var changes // ez szerintem fölösleges (ez kis kérdéseknél jó max; nagy tételeknél fölösleges mert ott godMode)
 	if ( repCount == jegy || jegy > repCount ) {
 		changes = 1
 	} else if ( jegy-repCount == -1  ) {
@@ -1050,18 +1054,10 @@ function func_prevQuestion(){
 		timeDiff = 15 * Math.pow(4,repCount)
 	}*/
 
-	if ( jegy == 1 ) {
-		repCount = repCount-2
-	} else if ( jegy < repCount ) {
-		repCount = repCount-1
-	} else if ( jegy > repCount ) {
+	if ( jegy > repCount ) {
 		repCount = repCount+1
-	}
-	if ( repCount < 0 ) {
-		repCount = 0
-	}
-	if ( repCount > 5 ) {
-		repCount = 5
+	} else {
+		repCount = jegy
 	}
 	localStorage.setItem(priorKerdesID+'_repeat', repCount)
 
@@ -1089,7 +1085,7 @@ function func_prevQuestion(){
 	}
 */
 
-
+var godMode = "on"
 
 
 var fullTema
@@ -1189,6 +1185,7 @@ function koviKerdes(){
 								
 								if ( shouldBreak == false ) {
 
+
 									var changes = localStorage.getItem(kerdes+'_changes')
 
 									var num = document.getElementById(kerdes).className.search("/");
@@ -1209,9 +1206,21 @@ function koviKerdes(){
 										prior = 1
 									}
 
+
 									//checkValue = rank / Math.pow(0.8, idopont / timeDiff) / jegy
 									checkValue = changes * prior * idopont / timeDiff
 									//checkValue = vLength * rank * idopont / timeDiff / jegy
+									if ( godMode == "on" ) {
+										if ( idopont >= timeDiff ) {
+											if ( repCount == 0 ) {
+												checkValue = checkValue * 15
+											}
+											if ( repCount == 1 ) {
+												checkValue = checkValue * 5
+											}
+										}
+									}
+
 
 									if ( checkValue > priorValue_X ) {
 //										if ( localStorage.getItem(kerdes+"_skip") == "skip" ) {
@@ -1423,7 +1432,7 @@ function koviKerdes(){
 		if ( priorKerdesID+'_jegy' in localStorage ) {
 			document.getElementById("repeat").textContent = idopont
 			document.getElementById("pJegy").textContent = localStorage.getItem(priorKerdesID+'_repeat');
-			if ( localStorage.getItem(priorKerdesID+'_jegy') == 1 ) {
+			/*if ( localStorage.getItem(priorKerdesID+'_jegy') == 1 ) {
 				document.getElementById("pJegy").style.backgroundColor = "red"
 				document.getElementById("pJegy").style.color = "white"
 			} else if ( localStorage.getItem(priorKerdesID+'_changes') == 1.5 ) {
@@ -1432,7 +1441,7 @@ function koviKerdes(){
 			} else {
 				document.getElementById("pJegy").style.backgroundColor = "white"
 				document.getElementById("pJegy").style.color = "black"
-			}
+			}*/
 		} else {
 			document.getElementById("repeat").textContent = "\xa0 \xa0"
 		}

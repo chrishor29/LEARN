@@ -33,7 +33,7 @@
 			<option value="100">100</option>
 		</select> &nbsp; 
 		<input style="border: 3px solid black;" id="btn_Note" onclick="toggleNote();" type="button" value="&#10045;"> &nbsp; &nbsp;
-		<select id="jegy"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; 
+		<select id="jegy"><option value=""></option><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; 
 		<span class="white" id="pJegy" style="font-weight:bold; padding-left:3px; padding-right:3px;">&nbsp; </span> &nbsp; &nbsp;
 		<input onclick="koviKerdes();" type="button" value=" ► ">
 	</span>
@@ -677,6 +677,14 @@
 
 <!----><details><summary class="phaseC">#4 A humán kromoszómák szerkezete és sejtciklusfüggő változásai.</summary><div><div class="title"> </div>
 	<details open class="kerdes 4/8" id="msb.190"><summary><strong>A humán kromoszómák szerkezete és sejtciklusfüggő változásai</strong></summary><ul class="normal">
+		<div style="float:right;max-width:20%">
+			<img src="images/sdnszrsznt.png">
+			<img src="images/3_nukleoszoma.png">
+			<img src="images/szolenoid.png">
+			<img src="images/rdlshrk.png">
+			<img src="images/kondenzin.png">
+			<img src="images/khznkntkrks.png">
+		</div>
 	  <strong>Bevezetés</strong> (szvsz írtam)
 		<li>sejtciklus fázisai</li><ul>
 			<li>interfázis &#10140; G1,S,G2 fázis</li>
@@ -782,7 +790,7 @@
 			<li>így fontos jellemzője, hogy intronja és <abbr title="elvileg van olyan is, amelyiknek ez megmarad, de ezzel inkább ne foglalkozzak (egyszerűbb így felfogni)">promotere</abbr> nincs már, a normál génekkel ellentétben (hisz splicing már volt)</li>
 		</ul>
 		<li>nem processzált pszeudogének</li><ul>
-			<li>duplikált &#10140; a gén duplikálódik, és utána beépül a DNS-be az eredeti gén közelébe <abbr title="ez is mutálódik közben">'</abbr></li>
+			<li>duplikált &#10140; a gén duplikálódik, és utána beépül a DNS-be az eredeti gén közelébe &#10140; közülük az egyik <span class="idk">az évmilliók során</span> mutálódik és pszeudogén lesz</li>
 			<li>magányos &#10140; mutációval elveszti funkcióképességét, pl. STOP-kodon keletkezik rossz helyen <abbr title="vagy egy fontos aminosav kicserélődik">'</abbr></li>
 		</ul>
 		<li>sejtmagi mitokondriális (NUMT) pszeudogének &#10140; mitokondriális DNS nagyrésze az evolúció során átmentek a sejtmagba</li>
@@ -792,11 +800,8 @@
 		<li>így azok lefoglalják a mikroRNS-eket, és az onkogén mRNS-ek nem fognak lebomlani</li>
 	</ul></details>
 	<details class="kerdes 4/9" id="msb.150"><summary>A humán genom felépítése; kódoló és génexpressziót szabályzó szekvenciák. A humán genom nem-kódoló szakaszai: intronok, pszeudogének, <strong>ismétlődő szekvenciák.</strong></summary><ul class="normal">
-		<div style="float:right;max-width:30%">
-			<img src="images/dslmcnhrk.png">
-			<img src="images/trnszpznk.png">
-		</div>
-	  <hr><div class="title">ismétlődő szekvenciák</div>
+		<img style="max-width:30%"> src="images/dslmcnhrk.png">
+	  <div class="title">ismétlődő szekvenciák</div>
 		 &#10140; genom kb. felét(44%) teszik ki, tehát igen nagyrészét
 		<li>mobilis genetikai elemek</li>
 		<li>szatellita DNS-ek</li><ul>
@@ -809,19 +814,19 @@
 			<li>kromoszóma végén vannak</li>
 			<li><abbr title="centromer T és A, ez meg G-ben gazdag (megjegyzési tipp)">TTAGGG</abbr> szekvencia van 1000-2000x ismétlődve</li>
 			<li>a kromoszóma végén lévő két DNS-szál közül a 3'-re végződő hosszabb 2 TTAGGG szekvenciával</li>
-			<li>hogy ez ne jelentsen gondot, a képen látható ún. telomer-hurok képződik</li>
-			<li>ehhez a telomer-hurokhoz egy fehérje-komplex kapcsolódik, mely legfontosabb tagja a telomeráz(enzim) &#10140; ez a fehérje-sapka megakadályozza a kromoszómák fúzióját (aneuploidia)</li>
+			<li>hogy ez ne jelentsen gondot, a képen látható ún. <span class="Important">telomer-hurok</span> képződik</li>
+			<li>ehhez a telomer-hurokhoz egy fehérje-komplex kapcsolódik, mely legfontosabb tagja a telomeráz(enzim) &#10140; ez a fehérje-sapka <span class="Important">megakadályozza a kromoszómák fúzióját (aneuploidia)</span></li>
 			<li>minden osztódásnál csökken a telomer hossza</li>
-			<li>a telomeráz ezt képes pótolni, azonban ez az enzim csak őssejtekben és tumorsejtekben expresszálódik</li>
+			<li>a <span class="Important">telomeráz</span> ezt képes pótolni, azonban ez az enzim csak őssejtekben és tumorsejtekben expresszálódik</li>
 		</ul>
 		<li><u>centromer</u></li><ul>
 			<li>171bp-ól álló T és A-ban gazdag szekvencia ismétlődése</li>
 			<li>ehhez kötődik a kohezin, és kapcsolja össze a 2 testvérkromatidákat</li>
 		</ul>
 		<li><u>mikroszatelliták</u></li><ul>
-			<li>2-5 nukleotid ismétlődik</li>
+			<li>2-5bp ismétlődik</li>
 			<li>attól függően, hogy hányszor ismétlődnek, lehet személyazonosságot meghatározni (pl. egyik van akiben 15x ismétlődik, van akiben 17x)</li>
-			<li>Huntington-kór oka pl. egy ilyen szekvencia túl sokszor ismétlődik</li>
+			<li>Huntington-kór oka, hogy egy ilyen szekvencia túl sokszor ismétlődik</li>
 		</ul>
 	  <hr><div class="title">mobilis genetikai elemek</div>
 		<li>fő tulajdonságuk &#10140; változtatják a helyüket a genomban</li>
@@ -847,6 +852,7 @@
 				<td>szimplán kivágódnak és átmennek máshova &#10140; transzpozáz(enzim) végzi</td>
 			</tr>
 		</table>
+		<img style="max-width:30%" src="images/trnszpznk.png">
 		<li><u>retrotranszpozonok</u></li><ul>
 			<li>retrovírusokból kerültek bele a humán genomba</li>
 			<li>(helyváltoztatásuk szvsz kb.ugyanaz mint processzált_pszeudogéneknél)</li>
@@ -1073,29 +1079,32 @@
 			<img src="images/tlrmsmkds.png">
 		</div>
 	  <strong>telomerek</strong>
+		<li>ismétlődő szekvenciák csoportjába tartozik, azon belül is a DNS-szatelliták csoportjába <abbr title="A humán genom felépítése; kódoló és génexpressziót szabályzó szekvenciák. A humán genom nem-kódoló szakaszai: intronok, pszeudogének, ismétlődő szekvenciák">/lásd/</abbr></li>
 		<li>kromoszóma végén vannak</li>
 		<li><abbr title="centromer T és A, ez meg G-ben gazdag (megjegyzési tipp)">TTAGGG</abbr> szekvencia van 1000-2000x ismétlődve = telomer</li>
 		<li>a kromoszóma végén lévő két DNS-szál közül a 3'-re végződő hosszabb 2 TTAGGG szekvenciával</li>
 		<li>hogy ez ne jelentsen gondot, a képen látható ún. telomer-hurok képződik</li>
 		<li>ehhez a telomer-hurokhoz egy fehérje-komplex kapcsolódik <abbr title="mely legfontosabb tagja a telomeráz(enzim)">&#10045;</abbr> &#10140; ez a fehérje-sapka megakadályozza a kromoszómák fúzióját (aneuploidia)</li>
 		<li>minden osztódásnál csökken a telomer hossza</li>
-	  <strong>minden osztódásnál csökken a telomer hossza &#10140; oka</strong>
+	  <hr><strong>minden osztódásnál csökken a telomer hossza &#10140; oka</strong>
 		<li>genom a prokariótáknál cirkuláris, tehát nem volt 5' / 3' vége &#10140; eukariótáknál lineáris: 23db interfázisos_kromoszóma, mindegyiknek van 5' és 3' vége</li>
 		<li>ennek az a következménye, hogy eukariótáknál mindkét <abbr title="tehát nem a szülői(minta), hanem ami képződik">"új"</abbr>_szál 5' vége rövidülni fog</li><ul>
 			<li>mindkét "új" szál 5' vége késlekedő_szálként szintetizálódik &#10140; <abbr title="kép persze le van egyszerűsítve, hisz csak 1 Origot ábrázol, de az, hogy több 1000 van belőlük, az eredményen nem változtat">lásd kép!</abbr></li>
 			<li>azért rövidülnek, mert az 5' végen lévő RNS-primer miután leválik, nem tudja semmi pótolni &#10140; hiszen 5'-3' irányba történik csak szintézis, és nincs előtte 3' vég, ami hosszabítható lenne</li>
-			<li><abbr title="oké szép és jó de fszmba már. Ha megnézem, akkor a következtő osztódásnál, a szülői ugyanolyan hosszú és sose rövidül, tehát ha belegondolok, akkor ha van egy sejt ami osztódik, az utódsejtek közül az egyik sose rövidül">!?!?!?!?</abbr> <img class="mini" src="images/8_thstmyprblm.png"></li>
+			<li><abbr title="oké szép és jó de **** már. Ha megnézem, akkor a következő osztódásnál, a szülői ugyanolyan hosszú és sose rövidül, tehát ha belegondolok, akkor ha van egy sejt ami osztódik, az utódsejtek közül az egyik sose rövidül">(!?)</abbr> <img class="mini" src="images/8_thstmyprblm.png"></li>
 		</ul>
-		<li>(prokariótáknál azonban cirkuláris, így nem lesz probléma <abbr title="szvsz ha végiggondolom: kört rajzoljak, majd az iniciációs_buboréktól egyik irányba 1 vezető, másik irányba 1 késlekedő szál megindul, és ezek fognak egymással találkozni (tehát a vezettő szál hosszabodása fogja tudni pótolni)">&#10045;</abbr>)</li>
-		<li>a telomeráz enzim működésének köszönhetően azonban a kromoszómák ezen elkerülhetetlen rövidülése mégsem jelenti a genetikai információ fokozatos elvesztését</li><ul>
-			<li>a kromoszómák 3’-végét meghosszabbítja minden osztódásnál valamennyi <abbr title="mennyi az a valamennyi... (szvsz nem pár ezer, mert az az egész telomer hossza)">(!?)</abbr> TTAGGG szekvenciával</li>
-			<li>a telomeráz egy RNS-függő DNS-polimeráz (azaz egyfajta reverz transzkriptáz), s a mintául szolgáló RNS pedig az enzim saját prosztetikus csoportja &#10140; lásd kép</li>
+		<li>prokariótáknál azonban cirkuláris, így nincs probléma <abbr title="szvsz ha végiggondolom: kört rajzoljak, majd az iniciációs_buboréktól egyik irányba 1 vezető, másik irányba 1 késlekedő szál megindul, és ezek fognak egymással találkozni (tehát a vezettő szál hosszabodása fogja tudni pótolni)">&#10045;</abbr></li>
+	  <hr><strong>telomeráz</strong>
+		<li>ha a telomer hossza egy adott érték alá csökken fokozatos rövidülések következtében, akkor apoptózis indukálódik, a sejt elpusztul</li>
+		<li>ezért a telomeráz meghosszabítja minden osztódásnál a telomert <abbr title="mennyi az a valamennyi... (szvsz nem pár ezer, mert az az egész telomer hossza)">valamennyi</abbr> TTAGGG szekvenciával &#10140; nem rövidül</li>
+		<li>azonban telomeráz csak őssejtekben és tumorsejtekben expresszálódik &#10140; daganatos megbetegedések kemoterápiás kezelésének egyik módja ez &#10140; legaktívabban osztódó sejteket, azaz éppen a tumorsejteket károsítja</li>
+		<li>Hayflick-szabály &#10140; mivel a differenciált sejtekben a telomeráz enzim már nem expresszálódik, így a sejt lehetséges osztódásainak száma korlátozott &#10140; kb 50-100x osztódhat</li>
+		<li>a telomeráz működése a <strong>kromoszóma <span class="Important">egyik végén</span></strong> bemutatva <span class="Important">RAJZ</span></li><ul>
+			<li>a 3'-re végződő szálú DNS-t hosszabítja meg</li>
+			<li>a telomeráz egy RNS-függő DNS-polimeráz (azaz egyfajta reverz transzkriptáz), s a mintául szolgáló RNS pedig az enzim saját prosztetikus csoportja</li>
+			<li>5' végű szálat DNS-polimeráz pótolja másik oldalon (nyilván primer kapcsolódik hozzá a meghosszabított 3' végéhez)</li>
+			<li><span class="idk">azonban kb. két TTAGGG szekvenciányival mindig rövidebb lesz az 5' végű szál, hiszen a primer hossza kb annyi, és azt nem lehet pótolni</span></li>
 		</ul>
-		<li>Hayflick-szabály</li><ul>
-			<li>differenciált sejtekben a telomeráz enzim már nem expresszálódik, így a sejt lehetséges osztódásainak száma korlátozott &#10140; kb 50-100x osztódhat</li>
-			<li>ugyanis ha a telomer hossza egy adott érték alá csökken, akkor apoptózis indukálódik, a sejt elpusztul</li>
-		</ul>
-		<li>a telomeráz csak őssejtekben és tumorsejtekben expresszálódik &#10140; daganatos megbetegedések kemoterápiás kezelésének egyik módja ez&#10140; legaktívabban osztódó sejteket, azaz éppen a tumorsejteket károsítja</li>
 	</ul></details>
 <!----></div></details>
 
@@ -1260,89 +1269,97 @@
 <!--///////////////////////////-->  <div><div class="mainTitle">II. A genetikai információ kifejeződése</div>  <!--///////////////////////////-->
 
 <!----><details><summary class="phase">#1 Az E. coli RNS‑polimeráz szerkezete és működése. A transzkripció iniciációja és terminációja prokarióta sejtekben, a prokarióta transzkripciós egység.</summary><div><div class="title"> </div>
-	<details class="kerdes 4/8" id="msb.123"><summary><strong>Az E. coli RNS‑polimeráz szerkezete és működése.</strong> A transzkripció iniciációja és terminációja prokarióta sejtekben, a prokarióta transzkripciós egység</summary><ul class="normal">
+	<details class="kerdes 4/6" id="msb.123"><summary><strong>Az E. coli RNS‑polimeráz szerkezete és működése.</strong> A transzkripció iniciációja és terminációja prokarióta sejtekben, a prokarióta transzkripciós egység</summary><ul class="normal">
 		<img src="images/plmrzszrk.png">
-		<li>felépítése &#10140; 2&alpha; + 1&beta; + 1&beta;' alegységből tevődik ki (a szigmát is hozzászokták venni, de jobb azt faktorként felfogni)</li>
-		<li>másképpen fogalmazva az RNS polimeráz apoenzim egészen addig, amíg a &sigma;-alegység hozzá nem kapcsolódik &#10140; akkor holoenzim</li><ul>
+		<li>felépítése &#10140; 2&alpha; + 1&beta; + 1&beta;' alegységből tevődik ki <abbr title="a szigmát is hozzászokták venni, de jobb azt faktorként felfogni">'</abbr></li>
+		<li>másképpen fogalmazva az RNS polimeráz apoenzim egészen addig, amíg a &sigma;-faktor hozzá nem kapcsolódik &#10140; akkor holoenzim</li><ul>
 			<li>apoenzim = 2&alpha; + 1&beta; + 1&beta;'</li>
 			<li>holoenzim = 2&alpha; + 1&beta; + 1&beta;' + 1&sigma;</li>
 			<div>(kép <img class="mini" src="images/pnzmhlnzm.png">)</div>
 		</ul>
-		<br><details><summary>apoenzim vs holoenzim funkciója?</summary><ul class="normal">
-			<li>apoenzim &#10140; képes lánchosszabításra (elongáció)</li>
-			<li>holoenzim &#10140; képes pontos lánckezdésra (iniciáció)</li>
-		</ul></details>
-		<br><details><summary>alegységek funkciója?</summary><ul class="normal">
-			<li>&alpha; &#10140; enzim összetartása</li>
-			<li>&beta; & &beta;' &#10140; egymással kialakítják a katalitikus centrumot</li>
-			<li>&sigma; &#10140; felismeri a promotert, azaz megköti a -10 és -35 szekvenciákat &#10140; biztosítja a pontoc lánckezdést</li>
-		</ul></details>
-		<br><details><summary>&sigma; alegység (faktor!) funkciójának szemléltetése?</summary><ul class="normal">
-			<li>apoenzim nagy affinitással köt bármilyen DNS szakaszt &#10140; ha véletlen hozzákötődik, akkor a disszociációs féléletideje kb. 60perc, és utána leválik</li>
-			<li>holoenzim</li><ul>
-				<li>általános (nem a "Nagy Ő") DNS-szakasz kötő affinitása 1000x kisebb &#10140; ha véletlen hozzákötődik, akkor a disszociációs féléletideje kb. 1sec, és utána leválik</li>
-				<li>megfelelő DNS-szakaszra az affinitása viszont nagyobb &#10140; tehát ha megtalálja a Nagy Ő-t, akkor az ahhoz való kötődés után a leválása lassabb: disszociációs féléletideje kb. néhány óra</li>
-			</ul>
-		</ul></details>
-		<br><details><summary>&sigma; alegység (faktor!) típusai?</summary><ul class="normal">
-			<li>általános &sigma;<sup>70</sup> &#10140; -10 szekvenciája a TATAAT, -35 szekcenciája a TTGACA</li>
-			<li>ezenkívül vannak olyanok, melyek nem nomál körülményekben fognak működni, hanem pl. hőemelkedés, nitroénhiány esetében &#10140; más gének expresszálódnak (képen lévők adatait ne tanuljam, max a számukat egy-kettőnek)</li>
-			<img src="images/szmgfktrk.png">
-		</ul></details>
+	  <strong>apoenzim vs holoenzim funkciója</strong><div>
+		<li>apoenzim &#10140; képes lánchosszabításra (elongáció)</li>
+		<li>holoenzim &#10140; képes pontos lánckezdésra (iniciáció)</li>
+	  </div>
+	  <strong>alegységek funkciója</strong><div>
+		<li>&alpha; &#10140; enzim összetartása</li>
+		<li>&beta; & &beta;' &#10140; egymással kialakítják a katalitikus centrumot</li>
+		<li>&sigma; &#10140; felismeri a promotert, azaz megköti a -10 és -35 szekvenciákat &#10140; biztosítja a pontos lánckezdést</li>
+	  </div>
+	  <strong>&sigma;-<abbr title="jobb faktorként, mint alegységként felfogni">faktor</abbr> funkciójának szemléltetése</strong><div>
+		<li>apoenzim nagy affinitással köt bármilyen DNS szakaszt &#10140; ha véletlen hozzákötődik, akkor a disszociációs féléletideje kb. 60perc, és utána leválik</li>
+		<li>holoenzim</li><ul>
+			<li>általános (nem a "Nagy Ő") DNS-szakasz kötő affinitása 1000x kisebb &#10140; ha véletlen hozzákötődik, akkor a disszociációs féléletideje kb. 1sec, és utána leválik</li>
+			<li>megfelelő DNS-szakaszra az affinitása viszont nagyobb &#10140; tehát ha megtalálja a Nagy Ő-t, akkor az ahhoz való kötődés után a leválása lassabb: disszociációs féléletideje kb. néhány óra</li>
+		</ul>
+	  </div>
+	  <strong>&sigma;-faktor típusai</strong><div>
+		<li>általános (housekeeping gének transzkripciója) &sigma;<sup>70</sup> &#10140; -10 szekvenciája a TATAAT, -35 szekcenciája a TTGACA</li>
+		<li>ezenkívül vannak olyanok, melyek nem nomál körülményekben fognak működni, hanem pl. hőemelkedés, nitroénhiány esetében &#10140; más gének expresszálódnak (ezek képen lévő adatait ne tanuljam, max a számukat: 32 & 54)</li>
+		<img src="images/szmgfktrk.png">
+	  </div>
 	</ul></details>
 	<br><details class="kerdes 4/6" id="msb.124"><summary>Az E. coli RNS‑polimeráz szerkezete és működése. A transzkripció iniciációja és terminációja prokarióta sejtekben, a <strong>prokarióta transzkripciós egység</strong></summary><ul class="normal">
-		<br><details><summary>transzkripciós_egység mi?</summary><ul class="normal">
-			<li>transzripciós_egység = egy lépésben részben átírandó rész</li>
-			<li><font class="abbr">részei? ►</font> <ul>
-				<img src="images/rtrszksz.png">
-				<li>promoter &#10140; -10 & -35</li>
-				<li>RNS-re átírt szakasz &#10140; +1-től tart a <i>terminációs szignálig</i></li>
-			</ul></li>
-			<li><font class="abbr">számok mit jelölnek? ►</font> bázisokat &#10140; +1 az első ami átíródik RNS-re, -10 az előbbitől <abbr title="átírással elentétes irányba!">5' irányba</abbr> a 10edik stb.</li>
-			<li><font class="abbr">promoter funkció? ►</font> nem íródik át, csak szabályoz</li>
-		</ul></details>
-		<br><details><summary>konszenzus szekvencia mi?</summary><ul class="normal">
-			<li>bázisok egymásutáni sorrendje, mely nem mindig egyforma &#10140; ezért a legnagyobb gyakorisággal elődordulót jelöljük mindig</li>
-			<li>pl. -10 & -35 régiók szekvenciája ilyen &#10140; annyit jegyezzek meg róluk (kép csak ábrázolja, nem kell tudnom)</li><ul>
-				<li>mind2 kb.6bázisból áll</li>
-				<li>-10 kb. TATAAT</li>
-			</ul>
-			<img src="images/ksznsnsznkv.png">
-		</ul></details>
+	  <strong>transzkripciós_egység</strong><div>
+		<li>transzripciós_egység = egy lépésben részben átírandó rész</li>
+		<li>részei<ul>
+			<img src="images/rtrszksz.png">
+			<li>promoter &#10140; -10 & -35</li>
+			<li>RNS-re átírt szakasz &#10140; +1-től tart a <i>terminációs szignálig</i></li>
+		</ul></li>
+		<li>számok jelölik a bázisokat &#10140; +1 az első ami átíródik RNS-re, -10 az előbbitől <abbr title="átírással elentétes irányba!">5' irányba</abbr> a 10edik stb.</li>
+		<li>promoter funkció &#10140; nem íródik át, csak szabályoz</li>
+	  </div>
+	  <strong>konszenzus szekvencia</strong><div>
+		<li>bázisok egymásutáni sorrendje, mely nem mindig egyforma &#10140; <abbr title="tehát a kapott konszenzus szekvencia igazából sosem fordul elő (pl. ha a valóságban ez a 3 lenne: TTT,TGG,GGT &#10140; TGT)">ezért a legnagyobb gyakorisággal elődordulót jelöljük mindig</abbr></li>
+		<li>pl. -10 & -35 régiók szekvenciája ilyen &#10140; annyit jegyezzek meg róluk (kép csak ábrázolja, nem kell tudnom)</li><ul>
+			<li>mind2 kb.6bázisból áll</li>
+			<li>-10 kb. TATAAT</li>
+		</ul>
+		<img src="images/ksznsnsznkv.png">
+	  </div>
 	</ul></details>
-	<br><details class="kerdes 4/10" id="msb.125"><summary>Az E. coli RNS‑polimeráz szerkezete és működése. <strong>A transzkripció iniciációja és terminációja prokarióta sejtekben,</strong> a prokarióta transzkripciós egység</summary><ul class="normal">
-		<br><details><summary>iniciáció lényege?</summary><ul class="normal">
-			<li>holoenzim addig próbálkozik DNS-kötéssel, amíg meg nem találja a megfelelő promotert (tehát hozzákötődik, ha nem az, akkor elengedi 1secen belül, és repeat)</li>
-			<li>ha megtalálta az igazit, akkor a holoenzim a promoterrel ún. <strong>zárt_komplexet</strong> alkot</li>
-			<li>ezután konformációváltozás révén, egy rövid (kb. 1 fordulatnyi) DNS-szakasz széttekeredik &#10140; majd a nyitott komplexben megkezdődik az RNS-lánc szintézis</li>
-			<li>a &sigma;-alegység(faktor!) az <abbr title="első pár nukleotid beépüléséig tart">iniciáció végén</abbr> leválik és elmegy keresni másik apoenzimet, hogy annál is meginduljon &#10140; elongációt már csak az apoenzim végzi (segédfehérjékkel)</li>
-			<div><span class="vocab"><strong>§</strong></span> kb.10nukleotid után a konformációnak megint változnia kell</div>
-			<img src="images/ncndnglny.png">
-		</ul></details>
-		<br><details><summary>terminálások típusainak felsorolása?</summary><ul class="normal">
-			<li>&rho;(ejtsd:"ró")-faktor nélküli &#10140; azaz semmilyen faktor nem kell hozzá</li>
+	<br><details class="kerdes 4/5" id="msb.125"><summary>Az E. coli RNS‑polimeráz szerkezete és működése. A transzkripció <strong>iniciációja</strong> és terminációja prokarióta sejtekben, a prokarióta transzkripciós egység</summary><ul class="normal">
+	  <strong>lényege</strong><div>
+		<li>holoenzim addig próbálkozik DNS-kötéssel, amíg meg nem találja a megfelelő promotert (tehát hozzákötődik, ha nem az, akkor elengedi 1secen belül, és repeat)</li>
+		<li>ha megtalálta az igazit, akkor a holoenzim a promoterrel ún. <strong>zárt_komplexet</strong> alkot</li>
+		<li>ezután konformációváltozás révén, egy rövid (kb. 1 fordulatnyi) DNS-szakasz széttekeredik &#10140; majd a nyitott komplexben megkezdődik az RNS-lánc szintézis</li>
+		<li>a &sigma;-alegység(faktor!) az <abbr title="első pár nukleotid beépüléséig tart">iniciáció végén</abbr> leválik és elmegy keresni másik apoenzimet, hogy annál is meginduljon &#10140; elongációt már csak az apoenzim végzi (segédfehérjékkel)</li>
+		<div><abbr title="kb.10nukleotid után a konformációnak megint változnia kell">'</abbr></div>
+	  </div>
+	  <strong>gyógyszeres gátlása</strong><div>
+		<li>pl. rifamicin és rifampicin nevű gyógyszerekkel lehet</li>
+		<li>ezek a polimeráz &beta;-alegységéhez kötődve meggátolják az iniciációt</li>
+		<li>tuberkolózis és lepra <abbr title="(mikrobaktérium)">'</abbr> ellen használják</li>
+	  </div>
+		<img src="images/ncndnglny.png">
+	</ul></details>
+	<br><details class="kerdes 4/5" id="msb.296"><summary>Az E. coli RNS‑polimeráz szerkezete és működése. A transzkripció iniciációja és <strong>terminációja</strong> prokarióta sejtekben, a prokarióta transzkripciós egység</summary><ul class="normal">
+	  <div style="float:right;max-width:30%">
+		<img src="images/kttshrk.png">
+		<img src="images/rhktrktrmnc.png">
+	  </div>
+	  <strong>bevezetés</strong><div>
+		<li>terminálásnak két típusa van</li><ul>
+			<li>&rho;(ejtsd:"ró")-faktor nélküli (azaz semmilyen faktor nem kell hozzá)</li>
 			<li>&rho;-faktoros</li>
-		</ul></details>
-		<br><details><summary>&rho;-faktor nélküli termináció lényege?</summary><ul class="normal">
-			<li>hajtűkanyar keletkezik a képződő RNS szálon belül</li>
-			<li>a hajtűkanyar sok G≡C bázispárt tartalmaz, illetve utána több U adódik majd hozzá (3'irányba)</li>
-			<li>ennek a következménye, hogy a hajtűkanyar képződése az uridilátok átírása után lelassítja, szinte megállítja a polimerázt</li>
-			<li>eután pedig a hurok kihúzza a laza DNS-RNS (hisz A=U kötések, szvsz az uridilátok következtében) hibrid kettős hélixből az RNS szálat</li>
-			<img src="images/kttshrk.png">
-		</ul></details>
-		<br><details><summary>&rho;-faktoros termináció lényege?</summary><ul class="normal">
-			<li>&rho;-faktor 6alegységből áll</li>
-			<li>követi az RNS-polimerázt &#10140; alapvetően a távolság azonos köztük</li>
-			<li>azonban, mikor a hurok szintézis végbement, akkor lelassul a polimeráz, így utoléri a &rho;-faktor</li>
-			<li>így a &rho;-faktor fogja az RNS-szálat és kihúzza a mintaDNS mellől, azaz polimerázból</li>
-			<img src="images/rhktrktrmnc.png">
-		</ul></details>
-		<br><details><summary>gyógyszeres gátlása &#10140; gyógyszer neve? lényege? mi ellen?</summary><ul class="normal">
-			<li>pl. rifamicin és rifampicin nevű gyógyszerekkel lehet</li>
-			<li>ezek a polimeráz &beta;-alegységéhez kötődve meggátolják az iniciációt</li>
-			<li>mikrobaktérium (tuberkolózis és lepra) ellen használják</li>
-		</ul></details>
-
+		</ul>
+		<li>mindkét esetben <abbr title="hajtűkanyar">hairpin</abbr> keletkezik a képződő mRNS szálon</li>
+		<li>ez az RNS-polimeráz lelassulását, megállását vonja maga után</li>
+	  </div>
+	  <strong>&rho;-faktor nélküli termináció lényege</strong><div>
+		<li>ha a hairpin után az mRNS-en több(3-4) U következik<abbr title="3'irányba">'</abbr>, akkor a polimeráz leválik</li>
+		<li>(ha a hairpin után nincs 'Uracil-szekvencia', akkor a polimeráz a lassulása után ismét folytatni fogja)</li>
+	  </div>
+	  <strong>&rho;-faktoros termináció lényege</strong><div>
+		<li>&rho;-faktor 6alegységből áll</li>
+		<li>követi az RNS-polimerázt <span class="Important">[ATP igényes!]</span> &#10140; alapvetően a távolság azonos köztük</li>
+		<li>azonban, mikor a hairpin szintézis végbement, akkor lelassul a polimeráz, így utoléri a &rho;-faktor &#10140; polimeráz leválik</li>
+		<li>(itt is elmondható &#10140; amennyiben nincs jelen a Rho, az RNS-polimeráz egy kis időre megtorpan, de egy idő után továbbhalad)</li>
+	  <hr><strong>források</strong>
+		előadás<br>
+		http://elte.prompt.hu/sites/default/files/tananyagok/ABiokemiaEsMolekularisBiologiaAlapjai/ch14s04.html
+	  </div>
 	</ul></details>
 <!----></div></details>
 
@@ -1391,7 +1408,7 @@
 <!----></div></details>
 
 <!----><details><summary class="phase">#3 A transzkripció szabályozása prokariótákban. Erős és gyenge promóterek, konstitutív gének, operon fogalma, pozitív/negatív szabályozás.</summary><div><div class="title"> </div>
-	<details class="kerdes 4/5" id="msb.129"><summary>A transzkripció szabályozása prokariótákban. <strong>Erős és gyenge promóterek,</strong> konstitutív gének, operon fogalma, pozitív/negatív szabályozás</summary><ul class="normal">
+	<details class="kerdes 4/3" id="msb.129"><summary>A transzkripció szabályozása prokariótákban. <strong>Erős és gyenge promóterek,</strong> konstitutív gének, operon fogalma, pozitív/negatív szabályozás</summary><ul class="normal">
 		<li><span class="Important">erős promoter, mely hasonlít a &sigma;("szigma!")-faktor konszenzus szekvenciájához!</span> &#10140; ehhez "jobban~könyebben" kötődik a &sigma;-faktor</li>
 		<li>ez mindössze az <span class="Important">iniciáció esélyét szabályozza</span> &#10140; tehát erős promoteres gének expressziója / perc nagyobb, mint gyenge promotereseké</li>
 		<li><span class="Important">&#10140; tehát az elongáció sebessége (50nukleotid/sec) nemváltozik</span></li>
@@ -1403,33 +1420,37 @@
 		</ul>
 		<img src="images/nsrtrszblz.png">
 	</ul></details>
-	<br><details class="kerdes 4/2" id="msb.130"><summary>A transzkripció szabályozása prokariótákban. Erős és gyenge promóterek, <strong>konstitutív gének</strong>, operon fogalma, pozitív/negatív szabályozás</summary><ul class="normal">
-		<li><i>expressziójuk nem áll szabályozás alatt</li>
-		<li>ugyanis olyan fehérjéket kódolnak, melyre minden sejtnek mindig szüksége van &#10140; folyamatosan expresszálódnak</li>
-		<li>pl. glikolízis enzimei (vagy pl. eukariótákban: aktin, ubiquitin)</i></li>
+	<br><details class="kerdes 4/1" id="msb.130"><summary>A transzkripció szabályozása prokariótákban. Erős és gyenge promóterek, <strong>konstitutív gének</strong>, operon fogalma, pozitív/negatív szabályozás</summary><ul class="normal">
+		<li><span class="idk">expressziójuk nem áll szabályozás alatt</span></li>
+		<li><span class="idk">ugyanis olyan fehérjéket kódolnak, melyre minden sejtnek mindig szüksége van &#10140; folyamatosan expresszálódnak</span></li>
+		<li><span class="idk">pl. glikolízis enzimei (vagy pl. eukariótákban: aktin, ubiquitin)</span></li>
 	</ul></details>
 	<br><details class="kerdes 5/1" id="msb.234"><summary>A transzkripció szabályozása prokariótákban. Erős és gyenge promóterek, konstitutív gének, <strong>operon fogalma,</strong> pozitív/negatív szabályozás</summary><ul class="normal">
 		<li>prokarióta génexpresszió szabályozási egysége</li>
 	</ul></details>
-	<br><details class="kerdes 4/15" id="msb.131"><summary>A transzkripció szabályozása prokariótákban. Erős és gyenge promóterek, konstitutív gének, operon fogalma, <strong>pozitív/negatív szabályozás</strong></summary><ul class="normal">
-		<br><details><summary>szabályozás típusainak felsorolása és lényegük? &#10140; <span class="Vocab">R</span> 1pl-n bemutatva</summary><ul class="normal">
-			<img style="max-width:40%" src="images/pztvngtvszb.png">
-		  <div><strong>csoportosítás <i>hatásuk</i> alapján</strong></div>
-			<li>negatív &#10140; <strong>operátor</strong>-hoz kötődve a génreguláló_fehérje=<strong>represszor</strong> gátolja az <strong>iniciációt</strong> &#10140; ha leválik, a transzkripció megindul</li>
-			<li>pozitív &#10140; <strong>operátor</strong>-hoz kötődve a génreguláló_fehérje=<strong>aktivátor</strong> serkenti az <strong>iniciációt</strong> &#10140; ha leválik a transzkripció abbamarad</li>
-		  <div><strong>csoportosítás <i>operátorhoz kötődésük</i> alapján</strong></div>
-			<li>génreguláló_fehérjéhez ha ligandum kapcsolódik, leválik az operátorról</li>
-			<li>génreguláló_fehérjén alapból ott a ligandum, és ha külön válnak, akkor válik le operátorról</li>
-		  <hr>
-			<li>pl. triptofán operátor esetében a -10 és -35 között van az operátor régió</li>
-			<li>a represszor fehérje akkor kötődik oda, ha hozzá ligandum kapcsolódik, és akkor fog gátolni <abbr title="a transzkripcióját a triptofánt kódoloó mRNS-nek">&#10045;</abbr></li>
-			<li>a ligandum maga a triptofán, tehát ha sok triptofán van, akkor hozzákötődik a represszorhoz, és a továbbiak szintézise gátolva lesz</li>
-			<li>ilyenkor a ligandum ún. <strong>korepresszor</strong>, mert megkötésével képes gátolni a transzkripciót a represszor_fehérje</li>
-			<li>a ligandum ezenkívül(korepresszor) lehet <strong>induktor</strong> is, lásd a laktózt (Lac-operon)</li>
-			<div><span class="vocab"><strong>§</strong></span> triptofán egy aminosav, tehát itt a szintézisért felelős enzimeket kódoló mRNS-ek szintetizálódnak</div>
-			<img src="images/trptfnszlbyz.png">
-		</ul></details>
-		<br><details><summary><strong>Lac operon</strong> expressziójának szabályozásán keresztül bemutatás</summary><ul class="normal">
+	<br><details class="kerdes 5/2" id="msb.131"><summary>A transzkripció szabályozása prokariótákban. Erős és gyenge promóterek, konstitutív gének, operon fogalma, <strong>pozitív/negatív szabályozás</strong></summary><ul class="normal">
+		alábbiakról beszéljek itt:
+		<li>szabályozás típusainak felsorolása és lényegük? 1pl-n bemutatva!</li>
+		<li><strong>Lac operon</strong> expressziójának szabályozásán keresztül bemutatás</li>
+	</ul></details>
+	<br><details class="kerdes 4/5" id="msb.297"><summary>szabályozás típusainak felsorolása és lényegük? 1pl-n bemutatva!</summary><ul class="normal">
+		<img style="max-width:40%" src="images/pztvngtvszb.png">
+	  <div><strong>csoportosítás <i>hatásuk</i> alapján</strong></div>
+		<li>negatív &#10140; <strong>operátor</strong>-hoz kötődve a génreguláló_fehérje=<strong>represszor</strong> gátolja az <strong>iniciációt</strong> &#10140; ha leválik, a transzkripció megindul</li>
+		<li>pozitív &#10140; <strong>operátor</strong>-hoz kötődve a génreguláló_fehérje=<strong>aktivátor</strong> serkenti az <strong>iniciációt</strong> &#10140; ha leválik a transzkripció abbamarad</li>
+	  <div><strong>csoportosítás <i>operátorhoz kötődésük</i> alapján</strong></div>
+		<li>génreguláló_fehérjéhez ha ligandum kapcsolódik, leválik az operátorról</li>
+		<li>génreguláló_fehérjén alapból ott a ligandum, és ha külön válnak, akkor válik le operátorról</li>
+	  <hr><strong><span class="important">RAJZ</span> pl. triptofán esete</strong>
+		<li>pl. triptofán operátor esetében a -10 és -35 között van az operátor régió</li>
+		<li>a represszor fehérje akkor kötődik oda, ha hozzá ligandum kapcsolódik, és akkor fog gátolni <abbr title="a transzkripcióját a triptofánt kódoloó mRNS-nek">&#10045;</abbr></li>
+		<li>a ligandum maga a triptofán, tehát ha sok triptofán van, akkor hozzákötődik a represszorhoz, és a továbbiak szintézise gátolva lesz</li>
+		<li>ilyenkor a ligandum ún. <strong>korepresszor</strong>, mert megkötésével képes gátolni a transzkripciót a represszor_fehérje</li>
+		<li>a ligandum ezenkívül(korepresszor) lehet <strong>induktor</strong> is, lásd a laktózt (Lac-operon)</li>
+		<div><span class="vocab"><strong>§</strong></span> triptofán egy aminosav, tehát itt a szintézisért felelős enzimeket kódoló mRNS-ek szintetizálódnak</div>
+		<img src="images/trptfnszlbyz.png">
+	</ul></details>
+	<br><details class="kerdes 4/6" id="msb.298"><summary><strong>Lac operon</strong> expressziójának szabályozásán keresztül bemutatás</summary><ul class="normal">
 			<img src="images/lcszblkyz.png">
 			<li>Lac operon 3 fehérjét kódol &#10140; &beta;-galaktozidáz, galaktozid permeáz, galaktozid transzacetiláz</li>
 			<li><font class="abbr">&beta;-galaktozidáz ►</font> laktózt <abbr title=",,1vízmolekulát hozzáadva hasítja ketté''">hidrolizálja</abbr> glükózra és galaktózra</li>
@@ -1456,7 +1477,6 @@
 			<li>ezenkívül az alacsony glükóz koncentráció esetében cAMP termelődik &#10140; ez hozzákapcsolódva egy ún. <abbr title="catabolite activator protein">CAP</abbr>=<abbr title="cAMP Receptor Protein">CRP</abbr>(aktivátor!!!), konformációváltozást vált ki, és képes lesz csatlakozni a promoter régió elé &#10140; növeli az RNS-polimeráz affinitását a promoterhez (serkenti az iniciációt, nő a transzkripció száma/perc, persze csak amennyiben nincs gátolva az operátor régiónál)</li>
 		  <hr>
 			<li>amennyiben laktóz és glükóz koncentráció is magas (képen E) eset), akkoris van génexpresszió egy kis mértékben &#10140; ugyanis itt alapból gyenge a promoter <span class="WHITE">-35</span> szekvenciája, és ezért van szükség aktivátorra is</li>
-		</ul></details>
 	</ul></details>
 
 	<details class="kerdes 3/6" id="msb.132"><summary style="color:MediumBlue">transzkripció 4 fő különbsége prokarióta és eukarióta között</summary><ul class="normal">
@@ -1824,7 +1844,7 @@
 			<li>ennek négy szintje különböztethető meg &#10140; transzkripciós, poszt-transzkripciós, transzlációs, poszt-transzlációs</li>
 		</ul>
 		<li>epigenetikai szabályozás</li><ul>
-			<li>olyan génexpresszió szabályozás, melyben a DNS bázissorrendje (genotípus) <strong>NEM</strong> változik <abbr title="no offense, de ez alapján pl. az összes poszt-transzlációs is beletartozik, nem?">!?</abbr></li>
+			<li>olyan transzkripciós-szabályozás, melyben a DNS bázissorrendje (genotípus) <strong>NEM</strong> változik <abbr title="(nem 100%, hogy csak transzkripciós, de máshogy szvsz nem lenne értelme a definíciónak, hisz transzlációsnál sose lesz bázisváltozás)">'</abbr></li>
 			<li>ide sorolható</li><ul>
 				<li>DNS metiláció</li>
 				<li>hiszton módosítások</li>
@@ -1844,7 +1864,7 @@
 		</ul>
 		<li>genom DNS-metilációs szintje</li><ul>
 			<li>genomban lévő CpG-k 70%-a metilált, másképpen nézve az összes citozin 3-4%-a</li>
-			<li>ezek nagyrészt <span class="Important">ismétlődő (repetitív) szekvenciákban</span> találhatók (pl. transzpozonok GC gazdag régióiban) &#10140; ismétlődő régiók magas fokú metiláltsága valószínűleg védekező mechanizmus, hogy ezek a DNS-szakaszok ne kerüljenek átíródásra</li>
+			<li>ezek nagyrészt <abbr title="lásd: A humán genom felépítése; kódoló és génexpressziót szabályzó szekvenciák. A humán genom nem-kódoló szakaszai: intronok, pszeudogének, ismétlődő szekvenciák.">ismétlődő szekvenciákban</abbr> találhatók (pl. transzpozonok GC gazdag régióiban) &#10140; ismétlődő szekvenciák magas fokú metiláltsága valószínűleg védekező mechanizmus, hogy ezek a DNS-szakaszok ne kerüljenek átíródásra</li>
 			<li>tipikusan igen alacsony az ún. <span class="Important">CpG-szigetek</span> területén, amely az aktívan átíródó háztartási (housekeeping) gének promoterében találhatók</li>
 		</ul>
 	  <hr><u>1pl de novo MT-ék működésére</u> &#10140; <span class="Important">X kromoszóma inaktiváció</span>
@@ -1854,7 +1874,7 @@
 		<li>innan mindkét irányba végig metilálja az <span class="idk">összes</span> citozint a DNMT3b &#10140; ennek következtében a fehérjéken keresztül hiszton-deacetiláz is odakerül &#10140; kondenzálódik a kromatin</li>
 	  <hr><u>(CpG-dinukleotidok a mutációs forrópontok)</u>
 		<li>A citozin spontán oxidatív_dezaminációval uracillá alakul. Ez a labilitás a metilált citozinra is érvényes, de ebben az esetben nem uracil, hanem timin lesz az eredmény. Vagyis CpG-dinukleotidból TpG-dinukleotid lesz, <abbr title="ugyanis gondolom nem tudja megkölönböztetni, melyik szál a jó">s ez már a DNS-szekvencia megváltozását, azaz mutációját jelenti</abbr>. Mutációs adatbázisok elemzése kimutatta, hogy számos betegség esetében a CpG-dinukleotidok a mutációs forrópontok</li>
-		<li>Úgy tűnik, hogy egy hosszabb evolúciós időintervallumot tekintve a CpG-gyakoriság lassan, de fokozatosan csökken az állandó CpG→TpG átalakulásnak köszönhetően. Ugyanis a humán genom, 42%-át alkotja Guanun és Citozin &#10140; tehát a CpG elvileg <abbr title="hisz 21% esélye, hogy Citozin van, majd 21% esély, hogy utána Guanin">0.21 * 0.21 = 4.41%</abbr>-át kéne kitedje a genomnak. Azonban a valóságban csak 1%-át teszi ki.</li>
+		<li>Úgy tűnik, hogy egy hosszabb evolúciós időintervallumot tekintve a CpG-gyakoriság lassan, de fokozatosan csökken az állandó CpG→TpG átalakulásnak köszönhetően. Ugyanis a humán genom, 42%-át alkotja Guanin és Citozin &#10140; tehát a CpG elvileg <abbr title="hisz 21% esélye, hogy Citozin van, majd 21% esély, hogy utána Guanin">0.21 * 0.21 = 4.41%</abbr>-át kéne kitedje a genomnak. Azonban a valóságban csak 1%-át teszi ki.</li>
 		<li>Annak ellenére, hogy a gerincesek genomjának CpG gyakorisága kicsi, vannak olyan rövid, nem-metilált DNS-szakaszok, amelyeknek CpG-gyakorisága megfelel a várt értéknek. Ezek az ún. CpG-szigetek, amelyek CG gazdagok és gyakran a gének 5’ végén található több száz nukleotidnyi szakaszokon fordulnak elő</li>
 	  </div>
 	</ul></details>
@@ -2739,7 +2759,7 @@
 			<li>transzkripciós faktorok</li>
 			<li>ERAD = ER associated protein degradation</li><ul>
 				<li>ER lumenében leellenőrzésre kerülnek a fehérjék</li>
-				<li>melyek folding-hibásak azokat a hsp-k megpróbálják kijavítani</li>
+				<li>melyek folding-hibásak azokat a <abbr title="hősokk-protein">hsp</abbr>-k megpróbálják kijavítani</li>
 				<li>ha nem sikerül, akkor kijuttatják a citoszolba transzlokon csatornán keresztül</li>
 				<li>ott rájuk kerül a poliubikvitin-szignál és a<abbr title="az ER külső felszínén lévő">z</abbr> proteaszómákba kerülnek lebontásra</li>
 			</ul>
