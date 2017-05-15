@@ -869,6 +869,17 @@ func_abbrSet()
 func_removeRepeat()
 
 
+document.getElementById('jegy').onchange = runBackgroundChange;
+function runBackgroundChange(first){
+	var value = first.srcElement.options[first.srcElement.selectedIndex].value;
+	if ( value == 0 ) {
+		document.getElementById('jegy').style.backgroundColor="red";
+	} else {
+		document.getElementById('jegy').style.backgroundColor="initial";
+	};
+}
+
+
 // checkboxok: missFix & skipID
 if ( localStorage.getItem("checkboxSkip") == "true" ) {
 	document.getElementById("checkboxSkip").checked = true;
@@ -1028,6 +1039,14 @@ function func_prevQuestion(){
 		localStorage.setItem(priorKerdesID+"_skip", skipValue)
 	}
 
+	if ( localStorage.getItem(priorKerdesID+'_repeat') == 0 || localStorage.getItem(priorKerdesID+'_repeat') == 1 ) {
+		godPrevQ = "short"
+	} else {
+		godPrevQ = "long"
+	}
+	localStorage.setItem('godPrevQ',godPrevQ)
+	alert(godPrevQ)
+
 	var repCount = Number(localStorage.getItem(priorKerdesID+'_repeat'))
 	var jegy = document.getElementById("jegy").value
 	if ( jegy == 0 ) {
@@ -1086,6 +1105,7 @@ function func_prevQuestion(){
 */
 
 var godMode = "on"
+var godPrevQ = localStorage.getItem('godPrevQ')
 
 
 var fullTema
@@ -1211,14 +1231,23 @@ function koviKerdes(){
 									checkValue = changes * prior * idopont / timeDiff
 									//checkValue = vLength * rank * idopont / timeDiff / jegy
 									if ( godMode == "on" ) {
-										if ( idopont >= timeDiff ) {
+										if ( godPrevQ == "long" ) {
+											if ( repCount > 1  ) {
+												checkValue = 0
+											}
+										} else if ( godPrevQ == "short" ) {
+											if ( repCount < 2  ) {
+												checkValue = 0
+											}
+										}
+										/*if ( idopont >= timeDiff ) {
 											if ( repCount == 0 ) {
-												checkValue = checkValue * 15
+												checkValue = checkValue * 10
 											}
 											if ( repCount == 1 ) {
 												checkValue = checkValue * 5
 											}
-										}
+										}*/
 									}
 
 
@@ -1256,7 +1285,7 @@ function koviKerdes(){
 	}
 	if ( priorKerdesID != "nincs" ) {
 		//fullTema = document.getElementById(priorKerdesID).parentElement.id
-		
+
 	  // set title – BEGIN 
 		var titleText = ""
 		/* főcímet nem szükséges mutatnia
