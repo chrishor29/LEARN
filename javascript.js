@@ -1039,13 +1039,13 @@ function func_prevQuestion(){
 		localStorage.setItem(priorKerdesID+"_skip", skipValue)
 	}
 
-	if ( localStorage.getItem(priorKerdesID+'_repeat') == 0 || localStorage.getItem(priorKerdesID+'_repeat') == 1 ) {
+	if ( localStorage.getItem(priorKerdesID+'_repeat') == null || localStorage.getItem(priorKerdesID+'_repeat') == 0 || localStorage.getItem(priorKerdesID+'_repeat') == 1 ) {
 		godPrevQ = "short"
 	} else {
 		godPrevQ = "long"
 	}
 	localStorage.setItem('godPrevQ',godPrevQ)
-	alert(godPrevQ)
+	//alert(godPrevQ)
 
 	var repCount = Number(localStorage.getItem(priorKerdesID+'_repeat'))
 	var jegy = document.getElementById("jegy").value
@@ -1104,8 +1104,21 @@ function func_prevQuestion(){
 	}
 */
 
-var godMode = "on"
+
 var godPrevQ = localStorage.getItem('godPrevQ')
+function func_godMode(){
+	if ( document.getElementById("btn_godMode").style.backgroundColor == "limegreen" ) {
+		document.getElementById("btn_godMode").style.backgroundColor = "red"
+		localStorage.setItem('godMode',"red")
+	} else if ( document.getElementById("btn_godMode").style.backgroundColor == "red" ) {
+		document.getElementById("btn_godMode").style.backgroundColor = "white"
+		localStorage.setItem('godMode',"white")
+	} else {
+		document.getElementById("btn_godMode").style.backgroundColor = "limegreen"
+		localStorage.setItem('godMode',"limegreen")
+	}
+}
+document.getElementById("btn_godMode").style.backgroundColor = localStorage.getItem('godMode')
 
 
 var fullTema
@@ -1227,11 +1240,15 @@ function koviKerdes(){
 									}
 
 
-									//checkValue = rank / Math.pow(0.8, idopont / timeDiff) / jegy
-									checkValue = changes * prior * idopont / timeDiff
 									//checkValue = vLength * rank * idopont / timeDiff / jegy
-									if ( godMode == "on" ) {
-										if ( godPrevQ == "long" ) {
+									//checkValue = rank / Math.pow(0.8, idopont / timeDiff) / jegy
+									//checkValue = changes * prior * idopont / timeDiff
+									checkValue = prior * idopont / timeDiff
+									if ( localStorage.getItem("godMode") == "limegreen" ) {
+										if ( repCount > 1  ) {
+											checkValue = 0
+										}
+										/*if ( godPrevQ == "long" ) {
 											if ( repCount > 1  ) {
 												checkValue = 0
 											}
@@ -1239,15 +1256,12 @@ function koviKerdes(){
 											if ( repCount < 2  ) {
 												checkValue = 0
 											}
-										}
-										/*if ( idopont >= timeDiff ) {
-											if ( repCount == 0 ) {
-												checkValue = checkValue * 10
-											}
-											if ( repCount == 1 ) {
-												checkValue = checkValue * 5
-											}
 										}*/
+									}
+									if ( localStorage.getItem("godMode") == "red" ) {
+										if ( repCount < 2  ) {
+											checkValue = 0
+										}
 									}
 
 

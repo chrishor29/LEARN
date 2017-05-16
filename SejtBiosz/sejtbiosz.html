@@ -13,6 +13,7 @@
 	<details><summary class="phase">tételek</summary><div id="container"></div></details>
 	<input type="file" id="fileinput" style="display:none;">
 	<input style="position:absolute; left:35%; top:1%;" type="button" value="load LS" onclick="document.getElementById('fileinput').click();">
+	<input type="button" class="white" style="border: 3px solid black; position:absolute; left:42%; top:1%;" onclick="func_godMode()" value="godMode" id="btn_godMode">
 	<div style="position:absolute; left:10%; top:2%; font-weight: bold;font-size: large;" id="questLeveL"></div>
 	<input style="position:absolute; left:50%; top:1%;" type="button" value="save LS" onclick="func_saveLS()">
 
@@ -301,150 +302,123 @@
 <!----></div></details>
 
 <!----><details><summary class="phase">#2 A nukleotidok felépítése. A nukleinsavak primer és szekunder szerkezete (DNS, különböző RNS-ek).</summary><div><div class="title"> </div>
-	<details class="kerdes 5/10" id="msb.102"><summary><strong>A nukleotidok felépítése.</strong> A nukleinsavak primer és szekunder szerkezete (DNS, különböző RNS-ek)</summary><ul class="normal">
-		<br><details><summary>nukleotidot felépítő molekulák?</summary><ul class="normal">
-			<li>bázis &#10140; purin / pirimidin</li>
-			<li>szénhidrát &#10140; ribóz / dezoxiribóz</li>
-			<li>legalább 1 <abbr title="foszfát alatt itt hidrogén-foszfát és dihidrogén-foszfátot értünk, hiszen 7,4 pH-n ilyen formában van">foszfát</abbr> &#10140; HPO<sub>4</sub><sup>-</sup> / H<sub>2</sub>PO<sub>4</sub><sup>-</sup> (hisz pH!)</li>
-		  <hr>
-			<li>nukleozid &#10140; nukleobázis + pentóz</li>
-			<li>nukleotid &#10140; nukleozid + foszfát</li>
-		</ul></details>
-		<br><details><summary style="color:Magenta"><font color="Green"><strong>TAB</strong> elnevezésük (nukleobázis,nukleozid,nukleotid)?</font></summary><ul class="normal">
-			<li>-ozin vs -idin ///// -ilát vs -idilát</li>
-			<li>(AMP-t enzimek nevében adenilsavként nevezik, és így tovább)</li>
-			<img src="images/lnvzsk.png">
-		</ul></details>
-		<br><details><summary>kötések &#10140; felsorolás előfordulással?</summary><ul class="normal">
-			<li>&beta;-N-glikozidos kötés &#10140; pentóz és nukleobázis között</li>
-			<li>foszforsavészter-kötés &#10140; pentóz és foszfát között</li>
-			<li>foszfodiészter-kötés &#10140; nukleotidokat kapcsolja össze</li>
-			<li>foszforsav-anhidrid kötés &#10140; foszfátok között, makroerg!!</li>
-			<img src="images/fszfdsztr.png">
-		</ul></details>
-		<br><details><summary><span class="Vocab">R</span> ribonukleozid szerkezete az adenozin és uridin példáján?</summary><ul class="normal">
-		  <hr>
-			<details><summary>reakció felírása? milyen molekulát kapunk</summary><ul class="normal">
-				<li><strong>félacetál</strong>/félketál + alkohol/<strong>szerves amino származék</strong> &#10140; acetál/ketál + H<sub>2</sub>O</li>
-				<li><i>jelen esetben tehát ami létrejön az acetál, ezenkívül glikozid is, és nukleozid is</i></li>
-			</ul></details>
-		  <hr>
-			<details><summary>kötés neve? hányas számú atomok között van?</summary><ul class="normal">
-				<li>purinnál 9 és 1' között van a &beta;-N-glikozidos kötés!!!</li>
-				<li>pirimidinnél 1 és 1' között van a &beta;-N-glikozidos kötés!!!</li>
-			</ul></details>
-		  <hr>
-			<details><summary>kötés jellemzője és következménye?</summary><ul class="normal">
-				<li>mivel csak 1 sigma-kötés a &beta;-N-glikozidos kötés, ezért szabad rotáció van körülötte</li>
-				<li>purinnál így sokkal gyakoribb az anti KONFORMÁCIÓ (pirimidinnél nincs lényeges különbség a kettő között)</li>
-			</ul></details>
-		  <hr>
-			<details><summary>glikozid és glikozidos kötés mi?</summary><ul class="normal">
-				<li>glikozid &#10140; szénhidrát mely valamilyen másik molekulához kapcsolódik (lehet szénhidrát, de lehet más is)</li>
-				<li>kovalens kötés, mellyel a szénhidrát valamilyen másik molekulához kapcsolódik (lehet szénhidrát, de lehet más is)</li>
-			</ul></details>
-		  <hr>
-			<details><summary>miért &beta; a kötés?</summary><ul class="normal">
-				<li>mert a ribóz &beta;-anomer (lásd 134-es kérdésnél kifejtve)</li>
-			</ul></details>
-		  <hr>
-			<details><summary>miért N a kötés?</summary><ul class="normal">
-				<li>a kötés lehet C,S,O,N (t nincs :))</li>
-				<li>O esetében ez lenne <img class="mini" src="images/klgkzdo.png"></li>
-				<li>itt azonban O helyén N van</li>
-			</ul></details>
-			<img style="max-width:48%" src="images/dzxrbnszrk.png">
-			<img style="max-width:48%" src="images/dnznszrk.png">
-		</ul></details>
-		<br><details><summary>nukleotid "energiatárolásának" lényege?</summary><ul class="normal">
-			<li>két kötés van</li><ul>
-				<li>foszforsavészter-kötés &#10140; pentóz és foszfát között</li>
-				<li>foszforsav-anhidrid kötés &#10140; foszfátok között</li>
-			</ul>
-			<li>foszforsav-anhidrid kötés makroerg!!! &#10140; ugyanis nem képes delokalizációra, így instabil &#10140; hidrolízissel így felszakad a kötés és nagy energia szabadul fel (30kJ/mol)</li>
-			<li>1db ATP így kb 60kJ/mol energiát tárol (tehát ha az Adenozin-TriPhosphat ha Adenozin-MonoPhosphattá alakul, akkor ennyi energia szabadul fel!!!)</li>
-			<img src="images/fszfdsztr.png">
-		</ul></details>
+	<details class="kerdes 4/6" id="msb.102"><summary><strong>A nukleotidok felépítése.</strong> A nukleinsavak primer és szekunder szerkezete (DNS, különböző RNS-ek)</summary><ul class="normal">
+	  <div style="float:right;max-width:30%">
+		<img src="images/fszfdsztr.png">
+		<img src="images/dzxrbnszrk.png">
+		<img src="images/dnznszrk.png">
+	  </div>
+	  <div class="title">nukleotidot felépítő molekulák</div><div>
+		<li>bázis &#10140; purin / pirimidin</li>
+		<li>szénhidrát &#10140; ribóz / dezoxiribóz</li>
+		<li>legalább 1 <abbr title="foszfát alatt itt hidrogén-foszfát és dihidrogén-foszfátot értünk, hiszen 7,4 pH-n ilyen formában van">foszfát</abbr> &#10140; HPO<sub>4</sub><sup>-</sup> / H<sub>2</sub>PO<sub>4</sub><sup>-</sup> (hisz pH!)</li>
+	  <hr>
+		<li>nukleozid &#10140; nukleobázis + pentóz</li>
+		<li>nukleotid &#10140; nukleozid + foszfát</li>
+	  </div>
+	  <div class="title"><span class="Important">RAJZ</span> kötések előfordulással</div><div>
+		<li>&beta;-N-glikozidos kötés &#10140; pentóz és nukleobázis között</li>
+		<li>foszforsavészter-kötés &#10140; pentóz és foszfát között</li>
+		<li>foszfodiészter-kötés &#10140; nukleotidokat kapcsolja össze</li>
+		<li>foszforsav-anhidrid kötés &#10140; foszfátok között, makroerg!!</li>
+	  </div>
+	  <div class="title"><span class="Important">RAJZ</span> &beta;-N-glikozidos kötés &#10140; ribonukleozid szerkezete az adenozin és uridin példáján</div><div>
+		<li>purinnál 9 és 1' között <div class="mirror">&#10140;</div>&#10140; pirimidinnél 1 és 1' között</li>
+		<li>mivel csak 1 sigma-kötés a &beta;-N-glikozidos kötés, ezért szabad rotáció van körülötte &#10140; purinnál így sokkal gyakoribb az anti KONFORMÁCIÓ (pirimidinnél nincs lényeges különbség a kettő között)</li>
+		<li>glikozidos kötés &#10140; kovalens kötés, mellyel a szénhidrát valamilyen másik molekulához kapcsolódik (lehet szénhidrát, de lehet más is)</li>
+		<li>&beta; kötés &#10140; mert a ribóz &beta;-anomer &#10140; azért &beta;-anomer, mert az 1' lévő ún. glikozidos -OH csoport a <abbr title="ez vagy a 3' vagy a 4', nem tudom melyik :S">konfigurációt meghatározó C-atomon</abbr> levő OH-csoporttal ellentétes térállású (ha azonos térállású, akkor lenne α-anomer)</li>
+	  </div>
 	</ul></details>
-	<br><details class="kerdes 5/20" id="msb.113"><summary>A nukleotidok felépítése. <strong>A nukleinsavak primer és szekunder szerkezete (DNS,</strong> különböző RNS-ek)</summary><ul class="normal">
-		<li>nukleinsavak polimerek (fehérjék is) &#10140; monomerjei a nukleotidok</li>
-		<br><details><summary><span class="vocab">R</span> primer szerkezetük</summary><ul class="normal">
-			<li>3' vég &#10140; 3' C atomon szabad -OH csoport van, mert már nem kötődik hozzá foszfát</li>
-			<li>5' végnél ugyanez, bár az gyakran foszforilált marad</li>
-			<li>töltése negatív, lásd foszfátion bekarikázva a képen!!! <img class="mini" src="images/prmrszrkdns.png"></li>
-			<div><span class="white">§</span> így poláros olyan értelemben, hogy a két végük megkülönböztethető (3' vs 5')</div>
-		</ul></details>
-		<br><details><summary>DNS primer szerkezet &#10140; síkok & átmérő? tulajdonságai?</summary><ul class="normal">
-			<img src="images/dnsszerk.png">
-			<li>bázispárok merőlegesek a cukor-foszfát-gerincre</li>
-			<li>átmérője 2nm</li><ul>
-				<li>bázispárok síkjába képzeljem el!! (képen direkt van torzítva, hisz az merőleges a monitor síkjára)</li>
-				<li>átmérője állandó, mert komplementer</li>
-			</ul>
-			<li>tulajdonságai</li><ul>
-				<li>komplementer &#10140; purinhez mindig pirimidin kapcsolódik</li>
-				<li>antiparallel, mert a két szál lefutása ellentétes &#10140; fenntről-lefele a bal oldali 5'-3' míg a jobb oldali 3'-5'</li>
-			</ul>
-			<details><summary>képen melyik vég 5' és melyik 3'?</summary><ul class="normal">
-				<li>5' bal felső & jobb alsó</li>
-			</ul></details>
-			<img src="images/sznhdrtfszft.png">
-		</ul></details>
-		<br><details><summary>DNS szekunder szerkezete?</summary><ul class="normal">
-			<img src="images/dnsscdnrszrk.png">
-			<li><abbr title="alapvetően">jobbmenetes</abbr> kettős hélix</li>
-			<li>a szomszédos bázispárok egymáshoz képest 36°-os szögben fordulnak el (10db képez egy fordulatot)</li>
-			<li><font class="abbr">jobbmenetes? ►</font> felülről(vagy alulról) nézve az óramutató járásával egyező irányba forogva távolodik</li>
-			<li><font class="abbr">menetmagasság? ►</font> 3,4nm (tehát 10bázispár = 1fordulat hossza ennyi)</li>
-			<li><font class="abbr">(menetmagasságból mi következik?) ►</font> 0,34nm van két szomszédos bázispár között, ami igen kicsi távolság (pl. C-C kovalens kötésnél a távolság ~0,15nm)</li>
-		</ul></details>
-		<br><details><summary>DNS konformációi?</summary><ul class="normal">
-			<details><summary>felsorolásuk & menet?</summary><ul>
-				<img src="images/dnsknfrmc.png">
-				<li>A & B jobbmenetes</li>
-				<li><abbr title="Zig-zag = Cikk-cakk">Z</abbr> balmenetes</li>
-			</ul></details>
-			<details><summary>nukleozid konformációk?</summary><ul class="normal">
-				<li>egyedül <span class="WHITE">Z</span> eseténél van szin, mégpedig a purinbázisok <abbr title="tehát pirimidin anti a Z-nél, illetve A és B esetében anti a purin & pirimidin is">minden más anti</abbr></li>
-			</ul></details>
-			<details><summary>előfordulásuk?</summary><ul class="normal">
-				<div><span class="WHITE">B</span> leggyakoribb</div>
-				<div><span class="WHITE">A</span> dehidratáció esetében (vízelvonás / só hozzáadás) &#10140; kondenzált forma, így nem lesz transzkripció</div>
-				<div><span class="WHITE">Z</span> promoter régió területén fordul elő, hogy sok TF odaférjen</div>
-			</ul></details>
-			<details><summary>átmérőjük & bp/fordulat?</summary><ul class="normal">
-				<div><span class="WHITE">B</span> 2nm & 10bp/fordulat</div>
-				<div><span class="WHITE">A</span> 2,6nm & 11bp/fordulat</div>
-				<div><span class="WHITE">Z</span> 1,8nm & 12bp/fordulat</div>
-				<li><abbr title="nemszép megjegyzési tipp, de nemizgat">BAZ</abbr> irányban növekszik a bp/fordulat || átmérő pedig logikus</li>
-			</ul></details>
-		</ul></details>
-		<br><details><summary>DNS &#10140; π-stacking forces?</summary><ul class="normal">
-			<img src="images/stckfgnc.png">
-			<li>fenolok között kialakuló kölcsönhatás ("aromás tapadás")</li>
-			<li>akkor a legerősebb, ha 36° szögben fordul el a két szomszédos bp</li>
-		</ul></details>
-		<br><details><summary>DNS &#10140; G≡C & A=T aránya milyen? attól való eltérés?</summary><ul class="normal">
-			<li><strong>!génekben!</strong> az arányuk 1:1</li>
-			<li>amely szakasz G≡C-ben gazdag, az kisebb valószínűséggel fog transzkripcióra kerülni <div class="mirror">&#10140;</div> ugyanis 1,5x erősebb a kölcsönhatás G≡C között, mint A=T között (hisz 3kötés van köztük, nemcsak 2)</li>
-			<img src="images/dnsszerk.png">
-		</ul></details>
-		<br><details><summary>képről mit kell tudni?</summary><ul class="normal">
-			<img src="images/kpmitbrzl.png">
-			<br><details><summary>megoldás</summary><ul class="normal">
-				<img src="images/ztbrtljkp.png">
-				<li>nagy barázda mentén történik a transzkripció</li>
-			</ul></details>
-		</ul></details>
+	<details class="kerdes 4/10" id="msb.113"><summary>A nukleotidok felépítése. <strong>A nukleinsavak primer és szekunder szerkezete (DNS,</strong> különböző RNS-ek)</summary><ul class="normal">
+	  <div style="float:right;max-width:10%">
+		<img src="images/prmrszrkdns.png">
+		<img src="images/sznhdrtfszft.png">
+		<img src="images/dnsknfrmc.png">
+	  </div>
+		<li>nukleinsavak <span class="Important">polimerek</span><abbr title="fehérjék is">'</abbr> &#10140; monomerjei a nukleotidok</li>
+	  <div class="title">nukleinsavak primer szerkezet</div><div>
+		<li>3' vég &#10140; 3' C atomon szabad -OH csoport van, mert már nem kötődik hozzá foszfát</li>
+		<li>5' végnél ugyanez, bár az gyakran foszforilált marad</li>
+		<li><span class="Important">töltése negatív</span>, lásd foszfátion bekarikázva a képen!!!</li>
+		<div><abbr title="poláros olyan értelemben, hogy a két végük megkülönböztethető (3' vs 5')">'</abbr></div>
+	  </div>
+	  <div class="title">DNS primer szerkezetéről még a továbbiak mondhatók el</div><div>
+		<li>bázispárok merőlegesek a cukor-foszfát-gerincre</li>
+		<li>átmérője 2nm <abbr title="bázispárok síkjába képzeljem el!! (képen direkt van torzítva, hisz az merőleges a monitor síkjára)">'</abbr> <abbr title="átmérője állandó, mert komplementer">'</abbr></li>
+		<li>tulajdonságai</li><ul>
+			<li><strong>komplementer</strong> &#10140; purinhez mindig pirimidin kapcsolódik</li>
+			<li><strong>antiparallel</strong> &#10140; két szál lefutása ellentétes <abbr title="fenntről-lefele a bal oldali 5'-3' míg a jobb oldali 3'-5'">'</abbr></li>
+		</ul>
+	  </div>
+	  <div class="title">DNS szekunder szerkezete</div><div>
+		<li><abbr title="lásd konformációk">alapvetően jobbmenetes</abbr> kettős hélix</li>
+		<li>jobbmenetes &#10140; felülről(vagy alulról) nézve az óramutató járásával egyező irányba forogva távolodik</li>
+		<li>a szomszédos bázispárok egymáshoz képest 36°-os szögben fordulnak el (10db képez egy fordulatot)</li>
+		<li>menetmagasság &#10140; 3,4nm (tehát 10bázispár = 1fordulat hossza ennyi) <abbr title="tehát 0,34nm van két szomszédos bázispár között, ami igen kicsi távolság (pl. C-C kovalens kötésnél a távolság ~0,15nm)">'</abbr> <img class="mini" src="images/dnsscdnrszrk.png"></li>
+		<table><tr><th>DNS konformációi</th> <th>A</th> <th>B</th> <th>Z</th></tr>
+			<tr><th>menete</th> 
+				<td colspan="2">jobbmenetes</td>
+				<td>balmenetes</td>
+			</tr>
+			<tr><th>nukleozid konformáció</th> 
+				<td colspan="3">Z-nél a purinbázisok szin, <abbr title="tehát pirimidin anti a Z-nél, illetve A és B esetében anti a purin & pirimidin is">minden más anti</abbr></td>
+			</tr>
+			<tr><th>előfordulásuk</th> 
+				<td>dehidratáció esetében (vízelvonás / só hozzáadás) &#10140; kondenzált forma, így nem lesz transzkripció</td> 
+				<td>leggyakoribb</td> 
+				<td>promoter régió területén fordul elő, hogy sok TF odaférjen</td>
+			</tr>
+			<tr><th>átmérőjük & bp/fordulat</th> 
+				<td>2,6nm & 11bp/fordulat</td> 
+				<td>2nm & 10bp/fordulat</td> 
+				<td>1,8nm & 12bp/fordulat</td>
+			</tr>
+		</table>
+		<li>megjegyzési tipp: <span class="WHITE">ZAB</span> irányban csökken a bp/fordulat || átmérő pedig logikus</li>
+	  </div>
 	</ul></details>
-	<br><details class="kerdes 5/20" id="msb.193"><summary>A nukleotidok felépítése. A nukleinsavak primer és szekunder szerkezete (DNS, <strong>különböző RNS-ek)</strong></summary><ul class="normal">
+	<details class="kerdes 4/2" id="msb.193"><summary>A nukleotidok felépítése. A nukleinsavak primer és szekunder szerkezete (DNS, <strong>különböző RNS-ek)</strong></summary><ul class="normal">
 		<li>RNS-ek <i>többségének</i> csak primer szerkezete van</li>
 		<li>egyes RNS-eknek azonban van szekunder szerkezete is &#10140; komplementer bázispárok egymással hurkot alkotnak</li>
 		<li>pl. tRNS-nek van szekunder (és tertier) szerkezete is</li>
 		<img src="images/trnszrkntz.png">
 	</ul></details>
   <hr>
-	<details class="kerdes 2/4" id="msb.105"><summary>nukleotidok funkcióinak felsorolása?(6)</summary><ul class="normal">
+	<details class="kerdes 3/1" id="msb.314"><summary>DNS &#10140; π-stacking forces?</summary><ul class="normal">
+		<img src="images/stckfgnc.png">
+		<li>fenolok között kialakuló kölcsönhatás ("aromás tapadás")</li>
+		<li>akkor a legerősebb, ha 36° szögben fordul el a két szomszédos bp</li>
+	</ul></details>
+	<details class="kerdes 3/1" id="msb.313"><summary>DNS &#10140; G≡C & A=T aránya milyen? attól való eltérés?</summary><ul class="normal">
+		<li><strong>!génekben!</strong> az arányuk 1:1</li>
+		<li>amely szakasz G≡C-ben gazdag, az kisebb valószínűséggel fog transzkripcióra kerülni <div class="mirror">&#10140;</div> ugyanis 1,5x erősebb a kölcsönhatás G≡C között, mint A=T között (hisz 3kötés van köztük, nemcsak 2)</li>
+		<img src="images/dnsszerk.png">
+	</ul></details>
+	<details class="kerdes 3/1" id="msb.312"><summary>képről mit kell tudni?</summary><ul class="normal">
+		<img src="images/kpmitbrzl.png">
+		<br><details><summary>megoldás</summary><ul class="normal">
+			<img src="images/ztbrtljkp.png">
+			<li>nagy barázda mentén történik a transzkripció</li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 3/1" id="msb.311"><summary>képen melyik vég 5' és melyik 3'? <img class="mini" src="images/dnsszerk.png"></summary><ul class="normal">
+		<li>5' bal felső & jobb alsó</li>
+	</ul></details>
+	<details class="kerdes 4/2" id="msb.310"><summary style="color:Magenta"><font color="Green"><strong>TAB</strong> elnevezésük (nukleobázis,nukleozid,nukleotid)?</font></summary><ul class="normal">
+		<li>-ozin vs -idin ///// -ilát vs -idilát</li>
+		<li>(AMP-t enzimek nevében adenilsavként nevezik, és így tovább)</li>
+		<img src="images/lnvzsk.png">
+	</ul></details>
+	<details class="kerdes 3/2" id="msb.309"><summary style="color:MediumBlue">nukleotid "energiatárolásának" lényege?</summary><ul class="normal">
+		<li>két kötés van</li><ul>
+			<li>foszforsavészter-kötés &#10140; pentóz és foszfát között</li>
+			<li>foszforsav-anhidrid kötés &#10140; foszfátok között</li>
+		</ul>
+		<li>foszforsav-anhidrid kötés makroerg!!! &#10140; ugyanis nem képes delokalizációra, így instabil &#10140; hidrolízissel így felszakad a kötés és nagy energia szabadul fel (30kJ/mol)</li>
+		<li>1db ATP így kb 60kJ/mol energiát tárol (tehát ha az Adenozin-TriPhosphat ha Adenozin-MonoPhosphattá alakul, akkor ennyi energia szabadul fel!!!)</li>
+		<img src="images/fszfdsztr.png">
+	</ul></details>
+	<details class="kerdes 2/4" id="msb.105"><summary style="color:MediumBlue">nukleotidok funkcióinak felsorolása?(6)</summary><ul class="normal">
 		<li>nukleinsavak monomerjei</li>
 		<li>kémiai energia közvetítés és közben csoportátvitel &#10140; pl. ATP-ből mikor ADP lesz, foszfátcsoportot és kémiai energiát ad át</li>
 		<li>sejten belüli jelátvitel &#10140; pl. cAMP, cGMP szekunder_messengerek (lásd "GPCR receptoros jelátvitel" OrvosiBiológia.html)</li>
@@ -456,7 +430,7 @@
 			<div><span class="white">§</span> úgy érdemes felfogni, mint eszköz &#10140; pl. kéz az enzim, koenzim pedig a szike, ami nélkül "nehezen" lehetne boncolni</div>
 		</ul></details>
 	</ul></details>
-	<details class="kerdes 4/2" id="msb.106"><summary>számozás &#10140; nukleobázisok & szénhidrátok?</summary><ul class="normal">
+	<details class="kerdes 4/2" id="msb.106"><summary style="color:MediumBlue">számozás &#10140; nukleobázisok & szénhidrátok?</summary><ul class="normal">
 		<li>nukleobázisok &#10140; kép</li>
 		<li>szénhidrátok</li><ul>
 			<li>aldehidcsoporttól kezdődően</li>
@@ -464,13 +438,13 @@
 		</ul>
 		<img src="images/purimidin.png">
 	</ul></details>
-	<details class="kerdes 3/3" id="msb.107"><summary>bázisok tautomériája? &#10140; milyen? melyik fordul elő gyakrabban? milyen izomériába tartozik?</summary><ul class="normal">
+	<details class="kerdes 3/3" id="msb.107"><summary style="color:MediumBlue">bázisok tautomériája? &#10140; milyen? melyik fordul elő gyakrabban? milyen izomériába tartozik?</summary><ul class="normal">
 		<img src="images/konstitucios.png">
 		<li>konstitúciós &#10140; laktám-laktim &#10140; <span class="WHITE">=O & -NH-</span> vs <span class="WHITE">-OH & =N-</span></li>
 		<li>oxo = laktám van gyakrabban <abbr title="oxigén EN-je nagyobb, így a pi-elektront jobban meg tudja tartani">(oka?)</abbr></li>
 		képletek <img class="mini" src="images/kplt_citozin.png"> <img class="mini" src="images/kplt_timinuracil.png"> <img class="mini" src="images/kplt_adguan.png">
 	</ul></details>
-	<details class="kerdes 2/2" id="msb.108"><summary><span class="Vocab">R</span> hibás bázispárosodás &#10140; lényege? neve?</summary><ul class="normal">
+	<details class="kerdes 2/2" id="msb.108"><summary style="color:MediumBlue"><span class="Vocab">R</span> hibás bázispárosodás &#10140; lényege? neve?</summary><ul class="normal">
 		<li>neve &#10140; <strong>miss-match</strong> <abbr title="Ha nem javítódik ki, akkor mutáció lesz, és sok mutáció vastagbéldaganatot okoz. Ha jó irányba változik (kicsi esély), akkor evolúciós lépés">?következménye?</abbr></li>
 		<li>adenin citozinnal kapcsolódik hasonlóképpen &#10140; forrás <img class="mini" src="images/srctmrmtcc.png"></li>
 		<li><i>"megjegyzési szabályok"</i> <abbr title="ezek ilyen magam alkotta szabályok, a megjegyzésre!">&#10045;</abbr></li><ul>
@@ -482,7 +456,7 @@
 		<img src="images/bzsprk.png">
 		<img src="images/ttmrmtc.png">
 	</ul></details>
-	<details class="kerdes 3/2" id="msb.109"><summary>szénhidrátok sztereoizomériája?</summary><ul class="normal">
+	<details class="kerdes 3/2" id="msb.109"><summary style="color:MediumBlue">szénhidrátok sztereoizomériája?</summary><ul class="normal">
 		<li>Fischer-szabály alapján D/L-nomenklatúrát alkalmazzuk</li>
 		<li>lényege:</li>
 		<div><span class="Vocab">1</span> legoxidáltabb C felül kell legyen &#10140; aldehid ezért felül van!</div>
@@ -492,10 +466,10 @@
 		<li>emberi szervezetben csak D monoszacharidok fordulnak elő</li>
 		<img src="images/glrncldhd.png">
 	</ul></details>
-	<details class="kerdes 2/1" id="msb.110"><summary>dezoxiribóz hogy jön létre?</summary><ul class="normal">
+	<details class="kerdes 2/1" id="msb.110"><summary style="color:MediumBlue">dezoxiribóz hogy jön létre?</summary><ul class="normal">
 		<li>2'C-nél redukcióval &#10140; ribonukleotid-reduktáz enzim csinálja (dezoxiribonukleotid képződik ribonukleotidból)</li>
 	</ul></details>
-	<details class="kerdes 3/2" id="msb.111"><summary>ribóz &#10140; hogy jön létre? milyen molekula?</summary><ul class="normal">
+	<details class="kerdes 3/2" id="msb.111"><summary style="color:MediumBlue">ribóz &#10140; hogy jön létre? milyen molekula?</summary><ul class="normal">
 		<img src="images/prnpntz.png">
 		<li>nukleofil addícióval jön létre &#10140; ciklusos félacetál</li>
 		<li>így kialakul az ún. furanóz gyűrű (glükóznál piranóz gyűrű lesz)</li>
@@ -507,12 +481,12 @@
 		</ul></details>
 		<img src="images/nklflddc.png">
 	</ul></details>
-	<details class="kerdes 2/1" id="msb.112"><summary>(dezoxi)ribóz konformációi?</summary><ul class="normal">
+	<details class="kerdes 2/1" id="msb.112"><summary style="color:MediumBlue">(dezoxi)ribóz konformációi?</summary><ul class="normal">
 		<li>boríték konformáció</li>
 		<li><span class="WHITE">C-2'-endo</span> vagy <span class="WHITE">C-3'-endo</span> (kettő közül emelkedik ki vmelyik a gyűrű síkjából)</li>
 		<img src="images/dzcrbz.png">
 	</ul></details>
-	<details class="kerdes 4/2" id="msb.118"><summary>RNS és DNS alkotói közti különbségek?(2)</summary><ul class="normal">
+	<details class="kerdes 4/2" id="msb.118"><summary style="color:MediumBlue">RNS és DNS alkotói közti különbségek?(2)</summary><ul class="normal">
 		<li>RNS &#10140; ribóz & uracil</li>
 		<li>DNS &#10140; dezoxiribóz & timin</li>
 		<details><summary>("következményük aka mi szükség van rá?")</summary><ul class="normal">
@@ -522,22 +496,22 @@
 			<hr><li>a DNS-ben pedig feltételezhetően azért van Timin, nem Uracil, mert a Citozin oxidatív dezaminációjával (ami végbemegy naponta sokszor) Uracil keletkezik &#10140; ha DNS-ben Uracil lenne, akkor nem tudná eldönteni a "hibajavító rendszer" hogy a 2bp közül melyik a hibás <abbr title="A legfontosabb DNS-károsodások. A dezamináció javításának mechanizmusa">/lásd/</abbr></li>
 		</ul></details>
 	</ul></details>
-	<details class="kerdes 5/1" id="msb.114"><summary>RNS és DNS mit rövidít?</summary><ul class="normal">
+	<details class="kerdes 5/1" id="msb.114"><summary style="color:MediumBlue">RNS és DNS mit rövidít?</summary><ul class="normal">
 		<li>(Dezoxi)RibonukleinSav</li>
 	</ul></details>
-	<details class="kerdes 5/1" id="msb.115"><summary>bázis-szekvenciát(pl.AUG) "milyen irányba" olvassuk?</summary><ul class="normal">
+	<details class="kerdes 5/1" id="msb.115"><summary style="color:MediumBlue">bázis-szekvenciát(pl.AUG) "milyen irányba" olvassuk?</summary><ul class="normal">
 		<li>5' &#10140; 3'</li>
 		<li>(képen pl. ATG & UGC lenne, ha leírnánk!!)</li>
 		<img src="images/prmrszrkdns.png">
 	</ul></details>
-	<details class="kerdes 5/1" id="msb.116"><summary>bázispárok & kötések száma?</summary><ul class="normal">
+	<details class="kerdes 5/1" id="msb.116"><summary style="color:MediumBlue">bázispárok & kötések száma?</summary><ul class="normal">
 		<li>A=T/U</li>
 		<li>G≡C</li>
 	</ul></details>
-	<details class="kerdes 2/1" id="msb.293"><summary>DNS fő funkciója?</summary><ul class="normal">
+	<details class="kerdes 2/1" id="msb.293"><summary style="color:MediumBlue">DNS fő funkciója?</summary><ul class="normal">
 		<li>genetikai információ tárolása</li>
 	</ul></details>
-	<details class="kerdes 2/2" id="msb.121"><summary>DNS denaturáció &#10140; hogy váltható ki? lényege?</summary><ul class="normal">
+	<details class="kerdes 2/2" id="msb.121"><summary style="color:MediumBlue">DNS denaturáció &#10140; hogy váltható ki? lényege?</summary><ul class="normal">
 		<img src="images/dntrcdnc.png">
 		<li>kiváltható pl. lúgosítással, hevítéssel</li>
 		<li>lényege &#10140; <abbr title="ún. olvadás">H-kötések felszakadnak</abbr> így letekeredik a két szál</li>
@@ -545,7 +519,7 @@
 		<li><font class="abbr">renaturáció kiváltása?►</font> lehűtéssel/visszasemlegítéssel van esély rá, hogy visszaálljon</li>
 		<li><font class="abbr">in vivo letekeredés szükséges?►</font> <abbr title="minden DNS-el történő folyamathoz kell: transzkripció,replikáció,repair,rekombináció esetében is kell">igen</abbr>, helikázok(enzimek) végzi</li>
 	</ul></details>
-	<details class="kerdes 2/3" id="msb.122"><summary><span class="Vocab">R</span> Hiperkróm-effektus lényege?</summary><ul class="normal">
+	<details class="kerdes 2/3" id="msb.122"><summary style="color:MediumBlue"><span class="Vocab">R</span> Hiperkróm-effektus lényege?</summary><ul class="normal">
 		<img src="images/hprkrmffkt.png">
 		<li>~260nm(UV!) hullámhosszú fény az abszorpciós maximuma</li>
 		<li>kétszálú DNS fényelnyelése lényegesen kisebb, mint egyszálúé <abbr title="ugyanis a nukleobázisok nyelik el a fényt, azok viszont 'árnyékoltak' kétszálú esetében">()</abbr> &#10140; ezért ha hőmérséklet fv-ében ábrázolom a fényabszorpciót, akkor látható, mikor indul meg a denaturáció</li>
@@ -607,7 +581,7 @@
 				<td>szinonimája a bakteriális_giráz</td>
 			</tr>
 		</table>
-		<li>videók</li><ul>
+		<li><abbr title="ha valami csoda folytán egyszer konkrétan, pontosan megszeretném érteni, akkor ezeket elemezzem">videók</abbr></li><ul>
 			<li>https://www.youtube.com/watch?v=k4fbPUGKurI</li>
 			<li>https://www.youtube.com/watch?v=HyP0cEbqKTc &#10140; 1:55-től kezdődik amit érdemes megnézni (kb.1perc)</li>
 			<li>https://www.youtube.com/watch?v=az2c6UbEdug</li>
@@ -800,7 +774,7 @@
 		<li>így azok lefoglalják a mikroRNS-eket, és az onkogén mRNS-ek nem fognak lebomlani</li>
 	</ul></details>
 	<details class="kerdes 4/9" id="msb.150"><summary>A humán genom felépítése; kódoló és génexpressziót szabályzó szekvenciák. A humán genom nem-kódoló szakaszai: intronok, pszeudogének, <strong>ismétlődő szekvenciák.</strong></summary><ul class="normal">
-		<img style="max-width:30%"> src="images/dslmcnhrk.png">
+		<img style="max-width:30%" src="images/dslmcnhrk.png">
 	  <div class="title">ismétlődő szekvenciák</div>
 		 &#10140; genom kb. felét(44%) teszik ki, tehát igen nagyrészét
 		<li>mobilis genetikai elemek</li>
@@ -874,7 +848,7 @@
 <!----></div></details>
 
 <!----><details><summary class="phase">#6 A szemikonzervatív DNS-replikáció elve. A replikációs villa, vezető és késlekedő szál.</summary><div><div class="title"> </div>
-	<details class="kerdes 4/9" id="msb.152"><summary><strong>A szemikonzervatív DNS-replikáció elve.</strong> A replikációs villa, vezető és késlekedő szál.</summary><ul class="normal">
+	<details class="kerdes 4/4" id="msb.152"><summary><strong>A szemikonzervatív DNS-replikáció elve.</strong> A replikációs villa, vezető és késlekedő szál.</summary><ul class="normal">
 		<img src="images/szmknzrvtv.png">
 	  <div><strong>DNS-replikációja (alábbiak prokariótára és eukariótára egyaránt igazak)</strong></div>
 		<li><span class="FIX">szigóhoz írjam ide a másik két elméletet("hibrid", 2parent & 2új) is, hogy legyen értelme (amik megdőltek már, hisz kiderült szemikonzervatív) /source:elte/</span></li>
@@ -885,7 +859,7 @@
 			<li>tehát a két DNS-ben az egyik szál "szülői", míg a másik "új"</li>
 		</ul>
 	  <hr><div><strong>DNS függő DNS-polimerázok a replikáció kulcs enzimei</strong></div>
-		<li>3 aktivitásuk &#10140; szintetikus aktivitás, 5'-3' exonukleáz aktivitás, 3'-5' exonukleáz aktivitás</li>
+		<li>3 aktivitásuk van &#10140; szintetikus aktivitás, 5'-3' exonukleáz aktivitás, 3'-5' exonukleáz aktivitás</li>
 		<li>szintetikus aktivitás</li><ul>
 			<li><span class="Important">kell minta szál</span> &#10140; csak úgy képesek DNS-t felépíteni, ha van ami mellé a komplementer bp-ket hozzáilleszti</li>
 			<li><span class="Important">kell megkezdett szál</span> &#10140; csak úgy képesek DNS-t felépíteni, ha már van egy megkezdett szál, és azt hosszabbítják meg &#10140; új lánc szintézist nem tudja elkezdeni!!</li>
@@ -894,52 +868,47 @@
 				<li>nem képesek azonban összekötni a 3’OH-véggel egy olyan nukleotid 5’-foszfátját, amely már egy DNS-lánc első tagja (lásd Okazaki & ligáz rész)</li>
 			</ul>
 		</ul>
-		<li>sok DNS-polimeráznak van DNS-bontó, azaz exonukleáz aktivitása</li><ul>
-			<li>azért exo, mert csak a végéről tudja bontani a DNS-t (tehát valamelyik széléről 3' vagy 5')</li>
-			<li>attól függően, hogy melyik végéről bontja, 2 típusát kölünböztetjük</li><ul>
-				<li><abbr title="képződő szálon (tehát az új szál 3' végét rövidíti)">3'-5'</abbr> exonukleáz aktivitás &#10140; funkciója a hibajavítás &#10140; az éppen beépült nukleotid ha hibás(nincs H-kötés), észreveszi és utána egyből le is veszi onnan</li>
-				<li>5'-3' exonukleáz aktivitás &#10140; 5' véggel csak úgy találkozik, ha előtte vannak már beépült bp-ok, hiszen 3' véget hosszabít &#10140; a már meglévőket lebontja, és helyére újat tesz</li>
-			</ul>
+		<li>exonukleáz aktivitás <abbr title="azért exo, mert csak a végéről tudja bontani a DNS-t (tehát valamelyik széléről 3' vagy 5')">§</abbr>&#10140; attól függően, hogy melyik végéről bontja, 2 típusát kölünböztetjük</li><ul>
+			<li><abbr title="képződő szálon (tehát az új szál 3' végét rövidíti)">3'-5'</abbr> exonukleáz aktivitás &#10140; funkciója, hogy az éppen beépült nukleotid ha hibás(nincs H-kötés), észreveszi és utána egyből le is veszi onnan</li>
+			<li>5'-3' exonukleáz aktivitás &#10140; 5' véggel csak úgy találkozik, ha előtte vannak már beépült bp-ok, hiszen 3' véget hosszabít &#10140; a már meglévőket lebontja, és helyére újat tesz</li>
 		</ul>
 	</ul></details>
-	<details class="kerdes 4/11" id="msb.153"><summary>A szemikonzervatív DNS-replikáció elve. <strong>A replikációs villa, vezető és késlekedő szál.</strong></summary><ul class="normal">
+	<details class="kerdes 4/4" id="msb.153"><summary>A szemikonzervatív DNS-replikáció elve. <strong>A replikációs villa</strong>, vezető és késlekedő szál.</summary><ul class="normal">
 		<div style="float:right;max-width:30%">
 			<img src="images/oricstrtpnt.png">
 			<img src="images/rplkcvll.png">
-			<img src="images/rplkzcrnyt.png">
-			<img src="images/ksldkszl.png">
 		</div>
-		<div><strong>prokariótákban mutatom be &#10140; eukariótáknál is kb. ugyanez, csak több helyen indul meg és más fehérjék (lásd 7.tétel)</strong></div>
-		<li>egy helyen indul meg mindig a replikáció &#10140; ez a DNS-szkevencia az ún. <span class="WHITE">oriC</span></li>
-		<li>oriC-t a dnaA nevű fehérje ismeri fel és kapcsolódik hozzá</li>
-		<li>ahhoz kapcsolódik a dnaC és rajta keresztül a dnaB nevű fehérje</li>
-		<li>dnaB helikáz aktivitással rendelkezik &#10140; kettéválasztja a DNS-t (létrejön ún. "iniciációs buburék", mely EM-képen látható)</li>
+	  <strong class="title">prokariótákban mutatom be</strong> &#10140; eukariótáknál is kb. ugyanez, csak több helyen indul meg és más fehérjék /lásd/
+		<li>egy helyen indul meg mindig a replikáció &#10140; ez a DNS-szkevencia az ún. <strong>oriC</strong></li>
+		<li>oriC-t a <strong>dnaA</strong> nevű fehérje ismeri fel és kapcsolódik hozzá</li>
+		<li>ahhoz kapcsolódik a <strong>dnaC</strong> és rajta keresztül a <strong>dnaB</strong> nevű fehérje</li>
+		<li>dnaB <span class="Important">helikáz</span> aktivitással rendelkezik &#10140; kettéválasztja a DNS-t (létrejön ún. <strong>'iniciációs buburék'</strong>, mely EM-képen látható)</li>
 		<li>innen kezdődik meg a DNS-replikáció <span class="Important">mind2 irányba</span> &#10140; mindkét irányba ugyanúgy zajlik</li>
-		<li>replikációs_villa &#10140; iniciációs_buborék kettéválasztva (mivel ugyanaz zajlik mind2 irányba, elég egyik felét néznünk)</li>
-		<li>dnaA/B/C fehérjék kötődése után a következő lépés, hogy a SSB-fehérjék odakötődnek a már szétválasztott szálakhoz &#10140; nehogy ismét összekapcsolódjon a két szál</li>
-		<li>dnaG = primáz (enzim) &#10140; ez egy RNS polimeráz &#10140; ez fogja megkezdeni a szálat, melyet majd képes meghosszabítani 3' végénél a DNS polimeráz III (hisz alapból a DNS polimeráz nem képes új szálat kezdeni!)</li>
-		<li>vezető szál</li><ul>
-			<li>itt a DNS-replikáció iránya (készülő DNS) <strong>megegyezik</strong> a DNS-szintézis irányával (ami mindig 5'-3')</li>
-			<li>így itt 1db repliszóma végzi itt a szintézist &#10140; primáz megkezd egy RNS-t, majd DNS-polimeráz III hosszabítja a 3' végét, közben a dnaB elől szétválasztja a két szálat</li>
-			<li>2fajta enzim kell és mindegyikből 1db!! &#10140; primáz + DNS polimeráz III</li>
+		<li><strong>replikációs_villa</strong> &#10140; iniciációs_buborék kettéválasztva (mivel ugyanaz zajlik mind2 irányba, elég egyik felét néznünk)</li>
+		<li><strong>SSB</strong> &#10140; fehérjék, melyek odakötődnek a már szétválasztott szálakhoz, nehogy ismét összekapcsolódjanak</li>
+		<li><strong>primáz</strong><abbr title="=dnaG">'</abbr> &#10140; ez egy <span class="Important">RNS polimeráz</span> &#10140; ez fogja megkezdeni a szálat, melyet majd képes meghosszabítani 3' végénél a DNS polimeráz III (hisz alapból a DNS polimeráz nem képes új szálat kezdeni!)</li>
+	</ul></details>
+	<details class="kerdes 4/2" id="msb.305"><summary>A szemikonzervatív DNS-replikáció elve. A replikációs villa, <strong>vezető</strong> és késlekedő szál.</summary><ul class="normal">
+		<img style="max-width:30%" src="images/rplkzcrnyt.png">
+		<li>itt a DNS-replikáció iránya (készülő DNS) <span class="Important">megegyezik</span> a DNS-szintézis irányával (ami mindig 5'-3')</li>
+		<li>így itt <span class="Important">1db repliszóma</span> végzi a szintézist &#10140; ez a 3 fajta enzim alkotja<abbr title="egyébként ez elvileg nem teljesen igaz, mert elvileg nem csak ez a 3 fajta, de bőven elég ezt tudni">'</abbr>, és mindegyikből 1db</li><ul>
+			<li>primáz megkezd egy RNS-t</li>
+			<li>DNS-polimeráz III hosszabítja a 3' végét</li>
+			<li>közben a helikáz(dnaB) elől szétválasztja a két szálat</li>
 		</ul>
-		<li>késlekedő szál</li><ul>
-			<li>itt a DNS-replikáció iránya (készülő DNS) <strong>ellentétes</strong> a DNS-szintézis irányával (ami mindig 5'-3')</li>
-			<li>Okazaki-fragmentum &#10140; primáz megkezd egy RNS-t, majd meghosszabítja a DNS polimeráz III &#10140; <abbr title="tehát a kettő együtt (RNS + DNS polimeráz amit összerakott)">ennek</abbr> a kb. 1000bázis hosszú szakasznak a neve Okazaki-fragmentum (képen (A) nevet adtam neki)</li>
-			<li>ezután készül egy másik Okazaki-fragmentum (képen (B) nevet adtam neki) is ugyanígy</li>
-			<li>amikor odaér a (B) Okazaki-fragmentumot szintetizáló DNS-polimeráz III, az (A) RNS-éhez (piros felkiáltójel a képen), akkor nem képes az RNS-t lecserélni DNS-re &#10140; ugyanis nincs 5'-3' exonukleáz aktivitása a DNS-polimeráz III-nak (pedig le kell azt majd cserélni, hisz Uracil vs Timin & ribóz vs dezoxi)</li>
-			<li>ezért ilyenkor a DNS-polimeráz I megy a III helyére, és lecseréli az (A) Okazaki-fragmentum RNS-ét DNS-re</li>
-			<li>DNS polimeráz I processzivitésa alacsony &#10140; tehát beépít/lecserél pár nukleotidot, majd abbahagyja és elmegy (III-é ezzel szemben nagy)</li>
-			<li>a két Okazaki még nincs összekapcsolva &#10140; (B) 3' végén -OH, (A) 5' végén foszforsavészter &#10140; még nincs foszfodiészter</li>
-			<li>ennek a résznek a neve "nick"</li>
-			<li>összekapcsolást a ligáz(enzim) fogja elvégezni &#10140; energiáját NAD<sup>+</sup> hidrolízise biztosítja (eukariótáknál ATP)</li>
-			<li>azonban csak akkor kapcsolja össze őket, ha az egész RNS már lecserélődött</li>
-			<li>"tehát így érdemes felfogni:" a ligáz ellenőrzi folyamatosan, hogy az egész RNS-t lecserélte-e már a polimeráz I &#10140; ha nem, addig nem kapcsolja össze a két Okazakit, és DNS-polmeráz I ismét visszamegy &#10140; DNS-polimeráz I alacsony processzivitása azért jó, mert így az RNS után jövő DNS-ből max kevés nukleotidot fog lecserélni, hisz az fölös energiapazarlás</li>
-			<li>4fajta enzim kell, és ráadásul minden Okazaki-hoz 1-1db (ami 1000bázis hosszú) &#10140; primáz + DNS polimeráz I/III + ligáz</li>
-		</ul>
-	  <hr>(lehet nem pont így vannak, wikipediaról szedtem össze)
-		<li><font class="abbr">primoszóma ►</font> dnaG + dnaB</li>
-		<li><font class="abbr">repliszóma ►</font> primoszóma + DNS polimeráz III</li>
+	</ul></details>
+	<details class="kerdes 4/5" id="msb.306"><summary>A szemikonzervatív DNS-replikáció elve. A replikációs villa, vezető és <strong>késlekedő szál.</strong></summary><ul class="normal">
+		<img style="max-width:30%" src="images/ksldkszl.png">
+		<li>itt a DNS-replikáció iránya (készülő DNS) <span class="Important">ellentétes</span> a DNS-szintézis irányával (ami mindig 5'-3')</li>
+		<li><strong>Okazaki-fragmentum</strong> &#10140; primáz megkezd egy RNS-t, majd meghosszabítja a DNS polimeráz III &#10140; <abbr title="tehát a kettő együtt (RNS + DNS polimeráz amit összerakott)">ennek</abbr> a kb. 1000bázis hosszú szakasznak a neve Okazaki-fragmentum (képen (A) nevet adtam neki)</li>
+		<li>ezután készül egy másik Okazaki-fragmentum (képen (B) nevet adtam neki) is ugyanígy</li>
+		<li>amikor odaér a (B) Okazaki-fragmentumot szintetizáló DNS-polimeráz III, az (A) RNS-éhez (piros felkiáltójel a képen), akkor nem képes az RNS-t lecserélni DNS-re &#10140; ugyanis <span class="Important">NINCS 5'-3' exonukleáz aktivitása a DNS-polimeráz III-nak</span> (pedig le kell azt majd cserélni, hisz Uracil vs Timin & ribóz vs dezoxi)</li>
+		<li>ezért ilyenkor a <strong>DNS-polimeráz I</strong> megy a III helyére, és lecseréli az (A) Okazaki-fragmentum RNS-ét DNS-re</li>
+		<li>azonban két Okazaki még így nincs összekapcsolva &#10140; (B) 3' végén -OH, (A) 5' vége között még nincs foszfodiészter-kötés &#10140; "nick" ennek a résznek a neve</li>
+		<li>összekapcsolást a <strong>ligáz</strong> fogja elvégezni &#10140; energiáját NAD<sup>+</sup> hidrolízise biztosítja (eukariótáknál ATP)</li>
+		<li>(csak akkor kapcsolja össze őket, ha az egész RNS már lecserélődött)</li>
+		<li><abbr title="DNS polimeráz I processzivitésa alacsony &#10140; tehát beépít/lecserél pár nukleotidot, majd abbahagyja és elmegy (III-é ezzel szemben nagy)">§</abbr> <abbr title="'tehát így érdemes felfogni:' a ligáz ellenőrzi folyamatosan, hogy az egész RNS-t lecserélte-e már a polimeráz I &#10140; ha nem, addig nem kapcsolja össze a két Okazakit, és DNS-polmeráz I ismét visszamegy &#10140; DNS-polimeráz I alacsony processzivitása azért jó, mert így az RNS után jövő DNS-ből max kevés nukleotidot fog lecserélni, hisz az fölös energiapazarlás">§</abbr></li>
+		<li>itt 5fajta enzim kell, és ráadásul minden Okazaki-hoz 1-1db (kivéve a helikáz, abból elég összesen 1) &#10140; primáz + DNS polimeráz <span class="Important">I</span>/III + <span class="Important">ligáz</span> (+helikáz)</li>
 	</ul></details>
 
 	<details class="kerdes 3/3" id="msb.164"><summary style="color:MediumBlue">genom &#10140; szinonima? definíció? pro vs eukarióta?</summary><ul class="normal">
@@ -953,30 +922,27 @@
 			<li>~20ezer fehérjét kódol</li>
 		</ul>
 	</ul></details>
-	<details class="kerdes 3/1" id="msb.165"><summary style="color:MediumBlue">DNS &#10140; antiparallel? funkció?</summary><ul class="normal">
-	</ul></details>
 	<details class="kerdes 3/1" id="msb.166"><summary style="color:MediumBlue">gén definíció?</summary><ul class="normal">
 		<li>gén &#10140; nukleinsav szakasz, mely</li><ul>
 			<li>fehérjét kódol (mRNS-t)</li>
 			<li>RNS-t kódol, mely fehérje-szintézishez kell, pl. tRNS,rRNS</li>
 		</ul>
 	</ul></details>
+	<details class="kerdes 3/1" id="msb.165"><summary style="color:MediumBlue">primoszóma & repliszóma?</summary><ul class="normal">
+		<li>primoszóma &#10140; primáz + helikáz(dnaB)</li>
+		<li>repliszóma &#10140; primoszóma + DNS polimeráz III</li>
+		<abbr title="egyébként ez elvileg nem teljesen igaz, mert elvileg nem csak ezek alkotják őket, de bőven elég ezt tudni">'</abbr>
+	</ul></details>
 <!----></div></details>
 
 <!----><details><summary class="phase">#7 A replikáció folyamata pro- és eukariótákban. Az ehhez szükséges enzimek és egyéb fehérjék összehasonlítása.</summary><div><div class="title"> </div>
-	<details open class="kerdes 4/25" id="msb.154"><summary><strong>A replikáció folyamata pro- és eukariótákban. Az ehhez szükséges enzimek és egyéb fehérjék összehasonlítása.</strong></summary><ul class="normal">
+	<details class="kerdes 4/10" id="msb.307"><summary><strong>A replikáció folyamata pro- és eukariótákban. Az ehhez szükséges enzimek és egyéb fehérjék összehasonlítása.</strong></summary><ul class="normal">
 		<div style="float:right;max-width:30%">
 			<img src="images/sznttksktvts.png">
-			<img src="images/dntpkrtsk.png">
-			<img src="images/oricstrtpnt.png">
-			<img src="images/rplkcvll.png">
-			<img src="images/rplkzcrnyt.png">
-			<img src="images/ksldkszl.png">
 			<img src="images/krtknznkmk.png">
 		</div>
-	  <div class="title">prokarióták</div>
-		<table>
-			<tr> <th>3 féle DNS-polimeráz van</th> <th>funkció</th> <th>aktivitás</th> </tr>
+	  <div class="title">prokarióták</div><div>
+		<table><tr> <th>3 féle DNS-polimeráz van</th> <th>funkció</th> <th>aktivitás</th> </tr>
 			<tr><th><span class="Important">I</span></th>
 				<td style="text-align:left">
 					<li>hibajavítás</li>
@@ -989,85 +955,62 @@
 				<td>szintetikus + 3'-5' exonukleáz</td>
 			</tr>
 			<tr><th>II</th>
-				<td><abbr title="ha blokolják prokariótákban, attól az még tud osztódni normálisan. csupán az lett észrevéve, hogy amikor DNS károsodás van, akkor ezek szintézise fokozódik, így ebből következtethető a funkciója">hibajavítás !!!</abbr></td>
+				<td>SOS-repair <abbr title="fágok tétel">/lásd/</abbr></td>
 				<td>lassú szintetikus + 3'-5' exonukleáz</td>
 			</tr>
 		</table>
-		<div><strong>replikáció folyamata</strong></div>
-		<li>van egy már megkezdett új DNS-szál &#10140; ez lesz hosszabítva 3' irányba</li>
-		<li>ehhez egy dNTP = dezoxi-nukleozid-trifoszfátot kapcsol hozzá a DNS polimeráz &#10140; ebből két foszfát(&beta;+&gamma;) lehasad, ami fedezi az energiát(foszforsavanhidrid kötések!) &#10140; közben hozzákapcsolódik a 3' végen lévő -OH csoporthoz és létrejön az foszfodiészter</li>
-		<li>oligonukleotid_lánc<sub>n</sub> + dNTP &#10140; oligonukleotid_lánc<sub>n+1</sub> + PP</li>
-		<li>a folyamat alapvetően endergónikus (hisz entrópia csökken, mert a 3milliárd bázis egymás kezét fogja mind2 láncban, ellenben szabadon lennének, akkor a rendezetlenség mértéke jóval nagyobb lenne) &#10140; így a két foszforsavanhidrid fedezi az energiát &#10140; így összességében (kapcsolt reakció) már exergónikus lesz a folyamat</li>
-		<div><strong>pontos másolás kivitelezése</strong></div>
-		<li>DNS polimeráz csak akkor képes beépíteni a nukleotidot, ha a H-kötések kialakulnak a komplemeneterrel</li>
-		<li>ezt az enzim (DNS-polimeráz) 2x ellenőrzi</li><ul>
-			<li>egy nukleotid odatéved a polimerázhoz, ha komplementer a minta-szálon lévő nukleotiddal, csak akkor képes a polimeráz aktív-centrumához kapcsolódni &#10140; hozzákapcsolódik, majd a 3' véghez kapcsolja az enzim</li>
-			<div>ha nem lenne második ellenőrzés akkor  kb. 10ezer-1millió bázisonként lenne 1 hiba &#10140; túl sok (hisz minden osztódásnál lenne min.3000hiba)</div>
-			<li>ezután mielőtt még a minta-szálon lévő nukleobázissal kialakulnának <abbr title="az újonnan beépült nukleotiddal">a H-kötések</abbr>, még1x megnézi az enzim, hogy jó lett-e &#10140; ha nem akkor lehasítja &#10140; ez a DNS-polimeráz 3'-5' exonukleáz aktivitása</li>
-		</ul>
-		<li>mutáns DNS polimeráz &#10140; túlzott hibajavítással dolgozik, ami nem lenne gond, de mégis az! &#10140; ugyanis ennek következtében nagyon lassan halad, ezenkívül sok energia megy fölöslegbe</li>
-	  <hr>
-		<li>prokariótákban egy helyen indul meg mindig a replikáció &#10140; ez a DNS-szkevencia az ún. <span class="WHITE">oriC</span></li>
-		<li>oriC-t a dnaA nevű fehérje ismeri fel és kapcsolódik hozzá</li>
-		<li>ahhoz kapcsolódik a dnaC és rajta keresztül a dnaB nevű fehérje</li>
-		<li>dnaB helikáz aktivitással rendelkezik &#10140; kettéválasztja a DNS-t (létrejön ún. "iniciációs buburék", mely EM-képen látható)</li>
-		<li>innen kezdődik meg a DNS-replikáció <span class="Important">mind2 irányba</span> &#10140; mindkét irányba ugyanúgy zajlik</li>
-		<li>replikációs_villa &#10140; iniciációs_buborék kettéválasztva (mivel ugyanaz zajlik mind2 irányba, elég egyik felét néznünk)</li>
-		<li>dnaA/B/C fehérjék kötődése után a következő lépés, hogy a SSB-fehérjék odakötődnek a már szétválasztott szálakhoz &#10140; nehogy ismét összekapcsolódjon a két szál</li>
-		<li>dnaG = primáz (enzim) &#10140; ez egy RNS polimeráz &#10140; ez fogja megkezdeni a szálat, melyet majd képes meghosszabítani 3' végénél a DNS polimeráz III (hisz alapból a DNS polimeráz nem képes új szálat kezdeni!)</li>
-		<li>vezető szál</li><ul>
-			<li>itt a DNS-replikáció iránya (készülő DNS) <strong>megegyezik</strong> a DNS-szintézis irányával (ami mindig 5'-3')</li>
-			<li>így itt 1db repliszóma végzi itt a szintézist &#10140; primáz megkezd egy (kb. 10bp hosszú) <strong>R</strong>NS-t, majd DNS-polimeráz III hosszabítja a 3' végét, közben a dnaB elől szétválasztja a két szálat</li>
-			<li>2fajta enzim kell és mindegyikből 1db!! &#10140; primáz + DNS polimeráz III</li>
-		</ul>
-		<li>késlekedő szál</li><ul>
-			<li>itt a DNS-replikáció iránya (készülő DNS) <strong>ellentétes</strong> a DNS-szintézis irányával (ami mindig 5'-3')</li>
-			<li>Okazaki-fragmentum &#10140; primáz megkezd egy RNS-t, majd meghosszabítja a DNS polimeráz III &#10140; <abbr title="tehát a kettő együtt (RNS + DNS polimeráz amit összerakott)">ennek</abbr> a kb. 1000bázis hosszú szakasznak a neve Okazaki-fragmentum (képen (A) nevet adtam neki)</li>
-			<li>ezután készül egy másik Okazaki-fragmentum (képen (B) nevet adtam neki) is ugyanígy</li>
-			<li>amikor odaér a (B) Okazaki-fragmentumot szintetizáló DNS-polimeráz III, az (A) RNS-éhez (piros felkiáltójel a képen), akkor nem képes az RNS-t lecserélni DNS-re &#10140; ugyanis nincs 5'-3' exonukleáz aktivitása a DNS-polimeráz III-nak (pedig le kell azt majd cserélni, hisz Uracil vs Timin & ribóz vs dezoxiribóz)</li>
-			<li>ezért ilyenkor a DNS-polimeráz I megy a III helyére, és lecseréli az (A) Okazaki-fragmentum RNS-ét DNS-re</li>
-			<li>DNS polimeráz I processzivitésa alacsony &#10140; tehát beépít/lecserél pár nukleotidot, majd abbahagyja és elmegy (III-é ezzel szemben nagy)</li>
-			<li>a két Okazaki még nincs összekapcsolva &#10140; (B) 3' végén -OH, (A) 5' végén foszforsavészter &#10140; még nincs foszfodiészter</li>
-			<li>ennek a résznek a neve "nick"</li>
-			<li>összekapcsolást a ligáz(enzim) fogja elvégezni &#10140; energiáját NAD<sup>+</sup> hidrolízise biztosítja (eukariótáknál ATP)</li>
-			<li>azonban csak akkor kapcsolja össze őket, ha az egész RNS már lecserélődött</li>
-			<li>"tehát így érdemes felfogni:" a ligáz ellenőrzi folyamatosan, hogy az egész RNS-t lecserélte-e már a polimeráz I &#10140; ha nem, addig nem kapcsolja össze a két Okazakit, és DNS-polmeráz I ismét visszamegy &#10140; DNS-polimeráz I alacsony processzivitása azért jó, mert így az RNS után jövő DNS-ből max kevés nukleotidot fog lecserélni, hisz az fölös energiapazarlás</li>
-			<li>4fajta enzim kell, és ráadásul minden Okazaki-hoz 1-1db (ami 1000bázis hosszú) &#10140; primáz + DNS polimeráz I/III + ligáz</li>
-		</ul>
-	  <hr>
-		<div class="title">eukariótáknál a replikáció elve és menete azonos, így csak a különbségeket soroltam fel</div>
-		<li>DNS polimerázok itt sokkal lassabbak + sokkal több bázis is van (3milliárd vs 3millió) &#10140; <abbr title="emberben több tízezer">több</abbr> origó(~"iniciációs_burok") kell, hisz különben nagyon soká tartana a replikáció</li>
-		<li>DNS-polimerázok &#10140; több típusuk van, ebből 5öt érdemes megemlíteni</li><ul>
-			<li><abbr title="delta">&delta;</abbr> &#10140; ez építi fel a vezető és késlekedő szálat is (ez a kulcsenzim!)</li>
-			<li>&alpha; &#10140; kezdeti RNS szakaszt először ez hosszabítja meg kb. 15-30 nukleotiddal (szvsz ezek már dezoxi-ribonukleozidok, tehát nem RNS)</li>
-			<li>&beta;,<abbr title="epszilon">&epsilon;</abbr> &#10140; hibajavítás</li>
-			<li><abbr title="gamma">&gamma;</abbr> &#10140; mitokondriális DNS szintézisét végzi</li>
-		</ul>
-		<li>Okazaki-fragmentum rövidebb, ~150bp hosszú</li>
-		<li>dnaA/B/C helyett eukariótáknál ORC és MCM nevű fehérjék vannak &#10140; ezek indítják a replikációt, nyitják szét a két szálat egy "START"-pontnál</li>
-		<li>SSB helyett eukariótákban RPA nevű fehérje van &#10140; szétválasztva tartják a két szálat</li>
-		<li>Cdc6p nevű fehérje &#10140; gátolja a reiniciációt &#10140; tehát csak 1x kettőződjön a DNS, többször ne</li>
-		<li>PCNA nevű fehérje &#10140; biztosítja a DNS-polimeráz &delta; processzivitását a vezető szálon, azaz nem engedi, hogy abbahagyja, amíg végig nem ért</li>
-		<li>ligáz energiaforrása ATP</li>
-		<li>DNS-polimeráz &delta; 5'-3' exonukleáz aktivitással nem rendelkezik &#10140; az RNS-szakasz lebontását két másik enzim végzi</li><ul>
-			<li>az első enzim lebontja az RNS-indítót úgy, hogy csupán egyetlen ribonukleotid egység marad a láncban</li>
-			<li>ezután a második enzim nemcsak a még jelenlévő egyetlen ribonukleotidot távolítja el, hanem az azt követő rövid DNS-szakaszt is abban az esetben, ha ott hibás bázispárok találhatók &#10140; ez azért szükséges, mert ezt a láncrészt a 3’-exonukleáz-aktivitással nem rendelkező DNS-polimeráz-&alpha; hozta létre</li>
-		</ul>
-		<li>genom prokariótáknál cirkuláris, tehát nem volt 5' / 3' vége &#10140; eukariótáknál lineáris: 23db interfázisos_kromoszóma, mindegyiknek van 5' és 3' vége</li><ul>
-			<li>ennek az a következménye, hogy eukariótáknál a késlekedő szál 5' vége rövidülni fog minden egyes osztódásnál</li>
-			<li>lásd bővebben 8.tétel</li>
-		</ul>
-	  <hr>
+		<strong>módját lásd:</strong> A szemikonzervatív DNS-replikáció elve. A replikációs villa, vezető és késlekedő szál
+	  </div>
+	  <hr><div class="title">eukariótáknál a replikáció elve és menete azonos, így csak a különbségeket soroltam fel</div>
 		<table><tr><th colspan="2"><span class="Important">enzimek</span> & fehérjék</th></tr> <tr><th>prokarióta</th>  <th>eukarióta</th></tr>
 			<tr><td><span class="Important">DNS-polimeáz I/II/III</span></td>  <td><span class="Important">DNS-polimeráz &alpha;/&beta;/&delta;/&gamma;/&epsilon;</span></td></tr>
-			<tr><td>SSB</td>  <td>RPA</td></tr>
-			<tr><td>dnaA/<span class="Important">B</span>/C</td>  <td>ORC és MCM</td></tr>
+			<tr><td>SSB</td>  <td>RPA <abbr title="tehát SSB helyett eukariótákban RPA nevű fehérje van &#10140; szétválasztva tartják a két szálat">'</abbr></td></tr>
+			<tr><td>dnaA/<span class="Important">B</span>/C</td>  <td>ORC és MCM <abbr title="tehát a dnaA/B/C helyett eukariótáknál ORC és MCM nevű fehérjék vannak &#10140; ezek indítják a replikációt, nyitják szét a két szálat egy 'START'-pontnál">'</abbr></td></tr>
 			<tr><td colspan="2">topoizomeráz I & II</td></tr>
 			<tr><td colspan="2"><span class="Important">primáz (prokariótáknál dnaG-nek is hívják)</span></td></tr>
 			<tr><td colspan="2">NAD<sup>+</sup> <span class="Important"><div class="mirror">&#10140;</div> ligáz energiaforrása &#10140;</span> ATP</td></tr>
 			<tr><td> --- </td>  <td>Cdc6p</td></tr>
 			<tr><td> --- </td>  <td>PCNA</td></tr>
 		</table>
+		<li>DNS-polimerázok &#10140; több típusuk van, ebből 5öt érdemes megemlíteni</li><ul>
+			<li><abbr title="delta">&delta;</abbr> &#10140; ez építi fel a vezető és késlekedő szálat is (ez a kulcsenzim!)</li>
+			<li>&alpha; &#10140; kezdeti RNS szakaszt először ez hosszabítja meg kb. 15-30 nukleotiddal (szvsz ezek már dezoxi-ribonukleozidok, tehát nem RNS)</li>
+			<li>&beta;,<abbr title="epszilon">&epsilon;</abbr> &#10140; hibajavítás</li>
+			<li><abbr title="gamma">&gamma;</abbr> &#10140; mitokondriális DNS szintézisét végzi</li>
+		</ul>
+		<li>DNS polimerázok itt sokkal lassabbak + sokkal több bázis is van (3milliárd vs 3millió) &#10140; <abbr title="emberben több tízezer">több</abbr> origó(~"iniciációs_burok") kell, hisz különben nagyon soká tartana a replikáció</li>
+		<li>Okazaki-fragmentum rövidebb, ~150bp hosszú</li>
+		<li>DNS-polimeráz <span class="Important">&delta; nem rendelkezik 5'-3' exonukleáz aktivitással</span> &#10140; az RNS-szakasz lebontását két másik enzim végzi</li><ul>
+			<li>az első enzim lebontja az RNS-indítót úgy, hogy csupán egyetlen ribonukleotid egység marad a láncban</li>
+			<li>ezután a második enzim nemcsak a még jelenlévő egyetlen ribonukleotidot távolítja el, hanem az azt követő rövid DNS-szakaszt is abban az esetben, ha ott hibás bázispárok találhatók &#10140; ez azért szükséges, mert ezt a láncrészt a 3’-exonukleáz-aktivitással nem rendelkező DNS-polimeráz-&alpha; hozta létre</li>
+		</ul>
+		<li>genom prokariótáknál cirkuláris, tehát NINCS 5' / 3' vége &#10140; <span class="Important">eukariótáknál lineáris</span>: 23db interfázisos_kromoszóma, mindegyiknek van 5' és 3' vége</li><ul>
+			<li>ennek az a következménye, hogy eukariótáknál a késlekedő szál 5' vége rövidülni fog minden egyes osztódásnál</li>
+			<li><abbr title="telomer tétel">/lásd/</abbr></li>
+		</ul>
+		<li>Cdc6p nevű fehérje &#10140; gátolja a reiniciációt &#10140; tehát csak 1x kettőződjön a DNS, többször ne</li>
+		<li>PCNA nevű fehérje &#10140; biztosítja a DNS-polimeráz &delta; processzivitását a vezető szálon, azaz nem engedi, hogy abbahagyja, amíg végig nem ért</li>
+	</ul></details>
+
+	<details class="kerdes 3/2" id="msb.154"><summary style="color:MediumBlue">kötések, energetika</summary><ul class="normal">
+		<div style="float:right;max-width:30%">
+			<img src="images/dntpkrtsk.png">
+		</div>
+		<li>van egy már megkezdett új DNS-szál &#10140; ez lesz hosszabítva 3' irányba</li>
+		<li>ehhez egy <abbr title="dezoxi-nukleozid-trifoszfát">dNTP</abbr>-t kapcsol hozzá a DNS-polimeráz &#10140; ebből két foszfát(&beta;+&gamma;) lehasad, ami fedezi az energiát(foszforsavanhidrid-kötések!) &#10140; közben hozzákapcsolódik a 3' végen lévő -OH csoporthoz és létrejön a foszfodiészter-kötés</li>
+		<li>a folyamat alapvetően <abbr title="hisz entrópia csökken, mert a 3milliárd bázis egymás kezét fogja mind2 láncban, ellenben szabadon lennének, akkor a rendezetlenség mértéke jóval nagyobb lenne">endergónikus</abbr> &#10140; így a két foszforsavanhidrid fedezi az energiát &#10140; így összességében (kapcsolt reakció) már exergónikus lesz a folyamat</li>
+		<li>(oligonukleotid_lánc<sub>n</sub> + dNTP &#10140; oligonukleotid_lánc<sub>n+1</sub> + PP)</li>
+	  <strong>ellenőrzés</strong><div>
+	  </div>
+	</ul></details>
+	<details class="kerdes 3/2" id="msb.308"><summary style="color:MediumBlue">DNS-polimeráz hibajavítása</summary><ul class="normal">
+		<li>DNS-polimeráz csak akkor képes beépíteni a nukleotidot, <span class="Important">ha a H-kötések kialakulnak</span> a komplemeneterrel</li>
+		<li>ezt a DNS-polimeráz <span class="Important">2x ellenőrzi</span></li><ul>
+			<li>egy nukleotid odatéved a polimerázhoz, ha komplementer a minta-szálon lévő nukleotiddal, csak akkor képes a polimeráz aktív-centrumához kapcsolódni &#10140; hozzákapcsolódik, majd a 3' véghez kapcsolja az enzim</li>
+			<div>ha nem lenne második ellenőrzés akkor kb. 10ezer-1millió bázisonként lenne 1 hiba &#10140; túl sok (hisz minden osztódásnál lenne min.3000hiba)</div>
+			<li>ezután mielőtt még a minta-szálon lévő nukleobázissal kialakulnának <abbr title="az újonnan beépült nukleotiddal">a H-kötések</abbr>, még1x megnézi, hogy jó lett-e &#10140; ha nem akkor lehasítja &#10140; ez a DNS-polimeráz 3'-5' exonukleáz aktivitása</li>
+		</ul>
+		<li>mutáns DNS polimeráz &#10140; túlzott hibajavítással dolgozik, ami nem lenne gond, de mégis az! &#10140; ugyanis ennek következtében nagyon lassan halad, ezenkívül sok energia megy fölöslegbe</li>
 	</ul></details>
 <!----></div></details>
 
@@ -1522,7 +1465,7 @@
 		<div>&#10140; <span class="Important">TFIID-t köt az összes, kivéve a BRE, az TFIIB-t</span></div>
 		<div><span class="Important">azért <strong>CORE</strong> promoter a neve...</span></div><ul>
 			<li>... mert ehhez csak az áTF-ok + RNS-polimeráz II kapcsolódik (tehát ez az "alapvető, minimális" promoter)</li>
-			<li>a teljes promoterbe már mást is beleveszünk (<i>gondolom silencer + enhancer + insulator & specTF-ek</i>)</li>
+			<li>a teljes promoterbe már a szabályozó szekvenciák is beletartoznak (silencer, enhancer, (insulator))</li>
 		</ul>
 	  <hr>
 		<li>konszenzus_szekvencia &#10140; bázisok egymásutáni sorrendje, mely nem mindig egyforma &#10140; ezért a konszenzus szekvencia azt jelöli, hogy melyik nukelbozázisok fordulnak elő leggyakrabban az adott helyen (tehát a TATAAC valójában nincs, csupán azon bázisok vannak legvalószínűbben az adott helyen)</li>
@@ -1584,7 +1527,6 @@
 		<div style="float:right;max-width:30%">
 			<img src="images/extndnpromtr.png">
 			<img src="images/mdtrkmplx.png">
-			<img src="images/hsztnmst.png">
 			<img src="images/krpsszrfhkr.png">
 		</div>
 		<li>prokarióták esetében az iniciációhoz elég a <span class="WHITE">holoenzim = apoenzim(RNS-polimeráz <abbr title="szigmát is beleveszik RNS polimerázba, de jobb azt külön faktorként felfogni">=</abbr> &alpha;,&beta;,&beta;') + &sigma;-faktor</span> (kivéve, ha gyenge a promoter pl. laktáz esetében)</li>
@@ -1592,14 +1534,14 @@
 		<li>mediátor_komplex &#10140; ez közvetíti a szabályozást</li>
 	  <hr>
 		<li>extended_promoter = core promoter + szabályozó szekvenciák</li>
-		<li>szabályozó_szekvenciák <span class="idk">&#10140; sTF-ek ezekhez kötődnek</span></li><ul>
+		<li>szabályozó_szekvenciák <abbr title="szvsz cisz-elemeknek is lehet nevezni őket">'</abbr> <span class="idk">&#10140; sTF-ek ezekhez kötődnek</span></li><ul>
 			<li>enhancer (fokozza a génexpressziót)</li>
 			<li>silencer (gátolja a génexpressziót)</li>
 		</ul>
 		<li>szabályozó_fehérjék típusai</li><ul>
 			<li><abbr title="speciális Transzkripciós Faktorok">sTF-ek</abbr> &#10140; aktivátor / represszor</li>
 			<li>'egyéb' &#10140; koaktivátor / korepresszor <abbr title="ez nem egy írott szabály, csak wikipedia (+ÁV+jegyzet+előadások) alapján így tűnt nekem leglogikusabbnak">'</abbr> <abbr title="https://en.wikipedia.org/wiki/Transcription_factor">§</abbr></li>
-		  <hr><strong>fontos!</strong> <abbr title="ez is szvsz alapján van">'</abbr>
+		  <strong>fontos!</strong> <abbr title="ez is szvsz alapján van">'</abbr>
 			<li>TF-ek azok, melyeknek van egy DNS-kötő doménjük, tehát hozzákapcsolódhatnak a DNS-hez &#10140; sTF-ek ezáltal gátolják/serkentik</li>
 			<li>'egyéb' kategóriába tartozóknak nincs, tehát azok a TF-ekhez kötődve szabályoznak &#10140; tehát pl. egy aktivátor(sTF) odakötődik a DNS-be egy hiszton közelébe, melyhez a koaktivátor HAT fog kapcsolódni, és ezáltal fellazul a kromatin</li>
 		</ul>
@@ -1617,18 +1559,18 @@
 				<td>DNS-összehajtogatásakor nem kerül a corePromoter közelébe ("függetlenek tőle")</td>
 			</tr>
 		</table>
-	  <hr><strong>transzkripció beindulását megelőző lépések, aka. hogy fog egy becsomagolt (inaktív) gén expresszálódni</strong>
-		<li>gén "be van csomagolva" <i>(pl. radiális hurokig)</i></li>
-		<li>azonban egy enhancer szekvencia szabadon van &#10140; ehhez egy aktivátor fehérje kötődik</li>
+	  <strong>transzkripció beindulását megelőző lépések, aka. hogy fog egy becsomagolt (inaktív) gén expresszálódni</strong>
+		<li><span class="Important">gén "be van csomagolva" <i>(pl. radiális hurokig)</i> &#10140; azonban egy enhancer szekvencia szabadon van</span> &#10140; ehhez egy aktivátor fehérje kötődik</li>
 		<li>fellazul a DNS &#10140; egyre több szabályozó_szekvencia válik elérhetővé a szabályozó_fehérjék számára</li>
-		<li>először az extended_promoter szabályozó_szekvenciái válnak elérhetővé</li>
-		<li>a legvégén a core_promoter válik elérhetővé &#10140; áTF-ek + RNS polimeráz II kapcsolódnak hozzá</li>
+		<li><span class="Important">először az extended_promoter szabályozó_szekvenciái</span> válnak elérhetővé</li>
+		<li><span class="Important">a legvégén a core_promoter válik elérhetővé</span> &#10140; áTF-ek + RNS polimeráz II kapcsolódnak hozzá</li>
 	  <hr><strong>koaktivátor és korepresszorra 1-1pl</strong>
 		<li><abbr title="ebbe van korepresszor és koaktivátor is">'</abbr>hiszton kovalens módosítások <abbr title="DNS metiláció és hiszton módosítások jelentősége eukariótákban">/lásd/</abbr></li><ul>
 			<li>kromatin lazítás &#10140; aktivátorhoz kötődik a koaktivátor, a <span class="Important">hiszton-acetil-transzferáz</span> &#10140;  acetilálja a Lys</li>
 			<li>kromatin kondenzálás &#10140; represszorhoz kötődik korepresszor, a <span class="Important">hiszton-deacetiláz</span> &#10140; Lys deacetilálja</li>
 		</ul>
 		<li>(koaktivátorra egy <abbr title="tehát nem csak az aktivitás megnevezés avagy másszóval enzimcsoport név (tehát hogy HAT), hanem konkrétan a 'molekula' neve, amelynek ilyen aktivitása van">konkrét</abbr> pl. az ún. CBP &#10140; ez a CREB nevű sTF-hez kötődve fog HAT aktivitást végezni) <abbr title="nem 100% hogy jól értelmezem">'</abbr> <img class="mini" src="images/crbcbp.png"></li>
+		<li>(mediátor komplex is elvileg koaktivátor)</li>
 	  <hr><strong>represszor sTF-re 2pl</strong>
 		<li>silencer és enhancer szekvencia átfedésben van &#10140; represszor a silencerhez kötődik, és az aktivátor már nem tud így az enhancerhez</li>
 		<li>"maszkolás" &#10140; represszor hozzá kötődik az aktivátorhoz (lásd kép), így az "nem képes hatását kifejteni"</li>
@@ -1636,155 +1578,133 @@
 <!----></div></details>
 
 <!----><details><summary class="phase">#6 Az eukarióta mRNS érése.</summary><div><div class="title"> </div>
-	<details open class="kerdes 4/26" id="msb.137"><summary><strong>Az eukarióta mRNS érése</strong></summary><ul class="normal">
-		<div style="float:right;max-width:30%">
-			<img src="images/képlet_mgspk.png">
-			<img src="images/hnrnsszrk.png">
-			<img src="images/knszhshtny.png">
-			<img src="images/snrnpszkvn.png">
-			<img src="images/splcnglnyg.png">
-			<img src="images/trmnpldnlc.png">
-		</div>
+	<details class="kerdes 5/2" id="msb.137"><summary><strong>Az eukarióta mRNS érése</strong></summary><ul class="normal">
 		<li>lépések, sorrendben</li><ul>
-			<li>5'sapka</li>
+			<li>5'sapka képzés</li>
 			<li>splicing</li>
-			<li>3'poliA-farokképzés</li>
+			<li>3'poliA-farok képzés <abbr title="Az eukarióta gének szerkezete, a transzkripció iniciációja és terminációja eukarióta sejtekben.">/lásd/</abbr></li>
 		</ul>
-		<li>időben &#10140; transzkripció közben zajlik az mRNS érés &#10140; tehát az 5'sapka rátevődik az elején már, közben folyamatosan megy az intron splicing, és termináció során lesz a 3' végen poliA-farokképződés</li>
+		<li>időben &#10140; transzkripció közben zajlik az mRNS érés &#10140; tehát az 5'sapka rátevődik az elején már, közben folyamatosan megy az intron splicing, és termináció során lesz a 3' végen poliA-farok képzés</li>
+	</ul></details>
+	<details class="kerdes 4/8" id="msb.299"><summary>5'sapka képzés</summary><ul class="normal">
+		<img style="max-width:30%" src="images/képlet_mgspk.png">
+		<li>csak RNS polimeráz II<abbr title="mármint ezen enzim végezte transzkripciónál">-nél</abbr> mehet végbe &#10140; ugyanis feltétele, hogy az RNS polimeráz II CTD-je foszforilálva van<abbr title="lásd: Az eukarióta gének szerkezete, a transzkripció iniciációja és terminációja eukarióta sejtekben">'</abbr> (RNS polimeráz I/III-nál nincs ilyen)</li>
 	  <hr>
-		<strong><span class="Vocab">R</span> 5'sapka</strong><div>
-			<li>az első nukleotid általában Adenin</li>
-			<li><span class="Important">az első nukleotidhoz(Adenin) hozzákapcsolódik egy 7 metil-guanozin</span></li>
-			<li><span class="Important">"eltérések a szokványostól"</span></li><ul>
-				<li>3 foszfáttal kapcsolódik az mRNS 5' végéhez a 7 metil-guanozin</li>
-				<li>a 7 metil-guanozinhoz a foszfát az 5'nél kapcsolódik (nem 3'nél)</li>
-				<li>metil-csoport van</li><ul>
-					<li>guanin 7'</li>
-					<li>első kb.2 nukleotidnál a 2' hidroxilcsoportja</li>
-				</ul>
+		<li><span class="Important">RAJZ</span> a hnRNS-be beépülő első nukleotid <abbr title="általában">'</abbr> Adenin &#10140; ehhez hozzákapcsolódik egy 7 metil-guanozin &#10140; "eltérések a szokványostól":</li><ul>
+			<li>3db foszfáttal kapcsolódik az mRNS 5' végéhez a 7 metil-guanozin</li>
+			<li>a 7 metil-guanozinhoz a foszfát az 5'nél kapcsolódik (nem 3'nél)</li>
+			<li>metil-csoport van</li><ul>
+				<li>guanin 7'</li>
+				<li>első kb.2 nukleotidnál a 2' hidroxilcsoportja</li>
 			</ul>
-			<li>folyamat lényege <img class="mini" src="images/flymtlnyg.png"></li><ul>
-				<li>az első nukleotid általában Adenin, melyhez 3foszfátcsoport kapcsolódik &#10140; tehát <span class="Important">egy ATP az mRNS 5' végén (valójában eleje) lévő nukleotid</span></li>
-				<li>capping (enzim) a következőket végzi</li><ul>
-					<li>(trifoszfatáz aktivitás) <span class="Important">ATP-ről levesz 1 foszfátcsoportot</span>(&gamma;)</li>
-					<li>(guanilil transzferáz aktivitás) <span class="Important">GTP-ről levesz 2 foszfátcsoportot</span>(&beta; & &gamma;)</li>
-				</ul>
-				<li><span class="Important">ezután a GMP hozzákapcsolódik az ADP-hez</span></li>
-				<li><span class="Important">ezután egy metil-transzferáz</span> a <abbr title="S-adenozil-metionin">SAM</abbr>-ról fog <span class="Important"> metilcsoportokat rátenni &#10140; Guaninra, illetve Adeninra, ezenkívül még 1-2 nukleotidra</span></li>
-			</ul>
-			<li>funkciói</li><ul>
-				<li>citoplazma tele van exonukleázokkal</li>
-				<li>az exonukleázok a polimerek végeit hasogatják le folyamatosan</li>
-				<div><span class="WHITE">&#10045;</span> azonban <span class="Important">a sapkát nem ismeri fel sem az 5' sem a 3' exonukleáz, így nem kezdik el levagdosni</span></div>
-			  <hr>
-				<div><span class="WHITE">&#10045;</span> másrészt a magban úgy nevezett sapkakötő-fehérjék kapcsolódnak hozzá</div>
-				<div><span class="WHITE">&#10045;</span> illetve a <span class="Important">transzlációnál is, az iniciációs faktorok majd ehhez fognak kötődni</span></div>
-			</ul>
-		</div>
-	  <hr>
-		<strong>splicing</strong><div>
-			<li>a génben vannak &#10140; exonok(fehérjét kódoló <abbr title="nem pontosan igaz, lsád UTR">!?</abbr> szakasz) és intronok(fehérjét NEM kódoló szakasz)</li>
-			<div>UTR = UnTranslated Region &#10140; ez a transzlációnál nem írodik bele a fehérjébe</div><ul>
-				<li>exon 5' végén és 3' végén lévő része (a kettő együtt kiteszi kb az exon felét)</li>
-				<li>ezek nem kódolnak fehérjét, hanem szabályozásban vesznek részt</li><ul>
-					<li>3'UTR funkciója &#10140; mikroRNS-ek kötődnek oda (szvsz pl. transzferrin-receptor esete)</li>
-					<li>5'UTR funkciója &#10140; gátolják a transzláció sebességét (szvsz pl. ferritin esete)</li>
-				</ul>
-			</ul>
-			<li>1 exon a képződő fehérjének 1 domainjét kódolja <abbr title="domaint lásd bővebben bikém">&#10045;</abbr></li>
-			<li><span class="Important">fontos, hogy pontosan történjen a kivágás &#10140; ugyanis ha 1 aminosavval arréb lesz, akkor az összes aminosav más lesz onnantól, mint ami kéne</span> <abbr title="nem pontosan értem, hisz max akkor, ha arra van értve, hogy a 3' végénél elcsúszva 1el, a következő exon lesz elcseszve teljesen, de utána ha jó a következő intron, akkor szvsz nincs gond.(mind1 ennyire ne menjek bele)">&#10045;</abbr> &#10140; inkább 3 aminosavval legyen elvétve, mint 1el (hisz akkor 1aminosav marad csak ki, de a többi jó lesz)</li>
-			<li><span class="Important">3 konszenzus szekvencia van &#10140; két hasítási (3' és 5') és egy elágazási</span></li>
-			<li><span class="Important">ezen szekvenciák felismerését tehát nagyon pontosan kell elvégezni &#10140; ezt a funkciót (felismerést) nem is fehérjék, hanem RNS-ek végzik &#10140; bázispárosodással ismerik fel</span></li>
-			<li><span class="Important">ugyanis az snRNP(RiboNukleoProtein) áll egyrészt RNS-ből illetve fehérjéből, és az RNS része végzi a fő feladatot, a szekvencia felismerését</span></li>
-			<li><span class="Important">5féle snRNP vesz részt benne &#10140; U1-U6 snRNP, de U3-as nincs</span></li>
-			<li><span class="Important">folyamat lényege</span> (lásd kép!)</li><ul>
-				<li>RNS-polimeráz II szintetizál és a képződő hnRNS-en van egy exon(világos) és utána intron(sötét)</li>
-				<li>intronon megjelenő 5' hasítási szekvencia miután megjelenik, ráveti magát az U1-snRNP</li>
-				<li>később az intronon megjelenő elágazási szekvencia miután megjelenik, ráveti magát az U2-snRNP &#10140; ott a bázispárosodásnál kilóg egy Adenin <img class="mini" src="images/adnnnklg.png"></li>
-				<li>majd az intronon megjelenő 3' hasítási szekvencia is megjelenik, és ráveti magát az U5-snRNP</li>
-				<li>ezután az U4 és U6 is hozzájuk kapcsolódik és létrehoznak egy komplexet &#10140; ún. splicesoma-t</li>
-				<li>következő lépések a "splicesoma belsejében" történnek <img class="mini" src="images/splsmblsjb.png"></li><ul>
-					<li>kilógó Adenozinnek a <abbr title="tehát az adeninhez kapcsolódó &beta;-D-ribofuranózon van ez">2' -OH csoportját</abbr> felhasználja a splicesoma</li>
-					<li>ezzel felbontja az intron 5' vége és exon 3' vége közti foszfodiészter kötést (alkoholizál!), és az intron 5' végét átkapcsolja az Adenozinhoz (kép!!!)</li>
-					<li>ezután ismét alkoholizál &#10140; exon 3' -OH csoportjára kicseréljük az intron 3' -OH csoportját &#10140; így kötődik a másik exon 5' végéhez</li>
-					<li>az így képződött "intron-struktúra" neve a lasszó</li>
-				</ul>
-			</ul>
-		</div>
-	  <hr>
-		<div><strong>poliA-farokképzés & termináció</strong></div>
-		<li>két fehérje kapcsolódik az RNS polimerázhoz &#10140; CPSF & CsTF</li>
-		<li>CPSF &#10140; felismeri a poliadeniláció helyét</li>
-		<li>CsTF &#10140; ez egy endonukleáz enzim</li>
-		<li>lényege</li><ul>
-			<li>két fehérje szépen ül az RNS-polimeráz hátán egészen addig, amíg meg nem látja a CPSF a következő szekvenciát: <abbr title="(aaú!Ááá! - mint a fájdalom felkiáltás --> így jegyezzem meg)">AAUAAA</abbr></li>
-			<div>AAUAAA &#10140; poliadenilációs és egyben terminációs szekvencia</div>
-			<li>ekkor a CPSF ráveti magát a szekvenciára, és magával rántja az enzimet is (CsTF)</li>
-			<li>amikor leválnak az RNS-polimeráz II-ről, akkor az befejezi a transzkripciót &#10140; termináció</li>
-			<li>az AAUAAA szekvencia után 3' irányba kb. 35bp-nyival levágja a CsTF a "felesleget" <abbr title="piros pöttyel jelöltem a képen, hogy kb. ott. (35bp nem méretarányos, hisz AAUAAA hosszabnak tűnik, de az most mind1)">&#10045;</abbr></li>
-			<li>ezután a PAP = poliadenilát-polimeráz a 3' végre elkezd ATP-t felhasználva Adeninokat beépíteni kb. 200db-ot</li>
 		</ul>
-		<li>poliA-farok funkciója &#10140; exonukleázok ellen ugyan nem rezisztens, mint az 5'sapka, azonban amíg ezeket hasítgatják le (csipegetik), addig nincs gond &#10140; minél hosszabb annál tovább életképes az mRNS (hisz ha elérik a kódoló szakaszt az exonukleázok akkor vége)</li>
+	  <hr><strong>folyamat lényege <img class="mini" src="images/flymtlnyg.png"></strong><div>
+		<li>az első nukleotid Adenin, melyhez 3db foszfátcsoport kapcsolódik &#10140; tehát <span class="Important">egy ATP van az mRNS 5' végén</span></li>
+		<li>a folyamat három lépésből áll</li><ul>
+			<li>trifoszfatáz &#10140; <span class="Important">ATP-ről levesz 1 foszfátcsoportot</span>(&gamma;)</li>
+			<li>guanilil-transzferáz &#10140; <span class="Important">GTP-ről levesz 2 foszfátcsoportot</span>(&beta; & &gamma;) &#10140; a GMP hozzákapcsolódik az ADP-he</li>
+			<li>metil-transzferáz &#10140; a <abbr title="S-adenozil-metionin">SAM</abbr>-ról fog <span class="Important"> metilcsoportot rátenni &#10140; Guaninra, illetve Adeninra, ezenkívül még 1-2 nukleotidra</span> (1 SAM-ról csak egyet tud, tehát több SAM kell)</li>
+		</ul>
+		<li>ezen lépéseket az ún. capping-enzimek végzik</li>
+	  </div>
+	  <hr><strong>funkciói</strong><div>
+		<li>citoplazma tele van exonukleázokkal</li>
+		<li>az exonukleázok a polinukleotidok végeit hasogatják le folyamatosan</li>
+		<div><span class="WHITE">&#10045;</span> azonban <span class="Important">a sapkát nem ismeri fel sem az 5' sem a 3' exonukleáz, így nem kezdik el levagdosni</span></div>
+	  <hr>
+		<div><span class="WHITE">&#10045;</span> másrészt a magban ún. sapkakötő-komplex kapcsolódik hozzá &#10140; kaputranszportnál lecserélődik eIF4E & eIF4G-re (melyek transzlációban iniciációs faktorok)</div>
+	  </div>
+	</ul></details>
+	<details class="kerdes 4/8" id="msb.300"><summary>splicing</summary><ul class="normal">
+		<li>a génben vannak &#10140; exonok(fehérjét kódoló <abbr title="nem pontosan igaz, lsád UTR">!?</abbr> szakasz) és intronok(fehérjét NEM kódoló szakasz)</li>
+		<div>UTR = UnTranslated Region &#10140; ez a transzlációnál nem írodik bele a fehérjébe</div><ul>
+			<li>exon 5' végén és 3' végén lévő része (a kettő együtt kiteszi kb az exon felét)</li>
+			<li>ezek nem kódolnak fehérjét, hanem szabályozásban vesznek részt</li><ul>
+				<li>3'UTR funkciója &#10140; mikroRNS-ek kötődnek oda (szvsz pl. transzferrin-receptor esete)</li>
+				<li>5'UTR funkciója &#10140; gátolják a transzláció sebességét (szvsz pl. ferritin esete)</li>
+			</ul>
+		</ul>
+		<li>1 exon a képződő fehérjének 1 domainjét kódolja <abbr title="domaint lásd bővebben bikém">&#10045;</abbr></li>
+		<li><span class="Important">fontos, hogy pontosan történjen a kivágás &#10140; ugyanis ha 1 aminosavval arréb lesz, akkor az összes aminosav más lesz onnantól, mint ami kéne</span> <abbr title="nem pontosan értem, hisz max akkor, ha arra van értve, hogy a 3' végénél elcsúszva 1el, a következő exon lesz elcseszve teljesen, de utána ha jó a következő intron, akkor szvsz nincs gond.(mind1 ennyire ne menjek bele)">&#10045;</abbr> &#10140; inkább 3 aminosavval legyen elvétve, mint 1el (hisz akkor 1aminosav marad csak ki, de a többi jó lesz)</li>
+		<li><span class="Important">3 konszenzus szekvencia van &#10140; két hasítási (3' és 5') és egy elágazási</span></li>
+		<li><span class="Important">ezen szekvenciák felismerését tehát nagyon pontosan kell elvégezni &#10140; ezt a funkciót (felismerést) nem is fehérjék, hanem RNS-ek végzik &#10140; bázispárosodással ismerik fel</span></li>
+		<li><span class="Important">ugyanis az snRNP(RiboNukleoProtein) áll egyrészt RNS-ből illetve fehérjéből, és az RNS része végzi a fő feladatot, a szekvencia felismerését</span></li>
+		<li><span class="Important">5féle snRNP vesz részt benne &#10140; U1-U6 snRNP, de U3-as nincs</span></li>
+	  <hr><strong>folyamat lényege</strong><div>
+		<img style="max-width:30%" src="images/splsmblsjb.png">
+		<li>RNS-polimeráz II szintetizál és a képződő hnRNS-en van egy exon(világos) és utána intron(sötét)</li>
+		<li>intronon megjelenő 5' hasítási szekvencia miután megjelenik, ráveti magát az U1-snRNP</li>
+		<li>később az intronon megjelenő elágazási szekvencia miután megjelenik, ráveti magát az U2-snRNP &#10140; ott a bázispárosodásnál kilóg egy Adenin <img class="mini" src="images/adnnnklg.png"></li>
+		<li>majd az intronon megjelenő 3' hasítási szekvencia is megjelenik, és ráveti magát az U5-snRNP</li>
+		<li>ezután az U4 és U6 is hozzájuk kapcsolódik és létrehoznak egy komplexet &#10140; ún. splicesoma-t</li>
+		<li>következő lépések a "splicesoma belsejében" történnek <img class="mini" src="images/splsmblsjb.png"></li><ul>
+			<li>kilógó Adenozinnek a <abbr title="tehát az adeninhez kapcsolódó &beta;-D-ribofuranózon van ez">2' -OH csoportját</abbr> felhasználja a splicesoma</li>
+			<li>ezzel felbontja az intron 5' vége és exon 3' vége közti foszfodiészter kötést <abbr title="x+alkohol">(alkoholízissel!)</abbr>, <img class="mini" src="images/lclhlnztm.png"> és az intron 5' végét átkapcsolja az Adenozinhoz (kép!!!)</li>
+			<li>ezután ismét alkoholízissel az exon 3' -OH csoportjára kicseréli az intron 3' -OH csoportját &#10140; így kötődik a másik exon 5' végéhez</li>
+			<li>az így képződött "intron-struktúra" neve a lasszó</li>
+		</ul>
+	  </div>
 	</ul></details>
 <!----></div></details>
 
 <!----><details><summary class="phase">#7 Az eukarióta géneszpresszió transzkripciót követő lépéseinek szabályozása.</summary><div><div class="title"> </div>
-	<details open class="kerdes 4/19" id="msb.163"><summary><strong>Az eukarióta géneszpresszió transzkripciót követő lépéseinek szabályozása.</strong></summary><ul class="normal">
-		<div style="float:right;max-width:30%">
-			<img src="images/ktprsnzptr.png">
-		</div>
-	  <strong>kaputranszport = magpórusokon való átjutás</strong>
+	<details class="kerdes 5/2" id="msb.163"><summary><strong>Az eukarióta géneszpresszió transzkripciót követő lépéseinek szabályozása.</strong></summary><ul class="normal">
+		alábbiak kerülnek bemutatásra:
+		<li>kaputranszport</li>
+		<li>alternatív-splicing</li>
+		<li>alternatív-poliA hely</li>
+		<li>RNS-editing</li>
+	</ul></details>
+	<details class="kerdes 4/5" id="msb.301"><summary>kaputranszport</summary><ul class="normal">
+		<img style="max-width:30%" src="images/ktprsnzptr.png">
 		<li>szabályozott &#10140; RAN nevű fehérje szabályozza</li>
 		<li>energiaigényes &#10140; GTP hidrolizíse GDP-re</li>
-		<li>mRNS-nek ezen kell átjutni</li><ul>
+		<li>mRNS-nek a <strong>magpóruson</strong> kell átjutni</li><ul>
 			<li>csak sejtmagból citoszolba mehet (visszafele nem)</li>
 			<li>mRNS-et fehérjék borítják be (pl. poliA-kötő-fehérjék, hnRNP-k)</li>
 			<li>ezek a fehérjék jelentős része leválik róla az export során, és benntmarad a magban &#10140; helyettük másfajta fehérjék borítják majd be az mRNS-t a citoszolban</li>
-			<li>pl. az 5' sapkán lévő fehérjék helyett az eIF4E és eIF4G lesz már</li>
+			<li>pl. az 5' sapkán lévő sapkakötő-komplex helyett az eIF4E és eIF4G lesz már</li>
 		</ul>
-		<li>lényege</li><ul>
+		<li>lényege &#10140; alábbi lépés ismétlődik többször</li><ul>
 			<li>mRNS-en lévő fehérjék között van amelyiken van <abbr title="nuclear export signal">NES</abbr></li>
 			<li>ezt a RAN-GTP felismeri, és hozzákötődik, majd átviszi a magpóruson(+mRNS egy részét is így), és ott a GTP-t hidrolizálja GDP-re</li>
-			<li>több ilyen lépésben megy végbe</li>
 		</ul>
 		<div><span class="vocab"><strong>§</strong></span> magpóruson fehérjék is képesek hasonlóan átjutni (ezek nemcsak ki, hanem be is juthatnak a magba)</div>
-		<div style="float:right;max-width:30%">
-			<img src="images/hshtlhszblyzs.png">
-		</div>
-	  <hr><strong>alternatív-splicing</strong>
+	</ul></details>
+	<details class="kerdes 4/5" id="msb.302"><summary>alternatív-splicing</summary><ul class="normal">
+	  <strong>lényege</strong>
+		<img style="max-width:30%" src="images/hshtlhszblyzs.png">
 		<li>két dolog történhet</li><ul>
-			<li>exon kivágódik, és így az nem lesz már benne a fehérjében (előtte lévő 3' hasítási szignál, és utána következő 5' hasítási szignált kihagyják, így 2intronnal együtt kivágódik)</li>
-			<li>intron bennmarad, és így benne lesz a fehérjében az is (alacsony a hasítási szignálhoz "való affinitása az snRNP-nek")</li>
+			<li>exon kivágódik &#10140; <strong>NEM</strong> lesz benne a fehérjében <abbr title="előtte lévő 3' hasítási szignál, és utána következő 5' hasítási szignált kihagyják, így 2intronnal együtt kivágódik">§</abbr></li>
+			<li>intron bennmarad &#10140; benne lesz a fehérjében az is <abbr title="alacsony a hasítási szignálhoz 'való affinitása az snRNP-nek'">'</abbr></li>
 		</ul>
 		<li>szövetspecifikus &#10140; attól függ, hogy az egyes szakaszt exonnak/intronnak tekinti-e a sejt, hogy milyen szövetben van</li>
 		<li>pl. a tropomiozin nevű fehérje harántcsíkolt izomszövetben és hepatocitákban nagyon más</li><ul>
 			<li>ugyanis harántcsikolt izomban az összes exon bennmarad (kivéve a 2es) &#10140; "nagy a fehérje"</li>
 			<li>míg hepatocitákban csak 6db exonból készül fel, az összes többi kivágódik (intronnak tekintik)</li>
 		</ul>
-		<li>az intronok kivágását a splicesome végzi (lásd 17.tétel)</li>
-		<strong>splicing szabályozása</strong>
-		<li>sejt szabályozza hogy adott intron kivágódjon-e vagy ne <abbr title="szvsz nyilván exon kivágásét is lehet">&#10045;</abbr></li>
-		<li>negatív &#10140; intron 1 vagy mindkét hasítási helyét (akceptor & donor) helyét egy represszor fehérje eltakarja &#10140; kivágást gátolja (<i>vagy éppen emiatt kivágódik az exon (+ 2intron egy lépéseben)!!</i>)</li>
+		<li>az intronok kivágását a splicesome végzi <abbr title="6 Az eukarióta mRNS érése">/lásd/</abbr></li>
+	  <hr><strong>szabályozása</strong>
+		<li>sejt szabályozza hogy adott intron kivágódjon-e vagy ne <abbr title="szvsz nyilván exon kivágásét is lehet">§</abbr></li>
+		<li>negatív &#10140; intron 1 vagy mindkét hasítási helyét (akceptor & donor) helyét egy represszor fehérje eltakarja &#10140; kivágást gátolja <abbr title="szvsz vagy éppen emiatt kivágódik az exon (+ 2intron egy lépéseben)!! (ahogy az exon kivágódik példánál le lett írva)">§</abbr></li>
 		<li>pozitív &#10140; <abbr title="nem ismeri fel a szekvenciát">ilyenkor alapból a hasítási helyhez nem tud kötődni az snRNP</abbr> &#10140; azonban aktivátor fehérje hozzákötődése után már képes lesz &#10140; intron kivágódik</li>
 		<li>tehát a represszor / aktivátor fehérje termelődésétől függ, hogy mi lesz (amit a sejt szabályozhat)</li>
-	  <hr><strong>alternatív-poliA hely</strong>
-		<div style="float:right;max-width:15%">
-			<img src="images/ltrntlkplrk.png">
-		</div>
-		<li>adott génben legalább két AA<abbr title="UAA egyben STOP kodon is transzlációnál!!">UAA</abbr>A(poliadenilációs és egyben terminációs szekvencia!) van</li>
-		<li><span class="Vocab">R</span> sejt kihagyhatja az egyiket pl. kép</li><ul>
-			<li>bal oldali esetében kihagyta az elsőt &#10140; intron kivágódott &#10140; utolsó exonja a "halványkék" &#10140; hidrofób lett a fehérje</li>
-			<li>jobb oldali esetében az elsőnél megállt &#10140; intron nem vágódott ki &#10140; utolsó exonja az intron "fele" &#10140; hidrofil lett a fehérje</li>
+	</ul></details>
+	<details class="kerdes 4/3" id="msb.303"><summary>alternatív-poliA hely</summary><ul class="normal">
+		<li>ha adott génben legalább két AA<abbr title="UAA egyben STOP kodon is transzlációnál!!">UAA</abbr>A(poliadenilációs és egyben terminációs szekvencia!) van</li>
+		<li><span class="important">RAJZ</span>  akkor sejt kihagyhatja az egyiket</li><ul>
+			<li>bal oldali esetében kihagyta az elsőt &#10140; intron kivágódott &#10140; utolsó exonja a "halványkék" &#10140; hidrofób lett a fehérje (C-terminálisa)</li>
+			<li>jobb oldali esetében az elsőnél megállt &#10140; intron nem vágódott ki &#10140; utolsó exonja az intron "fele" &#10140; hidrofil lett a fehérje (C-terminálisa)</li>
 		</ul>
-	  <hr><strong>RNS-editing</strong>
-		<div style="float:right;max-width:30%">
-			<img src="images/xdtvdzmnls.png">
-		</div>
+		<img src="images/ltrntlkplrk.png">
+	</ul></details>
+	<details class="kerdes 4/3" id="msb.304"><summary>RNS-editing</summary><ul class="normal">
 		<li><span class="Vocab">R</span> egy gén 2 fehérjét kódol &#10140; Apo B-48 és Apo B-100</li>
 		<li>az érett mRNS teljesen ugyanúgy néz ki, és ki jut a citoplazmába</li>
 		<li>májban itt nem is történik vele semmi és elkészül transzlációval az Apo B-100</li>
 		<li>bélben azonban a 48%-nál (5'-3' irányba!!) lévő CAA nevű szekvenciában lévő Citozin <span class="Vocab">R</span> oxidatív_dezaminálása lesz</li>
 		<li>így UAA lesz belőle, ami már egy STOP-kodon, tehát a transzláció ott fog befejeződni</li>
+		<img src="images/xdtvdzmnls.png">
 	</ul></details>
 <!----></div></details>
 
@@ -1802,7 +1722,7 @@
 			<li>ebben akár több <abbr title="hajtű-szerkezet">hairpin</abbr> is található (illetve van 5'sapka, 3'poliA-farok is)</li>
 			<li>ebből a Drosha(endoribonukleáz) kihasítja a hairpin-eket &#10140; így keletkezik kb. 70bázisból álló pre-mikroRNS (annyi, ahány hairpin volt, képen pl.3)</li>
 			<li>ezután sejtmagból kijut a citoplazmába (exportin-5(fehérje) + Ran-GTP)</li>
-			<li>itt a Dicer(endoribonukleáz) hozza létre(eltávolításra kerül a terminális hurok) a 20-25bp hosszú, de még kétszálú mikroRNS-t</li>
+			<li>itt a Dicer(endoribonukleáz) hozza létre(eltávolításra kerül a hurok) a 20-25bp hosszú, de még kétszálú mikroRNS-t</li>
 		</ul>
 	  <hr>
 		<li>megjegyzés &#10140; siRNS is hasonlóképpen jön létre és funkcionál &#10140; különbségek</li><ul>
@@ -1888,7 +1808,7 @@
 		<li><span class="Important">hiszton-acetil-transzferáz</span> aktivitással rendelkező koaktivátor &#10140; <span class="Important">az acetil-CoA-ról viszi át az acetil-csoportot a Lys-re</span> &#10140; kromatin fellazul &#10140; serkenti transzkripciót</li><ul>
 			<div>kromatin fellazul & transzkripciót serkenti ugyanis...</div><div>
 				<li>egyrészt az <span class="Important">acetilált Lys már nem pozitív töltésű</span><abbr title="azaz megszűnik bázikus karaktere">'</abbr>, és így már nem képes a negatív töltésű<abbr title="savas karakterű">'</abbr> foszfátcsoporthoz kötődni &#10140; csökken az elektrosztatikus kölcsönhatás a DNS és hisztonok között <img class="mini" src="images/hstnlcctlz.png"></li>
-				<li>másrészt az <span class="Important">acetilált lizinhez ún. bromodomén kapcsolódik</span> &#10140; ez lehetővé teszi hogy kromatin-ATPázok kötődjenek hozzá &#10140; utóbbiak pedig energiafelhasználással elcsúsztatják a hiszton oktamereket, és így szabaddá válik a core_promoter &#10140; <abbr title="hisz ez az első kötődő áTF">TFIID</abbr> bekötődik</li>
+				<li>másrészt az <span class="Important">acetilált lizinhez ún. kromatinfellazító komplex kapcsolódik</span> &#10140;  energiafelhasználással elcsúsztatják a hiszton oktamereket, és így szabaddá válik a core_promoter &#10140; <abbr title="hisz ez az első kötődő áTF">TFIID</abbr> bekötődik</li>
 			</div>
 		</ul>
 		<li><span class="Important">hiszton-deacetiláz</span> aktivitással rendelkező korepresszor ennek ellentetjét teszi &#10140; acetil-csoportot leszedi a Lys-ről &#10140; kromatin kondenzálódik &#10140; gátolja transzkripciót</li>
