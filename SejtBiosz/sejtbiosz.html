@@ -22,6 +22,7 @@
 	<input type="button" class="MISS" style="border: 3px solid black;" onclick="func_spanClick(this)" id="cont_RepFast" value="0">
 	&nbsp; &nbsp;
 	<!--<input type="checkbox" id="checkbox_RepNew">--><span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="cont_RepNew"></span><span class="VOCAB" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="cont_RepOld"></span>
+	<input id="btn_repTable" onclick="func_repTableToggle();" type="button" value="&#10045;">
 	&nbsp; &nbsp;
 	<span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Date"></span><span class="vocab" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Jegy"></span><span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Repeat"></span>
 	<span style="position:absolute; left:32%;">
@@ -34,11 +35,11 @@
 			<option value="100">100</option>
 		</select> &nbsp; 
 		<input style="border: 3px solid black;" id="btn_Note" onclick="toggleNote();" type="button" value="&#10045;"> &nbsp; &nbsp;
-		<select id="jegy"><option value=""></option><option style="background-color:red" value="0"> </option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; 
+		<select id="jegy"><option value="empty"></option><option style="background-color:red" value="0"> </option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; 
 		<span class="white" id="pJegy" style="font-weight:bold; padding-left:3px; padding-right:3px;">&nbsp; </span> &nbsp; &nbsp;
 		<input onclick="koviKerdes();" type="button" value=" ► ">
 	</span>
-	<span style="position:fixed; right:0px; top:50px;">
+	<span style="position:absolute; right:0px;">
 		<span class="white" id="rank">&nbsp; (rank)</span>
 		<select id="skip"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="5">5</option><option value="10">10</option><option value="20">20</option></select> 
 		<span id="repeat" class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;">&nbsp; &nbsp; &nbsp;</span>
@@ -46,11 +47,53 @@
 		<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_skip" value="0">
 	</span>
 	<center><textarea style="display:none; position:fixed; left: 40%; top: 70%;" id="note" rows="4" cols="40"></textarea></center>
+
+	<table id="repTable" style="display:none; position:fixed; left: 40%; top: 30%;"><tr><th>repeat</th> <th>min</th> <th>left</th> <th>still</th> <th>average</th></tr>
+		<tr><th>0</th>
+			<td id="0min">20</td>
+			<td id="0left"></td>
+			<td id="0still"></td>
+			<td id="0average"></td>
+		</tr>
+		<tr><th>1</th>
+			<td id="1min">60</td>
+			<td id="1left"></td>
+			<td id="1still"></td>
+			<td id="1average"></td>
+		</tr>
+		<tr><th>2</th>
+			<td id="2min">500</td>
+			<td id="2left"></td>
+			<td id="2still"></td>
+			<td id="2average"></td>
+		</tr>
+		<tr><th>3</th>
+			<td id="3min">1000</td>
+			<td id="3left"></td>
+			<td id="3still"></td>
+			<td id="3average"></td>
+		</tr>
+		<tr><th>4</th>
+			<td id="4min">2000</td>
+			<td id="4left"></td>
+			<td id="4still"></td>
+			<td id="4average"></td>
+		</tr>
+		<tr><th>5</th>
+			<td id="5min">5000</td>
+			<td id="5left"></td>
+			<td id="5still"></td>
+			<td id="5average"></td>
+		</tr>
+	</table>
 	
 	<div style="font-weight: bold;font-size: large;" id="questTitle"></div>
 	<div id="kerdeslocation"></div>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
+
+
+
 
 
 <!--<table style="border-collapse:separate; border-spacing:0px 0px;">
@@ -1310,46 +1353,46 @@
 <!----></div></details>
 
 <!----><details><summary class="phase">#2 Az RNS típusai, a különböző RNS-ek funkciója. Az rRNS és a tRNS szintézise.</summary><div><div class="title"> </div>
-	<details class="kerdes 4/10" id="msb.126"><summary><strong>Az RNS típusai, a különböző RNS-ek funkciója</strong>. Az rRNS és a tRNS szintézise</summary><ul class="normal">
+	<details class="kerdes 4/5" id="msb.126"><summary><strong>Az RNS típusai, a különböző RNS-ek funkciója</strong>. Az rRNS és a tRNS szintézise</summary><ul class="normal">
 		<li>csoportosításuk</li><ul>
 			<li>kódoló &#10140; mRNS</li>
 			<li>nem kódoló &#10140; összes többi</li>
 		</ul>
 	  <hr>
-		<li>hnRNS(heterogén nukleáris RNS) = pre-mRNS <abbr title="poliadeniláció + splicing + 5'sapka">&#10140;</abbr> mRNS</li><ul>
-			<li>genetikai információt (fehérje aminosav-sorrendje) szállít DNS-től a riboszómákhoz</li>
-		</ul>
-		<li>tRNS &#10140; transzláció adaptere: bázishármasokat lefordítja aminosavra</li>
+		<li><abbr title="heterogén nukleáris">hn</abbr>RNS<abbr title="= pre-mRNS">'</abbr> <abbr title="poliadeniláció + splicing + 5'sapka">--></abbr> mRNS&#10140; genetikai információt (fehérje aminosav-sorrendje) szállít DNS-től a riboszómákhoz</li>
+		<li>tRNS &#10140; transzláció<abbr title="a ténylegest nem ez végzi /lásd erre vonatkozó tételben/">'</abbr> (bázishármasok lefordítása aminosavra)</li>
 		<li>rRNS &#10140; riboszóma felépítésében vesznek részt</li>
-		<li><abbr title="small nuclear">sn</abbr>RNS &#10140; splicing <abbr title="Az eukarióta mRNS érése.">(lásd)</abbr></li>
-		<li><abbr title="small nucleOLar">sno</abbr>RNS &#10140; ezek más RNS-eket módosítanak, pl. rRNS-ek érését végzik, pszeudouridint építenek be tRNS</li>
 		<li>telomeráz-RNS &#10140; telomeráz alkotója, mely telomer "pótlását" végzi</li>
 		<li>mikroRNS <abbr title="A mikroRNSek képződése és szabályozó mechanizmusaik eukarióta sejtekben">(lásd)</abbr></li>
-		<li>siRNS &#10140; <span class="MISS">kidolgozás alatt</span> (ÁV.422) <abbr title="http://elte.prompt.hu/sites/default/files/tananyagok/ABiokemiaEsMolekularisBiologiaAlapjai/ch18s05.html">+</abbr></li>
-		<li>scRNS &#10140; szekretálódó fehérjéket szintetizáló riboszómákat irányítják az ER-hez</li>
-		<li>antiszensz RNS-ek &#10140; génexpresszió gátlása</li>
+		<li>siRNS <abbr title="A mikroRNSek képződése és szabályozó mechanizmusaik eukarióta sejtekben">(lásd)</abbr></li>
 		<li>XIST RNS &#10140; nőkben van, inaktívvá teszi az egyik X-kromoszómát</li>
 		<li>mitokondriális tRNS(22féle) & rRNS(2féle)</li>
-		<img src="images/rbszmrszkt.png">
+		<li><abbr title="small nuclear">sn</abbr>RNS &#10140; splicing <abbr title="Az eukarióta mRNS érése.">(lásd)</abbr></li>
+		<li><abbr title="small nucleOLar">sno</abbr>RNS &#10140; ezek más RNS-eket módosítanak, pl. rRNS-ek érését végzik, pszeudouridint építenek be tRNS</li>
+		<li>scRNS &#10140; szekretálódó fehérjéket szintetizáló riboszómákat irányítják az ER-hez</li>
+		<li>antiszensz RNS-ek &#10140; génexpresszió gátlása</li>
 	</ul></details>
-	<br><details class="kerdes 4/6" id="msb.127"><summary>Az RNS típusai, a különböző RNS-ek funkciója. <strong>Az rRNS és a tRNS szintézise</strong></summary><ul class="normal">
+	<br><details class="kerdes 4/5" id="msb.127"><summary>Az RNS típusai, a különböző RNS-ek funkciója. <strong>Az rRNS és a tRNS szintézise</strong></summary><ul class="normal">
 		<img src="images/rnssstrns.png">
 	  <div><strong>prokariótáknál pl. E.coli</strong></div>
-		<li>egy ún. elsődleges_transzkriptum (1lánc) kódol egyaránt rRNS-eket és tRNS-eket is <abbr title="ezeket elválasztó szakaszok 'spacer'-eknek nevezik">()</abbr></li>
-		<li>ezután az RNS-ek kimetszésre kerülnek <abbr title="ribonukleázok">RNázok</abbr> által</li>
+		<li>az ún. <strong>elsődleges_transzkriptum</strong> (1lánc) kódol egyaránt rRNS-eket és tRNS-eket is <abbr title="ezeket elválasztó szakaszok 'spacer'-eknek nevezik">'</abbr></li>
+		<li>ebből az RNS-ek kimetszésre kerülnek <abbr title="ribonukleázok">RNázok</abbr> által</li>
 		<li>pl. tRNS esetében</li><ul>
-			<li><abbr title="Ribonukleáz P (pl. van Ribuonukleáz A is, lásd bikém I. Anfinsen-kísérlet)">RNázP</abbr> kivágja a tRNS-t</li>
+			<li><abbr title="Ribonukleáz P (pl. van Ribuonukleáz A is, lásd bikém I. Anfinsen-kísérlet)"><strong>RNázP</strong></abbr> kivágja a tRNS-t</li>
 			<li>azonban 3' végén még marad néhány fölös nukleotid</li>
-			<li>azokat az RNázD fogja fokozatosan lemetszeni</li>
-			<li>végül tRNS-nukleotidil-transzferáz tesz a 3' végére CCA nukleotidokat</li>
-			<li>ezután (ez már tutti poszt-transzkripciós módosítás) még számos nukleotid/bázis módosítás történik &#10140; pl. metilálódik az uracil 5.C-je és lesz belőle 5metil-uridin, vagy a ribóz 2hidroxilcsoportja metilálódik /// illetve van még pl. pszeudouridin nevű nukleozid is <img class="mini" src="images/psdridn.png"></li>
-			<div><span class="vocab"><strong>§</strong></span> a tRNS az 5' végén foszforilált, 3'végén nem <abbr title="ez nem csak erre igaz, hanem inkább általános">&#10045;</abbr></div>
+			<li>azokat az <strong>RNázD</strong> fogja fokozatosan lemetszeni</li>
+			<li>végül <strong>tRNS-nukleotidil-transzferáz</strong> tesz a <strong>3' végére CCA</strong> nukleotidokat</li>
+			<li>ezután <abbr title="ez már tutti poszt-transzkripciós módosítás">'</abbr> még számos nukleotid/bázis módosítás történik</li><ul>
+				<li>pl. metilálódik Guanin,Adenin,Citozin,Uracil <abbr title="lásd 'tRNS szerkezete' tétel">/lásd/</abbr></li>
+				<li>az Uracilnek az 5.C-je metilálódik és így ún. <abbr title="timinnek neveztem 'tRNS szerkezete' tételben (az is jó, de a timidin már nem, mert a pentóz más)">5metil-uridin</abbr> lesz belőle</li>
+			</ul>
+			<div><span class="vocab"><strong>§</strong></span> a tRNS az 5' végén foszforilált, 3'végén nem <abbr title="ez nem csak erre igaz, hanem inkább általános">'</abbr></div>
 		</ul>
 	  <hr><div><strong>eukariótáknál</strong></div>
 		<li>RNS polimeráz I szintetizálja az rRNS alegységeket</li>
 		<li>RNS polimeráz III szintetizálja a tRNS-eket</li>
 	  <hr><div><strong>eukarióták miktokondriuma</strong></div>
-		<li>itt is szintetizálódik <i>szvsz hasonlóképpen, mint prokariótáknál</i> 22fajta tRNS, és 2fajta rRNS</li>
+		<li>itt is szintetizálódik <abbr title="szvsz hasonlóképpen, mint prokariótáknál">'</abbr> 22fajta tRNS, és 2fajta rRNS</li>
 	</ul></details>
 <!----></div></details>
 
@@ -1609,7 +1652,7 @@
 			<li>guanilil-transzferáz &#10140; <span class="Important">GTP-ről levesz 2 foszfátcsoportot</span>(&beta; & &gamma;) &#10140; a GMP hozzákapcsolódik az ADP-he</li>
 			<li>metil-transzferáz &#10140; a <abbr title="S-adenozil-metionin">SAM</abbr>-ról fog <span class="Important"> metilcsoportot rátenni &#10140; Guaninra, illetve Adeninra, ezenkívül még 1-2 nukleotidra</span> (1 SAM-ról csak egyet tud, tehát több SAM kell)</li>
 		</ul>
-		<li>ezen lépéseket az ún. capping-enzimek végzik</li>
+		<li>ezen lépéseket az ún. <span class="Important">capping-enzimek</span> végzik</li>
 	  </div>
 	  <hr><strong>funkciói</strong><div>
 		<li>citoplazma tele van exonukleázokkal</li>
@@ -1784,16 +1827,15 @@
 		</ul>
 	  <hr><u>1pl de novo MT-ék működésére</u> &#10140; <span class="Important">X kromoszóma inaktiváció</span>
 		<li>a megtermékenyített petesejt amennyiben "női", tehát 23. kromoszómája XX, akkor abból az egyik inaktiválódik</li>
-		<li>ebben XIST RNS játszik fontos szerepet</li>
-		<li>inakvitálódás &#10140; XIST nevű RNS hozzákötődik</li>
-		<li>innan mindkét irányba végig metilálja az <span class="idk">összes</span> citozint a DNMT3b &#10140; ennek következtében a fehérjéken keresztül hiszton-deacetiláz is odakerül &#10140; kondenzálódik a kromatin</li>
+		<li>XIST nevű RNS hozzákötődik az inaktiválandó X kromoszómához</li>
+		<li>innan mindkét irányba végig metilálja az <span class="idk">összes</span> citozint a <strong>DNMT3b</strong> &#10140; ennek következtében a fehérjéken keresztül hiszton-deacetiláz is odakerül &#10140; kondenzálódik a kromatin</li>
 	  <hr><u>(CpG-dinukleotidok a mutációs forrópontok)</u>
 		<li>A citozin spontán oxidatív_dezaminációval uracillá alakul. Ez a labilitás a metilált citozinra is érvényes, de ebben az esetben nem uracil, hanem timin lesz az eredmény. Vagyis CpG-dinukleotidból TpG-dinukleotid lesz, <abbr title="ugyanis gondolom nem tudja megkölönböztetni, melyik szál a jó">s ez már a DNS-szekvencia megváltozását, azaz mutációját jelenti</abbr>. Mutációs adatbázisok elemzése kimutatta, hogy számos betegség esetében a CpG-dinukleotidok a mutációs forrópontok</li>
 		<li>Úgy tűnik, hogy egy hosszabb evolúciós időintervallumot tekintve a CpG-gyakoriság lassan, de fokozatosan csökken az állandó CpG→TpG átalakulásnak köszönhetően. Ugyanis a humán genom, 42%-át alkotja Guanin és Citozin &#10140; tehát a CpG elvileg <abbr title="hisz 21% esélye, hogy Citozin van, majd 21% esély, hogy utána Guanin">0.21 * 0.21 = 4.41%</abbr>-át kéne kitedje a genomnak. Azonban a valóságban csak 1%-át teszi ki.</li>
 		<li>Annak ellenére, hogy a gerincesek genomjának CpG gyakorisága kicsi, vannak olyan rövid, nem-metilált DNS-szakaszok, amelyeknek CpG-gyakorisága megfelel a várt értéknek. Ezek az ún. CpG-szigetek, amelyek CG gazdagok és gyakran a gének 5’ végén található több száz nukleotidnyi szakaszokon fordulnak elő</li>
 	  </div>
 	</ul></details>
-	<details class="kerdes 4/6" id="msb.276"><summary>DNS metiláció és <strong>hiszton módosítások</strong> jelentősége eukariótákban.</summary><ul class="normal">
+	<details class="kerdes 4/7" id="msb.276"><summary>DNS metiláció és <strong>hiszton módosítások</strong> jelentősége eukariótákban.</summary><ul class="normal">
 	  <div class="title">hisztonok</div>
 		<img style="max-width:20%" src="images/hsztnmst.png">
 		<li>egy nukleoszómát 4fajta <strong>core</strong> hiszton alkot, mindegyikből kettő van egy nukleoszómában &#10140; H2A,H2B,H3,H4</li>
@@ -1820,10 +1862,6 @@
 		<li>ezek funkciója nem ilyen "egyszerűen egységes", mint az acetilációé (tehát pl. foszforiláció serkenthet és gátolhat is génexpressziót stb.) &#10140; ezért az alábbiakat (+táblázat) elég tudni róluk</li>
 		<li>hiszton-kináz nevű koaktivátor végzi az egyes Ser/Thr aminosavakat foszforilálását</li>
 		<li>ubikvitináció &#10140; C-terminális részen történik &#10140; <abbr title="csak azoknak van C-terminális része">tehát</abbr> H2A és H2B hisztonokat érint</li>
-	  <hr><div class="title"><span class="MISS"><font style="color:red;font-weight:bold;">FIX !!!</font></span></div>
-		<li>ÁV &#10140; A szignálspecifikus transzkripciós faktorokhoz kapcsolódó fehérjekomplexek gyakran tartalmaznak HAT- vagy éppen HDAC-aktivitást attól függően, hogy transzkripciós aktiválás (ebben az esetben HAT) vagy gátlás (ebben HDAC) a funkciójuk (14-15. ábra). Erre mutatunk példát a 18. fejezetben a magreceptorok működésének bemutatása kapcsán.</li>
-		<li>II/11-12.tételben volt ilyen koaktiávor/korepresszor &#10140; ezért anno az II/5.tételben látható módon dolgoztam ki a hiszton módosítást</li>
-		<li>csekkoljam a ÁV.18.fejezet + II/11-12 (+ esetleg Jegyzetben a magi receptorokat), hogy konkrétan világos legyen miről van szó</li>
 	</ul></details>
 <!----></div></details>
 
@@ -2275,7 +2313,7 @@
 		<li>tRNS + aminosav + ATP &#10140; aminocail-tRNS + AMP</li>
 		<li>első lépés</li><ul>
 			<li>az aminosav és ATP egymáshoz kapcsolódik a következőképpen</li>
-			<li>aminosav + ATP &#10140; <abbr title="<i>így szállítódik az enzimben</i>">aminoacil-AMP</abbr> + PP</li>
+			<li>aminosav + ATP &#10140; <abbr title="<i>így szállítódik az enzimben</i>">aminoacil-AMP</abbr> <abbr title="+ PP (de ezt nem néztem meg pontosan hogy van)">'</abbr></li>
 		</ul>
 		<li>második lépés &#10140; az aminosav &alpha;-karboxilcsoportja és a <abbr title="CCA-ban lévő Adenin">tRNS 3' végen lévő Adenin</abbr> ribózának 2' vagy 3' hidroxilcsoportja között jön létre <strong>makroerg észterkötés</strong></li>
 	  </div>
@@ -2297,7 +2335,7 @@
 	<details class="kerdes 4/1" id="msb.317"><summary style="color:MediumBlue">tRNS mit rövidít</summary><ul class="normal">
 		<li>transzfer RNS</li>
 	</ul></details>
-	<details class="kerdes 4/3" id="msb.294"><summary style="color:MediumBlue">"DNS két szála - transzkripció melyről - sarlósejtes anémia"</summary><ul class="normal">
+	<details class="kerdes 4/2" id="msb.294"><summary style="color:MediumBlue">"DNS két szála - transzkripció melyről - sarlósejtes anémia"</summary><ul class="normal">
 		<img style="max-width:30%" src="images/trnsztkr.png">
 		<li>két antiparalell szálból tevődik ki &#10140; ugyanazt az információt hordozzák, de bázissorendjük eltér <abbr title="tehát ha egyik szálat leolvasom pl. 5'-3' irányba akkor a másik szálat tökmind1 milyen irányba olvasom le, nem kapom meg ugyanazt &#10140; tehát ha egyik szálon rajta van az mRNS-kód, attól még a másikon nincs (legalábbis nem feltétlen)">&#10045;</abbr></li><ul>
 			<li><abbr title="pozitív_kódoló_szál">kódoló_szál</abbr></li>
@@ -2324,22 +2362,24 @@
 <!----></div></details>
 
 <!----><details><summary class="phase">#2 A prokarióta és az eukarióta riboszómák szerkezete, a riboszóma ciklus, a tRNS kötődése a riboszómákhoz a transzláció során.</summary><div><div class="title"> </div>
-	<details open class="kerdes 4/9" id="msb.195"><summary><strong>A prokarióta és az eukarióta riboszómák szerkezete, a riboszóma ciklus, a tRNS kötődése a riboszómákhoz a transzláció során</strong></summary><ul class="normal">
+	<details open class="kerdes 4/8" id="msb.195"><summary><strong>A prokarióta és az eukarióta riboszómák szerkezete, a riboszóma ciklus, a tRNS kötődése a riboszómákhoz a transzláció során</strong></summary><ul class="normal">
 		<div style="float:right;max-width:30%"><img src="images/23_prkrktkrk.png"></div>
-		<li>riboszóma rRNS-ekből és fehérjékből tevődik össze</li>
-		<li>szintézisük a nucle<strong>ol</strong>usban zajlik &#10140; ott szintetizálódó rRNS-ből, illetve a citoplazmában szintetizálódott majd magtranszporttal bejutott fehérjékből készülnek el</li>
-		<li>ezenkívül két alegységre bontható &#10140; <strong>eukariótákban</strong> ezek építik fel</li><ul>
-			<li><span class="WHITE">40S</span> = kis_alegységet az alábbiak építik fel &#10140; <span class="Important">18S</span> + fehérjék</li>
-			<li><span class="WHITE">60S</span> = nagy_alegységet az alábbiak építik fel &#10140; <span class="Important">5,8S + 28S + 5S</span> + fehérjék</li>
-			<div>kékkel jelölve az rRNS-ek</div>
+		<li>szintézisük a nucle<strong>ol</strong>usban zajlik</li><ul>
+			<li>ott szintetizálódó <strong>rRNS</strong>-ekből...</li>
+			<li>illetve a citoplazmában szintetizálódott majd magtranszporttal bejutott <strong>fehérjékből</strong> készülnek el</li>
 		</ul>
-		<li>riboszóma kis alegységéhez kapcsolódik az mRNS</li>
-		<li>riboszóma nagy alegységben alakulnak ki a peptidkötések</li>
-	  <hr>
-		<li>a két alegység csak a transzláció alatt áll össze, egyébként külön vannak a citoplazmában</li><ul>
+		<li>a két alegységre [kis+nagy] bonthatók &#10140; ezek csak a transzláció alatt állnak össze, egyébként külön vannak a citoplazmában</li><ul>
 			<li>eukariótáknál 40S+60S &#10140; 80S <abbr title="+20al növekednek: 40,60,80">&#10045;</abbr></li>
 			<li>prokariótáknál 30S+50S &#10140; 70S <abbr title="+20al növekednek: 30,50,70">&#10045;</abbr></li>
 		</ul>
+		<li>riboszóma kis alegységéhez kapcsolódik az mRNS</li>
+		<li>riboszóma nagy alegységben alakulnak ki a peptidkötések</li>
+		<li><strong>eukariótákban</strong> az alegységeket ezek építik fel</li><ul>
+			<li><span class="WHITE">40S</span> = kis_alegység &#10140; <span class="Important">18S</span> + fehérjék</li>
+			<li><span class="WHITE">60S</span> = nagy_alegység &#10140; <span class="Important">5,8S + 28S + 5S</span> + fehérjék</li>
+			<div>kékkel jelölve az rRNS-ek</div>
+		</ul>
+	  <hr>
 		<li>mivel szerkezetük némiképp eltérő, antibiotikummal gátolhatók a prokarióták riboszómái &#10140; pl. eritromicin,sztreptomicin,klóramfenikol</li><ul>
 			<li>pl. sztreptomicin &#10140; elongációt gátolja</li>
 			<li>pl. klóramfenikol &#10140; peptidkötés kialakulását gátolja</li>
@@ -2351,16 +2391,20 @@
 			<li>A &#10140; aminoacil-tRNS</li>
 		</ul>
 	  <hr>
-		<span class="MISS">itt még szvsz kell beszélni a 24. 25.tételből is (iniciáció-elongáció-termináció), mert a riboszóma ciklus + tRNS kötődésnél szvsz arról kell</span>
+		<span class="MISS">itt még szvsz kell beszélni ezen</span> <abbr title="A transzláció iniciációs szakasza prokariótákban és eukariótákban. A transzláció szabályozása eukariótákban, az eIF2 faktor foszforilációjának szerepe">'</abbr> <abbr title="transzláció elongációs szakasza prokariótákban és eukariótákban; a transzláció terminálása. A fehérjeszintézis gátlószerei">'</abbr> télekről is (iniciáció-elongáció-termináció), mert a riboszóma ciklus + tRNS kötődésnél szvsz arról kell
 	</ul></details>
 <!----></div></details>
 
 <!----><details><summary class="phase">#3 A transzláció iniciációs szakasza prokariótákban és eukariótákban. A transzláció szabályozása eukariótákban, az eIF2 faktor foszforilációjának szerepe.</summary><div><div class="title"> </div>
-	<details class="kerdes 4/15" id="msb.194"><summary><strong>A transzláció iniciációs szakasza prokariótákban és eukariótákban.</strong> A transzláció szabályozása eukariótákban, az eIF2 faktor foszforilációjának szerepe</summary><ul class="normal">
+	<details class="kerdes 5/2" id="msb.319"><summary><strong>A transzláció iniciációs szakasza prokariótákban és eukariótákban.</strong> A transzláció szabályozása eukariótákban, az eIF2 faktor foszforilációjának szerepe</summary><ul class="normal">
 		<li>csak az iniciáció tér el prokariótákban és eukariótákban, a másik kettő (elongáció+termináció) lényegében megegyezik &#10140; utóbbiakban a fehérje faktorok megnevezése az eltérő</li>
-		<table>
-			<tr><th></th>  <th>prokarióták</th>  <th>eukarióták</th></tr>
-			
+	 <hr>alábbiak kerülnek bemutatásra:
+		<li>transzláció eltérések - 'összefoglaló táblázat'</li>
+		<li>prokarióta - transzláció iniciáció</li>
+		<li>eukarióta - transzláció iniciáció</li>
+	</ul></details>
+	<details class="kerdes 4/4" id="msb.320"><summary>transzláció eltérések - 'összefoglaló táblázat'</summary><ul class="normal">
+		<table><tr><th></th>  <th>prokarióták</th>  <th>eukarióták</th></tr>
 			<tr><th rowspan="2">mRNS</th>
 				<td>többsége policisztronos</td>
 				<td>monocisztronos</td>
@@ -2389,82 +2433,61 @@
 				<td>időben és térben elválasztva zajlik</td>
 			</tr>
 		</table>
-	  <strong>prokarióták</strong>
+	</ul></details>
+	<details class="kerdes 4/5" id="msb.321"><summary>prokarióta - transzláció iniciáció</summary><ul class="normal">
+		<li>iniciáció</li><ul>
+			<li>IF1 és IF3 rajta van a riboszóma kis_alegységén(30S)</li>
+			<li>Shine-Dalgarno-motívumhoz kötődik a kis_alegység a 16S részével</li>
+			<li>[IF2 & f-Met-tRNS & GTP]-'komplex' odaérkezik a kis alegységhez</li><ul>
+				<li>P-helyére bekötődik, az AUG kodonra</li>
+				<li>IF2 a GTP-vel biztosítja az energiát (GDP lesz belőle)</li>
+			</ul>
+			<li>mind3 IF leválik és a nagy alegység(50S) is odacsatlakozik</li>
+			<div>&#10140; továbbiakban már elongáció lesz</div>
+		</ul>
 		<li>Shine-Dalgarno-motívum</li><ul>
 			<li>mRNS-ben a START kodon előtt néhány bázissal egy purin gazdag szakasz</li>
 			<li>ehhez kötődik a kis alegység (30S) &#10140; annak a 16S része</li>
 			<li>policisztronos mRNS-ekben minden start kodont megelőz egy Shine-Dalgarno motívum, így a riboszóma az mRNS belsõ szakaszain is megkezdheti a fehérjék szintézisét</li>
 		</ul>
 		<li>IF1, IF2, IF3</li><ul>
-			<li><span class="WHITE">IF1</span> <span class="WHITE">IF3</span> &#10140; 30S alegységhez kötődnek</li>
-			<li>IF1 &#10140; megakadályozza, hogy a két alegység idő előtt összekapcsolódjon</li>
+			<li><span class="WHITE">IF1</span> & <span class="WHITE">IF3</span> &#10140; 30S alegységhez kötötten vannak</li>
+			<li>IF1 &#10140; megakadályozza, hogy a két alegység idő előtt összekapcsolódjon <abbr title="illetve, hogy az A-helyre bármilyen tRNS bekötődjön, illetve">'</abbr></li>
 			<li>IF3 &#10140; f-Met-tRNS-t a kis alegység P-helyére irányítja</li>
 			<li>IF2 &#10140; GTP-t felhasználva a f-Met-tRNS-t hozzákapcsolja az AUG triplethez</li>
 		</ul>
-		<li>iniciáció</li><ul>
-			<li>IF1 és IF3 rajta van a riboszóma kis_alegységén(30S)</li>
-			<li>Shine-Dalgarno-motívumhoz kötődik a kis_alegység a 16S részével</li>
-			<li>IF2 & f-Met-tRNS együtt odaérkezik és a P-helyre bekötődik az AUG kodonra &#10140; IF2 a GTP-vel biztosítja az energiát (GDP lesz belőle)</li>
-			<li>mind3 IF leválik és a nagy alegység(50S) is odacsatlakozik</li>
-			<div>&#10140; továbbiakban már elongáció lesz</div>
-		</ul>
-	  <strong>eukarióták iniciáció</strong>
+		<iframe src="https://www.youtube.com/embed/KZBljAM6B1s" width="500" height="360" allowfullscreen></iframe>
+	</ul></details>
+	<details class="kerdes 4/4" id="msb.194"><summary>eukarióta - transzláció iniciáció</summary><ul class="normal">
 		<div style="float:right;max-width:30%"><img src="images/24_kplklstg.png"></div>
-		<li>riboszóma kis_alegységéhez(40S) alapból hozzá vannak kapcsolódva egyes eIF-ek <abbr title="egyik könyvbe se írták, hogy van eIF1 és eIF3, bár a videó alapján könnyen elképzelhető hogy van, de nem járok utána">&#10045;</abbr></li>
-		<li>ezután megköti a Met-tRNS-sel komplexet alkotó eIF2 <abbr title="és számos más eIF-t">&#10045;</abbr>, így létrehozva a 43S preiniciációs komplexet</li>
-		<li>ezután a preiniciációs komplex hozzákapcsolódik a 5'sapka-komplexhez</li><ul>
-			<li>egyrészt az 5'sapkát alkotó eIF4-hez</li>
-			<li>másrészt a 7-metil-guanozinhoz</li>
-		</ul>
-		<li>az mRNS cirkularizált &#10140; poliA-farok és 5'sapka-komplex egymáshoz kapcsolódik &#10140; <i>mindkét végén sértetlen marad az mRNS a transzláció során (ribonukleázok nem bontják le stb.)</i></li>
-		<li>ezután a preiniciációs komplex leválik a sapkakomplexről, és egy RNS helikázként funkcionáló eIF segítségével csúszik az mRNS 3’-vége felé</li>
+		<li>riboszóma kis_alegységéhez(40S) hozzákapcsolódik a ezután megköti a [Met-tRNS + eIF2 + GTP]-'komplex' (illetve egyéb eIF-ek) &#10140; létrejön az ún. preiniciációs_komplex(43S) <abbr title="videóban lévő eIF1,3-al ne foglalkozzak, mert bonyolult és nem úgy van">&#10045;</abbr></li>
+		<li>ezután a preiniciációs_komplex(43S) hozzákapcsolódik a 5'sapka-komplexet alkotó eIF4E és eIF4G-hez &#10140; ezáltal hozzákapcsolódik az mRNS-hez, annak 5' végét alkotó 7-metil-guanozinhoz</li>
+		<li>az mRNS cirkularizált &#10140; poliA-farok és 5'sapka-komplex egymáshoz kapcsolódik ún. <abbr title="poliAdenilat-binding-protein">PABP</abbr>-n keresztül</li>
+		<li>ezután a preiniciációs komplex leválik a 5'sapka-komplexről, és egy RNS helikázként funkcionáló eIF segítségével csúszik az mRNS 3’-vége felé</li>
 		<li>így jut el a START kodonig</li><ul>
 			<li>AUG-hoz kapcsolódásának energiáját a (eIF2) GTP hidrolizise GDP-re fedezi</li>
 			<li>közben leválnak róla az eIF-ek &#10140; riboszóma nagy_alegységének kapcsolódásával létrejön a 80S</li>
 		</ul>
 		<div>&#10140; továbbiakban már elongáció lesz</div>
-		<iframe style="float:left" src="https://www.youtube.com/embed/KZBljAM6B1s" width="500" height="360" allowfullscreen></iframe>
 		<iframe src="https://www.youtube.com/embed/qIwrhUrvX-k?ecver=2" width="500" height="360" allowfullscreen></iframe>
 	</ul></details>
-	<details class="kerdes 4/10" id="msb.198"><summary>A transzláció iniciációs szakasza prokariótákban és eukariótákban. <strong>A transzláció szabályozása eukariótákban, az eIF2 faktor foszforilációjának szerepe.</strong></summary><ul class="normal">
+	<details class="kerdes 4/6" id="msb.198"><summary>A transzláció iniciációs szakasza prokariótákban és eukariótákban. <strong>A transzláció szabályozása eukariótákban, az eIF2 faktor foszforilációjának szerepe.</strong></summary><ul class="normal">
 		<div style="float:right;max-width:30%">
 			<img src="images/24_ejcklpmlx.png">
-			<img src="images/vstrnszfrn.png">
-			<img src="images/24_vstrfrrnt.png">
 			<img src="images/24_rktvltkznk.png">
 		</div>
-	  <strong>első transzláció során történő mRNS ellenőrzés</strong>
-		<li>splicing során, az intron kivágódása után a két egymás mellé kerülő exon határára mindig beépül egy EJC=Exon Junction Complex</li>
+	  <strong><span class="Important">(RAJZ)</span> első transzláció során történő mRNS ellenőrzés</strong>
+		<li>splicing során, az intron kivágódása után a két egymás mellé kerülő exon határára mindig beépül egy <abbr title="Exon Junction Complex"><strong>EJC</strong></abbr></li>
 		<li>amikor az első transzlációja történik, a riboszóma leválasztja az mRNS-ről az EJC-ket</li>
-		<li>ha a STOP kodonhoz úgy jut el, hogy 3' irányba van még EJC, akkor az mRNS splicingja hibásan történt &#10140; lásd kép</li>
-		<li>ilyenkor az mRNS tovűbbi fehérjék közremáködésével degradálódik</li>
-	  <hr><strong>vasion anyagcseréjében szerepet játszó fehérjék szabályozása</strong>
-		<li>vas szabad formában rendkívül mérgező (szabad gyököket generál) &#10140; ezért a ferritin/transzferrin nevű fehérjéhez kötődve fordul elő</li>
-		<li>a vas metabolizmus kulcsfehérjéi</li><ul>
-			<li>transzferrin &#10140; a vérben a vasionok szállítását végzi</li>
-			<li>transzferrin receptor &#10140; sejtbejutást biztosítja</li>
-			<li>ferritin &#10140; tárolófehérje</li>
-		</ul>
-		<li>A sejt vasion szintje a ferritin és a transzferrin-receptor szintézisét reciprok módon szabályozza</li>
-		<li>Ha nincs elég vasion, a receptor mennyisége növekszik, a ferritiné csökken (és ugyanez fordítva)</li>
-		<li>A szabályozást az mRNS molekulák 3’- illetve 5’-UTR régiójában kialakuló hajtűkanyarokon, és azt specifikusan felismerő regulációs fehérjéken alapszik</li>
-		<li>transzferrin-receptor &#10140; <span class="Important"><i>ez poszttranszkripciós, így 19.tételbe tartozik</i></span></li><ul>
-			<li>ha kevés a vas a sejtben, akkor transzferrin-receptorra van szüksége (mert ezzel tud felvenni majd vasat)</li>
-			<li>ilyenkor ennek mRNS-ében a szekvenciát<abbr title="Iron Response Element">(IRE)</abbr> az endonukleáz(RNáz) nem tudja felismerni, mert egy fehérje <abbr title="Iron Response Element Binding Protein">(IREBP)</abbr> hozzákötődve akadályozza ezt</li>
-			<li>így transzferrin-receptor transzlációja zajlik</li>
-			<li>azonban ha sok Fe<sup>2+</sup> van, akkor az hozzákötődve a IREBP-hez, leválnak az IRE-ról, és endonukleáz kettévágja az mRNS-t, ami ezután lebomlik és így nem lesz transzláció</li>
-		</ul>
-		<li>ferritin &#10140; <span class="Important"><i>ez transzlációs, így 24.tételbe tartozik</i></span></li><ul>
-			<li>mRNS-nek 5’-UTR szekvenciája hajtű struktúrát hoz létre, amelyhez vashiány esetén a citoplazmatikus akonitáz nevű fehérje kötődik, így gátolva a ferritin transzlációját</li>
-			<li>emelkedett vas koncentrációnál az akonitáz a vassal komplexet képez <abbr title="konformációváltozás következtében">&#10140;</abbr> leválik a hajtűről, ily módon szabad utat adva a transzlációnak</li>
-		</ul>
+		<li>ha a STOP kodonhoz úgy jut el, hogy <span class="Important">3' irányba</span> van még EJC, akkor az mRNS splicingja hibásan történt &#10140; lásd kép</li>
+		<li>ilyenkor az mRNS további fehérjék közreműködésével degradálódik</li>
+	  <hr><strong>vasion anyagcseréjében szerepet játszó fehérjék szabályozása</strong> <abbr title="most nem kerestem ki hol, de megtalálom, ha nagyon kell">/lásd/</abbr>
 	  <hr><strong>eIF2 faktor foszforilációja</strong>
 		<li>a preiniciációs komplexhez az eIF2 szállítja a Met-tRNS-t</li>
-		<li>az iniciáció során GTP hidrolizál GDP-vé, az eIF2 ezáltal inaktiválódik</li>
-		<li>reaktiválásban, azaz GDP-GTP cserében az eIF2B fehérje mûködik közre</li>
-		<li>a reaktiválás azonban kinázok segítségével gátolható</li>
-		<li>az eIF2 három alegységből áll &#10140; amennyiben az &alpha;-alegysége foszforilálódik, a csere nem következik be, a hármas komplex GDP kötött formában csapdába esik, és így a továbbiakban nem tud részt venni a transzláció beindításában</li>
-		<li>a foszforilációt számos kináz végezheti, pl. virális fertőzésnél megjelenő PKR, vagy ER stressz következtében megjelenő PER stb.</li>
+		<li>eIF2 inaktiválódása &#10140; az iniciáció során GTP hidrolizál GDP-vé</li>
+		<li>eIF2 reaktiválása &#10140; GDP-GTP-re visszacserélése, ebben az eIF2B fehérje működik közre</li>
+		<li>az eIF2 három alegységből áll &#10140; amennyiben az &alpha;-alegysége foszforilálódik, a csere nem tud bekövetkezni &#10140; tehát a hármas komplex GDP kötött formában csapdába esik &#10140; a továbbiakban nem tud részt venni a transzláció beindításában</li>
+		<li>tehát a reaktiválás <abbr title="foszforilálnak">kinázok</abbr> segítségével gátolható &#10140; pl. virális fertőzésnél megjelenő PKR, vagy ER stressz következtében megjelenő PER stb. <abbr title="tehát ez két példa kinázra, mely foszforilálja az alfa alegységet">'</abbr></li>
 	</ul></details>
 
 	<details class="kerdes 4/1" id="msb.200"><summary style="color:MediumBlue">transzláció energiaigényes?</summary><ul class="normal">
@@ -2476,19 +2499,19 @@
 	<details class="kerdes 4/6" id="msb.196"><summary><strong>A transzláció elongációs szakasza prokariótákban és eukariótákban; a transzláció terminálása.</strong> A fehérjeszintézis gátlószerei</summary><ul class="normal">
 		<div style="float:right;max-width:30%"><img src="images/25_rttrnsstp.png"></div>
 		<li>csak az iniciáció tér el prokariótákban és eukariótákban, a másik kettő (elongáció+termináció) lényegében megegyezik &#10140; utóbbiakban a fehérje faktorok megnevezése az eltérő</li>
-	  <strong>elongáció &#10140; eukarióták faktoraival bemutatva</strong>
-		<div>egy ciklust három lépésre osztottam (GTP,észterkötés,GTP)</div>
-		<li>az <span class="WHITE">A</span> helyre a kodonnal komplementer aminoacil-tRNS-t szállít <abbr title="nem eIF!!">EF1</abbr> (ez kb. ugyanolyan, mint az eIF2)</li><ul>
-			<li>GTP-t hordoz</li>
-			<li>ennek hidrolízise GDP-re fedezi az energiát az anti-kodon + kodon kapcsolódáshoz</li>
+	  <strong>elongáció &#10140; eukarióták faktoraival bemutatva</strong> &#10140; <span class="Important">egy ciklust három lépés</span>re osztottam (GTP,észterkötés,GTP)
+		<li><span class="WHITE">A</span> helyre érkezik a [aminoacil-tRNS + GTP + <abbr title="elongation factor; nem eIF! (egyébként az EF1 kb. ugyanolyan, mint az eIF2)">EF1</abbr>]-'komplex'</li><ul>
+			<li>az aminoacil-tRNS antikodonja komplementer a kodonnal</li>
+			<li>enerigiafedezés &#10140; GTP hidrolízise GDP-re fedezi az energiát az anti-kodon + kodon kapcsolódáshoz</li>
 		</ul>
-		<li>ezután létrejön a peptidkötés a <span class="WHITE">P</span> helyen lévő (f-)Met és az <span class="WHITE">A</span> helyre érkezett aminosav között</li><ul>
-			<li>ennek energiáját az észterkötés felszakadása biztosítja a <span class="WHITE">P</span> helyen lévő tRNS és peptidlánc között</li>
+		<li>peptidkötés létrejön a  <span class="WHITE">P</span> helyen lévő (f-)Met és az <span class="WHITE">A</span> helyre érkezett aminosav között</li><ul>
+			<li>enerigiafedezés &#10140; makroerg észterkötés felszakadása fedezi az energiát a peptidkötés kialakulásához</li>
+			<li>makroerg észterkötés <span class="Important">&#10140; <span class="WHITE">P</span> helyen lévő tRNS és peptidlánc között</span></li>
 			<li>közben a két tRNS hibridállapotba kerül &#10140; a <span class="WHITE">P</span> helyen lévő félig P és félig E /// az <span class="WHITE">A</span> helyen lévő pedig félig A és félig P helyre kerül</li>
 		</ul>
 		<li>ezután az <abbr title="nem eIF!!">EF2</abbr> egy GTP hidrolízisével GDP-re fedezi az energiát, hogy a riboszóma egy kodonnyit továbbcsússzon az mRNS-en 3' irányba</li>
 		<div>ez a ciklus addig ismétlődik, amíg <span class="WHITE">A</span> helyen STOP kodon lesz &#10140; ekkor indul meg a termináció</div>
-	  <strong>termináció</strong>
+	  <hr><strong>termináció</strong>
 		<li>STOP kodonoknak nincs megfelelõ tRNS párja <abbr title="szvsz kivéve ha UGA, és Sec fog beépülni">!!!</abbr>, ehelyett egy a tRNS-hez háromdimenziós szerkezetében nagyon hasonló fehérje, az ún. RF (release factor) kapcsolódik a STOP kodonhoz</li>
 		<li><strong>RF</strong> &#10140; katalizálja a <span class="WHITE">P</span> helyen lévő tRNS-peptidil észterkötésének hidrolízisét&#10140; kész fehérje leválik, a riboszóma pedig szétesik két alegységére</li>
 		<iframe style="float:left" src="https://www.youtube.com/embed/KZBljAM6B1s" width="500" height="360" allowfullscreen></iframe>
@@ -2574,7 +2597,7 @@
 				<li>vagy N-glikozidos kötéssel a <abbr title="aszparaginhoz">Asn</abbr>-hez &#10140; ER-ben kezdődik majd Golgi-ban ér véget <img class="mini" src="images/ncktpgrtgln.png"> <img class="mini" src="images/kpmgrzsre.png"></li><ul>
 					<li>dolikol &#10140; izoprén-származék, mely ER membránjában van</li>
 					<li>dolikol-pirofoszfáthoz szintetizálódik egy 14 szénhidrátból álló <abbr title="jó lenne ha oligoszacharidnak nevezhetném, de az elvileg csak 2-8ig terjed, ez meg ugye 14; Bár érdekes módon az enzim neve meg oligoszacharid-transzferáz (nah mind1)">"cukorblokk"</abbr> &#10140; mannóz,glükóz,N-acetil-glükózaminból áll</li>
-					<li>ezt utána a fehérje Asn-jéhez kapcsolja N-glikozidos kötéssel az oligoszacharid-transzferáz(glikozil-transzferáz egy típusa), amennyiben van benne alábbi szekvencia Asn-<abbr title="akármilyen aminosav">X</abbr>-Ser vagy Asn-X-Thr</li>
+					<li>ezt utána a fehérje Asn-jéhez kapcsolja N-glikozidos kötéssel a <abbr title="egész pontosan egy típusa az oligoszacharid-transzferáz">'</abbr>glikozil-transzferáz, amennyiben van benne alábbi szekvencia Asn-<abbr title="akármilyen aminosav">X</abbr>-Ser vagy Asn-X-Thr</li>
 					<li>ez a 14 monoszacharid egységből álló "cukorblokk" ezután folyamatosan átalakul ER-ben és Golgiban, így a végén mindössze 5db marad meg az eredeti monoszacharidokból (lásd kép!)</li>
 					<li><abbr title="wikipedia (oligoszacharid-transzferáz leírás) alapján ez valójában transzlációs az esetek nagyrészében, de azt is írta, hogy mindenki post-translatiosnak veszi">'</abbr></li>
 				</ul>
@@ -3081,7 +3104,7 @@
 		<li>alapvető szerepük van a molekuláris biológiai kutatásban &#10140; ugyanis RNS tanulmányozás mindig úgy kezdődik, hogy reverz transzkriptázzal DNS-é alakítják</li>
 		<div>háromféle enzimaktivitással rendelkezik</div>
 		<li>RNS-függő DNS-polimeráz &#10140; pozitív egyszálú RNS komplementerébe szintetizál negatív DNS-t &#10140; +RNS&DNS- "hibrid kettősszál" lesz</li>
-		<li>3' ribonukleáz &#10140; pozitív egyszálú RNS-t lebontja &#10140; egyszálú negatív DNS lesz</li>
+		<li>ribonukleáz-H &#10140; RNS/DNS hibridről a pozitív egyszálú RNS-t eltávolítja &#10140; egyszálú negatív DNS lesz</li>
 		<li>DNS-függő DNS-polimeráz &#10140; egyszálú negatív DNS komplementerébe szintetizál pozitív DNS-t &#10140; kettősszálú DNS lesz</li>
 		<li><span class="Important">azonban ez nem pontosan így történik (lásd következő pont), de a megértést segíti!! azért írtam le</span></li>
 	  <hr><u>retrovíruson szemléltetve az alábbi módon működik</u>

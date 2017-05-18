@@ -50,7 +50,6 @@ window.onerror = function(msg, url, linenumber) {
 }
 
 
-
 function func_removeRepeat(){ //ha már elkészült a script, és removeltam mind1iket törölhető ez a funkció! lentebb van rá egy hivatkozás azt is !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	for ( var fotema in kerdesID ) { 
 		for ( var temaKerdes in kerdesID[fotema] ) { 
@@ -191,6 +190,49 @@ function func_calcRepeat() { // átlagIsmétlések számát kiszámolja
 	atlag = +atlag.toFixed(1);
 	document.getElementById("span_Repeat").innerHTML = atlag
 }
+function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
+	for ( var i = 0;   i < 6;   i++ ) { // resetelje a Tablekat 0-ra
+		document.getElementById(i+"left").innerHTML = 0
+		document.getElementById(i+"still").innerHTML = 0
+		document.getElementById(i+"average").innerHTML = 0
+	}
+	for ( var fotema in kerdesID ) { 
+		for ( var temaKerdes in kerdesID[fotema] ) { 
+			if ( localStorage.getItem(fotema+" / "+temaKerdes+"_button") == "true" ) {
+				for ( var kerdes in kerdesID[fotema][temaKerdes] ) {
+					if ( kerdesID[fotema][temaKerdes][kerdes] == true ) {
+						if ( kerdes+'_repeat' in localStorage && localStorage.getItem(kerdes+'_repeat') != "" ) {
+							if ( localStorage.getItem(kerdes+'_skip') === null ) {
+								var repCount = localStorage.getItem(kerdes+'_repeat')
+								var min = document.getElementById(repCount+"min").innerHTML
+								var date = new Date();
+								var idopont = localStorage.getItem(kerdes+'_idopont')
+								idopont = Math.floor(date.getTime()/60000) - idopont
+
+								if ( idopont > min ) { // Tableba hozzáad 1et left-hez
+									document.getElementById(repCount+"left").innerHTML = parseInt(document.getElementById(repCount+"left").innerHTML) +1
+									/*if ( repCount == 0 ) {
+										alert(kerdes + " " + localStorage.getItem(kerdes+'_skip') + " " + idopont)
+									}*/
+								} else { // Tableba hozzáad 1et still-hez
+									document.getElementById(repCount+"still").innerHTML = parseInt(document.getElementById(repCount+"still").innerHTML) +1
+								}
+								document.getElementById(repCount+"average").innerHTML = parseInt(document.getElementById(repCount+"average").innerHTML) +idopont
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	for ( var i = 0;   i < 6;   i++ ) { // resetelje a Tablekat 0-ra
+		var average = parseInt(document.getElementById(i+"average").innerHTML)
+		var count = parseInt(document.getElementById(i+"still").innerHTML) + parseInt(document.getElementById(i+"left").innerHTML)
+		average = average / count
+		average = +average.toFixed(0);
+		document.getElementById(i+"average").innerHTML = average
+	}
+}
 
 
 // képnagyítás balKlikkel középre
@@ -328,6 +370,15 @@ function toggleNote() {
 		document.getElementById("note").style.display = 'none';
 		var_note = false
 	}
+}
+
+function func_repTableToggle() {
+	if ( document.getElementById("repTable").style.display == 'block' ) {
+		document.getElementById("repTable").style.display = 'none';
+	} else {
+		func_calcRepTable()
+		document.getElementById("repTable").style.display = 'block';
+	} 
 }
 
 
@@ -522,13 +573,13 @@ function func_calcTimeDiff(repCount){
 	} else if ( repCount == 1 ) {
 		timeDiff = 60
 	} else if ( repCount == 2 ) {
-		timeDiff = 150
-	} else if ( repCount == 3 ) {
-		timeDiff = 300
-	} else if ( repCount == 4 ) {
 		timeDiff = 500
-	} else if ( repCount == 5 ) {
+	} else if ( repCount == 3 ) {
 		timeDiff = 1000
+	} else if ( repCount == 4 ) {
+		timeDiff = 2000
+	} else if ( repCount == 5 ) {
+		timeDiff = 5000
 	}
 }
 
@@ -638,7 +689,7 @@ function func_temakorStatus(){
 					var repCount = Number(localStorage.getItem(kerdes+'_repeat'))
 					func_calcTimeDiff(repCount)
 
-					trueJegy = trueJegy + Math.pow(0.9, idopont / timeDiff) * rank * jegy
+					trueJegy = trueJegy + Math.pow(0.8, idopont / timeDiff) * rank * jegy
 					maxJegy = maxJegy + rank * 10
 				}
 			}
@@ -996,7 +1047,7 @@ function func_calcOldNew(){
 // következő kérdés nehézségét beállítja, az előző sikere alapján
 var markCount = 0
 function func_markCount(jegy){
-	jegy = parseInt(jegy,10)
+	/*jegy = parseInt(jegy,10)
 	if ( Math.random() > 0.5 ) {
 		if ( jegy == 1 ) {
 			markCount = 3
@@ -1005,7 +1056,7 @@ function func_markCount(jegy){
 		}
 	} else {
 		markCount = 0
-	}
+	}*/
 }
 
 // _missFix
@@ -1142,7 +1193,7 @@ function koviKerdes(){
 
 	// előző kérdés
 	if ( priorKerdesID != "nincs" ) {
-		if ( 0 == document.getElementById('skip').value.length && 0 == document.getElementById("jegy").value.length ) {
+		if ( 0 == document.getElementById('skip').value.length && "empty" == document.getElementById("jegy").value ) {
 			alert("nincs jegy")
 			return
 		}
@@ -1502,7 +1553,6 @@ func_calcOldNew();
 func_calcJegy()
 func_calcDate()
 func_calcRepeat()
-
 
 
 
