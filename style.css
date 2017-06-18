@@ -24,6 +24,15 @@ abbr {
 	padding-bottom: 0px; 
 	background-color: yellow;
 }
+abbr.test {
+	position: relative;
+	text-decoration: none;
+	padding-left: 1px; 
+	padding-right: 1px; 
+	padding-top: 0px; 
+	padding-bottom: 0px; 
+	background-color: #ffffff;
+}
 abbr:hover{
 	background-color: Chartreuse
 }
@@ -200,54 +209,6 @@ sup, sub {
 	padding-bottom: 1px;
 	font-size: large;
 	background-color: Gainsboro;
-	color: Black;
-	border: 2px solid Black;
-	margin-bottom: 5px;
-	display: inline-block;
-}
-.phaseA {
-	padding-left: 2px;
-	padding-right: 2px;
-	padding-top: 3px;
-	padding-bottom: 1px;
-	font-size: large;
-	background-color: Chartreuse;
-	color: Black;
-	border: 2px solid Black;
-	margin-bottom: 5px;
-	display: inline-block;
-}
-.phaseB {
-	padding-left: 2px;
-	padding-right: 2px;
-	padding-top: 3px;
-	padding-bottom: 1px;
-	font-size: large;
-	background-color: yellow;
-	color: Black;
-	border: 2px solid Black;
-	margin-bottom: 5px;
-	display: inline-block;
-}
-.phaseC {
-	padding-left: 2px;
-	padding-right: 2px;
-	padding-top: 3px;
-	padding-bottom: 1px;
-	font-size: large;
-	background-color: aqua;
-	color: Black;
-	border: 2px solid Black;
-	margin-bottom: 5px;
-	display: inline-block;
-}
-.phaseD {
-	padding-left: 2px;
-	padding-right: 2px;
-	padding-top: 3px;
-	padding-bottom: 1px;
-	font-size: large;
-	background-color: Pink;
 	color: Black;
 	border: 2px solid Black;
 	margin-bottom: 5px;

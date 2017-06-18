@@ -14,6 +14,7 @@
 	<details><summary class="phase">tételek</summary><div id="container"></div></details>
 	<input type="file" id="fileinput" style="display:none;">
 	<input style="position:absolute; left:35%; top:1%;" type="button" value="load LS" onclick="document.getElementById('fileinput').click();">
+	<input type="button" class="white" style="border: 3px solid black; position:absolute; left:42%; top:1%;" onclick="func_godMode()" value="godMode" id="btn_godMode">
 	<div style="position:absolute; left:10%; top:2%; font-weight: bold;font-size: large;" id="questLeveL"></div>
 	<input style="position:absolute; left:50%; top:1%;" type="button" value="save LS" onclick="func_saveLS()">
 
@@ -22,6 +23,7 @@
 	<input type="button" class="MISS" style="border: 3px solid black;" onclick="func_spanClick(this)" id="cont_RepFast" value="0">
 	&nbsp; &nbsp;
 	<!--<input type="checkbox" id="checkbox_RepNew">--><span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="cont_RepNew"></span><span class="VOCAB" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="cont_RepOld"></span>
+	<input id="btn_repTable" onclick="func_repTableToggle();" type="button" value="&#10045;">
 	&nbsp; &nbsp;
 	<span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Date"></span><span class="vocab" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Jegy"></span><span class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;" id="span_Repeat"></span>
 	<span style="position:absolute; left:32%;">
@@ -34,11 +36,11 @@
 			<option value="100">100</option>
 		</select> &nbsp; 
 		<input style="border: 3px solid black;" id="btn_Note" onclick="toggleNote();" type="button" value="&#10045;"> &nbsp; &nbsp;
-		<select id="jegy"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; 
+		<select id="jegy"><option value="empty"></option><option style="background-color:red" value="0"> </option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select> &nbsp; 
 		<span class="white" id="pJegy" style="font-weight:bold; padding-left:3px; padding-right:3px;">&nbsp; </span> &nbsp; &nbsp;
 		<input onclick="koviKerdes();" type="button" value=" ► ">
 	</span>
-	<span style="position:fixed; right:0px; top:50px;">
+	<span style="position:absolute; right:0px;">
 		<span class="white" id="rank">&nbsp; (rank)</span>
 		<select id="skip"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="5">5</option><option value="10">10</option><option value="20">20</option></select> 
 		<span id="repeat" class="WHITE" style="border: 1px solid black; padding-left:5px; padding-right:5px; padding-top:3px; padding-bottom:3px;">&nbsp; &nbsp; &nbsp;</span>
@@ -46,12 +48,50 @@
 		<input type="button" class="dark" style="border: 3px solid black;" onclick="func_spanClick(this)" id="btn_skip" value="0">
 	</span>
 	<center><textarea style="display:none; position:fixed; left: 40%; top: 70%;" id="note" rows="4" cols="40"></textarea></center>
+
+	<table id="repTable" style="display:none; position:fixed; left: 40%; top: 30%;"><tr><th>repeat</th> <th>min</th> <th>left</th> <th>still</th> <th>average</th></tr>
+		<tr><th>0</th>
+			<td id="0min">20</td>
+			<td id="0left"></td>
+			<td id="0still"></td>
+			<td id="0average"></td>
+		</tr>
+		<tr><th>1</th>
+			<td id="1min">60</td>
+			<td id="1left"></td>
+			<td id="1still"></td>
+			<td id="1average"></td>
+		</tr>
+		<tr><th>2</th>
+			<td id="2min">500</td>
+			<td id="2left"></td>
+			<td id="2still"></td>
+			<td id="2average"></td>
+		</tr>
+		<tr><th>3</th>
+			<td id="3min">1000</td>
+			<td id="3left"></td>
+			<td id="3still"></td>
+			<td id="3average"></td>
+		</tr>
+		<tr><th>4</th>
+			<td id="4min">2000</td>
+			<td id="4left"></td>
+			<td id="4still"></td>
+			<td id="4average"></td>
+		</tr>
+		<tr><th>5</th>
+			<td id="5min">5000</td>
+			<td id="5left"></td>
+			<td id="5still"></td>
+			<td id="5average"></td>
+		</tr>
+	</table>
 	
 	<div style="font-weight: bold;font-size: large;" id="questTitle"></div>
 	<div id="kerdeslocation"></div>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
-
 
 
 
@@ -122,8 +162,6 @@
 	<li>húgyhólyag &#10140; rögzítettsége (38)</li>
 	<li>vese &#10140; felosztása (10)</li>
 <br></ul></details>
-
-
 
 
 <!--//////////////////////////////////////-->  <div><div class="mainTitle">általános</div>  <!--//////////////////////////////////////-->
@@ -1067,6 +1105,98 @@
 			</tr>
 		</table>
 
+	</ul></details>
+<!----></div></details>
+
+
+<!----><details open><summary class="phase">összeköttetések csontok között</summary><div><div class="title"></div>
+	<details><summary>így csoportosítják világhálón (de tk-ban nem így van, szóval nem így tanulom meg)</summary><ul class="normal">
+		<details><summary>csoportosításuk struktúra alapján</summary><ul class="normal">
+			<strong>junctura fibrosa</strong> [<abbr title="ez nem 100% (lehet hogy rostos inkább)">kötőszövetes</abbr> összeköttetés] <abbr title="esetek nagyrészébe kollagén rostok kötik őket össze, ritkábban elasztikus rostok (szvsz innen a neve, hogy fibrosa)">'</abbr><ul>
+				<li><u>syndesmosis</u> [szalagos összeköttetés]</li><ul>
+					<li><span class="Important">membrana_interossea</span><abbr title="kollagén rostokból áll">'</abbr> köti össze a <abbr title="radius-ulna & tibia-fibula">2-2</abbr> csontot</li><ul>
+						<li>syndesmosis_radioulnaris <img class="mini" src="images/mbrnntrsdlnsrs.png"></li>
+						<li>syndesmosis_tibiofibularis <img class="mini" src="images/sndmstbflrs.png"> <abbr title="itt elvileg van még 2 szalag is, de ne álljak neki ennyire részletes elemzésnek, max akkor ha már kisujjból tudom kb. mik ezek a szalagok egyáltalán (de ez nagyon luxus dolog már)">!!</abbr></li>
+					</ul>
+					<li>(ligamenta_flava) <abbr title="elasztikus rostokból áll">'</abbr></li>
+					<li><abbr title="NEM syndesmosis a lig.coracoclaviculare és lig.costoclaviculare">'</abbr></li>
+				</ul>
+				<li><u>sutura</u> [koponyavarrat]</li><ul>
+					<li>sutura serrata<abbr title="csipkés=fogazott varrat">'</abbr> &#10140; zömében az agykoponya csontjai között</li>
+					<li>sutura squamosa<abbr title="pikkelyvarat">'</abbr> &#10140; pl. <u>sutura squamosa</u></li>
+					<li>sutura plana<abbr title="sima varrat">'</abbr> &#10140; szemüreg & orrüreg, pl. 2 os nasale között</li>
+				</ul>
+				<li><u>gomphosis</u> &#10140; <u>dentes</u> rögzülése <u>mandibula</u> <span class="Important">KÉP</span></li>
+			</ul>
+			<strong>junctura cartilaginea</strong> [porcos összeköttetés]<ul>
+				<li><u>synchondrosis</u> &#10140; hyalinporc</li><ul>
+					<li>1.costa és sternum közti <img class="mini" src="images/brkszktktsk.png"></li>
+					<li>többi costa és sternum közti már NEM!! azok ízületi összeköttetésekbe tartoznak</li>
+				</ul>
+				<li><u>symphysis</u> &#10140; rostporc</li><ul>
+					<li>discus intervertebralis</li>
+					<li>symphysis_pubica</li>
+					<li>symphysis_manubriosternalis <img class="mini" src="images/strnlngl.png"></li>
+				</ul>
+			</ul>
+			<strong>junctura synovialis</strong> = diarthrosis<abbr title="=articulatio">'</abbr> [ízületi összeköttetés]
+		</ul></details>
+		<details><summary>csoportosításuk funkció alapján</summary><ul class="normal">
+			<img src="images/sndrthrsis.png">
+			<li><strong>synarthrosis</strong> &#10140; NEM képesek elmozdulni &#10140; mármint a csontok, tehát pl. membrana interossea úgy kapcsolja össze a radius + ulna-t, hogy azok nem fognak elmozdulni egymástól</li>
+			<li><strong>amphiarthrosis</strong> &#10140; enyhén képesek elmozdulni</li>
+			<li><strong>diarthrosis</strong> &#10140; képesek elmozdulni</li>
+		  <hr>
+			<abbr title="lehet nem 100% pontos, de így van lényegében">ez szinte megegyezik a struktúra alapján történő csoportosítással</abbr>, tehát:<div>
+				<li>diarthrosis = junctura synovialis</li>
+				<li>amphiarthrosis = symphysis</li>
+				<li>synarthrosis</li><ul>
+					<li>többi</li>
+					<li><span class="Important">synosthosis</span> [csontösszenövés} &#10140; <span class="Important">os coxae</span> & os coccygis & os sacrum</li>
+				</ul>
+			</div>
+		  <hr>tehát ami igazából "különbség" az a
+			<li>amphiarthrosis = symphysis</li>
+			<li>synosthosis</li>
+		</ul></details>
+		<li>az egyetlen probléma a strukturálissal, hogy a synosthosis hiányzik</li>
+		<abbr title="https://www.visiblebody.com/learn/skeleton/joints-and-ligaments">(forrás)</abbr> 
+	</ul></details>
+	<details class="kerdes 4/2" id="anat.252"><summary>csoportosításuk?</summary><ul class="normal">
+		<li><strong>synarthrosis</strong> &#10140; folyamatos összeköttetések ➜ két csont közvetlenül kapcsolódik egymáshoz szövetek által</li>
+		<li><strong>diarthrosis = articulatio</strong> &#10140; félbeszakított összeköttetések ➜ összekötött csontok állománya között nincs anyagfolytonosság, hanem helyette rés mutatkozik</li>
+	</ul></details>
+	<details class="kerdes 3/5" id="anat.253"><summary>synarthrosisok típusai?</summary><ul class="normal">
+		<strong>synosthosis</strong> [csontos összeköttetés] &#10140; <span class="Important">os coxae</span> & os coccygis & os sacrum
+		<br><strong>syndesmosis</strong> [kötőszövetes összeköttetés] <abbr title="esetek nagyrészébe kollagén rostok kötik őket össze, ritkábban elasztikus rostok (szvsz innen a neve, hogy fibrosa)">'</abbr><ul>
+			<li>szalagos összeköttetések &#10140; ide azon szalagos összeköttetések tartoznak, melyek a csontokat szorosan (folytonosan) egymáshoz kapcsolják</li><ul>
+				<li><span class="Important">membrana_interossea</span><abbr title="kollagén rostokból áll">'</abbr> köti össze a <abbr title="radius-ulna & tibia-fibula">2-2</abbr> csontot</li><ul>
+					<li>syndesmosis_radioulnaris <img class="mini" src="images/mbrnntrsdlnsrs.png"></li>
+					<li>syndesmosis_tibiofibularis <img class="mini" src="images/sndmstbflrs.png"> <abbr title="itt elvileg van még 2 másik szalag is, de ne álljak neki ennyire részletes elemzésnek, max akkor ha már kisujjból tudom kb. mik ezek a szalagok egyáltalán (de ez nagyon luxus dolog már)">!!</abbr></li>
+				</ul>
+				<li>(ligamenta_flava) <abbr title="elasztikus rostokból áll">'</abbr></li>
+				<li><abbr title="NEM syndesmosis a lig.coracoclaviculare és lig.costoclaviculare">'</abbr></li>
+			</ul>
+			<li><u>sutura</u> [koponyavarrat]</li><ul>
+				<li>sutura serrata<abbr title="csipkés=fogazott varrat">'</abbr> &#10140; zömében az agykoponya csontjai között</li>
+				<li>sutura squamosa<abbr title="pikkelyvarat">'</abbr> &#10140; pl. <u>sutura squamosa</u></li>
+				<li>sutura plana<abbr title="sima varrat">'</abbr> &#10140; szemüreg & orrüreg, pl. 2 os nasale között</li>
+			</ul>
+			<li><u>gomphosis</u> &#10140; <u>dentes</u> rögzülése <u>mandibula</u> <span class="Important">KÉP</span></li>
+		</ul>
+		<strong>synchondrosis</strong> [porcos összeköttetés]<ul>
+			<li>hyalinporc (synchondrosis)</li><ul>
+				<li>1.costa és sternum közti <img class="mini" src="images/brkszktktsk.png"></li>
+				<li>többi costa és sternum közti már NEM!! azok ízületi összeköttetésekbe tartoznak</li>
+			</ul>
+			<li>rostporc (symphysis)</li><ul>
+				<li><span class="Important">discus_intervertebralis</span>-ok</li>
+				<li><span class="Important">symphysis_pubica</span></li>
+				<li>(symphysis_manubriosternalis) <img class="mini" src="images/strnlngl.png"></li>
+			</ul>
+		</ul>
+	  <hr>
+		<li>"elmozdulás képességének mértéke" következőképpen változik: synosthosis &lt; syndesmosis &lt; synchondrosis &lt; diarthrosis<abbr title="diarthrosis persze nem ide sorolandó, de ide írtam ezt is">'</abbr></li>
 	</ul></details>
 <!----></div></details>
 
@@ -2588,6 +2718,9 @@
 		<li>ritkán az a.carotis_interna</li>
 	</ul></details>
  </div>
+<!----></details>
+
+<!----><details open><summary class="phase">organa genitalia</summary>
 <!----></details>
 
 <!----><details><summary class="phase">nyirokrendszer</summary>
