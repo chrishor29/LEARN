@@ -30,8 +30,9 @@
  ✖: importos kérdést hiába upgradelem html-ben, nem upgradeli LS-ben
  ✖: upgradeQ check!
 ----
- ✖: jobbfenntire klikkelve csak a kérdések legyenek láthatók -> statusat mentse el LS-be!
+ ✖: Skip funkció
 ----
+ ✔: jobbfenntire klikkelve csak a kérdések legyenek láthatók -> statusat mentse el LS-be!
  ✔: lesz egy olyan classú 'div'(vagy valami), hogy 'import' --> classban lesz egy szám is, hogy melyik kérdés legyen oda bekopyzva
  ✔: cél -> localStorage-ből kopyzza a kérdést --> más html fájlból is lehet kopízni kérdést (illetve másik előnye, ha editelem a kérdést, akkor elég egy helyen)
  ✔: (ha egy olyan kérdés van becopyzva, melynek vannak importjai, akkor azokat is hozza magával)
@@ -161,6 +162,23 @@ function func_saveQuest(){
 }
 func_saveQuest()
 
+function F_DivSkipFix() {
+	var div = document.createElement("div")
+	document.body.appendChild(div)
+	div.id = "div_SkipFix"
+	div.style.backgroundColor = "white"
+	div.style.overflow = "auto"
+	div.style.width = "80vh"
+	div.style.height = "60vh"
+	div.style.position = "fixed"
+	div.style.top = "50%"
+	div.style.left = "50%"
+	div.style.marginTop = "-30vh"
+	div.style.marginLeft = "-40vh"
+	div.style.border = "10px solid black"
+	div.style.display = "none"
+}
+F_DivSkipFix()
 function func_divButtonETC() {
 	var button = document.createElement("input")
 	button.id = "button_replaceQ"
@@ -305,26 +323,39 @@ function func_enLargeImages(){ // képnagyítás balKlikkel középre
 }
 func_enLargeImages()
 
-var var_toggleAll = false
 function toggleAll() {
 	var childs = document.body.children; 
-	if ( var_toggleAll == false ) {
+	if ( localStorage.getItem("hk.ToggleAll") == "true" ) {
+		localStorage.removeItem("hk.ToggleAll")
+		for ( var i=0; i<childs.length; i++ ) { childs[i].style.display = "block" }
+		document.getElementById("div_MainFrame").style.display = 'none';
+
+		document.getElementById("div_SkipFix").style.display = 'none';
+	} else {
+		localStorage.setItem("hk.ToggleAll","true")
 		for ( var i=0; i<childs.length; i++ ) { childs[i].style.display = "none" }
 		document.getElementById("div_MainFrame").style.display = 'block';
 		tooltipSpan.style.display = 'block';
 
-		document.getElementById("quest").style.display = 'block';
 		document.getElementById("input_toggleAll").style.display = 'block';
-		var_toggleAll = true
+	}
+}
+function toggleAll_StatusEtStart() {
+	var childs = document.body.children; 
+	if ( localStorage.getItem("hk.ToggleAll") == "true" ) {
+		for ( var i=0; i<childs.length; i++ ) { childs[i].style.display = "none" }
+		document.getElementById("div_MainFrame").style.display = 'block';
+		tooltipSpan.style.display = 'block';
+
+		document.getElementById("input_toggleAll").style.display = 'block';
 	} else {
 		for ( var i=0; i<childs.length; i++ ) { childs[i].style.display = "block" }
 		document.getElementById("div_MainFrame").style.display = 'none';
 
 		document.getElementById("div_SkipFix").style.display = 'none';
-		document.getElementById("quest").style.display = 'none';
-		var_toggleAll = false
 	}
 }
+
 var var_note = false
 function toggleNote() {
 	if ( var_note == false ) {
@@ -381,6 +412,14 @@ function F_CreateQDiv() {
 	}
 	F_ButtonToggleAll()
 
+	function F_DivMainFrame() {
+		var div = document.createElement("div")
+		div.id = "div_MainFrame"
+		div.style.display = "none"
+		var parent = document.body
+		parent.insertBefore(div,parent.firstChild)
+	}
+	F_DivMainFrame()
 	var MainFrame = document.getElementById("div_MainFrame");
 
 	function F_DivQSettings() {
@@ -618,6 +657,9 @@ function F_CreateQDiv() {
 		var div = document.createElement("div")
 		div.id = "kerdeslocation"
 		MainFrame.appendChild(div)
+		div.style.overflow = "auto"
+		div.style.height = "86vh"
+
 	}
 	F_DivQuest()
 
@@ -671,6 +713,7 @@ function F_CreateQDiv() {
 
 
 /*
+
 	<select id="skip"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="5">5</option><option value="10">10</option><option value="20">20</option></select> 
 */
 
@@ -691,6 +734,74 @@ function F_CreateQDiv() {
 		}
 	}
 	F_TableTetelek()
+
+	function F_TableRepeat() {
+		var table = document.createElement("TABLE")
+		table.id = "repTable"
+		MainFrame.appendChild(table)
+
+		table.style.display = "none"
+		table.style.position = "fixed"
+		table.style.left = "40%"
+		table.style.top = "30%"
+
+		var tr = document.createElement("TR")
+		table.appendChild(tr)
+		var th = document.createElement("TH")
+		th.innerHTML = "repeat"
+		tr.appendChild(th)
+		var th = document.createElement("TH")
+		th.innerHTML = "min"
+		tr.appendChild(th)
+		var th = document.createElement("TH")
+		th.innerHTML = "left"
+		tr.appendChild(th)
+		var th = document.createElement("TH")
+		th.innerHTML = "still"
+		tr.appendChild(th)
+		var th = document.createElement("TH")
+		th.innerHTML = "average"
+		tr.appendChild(th)
+		
+		for ( var i=0; i<6; i++ ) {
+			var tr = document.createElement("TR")
+			table.appendChild(tr)
+
+			var th = document.createElement("TH")
+			th.innerHTML = i
+			tr.appendChild(th)
+
+			var td = document.createElement("TD")
+			td.id = i+"min"
+			if ( i == 0 ) {
+				td.innerHTML = "20"
+			} else if ( i == 1 ) {
+				td.innerHTML = "60"
+			} else if ( i == 2 ) {
+				td.innerHTML = "500"
+			} else if ( i == 3 ) {
+				td.innerHTML = "1000"
+			} else if ( i == 4 ) {
+				td.innerHTML = "2000"
+			} else if ( i == 5 ) {
+				td.innerHTML = "5000"
+			}
+			tr.appendChild(td)
+
+			var td = document.createElement("TD")
+			td.id = i+"left"
+			tr.appendChild(td)
+
+			var td = document.createElement("TD")
+			td.id = i+"still"
+			tr.appendChild(td)
+
+			var td = document.createElement("TD")
+			td.id = i+"average"
+			tr.appendChild(td)
+		}
+	}
+	F_TableRepeat()
 }
 F_CreateQDiv()
 
@@ -786,7 +897,7 @@ function func_tetelChoose() { // createli a választható tételek listáját
 		var div = document.createElement("div")
 		div.id = "Div_Tetelek"
 
-		var questDiv = document.getElementById("quest");
+		var questDiv = document.getElementById("div_MainFrame");
 		questDiv.appendChild(div)
 
 		div.style.backgroundColor = "white"
@@ -1412,7 +1523,6 @@ function func_multiQCheck(){ // kiírja a quest summary-jébe, mely questeket id
 }
 //func_multiQCheck() // (most valamiért hibás is, mert lefagy ha elindítom, szóval skip egyenlőre)
 
-var godPrevQ = localStorage.getItem('godPrevQ')
 function func_godMode(){
 	if ( document.getElementById("btn_godMode").style.backgroundColor == "limegreen" ) {
 		document.getElementById("btn_godMode").style.backgroundColor = "red"
@@ -1426,20 +1536,6 @@ function func_godMode(){
 	}
 }
 document.getElementById("btn_godMode").style.backgroundColor = localStorage.getItem('godMode')
-
-var markCount = 0
-function func_markCount(jegy){ // következő kérdés nehézségét beállítja, az előző sikere alapján 
-	/*jegy = parseInt(jegy,10)
-	if ( Math.random() > 0.5 ) {
-		if ( jegy == 1 ) {
-			markCount = 3
-		} else if ( jegy == 3 || jegy == 4 ) {
-			markCount = 1
-		}
-	} else {
-		markCount = 0
-	}*/
-}
 
 function func_removeRepeat(){ // ha már elkészült a script, és removeltam mind1iket törölhető ez a funkció!
 	for ( var i = 0;   i < kerdesek.length;   i++ ) {
@@ -1518,63 +1614,62 @@ for ( var i = 0;   i < kerdesek.length;   i++ ) { // id-s questek (melyek import
 document.getElementById("input_toggleAll").title = localStorage.getItem("hkExp.max")
 
 function func_prevQuestion(){
-	var jegy = document.getElementById("jegy").value
-	func_markCount(jegy)
+	var QlocElem = document.getElementById("kerdeslocation")
+	var priorLSid = priorQid.slice(priorQid.indexOf(":Q,LS:")+6)
+	function F_Jegyek() {
+		var arrayQ = QlocElem.getElementsByClassName("kerdes")
+		localStorage.setItem(priorLSid+'_note', document.getElementById("note").value);
+		document.getElementById("note").value = ""
+		for ( var i=0; i<arrayQ.length; i++ ) {
+			var LSid = arrayQ[i].id
+			//alert(LSid + " : " + document.getElementById("hkSelect."+i).value)
+			var jegy = document.getElementById("hkSelect."+i).value
+			document.getElementById("hkSelect."+i).value = ""
+			if ( jegy != "empty" ) { 
+				if ( jegy == 0 ) { jegy = 1 }
+				localStorage.setItem(LSid+'_jegy', jegy)
 
+				var changes
+				var repCount = Number(localStorage.getItem(LSid+'_repeat'))
+				if ( repCount == jegy || jegy > repCount ) {
+					changes = 1
+				} else if ( jegy-repCount == -1  ) {
+					changes = 1.5
+				} else if ( jegy-repCount < -1  ) {
+					changes = 2
+				}
+				localStorage.setItem(LSid+'_changes', changes);
+				if ( jegy > repCount ) {
+					repCount = repCount+1
+				} else {
+					repCount = jegy
+				}
+				localStorage.setItem(LSid+'_repeat', repCount)
+
+				var date = new Date();
+				localStorage.setItem(LSid+'_idopont', Math.floor(date.getTime()/60000));
+			}
+		}
+	}
+	F_Jegyek()
+	document.getElementById("questTitle").innerHTML = "";
+	document.getElementById("note").style.display = 'none';
+
+	
+/*
 	var skipValue = document.getElementById("skip").value
 	if ( skipValue ) { localStorage.setItem(priorLSid+"_skip", skipValue) }
-
-	if ( localStorage.getItem(priorLSid+'_repeat') == null || localStorage.getItem(priorLSid+'_repeat') == 0 || localStorage.getItem(priorLSid+'_repeat') == 1 ) {
-		godPrevQ = "short"
-	} else {
-		godPrevQ = "long"
-	}
-	localStorage.setItem('godPrevQ',godPrevQ)
-
-	var repCount = Number(localStorage.getItem(priorLSid+'_repeat'))
-	if ( jegy == 0 ) {
-		localStorage.setItem(priorLSid+'_jegy', 1);
-	} else {
-		localStorage.setItem(priorLSid+'_jegy', jegy);
-	}
-
-	var changes // ez szerintem fölösleges (ez kis kérdéseknél jó max; nagy tételeknél fölösleges mert ott godMode)
-	if ( repCount == jegy || jegy > repCount ) {
-		changes = 1
-	} else if ( jegy-repCount == -1  ) {
-		changes = 1.5
-	} else if ( jegy-repCount < -1  ) {
-		changes = 2
-	}
-	localStorage.setItem(priorLSid+'_changes', changes);
-
-	if ( jegy > repCount ) {
-		repCount = repCount+1
-	} else {
-		repCount = jegy
-	}
-	localStorage.setItem(priorLSid+'_repeat', repCount)
-
-	var date = new Date();
-	var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(priorLSid+'_idopont')
-
-	localStorage.setItem(priorLSid+'_idopont', Math.floor(date.getTime()/60000));
-	localStorage.setItem(priorLSid+'_note', document.getElementById("note").value);
-
-	document.getElementById("questTitle").innerHTML = "";		// hide előző megoldás
 
 	func_tableSkipFix()
 	func_valFix()
 	func_valSkip()
-	document.getElementById("jegy").value = ""
 	document.getElementById("skip").value = ""
-	document.getElementById("note").value = ""
-	document.getElementById("note").style.display = 'none';
 
+*/
 	func_temakorStatus()
 }
 
-var priorLSid = "nincs"
+var priorQid = "nincs"
 var fullTema, checkNum, cloneKerdes
 var lastTime = 0
 function func_setNextQ(){
@@ -1589,17 +1684,17 @@ function func_setNextQ(){
 	}
 
 	// előző kérdés
-	if ( priorLSid != "nincs" ) {
-		if ( 0 == document.getElementById('skip').value.length && "empty" == document.getElementById("jegy").value ) {
+	if ( priorQid != "nincs" ) {
+		/*if ( 0 == document.getElementById('skip').value.length && "empty" == document.getElementById("jegy").value ) {
 			alert("nincs jegy")
 			return
-		}
+		}*/
 		func_prevQuestion();
 	}
 	QlocElem.innerHTML = ""
 
 	// kovetkező kérdés
-	priorLSid = "nincs";
+	priorQid = "nincs";
 	var priorQ_alt = "nincs"
 	var priorValue = -1
 	var priorValue_alt = -1
@@ -1615,7 +1710,7 @@ function func_setNextQ(){
 			if ( shouldBreak == false ) {
 				if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" && priorType < 2 ) {
 					priorType = 2
-					priorLSid = Qid
+					priorQid = Qid
 				}
 			}
 		}
@@ -1673,7 +1768,7 @@ function func_setNextQ(){
 				if ( localStorage.getItem(id+"_jegy") == markCount || markCount == 0 ) { 
 					if ( checkValue > priorValue ) {
 						priorValue = checkValue;
-						priorLSid = Qid
+						priorQid = Qid
 					}
 				}
 			}
@@ -1697,18 +1792,18 @@ function func_setNextQ(){
 		}
 	}
 
-	if ( priorLSid == "nincs" ) {
+	if ( priorQid == "nincs" ) {
 		if ( priorQ_alt != "nincs" ) {
-			priorLSid = priorQ_alt
+			priorQid = priorQ_alt
 		} else {
 			alert("elfogytak a kérdések");
 		}
 	}
 
-	if ( priorLSid != "nincs" ) {
+	if ( priorQid != "nincs" ) {
 
-		var Qelem = document.getElementById(priorLSid)
-		var parent = document.getElementById(priorLSid)
+		var Qelem = document.getElementById(priorQid)
+		var parent = document.getElementById(priorQid)
 		do { // megkeresi a 'családfában' legfelül lévő kérdést!
 			Qelem = parent
 			parent = parent.parentElement
@@ -1734,29 +1829,28 @@ function func_setNextQ(){
 			QlocElem.innerHTML = '<div><font class="abbr"><strong><span class="Important">►</span></font>'+hiddenText+'</strong></div>'
 
 			document.getElementById("questTitle").innerHTML = titleText;
-			document.getElementById("questLeveL").title = priorLSid
+			document.getElementById("questLeveL").title = priorQid
 		}
 		func_setTitle()
 		
 		function func_copyQuests(){
 			function func_addQ(LSid) {
 				var Qtext = localStorage.getItem(LSid)
-				//Qtext = Qtext.replace('<details','<details id="'+LSid+'"');
 				QlocElem.innerHTML = QlocElem.innerHTML + Qtext
 			}
 			var LSid = Qelem.id // LSid =  Qid + ":Q,LS:" + LSid  // a 'családfában' legfelül lévő Q (=Qelem) LS-ét kéri le!!
 			LSid = LSid.slice(LSid.indexOf(":Q,LS:")+6)
 			func_addQ(LSid)
 			
-			if ( kerdesek[priorLSid].className.indexOf("[") != -1 ) {
-				var begin = kerdesek[priorLSid].className.indexOf("[") +1
-				var end = kerdesek[priorLSid].className.indexOf("]")
-				var Qid = kerdesek[priorLSid].id
+			if ( kerdesek[priorQid].className.indexOf("[") != -1 ) {
+				var begin = kerdesek[priorQid].className.indexOf("[") +1
+				var end = kerdesek[priorQid].className.indexOf("]")
+				var Qid = kerdesek[priorQid].id
 				var cont = false
 				var num = ""
 				var high = ""
 				var imp = []
-				var full = kerdesek[priorLSid].className.slice(begin,end) 
+				var full = kerdesek[priorQid].className.slice(begin,end) 
 				for (var x=0; x<=full.length; x++) {
 					var kar = full[x]
 					if ( isNaN(kar) == false ) {
@@ -1802,6 +1896,10 @@ function func_setNextQ(){
 					Qtext = Qtext.replace('open ','');
 					Qtext = Qtext.replace('<details','<details open');
 				}*/
+				
+				// kérdés titlebe bekerül, hogy a táblázatban hányas számú
+				var num = i+1
+				arrayQ[i].innerHTML = arrayQ[i].innerHTML.replace("<summary>","<summary>["+num+"] ")
 				arrayQ[i].id = LSid
 				if ( arrayQ[i].className.indexOf("open") != -1 ) { arrayQ[i].open = true } // openeli a detailst (pl. ha szövettan metszet-felismerés kérdés)
 				//alert(i+": "+LSid)
@@ -1811,17 +1909,24 @@ function func_setNextQ(){
 
 				// hide-olja a Table_QsMarkban a fölös td-ket!
 
-				// selectlist classába tegye be az LSid-t
-				selectList.className == "id:"+LSid
+				// selectlist classába beteszi az LSid-t (de erre lehet nincs szükség, szóval kivettem)
+				// selectList.className == "id:"+LSid
 
 				// selectlist előző jegyet jelölje! (halványszürke háttér és/vagy vastag betű)
+				
+				//idő
+				var date = new Date();
+				if ( localStorage.getItem(LSid+'_idopont') ) {
+					var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
+					document.getElementById("td.2."+i).innerHTML = idopont
+				}
 			}
 		}
 		F_SetMarks()
 
-		if ( localStorage.getItem(priorLSid+'_note') == " " ) { localStorage.setItem(priorLSid+'_note', "") }
-		if ( localStorage.getItem(priorLSid+'_note') != "" && localStorage.getItem(priorLSid+'_note') != null ) {
-			document.getElementById("note").value = localStorage.getItem(priorLSid+'_note')
+		if ( localStorage.getItem(priorQid+'_note') == " " ) { localStorage.setItem(priorQid+'_note', "") }
+		if ( localStorage.getItem(priorQid+'_note') != "" && localStorage.getItem(priorQid+'_note') != null ) {
+			document.getElementById("note").value = localStorage.getItem(priorQid+'_note')
 			document.getElementById("btn_Note").style.borderColor = "red";
 			var_note = true
 		} else {
@@ -1830,7 +1935,7 @@ function func_setNextQ(){
 		}
 
 		var date = new Date();
-		var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(priorLSid+'_idopont')
+		var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(priorQid+'_idopont')
 	}
 
 	func_calcJegy()
@@ -1864,13 +1969,14 @@ function F_CreateSelect(i) {
 		} else if ( x == 1 ) {
 			td.appendChild(selectList)
 		} else if ( x == 2 ) {
-			var text = document.createTextNode("idő")
-			td.appendChild(text)
+			td.style.fontSize = "small"
+			td.innerHTML = "&nbsp;"
 		}
 		document.getElementById("Tr_QsMark."+x).appendChild(td)
 	}
 }
 
+toggleAll_StatusEtStart()
 
 
 
