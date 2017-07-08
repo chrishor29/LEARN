@@ -126,7 +126,7 @@ func_abbrSet()
 
 
 var arrOLDtxt = [] // Qtxt to LSid
-var arrNEWtxt = [] // Qtxt to LSid
+var arrNEWid = [] // LSid to Qtxt
 
 var LStxt = [] // LSid to Qtxt
 var txtLS = [] // Qtxt to LSid
@@ -174,7 +174,7 @@ function F_saveQ(Qelem){
 		//console.log("LStxt: "+LSid)
 		LStxt[LSid] = Qtext
 		txtLS[Qtext] = LSid
-		arrNEWtxt[Qtext] = LSid
+		arrNEWid[LSid] = Qtext
 	}
 	if ( Qelem.className.indexOf("{") > -1 ) { // expQ
 		var begin = Qelem.className.indexOf("{")
@@ -196,7 +196,7 @@ function F_checkQs(){
 	for ( var i=0; i<kerdesek.length; i++ ) { 
 		var impek = kerdesek[i].getElementsByClassName("imp")
 		if ( impek.length == 0 ) { F_saveQ(kerdesek[i]) }
-	} 
+	}
 }
 F_checkQs()
 function F_impQs(){
@@ -261,25 +261,7 @@ function F_impQs(){
 	}
 }
 F_impQs()
-kerdesek = document.getElementsByClassName("kerdes")
 
-function F_saveLS(){
-	var fullString = ""
-	for ( var i=0;  i<kerdesek.length;  i++ ) {
-		var Qid = kerdesek[i].id
-		var Qtext = arrQid[Qid] 
-		var LSid = txtLS[Qtext] 
-		fullString = fullString + LSid + " " + Qtext + " _@@_ "
-		//console.clear()
-		//console.log("LSid: "+LSid)
-		//console.log("- - - - - - - - - - - - - - - - - -")
-		//console.log(fullString)
-		//alert("stop"+i)
-	}
-	fullString = LZString.compressToUTF16(fullString);
-	localStorage.setItem(document.title+"_Qtext",fullString)
-}
-F_saveLS()
 
 function F_DivSkip() {
 	var div = document.createElement("div")
@@ -316,7 +298,23 @@ function F_DivFix() {
 }
 F_DivFix()
 
-
+function F_saveLS(){
+	var fullString = ""
+	for ( var i=0;  i<kerdesek.length;  i++ ) {
+		var Qid = kerdesek[i].id
+		var Qtext = arrQid[Qid] 
+		var LSid = txtLS[Qtext] 
+		fullString = fullString + LSid + " " + Qtext + " _@@_ "
+		//console.clear()
+		//console.log("LSid: "+LSid)
+		//console.log("- - - - - - - - - - - - - - - - - -")
+		//console.log(fullString)
+		//alert("stop"+i)
+	}
+	fullString = LZString.compressToUTF16(fullString);
+	localStorage.setItem(document.title+"_Qtext",fullString)
+}
+F_saveLS()
 
 
 
@@ -353,72 +351,80 @@ function setQList(news,Qlist){
 }
 var replaceQs = []
 var defaultText = document.getElementById("div_Fix").innerHTML
-function func_checkQList(){
-	console.clear()
-	var oldQtxt
-	for ( oldQtxt in arrOLDtxt ) {
-		var oldLSid = arrOLDtxt[oldQtxt]
-		console.log("oldLSid: "+oldLSid)
-		alert("cont")
-		if ( localStorage.getItem(oldLSid+"_idopont") || localStorage.getItem(oldLSid+"_note") ) { 
-			document.getElementById("div_Fix").style.display = 'block';
-			console.clear()
-			console.log("– – – – func_replaceQ – – – –")
-			
-			document.getElementById("div_Fix").innerHTML = defaultText + oldQtxt + "<hr>"
-			var newQtxt
-			var x = 0
-			for ( newQtxt in arrNEWtxt ) {
-				x = x +1
-				var newLSid = arrNEWtxt[newQtxt]
-				var text = document.getElementById("div_Fix").innerHTML // (kell hogy megőrizze a buttont + selectet)
-				document.getElementById("div_Fix").innerHTML = text + newQtxt
-				if ( !document.getElementById("option_ReplaceQ_"+x) ) {
-					var option = document.createElement("option")
-					option.id = "option_ReplaceQ_"+x
-					document.getElementById("select_replaceQ").appendChild(option)
-					var text = document.createTextNode("Number: "+x)
-					option.appendChild(text)
-				}
-				document.getElementById("option_ReplaceQ_"+x).value = newLSid
-				document.getElementById("button_replaceQ").onclick = function() {
-					console.log("value: "+value)
-					var value = document.getElementById("select_replaceQ").value
-					var newLSid = localStorage.getItem(value)
-					var oldQtext = localStorage.getItem(oldLSid)
-					console.log("replaceQ-value: " +value)
-					console.log("replaceQ-newLSid: " +newLSid)
-					
-					var index = news.indexOf(value) // news-ból törli
-					news.splice(index,1) // news-ból törli
 
-					var QText = ""
-					//localStorage.setItem(newLSid,QText)
-					//localStorage.removeItem(newLSid)
-					
-					function changeLS(type){
-						if ( localStorage.getItem(oldLSid+type) ) {
-							localStorage.setItem(newLSid+type,localStorage.getItem(oldLSid+type))
-							localStorage.removeItem(oldLSid+type)
-						}
-					}
-					changeLS("_jegy")
-					changeLS("_skip")
-					changeLS("_note")
-					changeLS("_idopont")
-					changeLS("_repeat")
-					changeLS("_changes")
-					
-					replaceQs.splice(0,1)
-					if (replaceQs.length != 0) { 
-						func_replaceQ()
-					} else {
-						document.getElementById("div_Fix").style.display = 'none';
-						setQList(news,Qlist) 
-					}
+var changeStatus = false
+function F_oldQchange(oldQtxt,oldLSid){
+	console.clear()
+	console.log("– – – – F_oldQchange – – – –")
+	console.log("oldLSid: "+oldLSid)
+	console.log("oldQtxt: "+oldQtxt)
+	changeStatus = true
+	document.getElementById("div_Fix").style.display = 'block';
+	document.getElementById("div_Fix").innerHTML = defaultText + oldQtxt + "<hr>"
+	var newQtxt
+	var x = 0
+	for ( newLSid in arrNEWid ) {
+		x = x +1
+		var newQtxt = arrNEWid[newLSid]
+		var text = document.getElementById("div_Fix").innerHTML // (kell hogy megőrizze a buttont + selectet)
+		document.getElementById("div_Fix").innerHTML = text + newQtxt
+		if ( !document.getElementById("option_ReplaceQ_"+x) ) {
+			var option = document.createElement("option")
+			option.id = "option_ReplaceQ_"+x
+			document.getElementById("select_replaceQ").appendChild(option)
+			var text = document.createTextNode("Number: "+x)
+			option.appendChild(text)
+		}
+		document.getElementById("option_ReplaceQ_"+x).value = newLSid
+		document.getElementById("button_replaceQ").onclick = function() {
+			var value = document.getElementById("select_replaceQ").value
+			console.log("newLSid: " +value)
+			var newQtxt = arrNEWid[value]
+			delete arrNEWid[value]
+			
+			txtLS[newQtxt] = value
+			for ( var i in LStxt ) {
+				if ( LStxt[i] == newQtxt ) {
+					delete arrNEWid[i]
+					LStxt[value] == newQtxt
 				}
 			}
+
+			function changeLS(type){
+				if ( localStorage.getItem(oldLSid+type) ) {
+					localStorage.setItem(newLSid+type,localStorage.getItem(oldLSid+type))
+					localStorage.removeItem(oldLSid+type)
+				}
+			}
+			changeLS("_jegy")
+			changeLS("_skip")
+			changeLS("_note")
+			changeLS("_idopont")
+			changeLS("_repeat")
+			changeLS("_changes")
+			
+			delete arrOLDtxt[oldQtxt]
+			func_calcOldNew()
+			F_oldQcheck()
 		}
+	}
+}
+
+function F_oldQcheck(){
+	console.clear()
+	console.log("– – – – F_oldQcheck – – – –")
+	var oldQtxt
+	var oldLSid = false
+	for ( oldQtxt in arrOLDtxt ) { 
+		if ( localStorage.getItem(arrOLDtxt[oldQtxt]+"_idopont") || localStorage.getItem(arrOLDtxt[oldQtxt]+"_note") ) { 
+			oldLSid = arrOLDtxt[oldQtxt]
+		}
+	}
+	if ( oldLSid == false ) { 
+		document.getElementById("div_Fix").innerHTML = ""
+		document.getElementById("div_Fix").style.display = 'none'
+	} else { 
+		F_oldQchange(oldQtxt,oldLSid) 
 	}
 	/*
 	news = news.split(" ")
@@ -493,7 +499,7 @@ function func_checkQList(){
 	}
 	*/
 }
-func_checkQList()
+F_oldQcheck()
 
 
 
@@ -561,6 +567,7 @@ function toggleAll_StatusEtStart() {
 	var childs = document.body.children; 
 	if ( localStorage.getItem("hk.ToggleAll") == "true" ) {
 		for ( var i=0; i<childs.length; i++ ) { childs[i].style.display = "none" }
+		if ( changeStatus == true ) { document.getElementById("div_Fix").style.display = 'block' }
 		document.getElementById("div_MainFrame").style.display = 'block';
 		tooltipSpan.style.display = 'block';
 
@@ -569,7 +576,7 @@ function toggleAll_StatusEtStart() {
 		for ( var i=0; i<childs.length; i++ ) { childs[i].style.display = "block" }
 		document.getElementById("div_MainFrame").style.display = 'none';
 
-		document.getElementById("div_Fix").style.display = 'none';
+		if ( changeStatus == false ) { document.getElementById("div_Fix").style.display = 'none' }
 		document.getElementById("div_Skip").style.display = 'none';
 	}
 }
@@ -1221,10 +1228,12 @@ func_altetelID()
 function func_sortQuests(){ // felmegy tételig, ha volt közben altétel is, akkor abba teszi
 	console.clear()
 	console.log("– – – – – – – func_sortQuests – – – – – – – –")
-	console.log("length: "+kerdesek.length)
-	for ( i=0;  i<kerdesek.length;  i++ ) {
-		var Qid = kerdesek[i].id
-		var parent = kerdesek[i]
+	console.log(": "+Qcount)
+	//alert("stop")
+	for ( i=0;  i<Qcount;  i++ ) {
+		var Qid = i +1
+		Qid = "Q."+Qid
+		var parent = document.getElementById(Qid)
 
 		var Qtxt = arrQid[Qid]
 		console.log("Qid: "+Qid)
@@ -1246,8 +1255,6 @@ function func_sortQuests(){ // felmegy tételig, ha volt közben altétel is, ak
 	document.getElementById("input_toggleAll").value = Qcount
 }
 func_sortQuests()
-
-alert("succes")
 
 var tooltipSpan = document.createElement("span");
 function func_tooltipFuncs(){
@@ -1433,6 +1440,7 @@ func_temakorStatus()
 
 var obj_fixNote = [] // object (nem table és nem array!)
 var obj_skip = [] // object (nem table és nem array!)
+
 
 function func_tableSkipFix(){
 	for ( var i=0;  i<kerdesek.length;  i++ ) {
@@ -1790,6 +1798,9 @@ function func_multiQCheck(){ // kiírja a quest summary-jébe, mely questeket id
 	}
 }
 //func_multiQCheck() // (most valamiért hibás is, mert lefagy ha elindítom, szóval skip egyenlőre)
+
+
+
 
 function func_godMode(){
 	if ( document.getElementById("btn_godMode").style.backgroundColor == "limegreen" ) {
