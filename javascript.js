@@ -5,10 +5,12 @@
 
 /* PROJECT 
  ✔: Skip funkció
- ✖: export localStorage FIX!!!
-----
- ✖: importos kérdést hiába upgradelem html-ben, nem upgradeli LS-ben
+ ✔: EXPid Qtext -> elég azt elmenteni, amelyik MÁS-HTML-be lesz exportálva
  ✖: upgradeQ check!
+----
+ ✖: export localStorage FIX!!!
+ ✖: inkább nextQ-nál kéne importálni (akkor kevesebb helyet visz majd LS-ben)
+ ✖: importos kérdést hiába upgradelem html-ben, nem upgradeli LS-ben
 */
 
 
@@ -63,24 +65,18 @@ for ( var i=0; i<kerdesek.length; i++ ) {
  § közben elmenti ID+1-nek is az értékét az innerHTML-re (szükség lesz mindkettőre, mert meg kell néznem, van-e már ilyen quest, ehhez innerhtml kell, illetve tudnom kell, hányadik ID-nél tartok, és melyek hiányoznak)
 */
 
-/* import Q
-"6-féle" id-t adhatok a questnek
- 1 id mutatja, mely ezen html-n belüli  questet csatoljam mellé
- 2 id mutatja, mely másik html-ben lévő questet csatoljam mellé
- 3 questnek adok id-t, hogy csatolható legyen html-n belül
- 4 questnek adok id-t, hogy csatolható legyen másik html-be
- 5 id mutatja, mely ezen html-n belüli questet importálja
- 6 id mutatja, mely más html-ben  lévő questet importálja
-Qtext-et elég a 4,6 esetében lementeni
-import és csatolás különböznek (importnál becopyzza amint megnyitom az oldalt, csatolásnál csak ha a kérdést kidobja)
+
+/* 
+ ✔ arrQtxt-be lekéri LS-be amik voltak
+ ✔ kerdeseken végigmegy...
+	✔ ha Qtext benne van arrOLDtxt-ben, akkor annak id-jét kapja a Q, és kiveszi arrOLDtxt-ből, és elmenti vele LStxt
+	✔ ha Qtext nincs benn arrOLDtxt-ben, akkor ad neki új id, és elmenti vele LStxt
+ ✖ impQ
+ ✔ megnézi arrQid-ben mi maradt benne, és azokat kidobja lecserélni
 */
 
 
-var arrayQids = []
-
-var kerdesek = document.getElementsByClassName("kerdes")
-
-function F_hash(str){
+/*function F_hash(str){
 	var hash = 0;
 	if (str.length == 0) return hash;
 	for (var i = 0; i < str.length; i++) {
@@ -88,7 +84,21 @@ function F_hash(str){
 		 hash = ((hash<<5)-hash)+char;
 	}
 	return hash;
-}
+}*/
+
+
+
+//var string = document.body.innerHTML
+//var compressed = LZString.compress(string);
+//var compressed = LZString.compressToUTF16(string);
+//var compressed = LZString.decompress(string);
+//var compressed = LZString.decompressFromUTF16(string);
+
+
+
+var kerdesek = document.getElementsByClassName("kerdes")
+if ( localStorage.getItem("hkQ.max") === null ) { localStorage.setItem("hkQ.max",0) } 
+
 function func_abbrSet(){ 
 // azt csináljam, hogy a li textet írja át alapból: <span style="visibility:hidden"> ..text.. <span>, majd amikor ráklikkelek removeolja a spant --> megmaradnak a pontok
 // func_saveQuest előtt kell legyen, de a F_impQs után
@@ -111,44 +121,82 @@ function func_abbrSet(){
 }
 func_abbrSet()
 
-var emptyLSid = 0
+
+
+
+
+var arrOLDtxt = [] // Qtxt to LSid
+var arrNEWtxt = [] // Qtxt to LSid
+
+var LStxt = [] // LSid to Qtxt
+var txtLS = [] // Qtxt to LSid
+
+var arrQid = [] // Qid to Qtxt
+
+var Qcount = 0
+function F_getTexts(){
+	var fullString = localStorage.getItem(document.title+"_Qtext")
+	fullString = LZString.decompressFromUTF16(fullString);
+	fullString = fullString.split(" _@@_ ")
+	for ( var i=0; i<fullString.length; i++ ) {
+		if ( fullString[i] != "" ) {  // utolsó mindig ez, és azt ne tegye array-ba
+			var string = fullString[i]
+			var Qid = string.slice(0,string.indexOf(" "))
+			var Qtext = string.slice(string.indexOf(" ")+1)
+			arrOLDtxt[Qtext] = Qid
+			//console.log("Qid: "+Qid)
+			//console.log("Qid: "+Qtext)
+		}
+	}
+}
+F_getTexts()
 function F_saveQ(Qelem){
-	console.clear()
-	console.log("– – – – – – – – F_saveQ – – – – – – – – –")
-	var Qtext = '<details class="' + Qelem.className + '">' + Qelem.innerHTML + "</details>"
-	Qhash = F_hash(Qtext)
+	//console.clear()
+	var Qtext = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
+	Qcount = Qcount+1
+	Qelem.id = "Q."+Qcount
+	arrQid["Q."+Qcount] = Qtext
 	var LSid
-	if ( localStorage.getItem(Qhash) === null ) { // newQ
-		do {
-			emptyLSid = emptyLSid +1
-		} while ( localStorage.getItem("hkQ."+emptyLSid) )
-		LSid = emptyLSid
-		localStorage.setItem(Qhash, "hkQ."+LSid)
-		localStorage.setItem("hkQ."+LSid, Qhash)
+	//console.log(Qelem.id)
+	//console.log(Qtext)
+	if ( arrOLDtxt[Qtext] || txtLS[Qtext] ) {
+		if ( arrOLDtxt[Qtext] ) { LSid = arrOLDtxt[Qtext] }
+		if ( txtLS[Qtext] ) { LSid = txtLS[Qtext] }
+		//console.log("prevQid: "+LSid)
+		delete arrOLDtxt[Qtext]
+		//arrOLDtxt.splice(arrOLDtxt.indexOf(Qtext),1)
+		LStxt[LSid] = Qtext
+		txtLS[Qtext] = LSid
+	} else {
+		var count = parseInt(localStorage.getItem("hkQ.max"))+1
+		localStorage.setItem("hkQ.max",count)
+		LSid = "hkQ."+count
+		//console.log("LStxt: "+LSid)
+		LStxt[LSid] = Qtext
+		txtLS[Qtext] = LSid
+		arrNEWtxt[Qtext] = LSid
 	}
 	if ( Qelem.className.indexOf("{") > -1 ) { // expQ
 		var begin = Qelem.className.indexOf("{")
 		var end = Qelem.className.indexOf("}")
 		var EXPid = Qelem.className.slice(begin+1,end)
 		if ( localStorage.getItem("hkExpQ."+EXPid) === null ) {
-/* hkExp.max nemtom mire kell */ if ( Number(EXPid) > localStorage.getItem("hkExp.max") ) { localStorage.setItem("hkExp.max",EXPid) }
-			localStorage.setItem("hkExpQ."+EXPid,Qtext)
+			if ( Number(EXPid) > localStorage.getItem("hkExp.max") ) { localStorage.setItem("hkExp.max",EXPid) }
+			localStorage.setItem("hkExpQ."+EXPid,LSid)
 		} else { // amennyiben már foglalt --> tehát egy újat véletlenül már foglalt EXPid-re neveztem el
-			if ( Qtext != localStorage.getItem("hkExpQ."+EXPid) ) { alert("foglalt már (vagy csak upgradelve lett azóta): {"+EXPid+"}") }
+			if ( LSid != localStorage.getItem("hkExpQ."+EXPid) ) { 
+				console.log("LSid: "+LSid)
+				console.log("EXPid: "+localStorage.getItem("hkExpQ."+EXPid))
+				alert("foglalt már (vagy csak upgradelve lett azóta): {"+EXPid+"}") 
+			}
 		}
 	}
-	LSid = localStorage.getItem(Qhash)
-	var num = arrayQids.length
-	Qelem.id = "Q."+num
-	console.log(LSid + " : " + num)
-	arrayQids[num] = LSid
-	console.log("Qid: "+Qelem.id)
 }
 function F_checkQs(){
-	for ( var i=0; i<kerdesek.length; i++ ) {
+	for ( var i=0; i<kerdesek.length; i++ ) { 
 		var impek = kerdesek[i].getElementsByClassName("imp")
 		if ( impek.length == 0 ) { F_saveQ(kerdesek[i]) }
-	}
+	} 
 }
 F_checkQs()
 function F_impQs(){
@@ -159,22 +207,20 @@ function F_impQs(){
 		var begin = impek[i].className.indexOf("[") +1
 		var Qelem = impek[i].parentElement.parentElement
 		var end = impek[i].className.indexOf("]")
-		// var Qid = impek[i].id
-		var impArray = []
 		var full = impek[i].className.slice(begin,end) // válassza őket külön
 		var cont = false
 		var num = ""
 		var high = ""
 		var MISSid = ""
 		function func_impQ(EXPid){
-			console.log("EXPid: "+EXPid)
-			if ( !localStorage.getItem("hkExpQ."+EXPid) ) { 
+			var LSid = null
+			LSid = localStorage.getItem("hkExpQ."+EXPid)
+			console.log(LSid+" :LSid,EXPid: "+EXPid)
+			if ( LSid == null ) { 
 				MISSid = MISSid + EXPid + ","
 			} else {
-				var Qtext = localStorage.getItem("hkExpQ."+EXPid)
-				// ITT HIÁNYZIK, HOGY ID-T KAPJON !!!
-				impek[i].innerHTML = impek[i].innerHTML + Qtext
-				console.log(localStorage.getItem("hkExpQ."+EXPid))
+				// annyi hiba, hogyha importált q-ban változás történik, akkor szvsz csak kövi frissítésnél kerül be (2x kell, nem 1x)
+				impek[i].innerHTML = impek[i].innerHTML + LStxt[LSid]
 			}
 		}
 		for (var x=0; x<=full.length; x++) {
@@ -203,14 +249,37 @@ function F_impQs(){
 			}
 		}
 		if (MISSid!="") { alert("alábii EXPid-k még nincsenek LS-be reigsztrálva: "+MISSid) }
-		impek[i].className = impek[i].className.replace("imp ","") // ez azért kell, mert különben többször másolná be (ugyanis nextQ-nál is hivatkozik erre a funkcióra)
-
+		
+		// impek[i].className = impek[i].className.replace("imp ","") // ez azért kell, mert különben többször másolná be (ugyanis nextQ-nál is hivatkozik erre a funkcióra)
+		
 		F_saveQ(Qelem)
-		var unregQs = Qelem.getElementsByClassName("kerdes")
-		for ( var i=0; i<unregQs.length; i++ ) { F_saveQ(unregQs[i]) }
+		var altQs = impek[i].getElementsByClassName("kerdes")
+		for (var t=0; t<altQs.length; t++) {
+			// getDocumentByClass[kerdes]-ekbe push-olja be
+			if ( !altQs[t].id ) { F_saveQ(altQs[t]) }
+		}
 	}
 }
 F_impQs()
+kerdesek = document.getElementsByClassName("kerdes")
+
+function F_saveLS(){
+	var fullString = ""
+	for ( var i=0;  i<kerdesek.length;  i++ ) {
+		var Qid = kerdesek[i].id
+		var Qtext = arrQid[Qid] 
+		var LSid = txtLS[Qtext] 
+		fullString = fullString + LSid + " " + Qtext + " _@@_ "
+		//console.clear()
+		//console.log("LSid: "+LSid)
+		//console.log("- - - - - - - - - - - - - - - - - -")
+		//console.log(fullString)
+		//alert("stop"+i)
+	}
+	fullString = LZString.compressToUTF16(fullString);
+	localStorage.setItem(document.title+"_Qtext",fullString)
+}
+F_saveLS()
 
 function F_DivSkip() {
 	var div = document.createElement("div")
@@ -250,6 +319,8 @@ F_DivFix()
 
 
 
+
+
 function func_divButtonETC() {
 	var button = document.createElement("input")
 	button.id = "button_replaceQ"
@@ -269,11 +340,13 @@ function func_divButtonETC() {
 }
 func_divButtonETC()
 function setQList(news,Qlist){
-	for ( var x=0; x<news.length; x++ ) { 
-		if ( Qlist == "" ) {
-			Qlist = news[x] // kell, mert különben lesz bennük egy üres is split után (oldsba pl.)
+	if ( news.indexOf("") != -1 ) { news.splice(news.indexOf(""),1) } // kiveszi az newsba hibából belekerülő üres elementet
+	var Qlist = ""
+	for ( var i=0; i<kerdesek.length; i++ ) {
+		if ( Qlist == "" ) {  // kell, mert különben lesz benne egy üres is split után
+			Qlist = kerdesek[i].id
 		} else {
-			Qlist = Qlist + " " + news[x]
+			Qlist = Qlist + " " + kerdesek[i].id
 		}
 	}
 	localStorage.setItem(document.title+"_Qlist", Qlist)
@@ -281,44 +354,25 @@ function setQList(news,Qlist){
 var replaceQs = []
 var defaultText = document.getElementById("div_Fix").innerHTML
 function func_checkQList(){
-	if ( localStorage.getItem(document.title+"_Qlist") == null ) { localStorage.setItem(document.title+"_Qlist","") }
-	var Qlist = localStorage.getItem(document.title+"_Qlist")
-	var olds = Qlist.split(" ")
-	var news = ""
-	for ( var i=0; i<kerdesek.length; i++ ) {
-		var Qid = kerdesek[i].id
-		if ( Qlist.indexOf(Qid) == -1 ) { // új Questet (beleértve egy réginek az új verzióját) news-ba teszi
-			if ( news == "" ) {  // kell, mert különben lesz benne egy üres is split után
-				news = Qid
-			} else {
-				news = news + " " + Qid
-			}
-		} else { // amelyik Quest nem változott, azt kiveszi olds-ból
-			olds.splice(olds.indexOf(Qid),1)
-		}
-	}
-	if ( olds.indexOf("") != -1 ) { olds.splice(olds.indexOf(""),1) } // kiveszi az oldsba hibából belekerülő üres elementet
-	
-	news = news.split(" ")
-	for ( var i=0; i<olds.length; i++ ) {
-		if ( localStorage.getItem(olds[i]+"_jegy") ) {
-			replaceQs.push(olds[i])
-		} else {
-			var ihtml = localStorage.getItem(olds[i])
-			localStorage.removeItem(ihtml)
-			localStorage.removeItem(olds[i])
-		}
-	}
-	if ( replaceQs.length == 0 ) { 
-		setQList(news,Qlist) 
-	} else {
-		document.getElementById("div_Fix").style.display = 'block';
-		function func_replaceQ(){
-			var oldID = replaceQs[0]
-			document.getElementById("div_Fix").innerHTML = defaultText + localStorage.getItem(oldID) + "<hr>"
-			for ( var x=0; x<news.length; x++ ) { // felajánlja melyikre lehet cserélni a newsok közül
+	console.clear()
+	var oldQtxt
+	for ( oldQtxt in arrOLDtxt ) {
+		var oldLSid = arrOLDtxt[oldQtxt]
+		console.log("oldLSid: "+oldLSid)
+		alert("cont")
+		if ( localStorage.getItem(oldLSid+"_idopont") || localStorage.getItem(oldLSid+"_note") ) { 
+			document.getElementById("div_Fix").style.display = 'block';
+			console.clear()
+			console.log("– – – – func_replaceQ – – – –")
+			
+			document.getElementById("div_Fix").innerHTML = defaultText + oldQtxt + "<hr>"
+			var newQtxt
+			var x = 0
+			for ( newQtxt in arrNEWtxt ) {
+				x = x +1
+				var newLSid = arrNEWtxt[newQtxt]
 				var text = document.getElementById("div_Fix").innerHTML // (kell hogy megőrizze a buttont + selectet)
-				document.getElementById("div_Fix").innerHTML = text + localStorage.getItem(news[x])
+				document.getElementById("div_Fix").innerHTML = text + newQtxt
 				if ( !document.getElementById("option_ReplaceQ_"+x) ) {
 					var option = document.createElement("option")
 					option.id = "option_ReplaceQ_"+x
@@ -326,19 +380,103 @@ function func_checkQList(){
 					var text = document.createTextNode("Number: "+x)
 					option.appendChild(text)
 				}
-				document.getElementById("option_ReplaceQ_"+x).value = news[x]
+				document.getElementById("option_ReplaceQ_"+x).value = newLSid
 				document.getElementById("button_replaceQ").onclick = function() {
+					console.log("value: "+value)
 					var value = document.getElementById("select_replaceQ").value
-					var NEWihtml = localStorage.getItem(value)
-					var OLDihtml = localStorage.getItem(oldID)
-					//alert("value: " + document.getElementById("select_replaceQ").value)
+					var newLSid = localStorage.getItem(value)
+					var oldQtext = localStorage.getItem(oldLSid)
+					console.log("replaceQ-value: " +value)
+					console.log("replaceQ-newLSid: " +newLSid)
 					
 					var index = news.indexOf(value) // news-ból törli
 					news.splice(index,1) // news-ból törli
-					localStorage.setItem(oldID,NEWihtml) // LS-ben az olds.id-re beállítja az news.ihtml-jét
-					localStorage.removeItem(news[x]) // LS-ben a news.id-t törli
-					localStorage.removeItem(OLDihtml) // LS-ben a olds.ihtml-t törli
-					localStorage.setItem(NEWihtml,oldID) // LS-ben a news.ihtml-t beállítja az olds.id-re
+
+					var QText = ""
+					//localStorage.setItem(newLSid,QText)
+					//localStorage.removeItem(newLSid)
+					
+					function changeLS(type){
+						if ( localStorage.getItem(oldLSid+type) ) {
+							localStorage.setItem(newLSid+type,localStorage.getItem(oldLSid+type))
+							localStorage.removeItem(oldLSid+type)
+						}
+					}
+					changeLS("_jegy")
+					changeLS("_skip")
+					changeLS("_note")
+					changeLS("_idopont")
+					changeLS("_repeat")
+					changeLS("_changes")
+					
+					replaceQs.splice(0,1)
+					if (replaceQs.length != 0) { 
+						func_replaceQ()
+					} else {
+						document.getElementById("div_Fix").style.display = 'none';
+						setQList(news,Qlist) 
+					}
+				}
+			}
+		}
+	}
+	/*
+	news = news.split(" ")
+	console.log("olds: "+olds.length)
+	for ( var i=0; i<olds.length; i++ ) {
+		var Qtext = localStorage.getItem[olds[i]]
+		console.log("olds: "+olds[i]) 
+		console.log("olds: "+Qtext)
+		console.log("– – – – – – – – – – – – – – – – – – – – – – – – ")
+		if ( localStorage.getItem(olds[i]+"_idopont") || localStorage.getItem(olds[i]+"_note") ) { replaceQs.push(olds[i]) }
+	}
+	if ( replaceQs.length == 0 ) { 
+		console.log("– – – – setQList – – – –")
+		setQList(news,Qlist) 
+	} else {
+		document.getElementById("div_Fix").style.display = 'block';
+		function func_replaceQ(){
+			console.log("– – – – func_replaceQ – – – –")
+			var oldQhash = replaceQs[0]
+			document.getElementById("div_Fix").innerHTML = defaultText + localStorage.getItem(oldQhash) + "<hr>"
+			for ( var x=0; x<news.length; x++ ) { // felajánlja melyikre lehet cserélni a newsok közül
+				var newQhash = news[x]
+				var text = document.getElementById("div_Fix").innerHTML // (kell hogy megőrizze a buttont + selectet)
+				document.getElementById("div_Fix").innerHTML = text + arrQtexts[newQhash]
+				if ( !document.getElementById("option_ReplaceQ_"+x) ) {
+					var option = document.createElement("option")
+					option.id = "option_ReplaceQ_"+x
+					document.getElementById("select_replaceQ").appendChild(option)
+					var text = document.createTextNode("Number: "+x)
+					option.appendChild(text)
+				}
+				document.getElementById("option_ReplaceQ_"+x).value = newQhash
+				document.getElementById("button_replaceQ").onclick = function() {
+					var value = document.getElementById("select_replaceQ").value
+					var newQhash = localStorage.getItem(value)
+					var oldQtext = localStorage.getItem(oldQhash)
+					console.log("replaceQ-value: " +value)
+					console.log("replaceQ-newQhash: " +newQhash)
+					
+					var index = news.indexOf(value) // news-ból törli
+					news.splice(index,1) // news-ból törli
+
+					var QText = ""
+					localStorage.setItem(newQhash,QText)
+					localStorage.removeItem(oldQhash)
+					
+					function changeLS(type){
+						if ( localStorage.getItem(oldQhash+type) ) {
+							localStorage.setItem(newQhash+type,localStorage.getItem(oldQhash+type))
+							localStorage.removeItem(oldQhash+type)
+						}
+					}
+					changeLS("_jegy")
+					changeLS("_skip")
+					changeLS("_note")
+					changeLS("_idopont")
+					changeLS("_repeat")
+					changeLS("_changes")
 					
 					replaceQs.splice(0,1)
 					if (replaceQs.length != 0) { 
@@ -351,9 +489,16 @@ function func_checkQList(){
 			}
 		}
 		func_replaceQ()
+		console.log("– – – – NO func_replaceQ NO – – – –")
 	}
+	*/
 }
 func_checkQList()
+
+
+
+
+
 
 var imagesAll = document.images
 var tooltipStatus
@@ -971,7 +1116,7 @@ function func_markCount(jegy){ // következő kérdés nehézségét beállítja
 }
 
 var tetelek = []
-function func_tetelChoose() { // createli a választható tételek listáját
+function func_tetelChoose(){ // createli a választható tételek listáját
 	function F_MainDiv() {
 		var div = document.createElement("div")
 		div.id = "Div_Tetelek"
@@ -1076,10 +1221,14 @@ func_altetelID()
 function func_sortQuests(){ // felmegy tételig, ha volt közben altétel is, akkor abba teszi
 	console.clear()
 	console.log("– – – – – – – func_sortQuests – – – – – – – –")
-	var countQ = 0
-	for ( countQ=0;  countQ<kerdesek.length;  countQ++ ) {
-		var Qid = kerdesek[countQ].id
-		var parent = kerdesek[countQ]
+	console.log("length: "+kerdesek.length)
+	for ( i=0;  i<kerdesek.length;  i++ ) {
+		var Qid = kerdesek[i].id
+		var parent = kerdesek[i]
+
+		var Qtxt = arrQid[Qid]
+		console.log("Qid: "+Qid)
+		console.log("Qtxt: "+kerdesek[i].innerHTML)
 
 		do {
 			parent = parent.parentElement
@@ -1087,15 +1236,18 @@ function func_sortQuests(){ // felmegy tételig, ha volt közben altétel is, ak
 
 		if ( parent.className  == "altetel" ) {
 			tetelek[parent.parentElement.id][parent.id][Qid] = true
-			console.log("altetel: " +Qid)
+			//console.log("altetel: " +Qid)
 		} else if ( parent.className  == "tetel" ) {
 			tetelek[parent.id][Qid] = true
-			console.log("tetel: " +Qid)
+			//console.log("tetel: " +Qid)
 		}
+		console.log("Qid: "+Qid)
 	}
-	document.getElementById("input_toggleAll").value = countQ
+	document.getElementById("input_toggleAll").value = Qcount
 }
 func_sortQuests()
+
+alert("succes")
 
 var tooltipSpan = document.createElement("span");
 function func_tooltipFuncs(){
@@ -1285,25 +1437,24 @@ var obj_skip = [] // object (nem table és nem array!)
 function func_tableSkipFix(){
 	for ( var i=0;  i<kerdesek.length;  i++ ) {
 		var Qid = kerdesek[i].id
-		var LSid = Qid.slice(Qid.indexOf(":Q,LS:")+6)
-		if ( localStorage.getItem(LSid+'_note') ) {
-			obj_fixNote[LSid] = localStorage.getItem(LSid+'_note')
+		if ( localStorage.getItem(Qid+'_note') ) {
+			obj_fixNote[Qid] = localStorage.getItem(Qid+'_note')
 		} else {
-			if ( obj_fixNote[LSid] ) { delete obj_fixNote[LSid] } // remove a Table-ból
+			if ( obj_fixNote[Qid] ) { delete obj_fixNote[Qid] } // remove a Table-ból
 		}
-		if ( localStorage.getItem(LSid+"_skip") ) {
+		if ( localStorage.getItem(Qid+"_skip") ) {
 			var date = new Date();
 			date = Math.floor(date.getTime()/60000)
-			var difference = date - localStorage.getItem(LSid+"_idopont")
+			var difference = date - localStorage.getItem(Qid+"_idopont")
 			difference = difference /60 // átállítja órára
-			if ( difference < localStorage.getItem(LSid+"_skip") ) {
-				obj_skip[LSid] = localStorage.getItem(LSid+"_skip")
+			if ( difference < localStorage.getItem(Qid+"_skip") ) {
+				obj_skip[Qid] = localStorage.getItem(Qid+"_skip")
 			} else {
-				if ( obj_skip[LSid] ) { delete obj_skip[LSid] } // remove a Table-ból
-				localStorage.removeItem(LSid+'_skip')
+				if ( obj_skip[Qid] ) { delete obj_skip[Qid] } // remove a Table-ból
+				localStorage.removeItem(Qid+'_skip')
 			}
 		} else {
-			if ( obj_skip[LSid] ) { delete obj_skip[LSid] } // remove a Table-ból
+			if ( obj_skip[Qid] ) { delete obj_skip[Qid] } // remove a Table-ból
 		}
 	}
 }
@@ -1362,7 +1513,6 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 				var QlocElem = document.getElementById("kerdeslocation")
 				var arrayQ = QlocElem.getElementsByClassName("kerdes")
 				for ( var i=0; i<arrayQ.length; i++ ) {
-					var LSid = arrayQ[i].id
 					var text = document.getElementById("div_Skip").innerHTML
 					var x = i+1
 					document.getElementById("div_Skip").innerHTML = text + '&nbsp;<span class="white">&nbsp;' + x + '&nbsp;</span>&nbsp;<input type="number" style="width:55px;">&nbsp;<select><option value="min">min</option><option value="hour">hour</option><option value="day">day</option></select> <br>'
@@ -1573,8 +1723,9 @@ function func_calcOldNew(){
 	var repFast = 0
 	var repSlow = 0
 	function calculate(Qid){
-		var LSid = Qid.slice(2)
-		LSid = arrayQids[LSid]
+		var Qtxt = arrQid[Qid]
+		var LSid = txtLS[Qtxt]
+
 		var repCount = Number(localStorage.getItem(LSid+'_repeat'))
 		var date = new Date();
 		var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
@@ -1603,7 +1754,6 @@ function func_calcOldNew(){
 	for ( var tetel in tetelek ) { // végignézi az összes kérdést
 		if ( localStorage.getItem(tetel+"_button") == "true" ) {
 			for ( var qat in tetelek[tetel] ) {
-				var LSid
 				if ( tetelek[tetel][qat] == true ) {
 					calculate(qat)
 				} else {
@@ -1710,19 +1860,16 @@ function F_prevQ(){
 	console.clear()
 	console.log("– – – – – – – – F_prevQ – – – – – – – – –")
 	var QlocElem = document.getElementById("kerdeslocation")
-	var priorLSid = priorQid.slice(2)
-	priorLSid = arrayQids[priorLSid]
 	var arrayQ = QlocElem.getElementsByClassName("kerdes")
 	function F_Jegyek() {
-		localStorage.setItem(priorLSid+'_note', document.getElementById("note").value);
+		localStorage.setItem(priorQid+'_note', document.getElementById("note").value);
 		document.getElementById("note").value = ""
 		for ( var i=0; i<activeQs.length; i++ ) {
 			var LSid = activeQs[i]
 			var jegy = document.getElementById("hkSelect."+i).value
 			console.log(i+" : "+LSid+" : "+jegy)
 			document.getElementById("hkSelect."+i).value = "empty"
-			if ( jegy != "empty" ) { 
-				var changes
+			if ( jegy != "empty" ) {
 				var repCount = Number(localStorage.getItem(LSid+'_repeat'))
 				if ( repCount == jegy || jegy > repCount ) {
 					changes = 1
@@ -1744,14 +1891,14 @@ function F_prevQ(){
 
 				var date = new Date();
 				localStorage.setItem(LSid+'_idopont', Math.floor(date.getTime()/60000));
-				console.log(jegy+" :időpontot ment el, ezen LSidre: "+LSid)
+				console.log(jegy+" :időpontot ment el, ezen LSid-re: "+LSid)
 			}
 		}
 	}
 	F_Jegyek()
+
 	document.getElementById("questTitle").innerHTML = "";
 	document.getElementById("note").style.display = 'none';
-	alert("STOP")
 
 	function F_Skip() {
 		var div = document.getElementById("div_Skip")
@@ -1764,8 +1911,8 @@ function F_prevQ(){
 				} else if  ( div.getElementsByTagName("select")[i].value == "day" ) {
 					skip = skip*24
 				}
-				var LSid = activeQs[i]
-				localStorage.setItem(LSid+'_skip', skip)
+				var Qid = activeQs[i]
+				localStorage.setItem(Qid+'_skip', skip)
 			}
 		}
 	}
@@ -1802,12 +1949,14 @@ function F_nextQ(){
 	activeQs = [] // ezzel resetelem (szükséges mindig!)
 	QlocElem.innerHTML = ""
 
-	// kovetkező kérdés
+	// következő kérdés
 	for ( var x=0; x<30; x++ ) { // custom számot írtam, ennyi úgysincs
 		if ( document.getElementById("td.0."+x) ) { 
 			document.getElementById("td.0."+x).hidden = true 
 			document.getElementById("td.1."+x).hidden = true 
 			document.getElementById("td.2."+x).hidden = true 
+			
+			document.getElementById("td.2."+x).innerHTML = " "
 		}
 	}
 	priorQid = "nincs";
@@ -1818,8 +1967,8 @@ function F_nextQ(){
 	var checkValue = 0
 
 	function func_calcQValue(Qid) { // kérdés value-ját kiszámolja, és ha nagyobb, akkor kiválasztja
-		var LSid = Qid.slice(2)
-		LSid = arrayQids[LSid]
+		var Qtext = arrQid[Qid] 
+		var LSid = txtLS[Qtext] 
 		var shouldBreak = false // ehelyett meg kéne próbálni a "return"-t !!!
 		if ( localStorage.getItem(LSid+"_skip") ) { shouldBreak = true }
 		if ( localStorage.getItem(LSid+"_jegy") === null && shouldBreak == false ) {
@@ -1829,7 +1978,7 @@ function F_nextQ(){
 			}
 		}
 		if ( priorType == 1 && localStorage.getItem(LSid+"_jegy") > 0 ) { // régi kérdés
-			var Qelem = document.getElementById(Qid)
+			var Qelem = document.getElementById(LSid)
 			var date = new Date();
 			var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
 			var repCount = Number(localStorage.getItem(LSid+'_repeat'))
@@ -1911,6 +2060,7 @@ function F_nextQ(){
 	if ( priorQid != "nincs" ) {
 		var Qelem = document.getElementById(priorQid)
 		var parent = document.getElementById(priorQid)
+		console.log("pQid: "+priorQid)
 		do { // megkeresi a 'családfában' legfelül lévő kérdést!
 			Qelem = parent
 			parent = parent.parentElement
@@ -1949,20 +2099,22 @@ function F_nextQ(){
 				QlocElem.innerHTML = QlocElem.innerHTML + Qtext
 			}
 
-			var Qtext = '<details class="' + Qelem.className + '">' + Qelem.innerHTML + "</details>"
+			// Qelem-nek nem feltétlen van id-je (pl. kérdés összegző details esetében) --> ezzel a módszerrel kell
+			var Qtext = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
 			var find = ' id="(.*?)"'
 			Qtext = Qtext.replace(new RegExp(find, 'g'), "");
 			func_addQ(Qtext)
 
-			if ( kerdesek[priorQid].className.indexOf("[") != -1 ) {
-				var begin = kerdesek[priorQid].className.indexOf("[") +1
-				var end = kerdesek[priorQid].className.indexOf("]")
+			var pQelem = document.getElementById(priorQid)
+			if ( pQelem.className.indexOf("[") != -1 ) {
+				var begin = pQelem.className.indexOf("[") +1
+				var end = pQelem.className.indexOf("]")
 				var cont = false
 				var num = ""
 				var high = ""
 				var imp = []
-				var full = kerdesek[priorQid].className.slice(begin,end) 
-				for (var x=0; x<=full.length; x++) {
+				var full = pQelem.className.slice(begin,end) 
+				for ( var x=0; x<=full.length; x++ ) {
 					var kar = full[x]
 					if ( isNaN(kar) == false ) {
 						if ( cont == false ) {
@@ -1975,18 +2127,26 @@ function F_nextQ(){
 							cont = true
 						} else {
 							if ( cont == true ) {
-								for ( var z=0; z<=high-num; z++ ) {
+								for ( var z=0;  z<=high-num;  z++ ) {
 									var EXPid = Number(num) + Number(z)
-									var Qtext = localStorage.getItem("hkExpQ."+EXPid)
-									if (!localStorage.getItem("hkExpQ."+EXPid)) {alert("nincs még ilyen id LocalStorage-ben: hkExpQ."+EXPid)}
-									func_addQ(Qtext)
+									if ( localStorage.getItem("hkExpQ."+EXPid) ) {
+										var Qid = localStorage.getItem("hkExpQ."+EXPid)
+										var Qtext = LStxt[Qid]
+										func_addQ(Qtext)
+									} else {
+										alert("nincs még ilyen EXPid: {"+EXPid+"}")
+									}
 								}
 								cont = false
 							} else {
 								var EXPid = num
-								var Qtext = localStorage.getItem("hkExpQ."+EXPid)
-								if (!localStorage.getItem("hkExpQ."+EXPid)) {alert("nincs még ilyen id LocalStorage-ben: hkExpQ."+EXPid)}
-								func_addQ(Qtext)
+								if ( localStorage.getItem("hkExpQ."+EXPid) ) {
+									var Qid = localStorage.getItem("hkExpQ."+EXPid)
+									var Qtext = LStxt[Qid]
+									func_addQ(Qtext)
+								} else {
+									alert("nincs még ilyen EXPid: {"+EXPid+"}")
+								}
 							}
 							num = ""
 							high = ""
@@ -1995,7 +2155,7 @@ function F_nextQ(){
 				}
 			}
 		}
-		F_copyQs(Qelem)
+		F_copyQs(Qelem) // nem feltétlen van id-je !! (mármint ez nem hiba)
 		func_abbrSet()
 
 		function F_SetMarks() { // minden kérdés mellé kreál egy osztályzás lehetőséget
@@ -2003,15 +2163,15 @@ function F_nextQ(){
 			console.log(" ------ F_SetMarks ------ ")
 			var arrayQ = QlocElem.getElementsByClassName("kerdes")
 			for ( var i=0; i<arrayQ.length; i++ ) {
-				var Qtext = '<details class="' + arrayQ[i].className + '">' + arrayQ[i].innerHTML + "</details>"
-				var Qhash = F_hash(Qtext)
-				var LSid = localStorage.getItem(Qhash)
+				var Qelem = arrayQ[i]
+				var Qtext = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
+				var LSid = txtLS[Qtext]
 				activeQs[i] = LSid
-
+				console.log(i+" : "+LSid)
 				// kérdés titlebe bekerül, hogy a táblázatban hányas számú
 				var num = i+1
-				arrayQ[i].innerHTML = arrayQ[i].innerHTML.replace("<summary>","<summary>["+num+"] ")
-				if ( arrayQ[i].className.indexOf("open") != -1 ) { arrayQ[i].open = true } // openeli a detailst (pl. ha szövettan metszet-felismerés kérdés)
+				Qelem.innerHTML = Qelem.innerHTML.replace("<summary>","<summary>["+num+"] ")
+				if ( arrayQ[i].className.indexOf("open") != -1 ) { Qelem.open = true } // openeli a detailst (pl. ha szövettan metszet-felismerés kérdés)
 
 				if ( !document.getElementById("hkSelect."+i) ) { F_CreateSelect(i) }
 				document.getElementById("td.0."+i).hidden = false 
@@ -2035,7 +2195,7 @@ function F_nextQ(){
 				selectList.style.backgroundColor = "White"
 				if ( localStorage.getItem(LSid+'_idopont') ) {
 					var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-				console.log("LSid:"+LSid+" ––– time:"+idopont)
+					// console.log("Qid:"+Qid+" ––– time:"+idopont)
 					document.getElementById("td.2."+i).innerHTML = idopont
 
 					var num = arrayQ[i].className.search("/");
@@ -2052,6 +2212,7 @@ function F_nextQ(){
 						prior = 1
 					}
 					if ( prior == "J" || prior == "j" ) { prior = 1 }
+					
 					func_calcTimeDiff(localStorage.getItem(LSid+'_repeat'))
 					checkValue = prior * idopont / timeDiff
 					if ( timeDiff > idopont ) { // és nincs enabledelve az 'ultiLearn' (hiányzik még)
@@ -2077,8 +2238,8 @@ function F_nextQ(){
 		}
 		F_SetMarks()
 
-		if ( localStorage.getItem(priorQid+'_note') == " " ) { localStorage.setItem(priorQid+'_note', "") }
-		if ( localStorage.getItem(priorQid+'_note') != "" && localStorage.getItem(priorQid+'_note') != null ) {
+		var pLSid = arrQid[priorQid]
+		if ( localStorage.getItem(pLSid+'_note') ) {
 			document.getElementById("note").value = localStorage.getItem(priorQid+'_note')
 			document.getElementById("btn_Note").style.borderColor = "red";
 			var_note = true
@@ -2088,7 +2249,7 @@ function F_nextQ(){
 		}
 
 		var date = new Date();
-		var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(priorQid+'_idopont')
+		var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(pLSid+'_idopont')
 		func_abbrSet()
 	}
 
