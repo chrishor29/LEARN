@@ -1,4 +1,5 @@
 copy C:\Kristof\MIRROR\LEARN\javascript.js C:\Users\chrishor29\Desktop\LEARN\javascript.js
+copy C:\Kristof\MIRROR\LEARN\lz-string.js C:\Users\chrishor29\Desktop\LEARN\lz-string.js
 copy C:\Kristof\MIRROR\LEARN\style.css C:\Users\chrishor29\Desktop\LEARN\style.css
 
 robocopy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\images C:\Users\chrishor29\Desktop\LEARN\done\Orvosi_Biologia\images /mir
