@@ -4,11 +4,9 @@
 }*/
 
 /* PROJECT 
- ✖: gépen csináljak meg több feladatot
- ✖: export to Android, try to save there
- ✖: ha nem, akkor localStorage tömörítés (idopont, jegy stb.)
+ ✖: upgradeQ-nál legyen REMOVE opció
 -----
------
+ ✖: load img & video csak azután, ha megnyitom a kérdést
  ✖: skip-nél ne LSid-t mutasson, hanem kérdést
  ✖: skip-nél a perma skippesek máshol legyenek
  ✖: LSid-t(ne Qid) mutasson, és ne a főoldalon
@@ -17,6 +15,11 @@
  ✖: F_ButtonRepFast
  ✖: átlag skip (ne 650, hanem átlag) --> 3 helyen van a kódban!!! (searchel cseréljem őket ki!!)
  ✖: föl-le tekerés (kérdésnél) -> legyen alul is határa + csak a kérdést lehessen tekerni (másik ne jelenjen meg)
+-----
+ ✖: gépen csináljak meg több feladatot
+ ✖: export to Android, try to save there
+ ✖: ha nem, akkor localStorage tömörítés (idopont, jegy stb.)
+ ✖: lehessen importálni csak szöveget (Q nem kell maga) --> pl. rostok típusai myelinhüvely vastagság (gerincvelő általános)
 -----
  ✔: kérdések erőssége felváltva jöjjön!!!
  ✔: átlagot nem mutatja (jegy + idő)
@@ -399,9 +402,16 @@ function F_oldQcheck(){
 	console.log("– – – – F_oldQcheck – – – –")
 	var oldQtxt
 	var oldLSid = false
-	for ( oldQtxt in arrOLDtxt ) { 
-		if ( localStorage.getItem(arrOLDtxt[oldQtxt]+"_idopont") || localStorage.getItem(arrOLDtxt[oldQtxt]+"_note") ) { 
+	for ( oldQtxt in arrOLDtxt ) {
+		var LSid = arrOLDtxt[oldQtxt]
+		if ( localStorage.getItem(LSid+"_idopont") || localStorage.getItem(LSid+"_note") ) { 
 			oldLSid = arrOLDtxt[oldQtxt]
+		} 
+		if ( oldQtxt.indexOf('class="{') > -1 ) {
+			var begin = oldQtxt.indexOf("{")
+			var end = oldQtxt.indexOf("}")
+			var EXPid = oldQtxt.slice(begin+1,end)
+			localStorage.removeItem("hkExpQ."+EXPid)
 		}
 	}
 	if ( oldLSid == false ) { 
@@ -410,78 +420,6 @@ function F_oldQcheck(){
 	} else { 
 		F_oldQchange(oldQtxt,oldLSid) 
 	}
-	/*
-	news = news.split(" ")
-	console.log("olds: "+olds.length)
-	for ( var i=0; i<olds.length; i++ ) {
-		var Qtext = localStorage.getItem[olds[i]]
-		console.log("olds: "+olds[i]) 
-		console.log("olds: "+Qtext)
-		console.log("– – – – – – – – – – – – – – – – – – – – – – – – ")
-		if ( localStorage.getItem(olds[i]+"_idopont") || localStorage.getItem(olds[i]+"_note") ) { replaceQs.push(olds[i]) }
-	}
-	if ( replaceQs.length == 0 ) { 
-		console.log("– – – – setQList – – – –")
-		setQList(news,Qlist) 
-	} else {
-		document.getElementById("div_Fix").style.display = 'block';
-		function func_replaceQ(){
-			console.log("– – – – func_replaceQ – – – –")
-			var oldQhash = replaceQs[0]
-			document.getElementById("div_Fix").innerHTML = defaultText + localStorage.getItem(oldQhash) + "<hr>"
-			for ( var x=0; x<news.length; x++ ) { // felajánlja melyikre lehet cserélni a newsok közül
-				var newQhash = news[x]
-				var text = document.getElementById("div_Fix").innerHTML // (kell hogy megőrizze a buttont + selectet)
-				document.getElementById("div_Fix").innerHTML = text + arrQtexts[newQhash]
-				if ( !document.getElementById("option_ReplaceQ_"+x) ) {
-					var option = document.createElement("option")
-					option.id = "option_ReplaceQ_"+x
-					document.getElementById("select_replaceQ").appendChild(option)
-					var text = document.createTextNode("Number: "+x)
-					option.appendChild(text)
-				}
-				document.getElementById("option_ReplaceQ_"+x).value = newQhash
-				document.getElementById("button_replaceQ").onclick = function() {
-					var value = document.getElementById("select_replaceQ").value
-					var newQhash = localStorage.getItem(value)
-					var oldQtext = localStorage.getItem(oldQhash)
-					console.log("replaceQ-value: " +value)
-					console.log("replaceQ-newQhash: " +newQhash)
-					
-					var index = news.indexOf(value) // news-ból törli
-					news.splice(index,1) // news-ból törli
-
-					var QText = ""
-					localStorage.setItem(newQhash,QText)
-					localStorage.removeItem(oldQhash)
-					
-					function changeLS(type){
-						if ( localStorage.getItem(oldQhash+type) ) {
-							localStorage.setItem(newQhash+type,localStorage.getItem(oldQhash+type))
-							localStorage.removeItem(oldQhash+type)
-						}
-					}
-					changeLS("_jegy")
-					changeLS("_skip")
-					changeLS("_note")
-					changeLS("_idopont")
-					changeLS("_repeat")
-					changeLS("_changes")
-					
-					replaceQs.splice(0,1)
-					if (replaceQs.length != 0) { 
-						func_replaceQ()
-					} else {
-						document.getElementById("div_Fix").style.display = 'none';
-						setQList(news,Qlist) 
-					}
-				}
-			}
-		}
-		func_replaceQ()
-		console.log("– – – – NO func_replaceQ NO – – – –")
-	}
-	*/
 }
 F_oldQcheck()
 
