@@ -1336,6 +1336,7 @@ function func_calcPriorHosszJegy(elem){
 	var num = elem.className.search("/");
 	hossz = elem.className.substring(num+1,num+2);
 	prior = elem.className.substring(num-1,num);
+	if ( hossz == "j" ) { hossz = 0 }
 	if ( prior == 1 ) {
 		prior = 0.33
 	} else if ( prior == 2 ) {
@@ -1346,9 +1347,8 @@ function func_calcPriorHosszJegy(elem){
 		prior = 1.5
 	} else if ( prior == 5 ) {
 		prior = 3
-	} else if ( prior == 'J' || prior == 'j' ) {
-		prior = 0
 	}
+	if ( prior == "J" || prior == "j" ) { alert("error: J a prior még") } // ha már nem jön elő, törölhetem ezt a sort
 	var Qid = elem.id
 	var Qtxt = arrQid[Qid]
 	var LSid = txtLS[Qtxt]
@@ -2022,14 +2022,14 @@ function F_nextQ(){
 					prior = 0.33
 				} else if ( prior == 2 ) {
 					prior = 0.66 
+				} else if ( prior == 3 ) {
+					prior = 1
 				} else if ( prior == 4 ) {
 					prior = 1.5
 				} else if ( prior == 5 ) {
 					prior = 3
-				} else {
-					prior = 1
 				}
-				if ( prior == "J" || prior == "j" ) { prior = 1 }
+				if ( prior == "J" || prior == "j" ) { alert("error: J a prior még") } // ha már nem jön elő, törölhetem ezt a sort
 
 				//checkValue = vLength * rank * idopont / timeDiff / jegy
 				//checkValue = rank / Math.pow(0.8, idopont / timeDiff) / jegy
@@ -2230,14 +2230,14 @@ function F_nextQ(){
 						prior = 0.33
 					} else if ( prior == 2 ) {
 						prior = 0.66 
+					} else if ( prior == 3 ) {
+						prior = 1
 					} else if ( prior == 4 ) {
 						prior = 1.5
 					} else if ( prior == 5 ) {
 						prior = 3
-					} else {
-						prior = 1
 					}
-					if ( prior == "J" || prior == "j" ) { prior = 1 }
+					if ( prior == "J" || prior == "j" ) { alert("error: J a prior még") } // ha már nem jön elő, törölhetem ezt a sort
 					
 					func_calcTimeDiff(localStorage.getItem(LSid+'_repeat'))
 					checkValue = prior * idopont / timeDiff
