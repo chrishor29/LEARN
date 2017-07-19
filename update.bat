@@ -43,6 +43,9 @@ copy C:\Kristof\MIRROR\LEARN\SejtBiosz\favicon.bmp C:\Users\chrishor29\Desktop\L
 robocopy C:\Kristof\MIRROR\LEARN\done\ModMem\images C:\Users\chrishor29\Desktop\LEARN\done\ModMem\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\ModMem\ModMem.html C:\Users\chrishor29\Desktop\LEARN\done\ModMem\ModMem.html 
 
+robocopy C:\Kristof\MIRROR\LEARN\Élettan\images C:\Users\chrishor29\Desktop\LEARN\Élettan\images /mir
+copy C:\Kristof\MIRROR\LEARN\Élettan\elettan.html C:\Users\chrishor29\Desktop\LEARN\Élettan\elettan.html 
+
 
 
 git remote add origin
