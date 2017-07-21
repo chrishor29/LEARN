@@ -6,16 +6,20 @@
 	<style>*{line-height: 130%;}</style>
 </head>
 
-
-
+<div>
+<span class="WHITE">21.6</span>
+<span class="WHITE">23.9</span>
+<span class="WHITE">25.12</span>
+<span class="WHITE">27.15</span>
+</div>
 
 <table><tr><th>előadások</th>
 	<td style="background-color:SpringGreen">1</td>
 	<td style="background-color:SpringGreen">2</td>
 	<td style="background-color:SpringGreen">3</td>
-	<td style="background-color:">4</td>
-	<td style="background-color:">5</td>
-	<td style="background-color:">6</td>
+	<td style="background-color:SpringGreen">4</td>
+	<td style="background-color:SpringGreen">5</td>
+	<td style="background-color:DeepSkyBlue">6</td>
 	<td style="background-color:">7</td>
 	<td style="background-color:">8</td>
 	<td style="background-color:">9</td>
@@ -56,9 +60,12 @@
 	<td style="background-color:SpringGreen">1</td>
 	<td style="background-color:SpringGreen">2</td>
 	<td style="background-color:DeepSkyBlue">3</td>
-	<td style="background-color:">4</td>
-	<td style="background-color:">5</td>
-	<td style="background-color:DeepSkyBlue">6</td>
+	<td style="background-color:DeepSkyBlue">4</td>
+	<td style="background-color:DeepSkyBlue">5</td>
+	<td style="background-color:SpringGreen">6</td>
+	<td style="background-color:">7</td>
+	<td style="background-color:">8</td>
+	<td style="background-color:">9</td>
   </tr><tr><th>2.</th>
 	<td style="background-color:">1</td>
   </tr><tr><th>3.</th>
@@ -69,8 +76,9 @@
 
 
 
-
+(recept+Thor=receptor) <br>
 + jegyzőkönyvet vigyek gyakorlatra
+
 
 <!--//////////////////////////////////////-->  <div><div class="mainTitle">1-es témakör</div>  <!--//////////////////////////////////////-->
 
@@ -415,7 +423,7 @@
 			<li>glükózt transzportálnak</li>
 			<li>7 típusuk van (GLUT 1-7)</li>
 			<li>pl. GLUT-1 vvt membránján juttatják át a glükózt</li>
-			<li>pl. GLUT-4 szabályozott inzulin által &#10140; <font style="font-size:80%">inzulin a sejtben jelátviteli folyamatot vált ki, aminek hatására a GLUT-4 tartalmú vezikulák kijutnak a sejtből a membránba, így a sejt képes lesz glükózt felvenni</font></li>
+			<li>pl. GLUT-4 szabályozott inzulin által &#10140; inzulin a sejtben jelátviteli folyamatot vált ki, aminek hatására a GLUT-4 tartalmú vezikulák kijutnak a sejtből a membránba, így a sejt képes lesz glükózt felvenni <img class="mini" src="images/nzlnhltlsk.png"> <font style="font-size:80%">(lásd még endocitózis & exocitózis résznél)</font></li>
 		</ul></details>
 		<details class="kerdes 3/1"><summary>Cl<sup>-</sup>/HCO<sub>3</sub><sup>-</sup> karrier?</summary><ul class="normal">
 			<li>vvt-kben van főként <font style="font-size:80%">(de máshol is lesz róla szó)</font> &#10140; ez teszi lehetővé <abbr title="ne csak a sejt belsejében, hanem a vérplazmában is szállítódjon">'</abbr> a <abbr title="hisz bikarbonát formában szállítódik">szén-dioxid</abbr> elszállítását (lásd később)</li>
@@ -558,9 +566,6 @@
 			<img src="images/msdlglsmgktvklfrdks.png">
 		</ul></details>
 	</ul></details>
-	<details class="kerdes 3/1"><summary>endocitózis & exocitózis</summary><ul class="normal">
-		<li>nem a membránon lépnek át, hanem vezikulákba lépnek be, és azon keresztül jutnak be/ki</li>
-	</ul></details>
 <!----></details>
 
 <!----><details open><summary class="phase">3. Ioncsatornák osztályozása, működésük fő jellemzői. Feszültségfüggő Ca<sup>2+</sup> csatornák.</summary>
@@ -592,8 +597,143 @@
 <!----></details>
 
 <!----><details open><summary class="phase">4. A sejtek nyugalmi membránpotenciáljának létrejötte.</summary>
-	<details open class="kerdes 3/1"><summary style="color:MediumBlue">szervezetben mit tekintünk nulla potenciálnak</summary><ul class="normal">
-		<li>EC &#10140; tehát ehhez képes pl. bélhámsejt IC-ben van -80mV</li>
+	<details class="kerdes 3/3"><summary>bevezetés</summary><ul class="normal">
+		<img style="max-width:50%" src="images/ccmmbrnptnlcc.png">
+		<li>feszültség vs potenciál <img class="mini" src="images/fszltsgptncl.png"></li>
+		<li>EC & IC is elektrolit oldat &#10140; ionok, töltéssel rendelkező fehérjék találhatók bennük</li>
+		<li>membránpotenciál = E<sub>m</sub> &#10140; sejt IC & EC tere közti feszültség(=potenciálkülönbség)</li><ul>
+			<li>IC a negatívabb mindig</li>
+			<li>értéke sejtenként különböző <img class="mini" src="images/vkzmkjltk.png"></li>
+		</ul>
+		<li>az EC-t tekintjük 0mV-nak, és ahhoz történik a viszonyítás &#10140; tehát pl. bélhámsejt membránpotenciálja -80mV azt jelenti, hogy EC=0mV, IC=-80mV</li><ul>
+			<li>az EC potenciálja azonban nem egyezik meg az egész szervezetben <abbr title="tehát mondjuk a bélhámsejtek membránpotenciálja -80mV, májsejté mondjuk(random értéket írtam) -60mV, attól még ha a két IC közti feszültséget megmérem, az nem lesz feltétlen -20mV (ez csak egy kitalált példa, ami valóságban szvsz nem így van, de a lényeg érthető)">'</abbr> <font style="font-size:80%">(erről még lesz később szó)</font></li>
+		</ul>
+	</ul></details>
+	<details class="kerdes 3/3"><summary>jelentősége</summary><ul class="normal">
+		<li>transzportfolyamatokhoz biztosít hajtóerőt, mint elektromos-grádiens</li><ul>
+			<div><span class="Vocab">§</span> elektrokémiai grádiens = elektromos-grádiens + koncentráció-grádiens</div>
+			<li>passzív transzport &#10140; töltéssel rendelkező molekuláknak a membránon való átjutásánál /ioncsatornák, facilitált diffúció/</li><ul>
+				<li><font style="font-size:80%">itt ugye a molekula elektrokémiai_grádiense, ami meghatározza az átjutás irányát,sebességét</font></li>
+			</ul>
+			<li>másodlagos aktív transzport &#10140; semleges töltésű molekulák a Na<sup>+</sup>-hoz kapcsoltan történő átjutánál az Na<sup>+</sup> elektromos-grádiense</li><ul>
+				<li><font style="font-size:80%">itt ugye a molekula koncentráció_grádiense és Na<sup>+</sup> elektrokémiai-grádiense, ami meghatározza az átjutás irányát,sebességét</font></li>
+			</ul>
+		</ul>
+		<li>gyors jeltovábbításra alkalmas</li><ul>
+			<li>a sejt felszínén terjed a membránpotenciál-változás...</li>
+			<li>...sejtfelszín egyes területei membránpotenciálra érzékeny folyamatok vannak, ezeket beindíthatja</li>
+			<li>pl. idegsejtekben információtovábbítás, izomrostok kontrakció szinkronizálás (egyszerre húzódjanak össze)</li>
+		</ul>
+	</ul></details>
+	<details open class="kerdes 3/3"><summary>A sejtek nyugalmi membránpotenciáljának <strong>létrejötte</strong>.</summary><ul class="normal">
+		<li>három mechanizmus felel érte</li>
+		<table><tr><th>mechanizmus</th>  <th>hozzájárulás</th></tr>
+			<tr><td>diffúziós potenciál (főként K<sup>+</sup>)</td>  <td>döntő</td></tr>
+			<tr><td>pumpa potenciál</td>  <td>csekély</td></tr>
+			<tr><td>Donnan potenciál</td>  <td>minimális</td></tr>
+		</table>
+		<details class="kerdes 3/16"><summary>diffúziós potenciál.</summary><ul class="normal">
+		  <strong>bevezetés</strong>
+			<li>több rávezető gondolatkísérlettel kerül bemutatásra, mely egyre inkább közelít a sejtekhez <abbr title="egyre több fajta ion, és közelítő koncentrációarány stb.">'</abbr></li>
+		  <hr><strong>alapja</strong>
+			<img style="max-width:30%" src="images/fzsptnbcld.png">
+			<li>egy tál vízhez ha hozzáadok egy 'nagyobb csepp' HCl, akkor a következő történik &#10140; először is a H<sup>+</sup> és Cl<sup>-</sup> külön válik, majd elkezdenek diffundálni &#10140; a H<sup>+</sup> gyorsabban fog, mert kisebb &#10140; ennek következtében a csepp 'közepe' negatív, míg távolabbi része pozitív töltésű lesz <abbr title="persze ez közbe lelassítja a protonokat, hisz a negatív töltés visszavonzza őket, (illetve Cl- diffúziót segíti a pozitív) szóval van egy max érték">'</abbr></li>
+			<li>egy tál vízhez ha hozzáadok egy 'nagyobb csepp' HCl, akkor a következő történik &#10140; először is a H<sup>+</sup> és Cl<sup>-</sup> külön válik, majd elkezdenek diffundálni &#10140; a H<sup>+</sup> gyorsabban fog, mert kisebb &#10140; ennek következtében a csepp 'közepe' negatív, míg távolabbi része pozitív töltésű lesz <abbr title="persze ez közbe lelassítja a protonokat, hisz a negatív töltés visszavonzza őket, (illetve Cl- diffúziót segíti a pozitív) szóval van egy max érték">'</abbr></li>
+			<li>azonban ha KCl-el csinálnám, akkor nem alakulna ki diffúziós potenciál, mert a két ion mobilitása megegyezik &#10140; márpedig a biológiai rendszerekben ezek jelentősek</li>
+		  <hr><strong>egyensúlyi potenciál</strong>
+			<img style="max-width:30%" src="images/gynslzptln.png">
+			<li>van egy edény, benne víz & KCl</li>
+			<li>kiinduló helyzet</li><ul>
+				<li>középen el vannak választva fallal, melyen nem jut át semmi</li>
+				<li>a két oldalon különböző koncentráció 10mM & 100mM KCl &#10140; mindkét oldal töltése semleges</li>
+			</ul>
+			<li>ezután a falat lecserélem szemipermeábilis membránra, mely csak K<sup>+</sup>-t enged át</li>
+			<li>következtében az első pillanatban a koncentráció-grádiens az egyetlen hajtóerő, mely K<sup>+</sup>-ra nézve 'érvényesül', és az elkezd átdiffundálni 100mM felől a 10mM fele</li>
+			<li>amint egy átjutott, már kialakul pozitív töltés a 10mM oldalon, és negatív a 100mM oldalon &#10140; elektromos grádiens következtében a K<sup>+</sup> egy része ezért elked visszadiffundálni</li>
+			<li>a K<sup>+</sup> átjutása koncentráció-grádiens következtében eleinte még nagyobb, de nagyon rövid időn belül az elektromos-grádiens következtébeni visszaáramlás kifogja egyenlíteni<abbr title="tehát amíg a nettó K+ áramlás a kisebb koncentráció hely fele történi, addig folyamatosan növekszik az időegység alatt visszaáramló K+, hiszen nő a töltéskülönbség &#10140; amikor a visszaáramló eléri az átáramlót, akkor beáll íz egyensúly">'</abbr> &#10140; ilyenkor egyensúly áll be (ugyanannyi áramlik át és vissza)</li>
+			<li>ha ilyenkor megmérem a két oldal közti feszültséget, akkor megkapom az egyensúlyi potenciált</li>
+		  <hr><strong>egyensúlyi potenciál feltételei</strong>
+			<li>szemipermeábilis membrán</li>
+			<li>eltérő ionkoncentráció a két oldalon</li>
+		  <hr><strong>egyensúlyi potenciál jellemzői</strong>
+			<li>az egyensúly beálltáig történő ionkoncentráció-változás elhanyagolható <abbr title="tehát amennyi K<sup>+</sup> átjutása elég (néhány 1000db elég) az egyensúlyhoz, az mM-szintnél elhanyagolható">'</abbr></li>
+			<li>egyensúlynál ugyanannyi áramlik át egyik oldalról a másikra koncentráció-grádiens következtében, mint vissza az elektromos-grádiens következtében</li>
+			<li>egyensúly tartósan fennálhat (végtelen ideig)</li>
+			<li>egyensúlyi_potenciál annál nagyobb, minél nagyobb koncentráció-hányadosa &#10140; <font style="font-size:80%">arányos az átjutó ion két oldalon lévő koncentrációjának hányadosának természetes alapú logaritmusával (lásd kiszámítása: Nernst-egyenlet)</font>  <abbr title="Fick-féle diffúziónál a koncentráció-különbség határozza meg, itt a hányados">'</abbr></li>
+		  <hr><strong>egyensúlyi potenciál kiszámítása</strong>
+			<img style="max-width:20%" src="images/mmbrmnptlnl.png">
+			<li>Nernst-egyenlettel történik <img class="mini" src="images/nrnstgynlt.png"></li>
+			<li>gyakorlatban az ennek <abbr title="tehát ugyanaz, csak ne kelljen mindent fölöslegesen behelyettesíteni már + egyszerűbb megjegyezni (csakúgy, mint anno orvosi_kémiánál (0,06V))">'leegyszerűsített változatát'</abbr> használjuk &#10140; lásd kép</li>
+		  <hr><strong>NaCl is van</strong>
+			<img style="max-width:30%" src="images/nclkncthgl.png">
+			<li>amennyiben a membrán csak K<sup>+</sup> átjárható &#10140; beáll az egyensúlyi potenciál <font style="font-size:80%">(ugyanaz történik, mint egyensúlyi_potenciál résznél már meg lett tárgyalva)</font> <abbr title="hisz NaCl lényegében jelentéktelen">'</abbr> <img class="mini" src="images/clnmglkj.png"></li>
+			<li>amennyiben a membrán csak Na<sup>+</sup> átjárható &#10140; ekkor is beáll ugyanígy az egyensúlyi potenciál <font style="font-size:80%">(különbség ugye mindössze annyi, hogy jelen esetben pozitív egyensúlyi potenciál lesz)</font> <abbr title="hisz KCl lényegében jelentéktelen">'</abbr> <img class="mini" src="images/pgkzmblmf.png"></li>
+			<li>amennyiben a membrán Na<sup>+</sup> és K<sup>+</sup> is átjárható, és a membrán permeabilitása megegyezik rájuk &#10140; ekkor addig tart a folyamat amíg koncentráció-kiegyenlítődés lesz (55-55mM), a membránpotenciál pedig végig 0 lesz <abbr title="ezt nem nehéz megérteni, ha megpróbálom végiggondolni, hiszen első pillanatban kimegy x K+, és bejön x Na+, tehát elektromos-grádiens nem jön létre (azért x mindkettő, mert a permeabilitás és a koncentráció-grádiens mindkét esetben ugyanakkora). Ez így megy elejétől végéig, tehát a hajtóerő mindössze a koncentráció-grádiens lesz">'</abbr> <img class="mini" src="images/dkgnltkskflkg.png"> &#10140; 'tanulságai'</li><ul>
+				<li>IC-ből kifele jutó pozitív töltés áramát tekintjük pozitívnak (jelen esetben I<sub>K</sub>)</li>
+				<li>stabil<font style="font-size:80%">(tehát változatlan, de ez nem feltétlen 0mV)</font> membránpotenciál esetében az áramok eredője 0 (I<sub>K</sub>+I<sub>Na</sub> = 0) <abbr title="hisz különben töltésfelhalmozódás lenne, és membránpotenciál-változás történne">'</abbr></li>
+				<li>ha a membrán többféle ionra is permeábilis, akkor a koncentrációk kiegyenlítődhetnek &#10140; in vivo ezt a Na<sup>+</sup>-pumpa akadályozza meg</li>
+			</ul>
+			<li>amennyiben a membrán Na<sup>+</sup> és K<sup>+</sup> is átjárható, és a membrán permeabilitása K<sup>+</sup>-ra lényegesen nagyobb &#10140; membránpotenciál értéke 0mV és -60mV közé fog esni <img class="mini" src="images/membknclkgltm.png"></li><ul>
+				<li>ugyanis ha végiggondolom, akkor pl. ha az első pillanatban kijut 100K<sup>+</sup>, és be 10Na<sup>+</sup> &#10140; akkor (90-) és (90+) töltés lesz a kétoldalon &#10140; ellenben, mikor csak K<sup>+</sup> áramlott, akkor (100-) és (100+) lett volna ugyanennyi idő alatt <abbr title="másképp véggigondolva: amikor csak K<sup>+</sup> számára volt átjárható akkor az Em=-60mV, amikor mindkettő számára egyformán akkor Em=0mV, így jelen esetben nyilván a kettő között van">'</abbr></li>
+				<li>tehát <span class="WHITE">-60mV &lt; Em &lt; 0mV</span> &#10140; mivel stabil érték, ezért az I<sub>K</sub> = -I<sub>Na</sub></li>
+				<details><summary>ezenkívül amiből még kikövetkeztethető</summary>
+					<li>hogy stabil_membránpotenciál esetében a két áram nagysága ki kell egyenlítse egymást ugye<abbr title="lásd előző pont tanulságai">'</abbr></li>
+					<li>ehhez nyilván az kell, hogy a K<sup>+</sup> áramlása akadályozva legyen, míg Na<sup>+</sup> fokozva</li>
+					<li>elektromos-grádiens lehetővé teszi, amennyiben a K<sup>+</sup> oldalon negatív töltés van &#10140; mértéke pedig megjósolható abból, hogy amennyiben megegyezne a K<sup>+</sup> egyensúlyi potenciáljával, akkor K<sup>+</sup> áramlása 0 lenne, szóval attól elég egy kicsit eltérnie</li>
+				<hr></details>
+				<li>hajtóerő Na<sup>+</sup> esetében &#10140; koncentráció-grádiens PLUSZ elektromos-grádiens</li>
+				<li>hajtóerő K<sup>+</sup> esetében &#10140; koncentráció-grádiens MÍNUSZ elektromos-grádiens</li>
+				<li>erre van szükség, hiszen a membrán permeabilitása Na<sup>+</sup>-ra kisebb</li>
+			</ul>
+		</ul></details>
+		<details class="kerdes 3/1"><summary>Donnan potenciál lényege<abbr title="nem mindenhol ezt értik ez alatt, de mi itt most ezt">'</abbr></summary><ul class="normal">
+			<li>IC-ben a fehérjék száma magas, EC alacsony</li>
+			<li>ez is okoz némi potenciálkülönbséget a két oldal között</li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 3/3"><summary>membránpotenciál kiszámítása</summary><ul class="normal">
+		<img style="max-width:50%" src="images/kszmtslks.png">
+		<li>Goldman-Hodgkin-Katz egyenlettel<abbr title="vezetőképességel is lehet (lásd lennt), de azt elvileg nem kell tudni, és inkább hagyjam, mert csak hülyeségeket mondanék">'</abbr> a képen látható módon lehet</li>
+		<li>P<sub>K</sub> &#10140; membrán permeabilitása K<sup>+</sup>-ra nézve</li>
+		<li>[K<sup>+</sup>]<sub>IC</sub> &#10140; intracelluláris koncentrációja</li>
+		<li>Cl<sup>+</sup> azért van 'fordítva' (EC vs IC) az egyenletben, mert anion</li>
+		
+		<details><summary>vezetőképességgel <abbr title="low prior, nem kérdezik elvileg">'</abbr></summary><ul class="normal">
+			<img style="max-width:50%" src="images/vzktpsmglkszm.png">
+			<img style="max-width:50%" src="images/kszmtslks.png">
+			<li>első lépésben számoljuk ki az I<sub>K</sub>-t, majd I<sub>Na</sub> &#10140; ezekre felírhatom az I=U/R egyenletet a képen látható módon</li>
+			<li>ezenkívül felírhatom azt is, hogy I<sub>K</sub>=-I<sub>Na</sub> (hiszen E<sub>m</sub> stabil)</li>
+			<li>fenntieket összevetve felírhatom az E<sub>m</sub>-re a képen látható képletet</li>
+		  <hr>
+			<li>az E<sub>m</sub> vezetőképsségtől való függése grafikonon ábrázolva <img class="mini" style="max-width:50%" src="images/membnplvkzkm.png"></li>
+			<li>mi-mit jelöl &#10140; 
+				<abbr title="K<sup>+</sup> áramlás nagysága">I<sub>K</sub></sub></abbr> 
+				<abbr title="membránpotenciál">E<sub>m</sub></abbr> 
+				<abbr title="K<sup>+</sup> egyensúlyi potenciáljának értéke: -90mV">E<sub>K</sub></abbr> 
+				<abbr title="vezetőképesség">g<sub>K</sub></abbr>
+			</li>
+			<li><font style="font-size:80%">az I<sub>K</sub> képletet ha megnézem, lényegében I = U/R</font></li>
+			<li><font style="font-size:80%">I<sub>K</sub> akkor lenne 0, ha a membránpotenciál megegyezne a K<sup>+</sup> egyensúlyi potenciáljának értékével, ami <abbr title="kiszámítását lásd az arra vonatkozó kérdésnél">-90mV</abbr> &#10140; ez ugyanúgy igaz Na<sup>+</sup>-nál is</font></li>
+			<li><font style="font-size:80%">vezetőképesség(g) nem konstans, mert függ pl. membránpotenciáltól és még számos egyéb tényezőtől</font></li>
+		</ul></details>
+	</ul></details>
+	<details open class="kerdes 4/4"><summary>membránpotenciál mitől függ és hogyan? (gyakori kérdés vizsgán)</summary><ul class="normal">
+	  <strong>bevezetés</strong>
+		<li>ionkoncentrációtól és permeabilitástól függ &#10140; ezek megváltozása pedig hiperpolarizációt vagy depolarizációt vált ki</li>
+		<li>depolarizáció &#10140; a membránpotenciál értéke 'pozitívabbá válik' <abbr title="az hogy nő/csökken félreérthető, szóval maradjak ennél a kettőnél!">'</abbr></li>
+		<li>hiperpolarizáció &#10140; a membránpotenciál értéke 'negatívabbá válik'</li>
+	  <hr><strong>ionkoncentráció változás</strong>
+		<li>in vivo kevésbé jellemző</li>
+	  <hr><strong>permeabilitás változás</strong>
+		<li>in vivo a szabályozás fő útja</li>
+		<li>ha a K<sup>+</sup> permeabilitása nő, azaz K<sup>+</sup> csatornák nyílnak meg</li><ul>
+			<li>hiperpolarizáció lesz</li>
+		</ul>
+	</ul></details>
+	<details class="kerdes 3/2"><summary><abbr title="fiziológiás ionmegoszlás esetében">'</abbr> mennyi az Na<sup>+</sup>,K<sup>+</sup>,Cl<sup>-</sup>,Ca<sup>2+</sup> ionok egyensúlyi potenciálja? <abbr title="mivel a koncentrációjuk értékét tudnom kell fejből, csakúgy mint az egyenletet, ezért ki kell tudnom őket számolni számológéppel">'</abbr></summary><ul class="normal">
+		<li>pl. Na<sup>+</sup> esetében kapott +60mV azt jelenti, hogyha csak Na<sup>+</sup>-ra lenne permeábilis a membrán, akkor ekkora membránpotenciál esetében lenne egyensúlyban az Na<sup>+</sup> &#10140; tehát ekkor lenne az, hogy annyi Na<sup>+</sup> áramlik be koncentráció-grádiens miatt, mint amennyi ki elektromos-grádiens miatt</li>
+		<li>ebből látható, hogy egyik ion sem lenne egyensúlyban, hiszen nem akkora a membránpotenciál &#10140; azonban a membrán nem is csak egy ionra számára átjárható, az egyensúlyi potenciálnak pedig az a feltétele</li>
+		<img src="images/fzlglslmhlmlklt.png">
 	</ul></details>
 <!----></details>
 
@@ -603,12 +743,14 @@
 	</ul></details>
 <!----></details>
 
-<!----><details open><summary class="phase">6. Sejtek közötti hírközlés. Másodlagos hírvivő mechanizmusok.</summary>
-	<details open class="kerdes 3/1"><summary><strong>Sejtek közötti hírközlés</strong>. Másodlagos hírvivő mechanizmusok.</summary><ul class="normal">
+
+<!----><details><summary class="phase">6. Sejtek közötti hírközlés. Másodlagos hírvivő mechanizmusok.</summary>
+	<details class="kerdes 3/3"><summary><strong>Sejtek közötti hírközlés</strong>. Másodlagos hírvivő mechanizmusok.</summary><ul class="normal">
 		<details class="kerdes 3/4"><summary>szabályozás mechanizmusainak felsorolása?</summary><ul class="normal">
 			<li>autokrin &#10140; jelet kibocsátó sejt egyben a fogadó is</li>
-			<li>juxtakrin = contact-dependent &#10140; jelet kibocsátó sejt érintkezik a fogadó sejttel (ugyanis a jel és receptor is transzmembrán fehérje)</li>
-			<div>gap_junction <img class="mini" src="images/gpjnctn.png"> &#10140; rajtuk keresztül potenciáláramlás történik a sejtek között (pl. szívben) <font style="font-size:80%">(sorolható juxtakrinbe)</font></div>
+			<li>juxtakrin = contact-dependent &#10140; jelet kibocsátó sejt érintkezik a fogadó sejttel (ugyanis a jel és receptor is transzmembrán fehérje)</li><ul>
+				<div>gap_junction <img class="mini" src="images/gpjnctn.png"> &#10140; rajtuk keresztül potenciáláramlás történik a sejtek között (pl. szívben) <font style="font-size:80%">(sorolható juxtakrinbe)</font></div>
+			</ul>
 			<li>parakrin &#10140; jelet kibocsátó és fogadó egymáshoz oly közel vannak, hogy a jel diffúzióval jut el</li><ul>
 				<li>szinaptikus &#10140; tulajdonképpen a parakrin egy speciális formája, mikor az idegsejt axonján(lehet akár 1m hosszú is) végig fut az akciós potenciálhullám, és a végkészülékén lévő neurotranszmitterek leadása megy végbe</li>
 			</ul>
@@ -630,10 +772,15 @@
 			<li>ligand kötésük reverzibilis</li>
 			<li>biológiai választ hoznak létre</li>
 		</ul></details>
-		<details class="kerdes 3/1"><summary>ligandok csoportosítása?</summary><ul class="normal">
-			<li>agonista &#10140; receptorthoz kötődve, biológiai választ hoznak létre (receptort aktiválják)</li>
-			<li><font style="font-size:80%">részleges agonisták &#10140; receptorthoz kötődve, csak részleges biológiai választ hoznak létre</font></li>
-			<li>antagonista &#10140; receptorthoz kötődve, NEM hoznak létre biológiai választ (receptort gátolják)</li>
+		<details class="kerdes 3/2"><summary>ligandok csoportosítása?</summary><ul class="normal">
+			<li>agonista &#10140; receptorhoz kötődve, <abbr title="biológiai_választ (többinél is, csak nem írtam mindegyikhez oda)">'</abbr>választ hoznak létre (receptort aktiválják)</li>
+			<li>partial<abbr title="részleges">'</abbr> agonisták &#10140; receptorhoz kötődve, csak részleges választ hoznak létre</li>
+			<li>antagonista &#10140; receptorhoz kötődve, NEM hoznak létre választ (receptort gátolják)</li><ul>
+				<li>neutral antagonista &#10140; nem befolyásolja a receptor alap-aktivitását</li>
+				<li>inverse <abbr title="tulajdonképpen antagonista, de a neve ugye inverz AGONISTA">!!</abbr>agonista &#10140; csökkenti a receptor alap-aktivitását</li>
+			</ul>
+			<div>mivel vannak olyan receptorok, melyek alapból -anélkül, hogy antagonistát kötnének meg- választ hoznak létre valamely mértékben &#10140; részleges aktivitás <abbr title="ezért választhatók ketté az antagonisták is">'</abbr></div>
+			<img src="images/gnstntgntst.png">
 		</ul></details>
 		<details class="kerdes 2/j"><summary>Receptor kötési tulajdonságainak vizsgálata jelzett ligand segítségével</summary><ul class="normal">
 			<li>aspecifikus &#10140; ligand, mely NEM a receptorhoz kötődik</li>
@@ -669,11 +816,470 @@
 		<details class="kerdes 3/1"><summary>agonista/antagonisták mi használja fel? 1-1 konkrét pl?</summary><ul class="normal">
 			<div>farmakológia széles körben (ezekre épül)</div>
 			<li>antagonistával gátolva az angiotenzin-receptort a vérnyomás csökkenthető</li>
-			<li>agonistával<abbr title="Desmopressin">'</abbr> 'pótolható' a vazopresszin, ami a V-2-receptor működését helyreállítja, ezáltal a vízvisszaszívást</li>
+			<li>agonistával<abbr title="Desmopressin">'</abbr> 'pótolható' a vazopresszin, ami a <abbr title="vazopresszin-2-receptor">V2R</abbr> működését helyreállítja, ezáltal a vízvisszaszívást</li>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 3/1"><summary>Sejtek közötti hírközlés. <strong>Másodlagos hírvivő mechanizmusok.</strong></summary><ul class="normal">
+		<details class="kerdes 3/3"><summary>receptorok általános működése</summary><ul class="normal">
+			<img style="max-width:50%" src="images/rcptjltvlt.png">
+			<li>receptor megköti a ligandot</li>
+			<li>ez jelátvitelt hoz létre &#10140; közben felerősödik a jel <img class="mini" src="images/jlflrstfgs.png"></li>
+			<li>végezetül a válasz &#10140; célfehérje működése megváltozik, és ezáltal a sejtműködést befolyásolja (pl. génexpresszió,transzportfehérje-működés stb.)</li>
+		</ul></details>
+		<details class="kerdes 3/4"><summary>fehérjeműködés szabályozásának mechanizmusai?<abbr title="ez történhet a végén, de történhet a jelátvitel közben is">'</abbr></summary><ul class="normal">
+			<li>foszforiláció</li><ul>
+				<li>kináz lehasítja a foszfátot ATP-ről, és a foszfát hozzákötődik a fehérjéhez &#10140; aktiválódik</li>
+				<li>foszfatáz defoszforilálja a fehérjét &#10140; inaktiválódik</li>
+			</ul>
+			<li>GTP-kötés útján <font style="font-size:80%">ennél a fehérje nem foszforilálódik!</font></li><ul>
+				<li><abbr title="Guanin nucleotid Exchange Factor">GEF</abbr> katalizálja a <abbr title="GDP leválik fehérjéről, helyére GTP lép">GDP-GTP</abbr> <strong>cserét</strong> &#10140; aktiválódik</li>
+				<li><abbr title="GTPase Activator Protein">GAP</abbr> katalizálja a <abbr title="GTP-ről foszfát leválik (GDP marad fehérjén)">GTP-GDP</abbr> <strong>átalakulását</strong> &#10140; inaktiválódik</li>
+			</ul>
+			<img src="images/snglngfprhktl.png">
+		</ul></details>
+		<details class="kerdes 3/3"><summary>receptorok csoportosítása?</summary><ul class="normal">
+			<li>plazmamembrán receptorok</li><ul>
+				<li>G-fehérjéhez kapcsolt receptorok (GTP-kötés útján szabályozzák a fehérjeműködést)</li>
+				<li>ioncsatorna receptorok <abbr title="tehát a receptor egy ioncsatorna, melynek nyitott/zárt állapotát befolyásolja a ligand">'</abbr> (többnyire neurotranszmitterek)</li>
+				<li>enzimaktivitású receptorok</li>
+				<li>enzimaktivitáshoz kapcsolt receptorok</li>
+				<li><abbr title="ligand hatására lehasad a receptor egy db-ja, és az továbbítja a jelet">szabályozott intramembrán proteolízis</abbr></li>
+			</ul>
+			<li>intracelluláris(magi,citoplazmatikus) receptorok &#10140; ligand hidrofób, átjut a plazmamembránon (pl. szteroidhormonok)</li>
+			<img src="images/sztrdhrmlnk.png">
+		</ul></details>
+		<details><summary>G-fehérjéhez kapcsolt receptorok?</summary><ul class="normal">
+			<details class="kerdes 3/6"><summary>működésük lényege?</summary><ul class="normal">
+				<img style="max-width:50%" src="images/gfhrjdmgks.png">
+				<li><font class="abbr">receptor rövidítése, másik neve? ►</font> <abbr title="G-protein coupled receptor">GPCR</abbr>, <abbr title="7TransMembran-receptor &#10140; 7x érik át a membránt (N-terminális kívül, C-terminális belül)">7TM-receptor</abbr></li>
+				<li>működése (kép!)</li><ul>
+					<li>receptor megköti az agonistát &#10140; konformációváltozás &#10140; receptor aktiválódik</li>
+					<li>receptor megköti a G-fehérjét, és GDP-GTP cserét katalizál /tehát a GEF jelen esetben az aktivált_receptor!/</li>
+					<li>G-fehérje leválik receptorról</li>
+					<li>G-fehérje kettéválik &#10140; &alpha;-GTP és &beta;&gamma; részre</li>
+					<li>&alpha;-GTP és &beta;&gamma; <abbr title="enzim, ioncsatorna">effektorokhoz</abbr> kapcsolódik &#10140; növelik az aktivitásuk <abbr title="esetek nagyrészében az &alpha;-GTP, mely itt alapvetően eldönti, milyen típusú jelátvitel indul meg">'</abbr></li>
+					<li>&alpha;-GTP hidrolizál GDP-re, és összekapcsolódik &beta;&gamma;-val &#10140; G-fehérje inaktiválódik, visszaáll nyugalmi állapotba</li>
+				</ul>
+				<li>G-fehérje heterotrimer <img class="mini" src="images/7lhtmlm.png"> &#10140; &alpha;,&beta;,&gamma; alegységből áll</li>
+				<li>kettős specificitása van a 7TM-receptoroknak és G-fehérjéknek egyaránt</li><ul>
+					<li>7TM-receptor specifikus &#10140; ligand, G-fehérje</li>
+					<li>G-fehérje specifikus &#10140; 7TM-receptor, effektor</li>
+				</ul>
+			</ul></details>
+			<details class="kerdes 3/7"><summary><span class="vocab">TAB</span> G-fehérjék típusai?</summary><ul class="normal">
+				<div>&alpha;-alegység alapján kerülnek osztályozásra <abbr title="mivel ettől függ az (effektor és) jelátvitel típusa">'</abbr></div>
+				<table><tr><th>G-fehérje család</th>  <th>&alpha;-alegység</th>  <th>hatása effektora (+'közvetett')</th>  <th>receptorra pl.</th></tr>
+					<tr><th>G<sub>Q/11</sub>-család</th>  
+						<td>&alpha;<sub>q</sub> vagy &alpha;<sub>11</sub> <abbr title="mindegy melyik, a hatás ugyanaz">'</abbr></td>  
+						<td>PLC&beta;-t serkent &#10140; Ca<sup>2+</sup> csatornát nyit + PKC serkent</td>
+						<td>
+							<li style="text-align:left">&alpha;<sub>1</sub>-<abbr title="adrenalin és noradrenalin receptorok gyűjtőneve">adrenerg</abbr></li>
+							<li style="text-align:left">M1/M3/M5-muszkarinerg<abbr title="ez az acetil-kolin receptorok egyik típusa (acetil-kolin receptorok típusát lásd arréb kidolgozva)">(acetil-kolin)</abbr> receptor</li>
+							<li style="text-align:left">angiotenzin II receptor</li>
+						</td>
+					</tr>
+					<tr><th>G<sub><abbr title="serkentő(stimuláló)">s</abbr></sub>-család</th>  
+						<td>&alpha;<sub>s</sub></td>  
+						<td>adenilát-ciklázt serkenti</td>
+						<td>
+							<li style="text-align:left">&beta;-adrenerg <abbr title="mindhárom típusa &beta;<sub>1-3</sub> ide tartozik">'</abbr></li>
+							<li style="text-align:left">ACTH receptor</li>
+							<li style="text-align:left"><abbr title="vazopresszin-2-receptor">V2R</abbr></li>
+						</td>
+					</tr>
+					<tr><th>G<sub><abbr title="inhibitor">i</abbr>/o</sub>-család</th>  
+						<td>&alpha;<sub>i</sub> vagy &alpha;<sub>o</sub> <abbr title="mindegy melyik, a hatás ugyanaz">'</abbr></td>  
+						<td>
+							<li style="text-align:left">adenilát-ciklázt gátolja</li>
+							<li style="text-align:left">K<sup>+</sup> csatornákat nyit</li>
+							<li style="text-align:left">Ca<sup>2+</sup> csatornákat zár</li>
+							<div><font style="font-size:80%">eddigi 3 hatása mind gátlónak tekinthető (K<sup>+</sup>-nyitás is, lásd később) &#10140; következő viszont már aktiváló</font></div>
+							<li style="text-align:left">PLA<sub>2</sub>(enzim) serkenti</li>
+						</td>
+						<td>
+							<li style="text-align:left">&alpha;<sub>2</sub>-<abbr title="adrenalin és noradrenalin receptorok gyűjtőneve">adrenerg</abbr></li>
+							<li style="text-align:left">M2/M4-muszkarinerg receptor</li>
+							<div style="text-align:left"><font style="font-size:80%">acetil-kolin receptorok egyik típusa a muszkarinerg, másik a <abbr title="ezt lásd majd ioncsatorna-receptorok">nikotinerg</abbr></font></div>
+							<li style="text-align:left">(ópiát receptorok)</li>
+						</td>
+					</tr>
+					<tr><th>G<sub>t</sub> = transzducin <abbr title="ez 1fehérje, nem család">'</abbr></th>  
+						<td>&alpha;<sub>t</sub></td>
+						<td>cGMP-foszfodiészterázt serkenti</td>
+						<td><abbr title="ennek nem ligandja van, hanem fény hatására aktiválódik">rodopszin</abbr></td>
+					</tr>
+					<tr><th>G<sub>12/13</sub></th>  
+						<td>&alpha;<sub>12</sub> vagy &alpha;<sub>13</sub> <abbr title="mindegy melyik, a hatás ugyanaz">'</abbr></td>  
+						<td>Rho családba tartozó <abbr title="csak &alpha;-alegységből állnak">kis</abbr> G-fehérjéket aktiválnak</td>
+						<td>tromboxán</td>
+					</tr>
+				</table>
+			</ul></details>
+			<details class="kerdes 3/7"><summary>G<sub>q/11</sub>-család mechanizmusa?</summary><ul class="normal">
+				<div style="max-width:50%; float:right">
+					<img src="images/gq11gpcr.png">
+					<img src="images/dgntzpthyw.png">
+				</div>
+				<li><i>ligand lehet pl. acetil-kolin, <abbr title="Anti-Diuretikus Hormon = vazopresszin">ADH</abbr>, thrombin</i></li>
+				<li>effektor &#10140; PLC = foszfolipáz-C enzim, annak is a &beta;-izoformája</li>
+				<details class="kerdes 3/j"><summary><span class="Vocab">JR</span> foszfolipázok és osztályozásuk</summary><ul class="normal">
+					<div>a foszfolipázok foszfolipidet <img class="mini" src="images/fszflpdklg.png"> hasítanak el &#10140; attól függően, hogy mely észterkötést hasítják el, kerülnek osztályozásra</div>
+					<li>PLA<sub>1</sub> a glicerinhez kapcsolódó 1. zsírsav észterkötését hasítják el</li>
+					<li>PLA<sub>2</sub> a glicerinhez kapcsolódó 2. zsírsav észterkötését hasítják el</li>
+					<li>PLC a glicerin 3. szénatomján a foszfát 'előtti' észterkötést hasítják el</li>
+					<li>PLD a glicerin 3. szénatomján a foszfát 'utáni' észterkötést hasítják el</li>
+					<img src="images/plcgdgmlm.png">
+				</ul></details>
+				<li>a PLC&beta; a membránban található foszfolipidet, a PIP<sub>2</sub> = foszfatidil-inozitol-4-5-bi<abbr title="azért biszfoszfát, nem pedig bifoszfát, mert a két foszfát különböző helyen kapcsolódik (ellenben pl. ATP esetében együtt kapcsolódnak, az azért adenozin-trifoszfát)">sz</abbr>foszfát -ot <img class="mini" src="images/fszftllnlzbszlt.png"> elhasítja &#10140; <font style="font-size:80%">mivel foszfolipáz-C, ezért a 3.szénatomon a foszfát előtt lévő észterkötést hasítja el &#10140;</font> keletkezik...</li><ul>
+					<li>DAG = diacil-glicerin <font style="font-size:80%">(glicerin + 2zsírsav észterkötés <abbr title="3.C-hez már csak -OH">'</abbr>)</font></li>
+					<li>IP<sub>3</sub> = inozitol-1,4,5-triszfoszfát</li>
+				</ul>
+				<li>ezután</li><ul>
+					<li>DAG aktiválja a PKC = protein-kináz-C -t</li>
+					<li>IP<sub>3</sub> odamegy az ER membránjában lévő receptorhoz, mely egyben csatorna is &#10140; hozzákötődve megnyílik, és Ca<sup>2+</sup> áramlik a citoplazmába</li>
+				</ul>
+				<li>a citoplazma növekedett Ca<sup>2+</sup> szintje következtében <abbr title="az esetek többségében az alábbi történik">'</abbr>, Ca<sup>2+</sup> kapcsolódik a CaM=calmodulin nevű fehérjéhez  &#10140; jelátvitel hatása, hogy valamilyen CaM-kináz enzim aktivitása megnő &#10140; hogy milyen típusú CaM-kináz aktivitása növekszik, az a sejttípustól függ <abbr title="pl. simaizomsejt összehúzódik, mirigysejt enzimszekrécióval stb.">(pl)</abbr></li>
+			  <hr>
+				<li><font style="font-size:80%">tehát a különböző sejtekben a jelátvitel lényegében megegyezik, csak más hatása lesz (mert más a fehérjeösszetétele, melyet a Ca<sup>2+</sup> befolyásol)</font></li>
+				<li><font style="font-size:80%">az IP<sub>3</sub>, a DAG, mind a Ca<sup>2+</sup> másodlagos hírvívő(szekunder messenger) &#10140; szvsz IP<sub>3</sub> egyben elsődleges is a Ca<sup>2+</sup>-'receptor-csatornánál'</font></li>
+				<img style="max-width:45%" src="images/kmlcdlnhts.png">
+			</ul></details>
+			<details class="kerdes 3/3"><summary>G<sub>s</sub>- & G<sub>i/o</sub>-család mechanizmusa?</summary><ul class="normal">
+				<img src="images/cmpmdmgltk.png">
+				<div><font style="font-size:80%"><span class="Important">§</span> a két mechanizmus egy képen van ábrázolva, de persze külön is lehetett volna őket (nem feltételei egymásnak vagy ilyesmi)</font></div>
+				<div><font style="font-size:80%"><span class="Important">§</span> működéseük lényege ugyanaz mindkettőnél, mint ami meg lett tárgyalva a G-fehérjéhez kapcsolt receptor működésénél <abbr title="alfa-GTP & betagamma alegységra válnak stb.">'</abbr></font></div>
+				<li>effektor &#10140; adenilát-cikláz(enzim) &#10140; aktivált helyzetben ATP-ből létrehoz cAMP</li>
+			  <hr><strong>G<sub>s</sub> esetében</strong>
+				<li>&alpha;<sub>s</sub>-GTP aktiválja adenilát-ciklázt &#10140; cAMP nő</li>
+				<li>másodlagos hírvívő &#10140; cAMP</li>
+				<li>jelátvitel hatása a <abbr title="protein-kináz-A">PKA</abbr> enzimen keresztül valósul meg &#10140; itt is sejttípustól függően<abbr title="pl. simaizomsejtben elernyedés">'</abbr></li>
+			  <hr><strong>G<sub>i/o</sub> esetében</strong>
+				<li>&alpha;<sub>i/o</sub>-GTP gátolja adenilát-ciklázt &#10140; cAMP csökken</li>
+				<li>további hatásai <font style="font-size:80%">(ezek közvetlenek &beta;&gamma;<sub>i/o</sub>, nem közvetettek adenilát-cikláz által mint előbbi)</font></li><ul>
+					<li>K<sup>+</sup> csatornákat nyit</li>
+					<li>Ca<sup>2+</sup> csatornákat zár</li>
+					<div><font style="font-size:80%">eddigi 3 hatása mind gátlónak tekinthető (K<sup>+</sup>-nyitás is, lásd később) &#10140; következő viszont már aktiváló</font></div>
+					<li>PLA<sub>2</sub>(enzim) serkenti</li>
+				</ul>
+				<details class="kerdes 3/3"><summary>PLA<sub>2</sub>-ről mit kell tudni?</summary><ul class="normal">
+					<li>membrán foszfolipidről lehasítja a 2. zsírsavat, mely <abbr title="esetek nagyrészében">'</abbr> arachidonsav</li>
+					<li>ennek sorsa 3 irányba indul meg attól függően, mely enzim hat rá <abbr title="kép csak megértést segíti, annyira nem kell tudni">'</abbr> <img class="mini" src="images/rhcndsvlg.png"></li><ul>
+						<li><strong>ciklooxigenáz &#10140; tromboxán, prosztaciklin, prosztaglandin</strong> (élettanból ezek fontosak)</li>
+						<li>lipoxigenáz &#10140; leukotriének</li>
+						<li>epoxigenáz</li>
+					</ul>
+					<div><font style="font-size:80%"><span class="Important">§</span> minor_analgetikumok pl. aspirin &#10140; ezek mind a ciklooxigenáz enzimet gátolják, ugyanis a prosztaglandinok & prosztanoidok azok, melyek a fájdalomkeltő/gyulladásos/lázzal járó folyamatokban szerepet játszanak</font> <abbr title="major_analgetikumok pl. ópiátok és egyéb, az már mást gátol (lásd még anat gerincvelő μ-opioid receptor gátlása)">'</abbr></div>
+				</ul></details>
+				<div><font style="font-size:80%"><span class="Important">§</span> neurotranszmitter release & preszinaptikus gátlásnál lesz róla még szó</font></div>
+			</ul></details>
+			<details class="kerdes 3/2"><summary>G<sub>t</sub> funkciója, mechanizmusa?</summary><ul class="normal">
+				<li>ez indítja meg a látás folyamatát a következőképpen</li>
+				<div><font style="font-size:80%"><span class="Important">§</span> működéseük lényege ugyanaz, mint ami meg lett tárgyalva a G-fehérjéhez kapcsolt receptor működésénél <abbr title="alfa-GTP & betagamma alegységra válnak stb.">'</abbr> &#10140; csak itt nem ligand van, hanem fény!</font></div>
+				<li>&alpha;-alegység aktiválja cGMP-foszfodiészterázt &#10140; az elbontja a cGMP-t GMP-re &#10140; csökken cGMP &#10140; a cGMP-szabályozott kationcsatorna bezárul &#10140; hiperpolarizáció jön létre a membránban</li>
+				<img src="images/cgmpmghcmzk.png">
+			</ul></details>
+			<details class="kerdes 3/2"><summary>G<sub>12/13</sub> funkciója?</summary><ul class="normal">
+				<li>Rho családba tartozó <abbr title="csak &alpha;-alegységből állnak">kis</abbr> G-fehérjéket aktiválnak</li>
+				<li>az aktiválódott Rho G-fehérje ezután aktiválja a Rho-kináz(enzim)-t</li>
+				<li>a Rho-kináz(enzim) többek között szerepet játszik a simaizomtónus szabályozásában</li>
+				<img src="images/cgmpmghcmzk.png">
+			</ul></details>
+			<details class="kerdes 3/1"><summary>kis G-fehérje mi?</summary><ul class="normal">
+				<li>csak &alpha;-alegységből állnak, tehát monomerek (nincs &beta; &gamma;, nem trimerek mint a többi)</li>
+				<li>ilyen a Ras-család illetve azon belül Rho-alcsalád <abbr title="ennél többet szvsz nem kell tudni">'</abbr></li>
+				<img src="images/mntrmrk.png">
+			</ul></details>
+		</ul></details>
+		<details class="kerdes 3/4"><summary>jelátviteli folyamatok hogy állnak le, állíthatóak le?</summary><ul class="normal">
+			<li>miután a jelátvitel elindult két dolog állíthatja le a folyamatot</li><ul>
+				<li>agonista ledisszociál a receptorrol &#10140; ez lassú, hiszen a receptor affinitása a ligandra nagy</li>
+				<li>receptor-kinázok által</li>
+			</ul>
+			<li>receptor-kinázok</li><ul>
+				<li>foszforilálják az aktivált_receptort (inaktívat nem)</li>
+				<li>foszforilált receptorhoz kapcsolódik a β-arrestin</li>
+				<li>így már további G-fehérjék nem aktiválódhatnak &#10140; ezzel a jelátvitel leáll</li>
+			</ul>
+		  <hr>
+			<li>β-arrestin</li><ul>
+				<li>egyrész képes a fennt leírt módon deszenzivitálni a jelátvitelt</li>
+				<li>emelett képes arra is, hogy másik jelátvitelt elindítson <font style="font-size:80%">(β-arrestin mediált jelátvitel)</font></li>
+			</ul>
+		</ul></details>
+		<details class="kerdes 3/5"><summary>adrenerg receptorok &#10140; definíció? típusai?</summary><ul class="normal">
+			<li>definíció &#10140; adrenalin és noradrenalin receptorai</li><ul>
+				<li>mindegyik G-fehérjéhez kapcsolódik!</li>
+			</ul>
+			<table><tr><th colspan="2">receptor</th>  <th>milyen G-fehérjét aktivál</th>  <th>affinitás mire<abbr title="adrenalin vagy noradrenalin">'</abbr> nagyobb</th>  <th>hol fordul elő</th></tr>
+				<tr><th rowspan="2">α-adrenerg</th>
+					<th>α<sub>1</sub>-adrenerg</th>
+					<td>G<sub>q/11</sub></td>
+					<td>noradrenalin</td>
+					<td>simaizomsejtekben (vazokonstrikció létrehozásáért felel)</td>
+				  </tr><tr>
+					<th>α<sub>2</sub>-adrenerg</th>
+					<td>G<sub>i/o</sub></td>
+					<td>noradrenalin</td>
+					<td>preszinaptikus (preszinaptikus-gátlást közvetítenek)</td>
+				</tr>
+				<tr><th rowspan="3">β-adrenerg</th>
+					<th>β<sub>1</sub>-adrenerg</th>
+					<td rowspan="3">G<sub>s</sub></td>
+					<td>megegyezik</td>
+					<td>szívben</td>
+				  </tr><tr>
+					<th>β<sub>2</sub>-adrenerg</th>
+					<td>adrenalinra</td>
+					<td>simaizomsejtekben (elernyedés létrehozásáért felel)</td>
+				  </tr><tr>
+					<th>β<sub>3</sub>-adrenerg</th>
+					<td>noradrenalin</td>
+					<td>zsírsejtekben (lipolízis szabályozásért felel)</td>
+				</tr>
+			</table>
+		</ul></details>
+		<details><summary>ioncsatorna receptorok</summary><ul class="normal">
+			<details class="kerdes 3/1"><summary>működésük lényege?</summary><ul class="normal">
+				<li>ha ligand kötődik hozzá, akkor megnyílik a csatorna</li>
+				<font style="font-size:80%">pl. képen látható nikotinerg-receptor<abbr title="ez az acetil-kolin receptor egyik típusa. A másik típusa a muszkarinerg (lásd G-fehérjék táblázat)">(acetil-kolin)</abbr> 5alegységből áll, ezek között pórus van, mely a ligandot megkötve kinyílik</font>
+				<img src="images/cltklnrgrcptr.png">
+			</ul></details>
+			<details class="kerdes 3/1"><summary>szerepük?</summary><ul class="normal">
+				<li>neurotranszmisszióban játszanak szerepet <abbr title="főként">'</abbr></li>
+				<li>ugyanis a ligand megkötése utáni megnyílás majd hatás, milisecundumos nagyságrendben játszódik le <abbr title="G-fehérjés receptoroknál másodperces tartományban ment végbe">'</abbr> &#10140; idegsejtek működéséhez optimális</li>
+			</ul></details>
+			<details class="kerdes 3/5"><summary><span class="Vocab">TAB</span> típusaik &#10140; felsorolás? ligand? hatás?</summary><ul class="normal">
+				<table><tr><th colspan="2">serkentő receptorok</th>  <th>ligand</th>  <th>milyen iont enged át</th></tr>
+					<tr><td colspan="2">nikotinerg-receptor<abbr title="ez az acetil-kolin receptor egyik típusa (acetil-kolin receptorok típusát lásd arréb kidolgozva)">(acetil-kolin)</abbr></td>
+						<td>acetil-kolin</td>
+						<td>Na<sup>+</sup> és K<sup>+</sup></td>
+					</tr>
+					<tr><td rowspan="2">glutamát-receptorok</td>
+						<td>NMDA-típusú</td>
+						<td rowspan="2">glutamát <abbr title="szvsz glutaminsav(aminosav) 'ionizált' formája">!</abbr> <img class="mini" src="images/képlet_gltmstkv.png"></td>
+						<td>Na<sup>+</sup> és K<sup>+</sup> és Ca<sup>2+</sup></td>
+					  </tr><tr>
+						<td>nem NMDA-típusú</td>
+						<td>Na<sup>+</sup> és K<sup>+</sup></td>
+					</tr>
+					<tr><td colspan="2">5HT<sub>3</sub>-receptor<abbr title="ez az szerotonin receptorok egyik típusa a 6 közül. A másik 5 típusa GPCR (azokról nem tanulunk részletesebben)">(szerotonin)</abbr></td>
+						<td>szerotonin</td>
+						<td>Na<sup>+</sup> és K<sup>+</sup></td>
+					</tr>
+				  <tr><th colspan="2">gátló receptorok</th>  <th>ligand</th>  <th>hatása</th></tr>
+					<tr><td colspan="2"><abbr title="γ-aminovajsav">GABA</abbr><sub>A</sub>-receptorok és GABA<sub>C</sub>-receptorok</td>
+						<td>GABA</td>
+						<td>Cl<sup>-</sup></td>
+					</tr>
+					<tr><td colspan="2">glicin-receptor</td>
+						<td>glicin <abbr title="aminosav">!</abbr></td>
+						<td>Cl<sup>-</sup></td>
+					</tr>
+				</table>
+				<li>ezen receptor-csoportokról általánosan elmondható, hogy nem csak ioncsatorna-receptor típusuk van &#10140; pl. muszkarinerg, szerotonin-receptorok nagy része(5alcsoport), GABA<sub>B</sub> mind GPCR <abbr title="glutamát-receptoroknál is van stb.">stb.</abbr></li>
+			  <hr>
+				<li>serkentő csatorna megnyílása depolarizációt okoz &#10140; így a sejtek aktiválódnak (gyors, idegi transzmisszió alap mechanizmusa ez)</li>
+				<li>gátló csatorna megnyílása stabilizálja a membránpotenciált, ezáltal gátló hatást okoz</li>
+			</ul></details>
+		</ul></details>
+		<details class="kerdes 3/5"><summary><span class="Vocab">TAB</span> acetil-kolin receptorok (= kolinerg-receptorok) típusai?</summary><ul class="normal">
+			<table><tr><th colspan="2">receptorok</th>  <th><abbr title="tehát ezzel is aktiválható a receptor, hasonlóan az acetil-kolinhoz">serkenthető</abbr></th>  <th>gátolható</th></tr>
+				
+				<tr><th rowspan="2">muszkarinerg-receptorok <abbr title="= metabotrop acetil-kolin receptorok">'</abbr> &#10140; GPCR</th>
+					<td>(páratlanok) M<sub>1/3/5</sub> &#10140; G<sub>q/11</sub></td>
+					<td rowspan="2">muszkarin (légyölő galócában van) <abbr title="muszkarin mérgező, mert az acetilkolin neurotranszmitter hatását utánozza &#10140; erősen aktiválja a perifériás paraszimpatikus idegrendszert, izomgörcsöket és halált okozhat">'</abbr></td>
+					<td rowspan="2">atropin</td>
+				  </tr><tr>
+					<td>(párosak) M<sub>2/4</sub> &#10140; G<sub>i/o</sub></td>
+				</tr>
+				<tr><th rowspan="2">nikotinerg-receptorok <abbr title="= ionotrop acetil-kolin receptorok">'</abbr></th>
+					<td>vázizom típusú &#10140; harántcsíkolt-izom kontrakciójában játszik szerepet <abbr title="legalábbis remélem">(lásd pontosabban később)</abbr></td>
+					<td rowspan="2">nikotin</td>
+					<td>kuráré(indián nyílméreg), pl. <abbr title="tehát ez a kuráré egy típusa">d-Tubocurarine</abbr> &#10140; <font style="font-size:80%">(pl. műtétnél ezzel ellehet teljesen ellazítani a vázizmokat, <abbr title="persze lélegeztetés kell közben">'</abbr> de nem használják elvileg már)</font></td>
+				  </tr><tr>
+					<td>idegi típusú &#10140; vegetatív ganglionokban található</td>
+					<td>ganglion bénítók</td>
+				</tr>
+			</table>
+		</ul></details>
+		<details class="kerdes 3/2"><summary>enzimaktivitású receptorok &#10140; felsorolás?</summary><ul class="normal">
+			<li>lényege &#10140; receptor ha megköti a ligandot(agonistát) akkor enzimaktivitást produkál</li>
+		  <hr>
+			<li>tirozin-kináz aktivitású receptorok &#10140; GF-receptorok és az inzulin-receptor</li>
+			<li>guanilát-cikláz aktivitású receptorok</li>
+			<li>szerin/treonin-kináz aktivitású receptorok</li>
+			<details class="kerdes 3/5"><summary>tirozin-kináz aktivitású receptorok?</summary><ul class="normal">
+				<li>felsorolás &#10140; GF-receptorok és az inzulin-receptor <abbr title="képen lévőket nem kell tudjam">'</abbr> <img class="mini" src="images/trznkknzrcptr.png"></li>
+				<li>funkció &#10140; sejt növekedését, <abbr title="sejtek számának növekedése">proliferációját</abbr> szabályozzák</li><ul>
+					<li>vagy a sejt növekedését serkentik</li>
+					<li>vagy a sejt apoptózisát gátolják (proliferáció lesz)</li>
+				</ul>
+				<li>1 membrán doménjük van <abbr title="tehát 1x érik át a membránt (GPCR-eknek 7 membrán doménje van)">'</abbr></li><ul>
+					<li>EC része ligandot köt</li>
+					<li>IC része tirozin-kináz aktivitást produkál</li>
+				</ul>
+				<details class="kerdes 3/3"><summary>működésük lényege?</summary><ul class="normal">
+					<img style="max-width:50%" src="images/dmrzctkrprcknz.png">
+					<li>agonista megkötése következtében dimerizálódik és <font style="font-size:80%">auto</font>foszforilálódik</li><ul>
+						<li><font style="font-size:80%">auto</font>foszforiláció &#10140; tirozin aminosavakat foszforilálják egymáson<abbr title="mivel egymást foszforilálják, és nem önmagukat, így valójában nem is igazi autofoszforiláció">'</abbr></li>
+					</ul>
+					<li>az így IC részen keletkező foszforilált tirozinokat felismerik jelátviteli molekulák &#10140; különböző jelátviteli pályák indulnak meg</li><ul>
+						<li>a molekulában, mely felismeri, megtalálható az <strong>SH2 domén</strong></li>
+						<li>ilyen molekula pl. <abbr title="foszfatidil-inozitol-3-kináz">PI3K</abbr>, PLC-&gamma;, GAP <img class="mini" src="images/jltvlmlklm.png"></li>
+						<li>PLC<abbr title="izoformát jelöl">&gamma;</abbr> ugyanazon hatásokat éri el, mint a PLC<abbr title="izoformát jelöl">&beta;</abbr> &#10140; csupán más úton aktiválódnak (&gamma; a tirozin kináz aktivitású receptor által, &beta; a G<sub>q/11</sub> által)</li>
+					</ul>
+				</ul></details>
+				<details class="kerdes 3/3"><summary>sejt növekedését serkentik &#10140; mechanizmusa?</summary><ul class="normal">
+					<div><font style="font-size:80%">Ras úton kerül bemutatásra</font></div>
+					<li>GF-receptor (<abbr title="receptor-tirozin-kináz">RTK</abbr>) dimerizálódik & <font style="font-size:80%">auto</font>foszforilálódik</li>
+					<li>a megindult jelátvitel közben aktiválódik egy GEF<abbr title="(képen az SOS nevűt)">'</abbr>, mely a plazmamembránban található a <span class="Important">Ras</span>(kis G-fehérje)-t aktiválja (GDP-GTP csere)</li>
+					<li>a Ras aktiválódása megindít egy jelátvitelt &#10140; benne fehérjék foszforilációja zajlik &#10140; a végén egy <span class="Important">MAP-kináz</span> aktiválódik<abbr title="foszforilációval">'</abbr>, mely bemegy a magba, és transzkripciós szintű szabályozást végez<abbr title="TF-eket foszforilál, melyek serkentik olyan gének expresszióját, melyek növekedést/proliferációt serkentenek">'</abbr>, mely következtében <span class="Important">olyan gének expresszióját fokozza, melyek a sejtek növekedését/proliferációját serkentik</span> <abbr title="(késői gének expresszióját serkenti, pl. D-ciklinét, mellyel beléphet G0-ból G1 fázisba)">'</abbr> <img class="mini" src="images/13_jeltvtl.png"></li>
+					<img src="images/rsgrgfrh.png">
+				</ul></details>
+				<details class="kerdes 3/3"><summary>sejt apoptózisát gátolják &#10140; mechanizmusa?</summary><ul class="normal">
+					<img style="max-width:50%" src="images/fszflktlgnkzl.png">
+					<div><font style="font-size:80%"><span class="Important">PI3K &#10140; PKB</span> úton kerül bemutatásra</font></div>
+					<li><abbr title="foszfatidil-inozitol-3-kináz">PI3K</abbr> <font style="font-size:80%">(SH2-domén van benne!)</font> kapcsolódik az aktivált <abbr title="receptor-tirozin-kináz">RTK</abbr>-hoz</li>
+					<li>ezután foszforilálja a PI(4,5)P<sub>2</sub>-t a 3as pozícióban<abbr title="3.C-hez kapcsolódó –OH-t">'</abbr> <abbr title="innen az elnevezése, tehát a nevéből tudjam kikövetkeztetni (így jegyezzem meg)!!">!!</abbr></li><ul>
+						<li><font style="font-size:80%">egyébként nem csak ezt, hanem bármely <abbr title="ez ugye foszfolipid!">foszfatitil-inozitol</abbr>-t foszforilál a 3as pozícióban <img class="mini" src="images/fszftlnzltbtf.png"></font></li>
+						<li><font style="font-size:80%">egyes fehérjéknek PH-doménje van, mellyel pont az ilyen, azaz a 3as pozícióban foszforilált PI-ket ismerik fel, és azáltal aktiválódnak</font></li>
+					</ul>
+					<li>jelen esetben a <abbr title="foszfatidil-inozit-3,4,5-triszfoszfát">PI(3,4,5)P<sub>3</sub></abbr>, ami keletkezik &#10140; ezt a <abbr title="protein-kináz-B">PKB</abbr> (PH-doménes fehérje) felismeri és aktiválódik <abbr title="másik ilyen fehérje pl. a PDK1">'</abbr></li>
+					<li>ez pedig foszforilálni fog olyan fehérjét, mely következtében az <span class="Important">apoptózis gátolva</span> lesz</li>
+				  <hr>
+					<li>tehát a PI-3-kináz aktiválódása a sejtek túlélését serkenti</li>
+				</ul></details>
+				<details class="kerdes 3/3"><summary>protoonkogén & onkogén?</summary><ul class="normal">
+					<li>protoonkogén &#10140; olyan fehérjét kódolnak, melyek szükségesek az osztódáshoz</li><ul>
+						<li>főként a jelátvitelben résztvevő fehérjéket</li>
+						<li>tehát lényegében a legtöbb tirozin-kinázos jelátvitelben szereplő fehérjét kódoló ilyen (GF-receptor,Ras,PI3K,PKB stb.)</li>
+					</ul>
+					<li>onkogén &#10140; protoonkogén mutációja</li><ul>
+						<li><font style="font-size:80%">domináns (tehát heterozigóta esetében is probléma)</font></li>
+						<li>következtében a fehérjék nagyobb mennyiségben termelődnek vagy aktívabbak működnek</li>
+						<li>rosszindulatú daganatban jellemzőek &#10140; hiszen nő a proliferáció</li>
+					</ul>
+				</ul></details>
+			</ul></details>
+			<details class="kerdes 3/5"><summary>guanilát-cikláz aktivitású receptorok?</summary><ul class="normal">
+				<img style="max-width:50%" src="images/cgnpmgntlz.png">
+				<li>guanilát-cikláz ➜ aktivált helyzetben GTP-ből létrehoz cGMP</li>
+				<li>másodlagos hírvívő &#10140; cGMP</li>
+				<li>a jelátvitel hatása a <abbr title="protein-kináz-G">PKG</abbr> enzimen keresztül valósul meg</li>
+				<div><font style="font-size:80%">hasonló a G<sub>s</sub>-nél leírtakhoz (adenilát vs guanilát, cAMP vs cGMP, PKA vs PKG)</font></div>
+			  <hr>
+				<li>guanilát-cikláz receptoroknak 2 csoportja van</li><ul>
+					<li>egyikük a plazmamembránban találhatók, és ligandjuk egyes hormononok (pl.ANP) &#10140; diurézist fokozza, simaizom elernyedést okoz (később lesz még róluk szó részletesebben a vesénél)</li>
+					<li>másik az <abbr title="szolubilis-guanilát-cikláz">sGC</abbr> &#10140; <abbr title="lényegében">'</abbr>intracellulárisan található, és ligandja NO &#10140; simaizom elernyedést okoz</li>
+				</ul>
+			  <hr><strong>sGC szerepe</strong> &#10140; endotél eredetű simaizom-kontrakció szabályozása <font style="font-size:80%">(keringésnél lesz még róla szó)</font>
+				<li>erekben lévő endothelsejt érzékeli az érben lévő anyagokat</li>
+				<li>ha olyan anyag van – pl. acetil-kolin – mely az endotelsejtben Ca<sup>2+</sup>-<abbr title="calmodulin">CaM</abbr> jelpályát vált ki, akkor az endotelsejtben a hatása ennek NO-szintézis lesz</li>
+				<li>NO kidiffundál<abbr title="membrán gázok számára átjárható">'</abbr>, és az endotelsejt mellett lévő simaizomsejtbe jut &#10140; kötődik az sGC-hez &#10140; simaizom elernyedés</li>
+				<li>ott kötődik az sGC-hez &#10140; cGMP nő &#10140; simaizom elernyedés</li>
+			</ul></details>
+			<details class="kerdes 3/2"><summary>szerin/treonin-kináz aktivitású receptorok?</summary><ul class="normal">
+				<li>aktiválódásuk során a szubsztrátjukon lévő Ser/Thr aminosavakat foszforilálnak</li>
+				<li>a legismertebb ilyen receptor a <abbr title="transforming-growth-factor">TGF</abbr>&beta;-receptor</li><ul>
+					<li><font style="font-size:80%">1 membrán doménjük van</font></li>
+					<li><font style="font-size:80%">aktiválódásuk során dimerizálódnak (+ foszforilálnak közbe ugye)</font></li>
+					<li><font style="font-size:80%">szubsztrátja SMAD &#10140; ez a magba bejutva transzkripciós szinten szabályoz</font></li>
+				</ul>
+				<div><font style="font-size:80%"><span class="Vocab">§</span> patológián lesz róla részletesen szó <abbr title="+lásd fejlődésbiológia I">'</abbr></font></div>
+				<img src="images/tfglbmlm.png">
+			</ul></details>
+		</ul></details>
+		<details class="kerdes 3/2"><summary>enzimaktivitáshoz kapcsolt receptorok?</summary><ul class="normal">
+			<li>enzimaktivitás, melyhez kapcsolódnak tirozin-kináz</li>
+			<li>előfordul</li><ul>
+				<li>citokinek-nél gyakori (citokin-jelátvitelnek is nevezik) &#10140; JAK = tirozin-kináz aktivitású enzim, mely hozzákapcsolódik &#10140; a jelátvitel transzkripciós szinten szabályoz<abbr title="végén a molekula bejut magba">'</abbr> <font style="font-size:80%">(csakúgy mint Ras, Ser/Thr-kináz)</font></li>
+				<li>ezenkívül két hipofízis hormon receptora &#10140; növekedési hormon, prolaktin</li>
+			</ul>
+		</ul></details>
+		<details class="kerdes 3/2"><summary>szabályozott intramembrán proteolízis receptorok &#10140; lényege?</summary><ul class="normal">
+			<img style="max-width:50%" src="images/ntfhsmglm.png">
+			<li>receptor aktiválódásakor az IC része <abbr title="képen NICD(Notch-IC-Domain)">'</abbr> leszakad proteolízissel</li>
+			<li>ez a magba bejutva transzkripciós szinten szabályoz</li>
+			<li>fejlődési folyamatokban játszik szerepet &#10140; pl. Notch jelátvitel <abbr title="lásd fejlődésbiológia I">'</abbr></li>
+		</ul></details>
+		<details class="kerdes 3/4"><summary>intracelluláris receptorok &#10140; ligandok?</summary><ul class="normal">
+			<div style="max-width:20%; float:right;">
+				<img src="images/hmrlkszrrdl.png">
+				<img src="images/trnszkrpckglhk.png">
+			</div>
+			<li>ligand &#10140; hidrofób, átjut a plazmamembránon</li><ul>
+				<li>szteroidhormonok &#10140; pl. ösztradiol, progeszteron, tesztoszteron, kortizol, aldoszteron</li>
+				<li>pajzsmirigyhormonok &#10140; p. tiroxin(T4), trijód-tironin(T3)</li>
+				<li>reténsav</li>
+				<li>D3-vitamin</li>
+			</ul>
+			<li>receptor &#10140; citoplazmában vagy sejtmagban található</li>
+			<li>hatásuk &#10140; transzkripciós szintű szabályozás</li>
+		</ul></details>
+		<details class="kerdes 3/15"><summary>membránforgalom (vezikuláris transzport, endocitózis & exocitózis)</summary><ul class="normal">
+			<div style="max-width:40%; float:right;">
+				<img src="images/ndcztlmchng.png">
+				<img src="images/nzlnhltlsk.png">
+				<img src="images/klsztrnszntzsszbylzs.png">
+				<img src="images/kltrnbrksmlb.png">
+			</div>
+			<div><font style="font-size:80%">ez ugyan alapvetően transzporthoz (2.tétel) sorolható, de kapcsolódik a jelátvitelhez is, ezért itt kerül megemlítésre</font></div>
+			<li>vezikuláris transzportal történik az endocitózis és exocitózis</li>
+		  <hr><strong>endocitózis</strong>
+			<div><font style="font-size:80%"><span class="Vocab">§</span> leggyakoribb formája a klatrinburkos, most az kerül bemutatásra <abbr title="egyéb formáját lásd orvosi biológia">'</abbr></font></div>
+			<li>plazmamembránon receptorok vannak</li><ul>
+				<li><abbr title="ExtraCelluláris">EC</abbr> részéhez kötődik a ligand</li>
+				<li>IC részéhez kötődik <font style="font-size:80%">az adaptin és rajta keresztül</font> a <strong>klatrinburok</strong></li>
+			</ul>
+			<li>gödör 'képződés' &#10140; dynamin<abbr title="'elvágja a nyakát'">'</abbr> leválasztja, és kialakul a vezikulum</li>
+			<li>klatrin-burok leválik utána róla röviddel</li>
+			<div>ezzel a mechanizmussal történik pl. az alábbiak internalizációja &#10140; hormon-receptorok (pl.angiotenzin), LDL-receptorok, transzferrin-receptorok, szinaptikus vezikulák visszavétele</div>
+		  <hr><strong>exocitózis <img class="mini" src="images/xctlzskp.png"></strong>
+			<li>ezzel történik pl. a peptidhormonok szekréciója</li>
+		  <hr><strong>összefüggése a jelátvitellel az alábbi példákon kerül bemutatásra</strong>
+			<li>glükóz felvétel inzulinnal történő szabályozása</li><ul>
+				<li>inzulin hatása &#10140; fokozza a sejtek glükóz felvételét és közben csökkenti a vércukorszintet</li>
+				<li>mechanizmusa</li><ul>
+					<li>az inzulin(agonista) az inzulin-receptorhoz kötődve jelátviteli folyamatot vált ki</li>
+					<li>hatására a GLUT-4 tartalmú endoszómákból vezikulák jutnak a membránba</li>
+					<li>így a sejt glükóz-koncentrációja nő, vérplazmáé pedig csökken</li>
+				</ul>
+				<li><font style="font-size:80%">a jelátviteli folyamatban szerepet játszik <abbr title="foszfatidil-inozitol-3-kináz">PI3K</abbr> (lásd részletesebben később)</font></li>
+			</ul>
+			<li>membrán vízre való permeabilitásának ADH-val történő szabályozása <font style="font-size:80%">(lásd még később)</font></li><ul>
+				<li>vazopresszin hatása &#10140; vízre permeábilissé válik a membrán</li>
+				<li>mechanizmusa &#10140; lényege ugyanaz, mint az inzulin-receptoroké</li><ul>
+					<li>itt a receptor V2R, a ligand vazopresszin</li>
+					<li><abbr title="jelátvitel hatására endoszómákból vezikuláris transzporttal ugyanúgy">'</abbr> akvaporin csatornák helyeződnek ki a plazmamembránba</li>
+				</ul>
+			</ul>
+			<li>pl. koleszterin-szintézis szabályozása</li><ul>
+				<li>ER membránjában van az ún. SREBP-2 (ez egy TF)</li>
+				<li>ha magas a koleszterin-szint akkor nem történik semmi <abbr title="ugyanis a SCAP ha megköti a koleszterint, akkor az Insig-1/2 hozzájuk kapcsolódva, nem engedi el őket az ER-ből (ilyen részletesen nem kell tudnom)">'</abbr></li>
+				<li>alacsony koleszterin-szint esetében <font style="font-size:80%">(<abbr title="coatomer('kotomer')-burkos, lásd orvosiBiosz">COP</abbr>II-)</font>vezikuláris transzporttal átmegy Golgi-ba &#10140; itt a C-terminális része lehasad, és TF-ként bejutva a magba fokozza a koleszerin-szintézisért felelős gének transzkripcióját (pl.<abbr title="hydroxy-methyl-glutaryl-CoA (lásd bikém 2)">HMG-CoA</abbr>) <abbr title="illetve LDL-receptor(melyen bejut a koleszterin a sejtbe), illetve ebben résztvevő fehérjéket">'</abbr></li>
+				<div><font style="font-size:80%"><span class="Vocab">§</span> koleszterin két forrásból származik &#10140; egyrészt itt szintetizálódik, másrészt táplálékkal felvehető <abbr title="ha táplálékkal sok van felvéve, akkor ez leáll, ha meg kevés, akkor ez beindul">'</abbr></font></div>
+			</ul>
+			<li>neurotranszmitterek felszabadulásának (exocitózis) és a szinaptikus vezikulák visszavételének (endocitózis) mechanizmusa</li><ul>
+				<li>transzmitter tartalmú vezikulák Ca<sup>+</sup>(jel) hatására exocitózissal kijutnak (membránba kerül a vezikula, transzmitter EC)</li>
+				<li>üres vezikula ezután klatrinburkos_endocitózissal visszamegy a membránból, majd ismét feltöltődik transzmitterrel</li>
+			</ul>
 		</ul></details>
 	</ul></details>
 <!----></details>
 
+<!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
+
+<details open><summary><span class="Vocab">TAB</span> domének</summary><ul class="normal">
+	<li>SH2-domén &#10140; foszforilált tirozint ismer fel</li>
+	<li>PH-domén &#10140; 3as pozícióban foszforilált PI-ket ismer fel</li>
+</ul></details>
+
+<ul class="normal">
+	<img style="max-width:30%" src="images/jltvlktllkyl.png">
+</ul>
+
+
+<!--//////////////////////////////////////-->  <div><div class="mainTitle">2-es témakör</div>  <!--//////////////////////////////////////-->
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
 
 
