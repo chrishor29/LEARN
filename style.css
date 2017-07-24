@@ -100,7 +100,14 @@ span.WHITE {
 	border: Black 1px solid; 
 }*/
 .Vocab { 
-	background-color: lightsteelblue
+	background-color: #d4d4d4
+}
+.HPyes { 
+	background-color: Aqua; /*PaleTurquoise*/
+	border: Black 1px solid; 
+	padding-top: -1px; 
+	padding-left: 1px; 
+	padding-right: 1px; 
 }
 .Important { 
 	background-color: Aqua /*PaleTurquoise*/
