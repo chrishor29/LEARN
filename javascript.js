@@ -4,6 +4,8 @@
 }*/
 
 /* PROJECT 
+ ✖: IMPORT-Q-nál a kérdést importálja, és ne kelljen hozzá felkérdést(import-q) --> jelenleg sajnos kell, az az impQ
+-----
  ✖: upgradeQ-nál legyen REMOVE opció
 -----
  ✖: load img & video csak azután, ha megnyitom a kérdést
@@ -179,8 +181,10 @@ function F_impQs(){
 	for ( var i=0; i<impek.length; i++ ) { 
 		var begin = impek[i].className.indexOf("[") +1
 		var Qelem = impek[i].parentElement.parentElement
+		//alert(Qelem.innerHTML)
 		var end = impek[i].className.indexOf("]")
 		var full = impek[i].className.slice(begin,end) // válassza őket külön
+		//alert(full)
 		var cont = false
 		var num = ""
 		var high = ""
@@ -1195,6 +1199,7 @@ function func_sortQuests(){ // felmegy tételig, ha volt közben altétel is, ak
 	console.log(": "+Qcount)
 	//alert("stop")
 	for ( i=0;  i<Qcount;  i++ ) {
+		console.clear()
 		var Qid = i +1
 		Qid = "Q."+Qid
 		var parent = document.getElementById(Qid)
