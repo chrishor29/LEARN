@@ -4,6 +4,7 @@
 }*/
 
 /* PROJECT 
+ ✖: note-t mutassa!
  ✖: IMPORT-Q-nál a kérdést importálja, és ne kelljen hozzá felkérdést(import-q) --> jelenleg sajnos kell, az az impQ
 -----
  ✖: upgradeQ-nál legyen REMOVE opció
