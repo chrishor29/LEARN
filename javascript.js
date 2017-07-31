@@ -557,6 +557,7 @@ function F_CreateQDiv() {
 		button.style.position = "fixed"
 		button.style.right = "5px"
 		button.style.top = "5px"
+		button.style.backgroundColor = "red"
 	}
 	F_ButtonToggleAll()
 
@@ -1220,9 +1221,9 @@ function func_sortQuests(){ // felmegy tételig, ha volt közben altétel is, ak
 			tetelek[parent.id][Qid] = true
 			//console.log("tetel: " +Qid)
 		}
-		console.log("Qid: "+Qid)
 	}
 	document.getElementById("input_toggleAll").value = Qcount
+	document.getElementById("input_toggleAll").style.backgroundColor = ""
 }
 func_sortQuests()
 
@@ -1352,7 +1353,7 @@ function func_calcPriorHosszJegy(elem){
 	} else if ( prior == 4 ) {
 		prior = 1.5
 	} else if ( prior == 5 ) {
-		prior = 3
+		prior = 2.25
 	}
 	if ( prior == "J" || prior == "j" ) { alert("error: J a prior még") } // ha már nem jön elő, törölhetem ezt a sort
 	var Qid = elem.id
@@ -2033,7 +2034,7 @@ function F_nextQ(){
 				} else if ( prior == 4 ) {
 					prior = 1.5
 				} else if ( prior == 5 ) {
-					prior = 3
+					prior = 2.25
 				}
 				if ( prior == "J" || prior == "j" ) { alert("error: J a prior még") } // ha már nem jön elő, törölhetem ezt a sort
 
@@ -2241,7 +2242,7 @@ function F_nextQ(){
 					} else if ( prior == 4 ) {
 						prior = 1.5
 					} else if ( prior == 5 ) {
-						prior = 3
+						prior = 2.25
 					}
 					if ( prior == "J" || prior == "j" ) { alert("error: J a prior még") } // ha már nem jön elő, törölhetem ezt a sort
 					
