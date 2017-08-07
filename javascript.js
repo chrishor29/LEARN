@@ -5,11 +5,16 @@
 
 /* PROJECT 
  ✖: note-t mutassa!
+ ✖: az elején mentse le az összes questet, majd utána importálja az impQkat &#10140; LSid-t pedig Qid-vel kapcsoltan oldjam meg valahogy, ne Qtxt-el &#10140; ugyanis az eleje mindenképp kell, mert jelenleg összevissza-szharakodik (NEMTUDOK {ID-t} adni olyannak, melyben van impQ)
+	# végigmegy összes questen és elmenti (+id-t kapnak)
+	# végigmegy összes impen A-Zig és beimportálja (+id-t kapnak) --> addig repeateli, míg elfogynak (hiszen ha egy impbe van egy másik imp...) 
  ✖: IMPORT-Q-nál a kérdést importálja, és ne kelljen hozzá felkérdést(import-q) --> jelenleg sajnos kell, az az impQ
 -----
+ ✖: load img & video csak azután, ha megnyitom a kérdést
  ✖: upgradeQ-nál legyen REMOVE opció
 -----
- ✖: load img & video csak azután, ha megnyitom a kérdést
+-----
+-----
  ✖: skip-nél ne LSid-t mutasson, hanem kérdést
  ✖: skip-nél a perma skippesek máshol legyenek
  ✖: LSid-t(ne Qid) mutasson, és ne a főoldalon
@@ -226,7 +231,7 @@ function F_impQs(){
 				}
 			}
 		}
-		if (MISSid!="") { alert("alábii EXPid-k még nincsenek LS-be reigsztrálva: "+MISSid) }
+		if (MISSid!="") { alert("alábbi EXPid-k még nincsenek LS-be reigsztrálva: "+MISSid) }
 		
 		// impek[i].className = impek[i].className.replace("imp ","") // ez azért kell, mert különben többször másolná be (ugyanis nextQ-nál is hivatkozik erre a funkcióra)
 		
@@ -583,7 +588,6 @@ function F_CreateQDiv() {
 
 	function F_ButtonTetelek() {
 		var button = document.createElement("button")
-		button.class = "white"
 		button.style.border = "3px solid black"
 		button.style.backgroundColor = "Bisque"
 		button.textContent = "TÉTELEK"

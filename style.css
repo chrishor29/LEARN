@@ -92,6 +92,7 @@ span {
 }
 span.WHITE { 
 	border: Black 1px solid; 
+	padding-bottom: 1px; 
 	padding-top: -1px; 
 	padding-left: 1px; 
 	padding-right: 1px; 
