@@ -90,12 +90,11 @@ span {
 	padding-top: 0px; 
 	padding-bottom: 0px; 
 }
-span.WHITE { 
+.WHITE { 
 	border: Black 1px solid; 
-	padding-bottom: 1px; 
-	padding-top: -1px; 
 	padding-left: 1px; 
 	padding-right: 1px; 
+	background-color: White
 }
 /*span.abbr { 
 	border: Black 1px solid; 
@@ -124,6 +123,13 @@ span.WHITE {
 .idk { 
 	opacity: 0.7;
 }
+.lasd { 
+	font-size: 80%;
+	background-color: SpringGreen;
+	border: Black 1px solid; 
+	padding-left: 2px; 
+	padding-right: 2px; 
+}
 .skip { 
 	background-color: dodgerblue;
 	color: white;
@@ -138,9 +144,6 @@ span.WHITE {
 	background-color: black;
 	color: white;
 	font-weight: bold;
-}
-.WHITE { 
-	background-color: White
 }
 span.dol { 
 	padding-left: 2px; 

@@ -43,7 +43,7 @@ copy C:\Kristof\MIRROR\LEARN\SejtBiosz\favicon.bmp C:\Users\chrishor29\Desktop\L
 robocopy C:\Kristof\MIRROR\LEARN\done\ModMem\images C:\Users\chrishor29\Desktop\LEARN\done\ModMem\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\ModMem\ModMem.html C:\Users\chrishor29\Desktop\LEARN\done\ModMem\ModMem.html 
 
-robocopy C:\Kristof\MIRROR\LEARN\Elettan\images C:\Users\chrishor29\Desktop\LEARN\Elettan\images /mir
+
 copy C:\Kristof\MIRROR\LEARN\Elettan\elettan.html C:\Users\chrishor29\Desktop\LEARN\Elettan\elettan.html 
 
 
