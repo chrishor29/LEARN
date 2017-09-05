@@ -4,43 +4,25 @@
 }*/
 
 /* PROJECT 
- ✖: elején csak EXP-Q-kat töltse be
- ✖: az elején mentse le az összes questet, majd utána importálja az impQkat &#10140; LSid-t pedig Qid-vel kapcsoltan oldjam meg valahogy, ne Qtxt-el &#10140; ugyanis az eleje mindenképp kell, mert jelenleg összevissza-szharakodik (NEMTUDOK {ID-t} adni olyannak, melyben van impQ)
-	# végigmegy összes questen és elmenti (+id-t kapnak)
-	# végigmegy összes impen A-Zig és beimportálja (+id-t kapnak) --> addig repeateli, míg elfogynak (hiszen ha egy impbe van egy másik imp...) 
- ✖: IMPORT-Q-nál a kérdés text-jét importálja, és ne kelljen hozzá felkérdést(import-q) --> jelenleg sajnos kell, az az impQ
- ✖: foglalt már (vagy csak upgradelve lett azóta) ---> jelezze imét őket, de egybe az összeset, ne egyesével
- ✖: export-Q Textjét localstorage-be úgy mentse el, hogy bármelyik file-ból lehessen hivatkozni rá
------
- ✖: upgradeQ-nál legyen REMOVE opció
------
------
------
- ✖: skip-nél ne LSid-t mutasson, hanem kérdést
- ✖: skip-nél a perma skippesek máshol legyenek
- ✖: LSid-t(ne Qid) mutasson, és ne a főoldalon
- ✖: note & fix-re elég egy button (egyoldalon legyen a kettő)
- -----
+ ✖: tablet show prior + jegy
+ ✖: abbr title tableten nem működik --> imported q-nál biztsosan nem
+––––––––––––––––––––––––––––––––––––––––––––––––
  ✖: F_ButtonRepFast
  ✖: átlag skip (ne 650, hanem átlag) --> 3 helyen van a kódban!!! (searchel cseréljem őket ki!!)
  ✖: föl-le tekerés (kérdésnél) -> legyen alul is határa + csak a kérdést lehessen tekerni (másik ne jelenjen meg)
- ✖: abbr title tableten nem működik
------
- ✖: gépen csináljak meg több feladatot
- ✖: export to Android, try to save there
- ✖: ha nem, akkor localStorage tömörítés (idopont, jegy stb.)
- ✖: lehessen importálni csak szöveget (Q nem kell maga) --> pl. rostok típusai myelinhüvely vastagság (gerincvelő általános)
------
- ✔: note-t mutassa, amit elmentek a kérdés mellé!
- ✔: túl sok kérdés van egybe, és nem féri ki felül az osztályzásuk (18 a max asszem jelenleg) --> legyen alul scrollBar, és akkor kiférnek
- ✔: load img csak azután, ha megnyitom a kérdést
- ✔: kérdések erőssége felváltva jöjjön!!!
- ✔: átlagot nem mutatja (jegy + idő)
- ✔: permanens skip
- ✔: Skip funkció
- ✔: skippedeket nem mutatja
- ✔: upgradeQ check!
- ✔: export localStorage FIX!!!
+––––––––––––––––––––––––––––––––––––––––––––––––
+ ✖: az elején mentse le az összes questet, majd utána importálja az impQkat &#10140; LSid-t pedig Qid-vel kapcsoltan oldjam meg valahogy, ne Qtxt-el &#10140; ugyanis az eleje mindenképp kell, mert jelenleg összevissza-szharakodik (NEMTUDOK {ID-t} adni olyannak, melyben van impQ)
+	# végigmegy összes questen és elmenti (+id-t kapnak)
+	# végigmegy összes impen A-Zig és beimportálja (+id-t kapnak) --> addig repeateli, míg elfogynak (hiszen ha egy impbe van egy másik imp...) 
+––––––––––––––––––––––––––––––––––––––––––––––––
+ ✖: skip-nél a perma skippesek máshol legyenek
+ ✖: LSid-t(ne Qid) mutasson, és ne a főoldalon
+ ✖: note & fix-re elég egy button (egyoldalon legyen a kettő)
+––––––––––––––––––––––––––––––––––––––––––––––––
+––––––––––––––––––––––––––––––––––––––––––––––––
+ ✔: fix note
+ ✔: skip-nél ne LSid-t mutasson, hanem kérdést
+ ✔: EXPid-s Q-kat jelenleg nem lehet osztályozni szvsz -> mert nincs LSid-jük !!! -> LSid is legyen elmentve a "hkExpQ."+EXPid -ben (a Qtxt mellett)
 */
 
 /* localStorage-be lehet objectset (arrayt is, az egyszerűbb, és ugyanennyit ér mint az objects, tehát nemjutok vele előrébb) menteni (de ezzel se jutok többre, csak 'nehezebb kezelni'(egyébként csak kicsivel, de sajna fölös, szóval minek), de azért megőrzöm)
@@ -121,10 +103,13 @@ var txtLS = [] // Qtxt to LSid
 
 var arrQid = [] // Qid to Qtxt
 
+var missQs
+
 var Qcount = 0
+
 function F_getTexts(){
 	var fullString = localStorage.getItem(document.title+"_Qtext")
-	fullString = LZString.decompressFromUTF16(fullString);
+	fullString = LZString.decompressFromUTF16(fullString)
 	fullString = fullString.split(" _@@_ ")
 	for ( var i=0; i<fullString.length; i++ ) {
 		if ( fullString[i] != "" ) {  // utolsó mindig ez, és azt ne tegye array-ba
@@ -137,20 +122,66 @@ function F_getTexts(){
 		}
 	}
 }
-F_getTexts()
+
+function F_getMissQs(){
+	if ( localStorage.getItem("hkQ.miss") === null ) {
+		missQs = []
+	} else {
+		missQs = localStorage.getItem("hkQ.miss")
+		missQs = missQs.split(",")
+	} 
+}
+F_getMissQs()
+
+function F_newLSid(){
+	var count
+	if ( missQs[0] ) {
+		count = missQs[0]
+		delete missQs[0]
+	} else {
+		count = parseInt(localStorage.getItem("hkQ.max"))+1
+		localStorage.setItem("hkQ.max",count)
+	}
+	var LSid = "hkQ."+count
+	return LSid
+}
+
+var elems = document.body.getElementsByTagName("*");
+function F_checkEXPs(){
+	for ( var i = 0; i < elems.length; i++ ) {
+		var elem = elems[i]
+		if ( elem.className.indexOf("{") > -1 ) {
+			var begin = elem.className.indexOf("{")
+			var end = elem.className.indexOf("}")
+			var EXPid = elem.className.slice(begin+1,end)
+			if ( Number(EXPid) > localStorage.getItem("hkExp.max") ) { localStorage.setItem("hkExp.max",EXPid) }
+			
+			var txt = '<details class="' +elem.className+ '">' +elem.innerHTML+ "</details>"
+			txt = LZString.compressToUTF16(txt)
+			var LSid = false
+			if ( localStorage.getItem("hkExpQ."+EXPid) ) {
+				var string = localStorage.getItem("hkExpQ."+EXPid)
+				LSid = string.slice(0,string.indexOf(" "))
+				var Qtext = string.slice(string.indexOf(" ")+1)
+				if ( txt != Qtext ) { // amennyiben már foglalt --> tehát egy újat véletlenül már foglalt EXPid-re neveztem el
+					//console.log("EXPid: "+EXPid)
+					//console.log("Qtext OLD: "+LZString.decompressFromUTF16(Qtext))
+					//console.log("Qtext NEW: "+LZString.decompressFromUTF16(txt))
+					alert("foglalt vagy upgradelve lett: "+EXPid)
+				}
+			}
+			LSid = F_newLSid()
+			localStorage.setItem("hkExpQ."+EXPid,LSid+" "+txt)
+		}
+	}
+}
+F_checkEXPs()
 
 function F_checkQs(){
 	var fullString = ""
-	var miss
-	if ( localStorage.getItem("hkQ.miss") === null ) {
-		miss = []
-	} else {
-		miss = localStorage.getItem("hkQ.miss")
-		miss = miss.split(",")
-	} 
 	for ( var i=0; i<kerdesek.length; i++ ) { 
+		////console.clear()
 		var Qelem = kerdesek[i]
-		//console.clear()
 		var Qtext = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
 		Qcount = Qcount+1
 		Qelem.id = "Q."+Qcount
@@ -161,51 +192,27 @@ function F_checkQs(){
 		if ( arrOLDtxt[Qtext] ) {
 			LSid = arrOLDtxt[Qtext]
 			delete arrOLDtxt[Qtext]
-			miss.push(LSid) 
+			missQs.push(LSid) 
 			//arrOLDtxt.splice(arrOLDtxt.indexOf(Qtext),1)
 			//console.log("prevQid: "+LSid)
 			LStxt[LSid] = Qtext
 			txtLS[Qtext] = LSid
 		} else if ( txtLS[Qtext] == null ) {
-			var count
-			if ( miss[0] ) {
-				count = miss[0]
-				delete miss[0]
-			} else {
-				count = parseInt(localStorage.getItem("hkQ.max"))+1
-				localStorage.setItem("hkQ.max",count)
-			}
-			LSid = "hkQ."+count
+			LSid = F_newLSid()
 			//console.log("LStxt: "+LSid)
 			LStxt[LSid] = Qtext
 			txtLS[Qtext] = LSid
 			arrNEWid[LSid] = Qtext
 		}
-		if ( Qelem.className.indexOf("{") > -1 ) { // expQ
-			var begin = Qelem.className.indexOf("{")
-			var end = Qelem.className.indexOf("}")
-			var EXPid = Qelem.className.slice(begin+1,end)
-			if ( localStorage.getItem("hkExpQ."+EXPid) === null || localStorage.getItem("hkExpQ."+EXPid) === "undefined" ) {
-				if ( Number(EXPid) > localStorage.getItem("hkExp.max") ) { localStorage.setItem("hkExp.max",EXPid) }
-				localStorage.setItem("hkExpQ."+EXPid,LSid)
-			} else { // amennyiben már foglalt --> tehát egy újat véletlenül már foglalt EXPid-re neveztem el
-				if ( LSid != localStorage.getItem("hkExpQ."+EXPid) ) { 
-					console.log("LSid: "+LSid)
-					console.log("EXPid: "+localStorage.getItem("hkExpQ."+EXPid))
-					//alert("foglalt már (vagy csak upgradelve lett azóta): {"+EXPid+"}") 
-				}
-			}
+		if ( Qelem.className.indexOf("{") == -1 ) { // nem {EXP}
+			fullString = fullString + LSid + " " + Qtext + " _@@_ "
 		}
-		Qtext = LZString.compressToUTF16(fullString)
-		localStorage.setItem("hkQ."+LSid,Qtext)
 	}
-	//fullString = fullString + LSid + " " + Qtext + " _@@_ "
-	//fullString = LZString.compressToUTF16(fullString);
-	//localStorage.setItem(document.title+"_Qtext",fullString)
-	miss = miss.toString()
-	localStorage.setItem("hkQ.miss",miss)
+	fullString = LZString.compressToUTF16(fullString);
+	localStorage.setItem(document.title+"_Qtext",fullString)
+	missQs = missQs.toString()
+	localStorage.setItem("hkQ.miss",missQs)
 }
-F_checkQs()
 
 function F_DivSkip() {
 	var div = document.createElement("div")
@@ -244,10 +251,10 @@ F_DivFix()
 
 var changeStatus = false
 function F_oldQchange(oldQtxt,oldLSid){
-	console.clear()
+	//console.clear()
 	console.log("– – – – F_oldQchange – – – –")
-	console.log("oldLSid: "+oldLSid)
-	console.log("oldQtxt: "+oldQtxt)
+	//console.log("oldLSid: "+oldLSid)
+	//console.log("oldQtxt: "+oldQtxt)
 	changeStatus = true
 	document.getElementById("div_Fix").style.display = 'block';
 	document.getElementById("div_Fix").innerHTML = defaultText + oldQtxt + "<hr>"
@@ -268,7 +275,7 @@ function F_oldQchange(oldQtxt,oldLSid){
 		document.getElementById("option_ReplaceQ_"+x).value = newLSid
 		document.getElementById("button_replaceQ").onclick = function() {
 			var value = document.getElementById("select_replaceQ").value
-			console.log("newLSid: " +value)
+			//console.log("newLSid: " +value)
 			var newQtxt = arrNEWid[value]
 			delete arrNEWid[value]
 			
@@ -301,7 +308,7 @@ function F_oldQchange(oldQtxt,oldLSid){
 }
 
 function F_oldQcheck(){
-	console.clear()
+	//console.clear()
 	console.log("– – – – F_oldQcheck – – – –")
 	var oldQtxt
 	var oldLSid = false
@@ -324,32 +331,44 @@ function F_oldQcheck(){
 		F_oldQchange(oldQtxt,oldLSid) 
 	}
 }
-F_oldQcheck()
 
-function F_impQs(){ // ez még szvsz nemjó -> ugyanis jelenleg csak 1x fut végig az egészen, pedig lehet egy imp-be is van imp !!
-	console.clear()
+/* FIX need
+ #1) ez még szvsz nemjó -> ugyanis jelenleg csak 1x fut végig az egészen, pedig lehet egy imp-be is van imp !!
+*/
+function F_impQs(){ // #1)
+	//console.clear()
 	console.log("– – – – – – – – F_impQs – – – – – – – – –")
 	var impek = document.getElementsByClassName("imp")
 	var MISSid = ""
-	for ( var i=0; i<impek.length; i++ ) { 
-		var Qelem = impek[i].parentElement.parentElement
-		//alert(Qelem.innerHTML)
+	//var testNum = impek.length
+	for ( var i=0; i<impek.length; i++ ) {
 		var begin = impek[i].className.indexOf("[") +1
 		var end = impek[i].className.indexOf("]")
-		var full = impek[i].className.slice(begin,end) // majd külön válassza őket lennt
-		//alert(full)
+		var full = impek[i].className.slice(begin,end) // lenntebb majd külön választja őket
 		var cont = false
 		var num = ""
 		var high = ""
-		function func_impQ(EXPid){
-			var LSid
-			LSid = localStorage.getItem("hkExpQ."+EXPid)
-			console.log(LSid+" :LSid,EXPid: "+EXPid)
-			if ( LSid == "undefined" ) { 
+		//alert(full+" : "+i)
+		function F_impQ(EXPid){
+			var string = localStorage.getItem("hkExpQ."+EXPid)
+			var Qtext = string.slice(string.indexOf(" ")+1)
+			Qtext = LZString.decompressFromUTF16(Qtext)
+			//console.log("EXPid: "+EXPid)
+			//console.log("Qtext: "+Qtext)
+			if ( Qtext == "undefined" ) { 
 				MISSid = MISSid + EXPid + ","
 			} else {
-				// annyi hiba, hogyha importált q-ban változás történik, akkor szvsz csak kövi frissítésnél kerül be (2x kell, nem 1x)
-				impek[i].innerHTML = /* impek[i].innerHTML + */ LStxt[LSid]
+				// megnézi, hogy nincs-e már importálva
+				var Qelem = impek[i].parentElement.parentElement
+				var parent = impek[i].parentElement.parentElement
+				do { // megkeresi a 'családfában' legfelül lévő kérdést!
+					Qelem = parent
+					parent = parent.parentElement
+				} while ( parent.innerHTML.indexOf('<div class="title">') == -1 && parent.innerHTML.indexOf('<summary class="phase">') == -1 )
+				var checkID = Qtext.slice(Qtext.indexOf("{")+1,Qtext.indexOf("}"))
+				if ( Qelem.innerHTML.indexOf("{"+checkID+"}") == -1 && Qelem.className.indexOf("{"+checkID+"}") == -1 ) { 
+					impek[i].innerHTML = Qtext 
+				}
 			}
 		}
 		for (var x=0; x<=full.length; x++) {
@@ -366,11 +385,11 @@ function F_impQs(){ // ez még szvsz nemjó -> ugyanis jelenleg csak 1x fut vég
 				} else {
 					if ( cont == true ) {
 						for ( var z=0; z<=high-num; z++ ) {
-							func_impQ(Number(num)+Number(z))
+							F_impQ(Number(num)+Number(z))
 						}
 						cont = false
 					} else {
-						func_impQ(num)
+						F_impQ(num)
 					}
 					num = ""
 					high = ""
@@ -381,8 +400,6 @@ function F_impQs(){ // ez még szvsz nemjó -> ugyanis jelenleg csak 1x fut vég
 	if (MISSid!="") { alert("alábbi EXPid-k még nincsenek LS-be reigsztrálva: "+MISSid) }
 }
 F_impQs()
-
-
 
 function func_divButtonETC() {
 	var button = document.createElement("input")
@@ -417,7 +434,6 @@ function setQList(news,Qlist){
 var replaceQs = []
 var defaultText = document.getElementById("div_Fix").innerHTML
 
-
 function func_imgLoad(){
 	var allSummary = document.getElementsByTagName("summary")
 	for ( var i=0; i<allSummary.length; i++ ) {
@@ -434,10 +450,6 @@ function func_imgLoad(){
 	}
 }
 func_imgLoad()
-
-
-
-
 
 var imagesAll = document.images
 var tooltipStatus
@@ -478,7 +490,25 @@ function func_enLargeImages(){ // képnagyítás balKlikkel középre
 }
 func_enLargeImages()
 
-function toggleAll() {
+var refreshAll = false
+function F_toggleAll() {
+	if ( refreshAll != true ) {
+		refreshAll = true
+		F_getTexts()
+		F_checkQs()
+		F_oldQcheck()
+		F_tetelChoose()
+		F_altetelID()
+		F_sortQuests()
+		func_tableSkipFix()
+		F_valFix()
+		func_valSkip()
+		func_enLargeImages()
+		func_calcJegy()
+		func_calcDate()
+		func_calcOldNew()
+		func_calcRepeat()
+	}
 	var childs = document.body.children; 
 	if ( localStorage.getItem("hk.ToggleAll") == "true" ) {
 		localStorage.removeItem("hk.ToggleAll")
@@ -494,23 +524,6 @@ function toggleAll() {
 		tooltipSpan.style.display = 'block';
 
 		document.getElementById("input_toggleAll").style.display = 'block';
-	}
-}
-function toggleAll_StatusEtStart() {
-	var childs = document.body.children; 
-	if ( localStorage.getItem("hk.ToggleAll") == "true" ) {
-		for ( var i=0; i<childs.length; i++ ) { childs[i].style.display = "none" }
-		if ( changeStatus == true ) { document.getElementById("div_Fix").style.display = 'block' }
-		document.getElementById("div_MainFrame").style.display = 'block';
-		tooltipSpan.style.display = 'block';
-
-		document.getElementById("input_toggleAll").style.display = 'block';
-	} else {
-		for ( var i=0; i<childs.length; i++ ) { childs[i].style.display = "block" }
-		document.getElementById("div_MainFrame").style.display = 'none';
-
-		if ( changeStatus == false ) { document.getElementById("div_Fix").style.display = 'none' }
-		document.getElementById("div_Skip").style.display = 'none';
 	}
 }
 
@@ -573,7 +586,7 @@ function F_CreateQDiv() {
 		button.type = "button"
 		document.body.appendChild(button)
 
-		button.onclick = function(){ toggleAll() }
+		button.onclick = function(){ F_toggleAll() }
 		button.value = "0"
 
 		button.style.position = "fixed"
@@ -615,6 +628,7 @@ function F_CreateQDiv() {
 			} else {
 				document.getElementById("Div_Tetelek").style.display = "none"
 			}
+			F_temakorStatus()
 		}
 	}
 	F_ButtonTetelek()
@@ -930,6 +944,7 @@ function F_CreateQDiv() {
 		table.style.position = "fixed"
 		table.style.left = "40%"
 		table.style.top = "30%"
+		table.style.backgroundColor = "white"
 
 		var tr = document.createElement("TR")
 		table.appendChild(tr)
@@ -1073,7 +1088,8 @@ var nextMark = 0
 var nextRep = "zerus"
 function F_nextMark(jegy){ // következő kérdés nehézségét beállítja, 
 	// repeat alapján
-	console.clear()
+	//console.clear()
+	console.log("– – – – – – – F_nextMark – – – – – – – –")
 	var zeroVal = 0
 	var arany = []
 	for ( var i=0;  i<6;  i++ ) {
@@ -1092,11 +1108,11 @@ function F_nextMark(jegy){ // következő kérdés nehézségét beállítja,
 		} else {
 			arany[i] = 0
 		}
-		console.log(i+"i: "+arany[i])
+		//console.log(i+"i: "+arany[i])
 	}
-	console.log("- - - - - - - - -")
+	//console.log("- - - - - - - - -")
 	var randNum  = Math.random() * zeroVal
-	console.log(randNum)
+	//sconsole.log(randNum)
 	nextRep = "zerus"
 	if 			 ( randNum < arany[0] ) { nextRep = 0 
 		} else if ( randNum < arany[1] ) { nextRep = 1 
@@ -1105,7 +1121,7 @@ function F_nextMark(jegy){ // következő kérdés nehézségét beállítja,
 		} else if ( randNum < arany[4] ) { nextRep = 4 
 		} else if ( randNum < arany[5] ) { nextRep = 5 
 	}
-	console.log(nextRep)
+	//console.log(nextRep)
 	//alert("STOP")
 
 
@@ -1123,7 +1139,7 @@ function F_nextMark(jegy){ // következő kérdés nehézségét beállítja,
 }
 
 var tetelek = []
-function func_tetelChoose(){ // createli a választható tételek listáját
+function F_tetelChoose(){ // createli a választható tételek listáját
 	function F_MainDiv() {
 		var div = document.createElement("div")
 		div.id = "Div_Tetelek"
@@ -1188,10 +1204,7 @@ function func_tetelChoose(){ // createli a választható tételek listáját
 		label.innerHTML = text.bold();
 
 		button.onclick = function() {
-			func_clickTemaButton(this);
-			func_calcOldNew();
-			func_calcDate()
-			func_calcJegy()
+			F_clickTemaButton(this)
 		}
 
 		if ( Table[i].parentElement.parentElement.className == "temakor" ) {
@@ -1211,9 +1224,8 @@ function func_tetelChoose(){ // createli a választható tételek listáját
 		}
 	}
 }
-func_tetelChoose()
 
-function func_altetelID(){ // ezt is tegyem majd be 'func_tetelChooseba'
+function F_altetelID(){ // ezt is tegyem majd be 'func_tetelChooseba'
 	var Table = document.getElementsByClassName("title")
 	for ( var i = 0;   i < Table.length;   i++ ) {
 		Table[i].parentElement.className = "altetel"
@@ -1223,22 +1235,21 @@ function func_altetelID(){ // ezt is tegyem majd be 'func_tetelChooseba'
 		tetelek[tetelID][altetelID] = []
 	}
 }
-func_altetelID()
 
-function func_sortQuests(){ // felmegy tételig, ha volt közben altétel is, akkor abba teszi
-	console.clear()
+function F_sortQuests(){ // felmegy tételig, ha volt közben altétel is, akkor abba teszi
+	//console.clear()
 	console.log("– – – – – – – func_sortQuests – – – – – – – –")
-	console.log(": "+Qcount)
+	//console.log(": "+Qcount)
 	//alert("stop")
 	for ( i=0;  i<Qcount;  i++ ) {
-		console.clear()
+		//console.clear()
 		var Qid = i +1
 		Qid = "Q."+Qid
 		var parent = document.getElementById(Qid)
 
 		var Qtxt = arrQid[Qid]
-		console.log("Qid: "+Qid)
-		console.log("Qtxt: "+kerdesek[i].innerHTML)
+		//console.log("Qid: "+Qid)
+		//console.log("Qtxt: "+kerdesek[i].innerHTML)
 
 		do {
 			parent = parent.parentElement
@@ -1253,10 +1264,7 @@ function func_sortQuests(){ // felmegy tételig, ha volt közben altétel is, ak
 		}
 	}
 	//document.getElementById("input_toggleAll").title = Qcount
-	document.getElementById("input_toggleAll").style.backgroundColor = ""
-	document.getElementById("span_showError").style.visibility = "hidden";
 }
-func_sortQuests()
 
 var tooltipSpan = document.createElement("span");
 function func_tooltipFuncs(){
@@ -1402,7 +1410,7 @@ function func_calcPriorHosszJegy(elem){
 	}
 }
 
-function func_temakorStatus(){ // Tétel hány %-on áll? --> beállítja a buttonColort ez alapján
+function F_temakorStatus(){ // Tétel hány %-on áll? --> beállítja a buttonColort ez alapján
 	for ( var tetel in tetelek ) {
 		var maxJegy = 0
 		var trueJegy = 0
@@ -1442,7 +1450,6 @@ function func_temakorStatus(){ // Tétel hány %-on áll? --> beállítja a butt
 		button.value = Math.round(100 * trueJegy/maxJegy)
 	}
 }
-func_temakorStatus()
 
 var obj_fixNote = [] // object (nem table és nem array!)
 var obj_skip = [] // object (nem table és nem array!)
@@ -1453,16 +1460,16 @@ function func_tableSkipFix(){
 		var Qid = kerdesek[i].id
 		var Qtxt = arrQid[Qid]
 		var LSid = txtLS[Qtxt]
-		if ( localStorage.getItem(LSid+'_note') ) {
-			obj_fixNote[LSid] = localStorage.getItem(LSid+'_note')
+		if ( localStorage.getItem(LSid+"_note") ) {
+			obj_fixNote[LSid] = localStorage.getItem(LSid+"_note")
 		} else {
-			if ( obj_fixNote[LSid] ) { delete obj_fixNote[LSid] } // remove a Table-ból
+			if ( obj_fixNote[LSid] ) { delete obj_fixNote[LSid] }
 		}
 		if ( localStorage.getItem(LSid+"_skip") ) {
 			if ( localStorage.getItem(LSid+"_skip") == "perma" ){
 				obj_skip[LSid] = localStorage.getItem(LSid+"_skip")
 			} else if ( localStorage.getItem(LSid+"_skip") == "atlag" ){
-				if ( obj_skip[LSid] ) { delete obj_skip[LSid] } // remove a Table-ból
+				if ( obj_skip[LSid] ) { delete obj_skip[LSid] }
 			} else {
 				var date = new Date();
 				date = Math.floor(date.getTime()/60000)
@@ -1471,17 +1478,17 @@ function func_tableSkipFix(){
 				if ( difference < localStorage.getItem(LSid+"_skip") ) {
 					obj_skip[LSid] = localStorage.getItem(LSid+"_skip")
 				} else {
-					if ( obj_skip[LSid] ) { delete obj_skip[LSid] } // remove a Table-ból
+					if ( obj_skip[LSid] ) { delete obj_skip[LSid] }
 					localStorage.removeItem(LSid+'_skip')
 				}
 			}
 		} else {
-			if ( obj_skip[LSid] ) { delete obj_skip[LSid] } // remove a Table-ból
+			if ( obj_skip[LSid] ) { delete obj_skip[LSid] }
 		}
 	}
 }
 func_tableSkipFix()
-function func_valFix(){
+function F_valFix(){
 	var x = 0
 	for ( var id in obj_fixNote ) {
 		if ( obj_fixNote[id] ) {
@@ -1490,7 +1497,7 @@ function func_valFix(){
 	}
 	document.getElementById("btn_fix").value = x;
 }
-func_valFix()
+F_valFix()
 function func_valSkip(){
 	var x = 0
 	for ( var id in obj_skip ) {
@@ -1523,7 +1530,11 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 		for ( var kerdes in obj_fixNote ) {
 			if ( obj_fixNote[kerdes] ) {
 				var text = document.getElementById("div_Fix").innerHTML
-				document.getElementById("div_Fix").innerHTML = text + "<br> &nbsp;•&nbsp;&nbsp;" + kerdes + " " + obj_fixNote[kerdes] + " <input id='testID' class='fix' style='border: 3px solid black;' type='button' value='✖' onclick='func_DeleteSkipFix(this.id)'>" + "<br>"
+				var Qtext = LStxt[kerdes]
+				var newText = " <button id='testID' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button> " + obj_fixNote[kerdes] +"</summary>"
+				Qtext = Qtext.replace("</summary>",newText)
+				
+				document.getElementById("div_Fix").innerHTML = text + Qtext
 				document.getElementById("testID").id = kerdes + "_fixClear"
 			}
 		}
@@ -1548,7 +1559,11 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 		for ( var kerdes in obj_skip ) {
 			if ( obj_skip[kerdes] ) {
 				var text = document.getElementById("div_Skip").innerHTML
-				document.getElementById("div_Skip").innerHTML = text + "&nbsp;•&nbsp;&nbsp;" + kerdes + " " + obj_skip[kerdes] + " <button id='testID' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>" + "<br>"
+				var Qtext = LStxt[kerdes]
+				var newText = " <button id='testID' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button> "+ obj_skip[kerdes] +"</summary>"
+				Qtext = Qtext.replace("</summary>",newText)
+				
+				document.getElementById("div_Skip").innerHTML = text + Qtext
 				document.getElementById("testID").id = kerdes + "_skipClear"
 			}
 		}
@@ -1586,7 +1601,7 @@ function func_spanClick(button){
 }
 
 
-function func_clickTemaButton(button){
+function F_clickTemaButton(button){
 	if ( localStorage.getItem(button.id) == "true" ) {
 		localStorage.setItem(button.id,false)
 		document.getElementById(button.id+"_label").style.color = "black";
@@ -1699,7 +1714,7 @@ function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
 		document.getElementById(i+"still").innerHTML = 0
 		document.getElementById(i+"average").innerHTML = 0
 	}
-	console.clear()
+	//console.clear()
 	for ( var tetel in tetelek ) {
 		if ( localStorage.getItem(tetel+"_button") == "true" ) {
 			var childs = document.getElementById(tetel).getElementsByTagName("*")
@@ -1749,7 +1764,7 @@ function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
 	}
 }
 function func_calcOldNew(){
-	console.clear()
+	//console.clear()
 	console.log("– – – – – – – func_calcOldNew – – – – – – – –")
 	var kerdesNew = 0
 	var repNew = 0
@@ -1900,7 +1915,7 @@ if ( localStorage.getItem("hk.newQ") == "true" ) {
 document.getElementById("input_toggleAll").value = localStorage.getItem("hkExp.max")
 
 function F_prevQ(){
-	console.clear()
+	//console.clear()
 	console.log("– – – – – – – – F_prevQ – – – – – – – – –")
 	var QlocElem = document.getElementById("kerdeslocation")
 	var arrayQ = QlocElem.getElementsByClassName("kerdes")
@@ -1909,21 +1924,24 @@ function F_prevQ(){
 		// BEGIN – ez a note-hoz kell, hogy a legfelül lévő details-hoz kapcsoltan mentse el (annak sajnos nem mindig van ID-je, mert nem feltétlen kérdés a class-a)
 		var Qelem = document.getElementById(priorQid)
 		var parent = document.getElementById(priorQid)
-		console.log("pQid: "+priorQid)
+		//console.log("pQid: "+priorQid)
 		do { // megkeresi a 'családfában' legfelül lévő kérdést!
 			Qelem = parent
 			parent = parent.parentElement
 		} while ( parent.className != "altetel" && parent.className != "tetel" )
 		// END
+		var Qtext = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
+		var LSid = txtLS[Qtext]
 		if ( document.getElementById("note").value != "" ) {
-			localStorage.setItem(Qelem.innerHTML, document.getElementById("note").value);
+			//localStorage.setItem(Qelem.innerHTML, document.getElementById("note").value);
+			localStorage.setItem(LSid+'_note', document.getElementById("note").value);
 			document.getElementById("note").value = ""
 		}
 		
 		for ( var i=0; i<activeQs.length; i++ ) {
 			var LSid = activeQs[i]
 			var jegy = document.getElementById("hkSelect."+i).value
-			console.log(i+" : "+LSid+" : "+jegy)
+			//console.log(i+" : "+LSid+" : "+jegy)
 			document.getElementById("hkSelect."+i).value = "empty"
 			if ( jegy != "empty" ) {
 				var repCount = Number(localStorage.getItem(LSid+'_repeat'))
@@ -1947,7 +1965,7 @@ function F_prevQ(){
 
 				var date = new Date();
 				localStorage.setItem(LSid+'_idopont', Math.floor(date.getTime()/60000));
-				console.log(jegy+" :időpontot ment el, ezen LSid-re: "+LSid)
+				//console.log(jegy+" :időpontot ment el, ezen LSid-re: "+LSid)
 			}
 		}
 	}
@@ -1966,7 +1984,7 @@ function F_prevQ(){
 			} else if ( document.getElementById("td.2."+i).style.backgroundColor == "gainsboro" ) {
 				localStorage.setItem(LSid+'_skip', "atlag")
 			}
-			console.log(LSid+"_skip: "+localStorage.getItem(LSid+'_skip'))
+			//console.log(LSid+"_skip: "+localStorage.getItem(LSid+'_skip'))
 		}
 		for ( var i=0; i<arrayInp.length; i++ ) {
 			if ( div.getElementsByTagName("input")[i].value != "" ) {
@@ -1981,17 +1999,17 @@ function F_prevQ(){
 
 				var date = new Date();
 				localStorage.setItem(LSid+'_idopont', Math.floor(date.getTime()/60000));
-				console.log(jegy+" :időpontot ment el, ezen LSid-re: "+LSid)
+				//console.log(jegy+" :időpontot ment el, ezen LSid-re: "+LSid)
 			}
 		}
 	}
 	F_Skip()
 
 	func_tableSkipFix()
-	func_valFix()
+	F_valFix()
 	func_valSkip()
 
-	func_temakorStatus()
+	F_temakorStatus()
 }
 
 var priorQid = "nincs"
@@ -1999,7 +2017,7 @@ var fullTema, checkNum, cloneKerdes
 var lastTime = 0
 var activeQs = []
 function F_nextQ(){
-	console.clear()
+	//console.clear()
 	console.log("– – – – – – – – F_nextQ – – – – – – – – –")
 	var QlocElem = document.getElementById("kerdeslocation")
 	var date = new Date();
@@ -2134,7 +2152,7 @@ function F_nextQ(){
 	if ( priorQid != "nincs" ) {
 		var Qelem = document.getElementById(priorQid)
 		var parent = document.getElementById(priorQid)
-		console.log("pQid: "+priorQid)
+		//console.log("pQid: "+priorQid)
 		do { // megkeresi a 'családfában' legfelül lévő kérdést!
 			Qelem = parent
 			parent = parent.parentElement
@@ -2168,8 +2186,8 @@ function F_nextQ(){
 		
 		function F_copyQs(Qelem){
 			function func_addQ(Qtext){
-				console.log(Qtext)
-				console.log("– – – – – – – – – – – – – – – – –")
+				//console.log(Qtext)
+				//console.log("– – – – – – – – – – – – – – – – –")
 				QlocElem.innerHTML = QlocElem.innerHTML + Qtext
 			}
 
@@ -2233,7 +2251,7 @@ function F_nextQ(){
 		func_abbrSet()
 
 		function F_SetMarks() { // minden kérdés mellé kreál egy osztályzás lehetőséget
-			console.clear()
+			//console.clear()
 			console.log(" ------ F_SetMarks ------ ")
 			var arrayQ = QlocElem.getElementsByClassName("kerdes")
 			for ( var i=0; i<arrayQ.length; i++ ) {
@@ -2241,7 +2259,7 @@ function F_nextQ(){
 				var Qtext = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
 				var LSid = txtLS[Qtext]
 				activeQs[i] = LSid
-				console.log(i+" : "+LSid)
+				//console.log(i+" : "+LSid)
 				// kérdés titlebe bekerül, hogy a táblázatban hányas számú
 				var num = i+1
 				Qelem.innerHTML = Qelem.innerHTML.replace("<summary>","<summary>["+num+"] ")
@@ -2315,8 +2333,10 @@ function F_nextQ(){
 		var childs = QlocElem.childNodes;
 		for ( var i=0; i<childs.length; i++ ) { if ( childs[i].className.indexOf("open") != -1 ) { childs[i].open = true } }
 
-		if ( localStorage.getItem(Qelem.innerHTML) ) { // note
-			document.getElementById("note").value = localStorage.getItem(Qelem.innerHTML)
+		var Qtext = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
+		var LSid = txtLS[Qtext]
+		if ( localStorage.getItem(LSid+"_note") ) { // note
+			document.getElementById("note").value = localStorage.getItem(LSid+"_note")
 			document.getElementById("btn_Note").style.borderColor = "red";
 			var_note = true
 		} else {
@@ -2389,8 +2409,15 @@ function F_CreateSelect(i) {
 	}
 }
 
-toggleAll_StatusEtStart()
+if ( localStorage.getItem("hk.ToggleAll") == "true" ) {
+	localStorage.removeItem("hk.ToggleAll")
+	F_toggleAll()
+}
+if ( changeStatus == true ) { document.getElementById("div_Fix").style.display = 'block' }
+if ( changeStatus == false ) { document.getElementById("div_Fix").style.display = 'none' }
 
+document.getElementById("input_toggleAll").style.backgroundColor = ""
+document.getElementById("span_showError").style.visibility = "hidden";
 
 
 /* Replace text (regular expression)
