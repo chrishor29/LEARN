@@ -34,8 +34,12 @@ copy C:\Kristof\MIRROR\LEARN\ANAT\Histology\histo.html C:\Users\chrishor\Desktop
 copy C:\Kristof\MIRROR\LEARN\ANAT\Histology\favicon.bmp C:\Users\chrishor\Desktop\GITHUB\learn\ANAT\Histology\favicon.bmp
 
 robocopy C:\Kristof\MIRROR\LEARN\BioKemia\I\images C:\Users\chrishor\Desktop\GITHUB\learn\BioKemia\I\images /mir
-copy C:\Kristof\MIRROR\LEARN\BioKemia\I\biokemia.html C:\Users\chrishor\Desktop\GITHUB\learn\BioKemia\I\biokemia.html 
+copy C:\Kristof\MIRROR\LEARN\BioKemia\I\biokemia_I.html C:\Users\chrishor\Desktop\GITHUB\learn\BioKemia\I\biokemia_I.html 
 copy C:\Kristof\MIRROR\LEARN\BioKemia\I\favicon.bmp C:\Users\chrishor\Desktop\GITHUB\learn\BioKemia\I\favicon.bmp
+
+robocopy C:\Kristof\MIRROR\LEARN\BioKemia\II\images C:\Users\chrishor\Desktop\GITHUB\learn\BioKemia\II\images /mir
+copy C:\Kristof\MIRROR\LEARN\BioKemia\II\biokemia_II.html C:\Users\chrishor\Desktop\GITHUB\learn\BioKemia\II\biokemia_II.html 
+copy C:\Kristof\MIRROR\LEARN\BioKemia\II\favicon.bmp C:\Users\chrishor\Desktop\GITHUB\learn\BioKemia\II\favicon.bmp
 
 robocopy C:\Kristof\MIRROR\LEARN\SejtBiosz\images C:\Users\chrishor\Desktop\GITHUB\learn\SejtBiosz\images /mir
 copy C:\Kristof\MIRROR\LEARN\SejtBiosz\sejtbiosz.html C:\Users\chrishor\Desktop\GITHUB\learn\SejtBiosz\sejtbiosz.html 
