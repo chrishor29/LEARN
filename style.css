@@ -99,6 +99,9 @@ span {
 /*span.abbr { 
 	border: Black 1px solid; 
 }*/
+.progress { 
+	background-color: yellow
+}
 .Vocab { 
 	background-color: #d4d4d4
 }
@@ -136,7 +139,7 @@ span {
 	font-weight: bold;
 }
 .miss { 
-	background-color: Pink;
+	background-color: pink;
 	color: black;
 	font-weight: bold;
 }
