@@ -122,6 +122,15 @@ function F_getTexts(){
 	}
 }
 
+function F_fixMissQs() {
+	for ( var i in missQs ) { // ezt én írtam szóval nem 100 hogy jó, elvileg kivágja az összes 'üres'-et (2helyen is )
+		if ( missQs[i] == "" || missQs[i] == "null" ) {
+			missQs.splice(i,1)
+			i--
+		}
+	}
+}
+
 function F_getMissQs(){
 	// localStorage.setItem("hkQ.miss","") // így resetelhetem a hkQ.miss-t, ha valami hiba van
 	console.log("hkQ.miss: "+localStorage.getItem("hkQ.miss"))
@@ -131,19 +140,15 @@ function F_getMissQs(){
 		missQs = localStorage.getItem("hkQ.miss")
 //		alert(missQs)
 		missQs = missQs.split(",")
-	} 
+	}
+	F_fixMissQs()
 	//alert(localStorage.getItem("hkQ.miss"))
 }
 F_getMissQs()
 
 function F_newLSid(){
 	var count
-	for ( var i in missQs ) { // ezt én írtam szóval nem 100 hogy jó, elvileg kivágja az összes 'üres'-et
-		if ( missQs[i] == "" ) {
-			missQs.splice(i,1)
-			i--
-		}
-	}
+	F_fixMissQs()
 	if ( missQs[0] ) {
 		count = missQs[0]
 		missQs.splice(0,1)
@@ -162,9 +167,8 @@ function F_newLSid(){
 }
 
 var elems = document.body.getElementsByTagName("*");
+var wrongEXPid = "foglalt vagy upgradelve lett:<br>"
 function F_checkEXPs(){
-	var newEXPid = {}
-	var text = "foglalt vagy upgradelve lett:"
 	for ( var i = 0; i < elems.length; i++ ) {
 		var elem = elems[i]
 		if ( elem.className.indexOf("{") > -1 ) {
@@ -190,11 +194,7 @@ function F_checkEXPs(){
 						console.log("Qtext OLD: "+LZString.decompressFromUTF16(Qtext))
 						console.log("Qtext NEW: "+LZString.decompressFromUTF16(txt))
 					*/
-					if ( newEXPid[EXPid] ) { 
-						newEXPid[EXPid] = newEXPid[EXPid] +1
-					} else if ( text.indexOf(EXPid) == -1 ) {
-						text = text + " " + EXPid
-					}
+					wrongEXPid = wrongEXPid + EXPid + ", "
 				}
 			} else {
 				LSid = F_newLSid()
@@ -208,7 +208,6 @@ function F_checkEXPs(){
 			localStorage.setItem("hkExpQ."+EXPid,LSid+" "+htmlIMGloc+" ## "+txt)
 		}
 	}
-	if ( text != "foglalt vagy upgradelve lett:" ) { alert(text) }
 }
 F_checkEXPs()
 
@@ -773,6 +772,28 @@ function F_CreateQDiv() {
 		span.style.paddingBottom = "4px"
 	}
 	F_SpanQid()
+
+	function F_DivAlertEXPQrosszNum() {
+		var div = document.createElement("div")
+		var doc = document.getElementById("div_MainFrame")
+		doc.appendChild(div)
+		div.style.backgroundColor = "white"
+		div.style.overflow = "auto"
+		div.style.width = "400px"
+		div.style.height = "70px"
+		div.style.position = "fixed"
+		div.style.top = "1%"
+		div.style.left = "100%"
+		div.style.marginLeft = "-500px"
+		div.style.border = "10px solid red"
+		div.innerHTML = wrongEXPid
+		if ( wrongEXPid != "foglalt vagy upgradelve lett:<br>" ) { 
+			div.style.display = 'block';
+		} else {
+			div.style.display = 'none';
+		}
+	}
+	F_DivAlertEXPQrosszNum()
 
 	var br = document.createElement("br")
 	divSettings.appendChild(br)
