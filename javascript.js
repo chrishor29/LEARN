@@ -163,6 +163,8 @@ function F_newLSid(){
 
 var elems = document.body.getElementsByTagName("*");
 function F_checkEXPs(){
+	var newEXPid = {}
+	var text = "foglalt vagy upgradelve lett:"
 	for ( var i = 0; i < elems.length; i++ ) {
 		var elem = elems[i]
 		if ( elem.className.indexOf("{") > -1 ) {
@@ -188,7 +190,11 @@ function F_checkEXPs(){
 						console.log("Qtext OLD: "+LZString.decompressFromUTF16(Qtext))
 						console.log("Qtext NEW: "+LZString.decompressFromUTF16(txt))
 					*/
-					alert("foglalt vagy upgradelve lett: "+EXPid)
+					if ( newEXPid[EXPid] ) { 
+						newEXPid[EXPid] = newEXPid[EXPid] +1
+					} else if ( text.indexOf(EXPid) == -1 ) {
+						text = text + " " + EXPid
+					}
 				}
 			} else {
 				LSid = F_newLSid()
@@ -202,6 +208,7 @@ function F_checkEXPs(){
 			localStorage.setItem("hkExpQ."+EXPid,LSid+" "+htmlIMGloc+" ## "+txt)
 		}
 	}
+	if ( text != "foglalt vagy upgradelve lett:" ) { alert(text) }
 }
 F_checkEXPs()
 
