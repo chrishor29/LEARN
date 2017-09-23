@@ -779,12 +779,12 @@ function F_CreateQDiv() {
 		doc.appendChild(div)
 		div.style.backgroundColor = "white"
 		div.style.overflow = "auto"
-		div.style.width = "400px"
+		div.style.width = "200px"
 		div.style.height = "70px"
 		div.style.position = "fixed"
 		div.style.top = "1%"
 		div.style.left = "100%"
-		div.style.marginLeft = "-500px"
+		div.style.marginLeft = "-300px"
 		div.style.border = "10px solid red"
 		div.innerHTML = wrongEXPid
 		if ( wrongEXPid != "foglalt vagy upgradelve lett:<br>" ) { 
