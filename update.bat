@@ -57,7 +57,5 @@ git remote add origin
 git pull origin master
 git add .
 git commit -m "make some changes"
-rem git mv done/Biofizika tmp
-rem git mv tmp done/BioFizika
 git push origin master
 Pause

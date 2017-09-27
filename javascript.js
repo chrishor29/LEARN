@@ -3,14 +3,17 @@
 	alert('Error message: '+msg+'\nLine Number: '+linenumber);
 }*/
 
-/* PROJECT
+/* PROJECT - PROGRESS
+ ✖: legyen egy funkció az elején, ami lecsekollja, van-e azonos id-n különböző Qtext
+
  ✖: nextQ-nál egyből töltse be az img-eket
+ ✖: alert("az alábbi EXPid-s questet nincs elmentve LS-be: ") helyett csak jelezze, hogy látogassam meg valamely egyéb oldalt
  ✖: tablet -> abbr title tableten nem működik (imported q-nál biztsosan nem)
  ✖: tablet -> show prior + jegy
+ ✖: Load LS & Save LS -> tárgyávlasztásnál
 ––––––––––––––––––––––––––––––––––––––––––––––––
  ✖: átlagjegy (id előtti div)
  ✖: F_ButtonRepFast
- ✖: upgradeQ-t újra aktiválni (tehát osztályozott kérdést ha upgradelek, a jegye ne vesszen el!)
  ✖: DATA-SRC IMG: ha egy kérdést megnyitok, akkor betölti a képeit -> ezzel azonban átíródik ugye a Qtext -> ha ezután kattolok rá jobbfelső toggleAll buttonra, akkor az F_checkQs-ban nem találja meg a Qtext-et mert azoknak megváltozott
 ––––––––––––––––––––––––––––––––––––––––––––––––
  ✖: átlag skip (ne 650, hanem átlag) --> 3 helyen van a kódban!!! (searchel cseréljem őket ki!!)
@@ -20,6 +23,10 @@
  ✖ /keressek rá erre a kommentre, és megértem:/ erre akkor van szükség, ha legfelül nem kérdés van (tehát a legfelül lévő details nem kérdés, csak egy összegző details, pl. élettan ozmózis), ugyanis annak nincs LSid elmentve, így nemtudok note-t menteni neki (persze optimálisabb lenne, ha itt is a legfelsőhöz lenne csatolva, de egyenlőre kihagyom mert nem bonyolítom, és LowPrior)
 ––––––––––––––––––––––––––––––––––––––––––––––––
 ––––––––––––––––––––––––––––––––––––––––––––––––
+ ✔: upgradeQ-t újra aktiválni (tehát osztályozott kérdést ha upgradelek, a jegye ne vesszen el!)
+*/
+
+/* PROJECT - DONE
  ✔: import Q image -> minden html tetején lesz egy variable, amiben benne van az IMAGES\'adott tárgy mappa' címe. ezt az expid mellé csatolja a Qtextbe. A képek betöltésénél (data-src helyett src) ezt írja hozzá.
 */
 
@@ -101,25 +108,61 @@ var arrQid = [] // Qid to Qtxt
 
 var QidLS = [] // ÁTMENETILEG HASZNÁLOM CSAK Qtxt to LSid
 
-var missQs
+var missQs = []
+
+var AllLSids = [] // összes LSid, mely
 
 var Qcount = 0
 
+
 function F_getTexts(){
 	//alert(document.title+"_Qtext")
-	var fullString = localStorage.getItem(document.title+"_Qtext")
-	fullString = LZString.decompressFromUTF16(fullString)
-	fullString = fullString.split(" _@@_ ")
-	for ( var i=0; i<fullString.length; i++ ) {
-		if ( fullString[i] != "" ) {  // utolsó mindig ez, és azt ne tegye array-ba
-			var string = fullString[i]
+
+
+	/*var prevString = localStorage.getItem("Anat_Qtext")
+	prevString = LZString.decompressFromUTF16(prevString)
+	prevString = prevString.split(" _@@_ ")
+
+	for ( var i=0; i<prevString.length; i++ ) {
+		if ( prevString[i] != "" ) {  // utolsó mindig ez, és azt ne tegye array-ba
+			var string = prevString[i]
 			var LSid = string.slice(0,string.indexOf(" "))
 			var Qtext = string.slice(string.indexOf(" ")+1)
+			
 			arrOLDtxt[Qtext] = LSid
+			
 			//console.log("LSid: "+LSid)
 			//console.log("Qtext: "+Qtext)
 		}
 	}
+
+	localStorage.removeItem("Anat_Qtext");
+	localStorage.removeItem("Élettan_Qtext");
+	localStorage.removeItem("Orvosi BioKémia II._Qtext");
+	localStorage.removeItem("Orvosi BioKémia I._Qtext");
+	localStorage.removeItem("Histology_Qtext");
+	localStorage.removeItem("Molekuláris Sejtbiológia_Qtext");
+	*/
+
+
+	var fullString = localStorage.getItem(document.title+"_LSids")
+	if ( fullString ) {
+		//alert(fullString)
+		fullString = fullString.split(" ") // első alkalommal különben error lesz
+		for ( var i=0; i<fullString.length; i++ ) {
+			if ( fullString[i] != "" ) {  // utolsó mindig ez, és azt ne tegye array-ba
+				var LSid = fullString[i]
+				var Qtext = localStorage.getItem(LSid)
+				Qtext = LZString.decompressFromUTF16(Qtext)
+				
+				arrOLDtxt[Qtext] = LSid
+			
+			//console.log("LSid: "+LSid)
+			//console.log("Qtext: "+Qtext)
+			}
+		}
+	}
+	
 }
 
 function F_fixMissQs() {
@@ -129,20 +172,29 @@ function F_fixMissQs() {
 			i--
 		}
 	}
+	console.log(missQs)
 }
 
 function F_getMissQs(){
 	// localStorage.setItem("hkQ.miss","") // így resetelhetem a hkQ.miss-t, ha valami hiba van
-	console.log("hkQ.miss: "+localStorage.getItem("hkQ.miss"))
-	if ( localStorage.getItem("hkQ.miss") === null ) {
-		missQs = []
-	} else {
-		missQs = localStorage.getItem("hkQ.miss")
-//		alert(missQs)
-		missQs = missQs.split(",")
+	var missIDs = ""
+	var normIDs = ""
+	for ( var LSid=0; LSid<localStorage.getItem("hkQ.max"); LSid++ ) {
+		if ( localStorage.getItem("hkQ."+LSid) ) {
+			normIDs = normIDs + "hkQ." + LSid + " " 
+		} else {
+			missIDs = missIDs + "hkQ." + LSid + " "
+		}
 	}
+	
+	var count = (normIDs.match(/hkQ./g) || []).length;
+	//alert(count + " ;; "+normIDs)
+	count = (missIDs.match(/hkQ./g) || []).length;
+	//alert(count + " ;; "+missIDs)
+	
+	missQs = missIDs.split(" ")
+	
 	F_fixMissQs()
-	//alert(localStorage.getItem("hkQ.miss"))
 }
 F_getMissQs()
 
@@ -163,6 +215,7 @@ function F_newLSid(){
 	}
 	if ( LSid == "undefined" ) { alert("UNDEFINED") }
 	var LSid = "hkQ."+count
+	//alert("new: "+LSid)
 	return LSid
 }
 
@@ -219,8 +272,7 @@ function F_checkQs(){
 		Qcount = Qcount+1
 		Qelem.id = "Q."+Qcount
 		arrQid["Q."+Qcount] = Qtext
-		var LSid
-//if ( Qtext.indexOf('<summary>mely két artéria látja el a központi idegrendszert?</summary>') != -1 ) { alert(LSid) }
+		var LSid = ""
 		if ( Qelem.className.indexOf("{") == -1 ) { // nem {EXP}
 			if ( arrOLDtxt[Qtext] ) {
 				LSid = arrOLDtxt[Qtext]
@@ -241,11 +293,40 @@ function F_checkQs(){
 				txtLS[Qtext] = LSid
 				arrNEWid[LSid] = Qtext
 			}
-			fullString = fullString + LSid + " " + Qtext + " _@@_ "
+			
+			if ( LSid != "" ) { 
+				var Qtext = LZString.compressToUTF16(Qtext);
+				localStorage.setItem(LSid,Qtext)
+				fullString = fullString + LSid + " "
+			}
+			
+			// var begin2 = Qtext.indexOf("<summary>")+9
+			// var end2 = Qtext.indexOf("</summary>")
+			// if ( Qtext.slice(begin2,end2) == "kamraizomzat Ca<sup>2+</sup>-anyagcseréje(felszabadulása/eltűntetése)" ) { 
+			// 	alert("AFT:"+LSid+": "+Qtext.slice(begin2,end2)) 
+			// }
 		}
 	}
-	fullString = LZString.compressToUTF16(fullString);
-	localStorage.setItem(document.title+"_Qtext",fullString)
+	
+	
+	/*alert("1356: "+LStxt["hkQ.1356"])
+	//console.clear()
+	for ( var Qtext in arrOLDtxt ) {
+		var begin = Qtext.indexOf("<summary>")
+		var end = Qtext.indexOf("</summary>")
+		console.log(arrOLDtxt[Qtext]+": "+Qtext.slice(begin+9,end))
+	}
+	console.log("––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––")
+	console.log("––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––")
+	console.log("––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––")
+	for ( var LSid in arrNEWid ) {
+		var begin = arrNEWid[LSid].indexOf("<summary>")
+		var end = arrNEWid[LSid].indexOf("</summary>")
+		console.log(LSid+": "+arrNEWid[LSid].slice(begin+9,end))
+	}
+	alert("stop")*/
+	
+	localStorage.setItem(document.title+"_LSids",fullString)
 }
 
 function F_DivSkip() {
@@ -309,9 +390,10 @@ function F_oldQchange(oldQtxt,oldLSid){
 		document.getElementById("option_ReplaceQ_"+x).value = newLSid
 		document.getElementById("button_replaceQ").onclick = function() {
 			var value = document.getElementById("select_replaceQ").value
-			//console.log("newLSid: " +value)
 			var newQtxt = arrNEWid[value]
 			delete arrNEWid[value]
+			//console.log("newLSid: " +value)
+			//console.log("newQtxt: " +newQtxt)
 			
 			txtLS[newQtxt] = value
 			for ( var i in LStxt ) {
@@ -323,8 +405,10 @@ function F_oldQchange(oldQtxt,oldLSid){
 
 			function changeLS(type){
 				if ( localStorage.getItem(oldLSid+type) ) {
-					localStorage.setItem(newLSid+type,localStorage.getItem(oldLSid+type))
+					//alert(oldLSid+","+type+": "+localStorage.getItem(oldLSid+type))
+					localStorage.setItem(value+type,localStorage.getItem(oldLSid+type))
 					localStorage.removeItem(oldLSid+type)
+					//console.log(value+type+": " +localStorage.getItem(value+type))
 				}
 			}
 			changeLS("_jegy")
@@ -341,31 +425,49 @@ function F_oldQchange(oldQtxt,oldLSid){
 	}
 }
 
-function F_oldQcheck(){
-	//console.clear()
-	console.log("– – – – F_oldQcheck – – – –")
+function F_oldQsFilter() { // ezen csak 1x fut át elején
+	console.log("– – – – F_oldQsFilter – – – –")
 	var oldQtxt
 	var oldLSid = false
 	for ( oldQtxt in arrOLDtxt ) {
 		var LSid = arrOLDtxt[oldQtxt]
+		if ( localStorage.getItem(LSid+"_idopont") || localStorage.getItem(LSid+"_note") ) { 
+		} else {
+			delete arrOLDtxt[oldQtxt]
+		}
 		do { // hkQ-t kivágja
-			//alert("before: "+LSid)
 			LSid = LSid.slice(4)
-			//alert("after: "+LSid)
 		} while ( LSid.indexOf("hkQ.") != -1 )
-		missQs.push(LSid) // egyenlőre kivettem az upgrade funkciót! (nem is működött rendesen)
-		/*if ( localStorage.getItem(LSid+"_idopont") || localStorage.getItem(LSid+"_note") ) { 
-			oldLSid = arrOLDtxt[oldQtxt]
-		}*/
+		missQs.push(LSid)
 	}
-	/*if ( oldLSid == false ) { 
+}
+
+function F_oldQcheck(){
+	var oldQtxt
+	var oldLSid = false
+
+	/*console.clear()
+	for ( var Qtext in arrOLDtxt ) {
+		var begin = Qtext.indexOf("<summary>")
+		var end = Qtext.indexOf("</summary>")
+		console.log(arrOLDtxt[Qtext]+" : "+localStorage.getItem(arrOLDtxt[Qtext]+'_idopont')+" : "+Qtext.slice(begin+9,end))
+	}
+	console.log("––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––")
+	alert("STOP")*/
+	
+	var size = Object.keys(arrOLDtxt).length;
+	if ( size > 0 ) {
+		for (var oldQtxt in arrOLDtxt) {
+			oldLSid = arrOLDtxt[oldQtxt]
+			delete arrOLDtxt[oldQtxt]
+			F_oldQchange(oldQtxt,oldLSid) 
+			break;
+		}
+	} else { // ez 1x mindenképp lefut (max a legvégén, amikor már az összes upgradeQ megvolt)
 		document.getElementById("div_Fix").innerHTML = ""
 		document.getElementById("div_Fix").style.display = 'none'
-	} else { 
-		F_oldQchange(oldQtxt,oldLSid) 
-	}*/
-	//alert(missQs.toString())
-	localStorage.setItem("hkQ.miss",missQs.toString())
+		localStorage.setItem("hkQ.miss",missQs.toString())
+	}
 }
 
 /* FIX need
@@ -579,6 +681,7 @@ function F_toggleAll() {
 		refreshAll = true
 		F_getTexts()
 		F_checkQs()
+		F_oldQsFilter()
 		F_oldQcheck()
 		F_tetelChoose()
 		F_altetelID()
@@ -634,9 +737,9 @@ function func_repTableToggle(){
 var timeDiff
 function func_calcTimeDiff(repCount){
 	if ( repCount == 0 ) {
-		timeDiff = 20
+		timeDiff = 30
 	} else if ( repCount == 1 ) {
-		timeDiff = 60
+		timeDiff = 90
 	} else if ( repCount == 2 ) {
 		timeDiff = 500
 	} else if ( repCount == 3 ) {
@@ -994,7 +1097,10 @@ function F_CreateQDiv() {
 		input.type = "button"
 		input.value = "load LS"
 		divSettings.appendChild(input)
-		input.onclick = function(){ document.getElementById('fileinput').click() }
+		input.onclick = function(){ 
+			localStorage.clear();
+			document.getElementById('fileinput').click() 
+		}
 
 		input.style.position = "absolute"
 		input.style.right = "5px"
@@ -1975,7 +2081,7 @@ function func_calcOldNew(){
 			}
 			
 			if ( localStorage.getItem(LSid+"_jegy") == 1 ) {
-				if ( idopont < 20 ) {
+				if ( timeDiff >= idopont ) { //  idopont <= 40 
 					repOld = repOld +1
 				} else {
 					repNew = repNew +1
@@ -2212,7 +2318,7 @@ function F_nextQ(){
 	var diffTime = newTime - lastTime
 	var averageCV = 0
 	var countCV = 0
-	if ( diffTime < 3 ) { // 2fast 2furious
+	if ( diffTime < 2 ) { // 2fast 2furious
 		return;
 	} else {
 		lastTime = newTime
@@ -2224,7 +2330,7 @@ function F_nextQ(){
 	QlocElem.innerHTML = ""
 
 	// következő kérdés
-	for ( var x=0; x<30; x++ ) { // custom számot írtam, ennyi úgysincs
+	for ( var x=0; x<50; x++ ) { // custom számot írtam, ennél több egynelőre nincs
 		if ( document.getElementById("td.0."+x) ) { 
 			document.getElementById("td.0."+x).hidden = true 
 			document.getElementById("td.1."+x).hidden = true 
@@ -2529,7 +2635,7 @@ function F_nextQ(){
 					}
 					
 					if ( jegy == 0 || jegy == 1 ) {
-						if ( idopont > timeDiff  ) {
+						if ( idopont >= timeDiff  ) {
 							document.getElementById("td.0."+i).style.backgroundColor = "red"
 						}
 					}
