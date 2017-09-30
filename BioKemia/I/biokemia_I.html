@@ -2029,10 +2029,18 @@ tematika: <img class="mini" data-src="tematika.png">
 	<details class="{214} kerdes 3/3"><summary>glikogén tudnivalók?</summary><ul class="normal">
 		<div>különbség a keményítővel szemben:</div>
 		<li>gyakrabban (8-10 alegységenként) tartalmaz elágazásokat, mint a keményítő</li>
-		<li>emberben tápanyagraktár az alábbi kettőben, ugyanis belőle a glukóz gyorsan mobilizálható, ha igény van rá</li><ul>
-			<li>máj &#10140; étkezések között a legfőbb glukóz forrás a vércukorszint fenntartására</li>
-			<li>izom &#10140; tartalék energia-forrás az izommunka számára (ott felhasználásra kerül glükóz formában)</li>
-		</ul>
+		<li>emberben tápanyagraktár az izomban és májban, ugyanis belőlük a glukóz gyorsan mobilizálható, ha igény van rá</li>
+		<li>a glikogén lebontása során 'első szakaszban' glükóz-6-P keletkezik belőle</li>
+		<table><tr><th></th>  <th>funkció</th>  <th>glükóz-6-P sorsa</th></tr>
+			<tr><th>máj</th>
+				<td>étkezések között a legfőbb glukóz forrás a vércukorszint fenntartására</td>
+				<td><abbr title="hisz glükózra van szükség a vércukorszint fenntartására, amihez pedig a glikoneogenezis irányába kell menjen, amihez pedig kell a glükóz-6-foszfatáz">(van glükóz-6-foszfatáz) &#10140;</abbr> glikolízis vagy glikoneogenezis</td>
+			</tr>
+			<tr><th>izom</th>
+				<td>tartalék energia-forrás az izommunka számára (ott felhasználásra kerül glükóz formában)</td>
+				<td><abbr title="hisz egyből felhasználásra kerül energiafedezésnek, tehát nincs szükség glükóz-6-foszfatázra">&#10140;</abbr> glikolízis (NINCS glükóz-6-foszfatáz)</td>
+			</tr>
+		</table>
 		<span class="imp [213]"></span>
 		<img data-src="glkgmjhm.png">
 	</ul></details>
@@ -2592,30 +2600,34 @@ tematika: <img class="mini" data-src="tematika.png">
 		<li>tehát mindig 5,7kJ-al csökken, ha a koncentrációja 10ed akkora (bármely anyagnál nézem meg)</li>
 		<li>képen a &Delta;G = 0 azt az állapotot jelöli, amikor a két anyag szabadentalpia-szintje megegyezik &#10140; eddig tart a folyamat, és itt beáll az egyensúly<abbr title="dinamikus egyensúly">'</abbr></li>
 	</ul></details>
-	<details class="kerdes 2/3"><summary>K, &Delta;G<sup>0</sup> és a reakció reverzibilitása közti összefüggés</summary><ul class="normal">
-		<img data-src="gkksjfgk.png">
-		<table>
-			<tr><th>reverzibilis</th>
-				<td><abbr title="K = Cp/Cs, amikor egyensúly van &#10140; ha ez 1, akkor a koncentrációjuk megegyezik, tehát G<sup>0</sup>s és G<sup>0</sup>p is megegyezik &#10140; tehát a képen akkor lenne ez, ha a szubsztrát 'vázája' lejjebb lenne egy szinten a termékével">K ~= 1</abbr></td>
-				<td><abbr title="hiszen G<sup>0</sup>s és G<sup>0</sup>p közel megegyezik">&Delta;G<sup>0</sup> ~= 0</abbr></td>
-			</tr>
-			<tr><th rowspan="2">lehet reverzibilis <br></th>
-				<td>K > 1</td>
-				<td>&Delta;G<sup>0</sup> &lt; 1</td>
-			  </tr><tr>
-				<td>K &lt; 1</td>
-				<td>&Delta;G<sup>0</sup> > 1</td>
-			</tr>
-			<tr><th rowspan="2">irreverzibilis</th>
-				<td>K >> 1</td>
-				<td>&Delta;G<sup>0</sup> &lt;&lt; 1</td>
-			  </tr><tr>
-				<td>K &lt;&lt; 1</td>
-				<td>&Delta;G<sup>0</sup> >> 1</td>
-			</tr>
-		</table>
-		<li>tehát minél közelebb van K értéke 1-hez (ergó &Delta;G<sup>0</sup> 0-hoz), annál inkább reverzibilis &#10140; minél távolabb vannak, annál inkább reverzibilis <abbr title="tehát a képen lévő 2 'váza' minél inkább egy szinten van, annál inkább reverzibilis a reakció">'</abbr></li>
-		<li>(határ &Delta;G<sup>0</sup> esetében kb. 10kJ/mol) <img class="mini" data-src="htrxrglnsl.png"></li>
+	<details class="{218} kerdes 4/1"><summary>reakció mikor reverzibilis/irreverzibilis?</summary><ul class="normal">
+		<li>attól függ <abbr title="standard szabadentalpia = standard szabadenergiaváltozás">&Delta;G<sup>0</sup></abbr> mennyire van közel 0-hoz &#10140; minél közelebb, annál inkább reverzibilis</li>
+		<font style="font-size:80%">(a határ nem pontos, de nagyságrendileg kb. 10kJ/mol)</font> <img class="mini" data-src="htrxrglnsl.png">
+		<details class="kerdes 2/1"><summary>reakció reverzibilitása és <abbr title="egyensúlyi konstans">K</abbr> közti összefüggés</summary><ul class="normal">
+			<li>minél közelebb van K értéke 1-hez, annál inkább reverzibilis &#10140; minél távolabb vannak, annál inkább reverzibilis</li>
+		</ul></details>
+		<details><summary>(táblázat a megértéshez)</summary><ul class="normal">
+			<table>
+				<tr><th>reverzibilis</th>
+					<td><abbr title="K = Cp/Cs, amikor egyensúly van &#10140; ha ez 1, akkor a koncentrációjuk megegyezik, tehát G<sup>0</sup>s és G<sup>0</sup>p is megegyezik &#10140; tehát a képen akkor lenne ez, ha a szubsztrát 'vázája' lejjebb lenne egy szinten a termékével">K ~= 1</abbr></td>
+					<td><abbr title="hiszen G<sup>0</sup>s és G<sup>0</sup>p közel megegyezik">&Delta;G<sup>0</sup> ~= 0</abbr></td>
+				</tr>
+				<tr><th rowspan="2">lehet reverzibilis <br></th>
+					<td>K > 1</td>
+					<td>&Delta;G<sup>0</sup> &lt; 0</td>
+				  </tr><tr>
+					<td>K &lt; 1</td>
+					<td>&Delta;G<sup>0</sup> > 0</td>
+				</tr>
+				<tr><th rowspan="2">irreverzibilis</th>
+					<td>K >> 1</td>
+					<td>&Delta;G<sup>0</sup> &lt;&lt;&lt; 0</td>
+				  </tr><tr>
+					<td>K &lt;&lt; 1</td>
+					<td>&Delta;G<sup>0</sup> >>> 0</td>
+				</tr>
+			</table>
+		</ul></details>
 	</ul></details>
 	<details class="kerdes 2/1"><summary>Q és K-ból mi határozható meg?</summary><ul class="normal">
 		<div>reakció iránya <abbr title="logikából is levezethető, de egy megjegyzési tipp: kuka espé (nyilak pedig ellentétes irányúak)">'</abbr></div>

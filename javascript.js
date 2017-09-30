@@ -119,7 +119,8 @@ function F_getTexts(){
 	//alert(document.title+"_Qtext")
 
 
-	/*var prevString = localStorage.getItem("Anat_Qtext")
+	/*
+	var prevString = localStorage.getItem("Anat_Qtext")
 	prevString = LZString.decompressFromUTF16(prevString)
 	prevString = prevString.split(" _@@_ ")
 
@@ -199,23 +200,23 @@ function F_getMissQs(){
 F_getMissQs()
 
 function F_newLSid(){
-	var count
+	var LSid
 	F_fixMissQs()
 	if ( missQs[0] ) {
-		count = missQs[0]
+		LSid = missQs[0]
 		missQs.splice(0,1)
-		localStorage.removeItem("hkQ."+count+"_skip")
-		localStorage.removeItem("hkQ."+count+"_jegy")
-		localStorage.removeItem("hkQ."+count+"_repeat")
-		localStorage.removeItem("hkQ."+count+"_idopont")
-		localStorage.removeItem("hkQ."+count+"_note")
+		localStorage.removeItem(LSid+"_skip")
+		localStorage.removeItem(LSid+"_note")
+		localStorage.removeItem(LSid+"_jegy")
+		localStorage.removeItem(LSid+"_repeat")
+		localStorage.removeItem(LSid+"_idopont")
 	} else {
-		count = parseInt(localStorage.getItem("hkQ.max"))+1
-		localStorage.setItem("hkQ.max",count)
+		LSid = parseInt(localStorage.getItem("hkQ.max"))+1
+		localStorage.setItem("hkQ.max",LSid)
+		LSid = "hkQ."+LSid
 	}
 	if ( LSid == "undefined" ) { alert("UNDEFINED") }
-	var LSid = "hkQ."+count
-	//alert("new: "+LSid)
+	
 	return LSid
 }
 
@@ -299,6 +300,7 @@ function F_checkQs(){
 				localStorage.setItem(LSid,Qtext)
 				fullString = fullString + LSid + " "
 			}
+	if ( LSid == "hkQ.3574" ) { alert("sajt") }
 			
 			// var begin2 = Qtext.indexOf("<summary>")+9
 			// var end2 = Qtext.indexOf("</summary>")
