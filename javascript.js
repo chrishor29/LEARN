@@ -4,8 +4,9 @@
 }*/
 
 /* PROJECT - PROGRESS
- ✖: legyen egy funkció az elején, ami lecsekollja, van-e azonos id-n különböző Qtext
+ ✖: summary-nél valami jelezze, ha meg van nyitva
 
+ ✖: legyen egy funkció az elején, ami lecsekollja, van-e azonos id-n különböző Qtext
  ✖: nextQ-nál egyből töltse be az img-eket
  ✖: alert("az alábbi EXPid-s questet nincs elmentve LS-be: ") helyett csak jelezze, hogy látogassam meg valamely egyéb oldalt
  ✖: tablet -> abbr title tableten nem működik (imported q-nál biztsosan nem)

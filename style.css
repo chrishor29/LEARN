@@ -37,6 +37,9 @@ abbr:hover{
 	background-color: Chartreuse
 }
 
+details[open] > summary {
+	background-color: paleGreen;
+}
 
 li{ 
 	line-height: 24px;
