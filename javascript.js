@@ -4,14 +4,13 @@
 }*/
 
 /* PROJECT - PROGRESS
- ✖: summary-nél valami jelezze, ha meg van nyitva
+ ✖: Load LS & Save LS -> tárgyávlasztásnál
 
  ✖: legyen egy funkció az elején, ami lecsekollja, van-e azonos id-n különböző Qtext
  ✖: nextQ-nál egyből töltse be az img-eket
  ✖: alert("az alábbi EXPid-s questet nincs elmentve LS-be: ") helyett csak jelezze, hogy látogassam meg valamely egyéb oldalt
  ✖: tablet -> abbr title tableten nem működik (imported q-nál biztsosan nem)
  ✖: tablet -> show prior + jegy
- ✖: Load LS & Save LS -> tárgyávlasztásnál
 ––––––––––––––––––––––––––––––––––––––––––––––––
  ✖: átlagjegy (id előtti div)
  ✖: F_ButtonRepFast
@@ -22,12 +21,11 @@
 ––––––––––––––––––––––––––––––––––––––––––––––––
  ✖: skip-nél a perma skippesek máshol legyenek
  ✖ /keressek rá erre a kommentre, és megértem:/ erre akkor van szükség, ha legfelül nem kérdés van (tehát a legfelül lévő details nem kérdés, csak egy összegző details, pl. élettan ozmózis), ugyanis annak nincs LSid elmentve, így nemtudok note-t menteni neki (persze optimálisabb lenne, ha itt is a legfelsőhöz lenne csatolva, de egyenlőre kihagyom mert nem bonyolítom, és LowPrior)
-––––––––––––––––––––––––––––––––––––––––––––––––
-––––––––––––––––––––––––––––––––––––––––––––––––
- ✔: upgradeQ-t újra aktiválni (tehát osztályozott kérdést ha upgradelek, a jegye ne vesszen el!)
 */
 
 /* PROJECT - DONE
+ ✔: upgrada Q-nál legyen skip funkció
+ ✔: summary-nél valami jelezze, ha meg van nyitva
  ✔: import Q image -> minden html tetején lesz egy variable, amiben benne van az IMAGES\'adott tárgy mappa' címe. ezt az expid mellé csatolja a Qtextbe. A képek betöltésénél (data-src helyett src) ezt írja hozzá.
 */
 
@@ -64,13 +62,13 @@ for ( var i=0; i<kerdesek.length; i++ ) {
 }*/
 
 
-
-//var string = document.body.innerHTML
-//var compressed = LZString.compress(string);
-//var compressed = LZString.compressToUTF16(string);
-//var compressed = LZString.decompress(string);
-//var compressed = LZString.decompressFromUTF16(string);
-
+/* compress & decompress
+	var string = document.body.innerHTML
+	var compressed = LZString.compress(string);
+	var compressed = LZString.compressToUTF16(string);
+	var compressed = LZString.decompress(string);
+	var compressed = LZString.decompressFromUTF16(string);
+*/
 
 //document.getElementById("testimage").src = document.getElementById("testimage").title
 
@@ -119,7 +117,6 @@ var Qcount = 0
 function F_getTexts(){
 	//alert(document.title+"_Qtext")
 
-
 	/*
 	var prevString = localStorage.getItem("Anat_Qtext")
 	prevString = LZString.decompressFromUTF16(prevString)
@@ -145,7 +142,6 @@ function F_getTexts(){
 	localStorage.removeItem("Histology_Qtext");
 	localStorage.removeItem("Molekuláris Sejtbiológia_Qtext");
 	*/
-
 
 	var fullString = localStorage.getItem(document.title+"_LSids")
 	if ( fullString ) {
@@ -174,7 +170,7 @@ function F_fixMissQs() {
 			i--
 		}
 	}
-	console.log(missQs)
+	//console.log(missQs)
 }
 
 function F_getMissQs(){
@@ -240,6 +236,10 @@ function F_checkEXPs(){
 				var string = localStorage.getItem("hkExpQ."+EXPid)
 				// LSid-t elvileg csak akkor kéne (elmenteni és) lekérni, ha kerdes is egyben (ha szimplán csak text: több kérdés együtt, akkor nem)
 				LSid = string.slice(0,string.indexOf(" "))
+				if ( LSid.slice(0,8) == "hkQ.hkQ." || LSid == "hkQ.null" ) {
+					alert("hiba a kódban: "+LSid)
+					LSid = F_newLSid()
+				}
 				string = string.slice(string.indexOf(" ")+1)
 				var Qtext = string.slice(string.indexOf(" ## ")+4)
 				if ( txt != Qtext ) { // amennyiben már foglalt --> tehát egy újat véletlenül már foglalt EXPid-re neveztem el
@@ -301,7 +301,6 @@ function F_checkQs(){
 				localStorage.setItem(LSid,Qtext)
 				fullString = fullString + LSid + " "
 			}
-	if ( LSid == "hkQ.3574" ) { alert("sajt") }
 			
 			// var begin2 = Qtext.indexOf("<summary>")+9
 			// var end2 = Qtext.indexOf("</summary>")
@@ -378,6 +377,13 @@ function F_oldQchange(oldQtxt,oldLSid){
 	document.getElementById("div_Fix").innerHTML = defaultText + oldQtxt + "<hr>"
 	var newQtxt
 	var x = 0
+	// skip BEGIN
+		var option = document.createElement("option")
+		option.id = "option_ReplaceQ_"+x
+		document.getElementById("select_replaceQ").appendChild(option)
+		var text = document.createTextNode(" ––– ")
+		option.appendChild(text)
+	// skip END
 	for ( newLSid in arrNEWid ) {
 		x = x +1
 		var newQtxt = arrNEWid[newLSid]
@@ -393,16 +399,19 @@ function F_oldQchange(oldQtxt,oldLSid){
 		document.getElementById("option_ReplaceQ_"+x).value = newLSid
 		document.getElementById("button_replaceQ").onclick = function() {
 			var value = document.getElementById("select_replaceQ").value
-			var newQtxt = arrNEWid[value]
-			delete arrNEWid[value]
-			//console.log("newLSid: " +value)
-			//console.log("newQtxt: " +newQtxt)
 			
-			txtLS[newQtxt] = value
-			for ( var i in LStxt ) {
-				if ( LStxt[i] == newQtxt ) {
-					delete arrNEWid[i]
-					LStxt[value] == newQtxt
+			if ( value.indexOf("hkQ.") != -1 ) { // ha nem skippeltem, akkor a választható opciók közül törli amelyiket kiválasztottam
+				var newQtxt = arrNEWid[value]
+				delete arrNEWid[value]
+				//console.log("newLSid: " +value)
+				//console.log("newQtxt: " +newQtxt)
+				
+				txtLS[newQtxt] = value
+				for ( var i in LStxt ) {
+					if ( LStxt[i] == newQtxt ) {
+						delete arrNEWid[i]
+						LStxt[value] == newQtxt
+					}
 				}
 			}
 
@@ -972,10 +981,11 @@ function F_CreateQDiv() {
 		div.id = "div_nextQMark"
 		div.style.display = "none"
 		div.style.position = "fixed"
-		div.style.left = "40%"
-		div.style.top = "30%"
+		div.style.right = "53px"
+		div.style.top = "5px"
 		div.style.backgroundColor = "white"
 		div.style.border = "2px solid black"
+		//document.body.appendChild(div)
 		MainFrame.appendChild(div)
 	}
 	F_ButtonNextQMark()
