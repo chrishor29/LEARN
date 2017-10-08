@@ -5,6 +5,8 @@
 
 /* PROJECT - PROGRESS
  ✖: legyen egy funkció az elején, ami lecsekolja, van-e azonos id-n különböző Qtext
+ 
+ ✖: automatikusan mentse le az LS-t óránként
 
  ✖: nextQ-nál egyből töltse be az img-eket
  ✖: tablet -> show prior + jegy
@@ -545,12 +547,12 @@ function F_impQs(){ // #1)
 					MISSid = MISSid + EXPid + ","
 				} else {
 					// megnézi, hogy nincs-e már importálva
-					var Qelem = impek[i].parentElement.parentElement
-					var parent = impek[i].parentElement.parentElement
+					var Qelem = impek[i] //var Qelem = impek[i].parentElement.parentElement
+					var parent = impek[i] //var parent = impek[i].parentElement.parentElement
 					do { // megkeresi a 'családfában' legfelül lévő kérdést!
 						Qelem = parent
 						parent = parent.parentElement
-					} while ( parent.innerHTML.indexOf('<div class="title">') == -1 && parent.innerHTML.indexOf('<summary class="phase">') == -1 )
+					} while ( parent.innerHTML.indexOf('<div class="title"') == -1 && parent.innerHTML.indexOf('<summary class="phase"') == -1 )
 					var checkID = Qtext.slice(Qtext.indexOf("{")+1,Qtext.indexOf("}"))
 					if ( Qelem.innerHTML.indexOf("{"+checkID+"}") == -1 && Qelem.className.indexOf("{"+checkID+"}") == -1 ) { 
 						impek[i].innerHTML = Qtext
@@ -1336,13 +1338,13 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 
 		div.style.backgroundColor = "white"
 		div.style.overflow = "auto"
-		div.style.width = "80vh"
+		div.style.width = "80vw"
 		div.style.height = "80vh"
 		div.style.position = "fixed"
 		div.style.top = "50%"
 		div.style.left = "50%"
 		div.style.marginTop = "-40vh"
-		div.style.marginLeft = "-40vh"
+		div.style.marginLeft = "-40vw"
 		div.style.border = "10px solid black"
 		div.style.display = "none"
 	}
