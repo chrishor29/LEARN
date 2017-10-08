@@ -8,6 +8,8 @@
 
 
 <div class="header">
+	<div><a href="expqs.html">expqs</a></div>
+<hr>
 	<div><a href="done\Orvosi_Kemia\kemia.html">Orvosi Kémia</a></div>
 	<div><a href="BioKemia\I\biokemia_I.html">Biokémia I.</a></div>
 	<div><a href="BioKemia\II\biokemia_II.html"><strong>Biokémia II.</strong></a></div>
@@ -28,13 +30,136 @@
 </div>
 
 
-<div><button onclick="localStorage.clear();">LocalStorage CLEAR !!</button></div>
+<script>
+	function F_clearLS() {
+		var input = document.createElement("input")
+		input.type = "button"
+		input.value = "clear LS"
+		document.body.appendChild(input)
+		input.onclick = function(){ localStorage.clear() }
+
+		input.style.position = "absolute"
+		input.style.right = "5px"
+		input.style.top = "550px"
+	}
+	F_clearLS()
+	function F_InputLoad() {
+		var input = document.createElement("input")
+		input.type = "button"
+		input.value = "load LS"
+		document.body.appendChild(input)
+		input.onclick = function(){ 
+			document.getElementById('fileinput').click() 
+		}
+
+		input.style.position = "absolute"
+		input.style.right = "5px"
+		input.style.top = "10px"
+	}
+	F_InputLoad()
+	function F_InputSave() {
+		var input = document.createElement("input")
+		input.type = "button"
+		input.value = "Save LS"
+		document.body.appendChild(input)
+		input.onclick = function(){ func_saveLS() }
+
+		input.style.position = "absolute"
+		input.style.right = "5px"
+		input.style.top = "50px"
+	}
+	F_InputSave()
+	function F_fileinput() {
+		var input = document.createElement("input")
+		input.type = "file"
+		input.id = "fileinput"
+		document.body.appendChild(input)
+		input.style.display = "none"
+	}
+	F_fileinput()
+	
+	// SAVE LS
+	function download(filename, text) { // (netről copyztam) --> (azért kellett, mert androidon máshogy nemtudom lementeni)
+		 var pom = document.createElement('a');
+		 pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+		 pom.setAttribute('download', filename);
+
+		 if (document.createEvent) {
+			  var event = document.createEvent('MouseEvents');
+			  event.initEvent('click', true, true);
+			  pom.dispatchEvent(event);
+		 }
+		 else {
+			  pom.click();
+		 }
+	}
+	function setItem(key, value){
+		if (typeof value === 'object') {
+			value = JSON.stringify(value);
+		}
+		localStorage.setItem(key, value);
+	}
+	function getItem(key){
+		if (key){
+			try{
+				return JSON.parse(localStorage.getItem(key));
+			}
+			catch(e){
+				return localStorage.getItem(key);
+			}
+		}
+	}
+	function func_saveLS() {
+		var objects = {};
+		var text = ""
+		for (var i = 0, len = localStorage.length; i < len; i++) {
+			objects[localStorage.key(i)] = getItem(localStorage.key(i));
+			text = text + localStorage.key(i) + " = " + getItem(localStorage.key(i)) + " NEXTONE "
+		}
+		download('localStorage.txt', text);
+		//console.log(objects);
+		//window.location = "data:text/plain,"+text
+	}
+	JSON.stringify(localStorage)
+	// LOAD LS
+	function func_loadLS(content) {
+		do {
+			var phaseText = content.slice(0,content.indexOf(" NEXTONE "));
+			content = content.slice(content.indexOf(" NEXTONE ") +9)
+			var variable = phaseText.slice(0,phaseText.indexOf(" = "));
+			var price = phaseText.slice(phaseText.indexOf(" = ") +3);
+			localStorage.setItem(variable, price)
+		}
+		while (phaseText.length > 1);
+	}
+	var fileInput = document.getElementById('fileinput');
+	fileInput.addEventListener('change', function(e){
+		var file = fileInput.files[0];
+		var textType = /text.*/;
+		var content
+
+		if (file.type.match(textType)) {
+			var reader = new FileReader();
+
+			reader.onload = function(e) {
+				content = reader.result
+				func_loadLS(content)
+			}
+
+			reader.readAsText(file);    
+		} else {
+			alert("File not supported!")
+		}
+	});
+	
+</script>
+
+<!--
+<script>setTimeout(function(){window.location.href='../../targyvalasztas.html'},5000);</script>
+-->
 
 
 
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 

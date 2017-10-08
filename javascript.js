@@ -74,9 +74,35 @@ for ( var i=0; i<kerdesek.length; i++ ) {
 //document.getElementById("testimage").src = document.getElementById("testimage").title
 
 
+function checkExpQHtml(){ // oldal betöltésénél ugorjon el expQkat importolni, ha régen volt!
+	var path = window.location.pathname;
+	var fileName = path.split("/").pop();
+	fileName = htmlIMGloc.slice(0,htmlIMGloc.indexOf("images/")) + fileName
 
+	if ( fileName == "expqs.html" ) {
+		var datum = new Date();
+		var lastTime = datum.getTime();
+		localStorage.setItem("loadQs.lastTime",lastTime)
+		window.location.href = localStorage.getItem("loadQs.lastPage")
+	}
 
-/* oldal betöltésénél ugorjon el expQkat importolni!
+	var datum = new Date();
+	var thisTime = datum.getTime();
+	var lastTime = localStorage.getItem("loadQs.lastTime")
+	var diffTime = thisTime - lastTime
+	diffTime = diffTime / 60000 /60
+
+	if ( diffTime > 24 ) {
+		var expLoc = htmlLEARNloc + "expqs.html"
+		localStorage.setItem("loadQs.lastPage",fileName)
+		window.location.href = expLoc
+	} else {
+		localStorage.setItem("loadQs.lastPage",fileName)
+	}
+}
+checkExpQHtml()
+
+/*
 var path = window.location.pathname;
 var fileName = path.split("/").pop();
 fileName = htmlIMGloc.slice(0,htmlIMGloc.indexOf("images/")) + fileName
@@ -95,7 +121,6 @@ if ( localStorage.getItem("loadQs.status") != "expqs.html" ) {
 	localStorage.setItem("loadQs.status",fileName)
 }
 */
-
 
 
 
@@ -561,7 +586,7 @@ function F_impQs(){ // #1)
 			}
 		}
 	}
-	if (MISSid!="") { alert("alábbi EXPid-k még nincsenek LS-be reigsztrálva: "+MISSid) }
+	if (MISSid!="") { alert("alábbi EXPid-k még nincsenek LS-be reigsztrálva: "+MISSid + "\nNyisd meg a tárgyválasztás ablaknál az adott tárgyhoz kapcsolódó egyéb tárgy(ak)at egyszer --> pl. Biokémia II esetén nyisd meg Biokémia I, Élettan, Molekuláris Sejtbiológia") }
 }
 F_impQs()
 
@@ -1235,20 +1260,6 @@ F_CreateQDiv()
 
 
 
-function download(filename, text) { // download funkció (netről copyztam) --> Save LS-nél ezt hívja le (azért kellett, mert androidon máshogy nemtudom lementeni)
-    var pom = document.createElement('a');
-    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    pom.setAttribute('download', filename);
-
-    if (document.createEvent) {
-        var event = document.createEvent('MouseEvents');
-        event.initEvent('click', true, true);
-        pom.dispatchEvent(event);
-    }
-    else {
-        pom.click();
-    }
-}
 var nextMark = 0
 var nextRep = "zerus"
 function F_nextMark(jegy){ // következő kérdés nehézségét beállítja, 

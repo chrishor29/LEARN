@@ -2,6 +2,7 @@ copy C:\Kristof\MIRROR\LEARN\javascript.js C:\Users\chrishor\Desktop\LEARN\javas
 copy C:\Kristof\MIRROR\LEARN\lz-string.js C:\Users\chrishor\Desktop\LEARN\lz-string.js        
 copy C:\Kristof\MIRROR\LEARN\style.css C:\Users\chrishor\Desktop\LEARN\style.css
 robocopy C:\Kristof\MIRROR\LEARN\favicon.bmp C:\Users\chrishor\Desktop\LEARN\favicon.bmp /mir
+copy C:\Kristof\MIRROR\LEARN\targyvalasztas.html C:\Users\chrishor\Desktop\LEARN\targyvalasztas.html
 
 robocopy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\images C:\Users\chrishor\Desktop\LEARN\done\Orvosi_Biologia\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\ob.html C:\Users\chrishor\Desktop\LEARN\done\Orvosi_Biologia\ob.html
@@ -50,6 +51,9 @@ copy C:\Kristof\MIRROR\LEARN\done\ModMem\ModMem.html C:\Users\chrishor\Desktop\L
 
 robocopy C:\Kristof\MIRROR\LEARN\Elettan\images C:\Users\chrishor\Desktop\LEARN\Elettan\images /mir
 copy C:\Kristof\MIRROR\LEARN\Elettan\elettan.html C:\Users\chrishor\Desktop\LEARN\Elettan\elettan.html 
+
+robocopy C:\Kristof\MIRROR\LEARN\images C:\Users\chrishor\Desktop\LEARN\images /mir
+copy C:\Kristof\MIRROR\LEARN\expqs.html C:\Users\chrishor\Desktop\LEARN\expqs.html
 
 
 
