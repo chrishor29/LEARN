@@ -102,7 +102,9 @@
 	<details class="{233} kerdes 3/2"><summary>affinitás mi?</summary><ul class="normal">
 		<li>affinitást számszerűen a <abbr title="transzproter Km-jét így jelöljük">K<sub>t</sub></abbr>=<abbr title="Michaelis-konstans">K<sub>m</sub></abbr>-el jellemezhető &#10140; K<sub>m</sub> minél nagyobb, affinitás annál kisebb</li>
 		<li><font class="abbr">K<sub>m</sub> ►</font> az a szubsztrát-koncentráció ahol v = v<sub>max</sub>/2 <abbr title="tehát minél kisebb, annál nagyobb az affinitás &#10140; ugyanis akkor már kis koncentráció is elég, hogy a nagy sebességgel dolgozzon">'</abbr></li>
-		<li>affinitással jellemzhetők a transzporterek is &#10140; lásd GLUT & SGLT</li>
+		<li>affinitással jellemzhetők a transzporterek is &#10140; lásd GLUT & SGLT</li><ul>
+			<li>'szemléltetése & megértése' &#10140; pl. az SGLT-1 affinitása nagyobb, mint az SGLT-2-nek. Ez azt jelenti, hogy hiába nagyobb IC a glükózkoncentráció mint EC (tehát nagyobb kémiai grádiens ellenében kell dolgoznia), képes felvenni még a glükózt úgy is. Ennek magyarázata, hogy mellette 2Na<sup>+</sup>-t vesz fel, ami fedezi az energiát. Ellenben SGLT-2 kisebb glükóz-koncentráció ellenében képes csak 'dolgozni'.</li>
+		</ul>
 	</ul></details>
 	<details class="{234} kerdes 3/4"><summary>NAD<sup>+</sup> & NADP<sup>+</sup> funkciója?</summary><ul class="normal">
 		<li>NAD<sup>+</sup> a katabolikus reakcióban játszik fontos szerepet &#10140; tehát a lebontandó tápanyagokat <abbr title="miközben a NAD+ redukálódik">oxidálja</abbr></li>
@@ -257,7 +259,7 @@
 	<details class="{244} kerdes 3/1"><summary><span class="Important">R</span> glutamát-dehidrogenáz által katalizált reakció</summary><ul class="normal">
 		<img data-src="kplt_gltmgnshmn.png">
 	</ul></details>
-	<details class="{245} kerdes 3/2"><summary><span class="Important">R</span> citrát-szintáz által katalizált reakció</summary><ul class="normal">
+	<details class="{245} kerdes 2/2"><summary><span class="Important">R</span> citrát-szintáz által katalizált reakció</summary><ul class="normal">
 		<font style="font-size:80%">citrát-kör '1.lépése'</font>
 		<li>enzim(citrát-szintáz) először megköti az oxál-acetátot &#10140; ez konformációváltozást idéz, ami által képes lesz megkötni az acetil-CoA-t</li>
 		<li>megkötve az acetil-CoA-t, kialakul a citril-CoA köztitermék &#10140; ez újabb konformációváltozást idéz</li>
@@ -312,21 +314,20 @@
 				<td>nagy</td>
 				<td>kicsi</td>
 			</tr>
-			<tr><th>hol</th>  
-				<td>bélhámsejt <br> vese proximalis tubulusának <abbr title="végső">egyenes</abbr> szakasza</td>
+			<tr><th rowspan="2">hol</th>  
+				<td colspan="2">apikális membrán</td>
+			  </tr><tr>
+				<td>enterocyták <br> vese proximalis tubulusának <abbr title="végső">egyenes</abbr> szakasza</td>
 				<td>vese proximalis tubulusának <abbr title="kezdeti">kanyarulatos</abbr> szakasza</td>
 			</tr>
 		</table>
 	  <hr>
-		<li>az apikális membránon találhatók &#10140; abszorpciót végeznek</li>
-		<li>affinitás (K<sub>m</sub>-el fordítottan arányos)</li><ul>
-			<li>SGLT-1-nek nagy &#10140; nagyobb glükóz grádiens (sejtben nagy, tubulusban kicsi) ellenében is képes folytatni a felszívást</li>
-			<li>SGLT-2-nek kicsi &#10140; csak kisebb glükóz grádiens<abbr title="itt is ugye a sejtben nagyobb, de ha már elért egy mértéket, akkor 1 Na nem fogja tudni fedezni">'</abbr> ellenében képes folytatni a felszívást</li>
-		</ul>
-		<li>kapacitása SGLT-1-nek kisebb &#10140; 2Na<sup>+</sup> kell egy glükózhoz, tehát 'lassabb'</li>
+		affinitás (K<sub>m</sub>-el fordítottan arányos)
+		<li>SGLT-1-nek nagy &#10140; nagyobb glükóz grádiens (sejtben nagy, tubulusban kicsi) ellenében is képes folytatni a felszívást</li>
+		<li>SGLT-2-nek kicsi &#10140; csak kisebb glükóz grádiens<abbr title="itt is ugye a sejtben nagyobb, de ha már elért egy mértéket, akkor 1 Na nem fogja tudni fedezni">'</abbr> ellenében képes folytatni a felszívást</li>
 	</ul></details>
 	<details class="{254} kerdes 3/4"><summary>glükóz felszívás vesében</summary><ul class="normal">
-		<li>vese <span class="Important">proximalis tubulus</span>ában történik!!</li>
+		<li>vese <span class="Important">proximalis tubulus</span>ában történik a glükóz felszívás</li>
 	  <hr><strong>mechanizmusa hasonló, mint a bélhámsejteknél &#10140; különbségek mindössze:</strong>
 		<li>bélhámsejtnél csak SGLT-1 & GLUT-1 van &#10140; vese proximalis tubulusánál ezek mellett SGLT-2 és GLUT-2 is van, ugyanis...</li><ul>
 			<li><abbr title="'kezdeti'">kanyarulatos</abbr> szakaszán &#10140; SGLT-2 & GLUT-2</li>
@@ -360,13 +361,12 @@
 				<tr><th>GLUT-4</th> <td>K<sub>t</sub> ~= 5mM</td></tr>
 				<tr><th>GLUT-5</th> <td>K<sub>t</sub> ~= 10mM</td></tr>
 			</table>
-			<li>minél nagyobb az affinitásuk, annál kisebb koncentrációra optimalizáltak &#10140; ezért pl. vesében a GLuT-2 a kezdeti szakaszon van</li><ul>
-				<li>a vese proximalis tubulusának kezdeti szakaszán ahol még magas a [glükóz], ott GLuT-2 &#10140; végső szakaszán már GLuT-1</li>
+			<li>minél nagyobb az affinitásuk, annál kisebb koncentrációra optimalizáltak</li><ul>
+				<li>ezért pl. a vese proximalis tubulusának kezdeti szakaszán ahol még magas a [glükóz], ott GLuT-2 &#10140; végső szakaszán már GLuT-1</li>
 				<li>stb. <span class="lasd">GLUT ➜ egyes típusaik hol fordulnak elő?</span></li>
 			</ul>
-			<li>megjegyzési tipp: <abbr title="pi értéke az első kettő">3,14</abbr> &#10140; <abbr title="pi fele kb a harmadik">1,5</abbr> &#10140; <abbr title="a harmadikat beszorozva tízzel, majd kettéosztom és felcserélem a sorrendet (bonyolultan hangzik, de szbsz így éri meg)">5 és 10</abbr></li>
 		  <hr>
-			GLUT-3 K<sub>t</sub> ~= 1,6mM &#10140; hipoglikémiáról is akkor beszélünk, ha ennél kisebb a vérben a [glükóz] <font style="font-size:80%">(de a kettőnek szvsz nincs köze egymáshoz, csak a megjegyzést segíti)</font>
+			<li>megjegyzési tipp: <abbr title="pi értéke az első kettő">3,14</abbr> &#10140; <abbr title="pi fele kb a harmadik">1,5</abbr> &#10140; <abbr title="a harmadikat beszorozva tízzel, majd kettéosztom és felcserélem a sorrendet (bonyolultan hangzik, de szbsz így éri meg)">5 és 10</abbr></li>
 			<span class="imp [233]"></span>
 		</ul></details>
 	</ul></details>
@@ -385,33 +385,76 @@
 		<li>fő funkciója, hogy a glükóz a sejtben marad &#10140; ugyanis negatív töltésű lesz, ami innentől az <abbr title="tehét a végtermék és kiinduló termékek közti 'átmeneti termékekre (glükóz-6-P,fruktóz-6-P,...)">intermedierekre</abbr> is igaz, és így nem tudnak átjutni a membránon <abbr title="illetve nincs külön transzporter glükóz-6-foszfátra">'</abbr></li>
 		<li>emelett az ATP hidrolizis energiája részben megmarad a glükóz-6-P-ban</li>
 	</ul></details>
-	<details class="{258} kerdes 3/1"><summary>hexokinázok típusainak felsorolása?</summary><ul class="normal">
-		<li>emberben 4 típusa van, izoenzimek</li>
-		<li>hexokináz I-III hasonlóak, a hexokináz IV = glukokináz ellenben eltérő tulajdonságokkal bír</li>
-		<font style="font-size:80%"></font>
-		<span class="imp [212]"></span>
+	<details class="{258} kerdes 4/10"><summary><span class="important">T & R</span> lépések &#10140; képletek! enzim neve? reakció típusa? reverzibilitás?</summary><ul class="normal">
+		<table>
+			<tr> <th></th> <th>reakció</th> <th>enzim</th> <th>irreverzibilis & <span class="Important">reverzibilis</span></th> </tr>
+			<tr><th>1.</th> 
+				<td><abbr title="nukleofil addíció">aldol kondenzáció</abbr> + hidrolízis</td>
+				<td>citrát-szintáz</td>
+				<td>(exergónikus; &Delta;G<sup>0</sup> = -32,23kJ/mol)</td>
+			</tr>
+			<tr><th>2.</th> 
+				<td>izomerizáció</td>
+				<td>akonitáz</td>
+				<td class="Important">(endergónikus; &Delta;G<sup>0</sup> = +13kJ/mol) <abbr title="ettől függetlenül végbemegy, ugyanis az izocitrát ami keletkezik azonnal felhasználódik a következő lépésben, így koncentrációja alacsony">!!</abbr> <abbr title="és ha megnézem a biokémiai folyamatok termodinamikája tételt, akkor világos hogy a koncentrációtól hogyan függ a reakció iránya (Q és K !!!)">'</abbr><abbr title="az hogy endergónikus, természetesen csak arra vonatkozik, ha standarde körülmények lennének, hiszen élettani körülmények között az összes exergónikus">'</abbr></td>
+			</tr>
+			<tr><th>3.</th>
+				<td>oxidatív dekarboxiláció</td>
+				<td>izocitrát dehidrogenáz</td>
+				<td>(exergónikus; &Delta;G<sup>0</sup> = -21kJ/mol)</td>
+			</tr>
+			<tr><th>4.</th>
+				<td>oxidatív dekarboxiláció</td>
+				<td>α-ketoglutarát-dehidrogenáz <abbr title="ez egy multienzim-komplex">komplex</abbr></td>
+				<td>(exergónikus; &Delta;G<sup>0</sup> = -33,5kJ/mol)</td>
+			</tr>
+			<tr><th>5.</th>
+				<td>szubsztrát-szintű foszforiláció</td>
+				<td>szukcinil-CoA szintetáz</td>
+				<td class="Important">(exergónikus; &Delta;G<sup>0</sup> = -2,9kJ/mol)</td>
+			</tr>
+			<tr><th>6.</th>
+				<td>oxidáció</td>
+				<td>szukcinát-dehidrogenáz</td>
+				<td class="Important">(exergónikus; &Delta;G<sup>0</sup> = 0kJ/mol)</td>
+			</tr>
+			<tr><th>7.</th>
+				<td>vízaddíció</td>
+				<td>fumaráz</td>
+				<td class="Important">(exergónikus; &Delta;G<sup>0</sup> = -3,8kJ/mol)</td>
+			</tr>
+			<tr><th>8.</th>
+				<td>oxidáció</td>
+				<td>malát-dehidrogenáz</td>
+				<td class="Important">(endergónikus; &Delta;G<sup>0</sup> = +29,7kJ/mol)<abbr title="ettől függetlenül végbemegy, ugyanis az oxálacetát ami keletkezik azonnal felhasználódik a következő lépésben, így koncentrációja alacsony">!!</abbr></td>
+			</tr>
+		</table>
+		<img data-src="kplt_crtcclc.png"><img data-src="ctrcclx.png">
 	</ul></details>
 	<details class="{259} kerdes 3/4"><summary>hexokináz típusainak jellemzése?</summary><ul class="normal">
+		<li>emberben 4 típusa van, izoenzimek</li>
+		<li>hexokináz I-III hasonlóak, a hexokináz IV = glukokináz ellenben eltérő tulajdonságokkal bír</li>
+		<span class="imp [212]"></span>
 		<table><tr><th></th>  <th>I-III</th>  <th>IV</th></tr>
 			<tr><th>specifitás</th>  
-				<td>aspecifikus glükózra (D-fruktózt, D-mannózt is foszforilálja)</td>  
+				<td>aspecifikus glükózra <br>(D-fruktózt, D-mannózt is foszforilálja)</td>  
 				<td>specifikus glükózra</td>
 			</tr>
 			<tr><th>affinitás</th> 
-				<td>nagy affinitású, tehát Km-je alacsony! <abbr title="Km értékét nem kell tudni, de Km és affinitás közti fordított arányosságot igen!!"><font style="font-size:80%">(Km~0.1mM)</font></abbr></td>  
-				<td>kis affinitású, tehát Km-je magas! <font style="font-size:80%">(Km~7mM)</font></td>
+				<td>nagy <abbr title="Km értékét nem kell tudni, de Km és affinitás közti fordított arányosságot igen!!">'</abbr> <abbr title="Km~0.1mM">'</abbr></td>  
+				<td>kicsi <abbr title="Km~7mM">'</abbr></td>
 			</tr>
 			<tr><th>előfordulása</th> 
 				<td>minden sejtben van</td>  
-				<td>májban, pancreas &beta;-sejtjeiben &#10140; ott fordul elő, ahol a glukózfelvétel a vérből a szintén kis affinitású GLUT2 transzporteren keresztül történik <abbr title="no és mi a helyzet a vesével, meg enterocytákkal">!?</abbr></td>
+				<td>májban, <br>pancreas &beta;-sejtjeiben</td>
 			</tr>
 		</table>
-		<li><font style="font-size:80%"> glukóz-6-P allosztérikus gátlása nagy jelentőségű, mivel a hexokináz alacsony K<sub>m</sub>-értéke miatt (figyelembe véve a ~5 mM vércukorszint-értéket), nem gátolt hexokináz aktivitás esetén a vércukorszint nagyon gyorsan leesne</font></li>
-		KÉP &#10140; affinitás látható &#10140; tudni kell felrajzolni! <font style="font-size:80%">(számértékek nem annyira fontosak)</font>
+		<li>a glukóz-6-P allosztérikus gátlása nagy jelentőségű, mivel a hexokináz alacsony K<sub>m</sub>-értéke miatt (figyelembe véve a ~5 mM vércukorszint-értéket), nem gátolt hexokináz aktivitás esetén a vércukorszint nagyon gyorsan leesne</li>
+		<span class="Important">RAJZ-KÉP:</span> affinitás látható <font style="font-size:80%">(számértékek nem annyira fontosak)</font> tudni kell felrajzolni!!
 		<img data-src="fnnfnkdjhmn.png">
 	</ul></details>
 	<details class="{260} kerdes 3/3"><summary>hexokináz I-III és glükokináz működésének szabályozása?</summary><ul class="normal">
-		<strong>hexokináz I-III</strong> <div class="mirror">&#10140;</div> glukóz-6-P allosztérikusan gátolja
+		<strong>hexokináz I-III</strong> &#10140; glukóz-6-P allosztérikusan gátolja &#10140; a gátlás nagy jelentőségű, mivel az alacsony K<sub>m</sub>-értéke miatt (figyelembe véve a ~5 mM vércukorszint-értéket), nem gátolt hexokináz aktivitás esetén a vércukorszint nagyon gyorsan leesne</li>
 	  <hr>
 		<strong>glükokináz</strong>
 		<li>inzulin &#10140; indukálja(=hatására megnő a mennyisége) a májban</li>
@@ -475,6 +518,24 @@
 		<i>alapvetően a GLUT-5-el történő felszívás fogja meghatározni a fruktóz lebontás sebességét &#10140; ugyanis a GLUT-5 transzporterek száma viszonylag alacsony</i>
 	  <hr><strong>ezenkívül van fruktóz-szintézis is</strong> <img class="mini" data-src="rajz_dfrktz.png">
 		<li>a fruktóz a spermiumok legfőbb energiaforrása mozgáshoz, amihez a fruktóz a vesicula_seminalisban keletkezik</li>
+	</ul></details>
+	<details class="{267} kerdes 3/3"><summary>(táplálkozásnál lebontott) monoszacharidok abszorpciója</summary><ul class="normal">
+		<strong>az enterocytákon keresztül történik</strong>
+		<div><font class="abbr">enterocyták ►</font> vékonybél epithelsejtjei!</div>
+		<li>glükóz és galaktóz</li><ul>
+			<li>apikális membránon lévő SGLT-1 kotranszporter <abbr title="vagy galaktóz">glükóz</abbr>+2Na<sup>+</sup> &#10140; másodlagosan aktív transzporttal jut be</li>
+			<li>bazális membránon lévő GLUT-2 transzporter <abbr title="galaktóz is átjut rajta, csak a képről lemaradt">'</abbr> &#10140; facilitált diffúzió</li>
+			<span class="imp [171]"></span>
+		</ul>
+		<li>fruktóz <img onerror="alert(this.src)" class="mini" data-src="gltfrktztrnszprt.png"></li><ul>
+			<li>apikális membránon lévő GLUT-5 transzporter &#10140; facilitált diffúzió</li>
+			<li>bazális membránon lévő GLUT-5 és GLUT-2<abbr title="össze bikém előadás + könyvben GLUT-5 volt írva ide is. Élettanban a GLUT-2 volt. Wikipedia alapján a magyarázat, hogy mindkettő van.">'</abbr> transzporter &#10140; facilitált diffúzió</li>
+		</ul>
+	</ul></details>
+	<details class="{268} kerdes 2/1"><summary>4.lépés 'jelentősége'?</summary><ul class="normal">
+		<li>ha kimaradna, és egyből szukcinát keletkezne, akkor <abbr title="de még így is, hogy NAD+ redukálódik és tioészterkötés is lesz, a &Delta;G<sup>0</sup> = -33,5kJ/mol">nagyon nagy energiaveszteség</abbr> lenne</li>
+		<li>ezért itt egy makroerg tioészter-kötés képzésben tárolódik a felszabaduló energia egy része</li>
+		<img data-src="kplt_crtcclc.png">
 	</ul></details>
 <!----></details>
 

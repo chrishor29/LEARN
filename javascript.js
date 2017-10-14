@@ -132,27 +132,30 @@ if ( localStorage.getItem("loadQs.status") != "expqs.html" ) {
 var kerdesek = document.getElementsByClassName("kerdes")
 if ( localStorage.getItem("hkQ.max") === null ) { localStorage.setItem("hkQ.max",0) } 
 
-function func_abbrSet(){ 
+function func_abbrSet(elem){ 
 // azt csináljam, hogy a li textet írja át alapból: <span style="visibility:hidden"> ..text.. <span>, majd amikor ráklikkelek removeolja a spant --> megmaradnak a pontok
 // func_saveQuest előtt kell legyen, de a F_impQs után
-	var abbrSpan = document.getElementsByClassName("abbr")
+	var abbrSpan = elem.getElementsByTagName("*");
 	for ( var j = 0; j < abbrSpan.length; j++ ) {
-		abbrSpan[j].style.cursor = "pointer"
-		if ( !abbrSpan[j].Text ) {
-			abbrSpan[j].parentElement.style.visibility = "hidden"
-			abbrSpan[j].style.visibility = "visible"
-			abbrSpan[j].style.backgroundColor = "Bisque";
-		}
-		abbrSpan[j].onclick = function(){
-			if ( this.parentElement.style.visibility != "visible" ) { 
-				this.style.cursor = ""
-				this.style.backgroundColor = "";
-				this.parentElement.style.visibility = "visible"
+		if ( abbrSpan[j].className == "abbr" ) {
+			if ( elem.open != true ) {
+				abbrSpan[j].style.cursor = "pointer"
+				if ( !abbrSpan[j].Text ) {
+					abbrSpan[j].parentElement.style.visibility = "hidden"
+					abbrSpan[j].style.visibility = "visible"
+					abbrSpan[j].style.backgroundColor = "Bisque";
+				}
+			} 
+			abbrSpan[j].onclick = function(){
+				if ( this.parentElement.style.visibility != "visible" ) { 
+					this.style.cursor = ""
+					this.style.backgroundColor = "";
+					this.parentElement.style.visibility = "visible"
+				}
 			}
 		}
 	}
 }
-func_abbrSet()
 
 var arrOLDtxt = [] // Qtxt to LSid
 var arrNEWid = [] // LSid to Qtxt
@@ -305,6 +308,16 @@ function F_checkEXPs(){
 	}
 }
 F_checkEXPs()
+
+/*function F_expQs() {
+	var EXPelems = document.body.getElementsByClassName("exp")
+	for ( var i = 0; i < EXPelems.length; i++ ) {
+		var EXPid = EXPelems[i].className
+		EXPid = EXPid.replace( /^\D+/g, '');
+		//alert(EXPid)
+	}
+}
+F_expQs()*/
 
 function F_checkQs(){
 	var fullString = ""
@@ -539,7 +552,14 @@ function F_impQs(){ // #1)
 					} while ( parent.innerHTML.indexOf('<div class="title"') == -1 && parent.innerHTML.indexOf('<summary class="phase"') == -1 )
 					var checkID = Qtext.slice(Qtext.indexOf("{")+1,Qtext.indexOf("}"))
 					if ( Qelem.innerHTML.indexOf("{"+checkID+"}") == -1 && Qelem.className.indexOf("{"+checkID+"}") == -1 ) { 
-						impek[i].innerHTML = Qtext
+						if ( impek[i].nodeName == "SPAN" ) { 
+							impek[i].innerHTML = Qtext
+						} else if ( impek[i].nodeName == "DIV" ) {
+							Qtext = Qtext.slice(Qtext.indexOf('<ul class="normal">')+19)
+							Qtext = Qtext.slice(0,-15)
+							//alert(Qtext)
+							impek[i].innerHTML = Qtext
+						}
 					}
 				}
 			} else {
@@ -628,12 +648,23 @@ function F_imgLoad(){ // sajnos egyenlőre a legfelül lévő detailsra is érte
 				}
 			}
 			for ( var x=0; x<imgs.length; x++ ) {
-				var Qelem = imgs[x]
+				var IMGelem = imgs[x]
 				var parent = imgs[x]
 				do { // megkeresi az első details-t
-					Qelem = parent
+					IMGelem = parent
 					parent = parent.parentElement
-				} while ( parent.tagName != "DETAILS" )
+				} while ( parent.className.indexOf("[") == -1 && parent.tagName != "DETAILS" )
+				if ( parent.className.indexOf("[") > -1 ) {
+					var begin = parent.className.indexOf("[")
+					var end = parent.className.indexOf("]")
+					var EXPid = parent.className.slice(begin+1,end)
+					var string = localStorage.getItem("hkExpQ."+EXPid)
+					var IMGloc = string.slice(string.indexOf(" ")+1)
+					if ( imgs[x].dataset.src ) {
+						imgs[x].src =  htmlLEARNloc + IMGloc + imgs[x].dataset.src
+						imgs[x].removeAttribute("data-src")
+					}
+				}
 				if ( parent == this ) {
 					if ( imgs[x].dataset.src ) {
 						if ( imgs[x].dataset.src.indexOf("images") == -1 && imgs[x].dataset.src.indexOf("100") == -1 ) {
@@ -645,6 +676,7 @@ function F_imgLoad(){ // sajnos egyenlőre a legfelül lévő detailsra is érte
 					}
 				}
 			}
+			func_abbrSet(this)
 		}
 	}
 }
@@ -1625,9 +1657,8 @@ function func_calcPriorHosszJegy(elem){
 		prior = 0
 	}
 	if ( prior == "J" || prior == "j" ) { alert("error: J a prior még") } // ha már nem jön elő, törölhetem ezt a sort
-	var Qid = elem.id
-	var Qtxt = arrQid[Qid]
-	var LSid = txtLS[Qtxt]
+	F_calculateLSid(elem)
+	var LSid = actLSid
 	jegy = localStorage.getItem(LSid+'_jegy')
 	if ( jegy == 2 ) {
 		jegy = 7
@@ -1657,8 +1688,10 @@ function F_kerdesStatus(){ // kérdés hány %-on áll?
 		var repCount = Number(localStorage.getItem(LSid+'_repeat'))
 		func_calcTimeDiff(repCount)
 
-		trueJegy = trueJegy + Math.pow(0.8, idopont / timeDiff) * prior * hossz * jegy
-		maxJegy = maxJegy + prior * hossz * 10
+		if ( localStorage.getItem(LSid+"_skip") != "perma" ){
+			trueJegy = trueJegy + Math.pow(0.8, idopont / timeDiff) * prior * hossz * jegy
+			maxJegy = maxJegy + prior * hossz * 10
+		}
 	}
 	
 	for ( var i = 0;   i < allStatusQs.length;   i++ ) {
@@ -2247,13 +2280,10 @@ function F_prevQ(){
 			parent = parent.parentElement
 		} while ( parent.className != "altetel" && parent.className != "tetel" )
 		// END
-		var Qtext = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
-		var LSid
-		if ( QidLS[Qtext] ) { 
-			LSid = QidLS[Qtext]
-		} else { // amennyiben egy <span imp [120]></span>-ban lévő kérdésről van szó, amelynek nincs már Qid-je
-			LSid = txtLS[Qtext]
-		}
+	
+		F_calculateLSid(Qelem)
+		var Qtext = actQtext
+		var LSid = actLSid
 		if ( document.getElementById("note").value != "" ) {
 			//localStorage.setItem(Qelem.innerHTML, document.getElementById("note").value);
 			localStorage.setItem(LSid+'_note', document.getElementById("note").value);
@@ -2727,8 +2757,6 @@ function F_nextQ(){
 		var date = new Date();
 		var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(pLSid+'_idopont')
 		/* ez sztem fölös END */
-		
-		func_abbrSet()
 	}
 
 	func_enLargeImages()
