@@ -2716,6 +2716,11 @@ function F_nextQ(){
 							document.getElementById("td.0."+i).style.backgroundColor = "red"
 						}
 					}
+					if ( jegy == 2 ) {
+						if ( idopont >= 2000  ) {
+							document.getElementById("td.0."+i).style.backgroundColor = "red"
+						}
+					}
 				}
 				if ( localStorage.getItem(LSid+'_skip') ) {
 					document.getElementById("td.0."+i).style.backgroundColor = "Black"
