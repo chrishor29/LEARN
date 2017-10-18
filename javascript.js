@@ -4,6 +4,7 @@
 }*/
 
 /* PROJECT - PROGRESS
+ ✖: saveLS (stb.) button klikknél színes legyen
  ✖: legyen egy funkció az elején, ami lecsekolja, van-e azonos id-n különböző Qtext
  
  ✖: automatikusan mentse le az LS-t óránként
