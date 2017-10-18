@@ -86,6 +86,7 @@
 	<li>citrát-kör szabályozása csak allosztérikus(= kötődik az enzimhez)? &#10140; tehát tömeghatás törvénye (koncentráció viszonyok) nem?</li><ul>
 		<li><font style="font-size:80%">szvsz</font> így fogjam fel: reverzibilis reakciók esetében számítanak a koncentráció-viszonyok, mert azok iránya<abbr title="nyilván irreverzibilisé, csak nem annyira, hogy jelentős lenne">,mértéke</abbr> befolyásolható ezáltal &#10140; azonban ez szvsz nem tekinthető szabályozásnak (de lehet hgy igen), inkább úgy fogjam fel mint következmény &#10140; ugyanis ha megnézem a citrát-kör utolsó lépésének iránya befolyásolódik pl. az alkohol-fogyasztás következményeként</li>
 		<li>ugyanis a koncentráció viszony az összes reverzibilis reakciónál felírható, így fölösleges lenne mindig őket megemlíteni!</li>
+		<li>amúgy is amiket tanlunk szabályozó lépések azok irreverzibilisek (szvsz mind, de van egy-két kivétel, ahol a koncentráció-viszony jelentős, de az attól még nemtudom sorolható-e szabályozásba) &#10140; hiszen az enzim szabályozás 3 típusa: génexpresszió, kovalens, allosztérikus</li>
 	</ul>
 	
 	<li><font style="font-size:80%"><span class="WHITE">3</span> glukokináz ott fordul elő (máj, pancreas &beta;-sejt), ahol a glukózfelvétel a vérből a szintén kis affinitású GLUT2 transzporteren keresztül történik <abbr title="no és mi a helyzet a vesével, meg enterocytákkal">!?</abbr></font></li>
@@ -103,10 +104,8 @@
 
 
 
+8.előadás: 09:20
 
-
-<span class="MISS">piruvát-kináz</span>
-<span class="MISS">glikolízis szabályozás</span>
 
 
 <!--//////////////////////////////////////-->  <div><div class="mainTitle">előadások</div>  <!--//////////////////////////////////////-->
@@ -149,9 +148,13 @@
 			</ul>
 		</ul></details>
 		<details class="kerdes 2/1"><summary>miért AMP koncentráció allosztérikus szabályozó, miért nem ADP?</summary><ul class="normal">
-			<li>hogy az ATP ne csökkenjen annyira, ezért 2ADP átalakul &#10140; 1ATP + 1AMP</li>
+			<li>hogy az ATP ne csökkenjen annyira, ezért 2ADP átalakul 1ATP + 1AMP</li>
+			<li>2ADP <div class="mirror">&#10140;</div>&#10140; 1ATP + 1AMP .............enzim: adenilát-kináz</li>
 			<li>ennek következtében ATP kevésbé csökken, AMP viszont nagy mértékben nő</li>
 			<li><font style="font-size:80%">ez májsejtekben van</font></li>
+		</ul></details>
+		<details class="kerdes 2/1"><summary>foszfoglukomutáz reakciója<abbr title="elvileg ezek képleteit is kérik, de ez nem nagy szám">&#10045;</abbr></summary><ul class="normal">
+			<img data-src="glcmtjshmn.png">
 		</ul></details>
 		<details class="kerdes 2/6"><summary>légzési lánc – számítások</summary><ul class="normal">
 		  <strong>NADH+H<sup>+</sup> és FADH<sub>2</sub> oxidációja során menni energia szabadul fel</strong>
@@ -159,7 +162,7 @@
 			<li>NADH+H<sup>+</sup> oxidálása és 1/2 O<sub>2</sub> redukálódása során 220kJ/mol energia szabadul fel</li>
 			<li>FADH<sub>2</sub> oxidálása és 1/2 O<sub>2</sub> redukálódása során 152kJ/mol energia szabadul fel</li>
 		  <hr><strong>proton kipumpálásához mennyi energia szükséges</strong>
-			<li>két dologtól függ</li><ul>
+			<li><abbr title="logikus, hiszen elektrokémiai grádiens a koncetrációt és feszültséget foglalja magába!! (képletből is kiolvasható)">két dologtól függ</abbr></li><ul>
 				<li>membránpotenciál: &Delta;Ψ<sub>M</sub> = -150mV</li>
 				<li>pH-különbség: &Delta;pH = <abbr title="előadáson mondták, hogy újabban már ennyinek tartják, TK + diában még nem ezt írják">0,5</abbr></li>
 			</ul>
@@ -168,7 +171,15 @@
 			<li>egy FADH<sub>2</sub> oxidálása során tehát 6db proton pumpálódik ki (152/22)</li>
 			<font style="font-size:80%">ezekből az levonható hogy a hatásfok igen jó, kevés energia vesz el hő formájában &#10140; a számokba azonban bele lehet kötni, mert a 220kJ/mol és 152kJ/mol standard körülmények között lett kiszámítva<abbr title="a proton kipumpálás már nem!">'</abbr>, és a valóságban nem az van (szóval van némi eltérés)</font>
 		  <hr><strong>ATP szintéziséhez mennyi energia szükséges</strong>
-			<li>ki lett számítva az elején a két redoxpotenciál értékből, hogy &Delta;G<sup>0</sup>=-220kJ/mol egy NADH / NAD<sup>+</sup> &#10140; 1/2O<sub>2</sub> / H<sub>2</sub>O végbementele során</li>
+			<li>ΔG = ΔG<sup>0</sup> + RTln([ADP]*[P<sub>i</sub>]/[ATP])</li>
+			<li>elég a fennti képletet tudnom, ezenkívül annyit:</li><ul>
+				<li>ΔG<sub>0</sub> = 30,5kJ/mol</li>
+				<li>ΔG =~ 55kJ/mol</li>
+				<li>(ADP,Pi,ATP koncentrációt nem kell tudni)</li>
+			</ul>
+		</ul></details>
+		<details class="kerdes 3/1"><summary>glikogén-foszforiláz-kináz felépítéséről tudnivaló?</summary><ul class="normal">
+			<li>több alegységből áll &#10140; a <abbr title="delta">&delta;</abbr>-alegysége a kalmodulin &#10140; ezért mehet a szabályozás Ca<sup>2+</sup>-on keresztül is végbe (izomban ez a fontos!)</li>
 		</ul></details>
 	</ul></details>
 	<details class="open"><summary class="status"><strong>1.</strong></summary><ul class="normal">
@@ -683,29 +694,57 @@
 			</ul>
 		</ul></details>
 	</ul></details>
-	
-	<br><details open class="open"><summary class="status"><strong>36.</strong></summary><ul class="normal">
-		<li>lásd még 3.tétel</li>
+	<details class="open"><summary class="status"><strong>36.</strong></summary><ul class="normal">
 		<li>lásd még TK.170o</li>
-		<details open class="kerdes 3/1"><summary><strong>A piruvát kináz szabályozása májsejtekben</strong>, a glikolizis és glukoneogenezis enzimek mennyiségének regulációja a transzkripció szintjén</summary><ul class="normal">
+		<details class="kerdes 3/4"><summary><strong>A piruvát kináz szabályozása májsejtekben</strong>, a glikolizis és glukoneogenezis enzimek mennyiségének regulációja a transzkripció szintjén</summary><ul class="normal">
+			<li>piruvát-kináznak több izoenzime van &#10140; májban az L-típusú van</li>
+			<strong>szabályozás két szinten történik</strong><ul>
+				<li>allosztérikus</li>
+				<li>kovalens(foszforiláció)</li>
+			</ul>
+			<li><span class="Important">R</span> piruvát-kináz allosztérikus szabályozása képen</li><ul>
+				<li>(fruktóz-1,6-biszfoszfát &#10140; mivel innentől megpecsételt a glikolízis útja, akkor már menjen is végig)</li>
+				<li>(alanin &#10140; ha megjelenik májban akkor glukoneogenezisre van szükség)</li>
+				<li>(acetil-CoA &#10140; zsírsavak oxidációja miatt nő a mennyisége, ami akkor megy végbe ha glukoneogenezisre van szükség, ugyanis ilyenkor a zsírsavak fedezik az energiát hozzá)</li>
+			</ul>
+			<li>kovalens(foszforiláció)</li><ul>
+				<li>glukagon hatására &#10140; cAMP &#10140; PKA</li>
+				<li>a PKA foszforilálja a piruvát-kinázt, ami által inaktív<abbr title="logikus, hiszen glukagon esetében a glikolízist gátolni kell!">'</abbr> lesz</li>
+			</ul>
+		  <hr>
+			<li>izomban (M-típusú) ezen szabályozások nincsenek!</li>
+			<img data-src="glcklzglnkngfd.png">
 		</ul></details>
-		<details open class="kerdes 3/1"><summary>A piruvát kináz szabályozása májsejtekben, <strong>a glikolizis és glukoneogenezis enzimek mennyiségének regulációja a transzkripció szintjén</strong></summary><ul class="normal">
+		<details class="kerdes 3/4"><summary>A piruvát kináz szabályozása májsejtekben, <strong>a glikolizis és glukoneogenezis enzimek mennyiségének regulációja a transzkripció szintjén</strong></summary><ul class="normal">
+			<li>az enzim működés szabályozásának 3.típusa (kovalens,allosztérikus mellett) a génexpresszió szintjén történik &#10140; ilyenkor nem a működése, hanem mennyisége fog változni</li>
+		  <hr>
+			<table><tr><th></th><th>glukagon</th><th>inzulin</th></tr>
+				<tr><th>serkenti</th>
+					<td>PEPCK & glükóz-6-foszfatáz</td>
+					<td>glukokináz & piruvát-kináz</td>
+				</tr>
+				<tr><th>gátolja</th>
+					<td>glukokináz & piruvát-kináz</td>
+					<td>PEPCK & glükóz-6-foszfatáz</td>
+				</tr>
+			</table>
+			<li>tehát glukagon serkenti a <span class="Important">szintézisét</span> a PEPCK-nak és glükóz-6-Páz-nak <abbr title="a lényeg, hogy a szintézis van serkentve/gátolva! mindig">stb.</abbr></li>
+		  <hr>
 			<li>CREB &#10140; <abbr title="transzkripciós faktor">TF</abbr>, mely DNS-hez<abbr title="CRE részéhez">'</abbr> kötődik, ha megnő a cAMP</li>
+			<li>glukagon a CREB-en keresztül fejti ki egyrészt hatását</li>
+			<li>másrészt csökkenti a SREBP (ez is TF) mennyiségét, aminek <abbr title="tehát amit glukagon gátol(glukokináz...), azt ez serkenti. illetve amit glukagon serkent(PEPCK...), azt ez gtolja">hatása ellentétes</abbr> a glukagonéval</li>
 		</ul></details>
 	</ul></details>
-
-	<br><details class="kerdes 3/4"><summary class="status"><strong>37. A glikolízis és a glukoneogenezis koordinált szabályozása.</strong></summary><ul class="normal">
-		általánosan elmondható az alábbi &#10140; a szabályozás az irreverzibilis lépéseket katalizáló enzimek szabályozásán keresztül történik
-		<li>allosztérikus</li>
-		<li>hormonális &#10140; glukagon & inzulin (nincs a képen, egyenlőre)</li>
+	<details class="kerdes 3/4"><summary class="status"><strong>37. A glikolízis és a glukoneogenezis koordinált szabályozása.</strong></summary><ul class="normal">
+		<li>általánosan elmondható az alábbi &#10140; a szabályozás az irreverzibilis lépéseket katalizáló enzimek <span class="Important">allosztérikus</span> szabályozásán keresztül történik</li>
+		<li>külön kiemelem a hormonokat(glukagon és inzulin), melyek közvetve <abbr title="szintén">'</abbr> allosztérikusan szabályoznak a fruktóz-2,6-biszfoszfáton keresztül</li>
 	  <hr>
 		<li><span class="Important">RAJZ</span> (glukokináz nincs a képen)</li>
 		<img data-src="glcklzglnkngfd.png">
 	</ul></details>
 	<details class="kerdes 3/5"><summary class="status"><strong>38. A foszfofruktokináz 1 és a fruktóz biszfoszfatáz 1 regulációja.</strong></summary><ul class="normal">
-	  <strong>szabályozások típusai</strong>
-		<li>allosztérikus &#10140; képen láthatóakat soroljam fel (ezenkívül lennt 1-2 részletesebben megemlítve)</li>
-		<li>külön megemlítem a hormonokat(glukagon és inzulin), melyek közvetve <abbr title="szintén">'</abbr> allosztérikusan szabályoznak a fruktóz-2,6-biszfoszfáton keresztül</li>
+		<li>allosztérikus szabályozás van &#10140; képen láthatóakat soroljam fel (ezenkívül lennt 1-2 részletesebben megemlítve)</li>
+		<li>külön kiemelem a hormonokat(glukagon és inzulin), melyek közvetve <abbr title="szintén">'</abbr> allosztérikusan szabályoznak a fruktóz-2,6-biszfoszfáton keresztül</li>
 	  <hr><strong><span class="Important">R</span></strong> &#10140; ATP gátolja a foszfofruktokináz-1 -et
 		<img data-src="rajz_grkfjmnjm.png">
 	  <hr><strong>a zsírsavak oxidációjából származó acetil-CoA, és abból keletkező citrát felszaporodik </strong> &#10140; glukoneogenezis igénye <abbr title="<font style="font-size:80%">annyit belekötnék, hogy acetil-CoA (és így szvsz citrát is) felszaporodhat még &#10140; citrát-kör nem működik, alkohol-fogysaztás stb. (de ezek abnormálisak)</font>">'</abbr>
@@ -731,19 +770,22 @@
 				<li>vérrel eljutva a sejtekben elindítja a &#10140; cAMP &#10140; PKA</li>
 				<li>PKA hatása &#10140; foszfofruktokináz-2-t foszforilálja &#10140; fruktóz-2,6-biszfoszfát csökken &#10140; glikolízis gátolva, glukonegenezis serkentve</li>
 			</ul></details>
-			<details open><summary>inzulin</summary><ul class="normal">
+			<hr><details open><summary>inzulin</summary><ul class="normal">
 				<li>magas vércukorszint hatására termelődik a pancreas &beta;-sejtjeiben (Langerhans-sziget)</li>
 				<li>vérrel eljutva a sejtekben elindít jelátvitelt, hatására...</li>
-				<li>foszfoprotein-foszfatáz a foszfofruktokináz-2-t defoszforilálja &#10140; fruktóz-2,6-biszfoszfát nő &#10140; glikolízis serkentve, glukonegenezis gátolva</li>
+				<li><abbr title="a foszfoprotein-foszfatáz">'</abbr> a foszfofruktokináz-2-t defoszforilálja &#10140; fruktóz-2,6-biszfoszfát nő &#10140; glikolízis serkentve, glukonegenezis gátolva</li>
 			</ul></details>
 		</ul></details>
 	</ul></details>
 	<details class="kerdes 3/6"><summary class="status"><strong>40. A glikogén szintézise (iniciáció, elongáció)</strong></summary><ul class="normal">
 	  <details><summary>iniciáció</summary><ul class="normal">
 		<li>glikogén-szintáz a lánc szintézisét nem tudja elkezdeni, működéséhez egy, már legalább nyolc glukózt tartalmazó lánc szükséges</li>
-		<li>ezt a kezdeti láncot a glikogenin építi fel, amelynek egy Tyr-OH csoportjához kötődik be az első glukóz, UDP-glukózról</li>
-		<li>mind ezt a lépést, mind a további néhány glukózbeépülést UDP-glukózról a glikogenin katalizálja</li>
-		<li>amikor kész a ~ 8 glukózból álló lánc, akkor veszi át a lánc tovább- építését a glikogén-szintáz. A glikogenin mindvégig kötve marad a glikogén egyetlen redukáló végéhe</li>
+		<li>ezt a kezdeti láncot a glikogenin(fehérje) fogja létrehozni &#10140; </li><ul>
+			<li>egy Tyr-OH csoportjához kötődik be az első glukóz, UDP-glukózról</li>
+			<li>további kb.7 glükóz kapcsolódik UDP-glukózról rá láncszerűen (előző glükózra &alpha;1,4 kötés!)</li>
+		</ul>
+		<li>amikor kész a ~8 glukózból álló lánc, akkor veszi át a lánc további építését a glikogén-szintáz</li>
+		<li>a glikogenin mindvégig kötve marad a glikogén egyetlen redukáló végéhez</li>
 	  </ul></details>
 	  <hr><details><summary>elongáció <span class="Important">R</span></summary><ul class="normal">
 		<div><span class="WHITE">1</span> glükóz-6-P &#10140; glükóz-1-P &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; enzim:foszfoglukomutáz</div>
@@ -760,17 +802,21 @@
 			<div class="imp [286]"></div>
 		</ul></details>
 		<font style="font-size:80%">a glikogén foszforiláz 2db azonos alegységből épül fel, ezeknek 3 jelentős része van &#10140; aktív centrum, allosztérikus kötőhely, egy szerin-OH ahol foszforilálódik</font>
-	  <hr><details><summary>glikogén foszforiláz <u>kovalens</u> szabályozása MÁJban</summary><ul class="normal">
+	  <hr><details><summary><u>kovalens</u> szabályozása MÁJban</summary><ul class="normal">
 		<div class="imp [287]"></div>
 	  </ul></details>
-	  <hr><details><summary>glikogén foszforiláz <u>kovalens</u> szabályozása IZOMban</summary><ul class="normal">
+	  <hr><details><summary><u>kovalens</u> szabályozása IZOMban</summary><ul class="normal">
 		<li>NINCS glukagon receptor! &#10140; tehát itt NEM a vércukorszint fogja megszabni a glikogén lebontást, mint a májnál! helyette...</li>
 		<li>adrenalin kötődik &beta;-adrenerg receptorhoz &#10140; cAMP nő &#10140; folytatása már ugyanaz, mint glukagonnál</li>
 	  </ul></details>
-	  <hr><details><summary>glikogén foszforiláz <u>allosztérikus</u> szabályozása</summary><ul class="normal">
-		<li>májban a glükóz kötődik az aktív_glikogén-foszforiláz-hoz, és ezáltal képes lesz azt már defoszforilálni a foszfoprotein-foszfatáz-1 (emelkedett vércukorszint esetén nincs szükség glikogén lebontásra már!) &#10140; a glikogén-foszforiláz ún.<strong>glükózszenzor</strong> (izomban NEM!)</li>
-		<li>izomban ehelyett AMP kötődik az inaktív_glikogén-foszforiláz-hoz, és ezáltal aktiválódik (logikus, hisz ilyenkor van szükség glikogén lebontására)</li>
-		<li>a Ca<sup>2+</sup> növekedése aktiválja a glikogén-foszforiláz-kinázt &#10140; Ca<sup>2+</sup> növekedés oka:</li><ul>
+	  <hr><details><summary><u>allosztérikus</u> szabályozása</summary><ul class="normal">
+		<li>májban a <span class="WHITE">glükóz</span> <img class="mini" data-src="kszsdfhjfm.png"></li><ul>
+			<li>gátolja a glikogén lebontást &#10140; kötődik az aktív_glikogén-foszforiláz-hoz, és ezáltal képes lesz azt már defoszforilálni a foszfoprotein-foszfatáz-1, tehát inaktiválni (hiszen emelkedett vércukorszint esetén nincs szükség glikogén lebontásra már!) (ezért a glikogén-foszforiláz ún.<strong>glükózszenzor</strong>)</li>
+			<li>serkenti a glikogén-szintézist &#10140; glükóz-6-P-á alakul, ami hozzákapcsolódik a glikogén-szintázhoz, amit így más képes defoszforilálni a foszfoprotein-foszfatáz-1, tehát aktiválni</li>
+			<span class="Important">tehát a defoszforilációhoz alkalmas konformációt ez teszi lehetővé &#10140; de! a defoszforilációt végző enzim aktiválásához inzulinra van még szükség!!</span>
+		</ul>
+		<li>izomban ehelyett <span class="WHITE">AMP</span> kötődik az inaktív_glikogén-foszforiláz-hoz, és ezáltal aktiválódik (logikus, hisz ilyenkor van szükség glikogén lebontására)</li>
+		<li>glikogén-foszforiláz-kináz &delta;-alegysége <abbr title="Ca<sup>2+</sup>-o(ka)t kötő fehérje">kalmodulin</abbr>, így a <span class="WHITE">Ca<sup>2+</sup> növekedése</span> aktiválja &#10140; Ca<sup>2+</sup> növekedés oka:</li><ul>
 			<li>izomban kontrakciónál nő</li>
 			<li>májban adrenalin &alpha;1-reecptorhoz kötődése következtében nő <span class="lasd">43.tétel</span></li>
 		</ul>
@@ -785,12 +831,13 @@
 		<li><abbr title="szvsz tk.180o szövege és 179o ábrája alapján">'</abbr> a glikogén szintáz foszforilációja hasonlóan történik, mint a glikogén foszforilázé <abbr title="különbség, hogy több helyen történik, és több enzim IS foszforilálhatja &#10140; DE! a hormonok által végbemenő hatások dominálnak itt is, ugyanolyan módon (csak van kiegészítés is mellette)">'</abbr></li>
 		<li><span class="MISS">szóval ennél rizsázzak kicsit a képen láthatóról + 41.tétel</span> <img class="mini" data-src="lksjsdmah.png"></li>
 	  <hr><strong>defoszforiláció, tehát aktiválódás</strong>
-		<li>inzulin hatására &#10140; PKB aktiválódik &#10140; </li><ul>
-			<li>glikogén-szintáz-kinázt foszforilálja, így inaktiválódik</li>
-			<li>emellett a foszfoprotein-foszfatáz-1(PP1)-et is stimulálja, tovább erősítve a glikogén-szintáz stimulációját, a glikogén-foszforiláz-kináz és a glikogén-foszforiláz gátlását</li>
-		</ul>
+		<div class="imp [293]"></div>
 	  <hr><strong>allosztérikus</strong>
-		<li>glukóz-6-foszfát aktiválja</li>
+		<li>májban a glükóz <img class="mini" data-src="kszsdfhjfm.png"></li><ul>
+			<li>gátolja a glikogén lebontást &#10140; kötődik az aktív_glikogén-foszforiláz-hoz, és ezáltal képes lesz azt már defoszforilálni a foszfoprotein-foszfatáz-1, tehát inaktiválni (hiszen emelkedett vércukorszint esetén nincs szükség glikogén lebontásra már!) (ezért a glikogén-foszforiláz ún.<strong>glükózszenzor</strong>)</li>
+			<li>serkenti a glikogén-szintézist &#10140; glükóz-6-P-á alakul, ami hozzákapcsolódik a glikogén-szintázhoz, amit így más képes defoszforilálni a foszfoprotein-foszfatáz-1, tehát aktiválni</li>
+			<span class="Important">tehát a defoszforilációhoz alkalmas konformációt ez teszi lehetővé &#10140; de! a defoszforilációt végző enzim aktiválásához inzulinra van még szükség!!</span>
+		</ul>
 		<img data-src="glkgkndrnln.png">
 	</ul></details>
 	<details class="kerdes 3/5"><summary class="status"><strong>43. A glukagon és az adrenalin hatása a glikogén anyagcserére a májban</strong></summary><ul class="normal">
@@ -803,7 +850,22 @@
 		<li><font style="font-size:80%">DAG &#10140; glikogén-szintézist gátolja: UDP-glükóz – glikogén átalakulást gátolja</font></li>
 	  </ul></details>
 	</ul></details>
-	
+
+	<br><details open class="open"><summary class="status"><strong>44.</strong></summary><ul class="normal">
+		<details class="kerdes 3/?"><summary><strong>Motoros ideg stimuláció</strong> és az adrenalin hatása a glikogén anyagcserére izomban</summary><ul class="normal">
+			<li>s</li>
+		</ul></details>
+		<details class="kerdes 3/?"><summary>Motoros ideg stimuláció és az <strong>adrenalin hatása a glikogén anyagcserére izomban</strong></summary><ul class="normal">
+			<li>s</li>
+		</ul></details>
+	</ul></details>
+	<details open class="kerdes 3/?"><summary class="status"><strong>45. Az inzulin elválasztásának mechanizmusa a pancreas ß‐sejtjeiben</strong></summary><ul class="normal">
+		<li>s</li>
+	</ul></details>
+	<details open class="kerdes 3/?"><summary class="status"><strong>46. Az inzulin hatásai a glikogén szintézisére és lebontására</strong></summary><ul class="normal">
+		<div class="imp [293]"></div>
+	</ul></details>
+
 	<br><details class="kerdes 3/6"><summary class="status"><strong>47. A glükóz direkt oxidációjának oxidatív szakasza</strong></summary><ul class="normal">
 		<li>első lépés (glükóz-6-P-dehidrogenáz) a 'legjelentősebb'</li><ul>
 			<li>ez a sebességmeghatározó</li>
@@ -928,28 +990,26 @@
 			<li>tehát a 'nettó reakció' <img class="mini" data-src="ntrkcmtmrc.png"></li>
 		</ul>
 		<li>egy NADH+H<sup>+</sup> oxidációja során a felszabaduló energia ennyi <abbr title="lehetne max">'</abbr> &#10140; &Delta;G<sup>0</sup> = 220kJ/mol <abbr title="FADH2-nél 152kJ/mol">'</abbr> <abbr title="ezek persze standard kkörülményekre értett adatok (de inkább nem bonyolítsam, úgyse értem)">'</abbr> <img class="mini" data-src="frdtrmx.png"> <abbr title="ennek kiszámítása ha érdekel, akkor 2017.09.14 szeminárium 1óra tájékán meghalgathatom">'</abbr></li>
-		<li>a felszabaduló energia proton kipumpálására fordítódik &#10140; majd ezek visszaáramlása során felszabaduló energia fog ATP-szintézisre fordítódni az <strong>oxidatív_foszforiláció</strong> <abbr title="mely a terminális oxidációhoz kapcsolt">'</abbr> során ➜ melyet az ATP-szintáz végez</li>
+		<li>a felszabaduló energia proton kipumpálására fordítódik az intermembrán térbe </li>
+		<li>végül a protonok visszaáramlása során felszabaduló energia fog ATP-szintézisre fordítódni az <strong>oxidatív_foszforiláció</strong> <abbr title="mely a terminális oxidációhoz kapcsolt">'</abbr> során ➜ melyet az ATP-szintáz végez</li>
 	  <hr>
-		<li>ahogy már említve volt, a redox-reakciókat véghez vívő fehérje-komplexek a mitokondrium <abbr title="hisz a mitokondriumnak kettős membránja van (és ugye mindkettő kétrétegű)">belső</abbr> membránjában helyezkednek el &#10140; 4db ilyen fehérje-komplex van</li>
-		<li>ezek alkotják az ún. légzési-elektrontranszport-láncot</li>
-		<li>ezek 'lényegében' két dolgot csinálnak <abbr title="a redox-reakciók ,,mellett''">'</abbr> &#10140; elektront-szállítanak, és ezenkívül protont-pumpálnak ki az intermembrán térbe</li>
-		<li>az intermembrán térbe felgyülemlő protonokat fogja az ATP-szintáz visszaengedni, és közben az energiát ATP-szintézisre fordítja</li>
-	  <hr>
-		<details><summary>működéssel kapcsolatos általános tudnivalók</summary><ul class="normal">
-			<li>a komplex-I,III és IV transzmembrán &#10140; ezek pumpálnak ki protonokat</li>
-			<li>a komplex-I,II,III felépítésében vesz részt Fe-S–komplex(ek) &#10140; ezek az elektrontranszportban játszanak szerepet</li>
-			<li><abbr title="koenzim-Q = UQ = ubikinon">CoQ</abbr> és citokróm-c, mely szállítja az elektronokat a fehérjekomplexek között &#10140; ezek szabadabban mozoghatnak <abbr title="a citrokróm-c az intermembrán térben van (CoQ a belső-membránban)">'</abbr></li>
-		</ul></details>
-	  <hr>
-		<details><summary>komplexek működése röviden</summary><ul class="normal">
-			<li>komplex I &#10140; 4H<sup>+</sup>-t kipumpál</li>
-			<li>komplex II &#10140; nem pumpál ki protont</li>
-			<li>komplex III &#10140; 4H<sup>+</sup>-t kipumpál</li>
-			<li>komplex IV &#10140; 2H<sup>+</sup>-t kipumpál, 1/2 O<sub>2</sub>-t redukál vízzé (tehát 4protont használ fel mitokondrium felől)</li>
-		  <hr>
+		<li>ahogy már említve volt, a redox-reakciókat véghez vívő fehérje-komplexek a mitokondrium <abbr title="hisz a mitokondriumnak kettős membránja van (és ugye mindkettő kétrétegű)">belső</abbr> membránjában helyezkednek el &#10140; 4db ilyen fehérje-komplex van</li><ul>
 			<li>ha FADH<sub>2</sub> jön, akkor az a II-III-IV úton megy végig &#10140; 6db proton pumpálódik ki</li>
 			<li>ha NADH+H<sup>+</sup> jön, akkor az a I-III-IV úton megy végig &#10140; 10db proton pumpálódk ki</li>
-		</ul></details>
+		</ul>
+		<li>ezen komplexek 'lényegében' két dolgot csinálnak <abbr title="a redox-reakciók ,,mellett''">'</abbr> &#10140; , és ezenkívül </li><ul>
+			<li>elektront-szállítanak</li>
+			<li>protont-pumpálnak ki az intermembrán térbe &#10140; a komplex-I,III és IV (ezek transzmembránok)</li><ul>
+				<li>komplex I &#10140; 4H<sup>+</sup>-t kipumpál</li>
+				<li>komplex II &#10140; nem pumpál ki protont</li>
+				<li>komplex III &#10140; 4H<sup>+</sup>-t kipumpál</li>
+				<li>komplex IV &#10140; 2H<sup>+</sup>-t kipumpál, 1/2 O<sub>2</sub>-t redukál vízzé (tehát 4protont használ fel mitokondrium felől)</li>
+			</ul>
+		</ul>
+		<li>elektrontranszportban résztvevő fontosabb 'komponensek'</li><ul>
+			<li>Fe-S–komplexek <font style="font-size:80%">(ezek a komplex-I,II,III-ban találhatók)</font></li>
+			<li><abbr title="koenzim-Q = UQ = ubikinon">CoQ</abbr> és citokróm-c &#10140; szállítják az elektronokat a fehérjekomplexek között <font style="font-size:80%">(a citrokróm-c az intermembrán térben van, CoQ a belső-membránban)</font></li>
+		</ul>
 	</ul></details>
 	<details class="open"><summary class="status"><strong>58.</strong></summary><ul class="normal">
 		<details class="kerdes 3/5"><summary><strong>Az ATP‐szintáz működése,</strong> az akceptorkontroll</summary><ul class="normal">
@@ -962,7 +1022,7 @@
 	</ul></details>
 	<details class="kerdes 3/8"><summary class="status"><strong>59. A P/O hányados definíciója és értékének értelmezése a kemiozmotikus elmélet szerint.</strong></summary><ul class="normal">
 	  <strong>bevezetés</strong>
-		<li>egy proton kipumpálása kb. 20kJ/mol energiába kerül <abbr title="kiszámítása ha neadjisten érdekel: 2017.09.14 szeminárium 1óra 5perc tájékán">'</abbr> &#10140; egy NADH oxidáció során 10db proton pumpálódik ki, mígy egy FADH<sub>2</sub> oxidációja során <abbr title="valójában 22kJ/mol, és így 6,9 jönne ki">6db</abbr></li>
+		<li>egy proton kipumpálása kb.22kJ/mol energiába kerül &#10140; egy NADH oxidáció során 10db proton pumpálódik ki, mígy egy FADH<sub>2</sub> oxidációja során 6db</li>
 		<li>egy ATP keletkezése ADP + P<sub>i</sub>-ből <abbr title="tehát a koncentrációk nem standard, hanem a mitokondriumban lévők"><u>valós</u></abbr> körülmények között 55kJ/mol</li>
 		<font style="font-size:80%"><u>standard</u> körülmények között lenne 30,5kJ/mol</font>
 		<li>tehát egy ATP keletkezéséhez 3db proton kipumpálása kell, azonban...</li>
@@ -1467,15 +1527,38 @@
 		<li>glukagon hatására &#10140; cAMP nő &#10140; PKA aktiválódik, így...</li><ul>
 			<li>foszforilálja a glikogén-foszforiláz-kináz fehérjét, és így aktiválja &#10140; ez foszforilálja az inaktív_glikogén-foszforilázt és így aktiválja</li>
 			<li>foszforilálja a foszfoprotein-foszfatáz-1-inhibitort, és így aktiválja &#10140; ez gátolja a foszfoprotein-foszfatáz-1(PP1) működését, ami így nem tudja defoszforilálni a glikogén-foszforilázt</li>
+			utóbbival megakadályozza még azt is, hogy inzulin hatására a foszfoprotein-foszfatáz-1 aktiválódjon, és defoszforilálja a glikogén_foszforilázt (inaktiválja)
 		</ul>
 		<li>adrenalin kötődik &beta;-adrenerg receptorhoz &#10140; cAMP nő &#10140; folytatása már ugyanaz, mint glukagonnál</li>
 		<img data-src="glkgkndrnln.png">
+	</ul></details>
+	<details class="{293} kerdes 3/3"><summary>inzulin hatása májban (kovalens módosítások)</summary><ul class="normal">
+		<img style="max-width:20%" data-src="glkgkndrnln.png">
+		inzulin hatásai:
+		<li>PKB aktiválja &#10140; glikogén-szintáz-kinázt foszforilálja, így inaktiválódik &#10140; glikogén-szintáz foszforilációját gátolja</li>
+		<li>aktiválja a defoszforilációt végző foszfoprotein-foszfatáz-1 enzimet</li><ul>
+			<li>defoszforilálja a glikogén-szintázt &#10140; aktiválja &#10140; glikogén szintézis serkentve</li>
+			<li>defoszforilálja a glikogén-foszforilázt &#10140; inaktiválja &#10140; glikogén lebontás gátolva</li>
+		</ul>
 	</ul></details>
 	<details class="kerdes 3/1"><summary>mikroszóma mi</summary><ul class="normal">
 		<li>sER &#10140; <span class="lasd">jelenőségét lásd majd drogok metabolizmusa</span></li>
 	</ul></details>
 	<details class="kerdes 3/j"><summary>szintáz vs szintetáz</summary><ul class="normal">
 		<li>szintetáz, amikor ATP(GTP)-t használ reakció során &#10140; lásd: citrát-kör szukcinát-dehidrgenáz; alkohol oxidáció acetil-CoA-szintetáz</li>
+	</ul></details>
+	<details class="kerdes 2/1"><summary>glikogén hol tárolódik &#10140; nagyobb mennyiségben? nagyobb koncentráióban?</summary><ul class="normal">
+		<li>izom (mennyiség)</li>
+		<li>máj (koncentráció)</li>
+	</ul></details>
+	<details class="kerdes 3/j"><summary>glukagon hatása</summary><ul class="normal">
+		értelemszerűen a májban (izomban nem!)
+		<li>glikogén lebontás &#10140; glükóz lesz belőle</li>
+		<li>trigliceridek lebontása</li><ul>
+			<li>glicerin lebontás &#10140; glükóz lesz belőle</li>
+			<li>zsírsav lebontás &#10140; energiát fedezi glükoneogenezishez (glükóz nem lehet belőle!)</li>
+		</ul>
+		<li>glükoneogenezis</li>
 	</ul></details>
 <!----></details>
 
