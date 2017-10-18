@@ -4,12 +4,15 @@
 }*/
 
 /* PROJECT - PROGRESS
+ ✖: automatikusan mentse le az LS-t óránként
+
+ ✖: Qid-t vegyem ki!!!
+ ✖: upgrade Q-nál alapból az 1-es legyen kijelölve, ne a skip
+
  ✖: saveLS (stb.) button klikknél színes legyen
  ✖: legyen egy funkció az elején, ami lecsekolja, van-e azonos id-n különböző Qtext
+ ✖: legyen egy checkbox, amit ha kipipálok, akkor lecsekkolja az img-eket az oldalbetöltésnél (van-e ami missing?)
  
- ✖: automatikusan mentse le az LS-t óránként
- ✖: Qid-t vegyem ki!!!
-
  ✖: nextQ-nál egyből töltse be az img-eket
  ✖: tablet -> show prior + jegy
  ✖: átlagjegy (id előtti div)
@@ -30,7 +33,7 @@
  ✔: csekkolja, hogy az LSid biztos ne legyen foglalt már valahogy, hogy nehogy az Expid és pure_LSid-s azonosat kapjon, ha igen akkor mégis javítsa!
  ✔: localStorage(ExpID,LSid) formátumban legyen elmentve, mert a Qtext az ott lesz csak simán LSid-hez csatoltan!!
  ✔: Load LS & Save LS -> tárgyválasztásnál
- ✔: upgrada Q-nál legyen skip funkció
+ ✔: upgrade Q-nál legyen skip funkció
  ✔: summary-nél valami jelezze, ha meg van nyitva
  ✔: import Q image -> minden html tetején lesz egy variable, amiben benne van az IMAGES\'adott tárgy mappa' címe. ezt az expid mellé csatolja a Qtextbe. A képek betöltésénél (data-src helyett src) ezt írja hozzá.
 */
