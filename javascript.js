@@ -4,7 +4,7 @@
 }*/
 
 /* PROJECT - PROGRESS
- ✖: automatikusan mentse le az LS-t óránként
+ ✖: automatikusan mentse le az LS-t általam kiválasztott db osztályzásonként (pl. 3,10) --> jó lenne, ha az utolsó 3 maradna csak meg mindig (tehát felülírná őket valahogy) /tableten risk, mert lassan tölti le, ott inkább turn off/
 
  ✖: Qid-t vegyem ki!!!
  ✖: upgrade Q-nál alapból az 1-es legyen kijelölve, ne a skip
@@ -12,6 +12,7 @@
  ✖: saveLS (stb.) button klikknél színes legyen
  ✖: legyen egy funkció az elején, ami lecsekolja, van-e azonos id-n különböző Qtext
  ✖: legyen egy checkbox, amit ha kipipálok, akkor lecsekkolja az img-eket az oldalbetöltésnél (van-e ami missing?)
+ ✖: notepad: macro for impQ
  
  ✖: nextQ-nál egyből töltse be az img-eket
  ✖: tablet -> show prior + jegy
@@ -1692,10 +1693,10 @@ function F_kerdesStatus(){ // kérdés hány %-on áll?
 		var repCount = Number(localStorage.getItem(LSid+'_repeat'))
 		func_calcTimeDiff(repCount)
 
-		if ( localStorage.getItem(LSid+"_skip") != "perma" ){
+		// if ( localStorage.getItem(LSid+"_skip") != "perma" ){
 			trueJegy = trueJegy + Math.pow(0.8, idopont / timeDiff) * prior * hossz * jegy
 			maxJegy = maxJegy + prior * hossz * 10
-		}
+		// }
 	}
 	
 	for ( var i = 0;   i < allStatusQs.length;   i++ ) {
