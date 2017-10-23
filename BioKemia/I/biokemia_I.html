@@ -1490,18 +1490,19 @@ tematika: <img class="mini" data-src="tematika.png">
 		</ul>
 		<li>reverzibilis gátlás típusai ➜ kompetitív, unkompetitív, kevert, non-kompetitív</li>
 		<hr><li>kompetitív</li><ul>
-			<li>inhibitor az enzim aktív_centrumába kötődve elfoglalja a szubsztrát helyét</li>
-			<li>(van olyan is ami nem aktív_centrumba kötődik, hanem csak csökkenti az enzim affinitását csökkenti a szubsztráthoz <abbr title="ugye mindkét esetben k1-et csökkenti, de ha aktív_centrumba kötődve 100%ban gátolja, akkor az aktivitás-csökkentő képen, nem lenne az a ferde szaggatot(jobbrafel-mutató) nyíl az enzim-szubsztrát komplexhez ívelve (k1 csökken)">§</abbr>) <img class="mini" data-src="ktvnmktvcntrm.png"></li>
-			<li>ha a szubsztrát-koncentrációt magasra emelem, a gátlás megszűntethető ➜ V<sub>max</sub> nem változik</li>
-			<li>K<sub>M</sub> nő, hisz nő az a szubsztrát-koncentráció érték, melynél a V=V<sub>max</sub>/2</li><ul>
-				<li>K<sub>M</sub><sup>†</sup> = K<sub>M</sub> × &alpha;</li>
+			<li>inhibitor az enzim aktív_centrumába kötődve elfoglalja a szubsztrát helyét <abbr title="van olyan is ami nem aktív_centrumba kötődik, hanem csak csökkenti az enzim affinitását csökkenti a szubsztráthoz &#10140; mindkét esetben k1-et csökkenti, de ha aktív_centrumba kötődve 100%ban gátolja, akkor az aktivitás-csökkentő képen, nem lenne az a ferde szaggatot(jobbrafel-mutató) nyíl az enzim-szubsztrát komplexhez ívelve (k1 csökken)">'</abbr> <img class="mini" data-src="ktvnmktvcntrm.png"></li>
+			<li><span class="Important">[S] növelése csökkenti a gátlást</span></li><ul>
+				<li>a gátlás K<sub>M</sub> alatti szubsztrátkoncentráció esetében hatékony <abbr title="itt a specifitási konstans határozza meg az enzim hatékonyságát">'</abbr></li>
 			</ul>
-			<li>&alpha; = 1 + [I] / <abbr title="kompetitív(c) inhibitor(i) disszociációs_konstans(K)">K<sub>ic</sub></abbr></li>
-			<li>kompetitív inhibitorok csak olyan szubsztrátkoncentráció-tartományban hatékonyak, ahol a specificitási állandó határozza meg az enzim hatékonyságát ➜ azaz K<sub>M</sub> alatt</li>
+			<li>&alpha; = d + [I] / <abbr title="kompetitív(c) inhibitor(i) disszociációs_konstans(K)">K<sub>ic</sub></abbr></li>
+			<li>pl. szukcinát-dehidrogenáz gátlása malonáttal <span class="lasd">bikém II. első demó: 62.tétel</span></li>
+			<li>pl. alkohol-dehidrogenáz metanol lebontásának kompetitív gátlása alkohollal <span class="lasd">bikém II. első demó: 34.tétel</span></li>
 		</ul>
 		<li>unkompetitív</li><ul>
+			<li><span class="Important">[S] növelése serkenti a gátlást</span> (hisz így az enzim egyre nagyobb arányban kerül gátolt állapotba, hiszen egyre több az ES komplex, amihez kötődik az unkompetitív inhibitor)</li><ul>
+				<li>a gátlás olyan szubsztrátkoncentráció esetében hatékony ahol a <abbr title="k<sub>cat</sub>">katalitikus állandó</abbr> (vagyis a V<sub>max</sub>) határozza meg az enzim hatékonyságát</li>
+			</ul>
 			<li>&alpha; = 1 + [I] / <abbr title="unkompetitív(c) inhibitor(i) disszociációs_konstans(K)">K<sub>iu</sub></abbr></li>
-			<li>unkompetitív inhibitorok csak olyan szubsztrátkoncentráció-tartományban hatékonyak, ahol a <abbr title="k<sub>cat</sub>">katalitikus állandó</abbr> (vagyis a Vmax) határozza meg az enzim hatékonyságát (telítéshez közeli szubsztrátkoncentrációk) <div class="mirror">➜</div> hisz a szubsztrátkoncentráció emelésével az enzim egyre nagyobb arányban kerül gátolt állapotba, hiszen egyre több az ES komplex, amihez kötődik az unkompetitív inhibitor➜ szubsztrát-koncentrációt emelésével a gátlás nem csökken, mint kompetitívnél, hanem fokozódik</li>
 		</ul>
 		<li>kevert <abbr title="leggyakoribb">()</abbr></li><ul>
 			<li>inhibitor E-hez és ES-hez is képes kötődni, és mindkettő aktivitását csökkenti</li>
@@ -1546,7 +1547,7 @@ tematika: <img class="mini" data-src="tematika.png">
 				<td>csökken, V<sub>max</sub><sup>†</sup> = V<sub>M</sub> / &alpha;<sub>u</sub></td>
 				<td>csökken, V<sub>max</sub><sup>†</sup> = V<sub>M</sub> / &alpha;<sub>u</sub></td>
 			</tr>
-			<tr><th>specifitási_konstans</th>
+			<!--<tr><th>specifitási_konstans</th>
 				<td>csökken, <abbr title="tehát ennyivel kell beszorozni a kezdetit (hisz s.k. = V<sub>max</sub>/K<sub>M</sub>)">1/&alpha;-ad részére</abbr></td>
 				<td>nem változik</td>
 				<td>csökken, 1/&alpha;<sub>c</sub>-ad részére</td>
@@ -1557,7 +1558,7 @@ tematika: <img class="mini" data-src="tematika.png">
 				<td>[S] növelésével <i>nő</i></td>
 				<td><abbr title="[ez ugyan nem volt megemlítve sehol, de....] itt szvsz lehet [S]-el arányos és fordítottan arányos is (hisz Km is hasonlóan változik ha megnézem)">(!?)</abbr></td>
 				<td>[S]-től független</td>
-			</tr>
+			</tr>-->
 		</table>
 	</ul></details>
 	<details class="kerdes 3/3"><summary>irreverzibilis inhibitorok</summary><ul class="normal">

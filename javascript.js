@@ -4,15 +4,13 @@
 }*/
 
 /* PROJECT - PROGRESS
- ✖: automatikusan mentse le az LS-t általam kiválasztott db osztályzásonként (pl. 3,10) --> jó lenne, ha az utolsó 3 maradna csak meg mindig (tehát felülírná őket valahogy) /tableten risk, mert lassan tölti le, ott inkább turn off/
-
  ✖: Qid-t vegyem ki!!!
  ✖: upgrade Q-nál alapból az 1-es legyen kijelölve, ne a skip
 
- ✖: saveLS (stb.) button klikknél színes legyen
  ✖: legyen egy funkció az elején, ami lecsekolja, van-e azonos id-n különböző Qtext
  ✖: legyen egy checkbox, amit ha kipipálok, akkor lecsekkolja az img-eket az oldalbetöltésnél (van-e ami missing?)
  ✖: notepad: macro for impQ
+ ✖: autoSave LS --> jó lenne, ha az utolsó 3 maradna csak meg mindig (tehát felülírná őket valahogy) /tableten risk, mert lassan tölti le, ott inkább turn off/
  
  ✖: nextQ-nál egyből töltse be az img-eket
  ✖: tablet -> show prior + jegy
@@ -31,10 +29,10 @@
 */
 
 /* PROJECT - DONE
+ ✔: saveLS (stb.) button klikknél színes legyen
+ ✔: autoSave LS --> általam kiválasztott db osztályzásonként (pl. 3,10)
  ✔: csekkolja, hogy az LSid biztos ne legyen foglalt már valahogy, hogy nehogy az Expid és pure_LSid-s azonosat kapjon, ha igen akkor mégis javítsa!
  ✔: localStorage(ExpID,LSid) formátumban legyen elmentve, mert a Qtext az ott lesz csak simán LSid-hez csatoltan!!
- ✔: Load LS & Save LS -> tárgyválasztásnál
- ✔: upgrade Q-nál legyen skip funkció
  ✔: summary-nél valami jelezze, ha meg van nyitva
  ✔: import Q image -> minden html tetején lesz egy variable, amiben benne van az IMAGES\'adott tárgy mappa' címe. ezt az expid mellé csatolja a Qtextbe. A képek betöltésénél (data-src helyett src) ezt írja hozzá.
 */
@@ -2203,6 +2201,51 @@ function func_multiQCheck(){ // kiírja a quest summary-jébe, mely questeket id
 //func_multiQCheck() // (most valamiért hibás is, mert lefagy ha elindítom, szóval skip egyenlőre)
 
 
+// SAVE LS (begin)
+function download(filename, text) { // (netről copyztam) --> (azért kellett, mert androidon máshogy nemtudom lementeni)
+	 var pom = document.createElement('a');
+	 pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+	 pom.setAttribute('download', filename);
+
+	 if (document.createEvent) {
+		  var event = document.createEvent('MouseEvents');
+		  event.initEvent('click', true, true);
+		  pom.dispatchEvent(event);
+	 }
+	 else {
+		  pom.click();
+	 }
+}
+function setItem(key, value){
+	if (typeof value === 'object') {
+		value = JSON.stringify(value);
+	}
+	localStorage.setItem(key, value);
+}
+function getItem(key){
+	if (key){
+		try{
+			return JSON.parse(localStorage.getItem(key));
+		}
+		catch(e){
+			return localStorage.getItem(key);
+		}
+	}
+}
+function func_saveLS() {
+	var objects = {};
+	var text = ""
+	for (var i = 0, len = localStorage.length; i < len; i++) {
+		objects[localStorage.key(i)] = getItem(localStorage.key(i));
+		text = text + localStorage.key(i) + " = " + getItem(localStorage.key(i)) + " NEXTONE "
+	}
+	download('localStorage.txt', text);
+	//console.log(objects);
+	//window.location = "data:text/plain,"+text
+}
+JSON.stringify(localStorage)
+// SAVE LS (end)
+
 
 
 function func_godMode(){
@@ -2367,6 +2410,15 @@ function F_prevQ(){
 	func_valSkip()
 
 	F_temakorStatus()
+
+	var lastSavedLS = localStorage.getItem("hk.lastSavedLS")
+	if ( lastSavedLS == 10 || lastSavedLS > 10 ) {
+		localStorage.setItem("hk.lastSavedLS",0)
+		func_saveLS()
+	} else {
+		lastSavedLS = lastSavedLS +1
+		localStorage.setItem("hk.lastSavedLS",lastSavedLS)
+	}
 }
 
 var priorQid = "nincs"
@@ -2844,7 +2896,6 @@ document.getElementById("span_showError").style.visibility = "hidden";
 	<li><span class="WHITE">(.*?)</span>(.*?)</li>
 	<div><font class="abbr"><span class="WHITE">\1</span> ►</font>\2</div>
 */
-
 
 
 

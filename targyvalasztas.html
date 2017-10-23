@@ -62,7 +62,12 @@
 		input.type = "button"
 		input.value = "Save LS"
 		document.body.appendChild(input)
-		input.onclick = function(){ func_saveLS() }
+		input.onclick = function(){ 
+			var bgColor = input.style.backgroundColor
+			input.style.backgroundColor = "aqua"
+			func_saveLS()
+			setTimeout(function () { input.style.backgroundColor = bgColor }, 500);
+		}
 
 		input.style.position = "absolute"
 		input.style.right = "5px"
@@ -85,12 +90,12 @@
 		 pom.setAttribute('download', filename);
 
 		 if (document.createEvent) {
-			  var event = document.createEvent('MouseEvents');
-			  event.initEvent('click', true, true);
-			  pom.dispatchEvent(event);
+			var event = document.createEvent('MouseEvents');
+			event.initEvent('click', true, true);
+			pom.dispatchEvent(event);
 		 }
 		 else {
-			  pom.click();
+			pom.click();
 		 }
 	}
 	function setItem(key, value){
