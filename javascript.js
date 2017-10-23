@@ -4,6 +4,7 @@
 }*/
 
 /* PROJECT - PROGRESS
+ ✖: upgrade elcsesződik, ha úgy frissítek, hogy nincs a kérdésverzió megnyitva
  ✖: Qid-t vegyem ki!!!
  ✖: upgrade Q-nál alapból az 1-es legyen kijelölve, ne a skip
 
@@ -2050,10 +2051,14 @@ function func_calcRepeat() { // átlagIsmétlések számát kiszámolja
 					if ( LSid == undefined ) { 
 						alert(LSid+ " " +hossz+ " " +prior+ " " +Number(localStorage.getItem(LSid+'_repeat')))
 					}
-					if ( hossz != "?" ) {
+					if ( hossz != "?" && hossz != "j" ) {
 						questCount = questCount + prior*hossz
 						allRepVal = allRepVal + prior*hossz *Number(localStorage.getItem(LSid+'_repeat'))
 					}
+					/*if ( isNaN(allRepVal) == true || isNaN(questCount) == true ) {
+						alert("allRepVal: " +allRepVal+ " & " +questCount+ " :questCount")
+						alert(LSid+ " " +hossz+ " " +prior+ " " +Number(localStorage.getItem(LSid+'_repeat')))
+					}*/
 				}
 			}
 		}
@@ -2412,6 +2417,7 @@ function F_prevQ(){
 	F_temakorStatus()
 
 	var lastSavedLS = localStorage.getItem("hk.lastSavedLS")
+	lastSavedLS = Number(lastSavedLS)
 	if ( lastSavedLS == 10 || lastSavedLS > 10 ) {
 		localStorage.setItem("hk.lastSavedLS",0)
 		func_saveLS()
