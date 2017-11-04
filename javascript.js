@@ -4,6 +4,8 @@
 }*/
 
 /* PROJECT - PROGRESS
+ ✖: mutassa hány %-on tartok a kijelölt tételek megtanulásával
+ 
  ✖: skippedek megnyitása nem működik
  ✖: tableten az expQ megnyitása után nem tud visszamenni az oldalra (ugyanis a 'window.location.pathname' = null androidon szvsz)
  
@@ -34,6 +36,7 @@
 */
 
 /* PROJECT - DONE
+ ✔: tételek buttonja (miniTétel button legyen)
  ✔: upgrade Q-nál alapból az 1-es legyen kijelölve, ne a skip
  ✔: noteQ --> tehát ha írok megjegyzést, LS-be mentse el, és töltse be
  ✔: saveLS (stb.) button klikknél színes legyen
@@ -715,6 +718,7 @@ function F_toggleAll() {
 		func_valSkip()
 		func_enLargeImages()
 		func_calcJegy()
+		func_calcWork()
 		func_calcDate()
 		func_calcOldNew()
 		func_calcRepeat()
@@ -749,14 +753,6 @@ function toggleNote() {
 		document.getElementById("note").style.display = 'none';
 		var_note = false
 	}
-}
-function func_repTableToggle(){
-	if ( document.getElementById("repTable").style.display == 'block' ) {
-		document.getElementById("repTable").style.display = 'none';
-	} else {
-		func_calcRepTable()
-		document.getElementById("repTable").style.display = 'block';
-	} 
 }
 
 var timeDiff
@@ -805,7 +801,6 @@ function F_CreateQDiv() {
 		button.style.position = "fixed"
 		button.style.right = "5px"
 		button.style.top = "5px"
-		button.style.backgroundColor = "red"
 	}
 	F_ButtonToggleAll()
 
@@ -854,8 +849,8 @@ function F_CreateQDiv() {
 
 		span.style.paddingLeft = "5px"
 		span.style.paddingRight = "5px"
-		span.style.paddingTop = "3px"
-		span.style.paddingBottom = "4px"
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
 	}
 	F_SpanDate()
 	function F_SpanAtlag() {
@@ -867,8 +862,8 @@ function F_CreateQDiv() {
 
 		span.style.paddingLeft = "5px"
 		span.style.paddingRight = "5px"
-		span.style.paddingTop = "3px"
-		span.style.paddingBottom = "4px"
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
 	}
 	F_SpanAtlag()
 	function F_SpanRepAll() {
@@ -880,24 +875,29 @@ function F_CreateQDiv() {
 
 		span.style.paddingLeft = "5px"
 		span.style.paddingRight = "5px"
-		span.style.paddingTop = "3px"
-		span.style.paddingBottom = "4px"
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
 	}
 	F_SpanRepAll()
 	function F_SpanQid() {
-//	<div style="position:absolute; left:10%; top:2%; font-weight: bold;font-size: large;"></div>
 		var span = document.createElement("span")
-		span.id = "questLeveL"
+		span.id = "span_actualLSid"
 		divSettings.appendChild(span)
 		span.style.border = "1px solid black"
-		span.style.backgroundColor = "yellow"
-		span.textContent = "id"
-		span.title = ""
+		span.style.fontSize = "small"
+		span.textContent = "none"
 
-		span.style.paddingLeft = "5px"
+		/*span.style.paddingLeft = "5px"
 		span.style.paddingRight = "5px"
 		span.style.paddingTop = "3px"
-		span.style.paddingBottom = "4px"
+		span.style.paddingBottom = "4px"*/
+		
+		//span.style.textAlign = "center"
+		span.style.position = "absolute"
+		span.style.left = "235px"
+		span.style.top = "75px"
+		//span.style.right = "90px"
+		span.style.overflow = "auto"
 	}
 	F_SpanQid()
 
@@ -1015,30 +1015,36 @@ function F_CreateQDiv() {
 	}
 	F_ButtonRepFast()
 	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
-	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
-	function F_ButtonRepTable() {
-		var button = document.createElement("input")
-		button.id = "btn_repTable"
-		button.type = "button"
-		divSettings.appendChild(button)
-		button.style.border = "3px solid black"
-		button.style.backgroundColor = "Bisque"
-		button.onclick = function(){ func_repTableToggle() }
-		button.value = "tab"
+	function F_SpanWork() {
+		var span = document.createElement("span")
+		span.id = "span_Work"
+		divSettings.appendChild(span)
+		span.className = "white"
+		span.style.border = "1px solid black"
+
+		span.style.paddingLeft = "5px"
+		span.style.paddingRight = "5px"
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
 	}
-	F_ButtonRepTable()
-	function F_ButtonNextQMark() {
+	F_SpanWork()
+	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
+	function F_ButtonTABS() {
 		var button = document.createElement("input")
 		button.type = "button"
 		divSettings.appendChild(button)
 		button.style.border = "3px solid black"
 		button.style.backgroundColor = "Bisque"
-		button.onclick = function(){ 
-			if ( document.getElementById("div_nextQMark").style.display == 'block' ) {
-				document.getElementById("div_nextQMark").style.display = 'none';
-			} else {
+		button.onclick = function(){
+			if ( document.getElementById("div_nextQMark").style.display == 'none' ) {
 				func_calcRepTable()
 				document.getElementById("div_nextQMark").style.display = 'block';
+			} 
+			if ( document.getElementById("repTable").style.display == 'block' ) {
+				document.getElementById("repTable").style.display = 'none';
+			} else {
+				func_calcRepTable()
+				document.getElementById("repTable").style.display = 'block';
 			} 
 		}
 		button.value = "%"
@@ -1047,16 +1053,15 @@ function F_CreateQDiv() {
 		div.id = "div_nextQMark"
 		div.style.display = "none"
 		div.style.position = "fixed"
-		div.style.right = "53px"
-		div.style.top = "5px"
+		div.style.right = "2px"
+		div.style.top = "30px"
 		div.style.backgroundColor = "white"
 		div.style.border = "2px solid black"
+		div.onclick = function(){ document.getElementById("div_nextQMark").style.display = 'none' }
 		//document.body.appendChild(div)
 		MainFrame.appendChild(div)
 	}
-	F_ButtonNextQMark()
-	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
-	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
+	F_ButtonTABS()
 
 	var br = document.createElement("br")
 	divSettings.appendChild(br)
@@ -1097,11 +1102,39 @@ function F_CreateQDiv() {
 	}
 	F_ButtonSkip()
 	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
+	function F_SpanRepNew() {
+		var span = document.createElement("span")
+		span.id = "span_RepNew"
+		divSettings.appendChild(span)
+		span.className = "WHITE"
+		span.style.border = "1px solid black"
+
+		span.style.paddingLeft = "5px"
+		span.style.paddingRight = "5px"
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
+	}
+	F_SpanRepNew()
+	function F_SpanRepOld() {
+		var span = document.createElement("span")
+		span.id = "span_RepOld"
+		divSettings.appendChild(span)
+		span.className = "vocab"
+		span.style.border = "1px solid black"
+
+		span.style.paddingLeft = "5px"
+		span.style.paddingRight = "5px"
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
+	}
+	F_SpanRepOld()
 	function F_ButtonUpgQ() {
 		var button = document.createElement("input")
 		button.id = "btn_upgQ"
 		button.type = "button"
 		divSettings.appendChild(button)
+		button.style.color = "white"
+		button.style.fontWeight = "bold"
 		button.style.backgroundColor = "blue"
 		button.style.border = "3px solid black"
 		button.onclick = function() {
@@ -1113,7 +1146,7 @@ function F_CreateQDiv() {
 		}
 		button.value = "0"
 	}
-	F_ButtonUpgQ()
+	//F_ButtonUpgQ()
 	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
 	function F_ButtonGodMode() {
 		var button = document.createElement("input")
@@ -1127,33 +1160,6 @@ function F_CreateQDiv() {
 	}
 	F_ButtonGodMode()
 	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
-	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
-	function F_SpanRepNew() {
-		var span = document.createElement("span")
-		span.id = "span_RepNew"
-		divSettings.appendChild(span)
-		span.className = "WHITE"
-		span.style.border = "1px solid black"
-
-		span.style.paddingLeft = "5px"
-		span.style.paddingRight = "5px"
-		span.style.paddingTop = "3px"
-		span.style.paddingBottom = "4px"
-	}
-	F_SpanRepNew()
-	function F_SpanRepOld() {
-		var span = document.createElement("span")
-		span.id = "span_RepOld"
-		divSettings.appendChild(span)
-		span.className = "vocab"
-		span.style.border = "1px solid black"
-
-		span.style.paddingLeft = "5px"
-		span.style.paddingRight = "5px"
-		span.style.paddingTop = "3px"
-		span.style.paddingBottom = "4px"
-	}
-	F_SpanRepOld()
 
 
 	function F_DivQLoc() {
@@ -1202,14 +1208,6 @@ function F_CreateQDiv() {
 */
 
 
-	/*function F_ButtonNextQ() {
-		var button = document.createElement("input")
-		button.type = "button"
-		divSettings.appendChild(button)
-		button.onclick = function(){ F_nextQ() }
-		button.value = " ► "
-	}
-	F_ButtonNextQ()*/
 	function F_ButtonNextQ() {
 		var button = document.createElement("input")
 		button.type = "button"
@@ -1420,7 +1418,6 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 		var details = document.createElement("DETAILS")
 		var summary = document.createElement("SUMMARY")
 		details.id = szoveg+"_details"
-		details.open = true
 		details.appendChild(summary)
 		document.getElementById("Div_Tetelek").appendChild(details)
 		summary.innerHTML = szoveg.bold()
@@ -1430,6 +1427,19 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 		
 		var div = document.createElement("div") // firefoxba kellett
 		details.appendChild(div)
+		
+		var pageName = document.title
+		if ( localStorage.getItem(pageName+" "+szoveg) ) {
+			details.open = true
+		}
+		details.onclick = function(){
+			if ( details.open != true ) {
+				localStorage.setItem(pageName+" "+szoveg,true)
+				//alert(pageName+" "+szoveg)
+			} else {
+				localStorage.removeItem(pageName+" "+szoveg)
+			}
+		}
 	}
 
 	var Table = document.getElementsByClassName("mainTitle")
@@ -1449,9 +1459,10 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 		tetelek[tetelID] = []
 
 		var szoveg = Table[i].innerHTML
-
+		
 		var button = document.createElement("input");
 		button.type = "button";
+		button.style.border = "1px solid black";
 		button.style.height = "23px";
 		button.style.width = "30px";
 		button.id = tetelID+"_button";
@@ -1670,7 +1681,7 @@ function func_calcPriorHosszJegy(elem){
 	var LSid = actLSid
 	jegy = localStorage.getItem(LSid+'_jegy')
 	if ( jegy == 2 ) {
-		jegy = 7
+		jegy = 6
 	} else if ( jegy == 3 ) {
 		jegy = 8
 	} else if ( jegy == 4 ) {
@@ -1887,16 +1898,17 @@ var lastQSkip
 function func_SetTextOfSkipFixDiv(SkipFix){
 	if ( SkipFix == "btn_fix" ) {
 		document.getElementById("div_Fix").innerHTML = ""
-		for ( var kerdes in obj_fixNote ) {
-			if ( obj_fixNote[kerdes] ) {
+		for ( var LSid in obj_fixNote ) {
+			if ( obj_fixNote[LSid] ) {
 				var text = document.getElementById("div_Fix").innerHTML
-				var Qtext = LStxt[kerdes]
+				//alert(LSid)
+				var Qtext = localStorage.getItem(LSid)
 				//alert(kerdes + ": " + obj_fixNote[kerdes] + Qtext)
-				var newText = " <button id='testID' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button> " + obj_fixNote[kerdes] +"</summary>"
+				var newText = " <button id='testID' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button> " + obj_fixNote[LSid] +"</summary>"
 				Qtext = Qtext.replace("</summary>",newText)
 				
 				document.getElementById("div_Fix").innerHTML = text + Qtext
-				document.getElementById("testID").id = kerdes + "_fixClear"
+				document.getElementById("testID").id = LSid + "_fixClear"
 			}
 		}
 	}
@@ -1917,15 +1929,16 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 		}
 		var text = document.getElementById("div_Skip").innerHTML
 		document.getElementById("div_Skip").innerHTML = text.slice(0,text.indexOf("<hr>")+4)
-		for ( var kerdes in obj_skip ) {
-			if ( obj_skip[kerdes] ) {
+		for ( var LSid in obj_skip ) {
+			if ( obj_skip[LSid] ) {
 				var text = document.getElementById("div_Skip").innerHTML
-				var Qtext = LStxt[kerdes]
-				var newText = " <button id='testID' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button> "+ obj_skip[kerdes] +"</summary>"
+				var Qtext = localStorage.getItem(LSid)
+				//var Qtext = LStxt[kerdes]
+				var newText = " <button id='testID' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button> "+ obj_skip[LSid] +"</summary>"
 				Qtext = Qtext.replace("</summary>",newText)
 				
 				document.getElementById("div_Skip").innerHTML = text + Qtext
-				document.getElementById("testID").id = kerdes + "_skipClear"
+				document.getElementById("testID").id = LSid + "_skipClear"
 			}
 		}
 	}
@@ -1971,6 +1984,7 @@ function F_clickTemaButton(button){
 	}
 	func_calcOldNew();
 	func_calcJegy()
+	func_calcWork()
 	func_calcDate()
 	func_calcRepeat()
 }
@@ -2014,6 +2028,35 @@ function func_calcJegy() { // átlagJegyet kiszámolja
 		}
 	}
 	document.getElementById("span_Jegy").innerHTML = Math.floor(100*trueJegy/maxJegy) + "%" 
+}
+function func_calcWork() { // hány százaléka új kérdés még
+	var maxHossz = 0
+	var trueHossz = 0
+	for ( var tetel in tetelek ) {
+		if ( localStorage.getItem(tetel+"_button") == "true" ) {
+			var childs = document.getElementById(tetel).getElementsByTagName("*")
+			for ( var i = 0;   i < childs.length;   i++ ) {
+				if ( childs[i].classList.contains("kerdes") == true ) {
+					var elem = childs[i]
+					
+					var num = elem.className.search("/");
+					var hossz = elem.className.substring(num+1,num+2);
+					if ( hossz == "j" ) { hossz = 0 }
+					if ( hossz == "?" ) { hossz = 0 }
+					
+					
+					F_calculateLSid(elem)
+					var LSid = actLSid
+					
+					maxHossz = maxHossz + Number(hossz)
+					if ( localStorage.getItem(LSid+'_jegy') || localStorage.getItem(LSid+'_skip') ) {
+						trueHossz = trueHossz + Number(hossz)
+					}
+				}
+			}
+		}
+	}
+	document.getElementById("span_Work").innerHTML = maxHossz-trueHossz
 }
 function func_calcDate() { // átlagIdőt kiszámolja
 	var allDate = 0
@@ -2104,23 +2147,18 @@ function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
 					var Qtxt = arrQid[Qid]
 					var LSid = txtLS[Qtxt]
 					var kerdes = localStorage.getItem(childs[i].innerHTML)
-					//if ( LSid+'_repeat' in localStorage && localStorage.getItem(LSid+'_repeat') != "" ) {
 					if ( localStorage.getItem(LSid+'_idopont') != null && localStorage.getItem(LSid+'_repeat') != "" ) {
 						if ( localStorage.getItem(LSid+'_skip') === null ) {
 							var repCount = localStorage.getItem(LSid+'_repeat')
 							var min = document.getElementById(repCount+"min").innerHTML
 							var date = new Date();
 							var idopont = localStorage.getItem(LSid+'_idopont')
-					/*if ( localStorage.getItem(LSid+'_idopont') == null ) {
-						console.log(Qtxt)
-					}*/
 							idopont = Math.floor(date.getTime()/60000) - idopont
+							if ( repCount == 1 && idopont > 1000 ) {
+					//			alert(LSid+ " " +Qtxt)
+							}
 
 							if ( idopont > min ) { // Tableba hozzáad 1et left-hez
-								/*if ( repCount == 0 ) {
-									alert(kerdes + " " + localStorage.getItem(kerdes+'_skip') + " " + idopont)
-									alert(document.getElementById(repCount+"left").innerHTML)
-								}*/
 								document.getElementById(repCount+"left").innerHTML = parseInt(document.getElementById(repCount+"left").innerHTML) +1
 							} else { // Tableba hozzáad 1et still-hez
 								document.getElementById(repCount+"still").innerHTML = parseInt(document.getElementById(repCount+"still").innerHTML) +1
@@ -2341,6 +2379,7 @@ function F_calculateEXPid(EXPid) {
 //func_putZeroQBack();
 func_calcOldNew();
 func_calcJegy()
+func_calcWork()
 func_calcDate()
 func_calcRepeat()
 
@@ -2370,7 +2409,7 @@ function F_prevQ(){
 	
 		if ( document.getElementById("note").value != "" ) {
 			//localStorage.setItem(Qelem.innerHTML, document.getElementById("note").value);
-			var LSid = document.getElementById("questLeveL").title
+			var LSid = "hkQ."+document.getElementById("span_actualLSid").textContent
 			localStorage.setItem(LSid+'_note', document.getElementById("note").value);
 			document.getElementById("note").value = ""
 		}
@@ -2817,12 +2856,12 @@ function F_nextQ(){
 		var actQ = document.getElementById(priorQid)
 		F_calculateLSid(actQ)
 		if ( actLSid == undefined ) {
-			document.getElementById("questLeveL").title = "new"
+			document.getElementById("span_actualLSid").textContent = "new"
 		} else {
-			document.getElementById("questLeveL").title = actLSid
+			document.getElementById("span_actualLSid").textContent = actLSid.slice(4)
 		}
 		for ( var i=0; i<activeQs.length; i++ ) {
-			if ( activeQs[i] == document.getElementById("questLeveL").title ) {
+			if ( activeQs[i] == actLSid ) {
 				document.getElementById("td.0."+i).style.borderColor = "yellow"
 			}
 		}
@@ -2838,7 +2877,7 @@ function F_nextQ(){
 		}
 		
 		
-		var LSid = document.getElementById("questLeveL").title
+		var LSid = "hkQ." + document.getElementById("span_actualLSid").textContent
 		/*var pQtxt = arrQid[priorQid]
 		var pLSid = txtLS[pQtxt]
 		var LSid = txtLS[Qtext]
@@ -2859,6 +2898,7 @@ function F_nextQ(){
 
 	func_enLargeImages()
 	func_calcJegy()
+	func_calcWork()
 	func_calcDate()
 	func_calcOldNew()
 	func_calcRepeat()
