@@ -999,8 +999,8 @@ function F_CreateQDiv() {
 
 		span.style.paddingLeft = "5px"
 		span.style.paddingRight = "5px"
-		span.style.paddingTop = "3px"
-		span.style.paddingBottom = "4px"
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
 	}
 	F_SpanRepSlow()
 	function F_ButtonRepFast() {
@@ -2208,7 +2208,7 @@ function func_calcOldNew(){
 					kerdesNew = kerdesNew +1
 				}
 				
-				if ( localStorage.getItem(LSid+"_jegy") == 1 ) {
+				if ( localStorage.getItem(LSid+"_repeat") == 0 && localStorage.getItem(LSid+"_jegy") == 1 ) {
 					if ( timeDiff >= idopont ) { //  idopont <= 40 
 						repOld = repOld +1
 					} else {
@@ -2686,7 +2686,12 @@ function F_nextQ(){
 			}
 
 			// Qelem-nek nem feltétlen van id-je (pl. kérdés összegző details esetében) --> ezzel a módszerrel kell
-			var Qtext = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
+			var Qtext
+			if ( Qelem.tagName == "DETAILS" ) {
+				Qtext = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
+			} else {
+				Qtext = Qelem.innerHTML
+			}
 			var find = ' id="(.*?)"'
 			Qtext = Qtext.replace(new RegExp(find, 'g'), "")
 			func_addQ(Qtext)
