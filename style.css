@@ -118,6 +118,9 @@ span {
 .Important { 
 	background-color: Aqua /*PaleTurquoise*/
 }
+.bgblue { 
+	background-color: dodgerblue 
+}
 .Done { 
 	background-color: SpringGreen
 }

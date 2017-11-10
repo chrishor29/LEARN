@@ -36,7 +36,12 @@
 		input.type = "button"
 		input.value = "clear LS"
 		document.body.appendChild(input)
-		input.onclick = function(){ localStorage.clear() }
+		input.onclick = function(){ 
+			var bgColor = input.style.backgroundColor
+			input.style.backgroundColor = "aqua"
+			setTimeout(localStorage.clear(), 500)
+			setTimeout(function () { input.style.backgroundColor = bgColor  }, 500);
+		}
 
 		input.style.position = "absolute"
 		input.style.right = "5px"
@@ -49,7 +54,10 @@
 		input.value = "load LS"
 		document.body.appendChild(input)
 		input.onclick = function(){ 
-			document.getElementById('fileinput').click() 
+			var bgColor = input.style.backgroundColor
+			input.style.backgroundColor = "aqua"
+			setTimeout(document.getElementById('fileinput').click(), 500)
+			setTimeout(function () { input.style.backgroundColor = bgColor }, 500);
 		}
 
 		input.style.position = "absolute"
@@ -65,7 +73,7 @@
 		input.onclick = function(){ 
 			var bgColor = input.style.backgroundColor
 			input.style.backgroundColor = "aqua"
-			func_saveLS()
+			setTimeout(func_saveLS(), 500)
 			setTimeout(function () { input.style.backgroundColor = bgColor }, 500);
 		}
 

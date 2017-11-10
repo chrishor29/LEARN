@@ -4,7 +4,7 @@
 }*/
 
 /* PROJECT - PROGRESS
- ✖: mutassa hány %-on tartok a kijelölt tételek megtanulásával
+ ✖: mutassa hány %-on tartok a kijelölt tételek megtanulásával --> valamiért a 10es terjedelműt 1-nek veszi
  
  ✖: skippedek megnyitása nem működik
  ✖: tableten az expQ megnyitása után nem tud visszamenni az oldalra (ugyanis a 'window.location.pathname' = null androidon szvsz)
@@ -1376,6 +1376,10 @@ function F_nextMark(jegy){ // következő kérdés nehézségét beállítja,
 	}
 	//console.log(nextRep)
 	//alert("STOP")
+	
+	if ( document.getElementById("btn_godMode").style.backgroundColor == "red" ) {
+		nextRep = 0
+	}
 
 
 	// az előző sikere alapján
@@ -2154,8 +2158,10 @@ function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
 							var date = new Date();
 							var idopont = localStorage.getItem(LSid+'_idopont')
 							idopont = Math.floor(date.getTime()/60000) - idopont
-							if ( repCount == 1 && idopont > 1000 ) {
-					//			alert(LSid+ " " +Qtxt)
+							if ( repCount == 0 && idopont > 1000 ) {
+								if ( localStorage.getItem(LSid+"_skip") == null ) {
+									//alert(LSid+ " " +Qtxt)
+								}
 							}
 
 							if ( idopont > min ) { // Tableba hozzáad 1et left-hez
@@ -2576,6 +2582,7 @@ function F_nextQ(){
 						shouldBreak = true 
 					}
 				}
+				
 
 				if ( shouldBreak == false ) {
 					var num = Qelem.className.search("/");
@@ -2599,12 +2606,12 @@ function F_nextQ(){
 					checkValue = prior * idopont / timeDiff
 					averageCV = averageCV + checkValue
 					countCV = countCV + 1
-					if ( localStorage.getItem("godMode") == "limegreen" ) {
+					/*if ( localStorage.getItem("godMode") == "limegreen" ) {
 						if ( repCount > 1  ) { checkValue = 0 }
 					} 
 					if ( localStorage.getItem("godMode") == "red" ) {
 						if ( repCount < 2  ) { checkValue = 0 }
-					}
+					}*/
 
 					if ( checkValue > priorValue_alt ) {
 						priorValue_alt = checkValue;
