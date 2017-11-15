@@ -4,14 +4,19 @@
 }*/
 
 /* PROJECT - PROGRESS
+ ✖: vizsgaskip (szürke)
+ ✖: (100,500,1200) -vizsga előtt kéne valami spec
+ ✖: csak azokat számolja átlagba (következő kérdés chance), melyek a minimum időt már elérték
+ 
  ✖: mutassa hány %-on tartok a kijelölt tételek megtanulásával --> valamiért a 10es terjedelműt 1-nek veszi
+ ✖: vizsgaSkip funkció
  
  ✖: skippedek megnyitása nem működik
  ✖: tableten az expQ megnyitása után nem tud visszamenni az oldalra (ugyanis a 'window.location.pathname' = null androidon szvsz)
  
- ✖: vizsgaSkip funkció
+ ✖: importált Q esetében a mini IMG-re klikkelve nem működik a script -> szvsz az legyen a megoldás, hogy még mielőtt elmentené az expQ-kat, a scriptet írja meg az img-ekre ('html-be vésse bele') -> így úgy fogja betölteni, hogy bele van írva a script
  
- ✖: upgradeQ -->  ha nincs olyan című quest, akkor kiírja az összeset, és kikereshetem.
+ ✖: upgradeQ -->  ha nincs olyan című quest, akkor kiírja az összeset, és kikereshetem. (legyen valami search funkció)
  
  ✖: Qid-t vegyem ki!!!
  ✖: expID-k --> csak a az expQs html-be lévőket mentse el LS-be (új számozás legyen és külön szvsz)
@@ -387,6 +392,7 @@ function F_oldQchange(oldLSid){
 	// skip END
 	
 	var arrNEWtxt = []
+	//alert(oldLSid + " " + oldQtxt)
 	var summaryQ = oldQtxt.slice(oldQtxt.indexOf("<summary>")+9,oldQtxt.indexOf("</summary>"))
 	for ( var i=0; i<arrQtxts.length; i++ ) { 
 		var Qtext = arrQtxts[i]
@@ -467,7 +473,7 @@ function F_oldQcheck(){
 				if ( arrQtxts.indexOf(Qtext) != -1 ) {
 					//newString = newString + LSid + " "
 					txtLS[Qtext] = LSid
-				} else {
+				} else if ( LSid != "null" ) {
 					console.log(LSid)
 					oldString.push(LSid)
 				}
@@ -1211,6 +1217,7 @@ function F_CreateQDiv() {
 	function F_ButtonNextQ() {
 		var button = document.createElement("input")
 		button.type = "button"
+		button.id = "button_NextQ"
 		divSettings.appendChild(button)
 		button.onclick = function(){ F_nextQ() }
 		button.value = " ► "
@@ -1685,7 +1692,7 @@ function func_calcPriorHosszJegy(elem){
 	var LSid = actLSid
 	jegy = localStorage.getItem(LSid+'_jegy')
 	if ( jegy == 2 ) {
-		jegy = 6
+		jegy = 7
 	} else if ( jegy == 3 ) {
 		jegy = 8
 	} else if ( jegy == 4 ) {
@@ -2117,7 +2124,7 @@ function func_calcRepeat() { // átlagIsmétlések számát kiszámolja
 					}
 					
 					
-					if ( hossz != "?" && hossz != "j" ) {
+					if ( isNaN(hossz) ==  false ) {
 						questCount = questCount + prior*hossz
 						allRepVal = allRepVal + prior*hossz *repeat
 					}
@@ -2194,10 +2201,12 @@ function func_calcOldNew(){
 	var repFast = 0
 	var repSlow = 0
 	function calculate(Qid){
-		var Qtxt = arrQid[Qid]
+		var actQ = document.getElementById(Qid)
+		F_calculateLSid(actQ)
+		var LSid = actLSid
 		//console.log("func_calcOldNew: " +Qtxt)
-		if ( txtLS[Qtxt] ) {
-			var LSid = txtLS[Qtxt]
+		
+		if ( LSid != undefined ) {
 			//console.log(Qid+ " :Qid-LSid: "+LSid)
 			var repCount = Number(localStorage.getItem(LSid+'_repeat'))
 			var date = new Date();
@@ -2230,6 +2239,7 @@ function func_calcOldNew(){
 			}
 		} else {
 			kerdesNew = kerdesNew +1
+			//alert(Qtxt)
 		}
 	}
 	for ( var tetel in tetelek ) { // végignézi az összes kérdést
@@ -2493,11 +2503,13 @@ function F_prevQ(){
 
 	F_temakorStatus()
 
+	
 	var lastSavedLS = localStorage.getItem("hk.lastSavedLS")
 	lastSavedLS = Number(lastSavedLS)
 	if ( lastSavedLS == 10 || lastSavedLS > 10 ) {
 		localStorage.setItem("hk.lastSavedLS",0)
 		func_saveLS()
+		document.getElementById("button_NextQ").style.backgroundColor = "aqua"
 	} else {
 		lastSavedLS = lastSavedLS +1
 		localStorage.setItem("hk.lastSavedLS",lastSavedLS)
@@ -2527,6 +2539,13 @@ function F_nextQ(){
 	if ( priorQid != "nincs" ) { F_prevQ() }
 	activeQs = [] // ezzel resetelem (szükséges mindig!)
 	QlocElem.innerHTML = ""
+
+	// color NewQ
+	if ( localStorage.getItem("hk.lastSavedLS") == 10 ) { 
+		document.getElementById("button_NextQ").style.backgroundColor = "aqua" 
+	} else {
+		document.getElementById("button_NextQ").style.backgroundColor = ""
+	}
 
 	// következő kérdés
 	for ( var x=0; x<50; x++ ) { // custom számot írtam, ennél több egynelőre nincs
@@ -2775,7 +2794,7 @@ function F_nextQ(){
 					console.log(localStorage.getItem(document.title+"_LSids"))
 				}
 				var num = i+1
-				if ( LSid == undefined ) { alert(num + ": "+ LSid) }
+				if ( LSid == undefined ) { alert("#1. " +num+ ": "+ LSid) }
 				activeQs[i] = LSid 
 				
 				Qelem.innerHTML = Qelem.innerHTML.replace(">",">["+num+"] ") // kérdésbe bekerül, hogy a táblázatban hányas
