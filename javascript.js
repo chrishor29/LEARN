@@ -462,6 +462,37 @@ function F_oldQchange(oldLSid){
 
 function F_oldQcheck(){
 	var oldString = []
+	
+	var fullString = localStorage.getItem(document.title+"_LSids")
+	// azon LSid-ket kiveszi, amik már ExpQ-k lettek, és más LSid-t kaptak
+	if ( fullString ) {
+		fullString = fullString.split(" ") // első alkalommal különben error lesz
+		for ( var i=0; i<fullString.length; i++ ) {
+			if ( fullString[i] != "" && fullString[i] != "null" ) {  // utolsó mindig ez, és azt ne tegye array-ba
+				var LSid = fullString[i]
+				//console.log(LSid)
+				var Qtext = localStorage.getItem(LSid)
+				var EXPid = Qtext.indexOf("summary")
+				EXPid = Qtext.slice(0,EXPid) 
+				if ( EXPid.indexOf("{") != -1 ) { 
+					var begin = EXPid.indexOf("{")
+					var end = EXPid.indexOf("}")
+					EXPid = EXPid.slice(begin+1,end)
+					var string = localStorage.getItem("hkExpQ."+EXPid)
+					expLSid = string.slice(0,string.indexOf(" "))
+					if ( expLSid != LSid ) {
+						console.log("LSid delete, mert EXPid-s lett a quest. LSid: " +LSid+ " & EXPid: " +EXPid) 
+						//alert("LSid: " +LSid+ " & EXPid: " +EXPid) 
+						var defString = localStorage.getItem(document.title+"_LSids")
+						defString = defString.replace(LSid,'')
+						localStorage.setItem(document.title+"_LSids",defString)
+					}
+				}
+			}
+		}
+	}
+	
+	// upgradelt Q-ket csekkolja
 	var fullString = localStorage.getItem(document.title+"_LSids")
 	if ( fullString ) {
 		//alert(fullString)
@@ -1498,9 +1529,9 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 		}
 
 		if ( localStorage.getItem(button.id) == "true" ) {
-			label.style.color = "limegreen";
+			label.style.backgroundColor = "paleGreen";
 		} else {
-			label.style.color = "black";
+			label.style.backgroundColor = "";
 		}
 	}
 }
@@ -1670,7 +1701,7 @@ func_TitleChange()
 var prior,hossz,jegy
 function func_calcPriorHosszJegy(elem){
 	var num = elem.className.search("/");
-	hossz = elem.className.substring(num+1,num+2);
+	hossz = elem.className.substring(num+1,num+3);
 	prior = elem.className.substring(num-1,num);
 	if ( hossz == "j" ) { hossz = 0 }
 	if ( isNaN(hossz) == true ) { hossz = 0 }
@@ -1718,6 +1749,7 @@ function F_kerdesStatus(){ // kérdés hány %-on áll?
 		}
 		var repCount = Number(localStorage.getItem(LSid+'_repeat'))
 		func_calcTimeDiff(repCount)
+		console.log(LSid+ " " +hossz)
 
 		// if ( localStorage.getItem(LSid+"_skip") != "perma" ){
 			trueJegy = trueJegy + Math.pow(0.8, idopont / timeDiff) * prior * hossz * jegy
@@ -1988,10 +2020,10 @@ function func_spanClick(button){
 function F_clickTemaButton(button){
 	if ( localStorage.getItem(button.id) == "true" ) {
 		localStorage.setItem(button.id,false)
-		document.getElementById(button.id+"_label").style.color = "black";
+		document.getElementById(button.id+"_label").style.backgroundColor = "";
 	} else {
 		localStorage.setItem(button.id,true)
-		document.getElementById(button.id+"_label").style.color= "limegreen";
+		document.getElementById(button.id+"_label").style.backgroundColor= "paleGreen";
 	}
 	func_calcOldNew();
 	func_calcJegy()
@@ -2054,6 +2086,7 @@ function func_calcWork() { // hány százaléka új kérdés még
 					var hossz = elem.className.substring(num+1,num+2);
 					if ( hossz == "j" ) { hossz = 0 }
 					if ( hossz == "?" ) { hossz = 0 }
+					if ( hossz == "x" ) { hossz = 0 }
 					
 					
 					F_calculateLSid(elem)
@@ -2165,9 +2198,9 @@ function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
 							var date = new Date();
 							var idopont = localStorage.getItem(LSid+'_idopont')
 							idopont = Math.floor(date.getTime()/60000) - idopont
-							if ( repCount == 0 && idopont > 1000 ) {
+							if ( repCount == 0 && idopont > 100 ) {
 								if ( localStorage.getItem(LSid+"_skip") == null ) {
-									//alert(LSid+ " " +Qtxt)
+									//alert(repCount+ " " +idopont+ " " +LSid+ " " +Qtxt)
 								}
 							}
 
