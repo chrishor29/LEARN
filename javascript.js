@@ -393,10 +393,10 @@ function F_oldQchange(oldLSid){
 	
 	var arrNEWtxt = []
 	//alert(oldLSid + " " + oldQtxt)
-	var summaryQ = oldQtxt.slice(oldQtxt.indexOf("<summary>")+9,oldQtxt.indexOf("</summary>"))
+	var summaryQ = oldQtxt.slice(oldQtxt.indexOf("<summary")+9,oldQtxt.indexOf("</summary>"))
 	for ( var i=0; i<arrQtxts.length; i++ ) { 
 		var Qtext = arrQtxts[i]
-		var summaryQnew = Qtext.slice(Qtext.indexOf("<summary>")+9,Qtext.indexOf("</summary>"))
+		var summaryQnew = Qtext.slice(Qtext.indexOf("<summary")+9,Qtext.indexOf("</summary>"))
 		if ( summaryQ == summaryQnew ) {
 			//alert(Qtext)
 			arrNEWtxt.push(Qtext)
@@ -1749,7 +1749,7 @@ function F_kerdesStatus(){ // kérdés hány %-on áll?
 		}
 		var repCount = Number(localStorage.getItem(LSid+'_repeat'))
 		func_calcTimeDiff(repCount)
-		console.log(LSid+ " " +hossz)
+		//console.log(LSid+ " " +hossz)
 
 		// if ( localStorage.getItem(LSid+"_skip") != "perma" ){
 			trueJegy = trueJegy + Math.pow(0.8, idopont / timeDiff) * prior * hossz * jegy
@@ -1883,6 +1883,8 @@ function func_tableSkipFix(){
 		if ( localStorage.getItem(LSid+"_skip") ) {
 			if ( localStorage.getItem(LSid+"_skip") == "perma" ){
 				obj_skip[LSid] = localStorage.getItem(LSid+"_skip")
+			} else if ( localStorage.getItem(LSid+"_skip") == "important" ){
+				obj_skip[LSid] = localStorage.getItem(LSid+"_skip")
 			} else if ( localStorage.getItem(LSid+"_skip") == "atlag" ){
 				if ( obj_skip[LSid] ) { delete obj_skip[LSid] }
 			} else {
@@ -1915,7 +1917,7 @@ F_valFix()
 function func_valSkip(){
 	var x = 0
 	for ( var id in obj_skip ) {
-		if ( obj_skip[id] ) {
+		if ( obj_skip[id] != "important" ) {
 			x = x+1
 		}
 	}
@@ -1973,7 +1975,7 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 		var text = document.getElementById("div_Skip").innerHTML
 		document.getElementById("div_Skip").innerHTML = text.slice(0,text.indexOf("<hr>")+4)
 		for ( var LSid in obj_skip ) {
-			if ( obj_skip[LSid] ) {
+			if ( obj_skip[LSid] != "important" ) {
 				var text = document.getElementById("div_Skip").innerHTML
 				var Qtext = localStorage.getItem(LSid)
 				//var Qtext = LStxt[kerdes]
@@ -2466,7 +2468,7 @@ function F_prevQ(){
 		for ( var i=0; i<activeQs.length; i++ ) {
 			var LSid = activeQs[i]
 			var jegy = document.getElementById("hkSelect."+i).value
-			console.log(i+" : "+LSid+" : "+jegy)
+			//console.log(i+" : "+LSid+" : "+jegy)
 			document.getElementById("hkSelect."+i).value = "empty"
 			if ( jegy != "empty" ) {
 				var repCount = Number(localStorage.getItem(LSid+'_repeat'))
@@ -2504,10 +2506,16 @@ function F_prevQ(){
 		var arrayInp = div.getElementsByTagName("input")
 		for ( var i=0; i<activeQs.length; i++ ) {
 			var LSid = activeQs[i]
-			if ( document.getElementById("td.2."+i).style.backgroundColor == "magenta" ) {
+			if ( document.getElementById("td.2."+i).style.backgroundColor == "black" ) {
 				localStorage.setItem(LSid+'_skip', "perma")
-			} else if ( document.getElementById("td.2."+i).style.backgroundColor == "gainsboro" ) {
-				localStorage.setItem(LSid+'_skip', "atlag")
+			} else if ( document.getElementById("td.2."+i).style.backgroundColor == "lawngreen" ) {
+				//localStorage.setItem(LSid+'_skip', "atlag")
+				//localStorage.setItem(LSid+'_skip', 12)
+				localStorage.setItem(LSid+'_skip', "important")
+			} else {
+				if ( localStorage.getItem(LSid+'_skip') == "important" ) {
+					localStorage.removeItem(LSid+'_skip')
+				}
 			}
 			//console.log(LSid+"_skip: "+localStorage.getItem(LSid+'_skip'))
 		}
@@ -2542,12 +2550,14 @@ function F_prevQ(){
 	if ( lastSavedLS == 10 || lastSavedLS > 10 ) {
 		localStorage.setItem("hk.lastSavedLS",0)
 		func_saveLS()
-		document.getElementById("button_NextQ").style.backgroundColor = "aqua"
+		//document.getElementById("button_NextQ").style.backgroundColor = "aqua"
 	} else {
 		lastSavedLS = lastSavedLS +1
 		localStorage.setItem("hk.lastSavedLS",lastSavedLS)
 	}
 }
+
+
 
 var priorQid = "nincs"
 var fullTema, checkNum, cloneKerdes
@@ -2568,6 +2578,9 @@ function F_nextQ(){
 		lastTime = newTime
 	}
 
+	// color NewQ
+	document.getElementById("button_NextQ").style.backgroundColor = ""
+	
 	// előző kérdés
 	if ( priorQid != "nincs" ) { F_prevQ() }
 	activeQs = [] // ezzel resetelem (szükséges mindig!)
@@ -2576,8 +2589,6 @@ function F_nextQ(){
 	// color NewQ
 	if ( localStorage.getItem("hk.lastSavedLS") == 10 ) { 
 		document.getElementById("button_NextQ").style.backgroundColor = "aqua" 
-	} else {
-		document.getElementById("button_NextQ").style.backgroundColor = ""
 	}
 
 	// következő kérdés
@@ -2592,6 +2603,7 @@ function F_nextQ(){
 	}
 	priorQid = "nincs";
 	var priorQ_alt = "nincs"
+	var priorValue2 = -1
 	var priorValue = -1
 	var priorValue_alt = -1
 	var priorType = 1
@@ -2612,12 +2624,43 @@ function F_nextQ(){
 				priorQid = Qid
 			}
 		} else {
-			if ( localStorage.getItem(LSid+"_skip") && localStorage.getItem(LSid+"_skip") != "atlag" ) { shouldBreak = true }
-			if ( localStorage.getItem(LSid+"_jegy") === null && shouldBreak == false ) {
+			if ( localStorage.getItem(LSid+"_skip") && localStorage.getItem(LSid+"_skip") != "atlag" && localStorage.getItem(LSid+"_skip") != "important" ) { shouldBreak = true }
+			/* newQ */if ( localStorage.getItem(LSid+"_jegy") === null && shouldBreak == false ) {
 				if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" && priorType < 2 ) {
 					priorType = 2
 					priorQid = Qid
 				}
+			}
+			/* important */if ( localStorage.getItem(LSid+"_skip") && localStorage.getItem(LSid+"_skip") == "important" && shouldBreak == false ) {
+				var repCount2 = Number(localStorage.getItem(LSid+'_repeat'))
+				var date = new Date();
+				var idopont2 = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
+				var timeDiff2
+				if ( repCount2 == 0 ) {
+					timeDiff2 = 100
+				}
+				if ( repCount2 == 1 ) {
+					timeDiff2 = 500
+				}
+				if ( repCount2 == 2 ) {
+					timeDiff2 = 1000
+				}
+				if ( repCount2 == 3 ) {
+					timeDiff2 = 2000
+				}
+				if ( repCount2 == 4 ) {
+					timeDiff2 = 3000
+				}
+				if ( idopont2 > timeDiff2 ) { 
+					priorType = 2
+				}
+				
+				var checkValue2 = idopont2 / timeDiff2
+				if ( checkValue2 > priorValue2 ) {
+					priorValue2 = checkValue2
+					priorQid = Qid
+				}
+				console.log(idopont2+ "(" +timeDiff2+ ") " +LSid)
 			}
 			if ( priorType == 1 && localStorage.getItem(LSid+"_jegy") > 0 ) { // régi kérdés
 				var Qelem = document.getElementById(Qid)
@@ -2836,7 +2879,11 @@ function F_nextQ(){
 				document.getElementById("td.0."+i).hidden = false 
 				document.getElementById("td.1."+i).hidden = false 
 				document.getElementById("td.2."+i).hidden = false 
-				document.getElementById("td.2."+i).style.backgroundColor = "snow" 
+				if ( localStorage.getItem(LSid+"_skip") == "important" ) {
+					document.getElementById("td.2."+i).style.backgroundColor = "lawngreen"
+				} else {
+					document.getElementById("td.2."+i).style.backgroundColor = "snow"
+				}
 				
 				document.getElementById("td.0."+i).style.borderColor = "black"
 
@@ -2908,7 +2955,7 @@ function F_nextQ(){
 						}
 					}
 				}
-				if ( localStorage.getItem(LSid+'_skip') ) {
+				if ( localStorage.getItem(LSid+'_skip') && localStorage.getItem(LSid+'_skip') != "important" ) {
 					document.getElementById("td.0."+i).style.backgroundColor = "Black"
 					selectList.disabled = true
 					selectList.style.backgroundColor = "Black"
@@ -2999,19 +3046,12 @@ function F_CreateSelect(i) {
 			td.appendChild(selectList)
 		} else if ( x == 2 ) {
 			td.style.fontSize = "small"
-			if ( localStorage.getItem(LSid+"_skip") == "perma" ) {
-				td.style.backgroundColor = "magenta"
-			} else if ( localStorage.getItem(LSid+"_skip") == "atlag" ) {
-				td.style.backgroundColor = "gainsboro"
-			} else {
-				td.style.backgroundColor = "snow"
-			}
 			td.addEventListener("click",function(){
 				if ( this.style.backgroundColor == "snow" ) { 
-					this.style.backgroundColor = "magenta" 
-				} else if ( this.style.backgroundColor == "magenta" ) { 
-					this.style.backgroundColor = "gainsboro" 
-				} else if ( this.style.backgroundColor == "gainsboro" ) { 
+					this.style.backgroundColor = "black" 
+				} else if ( this.style.backgroundColor == "black" ) { 
+					this.style.backgroundColor = "lawngreen" 
+				} else if ( this.style.backgroundColor == "lawngreen" ) { 
 					this.style.backgroundColor = "snow" 
 				}
 			});
