@@ -795,15 +795,15 @@ function toggleNote() {
 var timeDiff
 function func_calcTimeDiff(repCount){
 	if ( repCount == 0 ) {
-		timeDiff = 30
+		timeDiff = 100
 	} else if ( repCount == 1 ) {
-		timeDiff = 90
-	} else if ( repCount == 2 ) {
 		timeDiff = 500
-	} else if ( repCount == 3 ) {
+	} else if ( repCount == 2 ) {
 		timeDiff = 1000
-	} else if ( repCount == 4 ) {
+	} else if ( repCount == 3 ) {
 		timeDiff = 2000
+	} else if ( repCount == 4 ) {
+		timeDiff = 3000
 	} else if ( repCount == 5 ) {
 		timeDiff = 5000
 	}
@@ -2247,7 +2247,15 @@ function func_calcOldNew(){
 			var date = new Date();
 			var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
 			func_calcTimeDiff(repCount)
-			if ( localStorage.getItem(LSid+"_skip") == null ) {
+			
+			if ( localStorage.getItem(LSid+"_skip") == "important" ) {
+				if ( timeDiff >= idopont ) {
+					repOld = repOld +1
+				} else {
+					repNew = repNew +1
+				}
+			}
+			if ( localStorage.getItem(LSid+"_skip") != "perma" ) {
 				if ( localStorage.getItem(LSid+"_jegy") >= 1 ) {
 					if ( timeDiff >= idopont ) {
 						repFast = repFast +1
@@ -2256,20 +2264,6 @@ function func_calcOldNew(){
 					}
 				} else if ( localStorage.getItem(LSid+"_jegy") == null || localStorage.getItem(LSid+"_jegy") == "" ) {
 					kerdesNew = kerdesNew +1
-				}
-				
-				if ( localStorage.getItem(LSid+"_repeat") == 0 && localStorage.getItem(LSid+"_jegy") == 1 ) {
-					if ( timeDiff >= idopont ) { //  idopont <= 40 
-						repOld = repOld +1
-					} else {
-						repNew = repNew +1
-					}
-				}
-			} else if ( localStorage.getItem(LSid+"_skip") == "atlag" ) {
-				if ( timeDiff >= 650 ) {
-					repFast = repFast +1
-				} else {
-					repSlow = repSlow +1
 				}
 			}
 		} else {
@@ -2632,35 +2626,20 @@ function F_nextQ(){
 				}
 			}
 			/* important */if ( localStorage.getItem(LSid+"_skip") && localStorage.getItem(LSid+"_skip") == "important" && shouldBreak == false ) {
-				var repCount2 = Number(localStorage.getItem(LSid+'_repeat'))
+				var repCount = Number(localStorage.getItem(LSid+'_repeat'))
 				var date = new Date();
 				var idopont2 = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-				var timeDiff2
-				if ( repCount2 == 0 ) {
-					timeDiff2 = 100
-				}
-				if ( repCount2 == 1 ) {
-					timeDiff2 = 500
-				}
-				if ( repCount2 == 2 ) {
-					timeDiff2 = 1000
-				}
-				if ( repCount2 == 3 ) {
-					timeDiff2 = 2000
-				}
-				if ( repCount2 == 4 ) {
-					timeDiff2 = 3000
-				}
-				if ( idopont2 > timeDiff2 ) { 
+				func_calcTimeDiff(repCount)
+				if ( idopont2 > timeDiff ) { 
 					priorType = 2
 				}
 				
-				var checkValue2 = idopont2 / timeDiff2
+				var checkValue2 = idopont2 / timeDiff
 				if ( checkValue2 > priorValue2 ) {
 					priorValue2 = checkValue2
 					priorQid = Qid
 				}
-				console.log(idopont2+ "(" +timeDiff2+ ") " +LSid)
+				console.log(idopont2+ "("+timeDiff+") " +checkValue2+ " vs " +priorValue2+ " ("+LSid+")")
 			}
 			if ( priorType == 1 && localStorage.getItem(LSid+"_jegy") > 0 ) { // régi kérdés
 				var Qelem = document.getElementById(Qid)
@@ -2669,9 +2648,7 @@ function F_nextQ(){
 				var repCount = Number(localStorage.getItem(LSid+'_repeat'))
 
 				func_calcTimeDiff(repCount)
-				if ( localStorage.getItem(LSid+"_skip") == "atlag" ) { timeDiff = 650 } /* ide átlagot írjon majd */
 
-				
 				if ( document.getElementById("btn_RepFast").style.borderColor != "limegreen" ) {
 					if ( timeDiff > idopont ) { 
 						shouldBreak = true 
