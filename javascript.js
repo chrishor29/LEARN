@@ -1103,17 +1103,19 @@ function F_CreateQDiv() {
 	var br = document.createElement("br")
 	divSettings.appendChild(br)
 
-	function F_ButtonNote() {
+	function F_ButtonVizsgaSkip() {
 		var button = document.createElement("input")
-		button.id = "btn_Note"
+		button.id = "btn_vizsgaskip"
 		button.type = "button"
 		divSettings.appendChild(button)
+		button.style.backgroundColor = "blue"
+		button.style.color = "white"
+		button.style.fontWeight = "bold"
 		button.style.border = "3px solid black"
-		button.style.backgroundColor = "Bisque"
-		button.onclick = function(){ toggleNote() }
-		button.value = "✽"
+		//button.onclick = function(){ func_spanClick(this) }
+		button.value = "0"
 	}
-	F_ButtonNote()
+	F_ButtonVizsgaSkip()
 	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
 	function F_ButtonFix() {
 		var button = document.createElement("input")
@@ -2005,8 +2007,11 @@ function func_spanClick(button){
 			document.getElementById("btn_skip").style.borderColor = "black"
 			if ( document.getElementById("div_Fix").style.display == 'block' ) {
 				document.getElementById("div_Fix").style.display = 'none';
-			} else {
+			} else if ( document.getElementById("note").style.display == 'block' ) {
+				document.getElementById("note").style.display = 'none';
 				document.getElementById("div_Fix").style.display = 'block';
+			} else {
+				document.getElementById("note").style.display = 'block';
 			}
 		}
 	}
@@ -2018,6 +2023,7 @@ function func_spanClick(button){
 		if ( button.id == 'btn_newQuest' ) { localStorage.setItem("hk.newQ",true) }
 	}
 }
+
 
 function F_clickTemaButton(button){
 	if ( localStorage.getItem(button.id) == "true" ) {
@@ -2625,7 +2631,7 @@ function F_nextQ(){
 					priorQid = Qid
 				}
 			}
-			/* important */if ( localStorage.getItem(LSid+"_skip") && localStorage.getItem(LSid+"_skip") == "important" && shouldBreak == false ) {
+			/* important */if ( document.getElementById("btn_newQuest").style.borderColor != "limegreen" && localStorage.getItem(LSid+"_skip") && localStorage.getItem(LSid+"_skip") == "important" && shouldBreak == false ) {
 				var repCount = Number(localStorage.getItem(LSid+'_repeat'))
 				var date = new Date();
 				var idopont2 = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
@@ -2976,10 +2982,14 @@ function F_nextQ(){
 		alert("noteIMP:"+LSid)*/
 		if ( localStorage.getItem(LSid+"_note") ) { // note
 			document.getElementById("note").value = localStorage.getItem(LSid+"_note")
-			document.getElementById("btn_Note").style.borderColor = "red";
+			var ofs = 0;
+			window.setInterval(function(){
+				document.getElementById("btn_fix").style.backgroundColor = 'rgba(255,0,0,'+Math.abs(Math.sin(ofs))+')';
+				ofs += 0.01;
+			}, 10);
 			var_note = true
 		} else {
-			document.getElementById("btn_Note").style.borderColor = "black";
+			document.getElementById("btn_fix").style.backgroundColor = "red";
 			var_note = false
 		}
 	}
