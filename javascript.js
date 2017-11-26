@@ -8,8 +8,7 @@
  ✖: (100,500,1200) -vizsga előtt kéne valami spec
  ✖: csak azokat számolja átlagba (következő kérdés chance), melyek a minimum időt már elérték
  
- ✖: mutassa hány %-on tartok a kijelölt tételek megtanulásával --> valamiért a 10es terjedelműt 1-nek veszi
- ✖: vizsgaSkip funkció
+ ✖: importált Q-t ha megváltoztatom, akkor ne kelljen upgradelnem a questet (mert ha van egy importált quest, amit 6 helyen használok, akkor egy betűt abban átírva, mind a 6questet fel kell upgradelnem és fárasztó --> helyette automatikusan upgradelje, ha más nem változott)
  
  ✖: skippedek megnyitása nem működik
  ✖: tableten az expQ megnyitása után nem tud visszamenni az oldalra (ugyanis a 'window.location.pathname' = null androidon szvsz)
@@ -41,6 +40,7 @@
 */
 
 /* PROJECT - DONE
+ ✔: mutassa hány %-on tartok a kijelölt tételek megtanulásával --> valamiért a 10es terjedelműt 1-nek veszi
  ✔: tételek buttonja (miniTétel button legyen)
  ✔: upgrade Q-nál alapból az 1-es legyen kijelölve, ne a skip
  ✔: noteQ --> tehát ha írok megjegyzést, LS-be mentse el, és töltse be
@@ -1112,7 +1112,7 @@ function F_CreateQDiv() {
 		button.style.color = "white"
 		button.style.fontWeight = "bold"
 		button.style.border = "3px solid black"
-		//button.onclick = function(){ func_spanClick(this) }
+		button.onclick = function(){ func_spanClick(this) }
 		button.value = "0"
 	}
 	F_ButtonVizsgaSkip()
@@ -1887,8 +1887,15 @@ function func_tableSkipFix(){
 				obj_skip[LSid] = localStorage.getItem(LSid+"_skip")
 			} else if ( localStorage.getItem(LSid+"_skip") == "important" ){
 				obj_skip[LSid] = localStorage.getItem(LSid+"_skip")
-			} else if ( localStorage.getItem(LSid+"_skip") == "atlag" ){
-				if ( obj_skip[LSid] ) { delete obj_skip[LSid] }
+			} else if ( localStorage.getItem(LSid+"_skip") == "vizsgaSkip" ){
+				var date = new Date();
+				date = Math.floor(date.getTime()/60000)
+				if ( date > vizsgaTime ) {
+					localStorage.removeItem(LSid+'_skip')
+				} else {
+					obj_skip[LSid] = localStorage.getItem(LSid+"_skip")
+				}
+				//if ( obj_skip[LSid] ) { delete obj_skip[LSid] }
 			} else {
 				var date = new Date();
 				date = Math.floor(date.getTime()/60000)
@@ -1918,12 +1925,17 @@ function F_valFix(){
 F_valFix()
 function func_valSkip(){
 	var x = 0
+	var y = 0
 	for ( var id in obj_skip ) {
-		if ( obj_skip[id] != "important" ) {
+		if ( obj_skip[id] == "perma" ) {
 			x = x+1
+		}
+		if ( obj_skip[id] == "vizsgaSkip" ) {
+			y = y+1
 		}
 	}
 	document.getElementById("btn_skip").value = x;
+	document.getElementById("btn_vizsgaskip").value = y;
 }
 func_valSkip()
 
@@ -1977,7 +1989,22 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 		var text = document.getElementById("div_Skip").innerHTML
 		document.getElementById("div_Skip").innerHTML = text.slice(0,text.indexOf("<hr>")+4)
 		for ( var LSid in obj_skip ) {
-			if ( obj_skip[LSid] != "important" ) {
+			if ( obj_skip[LSid] != "important" && obj_skip[LSid] != "vizsgaSkip" ) {
+				var text = document.getElementById("div_Skip").innerHTML
+				var Qtext = localStorage.getItem(LSid)
+				//var Qtext = LStxt[kerdes]
+				var newText = " <button id='testID' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button> "+ obj_skip[LSid] +"</summary>"
+				Qtext = Qtext.replace("</summary>",newText)
+				
+				document.getElementById("div_Skip").innerHTML = text + Qtext
+				document.getElementById("testID").id = LSid + "_skipClear"
+			}
+		}
+	}
+	if ( SkipFix == "btn_vizsgaskip" ) {
+		document.getElementById("div_Skip").innerHTML = ""
+		for ( var LSid in obj_skip ) {
+			if ( obj_skip[LSid] == "vizsgaSkip" ) {
 				var text = document.getElementById("div_Skip").innerHTML
 				var Qtext = localStorage.getItem(LSid)
 				//var Qtext = LStxt[kerdes]
@@ -1991,9 +2018,9 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 	}
 }
 function func_spanClick(button){
-	if ( button.id == 'btn_skip' || button.id == 'btn_fix' ) {
+	if ( button.id == 'btn_skip' || button.id == 'btn_fix' || button.id == 'btn_vizsgaskip' ) {
 		func_SetTextOfSkipFixDiv(button.id)
-		if ( button.id == 'btn_skip' ) {
+		if ( button.id == 'btn_skip' || button.id == 'btn_vizsgaskip' ) {
 			document.getElementById("div_Fix").style.display = 'none';
 			document.getElementById("btn_fix").style.borderColor = "black"
 			if ( document.getElementById("div_Skip").style.display == 'block' ) {
@@ -2426,6 +2453,16 @@ function F_calculateEXPid(EXPid) {
 	var actIMGloc = string.slice(string.indexOf(" ")+1)
 }
 
+function setVizsgaSkipTime(){
+	// #1 lépésben megadom a jelenlegi időt (alertba tudom megjeletíteni, ott van lennt a kódja)
+	var date = new Date();
+	//alert(Math.floor(date.getTime()/60000))
+	vizsgaTime = 25195226
+	// #2 lépésben megadom hány perc múlva lesz a vizsga
+	vizsgaTime = vizsgaTime + 10080
+}
+setVizsgaSkipTime()
+
 
 //func_putZeroQBack();
 func_calcOldNew();
@@ -2509,11 +2546,14 @@ function F_prevQ(){
 			if ( document.getElementById("td.2."+i).style.backgroundColor == "black" ) {
 				localStorage.setItem(LSid+'_skip', "perma")
 			} else if ( document.getElementById("td.2."+i).style.backgroundColor == "lawngreen" ) {
-				//localStorage.setItem(LSid+'_skip', "atlag")
-				//localStorage.setItem(LSid+'_skip', 12)
 				localStorage.setItem(LSid+'_skip', "important")
+			} else if ( document.getElementById("td.2."+i).style.backgroundColor == "blue" ) {
+				localStorage.setItem(LSid+'_skip', "vizsgaSkip")
 			} else {
 				if ( localStorage.getItem(LSid+'_skip') == "important" ) {
+					localStorage.removeItem(LSid+'_skip')
+				}
+				if ( localStorage.getItem(LSid+'_skip') == "vizsgaSkip" ) {
 					localStorage.removeItem(LSid+'_skip')
 				}
 			}
@@ -2556,8 +2596,6 @@ function F_prevQ(){
 		localStorage.setItem("hk.lastSavedLS",lastSavedLS)
 	}
 }
-
-
 
 var priorQid = "nincs"
 var fullTema, checkNum, cloneKerdes
@@ -2638,14 +2676,14 @@ function F_nextQ(){
 				func_calcTimeDiff(repCount)
 				if ( idopont2 > timeDiff ) { 
 					priorType = 2
+					
+					var checkValue2 = idopont2 / timeDiff
+					if ( checkValue2 > priorValue2 ) {
+						priorValue2 = checkValue2
+						priorQid = Qid
+					}
+					console.log(idopont2+ "("+timeDiff+") " +checkValue2+ " vs " +priorValue2+ " ("+LSid+")")
 				}
-				
-				var checkValue2 = idopont2 / timeDiff
-				if ( checkValue2 > priorValue2 ) {
-					priorValue2 = checkValue2
-					priorQid = Qid
-				}
-				console.log(idopont2+ "("+timeDiff+") " +checkValue2+ " vs " +priorValue2+ " ("+LSid+")")
 			}
 			if ( priorType == 1 && localStorage.getItem(LSid+"_jegy") > 0 ) { // régi kérdés
 				var Qelem = document.getElementById(Qid)
@@ -2940,6 +2978,9 @@ function F_nextQ(){
 				}
 				if ( localStorage.getItem(LSid+'_skip') && localStorage.getItem(LSid+'_skip') != "important" ) {
 					document.getElementById("td.0."+i).style.backgroundColor = "Black"
+					if ( localStorage.getItem(LSid+'_skip') == "vizsgaSkip" ) {
+						document.getElementById("td.0."+i).style.backgroundColor = "Blue"
+					}
 					selectList.disabled = true
 					selectList.style.backgroundColor = "Black"
 				}
@@ -3035,10 +3076,12 @@ function F_CreateSelect(i) {
 			td.style.fontSize = "small"
 			td.addEventListener("click",function(){
 				if ( this.style.backgroundColor == "snow" ) { 
-					this.style.backgroundColor = "black" 
-				} else if ( this.style.backgroundColor == "black" ) { 
 					this.style.backgroundColor = "lawngreen" 
 				} else if ( this.style.backgroundColor == "lawngreen" ) { 
+					this.style.backgroundColor = "blue" 
+				} else if ( this.style.backgroundColor == "blue" ) { 
+					this.style.backgroundColor = "black" 
+				} else if ( this.style.backgroundColor == "black" ) { 
 					this.style.backgroundColor = "snow" 
 				}
 			});

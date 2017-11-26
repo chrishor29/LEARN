@@ -50,13 +50,10 @@
 <div><a href="m0201_hu_KoK_20170928_Demo_01.pdf">demó-1 tételek címe.pdf</a></div>
 
 <details open><summary><strong>PROJECT</strong></summary><ul class="normal">
-	<li><span class="Important">táblázat-RAJZ</span> reakciók (képletek)</li>
-	<li>lokalizáció &#10140; mi zajlik mitokondrium? stb. legyen</li>
 	<li>aminosav képletek</li>
- <hr>
 	<li>35t &#10140; WORD</li>
- 	<li>10.24ea (13.)</li>
-  <hr>
+ <hr>
+	<li><span class="Important">táblázat-RAJZ</span> reakciók (képletek): aminosav & lipid (mint szénhidrátnál)</li>
 	<li>csináljak összefoglaló képet a DEMÓ-1 metabolikus utak szabályozásairól (allosztérikus, kovalens, génexpresszió) &#10140; úgy tanuljam őket (egyszerűbb szvsz)</li>
 </ul></details>
 
@@ -117,13 +114,13 @@
 			<details><summary>ornitin-ciklus allosztérikus szabályozása</summary><ul class="normal">
 				<li>a karbamil-foszfát-szintetáz-I(CPS-I) által katalizált reakció van allosztérikusan szabályozva &#10140; az N-acetil-glutamát(NAG) serkenti</li>
 			  <hr><strong>N-acetil-glutamát(NAG) szintézise</strong>
-				<li><span class="Important">RAJZ</span> a reakciót</li>
-				<li><font style="font-size:80%">a reakció a mitokondriumban történik</font></li>
+				<li><span class="Important">RAJZ</span> a reakciót <span class="MISS">(képletet is)</span></li>
+				<li>a reakció a mitokondriumban történik &#10140; ahol a CPS-I is van!!</li>
 				<li>a reakció függ az arginin koncentrációtól is &#10140; ugyanis az arginin aktiválja az enzimet</li>
 			  <hr>
 				<li>ezis, mintahogy a génexpresszió és kovalens szabályozás is &#10140; éhezés során illetve magas fehérjetartalmú étkezés után indul meg</li>
 				<li>magyarázata</li><ul>
-					<li>étkezés után a fehérjelebontás követeztében nő az argnin mennyisége</li>
+					<li>étkezés után a fehérjelebontás következtében nő az argnin mennyisége</li>
 					<li>éhezés során a glukagon gátolja kerriert, amin keresztül a NAG távozna a mitokondriumból</li>
 				</ul>
 				<img data-src="ngshntkj.png">
@@ -143,31 +140,42 @@
 			<details><summary>acetil-CoA karboxiláz allosztérikus szabályozása</summary><ul class="normal">
 				<li>citrát serkenti</li>
 				<li>palmitil-CoA gátolja</li>
-				<font style="font-size:80%">logikus: hiszen zsírsavszintézisre akkor van szükség, ha van elég energia(~citrát mennyisége), és a maradékot tárolni akarja triglicerid formában a szervezet</font>
+				<font style="font-size:80%">logikus: hiszen ha van már sok palmitil-CoA, akkor nincs szükség még több zsírsavszintézisre</font>
 			</ul></details>
 			<details><summary>acetil-CoA karboxiláz kovalens szabályozása (foszforiláció) <div class="mirror">&#10140;</div> hormonális hatásra</summary><ul class="normal">
-				<li>inzulin hatására <strong>de</strong>foszforilálódik az enzim &#10140; serkenti</li>
-				<li>glukagon hatására foszforilálódik az enzim &#10140; gátolja</li>
+			  <strong>alapja</strong>
+				<li>fontos, hogyha zsírsav szintézis van, akkor NE legyen közbe zsírsav-oxidáció is</li>
+				<li>ez úgy megy végbe, hogy a malonil-CoA gátolja<abbr title="pontos módja még nem tisztázott (wiki alapján)">'</abbr> a karinitin-aciltranszferáz-I működését <span class="lasd">demo-II: 3.t</span> &#10140; így nem jut be mitokondriumba acil-CoA, a &beta;-oxidáció márpedig ott zajlana</li>
+			  <hr><strong>májban</strong>
+				<li>inzulin hatására <strong>de</strong>foszforilálódik az acetil-CoA karboxiláz, így aktiválja &#10140; malonil-CoA nő &#10140; karnitin-aciltranszferáz-I gátlása nő, így a zsírsav &beta;-oxiációt gátolja</li>
+				<li>glukagon <abbr title="adenilát-cikláz aktiválódik &#10140; cAMP nő &#10140; PKA aktiválódik &#10140; ">hatására</abbr> foszforilálódik az acetil-CoA karboxiláz, így inaktiválódik &#10140; előbbi fordítottja</li>
 				<font style="font-size:80%">logikus: hiszen zsírsavszintézisre akkor van szükség, ha van elég energia &#10140; inzulin akkor van, ha magas a vércukorszint, ilyenkor pedig van elég energia</font>
+			  <hr><strong>izmokban</strong>
+				<li>itt is van acetil-CoA karboxiláz, de! itt nincs zsírsav-szintézis &#10140; ACC itt csak a zsírsav-oxidáció regulációjában játszik szerepet</li>
+				<li>kontrakció &#10140; [ATP] csökken, [AMP] nő &#10140; [AMP] növekedés aktiválja az AMP-protein-kinázt(AMPK) &#10140; ACC-t foszforilálja, inaktív lesz &#10140; innentől ugyanaz mint májnál<abbr title="malonil-CoA csökken &#10140; karnitin-aciltranszferáz-I gátlása megszűnik &#10140; zsírsav-oxidáció nő">'</abbr></li>
+			  <hr><details><summary>(továbbá a jó energiaellátottság esetén nincs szükség &beta;-oxidációra)</summary><ul class="normal">
+				<li>magas NADH/NAD<sup>+</sup> arány &#10140; csökkenti a &beta;-hidroxiacil-CoA-dehidrogenáz működését</li>
+				<li>magas acetil-CoA &#10140; csökkenti ketotioláz működését</li>
+			  </ul></details>
 			</ul></details>
 			<details><summary>zsírsavak &beta;-oxidációjának szabályozása rövidtávon</summary><ul class="normal">
 			  <strong>alapja</strong>
 				<li>fontos, hogyha zsírsav szintézis van, akkor NE legyen közbe zsírsav-oxidáció is</li>
 				<li>ez úgy megy végbe, hogy a malonil-CoA gátolja<abbr title="pontos módja még nem tisztázott (wiki alapján)">'</abbr> a karinitin-aciltranszferáz-I működését <span class="lasd">demo-II: 3.t</span> &#10140; így nem jut be mitokondriumba acil-CoA, a &beta;-oxidáció márpedig ott zajlana</li>
-			  <strong>lényege a májban</strong>
-				<li>glukagon/adrenalin <abbr title="adenilát-cikláz aktiválódik &#10140; cAMP nő &#10140; ">&#10140;</abbr> PKA aktiválódik &#10140; <abbr title="acetil-CoA karboxiláz">ACC</abbr>-t foszforilálja, inaktív lesz &#10140; malonil-CoA csökken &#10140; karnitin-aciltranszferáz-I gátlása megszűnik &#10140; zsírsav-oxidáció nő</li>
-				<li>inzulin nő ---> ACC defoszforilálódik, aktív lesz &#10140; innentől előbbi fordítottja<abbr title="malonil-CoA nő &#10140; karnitin-aciltranszferáz-I gátolva lesz &#10140; zsírsav-oxidáció csökken">'</abbr></li>
-			  <strong>lényege az izmokban</strong>
-				<li>itt is van ACC, de! itt nincs zsírsav-szintézis &#10140; ACC itt csak a zsírsav-oxidáció regulációjában játszik szerepet</li>
+			  <hr><strong>májban</strong>
+				<li>inzulin hatására <strong>de</strong>foszforilálódik az acetil-CoA karboxiláz, így aktiválja &#10140; malonil-CoA nő &#10140; karnitin-aciltranszferáz-I gátlása nő, így a zsírsav &beta;-oxiációt gátolja</li>
+				<li>glukagon <abbr title="adenilát-cikláz aktiválódik &#10140; cAMP nő &#10140; PKA aktiválódik &#10140; ">hatására</abbr> foszforilálódik az acetil-CoA karboxiláz, így inaktiválódik &#10140; előbbi fordítottja</li>
+				<font style="font-size:80%">logikus: hiszen zsírsavszintézisre akkor van szükség, ha van elég energia &#10140; inzulin akkor van, ha magas a vércukorszint, ilyenkor pedig van elég energia</font>
+			  <hr><strong>izmokban</strong>
+				<li>itt is van acetil-CoA karboxiláz, de! itt nincs zsírsav-szintézis &#10140; ACC itt csak a zsírsav-oxidáció regulációjában játszik szerepet</li>
 				<li>kontrakció &#10140; [ATP] csökken, [AMP] nő &#10140; [AMP] növekedés aktiválja az AMP-protein-kinázt(AMPK) &#10140; ACC-t foszforilálja, inaktív lesz &#10140; innentől ugyanaz mint májnál<abbr title="malonil-CoA csökken &#10140; karnitin-aciltranszferáz-I gátlása megszűnik &#10140; zsírsav-oxidáció nő">'</abbr></li>
-			  <hr><strong>(továbbá a jó energiaellátottság esetén nincs szükség &beta;-oxidációra)</strong>
+			  <hr><details><summary>(továbbá a jó energiaellátottság esetén nincs szükség &beta;-oxidációra)</summary><ul class="normal">
 				<li>magas NADH/NAD<sup>+</sup> arány &#10140; csökkenti a &beta;-hidroxiacil-CoA-dehidrogenáz működését</li>
 				<li>magas acetil-CoA &#10140; csökkenti ketotioláz működését</li>
+			  </ul></details>
 			</ul></details>
 			<details><summary>zsírsavak &beta;-oxidációjának szabályozása hosszútávon</summary><ul class="normal">
-				<li>A zsírsavoxidáció tartós aktiválását okozza a zsírsav oxidáció egyes kulcsfehérjéinek fokozott traszkripciója a PPAR transzkripciós faktorok közreműködésével (lásd 20. fejezet)</li>
-				<li>A sejtek vagy a szervezet olyan állapotaiban, amikor fokozott zsírsav-oxidációra van szükség (pl. tartós éhezés) a PPAR&alpha;, amely zsírsavak magi receptoraként működik, fokozza a zsírszövetben, az izomban, illetve a májban a zsírsav-oxidációt szolgáló gének transzkripcióját (kamitin-aciltranszferáz-I és -II és acil-CoA-dehidrogenáz)</li>
-				<li>Ugyancsak ez a mechanizmus indítja be a szívizomban a zsírsav-oxidáció enzimeinek expresszióját a születés után, amikor a szívizom a magzati metabolizmusról (glukóz- és tejsavfelhasználás) átáll a zsírsavak égetésére</li>
+				<li>tartós éhezés esetében a a PPAR&alpha;(magi receptor) fokozza zsírszövetben, izomban, májban a zsírsav-oxidációt szolgáló gének transzkripcióját (kamitin-aciltranszferáz-I és -II és acil-CoA-dehidrogenáz)</li>
 				<strong>forrás</strong> &#10140; TK.217o
 			</ul></details>
 			<img data-src="szblyzsksszfgll.png">
@@ -271,6 +279,8 @@
 			<li>szállítása (transzferrin) &#10140; Fe<sup>3+</sup> formában</li>
 			<li>raktározása (ferritin) &#10140; Fe<sup>3+</sup> formában</li>
 			<font style="font-size:80%">fenntiek mindig ilyen formában történnek</font>
+		  <hr><strong>megjegyzési tipp:</strong>
+			<li>az Fe<sup>3+</sup> a ferri (és az Fe<sup>2+</sup> a ferro) &#10140; transz<strong>ferri</strong>n és <strong>ferri</strong>tin</li>
 		</ul></details>
 		<details class="{345} kerdes 3/4"><summary>proprionil-CoA sorsa</summary><ul class="normal">
 			<img data-src="kplktjmnj.png">
@@ -300,7 +310,7 @@
 		</ul></details>
 		<details class="kerdes 2/1"><summary>dezamidáció vs dezamináció?</summary><ul class="normal">
 			<li>dezamidáció csak aszparagin és glutamin esetében történhet <abbr title="konzultáció a forrás">&#10045;</abbr></li>
-			<li>&#10140; <font style="font-size:80%">szvsz</font> dezami<strong>d</strong>áció az, amikor NEM az &alpha;-C atomhoz kapcsolódó aminocsoport válik le</li>
+			<li>dezamidáció &#10140; The hydrolysis of one or more carboxamide groups in a molecule to carboxyl groups</li>
 			<img data-src="dsmdsfgth.png">
 		</ul></details>
 		<details class="kerdes 2/2"><summary>palmitil-CoA sorsa?</summary><ul class="normal">
@@ -553,7 +563,7 @@
 			<li>ez azonban nem megy végig még1x (párosnál a 4C-atomos ugye végigmegy még1x és lesz belőle még +1acetil-CoA)</li>
 			<li>proprionil-CoA keletkezik</li><ul>
 				<li>páratlan szénatomszámú zsírsavak oxidációja során</li>
-				<li>alábbi aminosavak lebontása során &#10140; threonin, metionin, valin, izoleucin <span class="lasd">bk-II/2d: 59t</span></li>
+				<li>threonin, metionin, valin, izoleucin <span class="lasd">bk-II/2d: 59t</span></li>
 			</ul>
 		  <hr><strong>proprionil CoA sorsa</strong>
 			<div class="imp [345]"></div>
@@ -843,11 +853,15 @@
 			<div class="imp [301]"></div>
 		  <hr>ugyanis a <strong>funkciójuk:</strong>
 			<li>vagy lipoprotein összeépüléséhez kell &#10140; pl. ApoB-48 <span class="lasd">bk-II/2: 20.t</span></li>
-			<li>vagy szignálként szolgálnak: megfelelő sejthez jutva, annak receptorai felismerik, és így felvételre kerül a lipoprotein</li><ul>
+			<li>vagy szignálként szolgálnak: megfelelő sejthez jutva, annak receptorai/transzporterei felismerik</li><ul>
 				<li>pl. ApoE segíti a kilomikronmaradvány felvételét a májba <span class="lasd">bk-II/2: 20.t</span></li>
 				<li>pl. ApoB-100 -at ismeri fel az LDL-receptor <span class="lasd">bk-II/2: 21.t</span></li>
+				<li>pl. ApoA-I aktiválja ABCA1 transzportert</li>
 			</ul>
-			<li>vagy a lipoproteinek metabolizmusában meghatározó enzimek működését aktiválja vagy gátolja &#10140; pl. ApoC-II aktiválja a lipoprotein-lipázt <span class="lasd">bk-II/2: 20.t</span> <span class="lasd">bk-II/2: 21.t</span></li>
+			<li>vagy a lipoproteinek metabolizmusában meghatározó enzimek működését aktiválja</li><ul>
+				<li>pl. ApoC-II aktiválja a lipoprotein-lipázt <span class="lasd">bk-II/2: 20.t</span> <span class="lasd">bk-II/2: 21.t</span></li>
+				<li>pl. ApoA-I aktiválja LCAT enzimet</li>
+			</ul>
 			<font style="font-size:80%"><span class="Important">KÉP</span> &#10140; csak megőrzésre</font>
 			<img data-src="ffjhnamn.png">
 		</ul></details>
@@ -1346,7 +1360,7 @@
 			<details><summary>aminosavak felszívása és továbbítása az enterocytákban</summary><ul class="normal">
 				<div class="imp [184]"></div>
 			</ul></details>
-			<li>a felvett aminosavak nagyrésze a portális keringéssel a májba jutva a hepatociták által felvételre kerül (kivéve az elágazó szénlácú aminosavak)</li>
+			<li>a felvett aminosavak nagyrésze a portális keringéssel a májba jutva a hepatociták által felvételre kerül (kivéve az elágazó szénláncú aminosavak!, azok szvsz hcs.izomba jutnak)</li>
 		</ul></details>
 		<details class="kerdes 3/2"><summary>Mi az aminosavak felszívódásának mechanizmusa? <strong>Az aminosavtranszporter-családokra mondjon példákat!</strong> A γ-glutamil-ciklus jelentősége.</summary><ul class="normal">
 		  <strong>a transzporterek típusai</strong>
@@ -1369,7 +1383,7 @@
 			<li>a glutationról a cisztein + glicin leválik &#10140; <abbr title="glutation-maradványa">&gamma;-glutamil</abbr>-aminosav 'páros' pedig bejut a sejtbe</li>
 			<li>a sejtben a glutamil-ciklotranszferáz hatására &#10140; aminosav leválik, és a &gamma;-glutamil átalakul 5-oxoprolin-ra</li>
 			<li>ezután az 5-oxoprolin három lépésben visszaalakul glutationná, közben felhasznál 3ATP-t</li>
-			<font style="font-size:80%"><span class="Important">KÉP</span> &#10140; csak a megértés miatt tettem ki, meg ne tanuljam</font>
+			<font style="font-size:80%"><span class="Important">RAJZ</span></font>
 		  <hr><strong>megjegyzés</strong>
 			<li>glutation = &gamma;-glutamil-ciszteinil-glicin = GSH &#10140; ez a legfontosabb szolubilis<abbr title="=oldódó">'</abbr> antioxidáns</li>
 			<font style="font-size:80%">ez nem kapcsolódik szorosan ide, de tudni kell</font>
@@ -1451,7 +1465,7 @@
 		</ul></details>
 	</ul></details>
 	<details class="kerdes 3/7"><summary class="status"><strong>43. A glutamát aminocsoportjának sorsai</strong></summary><ul class="normal">
-	  <strong>más és vese &#10140; dezaminálás </strong>
+	  <strong>máj és vese &#10140; dezaminálás </strong>
 		<li>a glutamát-dehidrogenáz dezaminálja &#10140; ammónia formában leadja <abbr title="a glutamát az aminocsoportját">'</abbr></li>
 		<li>vesében a <abbr title="visszanövelés normálisra acidózis során">pH szabályozásban</abbr> játszik ez szerepet, ugyanis ammónium keletkezik (+1protont felvesz), majd egyből kiválasztásra kerül <span class="lasd">bk.II/2d: 53t</span></li>
 		<li>májban a periportalis hepatociktákban történik a dezaminálás, majd utána ugyanott az ornitin-ciklussal urea-ba épül be</li>
@@ -1508,11 +1522,10 @@
 			<img data-src="rkvvlkmjm.png">
 		</ul></details>
 		<details class="kerdes 3/3"><summary>A purinnukleotid-ciklus működése, <strong>fontossága</strong>.</summary><ul class="normal">
-			<li>akut energiahiányos állapotban az ATP lecsökken, AMP pedig nagyonmegnő</li>
+			<li>hcs.izomban a kontrakció esetében az ATP lecsökken, AMP pedig nagyonmegnő</li>
 			<font style="font-size:80%">ADP nem változik lényegében!! ugyanis az adenilát-kináz átalakítja a 2ADP-t 1ATP + 1AMP-re</font>
 			<li>így a ciklus megindul (lásd kép)</li>
 			<li>a reakció során citrátköri_intermedier (fumarát) keletkezik &#10140; így az aszpartát(aminosav) felhasználható energiaforrásként</li>
-			<li>hcs.izomban jelentős<abbr title="és agyban">'</abbr></li>
 		  <hr><strong>tehát összefoglalva</strong>
 			<li>akut energiahiányos állapotban jelentős a hcs.izomban &#10140; az aszpartát(aminosav) felhasználódik energiaforrásként</li>
 			<img data-src="rkvvlkmjm.png">
@@ -1527,11 +1540,12 @@
 			<li>kofaktora &#10140; piridoxálfoszfát</li>
 		  <hr>
 			<li>piruvát &#10140; glikolízis/glikoneogenezis intermedierje</li>
-			<li>&alpha;-ketobutirát ezután átalakul<abbr title="két lépésben">'</abbr> szukcinil-CoA-vá &#10140; citrát-köri intermedier</li>
+			<li>&alpha;-ketobutirát ezután továbbalakul <span class="lasd">bk-II/2d: 59.t</span> &#10140; proprionil-CoA &#10140; metil-malonil-CoA &#10140; szukcinil-CoA-vá &#10140; utóbbi citrát-köri intermedier!</li>
 		</ul></details>
 		<details class="kerdes 3/1"><summary><strong>Dezaminálási mechanizmusok:</strong> szerin-dehidratáz, <strong>hisztidáz</strong>, aminosav-oxidáz, glicinhasító enzim.</summary><ul class="normal">
 			<li>hisztidint dezaminálja &#10140; urokanát + NH<sub>4</sub><sup>+</sup></li>
-			<font style="font-size:80%">a keletkezett urokanát több lépésben átalakul végül glutamáttá</font>
+			<li>a keletkezett urokanát több lépésben átalakul végül glutamáttá</li>
+			<img data-src="msnkjhnmhnm.png">
 		</ul></details>
 		<details class="kerdes 3/4"><summary><strong>Dezaminálási mechanizmusok:</strong> szerin-dehidratáz, hisztidáz, <strong>aminosav-oxidáz</strong>, glicinhasító enzim.</summary><ul class="normal">
 			<img style="max-width:40%" data-src="ntkrjmhnm.png">
@@ -1594,7 +1608,6 @@
 		<li>ez a legjelentősebb (de ez ugye hosszútávon történik a másik 2-vel szemben)</li>
 		<li>lényege &#10140; a <abbr title="éhezés esetében vagy magas fehérjetartalmú diéta">fennti két esetben</abbr> megnő az ornitin-ciklus enzimeknek a mennyisége</li>
 		<li>így ha megnő a dezaminálás következtében az ammónia-koncentráció, akkor az ornitin-ciklus is fokozódik &#10140; urea formában kiválasztásra kerülnek, és visszaáll normális szintre</li>
-		<img data-src="szblyzsksszfgll.png">
 	</ul></details>
 	<details class="kerdes 3/4"><summary class="status"><strong>50. Az ornitinciklus szabályozása allosztérikusan. Az Arg szerepe, szintjének változása.</strong></summary><ul class="normal">
 		<div class="imp [343]"></div>
@@ -1619,8 +1632,8 @@
 			<li>a glutamin formában szállítótt ammóniát visszaalakítja ammóniá + glutamáttá</li>
 			<li>az ammóniát eliminálja a ornitin-ciklusban</li>
 		</ul>
-		<li>pericentrális hepatociták &#10140; a minimális mennyiségű megmaradt ammóniát(keringésben), a glutamin-szintáz által glutaminná (vissza)alakítja (hisz inkább glutamin formában szállítódjon)</li>
-		<li><span class="lasd">RAJZ</span> &#10140; reakciókat!</li>
+		<li>pericentrális hepatociták &#10140; a minimális mennyiségű megmaradt ammóniát(keringésben), a glutamin-szintetáz által glutaminná (vissza)alakítja (hisz inkább glutamin formában szállítódjon)</li>
+		<li><span class="lasd">RAJZ</span> &#10140; reakciókat! <span class="miss">képletek is kellenek!</span></li>
 	  <hr><strong>Normális körülmények között</strong>
 		<li>máj nettó reakciója: NH<sub>4</sub><sup>+</sup> & glutamin &#10140; urea</li>
 		<font style="font-size:80%">ugyanis a periportals hepatociták az összes felesleges ammóniát átalakítják ureá-vá</font>
@@ -1629,8 +1642,8 @@
 		<li>a periportális hepatocitákban az ornitinciklus aktivitása csökken, ennek következtében jelentősebb mennyiségű ammónia éri el a v.centrális közeli hepatocitákat, melyekben így nagy mennyiségű glutamin képződik (tehát a máj nettó glutaminfelvevő szövetből nettó glutamindonor lesz)</li>
 		<li>a keletkezett glutamin eljut a vesébe, ami felhasználja &#10140; glukoneogenezis + pH visszaállításra <span class="lasd">bk-II/2d: 53.t</span></li>
 		<li>az ornitinciklus aktivitáscsökkenésének okai:</li><ul>
-			<li>pl. a CPS-I szubsztrátja az NH<sub>3</sub>, nem pedig az ammóniumion (acidózisban az NH<sub>3</sub>/NH<sub>4</sub><sup>+</sup> egyensúly a protonált forma felé tolódik el)</li>
-			<li>pl. a glutamináz aktivitása acidózis hatására csökken &#10140; így kevesebb NAG keletkezik, így kevésbé van serkentve a CPS-I</li>
+			<li>pl. a CPS-I szubsztrátja az NH<sub>3</sub>, nem pedig az NH<sub>4</sub><sup>+</sup> (acidózisban az NH<sub>3</sub>/NH<sub>4</sub><sup>+</sup> egyensúly az ammónium felé tolódik el)</li>
+			<li>pl. a glutamináz aktivitása acidózis hatására csökken &#10140; több glutamin marad (periportalis hepatocitákban NEM bomlanak le, és 'alakul át' ureává)</li>
 		</ul>
 	</ul></details>
 	<details class="kerdes 3/4"><summary class="status"><strong>53. Mi a glutamin szerepe a vesében a pH-egyensúly fenntartásában?</strong></summary><ul class="normal">
@@ -1666,13 +1679,12 @@
 		<li>extrahepatikus szövetek &#10140; pl. hcs.izom és bél</li>
 	  <hr><strong>harántcsíkolt izomszövet</strong>
 		<img style="max-width:20%" data-src="gltmlgmltmnjm.png">
-		<li>éhezés során az elágazó szénláncú aminosavak lebontása történik</li>
+		<li>éhezés során az elágazó szénláncú aminosavak (valin, izoleucin, leucin) lebontása történik</li>
 		<li>a lebontás során az aminocsoportok a glutaminba és alaninba épülnek be</li>
 		<li>ezek eljutnak a májba, ahol a periportalis_hepatociták által dezaminálásra kerülnek, és az ammónia beépül urea-ba <span class="lasd">bk-II/2d: 52.t</span></li>
 		<li>megjegyzés</li><ul>
 			<li>mivel glutamin-szintezálódik, így itt nincs glutamát-dehidrogenáz aktivitás (az csak vesében és májban van!)</li>
 			<li>az aminosavak<abbr title="nem teljesen világos ez a mondat, hisz purinnukleotid-ciklusnál aszpartát dezaminálódik">'</abbr> dezaminálása itt a purinnukleotid-ciklussal megy végbe <span class="lasd">45.t</span></li>
-			<li>az aminosavak lebontása során keletkezett </li>
 		</ul>
 	  <hr><strong>bélben keletkező ammónia</strong>
 		<li>egyrészt a bélbaktériumok lebontják egy részét az ureának és aminosavaknak</li>
@@ -1695,6 +1707,7 @@
 		<li>(tehát a kékkel kijelölt 3 csoportba sorolhatóak)</li>
 	  <hr>
 		<li><span class="Important">RAJZ</span> (sajnos tudni kell :S)</li>
+		<li>/zöldekkel jelöltem azon reakciókat, amikről már volt szó másik tételben is, tehát értem is/ &#10140; elsőnek azokat tanuljam!</li>
 	  <hr>
 		<font style="font-size:80%">ketoplasztikus aminosavak arról kapták az elnevezésüket, hogy az acetil-CoA is átalakul ketontesté éhezés során, márpedig aminosavak lebontása főként akkor zajlik</font>
 		<img data-src="msnkjhnmhnm.png">
@@ -1732,9 +1745,9 @@
 	</ul></details>
 	<details class="open"><summary class="status"><strong>59.</strong> Mely aminosavakból keletkezik propionil-KoA vagy metilmalonil-KoA, és ezek hogyan alakulnak tovább? Milyen vitaminok szükségesek a lépésekhez? Mely sejtrészben zajlanak a reakciók, mi a sorsa a terméknek?</summary><ul class="normal">
 		<details class="kerdes 3/4"><summary><strong>Mely aminosavakból keletkezik propionil-KoA vagy metilmalonil-KoA, és ezek hogyan alakulnak tovább? Milyen vitaminok szükségesek a lépésekhez?</strong> Mely sejtrészben zajlanak a reakciók, <strong>mi a sorsa a terméknek?</strong></summary><ul class="normal">
-			<li>metionin, threonin, valin, izoleucin</li>
+			<li>valin, izoleucin, treonin, metionin <span class="lasd">bk-II/2d: 54.t</span></li>
 			<li>illetve páratlan C-atomszámú zsírsavak lebontása során is ez keletkezik <span class="lasd">bk-II/2d: 5t</span></li>
-			<li>szukcinil-CoA lesz belőlük, mely citrát-körben tovább alakul oxálacetáttá &#10140; glükoneogenezissel glükóz szintetizálódik belőle</li>
+			<li>szukcinil-CoA lesz belőlük, mely belép a citrát-körbe</li>
 		  <hr><strong>proprionil-CoA sorsa</strong>
 			<div class="imp [345]"></div>
 			<img data-src="msnkjhnmhnm.png">
@@ -1748,7 +1761,9 @@
 			<details><summary><strong>kofaktora</strong></summary><ul class="normal">
 				<div class="imp [346]"></div>
 			</ul></details>
-			<li>az első lépés utána fenil-alanin és tirozin sorsa már ugyanaz &#10140; keletkezik belőlük több lépés után fumarát és acetoacetát (glukoplasztikusak és ketoplasztikusak is egyben!!)</li>
+			<li>tetrahidrobiopterin és a fenil-alanin is oxidálódik</li>
+		  <hr>
+			<li>az első lépés utána fenil-alanin és tirozin sorsa már ugyanaz &#10140; keletkezik belőlük több lépés után <span class="Important">fumarát</span> és <span class="Important">acetoacetát</span> (<span class="Important">glukoplasztikusak és ketoplasztikusak is egyben</span>!!)</li>
 			<li>a dihidrobiopterin(DHB) NADPH+H<sup>+</sup> felhasználásával redukálódik vissza tetrahidrobiopterinné(THB)</li>
 			<img data-src="ztkrjmnjm.png">
 		</ul></details>
@@ -1763,8 +1778,8 @@
 		</ul></details>
 	</ul></details>
 	<details class="kerdes 3/3"><summary class="status"><strong>61. Milyen következményei vannak a B12-vitamin hiányának az aminosav anyagcserére?</strong></summary><ul class="normal">
-		<li>a B12-vitamin a kofaktora a metil-malonil-CoA mutáz által katalizált reakciónak</li>
-		<li>ez egyrészt az elágazó szénláncú amninosavak (valin, izoleucin, treonin, metionin) lebontásában játszik szerepet <span class="lasd">bk-II/2d: 59t</span></li>
+		<li>a B12-vitamin a kofaktora a <u>metil-malonil-CoA mutáz</u> által katalizált reakciónak</li>
+		<li>ez egyrészt a valin, izoleucin, treonin, metionin lebontásában játszik szerepet <span class="lasd">bk-II/2d: 59t</span></li>
 		<li>másrészt a páratlan szénatomszámú zsírsavak lebontásában <span class="lasd">bk-II/2d: 5t</span></li>
 	  <hr>
 		<li>a B12-vitamin következménye &#10140; <span class="Important">metil-malonsavas acidaemia</span></li>
@@ -1773,7 +1788,7 @@
 	<details class="open"><summary class="status"><strong>62.</strong> Aminosavmódosulások a fehérjékben: hidroxiprolin (és hidroxilizin) valamint γ-karboxiglutamát képződésének mechanizmusa.</summary><ul class="normal">
 		<details class="kerdes 3/5"><summary>Aminosavmódosulások a fehérjékben: <strong>hidroxiprolin (és hidroxilizin)</strong> valamint γ-karboxiglutamát <strong>képződésének mechanizmusa</strong>.</summary><ul class="normal">
 			<img style="max-width:17%" data-src="zkjnmkpltklm.png">
-			<li>hidroxiprolin, hidroxilizin, γ-karboxiglutamát &#10140; emberi szervezetben megtalálható azon aminosavak, amelyek fehérjébe történő beépülésük után poszttranszlációs módosulással keletkeznek</li>
+			<li>hidroxiprolin, hidroxilizin, γ-karboxiglutamát &#10140; emberi szervezetben megtalálható azon aminosavak, amelyek fehérjébe történő beépülésük után poszttranszlációs módosulással keletkeznek, nem esszenciálisak  <img class="mini"data-src="zdmzjnmh.png"></li>
 		  <hr>
 			<li><span class="Important">RAJZ</span> &#10140; reakciók</li>
 			<li>mindkét esetben a másik oxigénatomot felhasználja &alpha;-ketoglutarát, és oxidatív-dekarboxilációval(-CO<sub>2</sub>,+O) lesz belőle szukcinát (lásd citrát-kör 1lépést kihagyva)</li>
@@ -1785,10 +1800,11 @@
 		</ul></details>
 		<details class="kerdes 3/4"><summary>Aminosavmódosulások a fehérjékben: hidroxiprolin (és hidroxilizin) valamint <strong>γ-karboxiglutamát képződésének mechanizmusa.</strong></summary><ul class="normal">
 			<img style="max-width:40%" data-src="sztnjhnhn.png">
-			<li>hidroxiprolin, hidroxilizin, <abbr title="gamma">γ</abbr>-karboxiglutamát &#10140; emberi szervezetben megtalálható azon aminosavak, amelyek fehérjébe történő beépülésük után poszttranszlációs módosulással keletkeznek</li>
+			<li>hidroxiprolin, hidroxilizin, <abbr title="gamma">γ</abbr>-karboxiglutamát &#10140; emberi szervezetben megtalálható azon aminosavak, amelyek fehérjébe történő beépülésük után poszttranszlációs módosulással keletkeznek, nem esszenciálisak  <img class="mini"data-src="zdmzjnmh.png"></li>
 		  <hr><strong>képződése</strong>
 			<li>a glutamát &gamma;-C-atomjához szén-dioxid felhasználásával egy további karboxilcsoport kapcsolódik</li>
-			<li>a reakciót glutamát-&gamma;-karboxiláz enzim katalizálja &#10140; kofaktora a K-vitamin!!!</li>
+			<li>a reakciót glutamát-&gamma;-karboxiláz enzim katalizálja</li>
+			<font style="font-size:80%">többi karboxilázzal ellentétben ennek K-vitamin a kofaktora, NEM biotin!!</font>
 			<details><summary><strong>kofaktora</strong></summary><ul class="normal">
 				<div class="imp [346]"></div>
 			</ul></details>
@@ -1840,8 +1856,7 @@
 		</ul>
 		<li><span class="Important">napi 1-2mg vasfelvétel történik</span> a bélben <span class="lasd">bk-II/2d: 71.t</span></li>
 		<li>vas leadásának nincs külön módszere &#10140; tehát az egyetlen módja, hogy a leváló bélhámsejtek, bőr<abbr title="és vizeletellvezetőrendszer falát borító sejtek is leválnak">'</abbr> útján szabadulunk meg napi szintén 1-2mg</li>
-		<li>napi 30mg vas szabadul fel a lép makrofágjaiban lebontásra kerülő vörösvértestekből &#10140; újra fel kell használni</li>
-		<li>a vas 80% a vörös csontvelőben, 15% a májban használódik fel</li>
+		<li>napi 30mg vas szabadul fel a lép makrofágjaiban lebontásra kerülő vörösvértestekből &#10140; újra fel kell használni: a vas 80% a vörös csontvelőben, 15% a májban használódik fel</li>
 	  <hr><strong>(vashiány & vastöbblet)</strong><br>
 		<font style="font-size:80%">lassan alakulnak ki, hisz 5g-hoz képest a napi 1-2mg nagyon kis mennyiség</font>
 		<li>vastöbblet &#10140; mivel nincs vasleadásnak kontrollált módja, így a fokozott vasfelvétel vastöbbletet okozhat</li>
@@ -1856,7 +1871,7 @@
 		<details class="kerdes 3/7"><summary><strong>Vas felszívódása a bélben</strong> és szállítása a vérben</summary><ul class="normal">
 			<img style="max-width:40%" data-src="lnygktjmnm.png">
 			<span class="Important">RAJZ</span> &#10140; szöveg csak a <abbr title="tehát akkor olvassam csak el, ha még nem tiszta">megértésre van</abbr>, onnantól csak a rajzzal foglalkozzak, és elfogom tudni mondani a szöveget (kékkel kiemelteket ne felejtsem ki)
-			<li>a vas felvétele a duodenum kezdeti szakaszán történik, ahol még a pH savas (ennek okát lásd lentebb majd!)</li>
+			<li>a vas <span class="Important">felvétele a duodenum kezdeti szakaszán történik, ahol még a pH savas</span> (ennek okát lásd lentebb majd!)</li>
 			<li>a vas a DMT1-<span class="Important">transzporteren keresztül csak Fe<sup>2+</sup> formában tud átjutni</span></li>
 			<li>így a lumenben lévő Fe<sup>3+</sup>-t redukálja az apikális membránban található ferrireduktáz (duodenális citrokróm-b, Dcitb)</li>
 			<li>ezután felvételre kerül H<sup>+</sup>-al együtt &#10140; ezért fontos a lumenben az alacsony pH!</li>
@@ -1876,19 +1891,19 @@
 			<li>a transzferrin szállítja a vasat a vérben &#10140; 2db Fe<sup>3+</sup>-ot cipel</li>
 			<li>ugyanis a vas szabad formában toxikus lenne &#10140; <abbr title="szvsz ez ellen védekeznek az antioxidánsok">oxidatív_stresszt</abbr> okozna</li>
 		  <hr><strong>transzferinek 'telíttetsége' felhasználható diagnózisra</strong>
-			<li>ha a transzferrin 30%-a köt vasat &#10140; normális</li>
-			<li>ha a transzferrin kevesebb, mint 15%-a köt vasat &#10140; vashiány</li>
-			<li>ha a transzferrin több, mint 45%-a köt vasat &#10140; vastöbblet</li>
+			<li>ha a transzferrinek 30%-a köt vasat &#10140; normális</li>
+			<li>ha a transzferrinek kevesebb, mint 15%-a köt vasat &#10140; vashiány</li>
+			<li>ha a transzferrinek több, mint 45%-a köt vasat &#10140; vastöbblet</li>
 		</ul></details>
 	</ul></details>
 	<details class="kerdes 3/6"><summary class="status"><strong>72. Vas sorsa sejten belül, ferritin szerepe</strong></summary><ul class="normal">
 		<img style="max-width:40%" data-src="kgjhmnhmnfh.png">
-		<span class="Important">RAJZ</span> &#10140; első rész szöveg csak a <abbr title="tehát akkor olvassam csak el, ha még nem tiszta">megértésre van</abbr>, onnantól csak a rajzzal foglalkozzak, és elfogom tudni mondani a szöveget
-		<li>a vérben transzferrin-el szállított vas felvételre kerül <abbr title="ebből lesz vvt">eritroid</abbr>-sejtekbe/májsejtekbe a transzferrin-receptor-1 -el</li>
-		<li>így receptor mediált endocitózissal<abbr title="klatrinburkos">'</abbr> felvételre kerülnek &#10140; DMT1 is benne van</li>
+		<span class="Important">RAJZ</span>
+		<li>a vérben transzferrin-el szállított vas eljut az <span class="Important"><abbr title="ebből lesz vvt">eritroid</abbr>-sejtekhez/májsejtekhez</span></li>
+		<li>a transzferrin-receptor-1 felismeri, így <span class="Important">receptor mediált endocitózis</span>sal<abbr title="klatrinburkos">'</abbr> felvételre kerülnek &#10140; DMT1 is bele kerül a vezikulába</li>
 		<li>az endoszóma elkezd átalakulni lizoszómává (proton-pumpa!) &#10140; pH lecsökken, így az Fe<sup>3+</sup> leválik a transzferrin-ről</li>
 		<li>metalloreduktáz redukálja az Fe<sup>3+</sup>-t Fe<sup>2+</sup>-ra, így utána képes a DMT1(transzporter)-en keresztül kijutni citoszolba</li>
-		<li>végül üres transzferrin-receptor-1(üres) és transzfferin és DMT1 tartalmú vezikula visszajut a membránba</li>
+		<li>végül transzferrin-receptor-1 és transzfferin(üres) és DMT1 tartalmú vezikula visszajut a membránba</li>
 	  <hr>
 		<li>citoszolban lévő Fe<sup>2+</sup> ezután a ferrintinhez jut</li>
 		<li>ferritinnek van egy nehéz_lánc része &#10140; ez at Fe<sup>2+</sup>-t oxidálja Fe<sup>3+</sup>-ra</li>
@@ -1900,10 +1915,10 @@
 		<li>a hepcidin májban szintetizálódó hormon</li>
 		<li>funkciója &#10140; ferroportint gátolja (ami ugye a vasat a keringésbe juttató transzporter &#10140; <span class="lasd">bk-II/2d: 71t</span>)</li>
 	  <hr>
-		<li>a hepcidin expresszióját fokozza a vasraktárak töltöttsége, tehát a telített_transzferrinek(TfFe<sub>2</sub>) aránya nő (ami ugye normál esetben 30%)</li>
+		<li>a hepcidin expresszióját fokozza <abbr title="a vasraktárak töltöttsége, tehát">'</abbr> ha a telített_transzferrinek(TfFe<sub>2</sub>) aránya nő (ami ugye normál esetben 30%)</li>
 		<li>ugyanis a transzferrin-receptor-1 -hez ha kötődik TfFe<sub>2</sub>, akkor leválik róla a HFE, és átmegy transzferrin-receptor-2 -höz</li>
 		<li>ez pedig elindít egy jelátvitelt, aminek eredménye lesz a fokozott hepcidin expresszió</li>
-		<li>a hepcidin expressziót pedig gátolja a <u>hypoxia</u> és a <u>fokozott eritropoezis</u> &#10140; így a vasat hozzáférhetővé teszi a felhasználó szervek számára</li>
+		<li>a hepcidin expressziót pedig gátolja a <u>hypoxia</u> és a <u>fokozott eritropoezis</u>(eitrocita(vvt)-szintézis) &#10140; így a vasat hozzáférhetővé teszi a felhasználó szervek számára</li>
 	</ul></details>
 	<details class="kerdes 3/5"><summary class="status"><strong>74. Az intracelluláris vasszint szabályozása, IRE (iron response elements)</strong></summary><ul class="normal">
 		<strong>akonitáz</strong> &#10140; két izoenzime van
