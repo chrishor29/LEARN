@@ -2984,6 +2984,13 @@ function F_nextQ(){
 					selectList.disabled = true
 					selectList.style.backgroundColor = "Black"
 				}
+				if ( document.getElementById("td.0."+i).style.backgroundColor == "red" ) {
+					document.getElementById("td.0."+i).style.color = "white"
+					document.getElementById("td.0."+i).style.textShadow = "0px 0 white, 0 0px white, 0px 0 white, 0 0px white"
+				} else {
+					document.getElementById("td.0."+i).style.color = "black"
+					document.getElementById("td.0."+i).style.textShadow = "-1px 0 white, 0 1px white, 1px 0 white, 0 -1px white"
+				}
 			}
 		}
 		F_SetMarks()
