@@ -163,8 +163,6 @@ var arrQtxts = []  // arra kell, hogy upgradeQ-nál ezekből nézi meg mikre leh
 
 var missQs = []
 
-var AllLSids = [] // összes LSid, mely
-
 var Qcount = 0
 
 
@@ -369,6 +367,22 @@ function F_DivUpgQ() {
 	div.style.marginLeft = "-40vw"
 	div.style.border = "10px solid red"
 	div.style.display = "none"
+	
+	var oldJEGY = document.createElement('div');
+	oldJEGY.id = "div_oldJEGY"
+	document.getElementById("div_upgQ").appendChild(oldJEGY)
+	oldJEGY.style.border = "1px solid black"
+	oldJEGY.style.position = "absolute"
+	oldJEGY.style.bottom ='2px'
+	oldJEGY.style.left = '35%'
+	
+	var newJEGY = document.createElement('div');
+	newJEGY.id = "div_newJEGY"
+	document.getElementById("div_upgQ").appendChild(newJEGY)
+	newJEGY.style.border = "1px solid black"
+	newJEGY.style.position = "absolute"
+	newJEGY.style.bottom ='2px'
+	newJEGY.style.left = '65%'
 }
 F_DivUpgQ()
 
@@ -382,6 +396,16 @@ function F_oldQchange(oldLSid){
 	changeStatus = true
 	document.getElementById("div_upgQ").style.display = 'block';
 	document.getElementById("div_upgQ").innerHTML = defaultText + oldQtxt + "<hr>"
+	
+	var jegy = localStorage.getItem(oldLSid+"_jegy")
+	var date = new Date();
+	var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(oldLSid+'_idopont')
+	if ( jegy != null ) {
+		document.getElementById("div_oldJEGY").innerHTML = jegy+" – "+idopont
+	} else {
+		document.getElementById("div_oldJEGY").innerHTML = "– – –"
+	}
+	
 	var newQtxt
 	// skip BEGIN
 		var option = document.createElement("option")
@@ -416,6 +440,21 @@ function F_oldQchange(oldLSid){
 			option.appendChild(text)
 		}
 		//document.getElementById("option_ReplaceQ_"+i).value = newLSid
+	}
+	
+	
+	document.getElementById("select_replaceQ").onchange = function() {
+		var value = document.getElementById("select_replaceQ").value
+		var Qtxt = arrNEWtxt[value]
+		var LSid = arrOLDtxt[Qtxt]
+		if ( typeof LSid !== "undefined" ) {
+			var jegy = localStorage.getItem(LSid+"_jegy")
+			var date = new Date();
+			var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
+			document.getElementById("div_newJEGY").innerHTML = jegy+" – "+idopont
+		} else {
+			document.getElementById("div_newJEGY").innerHTML = "– – –"
+		}
 	}
 	
 	document.getElementById("button_replaceQ").onclick = function() {
@@ -797,9 +836,9 @@ function func_calcTimeDiff(repCount){
 	if ( repCount == 0 ) {
 		timeDiff = 100
 	} else if ( repCount == 1 ) {
-		timeDiff = 500
+		timeDiff = 300
 	} else if ( repCount == 2 ) {
-		timeDiff = 1000
+		timeDiff = 700
 	} else if ( repCount == 3 ) {
 		timeDiff = 2000
 	} else if ( repCount == 4 ) {
@@ -1932,6 +1971,7 @@ function func_valSkip(){
 		}
 		if ( obj_skip[id] == "vizsgaSkip" ) {
 			y = y+1
+			console.log(id+"_skip = vizsgaSkip")
 		}
 	}
 	document.getElementById("btn_skip").value = x;
@@ -2553,9 +2593,6 @@ function F_prevQ(){
 				if ( localStorage.getItem(LSid+'_skip') == "important" ) {
 					localStorage.removeItem(LSid+'_skip')
 				}
-				if ( localStorage.getItem(LSid+'_skip') == "vizsgaSkip" ) {
-					localStorage.removeItem(LSid+'_skip')
-				}
 			}
 			//console.log(LSid+"_skip: "+localStorage.getItem(LSid+'_skip'))
 		}
@@ -2955,14 +2992,12 @@ function F_nextQ(){
 						document.getElementById("td.0."+i).style.backgroundColor = "LawnGreen"
 						selectList.disabled = true
 						selectList.style.backgroundColor = "Black"
-					} else if ( checkValue < averageCV/2 ) {
-						document.getElementById("td.0."+i).style.backgroundColor = "DeepSkyBlue"
-					} else if ( checkValue > averageCV/2 && checkValue < averageCV*2 ) {
-						document.getElementById("td.0."+i).style.backgroundColor = "yellow"
-					} else if ( checkValue > averageCV*2 ) {
-						document.getElementById("td.0."+i).style.backgroundColor = "orange"
-					} else if ( checkValue > averageCV*4 ) {
+					} else if ( idopont > timeDiff*3 ) {
 						document.getElementById("td.0."+i).style.backgroundColor = "red"
+					} else if ( idopont > timeDiff*2 ) {
+						document.getElementById("td.0."+i).style.backgroundColor = "orange"
+					} else if ( idopont > timeDiff ) {
+						document.getElementById("td.0."+i).style.backgroundColor = "yellow"
 					}
 					
 					if ( jegy == 0 || jegy == 1 ) {
@@ -2984,12 +3019,10 @@ function F_nextQ(){
 					selectList.disabled = true
 					selectList.style.backgroundColor = "Black"
 				}
-				if ( document.getElementById("td.0."+i).style.backgroundColor == "red" ) {
+				if ( document.getElementById("td.0."+i).style.backgroundColor == "blue" || document.getElementById("td.0."+i).style.backgroundColor == "black" || document.getElementById("td.0."+i).style.backgroundColor == "red" ) {
 					document.getElementById("td.0."+i).style.color = "white"
-					document.getElementById("td.0."+i).style.textShadow = "0px 0 white, 0 0px white, 0px 0 white, 0 0px white"
 				} else {
 					document.getElementById("td.0."+i).style.color = "black"
-					document.getElementById("td.0."+i).style.textShadow = "-1px 0 white, 0 1px white, 1px 0 white, 0 -1px white"
 				}
 			}
 		}
@@ -3075,7 +3108,7 @@ function F_CreateSelect(i) {
 		if ( x == 0 ) {
 			/*td.style.color = "white"
 			td.style.textShadow = "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black"*/
-			td.style.textShadow = "-1px 0 white, 0 1px white, 1px 0 white, 0 -1px white"
+			//td.style.textShadow = "-1px 0 white, 0 1px white, 1px 0 white, 0 -1px white"
 			td.innerHTML = i+1
 		} else if ( x == 1 ) {
 			td.appendChild(selectList)
