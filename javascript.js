@@ -9,6 +9,7 @@
  ✖: csak azokat számolja átlagba (következő kérdés chance), melyek a minimum időt már elérték
  
  ✖: importált Q-t ha megváltoztatom, akkor ne kelljen upgradelnem a questet (mert ha van egy importált quest, amit 6 helyen használok, akkor egy betűt abban átírva, mind a 6questet fel kell upgradelnem és fárasztó --> helyette automatikusan upgradelje, ha más nem változott)
+ ✖: div_Skip.innerHTML beállítása nemjó. Ugyanis ha már van kb.50db amit skippelek és megnyitom, akkor szétfagy az egész.
  
  ✖: skippedek megnyitása nem működik
  ✖: tableten az expQ megnyitása után nem tud visszamenni az oldalra (ugyanis a 'window.location.pathname' = null androidon szvsz)
@@ -834,17 +835,17 @@ function toggleNote() {
 var timeDiff
 function func_calcTimeDiff(repCount){
 	if ( repCount == 0 ) {
-		timeDiff = 100
+		timeDiff = 70
 	} else if ( repCount == 1 ) {
-		timeDiff = 300
+		timeDiff = 270
 	} else if ( repCount == 2 ) {
-		timeDiff = 700
+		timeDiff = 600
 	} else if ( repCount == 3 ) {
-		timeDiff = 2000
+		timeDiff = 1000
 	} else if ( repCount == 4 ) {
-		timeDiff = 3000
+		timeDiff = 2000
 	} else if ( repCount == 5 ) {
-		timeDiff = 5000
+		timeDiff = 3000
 	}
 }
 
@@ -1155,7 +1156,6 @@ function F_CreateQDiv() {
 		button.value = "0"
 	}
 	F_ButtonVizsgaSkip()
-	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
 	function F_ButtonFix() {
 		var button = document.createElement("input")
 		button.id = "btn_fix"
@@ -1167,7 +1167,6 @@ function F_CreateQDiv() {
 		button.value = "0"
 	}
 	F_ButtonFix()
-	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
 	function F_ButtonSkip() {
 		var button = document.createElement("input")
 		button.id = "btn_skip"
@@ -1179,7 +1178,6 @@ function F_CreateQDiv() {
 		button.value = "0"
 	}
 	F_ButtonSkip()
-	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
 	function F_SpanRepNew() {
 		var span = document.createElement("span")
 		span.id = "span_RepNew"
@@ -1225,7 +1223,6 @@ function F_CreateQDiv() {
 		button.value = "0"
 	}
 	//F_ButtonUpgQ()
-	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
 	function F_ButtonGodMode() {
 		var button = document.createElement("input")
 		button.id = "btn_godMode"
@@ -1237,7 +1234,6 @@ function F_CreateQDiv() {
 		button.value = "gM"
 	}
 	F_ButtonGodMode()
-	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
 
 
 	function F_DivQLoc() {
