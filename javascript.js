@@ -835,13 +835,13 @@ function toggleNote() {
 var timeDiff
 function func_calcTimeDiff(repCount){
 	if ( repCount == 0 ) {
-		timeDiff = 70
+		timeDiff = 50
 	} else if ( repCount == 1 ) {
-		timeDiff = 270
+		timeDiff = 200
 	} else if ( repCount == 2 ) {
-		timeDiff = 600
+		timeDiff = 500
 	} else if ( repCount == 3 ) {
-		timeDiff = 1000
+		timeDiff = 750
 	} else if ( repCount == 4 ) {
 		timeDiff = 2000
 	} else if ( repCount == 5 ) {
@@ -1365,19 +1365,8 @@ function F_CreateQDiv() {
 
 			var td = document.createElement("TD")
 			td.id = i+"min"
-			if ( i == 0 ) {
-				td.innerHTML = "20"
-			} else if ( i == 1 ) {
-				td.innerHTML = "60"
-			} else if ( i == 2 ) {
-				td.innerHTML = "500"
-			} else if ( i == 3 ) {
-				td.innerHTML = "1000"
-			} else if ( i == 4 ) {
-				td.innerHTML = "2000"
-			} else if ( i == 5 ) {
-				td.innerHTML = "5000"
-			}
+			func_calcTimeDiff(i)
+			td.innerHTML = timeDiff
 			tr.appendChild(td)
 
 			var td = document.createElement("TD")
@@ -1413,14 +1402,10 @@ function F_nextMark(jegy){ // következő kérdés nehézségét beállítja,
 	for ( var i=0;  i<6;  i++ ) {
 		var averageTime = Number(document.getElementById(i+"average").innerHTML)
 		var defTime
-		if ( i == 0 ) { defTime = 20 } 
-		if ( i == 1 ) { defTime = 60 } 
-		if ( i == 2 ) { defTime = 500 } 
-		if ( i == 3 ) { defTime = 1000 } 
-		if ( i == 4 ) { defTime = 2000 } 
-		if ( i == 5 ) { defTime = 5000 }
+		func_calcTimeDiff(i)
+		defTime = timeDiff
 		
-		if (  isNaN(averageTime) == false ) {
+		if ( isNaN(averageTime) == false ) {
 			zeroVal = zeroVal + averageTime/defTime
 			arany[i] = zeroVal
 		} else {
@@ -1433,10 +1418,10 @@ function F_nextMark(jegy){ // következő kérdés nehézségét beállítja,
 	for ( var i=0;  i<6;  i++ ) {
 		var num = arany[i] - diff
 		num = 100*num/zeroVal
-		num = num.toFixed(2);
+		num = num.toFixed(1);
 		if ( arany[i] == 0 ) { num = 0 }
 		document.getElementById("div_nextQMark").innerHTML = document.getElementById("div_nextQMark").innerHTML + i + ": " + num + "%<br>"
-		diff = arany[i]
+		if ( arany[i] != 0 ) { diff = arany[i] }
 	}
 	//console.log("- - - - - - - - -")
 	var randNum  = Math.random() * zeroVal
@@ -1759,7 +1744,9 @@ function func_calcPriorHosszJegy(elem){
 	F_calculateLSid(elem)
 	var LSid = actLSid
 	jegy = localStorage.getItem(LSid+'_jegy')
-	if ( jegy == 2 ) {
+	if ( jegy == "1" && localStorage.getItem(LSid+'_repeat') > 0 ) { // repeat is kell, mert ha 0ra osztályzom a jegyet akkoris 1nek menti el
+		jegy = 4
+	} else if ( jegy == 2 ) {
 		jegy = 7
 	} else if ( jegy == 3 ) {
 		jegy = 8
@@ -1847,6 +1834,9 @@ function F_temakorStatus(){ // Tétel hány %-on áll? --> beállítja a buttonC
 				}
 				var repCount = Number(localStorage.getItem(LSid+'_repeat'))
 				func_calcTimeDiff(repCount)
+				
+				if ( localStorage.getItem(LSid+'_skip') == "vizsgaSkip") { idopont = 0 }
+				if ( localStorage.getItem(LSid+'_skip') == "perma") { prior = 0 }
 
 				trueJegy = trueJegy + Math.pow(0.8, idopont / timeDiff) * prior * hossz * jegy
 				maxJegy = maxJegy + prior * hossz * 10
@@ -1967,7 +1957,7 @@ function func_valSkip(){
 		}
 		if ( obj_skip[id] == "vizsgaSkip" ) {
 			y = y+1
-			console.log(id+"_skip = vizsgaSkip")
+			//console.log(id+"_skip = vizsgaSkip")
 		}
 	}
 	document.getElementById("btn_skip").value = x;
@@ -2027,7 +2017,8 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 		for ( var LSid in obj_skip ) {
 			if ( obj_skip[LSid] != "important" && obj_skip[LSid] != "vizsgaSkip" ) {
 				var text = document.getElementById("div_Skip").innerHTML
-				var Qtext = localStorage.getItem(LSid)
+				var Qtext = "itt csak summary legyen és ráklikkelve jelenjen meg a text. különben kifagy </summary>"
+				//var Qtext = localStorage.getItem(LSid)
 				//var Qtext = LStxt[kerdes]
 				var newText = " <button id='testID' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button> "+ obj_skip[LSid] +"</summary>"
 				Qtext = Qtext.replace("</summary>",newText)
@@ -2038,11 +2029,15 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 		}
 	}
 	if ( SkipFix == "btn_vizsgaskip" ) {
-		document.getElementById("div_Skip").innerHTML = ""
+		var date = new Date();
+		var timeText = Math.floor(date.getTime()/60000)
+		timeText = vizsgaTime - timeText
+		document.getElementById("div_Skip").innerHTML = timeText + "perc van még vissza viszga-resethez. <br>"
 		for ( var LSid in obj_skip ) {
 			if ( obj_skip[LSid] == "vizsgaSkip" ) {
 				var text = document.getElementById("div_Skip").innerHTML
-				var Qtext = localStorage.getItem(LSid)
+				var Qtext = "<br>itt csak summary legyen és ráklikkelve jelenjen meg a text. különben kifagy </summary>"
+				//var Qtext = localStorage.getItem(LSid)
 				//var Qtext = LStxt[kerdes]
 				var newText = " <button id='testID' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button> "+ obj_skip[LSid] +"</summary>"
 				Qtext = Qtext.replace("</summary>",newText)
@@ -2324,7 +2319,7 @@ function func_calcOldNew(){
 					repNew = repNew +1
 				}
 			}
-			if ( localStorage.getItem(LSid+"_skip") != "perma" ) {
+			if ( localStorage.getItem(LSid+"_skip") != "perma" && localStorage.getItem(LSid+"_skip") != "vizsgaSkip" && localStorage.getItem(LSid+"_skip") != "important" ) {
 				if ( localStorage.getItem(LSid+"_jegy") >= 1 ) {
 					if ( timeDiff >= idopont ) {
 						repFast = repFast +1
@@ -2490,12 +2485,12 @@ function F_calculateEXPid(EXPid) {
 }
 
 function setVizsgaSkipTime(){
-	// #1 lépésben megadom a jelenlegi időt (alertba tudom megjeletíteni, ott van lennt a kódja)
+	// #1 lépésben megadom a jelenlegi időt (alertba tudom megjeletíteni, itt van két sorral lenntebb a kódja)
 	var date = new Date();
 	//alert(Math.floor(date.getTime()/60000))
-	vizsgaTime = 25195226
+	vizsgaTime = 25203957
 	// #2 lépésben megadom hány perc múlva lesz a vizsga
-	vizsgaTime = vizsgaTime + 10080
+	vizsgaTime = vizsgaTime + 3000
 }
 setVizsgaSkipTime()
 
@@ -2921,7 +2916,7 @@ function F_nextQ(){
 					localStorage.setItem(LSid,Qtext)
 					txtLS[Qtext] = LSid
 					//console.log("nextQ-setMark: " +LSid+ ": " +Qtext)
-					console.log(localStorage.getItem(document.title+"_LSids"))
+					//console.log(localStorage.getItem(document.title+"_LSids"))
 				}
 				var num = i+1
 				if ( LSid == undefined ) { alert("#1. " +num+ ": "+ LSid) }
