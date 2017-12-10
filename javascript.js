@@ -336,6 +336,41 @@ function F_DivSkip() {
 	div.style.display = "none"
 }
 F_DivSkip()
+function F_DivSkipText() {
+	var div = document.createElement("div")
+	document.body.appendChild(div)
+	div.id = "div_SkipText"
+	div.style.backgroundColor = "white"
+	div.style.overflow = "auto"
+	div.style.width = "80vw"
+	div.style.height = "60vh"
+	div.style.position = "fixed"
+	div.style.top = "50%"
+	div.style.left = "50%"
+	div.style.marginTop = "-30vh"
+	div.style.marginLeft = "-40vw"
+	div.style.border = "10px solid black"
+	div.style.display = "none"
+		
+	var textdiv = document.createElement("div")
+	textdiv.id = "div_SkipTexttxt"
+	div.appendChild(textdiv)
+	
+	var button = document.createElement("input")
+	button.type = "button"
+	div.appendChild(button)
+	button.className = "fix"
+	button.style.border = "3px solid black"
+	button.onclick = function(){ 
+		document.getElementById("div_SkipText").style.display = "none" 
+	}
+	button.value = "X"
+
+	button.style.position = "absolute"
+	button.style.right = "5px"
+	button.style.bottom = "2px"
+}
+F_DivSkipText()
 function F_DivFix() {
 	var div = document.createElement("div")
 	document.body.appendChild(div)
@@ -479,7 +514,7 @@ function F_oldQchange(oldLSid){
 		F_oldQcheck()
 	}
 
-	document.getElementById('select_replaceQ').value = 0;
+	//document.getElementById('select_replaceQ').value = 0;
 }
 
 /*function F_oldQsFilter() { // ezen csak 1x fut át elején
@@ -808,6 +843,7 @@ function F_toggleAll() {
 		for ( var i=0; i<childs.length; i++ ) { childs[i].style.display = "block" }
 		document.getElementById("div_MainFrame").style.display = 'none';
 
+		document.getElementById("div_SkipText").style.display = 'none';
 		document.getElementById("div_Fix").style.display = 'none';
 		document.getElementById("div_Skip").style.display = 'none';
 		document.getElementById("div_upgQ").style.display = 'none';
@@ -835,9 +871,9 @@ function toggleNote() {
 var timeDiff
 function func_calcTimeDiff(repCount){
 	if ( repCount == 0 ) {
-		timeDiff = 50
+		timeDiff = 60
 	} else if ( repCount == 1 ) {
-		timeDiff = 200
+		timeDiff = 240
 	} else if ( repCount == 2 ) {
 		timeDiff = 500
 	} else if ( repCount == 3 ) {
@@ -1437,8 +1473,8 @@ function F_nextMark(jegy){ // következő kérdés nehézségét beállítja,
 	//console.log(nextRep)
 	//alert("STOP")
 	
-	if ( document.getElementById("btn_godMode").style.backgroundColor == "red" ) {
-		nextRep = 0
+	if ( document.getElementById("btn_godMode").style.backgroundColor == "red" || document.getElementById("btn_godMode").style.backgroundColor == "limegreen" ) {
+		nextRep = "zerus"
 	}
 
 
@@ -1965,6 +2001,15 @@ function func_valSkip(){
 }
 func_valSkip()
 
+var old_SkipQtext
+
+function func_showQtext(LSid){
+	var Qtext = localStorage.getItem(LSid.slice(0,LSid.indexOf("_")))
+	old_SkipQtext = document.getElementById("div_Skip").innerHTML
+	document.getElementById("div_SkipTexttxt").innerHTML = Qtext
+	document.getElementById("div_SkipText").style.display = 'block';
+}
+
 function func_DeleteSkipFix(kerdes){
 	if (confirm('biztos törlöd? '+kerdes)) {
 		skipfix = kerdes.slice(kerdes.indexOf("_"))
@@ -2017,14 +2062,17 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 		for ( var LSid in obj_skip ) {
 			if ( obj_skip[LSid] != "important" && obj_skip[LSid] != "vizsgaSkip" ) {
 				var text = document.getElementById("div_Skip").innerHTML
-				var Qtext = "itt csak summary legyen és ráklikkelve jelenjen meg a text. különben kifagy </summary>"
-				//var Qtext = localStorage.getItem(LSid)
-				//var Qtext = LStxt[kerdes]
-				var newText = " <button id='testID' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button> "+ obj_skip[LSid] +"</summary>"
-				Qtext = Qtext.replace("</summary>",newText)
+				var Qtext = localStorage.getItem(LSid)
+				Qtext = '<font color="green" id="testID1" onclick="func_showQtext(this.id)">' + Qtext.slice(Qtext.indexOf("<summary>")+9,Qtext.indexOf("</summary")) + '</font><br>'
 				
+				Qtext = "<button id='testID2' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>" + Qtext
+				//alert(Qtext)
+				//var Qtext = LStxt[kerdes]
+				//var newText = " <button id='testID' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button> "+ obj_skip[LSid] +"</summary>"
+				//Qtext = Qtext.replace("</summary>",newText)
 				document.getElementById("div_Skip").innerHTML = text + Qtext
-				document.getElementById("testID").id = LSid + "_skipClear"
+				document.getElementById("testID1").id = LSid + "_fullText"
+				document.getElementById("testID2").id = LSid + "_skipClear"
 			}
 		}
 	}
@@ -2036,14 +2084,18 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 		for ( var LSid in obj_skip ) {
 			if ( obj_skip[LSid] == "vizsgaSkip" ) {
 				var text = document.getElementById("div_Skip").innerHTML
-				var Qtext = "<br>itt csak summary legyen és ráklikkelve jelenjen meg a text. különben kifagy </summary>"
-				//var Qtext = localStorage.getItem(LSid)
-				//var Qtext = LStxt[kerdes]
-				var newText = " <button id='testID' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button> "+ obj_skip[LSid] +"</summary>"
-				Qtext = Qtext.replace("</summary>",newText)
+				//var Qtext = "<br>itt csak summary legyen és ráklikkelve jelenjen meg a text. különben kifagy </summary>"
+				var Qtext = localStorage.getItem(LSid)
+				Qtext = '<font color="green" id="testID1" onclick="func_showQtext(this.id)">' + Qtext.slice(Qtext.indexOf("<summary>")+9,Qtext.indexOf("</summary")) + '</font><br>'
 				
+				Qtext = "<button id='testID2' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>" + Qtext
+				//alert(Qtext)
+				//var Qtext = LStxt[kerdes]
+				//var newText = " <button id='testID' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button> "+ obj_skip[LSid] +"</summary>"
+				//Qtext = Qtext.replace("</summary>",newText)
 				document.getElementById("div_Skip").innerHTML = text + Qtext
-				document.getElementById("testID").id = LSid + "_skipClear"
+				document.getElementById("testID1").id = LSid + "_fullText"
+				document.getElementById("testID2").id = LSid + "_skipClear"
 			}
 		}
 	}
@@ -2312,13 +2364,21 @@ function func_calcOldNew(){
 			var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
 			func_calcTimeDiff(repCount)
 			
-			if ( localStorage.getItem(LSid+"_skip") == "important" ) {
+			/*if ( localStorage.getItem(LSid+"_skip") == "important" ) {
+				if ( timeDiff >= idopont ) {
+					repOld = repOld +1
+				} else {
+					repNew = repNew +1
+				}
+			}*/
+			if ( repCount == 0 || repCount == 1 ) {
 				if ( timeDiff >= idopont ) {
 					repOld = repOld +1
 				} else {
 					repNew = repNew +1
 				}
 			}
+			
 			if ( localStorage.getItem(LSid+"_skip") != "perma" && localStorage.getItem(LSid+"_skip") != "vizsgaSkip" && localStorage.getItem(LSid+"_skip") != "important" ) {
 				if ( localStorage.getItem(LSid+"_jegy") >= 1 ) {
 					if ( timeDiff >= idopont ) {
@@ -2488,7 +2548,7 @@ function setVizsgaSkipTime(){
 	// #1 lépésben megadom a jelenlegi időt (alertba tudom megjeletíteni, itt van két sorral lenntebb a kódja)
 	var date = new Date();
 	//alert(Math.floor(date.getTime()/60000))
-	vizsgaTime = 25203957
+	vizsgaTime = 25209742
 	// #2 lépésben megadom hány perc múlva lesz a vizsga
 	vizsgaTime = vizsgaTime + 3000
 }
@@ -2750,12 +2810,8 @@ function F_nextQ(){
 					checkValue = prior * idopont / timeDiff
 					averageCV = averageCV + checkValue
 					countCV = countCV + 1
-					/*if ( localStorage.getItem("godMode") == "limegreen" ) {
-						if ( repCount > 1  ) { checkValue = 0 }
-					} 
-					if ( localStorage.getItem("godMode") == "red" ) {
-						if ( repCount < 2  ) { checkValue = 0 }
-					}*/
+					if ( localStorage.getItem("godMode") == "red" )       { if ( repCount > 1  ) { checkValue = 0 } } 
+					if ( localStorage.getItem("godMode") == "limegreen" ) { if ( repCount < 2  ) { checkValue = 0 } }
 
 					if ( checkValue > priorValue_alt ) {
 						priorValue_alt = checkValue;
@@ -2940,6 +2996,7 @@ function F_nextQ(){
 				var repeat = localStorage.getItem(LSid+'_repeat')
 				var num = arrayQ[i].className.search("/");
 				var prior = arrayQ[i].className.substring(num-1,num);
+				var isJR = arrayQ[i].className.substring(num+1);
 				document.getElementById("td.0."+i).title = LSid+"<br> Jegy:"+jegy+"<br>Repeat:"+repeat+"<br>Prior:"+prior
 
 
@@ -3011,9 +3068,12 @@ function F_nextQ(){
 					selectList.style.backgroundColor = "Black"
 				}
 				if ( document.getElementById("td.0."+i).style.backgroundColor == "blue" || document.getElementById("td.0."+i).style.backgroundColor == "black" || document.getElementById("td.0."+i).style.backgroundColor == "red" ) {
-					document.getElementById("td.0."+i).style.color = "white"
+					document.getElementById("td.0."+i).style.color = "white" // fontColor
 				} else {
-					document.getElementById("td.0."+i).style.color = "black"
+					document.getElementById("td.0."+i).style.color = "black" // fontColor
+				}
+				if ( isJR == "j" ) {
+					document.getElementById("td.0."+i).style.backgroundColor = "lightgrey"
 				}
 			}
 		}
@@ -3033,7 +3093,12 @@ function F_nextQ(){
 		}
 
 		var childs = QlocElem.childNodes;
-		for ( var i=0; i<childs.length; i++ ) { if ( childs[i].className.indexOf("open") != -1 ) { childs[i].open = true } }
+		for ( var i=0; i<childs.length; i++ ) { 
+			if ( childs[i].className.indexOf("open") != -1 ) { 
+				//childs[i].open = false  
+				childs[i].open = true  
+			}
+		}
 
 		var Qtext
 		if ( Qelem.id ) { 
