@@ -1658,7 +1658,6 @@ function func_showTooltip(element){
 	var posX = element.offsetLeft
 	var posY = element.offsetTop 
 	var par = element.offsetParent
-	//alert(par)
 
 	tooltipSpan.style.minWidth = null;
 	tooltipSpan.style.maxWidth = 300;
@@ -1684,29 +1683,20 @@ function func_titleVerChange(velement){
 		tooltipSpan.innerHTML = table_defText[this]
 		tooltipStatus = "show"
 		event.stopPropagation();
-//alert(tooltipSpan.innerHTML)
 			
 		var posX = this.offsetLeft
 		var posY = this.offsetTop 
-		var par = this.offsetParent
 
 		tooltipSpan.style.minWidth = null;
 		tooltipSpan.style.maxWidth = 300;
-		/*if ( tooltipSpan.offsetWidth > 100 ) {
-			tooltipSpan.style.minWidth = 100;
-		} else {
-			tooltipSpan.style.minWidth = tooltipSpan.offsetWidth
-		}
-		if ( tooltipSpan.offsetWidth > par.offsetWidth - posX -10 ) {
-			tooltipSpan.style.left = posX - tooltipSpan.offsetWidth + par.offsetWidth - posX - 10
-		} else {
-			tooltipSpan.style.left = posX;
-		}
-		tooltipSpan.style.top = posY +20;*/
 		
 		var x = event.clientX;
 		var y = event.clientY;
-		tooltipSpan.style.left = x
+		if ( tooltipSpan.offsetWidth > document.body.offsetWidth - posX -10 ) {
+			tooltipSpan.style.left = posX - tooltipSpan.offsetWidth + document.body.offsetWidth - posX - 10
+		} else {
+			tooltipSpan.style.left = x
+		}
 		tooltipSpan.style.top = y+10
 	};
 	velement.onmouseover = function(event){
@@ -1715,25 +1705,17 @@ function func_titleVerChange(velement){
 			
 		var posX = this.offsetLeft
 		var posY = this.offsetTop
-		var par = this.offsetParent
 
 		tooltipSpan.style.minWidth = null;
 		tooltipSpan.style.maxWidth = 300;
-		/*if ( tooltipSpan.offsetWidth > 100 ) {
-			tooltipSpan.style.minWidth = 100;
-		} else {
-			tooltipSpan.style.minWidth = tooltipSpan.offsetWidth
-		}
-		if ( tooltipSpan.offsetWidth > par.offsetWidth - posX -10 ) {
-			tooltipSpan.style.left = posX - tooltipSpan.offsetWidth + par.offsetWidth - posX - 10
-		} else {
-			tooltipSpan.style.left = posX;
-		}
-		tooltipSpan.style.top = posY +20;*/
 		
 		var x = event.clientX;
 		var y = event.clientY;
-		tooltipSpan.style.left = x
+		if ( tooltipSpan.offsetWidth > document.body.offsetWidth - posX -10 ) {
+			tooltipSpan.style.left = posX - tooltipSpan.offsetWidth + document.body.offsetWidth - posX - 10
+		} else {
+			tooltipSpan.style.left = x
+		}
 		tooltipSpan.style.top = y+10
 
 		table_defText[this] = this.title;
