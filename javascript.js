@@ -96,7 +96,6 @@ for ( var i=0; i<kerdesek.length; i++ ) {
 
 //document.getElementById("testimage").src = document.getElementById("testimage").title
 
-
 function checkExpQHtml(){ // oldal betöltésénél ugorjon el expQkat importolni, ha régen volt!
 	var path = window.location.pathname;
 	var fileName = path.split("/").pop();
@@ -123,8 +122,9 @@ function checkExpQHtml(){ // oldal betöltésénél ugorjon el expQkat importoln
 		localStorage.setItem("loadQs.lastPage",fileName)
 	}
 }
-checkExpQHtml()
-
+if ( localStorage.getItem("loadQs.lastPage") != "Elettan/elettan%20-%20Copy%20(2).html" ) {
+	checkExpQHtml()
+}
 
 var kerdesek = document.getElementsByClassName("kerdes")
 if ( localStorage.getItem("hkQ.max") === null ) { localStorage.setItem("hkQ.max",0) } 
