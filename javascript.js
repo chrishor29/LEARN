@@ -2767,7 +2767,7 @@ function F_nextQ(){
 					priorQid = Qid
 				}
 			}
-			/* important */if ( document.getElementById("btn_newQuest").style.borderColor != "limegreen" && localStorage.getItem(LSid+"_skip") && localStorage.getItem(LSid+"_skip") == "important" && shouldBreak == false ) {
+			/* important */if ( document.getElementById("btn_newQuest").style.borderColor != "limegreen" && localStorage.getItem(LSid+"_skip") == "important" && shouldBreak == false ) {
 				var repCount = Number(localStorage.getItem(LSid+'_repeat'))
 				var date = new Date();
 				var idopont2 = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
