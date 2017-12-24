@@ -51,7 +51,7 @@ copy C:\Kristof\MIRROR\LEARN\done\ModMem\ModMem.html C:\Users\chrishor\Desktop\L
 
 robocopy C:\Kristof\MIRROR\LEARN\Elettan\images C:\Users\chrishor\Desktop\LEARN\Elettan\images /mir
 copy C:\Kristof\MIRROR\LEARN\Elettan\elettan.html C:\Users\chrishor\Desktop\LEARN\Elettan\elettan.html 
-copy C:\Kristof\MIRROR\LEARN\Elettan\elettan - Copy (2).html C:\Users\chrishor\Desktop\LEARN\Elettan\elettan - Copy (2).html 
+copy C:\Kristof\MIRROR\LEARN\Elettan\elettan_v2.html C:\Users\chrishor\Desktop\LEARN\Elettan\elettan_v2.html 
 
 robocopy C:\Kristof\MIRROR\LEARN\images C:\Users\chrishor\Desktop\LEARN\images /mir
 copy C:\Kristof\MIRROR\LEARN\expqs.html C:\Users\chrishor\Desktop\LEARN\expqs.html

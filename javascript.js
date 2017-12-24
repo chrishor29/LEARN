@@ -2557,9 +2557,9 @@ function setVizsgaSkipTime(){
 	// #1 lépésben megadom a jelenlegi időt (alertba tudom megjeletíteni, itt van két sorral lenntebb a kódja)
 	var date = new Date();
 	//alert(Math.floor(date.getTime()/60000))
-	vizsgaTime = 25223831
+	vizsgaTime = 25230050
 	// #2 lépésben megadom hány perc múlva lesz a vizsga
-	vizsgaTime = vizsgaTime + 4320
+	vizsgaTime = vizsgaTime + 10080
 }
 setVizsgaSkipTime()
 
@@ -2973,6 +2973,8 @@ function F_nextQ(){
 			}
 		}
 		F_copyQs(Qelem) // nem feltétlen van id-je !! (mármint ez nem hiba)
+		
+		QlocElem.innerHTML = QlocElem.innerHTML + "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>"
 
 		function F_SetMarks() { // minden kérdés mellé kreál egy osztályzás lehetőséget
 			//console.clear()
