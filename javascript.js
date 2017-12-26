@@ -1778,7 +1778,7 @@ func_TitleChange()
 var prior,hossz,jegy
 function func_calcPriorHosszJegy(elem){
 	var num = elem.className.search("/");
-	hossz = elem.className.substring(num+1,num+3);
+	hossz = elem.className.substring(num+1);
 	prior = elem.className.substring(num-1,num);
 	if ( hossz == "j" ) { hossz = 0 }
 	if ( isNaN(hossz) == true ) { hossz = 0 }
@@ -2076,13 +2076,14 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 				lastQSkip = priorQid
 			}
 		}
-		var text = document.getElementById("div_Skip").innerHTML
-		document.getElementById("div_Skip").innerHTML = text.slice(0,text.indexOf("<hr>")+4)
+		document.getElementById("div_Skip").innerHTML = ""
 		for ( var LSid in obj_skip ) {
 			if ( obj_skip[LSid] != "important" && obj_skip[LSid] != "vizsgaSkip" ) {
 				var text = document.getElementById("div_Skip").innerHTML
 				var Qtext = localStorage.getItem(LSid)
-				Qtext = '<font color="green" id="testID1" onclick="func_showQtext(this.id)">' + Qtext.slice(Qtext.indexOf("<summary>")+9,Qtext.indexOf("</summary")) + '</font><br>'
+				Qtext = Qtext.slice(Qtext.indexOf("<summary")+8,Qtext.indexOf("</summary"))
+				Qtext = Qtext.slice(Qtext.indexOf(">")+1)
+				Qtext = '<font color="green" id="testID1" onclick="func_showQtext(this.id)">' + Qtext + '</font><br>'
 				
 				Qtext = "<button id='testID2' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>" + Qtext
 				//alert(Qtext)
@@ -2105,7 +2106,9 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 				var text = document.getElementById("div_Skip").innerHTML
 				//var Qtext = "<br>itt csak summary legyen és ráklikkelve jelenjen meg a text. különben kifagy </summary>"
 				var Qtext = localStorage.getItem(LSid)
-				Qtext = '<font color="green" id="testID1" onclick="func_showQtext(this.id)">' + Qtext.slice(Qtext.indexOf("<summary>")+9,Qtext.indexOf("</summary")) + '</font><br>'
+				Qtext = Qtext.slice(Qtext.indexOf("<summary")+8,Qtext.indexOf("</summary"))
+				Qtext = Qtext.slice(Qtext.indexOf(">")+1)
+				Qtext = '<font color="green" id="testID1" onclick="func_showQtext(this.id)">' + Qtext + '</font><br>'
 				
 				Qtext = "<button id='testID2' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>" + Qtext
 				//alert(Qtext)
@@ -2220,7 +2223,7 @@ function func_calcWork() { // hány százaléka új kérdés még
 					var elem = childs[i]
 					
 					var num = elem.className.search("/");
-					var hossz = elem.className.substring(num+1,num+2);
+					var hossz = elem.className.substring(num+1);
 					if ( hossz == "j" ) { hossz = 0 }
 					if ( hossz == "?" ) { hossz = 0 }
 					if ( hossz == "x" ) { hossz = 0 }
@@ -2283,7 +2286,7 @@ function func_calcRepeat() { // átlagIsmétlések számát kiszámolja
 					
 					var num = childs[i].className.search("/");
 					var prior = childs[i].className.substring(num-1,num);
-					var hossz = childs[i].className.substring(num+1,num+2);
+					var hossz = childs[i].className.substring(num+1);
 
 					var repeat
 					if ( LSid == undefined ) { 
@@ -2559,7 +2562,7 @@ function setVizsgaSkipTime(){
 	//alert(Math.floor(date.getTime()/60000))
 	vizsgaTime = 25230050
 	// #2 lépésben megadom hány perc múlva lesz a vizsga
-	vizsgaTime = vizsgaTime + 10080
+	vizsgaTime = vizsgaTime + 13000
 }
 setVizsgaSkipTime()
 
