@@ -884,7 +884,7 @@ function func_calcTimeDiff(repCount){
 	if ( repCount == 0 ) {
 		timeDiff = 60
 	} else if ( repCount == 1 ) {
-		timeDiff = 300
+		timeDiff = 200
 	} else if ( repCount == 2 ) {
 		timeDiff = 600
 	} else if ( repCount == 3 ) {
@@ -1404,6 +1404,9 @@ function F_CreateQDiv() {
 		th.innerHTML = "min"
 		tr.appendChild(th)
 		var th = document.createElement("TH")
+		th.innerHTML = "hossz"
+		tr.appendChild(th)
+		var th = document.createElement("TH")
 		th.innerHTML = "left"
 		tr.appendChild(th)
 		var th = document.createElement("TH")
@@ -1443,6 +1446,10 @@ function F_CreateQDiv() {
 			tr.appendChild(td)
 
 			var td = document.createElement("TD")
+			td.id = i+"hossz"
+			tr.appendChild(td)
+
+			var td = document.createElement("TD")
 			td.id = i+"left"
 			tr.appendChild(td)
 
@@ -1458,7 +1465,6 @@ function F_CreateQDiv() {
 	F_TableRepeat()
 }
 F_CreateQDiv()
-
 
 
 	if ( localStorage.getItem("BioKémia II. verseny = vizsga") != "true" ) {
@@ -2318,6 +2324,7 @@ function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
 		document.getElementById(i+"left").innerHTML = 0
 		document.getElementById(i+"still").innerHTML = 0
 		document.getElementById(i+"average").innerHTML = 0
+		document.getElementById(i+"hossz").innerHTML = 0
 	}
 	//console.clear()
 	for ( var tetel in tetelek ) {
@@ -2327,12 +2334,15 @@ function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
 				if ( childs[i].classList.contains("kerdes") == true ) {
 					// itt elvileg még kell egy feltétel, hogy beleszámolja (talán a skippel kapcsolatos lehet, de csak tipp)
 					// if ( kerdesID[fotema][temaKerdes][kerdes] == true ) { // ez volt a régiben
+					func_calcPriorHosszJegy(childs[i])
+					var actQhossz = Number(hossz)
+					
 					var Qid = childs[i].id
 					var Qtxt = arrQid[Qid]
 					var LSid = txtLS[Qtxt]
 					var kerdes = localStorage.getItem(childs[i].innerHTML)
 					if ( localStorage.getItem(LSid+'_idopont') != null && localStorage.getItem(LSid+'_repeat') != "" ) {
-						if ( localStorage.getItem(LSid+'_skip') === null ) {
+						if ( localStorage.getItem(LSid+'_skip') === null || localStorage.getItem(LSid+'_skip') === "important" ) {
 							var repCount = localStorage.getItem(LSid+'_repeat')
 							var min = document.getElementById(repCount+"min").innerHTML
 							var date = new Date();
@@ -2350,6 +2360,7 @@ function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
 								document.getElementById(repCount+"still").innerHTML = parseInt(document.getElementById(repCount+"still").innerHTML) +1
 							}
 							document.getElementById(repCount+"average").innerHTML = parseInt(document.getElementById(repCount+"average").innerHTML) +idopont
+							document.getElementById(repCount+"hossz").innerHTML = parseInt(document.getElementById(repCount+"hossz").innerHTML) +actQhossz
 						}
 					}
 				}
@@ -2437,7 +2448,7 @@ function func_calcOldNew(){
 	document.getElementById("span_RepNew").innerHTML = repNew;
 	document.getElementById("span_RepOld").innerHTML = repOld;
 	document.getElementById("btn_RepFast").value = repFast;
-	document.getElementById("span_RepSlow").innerHTML = repSlow;
+	document.getElementById("span_RepSlow").innerHTML = repSlow
 }
 function func_multiQCheck(){ // kiírja a quest summary-jébe, mely questeket idézi be mellé
 	for ( var i = 0;   i < kerdesek.length;   i++ ) {
