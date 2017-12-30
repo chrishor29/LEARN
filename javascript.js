@@ -882,9 +882,9 @@ function toggleNote() {
 var timeDiff
 function func_calcTimeDiff(repCount){
 	if ( repCount == 0 ) {
-		timeDiff = 60
+		timeDiff = 30
 	} else if ( repCount == 1 ) {
-		timeDiff = 200
+		timeDiff = 45
 	} else if ( repCount == 2 ) {
 		timeDiff = 600
 	} else if ( repCount == 3 ) {
