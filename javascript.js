@@ -733,6 +733,8 @@ func_divButtonETC()
 var replaceQs = []
 var defaultText = document.getElementById("div_upgQ").innerHTML
 
+
+
 function F_imgLoad(){ // sajnos egyenlőre a legfelül lévő detailsra is értelmezi, ha egy egy unokájára klikkelek (fölösen betölti őket)
 	var allDetails = document.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) {
@@ -752,7 +754,6 @@ function F_imgLoad(){ // sajnos egyenlőre a legfelül lévő detailsra is érte
 				}
 			}
 			for ( var x=0; x<imgs.length; x++ ) {
-					//console.log(x+": "+imgs[x].dataset.src)
 				var IMGelem = imgs[x]
 				var parent = imgs[x]
 				do { // megkeresi az első details-t
@@ -770,7 +771,7 @@ function F_imgLoad(){ // sajnos egyenlőre a legfelül lévő detailsra is érte
 						imgs[x].removeAttribute("data-src")
 					}
 				}
-				//if ( parent == this ) { // ez azért van, hogy csak az akutális detailsban lévőket töltse be (annak csildjeit ne) de egyenlőre kivettem, mert ha alapból openelve van az egyik csild, akkor azét nem tölti be automatikusan (bár így se mindet, mert kéne írni egyet ami az elején végignézi melyik van a kezdőképernyőn és azokat is be kéne töltse)
+				if ( parent == this ) { // ez azért van, hogy csak az akutális detailsban lévőket töltse be (annak csildjeit ne) de egyenlőre kivettem, mert ha alapból openelve van az egyik csild, akkor azét nem tölti be automatikusan (bár így se mindet, mert kéne írni egyet ami az elején végignézi melyik van a kezdőképernyőn és azokat is be kéne töltse)
 					if ( imgs[x].dataset.src ) {
 						if ( imgs[x].dataset.src.indexOf("images") == -1 && imgs[x].dataset.src.indexOf("100") == -1 ) {
 							imgs[x].src = "images/" + imgs[x].dataset.src
@@ -779,13 +780,62 @@ function F_imgLoad(){ // sajnos egyenlőre a legfelül lévő detailsra is érte
 						}
 						imgs[x].removeAttribute("data-src")
 					}
-				//}
+				}
 			}
 			func_abbrSet(this)
 		}
 	}
 }
 F_imgLoad()
+
+function F_imgActLoad(IMGelem){ 
+	var parent = IMGelem
+	do { // megkeresi az első details-t
+		parent = parent.parentElement
+	} while ( parent.className.indexOf("[") == -1 && parent.tagName != "DETAILS" && parent.tagName != "BODY" )
+	if ( parent.className.indexOf("[") > -1 ) {
+		var begin = parent.className.indexOf("[")
+		var end = parent.className.indexOf("]")
+		var EXPid = parent.className.slice(begin+1,end)
+		var string = localStorage.getItem("hkExpQ."+EXPid)
+		var IMGloc = string.slice(string.indexOf(" ")+1)
+		if ( IMGelem.dataset.src ) {
+			IMGelem.src =  htmlLEARNloc + IMGloc + IMGelem.dataset.src
+			IMGelem.removeAttribute("data-src")
+		}
+	}
+	if ( IMGelem.dataset.src ) {
+		if ( IMGelem.dataset.src.indexOf("images") == -1 && IMGelem.dataset.src.indexOf("100") == -1 ) {
+			IMGelem.src = "images/" + IMGelem.dataset.src
+		} else {
+			IMGelem.src = IMGelem.dataset.src
+		}
+		IMGelem.removeAttribute("data-src")
+	}
+}
+
+function F_imgPreLoad(){ 
+	var imgArr = []
+	var allIMG = document.getElementsByTagName("img")
+	for ( var i=0; i<allIMG.length; i++ ) {
+		var IMGelem = allIMG[i]
+		var parent = allIMG[i]
+		imgArr[i] = true
+		do { // megkeresi az első details-t
+			IMGelem = parent
+			parent = parent.parentElement
+			if ( parent.tagName == "DETAILS" && parent.open != true ) {
+				imgArr[i] = false
+			}
+		} while ( parent.tagName != "BODY" )
+	}
+	for ( var i=0; i<allIMG.length; i++ ) {
+		if ( imgArr[i] == true ) {
+			F_imgActLoad(allIMG[i])
+		}
+	}
+}
+F_imgPreLoad()
 
 
 var imagesAll = document.images
