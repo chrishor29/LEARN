@@ -752,6 +752,7 @@ function F_imgLoad(){ // sajnos egyenlőre a legfelül lévő detailsra is érte
 				}
 			}
 			for ( var x=0; x<imgs.length; x++ ) {
+					//console.log(x+": "+imgs[x].dataset.src)
 				var IMGelem = imgs[x]
 				var parent = imgs[x]
 				do { // megkeresi az első details-t
@@ -769,7 +770,7 @@ function F_imgLoad(){ // sajnos egyenlőre a legfelül lévő detailsra is érte
 						imgs[x].removeAttribute("data-src")
 					}
 				}
-				if ( parent == this ) {
+				//if ( parent == this ) { // ez azért van, hogy csak az akutális detailsban lévőket töltse be (annak csildjeit ne) de egyenlőre kivettem, mert ha alapból openelve van az egyik csild, akkor azét nem tölti be automatikusan (bár így se mindet, mert kéne írni egyet ami az elején végignézi melyik van a kezdőképernyőn és azokat is be kéne töltse)
 					if ( imgs[x].dataset.src ) {
 						if ( imgs[x].dataset.src.indexOf("images") == -1 && imgs[x].dataset.src.indexOf("100") == -1 ) {
 							imgs[x].src = "images/" + imgs[x].dataset.src
@@ -778,13 +779,14 @@ function F_imgLoad(){ // sajnos egyenlőre a legfelül lévő detailsra is érte
 						}
 						imgs[x].removeAttribute("data-src")
 					}
-				}
+				//}
 			}
 			func_abbrSet(this)
 		}
 	}
 }
 F_imgLoad()
+
 
 var imagesAll = document.images
 var tooltipStatus
@@ -3237,6 +3239,7 @@ document.getElementById("span_showError").style.visibility = "hidden";
 	<li><span class="WHITE">(.*?)</span>(.*?)</li>
 	<div><font class="abbr"><span class="WHITE">\1</span> ►</font>\2</div>
 */
+
 
 
 
