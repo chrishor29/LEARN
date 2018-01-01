@@ -4,19 +4,21 @@
 }*/
 
 /* PROJECT - PROGRESS
+ ✖: tableten az expQ megnyitása után nem tud visszamenni az oldalra (ugyanis a 'window.location.pathname' = null androidon szvsz)
  ✖: vizsgaskip (szürke)
+ 
+ez a kettő szerintem már jó:
+ ✖: div_Skip.innerHTML beállítása nemjó. Ugyanis ha már van kb.50db amit skippelek és megnyitom, akkor szétfagy az egész.
+ ✖: skippedek megnyitása nem működik
+ 
  ✖: (100,500,1200) -vizsga előtt kéne valami spec
  ✖: csak azokat számolja átlagba (következő kérdés chance), melyek a minimum időt már elérték
- 
- ✖: div_Skip.innerHTML beállítása nemjó. Ugyanis ha már van kb.50db amit skippelek és megnyitom, akkor szétfagy az egész.
- 
- ✖: skippedek megnyitása nem működik
- ✖: tableten az expQ megnyitása után nem tud visszamenni az oldalra (ugyanis a 'window.location.pathname' = null androidon szvsz)
  
  ✖: importált Q esetében a mini IMG-re klikkelve nem működik a script -> szvsz az legyen a megoldás, hogy még mielőtt elmentené az expQ-kat, a scriptet írja meg az img-ekre ('html-be vésse bele') -> így úgy fogja betölteni, hogy bele van írva a script
  
  ✖: upgradeQ -->  ha nincs olyan című quest, akkor kiírja az összeset, és kikereshetem. (legyen valami search funkció)
  
+ ✖: legyen egy funkció, amivel összes img-et betölti, és amelyiknél hiba van, azt jelezze valahol (de ne alertbe) --> anno ezt írtam <img onerror="alert(this.src)" data-src="gltkklkkjmnm.png">
  ✖: Qid-t vegyem ki!!!
  ✖: expID-k --> csak a az expQs html-be lévőket mentse el LS-be (új számozás legyen és külön szvsz)
 
@@ -100,31 +102,31 @@ function checkExpQHtml(){ // oldal betöltésénél ugorjon el expQkat importoln
 	var path = window.location.pathname;
 	var fileName = path.split("/").pop();
 	fileName = htmlIMGloc.slice(0,htmlIMGloc.indexOf("images/")) + fileName
+	var lastPage = localStorage.getItem("loadQs.lastPage")
+	var datum = new Date();
 
 	if ( fileName == "expqs.html" ) {
-		var datum = new Date();
 		var lastTime = datum.getTime();
 		localStorage.setItem("loadQs.lastTime",lastTime)
-		window.location.href = localStorage.getItem("loadQs.lastPage")
+		if ( lastPage != null ) {
+			window.location.href = lastPage
+		}
 	}
 
-	var datum = new Date();
 	var thisTime = datum.getTime();
 	var lastTime = localStorage.getItem("loadQs.lastTime")
 	var diffTime = thisTime - lastTime
-	diffTime = diffTime / 60000 /60
+	diffTime = diffTime / 60000 /60 // óra
 
 	if ( diffTime > 24 ) {
 		var expLoc = htmlLEARNloc + "expqs.html"
 		localStorage.setItem("loadQs.lastPage",fileName)
 		window.location.href = expLoc
 	} else {
-		localStorage.setItem("loadQs.lastPage",fileName)
+		localStorage.removeItem("loadQs.lastPage")
 	}
 }
-if ( localStorage.getItem("loadQs.lastPage") != "Elettan/elettan%20-%20Copy%20(2).html" ) {
-	checkExpQHtml()
-}
+checkExpQHtml()
 
 var kerdesek = document.getElementsByClassName("kerdes")
 if ( localStorage.getItem("hkQ.max") === null ) { localStorage.setItem("hkQ.max",0) } 
@@ -675,6 +677,13 @@ function F_impQs(){ // #1)
 							//alert(Qtext)
 							impek[i].innerHTML = Qtext
 						}
+						var imgs = impek[i].getElementsByTagName("img")
+						for ( var x=0; x<imgs.length; x++ ) {
+							if ( imgs[x].dataset.src ) {
+								imgs[x].src =  htmlLEARNloc + IMGloc + imgs[x].dataset.src
+								imgs[x].removeAttribute("data-src")
+							}
+						}
 					}
 				}
 			} else {
@@ -735,7 +744,7 @@ var defaultText = document.getElementById("div_upgQ").innerHTML
 
 
 
-function F_imgLoad(){ // sajnos egyenlőre a legfelül lévő detailsra is értelmezi, ha egy egy unokájára klikkelek (fölösen betölti őket)
+function F_imgLoad() {
 	var allDetails = document.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) {
 		allDetails[i].onclick = function() {
@@ -760,18 +769,8 @@ function F_imgLoad(){ // sajnos egyenlőre a legfelül lévő detailsra is érte
 					IMGelem = parent
 					parent = parent.parentElement
 				} while ( parent.className.indexOf("[") == -1 && parent.tagName != "DETAILS" )
-				if ( parent.className.indexOf("[") > -1 ) {
-					var begin = parent.className.indexOf("[")
-					var end = parent.className.indexOf("]")
-					var EXPid = parent.className.slice(begin+1,end)
-					var string = localStorage.getItem("hkExpQ."+EXPid)
-					var IMGloc = string.slice(string.indexOf(" ")+1)
-					if ( imgs[x].dataset.src ) {
-						imgs[x].src =  htmlLEARNloc + IMGloc + imgs[x].dataset.src
-						imgs[x].removeAttribute("data-src")
-					}
-				}
-				if ( parent == this ) { // ez azért van, hogy csak az akutális detailsban lévőket töltse be (annak csildjeit ne) de egyenlőre kivettem, mert ha alapból openelve van az egyik csild, akkor azét nem tölti be automatikusan (bár így se mindet, mert kéne írni egyet ami az elején végignézi melyik van a kezdőképernyőn és azokat is be kéne töltse)
+
+				if ( parent == this ) {
 					if ( imgs[x].dataset.src ) {
 						if ( imgs[x].dataset.src.indexOf("images") == -1 && imgs[x].dataset.src.indexOf("100") == -1 ) {
 							imgs[x].src = "images/" + imgs[x].dataset.src
@@ -793,17 +792,6 @@ function F_imgActLoad(IMGelem){
 	do { // megkeresi az első details-t
 		parent = parent.parentElement
 	} while ( parent.className.indexOf("[") == -1 && parent.tagName != "DETAILS" && parent.tagName != "BODY" )
-	if ( parent.className.indexOf("[") > -1 ) {
-		var begin = parent.className.indexOf("[")
-		var end = parent.className.indexOf("]")
-		var EXPid = parent.className.slice(begin+1,end)
-		var string = localStorage.getItem("hkExpQ."+EXPid)
-		var IMGloc = string.slice(string.indexOf(" ")+1)
-		if ( IMGelem.dataset.src ) {
-			IMGelem.src =  htmlLEARNloc + IMGloc + IMGelem.dataset.src
-			IMGelem.removeAttribute("data-src")
-		}
-	}
 	if ( IMGelem.dataset.src ) {
 		if ( IMGelem.dataset.src.indexOf("images") == -1 && IMGelem.dataset.src.indexOf("100") == -1 ) {
 			IMGelem.src = "images/" + IMGelem.dataset.src

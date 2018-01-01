@@ -99,14 +99,35 @@ span {
 	padding-right: 1px; 
 	background-color: White
 }
+.Important { 
+	background-color: Aqua /*PaleTurquoise*/
+}
+.lasd { 
+	font-size: 80%;
+	background-color: Lavender;
+	border: Black 1px solid; 
+	padding-left: 2px; 
+	padding-right: 2px; 
+}
+.fix { 
+	background-color: red;
+	color: white;
+	font-weight: bold;
+}
+.miss { 
+	background-color: pink;
+	font-weight: bold;
+}
 /*span.abbr { 
 	border: Black 1px solid; 
 }*/
+
+
 .progress { 
 	background-color: yellow
 }
 .Vocab { 
-	background-color: #d4d4d4
+	background-color: Gainsboro
 }
 .HPyes { 
 	background-color: Aqua; /*PaleTurquoise*/
@@ -115,36 +136,11 @@ span {
 	padding-left: 1px; 
 	padding-right: 1px; 
 }
-.Important { 
-	background-color: Aqua /*PaleTurquoise*/
-}
-.bgblue { 
-	background-color: dodgerblue 
-}
 .Done { 
 	background-color: SpringGreen
 }
-.fix { 
-	background-color: red;
-	color: white;
-	font-weight: bold;
-}
-.idk { 
-	opacity: 0.7;
-}
-.lasd { 
-	font-size: 80%;
-	background-color: Aquamarine;
-	border: Black 1px solid; 
-	padding-left: 2px; 
-	padding-right: 2px; 
-}
 .skip { 
 	background-color: dodgerblue;
-}
-.miss { 
-	background-color: pink;
-	font-weight: bold;
 }
 .dark { 
 	background-color: black;
