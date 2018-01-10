@@ -5,7 +5,8 @@
 
 /* PROJECT - PROGRESS
  ✖: tableten az expQ megnyitása után nem tud visszamenni az oldalra (ugyanis a 'window.location.pathname' = null androidon szvsz)
- ✖: vizsgaskip (szürke)
+ ✖: F_SpanRepNew + F_SpanRepOld --> rákattolva jelenjenek meg a questek, hogy mennyi idő van belőlük vissza
+ ✖: ha zöldra van állítva a dobhat új kérdéseket, akkor még1et rákattolva először legyen kék ami azt jelenti random újat dob következőnek (nem az épp soron következőt)
  
 ez a kettő szerintem már jó:
  ✖: div_Skip.innerHTML beállítása nemjó. Ugyanis ha már van kb.50db amit skippelek és megnyitom, akkor szétfagy az egész.
@@ -116,7 +117,7 @@ function checkExpQHtml(){ // oldal betöltésénél ugorjon el expQkat importoln
 	var thisTime = datum.getTime();
 	var lastTime = localStorage.getItem("loadQs.lastTime")
 	var diffTime = thisTime - lastTime
-	diffTime = diffTime / 60000 /60 // óra
+	diffTime = diffTime /60000 /60 // óra
 
 	if ( diffTime > 24 ) {
 		var expLoc = htmlLEARNloc + "expqs.html"
@@ -686,7 +687,7 @@ function F_impQs(){ // #1)
 						}
 					}
 				}
-			} else {
+			} else if ( EXPid != "" ) {
 				MISSid = MISSid + EXPid + ","
 			}
 		}
@@ -772,7 +773,7 @@ function F_imgLoad() {
 
 				if ( parent == this ) {
 					if ( imgs[x].dataset.src ) {
-						if ( imgs[x].dataset.src.indexOf("images") == -1 && imgs[x].dataset.src.indexOf("100") == -1 ) {
+						if ( imgs[x].dataset.src.indexOf("images") == -1 /*&& imgs[x].dataset.src.indexOf("100") == -1*/ ) {
 							imgs[x].src = "images/" + imgs[x].dataset.src
 						} else {
 							imgs[x].src = imgs[x].dataset.src
@@ -793,7 +794,7 @@ function F_imgActLoad(IMGelem){
 		parent = parent.parentElement
 	} while ( parent.className.indexOf("[") == -1 && parent.tagName != "DETAILS" && parent.tagName != "BODY" )
 	if ( IMGelem.dataset.src ) {
-		if ( IMGelem.dataset.src.indexOf("images") == -1 && IMGelem.dataset.src.indexOf("100") == -1 ) {
+		if ( IMGelem.dataset.src.indexOf("images") == -1 /*&& IMGelem.dataset.src.indexOf("100") == -1*/ ) {
 			IMGelem.src = "images/" + IMGelem.dataset.src
 		} else {
 			IMGelem.src = IMGelem.dataset.src
@@ -853,6 +854,28 @@ function func_enLargeImages(){ // képnagyítás balKlikkel középre
 			centerDiv.style.top = "50%";
 			centerDiv.style.transform = "translate(-50%, -50%)";
 		};
+		if ( imagesAll[i].classList.contains("metszet") == true ) {
+			imagesAll[i].onclick=function(){
+				var source = this.src
+				if ( this.style.borderColor != "limegreen" ) {
+					source = source.replace(".png","m.png")
+					this.src = source
+					this.style.borderColor = "limegreen"
+				} else {
+					imgStatus = "show"
+					centerDiv.style.visibility = "visible";
+					centerImage.src = this.src
+					centerDiv.style.maxHeight = "95%";
+					centerDiv.style.maxWidth = "95%";
+					centerDiv.style.overflow = "auto";
+
+					centerDiv.style.position = "fixed";
+					centerDiv.style.left = "50%";
+					centerDiv.style.top = "50%";
+					centerDiv.style.transform = "translate(-50%, -50%)";
+				}
+			};
+		}
 	}
 	centerDiv = document.createElement("div")
 	document.body.appendChild(centerDiv)
@@ -922,9 +945,9 @@ function toggleNote() {
 var timeDiff
 function func_calcTimeDiff(repCount){
 	if ( repCount == 0 ) {
-		timeDiff = 30
+		timeDiff = 60
 	} else if ( repCount == 1 ) {
-		timeDiff = 45
+		timeDiff = 200
 	} else if ( repCount == 2 ) {
 		timeDiff = 600
 	} else if ( repCount == 3 ) {
@@ -1507,10 +1530,6 @@ function F_CreateQDiv() {
 F_CreateQDiv()
 
 
-	if ( localStorage.getItem("BioKémia II. verseny = vizsga") != "true" ) {
-		document.getElementById("button_NextQ").style.backgroundColor = "red"
-	}
-
 
 
 var nextMark = 0
@@ -1980,6 +1999,14 @@ function F_calculateLSid(actQ){
 		}
 	} else {
 		actQtext = '<details class="' +actQ.className+ '">' +actQ.innerHTML+ "</details>"
+		if ( actQ.className.indexOf("if") > -1 ) {
+			var begin = actQtext.indexOf('>ismerd fel</summary><ul class="normal"><div><font class="abbr">metszet ►</font>')
+			var str = actQtext.slice(begin+80)
+			var end = str.indexOf("</div>")
+			str = str.slice(0,end)
+			var oldStr = '>ismerd fel</summary><ul class="normal"><div><font class="abbr">metszet ►</font>' + str + '</div>'
+			actQtext = actQtext.replace(oldStr,'>'+str+'</summary><ul class="normal">')
+		}
 		if ( txtLS[actQtext] ) {
 			actLSid = txtLS[actQtext]
 		}
@@ -2611,7 +2638,7 @@ function setVizsgaSkipTime(){
 	// #1 lépésben megadom a jelenlegi időt (alertba tudom megjeletíteni, itt van két sorral lenntebb a kódja)
 	var date = new Date();
 	//alert(Math.floor(date.getTime()/60000))
-	vizsgaTime = 25230050
+	vizsgaTime = 25251927
 	// #2 lépésben megadom hány perc múlva lesz a vizsga
 	vizsgaTime = vizsgaTime + 13000
 }
@@ -2943,16 +2970,17 @@ function F_nextQ(){
 			if ( parent.className == "altetel" ) { // altetel Címet adja hozzá
 				altetelcim = parent.id 
 				altetelcim = altetelcim.slice(altetelcim.indexOf(",")+1)
-				if ( Qelem.className.indexOf("hat") == -1 ) { titleText =  " &#10140; " + altetelcim } // hat = Hide AlTétel
+				altetelcim = " &#10140; " + altetelcim
+				titleText = altetelcim
 				parent = parent.parentElement
 			}
 			var tetelcim = parent.id
 			tetelcim = tetelcim.slice(tetelcim.indexOf(",")+1)
-			if ( Qelem.className.indexOf("ht") == -1 ) { 
+			if ( Qelem.className.indexOf("if") == -1 ) { 
 				titleText = tetelcim + titleText 
 			} else {
-				hiddenText = tetelcim+" &#10140; "+altetelcim
-				QlocElem.innerHTML = '<div><font class="abbr"><strong><span class="Important">►</span></font>'+hiddenText+'</strong></div>'
+				hiddenText = tetelcim + altetelcim
+				QlocElem.innerHTML = '<div><font class="abbr"><strong><span class="IMPORTANT">►</span></font>'+hiddenText+'</strong></div>'
 			}
 			document.getElementById("questTitle").innerHTML = titleText;
 		}
@@ -2973,6 +3001,16 @@ function F_nextQ(){
 				Qtext = Qelem.innerHTML
 			}
 			var find = ' id="(.*?)"'
+			Qtext = Qtext.replace(new RegExp(find, 'g'), "")
+			if ( Qelem.className.indexOf("if") != -1 ) { 
+				var end = Qtext.indexOf("</summary")
+				var str = Qtext.slice(0,end)
+				var begin = str.indexOf("<summary")
+				str = str.slice(begin)
+				begin = str.indexOf(">")+1
+				str = str.slice(begin)
+				Qtext = Qtext.replace(">"+str+'</summary><ul class="normal">', '>ismerd fel</summary><ul class="normal"><div><font class="abbr">metszet ►</font>'+str+'</div>')
+			}
 			Qtext = Qtext.replace(new RegExp(find, 'g'), "")
 			func_addQ(Qtext)
 
@@ -3206,14 +3244,17 @@ function F_nextQ(){
 		}
 	}
 
+	var allIMG = QlocElem.getElementsByTagName("img")
+	for ( var i=0; i<allIMG.length; i++ ) { F_imgActLoad(allIMG[i]) }
+
 	func_enLargeImages()
 	func_calcJegy()
 	func_calcWork()
 	func_calcDate()
 	func_calcOldNew()
 	func_calcRepeat()
-	F_imgLoad()
 	func_TitleChange()
+	func_abbrSet(QlocElem)
 }
 
 function F_CreateSelect(i) {

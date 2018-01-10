@@ -99,7 +99,7 @@ span {
 	padding-right: 1px; 
 	background-color: White
 }
-.Important { 
+.IMPORTANT { 
 	background-color: Aqua /*PaleTurquoise*/
 }
 .lasd { 
@@ -192,6 +192,9 @@ img.mini {
 	max-height: 14px;
 	float: none;
 	margin-bottom: -2px
+}
+img.metszet {
+	border: 5px solid red;
 }
 
 .mirror {
