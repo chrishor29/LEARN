@@ -4,12 +4,13 @@
 }*/
 
 /* PROJECT - PROGRESS
- ✖: tableten az expQ megnyitása után nem tud visszamenni az oldalra (ugyanis a 'window.location.pathname' = null androidon szvsz)
  ✖: F_SpanRepNew + F_SpanRepOld --> rákattolva jelenjenek meg a questek, hogy mennyi idő van belőlük vissza
  ✖: ha zöldra van állítva a dobhat új kérdéseket, akkor még1et rákattolva először legyen kék ami azt jelenti random újat dob következőnek (nem az épp soron következőt)
+ ✖: importQ-t változtatva, ne kelljen upgradelni azt a Q-t, melyben az importQ mint alkérdés szerepelt
  
-ez a kettő szerintem már jó:
+ez a három szerintem már jó:
  ✖: div_Skip.innerHTML beállítása nemjó. Ugyanis ha már van kb.50db amit skippelek és megnyitom, akkor szétfagy az egész.
+ ✖: tableten az expQ megnyitása után nem tud visszamenni az oldalra (ugyanis a 'window.location.pathname' = null androidon szvsz)
  ✖: skippedek megnyitása nem működik
  
  ✖: (100,500,1200) -vizsga előtt kéne valami spec
@@ -943,22 +944,6 @@ function toggleNote() {
 }
 
 var timeDiff
-function func_calcTimeDiff(repCount){
-	if ( repCount == 0 ) {
-		timeDiff = 60
-	} else if ( repCount == 1 ) {
-		timeDiff = 200
-	} else if ( repCount == 2 ) {
-		timeDiff = 600
-	} else if ( repCount == 3 ) {
-		timeDiff = 1000
-	} else if ( repCount == 4 ) {
-		timeDiff = 2000
-	} else if ( repCount == 5 ) {
-		timeDiff = 3000
-	}
-}
-
 function F_CreateQDiv() {
 	//document.body.style.border = "thick solid #0000FF"; 
 	function F_SpanShowError() {
@@ -1530,6 +1515,31 @@ function F_CreateQDiv() {
 F_CreateQDiv()
 
 
+// –––– –––– –––– –––– –––– –––– –––– –––– –––– ––––
+function func_calcTimeDiff(repCount){
+	if ( repCount == 0 ) {
+		timeDiff = 60
+	} else if ( repCount == 1 ) {
+		timeDiff = 200
+	} else if ( repCount == 2 ) {
+		timeDiff = 600
+	} else if ( repCount == 3 ) {
+		timeDiff = 1000
+	} else if ( repCount == 4 ) {
+		timeDiff = 2000
+	} else if ( repCount == 5 ) {
+		timeDiff = 3000
+	}
+}
+function setVizsgaSkipTime(){
+	// #1 lépésben megadom a jelenlegi időt (alertba tudom megjeletíteni, itt van két sorral lenntebb a kódja)
+	var date = new Date();
+	//alert(Math.floor(date.getTime()/60000))
+	vizsgaTime = 25251927
+	// #2 lépésben megadom hány perc múlva lesz a vizsga
+	vizsgaTime = vizsgaTime //+ 13000
+}
+// –––– –––– –––– –––– –––– –––– –––– –––– –––– ––––
 
 
 var nextMark = 0
@@ -1876,6 +1886,7 @@ function func_calcPriorHosszJegy(elem){
 		jegy = 0
 	}
 }
+
 
 function F_kerdesStatus(){ // kérdés hány %-on áll?
 	var allStatusQs = document.getElementsByClassName("status")
@@ -2634,16 +2645,7 @@ function F_calculateEXPid(EXPid) {
 	var actIMGloc = string.slice(string.indexOf(" ")+1)
 }
 
-function setVizsgaSkipTime(){
-	// #1 lépésben megadom a jelenlegi időt (alertba tudom megjeletíteni, itt van két sorral lenntebb a kódja)
-	var date = new Date();
-	//alert(Math.floor(date.getTime()/60000))
-	vizsgaTime = 25251927
-	// #2 lépésben megadom hány perc múlva lesz a vizsga
-	vizsgaTime = vizsgaTime + 13000
-}
 setVizsgaSkipTime()
-
 
 //func_putZeroQBack();
 func_calcOldNew();
@@ -2850,18 +2852,20 @@ function F_nextQ(){
 			}
 			/* important */if ( document.getElementById("btn_newQuest").style.borderColor != "limegreen" && localStorage.getItem(LSid+"_skip") == "important" && shouldBreak == false ) {
 				var repCount = Number(localStorage.getItem(LSid+'_repeat'))
-				var date = new Date();
-				var idopont2 = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-				func_calcTimeDiff(repCount)
-				if ( idopont2 > timeDiff ) { 
-					priorType = 2
-					
-					var checkValue2 = idopont2 / timeDiff
-					if ( checkValue2 > priorValue2 ) {
-						priorValue2 = checkValue2
-						priorQid = Qid
+				if ( document.getElementById("hkQ.nextRep"+repCount).style.backgroundColor == "limegreen" ) {
+					var date = new Date();
+					var idopont2 = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
+					func_calcTimeDiff(repCount)
+					if ( idopont2 > timeDiff ) { 
+						priorType = 2
+						
+						var checkValue2 = idopont2 / timeDiff
+						if ( checkValue2 > priorValue2 ) {
+							priorValue2 = checkValue2
+							priorQid = Qid
+						}
+						console.log(idopont2+ "("+timeDiff+") " +checkValue2+ " vs " +priorValue2+ " ("+LSid+")")
 					}
-					console.log(idopont2+ "("+timeDiff+") " +checkValue2+ " vs " +priorValue2+ " ("+LSid+")")
 				}
 			}
 			if ( priorType == 1 && localStorage.getItem(LSid+"_jegy") > 0 ) { // régi kérdés
