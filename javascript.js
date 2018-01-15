@@ -1535,9 +1535,9 @@ function setVizsgaSkipTime(){
 	// #1 lépésben megadom a jelenlegi időt (alertba tudom megjeletíteni, itt van két sorral lenntebb a kódja)
 	var date = new Date();
 	//alert(Math.floor(date.getTime()/60000))
-	vizsgaTime = 25251927
+	vizsgaTime = 25265227
 	// #2 lépésben megadom hány perc múlva lesz a vizsga
-	vizsgaTime = vizsgaTime //+ 13000
+	vizsgaTime = vizsgaTime + 6000
 }
 // –––– –––– –––– –––– –––– –––– –––– –––– –––– ––––
 
