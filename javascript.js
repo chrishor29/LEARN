@@ -1519,11 +1519,11 @@ F_CreateQDiv()
 // –––– –––– –––– –––– –––– –––– –––– –––– –––– ––––
 function func_calcTimeDiff(repCount){
 	if ( repCount == 0 ) {
-		timeDiff = 60
+		timeDiff = 15
 	} else if ( repCount == 1 ) {
-		timeDiff = 200
+		timeDiff = 40
 	} else if ( repCount == 2 ) {
-		timeDiff = 600
+		timeDiff = 300
 	} else if ( repCount == 3 ) {
 		timeDiff = 1000
 	} else if ( repCount == 4 ) {
@@ -1536,7 +1536,7 @@ function setVizsgaSkipTime(){
 	// #1 lépésben megadom a jelenlegi időt (alertba tudom megjeletíteni, itt van két sorral lenntebb a kódja)
 	var date = new Date();
 	//alert(Math.floor(date.getTime()/60000))
-	vizsgaTime = 25265227
+	vizsgaTime = 25275713
 	// #2 lépésben megadom hány perc múlva lesz a vizsga
 	vizsgaTime = vizsgaTime + 6000
 }
