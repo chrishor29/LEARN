@@ -42,16 +42,22 @@ robocopy C:\Kristof\MIRROR\LEARN\BioKemia\II\images C:\Users\chrishor\Desktop\LE
 copy C:\Kristof\MIRROR\LEARN\BioKemia\II\biokemia_II.html C:\Users\chrishor\Desktop\LEARN\BioKemia\II\biokemia_II.html 
 copy C:\Kristof\MIRROR\LEARN\BioKemia\II\favicon.bmp C:\Users\chrishor\Desktop\LEARN\BioKemia\II\favicon.bmp
 
+robocopy C:\Kristof\MIRROR\LEARN\BioKemia\III\images C:\Users\chrishor\Desktop\LEARN\BioKemia\III\images /mir
+copy C:\Kristof\MIRROR\LEARN\BioKemia\III\biokemia_III.html C:\Users\chrishor\Desktop\LEARN\BioKemia\II\biokemia_III.html 
+copy C:\Kristof\MIRROR\LEARN\BioKemia\III\favicon.bmp C:\Users\chrishor\Desktop\LEARN\BioKemia\III\favicon.bmp
+
 robocopy C:\Kristof\MIRROR\LEARN\SejtBiosz\images C:\Users\chrishor\Desktop\LEARN\SejtBiosz\images /mir
-copy C:\Kristof\MIRROR\LEARN\SejtBiosz\sejtbiosz.html C:\Users\chrishor\Desktop\LEARN\SejtBiosz\sejtbiosz.html 
+copy C:\Kristof\MIRROR\LEARN\SejtBiosz\sejtbiosz1.html C:\Users\chrishor\Desktop\LEARN\SejtBiosz\sejtbiosz1.html
+copy C:\Kristof\MIRROR\LEARN\SejtBiosz\sejtbiosz2.html C:\Users\chrishor\Desktop\LEARN\SejtBiosz\sejtbiosz2.html
 copy C:\Kristof\MIRROR\LEARN\SejtBiosz\favicon.bmp C:\Users\chrishor\Desktop\LEARN\SejtBiosz\favicon.bmp
 
 robocopy C:\Kristof\MIRROR\LEARN\done\ModMem\images C:\Users\chrishor\Desktop\LEARN\done\ModMem\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\ModMem\ModMem.html C:\Users\chrishor\Desktop\LEARN\done\ModMem\ModMem.html 
 
 robocopy C:\Kristof\MIRROR\LEARN\Elettan\images C:\Users\chrishor\Desktop\LEARN\Elettan\images /mir
-copy C:\Kristof\MIRROR\LEARN\Elettan\elettan.html C:\Users\chrishor\Desktop\LEARN\Elettan\elettan.html 
-copy C:\Kristof\MIRROR\LEARN\Elettan\elettan_v2.html C:\Users\chrishor\Desktop\LEARN\Elettan\elettan_v2.html 
+copy C:\Kristof\MIRROR\LEARN\Elettan\elettan1.html C:\Users\chrishor\Desktop\LEARN\Elettan\elettan1.html 
+copy C:\Kristof\MIRROR\LEARN\Elettan\elettan1_old.html C:\Users\chrishor\Desktop\LEARN\Elettan\elettan_old.html
+copy C:\Kristof\MIRROR\LEARN\Elettan\elettan2.html C:\Users\chrishor\Desktop\LEARN\Elettan\elettan2.html 
 
 robocopy C:\Kristof\MIRROR\LEARN\images C:\Users\chrishor\Desktop\LEARN\images /mir
 copy C:\Kristof\MIRROR\LEARN\expqs.html C:\Users\chrishor\Desktop\LEARN\expqs.html
