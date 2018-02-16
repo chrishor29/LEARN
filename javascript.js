@@ -4,8 +4,8 @@
 }*/
 
 /* PROJECT - PROGRESS
- ✔: importQ-t változtatva, ne kelljen upgradelni azt a Q-t, melyben az importQ mint alkérdés szerepelt
- ✔: upgradeQ -->  ha van olyan című és 1db, akkor 0-ra tegye!!
+ ✖: vizsgaskip &#10140; ne JS-be, hanem LS-be mentse el
+ ✖: LS-méret a vizsgaskippedeknél ha van 500, akkor szinte lefagy (azt fixáljam)
  ✖: F_SpanRepNew + F_SpanRepOld --> rákattolva jelenjenek meg a questek, hogy mennyi idő van belőlük vissza
  ✖: ha zöldra van állítva a dobhat új kérdéseket, akkor még1et rákattolva először legyen kék ami azt jelenti random újat dob következőnek (nem az épp soron következőt)
  ✖: skipek típusa: (KÉK) vizsgáig már nem (FEKETE) Nem volt rá időm (SZÜRKE) vizsga előtt dobja ki őket újra 
@@ -41,6 +41,8 @@
 */
 
 /* PROJECT - DONE
+ ✔: importQ-t változtatva, ne kelljen upgradelni azt a Q-t, melyben az importQ mint alkérdés szerepelt
+ ✔: upgradeQ -->  ha van olyan című és 1db, akkor 0-ra tegye!!
  ✔: div_Skip.innerHTML beállítása nemjó. Ugyanis ha már van kb.50db amit skippelek és megnyitom, akkor szétfagy az egész.
  ✔: tableten az expQ megnyitása után nem tud visszamenni az oldalra (ugyanis a 'window.location.pathname' = null androidon szvsz)
  ✔: skippedek megnyitása nem működik
@@ -482,7 +484,7 @@ function F_oldQchange(oldLSid){
 		var value = document.getElementById("select_replaceQ").value
 
 		if ( value != "–––" ) {
-			var Qtxt = arrNEWtxt[value]
+			var Qtxt = arrNEWtxt[value-1]
 			localStorage.setItem(oldLSid,Qtxt)
 			arrQtxts.push(Qtxt)
 		} else {
@@ -493,8 +495,8 @@ function F_oldQchange(oldLSid){
 			fullString = fullString.replace(" "+oldLSid,'')
 			localStorage.setItem(document.title+"_LSids",fullString)
 		}
-		func_calcOldNew()
 		F_oldQcheck()
+		func_calcOldNew()
 	}
 }
 
@@ -1498,7 +1500,7 @@ function func_calcTimeDiff(repCount){
 	if ( repCount == 0 ) {
 		timeDiff = 30
 	} else if ( repCount == 1 ) {
-		timeDiff = 30
+		timeDiff = 60
 	} else if ( repCount == 2 ) {
 		timeDiff = 200
 	} else if ( repCount == 3 ) {
@@ -1513,9 +1515,9 @@ function setVizsgaSkipTime(){
 	// #1 lépésben megadom a jelenlegi időt (alertba tudom megjeletíteni, itt van két sorral lenntebb a kódja)
 	var date = new Date();
 	//alert(Math.floor(date.getTime()/60000))
-	vizsgaTime = 25287527
+	vizsgaTime = 25310695
 	// #2 lépésben megadom hány perc múlva lesz a vizsga
-	vizsgaTime = vizsgaTime + 6000
+	vizsgaTime = vizsgaTime + 2200
 }
 // –––– –––– –––– –––– –––– –––– –––– –––– –––– ––––
 
