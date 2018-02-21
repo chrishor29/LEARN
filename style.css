@@ -40,6 +40,13 @@ abbr:hover{
 details[open] > summary {
 	background-color: paleGreen;
 }
+details[open] > summary.mainTitle {
+	background-color: black;
+	color: yellow;
+}
+details > summary.mainTitle {
+	color: orange;
+}
 
 li{ 
 	line-height: 24px;
@@ -172,9 +179,6 @@ th {
 	background: Silver;
 }
 
-summary {
-	color: Green;
-}
 
 img, iframe, object {
 	border: 3px solid black;
@@ -205,6 +209,7 @@ img.metszet {
 
 
 summary {
+	color: Green;
 	cursor: pointer;
 	display: inline-block;
 }
@@ -253,10 +258,12 @@ div.header {
 .mainTitle {
 	font-weight: bold;
 	font-size: large;
-	color:Yellow; 
+	color: yellow;
 	background-color:black; 
 	border: 5px solid black; 
 	text-align: center;
+	min-width: 99%;
+	left: -10px;
 }
 div.erettsegi {
 	margin-top: 10px;

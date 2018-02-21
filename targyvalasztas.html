@@ -167,6 +167,38 @@
 		}
 	});
 	
+	// set SkipTime
+	function F_skipTime() {
+		var input = document.createElement("input")
+		input.id = "skipHour"
+		input.type = "number"
+		input.style.width = "50px"
+		document.body.appendChild(input)
+		input.style.position = "absolute"
+		input.style.left = "5px"
+		input.style.bottom = "50px"
+		var date = new Date();
+		var remain = Math.floor(date.getTime()/3600000)
+		remain = localStorage.getItem("vizsgaSkip") - remain
+		if ( remain < 0 ) { remain = 0 }
+		input.value = remain
+		
+		var input = document.createElement("input")
+		input.type = "button"
+		input.value = "skip"
+		document.body.appendChild(input)
+		input.onclick = function(){ 
+			var date = new Date();
+			var time = Math.floor(date.getTime()/3600000)
+			time = time + Number(skipHour.value)
+			localStorage.setItem("vizsgaSkip",time)
+		}
+
+		input.style.position = "absolute"
+		input.style.left = "55px"
+		input.style.bottom = "50px"
+	}
+	F_skipTime()
 </script>
 
 <!--

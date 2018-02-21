@@ -14,9 +14,9 @@
 	<td title="1:01-ig hallgattam" class="important">1</td>
 	<td title="első csak felét félig hallgattam át" class="important">2</td>
 	<td title="1:25-1:30 kihagytam = antimikrobiális peptidek" class="important">3</td>
-	<td class="miss">4</td>
-	<td class="">5</td>
-	<td class="">6</td>
+	<td class="done">4</td>
+	<td title="1:28-1:31 kihagytam = gátló receptorok" class="important">5</td>
+	<td class="miss">6</td>
 	<td class="">7</td>
 	<td class="">8</td>
 	<td class="">9</td>
@@ -1472,6 +1472,11 @@
 			<li>limfociták &#10140; 30%</li>
 		</ul>
 	</ul></details>
+	<details class="{470} kerdes 3/2"><summary>T<sub>H</sub>2 funkciója</summary><ul class="normal">
+		<li>egyrészt a BCR-en megköti az antigént</li>
+		<li>másrészt prezentálja az antigént<abbr title="ugyanazt, de másik epitop-on keresztül">'</abbr> MHC-2-ön keresztül a T-helpernek is <abbr title="szvsz alapján írtam az MHC-2-őt">'</abbr></li>
+		&#10140; utóbbi is szükséges a jelátvitel megindulásához <font style="font-size:80%">(plazmasejtté alakuláshoz)</font>
+	</ul></details>
 <!----></details>
 
 
@@ -2577,7 +2582,7 @@
 				</ul>
 				<li><font style="font-size:80%">miozin fej-régiók a tér különböző irányába mutatnak <img class="mini" data-src="mznkktkflps.png"> &#10140; és egy vastag filamentumot 6 vékony filamentum vesz körbe <img class="mini" data-src="vskgtlkm.png"> &#10140; tehát ezen erőkifejtések összeadódnak</font></li>
 				<li><abbr title="az, hogy az izomkontrakció nem lépésenként, hanem folyamatosan zajlik annak köszönhető, hogy a miozin II ciklusok nem szinkronizáltan zajlanak (lásd videó)">'</abbr></li>
-				<video controls><source src="video/aktomiozin.mp4" type="video/mp4">Your browser does not support the video tag.</video><br>&nbsp;
+				<video muted controls onclick="this.paused ? this.play() : this.pause();" data-src="video/aktomiozin.mp4">hiba.</video><br><br>
 			</ul></details>
 		</ul></details>
 	</ul></details>
@@ -3005,8 +3010,8 @@
 			<li><u>erythroblast</u> &#10140; megjelenik az eritropoetin-receptor a membránban (itt különül el a thrombocyta-fejlődéstől)</li>
 			<li><u>normoblast</u> &#10140; sejt már kisebb, megjelenik a hemobglobin</li>
 			<li>a késői normoblastok egy macrophagon tapadnak meg</li><ul>
-				<li>a sejt egyik pólusára húzódik a &#10140; sejtmag és a sejtmembrán azon része, mely a hisztokompatibilitási antigéneknek (MHC-glikoproteinek, más néven HLA-antigének) nevezett integráns glikoproteineket tartalmazza</li>
-				<li>ez a rész kiboltosul, majd a macrophag bekebelezi &#10140; kialakul a sejtmag és HLA-antigének nélküli <u>reticulocyta</u></li>
+				<li>a sejt egyik pólusára húzódik a &#10140; sejtmag és az <abbr title="lásd: T-sejtek">MHC-fehérjék</abbr></li>
+				<li>ez a rész kiboltosul, majd a macrophag bekebelezi &#10140; kialakul a sejtmag és az MHC nélküli <u>reticulocyta</u></li>
 			</ul>
 			<li>reticulocyta</li><ul>
 				<li>mitokondrium + RNS még van benne</li>
@@ -3054,7 +3059,10 @@
   <hr>
 	<details class="kerdes 2/j"><summary style="color:mediumblue">fontosabb citokinek</summary><ul class="normal">
 		<li>interleukinek(IL)</li><ul>
-			<li>IL-1 és IL-2 &#10140; immunitásban játszanak szerepet (lesz róluk szó)</li>
+			<li>immunitásban szerepet játszók</li><ul>
+				<li>IL-1 <span class="LASD">fagociták</span></li>
+				<li>IL-2 <span class="LASD">T-sejt</span></li>
+			</ul>
 			<li>IL-8 <span class="LASD">fehérvérsejtek vándorlása</span> (kitapadásban játszik szerepet)</li>
 		</ul>
 		<li>kolóniastimuláló faktorok(CSF)</li><ul>
@@ -3309,14 +3317,15 @@
 			<li>ha megköti a PAMP-ot &#10140; kaszkád indul &#10140; közben NF&kappa;B(<abbr title="transzkripciós faktor">TF</abbr>) aktiválás történik &#10140; hatására a sejtek szekretálnak</li><ul>
 				<li>citokineket &#10140; pl. IL-1, TNF&alpha; &#10140; ezek hatnak endothel-sejtre &#10140; ez pedig fokozza a további fehérvérsejtek kivándorlását azáltal, hogy több integrin stb. kerül ki a membránra <span class="LASD">fehérvérsejtek vándorlása</span></li>
 				<li><abbr title="kemotaktikus citokin">kemokineket</abbr></li>
+				<li>MHC-2 & B7-komplex &#10140; antigén-prezentációt segítik <span class="LASD">T-sejt</span></li>
 			</ul>
 			<li><font style="font-size:80%">TLR NEM serkenti a fagocitózist (de van amelyik igen<abbr title="szvsz NEM az opszonin-receptor, met az nem PRR">'</abbr>)</font></li>
 		</ul></details>
 	  <hr>
-		<details><summary>neutrofil granulocitákon keresztül a fagocitózis bemutatása</summary><ul class="normal">
+		<details><summary>a fagocitózis bemutatása (pl. neutrofil granulociták, makrofágok)</summary><ul class="normal">
 			<li>opszonin-receptorok felismerik a baktériumhoz kötött ligandot &#10140; receptorok két csoportja</li><ul>
-				<li>Fc-receptorok &#10140; antitestet(Ig) ismeri fel</li>
-				<li>complement-receptorok <font style="font-size:80%">&#10140; komplement alkotórészeket ismeri fel</font></li>
+				<li>Fc&gamma;-receptorok találhatók a fagociták felszínén &#10140; tehát ha pl. baktérium felszínén antigénhez kötődik IgG, akkor azt ez a receptor felismeri és segíti a fagocitózist <span class="LASD">6.5t</span></li>
+				<li>complement-receptorok &#10140; komplement-rendszer alkotórészeit (C3b vagy C4b stb.) ismeri fel <span class="LASD">6.5t</span></li>
 			</ul>
 			<li>ennek hatására &#10140; <span class="IMPORTANT">serkentik a fagocitózist</span></li><ul>
 				<li>NOX(NADPH oxidáz)-ok aktiválódnak &#10140; <abbr title="páratlan (nem párosított) elektront tartalmaznak &#10140; rövid életűek és nagyon reakcióképesek">reaktív oxigén metabolitok</abbr> termelődnek</li>
@@ -3407,25 +3416,665 @@
 	</ul></details>
 <!----></details>
 
-<!----><details open><summary class="phase">5. A B limfociták élettani működése.</summary>
-	<details class="kerdes 4/?"><summary><strong>A B limfociták élettani működése</strong></summary><ul class="normal">
+<!----><details><summary class="phase">5. A B limfociták élettani működése.</summary>
+	<details class="kerdes 4/15"><summary><strong>A B limfociták élettani működése</strong></summary><ul class="normal">
+		<li>központi szereplők a humorális immunválaszban</li>
+		<li>antitest az immunglobulin &#10140; előfordul</li><ul>
+			<li>testnedvekben &#10140; tehát humorális anyag, ezért nevezzük humorális immunválasznak</li>
+			<li>emelett ez alkotja a B-sejt antigén-felismerő receptorát &#10140; IgM vagy IgD</li>
+		</ul>
+	  <hr>
+		<details><summary>immunglobulinok(Ig) szerkezete <font style="font-size:80%">(IgG példáján bemutatva!)</font></summary><ul class="normal">
+			<div style="float:right; max-width:20%">
+				<img data-src="dzslfdhdmgnk.png">
+				<img data-src="cnstnghvrm.png">
+			</div>
+			<li>2 nehéz lánc + 2 könnyű lánc</li><ul>
+				<li>nehéz láncon 4 domén található &#10140; C<sub>H</sub>1-3 konstans, V<sub>H</sub> variábilis<abbr title="zöld rész, tehát '4domén hosszú'">'</abbr></li>
+				<li>könnyű láncon 2db domén található &#10140; C<sub>L</sub> és V<sub>L</sub></li>
+			</ul>
+			<li>diszulfid-híd kapcsolja össze &#10140; 2 nehéz láncot egymással, illetve a 2 könnyű/nehéz láncot egymással</li>
+			<li>variábilis domének</li><ul>
+				<li>a V<sub>L</sub>-n és V<sub>H</sub>-n is van 3db hipervariábilis szakasz (kb.4 aminosav hosszú)</li>
+				<font style="font-size:80%">hipervariábilis, tehát itt az átlagnál nagyobb eltérés van az aminosavak között (képet meg ne tanuljam! csak segíthet megérteni)</font> <img class="mini" data-src="vrbltksjmn.png">
+				<li>ezek alkotják<abbr title="térszerkezetben egymás mellett vannak">'</abbr> az antigénkötő helyet, azaz epitop felismerő részt <font style="font-size:80%">(tehát 3db light + 3db heavy hipervariábilis szakasz alkot egyet, és kettő van belőlük)</font></li>
+			</ul>
+		</ul></details>
+		<details><summary>Ig-k 5 alosztálya</summary><ul class="normal">
+			<li><span class="IMPORTANT">nehéz_lánc konstansdoménjeinek típusa</span> alapján csoportosíthatók 5 alosztályba</li>
+			<li><span class="white">&#10045;</span> <abbr title="D a B-sejtben. G a vérplazmában. 'A középen lévő M pedig félúton' -> ez csak megjegyzési tipp!!">DEMAG</abbr>(óg) <img class="mini" data-src="iggkmds.png"></li>
+			<table><tr><th>alosztály</th>  <th>nehézlánc</th>  <th>hol</th>  <th>megj.</th></tr>
+				<tr><th>IgG</th>  <td>&gamma;(gamma)</td>  <td>vérplazmában</td>  <td><font style="font-size:80%">Ig-k bemutatása ezen keresztül történt</font></td></tr>
+				<tr><th>IgD</th>  <td>&delta;(delta)</td>  <td>B-limfociták felszínén</td>  <td></td></tr>
+				<tr><th>IgE</th>  <td>&epsilon;(epsilon)</td>  <td>bazofil-granulociták és hízósejtek felszínén</td>  <td>van C<sub>H</sub>4 doménje is</td></tr>
+				<tr><th>IgA</th>  <td>&alpha;(alpha)</td>  <td><abbr title="nyálkahártyák felszínén">'</abbr></td>  <td><abbr title="dimerizált formában van &#10140; tehát 4db antigénkötő helye van">'</abbr></td></tr>
+				<tr><th>IgM</th>  <td>&mu;(mu)</td>  <td>vérplazmában + limfociták felszínén</td>  <td>pentamer formában van (<abbr title="tehát 10db antigénkötő helye van">&#10140;</abbr> 10db F<sub>ab</sub>)</td></tr>
+			</table>
+		</ul></details>
+		<details><summary>BCR (B cell receptor)</summary><ul class="normal">
+			<li><span class="IMPORTANT">funkciója &#10140; antigén felismerés</span></li>
+			<li>ez lehet &#10140; IgM vagy IgD</li>
+			<li><font style="font-size:80%">végén egy hidrofób lánc van, ami rögzíti a membránban</font></li>
+			<img data-src="hfjrhnvhmn.png">
+		</ul></details>
+	  <hr>
+		<details><summary>fejlődésük</summary><ul class="normal">
+			<span class="IMPORTANT">csontvelőben történik</span>
+			<li>pro B-sejt &#10140; V<sub>H</sub> típusa itt dől el, ugyanis a nehéz lánc gének átrendeződése (DNS-rekombináció) itt történik</li>
+			<li>pre B-sejt &#10140; V<sub>L</sub> típusa itt dől el, ugyanis a könnyű lánc gének átrendeződése (DNS-rekombináció) itt történik</li>
+			<li>éretlen B-sejt</li><ul>
+				<li>IgM típusú BCR van már a felszínén</li>
+				<li>így antigén felismerésre képes</li>
+			</ul>
+			<span class="LASD">szelekció</span> <span class="MISS">lásd két előadással később</span>
+			<li>érett B-sejt</li><ul>
+				<li>csontvelőt már elhagyta &#10140; nyirokszervekben (nyirokcsomó/lép stb.) helyezkedik el</li>
+				<li>IgD típusú BCR is van már a felszínén (IgM mellett!)</li>
+			</ul>
+			<span class="LASD">klón-szelekció</span>
+		</ul></details>
+		<details><summary>klón-szelekció</summary><ul class="normal">
+			<div style="float:right; max-width:20%">
+				<img data-src="fxbvrghnmn.png">
+				<img data-src="thlprcfvh.png">
+			</div>
+			<li>csontvelőt elhagyja a B-sejt &#10140; a periférián (főként a nyirokcsomó centrum_germinativum részén) találkozik antigénnel</li>
+			<li>ez aktiválja a B-sejtet a következőképpen</li><ul>
+				<li>alapból Ig&beta; és Ig&alpha; kapcsolódik a BCR-hez</li>
+				<li>ezeknek van IC része &#10140; ezen van egy szignál, az ún. ITAM (Tyr-ban gazdag)</li>
+				<li>ezen keresztül indul meg jelátvitel (a Tyr-ok foszforilálódnak)</li>
+			</ul>
+		  <hr>antigének nagyrésze <strong>T-sejt dependens</strong> &#10140; a T-helper sejtek közreműködése szükséges <span class="LASD">6.6t T-helper sejt</span>
+			<div class="imp [470]"></div>
+		  <hr><strong>aktiváció hatása</strong>
+			<li>B-sejtek osztódása megindul</li>
+			<li>közben differenciálódnak</li><ul>
+				<li>nagy része plazmasejtté</li>
+				<li>kisebb része memóriasejtté</li>
+			</ul>
+			<img style="max-width:70%" data-src="igszkrct.png">
+		</ul></details>
+		<details><summary>plazmasejt</summary><ul class="normal">
+			<li><span class="IMPORTANT">Ig-t gyárt nagy mennyiségben, és szekretálja őket</span></li>
+			<li>Ig specifitása ugyanaz, mint a BCR-é (variábilis domének ugyanazok!)</li>
+		  <hr>
+			Tehát minden B-sejt <strong>1féle</strong> antigén-specificitású BCR-el rendelkezik (amit a fejlődés során a génátrendeződés következtében kialakuló variábilis régiók típusa határozza meg) &#10140; a plazmasejt pedig amit szekretálni fog Ig, az ugyanilyen típusú F<sub>ab</sub>-vel rendelkezik 
+		</ul></details>
+		<details><summary>memóriasejt</summary><ul class="normal">
+			<li>ennek következtében fog a másodlagos immunválasz gyorsabban kialakulni</li>
+			<span class="LASD">szerzett immunitás &#10140; elsődleges/másodlagos immunválasz</span>
+		</ul></details>
+	  <hr><strong>Ig hatásai</strong> <font style="font-size:80%">(<abbr title="neutralizáió, komplementrndszer, Fc">alábbi 3pl.</abbr> kerül bemutatásra)</font>
+		<details><summary>neutralizáió</summary><ul class="normal">
+			<li>kötődése az antigénhez megszűnteti annak a biológiai hatását</li>
+			<li>pl. antigén egy enzim, és hozzákötődve gátolja <font style="font-size:80%">(tetanusz)</font></li>
+		</ul></details>
+		<li>további két esetben a kötődése az antigénhez megjelöli, és ezzel aktivál egy mechanizmust</li>
+		<details><summary>komplementrendszer aktiválása (klasszikus út)</summary><ul class="normal">
+			<div style="float:right; max-width:30%">
+				<img data-src="sjtlzsjkmh.png">
+			</div>
+		  <strong>komplementrendszer lényege</strong>
+			<li>kb. 50fehérjéből áll</li>
+			<li>károsítja az antigént<abbr title="hordozó cuccot">'</abbr></li>
+		  <hr><strong>aktiválása klasszikus úton</strong> <font style="font-size:80%">(ezenkívül van még: lektin-út, alternatív-út; ezek nem Ig által történnek!)</font>
+			<li>C1-komplexnek 6 fej-része van <img class="mini" data-src="cfgrmjxzy.png"></li>
+			<li>ezek Ig-t(C<sub>H</sub>2 doménjét) képesek megkötni &#10140; ha legalább 2db-ot megköt, akkor aktiválódik</li>
+			<li>ezzel beindul a kaszkád, ami eredményeképp aktiválódik a komplementrendszer</li>
+			<font style="font-size:80%">IgM általában ami kiváltja, mivel pentamer &#10140; nagyobb eséllyel fog egyszerre legalább kettő kötődni hozzá, mint IgG<abbr title="ezek vannak ugye vérplazmában">'</abbr></font>
+		  <hr><strong>hatása</strong> lehet pl:
+			<li>sejtlízis &#10140; az antigént hordozó sejt felszínén a kaszkád következtében a C5-C6-C7-C8-C9 alkotni fog egy csatornát, így a membránja átjárhatóvá válik ionok és fehérjék számára is már.</li>
+			<li><abbr title="folyamat, amelynek során a 'baktériumok' úgy alakulnak át, hogy a falósejtek könnyebben és eredményesebben tudják bekebelezni őket">opszonizáció</abbr> &#10140; komplement-rendszer alkotórésze (C3b vagy C4b stb.) kikerül a felszínre, így a fagociták complement-receptora már képes lesz felismerni <span class="LASD">6.4</span> &#10140; fagocitózist fokozza</li>
+		</ul></details>
+		<details><summary>Fc-receptorhoz kötődés</summary><ul class="normal">
+			különböző sejtek felszínén találhatók &#10140; <abbr title="ezt gondoljam végig!! Tehát ha baktérium felszínén van egy antigén, amihez kötődik az antitest a F<sub>ab</sub> részével, akkor az F<sub>c</sub> része az ami 'kifele mutat'. Fc-receptor pedig azt fogja megkötni">megkötik az Fc részét(C<sub>H</sub>3 domén!)</abbr> az Ig-nek:
+			<li>pl. fagociták felszínén Fc&gamma;<abbr title="receptor">R</abbr> van &#10140; tehát ha pl. baktérium felszínén antigénhez kötődik IgG, akkor azt ez a receptor felismeri és segíti a fagocitózist <span class="LASD">6.4t</span></li>
+			<li>pl. bazofil granulocita és hízósejt felszínén FcεR van &#10140; <span class="LASD">anafilaxiás reakció</span></li>
+			<li>pl. NK-sejt, eozinofil granulocita &#10140; ADCC-t vált ki <span class="LASD">NK-sejtek</span></li>
+		</ul></details>
 	</ul></details>
-	
-	<details class="kerdes 3/j"><summary style="color:blue">szerzett immunitás &#10140; elsődleges/másodlagos immunválasz</summary><ul class="normal">
+  
+  <hr>
+	<details><summary><strong>A B limfociták élettani működése</strong> <font style="font-size:80%">(full verzió)</font></summary><ul class="normal">
+		<li>központi szereplők a humorális immunválaszban</li>
+		<li>antitest az immunglobulin &#10140; előfordul</li><ul>
+			<li>testnedvekben &#10140; tehát humorális anyag, ezért nevezzük humorális immunválasznak</li>
+			<li>emelett ez alkotja a B-sejt antigén-felismerő receptorát &#10140; IgM vagy IgD</li>
+		</ul>
+	  <hr>
+		<details><summary>immunglobulinok(Ig) szerkezete <font style="font-size:80%">(IgG példáján bemutatva!)</font></summary><ul class="normal">
+			<div style="float:right; max-width:20%">
+				<img data-src="dzslfdhdmgnk.png">
+				<img data-src="cnstnghvrm.png">
+			</div>
+			<li>2 nehéz lánc + 2 könnyű lánc</li><ul>
+				<li>nehéz láncon 4 domén található &#10140; C<sub>H</sub>1-3 konstans, V<sub>H</sub> variábilis<abbr title="zöld rész, tehát '4domén hosszú'">'</abbr></li>
+				<li>könnyű láncon 2db domén található (C<sub>L</sub> és V<sub>L</sub>)</li>
+			</ul>
+			<li>diszulfid-híd kapcsolja össze &#10140; 2 nehéz láncot egymással, illetve a 2 könnyű/nehéz láncot egymással</li>
+			<li>felosztható</li><ul>
+				<li>2db azonos antigénkötő fragmensre<abbr title="tehát ezek közül 1 úgy néz ki: könnyű lánc + nehéz láncnak a 'fele'">'</abbr> <span class="WHITE">F<sub><abbr title="antigen binding">ab</abbr></sub></span></li>
+				<li>1db kristályosítható fragmensre<abbr title="2db nehéz láncnak a 'fele' együtt alkotja">'</abbr> <span class="WHITE">F<sub><abbr title="crystal">c</abbr></sub></span></li>
+			</ul>
+			<li>zsanér régió &#10140; rendkívül flexibilis, így többféle alakzatot képes felvenni</li>
+			<li>specifitásukra magyarázat</li><ul>
+				<li>az antigénkötő helynél lévő 1-1 domén variábilis(<strong>V</strong>)</li>
+				<li>a többi konstans(<strong>C</strong>)</li>
+				<font style="font-size:80%">az L és H értelemszerűen (heavy és light)</font>
+			</ul>
+			<li>variábilis domének</li><ul>
+				<li>mind a könnyű, mind a nehéz lánc variábilis doménjén van 3db hipervariábilis szakasz</li>
+				<li>hipervariábilis, tehát itt az átlagnál nagyobb eltérés van az aminosavak között <font style="font-size:80%">(képet meg ne tanuljam! csak segíthet megérteni)</font> <img class="mini" data-src="vrbltksjmn.png"></li>
+				<li>ezen szakaszok hossza kb. 3-5db aminosav</li>
+				<li>ezek alkotják<abbr title="térszerkezetben egymás mellett vannak">'</abbr> az antigénkötő helyet, azaz epitop felismerő részt <font style="font-size:80%">(tehát 3db light + 3db heavy hipervariábilis szakasz alkot egyet, és kettő van belőlük)</font></li>
+			</ul>
+		</ul></details>
+	  <hr>
+		<details><summary>konstans domének típusa alapján csoportosíthatók az immunglobulinok 5 alosztályba:</summary><ul class="normal">
+			<div style="float:right; max-width:20%">
+				<img data-src="iggkmds.png">
+			</div>
+			<table><tr><th>alosztály</th>  <th>nehézlánc</th>  <th>hol</th>  <th>megj.</th></tr>
+				<tr><th>IgG</th>  <td>&gamma;(gamma)</td>  <td>vérplazmában</td>  <td><font style="font-size:80%">Ig-k bemutatása ezen keresztül történt</font></td></tr>
+				<tr><th>IgD</th>  <td>&delta;(delta)</td>  <td>B-limfociták felszínén</td>  <td></td></tr>
+				<tr><th>IgE</th>  <td>&epsilon;(epsilon)</td>  <td>bazofil-granulociták és hízósejtek felszínén</td>  <td>van C<sub>H</sub>4 doménje is</td></tr>
+				<tr><th>IgA</th>  <td>&alpha;(alpha)</td>  <td>nyálkahártyák felszínén</td>  <td>dimerizált formában van (<abbr title="tehát 4db antigénkötő helye van">&#10140;</abbr> 4db F<sub>ab</sub>)</td></tr>
+				<tr><th>IgM</th>  <td>&mu;(mu)</td>  <td>vérplazmában + limfociták felszínén</td>  <td>pentamer formában van (<abbr title="tehát 10db antigénkötő helye van">&#10140;</abbr> 10db F<sub>ab</sub>)</td></tr>
+			</table>
+		</ul></details>
+	  <hr>
+		<details><summary>konstans régió funkciója</summary><ul class="normal">
+			<li>C<sub>H</sub>2 &#10140; ezzel kötődik a C1-komplex-hez <span class="LASD">komplementrendszer aktiválása klasszikus úton</span></li>
+			<li>C<sub>H</sub>3 &#10140; ezzel kötődik Fc-receptorokhoz</li>
+		</ul></details>
+		<details><summary>B-sejt antigén-receptora a BCR (B cell receptor)</summary><ul class="normal">
+			<li>ez lehet &#10140; IgM vagy IgD</li>
+			<li><font style="font-size:80%">végén egy hidrofób lánc van, ami rögzíti a membránban</font></li>
+			<img data-src="hfjrhnvhmn.png">
+		</ul></details>
+	  <hr>
+		<details><summary>B-sejtek fejlődése a csontvelőben</summary><ul class="normal">
+			<li>pro B-sejt</li><ul>
+				<li>V<sub>H</sub> itt dől el &#10140; a nehéz lánc gének átrendeződése (DNS-rekombináció) itt történik</li>
+				<li><font style="font-size:80%">c-kit van még benne</font></li>
+			</ul>
+			<li>pre B-sejt</li><ul>
+				<li>V<sub>L</sub> itt dől el &#10140; a könnyű lánc gének átrendeződése (DNS-rekombináció) itt történik</li>
+				<li><font style="font-size:80%">nehézlánc szintézise már megy &#10140; citoplazmájában &mu;-nehézlánc található</font></li>
+			</ul>
+			<li>éretlen B-sejt</li><ul>
+				<li>IgM típusú BCR már van a felszínén <font style="font-size:80%">(tehát a könnyű lánc szintézise is már megy)</font></li>
+				<li>antigén felismerésre képes</li>
+			</ul>
+			<span class="LASD">szelekció</span> <span class="MISS">lásd két előadással később</span>
+			<li>érett B-sejt</li><ul>
+				<li>csontvelőt már elhagyta &#10140; nyirokszervekben (nyirokcsomó/lép stb.) helyezkedik el</li>
+				<li>IgD típusú BCR is van már a felszínén (IgM mellett!)</li>
+			</ul>
+			<span class="LASD">klón-szelekció</span>
+		</ul></details>
+		<details><summary>klón-szelekció</summary><ul class="normal">
+			<div style="float:right; max-width:20%">
+				<img data-src="fxbvrghnmn.png">
+				<img data-src="thlprcfvh.png">
+			</div>
+			<li>csontvelőt elhagyja a B-sejt &#10140; periférián találkozik antigénnel</li>
+			<font style="font-size:80%">nagyrészt a nyirokcsomó centrum_germinativum részén történik!</font>
+			<li>ez aktiválja a B-sejtet a következőképpen</li><ul>
+				<li>alapból kötődik Ig&beta; és Ig&alpha; kapcsolódik a BCR-hez</li>
+				<li>ezeknek van IC része &#10140; ezen van egy szignál, az ún. ITAM (Tyr-ban gazdag)</li>
+				<li>ezen keresztül indul meg (<abbr title="a Tyr-ok">foszforilálódnak</abbr>, <abbr title="több BCR egymás mellé kerül">összecsapzódnak</abbr>)</li>
+			</ul>
+			<li>antigén típusa</li><ul>
+				<li>T-sejt dependens &#10140; az antigén fehérje természetű ilyenkor</li>
+				<li>T-sejt independens &#10140; az antigén NEM fehérje természetű ilyenkor</li>
+			</ul>
+			<li>T-sejt dependens esetében a T-helper sejtek közreműködése szükséges <span class="LASD">6.6t T-helper sejt</span></li><ul>
+				<div class="imp [470]"></div>
+			</ul>
+		  <hr><strong>aktiváció hatása</strong>
+			<li>B-sejtek osztódása megindul</li>
+			<li>közben differenciálódnak</li><ul>
+				<li>nagy része plazmasejtté</li>
+				<li>kisebb része memóriasejtté</li>
+			</ul>
+			<img style="max-width:70%" data-src="igszkrct.png">
+		</ul></details>
+		<details><summary>plazmasejt</summary><ul class="normal">
+			<li><span class="IMPORTANT">Ig-t gyárt nagy mennyiségben, és szekretálja őket</span></li>
+			<li><font style="font-size:80%">szekretálódik, ugyanis a hidrofób lánc már nincs rajta (alternatív splicing)</font></li>
+			<li>Ig specifitása ugyanaz, mint a BCR-é (variábilis domének ugyanazok!)</li>
+			<li><font style="font-size:80%">kezdetben IgM szekretálódik, később már egyéb típusú</font></li>
+		  <hr>
+			Tehát minden B-sejt <strong>egy féle</strong> antigén-specificitású BCR-el rendelkezik (amit a fejlődés során a génátrendeződés következtében kialakuló variábilis régiók típusa határozza meg) &#10140; a plazmasejt pedig amit szekretálni fog Ig, az ugyanilyen típusú F<sub>ab</sub>-vel rendelkezik 
+		</ul></details>
+		<details><summary>memóriasejt</summary><ul class="normal">
+			<li>ennek következtében fog a másodlagos immunválasz gyorsabban kialakulni</li>
+			<span class="LASD">szerzett immunitás &#10140; elsődleges/másodlagos immunválasz</span>
+		</ul></details>
+	  <hr><strong>Ig hatásai</strong>
+		<details><summary>neutralizáió</summary><ul class="normal">
+			<li>kötődése az antigénhez megszűnteti annak a biológiai hatását</li>
+			<li>pl. antigén egy enzim, és hozzákötődve gátolja <font style="font-size:80%">(tetanusz)</font></li>
+			<abbr title="másik pl. antigént hordozó részecske sejtbe jutását gátolja (ezt nem tudom felfogni, mi értelme)">'</abbr>
+		</ul></details>
+		<li>további két esetben a kötődése az antigénhez megjelöli, és ezzel aktivál egy mechanizmust</li>
+		<details><summary>komplementrendszer aktiválása (klasszikus út)</summary><ul class="normal">
+			<div style="float:right; max-width:30%">
+				<img data-src="sjtlzsjkmh.png">
+			</div>
+		  <strong>komplementrendszer lényege</strong>
+			<li>kb. 50fehérjéből áll</li>
+			<li>károsítja az antigént<abbr title="hordozó cuccot">'</abbr></li>
+		  <hr><strong>aktiválása klasszikus úton</strong> <font style="font-size:80%">(ezenkívül van még: lektin-út, alternatív-út; ezek nem Ig által történnek!)</font>
+			<li>C1-komplexnek 6 fej-része van <img class="mini" data-src="cfgrmjxzy.png"></li>
+			<li>ezek Ig-t(C<sub>H</sub>2 doménjét) képesek megkötni &#10140; ha legalább 2db-ot megköt, akkor aktiválódik</li>
+			<li>ezzel beindul a kaszkád, ami eredményeképp aktiválódik a komplementrendszer</li>
+			<font style="font-size:80%">IgM általában ami kiváltja, mivel pentamer &#10140; nagyobb eséllyel fog egyszerre legalább kettő kötődni hozzá, mint IgG<abbr title="ezek vannak ugye vérplazmában">'</abbr></font>
+		  <hr><strong>hatása</strong> lehet:
+			<li>sejtlízis &#10140; az antigént hordozó sejt felszínén a kaszkád következtében a C5-C6-C7-C8-C9 alkotni fog egy csatornát, így a membránja átjárhatóvá válik ionok és fehérjék számára is már.</li>
+			<li>opszonizáció &#10140; fagocitózist fokozza (C3b felkerül, ezt pedig a fagociták már felismerik)</li>
+			<li>kemotaxis</li>
+		</ul></details>
+		<details><summary>Fc-receptorhoz kötődés</summary><ul class="normal">
+			különböző sejtek felszínén találhatók &#10140; megkötik az Fc részét(C<sub>H</sub>3 domén!) az Ig-nek:
+			<li>pl. makrofágoknak van Fc&gamma;<abbr title="recptor">R</abbr> a felszínűkön &#10140; tehát ha pl. baktérium felszínén antigénhez kötődik IgG, akkor azt ez a receptor felismeri és segíti a fagocitózist</li>
+			<li>pl. NK-sejt, eozinofil granulocita &#10140; ADCC-t vált ki <span class="LASD">NK-sejtek</span></li>
+			<li>pl. bazofil granulocita, hízósejt &#10140; FcεR a felszínűkön &#10140; ebből lesz anafilaxiás reakció <span class="LASD">anafilaxiás reakció</span></li>
+		</ul></details>
+	</ul></details>
+  <hr>
+	<details class="kerdes 3/1"><summary>limfociták 'fő tulajdonsága?'</summary><ul class="normal">
+		<li>specifikus antigén felismerő receporral (BCR,TCR) rendelkeznek &#10140; kivéve NK-sejt</li>
+		<font style="font-size:80%">más sejtek nem rendelkeznek ilyennel</font>
+	</ul></details>
+	<details class="kerdes 4/2"><summary>limfociták fejlődésének lokalizációja</summary><ul class="normal">
+		<li>lymphoid progenitor sejtből indul</li>
+		<li>vagy a csontvelőben folytatódik &#10140; B-limfocita <font style="font-size:80%">(Bone)</font></li>
+		<li>vagy kivándorol és a thymusban folytatódik &#10140; T-limfocita <font style="font-size:80%">(Thymus)</font></li>
+	</ul></details>
+	<details class="kerdes 3/1"><summary>Ig &#10140; konstans régiók funkciója</summary><ul class="normal">
+		<li>C<sub>H</sub>2 &#10140; ezzel kötődik a C1-komplex-hez <span class="LASD">komplementrendszer aktiválása klasszikus úton</span></li>
+		<li>C<sub>H</sub>3 &#10140; ezzel kötődik Fc-receptorokhoz</li>
+	</ul></details>
+	<details class="kerdes 2/1"><summary>Ig &#10140; Fab & Fc</summary><ul class="normal">
+		<div style="float:right; max-width:20%">
+			<img data-src="dzslfdhdmgnk.png">
+		</div>
+		Ig felosztható:
+		<li>2db azonos antigénkötő fragmensre<abbr title="tehát ezek közül 1 úgy néz ki: könnyű lánc + nehéz láncnak a 'fele'">'</abbr> <span class="WHITE">F<sub><abbr title="antigen binding">ab</abbr></sub></span></li>
+		<li>1db kristályosítható fragmensre<abbr title="2db nehéz láncnak a 'fele' együtt alkotja">'</abbr> <span class="WHITE">F<sub><abbr title="crystal">c</abbr></sub></span></li>
+	</ul></details>
+	<details class="kerdes 3/2"><summary>antigén &#10140; definíció? jellemzés?</summary><ul class="normal">
+		<li>definíció &#10140; <span class="IMPORTANT">specifikus immunválaszt vált ki</span>, <span class="IMPORTANT">adott szervezetben</span></li>
+		<li>adott szervezetben &#10140; tehát attól hogy valakiben kivált, attól még lehet bennem nem fog (tehát számomra nem antigén, neki viszont igen)</li>
+		<li>az antigének óriási makromolekulák</li><ul>
+			<li>ennek csak egy részletét ismeri fel, ami az ún. <span class="IMPORTANT">epitop</span></li>
+			<li>ez kb. 8egység(aminosav/monoszacharid) hosszú</li>
+			<li>egy makromolekula több <span class="IMPORTANT">epitopot</span> is tartalmazhat</li>
+		</ul>
+	</ul></details>
+	<details class="kerdes 3/2"><summary>szerzett immunitás &#10140; elsődleges/másodlagos immunválasz</summary><ul class="normal">
 		<li>elsődleges immunválasz csak 5-6nap után 'indul meg' (onnantól lesznek antitestek)</li>
 		<li>másodlagos immunválasz gyorsabban megindul, intenzívebb, és tovább tart</li>
-		&#10140; magyarázata az immunológiai memória <abbr title="védőoltás alapja ez!">'</abbr>
+		&#10140; magyarázata, hogy az első immunválasz során memória-sejtek kialakulnak (védőoltás alapja ez!)
 		<img data-src="jghtzhnbmh.png">
+	</ul></details>
+	<details class="kerdes 2/2"><summary style="color:blue">poliklonális antitestek</summary><ul class="normal">
+		<li>egy antigén többfajta epitop-ot tartalmaz</li>
+		<li>így aktivál egyszerre több különböző típusú B-sejtet</li>
+		<li>így azok mindegyike egyedi Ig-t fog termelni, amelyek egymástól különböznek(más epitop-ot ismernek fel), de ugyanazon antigén ellen vannak</li>
+		<li>természetes körülmények között ilyen termelődik</li>
+		poliklonális antitestek = ez a termelődött 'Ig-koktél neve' 
+	  <hr>
+		gyógyszeriparban előállítanak monoklonális antitesteket is (1féle Ig-t tartalmaz).
+	</ul></details>
+	<details class="kerdes 1/j"><summary style="color:blue">komplementrendszer aktiválása</summary><ul class="normal">
+	  <strong> 3 úton történhet</strong>
+		<li>alternatív út &#10140; <font style="font-size:80%">bizonyos kompartmentek vannak vérben alapból. mennyiségük állandó: ugyanannyi bomlik le/keletkezik. Ha a mikroorganizmus képes megkötni valamelyiket, akkor nem fog lebomlani, sőt enzimaktivitása megnő (mint véralvadásnál a TF kötődésa a VII-hez), így megindul a kaszkád</font></li>
+		<li>lektin út &#10140; <font style="font-size:80%">MBL(mannóz binding lektin) megköti a mikroorganizmusok felszínén lévő mannózt, kaszkád indul meg. (mannóz nagyon kevés van emberi sejtek felszínén, így azok nem váltják ki)</font></li>
+		<li>klasszikus út &#10140; Ig indítja el</li>
+	</ul></details>
+	<details class="kerdes 2/1"><summary style="color:blue">limfociták nyirokcsomókban hol</summary><ul class="normal">
+		<li>T-sejt &#10140; folliculusokban</li>
+		<li>B-sejt &#10140; paracortical area</li>
+		<img data-src="lympchrcc.png">
 	</ul></details>
 <!----></details>
 
-<!----><details open><summary class="phase">6. A T limfociták élettani működése.</summary>
-	<details class="kerdes 4/?"><summary><strong>A T limfociták élettani működése</strong></summary><ul class="normal">
+<!----><details><summary class="phase">6. A T limfociták élettani működése.</summary>
+	<details class="kerdes 4/15"><summary><strong>A T limfociták élettani működése</strong></summary><ul class="normal">
+		<li>központi szereplők a celluláris immunválaszban</li>
+		<li>celluláris immunválasz &#10140; antigénre specifikus elem a sejt</li>
+	  <hr>
+		<details><summary>TCR (T cell receptor)</summary><ul class="normal">
+			<div style="float:right; max-width:15%">
+				<img data-src="tcllrcptrk.png">
+				<img data-src="lphbtgmpdstz.png">
+			</div>
+			<li><span class="IMPORTANT">funkciója &#10140; antigén felismerés</span></li>
+			<li>1-1db &alpha;- és &beta;-láncból áll</li>
+			<li>csak integráns membránfehérje formában fordul elő, szolubilis formában nem (ellentétben az Ig-okkal)</li>
+			'felépítése lényegében olyan, mintha egy Ig egyik F<sub>ab</sub>-ját vennénk:' <img class="mini" data-src="igkgykrkrjn.png">
+			<li>mindegyik két doménből áll</li><ul>
+				<li>konstans domén a sejtfelszínhez közelebbi</li>
+				<li>variábiális domén a sejtfelszíntől távolabbi</li>
+				&#10140; diszulfid-híd köti össze őket
+			</ul>
+			<li>itt is 3-3 hipervariábilis szakasz alkot együtt egy antigén(epitop)-kötő helyet</li>
+		  <hr>
+			<li>IC szakasz itt is rövid (mint BCR esetében) &#10140; 'egymagában' ez sem tud jelátvitelt elindítani</li>
+			<li>itt is kiegészítő láncok kapcsolódnak hozzá &#10140; &delta;(delta) &gamma;(gamma) &epsilon;(epszilon) &zeta;(zéta)</li><ul>
+				<li>IC részükün itt is ITAM szekvencia van &#10140; jelátvitel ezeken keresztül folytatódik</li>
+				<li>EC részük pedig CD3-epitopot alkot</li>
+			</ul>
+			<li>tehát ha T-sejtnek már van CD3 része (CD3<sup>+</sup>), akkor van TCR-je is</li>
+		</ul></details>
+	  <hr>
+		<details><summary>fejlődésük</summary><ul class="normal">
+			<img style="max-width:45%" data-src="tsktjghtjm.png">
+			<span class="IMPORTANT">thymusban történik</span> <abbr title="'miután csontvelőből eljutott ide'">'</abbr>
+			<li><u>kettős negatív T-sejt</u> &#10140; CD3<sup>-</sup>4<sup>-</sup>8<sup>-</sup></li><ul>
+				<li>a kettős negatív alatt azt érjük, hogy nincs se CD4 se CD8</li>
+				<li>ennek még CD3 sincsen, <abbr title="lásd TCR">így</abbr> TCR-je sincs</li>
+			</ul>
+			<li>ebből lesz a <u>kettős pozitív T-sejt</u> &#10140; CD3<sup>+</sup>4<sup>+</sup>8<sup>+</sup></li><ul>
+				<li>így itt <abbr title="hisz CD3-ja már van!">értelemszerűen</abbr> már van TCR <font style="font-size:80%">(innentől az már rajtuk marad)</font></li>
+			</ul>
+			<li>ebből lesz az <u>egyszeres pozitív T-sejt</u> &#10140; két típusa van:</li><ul>
+				<li>CD3<sup>+</sup>4<sup>-</sup>8<sup>+</sup> &#10140; citotoxikus T-limfocita (CTL)</li>
+				<li>CD3<sup>+</sup>4<sup>+</sup>8<sup>-</sup> &#10140; T-helper sejt</li>
+			</ul>
+			<li>ezek is utána kivándorolnak a perifériára (itt is ugyanúgy nyirokcsomó, nyirokkeringés, lép stb.)</li>
+		  <hr>
+			<li><font style="font-size:80%">a variábilis domén (TCR-nak) itt is DNS-rekombinációval alakul ki</font></li>
+			<li><font style="font-size:80%">itt az osztódás és szelekció mértéke igen nagy (tehát jóval több sejt keletkezik, mint ami felhasználásra kerül, ezért nagyrészük apoptózissal elhal)</font></li>
+		</ul></details>
+		<details><summary>klón-szelekció</summary><ul class="normal">
+			<div style="float:right; max-width:20%">
+				<img data-src="tsjtkrflsmr.png">
+			</div>
+			<li>T-sejt nem ismer fel <abbr title="vérplazmában lévőt stb.">szolubilis</abbr> antigént &#10140; viszont képes fehérjében rejtett peptid-szakaszok felismerésére</li>
+			<li>'a felismerésre önmagában nem képes' &#10140; szükséges hozzá egy antigén-prezentáló molekula is, ezek az <span class="IMPORTANT">MHC-fehérjék<abbr title="=glikoproteinek">'</abbr></span> (major histocompatibility complex)</li>
+			<li>a TCR tehát az antigént úgy ismeri fel, hogy azt már MHC-fehérje megkötötte &#10140; feltételei: <strong>(kép!)</strong></li><ul>
+				<li>az antigén 'legyen kompatibilis'</li>
+				<li>az MHC-fehérje is 'legyen kompatibilis'</li>
+			</ul>
+			<span class="LASD">MHC-1/2-ön keresztüli prezentáció</span>
+			<li>az MHC-n kívül szükségesek további koreceptorok &#10140; <span class="WHITE">CD4</span> vagy <span class="WHITE">CD8</span></li>
+			<table style="float:right"><tr><th>CD4</th>  <th>CD8</th></tr>
+				<tr><td>T-helper sejtben van</td>  <td><abbr title="citotoxitkus T-limfocita">CTL</abbr>-ben van</td></tr>
+				<tr><td>MHC-2-höz kötődik</td>  <td>MHC-1-höz kötődik</td></tr>
+			</table>
+			<li>ezek együttes eredményeképp a jelátvitel megindul (foszforilálódnak az ITAM-okban lévő Tyr-ok)</li>
+		  <hr>a sejtciklushoz azonban szükséges még:
+			<li>B7-komplex (ezek sejtfelszíni molekulák) &#10140; ez egy kostimulátor</li>
+			<li><span class="IMPORTANT">IL-2</span>(interleukin-2), ez egy citokin! &#10140; a fejlődésben már eddig eljutott T-sejt:</li><ul>
+				<li>szekretál IL-2-őt</li>
+				<li>szintetizál IL-2 receptort</li>
+				&#10140; így a környező 'ide eljutott T-sejteket' illetve saját magát is 'továbbjuttatja a sejtciklusban'
+			</ul>
+		</ul></details>
+		<details><summary>MHC-1-en keresztüli prezentáció</summary><ul class="normal">
+			<div class="imp [469]"></div>
+		</ul></details>
+		<details><summary>MHC-2-ön keresztüli prezentáció</summary><ul class="normal">
+			<li>kevés sejtnek van: ilyenek főként a fagociták (+B-sejt)</li><ul>
+				<li>fagocitózis kapacitással ellentétes az 'intenzitása' <img class="mini" data-src="ztckglhkzj.png"></li>
+				<li><span class="IMPORTANT">dendritikus-sejt igen jelentős APC</span></li>
+				<li>antigén prezentáló sejtek = APC &#10140; azon sejteket nevezzük ennek, amik MHC-2-ön képesek prezentálni</li>
+			</ul>
+			<li><span class="IMPORTANT">EC eredetű peptidek</span> prezentálnak</li>
+			<li>a felvett fehérje vezikulában (savanyú pH) lebomlik peptidekre</li>
+			<li>ezután fúziónál MHC-2 tartalmú vezikulával &#10140; ez megköti a peptidet</li>
+			<img data-src="mhcktjhzmn.png">
+		</ul></details>
+	  <hr><strong>aktivált T-sejtek hatásai</strong>
+		<details><summary><abbr title="citotoxikus T-limfocita">CTL</abbr></summary><ul class="normal">
+			<img data-src="ctlmnjn.png">
+			<li>ha találkozik olyan sejttel, mely antigént prezentál {MHC-1 + CD8}...</li>
+			<font style="font-size:80%">MHC-1, tehát lehet akármelyik sejt, és jellemző pl. a vírusfertőzés</font>
+			<li>akkor kiváltja a 'direkt sejtpusztítást'</li><ul>
+				<li>CTL membránjában <span class="WHITE">FasL</span> van, melyet a célsejt <span class="WHITE">Fas</span>-receptora megköti &#10140; apoptózist vált ki</li>
+				<li>CTL-ben lévő granulumokból kijut perforin &#10140; csatornát képez a célsejt plazmamembránjában, melyen keresztül a granzim bejut és fehérjéket bont (illetve nukleinsavat lebontó enzimek<abbr title="szintén T-sejtből származik">'</abbr> is bejutnak, így a vírus DNS/RNS-e is lebomlik)</li>
+			</ul>
+		</ul></details>
+		<details><summary>T-helper sejt</summary><ul class="normal">
+			<img data-src="mrkfkgjmnjm.png">
+			<li>más sejteket segítenek</li>
+			<li>két típusa kerül bemutatásra &#10140; T<sub>H</sub>1 és T<sub>H</sub>2</li>
+			<li>a segítség két úton történik</li><ul>
+				<li>citokin jelátvitel (parakrin jelátvitel)</li>
+				<li>sejt-sejt kapcsolat (juxtakrin jelátvitel)</li>
+			</ul>
+			<li>T<sub>H</sub>1 a makrofágokat segíti</li><ul>
+				<li>felismeri az antigént a makrofág felszínén, és ez kiváltja a helper sejtben, hogy 'segítsen rajta'</li>
+				<li>pl. ha egy makrofág felvett olyan baktériumot, amit alapból nem tud lebontani (pl.lepra,tuberkolózis) &#10140; ilyenkor segíti a makrofágot, hogy lebontsa ezeket</li>
+			</ul>
+			<li>T<sub>H</sub>2 a B-sejtet segíti <span class="LASD">T-dependens klón-szelekció</span></li><ul>
+				<div class="imp [470]"></div>
+			</ul>
+		</ul></details>
+	</ul></details>
+  
+  <hr>
+	<details><summary><strong>A T limfociták élettani működése</strong> <font style="font-size:80%">(full verzió)</font></summary><ul class="normal">
+		<li>központi szereplők a celluláris immunválaszban</li>
+		<li>celluláris immunválasz &#10140; antigénre specifikus elem a sejt</li>
+	  <hr>
+		<details><summary>TCR (T cell receptor)</summary><ul class="normal">
+			<div style="float:right; max-width:15%">
+				<img data-src="tcllrcptrk.png">
+				<img data-src="lphbtgmpdstz.png">
+			</div>
+			<li><span class="IMPORTANT">funkciója &#10140; antigén felismerés</span></li>
+			<li>1-1db &alpha;- és &beta;-láncból áll</li>
+			<li>csak integráns membránfehérje formában fordul elő, szolubilis formában nem (ellentétben az Ig-okkal)</li>
+			'felépítése lényegében olyan, mintha egy Ig egyik F<sub>ab</sub>-ját vennénk:' <img class="mini" data-src="igkgykrkrjn.png">
+			<li>mindegyik két doménből áll</li><ul>
+				<li>konstans domén a sejtfelszínhez közelebbi</li>
+				<li>variábiális domén a sejtfelszíntől távolabbi</li>
+				&#10140; diszulfid-híd köti össze őket
+			</ul>
+			<li>itt is 3-3 hipervariábilis szakasz alkot együtt egy antigén(epitop)-kötő helyet</li>
+		  <hr>
+			<li>IC szakasz itt is rövid (mint BCR esetében) &#10140; 'egymagában' ez sem tud jelátvitelt elindítani</li>
+			<li>itt is kiegészítő láncok kapcsolódnak hozzá &#10140; &delta;(delta) &gamma;(gamma) &epsilon;(epszilon) &zeta;(zéta)</li><ul>
+				<li>IC részükün itt is ITAM szekvencia van &#10140; jelátvitel ezeken keresztül folytatódik</li>
+				<li>EC részük pedig CD3-epitopot alkot</li>
+			</ul>
+			<li>tehát ha T-sejtnek már van CD3 része (CD3<sup>+</sup>), akkor van TCR-je is</li>
+		</ul></details>
+	  <hr>
+		<details><summary>fejlődésük</summary><ul class="normal">
+			<img style="max-width:45%" data-src="tsktjghtjm.png">
+			<span class="IMPORTANT">thymusban történik</span> <abbr title="'miután csontvelőből eljutott ide'">'</abbr>
+			<li><u>kettős negatív T-sejt</u> &#10140; CD3<sup>-</sup>4<sup>-</sup>8<sup>-</sup></li><ul>
+				<li>a kettős negatív alatt azt érjük, hogy nincs se CD4 se CD8</li>
+				<li>ennek még CD3 sincsen, <abbr title="lásd TCR">így</abbr> TCR-je sincs</li>
+			</ul>
+			<li>ebből lesz a <u>kettős pozitív T-sejt</u> &#10140; CD3<sup>+</sup>4<sup>+</sup>8<sup>+</sup></li><ul>
+				<li>így itt <abbr title="hisz CD3-ja már van!">értelemszerűen</abbr> már van TCR <font style="font-size:80%">(innentől az már rajtuk marad)</font></li>
+			</ul>
+			<li>ebből lesz az <u>egyszeres pozitív T-sejt</u> &#10140; két típusa van:</li><ul>
+				<li>CD3<sup>+</sup>4<sup>-</sup>8<sup>+</sup> &#10140; citotoxikus T-limfocita (CTL)</li>
+				<li>CD3<sup>+</sup>4<sup>+</sup>8<sup>-</sup> &#10140; T-helper sejt</li>
+			</ul>
+			<li>ezek is utána kivándorolnak a perifériára (itt is ugyanúgy nyirokcsomó, nyirokkeringés, lép stb.)</li>
+		  <hr>
+			<li><font style="font-size:80%">a variábilis domén (TCR-nak) itt is DNS-rekombinációval alakul ki</font></li>
+			<li><font style="font-size:80%">itt az osztódás és szelekció mértéke igen nagy (tehát jóval több sejt keletkezik, mint ami felhasználásra kerül, ezért nagyrészük apoptózissal elhal)</font></li>
+		</ul></details>
+		<details><summary>klón-szelekció</summary><ul class="normal">
+			<div style="float:right; max-width:20%">
+				<img data-src="tsjtkrflsmr.png">
+			</div>
+			<li>T-sejt nem ismer fel <abbr title="vérplazmában lévőt stb.">szolubilis</abbr> antigént &#10140; viszont képes fehérjében rejtett peptid-szakaszok felismerésére</li>
+			<li>'a felismerésre önmagában nem képes' &#10140; szükséges hozzá egy antigén-prezentáló molekula is, ezek az <span class="IMPORTANT">MHC-fehérjék<abbr title="=glikoproteinek">'</abbr></span> (major histocompatibility complex)</li>
+			<li>a TCR tehát az antigént úgy ismeri fel, hogy azt már MHC-fehérje megkötötte &#10140; feltételei: <strong>(kép!)</strong></li><ul>
+				<li>az antigén 'legyen kompatibilis'</li>
+				<li>az MHC-fehérje is 'legyen kompatibilis'</li>
+			</ul>
+			<span class="LASD">MHC-1/2-ön keresztüli prezentáció</span>
+			<li>az MHC-n kívül szükségesek további koreceptorok &#10140; <span class="WHITE">CD4</span> és <span class="WHITE">CD8</span></li>
+			<li>ezek együttes eredményeképp az első jelátvitel megindul</li>
+		  <hr>
+			<li>azonban szükséges egy második jelátvitel is a G<sub>1</sub>-fázisba lépéshez</li>
+			<li>ebben játszik szerepet a B7-komplex (egy kostimulátor, ezek is sejtfelszíni molekulák)</li>
+			&#10140; így a sejtciklus már megindulhat
+		  <hr>
+			<li>a sejtciklus végbementeléhez szükséges továbbá még egy citokin: <span class="IMPORTANT">IL-2</span>(interleukin-2)</li>
+			<li>ide eljutott T-sejt:</li><ul>
+				<li>szekretál IL-2-őt</li>
+				<li>szintetizál IL-2 receptort</li>
+			</ul>
+			&#10140; így a környező 'ide eljutott T-sejteket' illetve saját magát is 'továbbjuttatja' a sejtciklusban
+		</ul></details>
+		<details><summary>MHC-fehérjék = HLA-k</summary><ul class="normal">
+			<img data-src="mchkztlkm.png">
+			<font style="font-size:80%">az MHC alapvetően a géneket értjük, amik kódolják őket (de élettanba ezzel inkább ne foglalkozzak, mert nem jelentős)</font>
+			<li>az MHC-fehérjék két osztálya van &#10140; MHC-1, MHC-2</li>
+			<li>MHC I</li><ul>
+				<li>egy láncból áll, ami 3doménből áll(&alpha;1-3) &#10140; ehhez kapcsolódik lazán(nem kovalens) a &beta;2 microglobulin nevű fehérje</li>
+				<li>membrántól távolabbi részhez (&alpha;1-2 domén) kötődik az antigén</li>
+			</ul>
+			<li>MHC II</li><ul>
+				<li>két láncból áll, ami 2-2doménből áll(&alpha;1-2)</li>
+				<li>membrántól távolabbi részhez (&alpha;1-&beta;1 domén) kötődik az antigén</li>
+			</ul>
+			<li>emberben lévő MHC-fehérjéket HLA-nek(humán leukocita antigén)-nek nevezzük</li>
+		</ul></details>
+		<details><summary>MHC-1-en keresztüli prezentáció</summary><ul class="normal">
+			<img style="max-width:20%" data-src="ctszlkhjkmn.png">
+			<div class="imp [469]"></div>
+		</ul></details>
+		<details><summary>MHC-2-ön keresztüli prezentáció</summary><ul class="normal">
+			<li>kevés sejtnek van: ilyenek főként a fagociták (+B-sejt) &#10140; fagocitózis kapacitással ellentétes az 'intenzitása' <img class="mini" data-src="ztckglhkzj.png"></li>
+			<font style="font-size:80%"><span class="IMPORTANT">dendritikus-sejt igen jelentős APC</span></font>
+			<li>antigén prezentáló sejtek = APC &#10140; azon sejteket nevezzük ennek, amik MHC-2ön képesek prezentálni</li>
+			<li>ezek esetében EC eredetű peptidek kerülnek prezentációra</li>
+			<li>a felvett fehérje vezikulában (savanyú pH) lebomlik peptidekre</li>
+			<li>ezután fúziónál MHC-2 tartalmú vezikulával &#10140; ez megköti a peptidet</li>
+			<img data-src="mhcktjhzmn.png">
+		</ul></details>
+		<details><summary>CD4/8 fukciója</summary><ul class="normal">
+			<li>ez T-helper sejtben van!</li>
+			<li>a CD4 kötődik az MHC-2-höz &#10140; sejten belüli részén pedig aktiválja azt a Tyr-kinázt, mely elindítja a jelátvitelt (foszforilálja az ITAM-okat)</li>
+		  <hr>
+			<li>a CD8 ugyanígy működik MHC-1-el <abbr title="hiszen CD8">&#10140;</abbr> CTL-ben van!</li>
+			<img data-src="tzrvghbnj.png">
+		</ul></details>
+	  <hr><strong>aktivált T-sejtek hatásai</strong>
+		<details><summary><abbr title="citotoxikus T-limfocita">CTL</abbr></summary><ul class="normal">
+			<img data-src="ctlmnjn.png">
+			<li>ha találkozik olyan sejttel, mely antigént prezentál {MHC-1 + CD8}...</li>
+			<font style="font-size:80%">MHC-1, tehát lehet akármelyik sejt, és jellemző pl. a vírusfertőzés</font>
+			<li>akkor kiváltja a 'direkt sejtpusztítást'</li><ul>
+				<li>CTL membránjában <span class="WHITE">FasL</span> van, melyet a célsejt <span class="WHITE">Fas</span>-receptora megköti &#10140; apoptózist vált ki</li>
+				<li>CTL-ben lévő granulumokból kijut perforin &#10140; csatornát képez a célsejt plazmamembránjában, melyen keresztül a granzim bejut és fehérjéket bont (illetve nukleinsavat lebontó enzimek<abbr title="szintén T-sejtből származik">'</abbr> is bejutnak, így a vírus DNS/RNS-e is lebomlik)</li>
+			</ul>
+		</ul></details>
+		<details><summary>T-helper sejt</summary><ul class="normal">
+			<img data-src="mrkfkgjmnjm.png">
+			<li>más sejteket segítenek</li>
+			<li>két típusa kerül bemutatásra &#10140; T<sub>H</sub>1 és T<sub>H</sub>2</li>
+			<li>a segítség két úton történik</li><ul>
+				<li>citokin jelátvitel (parakrin jelátvitel)</li>
+				<li>sejt-sejt kapcsolat (juxtakrin jelátvitel)</li>
+			</ul>
+			<li>T<sub>H</sub>1 a makrofágokat segíti</li><ul>
+				<li>felismeri az antigént a makrofág felszínén, és ez kiváltja a helper sejtben, hogy 'segítsen rajta'</li>
+				<li>pl. ha egy makrofág felvett olyan baktériumot, amit alapból nem tud lebontani (pl.lepra,tuberkolózis) &#10140; ilyenkor segíti a makrofágot, hogy lebontsa ezeket</li>
+			</ul>
+			<li>T<sub>H</sub>2 a B-sejtet segíti <span class="LASD">T-dependens klón-szelekció</span></li><ul>
+				<div class="imp [470]"></div>
+			</ul>
+		</ul></details>
+	</ul></details>
+  <hr>
+	<details class="kerdes 2/j"><summary style="color:blue">thymus felépítése</summary><ul class="normal">
+		<li>lymphoepithelialis szerv &#10140; tehát a lymphocyták fejlődése epithel-sejtek között történik</li>
+		<li>cortexre és medullara osztható</li>
+		<li>képen annyit nézzek meg</li><ul>
+			<li>T-sejtek (sötétkék) &#10140; cortex fele sok</li>
+			<li>epithel-sejtek (halványkék,narancs)</li>
+			<li>macrophagok (sárga)</li>
+		</ul>
+		<img data-src="thymsflpts.png">
+	</ul></details>
+	<details class="kerdes 2/j"><summary style="color:blue">polimorf jelentése</summary><ul class="normal">
+		<li>polimorf &#10140; több formában fordul elő</li>
+		<li>pl. a TCR polimorf, mert van rajta variábilis régió</li>
+		<li>polimorfnak tekinthető az MHC-1/2 is, amennyiben nem egy egyedet, hanem populációt/fajt vesszük (ugyanis egy egyedben megegyeznek az összes sejtben)</li>
+		<li>a CD4/CD8 azonban minden emberben megegyezik (tehát 1 típusa van)</li>
+	</ul></details>
+	<details class="kerdes 2/j"><summary style="color:blue">immunológiai szinapszis jelentése</summary><ul class="normal">
+		<li>antigénprezentáló sejt és T-sejt között van</li>
+		<font style="font-size:80%">mivel szoros kapcsolatban vannak egymással, ezért nevezik szinapszisnak</font>
+	</ul></details>
+	<details class="kerdes 1/j"><summary style="color:blue">immunológiai individualitásunkat mi adja</summary><ul class="normal">
+		<li>a HLA-k</li>
+		<li>ugyanis 3típusuk van &#10140; A,B,C</li>
+		<li>ezek alléljainak száma a képen látható</li>
+		<li>emberben mind3 típusából 2allél van egy sejtben (tehát összesen 6db)</li>
+		<li>így szinte nincs két ember akinek ugyanaz lenne (559*558*150*149*303*302 variáció van)</li>
+		<img data-src="bchlkjmnm.png">
+	</ul></details>
+	<details class="kerdes 4/3"><summary>MHC-fehérjék felépítése, elnevezés</summary><ul class="normal">
+		<img data-src="mchkztlkm.png">
+		<li>két osztályuk &#10140; MHC-1, MHC-2</li>
+		<li>MHC I</li><ul>
+			<li>egy láncból áll, ami 3doménből áll(&alpha;1-3) &#10140; ehhez kapcsolódik lazán(nem kovalens) a &beta;2 microglobulin nevű fehérje</li>
+			<li>membrántól távolabbi részhez (&alpha;1-2 domén) kötődik az antigén</li>
+		</ul>
+		<li>MHC II</li><ul>
+			<li>két láncból áll, ami 2-2doménből áll(&alpha;1-2)</li>
+			<li>membrántól távolabbi részhez (&alpha;1-&beta;1 domén) kötődik az antigén</li>
+		</ul>
+		<li>emberben lévő MHC-fehérjéket HLA-nek(humán leukocita antigén)-nek nevezzük</li>
+	</ul></details>
+	<details class="kerdes 4/2"><summary>CD4/8 &#10140; miben van? funkció?</summary><ul class="normal">
+		<table style="float:right"><tr><th>CD4</th>  <th>CD8</th></tr>
+			<tr><td>T-helper sejtben van</td>  <td><abbr title="citotoxitkus T-limfocita">CTL</abbr>-ben van</td></tr>
+			<tr><td>MHC-2-höz kötődik</td>  <td>MHC-1-höz kötődik</td></tr>
+		</table>
+		&#10140; jelátvitel megindul (lásd: klón-szelekció)
+	</ul></details>
+  <hr>
+	<details class="kerdes 3/5"><summary><abbr title="natural killer">NK</abbr>-sejtek</summary><ul class="normal">
+		<div style="float:right; max-width:30%">
+			<img data-src="zdccmjn.png">
+			<img data-src="gltksrktnrcptrk.png">
+		</div>
+		<li>limfocita, de! &#10140; nincs antigén felismerő receptora (TCR,BCR), se CD4/8</li>
+		<li>citotoxikusak &#10140; mechanizmusa ugyanaz, mint a CTL-nek</li>
+	  <hr><strong>felismerés</strong>
+		<li>nem MHC korlátozott</li>
+		<li>'módszerek'</li><ul>
+			<li>Fc-receptor &#10140; ligandot megkötve ADCC-t<font style="font-size:80%">(antitest dependens sejtmedialt citotoxicitás)</font> vált ki /lásd és értsd: kép/</li>
+			<li>KIR<font style="font-size:80%">(Killer-cell immunoglobulin-like receptor)</font> &#10140; csoportosításuk:</li><ul>
+				<li>gátlók &#10140; ligandja a <span class="IMPORTANT">saját</span> MHC &#10140; tehát, ha ezt felismeri akkor nem támad</li>
+				<font style="font-size:80%">'ennek fordított módszere van inkább: nem jelet felismerve támad, hanem támad kivéve ha van jel'</font>
+				<li>aktiválók</li>
+			</ul>
+		</ul>
+	  <hr>
+		<li><span class="IMPORTANT">vírusfertőzések</span> esetében jelentősek</li>
+		<li><font style="font-size:80%">a <span class="IMPORTANT">tumorsejtek</span> visszadifferenciálódnak egy korábbi sejt-stádiumba &#10140; ennek során jellemző, hogy elveszítik a sejtfelszínen lévő MHC-t &#10140; ezeket az NKC-k támadják!</font></li>
+		<li><font style="font-size:80%"><span class="IMPORTANT">idegensejtek</span> esetében sincs saját MHC</font></li>
 	</ul></details>
 <!----></details>
 
 <!----><details open><summary class="phase">7. Vércsoportok. Transzfúzió előtt végzett vizsgálatok. Az anaphylaxiás reakció.</summary>
-	<details class="kerdes 4/?"><summary>sss</summary><ul class="normal">
+	<details open class="kerdes 4/?"><summary>Vércsoportok. Transzfúzió előtt végzett vizsgálatok. Az anaphylaxiás reakció</summary><ul class="normal">
+	</ul></details>
+	<details class="kerdes 4/3"><summary>Vércsoportok. Transzfúzió előtt végzett vizsgálatok. <strong>Az anaphylaxiás reakció.</strong></summary><ul class="normal">
+		<li>bazofil granulocita és hízósejt &#10140; hisztamin <font style="font-size:80%">(és egyéb<abbr title="hisztamin a legfontosabb, annyit elég tudni hogy van egyéb is">'</abbr>)</font> tartalmú granulumok vannak bennük</li>
+		<li>felszínűkön FcεR &#10140; alapból már megkötik az IgE-t (a C<sub>H</sub>3 doménjüknél!)</li>
+		<li>ha IgE antigénje megjelenik, akkor találkozik a már köttött IgE-vel &#10140; ez a sejtek masszív degranulációját, a tárolt anyagok nagy mennyiségének kiszabadulnak &#10140; a hisztamin így az endotelsejteken keresztül okoz NO-termelés és vazodilatációt <span class="MISS">elvileg 1.félévbe volt már róla szó</span></li>
+	  <hr>
+		akkor van baj, ha ez testszerte bekövetkezik &#10140; ugyanis akkor már az értágulat vérnyomásesést és keringési elégtelenséget okoz
+		<img data-src="nphlckrkh.png">
 	</ul></details>
 <!----></details>
 
@@ -6636,7 +7285,7 @@
 		<li>NaCl-reabszorpció zajlik több helyen is persze, de az a hozzákapcsolt víz-reabszorpcióval 'ki van egyenlítve', így ozmolalitás szempontjából NEM lényeges</li>
 		<li>az ADH-hatására történő víz-reabszorpció következtében az interstitium 'hígulása' nem jelentős (eddigre már a víz nagyrésze visszaszívodott)</li>
 		<li>a rajz NEM teljesen pontos (és a szöveg sem), elég megnéznem a régi jegyzetem, de ennyi szvsz elég</li>
-		<video controls><source src="video/adhhiany.mp4" type="video/mp4">Your browser does not support the video tag.</video><br>&nbsp;
+		<video muted controls onclick="this.paused ? this.play() : this.pause();" data-src="video/adhhiany.mp4">hiba.</video><br><br>
 	</ul></details>
 <!----></details>
 
@@ -8294,7 +8943,7 @@
 			</ul>
 			<details><summary>videó &#10140; bal oldalit nézzem, és azonosítsam rajtuk a képleteket</summary><ul class="normal">
 				<li><font style="font-size:80%">diasztolé során megfigyelhető az alábbi &#10140; az elején <img class="mini" data-src="gyszrhjgkklm.png"> a mitrális-billentyűk kinyílnak, utána <img class="mini" data-src="dgjjkhgm.png"> kicsit 'szűkülnek', majd <img class="mini" data-src="kjkhghmn.png"> pitvari kontrakciónál rövid időre ismét kinyílnak ... majd utána rögtön a kamrai kontrakció megkezdődésével be is záródnak (szisztolé az már) &#10140; a videón is ki lehet venni nehezen a 'pitvari_kontrakciónál való nyílást', csak <abbr title="dupla klikk(6.gomb) egérrel a play gombon">próbáljam képkockánként lejátszani</abbr></font></li>
-				<video controls><source src="video/Echo PSL View explaination.mp4" type="video/mp4">Your browser does not support the video tag.</video><br>&nbsp;
+				<video muted controls onclick="this.paused ? this.play() : this.pause();" data-src="video/Echo PSL View explaination.mp4">hiba.</video><br><br>
 			</ul></details>
 			<li></li>
 		</ul></details>

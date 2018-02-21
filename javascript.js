@@ -725,10 +725,10 @@ var defaultText = document.getElementById("div_upgQ").innerHTML
 
 
 
-function F_imgLoad() {
+function F_imgLoad(){ // VIDEOt is itt tölti be!
 	var allDetails = document.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) {
-		allDetails[i].onclick = function() {
+		allDetails[i].onclick = function(){
 			var imgs = this.getElementsByTagName("img")
 			if ( this.className.indexOf("{") > -1 ) {
 				var begin = this.className.indexOf("{")
@@ -763,6 +763,15 @@ function F_imgLoad() {
 				}
 			}
 			func_abbrSet(this)
+			
+			// Video Load
+			var allVideo = this.getElementsByTagName("video")
+			for ( var i=0; i<allVideo.length; i++ ) {
+				var source = document.createElement('source');
+				source.setAttribute('src', allVideo[i].dataset.src);
+				allVideo[i].removeAttribute("data-src")
+				allVideo[i].appendChild(source);
+			}
 		}
 	}
 }
@@ -1511,7 +1520,8 @@ function func_calcTimeDiff(repCount){
 		timeDiff = 3000
 	}
 }
-function setVizsgaSkipTime(){
+var vizsgaTime = Number(localStorage.getItem("vizsgaSkip"))*60
+/*function setVizsgaSkipTime(){
 	// #1 lépésben megadom a jelenlegi időt (alertba tudom megjeletíteni, itt van két sorral lenntebb a kódja)
 	var date = new Date();
 	//alert(Math.floor(date.getTime()/60000))
@@ -1519,7 +1529,7 @@ function setVizsgaSkipTime(){
 	// #2 lépésben megadom hány perc múlva lesz a vizsga
 	vizsgaTime = vizsgaTime + 2200
 }
-// –––– –––– –––– –––– –––– –––– –––– –––– –––– ––––
+// –––– –––– –––– –––– –––– –––– –––– –––– –––– ––––*/
 
 
 var nextMark = 0
@@ -2631,7 +2641,7 @@ function F_calculateEXPid(EXPid) {
 	var actIMGloc = string.slice(string.indexOf(" ")+1)
 }
 
-setVizsgaSkipTime()
+//setVizsgaSkipTime()
 
 //func_putZeroQBack();
 func_calcOldNew();
