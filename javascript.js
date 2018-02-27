@@ -4,6 +4,7 @@
 }*/
 
 /* PROJECT - PROGRESS
+ ✖: QuantumFirefox Tablet: video click nél csak a control-bar jelenik meg. Szvsz csináljak egy láthatatlan buttont a videóra, amire írok scriptet.
  ✖: vizsgaskip &#10140; ne JS-be, hanem LS-be mentse el
  ✖: LS-méret a vizsgaskippedeknél ha van 500, akkor szinte lefagy (azt fixáljam)
  ✖: F_SpanRepNew + F_SpanRepOld --> rákattolva jelenjenek meg a questek, hogy mennyi idő van belőlük vissza
@@ -728,7 +729,7 @@ var defaultText = document.getElementById("div_upgQ").innerHTML
 function F_imgLoad(){ // VIDEOt is itt tölti be!
 	var allDetails = document.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) {
-		allDetails[i].onclick = function(){
+		allDetails[i].onmousedown = function(e){
 			var imgs = this.getElementsByTagName("img")
 			if ( this.className.indexOf("{") > -1 ) {
 				var begin = this.className.indexOf("{")
@@ -767,11 +768,13 @@ function F_imgLoad(){ // VIDEOt is itt tölti be!
 			// Video Load
 			var allVideo = this.getElementsByTagName("video")
 			for ( var i=0; i<allVideo.length; i++ ) {
-				var source = document.createElement('source');
-				source.setAttribute('src', allVideo[i].dataset.src);
+				var source = document.createElement('source')
+				source.setAttribute('src', allVideo[i].dataset.src)
 				allVideo[i].removeAttribute("data-src")
-				allVideo[i].appendChild(source);
+				allVideo[i].appendChild(source)
+				allVideo[i].style.maxWidth = "98%"
 			}
+			e.stopPropagation()
 		}
 	}
 }
@@ -1521,14 +1524,6 @@ function func_calcTimeDiff(repCount){
 	}
 }
 var vizsgaTime = Number(localStorage.getItem("vizsgaSkip"))*60
-/*function setVizsgaSkipTime(){
-	// #1 lépésben megadom a jelenlegi időt (alertba tudom megjeletíteni, itt van két sorral lenntebb a kódja)
-	var date = new Date();
-	//alert(Math.floor(date.getTime()/60000))
-	vizsgaTime = 25310695
-	// #2 lépésben megadom hány perc múlva lesz a vizsga
-	vizsgaTime = vizsgaTime + 2200
-}
 // –––– –––– –––– –––– –––– –––– –––– –––– –––– ––––*/
 
 
@@ -3153,15 +3148,17 @@ function F_nextQ(){
 						document.getElementById("td.0."+i).style.backgroundColor = "LawnGreen"
 						selectList.disabled = true
 						selectList.style.backgroundColor = "Black"
+					/*
 					} else if ( idopont > timeDiff*3 ) {
 						document.getElementById("td.0."+i).style.backgroundColor = "red"
 					} else if ( idopont > timeDiff*2 ) {
 						document.getElementById("td.0."+i).style.backgroundColor = "orange"
 					} else if ( idopont > timeDiff ) {
 						document.getElementById("td.0."+i).style.backgroundColor = "yellow"
+					*/
 					}
 					
-					if ( jegy == 0 || jegy == 1 ) {
+					/*if ( jegy == 0 || jegy == 1 ) {
 						if ( idopont >= timeDiff  ) {
 							document.getElementById("td.0."+i).style.backgroundColor = "red"
 						}
@@ -3170,14 +3167,14 @@ function F_nextQ(){
 						if ( idopont >= 2000  ) {
 							document.getElementById("td.0."+i).style.backgroundColor = "red"
 						}
+					}*/
+					if ( repeat == 0 ) {
+						document.getElementById("td.0."+i).style.backgroundColor = "red"
+					} else if ( repeat == 1 ) {
+						document.getElementById("td.0."+i).style.backgroundColor = "orange"
+					} else if ( repeat == 2 ) {
+						document.getElementById("td.0."+i).style.backgroundColor = "yellow"
 					}
-				}
-				if ( repeat == 0 ) {
-					document.getElementById("td.0."+i).style.backgroundColor = "red"
-				} else if ( repeat == 1 ) {
-					document.getElementById("td.0."+i).style.backgroundColor = "orange"
-				} else if ( repeat == 2 ) {
-					document.getElementById("td.0."+i).style.backgroundColor = "yellow"
 				}
 				if ( localStorage.getItem(LSid+'_skip') && localStorage.getItem(LSid+'_skip') != "important" ) {
 					document.getElementById("td.0."+i).style.backgroundColor = "Black"

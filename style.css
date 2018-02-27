@@ -9,7 +9,8 @@ a.source {
 }
 
 
-video::-webkit-media-controls-panel {
+
+video::-webkit-media-controls-panel { /* sajna nem műkszik a drágalátos quantum firefoxon (baszná teherbe magát) */
 	display: flex !important;
 	opacity: 1 !important;
 	bottom: -30px;
@@ -253,7 +254,7 @@ div.header {
 }
 .title {
 	font-weight: bold;
-	font-size: 125%;
+	font-size: 110%;
 }
 .mainTitle {
 	font-weight: bold;
