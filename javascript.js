@@ -227,15 +227,17 @@ function F_newLSid(){
 	/*if ( missQs[0] ) {
 		LSid = missQs[0]
 		missQs.splice(0,1)
+	} else {*/
+		LSid = parseInt(localStorage.getItem("hkQ.max"))+1
+		localStorage.setItem("hkQ.max",LSid)
+		LSid = "hkQ."+LSid
+		
+		// erre szükség van még
 		localStorage.removeItem(LSid+"_skip")
 		localStorage.removeItem(LSid+"_note")
 		localStorage.removeItem(LSid+"_jegy")
 		localStorage.removeItem(LSid+"_repeat")
 		localStorage.removeItem(LSid+"_idopont")
-	} else {*/
-		LSid = parseInt(localStorage.getItem("hkQ.max"))+1
-		localStorage.setItem("hkQ.max",LSid)
-		LSid = "hkQ."+LSid
 	// }
 	if ( LSid == "undefined" ) { alert("UNDEFINED") }
 	return LSid
@@ -364,13 +366,12 @@ function F_DivFix() {
 	div.id = "div_Fix"
 	div.style.backgroundColor = "white"
 	div.style.overflow = "auto"
-	div.style.width = "80vw"
+	div.style.width = "50vw"
 	div.style.height = "60vh"
 	div.style.position = "fixed"
 	div.style.top = "50%"
-	div.style.left = "50%"
+	div.style.left = "10px"
 	div.style.marginTop = "-30vh"
-	div.style.marginLeft = "-40vw"
 	div.style.border = "10px solid red"
 	div.style.display = "none"
 }
@@ -504,7 +505,7 @@ function F_oldQchange(oldLSid){
 
 function F_oldQcheck(){
 	var oldString = []
-	
+	//localStorage.setItem(document.title+"_LSids","")
 	var fullString = localStorage.getItem(document.title+"_LSids")
 	// azon LSid-ket kiveszi, amik már ExpQ-k lettek, és más LSid-t kaptak
 	if ( fullString ) {
@@ -514,6 +515,7 @@ function F_oldQcheck(){
 			if ( fullArray[i] != "" && fullArray[i] != "null" ) {  // ilyenek belekerülnek valamiért (replace-nél)
 				var LSid = fullArray[i]
 				var Qtext = localStorage.getItem(LSid)
+				//if ( Qtext == null ) { console.log(LSid) }
 				var EXPid = Qtext.indexOf("summary")
 				EXPid = Qtext.slice(0,EXPid) 
 				if ( EXPid.indexOf("{") != -1 ) { 
@@ -726,55 +728,127 @@ var defaultText = document.getElementById("div_upgQ").innerHTML
 
 
 
+
+var F_seekBar = window.setInterval(function(){
+	if ( document.getElementById("playedVideo") ) {
+		var playedVideo = document.getElementById("playedVideo")
+		var parentDiv = playedVideo.parentElement
+		var seekBars = parentDiv.getElementsByTagName("span")
+		//console.log(widthPx)
+		var widthPx = playedVideo.offsetWidth *playedVideo.currentTime /playedVideo.duration
+		seekBars[0].style.width = widthPx
+		seekBars[0].style.left = playedVideo.offsetLeft
+	}
+}, 1000);
+
+function F_loadImgVideo(detElem,e){
+	var imgs = detElem.getElementsByTagName("img")
+	if ( detElem.className.indexOf("{") > -1 ) {
+		var begin = detElem.className.indexOf("{")
+		var end = detElem.className.indexOf("}")
+		var EXPid = detElem.className.slice(begin+1,end)
+		var string = localStorage.getItem("hkExpQ."+EXPid)
+		var IMGloc = string.slice(string.indexOf(" ")+1)
+		for ( var x=0; x<imgs.length; x++ ) {
+			if ( imgs[x].dataset.src ) {
+				imgs[x].src =  htmlLEARNloc + IMGloc + imgs[x].dataset.src
+				imgs[x].removeAttribute("data-src")
+			}
+		}
+	}
+	for ( var x=0; x<imgs.length; x++ ) {
+		var IMGelem = imgs[x]
+		var parent = imgs[x]
+		do { // megkeresi az első details-t
+			IMGelem = parent
+			parent = parent.parentElement
+		} while ( parent.className.indexOf("[") == -1 && parent.tagName != "DETAILS" )
+
+		if ( parent == detElem ) {
+			if ( imgs[x].dataset.src ) {
+				if ( imgs[x].dataset.src.indexOf("images") == -1 ) {   // && imgs[x].dataset.src.indexOf("100") == -1
+					imgs[x].src = "images/" + imgs[x].dataset.src
+				} else {
+					imgs[x].src = imgs[x].dataset.src
+				}
+				imgs[x].removeAttribute("data-src")
+			}
+		}
+	}
+	func_abbrSet(detElem)
+	
+	// Video Load
+	var allVideo = detElem.getElementsByTagName("video") // csak azokat kéne amik direktbe a childjei!!! (különben többit is betölti)
+	for ( var i=0; i<allVideo.length; i++ ) {
+		var source = document.createElement('source')
+		source.setAttribute('src', allVideo[i].dataset.src)
+		allVideo[i].removeAttribute("data-src")
+		allVideo[i].appendChild(source)
+		allVideo[i].style.maxWidth = "98%"
+		
+	// controlBar fix!
+		allVideo[i].onclick = function(){
+			if ( this.parentElement.className != "videoParentDiv" ) {
+				var div = document.createElement("div");
+				var parent = this.parentNode;
+				parent.insertBefore(div, this);
+				div.appendChild(this);
+				div.className = "videoParentDiv"
+				
+				var seekBar = document.createElement("div");
+				seekBar.className = "seekBar"
+				div.appendChild(seekBar)
+				var span = document.createElement("span");
+				span.className = "seekBar"
+				span.innerHTML = "&nbsp;"
+				seekBar.appendChild(span)
+			}
+			
+			if ( this.paused == false ) {
+				this.pause(); 
+			} else {
+				if ( document.getElementById("playedVideo") ) {
+					if ( document.getElementById("playedVideo") != this ) {
+						document.getElementById("playedVideo").pause();
+						document.getElementById("playedVideo").id = "";
+					}
+				}
+				this.id = "playedVideo";
+				this.play();
+				
+				//ezt elég 1x megcsinálni, amikor elindítom (fix majd, mert lehet egyszerűsíteni)
+				var parentDiv = this.parentElement
+				var seekBars = parentDiv.getElementsByTagName("span")
+				theSeekBar = seekBars[0].parentElement
+				theSeekBar.style.width = this.offsetWidth
+				theSeekBar.style.opacity = "1"; 
+				theSeekBar.onclick = function(e){
+					x = e.pageX - this.offsetLeft
+					clickedValue = x * this.max / this.offsetWidth;
+					var percent = x / this.offsetWidth
+					var playedVideo = document.getElementById("playedVideo")
+					playedVideo.pause();
+					var currTime = percent * playedVideo.duration
+					currTime = Math.floor(currTime);
+					//console.log(currTime);
+					playedVideo.currentTime = currTime
+					
+					var seekBars = parentDiv.getElementsByTagName("span")
+					var widthPx = playedVideo.offsetWidth *playedVideo.currentTime /playedVideo.duration
+					seekBars[0].style.width = widthPx
+					seekBars[0].style.left = playedVideo.offsetLeft
+				}
+			}
+		};
+	}
+	e.stopPropagation()
+}
+
 function F_imgLoad(){ // VIDEOt is itt tölti be!
 	var allDetails = document.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) {
 		allDetails[i].onmousedown = function(e){
-			var imgs = this.getElementsByTagName("img")
-			if ( this.className.indexOf("{") > -1 ) {
-				var begin = this.className.indexOf("{")
-				var end = this.className.indexOf("}")
-				var EXPid = this.className.slice(begin+1,end)
-				var string = localStorage.getItem("hkExpQ."+EXPid)
-				var IMGloc = string.slice(string.indexOf(" ")+1)
-				for ( var x=0; x<imgs.length; x++ ) {
-					if ( imgs[x].dataset.src ) {
-						imgs[x].src =  htmlLEARNloc + IMGloc + imgs[x].dataset.src
-						imgs[x].removeAttribute("data-src")
-					}
-				}
-			}
-			for ( var x=0; x<imgs.length; x++ ) {
-				var IMGelem = imgs[x]
-				var parent = imgs[x]
-				do { // megkeresi az első details-t
-					IMGelem = parent
-					parent = parent.parentElement
-				} while ( parent.className.indexOf("[") == -1 && parent.tagName != "DETAILS" )
-
-				if ( parent == this ) {
-					if ( imgs[x].dataset.src ) {
-						if ( imgs[x].dataset.src.indexOf("images") == -1 /*&& imgs[x].dataset.src.indexOf("100") == -1*/ ) {
-							imgs[x].src = "images/" + imgs[x].dataset.src
-						} else {
-							imgs[x].src = imgs[x].dataset.src
-						}
-						imgs[x].removeAttribute("data-src")
-					}
-				}
-			}
-			func_abbrSet(this)
-			
-			// Video Load
-			var allVideo = this.getElementsByTagName("video")
-			for ( var i=0; i<allVideo.length; i++ ) {
-				var source = document.createElement('source')
-				source.setAttribute('src', allVideo[i].dataset.src)
-				allVideo[i].removeAttribute("data-src")
-				allVideo[i].appendChild(source)
-				allVideo[i].style.maxWidth = "98%"
-			}
-			e.stopPropagation()
+			F_loadImgVideo(this,e)
 		}
 	}
 }
@@ -795,7 +869,7 @@ function F_imgActLoad(IMGelem){
 	}
 }
 
-function F_imgPreLoad(){ 
+function F_imgPreLoad(){ // ha már alapból nyitott a details, akkor betölti a képet
 	var imgArr = []
 	var allIMG = document.getElementsByTagName("img")
 	for ( var i=0; i<allIMG.length; i++ ) {
@@ -1363,12 +1437,15 @@ function F_CreateQDiv() {
 		divSettings.appendChild(textArea)
 		textArea.style.display = "none"
 		textArea.id = "note"
-		textArea.rows = "4"
-		textArea.cols = "40"
+		textArea.style.zIndex = "1"; 
+		textArea.rows = "5"
+		//textArea.cols = "60"
 
+		textArea.style.width = "40vw"
+		textArea.style.right = "10px"
 		textArea.style.position = "fixed"
-		textArea.style.left = "40%"
-		textArea.style.top = "55%"
+		//textArea.style.left = "30%"
+		textArea.style.top = "25px"
 		textArea.style.border = "thick solid black"
 	}
 	F_TextAreaNote()
@@ -2191,41 +2268,29 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 		}
 	}
 }
-function func_spanClick(button){
+function func_spanClick(button){  // btn_fix, btn_skip, btn_vizsgaskip, btn_repFast, btn_newQuest
 	if ( button.id == 'btn_skip' || button.id == 'btn_fix' || button.id == 'btn_vizsgaskip' ) {
 		func_SetTextOfSkipFixDiv(button.id)
-		if ( button.id == 'btn_skip' || button.id == 'btn_vizsgaskip' ) {
-			document.getElementById("div_Fix").style.display = 'none';
-			document.getElementById("btn_fix").style.borderColor = "black"
-			if ( document.getElementById("div_Skip").style.display == 'block' ) {
-				document.getElementById("div_Skip").style.display = 'none';
-			} else {
-				document.getElementById("div_Skip").style.display = 'block';
-			}
-		}
-		if ( button.id == 'btn_fix' ) {
-			document.getElementById("div_Skip").style.display = 'none';
-			document.getElementById("btn_skip").style.borderColor = "black"
-			if ( document.getElementById("div_Fix").style.display == 'block' ) {
-				document.getElementById("div_Fix").style.display = 'none';
-			} else if ( document.getElementById("note").style.display == 'block' ) {
-				document.getElementById("note").style.display = 'none';
-				document.getElementById("div_Fix").style.display = 'block';
-			} else {
-				document.getElementById("note").style.display = 'block';
-			}
-		}
+		document.getElementById("div_Fix").style.display = 'none';
+		document.getElementById("div_Skip").style.display = 'none';
+		document.getElementById("note").style.display = 'none';
 	}
 	if ( button.style.borderColor == "limegreen" ) {
-		if ( button.id == 'btn_fix' ) {
-			if ( document.getElementById("note").style.display == 'none' && document.getElementById("div_Fix").style.display == 'none' ) {
-				button.style.borderColor = "black"
-			}
-		} else {
-			button.style.borderColor = "black"
-			if ( button.id == 'btn_newQuest' ) { localStorage.removeItem("hk.newQ") }
-		}
+		button.style.borderColor = "black"
+		if ( button.id == 'btn_newQuest' ) { localStorage.removeItem("hk.newQ") }
 	} else {
+		if ( button.id == 'btn_skip' || button.id == 'btn_fix' || button.id == 'btn_vizsgaskip' ) {
+			document.getElementById("btn_fix").style.borderColor = "black"
+			document.getElementById("btn_skip").style.borderColor = "black"
+			document.getElementById("btn_vizsgaskip").style.borderColor = "black"
+		}
+		if ( button.id == 'btn_skip'||  button.id == 'btn_vizsgaskip' ) {
+			document.getElementById("div_Skip").style.display = 'block';
+		}
+		if ( button.id == 'btn_fix' ) {
+			document.getElementById("div_Fix").style.display = 'block';
+			document.getElementById("note").style.display = 'block';
+		}
 		button.style.borderColor = "limegreen"
 		if ( button.id == 'btn_newQuest' ) { localStorage.setItem("hk.newQ",true) }
 	}
@@ -2768,6 +2833,7 @@ function F_prevQ(){
 	}
 }
 
+var intervalOfs = "nincs"
 var priorQid = "nincs"
 var fullTema, checkNum, cloneKerdes
 var lastTime = 0
@@ -3079,6 +3145,7 @@ function F_nextQ(){
 					localStorage.setItem(document.title+"_LSids",string)
 					localStorage.setItem(LSid,Qtext)
 					txtLS[Qtext] = LSid
+					//alert(LSid+"newQ: "+Qtext)
 					//console.log("nextQ-setMark: " +LSid+ ": " +Qtext)
 					//console.log(localStorage.getItem(document.title+"_LSids"))
 				}
@@ -3226,30 +3293,41 @@ function F_nextQ(){
 		
 		
 		var LSid = "hkQ." + document.getElementById("span_actualLSid").textContent
-		/*var pQtxt = arrQid[priorQid]
+		/* erre akkor van szükség, ha legfelül nem kérdés van (tehát a legfelül lévő details nem kérdés, csak egy összegző details, pl. élettan ozmózis), ugyanis annak nincs LSid elmentve, így nemtudok note-t menteni neki (persze optimálisabb lenne, ha itt is a legfelsőhöz lenne csatolva, de egyenlőre kihagyom mert nem bonyolítom, és LowPrior)
+		var pQtxt = arrQid[priorQid]
 		var pLSid = txtLS[pQtxt]
 		var LSid = txtLS[Qtext]
 		if ( typeof LSid == "undefined" ) {
 			LSid = pLSid
-			// erre akkor van szükség, ha legfelül nem kérdés van (tehát a legfelül lévő details nem kérdés, csak egy összegző details, pl. élettan ozmózis), ugyanis annak nincs LSid elmentve, így nemtudok note-t menteni neki (persze optimálisabb lenne, ha itt is a legfelsőhöz lenne csatolva, de egyenlőre kihagyom mert nem bonyolítom, és LowPrior)
 		}
 		alert("noteIMP:"+LSid)*/
 		if ( localStorage.getItem(LSid+"_note") ) { // note
 			document.getElementById("note").value = localStorage.getItem(LSid+"_note")
-			var ofs = 0;
-			window.setInterval(function(){
-				document.getElementById("btn_fix").style.backgroundColor = 'rgba(255,0,0,'+Math.abs(Math.sin(ofs))+')';
-				ofs += 0.01;
+			intervalOfs = 0;
+			F_noteFlash = window.setInterval(function(){
+				document.getElementById("btn_fix").style.backgroundColor = 'rgba(255,0,0,'+Math.abs(Math.sin(intervalOfs))+')';
+				intervalOfs += 0.01;
 			}, 10);
 			var_note = true
 		} else {
 			document.getElementById("btn_fix").style.backgroundColor = "red";
 			var_note = false
+			if ( intervalOfs != "nincs" ) { 
+				clearInterval(F_noteFlash) 
+				intervalOfs = "nincs"
+			}
 		}
 	}
 
 	var allIMG = QlocElem.getElementsByTagName("img")
 	for ( var i=0; i<allIMG.length; i++ ) { F_imgActLoad(allIMG[i]) }
+	
+	var allDetails = QlocElem.getElementsByTagName("details")
+	for ( var i=0; i<allDetails.length; i++ ) {
+		allDetails[0].onmousedown = function(e){
+			F_loadImgVideo(this,e)
+		}
+	}
 
 	func_enLargeImages()
 	func_calcJegy()
@@ -3322,10 +3400,6 @@ document.getElementById("span_showError").style.visibility = "hidden";
 	<li><span class="WHITE">(.*?)</span>(.*?)</li>
 	<div><font class="abbr"><span class="WHITE">\1</span> ►</font>\2</div>
 */
-
-
-
-
 
 
 

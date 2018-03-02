@@ -9,6 +9,17 @@ a.source {
 }
 
 
+span.seekBar
+{
+	position: absolute;
+	background: orange;
+}
+div.seekBar
+{
+	height:21px;
+	background: grey;
+	opacity: 0; 
+}
 
 video::-webkit-media-controls-panel { /* sajna nem műkszik a drágalátos quantum firefoxon (baszná teherbe magát) */
 	display: flex !important;
