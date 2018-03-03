@@ -2366,6 +2366,7 @@ function func_calcWork() { // hány százaléka új kérdés még
 					var hossz = elem.className.substring(num+1);
 					if ( hossz == "j" ) { hossz = 0 }
 					if ( hossz == "?" ) { hossz = 0 }
+					if ( hossz == "." ) { hossz = 0 }
 					if ( hossz == "x" ) { hossz = 0 }
 					
 					
