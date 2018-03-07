@@ -4,7 +4,6 @@
 }*/
 
 /* PROJECT - PROGRESS
- ✖: QuantumFirefox Tablet: video click nél csak a control-bar jelenik meg. Szvsz csináljak egy láthatatlan buttont a videóra, amire írok scriptet.
  ✖: vizsgaskip &#10140; ne JS-be, hanem LS-be mentse el
  ✖: LS-méret a vizsgaskippedeknél ha van 500, akkor szinte lefagy (azt fixáljam)
  ✖: F_SpanRepNew + F_SpanRepOld --> rákattolva jelenjenek meg a questek, hogy mennyi idő van belőlük vissza
@@ -33,7 +32,6 @@
  ✖: F_ButtonRepFast
  ✖: DATA-SRC IMG: ha egy kérdést megnyitok, akkor betölti a képeit -> ezzel azonban átíródik ugye a Qtext -> ha ezután kattolok rá jobbfelső toggleAll buttonra, akkor az F_checkQs-ban nem találja meg a Qtext-et mert azoknak megváltozott
 ––––––––––––––––––––––––––––––––––––––––––––––––
- ✖: átlag skip (ne 650, hanem átlag) --> 3 helyen van a kódban!!! (searchel cseréljem őket ki!!)
  ✖: note & fix-re elég egy button (egyoldalon legyen a kettő)
  ✖: EXP.html &#10140; load it first, then jump to the page
 ––––––––––––––––––––––––––––––––––––––––––––––––
@@ -42,6 +40,8 @@
 */
 
 /* PROJECT - DONE
+ ✔: js: skipDate / adott tárgy
+ ✔: QuantumFirefox Tablet: video click nél csak a control-bar jelenik meg. Szvsz csináljak egy láthatatlan buttont a videóra, amire írok scriptet.
  ✔: importQ-t változtatva, ne kelljen upgradelni azt a Q-t, melyben az importQ mint alkérdés szerepelt
  ✔: upgradeQ -->  ha van olyan című és 1db, akkor 0-ra tegye!!
  ✔: div_Skip.innerHTML beállítása nemjó. Ugyanis ha már van kb.50db amit skippelek és megnyitom, akkor szétfagy az egész.
@@ -785,6 +785,7 @@ function F_loadImgVideo(detElem,e){
 		allVideo[i].removeAttribute("data-src")
 		allVideo[i].appendChild(source)
 		allVideo[i].style.maxWidth = "98%"
+		allVideo[i].muted = true;
 		
 	// controlBar fix!
 		allVideo[i].onclick = function(){
@@ -805,6 +806,7 @@ function F_loadImgVideo(detElem,e){
 			}
 			
 			if ( this.paused == false ) {
+				this.style.borderColor = "black"
 				this.pause(); 
 			} else {
 				if ( document.getElementById("playedVideo") ) {
@@ -814,6 +816,7 @@ function F_loadImgVideo(detElem,e){
 					}
 				}
 				this.id = "playedVideo";
+				this.style.borderColor = "springgreen"
 				this.play();
 				
 				//ezt elég 1x megcsinálni, amikor elindítom (fix majd, mert lehet egyszerűsíteni)
@@ -827,6 +830,7 @@ function F_loadImgVideo(detElem,e){
 					clickedValue = x * this.max / this.offsetWidth;
 					var percent = x / this.offsetWidth
 					var playedVideo = document.getElementById("playedVideo")
+					playedVideo.style.borderColor = "black"
 					playedVideo.pause();
 					var currTime = percent * playedVideo.duration
 					currTime = Math.floor(currTime);
@@ -1586,18 +1590,34 @@ F_CreateQDiv()
 
 // –––– –––– –––– –––– –––– –––– –––– –––– –––– ––––
 function func_calcTimeDiff(repCount){
-	if ( repCount == 0 ) {
-		timeDiff = 30
-	} else if ( repCount == 1 ) {
-		timeDiff = 60
-	} else if ( repCount == 2 ) {
-		timeDiff = 200
-	} else if ( repCount == 3 ) {
-		timeDiff = 1500
-	} else if ( repCount == 4 ) {
-		timeDiff = 2000
-	} else if ( repCount == 5 ) {
-		timeDiff = 3000
+	if ( document.title == "Anat" ) {
+		if ( repCount == 0 ) {
+			timeDiff = 100
+		} else if ( repCount == 1 ) {
+			timeDiff = 1000
+		} else if ( repCount == 2 ) {
+			timeDiff = 2000
+		} else if ( repCount == 3 ) {
+			timeDiff = 3500
+		} else if ( repCount == 4 ) {
+			timeDiff = 5000
+		} else if ( repCount == 5 ) {
+			timeDiff = 7000
+		}
+	} else {
+		if ( repCount == 0 ) {
+			timeDiff = 30
+		} else if ( repCount == 1 ) {
+			timeDiff = 60
+		} else if ( repCount == 2 ) {
+			timeDiff = 200
+		} else if ( repCount == 3 ) {
+			timeDiff = 1500
+		} else if ( repCount == 4 ) {
+			timeDiff = 2000
+		} else if ( repCount == 5 ) {
+			timeDiff = 3000
+		}
 	}
 }
 var vizsgaTime = Number(localStorage.getItem("vizsgaSkip"))*60
@@ -2585,26 +2605,6 @@ function func_calcOldNew(){
 	document.getElementById("btn_RepFast").value = repFast;
 	document.getElementById("span_RepSlow").innerHTML = repSlow
 }
-function func_multiQCheck(){ // kiírja a quest summary-jébe, mely questeket idézi be mellé
-	for ( var i = 0;   i < kerdesek.length;   i++ ) {
-		var kerdes = localStorage.getItem(kerdesek[i].innerHTML)
-		var string_Class = kerdesek[i].className
-		string_Class = string_Class.substring(0,string_Class.search("/")-1);
-		var nums = string_Class.match(/\d+/g)
-		if ( string_Class.search("%") != -1 ) {
-			string_Class = string_Class.substring(0,string_Class.search("%")-2);
-		}
-		if ( nums != null ) {
-			var childs = kerdesek[i].children;
-			for (i = 0; i < childs.length; i++) {
-				if ( "SUMMARY" == childs[i].tagName ) {
-					childs[i].innerHTML = childs[i].innerHTML + " <font style='font-size:12px; font-weight:bold' color='black'>" + nums + "</font>"
-				}
-			}
-		}
-	}
-}
-//func_multiQCheck() // (most valamiért hibás is, mert lefagy ha elindítom, szóval skip egyenlőre)
 
 
 // SAVE LS (begin)
@@ -2646,7 +2646,7 @@ function func_saveLS() {
 		text = text + localStorage.key(i) + " = " + getItem(localStorage.key(i)) + " NEXTONE "
 	}
 	download('localStorage.txt', text);
-	//console.log(objects);
+	//console.log(objects)
 	//window.location = "data:text/plain,"+text
 }
 JSON.stringify(localStorage)
@@ -2826,8 +2826,7 @@ function F_prevQ(){
 	lastSavedLS = Number(lastSavedLS)
 	if ( lastSavedLS == 10 || lastSavedLS > 10 ) {
 		localStorage.setItem("hk.lastSavedLS",0)
-		func_saveLS()
-		//document.getElementById("button_NextQ").style.backgroundColor = "aqua"
+		//func_saveLS() // androidon crashel, mert a textel baja van
 	} else {
 		lastSavedLS = lastSavedLS +1
 		localStorage.setItem("hk.lastSavedLS",lastSavedLS)

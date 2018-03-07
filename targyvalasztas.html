@@ -95,18 +95,29 @@
 	
 	// SAVE LS
 	function download(filename, text) { // (netről copyztam) --> (azért kellett, mert androidon máshogy nemtudom lementeni)
-		 var pom = document.createElement('a');
-		 pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-		 pom.setAttribute('download', filename);
+		var element = document.createElement('a');
+		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + "teszteljük");
+		element.setAttribute('download', filename);
+		element.appendChild(document.createTextNode("Save file"));
+	  
+		element.style.display = 'none';
+		document.body.appendChild(element);
+		element.click();
+		document.body.removeChild(element);*/
 
-		 if (document.createEvent) {
+		/*var pom = document.createElement('a');
+		pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+		pom.setAttribute('download', filename);
+
+		if (document.createEvent) {
 			var event = document.createEvent('MouseEvents');
 			event.initEvent('click', true, true);
+			alert("van")
 			pom.dispatchEvent(event);
-		 }
-		 else {
+		} else {
+			alert("nincs")
 			pom.click();
-		 }
+		}*/
 	}
 	function setItem(key, value){
 		if (typeof value === 'object') {
@@ -132,7 +143,7 @@
 			text = text + localStorage.key(i) + " = " + getItem(localStorage.key(i)) + " NEXTONE "
 		}
 		download('localStorage.txt', text);
-		//console.log(objects);
+		//console.log(objects)
 		//window.location = "data:text/plain,"+text
 	}
 	JSON.stringify(localStorage)

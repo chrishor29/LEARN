@@ -9,22 +9,28 @@ a.source {
 }
 
 
-span.seekBar
-{
+
+span.seekBar{
 	position: absolute;
 	background: orange;
 }
-div.seekBar
-{
+div.seekBar{
 	height:21px;
 	background: grey;
 	opacity: 0; 
 }
 
-video::-webkit-media-controls-panel { /* sajna nem műkszik a drágalátos quantum firefoxon (baszná teherbe magát) */
+/*video::-webkit-media-controls-panel { // sajna nem műkszik a drágalátos quantum firefoxon (baszná teherbe magát)
 	display: flex !important;
 	opacity: 1 !important;
 	bottom: -30px;
+}*/
+
+video{
+	border-style: solid;
+	border-width: 4px;
+	border-color: black;
+	background-color: blueviolet;
 }
 
 abbr {
