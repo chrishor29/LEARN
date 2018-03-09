@@ -95,7 +95,7 @@
 	
 	// SAVE LS
 	function download(filename, text) { // (netről copyztam) --> (azért kellett, mert androidon máshogy nemtudom lementeni)
-		var element = document.createElement('a');
+		/*var element = document.createElement('a');
 		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + "teszteljük");
 		element.setAttribute('download', filename);
 		element.appendChild(document.createTextNode("Save file"));
@@ -103,21 +103,20 @@
 		element.style.display = 'none';
 		document.body.appendChild(element);
 		element.click();
-		document.body.removeChild(element);*/
+		document.body.removeChild(element);
+		*/
 
-		/*var pom = document.createElement('a');
+		var pom = document.createElement('a');
 		pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
 		pom.setAttribute('download', filename);
 
 		if (document.createEvent) {
 			var event = document.createEvent('MouseEvents');
 			event.initEvent('click', true, true);
-			alert("van")
 			pom.dispatchEvent(event);
 		} else {
-			alert("nincs")
 			pom.click();
-		}*/
+		}
 	}
 	function setItem(key, value){
 		if (typeof value === 'object') {

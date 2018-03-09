@@ -1608,7 +1608,7 @@ function func_calcTimeDiff(repCount){
 		if ( repCount == 0 ) {
 			timeDiff = 30
 		} else if ( repCount == 1 ) {
-			timeDiff = 60
+			timeDiff = 4000
 		} else if ( repCount == 2 ) {
 			timeDiff = 200
 		} else if ( repCount == 3 ) {
