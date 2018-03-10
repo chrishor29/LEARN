@@ -4,9 +4,11 @@
 }*/
 
 /* PROJECT - PROGRESS
- ✖: JS - download LS crash - FIX -> először találjam meg a hibát, mert nem mindig van: ezt út csináljam, hogy csinálok egy localstorage mappát, amibe lesznek v1 v2 v3 stb. almappák. Egy ilyenbe pedig mindig beleteszem a 
+ ✖: JS - download LS crash - FIX -> először találjam meg a hibát, mert nem mindig van: ezt út csináljam, hogy csinálok egy localstorage mappát, amibe lesznek v1 v2 v3 stb almappák.
  
  ✖: vizsgaskip &#10140; ne JS-be, hanem LS-be mentse el
+ ✖: betöltésben mi tart soká, teszteljem (kiíratom console-ba mennyi idő telt el egyes funkciók közt)
+
  ✖: LS-méret a vizsgaskippedeknél ha van 500, akkor szinte lefagy (azt fixáljam)
  ✖: F_SpanRepNew + F_SpanRepOld --> rákattolva jelenjenek meg a questek, hogy mennyi idő van belőlük vissza
  ✖: ha zöldra van állítva a dobhat új kérdéseket, akkor még1et rákattolva először legyen kék ami azt jelenti random újat dob következőnek (nem az épp soron következőt)
@@ -15,7 +17,7 @@
  ✖: (100,500,1200) -vizsga előtt kéne valami spec
  ✖: csak azokat számolja átlagba (következő kérdés chance), melyek a minimum időt már elérték
  
- ✖: importált Q esetében a mini IMG-re klikkelve nem működik a script -> szvsz az legyen a megoldás, hogy még mielőtt elmentené az expQ-kat, a scriptet írja meg az img-ekre ('html-be vésse bele') -> így úgy fogja betölteni, hogy bele van írva a script
+ ✖: importált Q esetében a mini IMG-re klikkelve nem működik a script, amennyiben visszamegyek a főoldalra, majd újra a Q-hoz
  
  ✖: upgradeQ -->  ha nincs olyan című quest, akkor kiírja az összeset, és kikereshetem. (legyen valami search funkció)
  
@@ -2832,7 +2834,7 @@ function F_prevQ(){
 	lastSavedLS = Number(lastSavedLS)
 	if ( lastSavedLS == 10 || lastSavedLS > 10 ) {
 		localStorage.setItem("hk.lastSavedLS",0)
-		//func_saveLS() // androidon crashel, mert a textel baja van
+		func_saveLS() // androidon crashel, mert a textel baja van
 	} else {
 		lastSavedLS = lastSavedLS +1
 		localStorage.setItem("hk.lastSavedLS",lastSavedLS)
