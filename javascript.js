@@ -4,6 +4,8 @@
 }*/
 
 /* PROJECT - PROGRESS
+ ✖: JS - download LS crash - FIX -> először találjam meg a hibát, mert nem mindig van: ezt út csináljam, hogy csinálok egy localstorage mappát, amibe lesznek v1 v2 v3 stb. almappák. Egy ilyenbe pedig mindig beleteszem a 
+ 
  ✖: vizsgaskip &#10140; ne JS-be, hanem LS-be mentse el
  ✖: LS-méret a vizsgaskippedeknél ha van 500, akkor szinte lefagy (azt fixáljam)
  ✖: F_SpanRepNew + F_SpanRepOld --> rákattolva jelenjenek meg a questek, hogy mennyi idő van belőlük vissza
@@ -2645,7 +2647,11 @@ function func_saveLS() {
 		objects[localStorage.key(i)] = getItem(localStorage.key(i));
 		text = text + localStorage.key(i) + " = " + getItem(localStorage.key(i)) + " NEXTONE "
 	}
-	download('localStorage.txt', text);
+	var count = localStorage.getItem("lsCount")
+	count = Number(count) +1
+	localStorage.setItem("lsCount",count)
+	var filename = 'localStorage'+count+'.txt'
+	download(filename, text);
 	//console.log(objects)
 	//window.location = "data:text/plain,"+text
 }

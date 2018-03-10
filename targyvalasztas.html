@@ -43,6 +43,8 @@
 			input.style.backgroundColor = "aqua"
 			setTimeout(localStorage.clear(), 500)
 			setTimeout(function () { input.style.backgroundColor = bgColor  }, 500);
+			
+			localStorage.setItem("lsCount",0)
 		}
 
 		input.style.position = "absolute"
@@ -141,7 +143,11 @@
 			objects[localStorage.key(i)] = getItem(localStorage.key(i));
 			text = text + localStorage.key(i) + " = " + getItem(localStorage.key(i)) + " NEXTONE "
 		}
-		download('localStorage.txt', text);
+		var count = localStorage.getItem("lsCount")
+		count = Number(count) +1
+		localStorage.setItem("lsCount",count)
+		var filename = 'localStorage'+count+'.txt'
+		download(filename, text);
 		//console.log(objects)
 		//window.location = "data:text/plain,"+text
 	}
