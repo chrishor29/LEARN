@@ -1612,9 +1612,9 @@ function func_calcTimeDiff(repCount){
 		if ( repCount == 0 ) {
 			timeDiff = 30
 		} else if ( repCount == 1 ) {
-			timeDiff = 5000
+			timeDiff = 100
 		} else if ( repCount == 2 ) {
-			timeDiff = 200
+			timeDiff = 10000
 		} else if ( repCount == 3 ) {
 			timeDiff = 1500
 		} else if ( repCount == 4 ) {
