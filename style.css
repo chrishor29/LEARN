@@ -111,6 +111,11 @@ hr.large {
 .abbr{
 	 line-height: 30px; /*tablet miatt kell :S*/
 }
+span.abbr { 
+	border: Black 1px solid; 
+	padding-left: 1px; 
+	padding-right: 1px; 
+}
 
 span { 
 	padding-left: 0px; 

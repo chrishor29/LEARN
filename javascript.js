@@ -811,6 +811,13 @@ function F_loadImgVideo(detElem,e){
 			
 			if ( this.paused == false ) {
 				this.style.borderColor = "black"
+				
+				var widthPx = this.offsetWidth *this.currentTime /this.duration
+				var parentDiv = this.parentElement
+				var seekBars = parentDiv.getElementsByTagName("span")
+				seekBars[0].style.width = widthPx
+				seekBars[0].style.left = this.offsetLeft
+				
 				this.pause(); 
 			} else {
 				if ( document.getElementById("playedVideo") ) {
@@ -1598,9 +1605,9 @@ function func_calcTimeDiff(repCount){
 		if ( repCount == 0 ) {
 			timeDiff = 100
 		} else if ( repCount == 1 ) {
-			timeDiff = 1000
+			timeDiff = 1500
 		} else if ( repCount == 2 ) {
-			timeDiff = 2000
+			timeDiff = 3000
 		} else if ( repCount == 3 ) {
 			timeDiff = 3500
 		} else if ( repCount == 4 ) {
@@ -1610,9 +1617,9 @@ function func_calcTimeDiff(repCount){
 		}
 	} else {
 		if ( repCount == 0 ) {
-			timeDiff = 30
+			timeDiff = 20
 		} else if ( repCount == 1 ) {
-			timeDiff = 100
+			timeDiff = 40
 		} else if ( repCount == 2 ) {
 			timeDiff = 10000
 		} else if ( repCount == 3 ) {
