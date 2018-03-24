@@ -9,6 +9,7 @@
  ✖: vizsgaskip &#10140; ne JS-be, hanem LS-be mentse el
  ✖: betöltésben mi tart soká, teszteljem (kiíratom console-ba mennyi idő telt el egyes funkciók közt)
 
+ ✖: expQ-k --> csak a az expQs html-be lévőket mentse el LS-be (új számozás legyen és külön szvsz: tehát a többi localisan a fájlba)
  ✖: LS-méret a vizsgaskippedeknél ha van 500, akkor szinte lefagy (azt fixáljam)
  ✖: F_SpanRepNew + F_SpanRepOld --> rákattolva jelenjenek meg a questek, hogy mennyi idő van belőlük vissza
  ✖: ha zöldra van állítva a dobhat új kérdéseket, akkor még1et rákattolva először legyen kék ami azt jelenti random újat dob következőnek (nem az épp soron következőt)
@@ -23,7 +24,6 @@
  
  ✖: legyen egy funkció, amivel összes img-et betölti, és amelyiknél hiba van, azt jelezze valahol (de ne alertbe) --> anno ezt írtam <img onerror="alert(this.src)" data-src="gltkklkkjmnm.png">
  ✖: Qid-t vegyem ki!!!
- ✖: expID-k --> csak a az expQs html-be lévőket mentse el LS-be (új számozás legyen és külön szvsz)
 
  ✖: legyen egy funkció az elején, ami lecsekolja, van-e azonos id-n különböző Qtext
  ✖: legyen egy checkbox, amit ha kipipálok, akkor lecsekkolja az img-eket az oldalbetöltésnél (van-e ami missing?)
@@ -370,12 +370,13 @@ function F_DivFix() {
 	div.id = "div_Fix"
 	div.style.backgroundColor = "white"
 	div.style.overflow = "auto"
-	div.style.width = "50vw"
+	div.style.width = "80vw"
 	div.style.height = "60vh"
 	div.style.position = "fixed"
 	div.style.top = "50%"
-	div.style.left = "10px"
+	div.style.left = "50%"
 	div.style.marginTop = "-30vh"
+	div.style.marginLeft = "-40vw"
 	div.style.border = "10px solid red"
 	div.style.display = "none"
 }
@@ -1080,7 +1081,7 @@ function F_CreateQDiv() {
 		var button = document.createElement("button")
 		button.style.border = "3px solid black"
 		button.style.backgroundColor = "Bisque"
-		button.textContent = "TÉTELEK"
+		button.textContent = "TÉTEL"
 		divSettings.appendChild(button)
 		button.onclick = function(){
 			if ( document.getElementById("Div_Tetelek").style.display == "none" ) {
@@ -1105,19 +1106,27 @@ function F_CreateQDiv() {
 		span.style.paddingBottom = "2px"
 	}
 	F_SpanDate()
-	function F_SpanAtlag() {
-		var span = document.createElement("span")
-		span.id = "span_Jegy"
-		divSettings.appendChild(span)
-		span.className = "vocab"
-		span.style.border = "1px solid black"
-
-		span.style.paddingLeft = "5px"
-		span.style.paddingRight = "5px"
-		span.style.paddingTop = "1px"
-		span.style.paddingBottom = "2px"
+	function F_BtnAtlag() {
+		var button = document.createElement("input")
+		button.type = "button"
+		button.id = "btn_Jegy"
+		divSettings.appendChild(button)
+		button.style.border = "3px solid black"
+		button.style.backgroundColor = "Bisque"
+		button.onclick = function(){
+			if ( document.getElementById("div_nextQMark").style.display == 'none' ) {
+				func_calcRepTable()
+				document.getElementById("div_nextQMark").style.display = 'block';
+			} 
+			if ( document.getElementById("repTable").style.display == 'block' ) {
+				document.getElementById("repTable").style.display = 'none';
+			} else {
+				func_calcRepTable()
+				document.getElementById("repTable").style.display = 'block';
+			} 
+		}
 	}
-	F_SpanAtlag()
+	F_BtnAtlag()
 	function F_SpanRepAll() {
 		var span = document.createElement("span")
 		span.id = "span_Repeat"
@@ -1284,22 +1293,12 @@ function F_CreateQDiv() {
 	function F_ButtonTABS() {
 		var button = document.createElement("input")
 		button.type = "button"
+		button.id = "btn_note"
 		divSettings.appendChild(button)
 		button.style.border = "3px solid black"
 		button.style.backgroundColor = "Bisque"
-		button.onclick = function(){
-			if ( document.getElementById("div_nextQMark").style.display == 'none' ) {
-				func_calcRepTable()
-				document.getElementById("div_nextQMark").style.display = 'block';
-			} 
-			if ( document.getElementById("repTable").style.display == 'block' ) {
-				document.getElementById("repTable").style.display = 'none';
-			} else {
-				func_calcRepTable()
-				document.getElementById("repTable").style.display = 'block';
-			} 
-		}
-		button.value = "%"
+		button.onclick = function(){ func_spanClick(this) }
+		button.value = "✍"
 		
 		var div = document.createElement("div")
 		div.id = "div_nextQMark"
@@ -1456,10 +1455,9 @@ function F_CreateQDiv() {
 		textArea.rows = "5"
 		//textArea.cols = "60"
 
-		textArea.style.width = "40vw"
-		textArea.style.right = "10px"
 		textArea.style.position = "fixed"
-		//textArea.style.left = "30%"
+		textArea.style.width = "40vw"
+		textArea.style.left = "30%"
 		textArea.style.top = "25px"
 		textArea.style.border = "thick solid black"
 	}
@@ -1603,11 +1601,11 @@ F_CreateQDiv()
 function func_calcTimeDiff(repCount){
 	if ( document.title == "Anat" ) {
 		if ( repCount == 0 ) {
-			timeDiff = 100
+			timeDiff = 30
 		} else if ( repCount == 1 ) {
-			timeDiff = 1500
+			timeDiff = 60
 		} else if ( repCount == 2 ) {
-			timeDiff = 3000
+			timeDiff = 800
 		} else if ( repCount == 3 ) {
 			timeDiff = 3500
 		} else if ( repCount == 4 ) {
@@ -1696,6 +1694,7 @@ function F_nextMark(jegy){ // következő kérdés nehézségét beállítja,
 	}*/
 }
 
+
 var tetelek = []
 function F_tetelChoose(){ // createli a választható tételek listáját
 	function F_MainDiv() {
@@ -1737,10 +1736,9 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 		if ( localStorage.getItem(pageName+" "+szoveg) ) {
 			details.open = true
 		}
-		details.onclick = function(){
+		summary.onclick = function(){
 			if ( details.open != true ) {
 				localStorage.setItem(pageName+" "+szoveg,true)
-				//alert(pageName+" "+szoveg)
 			} else {
 				localStorage.removeItem(pageName+" "+szoveg)
 			}
@@ -1765,30 +1763,32 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 
 		var szoveg = Table[i].innerHTML
 		
+		var div = document.createElement("div");
+		
 		var button = document.createElement("input");
 		button.type = "button";
-		button.style.border = "1px solid black";
+		button.style.border = "2px solid black";
 		button.style.height = "23px";
 		button.style.width = "30px";
+		button.style.fontSize = "small"
 		button.id = tetelID+"_button";
+		div.appendChild(button)
 
 		var label = document.createElement("label")
-		label.id = tetelID+"_button_label";
-		var text = szoveg+"<br>"
-		label.innerHTML = text.bold();
+		label.id = tetelID +"_button_label"
+		label.innerHTML = '<b>'+ szoveg +'</b>'
+		div.appendChild(label)
 
-		button.onclick = function() {
-			F_clickTemaButton(this)
-		}
+		var ul = document.createElement("div")
+		ul.style.display = "none"
+		div.appendChild(ul)
 
 		if ( Table[i].parentElement.parentElement.className == "temakor" ) {
-			var id = Table[i].parentElement.parentElement.id + "_details"
-			document.getElementById(id).appendChild(button)
-			document.getElementById(id).appendChild(label)
+			var elem = document.getElementById(Table[i].parentElement.parentElement.id + "_details")
+			elem.appendChild(div)
 		} else {
-			var id = "uncategorized_details"
-			document.getElementById(id).appendChild(button)
-			document.getElementById(id).appendChild(label)
+			var elem = document.getElementById("uncategorized_details")
+			elem.appendChild(div)
 		}
 
 		if ( localStorage.getItem(button.id) == "true" ) {
@@ -1796,7 +1796,39 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 		} else {
 			label.style.backgroundColor = "";
 		}
+	
+	
+		var phaseDiv = Table[i].parentElement
+		var title = phaseDiv.getElementsByClassName("title")
+		for ( var y = 0;   y < title.length;   y++ ) { // title
+			var li = document.createElement("li")
+			li.innerHTML = title[y].innerHTML
+			li.onclick = function(){
+				if ( this.style.color != "red" ) {
+					this.style.color = "red"
+				} else {
+					this.style.color = "black"
+				}
+			}
+			ul.appendChild(li)
+		}
+		
+		var button = document.getElementById(tetelID+"_button")
+		button.onclick = function(){
+			F_clickTemaButton(this)
+		}
+		var label = document.getElementById(tetelID+"_button_label")
+		label.onclick = function(){
+			var parent = this.parentElement
+			var div = parent.getElementsByTagName("DIV")[0];
+			if ( div.style.display == "none" ) {
+				div.style.display = "block"
+			} else {
+				div.style.display = "none"
+			}
+		}
 	}
+	//console.log(document.getElementById("Div_Tetelek").innerHTML)
 }
 
 function F_altetelID(){ // ezt is tegyem majd be 'func_tetelChooseba'
@@ -2079,6 +2111,7 @@ function F_temakorStatus(){ // Tétel hány %-on áll? --> beállítja a buttonC
 		var button = document.getElementById(tetel+"_button")
 		button.style.backgroundColor = "rgb("+red+", "+green+", 0)";
 		button.value = Math.round(100 * trueJegy/maxJegy)
+		if ( isNaN(button.value) == true ) { button.value = "" }
 	}
 }
 
@@ -2300,7 +2333,7 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 	}
 }
 function func_spanClick(button){  // btn_fix, btn_skip, btn_vizsgaskip, btn_repFast, btn_newQuest
-	if ( button.id == 'btn_skip' || button.id == 'btn_fix' || button.id == 'btn_vizsgaskip' ) {
+	if ( button.id == 'btn_skip' || button.id == 'btn_note' || button.id == 'btn_fix' || button.id == 'btn_vizsgaskip' ) {
 		func_SetTextOfSkipFixDiv(button.id)
 		document.getElementById("div_Fix").style.display = 'none';
 		document.getElementById("div_Skip").style.display = 'none';
@@ -2310,7 +2343,8 @@ function func_spanClick(button){  // btn_fix, btn_skip, btn_vizsgaskip, btn_repF
 		button.style.borderColor = "black"
 		if ( button.id == 'btn_newQuest' ) { localStorage.removeItem("hk.newQ") }
 	} else {
-		if ( button.id == 'btn_skip' || button.id == 'btn_fix' || button.id == 'btn_vizsgaskip' ) {
+		if ( button.id == 'btn_skip' || button.id == 'btn_note' || button.id == 'btn_fix' || button.id == 'btn_vizsgaskip' ) {
+			document.getElementById("btn_note").style.borderColor = "black"
 			document.getElementById("btn_fix").style.borderColor = "black"
 			document.getElementById("btn_skip").style.borderColor = "black"
 			document.getElementById("btn_vizsgaskip").style.borderColor = "black"
@@ -2318,9 +2352,11 @@ function func_spanClick(button){  // btn_fix, btn_skip, btn_vizsgaskip, btn_repF
 		if ( button.id == 'btn_skip'||  button.id == 'btn_vizsgaskip' ) {
 			document.getElementById("div_Skip").style.display = 'block';
 		}
+		if ( button.id == 'btn_note' ) {
+			document.getElementById("note").style.display = 'block';
+		}
 		if ( button.id == 'btn_fix' ) {
 			document.getElementById("div_Fix").style.display = 'block';
-			document.getElementById("note").style.display = 'block';
 		}
 		button.style.borderColor = "limegreen"
 		if ( button.id == 'btn_newQuest' ) { localStorage.setItem("hk.newQ",true) }
@@ -2381,7 +2417,7 @@ function func_calcJegy() { // átlagJegyet kiszámolja
 			}
 		}
 	}
-	document.getElementById("span_Jegy").innerHTML = Math.floor(100*trueJegy/maxJegy) + "%" 
+	document.getElementById("btn_Jegy").value = Math.floor(100*trueJegy/maxJegy) + "%" 
 }
 function func_calcWork() { // hány százaléka új kérdés még
 	var maxHossz = 0
