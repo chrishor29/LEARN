@@ -125,7 +125,21 @@ span {
 	border: Black 1px solid; 
 	padding-left: 1px; 
 	padding-right: 1px; 
-	background-color: White
+	background-color: White;
+}
+.plus { 
+	border: Black 1px solid; 
+	padding-left: 1px; 
+	padding-right: 1px; 
+	background-color: green;
+	color: white;
+}
+.minus { 
+	border: Black 1px solid; 
+	padding-left: 1px; 
+	padding-right: 1px; 
+	background-color: red;
+	color: white;
 }
 .IMPORTANT { 
 	background-color: Aqua /*PaleTurquoise*/
@@ -144,7 +158,6 @@ span {
 }
 .miss { 
 	background-color: pink;
-	font-weight: bold;
 }
 /*span.abbr { 
 	border: Black 1px solid; 
