@@ -107,7 +107,25 @@ for ( var i=0; i<kerdesek.length; i++ ) {
 
 //document.getElementById("testimage").src = document.getElementById("testimage").title
 
+var myTime
+var oldTime = false
+function F_getTime(){
+	var myDate = new Date()
+	myTime = myDate.getTime() /1000
+	if ( oldTime == false ) { oldTime = myTime }
+}
+F_getTime()
+
+
+
+
+
+
 function checkExpQHtml(){ // oldal betöltésénél ugorjon el expQkat importolni, ha régen volt!
+	F_getTime()
+	var diffTime = myTime-oldTime
+	console.log("– checkExpQHtml – " + diffTime)
+	
 	var path = window.location.pathname;
 	var fileName = path.split("/").pop();
 	fileName = htmlIMGloc.slice(0,htmlIMGloc.indexOf("images/")) + fileName
@@ -618,12 +636,15 @@ function F_oldQcheck(){
 	
 }
 
+
 /* FIX need
  #1) ez még szvsz nemjó -> ugyanis jelenleg csak 1x fut végig az egészen, pedig lehet egy imp-be is van imp !!
 */
 function F_impQs(impek){ // #1)
-	//console.clear()
-	console.log("– – – – – – – – F_impQs – – – – – – – – –")
+	F_getTime()
+	var diffTime = myTime-oldTime
+	console.log("– F_impQs – " + diffTime)
+
 	var MISSid = ""
 	for ( var i=0; i<impek.length; i++ ) {
 		var begin = impek[i].className.indexOf("[") +1
@@ -658,14 +679,11 @@ function F_impQs(impek){ // #1)
 					} while ( parent.innerHTML.indexOf('<div class="title"') == -1 && parent.innerHTML.indexOf('<summary class="phase"') == -1 )
 					var checkID = Qtext.slice(Qtext.indexOf("{")+1,Qtext.indexOf("}"))
 					if ( Qelem.innerHTML.indexOf("{"+checkID+"}") == -1 && Qelem.className.indexOf("{"+checkID+"}") == -1 ) { 
-						if ( impek[i].nodeName == "SPAN" ) { 
-							impek[i].innerHTML = Qtext
-						} else if ( impek[i].nodeName == "DIV" ) {
+						if ( impek[i].nodeName == "DIV" ) {
 							Qtext = Qtext.slice(Qtext.indexOf('<ul class="normal">')+19)
 							Qtext = Qtext.slice(0,-15)
-							//alert(Qtext)
-							impek[i].innerHTML = Qtext
 						}
+/*emiatt lassú*/	impek[i].innerHTML = Qtext
 						var imgs = impek[i].getElementsByTagName("img")
 						for ( var x=0; x<imgs.length; x++ ) {
 							if ( imgs[x].dataset.src ) {
@@ -708,8 +726,13 @@ function F_impQs(impek){ // #1)
 	if (MISSid!="") { alert("alábbi EXPid-k még nincsenek LS-be reigsztrálva: "+MISSid + "\nNyisd meg a tárgyválasztás ablaknál az adott tárgyhoz kapcsolódó egyéb tárgy(ak)at egyszer --> pl. Biokémia II esetén nyisd meg Biokémia I, Élettan, Molekuláris Sejtbiológia") }
 }
 F_impQs(document.getElementsByClassName("imp"))
+	
 
 function func_divButtonETC() {
+	F_getTime()
+	var diffTime = myTime-oldTime
+	console.log("– func_divButtonETC – " + diffTime)
+	
 	var button = document.createElement("input")
 	button.id = "button_replaceQ"
 	button.type = "button";
@@ -972,6 +995,7 @@ func_enLargeImages()
 
 var refreshAll = false
 function F_toggleAll() {
+	console.log("– F_toggleAll –")
 	if ( refreshAll != true ) {
 		refreshAll = true
 		F_getTexts()
@@ -1011,6 +1035,7 @@ function F_toggleAll() {
 
 		document.getElementById("input_toggleAll").style.display = 'block';
 	}
+	document.getElementById("spanLoading").style.display = "block";
 }
 
 var var_note = false
@@ -1026,22 +1051,7 @@ function toggleNote() {
 
 var timeDiff
 function F_CreateQDiv() {
-	//document.body.style.border = "thick solid #0000FF"; 
-	function F_SpanShowError() {
-		var span = document.createElement("span")
-		span.id = "span_showError"
-		document.body.appendChild(span)
-
-		span.style.position = "fixed"
-		span.style.height = "98%"
-		span.style.width = "98%"
-		span.style.left = "1%"
-		span.style.top = "1%"
-		span.style.opacity = "0.2"; 
-		span.style.backgroundColor = "red"
-	}
-	F_SpanShowError()
-
+	
 	function F_ButtonToggleAll() {
 		var button = document.createElement("input")
 		button.id = "input_toggleAll"
@@ -1615,11 +1625,11 @@ function func_calcTimeDiff(repCount){
 		}
 	} else {
 		if ( repCount == 0 ) {
-			timeDiff = 20
-		} else if ( repCount == 1 ) {
 			timeDiff = 40
+		} else if ( repCount == 1 ) {
+			timeDiff = 100
 		} else if ( repCount == 2 ) {
-			timeDiff = 10000
+			timeDiff = 1000
 		} else if ( repCount == 3 ) {
 			timeDiff = 1500
 		} else if ( repCount == 4 ) {
@@ -2579,7 +2589,7 @@ function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
 }
 function func_calcOldNew(){
 	//console.clear()
-	console.log("– – – – – – – func_calcOldNew – – – – – – – –")
+	console.log("– func_calcOldNew –")
 	var kerdesNew = 0
 	var repNew = 0
 	var repOld = 0
@@ -3443,8 +3453,13 @@ if ( localStorage.getItem("hk.ToggleAll") == "true" ) {
 if ( changeStatus == true ) { document.getElementById("div_upgQ").style.display = 'block' }
 if ( changeStatus == false ) { document.getElementById("div_upgQ").style.display = 'none' }
 
+
 document.getElementById("input_toggleAll").style.backgroundColor = ""
-document.getElementById("span_showError").style.visibility = "hidden";
+document.getElementById("spanLoading").style.visibility = "hidden";
+
+F_getTime()
+var diffTime = myTime-oldTime
+console.log("– – – Loading finished – – – " + diffTime)
 
 
 /* Replace text (regular expression)

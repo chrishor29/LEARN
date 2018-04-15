@@ -8,7 +8,7 @@
 		var htmlIMGloc = "ANAT/Histology/images/"
 	</script>
 	<style>*{line-height: 130%;}</style>
-</head>
+</head><span id="spanLoading" style="position:fixed; height:100%; width:100%; opacity:0.5; background-color:black; visibility:visible;"></span> 
 
 <div>  <span class="WHITE">histo1a</span>  <span class="WHITE">histo1b</span>  <span class="WHITE">CD-203</span>  </div>
 
@@ -223,50 +223,6 @@
 		<li>jobb a Langerhans</li>
 		<img data-src="intramural_ganglion & langerhans.png">
 		<img data-src="intramural_ganglion.png">
-	</ul></details>
-	<details class="{201} kerdes 3/3"><summary><strong>Gliasejtek</strong></summary><ul class="normal">
-		<table>
-			<tr><th rowspan="2">perifériás <br>idegrendszerben</th> 
-				<td>Schwann-sejt</td></tr><tr>
-				<td>satellita-sejt</td>
-			</tr>
-			<tr><th rowspan="4">központi <br>idegrendszerben</th> 
-				<td>oligodendrociták(=oligodendrogliák)</td></tr><tr>
-				<td>asztrociták</td></tr><tr>
-				<td>ependyma-sejtek</td></tr><tr>
-				<td>mesoglia</td>
-			</tr>
-			<tr><th rowspan="2">'egyéb speciális'</th> 
-				<td>Müller-sejt(retina)</td></tr><tr>
-				<td>stb.</td>
-			</tr>
-		</table>
-		<font style="font-size:80%"><abbr title="központi idegrendszerben lévőket két csoportba osztjuk méretük alapján: macroglia, mesoglia">microglia</abbr>: mesoglia, oligodendroglia (de van ahol csak mesogliat értik alatta)</font>. macroglia: asztrociták
-		<li><span class="Important">bővebben 1funkc.161 + https://en.wikipedia.org/wiki/Neuroglia + Röchlich</span></li>
-		<details class="kerdes 3/1"><summary>Schwann-sejt? (funkció)</summary><ul class="normal">
-			<li>perifériás idegrostot borít be myelinhüvellyel</li>
-			<li>1sejt 1db rostot borít be citoplazmájával</li>
-		</ul></details>
-		<details class="kerdes 3/1"><summary>oligodendrogcita(=oligodendrogliák)? (funkció)</summary><ul class="normal">
-			<li>központi idegrostokat borítja be myelinhüvellyel</li>
-			<li>1sejt több rostot borít be nyúlványaival</li>
-			<span class="white">&#10045;</span> nevében is benne van!
-			<img data-src="lgkjfhnmhnm.png">
-		</ul></details>
-		<details class="kerdes 3/1"><summary>mesoglia? (funkció)</summary><ul class="normal">
-			<li>macrophag &#10140; elpusztult idegsejteket fagocitálja</li>
-			<font style="font-size:80%">szürkeállományban és fehérállományban egyaránt van</font>
-		</ul></details>
-		<details class="kerdes 3/1"><summary>asztrociták? (funkció)</summary><ul class="normal">
-			<li>többféle funkciójuk van, pl. idegszövet táplálása, ionkoncentrációk fenntartása (interstitiumban)</li>
-			<font style="font-size:80%">szürkeállományban és fehérállományban egyaránt van (szürkeállományban plazmás, fehérállományban rostos)</font>
-		</ul></details>
-		<details class="kerdes 3/2"><summary>ependymasejtek? (funkció)</summary><ul class="normal">
-			<li>üregeket bélelő 1rKh/Hh (agykamrák,canalis_centralis,aqueductus_cerebri)</li>
-			<li>plexus_choroideusnál lamina_epithelialist alkot &#10140; tight_junction(zonula_occludens) köti össze őket, így ez képezi a gátat a vér és liquor között</li>
-			<li>apikális felszínükön csillók vannak</li>
-			<img data-src="vrlkdjfmnkm.png">
-		</ul></details>
 	</ul></details>
 	<details class="{395} kerdes 4/4"><summary>(88) peripheriás ideg</summary><ul class="normal">
 		két kép &#10140; <span class="WHITE">hosszmetszet</span> <span class="WHITE">keresztmetszet</span>
@@ -1767,6 +1723,70 @@ sulcus anterolateralis / dorsolateralis &#10140; gerincvelőnél (6o.)
 
 
 <!--//////////////////////////////////////-->  <details><summary class="mainTitle">elmélet</summary>  <!--//////////////////////////////////////-->
+
+<!----><details><summary class="phase">kötőszövet</summary>
+	<details class="{48} kerdes 3/1"><summary><strong>Csontszövet</strong></summary><ul class="normal">
+		<li><span class="Important">fontos!</span> metszetkészítés dekalcinációval történt<abbr title="legalábbis a 26-27es">'</abbr> &#10140; sejtek és erek hiányoznak, csak a canalisok/canaliculusok/lacunak azok, amiket látok!</li>
+		<li>dekalcináció ➜ <abbr title="hidroxi-apatit">szervetlen sókat</abbr> eltávolítva puhábbá válik, és így már metszhető (alapból túl kemény)</li>
+		<details class="kerdes 3/1"><summary>funkciója</summary><ul class="normal">
+			<li>test vázát alkotja (ez a mechanikai funkciója)</li>
+			<li>raktár &#10140; kálcium-foszfát és növekedési faktorok</li>
+		</ul></details>
+		<details class="kerdes 3/6"><summary>csontsejtek</summary><ul class="normal">
+			<li>differenciálódás</li><ul>
+				<li>mesenchyma-sejt &#10140; osteoprogenitor-sejt &#10140; osteoblast &#10140; osteocyta</li>
+				<li>osteoclast a <abbr title="vérpályából kivándorló">'</abbr>monocyták összeolvadásával alakul ki</li>
+			</ul>
+			<li>osteocyta <font style="font-size:80%">(csontsejt)</font> <img class="mini" data-src="stcytk.png"></li><ul>
+				<li>sok nyúlvánnyal ('százlábú') kapcsolódnak egymáshoz &#10140; ez biztosítja diffúzióval az anyagcseréjét a kapillárisoktól távol lévő osteocytáknak <img class="mini" data-src="ostokcklytknylnv.png"></li>
+				<li>canaliculusokban vannak a nyúlványaik</li>
+				<li>lacunakban vannak maguk a sejtek</li>
+				<li><abbr title="funkció &#10140; fenntartja a sejtközötti állományt">'</abbr></li>
+			</ul>
+			<li>osteoblast <font style="font-size:80%">(csontképző-sejt)</font> <img class="mini" data-src="stblsktklfmy.png"></li><ul>
+				<li>funkció &#10140; termeli a sejtközötti állományt</li>
+				<li>ahogy termelik a sejtközötti állományt maguk körül, fokozatosan befalazódnak &#10140; osteocytává alakulnak</li>
+				<li><abbr title="polarizált: a sejtmag a sejt csontfelszínnel ellentétes oldalán van">'</abbr> <abbr title="15–20μm átmérőjű">'</abbr> <abbr title="(kromatinban gazdag magvú)">'</abbr> <abbr title="(basophil plasmájú)">'</abbr></li>
+			</ul>
+			<li>osteoclast <font style="font-size:80%">(csontfaló-sejt)</font> <img class="mini" data-src="stclstk.png"></li><ul>
+				<li>többmagvú(5-10) óriássejt</li>
+				<li>funkció <img class="mini" data-src="stlmmkdls.png"> &#10140; lebontja a sejtközötti állományt</li>
+			</ul>
+		</ul></details>
+		<details class="kerdes 3/1"><summary>csontszövet típusai</summary><ul class="normal">
+			<li>substantia_compacta = tömör = lemezes</li>
+			<li>substantia_spongiosa = szivacsos</li>
+			<font style="font-size:80%">elemeik azonosak, csak máshogy rendeződnek el</font>
+		</ul></details>
+		<details class="kerdes 3/6"><summary>substantia_compacta</summary><ul class="normal">
+			<li>metszeteken a substantia_compacta van<abbr title="leglalábbis a 26-27-esen">'</abbr> &#10140; továbbiakban erről lesz szó <img class="mini" data-src="sbstcmptc.png"></li><ul>
+				<li>alapegysége az osteon &#10140; canalis_centralis és a körülötte koncentrikus körökben lévő kb. 3-20db lamina_specialis alkotja</li>
+				<li>osteocytak nyúlványaikon keresztül <abbr title="voltak, mert itt a metszeten már csak a lacunák láthatók (sejt helyén lévő üreg) + canaliculusok (nyúlványaik helyén lévő csatornácska)">vannak</abbr> kapcsolatban egymással</li>
+				<li><abbr title="Volkmann-csatorna">canalis_perforantis</abbr> &#10140; összeköti a canalis_centralis-okat</li>
+				<li>a canalis_centralis-ban kapillárisok<abbr title="/arteriolák/venulák">'</abbr> és idegek <abbr title="pontosabban voltak, a metszet készítés előtt">vannak</abbr></li>
+			  <hr>
+				<li>laminae_generales &#10140; periosteum-nál és endosteum-nál is zajlik csontképzés, így ezek az egész csontot körbeölelik</li><ul>
+					<li>laminae_generales_internae &#10140; periosteum alatt</li>
+					<li>laminae_generales_externae &#10140; endosteum alatt</li>
+				</ul>
+			  <hr>
+				<li>csont folyamatos átépülésben van, így laminae_generales száma nem növekszik korlátlanul</li>
+				<li>laminae_intercalares &#10140; laminae_speciales maradványai</li>
+			</ul>
+			<li>periosteum & endosteum</li><ul>
+				<li>endosteum</li><ul>
+					<li>vékony ktsz réteg</li>
+					<li>csont belső felszínét borítja</li>
+				</ul>
+				<li>periosteum</li><ul>
+					<li>tömött ktsz réteg</li>
+					<li>csont külső felszínét borítja</li>
+					<li>két részere osztható &#10140; külső rostokban gazdag, belső sejtdús rétegre</li>
+				</ul>
+			</ul>
+		</ul></details>
+	</ul></details>
+<!----></details>
 
 <!----><details><summary class="phase">ELMÉLET</summary>
   <div><div class="title"></div>
@@ -3938,67 +3958,6 @@ sulcus anterolateralis / dorsolateralis &#10140; gerincvelőnél (6o.)
 				<li>gazdag erekben, nyirokerekben és fájdalomérző idegekben &#10140; emiatt sérülése, gyulladása igen fájdalmas</li>
 			</ul>
 		</ul>
-	</ul></details>
-	<details class="{48} kerdes 3/10"><summary><strong>Csontszövet</strong> (70%)</summary><ul class="normal">
-		<li><span class="Important">fontos!</span> metszetkészítés dekalcinációval történt<abbr title="legalábbis a 26-27es">'</abbr> &#10140; sejtek és erek hiányoznak, csak a canalisok/canaliculusok/lacunak azok, amiket látok!</li>
-		<li>dekalcináció ➜ <abbr title="hidroxi-apatit">szervetlen sókat</abbr> eltávolítva puhábbá válik, és így már metszhető (alapból túl kemény)</li>
-	  <strong style="font-size:125%">funkciója</strong><div>
-		<li>test vázát alkotja (ez a mechanikai funkciója)</li>
-		<li>raktár &#10140; kálcium-foszfát és növekedési faktorok</li>
-	  </div>
-	  <hr><strong style="font-size:125%">csontsejtek</strong><div>
-		<li>típusaik &#10140; <abbr title="(=csontképző-sejt)">osteoblast</abbr>, <abbr title="(=csontsejt)">osteocyta</abbr>, <abbr title="(=csontfaló-sejt)">osteoclast</abbr></li>
-		<li>differenciálódás</li><ul>
-			<li>mesenchyma-sejt &#10140; osteoprogenitor-sejt &#10140; osteoblast &#10140; osteocyta</li>
-			<li>osteoclast a <abbr title="vérpályából kivándorló">'</abbr>monocyták összeolvadásával alakul ki</li>
-		</ul>
-		<li>osteocyta <img class="mini" data-src="stcytk.png"></li><ul>
-			<li>sok nyúlvánnyal ('százlábú') kapcsolódnak egymáshoz &#10140; ez biztosítja diffúzióval az anyagcseréjét a kapillárisoktól távol lévő osteocytáknak <img class="mini" data-src="ostokcklytknylnv.png"></li>
-			<li>canaliculusokban vannak a nyúlványaik</li>
-			<li>lacunakban vannak maguk a sejtek</li>
-			<li><abbr title="funkció &#10140; fenntartja a sejtközötti állományt">'</abbr></li>
-		</ul>
-		<li>osteoblast <img class="mini" data-src="stblsktklfmy.png"></li><ul>
-			<li>funkció &#10140; termeli a sejtközötti állományt</li>
-			<li>ahogy termelik a sejtközötti állományt maguk körül, fokozatosan befalazódnak &#10140; osteocytává alakulnak</li>
-			<li><abbr title="polarizált: a sejtmag a sejt csontfelszínnel ellentétes oldalán van">'</abbr> <abbr title="15–20μm átmérőjű">'</abbr> <abbr title="(kromatinban gazdag magvú)">'</abbr> <abbr title="(basophil plasmájú)">'</abbr></li>
-		</ul>
-		<li>osteoclast <img class="mini" data-src="stclstk.png"></li><ul>
-			<li>többmagvú(5-10) óriássejt</li>
-			<li>funkció <img class="mini" data-src="stlmmkdls.png"> &#10140; lebontja a sejtközötti állományt</li>
-		</ul>
-	  </div>
-	  <hr><strong style="font-size:125%">csontszövet</strong><div>
-		<li>kétféle csontszövet van &#10140; elemeik azonosak, csak máshogy rendeződnek el</li><ul>
-			<li>substantia_compacta = <abbr title="=lemezes">tömör</abbr></li>
-			<li>substantia_spongiosa = szivacsos</li>
-		</ul>
-		<li>metszeteken a substantia_compacta van<abbr title="leglalábbis a 26-27-esen">'</abbr> &#10140; továbbiakban erről lesz szó <img class="mini" data-src="sbstcmptc.png"></li><ul>
-			<li>alapegysége az osteon &#10140; canalis_centralis és a körülötte koncentrikus körökben lévő kb. 3-20db lamina_specialis alkotja</li>
-			<li>osteocytak nyúlványaikon keresztül <abbr title="voltak, mert itt a metszeten már csak a lacunák láthatók (sejt helyén lévő üreg) + canaliculusok (nyúlványaik helyén lévő csatornácska)">vannak</abbr> kapcsolatban egymással</li>
-			<li><abbr title="Volkmann-csatorna">canalis_perforantis</abbr> &#10140; összeköti a canalis_centralis-okat</li>
-			<li>a canalis_centralis-ban kapillárisok<abbr title="/arteriolák/venulák">'</abbr> és idegek <abbr title="pontosabban voltak, a metszet készítés előtt">vannak</abbr></li>
-		  <hr>
-			<li>laminae_generales &#10140; periosteum-nál és endosteum-nál is zajlik csontképzés, így ezek az egész csontot körbeölelik</li><ul>
-				<li>laminae_generales_internae &#10140; periosteum alatt</li>
-				<li>laminae_generales_externae &#10140; endosteum alatt</li>
-			</ul>
-		  <hr>
-			<li>csont folyamatos átépülésben van, így laminae_generales száma nem növekszik korlátlanul</li>
-			<li>laminae_intercalares &#10140; laminae_speciales maradványai</li>
-		</ul>
-		<li>periosteum & endosteum</li><ul>
-			<li>endosteum</li><ul>
-				<li>vékony ktsz réteg</li>
-				<li>csont belső felszínét borítja</li>
-			</ul>
-			<li>periosteum</li><ul>
-				<li>tömött ktsz réteg</li>
-				<li>csont külső felszínét borítja</li>
-				<li>két részere osztható &#10140; külső rostokban gazdag, belső sejtdús rétegre</li>
-			</ul>
-		</ul>
-	  </div>
 	</ul></details>
 	<details class="{54} kerdes 3/10"><summary><strong>Desmogen csontosodás</strong></summary><ul class="normal">
 	  <strong style="font-size:125%">bevezetés</strong><div>

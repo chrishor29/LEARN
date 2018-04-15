@@ -147,6 +147,7 @@ span {
 .lasd { 
 	font-size: 80%;
 	background-color: Lavender;
+	vertical-align: 1px;
 	border: Black 1px solid; 
 	padding-left: 2px; 
 	padding-right: 2px; 
