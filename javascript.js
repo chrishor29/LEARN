@@ -4,6 +4,9 @@
 }*/
 
 /* PROJECT - PROGRESS
+ ✖: androidon mindig a kezdőoldalt töltse be (tehát hiába a questes aloldalon zártam be, ne azt töltse be, mert baromi lassú úgy)
+ ✖: impQ-kat csak ilyenkor töltse be: (a) ha megnyitom az adott questet / (b) ha megnyitom a quest aloldalt
+ 
  ✖: JS - download LS crash - FIX -> először találjam meg a hibát, mert nem mindig van: ezt út csináljam, hogy csinálok egy localstorage mappát, amibe lesznek v1 v2 v3 stb almappák.
  
  ✖: vizsgaskip &#10140; ne JS-be, hanem LS-be mentse el
