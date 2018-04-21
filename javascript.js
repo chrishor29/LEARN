@@ -646,7 +646,7 @@ function F_oldQcheck(){
 function F_impQs(impek){ // #1)
 	F_getTime()
 	var diffTime = myTime-oldTime
-	console.log("– F_impQs – " + diffTime)
+	console.log("– F_impQs BEGIN – " + diffTime)
 
 	var MISSid = ""
 	for ( var i=0; i<impek.length; i++ ) {
@@ -727,15 +727,15 @@ function F_impQs(impek){ // #1)
 		}
 	}
 	if (MISSid!="") { alert("alábbi EXPid-k még nincsenek LS-be reigsztrálva: "+MISSid + "\nNyisd meg a tárgyválasztás ablaknál az adott tárgyhoz kapcsolódó egyéb tárgy(ak)at egyszer --> pl. Biokémia II esetén nyisd meg Biokémia I, Élettan, Molekuláris Sejtbiológia") }
+	
+	F_getTime()
+	var diffTime = myTime-oldTime
+	console.log("– F_impQs END – " + diffTime)
 }
 F_impQs(document.getElementsByClassName("imp"))
 	
 
 function func_divButtonETC() {
-	F_getTime()
-	var diffTime = myTime-oldTime
-	console.log("– func_divButtonETC – " + diffTime)
-	
 	var button = document.createElement("input")
 	button.id = "button_replaceQ"
 	button.type = "button";
