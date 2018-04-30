@@ -122,11 +122,6 @@ function F_getTime(){
 }
 F_getTime()
 
-
-
-
-
-
 function checkExpQHtml(){ // oldal betöltésénél ugorjon el expQkat importolni, ha régen volt!
 	F_getTime()
 	var diffTime = myTime-oldTime
@@ -1643,11 +1638,11 @@ function func_calcTimeDiff(repCount){
 		}
 	} else {
 		if ( repCount == 0 ) {
-			timeDiff = 15
-		} else if ( repCount == 1 ) {
-			timeDiff = 30
-		} else if ( repCount == 2 ) {
 			timeDiff = 100
+		} else if ( repCount == 1 ) {
+			timeDiff = 500
+		} else if ( repCount == 2 ) {
+			timeDiff = 1000
 		} else if ( repCount == 3 ) {
 			timeDiff = 1500
 		} else if ( repCount == 4 ) {

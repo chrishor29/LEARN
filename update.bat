@@ -43,7 +43,8 @@ copy C:\Kristof\MIRROR\LEARN\BioKemia\II\biokemia_II.html C:\Users\chrishor\Desk
 copy C:\Kristof\MIRROR\LEARN\BioKemia\II\favicon.bmp C:\Users\chrishor\Desktop\LEARN\BioKemia\II\favicon.bmp
 
 robocopy C:\Kristof\MIRROR\LEARN\BioKemia\III\images C:\Users\chrishor\Desktop\LEARN\BioKemia\III\images /mir
-copy C:\Kristof\MIRROR\LEARN\BioKemia\III\biokemia_III.html C:\Users\chrishor\Desktop\LEARN\BioKemia\III\biokemia_III.html 
+copy C:\Kristof\MIRROR\LEARN\BioKemia\III\biokemia_III.html C:\Users\chrishor\Desktop\LEARN\BioKemia\III\biokemia_III.html
+copy C:\Kristof\MIRROR\LEARN\BioKemia\III\biokemia.html C:\Users\chrishor\Desktop\LEARN\BioKemia\III\biokemia.html 
 copy C:\Kristof\MIRROR\LEARN\BioKemia\III\favicon.bmp C:\Users\chrishor\Desktop\LEARN\BioKemia\III\favicon.bmp
 
 robocopy C:\Kristof\MIRROR\LEARN\SejtBiosz\images C:\Users\chrishor\Desktop\LEARN\SejtBiosz\images /mir
