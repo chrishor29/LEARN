@@ -507,6 +507,8 @@ function F_oldQchange(oldLSid){
 	}
 	
 	document.getElementById("button_replaceQ").onclick = function() {
+		console.log("– button_replaceQ CLICK")
+		
 		var value = document.getElementById("select_replaceQ").value
 
 		if ( value != "–––" ) {
@@ -528,6 +530,7 @@ function F_oldQchange(oldLSid){
 
 
 function F_oldQcheck(){
+	console.log("– F_oldQcheck")
 	var oldString = []
 	//localStorage.setItem(document.title+"_LSids","")
 	var fullString = localStorage.getItem(document.title+"_LSids")
@@ -1134,7 +1137,6 @@ function F_CreateQDiv() {
 		button.style.backgroundColor = "Bisque"
 		button.onclick = function(){
 			if ( document.getElementById("div_nextQMark").style.display == 'none' ) {
-				func_calcRepTable()
 				document.getElementById("div_nextQMark").style.display = 'block';
 			} 
 			if ( document.getElementById("repTable").style.display == 'block' ) {
@@ -1638,7 +1640,7 @@ function func_calcTimeDiff(repCount){
 		}
 	} else {
 		if ( repCount == 0 ) {
-			timeDiff = 100
+			timeDiff = 60
 		} else if ( repCount == 1 ) {
 			timeDiff = 500
 		} else if ( repCount == 2 ) {
@@ -1684,7 +1686,7 @@ function F_nextMark(jegy){ // következő kérdés nehézségét beállítja,
 	for ( var i=0;  i<6;  i++ ) {
 		var num = arany[i] - diff
 		num = 100*num/zeroVal
-		num = num.toFixed(1);
+		num = num.toFixed(0);
 		if ( arany[i] == 0 ) { num = 0 }
 		document.getElementById("div_nextQMark").innerHTML = document.getElementById("div_nextQMark").innerHTML + i + ": " + num + "%<br>"
 		if ( arany[i] != 0 ) { diff = arany[i] }
@@ -2442,10 +2444,13 @@ function func_calcJegy() { // átlagJegyet kiszámolja
 		}
 	}
 	document.getElementById("btn_Jegy").value = Math.floor(100*trueJegy/maxJegy) + "%" 
+	func_calcRepTable() // ezt a sort húzzam ki, ha a % érdekel ismét
+	document.getElementById("btn_Jegy").value = parseInt(document.getElementById(1+"hossz").innerHTML) + parseInt(document.getElementById(0+"hossz").innerHTML) // ezt a sort húzzam ki, ha a % érdekel ismét
 }
 function func_calcWork() { // hány százaléka új kérdés még
 	var maxHossz = 0
 	var trueHossz = 0
+	var doneLSid = ","
 	for ( var tetel in tetelek ) {
 		if ( localStorage.getItem(tetel+"_button") == "true" ) {
 			var childs = document.getElementById(tetel).getElementsByTagName("*")
@@ -2463,6 +2468,9 @@ function func_calcWork() { // hány százaléka új kérdés még
 					
 					F_calculateLSid(elem)
 					var LSid = actLSid
+					
+					if ( doneLSid.indexOf(LSid) != -1 && LSid != undefined ) { hossz = 0 }
+					doneLSid = doneLSid +LSid+ ","
 					
 					maxHossz = maxHossz + Number(hossz)
 					if ( localStorage.getItem(LSid+'_jegy') || localStorage.getItem(LSid+'_skip') ) {
@@ -2546,6 +2554,7 @@ function func_calcRepeat() { // átlagIsmétlések számát kiszámolja
 	document.getElementById("span_Repeat").innerHTML = atlag
 }
 function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
+	var doneLSid = ","
 	for ( var i = 0;   i < 6;   i++ ) { // resetelje a Tablekat 0-ra
 		document.getElementById(i+"left").innerHTML = 0
 		document.getElementById(i+"still").innerHTML = 0
@@ -2567,28 +2576,33 @@ function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
 					var Qid = childs[i].id
 					var Qtxt = arrQid[Qid]
 					var LSid = txtLS[Qtxt]
-					var kerdes = localStorage.getItem(childs[i].innerHTML)
-					if ( localStorage.getItem(LSid+'_idopont') != null && localStorage.getItem(LSid+'_repeat') != "" ) {
-						if ( localStorage.getItem(LSid+'_skip') === null || localStorage.getItem(LSid+'_skip') === "important" ) {
-							var repCount = localStorage.getItem(LSid+'_repeat')
-							var min = document.getElementById(repCount+"min").innerHTML
-							var date = new Date();
-							var idopont = localStorage.getItem(LSid+'_idopont')
-							idopont = Math.floor(date.getTime()/60000) - idopont
-							if ( repCount == 0 && idopont > 100 ) {
-								if ( localStorage.getItem(LSid+"_skip") == null ) {
-									//alert(repCount+ " " +idopont+ " " +LSid+ " " +Qtxt)
+					
+					if ( doneLSid.indexOf(LSid) == -1 || LSid == undefined ) { 
+						doneLSid = doneLSid +LSid+ ","
+						
+						var kerdes = localStorage.getItem(childs[i].innerHTML)
+						if ( localStorage.getItem(LSid+'_idopont') != null && localStorage.getItem(LSid+'_repeat') != "" ) {
+							if ( localStorage.getItem(LSid+'_skip') === null || localStorage.getItem(LSid+'_skip') === "important" ) {
+								var repCount = localStorage.getItem(LSid+'_repeat')
+								var min = document.getElementById(repCount+"min").innerHTML
+								var date = new Date();
+								var idopont = localStorage.getItem(LSid+'_idopont')
+								idopont = Math.floor(date.getTime()/60000) - idopont
+								if ( repCount == 0 && idopont > 100 ) {
+									if ( localStorage.getItem(LSid+"_skip") == null ) {
+										//alert(repCount+ " " +idopont+ " " +LSid+ " " +Qtxt)
+									}
 								}
-							}
 
-							if ( idopont > min ) { // Tableba hozzáad 1et left-hez
-								document.getElementById(repCount+"left").innerHTML = parseInt(document.getElementById(repCount+"left").innerHTML) +1
-								document.getElementById(repCount+"average").title = parseInt(document.getElementById(repCount+"average").title) +idopont
-							} else { // Tableba hozzáad 1et still-hez
-								document.getElementById(repCount+"still").innerHTML = parseInt(document.getElementById(repCount+"still").innerHTML) +1
+								if ( idopont > min ) { // Tableba hozzáad 1et left-hez
+									document.getElementById(repCount+"left").innerHTML = parseInt(document.getElementById(repCount+"left").innerHTML) +1
+									document.getElementById(repCount+"average").title = parseInt(document.getElementById(repCount+"average").title) +idopont
+								} else { // Tableba hozzáad 1et still-hez
+									document.getElementById(repCount+"still").innerHTML = parseInt(document.getElementById(repCount+"still").innerHTML) +1
+								}
+								document.getElementById(repCount+"average").innerHTML = parseInt(document.getElementById(repCount+"average").innerHTML) +idopont
+								document.getElementById(repCount+"hossz").innerHTML = parseInt(document.getElementById(repCount+"hossz").innerHTML) +actQhossz
 							}
-							document.getElementById(repCount+"average").innerHTML = parseInt(document.getElementById(repCount+"average").innerHTML) +idopont
-							document.getElementById(repCount+"hossz").innerHTML = parseInt(document.getElementById(repCount+"hossz").innerHTML) +actQhossz
 						}
 					}
 				}
@@ -3491,7 +3505,6 @@ console.log("– – – Loading finished – – – " + diffTime)
 	<li><span class="WHITE">(.*?)</span>(.*?)</li>
 	<div><font class="abbr"><span class="WHITE">\1</span> ►</font>\2</div>
 */
-
 
 
 
