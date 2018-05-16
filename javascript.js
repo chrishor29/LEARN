@@ -2445,7 +2445,7 @@ function func_calcJegy() { // átlagJegyet kiszámolja
 	}
 	document.getElementById("btn_Jegy").value = Math.floor(100*trueJegy/maxJegy) + "%" 
 	func_calcRepTable() // ezt a sort húzzam ki, ha a % érdekel ismét
-	document.getElementById("btn_Jegy").value = parseInt(document.getElementById(1+"hossz").innerHTML) + parseInt(document.getElementById(0+"hossz").innerHTML) // ezt a sort húzzam ki, ha a % érdekel ismét
+	//document.getElementById("btn_Jegy").value = parseInt(document.getElementById(1+"hossz").innerHTML) + parseInt(document.getElementById(0+"hossz").innerHTML) // ezt a sort húzzam ki, ha a % érdekel ismét
 }
 function func_calcWork() { // hány százaléka új kérdés még
 	var maxHossz = 0
@@ -2602,6 +2602,11 @@ function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
 								}
 								document.getElementById(repCount+"average").innerHTML = parseInt(document.getElementById(repCount+"average").innerHTML) +idopont
 								document.getElementById(repCount+"hossz").innerHTML = parseInt(document.getElementById(repCount+"hossz").innerHTML) +actQhossz
+								
+								if ( repCount < 2 && idopont > 1000 ) {
+									document.getElementById("btn_Jegy").value = parseInt(document.getElementById("btn_Jegy").value) +actQhossz
+								}
+									
 							}
 						}
 					}
@@ -2624,6 +2629,7 @@ function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
 	}
 }
 function func_calcOldNew(){
+	var doneLSid = ","
 	//console.clear()
 	console.log("– func_calcOldNew –")
 	var kerdesNew = 0
@@ -2638,38 +2644,41 @@ function func_calcOldNew(){
 		//console.log("func_calcOldNew: " +Qtxt)
 		
 		if ( LSid != undefined ) {
-			//console.log(Qid+ " :Qid-LSid: "+LSid)
-			if ( localStorage.getItem(LSid+"_skip") != "perma" && localStorage.getItem(LSid+"_skip") != "vizsgaSkip" ) {
-				if ( localStorage.getItem(LSid+'_jegy') != null && localStorage.getItem(LSid+'_jegy') != "" ) {
-					var repCount = Number(localStorage.getItem(LSid+'_repeat'))
-					var date = new Date();
-					var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-					func_calcTimeDiff(repCount)
-					
-					/*if ( repCount == 0 ) {
-						if ( timeDiff > idopont ) {
+			if ( doneLSid.indexOf(LSid) == -1 ) { 
+				doneLSid = doneLSid +LSid+ ","
+				//console.log(Qid+ " :Qid-LSid: "+LSid)
+				if ( localStorage.getItem(LSid+"_skip") != "perma" && localStorage.getItem(LSid+"_skip") != "vizsgaSkip" ) {
+					if ( localStorage.getItem(LSid+'_jegy') != null && localStorage.getItem(LSid+'_jegy') != "" ) {
+						var repCount = Number(localStorage.getItem(LSid+'_repeat'))
+						var date = new Date();
+						var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
+						func_calcTimeDiff(repCount)
+						
+						/*if ( repCount == 0 ) {
+							if ( timeDiff > idopont ) {
+								repOld = repOld +1
+							} else {
+								repNew = repNew +1
+							}
+						}*/
+						
+						if ( localStorage.getItem(LSid+"_jegy") >= 1 ) {
+							if ( timeDiff >= idopont ) {
+								repFast = repFast +1
+							} else {
+								repSlow = repSlow +1
+							}
+						}
+					} else {
+						kerdesNew = kerdesNew +1
+					}
+				
+					if ( localStorage.getItem(LSid+"_skip") == "important" ) {
+						if ( timeDiff >= idopont ) {
 							repOld = repOld +1
 						} else {
 							repNew = repNew +1
 						}
-					}*/
-					
-					if ( localStorage.getItem(LSid+"_jegy") >= 1 ) {
-						if ( timeDiff >= idopont ) {
-							repFast = repFast +1
-						} else {
-							repSlow = repSlow +1
-						}
-					}
-				} else {
-					kerdesNew = kerdesNew +1
-				}
-			
-				if ( localStorage.getItem(LSid+"_skip") == "important" ) {
-					if ( timeDiff >= idopont ) {
-						repOld = repOld +1
-					} else {
-						repNew = repNew +1
 					}
 				}
 			}
