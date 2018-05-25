@@ -6,7 +6,7 @@
 /* PROJECT - PROGRESS
  ✖: androidon mindig a kezdőoldalt töltse be (tehát hiába a questes aloldalon zártam be, ne azt töltse be
  ✖ impQ-t csak akkor töltse be innerHTML, ha megnyitom (+amikor kidobja questbe)
-	szvsz belehet tölteni őket az elején is már, csak akkor a végén írja be egybe a teljes textet innerHTML-be, ne külön egyesével (az sokat gyorsít rajta tutti, SkipQ-knál is kijavította)
+	[F_impQs newMethod] 9x gyorsabb mint az [F_impQs oldMethod] --> newMethod-dal töltsem be az összeset az elején: jelenleg azok hiányoznak, melyeket egy impQ-n belül kéne importálni. Azonban csak akkor importálja őket, ha szükség van rá (tehát a felette lévő details-ba még nincs benne) -->próbáltam már, ott is hagytam commentbe(#123#), de nem jön össze, mert baromi lassú
 	az elején olvassa ki az altkérdéseket az imp-ből és table-ba(impID = prior,length,Qtxt) tenni. Ebból nézi a chance-t az előhívásra, ebből számolja tétel hány %, továbbá oldQcheck & upgradeQ esetében innen veszi ki a szöveget(ugyanis egy impQ-n belül lehet altkérdés, amit hiányolna különben). Tehát beírni innerHTML-be nem szükséges ilyenkor még --> ez kicsit komplikált, mert ha van még1 alt imp, akkor annak altkérdéseit is ki kell olvassa, és így tovább.. de megoldható --> ez szvsz gyorsabb
 	azt is kéne majd, hogy a kérdéseket a (neve + hány betűből áll) alapján mentse el, és az alapján diagnosztizáljon ID-t --> többi table (Qid,txtLS,arrQtxt stb. fölös) --> elég arrQnames + impQTable + localstorage.getItem(qName) = LSid
 	cutImpQ funkcióra nem lesz szükség --> ugyanis az elején regisztrálja be a questeket, szóval utána hiába kattolok rá majd valamire és tölti be őket, az nem zavar bele utána. Továbbá a feladatmegoldás során is amikor kidobja az uj questet, akkor mielőtt beimportálja az innerhtml-üket az impQ-knak, azzal dolgozzak
@@ -749,21 +749,21 @@ function F_oldQcheck(){
 
 var myTestTable = []
 
-/*function escapeRegExp(oldTxt) {
+function escapeRegExp(oldTxt) {
 	return oldTxt.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
 }
 function replaceAll(string,oldTxt,newTxt) {
 	return string.replace(new RegExp(escapeRegExp(oldTxt), 'g'), newTxt);
 }		
-INNERhtml = replaceAll(INNERhtml, oldTxt, newTxt)*/
+//INNERhtml = replaceAll(INNERhtml, oldTxt, newTxt)
 
 /* FIX need
  #1) ez még szvsz nemjó -> ugyanis jelenleg csak 1x fut végig az egészen, pedig lehet egy imp-be is van imp !!
 */
-function F_impQbegin(){ //
+function F_impQbegin(){ // 1ms/Q a betöltési ideje
 	F_getTime()
 	var diffTime = myTime-oldTime
-	console.log("– F_impQs BEGIN – " + diffTime)
+	//console.log("– F_impQs BEGIN – " + diffTime)
 	
 	var oldHTML = document.documentElement.innerHTML
 	var newHTML = ""
@@ -776,22 +776,64 @@ function F_impQbegin(){ //
 
 		var string = localStorage.getItem("hkExpQ."+EXPid)
 		var LSid = string.slice(0,string.indexOf(" "))
-		var IMGloc = string.slice(string.indexOf(" ")+1)
 		Qtxt = localStorage.getItem(LSid)
+		
+		var IMGloc = string.slice(string.indexOf(" ")+1)
+		//Qtxt = replaceAll(Qtxt, 'data-src="', 'src="'+IMGloc)
+		// img src írja át!!!
 	}
 	
+	var count = 0
 	if ( oldHTML.indexOf(' class="imp [') ) { 
-		do {
+		do { // 0,35sec
+			count = count +1
 			Qtxt = ""
-			var impBlock = oldHTML.slice(oldHTML.indexOf(' class="imp ['))
-			newHTML = newHTML + oldHTML.slice(0,oldHTML.indexOf(' class="imp ['))
-			oldHTML = oldHTML.slice(oldHTML.indexOf(' class="imp ['))
+			var divSpan = ""
+			if ( oldHTML.indexOf('<div class="imp [') > oldHTML.indexOf('<span class="imp [') ) {
+				divSpan = "span"
+			} else if ( oldHTML.indexOf('<div class="imp [') == -1 ) {
+				divSpan = "span"
+			} else {
+				divSpan = "div"
+				//if ( oldHTML.indexOf('<div class="imp [') == -1 ) { alert(oldHTML.indexOf('<span class="imp [')) }
+			}
+			var impBlock = oldHTML.slice(oldHTML.indexOf('<'+divSpan+' class="imp ['))
+			newHTML = newHTML + oldHTML.slice(0,oldHTML.indexOf('<'+divSpan+' class="imp ['))
+			oldHTML = oldHTML.slice(oldHTML.indexOf('<'+divSpan+' class="imp ['))
 			
 			impBlock = impBlock.slice(0,impBlock.indexOf(']">')+3)
 			newHTML = newHTML + impBlock
 			oldHTML = oldHTML.slice(oldHTML.indexOf(']">')+3)
 			
 			F_getImpQtxt(impBlock)
+			
+			//(#123#) --> itt csak addig jutottam, hogy megkeresse a parent detailst, amiben meg kell nézze, nincs-e már importálva a quest... de már ez se jó, mert túl lassú
+			/*if ( Qtxt.indexOf(' class="imp [') ) {
+				var impedQk = ""
+				var parentTXT = newHTML
+				if ( parentTXT.lastIndexOf("<details") < parentTXT.lastIndexOf("</details") ) {
+					var bad = 0
+					do {
+						//console.log(parentTXT.slice(-1500))
+						if ( parentTXT.lastIndexOf("<details") < parentTXT.lastIndexOf("</details") ) {
+							var cutTXT = parentTXT.slice(parentTXT.lastIndexOf("<details"),parentTXT.lastIndexOf("</details>")+10)
+							//console.log(cutTXT)
+							parentTXT = parentTXT.replace(cutTXT,"")
+							bad = bad +1
+						} else {
+							bad = bad -1
+						}
+						//alert("stop: "+bad)
+						// importQ
+					}
+					while ( bad > 0 )
+				}
+			}*/
+			
+			if ( divSpan == "div" ) {
+				Qtxt = Qtxt.slice(Qtxt.indexOf('<ul class="normal">')+19)
+				Qtxt = Qtxt.slice(0,-15)
+			}
 			newHTML = newHTML + Qtxt
 		}
 		while ( oldHTML.indexOf(' class="imp [') != -1 )
@@ -799,21 +841,27 @@ function F_impQbegin(){ //
 	document.documentElement.innerHTML = newHTML + oldHTML
 	
 	F_getTime()
+	var endTime = myTime-oldTime-diffTime
+	var unitTime = (endTime*1000/count).toFixed(2);
+	console.log("– F_impQs newMethod – "+ unitTime +"ms ("+count+" quest in "+endTime.toFixed(2)+"sec)")
+	/*F_getTime()
 	var diffTime = myTime-oldTime
-	console.log("– F_impQs END – " + diffTime)
+	console.log("– F_impQs END – " + diffTime)*/
 }
 F_impQbegin()
 	
-function F_impQs(impek){
+function F_impQs(impek){ // 11ms/Q a betöltési ideje
 	F_getTime()
 	var diffTime = myTime-oldTime
-	console.log("– F_impQs BEGIN – " + diffTime)
+	//console.log("– F_impQs BEGIN – " + diffTime)
 	
 	var MISSid = ""
 	
+	var count = 0
 	for ( var i=0; i<impek.length; i++ ) {
 		function F_impQ(EXPid){
 			if ( localStorage.getItem("hkExpQ."+EXPid) ) { // kell, különben, ha egy hiányzik, akkor nem tölti be az egészet
+				count = count +1
 				var string = localStorage.getItem("hkExpQ."+EXPid)
 				var LSid = string.slice(0,string.indexOf(" "))
 				var IMGloc = string.slice(string.indexOf(" ")+1)
@@ -821,10 +869,6 @@ function F_impQs(impek){
 				//Qtext = LZString.decompressFromUTF16(Qtext)
 				
 				txtLS[Qtext] = LSid
-				
-		//		var Qtext = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
-		//		var find = ' id="(.*?)"' // szerintem fölös ez, meg az alatta lévő is
-		//		Qtext = Qtext.replace(new RegExp(find, 'g'), ""); // szerintem fölös ez, meg a felette lévő is
 				
 				if ( Qtext == "undefined" ) { 
 					MISSid = MISSid + EXPid + ","
@@ -844,15 +888,14 @@ function F_impQs(impek){
 							Qtext = Qtext.slice(Qtext.indexOf('<ul class="normal">')+19)
 							Qtext = Qtext.slice(0,-15)
 						}
-impek[i].innerHTML = Qtext // emiatt lassú
-						//myTestTable[EXPid] = Qtext
-						var imgs = impek[i].getElementsByTagName("img")
+						impek[i].innerHTML = Qtext // emiatt lassú
+						/*var imgs = impek[i].getElementsByTagName("img")
 						for ( var x=0; x<imgs.length; x++ ) {
 							if ( imgs[x].dataset.src ) {
 								imgs[x].src =  htmlLEARNloc + IMGloc + imgs[x].dataset.src
 								imgs[x].removeAttribute("data-src")
 							}
-						}
+						}*/
 					}
 				}
 			} else if ( EXPid != "" ) {
@@ -898,8 +941,12 @@ impek[i].innerHTML = Qtext // emiatt lassú
 	if (MISSid!="") { alert("alábbi EXPid-k még nincsenek LS-be reigsztrálva: "+MISSid + "\nNyisd meg a tárgyválasztás ablaknál az adott tárgyhoz kapcsolódó egyéb tárgy(ak)at egyszer --> pl. Biokémia II esetén nyisd meg Biokémia I, Élettan, Molekuláris Sejtbiológia") }
 	
 	F_getTime()
+	var endTime = myTime-oldTime-diffTime
+	var unitTime = (endTime*1000/count).toFixed(2);
+	console.log("– F_impQs oldMethod – "+ unitTime +"ms ("+count+" quest in "+endTime.toFixed(2)+"sec)")
+	/*F_getTime()
 	var diffTime = myTime-oldTime
-	console.log("– F_impQs END – " + diffTime)
+	console.log("– F_impQs END – " + diffTime)*/
 }
 F_impQs(document.getElementsByClassName("imp"))
 
@@ -942,24 +989,29 @@ var F_seekBar = window.setInterval(function(){
 }, 1000);
 
 function F_loadImgVideo(detElem,e){
-	var imgs = detElem.getElementsByTagName("img")
-	if ( detElem.className.indexOf("{") > -1 ) {
-		var begin = detElem.className.indexOf("{")
-		var end = detElem.className.indexOf("}")
-		var EXPid = detElem.className.slice(begin+1,end)
-		var string = localStorage.getItem("hkExpQ."+EXPid)
+	var impQk = detElem.getElementsByClassName("imp")
+	for ( var x=0; x<impQk.length; x++ ) {
+		var begin = impQk[x].className.indexOf("[") +1
+		var end = impQk[x].className.indexOf("]")
+		var full = impQk[x].className.slice(begin,end) // lenntebb majd külön választja őket
+		var string = localStorage.getItem("hkExpQ."+full)
+		var LSid = string.slice(0,string.indexOf(" "))
 		var IMGloc = string.slice(string.indexOf(" ")+1)
-		for ( var x=0; x<imgs.length; x++ ) {
-			if ( imgs[x].dataset.src ) {
-				imgs[x].src =  htmlLEARNloc + IMGloc + imgs[x].dataset.src
-				imgs[x].removeAttribute("data-src")
+		
+		var imgs = impQk[x].getElementsByTagName("img")
+		for ( var i=0; i<imgs.length; i++ ) {
+			if ( imgs[i].dataset.src ) {
+				imgs[i].src =  htmlLEARNloc + IMGloc + imgs[i].dataset.src
+				imgs[i].removeAttribute("data-src")
 			}
 		}
 	}
+	
+	var imgs = detElem.getElementsByTagName("img")
 	for ( var x=0; x<imgs.length; x++ ) {
 		var IMGelem = imgs[x]
 		var parent = imgs[x]
-		do { // megkeresi az első details-t
+		do { // megkeresi az első details-t, így nem tölti be az összeset, ha ráklikkelnél az egyik tételre (lassú lenne)
 			IMGelem = parent
 			parent = parent.parentElement
 		} while ( parent.className.indexOf("[") == -1 && parent.tagName != "DETAILS" )
