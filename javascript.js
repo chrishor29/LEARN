@@ -760,7 +760,7 @@ function replaceAll(string,oldTxt,newTxt) {
 /* FIX need
  #1) ez még szvsz nemjó -> ugyanis jelenleg csak 1x fut végig az egészen, pedig lehet egy imp-be is van imp !!
 */
-function F_impQbegin(){ // 1ms/Q a betöltési ideje
+function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, így lassabb, de pontosabban mérhetők az eltérések)
 	F_getTime()
 	var diffTime = myTime-oldTime
 	//console.log("– F_impQs BEGIN – " + diffTime)
@@ -785,7 +785,7 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje
 	
 	var count = 0
 	if ( oldHTML.indexOf(' class="imp [') ) { 
-		do { // 0,35sec
+		do {
 			count = count +1
 			Qtxt = ""
 			var divSpan = ""
@@ -808,27 +808,78 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje
 			F_getImpQtxt(impBlock)
 			
 			//(#123#) --> itt csak addig jutottam, hogy megkeresse a parent detailst, amiben meg kell nézze, nincs-e már importálva a quest... de már ez se jó, mert túl lassú
-			/*if ( Qtxt.indexOf(' class="imp [') ) {
+			if ( Qtxt.indexOf(' class="imp [') != -1 ) {
 				var impedQk = ""
 				var parentTXT = newHTML
 				if ( parentTXT.lastIndexOf("<details") < parentTXT.lastIndexOf("</details") ) {
 					var bad = 0
+					var startP = parentTXT.length
+					var endP = parentTXT.length
 					do {
-						//console.log(parentTXT.slice(-1500))
-						if ( parentTXT.lastIndexOf("<details") < parentTXT.lastIndexOf("</details") ) {
-							var cutTXT = parentTXT.slice(parentTXT.lastIndexOf("<details"),parentTXT.lastIndexOf("</details>")+10)
-							//console.log(cutTXT)
-							parentTXT = parentTXT.replace(cutTXT,"")
+						//console.clear()
+						if ( parentTXT.lastIndexOf("<details",startP) < parentTXT.lastIndexOf("</details",endP) ) {
 							bad = bad +1
+							//console.log(parentTXT.slice(parentTXT.lastIndexOf("</details",endP)))
+							endP = parentTXT.lastIndexOf("</details",endP) -1
+							//alert(bad)
 						} else {
 							bad = bad -1
+							//console.log(parentTXT.slice(parentTXT.lastIndexOf("<details",startP)))
+							startP = parentTXT.lastIndexOf("<details",startP) -1
+							//alert(bad)
 						}
-						//alert("stop: "+bad)
-						// importQ
 					}
-					while ( bad > 0 )
+					while ( bad != -1 )
+					parentTXT = parentTXT.slice(parentTXT.lastIndexOf("<details",startP+1))
+				} else {
+					parentTXT = parentTXT.slice(parentTXT.lastIndexOf("<details"))
 				}
-			}*/
+				if ( parentTXT.indexOf(' class="imp [') != -1 ) {
+					//alert(parentTXT.indexOf(' class="imp ['))
+					var bad = 0
+					var endP = 0
+					var startP = 0
+					do {
+						//console.clear()
+						//console.log(startP)
+						startP = parentTXT.indexOf(' class="imp [',startP) +1
+						if ( parentTXT.lastIndexOf("<details",startP) == parentTXT.indexOf("<details") ) {
+							expID = parentTXT.slice(startP+12,parentTXT.indexOf(']',startP+12))
+							impedQk = impedQk + expID + " "
+							//alert("expID:" +expID)
+						}
+						//alert("startP:" +startP)
+					}
+					while ( parentTXT.indexOf(' class="imp [',startP) != -1 )
+				}
+				var startP = 0
+				do {
+					startP = Qtxt.indexOf(' class="imp [',startP) +1
+					var EXPid = Qtxt.slice(startP+12,Qtxt.indexOf(']',startP+12))
+					if ( impedQk.indexOf(EXPid) == -1 ) {
+						// importQ
+						count = count +1
+						//console.log(EXPid)
+						var newTXT = localStorage.getItem("hkExpQ."+EXPid)
+						var LSid = newTXT.slice(0,newTXT.indexOf(" "))
+						newTXT = localStorage.getItem(LSid)
+						var oldTXT = Qtxt.slice(Qtxt.indexOf('<',startP-5),Qtxt.indexOf('>',startP)+1)
+						//console.log(Qtxt.slice(Qtxt.indexOf('<',startP-5),Qtxt.indexOf('>',startP)+1))
+						//console.log(oldTXT.slice(1,4))
+						if ( oldTXT.slice(1,4) == "div" ) {
+							newTXT = newTXT.slice(newTXT.indexOf('<ul class="normal">')+19)
+							newTXT = newTXT.slice(0,-15)
+						}
+						newTXT = oldTXT + newTXT
+						Qtxt = Qtxt.replace(oldTXT,newTXT)
+						//console.log(Qtxt.slice(Qtxt.indexOf('>',startP)+1))
+						//alert("stop")
+						
+						impedQk = impedQk + EXPid + " "
+					}
+				} while ( Qtxt.indexOf(' class="imp [',startP) != -1 )
+				//console.log(impedQk)
+			}
 			
 			if ( divSpan == "div" ) {
 				Qtxt = Qtxt.slice(Qtxt.indexOf('<ul class="normal">')+19)
@@ -948,7 +999,7 @@ function F_impQs(impek){ // 11ms/Q a betöltési ideje
 	var diffTime = myTime-oldTime
 	console.log("– F_impQs END – " + diffTime)*/
 }
-F_impQs(document.getElementsByClassName("imp"))
+F_impQs(document.getElementsByClassName("imp")) //ere elvileg nincs mát szükség
 
 
 function func_divButtonETC() {
@@ -988,7 +1039,8 @@ var F_seekBar = window.setInterval(function(){
 	}
 }, 1000);
 
-function F_loadImgVideo(detElem,e){
+
+function F_impQimgsLOAD(detElem){
 	var impQk = detElem.getElementsByClassName("imp")
 	for ( var x=0; x<impQk.length; x++ ) {
 		var begin = impQk[x].className.indexOf("[") +1
@@ -1006,7 +1058,8 @@ function F_loadImgVideo(detElem,e){
 			}
 		}
 	}
-	
+}
+function F_QimgsLOAD(detElem){
 	var imgs = detElem.getElementsByTagName("img")
 	for ( var x=0; x<imgs.length; x++ ) {
 		var IMGelem = imgs[x]
@@ -1027,6 +1080,10 @@ function F_loadImgVideo(detElem,e){
 			}
 		}
 	}
+}
+function F_loadImgVideo(detElem,e){
+	F_impQimgsLOAD(detElem)
+	F_QimgsLOAD(detElem)
 	func_abbrSet(detElem)
 	
 	// Video Load
@@ -1106,7 +1163,6 @@ function F_loadImgVideo(detElem,e){
 	}
 	e.stopPropagation()
 }
-
 function F_imgLoad(){ // VIDEOt is itt tölti be!
 	var allDetails = document.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) {
@@ -3714,12 +3770,15 @@ alert(actLSid)*/
 		}
 	}
 
-	var allIMG = QlocElem.getElementsByTagName("img")
-	for ( var i=0; i<allIMG.length; i++ ) { F_imgActLoad(allIMG[i]) }
 	
+	F_impQimgsLOAD(QlocElem)
+	var allIMG = QlocElem.getElementsByTagName("img")
+	for ( var i=0; i<allIMG.length; i++ ) { F_imgActLoad(allIMG[i]) } 
+	
+	// img + videókat ezzel tölti be
 	var allDetails = QlocElem.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) {
-		allDetails[0].onmousedown = function(e){
+		allDetails[i].onmousedown = function(e){
 			F_loadImgVideo(this,e)
 		}
 	}
