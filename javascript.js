@@ -309,7 +309,6 @@ function F_checkEXPs(){ /* ez egyenlőre előbb kell legyen, mint a CheckQs kül
 			var end = elem.className.indexOf("}")
 			var EXPid = elem.className.slice(begin+1,end)
 			if ( Number(EXPid) > localStorage.getItem("hkExp.max") ) { localStorage.setItem("hkExp.max",EXPid) }
-			
 			var Qtext = '<details class="' +elem.className+ '">' +elem.innerHTML+ "</details>"
 			var LSid = false
 			if ( localStorage.getItem("hkExpQ."+EXPid) ) {
@@ -333,7 +332,7 @@ F_checkEXPs()
 function F_checkQs(){
 	F_getTime()
 	var diffTime = myTime-oldTime
-	console.log("– F_TestcheckQs BEGIN – " + diffTime)
+	console.log("– F_checkQs BEGIN – " + diffTime)
 	
 //console.clear()
 	for ( var i=0; i<kerdesek.length; i++ ) { 
@@ -355,7 +354,7 @@ function F_checkQs(){
 	
 	F_getTime()
 	var diffTime = myTime-oldTime
-	console.log("– F_TestcheckQs END – " + diffTime)
+	console.log("– F_checkQs END – " + diffTime)
 }
 if ( fileName != "expqs.html" ) {
 	F_checkQs()
@@ -1041,6 +1040,45 @@ var F_seekBar = window.setInterval(function(){
 
 
 function F_impQimgsLOAD(detElem){
+	var childElem = detElem.getElementsByTagName("*");
+	for ( var x = 0; x < childElem.length; x++ ) {
+		var childElem = childElem[x]
+		if ( childElem.className.indexOf("{") > -1 ) {
+			var begin = childElem.className.indexOf("{")
+			var end = childElem.className.indexOf("}")
+			var EXPid = childElem.className.slice(begin+1,end)
+			var string = localStorage.getItem("hkExpQ."+EXPid)
+			var LSid = string.slice(0,string.indexOf(" "))
+			var IMGloc = string.slice(string.indexOf(" ")+1)
+			var imgs = childElem.getElementsByTagName("img")
+			for ( var i=0; i<imgs.length; i++ ) {
+				if ( imgs[i].dataset.src ) {
+					imgs[i].src = htmlLEARNloc + IMGloc + imgs[i].dataset.src
+					imgs[i].removeAttribute("data-src")
+				}
+			}
+		}
+	}
+	
+	var impQk = detElem.getElementsByClassName("imp")
+	for ( var x=0; x<impQk.length; x++ ) {
+		var begin = impQk[x].className.indexOf("[") +1
+		var end = impQk[x].className.indexOf("]")
+		var EXPid = impQk[x].className.slice(begin,end)
+		var string = localStorage.getItem("hkExpQ."+EXPid)
+		var LSid = string.slice(0,string.indexOf(" "))
+		var IMGloc = string.slice(string.indexOf(" ")+1)
+		
+		var imgs = impQk[x].getElementsByTagName("img")
+		for ( var i=0; i<imgs.length; i++ ) {
+			if ( imgs[i].dataset.src ) {
+				imgs[i].src = htmlLEARNloc + IMGloc + imgs[i].dataset.src
+				imgs[i].removeAttribute("data-src")
+			}
+		}
+	}
+}
+/*function F_impQimgsLOAD(detElem){
 	var impQk = detElem.getElementsByClassName("imp")
 	for ( var x=0; x<impQk.length; x++ ) {
 		var begin = impQk[x].className.indexOf("[") +1
@@ -1053,12 +1091,12 @@ function F_impQimgsLOAD(detElem){
 		var imgs = impQk[x].getElementsByTagName("img")
 		for ( var i=0; i<imgs.length; i++ ) {
 			if ( imgs[i].dataset.src ) {
-				imgs[i].src =  htmlLEARNloc + IMGloc + imgs[i].dataset.src
+				imgs[i].src = htmlLEARNloc + IMGloc + imgs[i].dataset.src
 				imgs[i].removeAttribute("data-src")
 			}
 		}
 	}
-}
+}*/
 function F_QimgsLOAD(detElem){
 	var imgs = detElem.getElementsByTagName("img")
 	for ( var x=0; x<imgs.length; x++ ) {
@@ -1205,7 +1243,14 @@ function F_imgPreLoad(){ // ha már alapból nyitott a details, akkor betölti a
 	}
 	for ( var i=0; i<allIMG.length; i++ ) {
 		if ( imgArr[i] == true ) {
-			F_imgActLoad(allIMG[i])
+			var IMGelem = allIMG[i]
+			var parent = allIMG[i]
+			do { // megkeresi az első details-t
+				IMGelem = parent
+				parent = parent.parentElement
+			} while ( parent.tagName != "DETAILS" )
+			F_impQimgsLOAD(parent)
+			F_QimgsLOAD(parent)
 		}
 	}
 }
@@ -3258,8 +3303,6 @@ var fullTema, checkNum, cloneKerdes
 var lastTime = 0
 var activeQs = []
 function F_nextQ(){
-	
-	
 	//console.clear()
 	console.log("– – – – – – – – F_nextQ – – – – – – – – –")
 	var QlocElem = document.getElementById("kerdeslocation")
@@ -3454,7 +3497,6 @@ function F_nextQ(){
 			Qelem = parent
 			parent = parent.parentElement
 		} while ( parent.className != "altetel" && parent.className != "tetel" )
-
 
 		function func_setTitle(){
 			var titleText = ""
