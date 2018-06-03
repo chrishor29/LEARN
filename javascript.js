@@ -11,7 +11,8 @@
 	azt is kéne majd, hogy a kérdéseket a (neve + hány betűből áll) alapján mentse el, és az alapján diagnosztizáljon ID-t --> többi table (Qid,txtLS,arrQtxt stb. fölös) --> elég arrQnames + impQTable + localstorage.getItem(qName) = LSid
 	cutImpQ funkcióra nem lesz szükség --> ugyanis az elején regisztrálja be a questeket, szóval utána hiába kattolok rá majd valamire és tölti be őket, az nem zavar bele utána. Továbbá a feladatmegoldás során is amikor kidobja az uj questet, akkor mielőtt beimportálja az innerhtml-üket az impQ-knak, azzal dolgozzak
 	((erre a lépésre lehet nincs szükség --> ugyanis lehet, hogyha megcisnálom azt, hogy az adott oldalon lévő impQ-kat ne LocalStorage-ből töltse már be, akkor megszűnik a probléma --> előbb csináljam azt meg)) <-- ezt próbáltam, de fail. Maga az innerHTML bemásolása tart sokáig, nem az LS betöltése
- 
+ ✖: F_impQbegin előtt létrehozott buttonok nem működnek
+
  ✖: autoUpgrade-lje a questet(ha változtattam a szövegét), de legyen lehetőségem megnézni melyeket upgradelte, és azoka közül törtölhessem, ha mégse kellett volna
  
  ✖: JS - download LS crash - FIX -> először találjam meg a hibát, mert nem mindig van: ezt út csináljam, hogy csinálok egy localstorage mappát, amibe lesznek v1 v2 v3 stb almappák.
@@ -388,112 +389,6 @@ function F_checkImpQs(){
 //alert("stop")
 }
 
-
-
-
-function F_DivSkip() {
-	var div = document.createElement("div")
-	document.body.appendChild(div)
-	div.id = "div_Skip"
-	div.style.backgroundColor = "white"
-	div.style.overflow = "auto"
-	div.style.width = "80vw"
-	div.style.height = "60vh"
-	div.style.position = "fixed"
-	div.style.top = "50%"
-	div.style.left = "50%"
-	div.style.marginTop = "-30vh"
-	div.style.marginLeft = "-40vw"
-	div.style.border = "10px solid black"
-	div.style.display = "none"
-}
-F_DivSkip()
-function F_DivSkipText() {
-	var div = document.createElement("div")
-	document.body.appendChild(div)
-	div.id = "div_SkipText"
-	div.style.backgroundColor = "white"
-	div.style.overflow = "auto"
-	div.style.width = "80vw"
-	div.style.height = "60vh"
-	div.style.position = "fixed"
-	div.style.top = "50%"
-	div.style.left = "50%"
-	div.style.marginTop = "-30vh"
-	div.style.marginLeft = "-40vw"
-	div.style.border = "10px solid black"
-	div.style.display = "none"
-		
-	var textdiv = document.createElement("div")
-	textdiv.id = "div_SkipTexttxt"
-	div.appendChild(textdiv)
-	
-	var button = document.createElement("input")
-	button.type = "button"
-	div.appendChild(button)
-	button.className = "fix"
-	button.style.border = "3px solid black"
-	button.onclick = function(){ 
-		document.getElementById("div_SkipText").style.display = "none" 
-	}
-	button.value = "X"
-
-	button.style.position = "absolute"
-	button.style.right = "5px"
-	button.style.bottom = "2px"
-}
-F_DivSkipText()
-function F_DivFix() {
-	var div = document.createElement("div")
-	document.body.appendChild(div)
-	div.id = "div_Fix"
-	div.style.backgroundColor = "white"
-	div.style.overflow = "auto"
-	div.style.width = "80vw"
-	div.style.height = "60vh"
-	div.style.position = "fixed"
-	div.style.top = "50%"
-	div.style.left = "50%"
-	div.style.marginTop = "-30vh"
-	div.style.marginLeft = "-40vw"
-	div.style.border = "10px solid red"
-	div.style.display = "none"
-}
-F_DivFix()
-function F_DivUpgQ() {
-	var div = document.createElement("div")
-	document.body.appendChild(div)
-	div.id = "div_upgQ"
-	div.style.backgroundColor = "white"
-	div.style.overflow = "auto"
-	div.style.width = "80vw"
-	div.style.height = "60vh"
-	div.style.position = "fixed"
-	div.style.top = "50%"
-	div.style.left = "50%"
-	div.style.marginTop = "-30vh"
-	div.style.marginLeft = "-40vw"
-	div.style.border = "10px solid red"
-	div.style.display = "none"
-	
-	var oldJEGY = document.createElement('div');
-	oldJEGY.id = "div_oldJEGY"
-	document.getElementById("div_upgQ").appendChild(oldJEGY)
-	oldJEGY.style.border = "1px solid black"
-	oldJEGY.style.position = "absolute"
-	oldJEGY.style.bottom ='2px'
-	oldJEGY.style.left = '35%'
-	
-	var newJEGY = document.createElement('div');
-	newJEGY.id = "div_newJEGY"
-	document.getElementById("div_upgQ").appendChild(newJEGY)
-	newJEGY.style.border = "1px solid black"
-	newJEGY.style.position = "absolute"
-	newJEGY.style.bottom ='2px'
-	newJEGY.style.left = '65%'
-}
-F_DivUpgQ()
-
 var changeStatus = false
 function F_oldQchange(oldLSid){
 	//console.clear()
@@ -755,10 +650,17 @@ function replaceAll(string,oldTxt,newTxt) {
 	return string.replace(new RegExp(escapeRegExp(oldTxt), 'g'), newTxt);
 }		
 //INNERhtml = replaceAll(INNERhtml, oldTxt, newTxt)
-
-/* FIX need
- #1) ez még szvsz nemjó -> ugyanis jelenleg csak 1x fut végig az egészen, pedig lehet egy imp-be is van imp !!
-*/
+		
+// pl. ez a button nem fog működni, mert az impQbegin előtt van!
+/*var buttonX = document.createElement("BUTTON")
+buttonX.innerHTML = "anyad"
+document.body.appendChild(buttonX)
+buttonX.style.position = "absolute"
+buttonX.style.right = "100px"
+buttonX.style.top = "20px"
+buttonX.onclick = function(){ 
+	alert("sajt")
+}*/
 function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, így lassabb, de pontosabban mérhetők az eltérések)
 	F_getTime()
 	var diffTime = myTime-oldTime
@@ -1001,6 +903,110 @@ function F_impQs(impek){ // 11ms/Q a betöltési ideje
 F_impQs(document.getElementsByClassName("imp")) //ere elvileg nincs mát szükség
 
 
+function F_DivSkip() {
+	var div = document.createElement("div")
+	document.body.appendChild(div)
+	div.id = "div_Skip"
+	div.style.backgroundColor = "white"
+	div.style.overflow = "auto"
+	div.style.width = "80vw"
+	div.style.height = "60vh"
+	div.style.position = "fixed"
+	div.style.top = "50%"
+	div.style.left = "50%"
+	div.style.marginTop = "-30vh"
+	div.style.marginLeft = "-40vw"
+	div.style.border = "10px solid black"
+	div.style.display = "none"
+}
+F_DivSkip()
+function F_DivSkipText() {
+	var div = document.createElement("div")
+	document.body.appendChild(div)
+	div.id = "div_SkipText"
+	div.style.backgroundColor = "white"
+	div.style.overflow = "auto"
+	div.style.width = "80vw"
+	div.style.height = "60vh"
+	div.style.position = "fixed"
+	div.style.top = "50%"
+	div.style.left = "50%"
+	div.style.marginTop = "-30vh"
+	div.style.marginLeft = "-40vw"
+	div.style.border = "10px solid black"
+	div.style.display = "none"
+		
+	var textdiv = document.createElement("div")
+	textdiv.id = "div_SkipTexttxt"
+	div.appendChild(textdiv)
+	
+	var button = document.createElement("input")
+	button.type = "button"
+	div.appendChild(button)
+	button.style.backgroundColor = "lightgrey"
+	button.style.border = "3px solid black"
+	button.onclick = function(){ 
+		document.getElementById("div_SkipText").style.display = "none"
+	}
+	button.value = "<-"
+	
+	button.style.position = "absolute"
+	button.style.right = "5px"
+	button.style.bottom = "2px"
+}
+F_DivSkipText()
+function F_DivFix() {
+	var div = document.createElement("div")
+	document.body.appendChild(div)
+	div.id = "div_Fix"
+	div.style.backgroundColor = "white"
+	div.style.overflow = "auto"
+	div.style.width = "80vw"
+	div.style.height = "60vh"
+	div.style.position = "fixed"
+	div.style.top = "50%"
+	div.style.left = "50%"
+	div.style.marginTop = "-30vh"
+	div.style.marginLeft = "-40vw"
+	div.style.border = "10px solid red"
+	div.style.display = "none"
+}
+F_DivFix()
+function F_DivUpgQ() {
+	var div = document.createElement("div")
+	document.body.appendChild(div)
+	div.id = "div_upgQ"
+	div.style.backgroundColor = "white"
+	div.style.overflow = "auto"
+	div.style.width = "80vw"
+	div.style.height = "60vh"
+	div.style.position = "fixed"
+	div.style.top = "50%"
+	div.style.left = "50%"
+	div.style.marginTop = "-30vh"
+	div.style.marginLeft = "-40vw"
+	div.style.border = "10px solid red"
+	div.style.display = "none"
+	
+	var oldJEGY = document.createElement('div');
+	oldJEGY.id = "div_oldJEGY"
+	document.getElementById("div_upgQ").appendChild(oldJEGY)
+	oldJEGY.style.border = "1px solid black"
+	oldJEGY.style.position = "absolute"
+	oldJEGY.style.bottom ='2px'
+	oldJEGY.style.left = '35%'
+	
+	var newJEGY = document.createElement('div');
+	newJEGY.id = "div_newJEGY"
+	document.getElementById("div_upgQ").appendChild(newJEGY)
+	newJEGY.style.border = "1px solid black"
+	newJEGY.style.position = "absolute"
+	newJEGY.style.bottom ='2px'
+	newJEGY.style.left = '65%'
+}
+F_DivUpgQ()
+
+
 function func_divButtonETC() {
 	var button = document.createElement("input")
 	button.id = "button_replaceQ"
@@ -1039,89 +1045,55 @@ var F_seekBar = window.setInterval(function(){
 }, 1000);
 
 
-function F_impQimgsLOAD(detElem){
-	var childElem = detElem.getElementsByTagName("*");
-	for ( var x = 0; x < childElem.length; x++ ) {
-		var childElem = childElem[x]
-		if ( childElem.className.indexOf("{") > -1 ) {
-			var begin = childElem.className.indexOf("{")
-			var end = childElem.className.indexOf("}")
-			var EXPid = childElem.className.slice(begin+1,end)
-			var string = localStorage.getItem("hkExpQ."+EXPid)
-			var LSid = string.slice(0,string.indexOf(" "))
-			var IMGloc = string.slice(string.indexOf(" ")+1)
-			var imgs = childElem.getElementsByTagName("img")
-			for ( var i=0; i<imgs.length; i++ ) {
-				if ( imgs[i].dataset.src ) {
-					imgs[i].src = htmlLEARNloc + IMGloc + imgs[i].dataset.src
-					imgs[i].removeAttribute("data-src")
-				}
-			}
-		}
-	}
-	
-	var impQk = detElem.getElementsByClassName("imp")
-	for ( var x=0; x<impQk.length; x++ ) {
-		var begin = impQk[x].className.indexOf("[") +1
-		var end = impQk[x].className.indexOf("]")
-		var EXPid = impQk[x].className.slice(begin,end)
-		var string = localStorage.getItem("hkExpQ."+EXPid)
-		var LSid = string.slice(0,string.indexOf(" "))
-		var IMGloc = string.slice(string.indexOf(" ")+1)
-		
-		var imgs = impQk[x].getElementsByTagName("img")
-		for ( var i=0; i<imgs.length; i++ ) {
-			if ( imgs[i].dataset.src ) {
-				imgs[i].src = htmlLEARNloc + IMGloc + imgs[i].dataset.src
-				imgs[i].removeAttribute("data-src")
-			}
-		}
-	}
+
+function F_loadExpImg(EXPid,imgX){
+	var string = localStorage.getItem("hkExpQ."+EXPid)
+	var LSid = string.slice(0,string.indexOf(" "))
+	var IMGloc = string.slice(string.indexOf(" ")+1)
+	imgX.src = htmlLEARNloc + IMGloc + imgX.dataset.src
+	imgX.removeAttribute("data-src")
 }
-/*function F_impQimgsLOAD(detElem){
-	var impQk = detElem.getElementsByClassName("imp")
-	for ( var x=0; x<impQk.length; x++ ) {
-		var begin = impQk[x].className.indexOf("[") +1
-		var end = impQk[x].className.indexOf("]")
-		var full = impQk[x].className.slice(begin,end) // lenntebb majd külön választja őket
-		var string = localStorage.getItem("hkExpQ."+full)
-		var LSid = string.slice(0,string.indexOf(" "))
-		var IMGloc = string.slice(string.indexOf(" ")+1)
-		
-		var imgs = impQk[x].getElementsByTagName("img")
-		for ( var i=0; i<imgs.length; i++ ) {
-			if ( imgs[i].dataset.src ) {
-				imgs[i].src = htmlLEARNloc + IMGloc + imgs[i].dataset.src
-				imgs[i].removeAttribute("data-src")
-			}
-		}
-	}
-}*/
-function F_QimgsLOAD(detElem){
-	var imgs = detElem.getElementsByTagName("img")
-	for ( var x=0; x<imgs.length; x++ ) {
-		var IMGelem = imgs[x]
-		var parent = imgs[x]
+function F_loadImgX(detElem,imgX){
+	var IMGelem = imgX
+	var parent = imgX
+	
+	if ( detElem.className.indexOf("{") > -1 ) { 
+		do { // ha impQ van, akkor be kell töltse mindenképp őket, kivéve ha másik impQ
+			IMGelem = parent
+			parent = parent.parentElement
+		} while ( parent.className.indexOf("[") == -1 && parent != detElem )
+	} else {
 		do { // megkeresi az első details-t, így nem tölti be az összeset, ha ráklikkelnél az egyik tételre (lassú lenne)
 			IMGelem = parent
 			parent = parent.parentElement
 		} while ( parent.className.indexOf("[") == -1 && parent.tagName != "DETAILS" )
+	}
 
-		if ( parent == detElem ) {
-			if ( imgs[x].dataset.src ) {
-				if ( imgs[x].dataset.src.indexOf("images") == -1 ) {   // && imgs[x].dataset.src.indexOf("100") == -1
-					imgs[x].src = "images/" + imgs[x].dataset.src
-				} else {
-					imgs[x].src = imgs[x].dataset.src
-				}
-				imgs[x].removeAttribute("data-src")
-			}
+	if ( parent.className.indexOf("[") > -1 ) {
+		var begin = parent.className.indexOf("[")
+		var end = parent.className.indexOf("]")
+		var EXPid = parent.className.slice(begin+1,end)
+		F_loadExpImg(EXPid,imgX)
+	} else if ( parent == detElem ) {
+		if ( parent.className.indexOf("{") > -1 ) {
+			var begin = parent.className.indexOf("{")
+			var end = parent.className.indexOf("}")
+			var EXPid = parent.className.slice(begin+1,end)
+			F_loadExpImg(EXPid,imgX)
+		} else {
+			//imgX.src = imgX.dataset.src
+			imgX.src = "images/" + imgX.dataset.src
+			imgX.removeAttribute("data-src")
 		}
 	}
 }
 function F_loadImgVideo(detElem,e){
-	F_impQimgsLOAD(detElem)
-	F_QimgsLOAD(detElem)
+	var imgs = detElem.getElementsByTagName("img")
+	for ( var x=0; x<imgs.length; x++ ) {
+		if ( imgs[x].dataset.src ) {
+			F_loadImgX(detElem,imgs[x])
+		}
+	}
 	func_abbrSet(detElem)
 	
 	// Video Load
@@ -1240,17 +1212,8 @@ function F_imgPreLoad(){ // ha már alapból nyitott a details, akkor betölti a
 				imgArr[i] = false
 			}
 		} while ( parent.tagName != "BODY" )
-	}
-	for ( var i=0; i<allIMG.length; i++ ) {
 		if ( imgArr[i] == true ) {
-			var IMGelem = allIMG[i]
-			var parent = allIMG[i]
-			do { // megkeresi az első details-t
-				IMGelem = parent
-				parent = parent.parentElement
-			} while ( parent.tagName != "DETAILS" )
-			F_impQimgsLOAD(parent)
-			F_QimgsLOAD(parent)
+			F_loadImgX(parent,imgs[x])
 		}
 	}
 }
@@ -1501,7 +1464,8 @@ function F_CreateQDiv() {
 		var button = document.createElement("button")
 		button.style.border = "3px solid black"
 		button.style.backgroundColor = "Bisque"
-		button.textContent = "M"
+		button.textContent = "0"
+		button.id = "button_Marks"
 		divSettings.appendChild(button)
 		
 		var div = document.createElement("div")
@@ -2132,6 +2096,7 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 
 		if ( localStorage.getItem(button.id) == "true" ) {
 			label.style.backgroundColor = "paleGreen";
+			F_changeTetelCount("1")
 		} else {
 			label.style.backgroundColor = "";
 		}
@@ -2656,7 +2621,7 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 			if ( obj_skip[LSid] != "important" && obj_skip[LSid] != "vizsgaSkip" ) {
 				var text = document.getElementById("div_Skip").innerHTML
 				var Qtext = localStorage.getItem(LSid)
-			console.log(LSid)
+			//console.log(LSid)
 				if ( Qtext != null ) {
 					var Qtext = localStorage.getItem(LSid)
 					Qtext = Qtext.slice(Qtext.indexOf("<summary")+8,Qtext.indexOf("</summary"))
@@ -2729,14 +2694,24 @@ function func_spanClick(button){  // btn_fix, btn_skip, btn_vizsgaskip, btn_repF
 }
 
 
+function F_changeTetelCount(plus){
+	var num = document.getElementById("button_Marks").innerHTML
+	num = Number(num) + Number(plus)
+	document.getElementById("button_Marks").innerHTML = num
+}
+
+
 function F_clickTemaButton(button){
 	if ( localStorage.getItem(button.id) == "true" ) {
 		localStorage.setItem(button.id,false)
 		document.getElementById(button.id+"_label").style.backgroundColor = "";
+		F_changeTetelCount("-1")
 	} else {
 		localStorage.setItem(button.id,true)
 		document.getElementById(button.id+"_label").style.backgroundColor= "paleGreen";
+		F_changeTetelCount("1")
 	}
+	
 	func_calcOldNew();
 	func_calcJegy()
 	func_calcWork()
@@ -3813,9 +3788,12 @@ alert(actLSid)*/
 	}
 
 	
-	F_impQimgsLOAD(QlocElem)
-	var allIMG = QlocElem.getElementsByTagName("img")
-	for ( var i=0; i<allIMG.length; i++ ) { F_imgActLoad(allIMG[i]) } 
+	var imgs = QlocElem.getElementsByTagName("img")
+	for ( var x=0; x<imgs.length; x++ ) {
+		if ( imgs[x].dataset.src ) {
+			F_loadImgX(QlocElem,imgs[x])
+		}
+	}
 	
 	// img + videókat ezzel tölti be
 	var allDetails = QlocElem.getElementsByTagName("details")

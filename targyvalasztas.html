@@ -25,6 +25,78 @@
 	<div><a href="done\ModMem\ModMem.html">Modellmembránok</a></div>
 </div>
 
+<div class="header">
+	<table>
+		<tr><th id="elet11">31</th>
+			<td><input type="number" id="elet12" style="width:45px"></td>
+			<td id="elet13"></td>
+			<td>1.1-1.4, 2, 3, 4, 5</td>
+			<th id="elet14"></th>
+		</tr>
+		<tr><th id="elet21">22</th>
+			<td><input type="number" id="elet22" style="width:45px"></td>
+			<td id="elet23"></td>
+			<td>6, 7</td>
+			<th id="elet24"></th>
+		</tr>
+		<tr><th id="elet31">25</th>
+			<td><input type="number" id="elet32" style="width:45px"></td>
+			<td id="elet33"></td>
+			<td>1.5-1.10, 8</td>
+			<th id="elet34"></th>
+		</tr>
+	</table>
+	<center id="percentX">asd</center>
+</div>
+<script>
+	for (i = 1; i < 4; i++) { document.getElementById("elet"+i+"2").value = localStorage.getItem("elettPerc"+i) }
+	function calcValPerc(){
+		document.getElementById("percentX").innerHTML = 1/100/100
+		for (i = 1; i < 4; i++) { 
+			var max = document.getElementById("elet"+i+"1").innerHTML
+			max = Number(max)
+			var now = document.getElementById("elet"+i+"2").value
+			now = Number(now)
+			var perc = 100*now/max
+			document.getElementById("elet"+i+"3").innerHTML = Math.round(perc) + "%"
+			
+			perc = 100*now* Number(document.getElementById("percentX").innerHTML) /max
+			document.getElementById("percentX").innerHTML = perc
+		}
+		var num = Number(document.getElementById("percentX").innerHTML)
+		document.getElementById("percentX").innerHTML = num.toFixed(2)
+		
+		for (i = 1; i < 4; i++) { 
+			document.getElementById("elet"+i+"4").innerHTML = 1/100/100
+			for (x = 1; x < 4; x++) { 
+				var max = document.getElementById("elet"+x+"1").innerHTML
+				max = Number(max)
+				var now = document.getElementById("elet"+x+"2").value
+				now = Number(now)
+				if ( x == i ) { now = now+1 }
+				
+				perc = 100*now* Number(document.getElementById("elet"+i+"4").innerHTML) /max
+				document.getElementById("elet"+i+"4").innerHTML = perc
+			}
+			var num = Number(document.getElementById("elet"+i+"4").innerHTML)
+			num = num.toFixed(2)
+			num = num - Number(document.getElementById("percentX").innerHTML)
+			document.getElementById("elet"+i+"4").innerHTML = "+"+num.toFixed(2)+"%"
+		}
+	}
+	calcValPerc()
+	for (i = 1; i < 4; i++) { 
+		document.getElementById("elet"+i+"2").oninput = function(){ 
+			calcValPerc()
+			
+			var id = this.id
+			id = id.slice(-2)
+			id = id.slice(0,1)
+			localStorage.setItem("elettPerc"+id,this.value)
+		} 
+	}
+</script>
+
 
 <script>
 	function F_clearLS() {
