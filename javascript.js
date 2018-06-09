@@ -4,6 +4,7 @@
 }*/
 
 /* PROJECT - PROGRESS
+ ✖: élettan 8.1 -> gliasejtek img-eit nem tölti be (expQ imgLoad még hibás)
  ✖: androidon mindig a kezdőoldalt töltse be (tehát hiába a questes aloldalon zártam be, ne azt töltse be
  ✖ impQ-t csak akkor töltse be innerHTML, ha megnyitom (+amikor kidobja questbe)
 	[F_impQs newMethod] 9x gyorsabb mint az [F_impQs oldMethod] --> newMethod-dal töltsem be az összeset az elején: jelenleg azok hiányoznak, melyeket egy impQ-n belül kéne importálni. Azonban csak akkor importálja őket, ha szükség van rá (tehát a felette lévő details-ba még nincs benne) -->próbáltam már, ott is hagytam commentbe(#123#), de nem jön össze, mert baromi lassú
@@ -675,6 +676,7 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 		var end = impBlock.indexOf("]")
 		var EXPid = impBlock.slice(begin,end)
 
+		if ( EXPid.indexOf("-") != -1 ) { EXPid = EXPid.slice(0,EXPid.indexOf("-")) } 
 		var string = localStorage.getItem("hkExpQ."+EXPid)
 		var LSid = string.slice(0,string.indexOf(" "))
 		Qtxt = localStorage.getItem(LSid)
@@ -1202,18 +1204,16 @@ function F_imgPreLoad(){ // ha már alapból nyitott a details, akkor betölti a
 	var imgArr = []
 	var allIMG = document.getElementsByTagName("img")
 	for ( var i=0; i<allIMG.length; i++ ) {
-		var IMGelem = allIMG[i]
 		var parent = allIMG[i]
 		imgArr[i] = true
 		do { // megkeresi az első details-t
-			IMGelem = parent
 			parent = parent.parentElement
 			if ( parent.tagName == "DETAILS" && parent.open != true ) {
 				imgArr[i] = false
 			}
 		} while ( parent.tagName != "BODY" )
 		if ( imgArr[i] == true ) {
-			F_loadImgX(parent,imgs[x])
+			F_loadImgX(parent,allIMG[i])
 		}
 	}
 }
