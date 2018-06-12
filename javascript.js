@@ -4,8 +4,10 @@
 }*/
 
 /* PROJECT - PROGRESS
- ✖: élettan 8.1 -> gliasejtek img-eit nem tölti be (expQ imgLoad még hibás)
- ✖: androidon mindig a kezdőoldalt töltse be (tehát hiába a questes aloldalon zártam be, ne azt töltse be
+ ✖ élettan 8.1 -> gliasejtek img-eit nem tölti be (expQ imgLoad még hibás)
+ ✖ olyan opció kéne, hogy van egy tétel, akkor külön osztályozza azt, hogy eszembe jut-e miről kell beszélni, illetve magát azt amiről kell. Pl biológiai jelátvitel kérdésnél ha nemtudom miről kell, de amiről kéne azt tudom, akkor ne kelljen átismételnem az egészet, hanem tudjam, hogy csak az volt a hiba, hogy nemtudtam miről kell bezsélni! --> úgy kéne hogy elsőnek mindenkép megkérdezi, hogy adott tételnél mi kell tudni, majd ha azt megválaszoltam utána az alkérdések közt csak azt kell kifejtenem, ami miatt kidobta a kérdést. Annyi még, hogy az elején az altkérdéseket ne mutassa(osztályzásukat)!
+ ✖ androidon mindig a kezdőoldalt töltse be (tehát hiába a questes aloldalon zártam be, ne azt töltse be
+ ✖ rep	min	hossz	left	still	average --> impQ-kat nemszámolja bele (1x belekéne)
  ✖ impQ-t csak akkor töltse be innerHTML, ha megnyitom (+amikor kidobja questbe)
 	[F_impQs newMethod] 9x gyorsabb mint az [F_impQs oldMethod] --> newMethod-dal töltsem be az összeset az elején: jelenleg azok hiányoznak, melyeket egy impQ-n belül kéne importálni. Azonban csak akkor importálja őket, ha szükség van rá (tehát a felette lévő details-ba még nincs benne) -->próbáltam már, ott is hagytam commentbe(#123#), de nem jön össze, mert baromi lassú
 	az elején olvassa ki az altkérdéseket az imp-ből és table-ba(impID = prior,length,Qtxt) tenni. Ebból nézi a chance-t az előhívásra, ebből számolja tétel hány %, továbbá oldQcheck & upgradeQ esetében innen veszi ki a szöveget(ugyanis egy impQ-n belül lehet altkérdés, amit hiányolna különben). Tehát beírni innerHTML-be nem szükséges ilyenkor még --> ez kicsit komplikált, mert ha van még1 alt imp, akkor annak altkérdéseit is ki kell olvassa, és így tovább.. de megoldható --> ez szvsz gyorsabb
@@ -523,8 +525,9 @@ function F_oldQcheck(){
 		for ( var i=0; i<fullArray.length; i++ ) {
 			if ( fullArray[i] != "" && fullArray[i] != "null" ) {  // ilyenek belekerülnek valamiért (replace-nél)
 				var LSid = fullArray[i]
+			//localStorage.removeItem(LSid+'_idopont')
+			//localStorage.removeItem(LSid+'_jegy')
 				var Qtext = localStorage.getItem(LSid)
-				//if ( Qtext == null ) { console.log(LSid) }
 				var EXPid = Qtext.indexOf("summary")
 				EXPid = Qtext.slice(0,EXPid) 
 				if ( EXPid.indexOf("{") != -1 ) { 
@@ -554,37 +557,6 @@ function F_oldQcheck(){
 		localStorage.setItem(Qname,LSid)
 		txtLS[Qtext] = LSid // ettől majd szabaduljak meg (az egész tömbtől)
 	
-		
-		/*if ( jobDone == "false" && arrQtxts.indexOf(Qtext) != -1 ) { // ez szvsz fölös, de inkább hagyjam bennt amíg kinem veszem az arrQtxts-t
-			//newString = newString + LSid + " "
-			txtLS[Qtext] = LSid
-			jobDone = "true"
-		}*/
-		  
-		/*if ( jobDone == "false" && Qtext.indexOf('class="imp [') != -1 ) { // ez szvsz fölös
-			var spanRemove = document.getElementById("span_checkQtextRemove")
-			var span = document.getElementById("span_checkQtextNew")
-			span.innerHTML = Qtext
-			var impek = span.getElementsByClassName("imp")
-			for ( var y=0; y<impek.length; y++ ) {
-				impek[y].innerHTML = ""
-			}
-			F_impQs(span.getElementsByClassName("imp"))
-			Qtext = span.innerHTML
-			
-			for ( var y=0; y<impek.length; y++ ) {
-				impek[y].innerHTML = ""
-			}
-			var QtextImp = span.innerHTML
-		console.clear()
-		console.log(QtextImp)
-		alert("stop")
-			if ( arrQtxtsImp.indexOf(QtextImp) != -1 ) {
-				txtLS[Qtext] = LSid
-				jobDone = "true"
-			}
-		}*/
-			
 		if ( jobDone == "false" ) {
 			var jegy = localStorage.getItem(LSid+"_jegy")
 			var skip = localStorage.getItem(LSid+"_skip")
@@ -902,7 +874,7 @@ function F_impQs(impek){ // 11ms/Q a betöltési ideje
 	var diffTime = myTime-oldTime
 	console.log("– F_impQs END – " + diffTime)*/
 }
-F_impQs(document.getElementsByClassName("imp")) //ere elvileg nincs mát szükség
+F_impQs(document.getElementsByClassName("imp")) //erre elvileg nincs mát szükség
 
 
 function F_DivSkip() {
@@ -1098,6 +1070,16 @@ function F_loadImgVideo(detElem,e){
 	}
 	func_abbrSet(detElem)
 	
+	// Youtube Video Load
+	var allYoutube = detElem.getElementsByTagName("iframe") // csak azokat kéne amik direktbe a childjei!!! (különben többit is betölti)
+	for ( var i=0; i<allYoutube.length; i++ ) {
+		if ( allYoutube[i].dataset.src ) {
+			allYoutube[i].src = allYoutube[i].dataset.src
+			allYoutube[i].removeAttribute("data-src")
+		}
+	}
+		
+	
 	// Video Load
 	var allVideo = detElem.getElementsByTagName("video") // csak azokat kéne amik direktbe a childjei!!! (különben többit is betölti)
 	for ( var i=0; i<allVideo.length; i++ ) {
@@ -1287,9 +1269,7 @@ function F_toggleAll() {
 	if ( refreshAll != true ) {
 		refreshAll = true
 		F_getTexts()
-		//F_checkQs()
 		F_checkImpQs()
-		//F_oldQsFilter()
 		F_oldQcheck()
 		F_tetelChoose()
 		F_altetelID()
@@ -2763,7 +2743,7 @@ function func_calcJegy() { // átlagJegyet kiszámolja
 	func_calcRepTable() 
 	var skipNum = 0
 	for ( var id in obj_skip ) {
-		if ( obj_skip[id] == "perma" ) {
+		if ( obj_skip[id] == "vizsgaSkip" ) {
 			var Qtxt = localStorage.getItem(id)
 			if ( Qtxt != null ) {
 				var num = Qtxt.search("/")

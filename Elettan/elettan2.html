@@ -63,7 +63,8 @@
 	<li>8.6t akusztikus impedancia & középfül</li>
   <hr>
 	<li>4.5 EC térfogat szabályozásnál erről kell beszélni?</li>
-	<li>2.6.t &#10140; artériás vérnyomás meghatározó tényezők compliance (két kérdés egyáltalán nem világos)</li>
+	<li>2.6 &#10140; artériás vérnyomás meghatározó tényezők compliance (két kérdés egyáltalán nem világos)</li>
+	<li>2.6 &#10140; miért lesz turbulens áramlás Riva-Rocci -nál?!</li>
 	<details><summary>skipped (LP)</summary><ul class="normal">
 		<li>2.6.t &#10140; áramlás és nyomás összefüggése valódi erekben: Hagen–Poiseuille törvény(3) feltétele a merev falú cső !?</li>
 		<li>2.6.t &#10140; nyomások: teljes vs perfúziós</li>
@@ -83,9 +84,6 @@
 
 <details><summary>további kidolgozásra várók</summary><ul class="normal">
 	<li><span class="WHITE">ábrák</span></li>
-	<li><span class="WHITE">4.3t</span> A húgyhólyag működése és a vizeletürítés szabályozása &#10140; <abbr title="előadásba nem volt">TK alapján!</abbr></li>
-	<li><span class="WHITE">2.11t</span> A vázizom vérkeringésének szabályozása</li>
-	<li><span class="WHITE">3.2t</span> A ventilláció és perfúzió kapcsolata</li>
 	<li><span class="WHITE">5.2t</span> (ezt a legvégén)</li>
 	<li>impQ-nál a magas nyomású baroreceptorokat!!</li> 
   <hr>
@@ -279,17 +277,55 @@
 		<li>pl. Na<sup>+</sup> esetében kapott +60mV azt jelenti, hogyha csak Na<sup>+</sup>-ra lenne permeábilis a membrán, akkor ekkora membránpotenciál esetében lenne egyensúlyban az Na<sup>+</sup> &#10140; tehát ekkor lenne az, hogy annyi Na<sup>+</sup> áramlik be koncentráció-grádiens miatt, mint amennyi ki elektromos-grádiens miatt</li>
 		<img data-src="fzlglslmhlmlklt.png">
 	</ul></details>
-	<details class="{117} kerdes 4/4"><summary>ÖSSZEFOGLALVA-ALAPOK</summary><ul class="normal">
-		<li>egyensúlyi_potenciál kiszámítása &#10140; Nerst-egyenlettel</li>
-		<li>membránpotenciál kiszámítása &#10140; Goldman-Hodgkin-Katz egyenlettel</li>
-	  <hr>
-		<li>egyensúlyi_potenciál értéke csak az ionkoncentrációk arányától függ &#10140; általánosan elmondható, hogy minden ionra nézve <abbr title="majd ha lesz eltérő eset (ahol koncentráció-arány eltér), akkor itt azokat felsorolom, mert nem lehet sok &#10140; olyankor egyébként Nerst-egyenlettel kiszámolható a koncentrációkból az egyenyúlyi_potenciál">'</abbr> állandónak tekinthető &#10140; ugyanis a koncentrációjuk nem változik lényegében, tehát a koncentráció-grádiens állandó, és ugye az egyensúlyi_potenciál pedig az az elektromos-grádiens, mely kiegyenlíti a koncentráció_grádienst</li>
-		<li>persze minden ionnak egyedi az értéke (lásd 4.tétel), de az állandónak tekinthető</li>
-		<li><font class="abbr">egyensúlyi potenciál E<sub>m</sub>-től függése? ►</font> nem függ tőle, csak az ionkoncentrációk arányától függ &#10140; lásd Nerst-egyenlet</li>
-		<li><font class="abbr">egyensúlyi potenciál permeabilitástól függése? ►</font> nem függ tőle, csak az ionkoncentrációk arányától függ &#10140; lásd Nerst-egyenlet</li>
-	  <hr>
-		<li><font class="abbr">ha E<sub>m</sub> > egyensúlyi_potenciál, akkor a kation... ►</font> kiáramlik <abbr title="képből kikövetkeztethetem, de inkább magoljam is be, mert nem mindig lesz rá idő">'</abbr> <img class="mini" data-src="gynslzkynt.png"></li>
-		<li><font class="abbr">ha E<sub>m</sub> &lt; egyensúlyi_potenciál, akkor a kation ►</font> beáramlik</li>
+	<details class="{117} open"><summary>egyensúlyi potenciál & membránpotenciál</summary><ul class="normal">
+		<details class="kerdes 3/1"><summary>kiszámításuk</summary><ul class="normal">
+			<div style="max-width:40%; float:right">
+				<img data-src="mmbrmnptlnl.png">
+				<img data-src="kszmtslks.png">
+			</div>
+			<li>egyensúlyi potenciál kiszámítása &#10140; Nernst-egyenlettel történik</li>
+			<li>membránpotenciál kiszámítása &#10140; Goldman-<abbr title="hodzskin">Hodgkin</abbr>-Katz egyenlettel történik <abbr title="ez lényegében a Nerst-egyenletek 'szummációja' összes ionra nézve, és beletéve a permeabilitásuk is már: első kettő (fennt-lennt) a K, utánalévő kettő az Na stb.">'</abbr></li><ul>
+				<li><abbr title="mert anion (többi kation)">[Cl<sup>+</sup>] 'fordítva van'</abbr>, <abbr title="membrán permeabilitása K<sup>+</sup>-ra nézve">P<sub>K</sub></abbr></li>
+			</ul>
+		</ul></details>
+		<details class="kerdes 3/4"><summary>mitől függenek</summary><ul class="normal">
+			<li>egyensúlyi_potenciál értéke csak az ionkoncentrációk arányától függ &#10140; általánosan elmondható, hogy minden ionra nézve <abbr title="majd ha lesz eltérő eset (ahol koncentráció-arány eltér), akkor itt azokat felsorolom, mert nem lehet sok &#10140; olyankor egyébként Nerst-egyenlettel kiszámolható a koncentrációkból az egyenyúlyi_potenciál">'</abbr> állandónak tekinthető &#10140; ugyanis a koncentrációjuk nem változik lényegében, tehát a koncentráció-grádiens állandó, és ugye az egyensúlyi_potenciál pedig az az elektromos-grádiens, mely kiegyenlíti a koncentráció_grádienst</li>
+			<li>membránpotenciál  hogyan függ az egyes tényezőktől (gyakori kérdés vizsgán!)</li><ul>
+				<details><summary>koncentrációgrádiens <font style="font-size:80%">in_vivo ez kevésbé jellemző</font></summary><ul class="normal">
+				  <strong>FONTOS</strong> &#10140; az ionkoncentráció-változást Na<sup>+</sup> és K<sup>+</sup> esetében úgy értelmezzükm, hogy a töltés nem változik &#10140; tehát amikor az van, hogy [K<sup>+</sup>]<sub>EC</sub> nő, az azt jelenti, hogy mellette ugyanennyi pl. Cl<sup>-</sup> is bekerült EC, tehát ettől a töltése EC-nek közvetlenül nem változik meg (tehát EC-be nem 100db K<sup>+</sup>-t teszünk, hanem 100db KCl-t) <abbr title="kivétel ezalól tán a Ca<sup>2+</sup> változása (ugyanis, ha Ca<sup>2+</sup> nő IC, akkor ott a Ca<sup>2+</sup> ionok amikor ER-ből bejutnak citoszol, akkor a fehérjeanionok ottmaradnak ER-ben; illetve alapból nagyon alacsony a Ca<sub>2+</sub>IC koncentráció, így ennél előfordulhat) &#10140; de ezt inkább ne erőltessem">'</abbr><hr>
+					<li>ha [K<sup>+</sup>]<sub>EC</sub> nő &#10140; depolarizáció</li>
+					<li>ha [Na<sup>+</sup>]<sub>IC</sub> nő &#10140; hiperpolarizáció <font style="font-size:80%">minimális mértékben</font></li>
+				  <hr><strong>bizonyítása</strong>
+					<li>Goldman-Hodgkin-Katz egyenletbe behelyettesítve ez jön ki</li>
+				  <hr><strong>megj.tipp</strong>
+					<li>[K<sup>+</sup>] IC-ben nagy alapból (Na/K pumpa), ha EC-ben nő, akkor csökken a különbség, tehát kevésbé hajtja ki a koncentráció-grádiens már, így több marad bennt, tehát pozitívabb lesz az E<sub>m</sub></li>
+				  <img data-src="kszmtslks.png">
+				</ul></details>
+				<details><summary>permeabilitás változás &#10140; <span class="Important">in_vivo ez a szabályozás fő útja: csatorna nyílása</span></summary><ul class="normal">
+					<span class="Important">szabály &#10140; az adott ion egyensúlyi_potenciáljának irányába tolódik el a membránpotenciál</span><font style="font-size:80%"> (&#10140; ha csökken, akkor pedig ezzel ellentétes irányba)</font>
+					<details><summary><font style="font-size:80%">(szabályra magyarázat)</font></summary><ul class="normal">
+						a Na<sup>+</sup> és a Cl<sup>-</sup> permeabilitása kicsi a K<sup>+</sup>-éhoz képest &#10140; a GHK-képletben így azok értéke elhanyagolható &#10140; így megkapom, hogy a GHK képlet: -60*log(P*[K<sup>+</sup><sub>IC</sub>]/P*[K<sup>+</sup><sub>EC</sub>]) &#10140; P így kiesik, tehát a Nerst-egyeneltet kapom K<sup>+</sup>-ra felírva &#10140; ezért amelyik ionnak nagy a permeabilitása, annak egyensúlyi potenciáljának irányába tolódik az Em
+						<img data-src="kszmtslks.png">
+					</ul></details>
+					<li>pl. ha K<sup>+</sup> permeabilitása nő (pl. csatorna nyílik) &#10140; hiperpolarizáció (mivel egyensúlyi potenciálja -90mV, így -70ről hiperpolarizáció lesz) <abbr title="hiszen belegondolva, ha több K<sup>+</sup> megy ki, akkor negatívabb lesz az IC">'</abbr> <abbr title="avagy másképpen fogalmazva &#10140; ilyenkor a K<sup>+</sup> áramlására nézve nagyobb 'gátlás' kell ahhoz, hogy az I<sub>K</sub>=-I<sub>Na</sub> teljesüljön, ami ugye a stabil_membránpotenciál feltétele &#10140; a gátlást pedig a membránpotenciál (mint elektromos-grádiens) biztosítja">'</abbr></li>
+					<li>pl. ha Na<sup>+</sup> permeabilitása csökken &#10140; hiperpolarizáció <abbr title="logika ugyanúgy, mint előbbinél">'</abbr></li>
+					tehát ehhez tudjam az ionkoncentráció értékeket és az egyensúlyi potenciál értékeket <font style="font-size:80%">(kiszámolni is és alapból is)</font>
+					<details><summary>Cl<sup>-</sup> permeabilitása nő (pl. csatorna nyílik) akkor mi történik?</summary><ul class="normal">
+						<abbr title="ott az egyensúlyi potenciál nem egyezik meg a membránpotenciállal">idegsejteket leszámítva</abbr> a következő történik:
+						<li>egyensúlyi potenciálja megegyezik a membránpotenciállal, így Em nem is változik lényegében &#10140; azonban, ha megnyílik valamilyen másik csatorna, mely depolarizációt/hiperpolarizációt okozna, akkor ez akadályozni fogja annak kialakulását &#10140; 'puffereli' a membránpotenciált</li>
+						<li><span class="lasd">később <span class="MISS">?pl?</span></span></li>
+					</ul></details>
+				  <hr><strong>bizonyítása</strong>
+					<li>Goldman-Hodgkin-Katz egyenletbe behelyettesítve ez jön ki</li>
+				</ul></details>
+			</ul>
+		</ul></details>
+		<details open class="kerdes 3/4"><summary>további kérdések...</summary><ul class="normal">
+			<li><font class="abbr">egyensúlyi potenciál E<sub>m</sub>-től függése? ►</font> nem függ tőle, csak az ionkoncentrációk arányától függ &#10140; lásd Nerst-egyenlet</li>
+			<li><font class="abbr">egyensúlyi potenciál permeabilitástól függése? ►</font> nem függ tőle, csak az ionkoncentrációk arányától függ &#10140; lásd Nerst-egyenlet</li>
+			<li><font class="abbr">ha E<sub>m</sub> > egyensúlyi_potenciál, akkor a kation... ►</font> kiáramlik <abbr title="képből kikövetkeztethetem, de inkább magoljam is be, mert nem mindig lesz rá idő">'</abbr> <img class="mini" data-src="gynslzkynt.png"></li>
+			<li><font class="abbr">ha E<sub>m</sub> &lt; egyensúlyi_potenciál, akkor a kation ►</font> beáramlik</li>
+		</ul></details>
 	</ul></details>
 	<details class="{129} kerdes 3/2"><summary><strong><span class="important">R</span> érszakaszok áramlási sebessége & összkeresztmetszete</strong></summary><ul class="normal">
 		<li>összkeresztmetszet(y) &#10140; fekete vonal, 3értékkel</li>
@@ -408,7 +444,7 @@
 		<li>oka</li><ul>
 			<details><summary>miogén-válasz = Bayliss-effektus</summary><ul class="normal">
 				<li>nyomásnövekedésre nő a falfeszülés(T)</li>
-				<details><summary>Leplace-törvény</summary><ul class="normal">
+				<details><summary>Laplace-törvény</summary><ul class="normal">
 					<div class="imp [147]"></div>
 				</ul></details>
 				<li>ezt a simaizmok érzékelik, és kiváltja kontrakciójukat</li>
@@ -784,31 +820,27 @@
 		</table>
 		<img class="mini" data-src="fdjklmns.png">
 	</ul></details>
-	<details class="{316} kerdes 3/2"><summary>nyomásértékek?</summary><ul class="normal">
-		<img style="max-width:40%" data-src="ffkglzkmkkm.png">
+	<details class="{316} kerdes 3/3"><summary>véna nyomásértékek?</summary><ul class="normal">
 		<li>posztkapilláris venulákban a nyomás 15Hgmm körüli érték</li>
 		<li>a szív(jobb pitvar) felé haladva ez folyamatosan csökken</li>
 		<li>a centrális vénás nyomás(CVP), azaz a két vena cava mellkasi szakaszában mért nyomása ~1Hgmm</li>
 		<li>centralis_vénás_nyomás(CVP) = jobb pitvari nyomás</li>
-		<li>az ~1Hgmm az átlag érték, mert valójában van 3 hullám</li><ul>
-			<div class="imp [595]"></div>
-		</ul>
-		<img class="mini" data-src="wmthxlpkdh.png"> <abbr title="http://www.derangedphysiology.com/main/core-topics-intensive-care/haemodynamic-monitoring/Chapter%202.1.3/interpretation-central-venous-pressure-waveform">'</abbr> <img class="mini" data-src="xmkgfjhdm.png">
+		<font style="font-size:80%">innen pedig ugye a jobb kamrán keresztül kis vérkör!</font>
 	</ul></details>
-	<details class="{317} kerdes 4/3"><summary>vazodilatáció?</summary><ul class="normal">
+	<details class="{317} kerdes 4/3"><summary>vazodilatáció? (szervezet szinten & lokális szinten)</summary><ul class="normal">
 	  <strong>szervezet szinten</strong>
-		<li><span class="Important">szervezeti szinten NEM végzi paraszimpatikus idegrendszer, se szimpatikus</span> (csak szervspecifikusan, azaz lokálisan)</li>
+		<li><span class="Important">szervezeti szinten NEM végzi <u>psy</u> idegrendszer, se <u>symp</u></span> (csak lokálisan)</li>
 		<li>tehát pusztán annak a következménye, hogy csökken a szimpatikus_tónus (ami vazokonstrikciót okoz szervezet szinten!)</li>
 		<li>ennek szabályozása összetett, pl. a CVLM aktiválódása gátlóan hat RVLM-re és ezáltal csökken a 'szimpatikus aktivitás' <img class="mini" data-src="rpcvnmlkjj.png"></li>
 	  <hr><strong>lokális szinten</strong>
-		<li>a szimpatikus idegrendszer képes vazodilatációt okozni a harántcsíkolt izom arteriolákban <img class="mini" data-src="drngrhglhk.png"></li><ul>
-			<li>jelentősége alacsony emberben</li>
-			<li>az arteriolákban lévő &beta;<sub>2</sub>-adrenerg receptor megköti az adrenalint (neurotranszmitter) &#10140; cAMP nő &#10140; simaizom elernyed</li>
+		<li><span class="WHITE">symp</span> idegrendszer képes vazodilatációt okozni:</li><ul>
+			<li>&beta;<sub>2</sub>-receptor megköti az adrenalint &#10140; cAMP nő &#10140; simaizom elernyed</li>
+			<li>arteriolák &#10140; hcs.izom, coronáriás-keringés, máj</li>
+			<li>bronchiolusok</li>
 		</ul>
-		<li>paraszimpatikus idegrendszer is képes egyes szerveknél vazodilatációt kiváltani</li><ul>
-			<li>pl. nyálmirigy-keringésnél &#10140; VIP(neurotranszmitter) (lásd <abbr title="ctrl+f-el járjak utána, mert volt 1-2 helyen róla szó már">...</abbr>)</li>
-			<li>pl. gastrointestinalis mirigyek &#10140; VIP(neurotranszmitter) & NO(mediátor)</li>
-			<li><font style="font-size:80%">pl. külső nemi szervek &#10140; NO(mediátor)</font></li>
+		<li><span class="WHITE">psy</span> idegrendszer képes egyes szerveknél vazodilatációt kiváltani</li><ul>
+			<li>pl. GI mirigyek &#10140; VIP & NO <span class="LASD">2.11</span></li>
+			<li><font style="font-size:80%">pl. külső nemi szervek &#10140; NO</font></li>
 		</ul>
 	</ul></details>
 	<details class="{318} kerdes 4/3"><summary>'vénás' szabályozás?</summary><ul class="normal">
@@ -1150,7 +1182,7 @@
 			<li>limfociták &#10140; 30%</li>
 		</ul>
 	</ul></details>
-	<details class="{460} kerdes 4/8"><summary>mellékvesevelő</summary><ul class="normal">
+	<details class="{460} kerdes 4/6"><summary>mellékvesevelő</summary><ul class="normal">
 		<li>ha <span class="WHITE">symp</span> aktivitás fokozódik (pl. vérvesztés, fenyegető támadás stb.) &#10140; mellékvesevelő-ből több adrenalin<abbr title="+kevés noradrenalin">'</abbr> jut vérbe</li>
 		<details><summary>katekolaminok</summary><ul class="normal">
 			<div class="imp [363]"></div>
@@ -1158,10 +1190,9 @@
 	  <hr><strong>adrenalin<abbr title="+kevés noradrenalin">'</abbr> hatása szívben</strong>
 		<li>erősíti a szimpatikus idegrendszer hatását, mert ott β<sub>1</sub>-receptorok vannak</li>
 	  <strong>adrenalin<abbr title="+kevés noradrenalin">'</abbr> hatása erekben</strong>
-		<li>α<sub>1</sub>-receptor és β<sub>2</sub>-receptor ellentétes hatást váltanak ki</li><ul>
-			<li>&alpha;<sub>1</sub>-receptor /noradrenalinra érzékeny/ &#10140; kontrakció</li>
-			<li>&beta;<sub>2</sub>-receptor /adrenalinra érzékeny/ &#10140; relaxáció</li>
-		</ul>
+		<br>α<sub>1</sub>-receptor és β<sub>2</sub>-receptor ellentétes hatást váltanak ki
+		<li>&alpha;<sub>1</sub>-receptor /noradrenalinra érzékeny/ &#10140; kontrakció</li>
+		<li>&beta;<sub>2</sub>-receptor /adrenalinra érzékeny/ &#10140; relaxáció</li>
 		<details><summary>érzékenységükre a magyarázat</summary><ul class="normal">
 			a két receptortípus eltérő elhelyezkedésű
 			<li>&alpha;<sub>1</sub>-receptor &#10140; az erek adventitiája közelében találhatók &#10140; ezek közvetítik a szimpatikus idegvégződésekből felszabadult noradrenalin hatását (kevéssé hozzáférhetők a keringő katekolaminok(hormon) számára)</li>
@@ -1175,14 +1206,7 @@
 			<li><span class="IMPORTANT">többi helyen vazokonstrikció</span> lesz &alpha;<sub>1</sub>-receptor(noradrenalin) keresztül</li>
 			&#10140; <span class="IMPORTANT">így a TPR (&#10140; artériás vérnyomás) nem változik</span>
 		</ul>
-		<li>összefoglalva azt lehet elmondani, hogy az adrenalin és noradrenalin alapvetően érszűkítő(arteriolák), de <abbr title="így az adrenalin a vazodilatáció irányába dönti a mérleget, de! &#10140; ettől még az eredő legtöbb esetben a vazokonstrikció ezért nincs vazodilatációk közt megemlítve a mellékvesekéreg hatása">'</abbr></li><ul>
-			<li>a fennti esetekben értágító, de..</li>
-			<li><span class="IMPORTANT">koronáriás-keringésben az eredő hatás zérus </span>(&alpha;<sub>1</sub>-receptorok is vannak!)</li>
-			<details><summary><font style="font-size:80%">koronáriás-keringés</font></summary><ul class="normal">
-				<li>kis koronária ágakban &beta;<sub>2</sub>-adrenerg-receptor van &#10140; vazodilatációt eredményez</li>
-				<li>nagy koronária ágakban &alpha;<sub>1</sub>-adrenerg-receptor van &#10140; vazokonstrikciót eredményez</li>
-			</ul></details>
-		</ul>
+		<li>összefoglalva azt lehet elmondani, hogy az adrenalin és noradrenalin alapvetően érszűkítő(arteriolák), de <abbr title="így az adrenalin a vazodilatáció irányába dönti a mérleget, de! &#10140; ettől még az eredő legtöbb esetben a vazokonstrikció ezért nincs vazodilatációk közt megemlítve a mellékvesekéreg hatása">'</abbr> a fennti esetekben értágító</li>
 		<details><summary><font style="font-size:80%">az 'eredő' tehát attól függ, hogy...</font></summary><ul class="normal">
 			<li>egyrészt, hogy milyen arányban van a két receptor mennyisége</li>
 			<li>másrészt milyen arányban van az adrenalin és noradrenalin mennyisége</li>
@@ -1191,7 +1215,7 @@
 	<details class="{470} kerdes 3/2"><summary>B-sejt aktivációja</summary><ul class="normal">
 		<li>a B-sejt miután megkötötte a BCR-en az antigént, kihelyezi a membránjába lévő MHC-II -re is az antigént</li>
 		<li>ehhez pedig kötődik a T<sub>H</sub>2 a TCR-el, és így megindul a B-sejt aktiválódása <abbr title="MHC-2-je van lecheckoltam, wikipedia: Antigen-presenting_cell">'</abbr></li>
-		<iframe width="560" height="315" src="https://www.youtube.com/embed/8MiCnfOgH5M" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+		<iframe width="560" height="315" data-src="https://www.youtube.com/embed/8MiCnfOgH5M" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 	</ul></details>
 	<details class="{488} kerdes 3/3"><summary style="color:MediumBlue">enzimaktivitáshoz kapcsolt receptorok</summary><ul class="normal">
 		<li>enzimaktivitás, melyhez kapcsolódnak az a tirozin-kináz</li>
@@ -1682,6 +1706,83 @@
 		<li>prereceptor specifitás &#10140; 11β-<abbr title="hidroxi-szteroid-dehidrogenáz">HSD</abbr>2 enzim van ezekben a sejtekben &#10140; ennek következtében kortizolból kortizont képez, így azt már NEM tudja felvenni</li>
 		<font style="font-size:80%">ha hiányzik a 11β-<abbr title="hidroxi-szteroid-dehidrogenáz">HSD</abbr>2, akkor hiperaldoszterinizmus lesz &#10140; mert kortizolból több van, és mivel azok is kötődnek a receptorhoz már, kiváltják ugyanazt, mint aldoszteron</font>
 	</ul></details>
+	<details class="{581} kerdes 4/12"><summary>A keringés neurohormonális és reflexes szabályozása. Baroreceptor reflexek. A kardiovaszkuláris központok.</summary><ul class="normal">
+	  <strong>baroreceptor reflex</strong>
+		<li>funkciója &#10140; artériás_vérnyomás szabályozása</li>
+		<details><summary style="color:blue">baroreceptor reflex lefutása</summary><ul class="normal">
+			<li>magas nyomású baroreceptor &#10140; mérik az artériás_vérnyomást</li>
+			<li>afferens_pályák &#10140; a központba szállítják a baroreceptorból számarzó ingert</li>
+			<li>nyúltvelői_kardiovaszkuláris_központ</li>
+			<li>efferens_pályák &#10140; a központból viszik a választ az effektor_szervekbe</li>
+			<li>effektor_szervek &#10140; az artériás vérnyomás beállítását végzik &#10140; szív, erek, mellékvesevelő, <abbr title="ennek szerpéről későbbi előadásban lesz szó (vese 'volumen-szabályozása' kapcsolódik ehhez)">vese</abbr></li>
+		</ul></details>
+	  <hr>
+		<details><summary>baroreceptorok</summary><ul class="normal">
+			<div class="imp [392]"></div>
+		</ul></details>
+		<details><summary style="color:blue"><font style="font-size:80%">érzékelésének molekuláris mechanizmusa</font></summary><ul class="normal">
+			<img style="max-width:30%" data-src="dpllkhjkmnd.png">
+			<li>az idegvégződésen mechanoszenzitív kationcsatornák találhatók</li>
+			<li>nyomásnövekedés hatására nő a tenzió, melynek hatására ezek megnyílnak és depolarizáció megy végbe &#10140; mértéke arányos a nyomásnövekedéssel(és tenzióval)</li>
+			<li>a létrejött depolarizáció kivált AP-kat &#10140; a depolarizáció mértéke arányos az AP-k frekvenciájával</li>
+		  <hr><strong>érzékenységi tartomány</strong>
+			  <li>nyomástartomány, melyben képesek érzékelni a nyomásváltozást &#10140; <span class="IMPORTANT">kb.60-200Hgmm között van</span> <img class="mini" data-src="fmkkxmcnmvm.png"></li>
+			<li><font style="font-size:80%">a nyomásváltozás következtében bekövetkező AP-frekvenica változás a fiziológiás körülmények közti nyomástartományban(100Hgmm +-30) a legnagyobb (ott a legnagyob a görbe meredeksége)</font></li>
+			<li><font style="font-size:80%">tehát ott a legérzékenyebb</font></li>
+			<div><font style="font-size:80%">magas vérnyomásos (hipertenzió) betegeknél az érzékenységi tartományuk eltolódik</font> <img class="mini" data-src="hxcntzwrl.png"></div>
+		  <hr><strong>elmondható, hogy két dolgot képesek érzékelni az artériás nyomással kapcsolatban (közvetve)</strong>
+			<li><abbr title="állandó">statikus</abbr> nyomást</li>
+			<li>nyomásváltozás sebességét</li>
+			<font style="font-size:80%">ezt ilyen 'szvsz alapján' írtam, szóval gondolom nem 100% pontos, de a lényege ez.</font>
+			<li>statikus nyomáson egy állandó(nyomás értékhez viszonyítva<abbr title="tehát pl. 60Hgmm 5/min, 70Hgmm 10/min stb. (random számokat írtam ide)">'</abbr>) frekvenciát adnak le</li>
+			<li>nyomásnövekedés hatására frekvencianövekedés következik be &#10140; minél nagyobb a sebessége, annál nagyobb a növekedés</li>
+			<li>nyomáscsökkenés hatására frekvenciacsökkenés következik be ugyanígy</li>
+		  <hr><strong>Laplace törvény</strong>
+			<div class="imp [147]"></div>
+		</ul></details>
+	  <hr>
+		<details><summary><span class="IMPORTANT"><strong>RAJZ</strong></span> afferens pályák & <span class="IMPORTANT">nyúltvelői_kardiovaszkuláris_központ</span> & efferens_pályák</summary><ul class="normal">
+			<img style="float:none" data-src="ryzmbjlkokj.png">
+			<details><summary>lefutás leírása</summary><ul class="normal">
+				<div style="max-width:20%; float:right">
+					<img data-src="brpcprkgjhmn.png">
+					<img data-src="rpcvnmlkjj.png">
+				</div>
+			  <strong>afferensek</strong>
+				<li>sinus_caroticus &#10140; n.glossopharyngeus[IX] keresztül jut el NTS-be</li>
+				<li>arcus_aortae &#10140; n.vaguson[X] keresztül jut el NTS-be</li>
+			  <hr><strong>központi átkapcsolás</strong>
+				<li>nucleus_tractus_solitarius(NTS) <abbr title="első átkapcsolás (csak hogy megértés könnyebb legyen)">(1.)</abbr> &#10140; innen rostok haladnak...</li><ul>
+					<li>egyrészt a caudal_ventrolateral_medulla(CVLM)-ba és ott aktiválja a neuronokat (2.) &#10140; ezek gátolják (3.) a rostro_ventrolateral_medulla(RVLM) neuronokat</li>
+					<li>másrészt a (2.) nucleus_ambiguus[IX-X-XI]-ba <abbr title="és a nucleus_dorsalis_nervi_vagii[X]-a és a ">'</abbr></li>
+				</ul>
+			  <hr><strong>efferensek</strong>
+				<li>nucleus_ambiguus &#10140; ebből <span class="IMPORTANT">psy rostok</span> indulnak &#10140; a n.vagus(X)-on keresztül eljutnak a szívbe: szinuszcsomó & AV-csomó <font style="font-size:80%">(intramuralis_ganglionban végződnek)</font></li>
+				<li>RVLM = presszor-központ <abbr title="=vazomotor-központ">'</abbr> &#10140; ebből <span class="IMPORTANT">symp rostok</span> indulnak</li><ul>
+					<li>egyrészt a mellékvesevelőbe(módosult ganglionnak tekinthető) &#10140; <span class="LASD">hatásukat lásd lentebb: effektor szervek</span></li>
+					<li>másrészt vegetatív_ganglionba átkapcsol postggl.neuronra, majd eljut szív/erek &#10140; <span class="LASD">hatásukat lásd lentebb: effektor szervek</span></li>
+					<font style="font-size:80%">(a nucleus_intermediolateralis-ban van valójában előtte még1 átkapcsolás preggl neuronra, képen látszik, de ne érdekeljen)</font>
+				</ul>
+			  <hr>
+				<font style="font-size:80%">a képen lévő carotid_body az már kemoreceptor!</font>
+				<img class="mini" data-src="mnckgjhmr.png">
+			</ul></details>
+		</ul></details>
+	  <hr><strong>effektor_szervek</strong>
+		<li>a preggl.rostok neurotranszmitter ACh</li>
+		<details><summary>szív</summary><ul class="normal">
+			<li>szimpatikus &#10140; a posztggl.rost neurotranszmittere noradrenalin &#10140; pozitív kronotróp/dromotróp/luzitróp/inotróp &#10140; <span class="WHITE">VTF</span> <span class="WHITE">frekvencia</span> nő <span class="LASD">2.4</span></li>
+			<li>paraszimpatikus &#10140; a posztggl.rost neurotranszmittere ACh &#10140; negatív kronotróp/dromotróp &#10140; <span class="WHITE">frekvencia</span> csökken</li>
+			<div class="imp [111]"></div>
+		</ul></details>
+		<details><summary>erek</summary><ul class="normal">
+			<li><span class="WHITE">symp</span> posztggl.rost neurotranszmittere noradrenalin &#10140; &alpha;<sub>1</sub>-receptor &#10140; <span class="IMPORTANT">arteriolák vazokonstrikció</span> <abbr title="(+nagy vénák)">'</abbr></li>
+			<font style="font-size:80%"><span class="WHITE">psy</span> beidegzésük nincs!!</font>
+		</ul></details>
+		<details><summary>mellékvesevelő (szvsz ez végzi a <span class="IMPORTANT">keringés neurohormonális szabályozásá</span>t!)</summary><ul class="normal">
+			<div class="imp [460]"></div>
+		</ul></details>
+	</ul></details>
 	<details class="{582} kerdes 3/5"><summary>szteroidhormonok szintézise</summary><ul class="normal">
 	  <strong>tudnivalók</strong>
 		<li>enzimek két családja:</li><ul>
@@ -1750,11 +1851,12 @@
 			<div class="imp [144]"></div>
 		</ul></details>
 	  <hr><strong>jelentősége</strong>
-		<li><span class="IMPORTANT">koronáriás keringésben</span> fontos</li><ul>
+		<li><span class="IMPORTANT">koronáriás keringés</span></li><ul>
+			<li>retrográd vazodilatáció &#10140; NO felszabadul az endothelsejtekből<abbr title="vazodilatáió hatására, mert felgyorsult az anyagcsere">'</abbr> és vazodilatációt okoz a kis artériákban</li>
 			<li>ha a szívizomzat vérellátása elégtelen, akkor <span class="IMPORTANT">nitroglicerin</span>-t értágítóként használják, ugyanis abból NO lesz</li>
 		</ul>
 		<li><span class="IMPORTANT">gyulladás</span>: az adott területen vazodilatáció alakul ki &#10140; áramlás nő &#10140; immunsejtek jobban jutnak oda, toxikus anyag gyorsabban mosódik ki</li>
-		<li><span class="IMPORTANT">erekció</span> is ezel a mechanizmussal megy végbe <span class="LASD">7.12</span></li>
+		<li><span class="IMPORTANT">erekció</span> is ezzel a mechanizmussal megy végbe <span class="LASD">7.12</span></li>
 		<li><span class="IMPORTANT">bőr vérkeringésének szabályozása</span>: nem acralis területek <span class="LASD">8.5</span></li>
 		<li><span class="IMPORTANT">anaphylaxiás reakció</span> <span class="LASD">6.7</span></li>
 		<details><summary>retrográd_vazodilatáció</summary><ul class="normal">
@@ -1831,7 +1933,8 @@
 			</tr>
 		</table>
 	</ul></details>
-	<details class="{595} kerdes 4/3"><summary>pitvari hullámok</summary><ul class="normal">
+	<details class="{595} kerdes 4/3"><summary>bal pitvari hullámok</summary><ul class="normal">
+		<img style="max-width:40%" data-src="ffkglzkmkkm.png">
 		<li><abbr title="Atrium kontrakció">A</abbr>-hullám &#10140; pitvari kontrakció következtében (~5/10/5Hgmm)</li>
 		<li><abbr title="tri/biCuspidalis billentyűnt keresztül">C</abbr>-hullám (5/10/5Hgmm)</li><ul>
 			<li>felszálló része <span class="WHITE">1</span> &#10140; kamra kontrakció következtébeni nyomás-növekedés áttevődik az AV-billentyűkre melyek beboltosulnak, és így pitvari nyomás is nő</li>
@@ -1841,6 +1944,7 @@
 			<li>nő <span class="WHITE">2</span>-fázisban (C-hullám után) &#10140; vénával telítődik a pitvar folyamatosan</li>
 			<li>csökken <span class="WHITE">4</span>-fázisban &#10140; AV-billentyű kinyílása következtében a vér elkezd átáramlani kamrába</li>
 		</ul>
+		<img class="mini" data-src="wmthxlpkdh.png"> <abbr title="http://www.derangedphysiology.com/main/core-topics-intensive-care/haemodynamic-monitoring/Chapter%202.1.3/interpretation-central-venous-pressure-waveform">'</abbr> <img class="mini" data-src="xmkgfjhdm.png">
 	</ul></details>
 	<details class="{596} kerdes 4/6"><summary><strong>ödémák</strong><abbr title="tőlem kérdezték vizsgán, kéne még ide konkrétabb példákat kialakulására (2-3)">!!</abbr></summary><ul class="normal">
 		<li>lényege &#10140; <abbr title="tehát mondjuk 2ml/perc filtrálódik nettó, azonban a nyirokkeringés csak 1ml/perc-el dolgozik">nincs elszállítva</abbr> a filtráció során interstitiumba kerülő folyadék, így felgyülemlik ott</li>
@@ -1912,8 +2016,7 @@
 		</ul>
 	</ul></details>
 </div>
-<div> <!-- 601 – xyz -->
-</div>
+<div> <!-- 601 – 626 -->
 	<details class="{601} kerdes 3/4"><summary>középfül szerepe</summary><ul class="normal">
 		<li>középfülben levegőben terjed a hang, míg belső fülben már folyadékban</li>
 		<li>levegő akusztikus impedanciája alacsony, míg a folyadéké magas</li>
@@ -1941,7 +2044,7 @@
 	<details class="{604} kerdes 3/2"><summary>frekvencia analízise (tonotópia)</summary><ul class="normal">
 		<li>alap tudnivaló &#10140; a membrana basilaris a belső fülbe jutó hang frekvenciájának függvényében mutat kitérést</li>
 		<li>a frekvenciaanalízis alapja a „hely elv”, ennek lényege... &#10140; a cochlea bázisán (azaz a foramen ovaléhoz közel) elhelyezkedő szőrsejtek magasabb (nagyobb frekvenciájú), a cochlea csúcsán (a helicotremánál) elhelyezkedők pedig mély (kisebb frekvenciájú) hangokat közvetítenek</li>
-		<iframe width="560" height="315" src="https://www.youtube.com/embed/dyenMluFaUw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+		<iframe width="560" height="315" data-src="https://www.youtube.com/embed/dyenMluFaUw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 		<li>ugyanis a membrana basilaris a cochlea bázisán keskeny-feszes, míg a csúcsán széles-laza</li>
 	</ul></details>
 	<details class="{605} kerdes 3/2"><summary>hangerősség analízise</summary><ul class="normal">
@@ -2084,11 +2187,19 @@
 		</ul>
 		<li>lényege &#10140; az extrafuzális rostok kontrakciója meghúzza az ínorsón belüli spirális lefutású kollagénrostokat, a köztük lévő axonok deformálódnak, és azokban akciós potenciál sorozat generálódik</li>
 	</ul></details>
-	<details class="{617} kerdes 3/2"><summary>felső központokból leszálló pályák</summary><ul class="normal">
+	<details class="{617} kerdes 3/5"><summary>hcs.izom</summary><ul class="normal">
+		<img style="max-width:48%" data-src="vjvdkpcd.jpg">
+		<li>a gerincvelő mellső szarvában (+agytörzs) találhatók &#10140; &alpha;-motoneuronok & &gamma;-motoneuronok</li>
+		<li>az &alpha;-motoneuronok idegzik be az izomrostokat</li>
+	  <hr><strong>'főbb elvek'</strong><div>
+		<div class="imp [614]"></div>
+	  </div>
+	  <hr><strong>leszálló pályák</strong><div>
 		<li>tractus vestibulospinalis medialis/lateralis <font style="font-size:80%">(nucleus vestibularis medialis/lateralis -ból)</font></li>
 		<li>tractus rubrospinalis <font style="font-size:80%">(nucleus ruber-ből)</font></li>
 		<li>tractus reticulospinalis <font style="font-size:80%">(formatio reticularis-ból)</font></li>
 		&#10140; ezek szerepet játszanak az izomtónus kialakításában
+	  </div>
 	</ul></details>
 	<details class="{618} kerdes 3/3"><summary>interneuronok(típus,aktiváció,funkció)</summary><ul class="normal">
 		<li>Renshaw-gátló interneuron &#10140; &alpha;-motoneuron kollaterálisa aktiválja így negatív-feedback (központokból leszálló pályák is aktiválják ezt is)</li>
@@ -2168,10 +2279,61 @@
 			<li>ha tartósan fennáll, akkor a testsúly megnő</li>
 		</ul></details>
 	</ul></details>
+	<details class="{625} kerdes 3/2"><summary>G<sub>12/13</sub>-család mechanizmusa</summary><ul class="normal">
+		<li>Rho családba tartozó G-fehérjéket aktiválnak &#10140; ezek mindegyike <abbr title="csak &alpha;-alegységből állnak">kis</abbr> G-fehérje!</li>
+		<li>a Rho G-fehérje ezután aktiválja a Rho-kináz-t</li>
+		<li>a Rho-kináz az MLCP-t foszforilálja, így inaktiválódik ➜ simaizom kontrakció</li>
+	  <hr>a ligand TXA<sub>2</sub> (elég ennyit tudnom<abbr title="szvsz">'</abbr>)
+	</ul></details>
+	<details class="{626} kerdes 3/4"><summary>enzimaktivitású receptorok</summary><ul class="normal">
+			<li>lényege &#10140; receptor ha megköti a ligandot(agonistát) akkor enzimaktivitást produkál</li>
+		  <strong>csoportosításuk</strong>
+			<li>tirozin-kináz aktivitású receptorok &#10140; ezek a GF-receptorok és az inzulin-receptor</li><ul>
+				<li>GF &#10140; a sejt növekedését serkentik</li>
+				<li>inzulin-receptor &#10140; hatására az endoszómákból a GLUT-4 kijut a membránba &#10140; sejt glükóz felvétele nő (vércukorszint csökken!)</li>
+			</ul>
+			<li>guanilát-cikláz aktivitású receptorok &#10140; 2 csoportjuk van:</li><ul>
+				guanilát-cikláz ➜ GTP-ből létrehoz cGMP-t &#10140; simaizom relaxáció
+				<details><summary>● egyik a plazmamembránban találhatók &#10140; ligandja pl. ANP: afferens arteriolák vazodilatációja által a diurézist fokozza <span class="lasd">4.1t</span></summary><ul class="normal">
+					<div class="imp [355]"></div>
+				</ul></details>
+				<li>másik az <abbr title="szolubilis-guanilát-cikláz">sGC</abbr> &#10140; intracellulárisan található, és ligandja NO &#10140; vazodilatációt okoz <span class="lasd">2.9t</span></li>
+			</ul>
+			<li>szerin/treonin-kináz aktivitású receptorok &#10140; pl. TGF&beta;-receptor</li>
+		  <hr>
+			<details><summary style="color:blue">tirozin-kináz aktivitású receptorok működésének lényege</summary><ul class="normal">
+				<img style="max-width:50%" data-src="dmrzctkrprcknz.png">
+				<li>agonista megkötése következtében dimerizálódik és <font style="font-size:80%">auto</font>foszforilálódik</li><ul>
+					<li><font style="font-size:80%">auto</font>foszforiláció &#10140; tirozin aminosavakat foszforilálják egymáson<abbr title="mivel egymást foszforilálják, és nem önmagukat, így valójában nem is igazi autofoszforiláció">'</abbr></li>
+				</ul>
+				<li>az így IC részen keletkező foszforilált tirozinokat felismerik jelátviteli molekulák &#10140; különböző jelátviteli pályák indulnak meg</li><ul>
+					<li>a molekulában, mely felismeri, megtalálható az <strong>SH2 domén</strong></li>
+					<li>ilyen molekula pl. <abbr title="foszfatidil-inozitol-3-kináz">PI3K</abbr>, PLC-&gamma;, GAP <img class="mini" data-src="jltvlmlklm.png"></li>
+					<li>PLC<abbr title="izoformát jelöl">&gamma;</abbr> ugyanazon hatásokat éri el, mint a PLC<abbr title="izoformát jelöl">&beta;</abbr> &#10140; csupán más úton aktiválódnak (&gamma; a tirozin kináz aktivitású receptor által, &beta; a G<sub>q/11</sub> által)</li>
+				</ul>
+			</ul></details>
+			<details><summary style="color:blue">simaizom relaxáció kiváltása</summary><ul class="normal">
+				<div class="imp [144]"></div>
+			</ul></details>
+	</ul></details>
+</div>
+<div> <!-- 627 – xyz -->
+</div>
+	<details class="{628} kerdes 3/3"><summary>centrális_vénás_nyomás miktől függ?</summary><ul class="normal">
+		<li>közvetlenül meghatározó tényezők</li><ul>
+			<li>vénákba beáramló vér térfogata (kapillárisokból)</li>
+			<li>vénákból kiáramló vér térfogata (szívbe), azaz a PTF</li>
+			<li>a vér <abbr title="teljes keringési rendszert kitöltő">össz</abbr>térfogata</li>
+		</ul>
+		<li>közvetetten meghatározó tényezők</li><ul>
+			<li><span class="Important">vis a fronte</span> &#10140; jobb kamra teljesítménye szabja meg (diasztolé során szívó hatást gyakorol a vénás rendszerre)</li>
+			<li>vis a tergo &#10140; bal kamra teljesítménye szabja meg a vénákba beáramló vér térfogatát</li>
+		</ul>
+	</ul></details>
 <!----></details>
 
-<div> 2.5 - 2.11 - 3.5 - 5.2 - 6.1 - 7.7 - 7.8 - 7.9 - 8.10től összes, kivéve 8.18</div>
-<div> Rh miért elég egyoldalú, AB miért kell kétoldalú</div>
+<div> elektrotónusos potenciál - 2.5 - 8.1 ---- 3.5 - 5.2 - 6.1 - 7.7 - 7.8 - 7.9 - 8.10 - 8.19</div>
+<div> Rh miért elég egyoldalú, AB miért kell kétoldalú &#10140; mert Rh esetében antitest kis esélyel van, így értelmetlen lenne...</div>
 <div> filtrációs koefficiens elég nekem</div>
 <div> 4.1 Na reabszorpció colon+gyűjtőcsatorna &#10140; Glut sincs! az is különbség!</div>
 <div> 4.5 Conn-szindrómát tegyem 7.3-7.4t Cushing mellé</div>
@@ -2179,8 +2341,8 @@
 
 <!--//////////////////////////////-->  <details><summary class="mainTitle">1-es témakör</summary>  <!--//////////////////////////////-->
 
-<!----><details><summary class="phase">1. A szervezet vízterei és azok meghatározása. Az extracelluláris és intracelluláris folyadék.</summary>
-	<details class="{141} kerdes 4/3"><summary><strong>A szervezet vízterei</strong> és azok meghatározása. Az extracelluláris és az intracelluláris folyadék.</summary><ul class="normal">
+<!----><details><summary class="phase">1. A szervezet vízterei és azok meghatározása. Az extracelluláris és intracelluláris folyadék.</summary><details open class="open"><summary></summary>
+	<details class="kerdes 4/3"><summary><strong>A szervezet vízterei</strong> és azok meghatározása. Az extracelluláris és az intracelluláris folyadék.</summary><ul class="normal">
 		<table>
 			<tr><td colspan="3">össz-víztér = 0,6 * testtömeg (pl. 42kg)</td></tr>
 			<tr>
@@ -2237,10 +2399,16 @@
 		<li><font class="abbr">vérplazma / ECF / ICF ionkoncentráció közti összefüggés? ►</font> vérplazma megegyezik lényegében az ECF-el mert a kapilláris-fal átjárható az ionok számára (de a sejtmembrán számára nem!)</li>
 		<li><font class="abbr">táblázatban lévő adatok mértékegysége ►</font> <abbr title="mmol/l">mM</abbr></li>
 	  <strong>vérplazma</strong>
-		<li>glükóz, <abbr title="karbamid=">'</abbr>urea, <abbr title="összkoleszterin">'</abbr>koleszterin &#10140; 5mmol/l</li>
+		<li>glükóz, <abbr title="karbamid=">'</abbr>urea, összkoleszterin(LDL,HDL,stb.) &#10140; mindegyiknek 5mmol/l</li>
 		<li><abbr title="pontosabban plazmafehérjék, mivel vérplazmában lévő fehérjék">'</abbr>fehérjék &#10140; 60-80<abbr title="molban nem lenne értelme, hisz különbözőek">g/l</abbr></li>
 	</ul></details>
-  <hr>
+  
+  </details><hr>
+	<details class="kerdes 3/2"><summary>higítási elv lényege</summary><ul class="normal">
+		<li>ennek lényege: ismert mennyiségű indikátort bejuttatása &#10140; megvárjuk míg egyenletesen eloszlik &#10140; utána a koncentrációját meghatározva már kiszámítható <abbr title="ezt értsem: tehát pl. ha van valamennyi víz, és én belejuttatok 1mol indikátort, majd egyenletes eloszlás után a koncentrációja 0,5mol/l &#10140; akkor nyilvánvalóan 2l víz van">!!</abbr></li>
+		<li>megoszlási hányados = (<abbr title="beadott">'</abbr>indikátor mennyisége) / (indikátor <abbr title="megoszlás utáni">'</abbr> koncentrációja)</li>
+		<li>az indikátor vénán kerül bejuttatásra</li>
+	</ul></details>
 	<details class="kerdes 3/2"><summary>Na<sup>+</sup>,K<sup>+</sup>,Cl<sup>-</sup>,Ca<sup>2+</sup> koncentrációja és egyensúlyi potenciálja? <!-- v1 --></summary><ul class="normal">
 		<div class="imp [116]"></div>
 	</ul></details>
@@ -2277,7 +2445,7 @@
 	</ul></details>
 <!----></details>
 
-<!----><details><summary class="phase">2. A sejtmembrán felépítése, permeabilitása, transzport funkciói. Transzepitheliális transzportfolyamatok.</summary>
+<!----><details><summary class="phase">2. A sejtmembrán felépítése, permeabilitása, transzport funkciói. Transzepitheliális transzportfolyamatok.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/3"><summary><strong>A sejtmembrán felépítése</strong>, permeabilitása, transzport funkciói. Transzepitheliális transzportfolyamatok</summary><ul class="normal">
 		<li>lipid kettősréteg &#10140; poláros részük EC fele néz, apoláros részük a membrán belsejében van</li><ul>
 			<li>foszfolipidek (nagyrésze)</li>
@@ -2382,7 +2550,7 @@
 			</ul></details>
 		</ul></details>
 	  <hr><strong>másodlagosan aktív transzporter bemutatása 1pl-n</strong>
-		<details><summary><strong><span class="Important">R</span> A glukóz transzportja hámsejtekben.</strong></summary><ul class="normal">
+		<details><summary>● <strong><span class="Important">R</span> A glukóz transzportja hámsejtekben.</strong></summary><ul class="normal">
 			<div class="imp [171]"></div>
 		</ul></details>
 		<details><summary>● Na<sup>+</sup>/Ca<sup>2+</sup><font style="font-size:80%">(NCX)</font> &#10140; <span class="lasd">1.8t simaizom & 2.4t szívizom: Ca<sup>2+</sup> visszajuttatása EC-be</span></summary><ul class="normal">
@@ -2410,7 +2578,7 @@
 		</ul></details>
 	</ul></details>
 	
-  <hr>
+  </details><hr>
 	<details class="kerdes 2/3"><summary><u>egyszerű diffúzió</u> vs <u>facilitált diffúzió</u></summary><ul class="normal">
 		<img style="max-width:20%" data-src="trnszprsglmb.png">
 	  <strong>egyszerű</strong> &#10140; <span class="Important">alábbiaktól függ:</span>
@@ -2524,7 +2692,7 @@
 	</ul></details>
 <!----></details>
 
-<!----><details><summary class="phase">3. Biológiai jelátvitel: receptorok, G-fehérjék, másodlagos hírvivők.</summary>
+<!----><details><summary class="phase">3. Biológiai jelátvitel: receptorok, G-fehérjék, másodlagos hírvivők.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/4"><summary><strong>Biológiai jelátvitel</strong>: receptorok, G-fehérjék, másodlagos hírvivők.</summary><ul class="normal">
 		<table><tr><th>típus</th> <th>lényege</th> <th style="width:55%">1-2 pl</th></tr>
 			<tr><th>autokrin</th> 
@@ -2592,10 +2760,8 @@
 		<details><summary>G<sub>t</sub>-család mechanizmusa?</summary><ul class="normal">
 			<div class="imp [445]"></div>
 		</ul></details>
-		<details><summary>G<sub>12/13</sub>-család funkciója?</summary><ul class="normal">
-			<li>Rho családba tartozó G-fehérjéket aktiválnak &#10140; ezek mindegyike <abbr title="csak &alpha;-alegységből állnak">kis</abbr> G-fehérje!</li>
-			<li>a Rho G-fehérje ezután aktiválja a Rho-kináz-t</li>
-			<li>a Rho-kináz az MLCP-t foszforilálja, így inaktiválódik ➜ simaizom kontrakció</li>
+		<details><summary>G<sub>12/13</sub>-család mechanizmusa?</summary><ul class="normal">
+			<div class="imp [625]"></div>
 		</ul></details>
 		<details><summary><strong>TÁBLÁZAT</strong></summary><ul class="normal">
 			<div class="imp [224]"></div>
@@ -2608,35 +2774,7 @@
 			<div class="imp [220]"></div>
 		</ul></details>
 		<details><summary>enzimaktivitású receptorok</summary><ul class="normal">
-			<li>lényege &#10140; receptor ha megköti a ligandot(agonistát) akkor enzimaktivitást produkál</li>
-		  <strong>csoportosításuk</strong>
-			<li>tirozin-kináz aktivitású receptorok &#10140; ezek a GF-receptorok és az inzulin-receptor</li><ul>
-				<li>GF &#10140; a sejt növekedését serkentik</li>
-				<li>inzulin-receptor &#10140; hatására az endoszómákból a GLUT-4 kijut a membránba &#10140; sejt glükóz felvétele nő (vércukorszint csökken!)</li>
-			</ul>
-			<li>guanilát-cikláz aktivitású receptorok &#10140; 2 csoportjuk van:</li><ul>
-				guanilát-cikláz ➜ GTP-ből létrehoz cGMP-t &#10140; simaizom relaxáció
-				<details><summary>● egyik a plazmamembránban találhatók &#10140; ligandja pl. ANP: afferens arteriolák vazodilatációja által a diurézist fokozza <span class="lasd">4.1t</span></summary><ul class="normal">
-					<div class="imp [355]"></div>
-				</ul></details>
-				<li>másik az <abbr title="szolubilis-guanilát-cikláz">sGC</abbr> &#10140; intracellulárisan található, és ligandja NO &#10140; vazodilatációt okoz <span class="lasd">2.9t</span></li>
-			</ul>
-			<li>szerin/treonin-kináz aktivitású receptorok &#10140; pl. TGF&beta;-receptor</li>
-		  <hr>
-			<details><summary style="color:blue">tirozin-kináz aktivitású receptorok működésének lényege</summary><ul class="normal">
-				<img style="max-width:50%" data-src="dmrzctkrprcknz.png">
-				<li>agonista megkötése következtében dimerizálódik és <font style="font-size:80%">auto</font>foszforilálódik</li><ul>
-					<li><font style="font-size:80%">auto</font>foszforiláció &#10140; tirozin aminosavakat foszforilálják egymáson<abbr title="mivel egymást foszforilálják, és nem önmagukat, így valójában nem is igazi autofoszforiláció">'</abbr></li>
-				</ul>
-				<li>az így IC részen keletkező foszforilált tirozinokat felismerik jelátviteli molekulák &#10140; különböző jelátviteli pályák indulnak meg</li><ul>
-					<li>a molekulában, mely felismeri, megtalálható az <strong>SH2 domén</strong></li>
-					<li>ilyen molekula pl. <abbr title="foszfatidil-inozitol-3-kináz">PI3K</abbr>, PLC-&gamma;, GAP <img class="mini" data-src="jltvlmlklm.png"></li>
-					<li>PLC<abbr title="izoformát jelöl">&gamma;</abbr> ugyanazon hatásokat éri el, mint a PLC<abbr title="izoformát jelöl">&beta;</abbr> &#10140; csupán más úton aktiválódnak (&gamma; a tirozin kináz aktivitású receptor által, &beta; a G<sub>q/11</sub> által)</li>
-				</ul>
-			</ul></details>
-			<details><summary style="color:blue">simaizom relaxáció kiváltása</summary><ul class="normal">
-				<div class="imp [144]"></div>
-			</ul></details>
+			<div class="imp [626]"></div>
 		</ul></details>
 		<details><summary>enzimaktivitáshoz kapcsolt receptorok</summary><ul class="normal">
 			<div class="imp [488]"></div>
@@ -2654,7 +2792,31 @@
 		</ul></details>
 	</ul></details>
 
-  <hr>
+  </details><hr>
+	<details class="open"><summary>receptorok</summary><ul class="normal">
+		<details class="kerdes 3/2"><summary><!-- receptorok -->funkció</summary><ul class="normal">
+			<li><span class="IMPORTANT">ligandot felismerik</span></li>
+			<li>következtében <abbr title="életfolyamatot szabályoznak">biológiai hatást</abbr> hoznak létre <abbr title="ez a különbség az enzimekkel szemben (ugyanis enzimek is specifikusan megkötnek anyagot, de nem hoznak létre biológiai hatást">'</abbr></li>
+		</ul></details>
+		<details class="kerdes 3/2"><summary><!-- receptorok -->típusai</summary><ul class="normal">
+			<div class="imp [443]"></div>
+		</ul></details>
+		<details class="kerdes 3/2"><summary><!-- receptorok -->jellemzésük</summary><ul class="normal">
+			<li>telítési kinetikát mutatnak <font style="font-size:80%">(telíthetőek liganddal csakúgy, mint a transzporterek)</font></li><ul>
+				<li>disszociációs konstans(K<sub>d</sub>) &#10140; az a ligandkoncentráció, ahol a receptorok fele ligandot köt</li>
+				<li>általánosan elmondható, hogy K<sub>d</sub> értéke körül 'működik jól' a receptor (ami általában 10<sup>-9</sup>M tájékán van)</li>
+			</ul>
+			<li>ligandra nagy a specifitása <font style="font-size:80%">(nem 100%, meglehet téveszteni őket, erre épül a farmakológia ipar)</font> &#10140; ligandok típusai:</li><ul>
+				<li>agonista &#10140; receptorhoz kötődve, <abbr title="biológiai_választ (többinél is, csak nem írtam mindegyikhez oda)">'</abbr>választ hoznak létre (receptort aktiválják) &#10140; pl. dezmopresszin-nel 'pótolható' a vazopresszin, ami a <abbr title="vazopresszin-2-receptor">V2R</abbr> működését helyreállítja, ezáltal a vízvisszaszívást</li>
+				<li>antagonista &#10140; receptorhoz kötődve, NEM hoznak létre választ (receptort gátolják) &#10140; pl. az angiotenzin-receptort ezzel gátolva a vérnyomás csökkenthető</li>
+			</ul>
+		</ul></details>
+		<span class="imp [220]"></span> <!-- ioncsatorna receptorok -->
+		<span class="imp [626]"></span> <!-- enzimaktivitású receptorok -->
+		<span class="imp [488]"></span> <!-- enzimaktivitáshoz kapcsolt receptorok -->
+	</ul></details>
+	<span class="imp [445]"></span> <!-- Gt-család mechanizmusa -->
+	<span class="imp [625]"></span> <!-- G12,13-család mechanizmusa -->
 	<details class="kerdes 3/2"><summary>ligandok típusai?</summary><ul class="normal">
 		<li>agonista &#10140; receptorhoz kötődve, <abbr title="biológiai_választ (többinél is, csak nem írtam mindegyikhez oda)">'</abbr>választ hoznak létre (receptort aktiválják)</li>
 		<li>partial<abbr title="részleges">'</abbr> agonisták &#10140; receptorhoz kötődve, csak részleges választ hoznak létre</li>
@@ -2706,8 +2868,8 @@
 	</ul></details>
 <!----></details>
 
-<!----><details><summary class="phase">4. Ioncsatornák osztályozása, működésük fő jellemzői. Feszültségfüggő Ca<sup>2+</sup> csatornák. A sejt Ca<sup>2+</sup>- anyagcseréje.</summary>
-	<details class="kerdes 4/6"><summary><strong>Ioncsatornák osztályozása</strong>, működésük fő jellemzői. Feszültségfüggő Ca<sup>2+</sup> csatornák. A sejt Ca<sup>2+</sup>- anyagcseréje.</summary><ul class="normal">
+<!----><details><summary class="phase">4. Ioncsatornák osztályozása, működésük fő jellemzői. Feszültségfüggő Ca<sup>2+</sup> csatornák. A sejt Ca<sup>2+</sup>- anyagcseréje.</summary><details open class="open"><summary></summary>
+	<details class="kerdes 4/3"><summary><strong>Ioncsatornák osztályozása</strong>, működésük fő jellemzői. Feszültségfüggő Ca<sup>2+</sup> csatornák. A sejt Ca<sup>2+</sup>- anyagcseréje.</summary><ul class="normal">
 		<img style="max-width:30%" data-src="cstrnktps.png">
 		<div>zárt állapotban vannak alapvetően &#10140; szignál hatására nyílnak, a szignál típusa alapján lehetnek...</div>
 		<li>feszültség-függők (A) &#10140; membránpotenciál-változásra nyílnak, ilyenek pl. ff.Na<sup>+</sup>-, ff.K<sup>+</sup>-, ff.Ca<sup>2+</sup>-csatornák</li>
@@ -2719,11 +2881,7 @@
 	  <hr><strong>ioncsatorna receptorok</strong>
 		<div class="imp [220]"></div>
 	</ul></details>
-	<details class="kerdes 4/6"><summary>Ioncsatornák osztályozása, <strong>működésük fő jellemzői</strong>. Feszültségfüggő Ca<sup>2+</sup> csatornák. A sejt Ca<sup>2+</sup>- anyagcseréje.</summary><ul class="normal">
-		<li>van egy hidrofil pórus doménje &#10140; a pórus egyik fele 'szűk' <img class="mini" data-src="mmbrnmd.png"></li><ul>
-			<li>ez biztosítja a specifikusságát <font style="font-size:80%">(tehát mely ion juthat át a póruson)</font> <abbr title="pl. képen láthatónál e következtében jut át csak K<sup>+</sup>, Na<sup>+</sup> pedig alig">'</abbr></li>
-			<li>ezen keresztül szabályozható (nyitható/zárható)</li>
-		</ul>
+	<details class="kerdes 4/3"><summary>Ioncsatornák osztályozása, <strong>működésük fő jellemzői</strong>. Feszültségfüggő Ca<sup>2+</sup> csatornák. A sejt Ca<sup>2+</sup>- anyagcseréje.</summary><ul class="normal">
 		<li>konformációváltozás csak nyitás/zárásnál van, az ion-transzportnál NINCS &#10140; <abbr title="pl. karrierhez viszonyítva">rövid idő alatt nagy mennyiséget átjuttat</abbr> <abbr title="elég belőle viszonylag kevés a membránba">'</abbr></li>
 	  <hr><strong>nyitódásuk/záródásuk mechanizmusa a ff.Na<sup>+</sup>-csatornán bemutatva</strong>
 		<img data-src="nyttzrtlnm.png">
@@ -2733,9 +2891,12 @@
 			<li>ezután depolarizáció következtében kinyílik</li>
 			<li>ezután spontán átmegy zárt-inaktív helyzetbe &#10140; ebből azonban csak repolarizációval képes továbmenni zárt-aktiválható helyetbe</li>
 		</ul>
-		<li>jelentősége &#10140; <span class="Important">biztosítja, hogy az ingerület egy irányba terjedjen</span> <span class="lasd">1.5 ingerület vezetése</span></li>
+		<li>jelentősége</li><ul>
+			<li><span class="Important">biztosítja, hogy az ingerület egy irányba terjedjen</span> <span class="lasd">1.5 ingerület vezetése</span></li>
+			<li><font style="font-size:80%">továbbá szvsz</font> ezért nem tetanizálható a szívizomzat</li>
+		</ul>
 	</ul></details>
-	<details class="kerdes 4/6"><summary>Ioncsatornák osztályozása, működésük fő jellemzői. <strong>Feszültségfüggő Ca<sup>2+</sup> csatornák.</strong> A sejt Ca<sup>2+</sup>- anyagcseréje.</summary><ul class="normal">
+	<details class="kerdes 4/4"><summary>Ioncsatornák osztályozása, működésük fő jellemzői. <strong>Feszültségfüggő Ca<sup>2+</sup> csatornák.</strong> A sejt Ca<sup>2+</sup>- anyagcseréje.</summary><ul class="normal">
 		<li>depolarizáció esetében nyílnak ki (nyugalmi E<sub>m</sub> esetében zártak) &#10140; Ca<sup>2+</sup> áramlik be, így depolarizáció, így <span class="IMPORTANT">öngerjesztő</span></li>
 		<table><tr><th>típusai</th>  <th>küszöbpotenciál</th>  <th>előfordul</th></tr>
 			<tr><td>P-típusú</td>  
@@ -2769,7 +2930,7 @@
 		<div class="imp [356]"></div> <!--- kalcium visszacsökkentése -->
 	</ul></details>
 
-  <hr>
+  </details><hr>
 	<details class="kerdes 2/2"><summary>ioncsatorna karrierrel összehasonlítva</summary><ul class="normal">
 		<table><tr><th>ioncsatorna</th>  <th>karrier</th></tr>
 			<tr>
@@ -2807,7 +2968,7 @@
 	</ul></details>
 <!----></details>
 
-<!----><details><summary class="phase">5. Egyensúlyi potenciál; membránpotenciál. A sejtek nyugalmi potenciálja. Elektrotónusos potenciál.</summary>
+<!----><details><summary class="phase">5. Egyensúlyi potenciál; membránpotenciál. A sejtek nyugalmi potenciálja. Elektrotónusos potenciál.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/5"><summary><strong>Egyensúlyi potenciál; membránpotenciál.</strong> A sejtek nyugalmi potenciálja. Elektrotónusos potenciál.</summary><ul class="normal">
 		<li>egyensúlyi potenciál definíció &#10140; potenciál, melynél az elektromos_grádiens<abbr title="következtébeni ionáramlás">'</abbr> kiegyenlíti a koncentráció_grádienst<abbr title="következtébeni ionáramlást">'</abbr> &#10140; tehát a nettó áramlás zérus</li>
 		<li>membránpotenciál definíció &#10140; egyes ionok egyensúlyi potenciáljának a permeabilitásukkal súlyozott átlaga <abbr title="'GHK-egyenletes szemlélet alapján'">'</abbr></li>
@@ -2912,7 +3073,8 @@
 		</ul>
 		<div><font style="font-size:80%">kép csak azért van, hogy segítse a megértést <abbr title="bár ez nem biztos, mert lehet tudni kell">'</abbr></font></div>
 	</ul></details>
-  <hr>
+  
+  </details><hr>
 	<details class="kerdes 3/2"><summary><strong>hiper</strong>/<strong>re</strong>/<strong>de</strong>polarizáció</summary><ul class="normal">
 		<li>depolarizáció &#10140; a membránpotenciál értéke a nyugalmiról 'pozitívabbá válik' <abbr title="az hogy nő/csökken félreérthető, szóval maradjak ennél a kettőnél!">'</abbr></li>
 		<li>hiperpolarizáció &#10140; a membránpotenciál értéke a nyugalmiról 'negatívabbá válik'</li>
@@ -2943,7 +3105,7 @@
 		<div class="imp [116]"></div>
 	</ul></details>
 	<span class="imp [117]"></span>
-	<details class="kerdes 3/2"><summary style="color:MediumBlue">sejtek nyugalmi membránpotenciáljának jelentősége</summary><ul class="normal">
+	<details class="kerdes 3/2"><summary>sejtek nyugalmi membránpotenciáljának jelentősége</summary><ul class="normal">
 		<strong>transzportfolyamatokhoz biztosít hajtóerőt, mint elektromos-grádiens</strong>
 		<font style="font-size:80%">elektrokémiai grádiens = elektromos-grádiens + koncentráció-grádiens !!</font>
 		<li>passzív transzport &#10140; töltéssel rendelkező molekuláknak a membránon való átjutásánál /ioncsatornák, facilitált diffúció/</li><ul>
@@ -2957,15 +3119,11 @@
 	</ul></details>
 <!----></details>
 
-<!----><details><summary class="phase">6. Az akcióspotenciál kialakulása. Azonosságok és különbségek a különböző sejtekben. Az ingerület vezetése.</summary>
-	<details class="kerdes 4/10"><summary><strong>Az akcióspotenciál kialakulása. Azonosságok és különbségek a különböző sejtekben.</strong> Az ingerület vezetése.</summary><ul class="normal">
+<!----><details><summary class="phase">6. Az akcióspotenciál kialakulása. Azonosságok és különbségek a különböző sejtekben. Az ingerület vezetése.</summary><details open class="open"><summary></summary>
+	<details class="kerdes 4/8"><summary><strong>Az akcióspotenciál kialakulása. Azonosságok és különbségek a különböző sejtekben.</strong> Az ingerület vezetése.</summary><ul class="normal">
 		<li>definíció &#10140; sejt <abbr title="sejt közel teljes felszínén">'</abbr>felszínén tovaterjedő feszültségváltozás</li>
 		<li>előfordul &#10140; hcs.izomsejt és <abbr title="ezt szvsz alapján írtam">'</abbr>szívizomsejt és idegsejt <abbr title="<font style='font-size:80%'>(de! egyéb sejtekben is pl. mirigysejtek)</font>">'</abbr></li>
-		<li>AP alakja az adott sejttípusra jellemző &#10140; attól függően, mely <abbr title="mindig ioncsatornák hozzák létre az AP-t!">ioncsatornák</abbr> hozzák létre</li><ul>
-			<li>idegrost AP-je</li>
-			<li>SA-csomó AP-je</li>
-			<li>kamra-izomsejt AP-je</li>
-		</ul>
+		<li>AP alakja az adott sejttípusra jellemző &#10140; attól függően, mely <abbr title="mindig ioncsatornák hozzák létre az AP-t!">ioncsatornák</abbr> hozzák létre:</li>
 		<details><summary><span class="important">RAJZ</span> <strong>Emlős idegrost akciós potenciálja (a számértékek mindkét tengelyen megadandók).</strong></summary><ul class="normal">
 			<img style="max-width:40%" data-src="rpdltpzkt.png">
 		  <strong>'részei'</strong> <img class="mini" data-src="nkglktlkm.png">
@@ -3023,21 +3181,26 @@
 		<li>vezetési_sebesség is nagyobb &#10140; ugyanis a térkonstans arányos a vezetési_sebességgel (ennek oka, hogy az elektrotónusos depolarizáció nagyon gyors, ellenben az ioncsatorna nyitódásának sebessége lassab (lásd 2.témakör))</li>
 	</ul></details>
   
-  <hr>
-	<details class="kerdes 1/2"><summary style="color:MediumBlue">akciós potenciál általános jellemzése</summary><ul class="normal">
-		<li>definíció &#10140; sejt <abbr title="sejt közel teljes felszínén">'</abbr>felszínén tovaterjedő feszültségváltozás</li>
-		<li>előfordul &#10140; harántcsíkolt izomsejtekben és idegsejtekben <font style="font-size:80%">(de! egyéb sejtekben is pl. mirigysejtek)</font></li>
-		<li>AP alakja az adott sejttípusra jellemző &#10140; attól függően, mely <abbr title="mindig ioncsatornák hozzák létre az AP-t!">ioncsatornák</abbr> hozzák létre</li>
-		<li>kiváltásukhoz elektrotónusos_depolarizáció szükséges, hogy elérje az ff.Na<sup>+</sup>- vagy ff.Ca<sup>2+</sup>-csatorna <u>küszöbpotenciálját</u></li><ul>
-			<li>ff.Na<sup>+</sup>-csatornák &#10140; hcs.izomsejtekben és idegsejtekben</li>
-			<li>ff.Ca<sup>2+</sup>-csatornák &#10140; szinusz-csomó & AV-csomó (T & L-típusú ff.Ca<sup>2+</sup>-csatorna)  <abbr title="lehet van egyéb pl. is, nem jártam utána (simaizmot csekkoljam majd!!)">&#10045;</abbr></li>
-		</ul>
-		<li>az elektrotónusos depolarizáció oka sejtenként szintén más és más</li><ul>
-			<li>hcs.izomban &#10140; nikotinerg-receptor megnyílik és Na<sup>+</sup>-t enged be</li>
-			<li>szívizom-sejteknél GAP-junction-ön keresztül jön át a szomszéd sejtről</li>
-		</ul>
+  </details><hr>
+	<details class="kerdes 3/5"><summary>idegrostok csoportosítása (myelinhüvely alapján)</summary><ul class="normal">
+		<div class="imp [105]"></div> <!--- rostok -->
 	</ul></details>
-	<details class="kerdes 1/2"><summary style="color:MediumBlue">elektromos jel típusai</summary><ul class="normal">
+	<details class="kerdes 3/1"><summary>farmakológiai tudnivaló</summary><ul class="normal">
+		<li>lidokain gátolját a ff.Na<sup>+</sup>-csatornát &#10140; érzéstelenítőként használják</li>
+	</ul></details>
+	<details class="open"><summary>akciós potenciál általános jellemzése</summary><ul class="normal">
+		<details class="kerdes 3/1"><summary>definíció</summary><ul class="normal">
+			<li>sejt <abbr title="sejt közel teljes felszínén">'</abbr>felszínén tovaterjedő feszültségváltozás</li>
+		</ul></details>
+		<details class="kerdes 3/2"><summary>előfordul, alakja</summary><ul class="normal">
+			<li>előfordul &#10140; hcs.izomsejt és <abbr title="ezt szvsz alapján írtam">'</abbr>szívizomsejt és idegsejt <abbr title="<font style='font-size:80%'>(de! egyéb sejtekben is pl. mirigysejtek)</font>">'</abbr></li>
+			<li>alakja attól függően, mely ioncsatornák hozzák létre az elektrotónusos depolarizációt</li><ul>
+				<li>pl. hcs.izomban &#10140; nikotinerg-receptor megnyílik és Na<sup>+</sup>-t enged be</li>
+				<li>pl. szívizom-sejteknél GAP-junction-ön keresztül jön át a szomszéd sejtről</li>
+			</ul>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 3/2"><summary style="color:MediumBlue">elektromos jel típusai</summary><ul class="normal">
 		<table><tr><th>akciós potenciál</th>  <th>elektrotónusos potenciál</th></tr>
 			<tr><td><abbr title="1 v 0 (mindent vagy semmit)">digitális jel</abbr></td>  <td><abbr title="nagysága változó (gradált)">analóg jel</abbr></td></tr>
 			<tr><td>torzításmentes</td>  <td><abbr title="helyi">lokális</abbr> &#10140; térben, időben lecseng</td></tr>
@@ -3048,7 +3211,7 @@
 	</ul></details>
 <!----></details>
 
-<!----><details><summary class="phase">7. Az idegsejt működése. Ingerület-átvitel a központi idegrendszerben és a periférián. A szinaptikus áttevődés szabályozása. Neurotranszmitterek.</summary>
+<!----><details><summary class="phase">7. Az idegsejt működése. Ingerület-átvitel a központi idegrendszerben és a periférián. A szinaptikus áttevődés szabályozása. Neurotranszmitterek.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/3"><summary><strong>Az idegsejt működése</strong>. Ingerület-átvitel a központi idegrendszerben és a periférián. A szinaptikus áttevődés szabályozása. Neurotranszmitterek</summary><ul class="normal">
 		<div class="imp [544]"></div> <!--- neuron -->
 	</ul></details>
@@ -3091,7 +3254,10 @@
 				<td rowspan="2">preszinaptikus gátlás/serkentés</td>
 			</tr>
 			<tr><th>neurotranszmitter</th>
-				<td> <abbr title="esetek 80%-ában, ha lesz majd konkrét olyan pl. ahol nem, akkor foglalkozzak csak vele">glutamát</abbr></td>
+				<td> 
+					<li><abbr title="esetek 80%-ában, ha lesz majd konkrét olyan pl. ahol nem, akkor foglalkozzak csak vele">glutamát</abbr></li>
+					<font style="font-size:80%"><abbr title="szvsz">'</abbr>egyéb pl. dopamin</font> <span class="LASD">8.13</span>
+				</td>
 				<td>
 					<li>glicin</li>
 					<li>GABA</li>
@@ -3124,9 +3290,10 @@
 		</ul></details>
 	  <hr><strong>perifériás szinapszisok típusai</strong>
 		<li>neuromuszkuláris-szinapszisok &#10140; <abbr title="preszinaptikus">motoros-ideg</abbr> - <abbr title="posztszinaptikus">harántcsíkolt izom</abbr></li>
-		<li>vegetatív-szinapszisok &#10140; <abbr title="preszinaptikus">vegetatív-ideg</abbr> - <abbr title="posztszinaptikus">simaizom/mirigysejt</abbr></li>
-	  <hr>
-		a centrális szinapszis lehet serkentő és gátló hatású is, <span class="MISS">a perifériás !?</span>
+		<li>vegetatív-szinapszisok</li><ul>
+			<li><abbr title="preszinaptikus">vegetatív-ideg</abbr> - <abbr title="posztszinaptikus">simaizom/mirigysejt</abbr></li>
+			<li>illetve szvsz a preggl & postggl rostok között is! <span class="LASD">1.10</span> &#10140; ezeknél ugye ACh a neurotranszmitter</li>
+		</ul>
 	</ul></details>
 	<details class="kerdes 4/8"><summary>Az idegsejt működése. Ingerület-átvitel a központi idegrendszerben és a periférián. <strong>A szinaptikus áttevődés szabályozása</strong>. Neurotranszmitterek</summary><ul class="normal">
 		<li>szinaptikus plaszticitás &#10140; ingerületátvitel erőssége változik(csökken vagy nő)</li>
@@ -3193,10 +3360,11 @@
 					<font style="font-size:80%">katekolaminok = adrenalin + noradrenalin + dopamin</font>
 				</td>
 				<td>
-					<li><span class="MISS">FIX &#10140;</span> <abbr title="melyekről később lesz szó, azokat tanuljam meg, és dolgozzam majd itt ki">!!!</abbr> <img class="mini" data-src="mlykgktlzkm.png"></li>
 					<li>P-anyag &#10140; <span class="LASD">5.1</span> & <span class="LASD">5.2</span></li>
 					<li>PACAP & GRP &#10140; gyomor sósavszekréció serkentése <span class="LASD">5.3</span></li>
-					<li><abbr title="psy idegrendszer hatására lokálisan vazodilatáció: nyálmirigyek & GI-mirigyek">VIP</abbr> &#10140; <span class="LASD">2.6</span></li>
+					<li><abbr title="psy idegrendszer hatására lokálisan vazodilatáció: nyálmirigyek & GI-mirigyek">VIP</abbr> &#10140; <span class="LASD">2.6</span> <span class="LASD">2.11</span></li>
+					<li>&alpha;-MSH, CART, NPY, AgRP &#10140; táplálékfelvétel szabályozás <span class="LASD">2.16</span></li>
+					<abbr title="melyekről később lesz szó, azokat tanuljam meg, és dolgozzam majd itt ki">'</abbr> <img class="mini" data-src="mlykgktlzkm.png">
 				</td>
 				<td>
 					<li><abbr title="psy idegrendszer hatására lokálisan vazodilatáció: GI-mirigyek">NO</abbr> &#10140; <span class="LASD">2.6</span></li>
@@ -3244,13 +3412,47 @@
 			<font style="font-size:80%">megj.tipp &#10140; <abbr title="klasszikus">'</abbr>neurotranszmitterek közül ACh elbomlik, többi visszavételre kerül</font>
 		</ul>
 	</ul></details>
-  <hr>
+  
+  </details><hr>
+	<details class="open"><summary>szinapszis &#10140; definíció? típusai?</summary><ul class="normal">
+		<details class="kerdes 3/1"><summary>definíció?</summary><ul class="normal">
+			<li>ingerület átadása az idegsejt axonjának végéről egy másik sejtre</li>
+		</ul></details>
+		<details class="kerdes 3/2"><summary>típusai?</summary><ul class="normal">
+			<li>szinapszisnak két típusa van &#10140; elektromos és kémiai &#10140; továbbiakban a kémiairól lesz szó</li>
+			<details><summary style="color:blue"><font style="font-size:80%">kémiai vs elektromos</font></summary><ul class="normal">
+				<table><tr><th>szinapszis típusai</th>  <th>elektromos <img class="mini" data-src="hpgjnctln.png"></th>  <th>kémiai <img class="mini" data-src="kmkmkmsznpszs.png"></th></tr>
+					<tr><th>két sejt közötti rés</th>
+						<td>lényegesen kisebb</td>
+						<td>lényegesen nagyobb(10x)</td>
+					</tr>
+					<tr><th>ingerület átadásának sebessége</th>
+						<td>gyorsabb</td>
+						<td>lassabb(10x)</td>
+					</tr>
+					<tr><th>iránya</th>
+						<td>kétirányú &#10140; mindkét irányba terjedhet</td>
+						<td>egyirányú &#10140; preszinaptikus-sejt felől posztszinaptikus sejt fele</td>
+					</tr>
+					<tr><th>lényege</th>
+						<td>gap_junction-ökön keresztül jutnak át az ionok</td>
+						<td>a neurotranszmittert(kémiai anyag) a preszinaptikus-sejt termeli, majd átadja a posztszinaptikus-sejtnek</td>
+					</tr>
+					<tr><th>gyakorisága</th>
+						<td>ritka &#10140; szívizomnál, retinában fordul elő</td>
+						<td>ez az általános &#10140; <strong>továbbiakban erről van szó!</strong></td>
+					</tr>
+				</table>
+			</ul></details>
+			<li>ennél az ingerület átadása neurotranszmitterrel (kémiai anyag) zajlik</li>
+		</ul></details>
+	</ul></details>
 	<span class="imp [228]"></span> <!--- neurotranszmitter receptorok csoportosítása -->
 	<span class="imp [224]"></span> <!--- G-fehérjék típusai -->
 	<span class="imp [220]"></span> <!--- ioncsatorna receptorok -->
 <!----></details>
 
-<!----><details><summary class="phase">8. A simaizom működésének elektrofiziológiája és mechanikája.</summary>
+<!----><details><summary class="phase">8. A simaizom működésének elektrofiziológiája és mechanikája.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/15"><summary><strong>A simaizom működésének elektrofiziológiája és mechanikája.</strong></summary><ul class="normal">
 	  <strong>felépítése</strong>
 		<li>vastag_filamentum hasonlóan miozin-ból áll <img class="mini" data-src="kgdlnylnc.png"></li><ul>
@@ -3322,7 +3524,7 @@
 		<span class="MISS">maradtak ki &#10140; jó lenne összegyűjteni a tételekből amik vannak!</span>
 	</ul></details>
   
-  <hr>
+  </details><hr>
 	<details class="open kerdes 3/j"><summary>itt is (hcs.izomhoz hasonlóan) a kontrakció...</summary><ul class="normal">
 		<li>mechanizmusa &#10140; csúszófilamentum-mechanizmus</li>
 		<li>kiváltója &#10140; miozin ATPáz ciklusa</li>
@@ -3387,7 +3589,7 @@
 	</ul></details>
 <!----></details>
 
-<!----><details><summary class="phase">9. A neuromuscularis junctio és a vázizomrostok működése.</summary>
+<!----><details><summary class="phase">9. A neuromuscularis junctio és a vázizomrostok működése.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/8"><summary><strong>A neuromuscularis junctio</strong> és a vázizomrostok működése.</summary><ul class="normal">
 		<details><summary><span class="Important">RAJZ</span> neuromuscularis junction(NMJ) felépítése</summary><ul class="normal">
 			<div class="imp [222]"></div>
@@ -3476,10 +3678,10 @@
 		</ul></details>
 	</ul></details>
 
-  <hr>
-	<details class="kerdes 3/1"><summary>kontrakció-típusok?</summary><ul class="normal">
-		<li>izometriás &#10140; izom nem rövidül, de a kifejtett erő növekszik</li>
-		<li>izotóniás &#10140; kifejtett erő állandó, az izom pedig rövidül</li>
+  </details><hr>
+	<details class="kerdes 3/2"><summary>kontrakció-típusok?</summary><ul class="normal">
+		<li>izometriás &#10140; izom nem rövidül, de a kifejtett erő növekszik &#10140; pl. szív esetében a térfogat állandó <abbr title="hisz a két billentyű zárva">(!!)</abbr>, így szarkomerhossz sem változik, ám a kontrakció mégis végbemegy</li>
+		<li>izotóniás &#10140; kifejtett erő állandó, az izom pedig rövidül &#10140; pl. bicepsz súlyzó</li>
 	</ul></details>
 	<details class="kerdes 3/3"><summary><strong>GYAKORLAT</strong> &#10140; gátlószerek</summary><ul class="normal">
 		<div class="imp [522]"></div>
@@ -3492,7 +3694,7 @@
 	</ul></details>
 <!----></details>
 
-<!----><details><summary class="phase">10. Vegetatív efferens mechanizmusok.</summary>
+<!----><details><summary class="phase">10. Vegetatív efferens mechanizmusok.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/8"><summary><strong>Vegetatív efferens mechanizmusok.</strong></summary><ul class="normal">
 		<details><summary><span class="Vocab">TAB</span> psy/symp (anat/élettan)</summary><ul class="normal">
 			<table>
@@ -3541,19 +3743,18 @@
 				</tr>
 				<tr><th style="width:15%">neurotranszmittere a <strong>poszt</strong>ggl-rostnak</th>
 					<td style="text-align:left">
-						<li><span class="Important">ACh a leggyakoribb</span></li>
-						<abbr title="tehát ACh mellett">kotranszmitterként</abbr> szerepelhet még:
-						<li><abbr title="vasoactive intestinal peptide">VIP</abbr> &#10140; pl. gyomor-bélcsatornánál <span class="MISS">(lásd később)</span></li>
-						<li> &#10140; pl. férfi és a <abbr title="csikló">női</abbr> erectilis szöveteket ellátó idegekben <span class="LASD">7.12t</span></li>
-						<details><summary>● NO &#10140; alábbi helyeken:</summary><ul class="normal">
+						<center><span class="Important">ACh</span></center>
+						kotranszmitterként(ACh mellett!) szerepelhet még:
+						<li><abbr title="vasoactive intestinal peptide">VIP</abbr> &#10140; <span class="MISS">pl. gyomor-bélcsatornánál</span> <span class="LASD">5.2</span></li>
+						<details><summary>● NO, pl. <abbr title="szvsz a többi példa az nem psy hatásra megy végbe, szóval azokat inkább ne">erekciónál</abbr></summary><ul class="normal">
 							<div class="imp [589]"></div>
 						</ul></details>
 					</td>
-					<td>
-						<li style="text-align:left"><span class="Important">noradrenalin a leggyakoribb</span></li>
-						<abbr title="tehát noradrenalin mellett">kotranszmitterként</abbr> szerepelhet még:
-						<li style="text-align:left">különböző peptidek <abbr title="114o.">'</abbr> <abbr title="tankönyvbe elvileg van táblázat róluk, én nem találtam">'</abbr></li>
-						<li style="text-align:left"><font style="font-size:80%">ACh is előfordul kivételes rostokban, pl. verejtékmirigy</font></li>
+					<td style="text-align:left">
+						<center><span class="Important">noradrenalin</span></center>
+						kotranszmitterként(NA mellett!) szerepelhet még:
+						<li>különböző peptidek <abbr title="114o.">'</abbr> <abbr title="tankönyvbe elvileg van táblázat róluk, én nem találtam">'</abbr></li>
+						<li><font style="font-size:80%">ACh is előfordul kivételes rostokban, pl. verejtékmirigy</font></li>
 					</td>
 					<td>
 						<span class="Important">itt NINCS posztggl rost, hanem a vérbe jutnak!!</span>
@@ -3609,7 +3810,8 @@
 			<div class="imp [111]"></div>
 		</ul></details>
 	</ul></details>
-  <hr>
+  
+  </details><hr>
 	<details class="kerdes 1/1"><summary style="color:MediumBlue">szimpatikus vs paraszimpatikus hatások</summary><ul class="normal">
 		<font style="font-size:80%">az nem általános, hogyha tudom a szimpatikus hatását, akkor a paraszimpatikus annak az ellentéte</font>
 		<br><span class="WHITE">ezt csak azért őriztem meg, hogy a kolinerg & adrenerg hatások kidolgozásában hátha segít</span>
@@ -3645,13 +3847,13 @@
 	<details class="kerdes 2/2"><summary style="color:MediumBlue">vegetatív idegrendszer &#10140; funkció? felosztása?</summary><ul class="normal">
 		<div class="imp [109]"></div>
 	</ul></details>
-<!----></details>
+</details>
 
 <!--//////////////////////////////////////////////////////////////-->  </details>  <!--//////////////////////////////////////////////////////////////-->
 
 <!--//////////////////////////////-->  <details><summary class="mainTitle">2-es témakör</summary>  <!--//////////////////////////////-->
 
-<details><summary class="phase">1. Ingerképzés és ingerületvezetés a szívben. A pacemaker potenciál és létrejöttének magyarázata. Az ingerképzés és ingerületvezetés szabályozása.</summary>
+<details><summary class="phase">1. Ingerképzés és ingerületvezetés a szívben. A pacemaker potenciál és létrejöttének magyarázata. Az ingerképzés és ingerületvezetés szabályozása.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/6"><summary><strong>Ingerképzés</strong> és ingerületvezetés <strong>a szívben. A pacemaker potenciál és létrejöttének magyarázata</strong>. Az ingerképzés és ingerületvezetés szabályozása.</summary><ul class="normal">
 	  <strong>SA-csomó</strong>
 		<li>domináns-pacemaker &#10140; legnagyobb frekvenciát ez hozza létre, és elnyomja az alacsonyabb frekvenciájú pacemakereket</li>
@@ -3721,7 +3923,7 @@
 	  <strong>AV-csomó szabályozása vegetatív_idegrendszer által</strong>
 		<div class="imp [122]"></div>
 	</ul></details>
-  <hr>
+<!----></details><hr>
 	<span class="imp [592]"></span> <!--- kalcium beáramlás izomkontrakció(kamra) -->
 	<details class="kerdes 1/1"><summary style="color:mediumblue">SA-csomó hol található?</summary><ul class="normal">
 		<li>jobb pitvar <font style="font-size:80%">(v.cava_superior beszájadzásánál)</font></li>
@@ -3741,7 +3943,7 @@
 	</ul></details>
 </details>
 
-<details><summary class="phase">2. Elektrokardiográfia, elektrokardiogram. Echokardiográfia.</summary>
+<details><summary class="phase">2. Elektrokardiográfia, elektrokardiogram. Echokardiográfia.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/9"><summary><strong>Elektrokardiográfia</strong>, elektrokardiogram. Echokardiográfia.</summary><ul class="normal">
 		<li>Elektrokardiográfia &#10140; szív elektromos működésének vizsgálata. Tehát a szív mechanikáját (PTF stb.) nem mutatja ellenben az EMG-vel, de felhasználható szívinfarktus diagosztizálására.</li>
 		<details><summary>mechanikája</summary><ul class="normal">
@@ -3773,9 +3975,9 @@
 			</ul></details>
 			<li>gyakorlatban a megnövelt végtagi unipoláris elvezetéseket használjuk<abbr title="ugyanis így ~50%-al erősebb jelet kapunk">'</abbr> &#10140; Goldberger-elvezetés</li>
 			<details><summary><strong><span class="important">RAJZ</span> A megnövelt végtagi unipoláris elvezetések kapcsolási rajza</strong></summary><ul class="normal">
-				<img style="max-width:15%;" data-src="vrkhhskllm.png">
 				<li>aVR &#10140; különbség, hogy nincs ellenállás már</li>
 				<li>másik kettőt is ugyanúgy megmérem meg, mint aVR-t</li>
+				<img data-src="vrkhhskllm.png">
 			</ul></details>
 		</ul></details>
 		<details><summary>6 Wilson (unipoláris!)</summary><ul class="normal">
@@ -3828,8 +4030,7 @@
 		</ul>
 		<li>vizsgálati módszerek &#10140; Continuous Wave(CW) & Pulse Wave(PW)</li>
 	</ul></details>
-
-  <hr>
+<!----></details><hr>
 	<details class="{125} kerdes 4/3"><summary><span class="Vocab">R</span> <strong>Az aortanyomás, a bal kamra nyomás és a bal pitvari nyomás időbeli összefüggése az EKG II-es elvezetésével (az értékek mindkét tengelyen megadandók)</strong></summary><ul class="normal">
 		<img style="max-width:40%" data-src="ffkglzkmkkm.png">
 		<li><font style="font-size:80%">(értelemszerűen csak a legfelsőt + EKG-t kell ábrázolni)</font></li>
@@ -3872,6 +4073,30 @@
 		<li>T <abbr title="lényegében megfelel">&#10140;</abbr> kamrai-AP leszálló szára</li>
 		<img data-src="kgmhkkbztf.png">
 	</ul></details>
+	<details class="kerdes 3/1"><summary>EKG definíció</summary><ul class="normal">
+		<li>szív elektromos működésének vizsgálata</li>
+		tehát a szív mechanikáját (PTF stb.) nem mutatja ellenben az EMG-vel, de felhasználható szívinfarktus diagosztizálására!
+	</ul></details>
+	<details class="kerdes 3/2"><summary>EKG elvezetések típusai (felsorolás)</summary><ul class="normal">
+		<li>3 Einthoven (bipoláris!)</li>
+		<li>3 Goldberger (unipoláris!)</li>
+		<li>6 Wilson (unipoláris!)</li>
+	</ul></details>
+	<details class="kerdes 3/2"><summary>Goldberger elvezetés rajzok neve</summary><ul class="normal">
+		<details><summary>végtagi unipoláris elvezetések kapcsolási rajza</summary><ul class="normal">
+			<li>U<sub>VR</sub> &#10140; jobbkar és referencia potenciál között</li>
+			<li>U<sub>VL</sub> &#10140; balkar és referencia potenciál között</li>
+			<li>U<sub>VF</sub> &#10140; balláb és referencia potenciál között</li>
+			eredőjük (összegük) zérus!
+			<img data-src="kjjghzzhfghjk.png">
+		</ul></details>
+		<details><summary>megnövelt végtagi unipoláris elvezetések kapcsolási rajza</summary><ul class="normal">
+			<li>aVR &#10140; különbség, hogy nincs ellenállás már</li>
+			<li>másik kettőt is ugyanúgy megmérem meg, mint aVR-t</li>
+			<img data-src="vrkhhskllm.png">
+		</ul></details>
+			<li>megnövelt végtagi unipoláris elvezetések kapcsolási rajza = Goldberger elvezetés</li>
+	</ul></details>
 	<details class="kerdes 2/1"><summary style="color:mediumblue">elektródok IC vagy EC?</summary><ul class="normal">
 		<li>EKG-nél mindkettő EC-an van</li>
 		<font style="font-size:80%">pl. membránpotenciál mérés esetében egyik elektród intracellulárisan volt helyezve, másik EC-n</font>
@@ -3887,7 +4112,7 @@
 	</ul></details>
 </details>
 
-<details><summary class="phase">3. A szívciklus. Nyomás- és térfogatváltozások egy szívciklus kapcsán. Szívhangok.</summary>
+<details><summary class="phase">3. A szívciklus. Nyomás- és térfogatváltozások egy szívciklus kapcsán. Szívhangok.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/9"><summary><strong>A szívciklus. Nyomás- és térfogatváltozások egy szívciklus kapcsán.</strong> Szívhangok.</summary><ul class="normal">
 		<img style="max-width:35%" data-src="fkzkjhvml.png">
 	  <hr><strong><span class="important">KÉP</span></strong>
@@ -3940,8 +4165,7 @@
 	  <strong style="color:green; background-color:palegreen"><span class="important">RAJZ</span> Az EKG időbeli összefüggése a bal kamra térfogatának változásával (az időértékek az abszcisszán, a térfogatértékek az ordinátán megadandók). Jelölje be az I. és II. szívhang helyét</strong>
 		<div class="imp [128]"></div>
 	</ul></details>
-	
-  <hr>
+<!----></details><hr>
 	<details class="kerdes 4/4"><summary><span class="important">RAJZ</span> bal-kamra munkadiagramja</summary><ul class="normal">
 		<img style="max-width:35%" data-src="nkmkghjktm.png">
 		<table><tr><th></th>  <th>nyomás(x)</th>  <th>térfogat(y)</th></tr>
@@ -4028,7 +4252,7 @@
 	</ul></details>
 </details>
 
-<details><summary class="phase">4. A szív pumpa-működése. A perctérfogat szabályozása.</summary>
+<details><summary class="phase">4. A szív pumpa-működése. A perctérfogat szabályozása.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/2"><summary><strong>A szív pumpa-működése</strong>. A perctérfogat szabályozása.</summary><ul class="normal">
 		funkciója &#10140; vér 'keringetése'
 		<li>nagy vénákból az aortába pumpálja a vért</li>
@@ -4038,18 +4262,12 @@
 		két szabályozási mechanizmus van:
 		<details><summary>heterometriás-szabályozás</summary><ul class="normal">
 		  <strong>lényege</strong>
-			<li>VTF-et szabályozza az alábbiak alapján:</li><ul>
-				<li>vénás visszaáramlás (előterhelés)</li>
-				<li>TPR (utóterhelés)</li>
-			</ul>
-			<details><summary>mi történik, ha az előterhelés nő?</summary><ul class="normal">
+			<li>VTF-et szabályozza az alábbiak alapján:</li>
+			<details><summary>vénás visszaáramlás (előterhelés) &#10140; mi történik, ha nő?</summary><ul class="normal">
 				<div class="imp [139]"></div>
 			</ul></details>
-			<details><summary>mi történik, ha az utóterhelés nő?</summary><ul class="normal">
+			<details><summary>TPR (utóterhelés) &#10140; mi történik, ha nő?</summary><ul class="normal">
 				<div class="imp [140]"></div>
-			</ul></details>
-			<details><summary>artériás_vérnyomás változása hogyan befolyásolja a VTF-et?</summary><ul class="normal">
-				<div class="imp [132]"></div>
 			</ul></details>
 		  <strong>mechanizmusa</strong>
 			<img style="max-width:20%" data-src="kmkmkmnj.png">
@@ -4131,8 +4349,9 @@
 			</ul></details>
 		</ul></details>
 	</ul></details>
-  
-  <hr>
+<!----></details><hr>
+	<span class="imp [132]"></span> <!-- artériás_vérnyomás változása hogyan befolyásolja a VTF-et -->
+	<span class="imp [121]"></span> <!-- kamraizomzat szabályozása (molekuláris mechanizmusa) -->
 	<details class="kerdes 3/j"><summary>idegek mit innerválnak</summary><ul class="normal">
 		<li>bal n.vagus &#10140; AV-csomó <span class="WHITE">psy</span></li>
 		<li>jobb n.vagus &#10140; SA-csomó <span class="WHITE">psy</span></li>
@@ -4187,7 +4406,7 @@
 	</ul></details>
 </details>
 
-<details><summary class="phase">5. A keringési rendszer felépítése. Az egyes érszakaszok funkciója a nagyvérkörben. A véráramlás biofizikai alapjai. A nyomás és az áramlás összefüggése.</summary>
+<details><summary class="phase">5. A keringési rendszer felépítése. Az egyes érszakaszok funkciója a nagyvérkörben. A véráramlás biofizikai alapjai. A nyomás és az áramlás összefüggése.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/4"><summary><strong>A keringési rendszer felépítése</strong>. Az egyes érszakaszok funkciója a nagyvérkörben. A véráramlás biofizikai alapjai. A nyomás és az áramlás összefüggése.</summary><ul class="normal">
 		<img style="max-width:30%" data-src="krsghclgkt.png">
 		<li>keringési_rendszer definíció &#10140; zárt csőrendszer, 2x2 szívó-nyomó pumpával(bal/jobb-pitvar, bal/jobb-kamra)</li>
@@ -4242,9 +4461,10 @@
 			<li>átmérő 2-30&micro;m</li>
 			<li>sok simaizom</li>
 		</ul>
+	  <strong>vénák</strong>
+		<li>kapacitáserek <span class="LASD">2.8</span></li>
 	</ul></details>
 	<details class="kerdes 4/15"><summary class="miss">A keringési rendszer felépítése. Az egyes érszakaszok funkciója a nagyvérkörben. <strong>A véráramlás biofizikai alapjai</strong>. A nyomás és az áramlás összefüggése.</summary><ul class="normal">
-		kérdések <abbr title="nyomások (oldalnyomás,perfúziós,dinamikus,teljes) alatt mit értünk és mi az összefüggés !?">(a)</abbr> <abbr title="Hagen-poászöj &#10140; akkor most csak merev falúaknál használható (szvsz nagyon nem) &#10140; ha igen, akkor mégis hogy hivatkozhatnánk rá a 'kis vérkör-törvénynél'">(b)</abbr>
 		<details class="kerdes 3/2"><summary>3 tényező, mely 'bonyolítja a paraméterek(nyomás,áramlás stb.) közötti összefüggések leírását a klasszikus fizikai törvényekkel'</summary><ul class="normal">
 			<li>nyomás a keringési rendszer nagy részén nem állandó</li>
 			<li>a törvények merev falú csövekre vonatkoznak, viszont a keringési rendszerben rugalmas falú csövek vannak</li>
@@ -4252,39 +4472,23 @@
 			Newtoni-folyadék &#10140; folyadék, melynek viszkozitása állandó
 			<img data-src="prmmgkhjmjf.png">
 		</ul></details>
-		<span class="Important">a következőkben 8db összefüggés kerül bemutatásra</span>
-		<details class="kerdes 2/j"><summary><span class="Vocab">JR</span> (0) saját megjegyzések segítségnek <span class="MISS">!?</span></summary><ul class="normal">
-		  <strong><abbr title="ennél R=&rho*l/A. itt viszont Hagen-Poisulle törvényből van R kifejezve">elektromos vezetéssel</abbr> összefüggés</strong>
-			<img style="max-width:30%" data-src="fszlrskmj.png">
-			<li>itt az I = U/R helyett &#10140; Q = &Delta;P/R összefüggés van</li>
-			<li>lásd 'ezt' még <span class="lasd">A nyomás változása a nagyvérkör ereiben</span> RAJZ-on</li>
-		  <hr><strong>&Delta;p = perfúziós_nyomás</strong>
-			<li>perfúziós_nyomásnak<abbr title="vagy átáramoltató">'</abbr> nevezzük bármely érszakasz bemenetén és kimenetén mért nyomások különbségét <abbr title="ezt sok helyen csak 'p'-vel jelölik, de akkor is ugyanazt értik alatta (illetve, ha a nyomás fv-ében ábrázolunk valamit akkor is azt értjük alatta) &#10140; hiszen a &Delta;p a cső egyik végénél(p1) és másik végén(p2) 'lévő' nyomás különbsége; ez az amely egyik oldalról(ahol nagyobb nyomás) a másik irányba hajtja az áramlást;; ha p-t írnak, akkoris ugyanerre gondolnak">'</abbr></li>
-			<li>ez jól látható <span class="lasd">A nyomás változása a nagyvérkör ereiben</span> RAJZ-on</li>
-		  <hr><strong>a teljes nyomást hol tudom elhelyezni</strong> <span class="MISS">!?</span>
-			<li><font style="font-size:80%">szvsz innentől az egész!</font> a <span class="lasd">A nyomás változása a nagyvérkör ereiben</span> rajzon amit látok értékek azok egymagukban teljes nyomás értékek.</li>
-			<li>ugyanis gravitáció hatása artériás és vénás rendszerre résznél látszik, hogy benne van a hidrosztatikai nyomás is a képletében</li>
-			<li>ugyan a bernoulli törvény kimondja, hogy konstans a teljes, de! itt gondolom csökken, <abbr title="az biztos, hogy az szívből induló 'nyomásenergia' teljes egészében átalakul hővé előbb utóbb. Ezt TK írta">mert átalakul hővé</abbr></li>
-			<li>szóval itt a nyomás kicsit máshogy oszlik el, mint a feszültség nem úgy oszlik el</li>
-			<li>szóval szvsz a perfúziós nyomás 2db teljes nyomás különbsége</li>
-			<li><abbr title="Ha van egy repülő melyre felteszek egy nyomásmérőt, ami csak az oldalára ható nyomást méri (ami megyegyezik a légnyomással), akkor kapom meg az oldalnyomást. Felteszek egy másik nyomásmérőt ami szemből érkező legevő általi nyomást méri akkor nyagyobb nyomást mérek: megkapom egyrészt az alapból meglévő nyomást (oldalnyomás, jelen esetben légnyomás) + mivel szembe megyek vele 'kapok még egy' dinamikus nyomást. Tehát a teljes nyomás nyomást mérem ott.">'</abbr></li>
-			<img data-src="lklkjghmn.png">
-		</ul></details>
-		<details class="kerdes 3/2"><summary>(1) áramlási_sebesség(v) és összkeresztmetszet(A)</summary><ul class="normal">
+	  <hr><strong>törvények</strong>
+		<details class="kerdes 3/2"><summary>áramlási_sebesség(v) és összkeresztmetszet(A)</summary><ul class="normal">
 			<font style="font-size:80%">egy érnek van A<sub>1</sub> keresztmetszete, majd röviddel utána kiszélesedik és lesz A<sub>2</sub> &#10140; kérdés áramlási_sebesség milyen a két esetben?</font>
-		  <hr>
 			<li>az áramlás=Q<abbr title="biofizikánál térfogati_áramerősség volt a neve">'</abbr> nem változik, azaz mindkét keresztmetszeten ugyanannyi vér jut át időegységenként</li>
 			<li>Q = A*v</li>
 			<li>A<sub>1</sub>*v<sub>1</sub> = A<sub>2</sub>*v<sub>2</sub></li>
 			<li>így a sebesség v<sub>1</sub>>v<sub>2</sub> kisebb lesz</li>
-		  <hr>
-			<li>FONTOS! azért összkeresztmetszet van írva, mert ez ugyanúgy felhasználható több érre is egyszerre &#10140; pl. aorta keresztmetszete 2,5cm<sub>2</sub> vs. artériák 25cm<sub>2</sub> &#10140; artériákban tehát 10ed akkora az áramlás sebssége, mint aortában</li>
 			<span class="imp [129]"></span>
 			<img data-src="mlkhgjmn.png">
 		</ul></details>
-		<details class="kerdes 3/3"><summary>(2) oldalnyomás és áramlási_sebesség</summary><ul class="normal">
+		<details class="kerdes 3/1"><summary>soros és párhuzamos kapcsolás esetén ellenállás</summary><ul class="normal">
+			<div><font style="font-size:80%">ugyanaz, mint elektromosságtan középiskola (csak itt U helyett &Delta;p; és I helyett Q)</font></div>
+			<li>soros &#10140; R<sub>e</sub> = R<sub>1</sub> + R<sub>2</sub> ... </li>
+			<li>párhuzamos &#10140; 1/R<sub>e</sub> = 1/R<sub>1</sub> + 1/R<sub>2</sub> ... </li>
+		</ul></details>
+		<details class="kerdes 3/3"><summary>Bernoulli törvény <font style="font-size:80%">(oldalnyomás és áramlási_sebesség közti összefüggés)</font></summary><ul class="normal">
 			<img data-src="kjkhhgjkm.png">
-			<li>Bernoulli törvényen alapszik (lásd kép)</li>
 			<li><abbr title="statikus_nyomás">oldalnyomás</abbr><span class="WHITE">p</span>; dinamikus_nyomás <span class="WHITE">(1/2)ρv<sup>2</sup></span>; hidrosztatikai_nyomás<span class="WHITE">hρg</span>;</li>
 			<li>van egy ér kiszélesedik <img class="mini" data-src="mlkhgjmn.png"> &#10140; akkor ott csökken az áramlási sebesség</li>
 			<li>felírható rá az alábbi összefüggés (kép elsősora), ami azon alapszik, hogy a p<sub>teljes</sub> állandó &#10140; ha az ér 'állandó magasságban' helyezkedik el, akkor tovább egyszerűsíthetünk (második sor)</li>
@@ -4299,10 +4503,9 @@
 			<font style="font-size:80%">a hidrosztatikia_nyomás szerepel még a kapillárison keresztüli transzportnál is, DE!! csak a nevük azonos, a kettő teljesen más.</font> <span class="lasd">2.7.t</span>
 			<img data-src="dhhjnmrt.png">
 		</ul></details>
-		<details class="kerdes 3/3"><summary>(3) áramlást meghatározó tényezők</summary><ul class="normal">
+		<details class="kerdes 3/3"><summary>Hagen-Poiseuille-törvény <font style="font-size:80%">(áramlást meghatározó tényezők)</font></summary><ul class="normal">
 			<img data-src="hjhggbmhn.png">
-			<li>ezt a <strong><abbr title="'hágen-poászöj'">Hagen-Poiseuille</abbr>-törvény</strong> írja le</li>
-			<li>aznban előtte egy kis bevezetés, hogy a tényezőket értsem</li>
+			<li>egy kis bevezetés, hogy a tényezőket értsem</li>
 			<li>Q = áramlás<abbr title="biofizikánál térfogati_áramerősség volt a neve">'</abbr></li>
 			<li>kérdés &#10140; ha van egy állandó nyomású 'hajtóerő'(lásd képen pl.&Delta;p=h&rho;g), akkor az ér milyen paramétereitől függ az áramlás mértéke</li>
 		  <hr>
@@ -4318,56 +4521,28 @@
 			<li>ezen mért adatok alapján felírható a <strong><abbr title="'hágen-poászöj'">Hagen-Poiseuille</abbr>-törvény</strong> (lásd kép) &#10140; &Delta;p a két terület közti nyomáskülönbség (ez itt most állandó volt, h&rho;g)</li>
 			<img data-src="zkjhjzkljmlkn.png">
 		</ul></details>
-		<details class="{156} kerdes 3/1"><summary>(4) ellenállást meghatározó tényezők</summary><ul class="normal">
-			<li>Ohm törvény <font style="font-size:80%">(R = U/I &#10140; )</font> R = &Delta;p/Q</li>
-			<li>és innen kifejezhető R a <abbr title="'hágen-poászöj'">Hagen-Poiseuille</abbr>-törvény <img class="mini" data-src="zkjhjzkljmlkn.png"> felhasználásával (Q helyére behelyettesítem, &Delta;p ki fog esni)</li>
-			<li>ebből pedig kiolvasható, hogy mitől függ</li>
-			<img data-src="sgsgstsf.png">
-		</ul></details>
-		<details class="kerdes 3/2"><summary>(5) soros és párhuzamos kapcsolás esetén ellenállás</summary><ul class="normal">
-			<div><font style="font-size:80%">ugyanaz, mint elektromosságtan középiskola (csak itt U helyett &Delta;p; és I helyett Q)</font></div>
-			<li>soros &#10140; R<sub>e</sub> = R<sub>1</sub> + R<sub>2</sub> ... </li>
-			<li>párhuzamos &#10140; 1/R<sub>e</sub> = 1/R<sub>1</sub> + 1/R<sub>2</sub> ... </li>
-			<details class="kerdes 3/2"><summary><abbr title="total perpherial resistance">TPR</abbr> &#10140; mi? kiszámítása?</summary><ul class="normal">
-				<img style="max-width:35%" data-src="ghjjjhggfdds.png">
-				<li>teljes perifériás ellenállás &#10140; nagy_vérkör ellenállása</li>
-				<li><span class="WHITE">TPR = perfúziós_nyomás / PTF</span> <div class="mirror">&#10140;</div> <font style="font-size:80%">(hisz R = U/I = p/Q)</font></li><ul>
-					<li>perfúziós_nyomás = p<sub>aorta</sub> - p<sub>jobb pitvar</sub> = 93Hgmm - 2Hgmm</li>
-					<li>PTF = 5,5l/perc</li>
-					<li>TPR = 16,5Hgmm*perc/l</li>
-					<span class="lasd">artériás nyomás képleténél is ugyanez a képlet van átrendezve!</span>
-				</ul>
-			  <hr>
-				ebben az 'ágak' párhuzamosan kapcsoltak (persze azon belül lehet még soros illetve párhuzamos is), így ha az ellenállásokból számítanánk ki &#10140; 1/TPR = 1/R<sub>koronáriás-keringés</sub> + 1/R<sub>vese-keringés</sub> + 1/R<sub>jobb-kéz</sub> és így tovább összes 'ága'
-			</ul></details>
-			<details class="kerdes 3/1"><summary>TPR hogy változik egy 'ágat'(szervet) kizárva?</summary><ul class="normal">
-				<li>nő, mivel párhuzamosan vannak kapcsolva <abbr title="az ember elsőre azt gondolná, hogy csökken, de nem...">'</abbr></li>
-				<li>pl. ha 1/R<sub>e</sub> = 1/20 + 1/20; akkor R<sub>e</sub> = 10 &#10140; ellenben ha egyiket kizárom, akkor 20 lesz az ellenállás</li>
-				<font style="font-size:80%">vérnyomásmérésnél is nő a perifériás ellenállás, hiszen ott egy 'ágat'(kar) kizárunk</font>
-			</ul></details>
-		</ul></details>
-		<details class="{357} kerdes 3/5"><summary>(6) lamináris és turbulens áramlás lényege</summary><ul class="normal">
-			<div><font style="font-size:80%">Egy érben az áramlás legtöbbször lamináris, azaz szabályos, örvények nélküli. A turbulens áramlás örvénylő, kevésbé rendezett, fenntartása több energiát igényel, hangjelenséggel jár. Arra, hogy egy adott érszakaszban milyen áramlás történik, a Reynolds-szám alapján következtethetünk</font></div>
+		<details class="{357} kerdes 3/5"><summary>lamináris és turbulens áramlás lényege</summary><ul class="normal">
+			<img data-src="lmntrlntjhm.png">
 			<table><tr><th>áramlás</th>   <th>részecskék sebességének iránya</th></tr>
 				<tr><th>lamináris</th> <td>NEM keresztezik egymást <br><font style="font-size:80%">párhuzamos az eredő sebességel</font></td> </tr>
 				<tr><th>turbulens</th> <td>keresztezik egymást</td> </tr>
 			</table>
-			<li>turbulens 'rosszabb' &#10140; energetikai szempontból, illetve a részecskéket is jobban károsítja</li>
 			<li>keringési rendszer nagy részében lamináris áramlás van <font style="font-size:80%">(kivétel pl. szívbillentyűk tájéka, vagy patológiás elváltozás)</font></li>
 		  <hr><strong>ehhez kapcsolódó képlet</strong>
 			<li>ha Reynolds-szám 2000-nél alacsonyabb, akkor lamináris</li>
 			<li>ha Reynolds-szám <abbr title="direkt ennyi, nem véletlen (előadásból)">3000</abbr>-nél magasabb, akkor turbulens</li>
 			<div><font style="font-size:80%">kettő között (2000-3000) nem lehet tudni</font></div>
+			<img data-src="ghjjmbnkm.png">
 			<li>Reynolds-szám képlete</li><ul>
 				<li>v = áramlási_sebesség(átlag)</li>
 				<li>&rho; = sűrűség</li>
 				<li>&eta; = viszkozitás</li>
 				<li>d = átmérő</li>
 			</ul>
-			<img data-src="ghjjmbnkm.png">
-			<img data-src="lmntrlntjhm.png">
+		  <hr><strong>jelentősége</strong>
+			<li>Riva-Rocci módszer <span class="LASD">2.6</span></li>
 		</ul></details>
-		<details class="{147} kerdes 3/1"><summary>(7) Laplace törvény</summary><ul class="normal">
+		<details class="{147} kerdes 3/1"><summary>Laplace törvény</summary><ul class="normal">
 			<li>ér/üreg falának feszülése(T) arányos a benne mérhető nyomás és a sugarának szorzatával, és fordítottan arányos a falvastagsággal(x)</li>
 			<li><span class="WHITE">T = (p*r)/(2*x)</span></li>
 			<li>jelentősége <span class="LASD">2.9t</span></li><ul>
@@ -4376,78 +4551,25 @@
 				<li><font style="font-size:80%">ezenkívül, ha T elér egy értéket akkor a fal megreped(ruptúra) &#10140; aneurizma esetében ez történik</font> <abbr title="csökken a falvastagság és nő a sugár"><font style="font-size:80%">(oka)</font></abbr></li>
 			</ul>
 		</ul></details>
-		<details class="{137} kerdes 3/3"><summary>(8) <abbr title="'komplájensz'">compliance</abbr></summary><ul class="normal">
-			<img style="max-width:40%" data-src="vnkrtnymstrfg.png">
+		<details class="{137} kerdes 3/4"><summary><abbr title="'komplájensz'">compliance</abbr></summary><ul class="normal">
 			<li>compliance = &Delta;V/&Delta;p &#10140; azt mutatja, hogy mennyire rugalmas az ér fala &#10140; milyen mértékben változik a térfogat egy adott nyomásnövekedés hatására</li>
-			<li>vénák compliance-e kb. 25x-öse az artériákéhoz képest &#10140; vénában kis nyomásemelkedés már óriási térfogatváltozást okoz, míg artériában alig</li>
-			<li>amennyiben magas nyomás Hgmm(100+) éri a vénát, akkor látható, hogy a compliance nagyon alacsony lesz &#10140; pl. ennek akkor van jelentősége, ha áll valaki, és a gravitáció következtébeni nyomás a lábon lévő vénákat éri</li>
-			<li><abbr title="x-el jelölve">két pont</abbr> &#10140; normál értékek fiziológiás körülmények között <img class="mini" data-src="skkhjmfkm.png"></li>
+			jelentősége:
+			<details><summary>● vénák compliance-e nagy (kb. 25x-öse az artériákéhoz képest)</summary><ul class="normal">
+				<li>ezért a vénák az ún. <span class="Important">kapacitáserek</span>, normál esetben a vér 64%a van vénákban</li>
+				<font style="font-size:80%">amennyiben magas nyomás Hgmm(100+) éri a vénát, akkor látható, hogy a compliance nagyon alacsony lesz &#10140; pl. ennek akkor van jelentősége, ha áll valaki, és a gravitáció következtébeni nyomás a lábon lévő vénákat éri</font>
+				<img data-src="vnkrtnymstrfg.png">
+			</ul></details>
+			<details><summary>● aorta compliance-e az egyik fizikai paramétere az artériás vérnyomásnak</summary><ul class="normal">
+				<li>compliance kb. 1ml/Hgmm</li>
+				<li>ez azonban az életkor fv-ében csökken (csökken a rugalmas rostok száma a falban)</li>
+				<li>következménye &#10140; kevésbé képes tágulni szisztolé során, így &#10140; szisztolés nyomás erősen nő, diasztolés nyomás csökken, pulzusnyomás erősen nő, középnyomás nem változik</li>
+				<img data-src="kkjghmklm.png">
+			</ul></details>
+			<li>tüdő típusú erek</li>
 		</ul></details>
-		
+	  <hr>
 		<details><summary>(x) áramlás és nyomás összefüggése valódi erekben</summary><ul class="normal">
 			<div class="imp [361]"></div>
-		</ul></details>
-		
-		<details class="kerdes 3/1"><summary>Feladat. Ha van egy r sugarú l hosszúságú ér, és annak ellenállása R. Akkor egy r/2 sugarú l hosszúságú ér ellenállása mennyi?</summary><ul class="normal">
-			<li>Hagen-Poiseuille-törvényt felírva látható hogy a sugár 4. hatványával fordítottan arányos</li>
-			<li>tehát 16R lesz az ellenállása</li>
-		</ul></details>
-		<details class="kerdes 3/1"><summary>Feladat. Ha van egy r sugarú l hosszúságú ér, ellenállásra R. Elágazik 2db l hosszúságú r sugarú érre. Akkor mennyi a teljes ellenállás?</summary><ul class="normal">
-			<li>1/Re = 1/R + 1/R &#10140; a két párhuzamosan kapcsolt ér eredő ellenállása 0,5R</li>
-			<li>tehát 1,5R a teljes ellenállás</li>
-		</ul></details>
-		<details class="kerdes 3/3"><summary>viszkozitás</summary><ul class="normal">
-			<img style="max-width:40%" data-src="hmjkmjbm.png">
-			<li>viszkozitás &#10140; folyadék belső súrlódása <font style="font-size:80%">(avagy a molekulák közti interakció mértéke)</font></li>
-			<li>pl. méznek nagyobb, mint víznek</li>
-			<li>Newtoni-folyadék &#10140; viszkozitása állandó</li>
-			<li>a vér azonban NEM Newtoni-folyadék, tehát változó a viszkozitása</li>
-			<li>értékét a vérben a hematokrit érték szabja meg <abbr title="leginkább">'</abbr> <font style="font-size:80%">(tehát lényegében vér alakos elemeinek<abbr title="főként vvt, hisz az teszi ki nagyrészét">'</abbr> koncentrációja)</font></li>
-			<li>kapillárisok<abbr title="in_vivo nem lehetne, ezért üvegkapillárissal lett elvégezve">(in_vitro)</abbr> esetében mért viszkozitás adatok &#10140; kép</li><ul>
-				<li>η<sub>víz</sub> = 1</li>
-				<li>η<sub>vér viszkozitása; hematokrit = 0</sub> = 1,2</li>
-				<li>η<sub>vér viszkozitása; hematokrit = 44</sub> = ~3</li>
-			</ul>
-			<li>a viszkozitás függ(3)</li><ul>
-				<li>hematokrit értéke &#10140; arányos vele</li><ul>
-					<li>a hematokrit értéke arányos továbbá az átmérővel <img class="mini" data-src="kkjhmnbjgkm.png"> &#10140; <span class="Important">így arteriolákban csökken a viszkozitás (a nála nagyobb erekhez képest)</span></li>
-				</ul>
-				<li>áramlási sebesség &#10140; arányos vele</li>
-			</ul>
-			<details><summary><font style="font-size:80%">miért csökken a hematokrit érték az átmérővel</font></summary><ul class="normal">
-				<li>mint tudjuk lamináris áramlás esetében 'középen' a legnagyobb az áramlási_sebesség <img class="mini" data-src="lmntrlntjhm.png"></li>
-				<li>vvt-k az arteriolákban a 'középső-részben' haladnak &#10140; tehát a vvt-k lényegében itt nagy sebességgel haladnak</li>
-				<li>ennek következtében az arteriolákban kisebb 'mennyiségben' van vérsejt, mint egyéb szakaszokon <abbr title="Hiszen ha van egy kör, amin 100méter kerületű. Ebbe 10m/s sebességgel halad egy autó, kivéve az ún. 'gyors'-negyedet, ahol 25m/s-al. Ez azt jelenti, hogy a kört megteszi (7,5sec+1sec=)8,5sec alatt. Tehát 1secig van a 'gyors'-negyedben, a maradékban pedig 7,5sec-ig. Tehát random időpillanatban az esélye, hogy gyors-negyedben van kevesebb mint 25% (100*1/8,5). Ha nem csak egy kocsi van hanem többis, azokra is igaz ugyanez, tehát kis mennyiségben vannak azon a területen relatív, mint a többi területen a kocsik">'</abbr> &#10140; kisebb a hematokrit érték</li>
-			</ul></details>
-		  <strong>jelentőségének szemléltetése</strong>
-			<li>ha valaki keveset iszik (dehidratálódik), akkor felmegy a hematokrit értéke &#10140; nő a viszkozitás &#10140; nő az ellenállás &#10140; ez befolyással lesz az artériás vérnyomásra <span class="MISS">(lásd 18.ea kicsit később)</span></li>
-		</ul></details>
-		<details class="kerdes 3/1"><summary>áramlás mely paramétertől függ leginkább?</summary><ul class="normal">
-			<div>sugár</div>
-			<li>egyrészt azért, mert 4. hatványa szerepel a képletben (kis változás is jelentősen befolyásolja már)</li>
-			<li>másrészt, mert az az ami változtatható erek esetében <font style="font-size:80%">(hossz nem<abbr title="és nyilván viszkozitás + nyomás sem, bár a nyomásról azért kéne valami meggyőzés, hog az sem de ne foglalkozzak vele">'</abbr>)</font> &#10140; szabályozása ezen alapszik a simaizom összehúzódással</li>
-			<img data-src="zkjhjzkljmlkn.png">
-		</ul></details>
-		<details class="kerdes 3/1"><summary>ellenállás mely paramétertől függ leginkább?</summary><ul class="normal">
-			<div>sugár</div>
-			<li>egyrészt azért, mert 4. hatványa szerepel a képletben (kis változás is jelentősen befolyásolja már)</li>
-			<li>másrészt, mert az az ami változtatható erek esetében <font style="font-size:80%">(hossz nem<abbr title="és nyilván viszkozitás + nyomás sem, bár a nyomásról azért kéne valami meggyőzés, hog az sem de ne foglalkozzak vele">'</abbr>)</font> &#10140; szabályozása ezen alapszik a simaizom összehúzódással</li>
-			<img data-src="zkjhjzkljmlkn.png">
-		</ul></details>
-		<details class="kerdes 3/1"><summary>kapillárison mennyi idő alatt jut át a vér</summary><ul class="normal">
-			<div><span class="Important">kb. 3sec</span> alatt jut át</div>
-			<li>a vér áramlási_sebessége 0,3mm/s &#10140; így a kapilláris hossza kb. 1mm</li>
-		</ul></details>
-		<details class="kerdes 3/3"><summary>lamináris-áramlás, hogy válthat át turbulensre?</summary><ul class="normal">
-			<li>ha Reynolds-szám nagyobb mint 3000, akkor turbulens, ha kisebb mint 2000 akkor lamináris</li>
-			<span class="WHITE">kép</span> Reynolds-szám képlete
-			<li>tehát a kérdés, hogy a szervezetben milyen változás növelheti a Reynolds-szám értékét</li><ul>
-				<li>pl. ha csökken a vvt-szám[anémia!], akkor csökken a viszkozitás</li>
-				<li>pl. <abbr title="ütőértágulat (artériák tágulnak)">aneurizma</abbr> következtében nő az átmérő</li>
-				<li>pl. <abbr title="szűkület: a billentyűk részben összenőttek, így nem nyílnak ki, ezáltal szűkítik a szájadékot. Az adott szívüregnek nagyobb erőkifejtéssel kell a vért kipréselni, így a szívüreg falára többletmunka hárul, ami ennek következtében megvastagodhat">stenosis</abbr> következtében nő a sebesség</li>
-			</ul>
-			<li>turbulens áramlás 'hangjelenséget produkál' !! &#10140; <span class="Important">szívbillentyűk működésénél is kialakul turbulens-áramlás, és ezért kíséri hang</span></li>
-			<img data-src="ghjjmbnkm.png">
 		</ul></details>
 	</ul></details>
 	<details class="kerdes 4/4"><summary>A keringési rendszer felépítése. Az egyes érszakaszok funkciója a nagyvérkörben. A véráramlás biofizikai alapjai. <strong>A nyomás és az áramlás összefüggése</strong>.</summary><ul class="normal">
@@ -4475,8 +4597,38 @@
 		</ul>
 		<li>R eredője 1</li>
 	</ul></details>
-
-  <hr>
+<!----></details><hr>
+	<details class="kerdes 3/1"><summary>Feladat. Ha van egy r sugarú l hosszúságú ér, és annak ellenállása R. Akkor egy r/2 sugarú l hosszúságú ér ellenállása mennyi?</summary><ul class="normal">
+		<li>Hagen-Poiseuille-törvényt felírva látható hogy a sugár 4. hatványával fordítottan arányos</li>
+		<li>tehát 16R lesz az ellenállása</li>
+	</ul></details>
+	<details class="kerdes 3/1"><summary>Feladat. Ha van egy r sugarú l hosszúságú ér, ellenállásra R. Elágazik 2db l hosszúságú r sugarú érre. Akkor mennyi a teljes ellenállás?</summary><ul class="normal">
+		<li>1/Re = 1/R + 1/R &#10140; a két párhuzamosan kapcsolt ér eredő ellenállása 0,5R</li>
+		<li>tehát 1,5R a teljes ellenállás</li>
+	</ul></details>
+	<details class="{156} kerdes 3/1"><summary>ellenállást meghatározó tényezők</summary><ul class="normal">
+		<li>Ohm törvény <font style="font-size:80%">(R = U/I &#10140; )</font> R = &Delta;p/Q</li>
+		<li>és innen kifejezhető R a <abbr title="'hágen-poászöj'">Hagen-Poiseuille</abbr>-törvény <img class="mini" data-src="zkjhjzkljmlkn.png"> felhasználásával (Q helyére behelyettesítem, &Delta;p ki fog esni)</li>
+		<li>ebből pedig kiolvasható, hogy mitől függ</li>
+		<img data-src="sgsgstsf.png">
+	</ul></details>
+	<details class="kerdes 3/2"><summary><abbr title="total perpherial resistance">TPR</abbr> &#10140; mi? kiszámítása?</summary><ul class="normal">
+		<img style="max-width:35%" data-src="ghjjjhggfdds.png">
+		<li>teljes perifériás ellenállás &#10140; nagy_vérkör ellenállása</li>
+		<li><span class="WHITE">TPR = perfúziós_nyomás / PTF</span> <div class="mirror">&#10140;</div> <font style="font-size:80%">(hisz R = U/I = p/Q)</font></li><ul>
+			<li>perfúziós_nyomás = p<sub>aorta</sub> - p<sub>jobb pitvar</sub> = 93Hgmm - 2Hgmm</li>
+			<li>PTF = 5,5l/perc</li>
+			<li>TPR = 16,5Hgmm*perc/l</li>
+			<span class="lasd">artériás nyomás képleténél is ugyanez a képlet van átrendezve!</span>
+		</ul>
+	  <hr>
+		ebben az 'ágak' párhuzamosan kapcsoltak (persze azon belül lehet még soros illetve párhuzamos is), így ha az ellenállásokból számítanánk ki &#10140; 1/TPR = 1/R<sub>koronáriás-keringés</sub> + 1/R<sub>vese-keringés</sub> + 1/R<sub>jobb-kéz</sub> és így tovább összes 'ága'
+	</ul></details>
+	<details class="kerdes 3/1"><summary>TPR hogy változik egy 'ágat'(szervet) kizárva?</summary><ul class="normal">
+		<li>nő, mivel párhuzamosan vannak kapcsolva <abbr title="az ember elsőre azt gondolná, hogy csökken, de nem...">'</abbr></li>
+		<li>pl. ha 1/R<sub>e</sub> = 1/20 + 1/20; akkor R<sub>e</sub> = 10 &#10140; ellenben ha egyiket kizárom, akkor 20 lesz az ellenállás</li>
+		<font style="font-size:80%">vérnyomásmérésnél is nő a perifériás ellenállás, hiszen ott egy 'ágat'(kar) kizárunk</font>
+	</ul></details>
 	<details class="kerdes 3/5"><summary><strong>az érfal simaizomzatának tulajdonságai</strong><abbr title="1.félévben tételbe volt">'</abbr></summary><ul class="normal">
 		<li>single unit</li>
 		<details><summary>simaizom típusai (működés és innervatio alapján)</summary><ul class="normal">
@@ -4498,9 +4650,79 @@
 			</tr>
 		</table>
 	</ul></details>
+	<details class="kerdes 3/3"><summary>viszkozitás</summary><ul class="normal">
+		<img style="max-width:40%" data-src="hmjkmjbm.png">
+		<li>viszkozitás &#10140; folyadék belső súrlódása <font style="font-size:80%">(avagy a molekulák közti interakció mértéke)</font></li>
+		<li>pl. méznek nagyobb, mint víznek</li>
+		<li>Newtoni-folyadék &#10140; viszkozitása állandó</li>
+		<li>a vér azonban NEM Newtoni-folyadék, tehát változó a viszkozitása</li>
+		<li>értékét a vérben a hematokrit érték szabja meg <abbr title="leginkább">'</abbr> <font style="font-size:80%">(tehát lényegében vér alakos elemeinek<abbr title="főként vvt, hisz az teszi ki nagyrészét">'</abbr> koncentrációja)</font></li>
+		<li>kapillárisok<abbr title="in_vivo nem lehetne, ezért üvegkapillárissal lett elvégezve">(in_vitro)</abbr> esetében mért viszkozitás adatok &#10140; kép</li><ul>
+			<li>η<sub>víz</sub> = 1</li>
+			<li>η<sub>vér viszkozitása; hematokrit = 0</sub> = 1,2</li>
+			<li>η<sub>vér viszkozitása; hematokrit = 44</sub> = ~3</li>
+		</ul>
+		<li>a viszkozitás függ(3)</li><ul>
+			<li>hematokrit értéke &#10140; arányos vele</li><ul>
+				<li>a hematokrit értéke arányos továbbá az átmérővel <img class="mini" data-src="kkjhmnbjgkm.png"> &#10140; <span class="Important">így arteriolákban csökken a viszkozitás (a nála nagyobb erekhez képest)</span></li>
+			</ul>
+			<li>áramlási sebesség &#10140; arányos vele</li>
+		</ul>
+		<details><summary><font style="font-size:80%">miért csökken a hematokrit érték az átmérővel</font></summary><ul class="normal">
+			<li>mint tudjuk lamináris áramlás esetében 'középen' a legnagyobb az áramlási_sebesség <img class="mini" data-src="lmntrlntjhm.png"></li>
+			<li>vvt-k az arteriolákban a 'középső-részben' haladnak &#10140; tehát a vvt-k lényegében itt nagy sebességgel haladnak</li>
+			<li>ennek következtében az arteriolákban kisebb 'mennyiségben' van vérsejt, mint egyéb szakaszokon <abbr title="Hiszen ha van egy kör, amin 100méter kerületű. Ebbe 10m/s sebességgel halad egy autó, kivéve az ún. 'gyors'-negyedet, ahol 25m/s-al. Ez azt jelenti, hogy a kört megteszi (7,5sec+1sec=)8,5sec alatt. Tehát 1secig van a 'gyors'-negyedben, a maradékban pedig 7,5sec-ig. Tehát random időpillanatban az esélye, hogy gyors-negyedben van kevesebb mint 25% (100*1/8,5). Ha nem csak egy kocsi van hanem többis, azokra is igaz ugyanez, tehát kis mennyiségben vannak azon a területen relatív, mint a többi területen a kocsik">'</abbr> &#10140; kisebb a hematokrit érték</li>
+		</ul></details>
+	  <strong>jelentőségének szemléltetése</strong>
+		<li>ha valaki keveset iszik (dehidratálódik), akkor felmegy a hematokrit értéke &#10140; nő a viszkozitás &#10140; nő az ellenállás &#10140; ez befolyással lesz az artériás vérnyomásra <span class="MISS">(lásd 18.ea kicsit később)</span></li>
+	</ul></details>
+	<details class="kerdes 3/1"><summary>áramlás mely paramétertől függ leginkább?</summary><ul class="normal">
+		<div>sugár</div>
+		<li>egyrészt azért, mert 4. hatványa szerepel a képletben (kis változás is jelentősen befolyásolja már)</li>
+		<li>másrészt, mert az az ami változtatható erek esetében <font style="font-size:80%">(hossz nem<abbr title="és nyilván viszkozitás + nyomás sem, bár a nyomásról azért kéne valami meggyőzés, hog az sem de ne foglalkozzak vele">'</abbr>)</font> &#10140; szabályozása ezen alapszik a simaizom összehúzódással</li>
+		<img data-src="zkjhjzkljmlkn.png">
+	</ul></details>
+	<details class="kerdes 3/1"><summary>ellenállás mely paramétertől függ leginkább?</summary><ul class="normal">
+		<div>sugár</div>
+		<li>egyrészt azért, mert 4. hatványa szerepel a képletben (kis változás is jelentősen befolyásolja már)</li>
+		<li>másrészt, mert az az ami változtatható erek esetében <font style="font-size:80%">(hossz nem<abbr title="és nyilván viszkozitás + nyomás sem, bár a nyomásról azért kéne valami meggyőzés, hog az sem de ne foglalkozzak vele">'</abbr>)</font> &#10140; szabályozása ezen alapszik a simaizom összehúzódással</li>
+		<img data-src="zkjhjzkljmlkn.png">
+	</ul></details>
+	<details class="kerdes 3/1"><summary>kapillárison mennyi idő alatt jut át a vér</summary><ul class="normal">
+		<div><span class="Important">kb. 3sec</span> alatt jut át</div>
+		<li>a vér áramlási_sebessége 0,3mm/s &#10140; így a kapilláris hossza kb. 1mm</li>
+	</ul></details>
+	<details class="kerdes 3/3"><summary>lamináris-áramlás, hogy válthat át turbulensre?</summary><ul class="normal">
+		<li>ha Reynolds-szám nagyobb mint 3000, akkor turbulens, ha kisebb mint 2000 akkor lamináris</li>
+		<span class="WHITE">kép</span> Reynolds-szám képlete
+		<li>tehát a kérdés, hogy a szervezetben milyen változás növelheti a Reynolds-szám értékét</li><ul>
+			<li>pl. ha csökken a vvt-szám[anémia!], akkor csökken a viszkozitás</li>
+			<li>pl. <abbr title="ütőértágulat (artériák tágulnak)">aneurizma</abbr> következtében nő az átmérő</li>
+			<li>pl. <abbr title="szűkület: a billentyűk részben összenőttek, így nem nyílnak ki, ezáltal szűkítik a szájadékot. Az adott szívüregnek nagyobb erőkifejtéssel kell a vért kipréselni, így a szívüreg falára többletmunka hárul, ami ennek következtében megvastagodhat">stenosis</abbr> következtében nő a sebesség</li>
+		</ul>
+		<li>turbulens áramlás 'hangjelenséget produkál' !! &#10140; <span class="Important">szívbillentyűk működésénél is kialakul turbulens-áramlás, és ezért kíséri hang</span></li>
+		<img data-src="ghjjmbnkm.png">
+	</ul></details>
+	<details><summary><span class="Vocab">JR</span> saját megjegyzések segítségnek <span class="MISS">!?</span></summary><ul class="normal">
+	  <strong><abbr title="ennél R=&rho*l/A. itt viszont Hagen-Poisulle törvényből van R kifejezve">elektromos vezetéssel</abbr> összefüggés</strong>
+		<img style="max-width:30%" data-src="fszlrskmj.png">
+		<li>itt az I = U/R helyett &#10140; Q = &Delta;P/R összefüggés van</li>
+		<li>lásd 'ezt' még <span class="lasd">A nyomás változása a nagyvérkör ereiben</span> RAJZ-on</li>
+	  <hr><strong>&Delta;p = perfúziós_nyomás</strong>
+		<li>perfúziós_nyomásnak<abbr title="vagy átáramoltató">'</abbr> nevezzük bármely érszakasz bemenetén és kimenetén mért nyomások különbségét <abbr title="ezt sok helyen csak 'p'-vel jelölik, de akkor is ugyanazt értik alatta (illetve, ha a nyomás fv-ében ábrázolunk valamit akkor is azt értjük alatta) &#10140; hiszen a &Delta;p a cső egyik végénél(p1) és másik végén(p2) 'lévő' nyomás különbsége; ez az amely egyik oldalról(ahol nagyobb nyomás) a másik irányba hajtja az áramlást;; ha p-t írnak, akkoris ugyanerre gondolnak">'</abbr></li>
+		<li>ez jól látható <span class="lasd">A nyomás változása a nagyvérkör ereiben</span> RAJZ-on</li>
+	  <hr><strong>a teljes nyomást hol tudom elhelyezni</strong> <span class="MISS">!?</span>
+		<li><font style="font-size:80%">szvsz innentől az egész!</font> a <span class="lasd">A nyomás változása a nagyvérkör ereiben</span> rajzon amit látok értékek azok egymagukban teljes nyomás értékek.</li>
+		<li>ugyanis gravitáció hatása artériás és vénás rendszerre résznél látszik, hogy benne van a hidrosztatikai nyomás is a képletében</li>
+		<li>ugyan a bernoulli törvény kimondja, hogy konstans a teljes, de! itt gondolom csökken, <abbr title="az biztos, hogy az szívből induló 'nyomásenergia' teljes egészében átalakul hővé előbb utóbb. Ezt TK írta">mert átalakul hővé</abbr></li>
+		<li>szóval itt a nyomás kicsit máshogy oszlik el, mint a feszültség nem úgy oszlik el</li>
+		<li>szóval szvsz a perfúziós nyomás 2db teljes nyomás különbsége</li>
+		<li><abbr title="Ha van egy repülő melyre felteszek egy nyomásmérőt, ami csak az oldalára ható nyomást méri (ami megyegyezik a légnyomással), akkor kapom meg az oldalnyomást. Felteszek egy másik nyomásmérőt ami szemből érkező legevő általi nyomást méri akkor nyagyobb nyomást mérek: megkapom egyrészt az alapból meglévő nyomást (oldalnyomás, jelen esetben légnyomás) + mivel szembe megyek vele 'kapok még egy' dinamikus nyomást. Tehát a teljes nyomás nyomást mérem ott.">'</abbr></li>
+		<img data-src="lklkjghmn.png">
+	</ul></details>
 </details>
 
-<details><summary class="phase">6. Az artériás vérnyomás és mérése. Az artériás vérnyomást meghatározó és befolyásoló tényezők.</summary>
+<details><summary class="phase">6. Az artériás vérnyomás és mérése. Az artériás vérnyomást meghatározó és befolyásoló tényezők.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/5"><summary><strong>Az artériás vérnyomás</strong> és mérése. Az artériás vérnyomást meghatározó és befolyásoló tényezők.</summary><ul class="normal">
 		<font style="font-size:80%">artériás_vérnyomás alatt az aorta (és nagy artériák) vérnyomását értjük</font>
 	  <hr><strong>típusai</strong>
@@ -4526,7 +4748,7 @@
 	  <hr><strong>Riva-Rocci módszer lényege</strong>
 		<li>nagy külső nyomás elzárjuk az artériát</li>
 		<li>a nyomást csökkentve, egyszer eléri a szisztolés nyomást &#10140; ekkor az ér kitágul és megindul benne a turbulens áramlás &#10140; ezt hang kíséri</li>
-		<details><summary><font style="font-size:80%">azért turbulens áramlás indul meg, mert az artéria átmérője kicsi!!</font></summary><ul class="normal">
+		<details><summary><font style="font-size:80%">azért turbulens áramlás indul meg, mert az <abbr title="gondolom emiatt a sebesség nagy, de nem egészen értem...">artéria átmérője kicsi</abbr>!!</font></summary><ul class="normal">
 			<div class="imp [357]"></div>
 		</ul></details>
 		<li>tovább csökkentve, ha eléri a diasztolést, akkor a hang megszűnik</li>
@@ -4538,8 +4760,10 @@
 		<li>TPR</li>
 		<li>PTF</li>
 	  <strong>fizikai</strong> paraméterek
-		<li>artériás térfogat</li>
-		<li>compliance</li>
+		<li>artériás térfogat (<abbr title="ez az ami benne marad az aortában szisztolé végén, így szélkazán-effektussal fenntudja tartani az egyenletes véráramlást">normál esetben 40ml</abbr>)</li>
+		<details><summary>● compliance</summary><ul class="normal">
+			<div class="imp [137]"></div>
+		</ul></details>
 	  <hr>
 		<details><summary>VTF növelése hogyan befolyásolja az artériás_nyomást? (TPR változatlan)</summary><ul class="normal">
 			<div class="imp [139]"></div>
@@ -4547,16 +4771,8 @@
 		<details><summary>TPR növelése hogyan befolyásolja az artériás_nyomást? (VTF változatlan)</summary><ul class="normal">
 			<div class="imp [140]"></div>
 		</ul></details>
-		<details><summary>compliance változása a korral hogyan befolyásolja az artériás_nyomást?</summary><ul class="normal">
-			<img style="max-width:40%" data-src="kkjghmklm.png">
-			<li>compliance &#10140; 1ml/Hgmm</li>
-			<li>ez azonban az életkor fv-ében csökken</li>
-			<li>oka &#10140; csökken a rugalmas rostok száma a falban</li>
-			<li>következménye &#10140; kevésbé képes tágulni szisztolé során, így ha a térfogati paraméterek változatlanok, akkor &#10140; szisztolés nyomás erősen nő, diasztolés nyomás csökken, pulzusnyomás erősen nő, középnyomás nem változik</li>
-		</ul></details>
 	</ul></details>
-
-  <hr>
+<!----></details><hr>
 	<details class="kerdes 4/2"><summary>szervezet hogyan képes befolyásolni TPR-t és VTF-et?</summary><ul class="normal">
 		<details class="kerdes 3/1"><summary>TPR &#10140; arteriolákban vazokonstrikció szimpatikus-IR által</summary><ul class="normal">
 			<div class="imp [142]"></div>
@@ -4568,6 +4784,7 @@
 		<font style="font-size:80%">de szvsz ezek mellett képes az artériás vérnyomást homometriás szabályozással is befolyásolni (hisz akkor nő frekvencia pl., így a PTF, így az artériás vérnyomás)</font><abbr title="bár TK azt írta csak VTF + TPR-t befolyásol a szervezet, áh mind1">'</abbr>
 	</ul></details>
 	<span class="imp [129]"></span>
+	<span class="imp [357]"></span>
 	<span class="imp [317]"></span>
 	<span class="imp [138]"></span>
 	<details class="kerdes 1/1"><summary style="color:mediumblue">viszkozitás-tól / teljes_vértérfogat-tól mi függ?</summary><ul class="normal">
@@ -4607,10 +4824,10 @@
 	</ul></details>
 </details>
 
-<details><summary class="phase">7. A mikrocirkulációs rendszer funkcionális felépítése és szabályozása. Az intersticiális folyadék keletkezése.</summary>
+<details><summary class="phase">7. A mikrocirkulációs rendszer funkcionális felépítése és szabályozása. Az intersticiális folyadék keletkezése.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/5"><summary><strong>A mikrocirkulációs rendszer</strong> funkcionális <strong>felépítése</strong> és szabályozása. Az intersticiális folyadék keletkezése.</summary><ul class="normal">
 		<img style="max-width:30%" data-src="xlksmvngb.png">
-		<li>mindegyiket 1 endothel-réteg béleli legbelül, melyet bazális membrán burkol (kapillárisnál az egész fal csak ebből a kettőből áll)</li>
+		<li>mindegyiket 1 endothel-réteg béleli legbelül, melyet membraba_basalis burkol (kapillárisnál az egész fal csak ebből a kettőből áll)</li>
 		<li><span class="Important">prekapillaris_sphincter</span> &#10140; simaizom a kapillárisok eredésénél</li>
 		<table><tr><th></th>  <th>terminális arteriola<abbr title="legkisebb arteriolák">'</abbr></th>  <th>metarteriola<abbr title="arteriolakapilláris átmenet">'</abbr></th>  <th>kapillárisok</th>  <th>postcapillaris_venula</th></tr>
 			<tr><th>simaizom a falában</th>
@@ -4621,10 +4838,7 @@
 			</tr>
 		</table>
 		<li>anyagtranszport három helyen van &#10140; metarteriola + kapillárisok + postcapillaris_venulák</li>
-		<li>a szervezet összes sejtjére igaz, hogy tőle 20-30&micro;m-re található kapilláris <abbr title="(5*10<sup>15</sup>sejt, 40biollió kapilláris)">'</abbr></li>
-		<li>kapillárisok átmérője 5-8&micro;m</li>
-		<li><font style="font-size:80%">kapillárisok belső felülete 5-7000m<sup>2</sup> (~futballpályaméret)</font></li>
-		<table><tr><th>kapillárisok típusai</th>  <th>folytonos</th>  <th>fenesztrált</th>  <th>szinuszoid<abbr title="nem folytonos">'</abbr></th>  <th>szoros</th></tr>
+		<table><tr><th>kapillárisok típusai</th>  <th>szoros</th>  <th>folytonos</th>  <th>fenesztrált</th>  <th>szinuszoid<abbr title="nem folytonos">'</abbr></th></tr>
 			<tr><th>előfordul</th> 
 				<td>agy <abbr title="retina">'</abbr></td>
 				<td>izomszövet, tüdő, bőr</td>
@@ -4715,9 +4929,11 @@
 	<details class="kerdes 4/7"><summary>A mikrocirkulációs rendszer funkcionális felépítése és szabályozása. <strong>Az intersticiális folyadék keletkezése</strong>.</summary><ul class="normal">
 		<div class="imp [597]"></div>
 	</ul></details>
-  
-  <hr>
+<!----></details><hr>
 	<span class="imp [596]"></span> <!-- ödéma -->
+	<details class="kerdes 3/1"><summary>kapillárisok átmérője</summary><ul class="normal">
+		<li>5-8&micro;m</li>
+	</ul></details>
 	<details class="kerdes 3/2"><summary>diffúzió képlete</summary><ul class="normal">
 		<li>Fick törvény írja le</li>
 		<img style="float:none" data-src="kcjjghmn.png">
@@ -4735,28 +4951,14 @@
 	</ul></details>
 </details>
 
-<details><summary class="phase">8. A vénás rendszerben uralkodó nyomás; a vénás keringést meghatározó tényezők. A kapacitás-erek szabályozása. A nyirokkeringés.</summary>
+<details><summary class="phase">8. A vénás rendszerben uralkodó nyomás; a vénás keringést meghatározó tényezők. A kapacitás-erek szabályozása. A nyirokkeringés.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/4"><summary><strong>A vénás rendszer</strong>ben uralkodó nyomás; a vénás keringést meghatározó tényezők. A kapacitás-erek szabályozása. A nyirokkeringés.</summary><ul class="normal">
-		<li>kapacitása nagy, ugyanis compliance nagy &#10140; vénás rendszer compliance-e kb.25 -szöröse az artériás rendszerének</li><ul>
-			<div class="imp [137]"></div>
-		</ul>
-		<li>fő funkció<abbr title="előbbiből következik">'</abbr></li><ul>
-			<li>vértérfogat tárolása &#10140; normál esetben a vér 64%a van vénákban</li>
-			<li>ezért ezek az ún. <span class="Important">kapacitáserek</span></li>
-		</ul>
+		<div class="imp [137]"></div>
 	</ul></details>
 	<details class="kerdes 4/7"><summary><strong>A vénás rendszerben uralkodó nyomás</strong>; a vénás keringést meghatározó tényezők. A kapacitás-erek szabályozása. A nyirokkeringés.</summary><ul class="normal">
 		<div class="imp [316]"></div>
 	  <hr><strong>centrális_vénás_nyomás</strong> függ:
-		<li>közvetlenül meghatározó tényezők</li><ul>
-			<li>vénákba beáramló vér térfogata (kapillárisokból)</li>
-			<li>vénákból kiáramló vér térfogata (szívbe), azaz a PTF</li>
-			<li>a vér <abbr title="teljes keringési rendszert kitöltő">össz</abbr>térfogata</li>
-		</ul>
-		<li>közvetetten meghatározó tényezők</li><ul>
-			<li><span class="Important">vis a fronte</span> &#10140; jobb kamra teljesítménye szabja meg (diasztolé során szívó hatást gyakorol a vénás rendszerre)</li>
-			<li>vis a tergo &#10140; bal kamra teljesítménye szabja meg a vénákba beáramló vér térfogatát</li>
-		</ul>
+		<div class="imp [628]"></div>
 	</ul></details>
 	<details class="kerdes 4/6"><summary>A vénás rendszerben uralkodó nyomás; <strong>a vénás keringést meghatározó tényezők</strong>. A kapacitás-erek szabályozása. A nyirokkeringés.</summary><ul class="normal">
 	  <strong>gravitáció</strong>
@@ -4793,13 +4995,16 @@
 	<details class="kerdes 4/7"><summary>A vénás rendszerben uralkodó nyomás; a vénás keringést meghatározó tényezők. A kapacitás-erek szabályozása. <strong>A nyirokkeringés</strong>.</summary><ul class="normal">
 		<div class="imp [597]"></div>
 	</ul></details>
-
-  <hr>
+<!----></details><hr>
 	<span class="imp [596]"></span> <!-- ödéma -->
-	<details class="kerdes 3/1"><summary>centrális_vénás_nyomás és PTF közti összefüggés?</summary><ul class="normal">
-		<li>fordítottan arányosak</li>
-		<font style="font-size:80%">hiszen ha csökken a PTF, akkor csökken a kiáramló térfogat a vénákból, ígytöbb marad ott</font> <abbr title="lehet nem ez a pontos oka &#10140; Tk.274o magyarázatot is ír, de nem egyszerű megérteni, így inkább nem is szántam rá időt">&#10045;</abbr>
-		<img data-src="ptffzstmcv.png">
+	<details class="open"><summary>vénás nyomások</summary><ul class="normal">
+		<span class="imp [316]"></span>
+		<span class="imp [628]"></span>
+		<details class="kerdes 3/1"><summary>centrális_vénás_nyomás és PTF közti összefüggés?</summary><ul class="normal">
+			<li>fordítottan arányosak</li>
+			<font style="font-size:80%">hiszen ha csökken a PTF, akkor csökken a kiáramló térfogat a vénákból, ígytöbb marad ott</font> <abbr title="lehet nem ez a pontos oka &#10140; Tk.274o magyarázatot is ír, de nem egyszerű megérteni, így inkább nem is szántam rá időt">&#10045;</abbr>
+			<img data-src="ptffzstmcv.png">
+		</ul></details>
 	</ul></details>
 	<details class="kerdes 3/1"><summary>centrális vénás nyomás &#10140; mi?</summary><ul class="normal">
 		<div class="imp [316]"></div>
@@ -4812,14 +5017,14 @@
 	</ul></details>
 </details>
 
-<details><summary class="phase">9. A keringésszabályozás myogén és humorális mechanizmusai. Funkcionális és reaktív hiperémia.</summary>
+<details><summary class="phase">9. A keringésszabályozás myogén és humorális mechanizmusai. Funkcionális és reaktív hiperémia.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/4"><summary>A keringésszabályozás <strong>myogén</strong> és humorális <strong>mechanizmusai</strong>. Funkcionális és reaktív hiperémia.</summary><ul class="normal">
 		<li>itt a miogén szabályozásról beszéljek</li>
 		<details><summary>áramlás és nyomás összefüggése valódi erekben</summary><ul class="normal">
 			<div class="imp [361]"></div>
 		</ul></details>
 	</ul></details>
-	<details class="kerdes 4/10"><summary>A keringésszabályozás myogén és <strong>humorális mechanizmusai</strong>. Funkcionális és reaktív hiperémia.</summary><ul class="normal">
+	<details class="kerdes 4/7"><summary>A keringésszabályozás myogén és <strong>humorális mechanizmusai</strong>. Funkcionális és reaktív hiperémia.</summary><ul class="normal">
 		<font style="font-size:80%">humorális szabályozás = <abbr title="szvsz + felsőbbévestől help alapján">'</abbr> endokrin + parakrin szabályozás /de ezt inkább NE hangoztassam!! csak hogy kb. el tudjam helyezni/</font>
 	  <hr>
 		<li>itt a lokális szabályozás egyik típusáról az endothel-eredetű szabályozásról lesz szó</li>
@@ -4838,14 +5043,16 @@
 			<div class="imp [360]"></div> <!--- gyulladás kialakulása -->
 		</ul></details>
 	</ul></details>
-	<details class="kerdes 4/7"><summary>A keringésszabályozás myogén és humorális mechanizmusai. <strong>Funkcionális és reaktív hiperémia</strong>.</summary><ul class="normal">
+	<details class="kerdes 4/6"><summary>A keringésszabályozás myogén és humorális mechanizmusai. <strong>Funkcionális és reaktív hiperémia</strong>.</summary><ul class="normal">
 		<li>itt a funkcionális és reaktív hiperémiáról beszéljek</li>
 		<details><summary>áramlás és nyomás összefüggése valódi erekben</summary><ul class="normal">
 			<div class="imp [361]"></div>
 		</ul></details>
 	</ul></details>
-
-  <hr>
+<!----></details><hr>
+	<details class="kerdes 3/3"><summary>NO jelentősége</summary><ul class="normal">
+		<div class="imp [589]"></div>
+	</ul></details>
 	<details class="kerdes 3/3"><summary>aszpirin(acetilszalicilsav) <!-- v3 --></summary><ul class="normal">
 		<div class="imp [598]"></div>
 	</ul></details>
@@ -4859,98 +5066,26 @@
 	</ul></details>
 </details>
 
-<details><summary class="phase">10. A keringés neurohormonális és reflexes szabályozása. Baroreceptor és chemoreceptor reflexek. A kardiovaszkuláris központok.</summary>
-	<details class="{581} kerdes 4/12"><summary><strong>A keringés neurohormonális és reflexes szabályozása. Baroreceptor</strong> és chemoreceptor <strong>reflexek. A kardiovaszkuláris központok.</strong></summary><ul class="normal">
-	  <strong>baroreceptor reflex</strong>
-		<li>funkciója &#10140; artériás_vérnyomás szabályozása</li>
-		<details><summary style="color:blue">baroreceptor reflex lefutása</summary><ul class="normal">
-			<li>magas nyomású baroreceptor &#10140; mérik az artériás_vérnyomást</li>
-			<li>afferens_pályák &#10140; a központba szállítják a baroreceptorból számarzó ingert</li>
-			<li>nyúltvelői_kardiovaszkuláris_központ</li>
-			<li>efferens_pályák &#10140; a központból viszik a választ az effektor_szervekbe</li>
-			<li>effektor_szervek &#10140; az artériás vérnyomás beállítását végzik &#10140; szív, erek, mellékvesevelő, <abbr title="ennek szerpéről későbbi előadásban lesz szó (vese 'volumen-szabályozása' kapcsolódik ehhez)">vese</abbr></li>
-		</ul></details>
-	  <hr>
-		<details><summary>baroreceptorok</summary><ul class="normal">
-			<div class="imp [392]"></div>
-		</ul></details>
-		<details><summary style="color:blue"><font style="font-size:80%">érzékelésének molekuláris mechanizmusa</font></summary><ul class="normal">
-			<img style="max-width:30%" data-src="dpllkhjkmnd.png">
-			<li>az idegvégződésen mechanoszenzitív kationcsatornák találhatók</li>
-			<li>nyomásnövekedés hatására nő a tenzió, melynek hatására ezek megnyílnak és depolarizáció megy végbe &#10140; mértéke arányos a nyomásnövekedéssel(és tenzióval)</li>
-			<li>a létrejött depolarizáció kivált AP-kat &#10140; a depolarizáció mértéke arányos az AP-k frekvenciájával</li>
-		  <hr><strong>érzékenységi tartomány</strong>
-			  <li>nyomástartomány, melyben képesek érzékelni a nyomásváltozást &#10140; <span class="IMPORTANT">kb.60-200Hgmm között van</span> <img class="mini" data-src="fmkkxmcnmvm.png"></li>
-			<li><font style="font-size:80%">a nyomásváltozás következtében bekövetkező AP-frekvenica változás a fiziológiás körülmények közti nyomástartományban(100Hgmm +-30) a legnagyobb (ott a legnagyob a görbe meredeksége)</font></li>
-			<li><font style="font-size:80%">tehát ott a legérzékenyebb</font></li>
-			<div><font style="font-size:80%">magas vérnyomásos (hipertenzió) betegeknél az érzékenységi tartományuk eltolódik</font> <img class="mini" data-src="hxcntzwrl.png"></div>
-		  <hr><strong>elmondható, hogy két dolgot képesek érzékelni az artériás nyomással kapcsolatban (közvetve)</strong>
-			<li><abbr title="állandó">statikus</abbr> nyomást</li>
-			<li>nyomásváltozás sebességét</li>
-			<font style="font-size:80%">ezt ilyen 'szvsz alapján' írtam, szóval gondolom nem 100% pontos, de a lényege ez.</font>
-			<li>statikus nyomáson egy állandó(nyomás értékhez viszonyítva<abbr title="tehát pl. 60Hgmm 5/min, 70Hgmm 10/min stb. (random számokat írtam ide)">'</abbr>) frekvenciát adnak le</li>
-			<li>nyomásnövekedés hatására frekvencianövekedés következik be &#10140; minél nagyobb a sebessége, annál nagyobb a növekedés</li>
-			<li>nyomáscsökkenés hatására frekvenciacsökkenés következik be ugyanígy</li>
-		  <hr><strong>Laplace törvény</strong>
-			<div class="imp [147]"></div>
-		</ul></details>
-	  <hr>
-		<details><summary><span class="IMPORTANT"><strong>RAJZ</strong></span> afferens pályák & <span class="IMPORTANT">nyúltvelői_kardiovaszkuláris_központ</span> & efferens_pályák</summary><ul class="normal">
-			<img style="float:none" data-src="ryzmbjlkokj.png">
-			<details><summary>lefutás leírása</summary><ul class="normal">
-				<div style="max-width:20%; float:right">
-					<img data-src="brpcprkgjhmn.png">
-					<img data-src="rpcvnmlkjj.png">
-				</div>
-			  <strong>afferensek</strong>
-				<li>sinus_caroticus &#10140; n.glossopharyngeus[IX] keresztül jut el NTS-be</li>
-				<li>arcus_aortae &#10140; n.vaguson[X] keresztül jut el NTS-be</li>
-			  <hr><strong>központi átkapcsolás</strong>
-				<li>nucleus_tractus_solitarius(NTS) <abbr title="első átkapcsolás (csak hogy megértés könnyebb legyen)">(1.)</abbr> &#10140; innen rostok haladnak...</li><ul>
-					<li>egyrészt a caudal_ventrolateral_medulla(CVLM)-ba és ott aktiválja a neuronokat (2.) &#10140; ezek gátolják (3.) a rostro_ventrolateral_medulla(RVLM) neuronokat</li>
-					<li>másrészt a (2.) nucleus_ambiguus[IX-X-XI]-ba <abbr title="és a nucleus_dorsalis_nervi_vagii[X]-a és a ">'</abbr></li>
-				</ul>
-			  <hr><strong>efferensek</strong>
-				<li>nucleus_ambiguus &#10140; ebből <span class="IMPORTANT">psy rostok</span> indulnak &#10140; a n.vagus(X)-on keresztül eljutnak a szívbe: szinuszcsomó & AV-csomó <font style="font-size:80%">(intramuralis_ganglionban végződnek)</font></li>
-				<li>RVLM = presszor-központ <abbr title="=vazomotor-központ">'</abbr> &#10140; ebből <span class="IMPORTANT">symp rostok</span> indulnak</li><ul>
-					<li>egyrészt a mellékvesevelőbe(módosult ganglionnak tekinthető) &#10140; <span class="LASD">hatásukat lásd lentebb: effektor szervek</span></li>
-					<li>másrészt vegetatív_ganglionba átkapcsol postggl.neuronra, majd eljut szív/erek &#10140; <span class="LASD">hatásukat lásd lentebb: effektor szervek</span></li>
-					<font style="font-size:80%">(a nucleus_intermediolateralis-ban van valójában előtte még1 átkapcsolás preggl neuronra, képen látszik, de ne érdekeljen)</font>
-				</ul>
-			  <hr>
-				<font style="font-size:80%">a képen lévő carotid_body az már kemoreceptor!</font>
-				<img class="mini" data-src="mnckgjhmr.png">
-			</ul></details>
-		</ul></details>
-	  <hr><strong>effektor_szervek</strong>
-		<li>a preggl.rostok neurotranszmitter ACh</li>
-		<details><summary>szív</summary><ul class="normal">
-			<li>szimpatikus &#10140; a posztggl.rost neurotranszmittere noradrenalin &#10140; pozitív kronotróp/dromotróp/luzitróp/inotróp &#10140; <span class="WHITE">VTF</span> <span class="WHITE">frekvencia</span> nő <span class="LASD">2.4</span></li>
-			<li>paraszimpatikus &#10140; a posztggl.rost neurotranszmittere ACh &#10140; negatív kronotróp/dromotróp &#10140; <span class="WHITE">frekvencia</span> csökken</li>
-			<div class="imp [111]"></div>
-		</ul></details>
-		<details><summary>erek</summary><ul class="normal">
-			<li><span class="WHITE">symp</span> posztggl.rost neurotranszmittere noradrenalin &#10140; &alpha;<sub>1</sub>-receptor &#10140; <span class="IMPORTANT">arteriolák vazokonstrikció</span> <abbr title="(+nagy vénák)">'</abbr></li>
-			<font style="font-size:80%"><span class="WHITE">psy</span> beidegzésük nincs!!</font>
-		</ul></details>
-		<details><summary>mellékvesevelő (szvsz ez végzi a <span class="IMPORTANT">keringés neurohormonális szabályozásá</span>t!)</summary><ul class="normal">
-			<div class="imp [460]"></div>
-		</ul></details>
+<details><summary class="phase">10. A keringés neurohormonális és reflexes szabályozása. Baroreceptor és chemoreceptor reflexek. A kardiovaszkuláris központok.</summary><details open class="open"><summary></summary>
+	<details class="kerdes 4/8"><summary><strong>A keringés neurohormonális és reflexes szabályozása. Baroreceptor</strong> és chemoreceptor <strong>reflexek. A kardiovaszkuláris központok.</strong></summary><ul class="normal">
+		<div class="imp [581]"></div>
 	</ul></details>
 	<details class="kerdes 4/2"><summary><strong>A keringés</strong> neurohormonális és <strong>reflexes szabályozása</strong>. Baroreceptor és <strong>chemoreceptor reflexek</strong>. A kardiovaszkuláris központok.</summary><ul class="normal">
 		<li>a perifériás kemoreceptorok játszanak benne csak szerepet &#10140; glomus_caroticum és glomus_aorticum</li>
 		<li>csak jelentősebb O<sub>2</sub>-hiány esetén váltódik ki a keringési reflex, hatása &#10140; vazokonstrikció &#10140; TPR nő &#10140; artériás nyomás nő</li>
 	</ul></details>
-  
-  <hr>
+<!----></details><hr>
+	<details class="kerdes 4/2"><summary><span class="IMPORTANT">RAJZ</span> afferens pályák & nyúltvelői_kardiovaszkuláris_központ & efferens_pályák</summary><ul class="normal">
+		<img style="float:none" data-src="ryzmbjlkokj.png">
+	</ul></details>
 	<details class="kerdes 4/1"><summary>baroreceptor vs kemoreceptor &#10140; légzés vs keringés?</summary><ul class="normal">
 		következőképpen kell felfogni:
 		<li>kemoreceptorok &#10140; elsősorban a légzést szabályozzák, de extrém körülmények között a keringést is</li>
 		<li>baroreceptorok &#10140; elsősorban a keringést szabályozzák, de extrém körülmények között a légzést is</li>
 	</ul></details>
 	<details class="kerdes 3/2"><summary>hormonok közül vazokonstrikciót vált ki</summary><ul class="normal">
-		<details class="kerdes 3/1"><summary>katekolaminok &#10140; "ez vazodilatációt is"</summary><ul class="normal">
-			<div class="imp [460]"></div> <!--- mellékvesevelő -->
+		<details class="kerdes 3/3"><summary>katekolaminok &#10140; "ez vazodilatációt is"</summary><ul class="normal">
+			<div class="imp [460]"></div> <!--- katekolaminok -->
 		</ul></details>
 		<details class="kerdes 3/1"><summary>angiotenzin II</summary><ul class="normal">
 			<div class="imp [175]"></div> <!--- renin-angiotenzinogén-rendszer -->
@@ -4989,116 +5124,96 @@
 	</ul></details>
 </details>
 
-<details><summary class="phase">11. <span class="MISS">A vázizom</span> és a splanchnicus-terület vérkeringésének szabályozása.</summary>
-	<details class="kerdes 4/."><summary><strong>A vázizom</strong> és a splanchnicus-terület <strong>vérkeringésének szabályozása</strong>.</summary><ul class="normal">
+<details><summary class="phase">11. A vázizom és a splanchnicus-terület vérkeringésének szabályozása.</summary><details open class="open"><summary></summary>
+	<details class="kerdes 4/5"><summary><strong>A vázizom</strong> és a splanchnicus-terület <strong>vérkeringésének szabályozása</strong>.</summary><ul class="normal">
+		<li>O<sub>2</sub> fogyasztás 50ml/min</li>
+		<li>vérellátás 1l/min &#10140; aktív izomban ez a 15x-ösére is megnőhet</li>
+	  <hr><strong>szabályozás</strong> &#10140; fokozott izommunka esetében az alábbiak mennek végbe:
+		<li><span class="WHITE">symp</span> aktivitás fokozódik</li><ul>
+			<details><summary>● noradrenalin &#10140; &alpha;<sub>1</sub>-receptor &#10140; vazokonstrikció</summary><ul class="normal">
+				<div class="imp [142]"></div>
+			</ul></details>
+			<details><summary>● mellékvesevelő(adrenalin) &#10140; &beta;<sub>2</sub>-receptor &#10140; vazodilatáció</summary><ul class="normal">
+				<div class="imp [460]"></div>
+			</ul></details>
+		</ul>
+		<li>izompumpa a vénából kipréseli a vért &#10140; PTF nő</li>
+		<details><summary>● funkcionális hiperémia &#10140; pH csökken, pCO<sub>2,EC</sub> & [laktát]<sub>EC</sub> & [K<sup>+</sup>]<sub>EC</sub> megnő</summary><ul class="normal">
+			<div class="imp [361]"></div>
+		</ul></details>
 	</ul></details>
-	<details class="kerdes 4/6"><summary>A vázizom és <strong>a splanchnicus-terület vérkeringésének szabályozása</strong>.</summary><ul class="normal">
+	<details class="kerdes 4/5"><summary>A vázizom és <strong>a splanchnicus-terület vérkeringésének szabályozása</strong>.</summary><ul class="normal">
 		<li>három páratlan hasi artéria: truncus celiacus, a.mesenterica superior és inferior látja el &#10140; gyomor-bél rendszer, pancreas, máj, lép</li>
 		<li>a vénás vér a v.portae révén keresztül megy a májon és csak ezután vezetődik el a v.cava_inferioron keresztül</li>
-		<li>szimpatikus vasoconstrictor beidegzésüket a n.splanchnicus 'végzi'</li>
 	  <hr><strong>máj vérellátása</strong>
 		<li>egy részét az a.hepatica adja &#10140; máj véráramlásának negyedét, oxigénfogyasztásának felét</li>
 		<li>másik részét a v.portae adja &#10140; máj véráramlásának 3/4-ét, oxigénfogyasztásának felét &#10140; a felszívott tápanyag is ezen keresztül idejut (kivéve lipidek!!)</li>
 	  <hr><strong>szabályozás</strong>
-		<details><summary>szimpatikus vazokonstrikció a domináns &#10140; n.splanchnicus!! &#10140; &alpha;<sub>1</sub>-adrenerg receptor...</summary><ul class="normal">
+		<details><summary><span class="WHITE">symp</span> n.splanchnicus(noradrenalin) &#10140; &alpha;<sub>1</sub>-receptor &#10140; vazokonstrikció</summary><ul class="normal">
 			<div class="imp [142]"></div>
 		</ul></details>
-		<details><summary>ezenkívül van paraszimpatikus vazodilatáció is</summary><ul class="normal">
-			<li>ez indirekt, ugyanis a paraszimpatikus idegek az enterális idegekre hatnak &#10140; következtében pl. VIP felszabadulás lesz, ami vazodilatációt eredményez</li>
-			<details><summary>vazodilatáció</summary><ul class="normal">
-				<div class="imp [317]"></div>
-			</ul></details>
+		<details><summary><span class="WHITE">psy</span> &#10140; enterális idegekre hatva VIP szabadul fel &#10140; vazodilatáció</summary><ul class="normal">
+			<div class="imp [317]"></div>
 		</ul></details>
 		<li><span class="MISS">A splanchnicus érterület szerepe a cardiovascularis alkalmazkodásban &#10140; TK.333</span></li>
 	</ul></details>
+<!----></details><hr>
+	<details class="kerdes 3/j"><summary>ischaemia</summary><ul class="normal">
+		<li>a csökkent vagy elzárt keringésű végtagban a tartós izom-összehúzódás rendkívül fájdalmas, ezt nevezzük ischaemiás fájdalomnak</li>
+	</ul></details>
 </details>
 
-<details><summary class="phase">12. A szív és az agy vérkeringésének szabályozása. Vér-agy gát. A liquor cerebrospinalis.</summary>
-	<details class="kerdes 4/12"><summary><strong>A szív</strong> és az agy <strong>vérkeringésének szabályozása</strong>. Vér-agy gát. A liquor cerebrospinalis.</summary><ul class="normal">
-		<details><summary>koszorúér keringés</summary><ul class="normal">
-		  <strong>erek lefutása</strong>
-			<li>a.coronaria dextra és sinistra látja vérrel el a szívet &#10140; kapillárisokból összeszedődő venulák/vénák nagy része a sinus coronariusban egyesülve a jobb pitvarba ömlik</li>
-			<li>az artériák ágai között nincs anasztomózis &#10140; ha az egyik károsodik, akkor az azáltal ellátott területen lévő szövetek elhalnak &#10140; halálokok között vezető helyen van</li>
-			<details><summary><span class="Vocab">R</span> <strong>Az aorta nyomásváltozásának és a bal artéria coronaria áramlása fázisos változásainak egyidejű ábrázolása (az értékek az idő- és nyomástengelyen megadandók, emberi szívre, nyugalmi szívfrekvencia esetén)</strong></summary><ul class="normal">
-				<img style="max-width:20%" data-src="rktnnykmghjl.png">
-			  <strong>coronariaáramlás változásai a szívciklus folyamán</strong>
-				<li>jobb kamra és bal kamra összehúzódása során a subendothelialisan [lásd 2.3] <img class="mini" data-src="blkghjmvh.png"> lévő koronária erek 'nyomódnak össze' <img class="mini" data-src="nflgkmjcvb.png"></li>
-				<li>a subepithelialisan fekvőket nemérinti, hiszen azok az 'izmokon kívül' vannak</li>
-				<li>az 'összenyomás' mértéke különbözik a két oldalon</li>
-				<li>jobb kamrában lévő szubendothelialis koronária ereknek csak kicsit csökken az átmérője a jk-szisztolé során &#10140; ugyanis a koronária érben lévő nyomás ~= artériás_nyomás (hiszen aortából erednek) &#10140; míg az izomkontrakció következtében a rájuk ható nyomás mindössze 25Hgmm [lásd 2.5 jobb szívfél] &#10140; így itt még fokozódik is az áramlás (nőtt a nyomás)</li>
-				<li>bal kamrában lévő szubendothelialis koronária erek azonban bezárulnak a jk-szisztolé során (hisz ESV nagy) &#10140; így ott megáll az áramlás</li>
-				<details><summary>jobb szívfél nyomásviszonyok</summary><ul class="normal">
-					<div class="imp [127]"></div>
-				</ul></details>
-			</ul></details>
-		  <strong>oxigén-<abbr title="<font style='font-size:80%'>('felhasználás')</font>">extrakció</abbr></strong>
-			<li>itt a legnagyobb fokú &#10140; 25%-ra csökken az <abbr title="oxigénnel telített hemoglobin százaléka">oxigén-szaturáció</abbr></li>
-			<font style="font-size:80%">átlagos esetben az oxigén-szaturáció 75%-ra csökken (95%-ról)</font>
-		</ul></details>
+<details><summary class="phase">12. A szív és az agy vérkeringésének szabályozása. Vér-agy gát. A liquor cerebrospinalis.</summary><details open class="open"><summary></summary>
+	<details class="kerdes 4/7"><summary><strong>A szív</strong> és az agy <strong>vérkeringésének szabályozása</strong>. Vér-agy gát. A liquor cerebrospinalis.</summary><ul class="normal">
+	  <strong>koszorúerek lefutása</strong>
+		<li>a.coronaria dextra és sinistra látja vérrel el a szívet &#10140; kapillárisokból összeszedődő venulák/vénák nagy része a sinus coronariusban egyesülve a jobb pitvarba ömlik</li>
+		<li>az artériák ágai között nincs anasztomózis &#10140; ha az egyik károsodik, akkor az azáltal ellátott területen lévő szövetek elhalnak &#10140; halálokok között vezető helyen van</li>
+		<li>25%-ra csökken az <abbr title="oxigénnel telített hemoglobin százaléka">oxigén-szaturáció</abbr> &#10140; itt a legnagyobb fokú, ugyanis átlagosan az oxigén-szaturáció 75%-ra csökken (95%-ról)</li>
+		<li>vérellátás 250ml/perc &#10140; izommunkában ez 5x-ösére is megnőhet</li>
 	  <hr><strong>szabályozás</strong>
-		<details><summary>autoreguláció</summary><ul class="normal">
-			<li>miogén-tónus változtatásával (Bayliss-effektus)</li>
-			<li>metabolikus-szabályozás által &#10140; a 'szabályozásban résztvevő anyagok' közül itt az <span class="lasd">adenozinnak</span> van a legnagyobb jelentősége</li>
-			<li>így a PTF</li><ul>
-				<li>nyugalmi helyzetben 250ml/perc (5% PTF)</li>
-				<li>munka-hiperémia &#10140; izommunkában a perctérfogattal csaknem arányosan nő, 1l/perc fölé is emelkedhet (4-5x)</li>
-			</ul>
-			<details><summary>adenozin hatása</summary><ul class="normal">
-				<div class="imp [143]"></div>
-			</ul></details>
-		</ul></details>
-		<details><summary>nitrogén-monoxid</summary><ul class="normal">
-			<li>Egy további értágító a nitrogén-monoxid. Amennyiben az arteriolák az anyagcsere gyorsulása következtében kitágulnak, és bennük a véráramlás fokozódik, az odavezető coronariaágakban az endotheliumból NO szabadul fel, és a NO tágítja az artériákat (retrográd vasodilatatio)</li>
-		  <hr><strong>másképp fogalmazva ugyanez, hogy értsem a lényegét:</strong>
-			<li>Segít a koronária ágakat nyitva tartani &#10140; A metabolikus dilációban lévő kisebb ágak csökkent rezisztenciájához igazítja a proximálisabb ágak lumenét</li>
-		  <hr><strong><span class="MISS">IMPORT [NO hatásmechanizmusa]  &#10140; ugyanez már ki van dolgozva, úgy tanuljam majd (esetleg ezt is vegyem hozzá ha szebb megfogalmazású)</span></strong>
-		</ul></details>
-		<details><summary>idegi szabályozás</summary><ul class="normal">
-			<strong>szimpatikus idegrendszer végzi</strong> <abbr title="22.ea+23.ea alapján dolgoztam ki">'</abbr>
+		<details><summary>● autoreguláció</summary><ul class="normal"><div class="imp [143]"></div></ul></details><ul>
+			<li>miogén-válasz (Bayliss-effektus)</li>
+			<li>szöveti metabolizmus &#10140; [adenozin]<sub>EC</sub> megnő &#10140; A<sub>2</sub>-receptor &#10140; cAMP nő &#10140; vazodilatáció</li>
+		</ul>
+		<li>retrográd vazodilatáció &#10140; NO felszabadul az endothelsejtekből<abbr title="vazodilatáió hatására, mert felgyorsult az anyagcsere">'</abbr> és vazodilatációt okoz a kis artériákban</li>
+		<details><summary>● symp idegrendszer</summary><ul class="normal"><div class="imp [460]"></div></ul></details><ul>
 			<li>kis koronária ágakban &beta;<sub>2</sub>-adrenerg-receptor van &#10140; vazodilatációt eredményez</li>
 			<li>nagy koronária ágakban &alpha;<sub>1</sub>-adrenerg-receptor van &#10140; vazokonstrikciót eredményez</li>
-			[lásd &#10140; mellékvesevelő !!!]
-		</ul></details>
+		</ul>
+	  <hr>
+		ha a vérellátása elégtelen, akkor <span class="IMPORTANT">nitroglicerin</span>-t értágítóként használják, ugyanis abból NO lesz
 	</ul></details>
-	<details class="kerdes 4/6"><summary>A szív és <strong>az agy vérkeringésének szabályozása</strong>. Vér-agy gát. A liquor cerebrospinalis.</summary><ul class="normal">
+	<details class="kerdes 4/4"><summary>A szív és <strong>az agy vérkeringésének szabályozása</strong>. Vér-agy gát. A liquor cerebrospinalis.</summary><ul class="normal">
 		<li>2db a.vertebralis + 2db a.carotis_interna látja el</li>
 		<li>igen dús a kapilláris hálózat &#10140; minden neuron körül van kapilláris</li>
-	  <hr><strong>fő funkció</strong> &#10140; állandó áramlás [1l/perc] szükséges az agy minden részén
-		<li>ezt az autoreguláció biztosítja</li><ul>
-			<li>miogén-tónus változtatásával (Bayliss-effektus)</li>
-			<li>metabolikus szabályozás útján &#10140; agynál a pCO<sub>2</sub> változás fejti ki hatását (lásd 1sorral lentebb)</li>
+	  <hr><strong>szabályozás</strong>
+		<li>fő funkció &#10140; állandó áramlás [1l/perc] szükséges az agy minden részén</li>
+		<details><summary>ezt az autoreguláció biztosítja</summary><ul class="normal"><div class="imp [143]"></div></ul></details><ul>
+			<li>miogén-válasz (Bayliss-effektus)</li>
+			<li>szöveti metabolizmus &#10140; pCO<sub>2</sub><sub>EC</sub> megnő &#10140; pH csökken &#10140; K<sup>+</sup>-csatorna nyílik &#10140; hiperpolarizáció &#10140; vazodilatáció</li>
 		</ul>
-		<details><summary>pCO<sub>2</sub> arányos az áramlással, ugyanis...</summary><ul class="normal">
-			<div class="imp [143]"></div>
-		</ul></details>
-	  <hr>
-		<li>vegetatív idegrendszer általi szabályozásoknak nincs közvetlen hatása rá <abbr title="minimális változás érzékelhető max (szimpatikus tónus ha van, akkor is lényegében konstans)">'</abbr></li>
-		<font style="font-size:80%">Az már vált ki hatást, hogy nő a vérnyomás, de ez közvetett. Közvetlenül, tehát a szimpatikus tónus változtatásán keresztül nincs hatása</font>
+		<font style="font-size:80%">vegetatív idegrendszer általi szabályozásoknak nincs közvetlen<abbr title="Az már vált ki hatást, hogy nő a vérnyomás, de ez közvetett. Közvetlenül, tehát a szimpatikus tónus változtatásán keresztül nincs hatása">'</abbr> hatása rá</font>
 	  <hr><strong>Kelly-Monroe elv</strong>
 		<li>a koponyaüreg zárt, merev tér &#10140; ha nő a koponyaűri nyomás, az erek összenyomódnak, áramlás csöken</li>
 		<li>ezért különösen veszélyes az agyödéma</li>
 		<li>pl. ha a CSF felszívás mértéke nem éri el a CSF termelésének mértékét (500ml/nap) &#10140; akkor nő a CSF mennyisége &#10140; nő a nyomása &#10140; agyi ödémát okoz</li>
 	</ul></details>
-	<details class="kerdes 4/6"><summary>A szív és az agy vérkeringésének szabályozása. <strong>Vér-agy gát</strong>. A liquor cerebrospinalis.</summary><ul class="normal">
+	<details class="kerdes 4/4"><summary>A szív és az agy vérkeringésének szabályozása. <strong>Vér-agy gát</strong>. A liquor cerebrospinalis.</summary><ul class="normal">
 		<img style="max-width:30%" data-src="nmtzjkdf.png">
 		<li>kapillárisok endothelsejtjei képezik</li>
 		<li>ezek mindegyike <u>szoros</u> <span class="lasd">2.7t</span> &#10140; impermábilis mindenre, kivéve</li><ul>
-			<li>O<sub>2</sub>, CO<sub>2</sub> diffúzióval <abbr title="kis molekulatömegű volatil gázok">'</abbr></li>
-			<li>glükóz és aminosavak facilitált diffúzióval &#10140; a glükóz GLUT-1-el <abbr title="hasonló módon a neutrális aminosavak – amelyek az idegsejtekben a neurotranszmitter- és fehérjeszintézishez szükségesek – is csak specifikus transzportereken keresztül jutnak az agy állományába">'</abbr></li>
+			<li>O<sub>2</sub>, CO<sub>2</sub>, víz</li>
+			<li>glükóz és aminosavak transzporterekkel <font style="font-size:80%">(Glut1, Glut3 stb.)</font></li>
 		</ul>
-		<li>funkció &#10140; izolálja az interstitiumot a vérplazmától</li>
 	  <hr>
 		<li>az agyi interstitialis folyadék nem a vérplazma ultrafiltrátuma, hanem az endothelsejtek szekréciós terméke</li>
 		<li>következőképpen történik</li>
-		<li><strong>endothel</strong>sejtek plazmamembránjában eltérő transzporterek vannak</li><ul>
-			<li>interstium felőli oldalon &#10140; Na<sup>+</sup>/K<sup>+</sup>-ATPáz</li>
-			<li>vérplazma felőli oldalon &#10140; Na<sup>+</sup>-csatorna, Na<sup>+</sup>-Cl<sup>-</sup> kotranszporter</li>
-		</ul>
-		<li>Na<sup>+</sup> a vérplazmából átjut az endothelsejtbe &#10140; onnan az Na<sup>+</sup>/K<sup>+</sup>-ATPáz kijuttatja interstitiumba</li>
+		<li>Na<sup>+</sup> a vérplazmából átjut – Na<sup>+</sup>-csatorna & Na<sup>+</sup>-Cl<sup>-</sup> kotranszporter – az endothelsejtbe</li>
+		<li>innen kijut – Na<sup>+</sup>/K<sup>+</sup>-ATPáz – interstitiumba</li>
 		<li>az Na<sup>+</sup>-kiáramlását víz és anionok áramlása követi paracellulárisan (tight_junctionon át)</li>
 		<li>az Na<sup>+</sup> koncentráció a vérplazmában és interstitiumban megegyezik így</li>
 	</ul></details>
-	<details class="kerdes 4/6"><summary>A szív és az agy vérkeringésének szabályozása. Vér-agy gát. <strong>A liquor cerebrospinalis</strong>.</summary><ul class="normal">
+	<details class="kerdes 4/4"><summary>A szív és az agy vérkeringésének szabályozása. Vér-agy gát. <strong>A liquor cerebrospinalis</strong>.</summary><ul class="normal">
 		<img style="max-width:30%" data-src="tlkwmxvnb.png">
 		<li>az agykamrákat és cavum_subarachnoidale-t tölti ki (+gerincvelőben a canalis_centralist)</li>
 		<li>mennyisége &#10140; 150ml</li>
@@ -5119,9 +5234,26 @@
 	  <hr><strong>eltávolítása</strong> (500ml/nap)
 		<li>a Paccioni féle granulációkon keresztül szívódik föl a vénás szinuszok vérébe</li>
 	</ul></details>
-
-  <hr>
-	<details class="kerdes 3/3"><summary><span class="Vocab">R</span> <strong>Az agyon átáramló vérmennyiség ábrázolása az artériás középnyomás függvényében (a számértékek mindkét tengelyen megadandók)</strong></summary><ul class="normal">
+<!----></details><hr>
+	<details class="kerdes 3/1"><summary>retrográd vazodilatáció</summary><ul class="normal">
+		koronáriás keringés &#10140; NO felszabadul az endothelsejtekből<abbr title="vazodilatáió hatására, mert felgyorsult az anyagcsere">'</abbr> és vazodilatációt okoz a kis artériákban
+	</ul></details>
+	<details class="kerdes 3/1"><summary>szívizom vérellátásának kezelése</summary><ul class="normal">
+		ha a vérellátása elégtelen, akkor <span class="IMPORTANT">nitroglicerin</span>-t értágítóként használják, ugyanis abból NO lesz
+	</ul></details>
+	<details class="kerdes 3/3"><summary><span class="important">RAJZ</span> <strong>Az aorta nyomásváltozásának és a bal artéria coronaria áramlása fázisos változásainak egyidejű ábrázolása (az értékek az idő- és nyomástengelyen megadandók, emberi szívre, nyugalmi szívfrekvencia esetén)</strong></summary><ul class="normal">
+		<img style="max-width:20%" data-src="rktnnykmghjl.png">
+	  <strong>coronariaáramlás változásai a szívciklus folyamán</strong>
+		<li>jobb kamra és bal kamra összehúzódása során a subendothelialisan [lásd 2.3] <img class="mini" data-src="blkghjmvh.png"> lévő koronária erek 'nyomódnak össze' <img class="mini" data-src="nflgkmjcvb.png"></li>
+		<li>a subepithelialisan fekvőket nemérinti, hiszen azok az 'izmokon kívül' vannak</li>
+		<li>az 'összenyomás' mértéke különbözik a két oldalon</li>
+		<li>jobb kamrában lévő szubendothelialis koronária ereknek csak kicsit csökken az átmérője a jk-szisztolé során &#10140; ugyanis a koronária érben lévő nyomás ~= artériás_nyomás (hiszen aortából erednek) &#10140; míg az izomkontrakció következtében a rájuk ható nyomás mindössze 25Hgmm [lásd 2.5 jobb szívfél] &#10140; így itt még fokozódik is az áramlás (nőtt a nyomás)</li>
+		<li>bal kamrában lévő szubendothelialis koronária erek azonban bezárulnak a jk-szisztolé során (hisz ESV nagy) &#10140; így ott megáll az áramlás</li>
+		<details><summary>jobb szívfél nyomásviszonyok</summary><ul class="normal">
+			<div class="imp [127]"></div>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 3/3"><summary><span class="important">RAJZ</span> <strong>Az agyon átáramló vérmennyiség ábrázolása az artériás középnyomás függvényében (a számértékek mindkét tengelyen megadandók)</strong></summary><ul class="normal">
 		<li>áramlás [1l/perc] független az artériás középnyomástól 50-150Hgmm között (oka az autoreguláció, lásd a tételben)</li>
 		<img data-src="kmmkvhtkmc.png">
 	</ul></details>
@@ -5282,7 +5414,7 @@
 			<li>a pulmonalis nyomás értelemszerűen zérus (=légnyomás), hiszen <abbr title="nincs levegő ki/be áramlás">statikus</abbr> állapot van</li>
 		</ul></details>
 	</ul></details>
-	<details open class="kerdes 4/6"><summary>A tüdőventilláció: a tüdő térfogatfrakciói, légzési holttér, alveoláris ventilláció. A nyomás- és térfogatváltozások összefüggése, <strong>a mellkasfal tágulékonysága (complience)</strong>. A felületi feszültség és a surfactant szerepe.</summary><ul class="normal">
+	<details class="kerdes 4/6"><summary>A tüdőventilláció: a tüdő térfogatfrakciói, légzési holttér, alveoláris ventilláció. A nyomás- és térfogatváltozások összefüggése, <strong>a mellkasfal tágulékonysága (complience)</strong>. A felületi feszültség és a surfactant szerepe.</summary><ul class="normal">
 		<details><summary><strong><abbr title="volt első félév vizsgán. ezt leginkább olvassam el, és értsem.">A légutak, a mellkas és a tüdő biofizikája</abbr></strong></summary><ul class="normal">
 			<li>olvassam végig, meg fogom érteni!</li>
 			<li>A mellkas „nyugalmi helyzet”-én a nyugodt kilégzés<abbr title="tehát nem erőltetett">'</abbr> utáni állapotot értjük. Ebben az állapotban mind a be-, mind a kilégző izmok aktivitása minimális, bennük csak a testtartáshoz szükséges izomtónus figyelhető meg</li>
@@ -8026,8 +8158,8 @@
 				<li>CCR2 &#10140; CC-kemokin receptor (R=receptor)</li>
 			</ul></details>
 			<span class="IMPORTANT">&#10140; tehát a természetes immunitás szükséges a specifikus immunitáshoz</span>
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/iVMIZy-Y3f8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/GXECgTLGLtI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+			<iframe width="560" height="315" data-src="https://www.youtube.com/embed/iVMIZy-Y3f8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+			<iframe width="560" height="315" data-src="https://www.youtube.com/embed/GXECgTLGLtI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 		</ul></details>
 	  <hr>
 		<details><summary>a fagocitózis bemutatása neutrofil granulociták példáján</summary><ul class="normal">
@@ -10605,7 +10737,7 @@
 
 <!--//////////////////////////////////////////////////////////////-->  </details>  <!--//////////////////////////////////////////////////////////////-->
 
-<!--//////////////////////////////-->  <details open><summary class="mainTitle">8-as témakör</summary>  <!--//////////////////////////////-->
+<!--//////////////////////////////-->  <details><summary class="mainTitle">8-as témakör</summary>  <!--//////////////////////////////-->
 
 <details><summary class="phase">1. Az <span class="MISS">idegsejtek</span> és a <abbr title="szinaptikus plaszticitásról kéne egy konkrétum, 1.8t-el összevetve">gliasejtek</abbr> élettana.</summary>
 	<details class="kerdes 4/5"><summary>Az <strong>idegsejtek</strong> és a gliasejtek <strong>élettana</strong>.</summary><ul class="normal">
@@ -10616,24 +10748,24 @@
 		gliasejtek típusai (szövettan) &#10140; az alábbiakat tudjam csak: mikroglia, ependyma, asztrociták, oligodendroglia, Schwann-sejt
 		<div class="imp [201]"></div>
 	  <hr><strong>asztrocita funkciói részletesebben</strong>
-		<details><summary>interstitium összetételének szabályozása</summary><ul class="normal">
+		<details><summary>● interstitium összetételének szabályozása</summary><ul class="normal">
 			<li>[K<sup>+</sup>] &#10140; mivel ez interstitium nagyon kicsi (asztrocita kitölti), illetve AP-k száma relatív sok &#10140; ezért a repolarizációnál a K<sup>+</sup> kiáramlás következtében már nőne az EC koncentrációja &#10140; ezt az asztrociták megakadályozzák (felveszik a K<sup>+</sup>-ot és maguk között elosztják)</li>
 			<div><font class="abbr">[K<sup>+</sup>]<sub>EC</sub> szerepe ►</font> neuronok nyugalmi membránpotenciálját befolyásolja</div>
 			<li>pH &#10140; intenzív aktivitásnál CO<sub>2</sub> megnő, pH lecsökken &#10140; ezt kompenzálja bikarbonát szekrécióval <font style="font-size:80%">(transzportere + szénsav-anhidráza van)</font> <span class="LASD">ugyanez történik krónikus pCO<sub>2</sub> növekedésnél: 3.4t légzés kémiai szabályozása &#10140; centrális kemoreceptorok adaptálódnak</span></li>
 		</ul></details>
-		<details><summary>neuron és asztrocita közötti metabolikus kooperáció</summary><ul class="normal">
-			<details><summary>Gla</summary><ul class="normal">
+		<li>neuron és asztrocita közötti metabolikus kooperáció</li><ul>
+			<details><summary>● Gla</summary><ul class="normal">
 				<img style="max-width:35%" data-src="nrghjtzjn.png">
 				<div class="imp [542]"></div>
 			</ul></details>
-			<details><summary>szénhidrát</summary><ul class="normal">
+			<details><summary>● szénhidrát</summary><ul class="normal">
 				<img style="max-width:35%" data-src="ahesxtad.jpg">
 				<li>asztrocitákban anaerob glikolízis van &#10140; laktát keletkezik</li>
 				<li>a laktát ezután átjut neuronba, ahol visszalakul piruváttá, majd lesz belőle acetil-CoA</li>
 				<font style="font-size:80%">neuronban nincs piruvát-karboxiláz, tehát glükoneogenezisbe nem mehet vissza!</font>
 			</ul></details>
-		</ul></details>
-		<details><summary>szinaptikus plaszticitás<abbr title="erről volt bővebben szó előadáson, de inkább nem foglalkoztam vele, mert bonyolult és">'</abbr></summary><ul class="normal">
+		</ul>
+		<details><summary>● szinaptikus plaszticitás<abbr title="erről volt bővebben szó előadáson, de inkább nem foglalkoztam vele, mert bonyolult és">'</abbr></summary><ul class="normal">
 			<li>szinaptikus plaszticitás &#10140; ingerületátvitel erőssége változik(csökken vagy nő) <span class="LASD">1.7t</span></li>
 			<li>az asztrociták végeznek ilyet</li>
 			<font style="font-size:80%">pl. az asztrocita rendelkezik neurotranszmitter receptorokkal &#10140; Ca<sup>2+</sup> jelet vált ki &#10140; ez neurotranszmitter szekréciót vált ki (de ebbe nincs vezikula, tehát más formában történik a neurotranszmitter leadása)</font>
@@ -11168,12 +11300,7 @@
 
 <details><summary class="phase">11. A vázizmok működésének gerincvelői szabályozása. Gerincvelői reflexek.</summary>
 	<details class="kerdes 4/3"><summary><strong>A vázizmok működésének</strong> gerincvelői <strong>szabályozása</strong>. Gerincvelői reflexek.</summary><ul class="normal">
-		<img style="max-width:48%" data-src="vjvdkpcd.jpg">
-		<li>a gerincvelő mellső szarvában (+agytörzs) találhatók &#10140; &alpha;-motoneuronok & &gamma;-motoneuronok</li>
-		<li>az &alpha;-motoneuronok idegzik be az izomrostokat</li>
-	  <hr><strong>'főbb elvek'</strong><div>
-		<div class="imp [614]"></div>
-	  </div>
+		<div class="imp [617]"></div>
 	</ul></details>
 	<details class="kerdes 4/8"><summary>A vázizmok működésének <strong>gerincvelői szabályozása. Gerincvelői reflexek.</strong></summary><ul class="normal">
 		<div style="max-width:25%; float:right">
@@ -11186,9 +11313,6 @@
 	  </div>
 	  <hr><strong>ínorsó</strong><div>
 		<div class="imp [616]"></div>
-	  </div>
-	  <hr><strong>felső központokból leszálló pályák</strong><div>
-		<div class="imp [617]"></div>
 	  </div>
 	  <hr><strong>interneuronok</strong><div>
 		<div class="imp [618]"></div>
@@ -11207,26 +11331,68 @@
 	<span class="imp [614]"></span> <!-- főbb  elvek-->
 	<span class="imp [615]"></span> <!-- izomorsó -->
 	<span class="imp [616]"></span> <!-- ínorsó -->
-	<span class="imp [617]"></span> <!-- felső központokból leszálló pályák -->
 	<span class="imp [618]"></span> <!-- interneuronok(típus,aktiváció,funkció) -->
-	<span class="imp [619]"></span> <!-- reflex & gerincvelői reflex -->
 	<span class="imp [619]"></span> <!-- reflex & gerincvelői reflex -->
 	<span class="imp [620]"></span> <!-- facilitáció -->
 	<span class="imp [621]"></span> <!-- nociceptív & proprioceptív reflex -->
 </details>
 
-<details open><summary class="phase">12. Az izomtónus és a mozgás supraspinális szabályozása. Testtartási reflexek.</summary>
+<details><summary class="phase">12. Az izomtónus és a mozgás supraspinális szabályozása. Testtartási reflexek.</summary>
 	<details class="kerdes 4/3"><summary>Az <strong>izomtónus</strong> és a mozgás supraspinális <strong>szabályozása</strong>. Testtartási reflexek.</summary><ul class="normal">
-		<img style="max-width:48%" data-src="vjvdkpcd.jpg">
-		<li>a gerincvelő mellső szarvában (+agytörzs) találhatók &#10140; &alpha;-motoneuronok & &gamma;-motoneuronok</li>
-		<li>az &alpha;-motoneuronok idegzik be az izomrostokat</li>
-	  <hr><strong>'főbb elvek'</strong><div>
-		<div class="imp [614]"></div>
-	  </div>
+		<div class="imp [617]"></div>
 	</ul></details>
-	<details open class="kerdes 4/."><summary><strong>Az izomtónus és a mozgás supraspinális szabályozása.</strong> Testtartási reflexek.</summary><ul class="normal">
+	<details class="kerdes 4/8"><summary><strong>Az izomtónus és a mozgás supraspinális szabályozása.</strong> Testtartási reflexek.</summary><ul class="normal">
+		<div style="max-width:20%; float:right">
+			<img data-src="svwaxzwp.jpg">
+			<img data-src="whtavxdn.jpg">
+			<img data-src="klkzifvw.jpg">
+		</div>
+	  <strong>primer motoros kéreg (Br.4)</strong>
+		<li>sulcus centralis & gyrus precentralis között</li>
+		<li>funkció &#10140; akaratlagos mozgás végső fázisáért ez felelős</li>
+		<li>itt az izmok elrendeződése szomatotópiás &#10140; ennek az elnevezése a motoros homunculus</li><ul>
+			<li>legmedialisabban a lábokat, leglateralisabban az arc</li>
+			<li>a finom mozgást igénylő izmok nagyobb területet fednek be &#10140; arc, kéz</li>
+			<li>ha valamely terület sérül, akkor a hozzá tartozó izom funkcióvesztése követi</li>
+		</ul>
+		<li>efferensei &#10140; tractus corticospinalis</li>
+	  <hr><strong>Br.6 = premotoros area (PMA) & szupplementer motoros area (SMA) </strong>
+		<li>funkció &#10140; tervet készít a kitűzött feladathoz szükséges egyes mozdulatok sorrendjére (mielőtt a végső fázis megindulna)</li>
+		<li>jelentőségének szemléltetése</li><ul>
+			<li>emberben és majomban <abbr title="(tömeghez viszonyítva)">relatív</abbr> a primer motoros kéreg mérete megegyezik &#10140; azonban a PMA & SMA mérete 6x nagyobb emberben</li>
+			<li>ha sérül, akkor összetett mozgások kivitelezése már nem megy (pl. fésülködés)</li>
+		</ul>
+		<li>efferensei</li><ul>
+			<li>vagy tractus corticospinalis</li>
+			<li>vagy primer motoros kéreg (Br.4) <abbr title="ilyen pl. az ujjak beidegzése, tehát ha a primer motoros kéreg eltávolításra kerül, akkor hiába van ingerelve a PMA és/vagy SMA, ujj mozgás már nem lesz. (de egyes egyéb izmok mozgatása lehet, tehát azok tractus corticospinalis-on keresztül jutnak el)">'</abbr></li>
+		</ul>
+	  <hr><strong>motoros kéreg afferentációja</strong><br>
+		<li><span class="IMPORTANT">RAJZ</span> &#10140; kép</li>
+	  <hr><strong>tractus corticospinalis</strong><br>
+		<li>funkció &#10140; akaratlagos, finoman koordinált mozgásokat közvetíti</li>
+		<li>lefutása</li><ul>
+			<li>90%-a kereszteződik agytörzsben (tractus_corticospinalis_lateralis-ként megy tovább)</li>
+			<li>10%-a a comissura_alba-nal fog kereszteződni (tractus_cortivospinalis_ventralis)</li>
+		</ul>
+		<li>végződés</li><ul>
+			<li>axonok egy része közvetlenül átkapcsol &alpha;-motoneuronra (monoszinaptikus)</li>
+			<li>axonok másik része interneuronra kapcsol, majd &alpha;/&gamma; motoneuronra (poliszinaptikus)</li>
+		</ul>
+		<li><abbr title="mivel 2db tractus corticospinalis van, és mindegyikben 1millió rost">1-1</abbr>millió axonból áll &#10140; <abbr title="~500ezer">fele</abbr> Br.4, másik fele Br.6-ból származik</li>
+		<li>egy része leválik a rostoknak, és mint tractus_corticobulbaris a mozgató agyidegmagvakon(V,VII,IX,XI,XII) keresztül a fej és az arc izmait innerválják</li>
 	</ul></details>
-	<details open class="kerdes 4/."><summary>Az izomtónus és a mozgás supraspinális szabályozása. <strong>Testtartási reflexek.</strong></summary><ul class="normal">
+	<details class="kerdes 4/4"><summary>Az izomtónus és a mozgás supraspinális szabályozása. <strong>Testtartási reflexek.</strong></summary><ul class="normal">
+		<img data-src="mdsjdhoa.jpg">
+	  <strong>fej</strong>
+		<li>nyakizmok tónusát proprioceptiv és vestibularis reflexek tartják fent</li>
+		<li>vestibularis reflex</li><ul>
+			<div class="imp [613]"></div> <!-- pálya -->
+		</ul>
+		<li>proprioceptiv reflex</li><ul>
+			<li>olyan, mint a gerincvelői reflexnél, de!</li>
+			<li>ez NEM monoszinaptikus &#10140; hanem interneuronra átkapcsol, ami vestibularis efferens axonra hat</li>
+		</ul>
+	  <hr>csecsemőkben kimutatható a <u>szimmetrikus tónusos nyaki reflex</u> &#10140; háton fekvő csecsemő fejét egyik oldalra hajtva, az ellenoldali végtagokat flektálja, az azonos oldaliakat extendálja.
 	</ul></details>
 	<!--
 	<details class="kerdes 4/."><summary>.</summary><ul class="normal">
@@ -11237,24 +11403,123 @@
 	-->
 </details>
 
-<details open><summary class="phase">13. A kisagy és a basalis ganglionok szerepe a mozgás szabályozásában.</summary>
-	<!--
-	<details class="kerdes 4/."><summary>.</summary><ul class="normal">
+<details><summary class="phase">13. A kisagy és a basalis ganglionok szerepe a mozgás szabályozásában.</summary>
+	<details class="kerdes 4/7"><summary><strong>A kisagy</strong> és a basalis ganglionok <strong>szerepe a mozgás szabályozásában</strong>.</summary><ul class="normal">
+	  <strong>kapcsolási sémája</strong>
+		<img data-src="rnozgpjv.jpg">
+		<li>afferens rostok &#10140; moharost & kúszórost</li>
+		<li>Purkinje-sejt &#10140; feldolgozza a bejövő info-t</li>
+		<li>efferens rostok &#10140; kisagyi glomerulusból indul</li>
+	  <hr><strong>kisagy részei és funkciói</strong>
+		<li>vestibulocerebellum</li><ul>
+			<li>afferensek &#10140; vestibularis apparátus, látási relé magok</li>
+			<li>magja a <u>nucleus vestibularis lateralis</u> egy része</li>
+			<li>efferensek &#10140; nucleus vestibularis lateralis, szemmozgató izmok magjai</li>
+			<li>funkció &#10140; egyensúly megtartása, szemmozgások koordinációja, fej reflexes mozgásai</li>
+		</ul>
+		<li>spinocerebellum</li><ul>
+			<li>afferensek &#10140; gerincvelőből szomatoszenzoros info-k (agytörzsön keresztül)</li>
+			<li>magja a nuclei fastigii</li>
+			<li>efferensek &#10140; agytörzsön keresztül a motoros kéregbe jut</li>
+			<li>funkció &#10140; összehasonlítja egymással a megtervezett mozdulatot (tractus spinocerebellaris-on leszálló info) a tényleges végrehajtás valamennyi fázisával(izomrosó stb-ből származó info) &#10140; így pl. megakadályozza az izomremegést</li>
+		</ul>
+		<li>cerebrocerebellum</li><ul>
+			<li>afferensek &#10140; kéregből (agytörzsön keresztül)</li>
+			<li>magja a nucleus dentatus</li>
+			<li>efferensek &#10140; agytörzs, majd talamuszon keresztül a motoros kéregbe jut</li>
+			<li>funkció &#10140; mozgás tervezése, mozgások tanulása, mozgások rögzítése</li>
+		</ul>
+	</ul></details>
+	<details class="kerdes 4/7"><summary>A kisagy és a <strong>basalis ganglionok szerepe a mozgás szabályozásában</strong>.</summary><ul class="normal">
+		<div style="max-width:40%; float:right">
+			<img data-src="vbtnsmnkg.png">
+			<img data-src="jtznhggbnmn.png">
+		</div>
+	  <strong>basalis ganglionok</strong>
+		<li>magcsoportok(szürkeállomány) &#10140; thalamus és capsula interna közelében helyezkednek el</li>
+		<li>ezek &#10140; nucleus caudatus, putamen, globus pallidus, nucleus subthalamicus, substantia nigra</li>
+		<div><font style="font-size:80%">striatum = nucleus_caudatus + putamen</font></div>
+		<li>funkció &#10140; mozgástervezés(egymás után következő mozdulatok rendje)</li>
+		<li>'egy indirekt/direkt szabályozó kör-ben működnek' &#10140; továbbiakban ezek lefutásáról beszélek (ezt, illetve innentől mindent anatból msoltam, mert nem volt időm!)</li>
+	  <strong>bevezetés</strong>
+		<li>a képet a megértéshez mindig visszafele olvassam!!! &#10140; tehát VA/VL serkenti a motoros kérget. VA/VL-t pedig gátolja a pallidum internum stb.</li>
+		<li>neurotranszmitterek</li><ul>
+			<li>gátlók: GABA</li>
+			<li>serkentők: Glu</li>
+			<li>dopamin csak a substantia nigra(pars compacta)-ból indulónál van, és a receptor típusától függően serkent(D1-R)/gátol(D2-R)</li>
+		</ul>
+		<li>mindkét szabályozó kör esetében elmondható</li><ul>
+			<li>kezdete és vége a motoros kéreg</li>
+			<li>a végén motoros kéregbe a thalamus-ból érkeznek a serkentő(glutamát) rostok &#10140; thalamus tehát ha aktív, aktiválja a motoros kérget</li>
+		</ul>
+	  <strong>'alap lefutása'</strong>
+		<li>a motoros kéreg piramissejtjei serkentik a striatum-ot</li>
+		<li>striatum gátolja a globus pallidust (pallidum internum + externumot is)</li>
+		<li>pallidum internum gátolja thalamus-t</li>
+		<li>thalamus serkenti motoros kérget</li>
+	  <hr><strong>direkt kör</strong> &#10140; thalamus nyit
+		<li>a substantia_nigra(pars_compacta) serkenti(<abbr title="receptor akia.119o-ba benne van -> dopamin egyiknél gátol másiknál serkent">dopamin</abbr>) a striatum azon részét, mely a pallidum internumot gátolja &#10140; tehát a striatum sejtjeit a kéreg könnyebben aktiválja (hisz így már részben depolarizáltak (EPSP))</li>
+	  <strong>indirekt kör</strong> &#10140; thalamus zár
+		<li>a substantia_nigra pars_compacta gátolja(dopamin) a striatum azon részét, mely a pallidum externumot gátolja &#10140; tehát a striatum sejtjeit a kéreg nehezebben aktiválja (hisz így részben hiperpolarizáltak (IPSP))</li>
+		<li>a pallidum externum gátolja a nucleus subthalamicus(Luysi)</li>
+		<li>nucleus subthalamicus serkenti a pallidum internumot</li>
+	  <hr><strong>Parkinson-kór</strong>
+		<li>oka &#10140; a substantia nigra pars compacta sejtjeinek pusztulása</li>
+		<li>következménye</li><ul>
+			<li>fennti két mechanizmust kiiktatja: <abbr title="hiszen EPSP nem alakul ki striatmba, így motoros kéregből 'nagyobb inger kell'">csökken</abbr> a direkt kör aktivitása, <abbr title="'hisz pallidum internumot gátolni kéne, hogy jó legyen' --> nucleus subthalamicus serkenti az 'nemjó' -> pallidum externum viszont gátolja azt, így ismét 'jó', azonban striatum gátolja azt így ismét nemjó. Azonban ha van substantia nigra pars compacta, akkor megint jó ismét.">nő</abbr> az indirekt kör aktivitása</li>
+			<li>a beteg ezáltal nehezebben indít mozgásokat (akinesia), izomtónusa fokozódik (rigiditás), a mozdulatok kivitelezése lassabb (bradykinesis)</li>
+		</ul>
+	  <strong>Huntington-kór</strong>
+		<li>oka &#10140; örökletes(genetikai)</li>
+		<li>következménye &#10140; 30-40 éves kor körül jelenik meg, pl. chorea('kéz akaratlan táncolása') stb.</li>
+		<img data-src="fkrmjvnfhzn.png">
 	</ul></details>
   <hr>
 	<details class="kerdes 3/."><summary>.</summary><ul class="normal">
 	</ul></details>
-	-->
 </details>
 
-<details open><summary class="phase">14. A gerincvelő sérülésének motoros, sensoros és vegetatív következményei.</summary>
-	<!--
-	<details class="kerdes 4/."><summary>.</summary><ul class="normal">
+<details><summary class="phase">14. A gerincvelő sérülésének motoros, sensoros és vegetatív következményei.</summary>
+	<details class="kerdes 4/6"><summary><strong>A gerincvelő sérülésének motoros</strong>, sensoros és vegetatív <strong>következményei</strong>.</summary><ul class="normal">
+		<table><tr><th>sérülések két csoportba lehet osztani</th>  <th>"alsó motoneuronok" sérülése</th>  <th>"felső motoneuronok" sérülése</th></tr>
+			<tr><th>lényege</th>  
+				<td>&alpha;-motoneuron sérül</td>
+				<td>agykéreg vagy leszállópálya sérül</td>
+			</tr>
+			<tr><th>tünetei</th>  
+				<td style="text-align:left">
+					<li>izomsorvadás</li>
+					<li>ínreflexek megszűnnek</li>
+					<li>kóros reflexek nincsenek</li>
+				</td>
+				<td style="text-align:left">
+					<li>izomsorvadás nincs</li>
+					<li>ínreflexek fokozottak</li>
+					<li>kóros reflexek jelennek meg, pl. Babinski-reflex</li>
+				</td>
+			</tr>
+		</table>
+	  <hr><strong>Babinski-reflex</strong>
+		<img style="max-width:50%" data-src="oconvype.jpg">
+		<li>lényege &#10140; tractus_corticospinalis sérülése</li>
+		<li>következménye &#10140; normálisan a talp lateralis szélének mechanikus ingerlését a lábujjak flexiója követi(Babinski reflex). Piramispálya-sérülést követően az öregujj(hallux)-nak nem lesz flexiója</li>
+	  <hr><strong>tractus_corticospinalis_lateralis sérülése<span class="LASD">8.12</span></strong>
+		<li>lényege &#10140; capsula_interna vérellátása csökken, így sérül</li>
+		<li>következménye &#10140; finomabb mozgások – így pl. a kéz ujjainak egyenkénti mozgatása – elvesztése</li>
+	  <hr><strong>teljes harántsérülés</strong>
+		<li>lényege &#10140; gerincvelő és a felsőbb központok közötti kapcsolat megszűnik</li>
+		<li>akut hatása &#10140; az összes gerincvelői reflex (proprioceptív-reflex, nociceptív-reflex, űrítési-reflex) kiesik, az izomtónus megszűnik</li>
+		<li>krónikus hatása &#10140; reflexek visszatérnek (hónapok után)</li>
+		<li>és gondolom az akaratlagos irányítás is megszűnik (hisz tolószék)</li>
 	</ul></details>
-  <hr>
-	<details class="kerdes 3/."><summary>.</summary><ul class="normal">
+	<details class="kerdes 4/3"><summary><strong>A gerincvelő sérülésének</strong> motoros, <strong>sensoros és vegetatív következményei</strong>.</summary><ul class="normal">
+	  <strong>teljes harántsérülés esetében</strong>
+		<li>sérüléstől caudalisan mindkét oldalon teljes érzéskiesést okoz</li>
+		<li>űrítési-reflex központi irányítása megszűnik <abbr title="erre ezt az egy példát másoltam át a kidolgozott tételből, a többi példa pedig mind sensoros">/vegetatív következményre 1pl/</abbr></li>
+	  <strong>féloldali sérülés esetében</strong>
+		<li>sérülés oldalán caudalisan nyomás/tapintás zavara (lásd: lemniscus medialis pálya)</li>
+		<li>sérülés másik oldalán caudalisan hő- és fájdalomérzékelés zavara (lásd: spinothalamicus pálya)</li>
 	</ul></details>
-	-->
 </details>
 
 <details><summary class="phase">15. A hő-háztartás szabályozása.</summary>
