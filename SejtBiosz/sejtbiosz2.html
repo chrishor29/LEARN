@@ -10,9 +10,9 @@
 	<style>*{line-height: 130%;}</style>
 </head><span id="spanLoading" style="position:fixed; height:100%; width:100%; opacity:0.5; background-color:black; visibility:visible;"></span> 
 
-02.08 &#10140; 32db
+<!-- ● -->
 
-
+<div>
 jelátvitelekről csináljak egy összefoglaló táblázatot, mert így kb esélytelen megjegyezni, melyiknél mi
 PCR tételek (3db)
 2.10
@@ -23,9 +23,9 @@ PCR tételek (3db)
 4.10 
 1.13
 ? 2.1 ?
+</div>
 
-
-<!----><details><summary class="phase">importQ-s</summary>
+<details><summary class="phase">importQ-s</summary>
 	<details class="{447} kerdes 4/4"><summary>G1/S ellenőrzési pont</summary><ul class="normal">
 		<li>az SPF(ciklin A - Cdk2) gátolva van egy CKI(Cdk inhibitor) által: p27<sup>KIP1</sup></li>
 		<li>a p27<sup>KIP1</sup> viszont a Cdk2-ciklin-E komplex foszforilálja, így a gátlás megszűnik</li>
@@ -62,9 +62,71 @@ PCR tételek (3db)
 		<li>protoonkogén &#10140; olyan fehérjét kódolnak, melyek szükségesek az osztódáshoz &#10140; főként a jelátvitelben résztvevő fehérjéket &#10140; ha mutálódik, akkor növekedés/túlélés fokozott lesz (onkogén már), daganat lesz &#10140; pl. PI3K-t ez kódolja</li>
 		<li>tumorszupresszor &#10140; olyan fehérjét kódolnak, melyek gátolják az osztódást &#10140; pl. retinoblastoma, p53 <abbr title="vagy a PTEN-t(PI3K ellentetje: ez defoszforilálja vissza a lipidet)">'</abbr></li>
 	</ul></details>
-<!----></details>
+	<details class="{667} kerdes 4/7"><summary>génállomány eukarióta sejtekben</summary><ul class="normal">
+		<div style="float:right;max-width:20%">
+			<img data-src="sdnszrsznt.png">
+		</div>
+		<li>génállomány kondenzációjának okai</li><ul>
+			<li>alapvetően nem férne bele a sejtbe &#10140; haploid genom(23db DNS) hossza 2m hosszú</li>
+			<li>úgy kell megoldani, hogy az aktív gének lefűzött állapotban lehessenek, amely gének pedig "fölösek", azok heterokromatin formában</li>
+		</ul>
+		<li><font class="abbr">kromatin ►</font> <abbr title="sejtciklusban interfázisos">'</abbr>interfázisos kromoszóma &#10140; DNS + hozzá kapcsolódó fehérjék</li>
+	  <strong>DNS szerveződési szintjei(6)</strong>
+		<li>DNS kettős-hélix 2nm</li>
+		<details><summary>● nukleoszóma 11nm</summary><ul class="normal">
+			<li>2*4db hiszton alkotja a nukleoszómát &#10140; <span class="WHITE">H<sub>2A</sub></span> <span class="WHITE">H<sub>2B</sub></span> <span class="WHITE">H<sub>3</sub></span> <span class="WHITE">H<sub>4</sub></span></li>
+			<li><font class="abbr">egy nukleoszómára a DNS 2x feltekeredik &#10140; mi tartja ott? ►</font> a hisztonok Lys és Arg-ban gazdagok &#10140; pozitív töltésűek &#10140; DNS negatív töltésű, és így tekeredik rá</li>
+			<li>DNS 2 régiója</li><ul>
+				<li>linker régió &#10140; 60<abbr title="bázispár">bp</abbr> hosszú</li>
+				<li>nukleoszómán lévő rész &#10140; 146bp hosszú</li>
+			</ul>
+			<img data-src="3_nukleoszoma.png">
+		</ul></details>
+		<details><summary>● szolenoid szál 30nm</summary><ul class="normal">
+			<li><span class="WHITE">H1</span> és egyéb nem hiszton fehérjék húzzák egymáshoz közel a nukleoszómákat</li>
+			<li>így a nukleoszómák spirálisan egymás köré tekerednek (pl. a képen látható jobbmenetes)</li>
+			<li>6 nukleoszóma / 1 teljes fordulat</li>
+			<img data-src="szolenoid.png">
+		</ul></details>
+		<details><summary>● radiális hurok 300nm &#10140; ez még lehet eukromatin</summary><ul class="normal">
+			<li>a <strong>CTCF</strong> nevű fehérje a <strong>nukleáris laminához</strong> kapcsolja a szolenoid szál CCCTC szekvenciáit</li>
+			<li>nukleáris_lamina<abbr title="lamina_fibrosa">'</abbr> &#10140; sejtmag belső membránjához kapcsoltan helyezkedik el, lamin A/B/C fehérjék alkotják <img class="mini" data-src="lmnfbvrs.png"></li>
+			<li><span class="Important">szolenoid szál...</span></li><ul>
+				<li>laminhoz kapcsolódó része (<abbr title="matrix(/scaffolt) attached region(=SAR)">MAR</abbr>) &#10140; perinukleáris heterokromatin</li>
+				<li>radiális hurok (mag belsejébe nyúló része) &#10140; eukromatin &#10140; ez ugyanis az RNS-polimeráz és TF-ben gazdag területekbe nyúlik be</li>
+			</ul>
+			<img data-src="rdlshrk.png">
+		</ul></details>
+		<details><summary>● kromatinrost 700nm &#10140; ez már heterokromatin</summary><ul class="normal">
+			<li>kialakítását kondenzin nevű fehérjék végzik</li>
+			<li>csipesz alakúak &#10140; ATP-t felhasználva csökken a "csipesz szöge" &#10140; "közelebb húzza a szálakat" (lásd kép)</li>
+			<li>leginkább osztódás előtt indul meg nagy intenzitással</li>
+			<img data-src="kondenzin.png">
+		</ul></details>
+		<details><summary>● kromoszóma 1400nm</summary><ul class="normal">
+			<li>ezt csa osztódásnál alakul ki</li>
+			<li>testvérkromatidák összekapcsolása a centromernél történik, és a kohezin nevű fehérjék végzik</li>
+			<li>kohezin ezenkívül a kinetochor-komplex belső lemezét is megköti &#10140; annak a külső lemeze pedig a mitotikus_orsó mikrotubulusaihoz kapcsolódik</li>
+			<img data-src="khznkntkrks.png">
+		</ul></details>
+	  <strong>spiralizációk "száma"</strong>
+		<li>1.) kettős hélix</li>
+		<li>2.) egy nukleoszómára a DNS 2x feltekeredik</li>
+		<li>3.) szolenoid tekercs &#10140; nukleoszómák spiralizációja</li>
+	</ul></details>
+	<details class="{668} kerdes 4/3"><summary>telomer</summary><ul class="normal">
+		<img style="max-width:25%" data-src="dslmcnhrk.png">
+		<li>kromoszóma végén vannak</li>
+		<li><abbr title="centromer T és A, ez meg G-ben gazdag (megjegyzési tipp)">TTAGGG</abbr> szekvencia van 1000-2000x ismétlődve</li>
+		<li>a kromoszóma végén lévő két DNS-szál közül a 3'-re végződő hosszabb 2 TTAGGG szekvenciával</li>
+		<li>hogy ez ne jelentsen gondot, a képen látható ún. <span class="Important">telomer-hurok</span> képződik</li>
+		<li>ehhez a telomer-hurokhoz egy fehérje-komplex kapcsolódik, mely legfontosabb tagja a telomeráz(enzim) &#10140; ez a fehérje-sapka <span class="Important">megakadályozza a kromoszómák fúzióját (aneuploidia)</span></li>
+		<li>minden osztódásnál csökken a telomer hossza</li>
+		<li>a <span class="Important">telomeráz</span> ezt képes pótolni, azonban ez az enzim csak őssejtekben és tumorsejtekben expresszálódik</li>
+	</ul></details>
+</details>
 
-<!----><details><summary class="phase">képletek</summary><div><div style="font-weight:bold; font-size:125%;"></div>
+<details><summary class="phase">képletek</summary><div><div style="font-weight:bold; font-size:125%;"></div>
 	<details class="kerdes 4/1"><summary>glicin</summary><ul class="normal">
 		<img data-src="kplt_Gly.png">
 	</ul></details>
@@ -139,17 +201,16 @@ PCR tételek (3db)
 	<details class="kerdes 4/2"><summary>bázispárok</summary><ul class="normal">
 		<img data-src="bzsprk.png">
 	</ul></details>
-</div><!----></details>
+</div></details>
 
 
 <!--///////////////////////////-->  <details><summary class="mainTitle">I.</summary>  <!--///////////////////////////-->
 
-<!----><details><summary class="phase">#1 A nukleotidok felépítése. A nukleinsavak primer és szekunder szerkezete (DNS, különböző RNS-k).</summary>
+<details><summary class="phase">#1 A nukleotidok felépítése. A nukleinsavak primer és szekunder szerkezete (DNS, különböző RNS-k).</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/5"><summary><strong>A nukleotidok felépítése.</strong> A nukleinsavak primer és szekunder szerkezete (DNS, különböző RNS-ek)</summary><ul class="normal">
 	  <div style="float:right;max-width:30%">
 		<img data-src="fszfdsztr.png">
-		<img data-src="dzxrbnszrk.png">
-		<img data-src="dnznszrk.png">
+		<img data-src="prmrszrkdns.png">
 	  </div>
 	  <div style="font-weight:bold; font-size:125%;">nukleotidot felépítő molekulák</div><div>
 		<li>bázis &#10140; purin / pirimidin</li>
@@ -168,28 +229,25 @@ PCR tételek (3db)
 	  <div style="font-weight:bold; font-size:125%;"><span class="Important">RAJZ</span> &beta;-N-glikozidos kötés &#10140; ribonukleozid szerkezete az adenozin és uridin példáján</div><div>
 		<li>purinnál 9 és 1' között <div class="mirror">&#10140;</div>&#10140; pirimidinnél 1 és 1' között</li>
 		<li>mivel csak 1 sigma-kötés a &beta;-N-glikozidos kötés, ezért <span class="IMPORTANT">szabad rotáció</span> van körülötte &#10140; purinnál így sokkal gyakoribb az anti KONFORMÁCIÓ (pirimidinnél nincs lényeges különbség a kettő között)</li>
-		<li><font style="font-size:80%"><font class="abbr">glikozidos kötés ►</font>  kovalens kötés, mellyel a szénhidrát valamilyen másik molekulához kapcsolódik (lehet szénhidrát, de lehet más is)</font></li>
-		<li><font style="font-size:80%"><font class="abbr">&beta; kötés ►</font> mert a ribóz &beta;-anomer &#10140; azért &beta;-anomer, mert az 1' lévő ún. glikozidos -OH csoport a <abbr title="ez vagy a 3' vagy a 4', nem tudom melyik :S">konfigurációt meghatározó C-atomon</abbr> levő OH-csoporttal ellentétes térállású (ha azonos térállású, akkor lenne α-anomer)</font></li>
+	  </div>
+	  <div>
+		<img style="max-width:45%" data-src="dzxrbnszrk.png">
+		<img style="max-width:45%" data-src="dnznszrk.png">
 	  </div>
 	</ul></details>
-	<details class="kerdes 4/4"><summary>A nukleotidok felépítése. <strong>A nukleinsavak primer</strong> és szekunder <strong>szerkezete (DNS,</strong> különböző RNS-ek)</summary><ul class="normal">
+	<details class="kerdes 4/3"><summary>A nukleotidok felépítése. <strong>A nukleinsavak primer</strong> és szekunder <strong>szerkezete (DNS,</strong> különböző RNS-ek)</summary><ul class="normal">
 	  <div style="float:right;max-width:20%">
 		<img data-src="prmrszrkdns.png">
 	  </div>
-		<li>nukleinsavak <span class="Important">polimerek</span><abbr title="fehérjék is">'</abbr> &#10140; monomerjei a nukleotidok</li>
-	  <div style="font-weight:bold; font-size:125%;">nukleinsavak primer szerkezet</div><div>
-		<li>3' vég &#10140; 3' C atomon szabad -OH csoport van, mert már nem kötődik hozzá foszfát</li>
-		<li>5' végnél ugyanez, bár az gyakran foszforilált marad</li>
+	  <strong>nukleinsavak</strong>
+		<li>polimerek &#10140; monomerjei a nukleotidok</li>
 		<li><span class="Important">töltése negatív</span>, lásd foszfátion bekarikázva a képen!!!</li>
-	  </div>
-	  <div style="font-weight:bold; font-size:125%;">DNS primer szerkezetéről még a továbbiak mondhatók el</div><div>
+	  <strong>DNS esetében továbbá elmondható:</strong>
+		<li>kettős szálú</li>
+		<li><u>komplementer</u> &#10140; purinhez mindig pirimidin kapcsolódik</li>
+		<li><u>antiparallel</u> &#10140; két szál lefutása ellentétes &#10140; lásd képen: fenntről-lefele a bal oldali 5'-3' míg a jobb oldali 3'-5'</li>
 		<li>bázispárok merőlegesek a cukor-foszfát-gerincre</li>
 		<li>átmérője 2nm <abbr title="bázispárok síkjába képzeljem el!! (képen direkt van torzítva, hisz az merőleges a monitor síkjára)">'</abbr> <abbr title="átmérője állandó, mert komplementer">'</abbr></li>
-		<li>tulajdonságai</li><ul>
-			<li><strong>komplementer</strong> &#10140; purinhez mindig pirimidin kapcsolódik</li>
-			<li><strong>antiparallel</strong> &#10140; két szál lefutása ellentétes <abbr title="fenntről-lefele a bal oldali 5'-3' míg a jobb oldali 3'-5'">'</abbr></li>
-		</ul>
-	  </div>
 	</ul></details>
 	<details class="kerdes 4/5"><summary>A nukleotidok felépítése. A nukleinsavak primer és <strong>szekunder szerkezete (DNS,</strong> különböző RNS-ek)</summary><ul class="normal">
 	  <div style="float:right;max-width:10%">
@@ -225,8 +283,7 @@ PCR tételek (3db)
 		<li>egyes RNS-eknek (pl. tRNS) azonban van szekunder szerkezete is &#10140; komplementer bázispárok egymással hurkot alkotnak</li>
 		<img data-src="trnszrkntz.png">
 	</ul></details>
-	
-  <hr>
+<!----></details><hr>
 	<details class="kerdes 4/1"><summary>citozin</summary><ul class="normal">
 		<img data-src="thgklpt.png">
 		<details><summary>5metil / 5hidroximetil képlete?</summary><ul class="normal">
@@ -265,9 +322,9 @@ PCR tételek (3db)
 	<details class="kerdes 4/2"><summary><strong>TAB</strong> elnevezésük (nukleobázis,nukleozid,nukleotid)?</summary><ul class="normal">
 		<div class="imp [377]"></div>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#2 A génállomány kondenzációja pro- és eukarióta sejtekben. A topoizomerázok és a kromatinfehérjék szerepe.</summary>
+<details><summary class="phase">#2 A génállomány kondenzációja pro- és eukarióta sejtekben. A topoizomerázok és a kromatinfehérjék szerepe.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/7"><summary><strong>A génállomány kondenzációja pro</strong>- és eu<strong>karióta</strong> sejtekben. A <strong>topoizomerázok</strong> és a kromatinfehérjék <strong>szerepe</strong></summary><ul class="normal">
 		<div style="float:right;max-width:30%">
 			<img data-src="bkrmkdnhszprblm.png">
@@ -295,7 +352,6 @@ PCR tételek (3db)
 		</ul>
 		<table><tr><th>következmény</th> <th>pozitív szuperspiralizáció</th> <th>negatív szuperspiralizáció</th></tr>
 			<tr><th><abbr title="Linking number">Lk</abbr> & W</th> <td colspan="2">amennyivel változott az Lk, annyiszor(W) fog egymás köré csavarodni utána a DNS kettős-hélix &#10140; tehát "annyiszor tekeredő" szuperhélix jön létre, és <abbr title="hisz a képen a pozitív szupertekercselésnél a következő történt: egy jobbmenetest még 2x jobbra tekerve(Lk 2-vel nőtt), egy 2x tekeredő balmenetes szuperhélixet kaptam(W 2-vel nő, ugyanis a balmenetes a pozitív-szuperhélix)">pont az ellentétes menetirányba</abbr> (tehát az <abbr title="(szvsz ez a (T))">"összfordulatszám"</abbr> nem változik)</td></tr>
-			<tr><th>energiaszint</th> <td colspan="2">nő az energiaszint mindkettőnél &#10140; ATP igényesek</td></tr>
 			<tr><th>szerepe</th> 
 				<td>heterokromatinizál (silencel)</td>
 				<td>replikáció & transzkripcióhoz előtt kell, hogy mikor helikáz szétnyitja a 2 szálat, akkor kevésbé alakuljon pozitívvá</td>
@@ -327,60 +383,12 @@ PCR tételek (3db)
 	  </div>
 	</ul></details>
 	<details class="kerdes 4/7"><summary><strong>A génállomány kondenzációja</strong> pro- és <strong>eukarióta</strong> sejtekben. A topoizomerázok és a <strong>kromatinfehérjék szerepe</strong></summary><ul class="normal">
-		<div style="float:right;max-width:20%">
-			<img data-src="sdnszrsznt.png">
-			<img data-src="3_nukleoszoma.png">
-			<img data-src="szolenoid.png">
-			<img data-src="rdlshrk.png">
-			<img data-src="kondenzin.png">
-			<img data-src="khznkntkrks.png">
-		</div>
-		<li>génállomány kondenzációjának okai</li><ul>
-			<li>alapvetően nem férne bele a sejtbe &#10140; haploid genom(23db DNS) hossza 2m hosszú</li>
-			<li>úgy kell megoldani, hogy az aktív gének lefűzött állapotban lehessenek, amely gének pedig "fölösek", azok heterokromatin formában</li>
-		</ul>
-		<li><font class="abbr">kromatin ►</font> <abbr title="sejtciklusban interfázisos">'</abbr>interfázisos kromoszóma &#10140; DNS + hozzá kapcsolódó fehérjék</li>
-	  <strong>DNS szerveződési szintjei(6)</strong>
-		<li>DNS kettős-hélix 2nm</li>
-		<li>nukleoszóma 11nm</li>
-		<li>szolenoid szál 30nm</li>
-		<li>radiális hurok 300nm &#10140; ez még lehet eukromatin</li>
-		<li>kromatinrost 700nm &#10140; ez már heterokromatin</li>
-		<li>kromoszóma 1400nm &#10140; ezt csak osztódásnál veszi fel</li>
-	  <strong>nukleoszóma</strong>
-		<li>2*4db core hiszton alkotja a nukleoszómát &#10140; <span class="WHITE">H<sub>2A</sub></span> <span class="WHITE">H<sub>2B</sub></span> <span class="WHITE">H<sub>3</sub></span> <span class="WHITE">H<sub>4</sub></span></li>
-		<li><font class="abbr">egy nukleoszómára a DNS 2x feltekeredik &#10140; mi tartja ott? ►</font> "core" hisztonok Lys és Arg gazdagok &#10140; pozitív töltésűek &#10140; DNS negatív töltésű, és így tekeredik rá</li>
-		<li>DNS 2 régiója</li><ul>
-			<li>linker régió &#10140; ~60 bázispár hosszú</li>
-			<li>nukleoszómán lévő rész &#10140; ~146-147 bázispár hosszú</li>
-		</ul>
-	  <strong>szolenoid tekercs</strong>
-		<li><span class="WHITE">H1</span> és egyéb nem hiszton fehérjék húzzák egymáshoz közel a nukleoszómákat</li>
-		<li>így a nukleoszómák spirálisan egymás köré tekerednek (pl. a képen látható jobbmenetes)</li>
-		<li>6 nukleoszóma / 1 teljes fordulat</li>
-	  <strong>spiralizációk "száma"</strong>
-		<li>1.) kettős hélix</li>
-		<li>2.) egy nukleoszómára a DNS 2x feltekeredik</li>
-		<li>3.) szolenoid tekercs &#10140; nukleoszómák spiralizációja</li>
-	  <strong>radiális hurok</strong>
-		<li>a <strong>CTCF</strong> nevű fehérje a <strong>nukleáris laminához</strong> kapcsolja a szolenoid szál CCCTC szekvenciáit</li>
-		<li>nukleáris_lamina<abbr title="lamina_fibrosa">'</abbr> &#10140; sejtmag belső membránjához kapcsoltan helyezkedik el, lamin A/B/C fehérjék alkotják <img class="mini" data-src="lmnfbvrs.png"></li>
-		<li><span class="Important">szolenoid szál...</span></li><ul>
-			<li>laminhoz kapcsolódó része (<abbr title="matrix(/scaffolt) attached region(=SAR)">MAR</abbr>) &#10140; perinukleáris heterokromatin</li>
-			<li>radiális hurok (mag belsejébe nyúló része) &#10140; eukromatin &#10140; ez ugyanis az RNS-polimeráz és TF-ben gazdag területekbe nyúlik be</li>
-		</ul>
-	  <strong>kondenzált heterokromatin =~ kromatinrost</strong>
-		<li>kialakítását kondenzin nevű fehérjék végzik</li>
-		<li>csipesz alakúak &#10140; ATP-t felhasználva csökken a "csipesz szöge" &#10140; "közelebb húzza a szálakat" (lásd kép)</li>
-		<li>leginkább osztódás előtt indul meg nagy intenzitással</li>
-	  <strong>kromoszóma <abbr title="kinetochor-komplex & kohezin nem világos a kép alapján, járjak utána!">!?</abbr></strong>
-		<li>osztódás során alakul csak ki</li>
-		<li>testvérkromatidák összekapcsolása a centromernél történik, és a kohezin nevű fehérjék végzik</li>
-		<li>kohezin ezenkívül a kinetochor-komplex belső lemezét is megköti &#10140; annak a külső lemeze pedig a mitotikus_orsó mikrotubulusaihoz kapcsolódik</li>
+		<div class="imp [667]"></div>
 	</ul></details>
-<!----></details>
+<!----></details><hr>
+</details>
 
-<!----><details><summary class="phase" style="bacground-color:Aqua">#3 A humán kromoszómák szerkezete és sejtciklusfüggő változásai.</summary>
+<details><summary class="phase" style="background-color:Aqua">#3 A humán kromoszómák szerkezete és sejtciklusfüggő változásai.</summary>
 	<details open class="kerdes 4/8"><summary><strong>A humán kromoszómák szerkezete és sejtciklusfüggő változásai</strong></summary><ul class="normal">
 		<div style="float:right;max-width:20%">
 			<img data-src="sdnszrsznt.png">
@@ -398,58 +406,15 @@ PCR tételek (3db)
 		<li>S fázisban zajlik a replikáció</li>
 		<li>G1 & G2 fázisban zajlik a transzkripció & transzláció</li>
 		<li>M fázisban veszi fel a kromoszóma szerkezetet</li>
-	  <hr><strong>3.tételből átmásoltam az idevonatkozó részt</strong>. Lehet nem csak ezek kellenek <span class="MISS">!?</span>.
-		<li>génállomány kondenzációjának okai</li><ul>
-			<li>alapvetően nem férne bele a sejtbe &#10140; haploid genom(23db DNS) hossza 2m hosszú</li>
-			<li>úgy kell megoldani, hogy az aktív gének lefűzött állapotban lehessenek, amely gének pedig "fölösek", azok heterokromatin formában</li>
-		</ul>
-		<li><font class="abbr">kromatin ►</font>  interfázisos (sejtciklusban) kromoszóma &#10140; DNS + hozzá kapcsolódó fehérjék</li>
-	  <strong>DNS szerveződési szintjei(6)</strong>
-		<li>DNS kettős-hélix 2nm</li>
-		<li>nukleoszóma 11nm</li>
-		<li>szolenoid szál 30nm</li>
-		<li>radiális hurok 300nm &#10140; ez még lehet eukromatin</li>
-		<li>kromatinrost 700nm &#10140; ez már heterokromatin</li>
-		<li>kromoszóma 1400nm &#10140; ezt csak osztódásnál veszi fel</li>
-	  <strong>nukleoszóma</strong>
-		<li>2*4db core hiszton alkotja a nukleoszómát &#10140; <span class="WHITE">H<sub>2A</sub></span> <span class="WHITE">H<sub>2B</sub></span> <span class="WHITE">H<sub>3</sub></span> <span class="WHITE">H<sub>4</sub></span></li>
-		<li><font class="abbr">egy nukleoszómára a DNS 2x feltekeredik &#10140; mi tartja ott? ►</font> "core" hisztonok Lys és Arg gazdagok &#10140; pozitív töltésűek &#10140; DNS negatív töltésű, és így tekeredik rá</li>
-		<li>DNS 2 régiója</li><ul>
-			<li>linker régió &#10140; ~60 bázispár hosszú</li>
-			<li>nukleoszómán lévő rész &#10140; ~146-147 bázispár hosszú</li>
-		</ul>
-	  <strong>szolenoid tekercs</strong>
-		<li><span class="WHITE">H1</span> és egyéb nem hiszton fehérjék húzzák egymáshoz közel a nukleoszómákat</li>
-		<li>így a nukleoszómák spirálisan egymás köré tekerednek (pl. a képen látható jobbmenetes)</li>
-		<li>6 nukleoszóma / 1 teljes fordulat</li>
-	  <strong>spiralizációk "száma"</strong>
-		<li>1.) kettős hélix</li>
-		<li>2.) egy nukleoszómára a DNS 2x feltekeredik</li>
-		<li>3.) szolenoid tekercs &#10140; nukleoszómák spiralizációja</li>
-	  <strong>radiális hurok</strong>
-		<li>nukleáris laminához kapcsolódnak a szolenoid szál egyes (CCCTC szekvenciás) részei</li>
-		<li>a CTCF nevú fehérje kapcsolja hozzá a szekvenciát a lamin-hoz</li>
-		<li><abbr title="matrix/scaffolt attached region">MAR = SAR</abbr> &#10140; szolenoid szál azon része ami nukleáris laminához kapcsolódik</li>
-		<li>lamina_fibrosa<abbr title="nukleáris lamina">(=)</abbr> &#10140; sejtmag belső membránjához kapcsoltan helyezkedik el, lamin A/B/C fehérjék alkotják <img class="mini" data-src="lmnfbvrs.png"></li>
-		<li><span class="Important">szolenoid szál...</span></li><ul>
-			<li>laminhoz kapcsolódó része &#10140; perinukleáris heterokromatin</li>
-			<li>radiális hurok (mag belsejébe nyúló része) &#10140; eukromatin &#10140; ez ugyanis az RNS-polimeráz és TF-ben gazdag területekbe nyúlik be</li>
-		</ul>
-	  <strong>kondenzált heterokromatin =~ kromatinrost</strong>
-		<li>kialakítását kondenzin nevű fehérjék végzik</li>
-		<li>csipesz alakúak &#10140; ATP-t felhasználva csökken a "csipesz szöge" &#10140; "közelebb húzza a szálakat" (lásd kép)</li>
-		<li>leginkább osztódás előtt indul meg nagy intenzitással</li>
-	  <strong>kromoszóma <abbr title="kinetochor-komplex & kohezin nem világos a kép alapján, járjak utána!">!?</abbr></strong>
-		<li>osztódás során alakul csak ki</li>
-		<li>testvérkromatidák összekapcsolása a centromernél történik, és a kohezin nevű fehérjék végzik</li>
-		<li>kohezin ezenkívül a kinetochor-komplex belső lemezét is megköti &#10140; annak a külső lemeze pedig a mitotikus_orsó mikrotubulusaihoz kapcsolódik</li>
+	  <hr>
+		<div class="imp [667]"></div>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#4 A humán genom felépítése; kódoló és génexpressziót szabályzó szekvenciák. A humán genom nem-kódoló szakaszai: intronok, pszeudogének, ismétlődő szekvenciák.</summary>
+<details><summary class="phase">#4 A humán genom felépítése; kódoló és génexpressziót szabályzó szekvenciák. A humán genom nem-kódoló szakaszai: intronok, pszeudogének, ismétlődő szekvenciák.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/2"><summary><strong>A humán genom</strong> felépítése; kódoló és génexpressziót szabályzó szekvenciák. A humán genom nem-kódoló szakaszai: intronok, pszeudogének, ismétlődő szekvenciák.</summary><ul class="normal">
 		<strong>genom</strong>
-		<li>definíció &#10140; egy haploid sejt teljes genetikai tartalma (tehát DNS-ének összesége) (egy haploid sejt 23db kromoszómája)</li>
+		<li>definíció &#10140; egy haploid sejt DNS-ének összesége (23db kromoszómája)</li>
 		<li>kb. 3millilárd bp-ből áll</li>
 		<li>kb. 3millió bp-ben tér el egymástól két ember genomja (0,1%)</li>
 		<li>egy ember genomja minden sejtben <abbr title="(leszámítva pl. azon mutációkat amiket 9-11.tételnél találok)">alapvetően megegyezik</abbr></li>
@@ -468,12 +433,8 @@ PCR tételek (3db)
 					<td><span class="Important">szabályozó fehérjéket</span> kódoló szekvenciák</td>
 				</tr>
 				<tr>
-					<td>génhez közel vannak</td>
-					<td>géntől távolabb vannak (akár más kromoszómában)</td>
-				</tr>
-				<tr>
 					<td>DNS-összehajtogatásakor a corePromoter közelébe kerülnek (alapból ezek is lehetnek távol)</td>
-					<td>DNS-összehajtogatásakor nem kerül a corePromoter közelébe ("függetlenek tőle")</td>
+					<td>géntől távol vannak (akár más kromoszómában)</td>
 				</tr>
 			</table>
 		</ul>
@@ -487,7 +448,7 @@ PCR tételek (3db)
 		<strong>csoportosításuk keletkezésük alapján</strong>
 		<li><abbr title="hnRNS érését értjük alatta">processzált</abbr> pszeudogének</li><ul>
 			<li>reverz transzkripció történik</li>
-			<li>lényege &#10140; érett mRNS-t reverz_transzkriptáz visszaírja DNS-é, majd integrálódik a DNS-be</li>
+			<li>keletkezése &#10140; érett mRNS-t reverz_transzkriptáz visszaírja DNS-é, majd integrálódik a DNS-be</li>
 			<li>így fontos jellemzője, hogy intronja és <abbr title="elvileg van olyan is, amelyiknek ez megmarad, de ezzel inkább ne foglalkozzak (egyszerűbb így felfogni)">promotere</abbr> nincs már, a normál génekkel ellentétben (hisz splicing már volt)</li>
 		</ul>
 		<li>nem processzált pszeudogének &#10140; mutációval elveszti funkcióképességét, pl. STOP-kodon keletkezik rossz helyen <abbr title="vagy egy fontos aminosav kicserélődik">'</abbr></li>
@@ -498,83 +459,72 @@ PCR tételek (3db)
 		<li>így azok lefoglalják a mikroRNS-eket, és az onkogén mRNS-ek nem fognak lebomlani</li>
 	</ul></details>
 	<details class="kerdes 4/9"><summary>A humán genom felépítése; kódoló és génexpressziót szabályzó szekvenciák. A humán genom nem-kódoló szakaszai: intronok, pszeudogének, <strong>ismétlődő szekvenciák.</strong></summary><ul class="normal">
-		<img style="max-width:30%" data-src="dslmcnhrk.png">
-	  <div style="font-weight:bold; font-size:125%;">ismétlődő szekvenciák</div>
-		 &#10140; genom kb. felét(44%) teszik ki, tehát igen nagyrészét
-		<li>mobilis genetikai elemek</li>
-		<li>szatellita DNS-ek</li><ul>
-			<li>centromere &#10140; A és T-ben gazdag</li>
-			<li>telomer &#10140; G-ben gazdag</li>
+		genom kb. felét(44%) teszik ki, tehát igen nagyrészét:
+		<details><summary>● mobilis genetikai elemek</summary><ul class="normal">
+			<li>fő tulajdonságuk &#10140; változtatják a helyüket a genomban</li>
+			<li>csoportosításuk</li><ul>
+				<li>transzpozonok</li>
+				<li>plazmidok</li>
+				<li>bakteriofágok</li>
+				<li>stb.</li>
+			</ul>
+			<table><tr><th colspan="2">transzpozonok csoportosítása</th></tr>
+				<tr><th>retrotranszpozonok</th><th>DNS-transzpozonok <img class="mini" data-src="trnszpzns.png"></th></tr>
+				
+				<tr>
+					<td>"másolás beillesztés" &#10140; így nő a <abbr title="kópiaszámuk">()</abbr>számuk</td>
+					<td>"kivágás beillesztés" &#10140; így NEM nő a <abbr title="kópiaszámuk">()</abbr>számuk</td>
+				</tr>
+				<tr>
+					<td style="text-align:left">
+						<li>először RNS-transzkripció történik, és RNS keletkezik &#10140; RNS-polimeráz <abbr title="LTR-nél nemtudom melyik, de SINE-nél III és LINE-nál II">()</abbr> végzi</li>
+						<li>ezután reverz transzkripcióval visszíródnak DNS-é &#10140; reverz_transzkriptáz(enzim) végzi</li>
+						<li>végül beépül a DNS(genom) valamely részébe &#10140; integráz(enzim) végzi</li>
+					</td>
+					<td>szimplán kivágódnak és átmennek máshova &#10140; transzpozáz(enzim) végzi</td>
+				</tr>
+			</table>
+			<img style="max-width:30%" data-src="trnszpznk.png">
+			<li><u>retrotranszpozonok</u></li><ul>
+				<li>retrovírusokból kerültek bele a humán genomba</li>
+				<li>(helyváltoztatásuk szvsz kb.ugyanaz mint processzált_pszeudogéneknél)</li>
+				<li>ha olyan helyre épül be a genomba, mely exont kódol, akkor azt tönkrevágja (képen pl. az exont kettészeli, és közepébe kerül) &#10140; okozhat akár daganatot is</li>
+				<li>fontos, hogy reverz_transzkripciónál ami elkészül DNS, több dologban is különbözik az eredetitől, mert nincsenek hibajavító enzimek</li>
+				<li>csoportosításuk</li><ul>
+					<li><span class="WHITE">LTR-retrotranszpozonok</span></li><ul>
+						<li>ezek végén ún. LTR van (hosszú, ismétlődő DNS-szekvencia = long terminal repeat)</li>
+						<li>a retrovírusokhoz hasonlítanak</li>
+						<li>(kódolja a reverz transzkriptázt)</li>
+					</ul>
+					<li>nem LTR-retrotranszpozonok</li><ul>
+						<li><span class="WHITE"><abbr title="Long Interspersed Nuclear Elements">LINE</abbr>-retrotranszpozonok</span> (LongINE) &#10140; önállóan íródik át (kódolja a reverz transzkriptázt) <abbr title="RNS-polimeráz II írja át őket">()</abbr></li>
+						<li><span class="WHITE">SINE-retrotranszpozonok</span> (ShortINE) &#10140; LINE kell az átíródáshoz (NEM kódolja a reverz transzkriptázt) <abbr title="RNS-polimeráz III írja át őket">()</abbr></li>
+					</ul>
+				</ul>
+			</ul>
+		</ul></details>
+		<li>szatellita DNS-ek:</li><ul>
+			<details><summary>centromer &#10140; A és T-ben gazdag</summary><ul class="normal">
+				<li>171bp-ól álló T és A-ban gazdag szekvencia ismétlődése</li>
+				<li>ehhez kötődik a kohezin, és kapcsolja össze a 2 testvérkromatidákat</li>
+			</ul></details>
+			<details><summary>telomer &#10140; G-ben gazdag</summary><ul class="normal">
+				<div class="imp [668]"></div>
+			</ul></details>
 		</ul>
-		<li>mikroszatelliták</li>
-	  <hr>
-		<li><u>telomerek</u></li><ul>
-			<li>kromoszóma végén vannak</li>
-			<li><abbr title="centromer T és A, ez meg G-ben gazdag (megjegyzési tipp)">TTAGGG</abbr> szekvencia van 1000-2000x ismétlődve</li>
-			<li>a kromoszóma végén lévő két DNS-szál közül a 3'-re végződő hosszabb 2 TTAGGG szekvenciával</li>
-			<li>hogy ez ne jelentsen gondot, a képen látható ún. <span class="Important">telomer-hurok</span> képződik</li>
-			<li>ehhez a telomer-hurokhoz egy fehérje-komplex kapcsolódik, mely legfontosabb tagja a telomeráz(enzim) &#10140; ez a fehérje-sapka <span class="Important">megakadályozza a kromoszómák fúzióját (aneuploidia)</span></li>
-			<li>minden osztódásnál csökken a telomer hossza</li>
-			<li>a <span class="Important">telomeráz</span> ezt képes pótolni, azonban ez az enzim csak őssejtekben és tumorsejtekben expresszálódik</li>
-		</ul>
-		<li><u>centromer</u></li><ul>
-			<li>171bp-ól álló T és A-ban gazdag szekvencia ismétlődése</li>
-			<li>ehhez kötődik a kohezin, és kapcsolja össze a 2 testvérkromatidákat</li>
-		</ul>
-		<li><u>mikroszatelliták</u></li><ul>
+		<details><summary>● mikroszatelliták</summary><ul class="normal">
 			<li>2-5bp ismétlődik</li>
 			<li>attól függően, hogy hányszor ismétlődnek, lehet személyazonosságot meghatározni (pl. egyik van akiben 15x ismétlődik, van akiben 17x)</li>
 			<li>Huntington-kór oka, hogy egy ilyen szekvencia túl sokszor ismétlődik</li>
-		</ul>
-	  <hr><div style="font-weight:bold; font-size:125%;">mobilis genetikai elemek</div>
-		<li>fő tulajdonságuk &#10140; változtatják a helyüket a genomban</li>
-		<li>csoportosításuk</li><ul>
-			<li>transzpozonok</li>
-			<li>plazmidok</li>
-			<li>bakteriofágok</li>
-			<li>stb.</li>
-		</ul>
-		<table><tr><th colspan="2">transzpozonok csoportosítása</th></tr>
-			<tr><th>retrotranszpozonok</th><th>DNS-transzpozonok <img class="mini" data-src="trnszpzns.png"></th></tr>
-			
-			<tr>
-				<td>"másolás beillesztés" &#10140; így nő a <abbr title="kópiaszámuk">()</abbr>számuk</td>
-				<td>"kivágás beillesztés" &#10140; így NEM nő a <abbr title="kópiaszámuk">()</abbr>számuk</td>
-			</tr>
-			<tr>
-				<td style="text-align:left">
-					<li>először RNS-transzkripció történik, és RNS keletkezik &#10140; RNS-polimeráz <abbr title="LTR-nél nemtudom melyik, de SINE-nél III és LINE-nál II">()</abbr> végzi</li>
-					<li>ezután reverz transzkripcióval visszíródnak DNS-é &#10140; reverz_transzkriptáz(enzim) végzi</li>
-					<li>végül beépül a DNS(genom) valamely részébe &#10140; integráz(enzim) végzi</li>
-				</td>
-				<td>szimplán kivágódnak és átmennek máshova &#10140; transzpozáz(enzim) végzi</td>
-			</tr>
-		</table>
-		<img style="max-width:30%" data-src="trnszpznk.png">
-		<li><u>retrotranszpozonok</u></li><ul>
-			<li>retrovírusokból kerültek bele a humán genomba</li>
-			<li>(helyváltoztatásuk szvsz kb.ugyanaz mint processzált_pszeudogéneknél)</li>
-			<li>ha olyan helyre épül be a genomba, mely exont kódol, akkor azt tönkrevágja (képen pl. az exont kettészeli, és közepébe kerül) &#10140; okozhat akár daganatot is</li>
-			<li>fontos, hogy reverz_transzkripciónál ami elkészül DNS, több dologban is különbözik az eredetitől, mert nincsenek hibajavító enzimek</li>
-			<li>csoportosításuk</li><ul>
-				<li><span class="WHITE">LTR-retrotranszpozonok</span></li><ul>
-					<li>ezek végén ún. LTR van (hosszú, ismétlődő DNS-szekvencia = long terminal repeat)</li>
-					<li>a retrovírusokhoz hasonlítanak</li>
-					<li>(kódolja a reverz transzkriptázt)</li>
-				</ul>
-				<li>nem LTR-retrotranszpozonok</li><ul>
-					<li><span class="WHITE"><abbr title="Long Interspersed Nuclear Elements">LINE</abbr>-retrotranszpozonok</span> (LongINE) &#10140; önállóan íródik át (kódolja a reverz transzkriptázt) <abbr title="RNS-polimeráz II írja át őket">()</abbr></li>
-					<li><span class="WHITE">SINE-retrotranszpozonok</span> (ShortINE) &#10140; LINE kell az átíródáshoz (NEM kódolja a reverz transzkriptázt) <abbr title="RNS-polimeráz III írja át őket">()</abbr></li>
-				</ul>
-			</ul>
-		</ul>
+		</ul></details>
 	</ul></details>
-<!----></details>
+<!----></details><hr>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#5 Genetikai variációk szerepe a betegségek kialakulásában, a genetikai faktorok meghatározásának jelentősége és lehetőségei.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#5 Genetikai variációk szerepe a betegségek kialakulásában, a genetikai faktorok meghatározásának jelentősége és lehetőségei.</summary>
+</details>
 
-<!----><details><summary class="phase">#6 A szemikonzervatív DNS-replikáció elve. A replikációs villa, vezető és késlekedő szálak.</summary>
+<details><summary class="phase">#6 A szemikonzervatív DNS-replikáció elve. A replikációs villa, vezető és késlekedő szálak.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/4"><summary><strong>A szemikonzervatív DNS-replikáció elve.</strong> A replikációs villa, vezető és késlekedő szál.</summary><ul class="normal">
 		<img data-src="szmknzrvtv.png">
 	  <div><strong>DNS-replikációja (alábbiak prokariótára és eukariótára egyaránt igazak)</strong></div>
@@ -612,14 +562,13 @@ PCR tételek (3db)
 		<li>innen kezdődik meg a DNS-replikáció <span class="Important">mind2 irányba</span> &#10140; mindkét irányba ugyanúgy zajlik</li>
 		<li><strong>replikációs_villa</strong> &#10140; iniciációs_buborék kettéválasztva (mivel ugyanaz zajlik mind2 irányba, elég egyik felét néznünk)</li>
 		<li><strong>SSB</strong> &#10140; fehérjék, melyek odakötődnek a már szétválasztott szálakhoz, nehogy ismét összekapcsolódjanak</li>
-		<li><strong>primáz</strong><abbr title="=dnaG">'</abbr> &#10140; ez egy <span class="Important">RNS polimeráz</span> &#10140; ez fogja megkezdeni a szálat, melyet majd képes meghosszabítani 3' végénél a DNS polimeráz III (hisz alapból a DNS polimeráz nem képes új szálat kezdeni!)</li>
 	</ul></details>
 	<details class="kerdes 4/2"><summary>A szemikonzervatív DNS-replikáció elve. A replikációs villa, <strong>vezető</strong> és késlekedő szál.</summary><ul class="normal">
 		<img style="max-width:30%" data-src="rplkzcrnyt.png">
-		<li>itt a DNS-replikáció iránya (készülő DNS) <span class="Important">megegyezik</span> a DNS-szintézis irányával (ami mindig 5'-3')</li>
-		<li>így itt <span class="Important">1db repliszóma</span> végzi a szintézist &#10140; ez a 3 fajta enzim alkotja<abbr title="egyébként ez elvileg nem teljesen igaz, mert elvileg nem csak ez a 3 fajta, de bőven elég ezt tudni">'</abbr>, és mindegyikből 1db</li><ul>
-			<li>primáz megkezd egy RNS-t</li>
-			<li>DNS-polimeráz III hosszabítja a 3' végét</li>
+		<li>itt a DNS-replikáció iránya (lásd kép) <span class="Important">megegyezik</span> a DNS-szintézis irányával (ami mindig 5'-3')</li>
+		<li>így itt <span class="Important">1db repliszóma</span> végzi a szintézist &#10140; ezt 3 fajta enzim alkotja<abbr title="egyébként ez elvileg nem teljesen igaz, mert elvileg nem csak ez a 3 fajta, de bőven elég ezt tudni">'</abbr>, és mindegyikből 1db</li><ul>
+			<li>primáz<abbr title="=dnaG">'</abbr> &#10140; ez egy <span class="Important">RNS polimeráz</span> &#10140; megkezdi a szálat RNS formában, melyet meghosszabbít majd a DNS-polimeráz III</li>
+			<li>DNS-polimeráz III &#10140; hosszabítja a 3' végét</li>
 			<li>közben a helikáz(dnaB) elől szétválasztja a két szálat</li>
 		</ul>
 	</ul></details>
@@ -634,15 +583,33 @@ PCR tételek (3db)
 		<li>összekapcsolást a <strong>ligáz</strong> fogja elvégezni &#10140; energiáját NAD<sup>+</sup> hidrolízise biztosítja (eukariótáknál ATP) <abbr title="(csak akkor kapcsolja össze őket, ha az egész RNS már lecserélődött)">'</abbr> <abbr title="DNS polimeráz I processzivitésa alacsony &#10140; tehát beépít/lecserél pár nukleotidot, majd abbahagyja és elmegy (III-é ezzel szemben nagy)">'</abbr> <abbr title="'tehát így érdemes felfogni:' a ligáz ellenőrzi folyamatosan, hogy az egész RNS-t lecserélte-e már a polimeráz I &#10140; ha nem, addig nem kapcsolja össze a két Okazakit, és DNS-polmeráz I ismét visszamegy &#10140; DNS-polimeráz I alacsony processzivitása azért jó, mert így az RNS után jövő DNS-ből max kevés nukleotidot fog lecserélni, hisz az fölös energiapazarlás">'</abbr></li>
 		<li>itt <span class="IMPORTANT">5fajta enzim kell, és ráadásul minden Okazaki-hoz 1-1db</span> (kivéve a helikáz, abból elég összesen 1) &#10140; primáz + DNS polimeráz <span class="Important">I</span>/III + <span class="Important">ligáz</span> (+helikáz)</li>
 	</ul></details>
-<!----></details>
+<!----></details><hr>
+</details>
 
-<!----><details><summary class="phase">#7 A replikáció folyamata pro- és eukariótákban. Az ehhez szükséges enzimek, fehérjék összehasonlítása.</summary>
-	<details open class="kerdes 4/10"><summary><strong>A replikáció folyamata pro- és eukariótákban. Az ehhez szükséges enzimek és egyéb fehérjék összehasonlítása.</strong></summary><ul class="normal">
-		<div style="float:right;max-width:30%">
-			<img data-src="sznttksktvts.png">
-			<img data-src="krtknznkmk.png">
-		</div>
-	  <div style="font-weight:bold; font-size:125%;">prokarióták</div><div>
+<details><summary class="phase">#7 A replikáció folyamata pro- és eukariótákban. Az ehhez szükséges enzimek, fehérjék összehasonlítása.</summary><details open class="open"><summary></summary>
+	<details class="kerdes 4/6"><summary><strong>A replikáció folyamata</strong> pro- és <strong>eukariótákban.</strong> Az ehhez szükséges enzimek és egyéb fehérjék összehasonlítása.</summary><ul class="normal">
+		<img style="max-width:30%" data-src="krtknznkmk.png">
+	  <strong>a replikáció elve és menete azonos, mint prokariótáknál így csak a különbségeket soroltam fel:</strong>
+		<li>DNS-polimerázok &#10140; több típusuk van, ebből 5öt érdemes megemlíteni</li><ul>
+			<li><abbr title="delta">&delta;</abbr> &#10140; ez építi fel a vezető és késlekedő szálat is (ez a kulcsenzim!)</li>
+			<li>α &#10140; kezdeti RNS szakaszt először ez hosszabítja meg kb. 15-30 nukleotiddal <font style="font-size:80%">(szvsz ez már nem RNS)</font></li>
+			<li>&beta;,<abbr title="epszilon">&epsilon;</abbr> &#10140; hibajavítás</li>
+			<li><abbr title="gamma">&gamma;</abbr> &#10140; mitokondriális DNS szintézisét végzi</li>
+		</ul>
+		<li>DNS polimerázok itt sokkal lassabbak + sokkal több bázis is van (3milliárd vs 3millió) &#10140; <abbr title="emberben több tízezer">több</abbr> origó(~"iniciációs_burok") kell, hisz különben nagyon soká tartana a replikáció</li>
+		<li>Okazaki-fragmentum rövidebb, ~150bp hosszú</li>
+		<li>DNS-polimeráz <span class="Important">&delta; itt sem rendelkezik 5'-3' exonukleáz aktivitással</span> &#10140; az RNS-szakasz lebontását két másik enzim végzi</li><ul>
+			<li>az első enzim lebontja az RNS-indítót úgy, hogy csupán egyetlen ribonukleotid egység marad a láncban</li>
+			<li>ezután a második enzim nemcsak a még jelenlévő egyetlen ribonukleotidot távolítja el, hanem az azt követő rövid DNS-szakaszt is abban az esetben, ha ott hibás bázispárok találhatók &#10140; ez azért szükséges, mert ezt a láncrészt a 3’-exonukleáz-aktivitással nem rendelkező DNS-polimeráz-α hozta létre</li>
+		</ul>
+		<li>genom prokariótáknál cirkuláris, tehát NINCS 5' / 3' vége &#10140; <span class="Important">eukariótáknál lineáris</span>: 23db interfázisos_kromoszóma, mindegyiknek van 5' és 3' vége</li><ul>
+			<li>ennek az a következménye, hogy eukariótáknál a késlekedő szál 5' vége rövidülni fog minden egyes osztódásnál</li>
+			<li><abbr title="telomer tétel">/lásd/</abbr></li>
+		</ul>
+		<li>Cdc6p nevű fehérje &#10140; gátolja a reiniciációt &#10140; tehát csak 1x kettőződjön a DNS, többször ne</li>
+		<li>PCNA nevű fehérje &#10140; biztosítja a DNS-polimeráz &delta; processzivitását a vezető szálon, azaz nem engedi, hogy abbahagyja, amíg végig nem ért</li>
+	</ul></details>
+	<details class="kerdes 4/3"><summary><strong>A replikáció folyamata pro</strong>- és eu<strong>kariótákban</strong>. Az ehhez szükséges enzimek és egyéb fehérjék összehasonlítása.</summary><ul class="normal">
 		<table><tr> <th>3 féle DNS-polimeráz van</th> <th>funkció</th> <th>aktivitás</th> </tr>
 			<tr><th><span class="Important">I</span></th>
 				<td style="text-align:left">
@@ -661,8 +628,9 @@ PCR tételek (3db)
 			</tr>
 		</table>
 		<strong>módját lásd:</strong> A szemikonzervatív DNS-replikáció elve. A replikációs villa, vezető és késlekedő szál
-	  </div>
-	  <hr><div style="font-weight:bold; font-size:125%;">eukariótáknál a replikáció elve és menete azonos, így csak a különbségeket soroltam fel</div>
+		<img data-src="sznttksktvts.png">
+	</ul></details>
+	<details class="kerdes 4/3"><summary>A replikáció folyamata pro- és eukariótákban. <strong>Az ehhez szükséges enzimek és egyéb fehérjék összehasonlítása.</strong></summary><ul class="normal">
 		<table><tr><th colspan="2"><span class="Important">enzimek</span> & fehérjék</th></tr> <tr><th>prokarióta</th>  <th>eukarióta</th></tr>
 			<tr><td><span class="Important">DNS-polimeáz I/II/III</span></td>  <td><span class="Important">DNS-polimeráz α/&beta;/&delta;/&gamma;/&epsilon;</span></td></tr>
 			<tr><td>SSB</td>  <td>RPA <abbr title="tehát SSB helyett eukariótákban RPA nevű fehérje van &#10140; szétválasztva tartják a két szálat">'</abbr></td></tr>
@@ -673,47 +641,20 @@ PCR tételek (3db)
 			<tr><td> --- </td>  <td>Cdc6p</td></tr>
 			<tr><td> --- </td>  <td>PCNA</td></tr>
 		</table>
-		<li>DNS-polimerázok &#10140; több típusuk van, ebből 5öt érdemes megemlíteni</li><ul>
-			<li><abbr title="delta">&delta;</abbr> &#10140; ez építi fel a vezető és késlekedő szálat is (ez a kulcsenzim!)</li>
-			<li>α &#10140; kezdeti RNS szakaszt először ez hosszabítja meg kb. 15-30 nukleotiddal (szvsz ezek már dezoxi-ribonukleozidok, tehát nem RNS)</li>
-			<li>&beta;,<abbr title="epszilon">&epsilon;</abbr> &#10140; hibajavítás</li>
-			<li><abbr title="gamma">&gamma;</abbr> &#10140; mitokondriális DNS szintézisét végzi</li>
-		</ul>
-		<li>DNS polimerázok itt sokkal lassabbak + sokkal több bázis is van (3milliárd vs 3millió) &#10140; <abbr title="emberben több tízezer">több</abbr> origó(~"iniciációs_burok") kell, hisz különben nagyon soká tartana a replikáció</li>
-		<li>Okazaki-fragmentum rövidebb, ~150bp hosszú</li>
-		<li>DNS-polimeráz <span class="Important">&delta; nem rendelkezik 5'-3' exonukleáz aktivitással</span> &#10140; az RNS-szakasz lebontását két másik enzim végzi</li><ul>
-			<li>az első enzim lebontja az RNS-indítót úgy, hogy csupán egyetlen ribonukleotid egység marad a láncban</li>
-			<li>ezután a második enzim nemcsak a még jelenlévő egyetlen ribonukleotidot távolítja el, hanem az azt követő rövid DNS-szakaszt is abban az esetben, ha ott hibás bázispárok találhatók &#10140; ez azért szükséges, mert ezt a láncrészt a 3’-exonukleáz-aktivitással nem rendelkező DNS-polimeráz-α hozta létre</li>
-		</ul>
-		<li>genom prokariótáknál cirkuláris, tehát NINCS 5' / 3' vége &#10140; <span class="Important">eukariótáknál lineáris</span>: 23db interfázisos_kromoszóma, mindegyiknek van 5' és 3' vége</li><ul>
-			<li>ennek az a következménye, hogy eukariótáknál a késlekedő szál 5' vége rövidülni fog minden egyes osztódásnál</li>
-			<li><abbr title="telomer tétel">/lásd/</abbr></li>
-		</ul>
-		<li>Cdc6p nevű fehérje &#10140; gátolja a reiniciációt &#10140; tehát csak 1x kettőződjön a DNS, többször ne</li>
-		<li>PCNA nevű fehérje &#10140; biztosítja a DNS-polimeráz &delta; processzivitását a vezető szálon, azaz nem engedi, hogy abbahagyja, amíg végig nem ért</li>
 	</ul></details>
-<!----></details>
+<!----></details><hr>
+</details>
 
-<!----><details><summary class="phase">#8 Telomer régió: az eukarióta kromoszómák végének replikációja, a telomeráz működése és jelentősége.</summary>
+<details><summary class="phase">#8 Telomer régió: az eukarióta kromoszómák végének replikációja, a telomeráz működése és jelentősége.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/3"><summary><strong>Telomer régió:</strong> az eukarióta kromoszómák végének replikációja, a telomeráz működése és jelentősége.</summary><ul class="normal">
-		<div style="float:right;max-width:25%">
-			<img data-src="dslmcnhrk.png">
-		</div>
-	  <strong>telomerek</strong>
-		<li>ismétlődő szekvenciák csoportjába tartozik, azon belül is a DNS-szatelliták csoportjába <abbr title="A humán genom felépítése; kódoló és génexpressziót szabályzó szekvenciák. A humán genom nem-kódoló szakaszai: intronok, pszeudogének, ismétlődő szekvenciák">/lásd/</abbr></li>
-		<li>kromoszóma végén vannak</li>
-		<li><abbr title="centromer T és A, ez meg G-ben gazdag (megjegyzési tipp)">TTAGGG</abbr> szekvencia van 1000-2000x ismétlődve = telomer</li>
-		<li>a kromoszóma végén lévő két DNS-szál közül a 3'-re végződő hosszabb 2 TTAGGG szekvenciával</li>
-		<li>hogy ez ne jelentsen gondot, a képen látható ún. telomer-hurok képződik</li>
-		<li>ehhez a telomer-hurokhoz egy fehérje-komplex kapcsolódik <abbr title="mely legfontosabb tagja a telomeráz(enzim)">&#10045;</abbr> &#10140; ez a fehérje-sapka megakadályozza a kromoszómák fúzióját (aneuploidia)</li>
-		<li>minden osztódásnál csökken a telomer hossza</li>
+		<div class="imp [668]"></div>
 	</ul></details>
 	<details class="kerdes 4/3"><summary>Telomer régió: <strong>az eukarióta kromoszómák végének replikációja</strong>, a telomeráz működése és jelentősége.</summary><ul class="normal">
 		<div style="float:right;max-width:25%">
 			<img data-src="tlrmrt.png">
 		</div>
-	  <strong>minden osztódásnál csökken a telomer hossza &#10140; oka</strong>
-		<li>genom a prokariótáknál cirkuláris, tehát nem volt 5' / 3' vége &#10140; eukariótáknál lineáris: 23db interfázisos_kromoszóma, mindegyiknek van 5' és 3' vége</li>
+		<li>minden osztódásnál csökken a telomer hossza, ugyanis..</li>
+		<li>a genom a prokariótáknál cirkuláris, tehát nem volt 5' / 3' vége &#10140; eukariótáknál lineáris: 23db interfázisos_kromoszóma, mindegyiknek van 5' és 3' vége</li>
 		<li>ennek az a következménye, hogy eukariótáknál mindkét <abbr title="tehát nem a szülői(minta), hanem ami képződik">"új"</abbr>_szál 5' vége rövidülni fog</li><ul>
 			<li>mindkét "új" szál 5' vége késlekedő_szálként szintetizálódik &#10140; <abbr title="kép persze le van egyszerűsítve, hisz csak 1 Origot ábrázol, de az, hogy több 1000 van belőlük, az eredményen nem változtat">lásd kép!</abbr></li>
 			<li>azért rövidülnek, mert az 5' végen lévő RNS-primer miután leválik, nem tudja semmi pótolni &#10140; hiszen 5'-3' irányba történik csak szintézis, és nincs előtte 3' vég, ami hosszabítható lenne</li>
@@ -721,24 +662,25 @@ PCR tételek (3db)
 		</ul>
 		<li>prokariótáknál azonban cirkuláris, így nincs probléma <abbr title="szvsz ha végiggondolom: kört rajzoljak, majd az iniciációs_buboréktól egyik irányba 1 vezető, másik irányba 1 késlekedő szál megindul, és ezek fognak egymással találkozni (tehát a vezettő szál hosszabodása fogja tudni pótolni)">&#10045;</abbr></li>
 	</ul></details>
-	<details class="kerdes 4/3"><summary>Telomer régió: az eukarióta kromoszómák végének replikációja, a <strong>telomeráz működése és jelentősége.</strong></summary><ul class="normal">
+	<details class="kerdes 4/4"><summary>Telomer régió: az eukarióta kromoszómák végének replikációja, a <strong>telomeráz működése és jelentősége.</strong></summary><ul class="normal">
 		<div style="float:right;max-width:25%">
 			<img data-src="tlrmsmkds.png">
 		</div>
 		<li>ha a telomer hossza egy adott érték alá csökken fokozatos rövidülések következtében, akkor apoptózis indukálódik, a sejt elpusztul</li>
 		<li>ezért a telomeráz meghosszabítja minden osztódásnál a telomert <abbr title="mennyi az a valamennyi... (szvsz nem pár ezer, mert az az egész telomer hossza)">valamennyi</abbr> TTAGGG szekvenciával &#10140; nem rövidül</li>
-		<li>azonban telomeráz csak őssejtekben és tumorsejtekben expresszálódik &#10140; daganatos megbetegedések kemoterápiás kezelésének egyik módja ez &#10140; legaktívabban osztódó sejteket, azaz éppen a tumorsejteket károsítja</li>
+	  <hr><span class="Important">RAJZ</span> telomeráz működése (kromoszóma egyik végén bemutatva):
+		<li>a 3'-re végződő szálú DNS-t hosszabítja meg</li>
+		<li>a telomeráz egy RNS-függő DNS-polimeráz (azaz egyfajta reverz transzkriptáz), s a mintául szolgáló RNS pedig az enzim saját prosztetikus csoportja</li>
+		<li>5' végű szálat DNS-polimeráz pótolja másik oldalon (nyilván primer kapcsolódik hozzá a meghosszabított 3' végéhez)</li>
+		<li><span class="idk">azonban kb. két TTAGGG szekvenciányival mindig rövidebb lesz az 5' végű szál, hiszen a primer hossza kb annyi, és azt nem lehet pótolni</span></li>
+	  <hr>
+		<li>azonban telomeráz csak őssejtekben és tumorsejtekben expresszálódik &#10140; daganatos megbetegedések kemoterápiás kezelésének egyik módja, hogy gátolják a telomeráz működését</li>
 		<li>Hayflick-szabály &#10140; mivel a differenciált sejtekben a telomeráz enzim már nem expresszálódik, így a sejt lehetséges osztódásainak száma korlátozott &#10140; kb 50-100x osztódhat</li>
-		<li>a telomeráz működése a <strong>kromoszóma <span class="Important">egyik végén</span></strong> bemutatva <span class="Important">RAJZ</span></li><ul>
-			<li>a 3'-re végződő szálú DNS-t hosszabítja meg</li>
-			<li>a telomeráz egy RNS-függő DNS-polimeráz (azaz egyfajta reverz transzkriptáz), s a mintául szolgáló RNS pedig az enzim saját prosztetikus csoportja</li>
-			<li>5' végű szálat DNS-polimeráz pótolja másik oldalon (nyilván primer kapcsolódik hozzá a meghosszabított 3' végéhez)</li>
-			<li><span class="idk">azonban kb. két TTAGGG szekvenciányival mindig rövidebb lesz az 5' végű szál, hiszen a primer hossza kb annyi, és azt nem lehet pótolni</span></li>
-		</ul>
 	</ul></details>
-<!----></details>
+<!----></details><hr>
+</details>
 
-<!----><details><summary class="phase">#9 A legfontosabb DNS-károsodások. A dezamináció javításának mechanizmusa.</summary>
+<details><summary class="phase">#9 A legfontosabb DNS-károsodások. A dezamináció javításának mechanizmusa.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/7"><summary><strong>A legfontosabb DNS-károsodások.</strong> A dezamináció javításának mechanizmusa.</summary><ul class="normal">
 		<div style="float:right;max-width:30%">
 			<img data-src="xdtvdzmncrjt.png">
@@ -768,9 +710,10 @@ PCR tételek (3db)
 		<li>harmadik lépésben prokariótáknál <strong>DNS polimeráz I</strong>, eukariótáknál a <strong>DNS polimeráz &beta;</strong> odailleszti a komplementer nukleotidot &#10140; azonban így még a <strong>foszfodiészter</strong> hiányzik (szomszédos 3' irányba lévő bázishoz való kötődése a beillesztettnek) &#10140; <strong>"nick"</strong> a neve ennek a helyzetnek</li>
 		<li>negyedik lépésben a <strong>ligáz</strong> létrehozza a foszfodiésztert &#10140; <strong>prokariótákban NAD<sup>+</sup></strong> hidrolízisével, <strong>eukariótákban ATP</strong> fedezi az energiát</li>
 	</ul></details>
-<!----></details>
+<!----></details><hr>
+</details>
 
-<!----><details><summary class="phase">#10 A timin-dimerek kialakulása és javítása. A mismatch repair.</summary>
+<details><summary class="phase">#10 A timin-dimerek kialakulása és javítása. A mismatch repair.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/4"><summary><strong>A timin dimerek kialakulása és javítása.</strong> A „mismatch repair”.</summary><ul class="normal">
 	  <strong>kialakulás</strong>
 		<img data-src="tmndmrzck.png">
@@ -814,9 +757,10 @@ PCR tételek (3db)
 		</ul>
 		<li>eukariótáknál hasonlóképpen mehet végbe, pontos mechanizmusa nem ismert &#10140; itt DNS-polimeráz &delta;(vagy &epsilon;) építi be kivágás után a jó bázisokat</li>
 	</ul></details>
-<!----></details>
+<!----></details><hr>
+</details>
 
-<!----><details><summary class="phase">#11 A pontmutációk. A spontán pontmutációk kialakulása. A polimorfizmusok. A DNS-variációk lehetséges hatása a képződő RNS-re ill. fehérjére.</summary>
+<details><summary class="phase">#11 A pontmutációk. A spontán pontmutációk kialakulása. A polimorfizmusok. A DNS-variációk lehetséges hatása a képződő RNS-re ill. fehérjére.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/9"><summary><strong>A pontmutációk. A spontán pontmutációk kialakulása. A polimorfizmusok</strong>. A DNS-variációk lehetséges hatása a képződő RNS-re, illetve fehérjére.</summary><ul class="normal">
 		<li>a DNS-hibákat a repair rendszerek a replikáció előtt (vagy közvetlenül utána, lásd mismatch-repair) nem javítják ki, akkor mutáció vagy polimorfizmus lesz</li><ul>
 			<li>mutáció &#10140; gyakorisága 1% alatti, következménye betegség</li>
@@ -872,10 +816,10 @@ PCR tételek (3db)
 			</ul>
 		</ul>
 	</ul></details>
+<!----></details><hr>
+</details>
 
-<!----></details>
-
-<!----><details><summary class="phase">#12 Az E. coli RNS‑polimeráz szerkezete és működése. A transzkripció iniciációja és terminációja prokarióta sejtekben, a prokarióta transzkripciós egység.</summary>
+<details><summary class="phase">#12 Az E. coli RNS‑polimeráz szerkezete és működése. A transzkripció iniciációja és terminációja prokarióta sejtekben, a prokarióta transzkripciós egység.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/4"><summary><strong>Az E. coli RNS‑polimeráz szerkezete és működése.</strong> A transzkripció iniciációja és terminációja prokarióta sejtekben, a prokarióta transzkripciós egység</summary><ul class="normal">
 		<img data-src="plmrzszrk.png">
 	  <strong>felépítésének 'két formája' van</strong><div>
@@ -938,8 +882,8 @@ PCR tételek (3db)
 		<font style="font-size:80%">(itt is elmondható &#10140; amennyiben nincs jelen a Rho, az RNS-polimeráz egy kis időre megtorpan, de egy idő után továbbhalad)</font>
 	  </div>
 	</ul></details>
-	
-	<br><details class="kerdes 3/j"><summary>konszenzus szekvencia</summary><ul class="normal">
+<!----></details><hr>
+	<details class="kerdes 3/j"><summary>konszenzus szekvencia</summary><ul class="normal">
 		<li>bázisok egymásutáni sorrendje, mely nem mindig egyforma &#10140; <abbr title="tehát a kapott konszenzus szekvencia igazából sosem fordul elő (pl. ha a valóságban ez a 3 lenne: TTT,TGG,GGT &#10140; TGT)">ezért a legnagyobb gyakorisággal elődordulót jelöljük mindig</abbr></li>
 		<li>pl. -10 & -35 régiók szekvenciája ilyen &#10140; annyit jegyezzek meg róluk (kép csak ábrázolja, nem kell tudnom)</li><ul>
 			<li>mind2 kb.6bázisból áll</li>
@@ -947,9 +891,9 @@ PCR tételek (3db)
 		</ul>
 		<img data-src="ksznsnsznkv.png">
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#13 Az RNS típusai, a különböző RNS-ek funkciója. Az rRNS és a tRNS szintézise.</summary>
+<details><summary class="phase">#13 Az RNS típusai, a különböző RNS-ek funkciója. Az rRNS és a tRNS szintézise.</summary>
 	<details class="kerdes 4/5"><summary><strong>Az RNS típusai, a különböző RNS-ek funkciója</strong>. Az rRNS és a tRNS szintézise</summary><ul class="normal">
 		<li>csoportosításuk</li><ul>
 			<li>kódoló &#10140; mRNS</li>
@@ -994,9 +938,9 @@ PCR tételek (3db)
 	  <hr><div><strong>eukarióták miktokondriuma</strong></div>
 		<li>itt is szintetizálódik <abbr title="szvsz hasonlóképpen, mint prokariótáknál">'</abbr> 22fajta tRNS, és 2fajta rRNS</li>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#14 A transzkripció szabályozása prokariótákban. Erős és gyenge promóterek, konstitutív gének, operon fogalma, pozitív/negatív szabályozás.</summary>
+<details><summary class="phase">#14 A transzkripció szabályozása prokariótákban. Erős és gyenge promóterek, konstitutív gének, operon fogalma, pozitív/negatív szabályozás.</summary>
 	<details class="kerdes 4/3"><summary>A transzkripció szabályozása prokariótákban. <strong>Erős és gyenge promóterek,</strong> konstitutív gének, operon fogalma, pozitív/negatív szabályozás</summary><ul class="normal">
 		<li><span class="Important">erős promoter, mely hasonlít a &sigma;("szigma!")-faktor konszenzus szekvenciájához!</span> &#10140; ehhez "jobban~könyebben" kötődik a &sigma;-faktor</li>
 		<li>ez mindössze az <span class="Important">iniciáció esélyét szabályozza</span> &#10140; tehát erős promoteres gének expressziója / perc nagyobb, mint gyenge promotereseké</li>
@@ -1081,9 +1025,9 @@ PCR tételek (3db)
 		</table>
 		<img data-src="trnszkrtrzsnlc.png">
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#15 Az eukarióta gének szerkezete, a transzkripció iniciációja és terminációja eukarióta sejtekben</summary>
+<details><summary class="phase">#15 Az eukarióta gének szerkezete, a transzkripció iniciációja és terminációja eukarióta sejtekben</summary>
 	<details class="kerdes 4/4"><summary><strong>Az eukarióta gének szerkezete,</strong> a transzkripció iniciációja és terminációja eukarióta sejtekben</summary><ul class="normal">
 		<li><span class="Important">eukarióta RNS-polimeráz <abbr title="van külön I-nek, III-nak is">II</abbr> "CORE" promoterének összehasonlítása prokarióta promóterével!</span></li>
 	  <div><strong><span class="Vocab">R</span> prokarióta</strong></div>
@@ -1149,9 +1093,9 @@ PCR tételek (3db)
 		<li>II &#10140; hnRNS és snRNS szintézise</li>
 		<li>III &#10140; tRNS szintézise <abbr title="van egyébi is, lásd dia">&#10045;</abbr></li>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#16 A transzkripció szabályozása eukariótákban. Specifikus transzkripciós faktorok, szabályozó szekvenciák, koaktivátorok, korepresszorok</summary>
+<details><summary class="phase">#16 A transzkripció szabályozása eukariótákban. Specifikus transzkripciós faktorok, szabályozó szekvenciák, koaktivátorok, korepresszorok</summary>
 	<details class="kerdes 4/5"><summary><strong>A transzkripció szabályozása eukariótákban.</strong> Specifikus transzkripciós faktorok, szabályozó szekvenciák, koaktivátorok, korepresszorok</summary><ul class="normal">
 		<div style="float:right; max-width:30%">
 			<img data-src="extndnpromtr.png">
@@ -1203,9 +1147,9 @@ PCR tételek (3db)
 			</tr>
 		</table>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#17 Az eukarióta mRNS érése.</summary>
+<details><summary class="phase">#17 Az eukarióta mRNS érése.</summary>
 	<details open class="kerdes 4/1"><summary><strong>Az eukarióta mRNS érése</strong></summary><ul class="normal">
 		<li>időben &#10140; transzkripció közben zajlik az mRNS érés &#10140; tehát az <span class="IMPORTANT">5'sapka</span> rátevődik az elején már, közben folyamatosan megy az <span class="IMPORTANT">intron splicing</span>, és termináció során lesz a <span class="IMPORTANT">3' végen poliA-farok képzés</span> <span class="LASD">Az eukarióta gének szerkezete, a transzkripció iniciációja és terminációja eukarióta sejtekben.</span></li>
 		<details class="kerdes 4/6"><summary>5'sapka képzés</summary><ul class="normal">
@@ -1265,29 +1209,123 @@ PCR tételek (3db)
 		  </div>
 		</ul></details>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#18 A polimeráz-láncreakció és a real-time PCR működésének lényege, alkalmazási területei.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#18 A polimeráz-láncreakció és a real-time PCR működésének lényege, alkalmazási területei.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#19 Genetikai mutációk és polimorfizmusok vizsgálati módjai (RFLP, allél-specifikus PCR, DNS-szekvenálás és primerextenzió). A TAS2R38 ízérző receptor genotipizálása PCR-RFLP módszerrel.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#19 Genetikai mutációk és polimorfizmusok vizsgálati módjai (RFLP, allél-specifikus PCR, DNS-szekvenálás és primerextenzió). A TAS2R38 ízérző receptor genotipizálása PCR-RFLP módszerrel.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#20 Restrikciós endonukleázok és biotechnológiai jelentőségük. A pGl3 plazmid emésztése restrikciós endonukleázokkal és a fragmentumok elválasztása agaróz gélelektroforézissel.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#20 Restrikciós endonukleázok és biotechnológiai jelentőségük. A pGl3 plazmid emésztése restrikciós endonukleázokkal és a fragmentumok elválasztása agaróz gélelektroforézissel.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#21 Rekombináns DNS készítése (klónozás) és fontosabb alkalmazási területei (riporter- és expressziós vektorok).</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#21 Rekombináns DNS készítése (klónozás) és fontosabb alkalmazási területei (riporter- és expressziós vektorok).</summary>
+</details>
 
 <!--//////////////////////////////////////////////////////////////-->  </details>  <!--//////////////////////////////////////////////////////////////-->
 
 
 <!--///////////////////////////-->  <details><summary class="mainTitle">II.</summary>  <!--///////////////////////////-->
 
-<!----><details><summary class="phase" style="background-color:pink">#1 Az eukarióta géneszpresszió transzkripciót követő lépéseinek szabályozása (alternatív splicing, editing, RNS-stabilitás és -minőségellenőrzés).</summary>
-<!----></details>
+<details><summary class="phase">#1 Az eukarióta géneszpresszió transzkripciót követő lépéseinek szabályozása (alternatív splicing, editing, RNS-stabilitás és -minőségellenőrzés).</summary><details open class="open"><summary></summary>
+	<details class="kerdes 4/5"><summary>Az eukarióta géneszpresszió transzkripciót követő lépéseinek szabályozása (<strong>alternatív splicing</strong>, editing, RNS-stabilitás és -minőségellenőrzés)</summary><ul class="normal">
+	  <strong>lényege</strong>
+		<img style="max-width:30%" data-src="hshtlhszblyzs.png">
+		<li>a splicing(kivágás)-ot a splicesome végzi <span class="LASD">Az eukarióta mRNS érése</span></li>
+		<li>a splicing szövetspecifikus &#10140; attól függ, hogy az egyes szakaszt exonnak/intronnak tekinti-e a sejt, hogy milyen szövetben van</li>
+		<li>pl. a tropomiozin nevű fehérje hcs.izomban és hepatocitákban nagyon más</li><ul>
+			<li>ugyanis hcs.izomban az összes exon bennmarad (kivéve a 2es) &#10140; "nagy a fehérje"</li>
+			<li>míg hepatocitákban csak 6db exonból készül fel, az összes többi kivágódik (intronnak tekintik)</li>
+		</ul>
+	  <hr><strong>szabályozása</strong>
+		<li>sejt szabályozza hogy adott intron kivágódjon-e vagy ne <abbr title="szvsz nyilván exon kivágását is lehet">'</abbr></li>
+		<li>negatív &#10140; intron 1 vagy mindkét hasítási helyét (akceptor & donor) helyét egy represszor fehérje eltakarja &#10140; kivágást gátolja <abbr title="szvsz vagy éppen emiatt kivágódik az exon (+ 2intron egy lépéseben)!! (ahogy az exon kivágódik példánál le lett írva)">'</abbr></li>
+		<li>pozitív &#10140; <abbr title="nem ismeri fel a szekvenciát">ilyenkor alapból a hasítási helyhez nem tud kötődni az snRNP</abbr> &#10140; azonban aktivátor fehérje hozzákötődése után már képes lesz &#10140; intron kivágódik</li>
+		<li>tehát a represszor / aktivátor fehérje termelődésétől függ, hogy mi lesz (amit a sejt szabályozhat)</li>
+	</ul></details>
+	<details class="kerdes 4/3"><summary>Az eukarióta géneszpresszió transzkripciót követő lépéseinek szabályozása (alternatív splicing, <strong>editing</strong>, RNS-stabilitás és -minőségellenőrzés)</summary><ul class="normal">
+		<li>egy gén 2 fehérjét kódol &#10140; Apo B-48 és Apo B-100</li>
+		<li>az érett mRNS teljesen ugyanúgy néz ki, és ki jut a citoplazmába</li>
+		<li>májban itt nem is történik vele semmi és elkészül transzlációval az Apo B-100 (VLDL)</li>
+		<li>bélben azonban a 48%-nál (5'-3' irányba!!) lévő CAA nevű szekvenciában lévő Citozin oxidatív_dezaminálása lesz</li>
+		<li>így UAA lesz belőle, ami már egy STOP-kodon, tehát a transzláció ott fog befejeződni (kilomikron)</li>
+		<img data-src="xdtvdzmnls.png">
+	</ul></details>
+	<details class="kerdes 4/8"><summary>Az eukarióta géneszpresszió transzkripciót követő lépéseinek szabályozása (alternatív splicing, editing, <strong>RNS-stabilitás és -minőségellenőrzés</strong>)</summary><ul class="normal">
+	  <strong>mRNS élettartama</strong>
+		<img style="max-width:25%" data-src="ndnklzrmns.png">
+		<li><span class="Important">poliA-farok minél hosszabb, annál tovább él</span></li>
+		<li><span class="Important">exonukleázok folyamatosan bontják le a végét &#10140; egyre rövidül</span></li>
+		<li><span class="Important">ha elér egy kritikus szakaszt <abbr title="hisz különben meg lenne az esély, hogy hibás fehérje keletkezik">(még nem fehérjekódoló régiót)</abbr> akkor mRNS lebomlik</span></li>
+		<font style="font-size:80%">szvsz hasonlítható a telomer-sejt élettartamra (ottis, ha a telomer már túl rövid, akkor lebomlik a sejt)</font>
+	  <hr><strong>mRNS élettartamának szabályozása</strong>
+		<li><span class="Important">3'UTR-en lehet olyan szekvencia, mely endonukleáz kötődését indukálja</span></li>
+		<li><span class="Important">ha endonukleáz kötődik oda, akkor kettévágja &#10140; poliA farok már nincs &#10140; egyből lebomlik az mRNS</span></li>
+		<li><span class="Important">ezt azonban lehet szabályozni</span></li><ul>
+			<li><span class="Important">pl. transzferrin-receptor esete</span> /lásd: lentebb/</li>
+			<li><span class="Important">pl. mikroRNS-ek</span> <span class="LASD">A mikroRNSek képződése és szabályozó mechanizmusaik eukarióta sejtekben</span></li>
+		</ul>
+	  <hr><strong>vasion anyagcseréjében szerepet játszó fehérjék szabályozása</strong>
+		<img style="max-width:30%" data-src="kpprkjmnj.png">
+		<li>a vas metabolizmus kulcsfehérjéi</li><ul>
+			<li>transzferrin &#10140; a vérben a vasionok szállítását végzi</li>
+			<li>transzferrin receptor &#10140; sejtbejutást biztosítja</li>
+			<li>ferritin &#10140; tárolófehérje</li>
+		</ul>
+		<li>ha nincs elég vasion, a receptor mennyisége növekszik, a ferritiné csökken (és ugyanez fordítva)</li>
+		<li>elmondhatók az alábbiak:</li><ul>
+			<li>IRE &#10140; ezek 1-1 <abbr title="hajtűkanyar">hairpin</abbr> a 3' és 5'UTR régióban az mRNS-ben</li>
+			<li>IREBP = akonitáz &#10140; kapcsolódik IRE-hez, ha kevés a vas</li>
+			<li>ha van vas, akkor hozzákapcsolódva a IREBP-hez leválnak a IRE-ről</li>
+			<font style="font-size:80%">akonitáz másik<abbr title="az IREBP citoplazmatikus, a citrát-köri pedig mitokondriális">'</abbr> izoenzime a citrát-körben katalizálja a citrát-izocitrát átalakulást!</font>
+		</ul>
+		<table><tr><th>IRE</th>  <th>5'UTR régióban lévő hajtűkanyar(hairpin)</th>  <th>3'UTR régióban lévő hajtűkanyar(hairpin)</th></tr>
+			<tr><th>hatása</th> 
+				<td>ha ehhez kötődik, akkor gátolja a transzlációt</td>  
+				<td>ha ehhez kötődik, akkor serkenti a transzlációt: <br> gátolja, hogy endonukleázok lebontsák, így növeli az mRNS féléletidejét</td>  
+			</tr>
+			<tr><th>szabályozás típusa</th>  
+				<td>poszttranszkripciós</td>  
+				<td>transzlációs</td>
+			</tr>
+			<tr><th><abbr title="mely fehérjét kódoló">mRNS</abbr></th>  
+				<td>ferritin</td>  
+				<td>transzferrin-receptor</td>
+			</tr>
+		</table>
+	</ul></details>
+<!----></details><hr>
+	<details class="kerdes 3/2"><summary>kaputranszport</summary><ul class="normal">
+		<img style="max-width:30%" data-src="ktprsnzptr.png">
+		<li>mRNS-nek a magpóruson kell kijutnia</li>
+		<li>RAN nevű fehérje szabályozza</li>
+		<li>energiaigényes &#10140; GTP hidrolizíse GDP-re</li>
+		<details><summary><font style="font-size:80%">továbbá</font></summary><ul class="normal">
+			<li>mRNS-nek a <strong>magpóruson</strong> kell átjutni</li><ul>
+				<li>csak sejtmagból citoszolba mehet (visszafele nem)</li>
+				<li>mRNS-et fehérjék borítják be (pl. poliA-kötő-fehérjék, hnRNP-k)</li>
+				<li>ezek a fehérjék jelentős része leválik róla az export során, és benntmarad a magban &#10140; helyettük másfajta fehérjék borítják majd be az mRNS-t a citoszolban</li>
+				<li>pl. az 5' sapkán lévő sapkakötő-komplex helyett az eIF4E és eIF4G lesz már</li>
+			</ul>
+			<li>lényege &#10140; alábbi lépés ismétlődik többször</li><ul>
+				<li>mRNS-en lévő fehérjék között van amelyiken van <abbr title="nuclear export signal">NES</abbr></li>
+				<li>ezt a RAN-GTP felismeri, és hozzákötődik, majd átviszi a magpóruson(+mRNS egy részét is így), és ott a GTP-t hidrolizálja GDP-re</li>
+			</ul>
+			<div><span class="vocab"><strong>§</strong></span> magpóruson fehérjék is képesek hasonlóan átjutni (ezek nemcsak ki, hanem be is juthatnak a magba)</div>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes 3/3"><summary>alternatív-poliA hely</summary><ul class="normal">
+		<li>ha adott génben legalább két AA<abbr title="UAA egyben STOP kodon is transzlációnál!!">UAA</abbr>A(poliadenilációs és egyben terminációs szekvencia!) van</li>
+		<li><span class="important">RAJZ</span>  akkor sejt kihagyhatja az egyiket</li><ul>
+			<li>bal oldali esetében kihagyta az elsőt &#10140; intron kivágódott &#10140; utolsó exonja a "halványkék" &#10140; hidrofób lett a fehérje (C-terminálisa)</li>
+			<li>jobb oldali esetében az elsőnél megállt &#10140; intron nem vágódott ki &#10140; utolsó exonja az intron "fele" &#10140; hidrofil lett a fehérje (C-terminálisa)</li>
+		</ul>
+		<img data-src="ltrntlkplrk.png">
+	</ul></details>
+</details>
 
-<!----><details><summary class="phase">#2 A mikroRNSek képződése és szabályozó mechanizmusaik eukarióta sejtekben.</summary>
+<details><summary class="phase">#2 A mikroRNSek képződése és szabályozó mechanizmusaik eukarióta sejtekben.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/2"><summary><strong>A mikroRNSek</strong> képződése és szabályozó mechanizmusaik eukarióta sejtekben.</summary><ul class="normal">
 		<li>emberben kb. 700-1000 féle mikroRNS van</li>
 		<li>20-25bázis hosszú, egyszálú RNS</li>
@@ -1302,9 +1340,9 @@ PCR tételek (3db)
 		<li>transzkripció részletesebben</li><ul>
 			<li>RNS polimeráz II transzkripcióval szintetizálja az ún. pri-mikroRNS-t (ez kb. 1000 nukleotid hosszú)</li>
 			<li>ebben akár több <abbr title="hajtű-szerkezet">hairpin</abbr> is található (illetve van 5'sapka, 3'poliA-farok is)</li>
-			<li>ebből a <span class="IMPORTANT">Drosha</span>(endoribonukleáz) kihasítja a hairpin-eket &#10140; így keletkezik kb. 70bázisból álló pre-mikroRNS (annyi, ahány hairpin volt, képen pl.3)</li>
+			<li>ebből a <span class="IMPORTANT">Drosha</span>(endonukleáz) kihasítja a hairpin-eket &#10140; így keletkezik kb. 70bázisból álló pre-mikroRNS (annyi, ahány hairpin volt, képen pl.3)</li>
 			<li>ezután <span class="IMPORTANT">sejtmagból kijut a citoplazmába</span> (exportin-5(fehérje) + Ran-GTP)</li>
-			<li>itt a <span class="IMPORTANT">Dicer</span>(endoribonukleáz) hozza létre(eltávolításra kerül a hurok) a 20-25bp hosszú, de még kétszálú mikroRNS-t</li>
+			<li>itt a <span class="IMPORTANT">Dicer</span>(endonukleáz) hozza létre(eltávolításra kerül a hurok) a 20-25bp hosszú, de még kétszálú mikroRNS-t</li>
 		</ul>
 	</ul></details>
 	<details class="kerdes 4/4"><summary>A mikroRNSek képződése és <strong>szabályozó mechanizmusaik</strong> eukarióta sejtekben.</summary><ul class="normal">
@@ -1316,18 +1354,15 @@ PCR tételek (3db)
 			<li>ha <span class="IMPORTANT">kevésbé komplementere &#10140; "csak" gátolja a transzlációt</span> &#10140; transzlációs-szabályozás</li>
 			<li>ha <span class="IMPORTANT">erősen komplementere &#10140; mRNS-t hasít</span> &#10140; poszt-transzkripciós-szabályozás <abbr title="innen az elnevezése ,,post-transcriptional silencing''">'</abbr></li>
 		</ul>
-		<li><span class="IMPORTANT">egy mikroRNS több fajta mRNS-hez képes kötődni</span> (hisz 1000féle mikroRNS van, míg fehérjéből kb. 20ezek) &#10140; ezenkívül egy mRNS-hez többféle mikroRNS is kapcsolódhat</li>
+		<li><span class="IMPORTANT">egy mikroRNS több fajta mRNS-hez képes kötődni</span> &#10140; hisz 1000féle mikroRNS van, míg fehérjéből kb. 20ezer</li>
 		<li>RISC-ben lévő ún. <span class="IMPORTANT">Argonauta</span>(enzim) végzi mind a mikroRNS egyszálúvá alakítását, mind az mRNS-hasítást is</li>
 	</ul></details>
-<!----></details>
+<!----></details><hr>
+</details>
 
-<!----><details><summary class="phase">#3 A génexpresszió epigenetikai szabályozása: a DNS-metiláció és hisztonmódosítások jelentősége eukariótákban.</summary>
-	<details class="kerdes 4/7"><summary>A génexpresszió epigenetikai szabályozása: a <strong>DNS metiláció</strong> és hisztonmódosítások jelentősége eukariótákban.</summary><ul class="normal">
-	  <div style="font-weight:bold; font-size:125%;">bevezetés</div><div>
-		<li>génexpresszió szabályozás</li><ul>
-			<li>pl. sejtdifferenciálódás során van szükség &#10140; pl. embrionális fejlődés során, vagy felnőttkori őssejtek differenciálódásakor</li>
-			<li>ennek négy szintje különböztethető meg &#10140; transzkripciós, poszt-transzkripciós, transzlációs, poszt-transzlációs</li>
-		</ul>
+<details><summary class="phase">#3 A génexpresszió epigenetikai szabályozása: a DNS-metiláció és hisztonmódosítások jelentősége eukariótákban.</summary><details open class="open"><summary></summary>
+	<details class="kerdes 4/3"><summary>A <strong>génexpresszió epigenetikai szabályozása:</strong> a DNS metiláció és hisztonmódosítások jelentősége eukariótákban.</summary><ul class="normal">
+		<li>génexpresszió szabályozásának 4 típusa &#10140; transzkripciós, poszt-transzkripciós, transzlációs, poszt-transzlációs</li>
 		<li>epigenetikai szabályozás</li><ul>
 			<li>olyan transzkripciós-szabályozás, melyben a DNS bázissorrendje (genotípus) <strong>NEM</strong> változik <abbr title="(nem 100%, hogy csak transzkripciós, de máshogy szvsz nem lenne értelme a definíciónak, hisz transzlációsnál sose lesz bázisváltozás)">'</abbr></li>
 			<li>ide sorolható</li><ul>
@@ -1335,13 +1370,13 @@ PCR tételek (3db)
 				<li>hiszton módosítások</li>
 			</ul>
 		</ul>
-	  </div>
-	  <hr><div style="font-weight:bold; font-size:125%;">DNS metiláció</div><div>
+	</ul></details>
+	<details class="kerdes 4/7"><summary>A génexpresszió epigenetikai szabályozása: a <strong>DNS metiláció</strong> és hisztonmódosítások jelentősége eukariótákban.</summary><ul class="normal">
+		<img data-src="dmttrssmsh.png">
 		<li><abbr title="tehát azzal a citozinnal, melyet 3' irányba Guanin követ (p &#10140; ez csak a köztük lévő foszfodiészter kötést jelöli, igazából fölöslegesen)">CpG dinukleotidban</abbr> lévő citozin 5’-szénatoma metilálódik</li>
-		<li><span class="Important">RAJZ</span> <strong>DN</strong>S-<strong>m</strong>etil<strong>t</strong>ranszferáz(DNMT) végzi &#10140; a <abbr title="S-adenozil-metionin">SAM</abbr>-ról teszi át a metilcsoportot a Citozinra <img class="mini" data-src="dmttrssmsh.png"> <abbr title="-adenozil-homocisztein">(SAH)</abbr></li>
-		<li>háromféle metil-transzferáz végzi ezeket <abbr title="Az eukarióta mRNS érése &#10140; itt is van metil-transzferáz de az szvsz nem DNS-metil-transzferáz">'</abbr></li><ul>
-			<li>DNMT1 (ún. fenntartó MT) &#10140; replikáció után az újonnan képződött DNS-szálat metilálják az eredeti metilációs mintázat szerint</li>
-			<li>DNMT3a & DNMT3b (ún. de novo MT-ék) &#10140; az előzetesen nem metilált DNS-t metilálják</li>
+		<li><span class="Important">RAJZ</span> háromféle <strong>DN</strong>S-<strong>m</strong>etil<strong>t</strong>ranszferáz(DNMT) végzi &#10140; az S-adenozil-metionin(SAM)-ról teszik át a metilcsoportot a Citozinra <abbr title="Az eukarióta mRNS érése &#10140; itt is van metil-transzferáz de az szvsz nem DNS-metil-transzferáz">'</abbr></li><ul>
+			<li>DNMT1 &#10140; replikáció után az újonnan képződött DNS-szálat metilálják az eredeti metilációs mintázat szerint</li>
+			<li>DNMT3a & DNMT3b &#10140; az előzetesen nem metilált DNS-t metilálják</li>
 		</ul>
 		<li>kromatin inaktív állapotban tartását eredményezi, ugyanis...</li><ul>
 			<li>egyrészt olyan fehérjék(<span class="idk">represszor</span>) kötődnek hozzá, melyek hiszton-deacetilázt <abbr title="tehát azok fognak odakerülni/odakötődni így, aminek következménye a hiszton deacetiláció lesz">"toboroznak"</abbr> <abbr title="szvsz pl. hiszton acetiláció/metiláció képen a represszor lehet épp CpG-hez kötődik">'</abbr></li>
@@ -1349,7 +1384,6 @@ PCR tételek (3db)
 		</ul>
 		<li>genom DNS-metilációs szintje</li><ul>
 			<li>genomban lévő CpG-k 70%-a metilált, másképpen nézve az összes citozin 3-4%-a</li>
-			<li>ezek nagyrészt <abbr title="lásd: A humán genom felépítése; kódoló és génexpressziót szabályzó szekvenciák. A humán genom nem-kódoló szakaszai: intronok, pszeudogének, ismétlődő szekvenciák.">ismétlődő szekvenciákban</abbr> találhatók (pl. transzpozonok GC gazdag régióiban) &#10140; ismétlődő szekvenciák magas fokú metiláltsága valószínűleg védekező mechanizmus, hogy ezek a DNS-szakaszok ne kerüljenek átíródásra</li>
 			<li>tipikusan igen alacsony az ún. <span class="Important">CpG-szigetek</span> területén, amely az aktívan átíródó háztartási (housekeeping) gének promoterében találhatók</li>
 		</ul>
 	  <hr><u>1pl de novo MT-ék működésére</u> &#10140; <span class="Important">X kromoszóma inaktiváció</span>
@@ -1360,15 +1394,14 @@ PCR tételek (3db)
 		<li>A citozin spontán oxidatív_dezaminációval uracillá alakul. Ez a labilitás a metilált citozinra is érvényes, de ebben az esetben nem uracil, hanem timin lesz az eredmény. Vagyis CpG-dinukleotidból TpG-dinukleotid lesz, <abbr title="ugyanis gondolom nem tudja megkölönböztetni, melyik szál a jó">s ez már a DNS-szekvencia megváltozását, azaz mutációját jelenti</abbr>. Mutációs adatbázisok elemzése kimutatta, hogy számos betegség esetében a CpG-dinukleotidok a mutációs forrópontok</li>
 		<li>Úgy tűnik, hogy egy hosszabb evolúciós időintervallumot tekintve a CpG-gyakoriság lassan, de fokozatosan csökken az állandó CpG→TpG átalakulásnak köszönhetően. Ugyanis a humán genom, 42%-át alkotja Guanin és Citozin &#10140; tehát a CpG elvileg <abbr title="hisz 21% esélye, hogy Citozin van, majd 21% esély, hogy utána Guanin">0.21 * 0.21 = 4.41%</abbr>-át kéne kitedje a genomnak. Azonban a valóságban csak 1%-át teszi ki.</li>
 		<li>Annak ellenére, hogy a gerincesek genomjának CpG gyakorisága kicsi, vannak olyan rövid, nem-metilált DNS-szakaszok, amelyeknek CpG-gyakorisága megfelel a várt értéknek. Ezek az ún. CpG-szigetek, amelyek CG gazdagok és gyakran a gének 5’ végén található több száz nukleotidnyi szakaszokon fordulnak elő</li>
-	  </div>
 	</ul></details>
 	<details class="kerdes 4/7"><summary>A génexpresszió epigenetikai szabályozása: a DNS metiláció és <strong>hisztonmódosítások</strong> jelentősége eukariótákban.</summary><ul class="normal">
 	  <div style="font-weight:bold; font-size:125%;">hisztonok</div>
 		<img style="max-width:20%" data-src="hsztnmst.png">
 		<li>egy nukleoszómát 4fajta <strong>core</strong> hiszton alkot, mindegyikből kettő van egy nukleoszómában &#10140; H2A,H2B,H3,H4</li>
 		<li>core hisztonok &#10140; 'hiszton-farok'</li><ul>
-			<li>N-terminális végük "kilóg belőlük" (kb. 20-35aminosavból állnak)</li>
-			<li>C-terminális végük is "kilóg belőlük", de ez csak H2A és H2B-nek (<span class="idk">100+ aminosavból állnak</span>)</li>
+			<li>N-terminális végük "kilóg belőlük" (20-35 aminosavból állnak)</li>
+			<li>C-terminális végük is "kilóg belőlük", de ez csak H2A és H2B-nek (durván 100 aminosavból állnak)</li>
 		</ul>
 		<table><tr><th>módosítások típusai</th>  <th colspan="2">hiszton mely farok részén lévő &#10140; mely aminosavakkal történik</th></tr>
 			<tr><td>acetiláció</td> <td rowspan="3">N-terminális</td> <td>Lys</td></tr>
@@ -1379,20 +1412,17 @@ PCR tételek (3db)
 	  <hr><div style="font-weight:bold; font-size:125%;">acetiláció & deacetiláció <img class="mini" data-src="hsztknvlnsdm.png"> <img class="mini" data-src="htcdctlz.png"></div>
 		<li>hisztonok (elsősorban a H3 és H4) N-terminális részén lévő egyes Lys aminosavak acetilálódnak / deacetilálódnak</li>
 		<li><span class="Important">hiszton-acetil-transzferáz</span> aktivitással rendelkező koaktivátor &#10140; <span class="Important">az acetil-CoA-ról viszi át az acetil-csoportot a Lys-re</span> &#10140; kromatin fellazul &#10140; serkenti transzkripciót</li><ul>
-			<div>kromatin fellazul & transzkripciót serkenti ugyanis...</div><div>
-				<li>egyrészt az <span class="Important">acetilált Lys már nem pozitív töltésű</span><abbr title="azaz megszűnik bázikus karaktere">'</abbr>, és így már nem képes a negatív töltésű<abbr title="savas karakterű">'</abbr> foszfátcsoporthoz kötődni &#10140; csökken az elektrosztatikus kölcsönhatás a DNS és hisztonok között <img class="mini" data-src="hstnlcctlz.png"></li>
-				<li>másrészt az <span class="Important">acetilált lizinhez ún. kromatinfellazító komplex kapcsolódik</span> &#10140;  energiafelhasználással elcsúsztatják a hiszton oktamereket, és így szabaddá válik a core_promoter &#10140; <abbr title="hisz ez az első kötődő áTF">TFIID</abbr> bekötődik</li>
-			</div>
+			<li>egyrészt az <span class="Important">acetilált Lys már nem pozitív töltésű</span><abbr title="azaz megszűnik bázikus karaktere">'</abbr>, és így már nem képes a negatív töltésű<abbr title="savas karakterű">'</abbr> foszfátcsoporthoz kötődni &#10140; csökken az elektrosztatikus kölcsönhatás a DNS és hisztonok között <img class="mini" data-src="hstnlcctlz.png"></li>
+			<li>másrészt az <span class="Important">acetilált lizinhez ún. kromatinfellazító komplex kapcsolódik</span> &#10140;  energiafelhasználással elcsúsztatják a hiszton oktamereket, és így szabaddá válik a core_promoter &#10140; <abbr title="hisz ez az első kötődő áTF">TFIID</abbr> bekötődik</li>
 		</ul>
 		<li><span class="Important">hiszton-deacetiláz</span> aktivitással rendelkező korepresszor ennek ellentetjét teszi &#10140; acetil-csoportot leszedi a Lys-ről &#10140; kromatin kondenzálódik &#10140; gátolja transzkripciót</li>
-	  <hr><div style="font-weight:bold; font-size:125%;">többi</div>
-		<li>ezek funkciója nem ilyen "egyszerűen egységes", mint az acetilációé (tehát pl. foszforiláció serkenthet és gátolhat is génexpressziót stb.) &#10140; ezért az alábbiakat (+táblázat) elég tudni róluk</li>
-		<li>hiszton-kináz nevű koaktivátor végzi az egyes Ser/Thr aminosavakat foszforilálását</li>
-		<li>ubikvitináció &#10140; C-terminális részen történik &#10140; <abbr title="csak azoknak van C-terminális része">tehát</abbr> H2A és H2B hisztonokat érint</li>
+	  <hr>
+		<li>többi funkciója nem olyen "egyszerűen egységes", mint az acetilációé (tehát pl. foszforiláció serkenthet és gátolhat is génexpressziót stb.)</li>
 	</ul></details>
-<!----></details>
+<!----></details><hr>
+</details>
 
-<!----><details><summary class="phase">#4 A genetikai kód. A tRNS szerepe, szerkezete, az aminoacil-tRNS-szintetázok, a kodon-antikodon kapcsolat.</summary>
+<details><summary class="phase">#4 A genetikai kód. A tRNS szerepe, szerkezete, az aminoacil-tRNS-szintetázok, a kodon-antikodon kapcsolat.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/3"><summary><strong>A genetikai kód</strong>. A tRNS szerepe és szerkezete; az aminoacil-tRNS-szintetázok, a kodon-antikodon kapcsolat</summary><ul class="normal">
 		<div style="float:right;max-width:30%"><img data-src="klnrsk.png"></div>
 		<li>kód &#10140; bázishármas a kódoló szálon(DNS!)</li>
@@ -1414,7 +1444,7 @@ PCR tételek (3db)
 			<li>másrészt kovalensen kötve hordozzák a kodonnak megfelelő aminosavat</li>
 		</ul>
 	</ul></details>
-	<details class="kerdes 4/3"><summary>A genetikai kód. <strong>A tRNS</strong> szerepe és <strong>szerkezete;</strong> az aminoacil-tRNS-szintetázok, a kodon-antikodon kapcsolat</summary><ul class="normal">
+	<details class="kerdes 4/4"><summary>A genetikai kód. <strong>A tRNS</strong> szerepe és <strong>szerkezete;</strong> az aminoacil-tRNS-szintetázok, a kodon-antikodon kapcsolat</summary><ul class="normal">
 		<div style="float:right;max-width:40%"><img data-src="trnszszrkzt.png"></div>
 	  <div style="font-weight:bold; font-size:125%;">szerkezete</div>
 		<li>kb. 80bázisból áll</li>
@@ -1436,9 +1466,9 @@ PCR tételek (3db)
 		<li><abbr title="4<sup>3</sup>">64db</abbr> kodon van, azonban csak 48féle tRNS &#10140; nem minden kodonhoz tartozik egy azzal komplementer tRNS</li>
 		<li>ugyanis bizonyos tRNS molekulák abban az esetben is kapcsolódni tudnak az mRNS-hez, ha csak a kodon első két nukleotidja komplementer az antikodon bázisaival</li>
 	</ul></details>
-	<details class="kerdes 4/6"><summary>A genetikai kód. A tRNS szerepe és szerkezete; <strong>az aminoacil-tRNS-szintetázok</strong>, a kodon-antikodon kapcsolat</summary><ul class="normal">
+	<details class="kerdes 4/5"><summary>A genetikai kód. A tRNS szerepe és szerkezete; <strong>az aminoacil-tRNS-szintetázok</strong>, a kodon-antikodon kapcsolat</summary><ul class="normal">
 		<div style="float:right;max-width:30%"><img data-src="22_trnskgklkcfh.png"></div>
-	  <strong style="font-weight:bold; font-size:125%;">aminoacil-tRNS-szintetáz</strong> = ARS
+	  <strong>aminoacil-tRNS-szintetáz</strong> (ARS)
 		<li>enzim, mely hozzákapcsolja a <abbr title="a 3' CCA végén lévő Adeninhez">tRNS-hez</abbr> az aminosavat</li>
 		<li><span class="IMPORTANT">makroerg észterkötés</span>sel kapcsolja hozzá &#10140; ez fedezi majd a peptidkötés kialakításához szükséges energiát</li>
 		<li>ez <span class="IMPORTANT">végzi tényleges a transzlációt</span></li><ul>
@@ -1447,15 +1477,14 @@ PCR tételek (3db)
 			<li>tehát ha van egy tRNS ami komplementer a kodonra, de véletlen rossz aminosav van rajta, őt az nem érdekli, hozzáteszi a polipeptdilánchoz</li>
 		</ul>
 		<li><abbr title="ahány aminosav">21féle</abbr> aminoacil-tRNS-szintetáz van &#10140; mindegyik 1 aminosavra specializálódott, azonban azt lehet többféle tRNS-re tudják feltenni (hisz abból 48 féle van)</li>
-	  <hr><strong style="font-weight:bold; font-size:125%;"><span class="important">RAJZ</span> hozzákapcsolás</strong><div>
+	  <hr><strong><span class="important">RAJZ</span> hozzákapcsolás</strong>
 		<li>(először nézzem meg videót, hogy lássam hogy az ARS-ben történik, és értsem a lényegét!!)</li>
 		<li>tRNS + aminosav + ATP &#10140; aminocail-tRNS + AMP</li>
 		<li>első lépés: <span class="WHITE">aminosav + ATP &#10140; aminoacil-AMP + PP</span></li>
-		<li>második lépés &#10140; az aminosav α-karboxilcsoportja és a <abbr title="CCA-ban lévő Adenin">tRNS 3' végen lévő Adenin</abbr> ribózának 2' vagy 3' hidroxilcsoportja között jön létre <span class="IMPORTANT">makroerg észterkötés</span></li>
-	  </div>
-		<iframe src="https://www.youtube.com/embed/180_sM9iYVk?t=4s" width="640" height="360" allowfullscreen></iframe>
+		<li>második lépés &#10140; az aminosav α-karboxilcsoportja és a <abbr title="CCA-ban lévő Adenin">tRNS 3' végen lévő Adenin</abbr> ribózának 3' hidroxilcsoportja között jön létre <span class="IMPORTANT">makroerg észterkötés</span></li>
+		<iframe data-src="https://www.youtube.com/embed/180_sM9iYVk?t=4s" width="640" height="360" allowfullscreen></iframe>
 	</ul></details>
-
+<!----></details><hr>
 	<details class="kerdes 4/1"><summary style="color:MediumBlue">aminoacil-tRNS mi?</summary><ul class="normal">
 		<li>az a tRNS, melyhez már kapcsolódik <abbr title="=aktivált aminosav">makroerg észterkötéssel aminosav</abbr></li>
 	</ul></details>
@@ -1486,9 +1515,9 @@ PCR tételek (3db)
 			<li>eukariótáknál csak az (érett) mRNS-ből olvasható le közvetlenül (melyben már nincs intron)</li>
 		</ul>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#5 A prokarióta és az eukarióta riboszómák szerkezete, a riboszóma ciklus, a tRNS kötődése a riboszómákhoz a transzláció során.</summary>
+<details><summary class="phase">#5 A prokarióta és az eukarióta riboszómák szerkezete, a riboszóma ciklus, a tRNS kötődése a riboszómákhoz a transzláció során.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/4"><summary><strong>A prokarióta és az eukarióta riboszómák szerkezete</strong>, a riboszóma ciklus, a tRNS kötődése a riboszómákhoz a transzláció során</summary><ul class="normal">
 		<div style="float:right;max-width:25%"><img data-src="23_prkrktkrk.png"></div>
 		<li>szintézisük a nucle<strong>ol</strong>usban zajlik</li><ul>
@@ -1514,19 +1543,26 @@ PCR tételek (3db)
 		<li>riboszóma nagy alegységben alakulnak ki a peptidkötések</li>
 	</ul></details>
 	<details class="kerdes 4/4"><summary>A prokarióta és az eukarióta riboszómák szerkezete, <strong>a riboszóma ciklus</strong>, a tRNS kötődése a riboszómákhoz a transzláció során</summary><ul class="normal">
-		<span class="MISS">itt még szvsz kell beszélni ezen</span> <abbr title="A transzláció iniciációs szakasza prokariótákban és eukariótákban. A transzláció szabályozása eukariótákban, az eIF2 faktor foszforilációjának szerepe">'</abbr> <abbr title="transzláció elongációs szakasza prokariótákban és eukariótákban; a transzláció terminálása. A fehérjeszintézis gátlószerei">'</abbr> télekről is (iniciáció-elongáció-termináció), mert a riboszóma ciklus + tRNS kötődésnél szvsz arról kell
+		<span class="MISS">itt még szvsz kell beszélni ezen</span> 
+		<br><span class="LASD">A transzláció iniciációs szakasza prokariótákban és eukariótákban. A transzláció szabályozása eukariótákban, az eIF2 faktor foszforilációjának szerepe</span>
+		<br><span class="LASD">A transzláció elongációs szakasza prokariótákban és eukariótákban; a transzláció terminálása. A fehérjeszintézis gátlószerei</span>
+		<br>télekről is (iniciáció-elongáció-termináció), mert a riboszóma ciklus + tRNS kötődésnél szvsz arról kell
 	</ul></details>
 	<details class="kerdes 4/1"><summary>A prokarióta és az eukarióta riboszómák szerkezete, a riboszóma ciklus, <strong>a tRNS kötődése a riboszómákhoz a transzláció során</strong></summary><ul class="normal">
-		itt szvsz elongációs tételről (2.7) kell beszélni
+		itt szvsz <span class="LASD">A transzláció elongációs szakasza prokariótákban és eukariótákban; a transzláció terminálása. A fehérjeszintézis gátlószerei</span> kell beszélni
 	</ul></details>
-<!----></details>
+<!----></details><hr>
+</details>
 
-<!----><details><summary class="phase">#6 A transzláció iniciációs szakasza prokariótákban és eukariótákban. A transzláció szabályozása eukariótákban, az eIF2 faktor foszforilációjának szerepe.</summary>
+<details><summary class="phase">#6 A transzláció iniciációs szakasza prokariótákban és eukariótákban. A transzláció szabályozása eukariótákban, az eIF2 faktor foszforilációjának szerepe.</summary><details open class="open"><summary></summary>
+	<details class="kerdes 4/1"><summary><strong>A transzláció</strong> iniciációs szakasza <strong>prokariótákban és eukariótákban</strong>. A transzláció szabályozása eukariótákban, az eIF2 faktor foszforilációjának szerepe</summary><ul class="normal">
+		<li><span class="IMPORTANT">csak az iniciáció tér el prokariótákban és eukariótákban</span></li>
+		<li><span class="IMPORTANT">elongáció + termináció esetében csak a fehérje faktorok megnevezése az eltérő</span></li>
+	</ul></details>
 	<details class="kerdes 4/4"><summary><strong>A transzláció iniciációs szakasza prokariótákban és eukariótákban</strong>. A transzláció szabályozása eukariótákban, az eIF2 faktor foszforilációjának szerepe</summary><ul class="normal">
-		<li><span class="IMPORTANT">csak az iniciáció tér el prokariótákban és eukariótákban, a másik kettő (elongáció+termináció) lényegében megegyezik</span> <font style="font-size:80%">(utóbbiakban a fehérje faktorok megnevezése az eltérő)</font></li>
 		<table><tr><th></th>  <th>prokarióták</th>  <th>eukarióták</th></tr>
 			<tr><th rowspan="2">mRNS</th>
-				<td>többsége policisztronos</td>
+				<td>policisztronos</td>
 				<td>monocisztronos</td>
 			  </tr><tr>
 				<td>nincs érése (nem módosul a transzkripciós)</td>
@@ -1559,7 +1595,7 @@ PCR tételek (3db)
 			<li>az IF2 biztosítja az energiát a GTP-vel (GDP lesz belőle)</li>
 			<li>mind3 IF leválik &#10140; továbbiakban már elongáció lesz</li>
 		</ul>
-		<iframe src="https://www.youtube.com/embed/KZBljAM6B1s" width="500" height="360" allowfullscreen></iframe>
+		<iframe data-src="https://www.youtube.com/embed/KZBljAM6B1s" width="500" height="360" allowfullscreen></iframe>
 	</ul></details>
 	<details class="kerdes 4/4"><summary><strong>A transzláció iniciációs szakasza</strong> prokariótákban és <strong>eukariótákban</strong>. A transzláció szabályozása eukariótákban, az eIF2 faktor foszforilációjának szerepe</summary><ul class="normal">
 		<div style="float:right;max-width:30%"><img data-src="24_kplklstg.png"></div>
@@ -1572,7 +1608,7 @@ PCR tételek (3db)
 			<li>az eIF-ek leválnak</li>
 		</ul>
 		<div>&#10140; továbbiakban már elongáció lesz</div>
-		<iframe src="https://www.youtube.com/embed/qIwrhUrvX-k?ecver=2" width="500" height="360" allowfullscreen></iframe>
+		<iframe data-src="https://www.youtube.com/embed/qIwrhUrvX-k?ecver=2" width="500" height="360" allowfullscreen></iframe>
 	</ul></details>
 	<details class="kerdes 4/3"><summary>A transzláció iniciációs szakasza prokariótákban és eukariótákban. <strong>A transzláció szabályozása eukariótákban, az eIF2 faktor foszforilációjának szerepe.</strong></summary><ul class="normal">
 		<div style="float:right;max-width:30%"><img data-src="24_rktvltkznk.png"></div>
@@ -1582,13 +1618,13 @@ PCR tételek (3db)
 		<li>az eIF2 három alegységből áll &#10140; amennyiben az α-alegysége foszforilálódik, a reaktiválás nem tud bekövetkezni &#10140; a továbbiakban nem tud részt venni a transzláció beindításában</li>
 		<li>tehát a reaktiválás <abbr title="foszforilálnak">kinázok</abbr> segítségével gátolható &#10140; pl. virális fertőzésnél megjelenő PKR, vagy ER stressz következtében megjelenő PER stb. <abbr title="tehát ez két példa kinázra, mely foszforilálja az alfa alegységet">'</abbr></li>
 	</ul></details>
-
+<!----></details><hr>
 	<details class="kerdes 4/1"><summary style="color:MediumBlue">transzláció energiaigényes?</summary><ul class="normal">
 		<li>legenergiaigényesebb biokémiai folyamat</li>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#7 A transzláció elongációs szakasza prokariótákban és eukariótákban, terminálás. A fehérjeszintézis gátlószerei.</summary>
+<details><summary class="phase">#7 A transzláció elongációs szakasza prokariótákban és eukariótákban, terminálás. A fehérjeszintézis gátlószerei.</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/6"><summary><strong>A transzláció elongációs szakasza prokariótákban és eukariótákban; a transzláció terminálása.</strong> A fehérjeszintézis gátlószerei</summary><ul class="normal">
 		<div style="float:right;max-width:30%"><img data-src="25_rttrnsstp.png"></div>
 		<li>csak az iniciáció tér el prokariótákban és eukariótákban, a másik kettő (elongáció+termináció) lényegében megegyezik &#10140; utóbbiakban a fehérje faktorok megnevezése az eltérő</li>
@@ -1606,8 +1642,8 @@ PCR tételek (3db)
 	  <hr><strong>termináció</strong>
 		<li>STOP kodonoknak nincs megfelelő tRNS párja <abbr title="szvsz kivéve ha UGA, és Sec fog beépülni">!!!</abbr>, ehelyett egy a tRNS-hez háromdimenziós szerkezetében nagyon hasonló fehérje, az ún. <span class="IMPORTANT">RF (release factor)</span> kapcsolódik a STOP kodonhoz</li>
 		<li><strong>RF</strong> &#10140; katalizálja a <span class="WHITE">P</span> helyen lévő tRNS-peptidil észterkötésének hidrolízisét &#10140; kész fehérje leválik, a riboszóma pedig szétesik két alegységére</li>
-		<iframe style="float:left" src="https://www.youtube.com/embed/KZBljAM6B1s" width="500" height="360" allowfullscreen></iframe>
-		<iframe src="https://www.youtube.com/embed/qIwrhUrvX-k?ecver=2" width="500" height="360" allowfullscreen></iframe>
+		<iframe style="float:left" data-src="https://www.youtube.com/embed/KZBljAM6B1s" width="500" height="360" allowfullscreen></iframe>
+		<iframe data-src="https://www.youtube.com/embed/qIwrhUrvX-k?ecver=2" width="500" height="360" allowfullscreen></iframe>
 	</ul></details>
 	<details class="kerdes 4/2"><summary>A transzláció elongációs szakasza prokariótákban és eukariótákban; a transzláció terminálása. <strong>A fehérjeszintézis gátlószerei</strong></summary><ul class="normal">
 	  <strong>mivel a riboszómák szerkezete némiképp eltérő, antibiotikummal gátolhatók a prokarióták transtlációja &#10140; pl. eritromicin,sztreptomicin,klóramfenikol</strong>
@@ -1615,9 +1651,10 @@ PCR tételek (3db)
 		<li>pl. klóramfenikol &#10140; peptidkötés kialakulását gátolja</li>
 	  <hr><strong>eIF2 faktor foszforilációja</strong> &#10140; ezt is talán el lehet mondani <abbr title="A transzláció iniciációs szakasza prokariótákban és eukariótákban. A transzláció szabályozása eukariótákban, az eIF2 faktor foszforilációjának szerepe">/lásd/</abbr>
 	</ul></details>
-<!----></details>
+<!----></details><hr>
+</details>
 
-<!----><details><summary class="phase">#8 A fehérjék poszttranszlációs módosításai.</summary>
+<details><summary class="phase">#8 A fehérjék poszttranszlációs módosításai.</summary>
 	<details open class="kerdes 4/3"><summary><strong>A fehérjék poszt-transzlációs módosításai.</strong></summary><ul class="normal">
 	  <div style="font-weight:bold; font-size:125%;">bevezetés</div><div>
 		<li>poszt-transzlációs módosítás &#10140; a fehérje valamelyik aminosavának <span class="Important">kovalens módosítása</span></li>
@@ -1678,9 +1715,9 @@ PCR tételek (3db)
 		<li><abbr title="ubikvitináció is idetartozik .. lásd: A proteosztázis fogalma. Intracelluláris fehérjelebontás módozatai ..  (legalábbis szvsz, hisz ezis kovalens módosítás)">'</abbr> <abbr title="A normális hemosztázis elképzelhetetlen a glutaminsav karboxilálása nyomán megjelenő &gamma;-karboxi-glutaminsav (Gla) nélkül">'</abbr></li>
 	  </div>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#9 A kollagén fajtái, szerkezete és szintézise (a glicin és a prolin kiemelt szerepe, prokollagén, tropokollagén, kollagénrost, hidroxilezés, keresztkötések).</summary>
+<details><summary class="phase">#9 A kollagén fajtái, szerkezete és szintézise (a glicin és a prolin kiemelt szerepe, prokollagén, tropokollagén, kollagénrost, hidroxilezés, keresztkötések).</summary><details open class="open"><summary></summary>
 	<details class="kerdes 4/2"><summary><strong>A kollagén fajtái</strong>, szerkezete és szintézise (a glicin és a prolin kiemelt szerepe, prokollagén, tropokollagén, kollagénrost, hidroxilezés, keresztkötések)</summary><ul class="normal">
 		<li>I-es típusú kollagén (széles rostok) &#10140; inak, csontok <abbr title="bőr">'</abbr>  alkotóeleme</li>
 		<li>II-es típusú kollagén (keskeny rostok, keresztkötések) &#10140; porc <abbr title="üvegtest(szem belsejét tölti ki)">'</abbr> alkotóeleme</li>
@@ -1720,15 +1757,16 @@ PCR tételek (3db)
 		<li>lizinek egy része oxidatív_dezaminálással <abbr title="lizil_oxidáz enzim által">'</abbr> átalakul ún. alliziné <img class="mini" data-src="lznnrlncln.png"> <span class="Important">RAJZ</span></li>
 		<li>ha az <span class="IMPORTANT">allizin</span> oldallánc találkozik egy <span class="IMPORTANT">lizin</span> oldalláncal, akkor <abbr title="kondenzációval létrejön egy Schiff-bázis, majd ebből redukcióval kialakul">'</abbr> ezek közt létrejön a <span class="IMPORTANT">lizin-allizin keresztkötés</span> (=Lysino<abbr title="normál leucin oldalláncra utal">nor</abbr>leucin)</li>
 	</ul></details>
-<!----></details>
+<!----></details><hr>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#10 Fehérjék vizsgálata I.: reverzibilis és irreverzibilis kicsapás, a peptidkötés kimutatása, a fehérjék mennyiségi meghatározása biuret-reakcióval. Az SH-csoportok mérése Ellmann-módszerrel.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#10 Fehérjék vizsgálata I.: reverzibilis és irreverzibilis kicsapás, a peptidkötés kimutatása, a fehérjék mennyiségi meghatározása biuret-reakcióval. Az SH-csoportok mérése Ellmann-módszerrel.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#11 Fehérjék vizsgálata II.: kromatográfiai eljárások (molekulaszűrés, vékonyréteg-kromatográfia).</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#11 Fehérjék vizsgálata II.: kromatográfiai eljárások (molekulaszűrés, vékonyréteg-kromatográfia).</summary>
+</details>
 
-<!----><details><summary class="phase">#12 Fehérjék vizsgálata III.: SDS-poliakrilamid gélelektroforézis és western blot.</summary>
+<details><summary class="phase">#12 Fehérjék vizsgálata III.: SDS-poliakrilamid gélelektroforézis és western blot.</summary>
 	<details open class="kerdes 4/13"><summary><strong>Fehérjék vizsgálata III.: SDS-poliakrilamid gélelektroforézis és western blot.</strong></summary><ul class="normal">
 		<li>SDS–PAGE &#10140; <abbr title="nátrium"><strong>s</strong>odium</abbr> <abbr title="12"><strong>d</strong>odecil</abbr> <strong>s</strong>zulfát <strong>p</strong>oli<strong>a</strong>krilamid <strong>g</strong>él<strong>e</strong>lektroforézis</li>
 		<li>cél &#10140; fehérjék elválasztása méretük(<abbr title="kettő olyan mértékben arányos, hogy kb. ugyanazt jelentik">azaz</abbr> tömegük) alapján</li>
@@ -1793,12 +1831,12 @@ PCR tételek (3db)
 	  </div>
 		http://elte.prompt.hu/sites/default/files/tananyagok/BevBiokemGyak/ch07s03.html
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#13 A génexpresszió vizsgálata in vitro real-time PCR és DNS-microarray módszerekkel.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#13 A génexpresszió vizsgálata in vitro real-time PCR és DNS-microarray módszerekkel.</summary>
+</details>
 
-<!----><details><summary class="phase">#14 A prokarióta génexpresszió vizsgálata in vivo: a β-galaktozidáz indukciója E. coliban.</summary>
+<details><summary class="phase">#14 A prokarióta génexpresszió vizsgálata in vivo: a β-galaktozidáz indukciója E. coliban.</summary>
 	<details class="kerdes 4/5"><summary>RAJZ + elméleti alapok</summary><ul class="normal">
 		<img style="max-width:35%" data-src="lcszblkyz.png">
 		<strong>RAJZ <img class="mini" data-src="cpbndngst.png"></strong>
@@ -1858,9 +1896,9 @@ PCR tételek (3db)
 			<li>vak oldat &#10140; 7-8 kémcső 3.lépésben történő méréséhez kell, ugyanis rifampicin narancs színű</li>
 		</ol>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:Aqua">#15 A proteosztázis fogalma. Intracelluláris fehérjelebontás módozatai.</summary>
+<details><summary class="phase" style="background-color:Aqua">#15 A proteosztázis fogalma. Intracelluláris fehérjelebontás módozatai.</summary>
 	<details class="kerdes 4/2"><summary><strong>A proteosztázis fogalma.</strong> Intracelluláris fehérjelebontás módozatai</summary><ul class="normal">
 		<li>proteosztázis = fehérjeegyensúly <abbr title="protein-homeosztázis">'</abbr> &#10140; tehát a transzláció és proteolízis egyensúlyba van kb.</li>
 		<li>proteolízis = fehérjelebontás</li>
@@ -1905,9 +1943,9 @@ PCR tételek (3db)
 			</ul>
 		</ul>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#16 Proteaszóma felépítése és működése. Immunoproteaszóma. TAP. Proteaszóma gátlás és következményei.</summary>
+<details><summary class="phase">#16 Proteaszóma felépítése és működése. Immunoproteaszóma. TAP. Proteaszóma gátlás és következményei.</summary>
 	<details class="kerdes 4/6"><summary><strong>Proteaszóma felépítése és működése.</strong> Immunoproteaszóma. TAP. Proteaszóma gátlás és következményei.</summary><ul class="normal">
 		<li>a proteolízisre kijelölt fehérjék a 26S proteaszómába kerülnek</li>
 		<li>ezek megtalálhatók sejtmagban és citoszolban egyaránt</li>
@@ -1946,9 +1984,9 @@ PCR tételek (3db)
 		<li>mindazonáltal néhány kórképben a proteaszóma gátlószerek jótékony hatásáról számoltak be</li>
 		<li>pl. mielóma multiplex esetében a <abbr title="bor te zombi? (megjegyzési tipp)">Bortezomib</abbr> nevű gátlószert már bevezettek a terápiába</li>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#17 Az autofágia fajtái, a lizoszóma szerepe.</summary>
+<details><summary class="phase">#17 Az autofágia fajtái, a lizoszóma szerepe.</summary>
 	<details class="kerdes 4/7"><summary><strong>Az autofágia fajtái,</strong> a lizoszóma szerepe.</summary><ul class="normal">
 		<li>autofágia &#10140; folyamat, mely során a sejt saját anyagai (molekulák,organellumok) a lizoszómába kerülnek, majd ott degradálódnak</li>
 		<li>fő funkciója &#10140; tápanyaghiány túlélése (pl. megtermékenyített petesejt, éhező felnőtt, újszülött)</li>
@@ -2000,20 +2038,20 @@ PCR tételek (3db)
 	<li>előadás pdf</li>
 	<li>szubcelluláris biokémia &#10140; lizoszóma</li>
 	<li>elte &#10140; 7. Az autofág gének felfedezése és működése</li>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#18 A bakteriofágok replikációjának lítikus és lizogén útja (a fág-represszor).</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#18 A bakteriofágok replikációjának lítikus és lizogén útja (a fág-represszor).</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#19 Az állati vírusok csoportosítása replikációs mechanizmusuk szerint. A retrovírusok szerkezete és replikációja.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#19 Az állati vírusok csoportosítása replikációs mechanizmusuk szerint. A retrovírusok szerkezete és replikációja.</summary>
+</details>
 
 <!--//////////////////////////////////////////////////////////////-->  </details>  <!--//////////////////////////////////////////////////////////////-->
 
 
 <!--///////////////////////////-->  <details><summary class="mainTitle">III.</summary>  <!--///////////////////////////-->
 
-<!----><details><summary class="phase">#1 Magi (szteroid-tiroid-retinoid) receptor géncsaládhoz tartozó transzkripciós faktorok.</summary>
+<details><summary class="phase">#1 Magi (szteroid-tiroid-retinoid) receptor géncsaládhoz tartozó transzkripciós faktorok.</summary>
 	<details class="kerdes 4/2"><summary><strong>Magi (szteroid-tiroid-retinoid) receptor géncsalád</strong>hoz tartozó transzkripciós faktorok.</summary><ul class="normal">
 		<div class="imp [517]"></div> <!-- magi receptorok -->
 	</ul></details>
@@ -2023,9 +2061,9 @@ PCR tételek (3db)
 	<details class="kerdes 4/5"><summary>Magi (szteroid-<strong>tiroid-retinoid) receptor géncsaládhoz tartozó transzkripciós faktorok</strong>.</summary><ul class="normal">
 		<div class="imp [516]"></div> <!-- tiroid & retinoid receptorok -->
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#2 Plazmamembrán receptorok csoportjai és működési mechanizmusuk.</summary>
+<details><summary class="phase">#2 Plazmamembrán receptorok csoportjai és működési mechanizmusuk.</summary>
 	<details class="kerdes 4/2"><summary><strong>Plazmamembrán receptorok csoportjai</strong> és működési mechanizmusuk.</summary><ul class="normal">
 		<div class="imp [443]"></div>
 	</ul></details>
@@ -2044,9 +2082,9 @@ PCR tételek (3db)
 			<li>Ser/Thr-kináz enzimhez kapcsoltak &#10140; <abbr title="tumor nekrózis faktor">TNF</abbr>&alpha; <abbr title="egyik">'</abbr>receptora</li>
 		</ul></details>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#3 A jeltovábbításban szerepet játszó GTP-kötő fehérjék csoportjai, működésük szabályozása, a legismertebb effektor fehérjék (Gs, Gi, Gt, Gq, és Ras esetében).</summary>
+<details><summary class="phase">#3 A jeltovábbításban szerepet játszó GTP-kötő fehérjék csoportjai, működésük szabályozása, a legismertebb effektor fehérjék (Gs, Gi, Gt, Gq, és Ras esetében).</summary>
 	<details class="kerdes 4/1"><summary>A jeltovábbításban szerepet játszó <strong>GTP-kötő fehérjék csoportjai</strong>, működésük szabályozása, a legismertebb effektor fehérjék (Gs, Gi, Gt, Gq, és Ras esetében).</summary><ul class="normal">
 		<li>csoportosításuk az alapján történik, hogy &alpha;-alegység milyen effektorra hat</li>
 	</ul></details>
@@ -2062,9 +2100,9 @@ PCR tételek (3db)
 	<details class="kerdes 4/1"><summary><strong>A jeltovábbításban szerepet játszó GTP-kötő fehérjék csoportjai, működésük szabályozása, a legismertebb effektor fehérjék</strong> (Gs, Gi, Gt, Gq, és <strong>Ras</strong> esetében).</summary><ul class="normal">
 		<li>ezeknél a G-fehérje nem heterotrimer, hanem monomer (csak &alpha;-alegysége van)</li>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#4 Szerin/treonin protein-kinázok aktiválásának ismert mechanizmusai példákkal.</summary>
+<details><summary class="phase">#4 Szerin/treonin protein-kinázok aktiválásának ismert mechanizmusai példákkal.</summary>
 	<details class="kerdes 4/3"><summary><strong>Szerin/treonin protein-kinázok</strong> aktiválásának ismert mechanizmusai példákkal.</summary><ul class="normal">
 		<div class="imp [449]"></div>
 		<details><summary>enzimaktivitású receptorok típusai</summary><ul class="normal">
@@ -2106,9 +2144,9 @@ PCR tételek (3db)
 		<li>pl. aktivált (PI-3,4,5-P<sub>3</sub>-)PDK1 foszforilálja a (PI-3,4,5-P<sub>3</sub>-)PKB-t <span class="LASD">3.6t</span></li>
 		<li>pl. MAP-kináz kaszkád (egymás után aktiválódó kinázok)</li>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#5 A cAMP jelpálya-rendszerében résztvevő komponensek. A cAMP segítségével történő génexpresszió-szabályozás folyamata.</summary>
+<details><summary class="phase">#5 A cAMP jelpálya-rendszerében résztvevő komponensek. A cAMP segítségével történő génexpresszió-szabályozás folyamata.</summary>
 	<details class="kerdes 4/4"><summary><strong>A cAMP jelpálya-rendszerében résztvevő komponensek.</strong> A cAMP segítségével történő génexpresszió-szabályozás folyamata.</summary><ul class="normal">
 		<li>a cAMP egy másodlagos hírvívő</li>
 	  <strong>cAMP keletkezése</strong>
@@ -2135,9 +2173,9 @@ PCR tételek (3db)
 		</ul>
 		&#10140; nő azon gének transzkripciója, melyek promotere CRE szekvenciát(TGACGTCA) tartalmaznak
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#6 Foszfatidil-inozitol származékokkal működő jelpályák.</summary>
+<details><summary class="phase">#6 Foszfatidil-inozitol származékokkal működő jelpályák.</summary>
 	<details class="kerdes 4/10"><summary><strong>Foszfatidil-inozitol származékokkal működő jelpályák.</strong></summary><ul class="normal">
 		<img style="max-width:17%" data-src="hztvbnmkjhz.png">
 		<li>a foszfatidil-inozitolok foszfolipidek a membránban</li>
@@ -2171,9 +2209,9 @@ PCR tételek (3db)
 	</ul></details>
  <br>
 	<span class="imp [451]"></span>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:Aqua">#7 Az NFκB, illetve a TGFβ jelpályája.</summary>
+<details><summary class="phase" style="background-color:Aqua">#7 Az NFκB, illetve a TGFβ jelpályája.</summary>
 	<details class="kerdes 4/6"><summary>Az <strong>NFκB</strong>, illetve a TGFβ <strong>jelpályája</strong></summary><ul class="normal">
 		<li>NFκ(kappa)B egy TF-család</li><ul>
 			<li>5 típusa van &#10140; NFκB1,NFκB2,RelA,RelB,c-Rel</li>
@@ -2213,9 +2251,9 @@ PCR tételek (3db)
 		</ul>
 		<img style="max-width:40%" data-src="lgktzjghz.png">
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:Aqua">#8 A receptor tirozin-kinázok szerkezete és működése, a Ras aktiválódásának mechanizmusa Az Erk1/Erk2 MAP-kináz kaszkád felépítése és szerepe.</summary>
+<details><summary class="phase" style="background-color:Aqua">#8 A receptor tirozin-kinázok szerkezete és működése, a Ras aktiválódásának mechanizmusa Az Erk1/Erk2 MAP-kináz kaszkád felépítése és szerepe.</summary>
 	<details class="kerdes 4/2"><summary><strong>A receptor tirozin-kinázok</strong> szerkezete és működése, a Ras aktiválódásának mechanizmusa Az Erkl/Erk2 MAP-kináz kaszkád felépítése és szerepe</summary><ul class="normal">
 		<div class="imp [446]"></div>
 	</ul></details>
@@ -2262,9 +2300,9 @@ PCR tételek (3db)
 		<li>TF-ek mellett a citoszolban lévő riboszomális S-6 kinázt (Rsk) is foszforilálja &#10140; ez pedig fokozza a riboszómákon a fehérjék szintézisét &#10140; ennek azért van jelentősége, mert a sejtosztódás során nemcsak a DNS-nek kell megkettőződnie, hanem jelentős mennyiségű új fehérjére is szükség van</li>
 		<img data-src="rsgrgfrh.png">
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:Aqua">#9 Az inzulin-receptorról induló jelpályák.</summary>
+<details><summary class="phase" style="background-color:Aqua">#9 Az inzulin-receptorról induló jelpályák.</summary>
 	<details class="kerdes 4/2"><summary>Az <strong>inzulin</strong>-receptorról induló jelpályák</summary><ul class="normal">
 		<li>hasnyálmirigy Langerhans-szigetekben lévő &beta;-sejtekben termelődik</li>
 		<li>funkció</li><ul>
@@ -2305,9 +2343,9 @@ PCR tételek (3db)
 			<li>Grb2 &#10140; Erk1/Erk2 MAP-kináz kaszkád megindul</li>
 		</ul></details>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:Aqua">#10 Az intracelluláris jelátvitel fő integrátora, az mTOR szerepe és működése.</summary>
+<details><summary class="phase" style="background-color:Aqua">#10 Az intracelluláris jelátvitel fő integrátora, az mTOR szerepe és működése.</summary>
 	<details open class="kerdes 4/3"><summary><strong>Az intracelluláris jelátvitel fő integrátora, az mTOR szerepe és működése</strong></summary><ul class="normal">
 		<li>mTOR &#10140; citoszolban található fehérjekomplex</li>
 		<li>két típusa</li><ul>
@@ -2344,9 +2382,9 @@ PCR tételek (3db)
 		</ul>
 		<img style="max-width:45%" data-src="nkbczth.png">
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:Aqua">#11 Az AMPK szerepe az anyagcsere szabályozásában, az autofágia és az AMPK kapcsolata.</summary>
+<details><summary class="phase" style="background-color:Aqua">#11 Az AMPK szerepe az anyagcsere szabályozásában, az autofágia és az AMPK kapcsolata.</summary>
 	<details class="kerdes 4/3"><summary><strong>Az AMPK</strong> szerepe az anyagcsere szabályozásában, az autofágia és az AMPK kapcsolata.</summary><ul class="normal">
 		AMPK = AMP dependens protein kináz
 		<li>felépítés &#10140; heterotrimer fehérje:</li><ul>
@@ -2371,17 +2409,17 @@ PCR tételek (3db)
 		<li>energiatöltöttség esetén az mTORC1 féken tartja az autofágiát &#10140; foszforilálja az ULK1-et, mely az autofágia iniciációjához kell</li>
 		<li>energiahiány esetében AMPK gátolja az mTORC1-et, így az autofágia megindul</li>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:Aqua">#12 A sejtek oxigénérzékelő mechanizmusa.</summary>
+<details><summary class="phase" style="background-color:Aqua">#12 A sejtek oxigénérzékelő mechanizmusa.</summary>
 	<details open class="kerdes 4/5"><summary><strong>A sejtek oxigénérzékelő mechanizmusa.</strong></summary><ul class="normal">
 		<span class="imp [496]"></span>  <!-- hipoxia indukált faktor(HIF) -->
 	  <hr><hr>
 		<li>másik jelentős képviselőjük a FIH(factor inhibiting HIF1α) &#10140; HIF1α aszparagin oldalláncát hidroxilálja, ez a HIF1 transzkripciós aktivitását gátolja, mivel nem tudnak bekötni a koaktivátorok (pl. p300)</li>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:Aqua">#13 Kronobiokémia: a központi oszcillátor működése, a cirkadián óra szerepe a humán patológiában.</summary>
+<details><summary class="phase" style="background-color:Aqua">#13 Kronobiokémia: a központi oszcillátor működése, a cirkadián óra szerepe a humán patológiában.</summary>
 <br>Szabó Gábor: Sejtbiológia
 	<details class="kerdes 4/2"><summary><strong>Kronobiokémia</strong>: a központi oszcillátor működése, a cirkadián óra szerepe a humán patológiában.</summary><ul class="normal">
 		<li>cirkadián ritmus &#10140; a fény és sötétség 24 órás ismétlődése</li>
@@ -2414,9 +2452,9 @@ PCR tételek (3db)
 		<li>Ha a központi óra nincs szinkronban a perifériás órákkal (éjszakai életmód és táplálkozás) &#10140; hosszú távon egészségkárosító hatással lehetnek az agyra, növelik a szív érrendszeri betegségek és az elhízás kockázatát</li>
 	</ul></details>
 <span class="IMPORTANT">cirkadián szabályozásról van elvileg még szó az élettan 39. fejezetet</span>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:Aqua">#14 Kronobiokémia: a kimenő és bemenő jelpályák szerepe és működése.</summary>
+<details><summary class="phase" style="background-color:Aqua">#14 Kronobiokémia: a kimenő és bemenő jelpályák szerepe és működése.</summary>
 	<details class="kerdes 4/2"><summary><strong>Kronobiokémia</strong>: a kimenő és bemenő jelpályák szerepe és működése.</summary><ul class="normal">
 		<li>cirkadián ritmus &#10140; a fény és sötétség 24 órás ismétlődése</li>
 		<li>ez befolyással van a szervezet működésére(táplálkozás, alvás, ébrenlét stb.)</li>
@@ -2450,9 +2488,9 @@ PCR tételek (3db)
 			<li>hem gátolja a CLOCK/BMAL1 heterodimert</li>
 		</ul>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:Aqua">#15 A sejtciklus szabályozása a G<sub>1</sub> és S fázisokban.</summary>
+<details><summary class="phase" style="background-color:Aqua">#15 A sejtciklus szabályozása a G<sub>1</sub> és S fázisokban.</summary>
 	<details class="kerdes 4/2"><summary><strong>A sejtciklus</strong> szabályozása a G<sub>1</sub> és S fázisokban</summary><ul class="normal">
 		<img data-src="zthgmbnjhmn.png">
 		<span class="IMPORTANT">RAJZ</span> &#10140; sejtciklus fázisai<ul>
@@ -2510,9 +2548,9 @@ PCR tételek (3db)
 	  <hr><strong>G1/S ellenőrzési pont</strong>
 		<div class="imp [447]"></div>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:Aqua">#16 A sejtciklus szabályozása a G<sub>2</sub> és M fázisokban.</summary>
+<details><summary class="phase" style="background-color:Aqua">#16 A sejtciklus szabályozása a G<sub>2</sub> és M fázisokban.</summary>
 	<details class="kerdes 4/7"><summary><strong>A sejtciklus szabályozása a G<sub>2</sub></strong> és M <strong>fázisokban</strong></summary><ul class="normal">
 		<img data-src="mpfjghtznm.png">
 		<li>DNS replikáció befejezésekor a ciklin-B mennyisége kezdd el emelkedni, amely kapcsolódik a Cdk1-hez, létrehozván az MPF-et</li>
@@ -2548,9 +2586,9 @@ PCR tételek (3db)
 		</ul>
 		<img data-src="tezrtzhqw.png">
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:Aqua">#17 A sejtciklus szabályozásának rendszerbiológia alapú értelmezése.</summary>
+<details><summary class="phase" style="background-color:Aqua">#17 A sejtciklus szabályozásának rendszerbiológia alapú értelmezése.</summary>
 	<details open class="kerdes 4/5"><summary><strong>A sejtciklus szabályozásának rendszerbiológia alapú értelmezése</strong></summary><ul class="normal">
 		osztódás során vannak negatív/pozitív visszacsatolások &#10140; tehát nemcsak a különböző Cdk-k aktivitása szabályozott, hanem pozitívan vagy negatívan ő is visszahat regulátoraira:
 		<li>restrikciós pont &#10140; az aktiválódó E2F hatására pozitív visszacsatolások <span class="LASD">III.15</span></li><ul>
@@ -2566,9 +2604,9 @@ PCR tételek (3db)
 		</ul>
 		<li>M-pont &#10140; negatív visszacsatolás: APC ubikvitinálja a ciklin B-t így az elbomlik (anafázis végén már nincs is) &#10140; ezzel elkerüli, hogy egyből újabb osztódás menjen végbe</li>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:Aqua">#18 DNS-hibák és a replikáció befejezésének ellenőrzése a sejtciklus során.</summary>
+<details><summary class="phase" style="background-color:Aqua">#18 DNS-hibák és a replikáció befejezésének ellenőrzése a sejtciklus során.</summary>
 	<details open class="kerdes 4/2"><summary>DNS-hibák és a replikáció befejezésének ellenőrzése a sejtciklus során.</summary><ul class="normal">
 		<li>A DNS épségének ellenőrzése folyamatos, DNS sérülés következtében a sejtciklus leáll, a sejt megkísérli a hibát kijavítani.</li><ul>
 			<li>Ha ez sikerül &#10140; sejtciklus folytatódik</li>
@@ -2592,9 +2630,9 @@ PCR tételek (3db)
 			<li>ilyenkor aktiválja a CHK2-t, melynek hatásai megegyeznek a CHK1-ével</li>
 		</ul></details>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#19 Az apoptoszóma, a DISC és a PIDD-oszóma szerkezete és működése.</summary>
+<details><summary class="phase">#19 Az apoptoszóma, a DISC és a PIDD-oszóma szerkezete és működése.</summary>
 	<details class="kerdes 4/1"><summary><strong>Az apoptoszóma, a DISC és a PIDD-oszóma</strong> szerkezete és működése</summary><ul class="normal">
 		<li>ezek az apoptózist beindító komplexek</li>
 		<li>közös tulajdonságuk &#10140; bennük lévő <span class="IMPORTANT">iniciátor prokaszpázok</span><abbr title="lásd IV/21.tétel">'</abbr> dimereket képeznek, átmeneti aktív konformációra tesznek szert, majd önmagukat hasítva végleges aktív konformációt vesznek fel</li>
@@ -2650,9 +2688,9 @@ PCR tételek (3db)
 		<li>az apoptózist a kaszpázok vezénylik <span class="LASD">III.21</span></li>
 		<img data-src="xtrnntrkjm.png">
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#20 A Bcl-2 fehérjék típusai és szerepük a különböző eredetű apoptózis útvonalakban.</summary>
+<details><summary class="phase">#20 A Bcl-2 fehérjék típusai és szerepük a különböző eredetű apoptózis útvonalakban.</summary>
 	<details class="kerdes 4/5"><summary><strong>A Bcl-2 fehérjék típusai</strong> és szerepük a különböző eredetű apoptózis útvonalakban</summary><ul class="normal">
 		<img style="max-width:27%" data-src="mtkrmfktzst.png">
 		<li>a mitokondrium membránja 2rétegű &#10140; külső rétege erősen szigetel, így fehérjék nem jutnak át rajta</li>
@@ -2703,9 +2741,9 @@ PCR tételek (3db)
 		</ul></details>
 	</ul></details>
 	<font style="font-size:80%">TK alapján dolgoztam ki, de elég kell legyen</font>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#21 A kaszpázok tulajdonságai, és szerepük az apoptózis szabályozásában.</summary>
+<details><summary class="phase">#21 A kaszpázok tulajdonságai, és szerepük az apoptózis szabályozásában.</summary>
 	<details open class="kerdes 4/10"><summary>A kaszpázok tulajdonságai, és szerepük az apoptózis szabályozásában</summary><ul class="normal">
 		<div style="max-width:20%; float:right">
 			<img data-src="spzkfnkcj.png">
@@ -2741,9 +2779,9 @@ PCR tételek (3db)
 		<li>ezért az apoptózis alapvetően nem indul be</li>
 		<li>azonban ha a <span class="IMPORTANT">Smac</span> és/vagy az <span class="IMPORTANT">Omi</span> gátolja<abbr title="Smac megköti őket. Omi lebontja őket">'</abbr> az IAP működését, akkor megindul</li>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#22 A p53 fehérje szintjének és aktivitásának szabályzása. A p53 és a „túlélési jel” szerepe a sejt sorsának meghatározásában.</summary>
+<details><summary class="phase">#22 A p53 fehérje szintjének és aktivitásának szabályzása. A p53 és a „túlélési jel” szerepe a sejt sorsának meghatározásában.</summary>
 	<details class="kerdes 4/7"><summary>A p53 fehérje <strong>szintjének és aktivitásának szabályzása</strong>. A p53 és a „túlélési jel” szerepe a sejt sorsának meghatározásában</summary><ul class="normal">
 		<div style="max-width:15%; float:right">
 			<img data-src="jhhgnmn.png">
@@ -2780,7 +2818,7 @@ PCR tételek (3db)
 	</ul></details>
  <br>
 	<span class="imp [451]"></span>
-<!----></details>
+</details>
 
 <!----><details open><summary class="phase" style="background-color:pink">#23 Az öregedés definíciója és jellemzői. Az öregedésben szerepet játszó molekuláris mechanizmusok (celluláris szeneszcencia és tápanyagérzékelő jelpályák) bemutatása.</summary>
 	<details class="kerdes 4/1"><summary><strong>Az öregedés definíciója</strong> és jellemzői. Az öregedésben szerepet játszó molekuláris mechanizmusok (celluláris szeneszcencia és tápanyagérzékelő jelpályák) bemutatása</summary><ul class="normal">
@@ -2793,14 +2831,14 @@ PCR tételek (3db)
 	</ul></details>
 	<details open class="kerdes 4/1"><summary>Az öregedés definíciója és jellemzői. <strong>Az öregedésben szerepet játszó molekuláris mechanizmusok</strong> (celluláris szeneszcencia és <strong>tápanyagérzékelő jelpályák</strong>) <strong>bemutatása</strong></summary><ul class="normal">
 	</ul></details>
-<!----></details>
+</details>
 
 <!--//////////////////////////////////////////////////////////////-->  </details>  <!--//////////////////////////////////////////////////////////////-->
 
 
 <!--///////////////////////////-->  <details><summary class="mainTitle">IV.</summary>  <!--///////////////////////////-->
 
-<!----><details><summary class="phase">#1 Az eukarióta sejt szerveződése, kompartimentáció, az organellumok sajátosságai.</summary>
+<details><summary class="phase">#1 Az eukarióta sejt szerveződése, kompartimentáció, az organellumok sajátosságai.</summary>
 	<details class="kerdes 4/4"><summary><strong>Az eukarióta sejt szerveződése, kompartimentáció</strong>, az organellumok sajátosságai</summary><ul class="normal">
 		<li>prokariótákból evolúció során úgy lett eukarióta, hogy membránnal körülhatárolt kompartimentumok jöttek bennük létre</li>
 	  <strong>kompartimentáció "funkcionális" szemléltetése</strong>
@@ -2867,21 +2905,21 @@ PCR tételek (3db)
 			<li>transzláció</li>
 		</ul></details>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#2 Organellum-biogenezis és szabályozása.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#2 Organellum-biogenezis és szabályozása.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#3 A citoszkeleton felépítése.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#3 A citoszkeleton felépítése.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#4 A motorfehérjék felépítése és működése.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#4 A motorfehérjék felépítése és működése.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#5 A fehérjeszekréciós pálya. A Rab-ciklus szerepe a vezikuláris transzport szabályzásában.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#5 A fehérjeszekréciós pálya. A Rab-ciklus szerepe a vezikuláris transzport szabályzásában.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:aqua">#6 Endo- és exocitózis.</summary>
+<details><summary class="phase" style="background-color:aqua">#6 Endo- és exocitózis.</summary>
 	<details class="kerdes 4/1"><summary>Endo- <strong>és</strong> exocitózis</summary><ul class="normal">
 		<li>az exo- és endocitózis egyensúlyba kell legyen, különben a plazmamembrán mérete változna</li>
 		<li>mindkettő energiaigényes</li>
@@ -2921,63 +2959,63 @@ PCR tételek (3db)
 		forrás orvosi biosz jegyzetem!
 		<img data-src="exctgzhns.png">
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#7 Az organellumok proteómájának kialakulása. A fehérjeirányítás alapelvei és mechanizmusai.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#7 Az organellumok proteómájának kialakulása. A fehérjeirányítás alapelvei és mechanizmusai.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#8 Fehérjeirányítás a szekréciós pályán belül.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#8 Fehérjeirányítás a szekréciós pályán belül.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#9 Fehérjeirányítás a peroxiszómába és a mitokondriumba. Lizoszomális szubsztrátok felvétele.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#9 Fehérjeirányítás a peroxiszómába és a mitokondriumba. Lizoszomális szubsztrátok felvétele.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#10 Makromolekulák transzportja a sejtmagba/ból.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#10 Makromolekulák transzportja a sejtmagba/ból.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#11 Az organellum stressz koncepciója. A peroxiszomális és a mitokondriális stressz.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#11 Az organellum stressz koncepciója. A peroxiszomális és a mitokondriális stressz.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#12 Az endoplazmás retikulum stressz fogalma, a „selejtfehérje válasz” (UPR), az endoplazmás retikulum eredetű apoptózis.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#12 Az endoplazmás retikulum stressz fogalma, a „selejtfehérje válasz” (UPR), az endoplazmás retikulum eredetű apoptózis.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#13 Fehérje-minőségellenőrzés az endoplazmás retikulumban, és a selejtfehérjék sorsa, ERAD.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#13 Fehérje-minőségellenőrzés az endoplazmás retikulumban, és a selejtfehérjék sorsa, ERAD.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#14 Az organellumok metabolómájának jellegzetességei.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#14 Az organellumok metabolómájának jellegzetességei.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#15 Az organellumok belső környezetének sajátosságai és annak fenntartása.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#15 Az organellumok belső környezetének sajátosságai és annak fenntartása.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#16 Az extracelluláris mátrix szerepe a jelátvitelben az integrin receptor példáján (a sejtből kifelé irányuló jelátvitel molekuláris alapjai, az alfa/béta alegységek jelentősége, a fokális adhéziós kináz jelátvitelének specifikus elemei).</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#16 Az extracelluláris mátrix szerepe a jelátvitelben az integrin receptor példáján (a sejtből kifelé irányuló jelátvitel molekuláris alapjai, az alfa/béta alegységek jelentősége, a fokális adhéziós kináz jelátvitelének specifikus elemei).</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#17 Az extracelluláris mátrix szerepe a rákos metasztázisban (epiteliális-mezenchimális átmenet, a metasztatikus sejtek kiszabadulásának, vándorlásának és letapadásának a molekuláris háttere).</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#17 Az extracelluláris mátrix szerepe a rákos metasztázisban (epiteliális-mezenchimális átmenet, a metasztatikus sejtek kiszabadulásának, vándorlásának és letapadásának a molekuláris háttere).</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#18 Biológiai hálózatok: a kisvilágság, a csomópontok, a hálózatos csoportok és a hálózatos hierarchia jelentősége a fehérje-fehérje kölcsönhatások, a metabolikus, a jelátviteli és a génexpressziós, valamint a sejtszervecskék által alkotott hálózatokban.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#18 Biológiai hálózatok: a kisvilágság, a csomópontok, a hálózatos csoportok és a hálózatos hierarchia jelentősége a fehérje-fehérje kölcsönhatások, a metabolikus, a jelátviteli és a génexpressziós, valamint a sejtszervecskék által alkotott hálózatokban.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#19 Setjtbiológiai vizsgálómódszerek I.: sejttenyésztés, sejtfrakcionálás.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#19 Setjtbiológiai vizsgálómódszerek I.: sejttenyésztés, sejtfrakcionálás.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#20 Setjtbiológiai vizsgálómódszerek II: in vivo mikroszkópia, áramlási citometria, FACS.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#20 Setjtbiológiai vizsgálómódszerek II: in vivo mikroszkópia, áramlási citometria, FACS.</summary>
+</details>
 
 <!--//////////////////////////////////////////////////////////////-->  </details>  <!--//////////////////////////////////////////////////////////////-->
 
 
 <!--///////////////////////////-->  <details><summary class="mainTitle">egyéb tudnivalók</summary>  <!--///////////////////////////-->
 
-<!----><details><summary class="phase">III.témakörhöz kapcsolódók</summary>
+<details><summary class="phase">III.témakörhöz kapcsolódók</summary>
 	<details class="kerdes 3/2"><summary>másodlagos hírvívők csoportosítása? (pl.-kal)</summary><ul class="normal">
 		<li>hidrofób &#10140; DAG, PI(3,4,5)P<sub>3</sub> stb.</li>
 		<li>hidrofil &#10140; cAMP, Ca<sup>2+</sup>, I-1,4,5-P<sub>3</sub> stb.</li>
 	</ul></details>
 	<details class="kerdes 3/3"><summary>PI3K felépítéséről tudnivalók</summary><ul class="normal">
 	</ul></details>
-<!----></details>
+</details>
 
 <!--//////////////////////////////////////////////////////////////-->  </details>  <!--//////////////////////////////////////////////////////////////-->
 
@@ -2987,113 +3025,7 @@ PCR tételek (3db)
 
 <!--///////////////////////////-->  <div><div class="mainTitle">II. A genetikai információ kifejeződése</div>  <!--///////////////////////////-->
 
-<!----><details><summary class="phase">#7 Az eukarióta géneszpresszió transzkripciót követő lépéseinek szabályozása. <span class="MISS">!!</span> <abbr title="hozzá kéne vennem">Jegyzet_108-110</abbr></summary>
-	<details class="kerdes 5/2"><summary><strong>Az eukarióta géneszpresszió transzkripciót követő lépéseinek szabályozása.</strong></summary><ul class="normal">
-		alábbiak kerülnek bemutatásra:
-		<li>kaputranszport</li>
-		<li>alternatív-splicing</li>
-		<li>alternatív-poliA hely</li>
-		<li>RNS-editing</li>
-	</ul></details>
-	<details class="kerdes 4/5"><summary>kaputranszport</summary><ul class="normal">
-		<img style="max-width:30%" data-src="ktprsnzptr.png">
-		<li>szabályozott &#10140; RAN nevű fehérje szabályozza</li>
-		<li>energiaigényes &#10140; GTP hidrolizíse GDP-re</li>
-		<li>mRNS-nek a <strong>magpóruson</strong> kell átjutni</li><ul>
-			<li>csak sejtmagból citoszolba mehet (visszafele nem)</li>
-			<li>mRNS-et fehérjék borítják be (pl. poliA-kötő-fehérjék, hnRNP-k)</li>
-			<li>ezek a fehérjék jelentős része leválik róla az export során, és benntmarad a magban &#10140; helyettük másfajta fehérjék borítják majd be az mRNS-t a citoszolban</li>
-			<li>pl. az 5' sapkán lévő sapkakötő-komplex helyett az eIF4E és eIF4G lesz már</li>
-		</ul>
-		<li>lényege &#10140; alábbi lépés ismétlődik többször</li><ul>
-			<li>mRNS-en lévő fehérjék között van amelyiken van <abbr title="nuclear export signal">NES</abbr></li>
-			<li>ezt a RAN-GTP felismeri, és hozzákötődik, majd átviszi a magpóruson(+mRNS egy részét is így), és ott a GTP-t hidrolizálja GDP-re</li>
-		</ul>
-		<div><span class="vocab"><strong>§</strong></span> magpóruson fehérjék is képesek hasonlóan átjutni (ezek nemcsak ki, hanem be is juthatnak a magba)</div>
-	</ul></details>
-	<details class="kerdes 4/5"><summary>alternatív-splicing</summary><ul class="normal">
-	  <strong>lényege</strong>
-		<img style="max-width:30%" data-src="hshtlhszblyzs.png">
-		<li>két dolog történhet</li><ul>
-			<li>exon kivágódik &#10140; <strong>NEM</strong> lesz benne a fehérjében <abbr title="előtte lévő 3' hasítási szignál, és utána következő 5' hasítási szignált kihagyják, így 2intronnal együtt kivágódik">§</abbr></li>
-			<li>intron bennmarad &#10140; benne lesz a fehérjében az is <abbr title="alacsony a hasítási szignálhoz 'való affinitása az snRNP-nek'">'</abbr></li>
-		</ul>
-		<li>szövetspecifikus &#10140; attól függ, hogy az egyes szakaszt exonnak/intronnak tekinti-e a sejt, hogy milyen szövetben van</li>
-		<li>pl. a tropomiozin nevű fehérje harántcsíkolt izomszövetben és hepatocitákban nagyon más</li><ul>
-			<li>ugyanis harántcsikolt izomban az összes exon bennmarad (kivéve a 2es) &#10140; "nagy a fehérje"</li>
-			<li>míg hepatocitákban csak 6db exonból készül fel, az összes többi kivágódik (intronnak tekintik)</li>
-		</ul>
-		<li>az intronok kivágását a splicesome végzi <abbr title="6 Az eukarióta mRNS érése">/lásd/</abbr></li>
-	  <hr><strong>szabályozása</strong>
-		<li>sejt szabályozza hogy adott intron kivágódjon-e vagy ne <abbr title="szvsz nyilván exon kivágásét is lehet">§</abbr></li>
-		<li>negatív &#10140; intron 1 vagy mindkét hasítási helyét (akceptor & donor) helyét egy represszor fehérje eltakarja &#10140; kivágást gátolja <abbr title="szvsz vagy éppen emiatt kivágódik az exon (+ 2intron egy lépéseben)!! (ahogy az exon kivágódik példánál le lett írva)">§</abbr></li>
-		<li>pozitív &#10140; <abbr title="nem ismeri fel a szekvenciát">ilyenkor alapból a hasítási helyhez nem tud kötődni az snRNP</abbr> &#10140; azonban aktivátor fehérje hozzákötődése után már képes lesz &#10140; intron kivágódik</li>
-		<li>tehát a represszor / aktivátor fehérje termelődésétől függ, hogy mi lesz (amit a sejt szabályozhat)</li>
-	</ul></details>
-	<details class="kerdes 4/3"><summary>alternatív-poliA hely</summary><ul class="normal">
-		<li>ha adott génben legalább két AA<abbr title="UAA egyben STOP kodon is transzlációnál!!">UAA</abbr>A(poliadenilációs és egyben terminációs szekvencia!) van</li>
-		<li><span class="important">RAJZ</span>  akkor sejt kihagyhatja az egyiket</li><ul>
-			<li>bal oldali esetében kihagyta az elsőt &#10140; intron kivágódott &#10140; utolsó exonja a "halványkék" &#10140; hidrofób lett a fehérje (C-terminálisa)</li>
-			<li>jobb oldali esetében az elsőnél megállt &#10140; intron nem vágódott ki &#10140; utolsó exonja az intron "fele" &#10140; hidrofil lett a fehérje (C-terminálisa)</li>
-		</ul>
-		<img data-src="ltrntlkplrk.png">
-	</ul></details>
-	<details class="kerdes 4/3"><summary>RNS-editing</summary><ul class="normal">
-		<li><span class="Vocab">R</span> egy gén 2 fehérjét kódol &#10140; Apo B-48 és Apo B-100</li>
-		<li>az érett mRNS teljesen ugyanúgy néz ki, és ki jut a citoplazmába</li>
-		<li>májban itt nem is történik vele semmi és elkészül transzlációval az Apo B-100</li>
-		<li>bélben azonban a 48%-nál (5'-3' irányba!!) lévő CAA nevű szekvenciában lévő Citozin <span class="Vocab">R</span> oxidatív_dezaminálása lesz</li>
-		<li>így UAA lesz belőle, ami már egy STOP-kodon, tehát a transzláció ott fog befejeződni</li>
-		<img data-src="xdtvdzmnls.png">
-	</ul></details>
-<!----></details>
-
-<!----><details><summary class="phase">#10 Az eukarióta mRNS poszttranszkripciós módosításai és stabilitásának szabályozása.</summary>
-	<details open class="kerdes 4/9"><summary><strong>Az eukarióta mRNS poszttranszkripciós módosításai és stabilitásának szabályozása.</strong></summary><ul class="normal">
-	  <strong>mRNS élettartama</strong><div>
-		<div style="float:right;max-width:20%">
-			<img data-src="ndnklzrmns.png">
-			<img data-src="vstrnszfrn.png">
-			<img data-src="24_vstrfrrnt.png">
-		</div>
-		<li><span class="Important">poliA-farok minél hosszabb, annál tovább él</span></li>
-		<li><span class="Important">exonukleázok folyamatosan bontják le a végét &#10140; egyre rövidül</span></li>
-		<li><span class="Important">ha elér egy kritikus szakaszt <abbr title="hisz különben meg lenne az esély, hogy hibás fehérje keletkezik">(még nem fehérjekódoló régiót)</abbr> akkor mRNS lebomlik</span></li>
-		<div><span class="vocab"><strong>§</strong></span> szvsz hasonlítható a telomer-sejt élettartamra (ottis, ha a telomer már túl rövid, akkor lebomlik a sejt)</div>
-	  <hr><strong>mRNS élettartamának szabályozása</strong>
-		<li><span class="Important">3'UTR-en lehet olyan szekvencia, mely endonukleáz kötődését indukálja</span></li>
-		<li><span class="Important">ha endonukleáz kötődik oda, akkor kettévágja &#10140; poliA farok már nincs &#10140; egyből lebomlik az mRNS</span></li>
-		<li><span class="Important">ezt azonban lehet szabályozni</span></li><ul>
-			<li><span class="Important">pl. transzferrin-receptor példája</span> /lásd: lentebb/</li>
-			<li><span class="Important">pl. mikroRNS-ek</span> <abbr title="A mikroRNSek képződése és szabályozó mechanizmusaik eukarióta sejtekben">/lásd/</abbr></li>
-		</ul>
-	  </div>
-	  <hr><strong>vasion anyagcseréjében szerepet játszó fehérjék szabályozása</strong><div>
-		<li>vas szabad formában rendkívül mérgező (szabad gyököket generál) &#10140; ezért a ferritin/transzferrin nevű fehérjéhez kötődve fordul elő</li>
-		<li>a vas metabolizmus kulcsfehérjéi</li><ul>
-			<li>transzferrin &#10140; a vérben a vasionok szállítását végzi</li>
-			<li>transzferrin receptor &#10140; sejtbejutást biztosítja</li>
-			<li>ferritin &#10140; tárolófehérje</li>
-		</ul>
-		<li>a sejt vasion szintje a ferritin és a transzferrin-receptor szintézisét reciprok módon szabályozza</li>
-		<li>ha nincs elég vasion, a receptor mennyisége növekszik, a ferritiné csökken (és ugyanez fordítva)</li>
-		<li>mindkét esetben elmondható az alábbi &#10140; van egy <abbr title="hajtűkanyar">hairpin</abbr> az <abbr title="3'/5'UTR régióban">mRNS-ben</abbr>, melyhez <abbr title="IREBP/akonizáz">fehérje</abbr> kapcsolódik ha kevés a vas &#10140; ha van vas, akkor hozzákapcsolódva a fehérjéhez leválnak a hairpin-ről</li>
-		<li>transzferrin-receptor &#10140; <span class="idk">ez poszttranszkripciós, így <abbr title="Az eukarióta mRNS poszttranszkripciós módosításai és stabilitásának szabályozása">§</abbr>tételbe tartozik</span></li><ul>
-			<li>ha kevés a vas a sejtben, akkor transzferrin-receptorra van szüksége (mert ezzel tud felvenni majd vasat)</li>
-			<li>ilyenkor ennek mRNS-ében az ún. <abbr title="Iron Response Element">IRE</abbr> hairpin-szekvenciát az endoribonukleáz<abbr title="képen RNáz">'</abbr> nem tudja felismerni, mert az <abbr title="Iron Response Element Binding Protein">IREBP</abbr>(fehérje) hozzákötődve gátolja ezt</li>
-			<li>így transzferrin-receptor transzlációja zajlik</li>
-			<li>azonban ha sok Fe<sup>2+</sup> van, akkor az hozzákötődve a IREBP-hez, leválnak az IRE-ról, és endonukleáz kettévágja az mRNS-t, ami ezután lebomlik és így nem lesz transzláció</li>
-		</ul>
-		<li>ferritin &#10140; <span class="idk">ez transzlációs, így <abbr title="A transzláció iniciációs szakasza prokariótákban és eukariótákban. A transzláció szabályozása eukariótákban, az eIF2 faktor foszforilációjának szerepe">§</abbr> 24.tételbe tartozik</span></li><ul>
-			<li>mRNS-nek 5’-UTR szekvenciájában van egy hairpin</li>
-			<li>ehhez vashiány esetén az <span class="Important">akonitáz</span> nevű fehérje kötődik, így gátolva a ferritin transzlációját</li>
-			<li>emelkedett vas koncentrációnál az akonitáz a vassal komplexet képez <abbr title="konformációváltozás következtében">&#10140;</abbr> leválik a hairpin-ről, ily módon szabad utat adva a transzlációnak</li>
-		</ul>
-	  </div>
-	</ul></details>
-<!----></details>
-
-<!----><details><summary class="phase">#11 A DNS-kötő fehérjék és jellegzetes szerkezeti elemeik prokariótákban (hélix-kanyar-hélix) és eukariótákban (hiszton-fold, héix-hurok-hélix, cink-ujj, leucin cipzár) példákkal.</summary>
+<details><summary class="phase">#11 A DNS-kötő fehérjék és jellegzetes szerkezeti elemeik prokariótákban (hélix-kanyar-hélix) és eukariótákban (hiszton-fold, héix-hurok-hélix, cink-ujj, leucin cipzár) példákkal.</summary>
 	<details class="kerdes 4/4"><summary><strong>A DNS-kötő fehérjék és jellegzetes szerkezeti elemeik prokariótákban (hélix-kanyar-hélix) és eukariótákban (hiszton-fold, hélix-hurok-hélix, cink-ujj, leucin cipzár) példákkal</strong></summary><ul class="normal">
 		<li>ezen kérdésben összefoglalom &#10140; funkciójuk + előfordulásuk</li>
 		<li>további kérdésekben pedig egyesével &#10140; felépítésük + működésük</li>
@@ -3247,9 +3179,9 @@ PCR tételek (3db)
 		<li>nem dimer, mert szimmetrikus szerkezetű</li>
 		<li>&beta;-redővel kapcsolódik a TATA-boxhoz</li>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#12 Az eukarióta magi receptorok (szteroid, tiroid, AH-receptor) szerkezete és működése.</summary>
+<details><summary class="phase">#12 Az eukarióta magi receptorok (szteroid, tiroid, AH-receptor) szerkezete és működése.</summary>
 	<details class="kerdes 1/2"><summary style="color:MediumBlue"><span class="Vocab">J</span> sejtek tájékozódása jelekből</summary><ul class="normal">
 		<div style="float:right;max-width:50%"><img data-src="jlkjkrtml.png"></div>
 		<li>sejtek három helyről nyernek információt</li><ul>
@@ -3345,7 +3277,7 @@ PCR tételek (3db)
 			<li>eredménye &#10140; xenobiotikum metabolizmusát végző enzimek szintézisét fogja indukálni</li>
 		</ul></details>
 	</ul></details>
-<!----></details>
+</details>
 
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
 
@@ -3353,7 +3285,7 @@ PCR tételek (3db)
 <!--///////////////////////////-->  <div><div class="mainTitle">III. A proteosztázis</div>  <!--///////////////////////////-->
 
 
-<!----><details><summary class="phase">#9 A bakteriofágok replikációjának lítikus és lizogén útja (a fág-represszor).</summary>
+<details><summary class="phase">#9 A bakteriofágok replikációjának lítikus és lizogén útja (a fág-represszor).</summary>
 	<details class="kerdes 4/9"><summary>A bakteriofágok replikációjának <strong>lítikus</strong> és lizogén útja (a fág-represszor).</summary><ul class="normal">
 		<li>replikációjuk kétféle módon történhet &#10140; lítikus-ciklus és lizogén-ciklus</li>
 		<li>lítikus-ciklusra minden bakteriofág képes, lizogénre viszont nem mindegyik</li>
@@ -3374,7 +3306,7 @@ PCR tételek (3db)
 		</ul>
 	  </div>
 	  <hr><div style="font-weight:bold; font-size:125%;">replikáció</div><div>
-		<iframe width="192" height="144" src="https://www.youtube.com/embed/gmEj0ugnVWA"></iframe> 
+		<iframe width="192" height="144" data-src="https://www.youtube.com/embed/gmEj0ugnVWA"></iframe> 
 		<li><span class="Important">rolling circle</span> mechanizmus kerül bemutatásra</li>
 		<li>első lépésben ennek egyik szálát  <abbr title="hisz a valóságban nincs olyan, hogy külső meg belső, csak a képen néz így ki!!!">(nem külső!)</abbr> az <span class="Important">endonukleáz</span> kettéhasítja</li>
 		<li>innentől a <span class="Important">DNS-polimeráz</span> folyamatosan hosszabítja a 3' véget</li>
@@ -3460,8 +3392,8 @@ PCR tételek (3db)
 		</ul>
 	  </div>
 	  <hr><div style="font-weight:bold; font-size:125%;">DNS replikáció – rolling circle</div><div>
-		<iframe width="192" height="144" src="https://www.youtube.com/embed/gmEj0ugnVWA"></iframe> 
-		<iframe width="192" height="144" src="https://www.youtube.com/embed/2THQtKHkNhQ"></iframe>
+		<iframe width="192" height="144" data-src="https://www.youtube.com/embed/gmEj0ugnVWA"></iframe> 
+		<iframe width="192" height="144" data-src="https://www.youtube.com/embed/2THQtKHkNhQ"></iframe>
 		<li>kétféle módon történhet</li><ul>
 			<li>szemikonzervatív replikáció <abbr title="A szemikonzervatív DNS-replikáció elve. A replikációs villa, vezető és késlekedő szál.">(lásd)</abbr> <abbr title="avagy másnéven theta-replikáció, theta-struktúra">(=theta-struktúra)</abbr></li>
 			<li>rolling circle &#10140; ez lesz bemutatva, mert a másik már ismert</li>
@@ -3613,9 +3545,9 @@ PCR tételek (3db)
 		</ul>
 		<img data-src="nkndkszlvla.png">
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#10 Az állati vírusok csoportosítása replikációs mechanizmusuk szerint. A retrovírusok szerkezete és replikációja.</summary>
+<details><summary class="phase">#10 Az állati vírusok csoportosítása replikációs mechanizmusuk szerint. A retrovírusok szerkezete és replikációja.</summary>
 	<details class="kerdes 4/6"><summary><strong>Az állati vírusok csoportosítása replikációs mechanizmusuk szerint.</strong> A retrovírusok szerkezete és replikációja.</summary><ul class="normal">
 		<li>replikációjuknak többféle mechanizmusa van (tehát nemcsak 2, mint a fágoknak) <img class="mini" data-src="hvnyltsnfkc.png"></li><ul>
 			<li>a fág lítikus-ciklusának itt a heveny_infekció felel meg</li>
@@ -3734,7 +3666,7 @@ PCR tételek (3db)
 		</ul>
 		<img data-src="nkndkszlvla.png">
 	</ul></details>
-<!----></details>
+</details>
 
 
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
@@ -3743,7 +3675,7 @@ PCR tételek (3db)
 <!--///////////////////////--> <div><div class="mainTitle">IV. Rendszerbiológia, molekuláris biológia a gyakorlatban</div>  <!--///////////////////////-->
 
 
-<!----><details><summary class="phase" style="background-color:pink">#1 A humán genom. Genetikai variációk szerepe a betegségek kialakulásában, a genetikai faktorok meghatározásának jelentősége és lehetőségei.</summary>
+<details><summary class="phase" style="background-color:pink">#1 A humán genom. Genetikai variációk szerepe a betegségek kialakulásában, a genetikai faktorok meghatározásának jelentősége és lehetőségei.</summary>
 	<details class="kerdes 4/8"><summary><strong>A humán genom.</strong> Genetikai variációk szerepe a betegségek kialakulásában, a genetikai faktorok meghatározásának jelentősége és lehetőségei.</summary><ul class="normal">
 		<li>genom &#10140; egy haploid sejt teljes genetikai tartalma (tehát DNS-ének összesége)</li>
 		<li>1990-2001-ig tartott a human_genom szekvenálása, azaz DNS 3millilárd bp-jének a meghatározása &#10140; 3milliárd bp-ből áll tehát egy haploid sejt 23db kromoszómája</li>
@@ -3782,18 +3714,18 @@ PCR tételek (3db)
 	<details class="kerdes 4/?"><summary>A humán genom. <strong>Genetikai variációk szerepe a betegségek kialakulásában, a genetikai faktorok meghatározásának jelentősége és lehetőségei.</strong></summary><ul class="normal">
 		<li>s</li>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#2 A polimeráz láncreakció és a real-time PCR működésének lényege, alkalmazási területei.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#2 A polimeráz láncreakció és a real-time PCR működésének lényege, alkalmazási területei.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#3 Genetikai mutációk és polimorfizmusok vizsgálati módjai (RFLP, allél-specifikus PCR, DNS-szekvenálás és primerextenzió).</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#3 Genetikai mutációk és polimorfizmusok vizsgálati módjai (RFLP, allél-specifikus PCR, DNS-szekvenálás és primerextenzió).</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#4 A génkifejeződés vizsgálata (real-time PCR, DNS-chip, riportergén).</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#4 A génkifejeződés vizsgálata (real-time PCR, DNS-chip, riportergén).</summary>
+</details>
 
-<!----><details><summary class="phase">#5 Rekombináns DNS készítése (klónozás) és fontosabb alkalmazási területei.</summary>
+<details><summary class="phase">#5 Rekombináns DNS készítése (klónozás) és fontosabb alkalmazási területei.</summary>
 	<details class="kerdes 4/10"><summary><strong>Rekombináns DNS készítése (klónozás)</strong> és fontosabb alkalmazási területei. (60%)</summary><ul class="normal">
 	  <strong><u>rekombináns DNS lényege</u></strong><div>
 		<li>a <span class="WHITE">rekombináns DNS</span> olyan molekula, melyet laboratóriumi körülmények között hoznak létre vektornak és inszert összekapcsolásával</li>
@@ -3987,18 +3919,18 @@ PCR tételek (3db)
 		</ul>
 	</ul></details>
 	http://elte.prompt.hu/sites/default/files/tananyagok/ABiokemiaEsMolekularisBiologiaAlapjai/ch19s02.html
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#6 Biológiai hálózatok: a kisvilágság, a csomópontok, a hálózatos csoportok és a hálózatos hierarchia. E fogalmak jellemzése és jelentősége az egyedi fehérjékben, illetve a sejtet alkotó hálózatokban (példák).</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#6 Biológiai hálózatok: a kisvilágság, a csomópontok, a hálózatos csoportok és a hálózatos hierarchia. E fogalmak jellemzése és jelentősége az egyedi fehérjékben, illetve a sejtet alkotó hálózatokban (példák).</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#7 Nódusok és hálózatos kapcsolatok jelentősége a fehérje-fehérje kölcsönhatási, a metabolikus, a jelátviteli és a génexpressziós, valamint a sejtszervecskék által alkotott hálózatokban.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#7 Nódusok és hálózatos kapcsolatok jelentősége a fehérje-fehérje kölcsönhatási, a metabolikus, a jelátviteli és a génexpressziós, valamint a sejtszervecskék által alkotott hálózatokban.</summary>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#8 A fehérjék reverzibilis és irreverzibilis kicsapása, ennek elvi alapjai.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#8 A fehérjék reverzibilis és irreverzibilis kicsapása, ennek elvi alapjai.</summary>
+</details>
 
-<!----><details><summary class="phase">#9 A fehérjék színreakciói a bennük található aminosavaknak köszönhetően (xantoprotein-, Millon-, Adamkiewicz-reakció).</summary>
+<details><summary class="phase">#9 A fehérjék színreakciói a bennük található aminosavaknak köszönhetően (xantoprotein-, Millon-, Adamkiewicz-reakció).</summary>
 	<details class="kerdes 4/3"><summary>A fehérjék színreakciói a bennük található aminosavaknak köszönhetően (<strong>xantoprotein</strong>-, Millon-, Adamkiewicz-reakció)</summary><ul class="normal">
 		<li>funkció &#10140; aromás aminosavak jelenléte mutatható ki (ha fehérjében vannak akkoris!) &#10140; tirozin, fenilalanin, triptofán</li>
 		<li>lényege &#10140; ecetsavat (HNO<sub>3</sub>) hozzáadva sárga színű termék keletkezik &#10140; C<sub>6</sub>H<sub>5</sub>NO<sub>2</sub> (nitrofenil-csoport) adja a sárga-színt</li>
@@ -4023,9 +3955,9 @@ PCR tételek (3db)
 		<img data-src="kplt_Trp.png">
 		<img data-src="ndlgyrkplt.png">
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:aqua">#10 A peptid-kötés kimutatása, a fehérjék mennyiségi meghatározása: a Biuret reakció. Az SH-csoportok mérése Ellmann szerint.</summary>
+<details><summary class="phase" style="background-color:aqua">#10 A peptid-kötés kimutatása, a fehérjék mennyiségi meghatározása: a Biuret reakció. Az SH-csoportok mérése Ellmann szerint.</summary>
 	<details class="kerdes 4/4"><summary><strong>A peptid-kötés kimutatása, a fehérjék mennyiségi meghatározása: a Biuret reakció.</strong> Az SH-csoportok mérése Ellmann szerint</summary><ul class="normal">
 		<li>lúgos közegben a fehérjékben lévő peptidkötésekben lévő nitrogén és rézionok között koordinatív kötés jön létre &#10140; réziononként 4db</li>
 		<li>ez a komplex lila színű &#10140; extinkciót megmérve Lambert-Beer törvénnyel visszaszámolható a peptidkötések száma (mely alapján a fehérjék össztömege kikövetkeztethető, mert 1g fehérje megközelítőleg azonos mennyiségű peptidkötést tartalmaz)</li>
@@ -4043,17 +3975,17 @@ PCR tételek (3db)
 		<li>(nem kell hevítés!)</li>
 		<li>(DTNB helyett PCMB-t is lehet használni)</li>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:pink">#11 Fehérjék elválasztása kis molekulatömegű anyagoktól, molekula-szűrés elve.</summary>
-<!----></details>
+<details><summary class="phase" style="background-color:pink">#11 Fehérjék elválasztása kis molekulatömegű anyagoktól, molekula-szűrés elve.</summary>
+</details>
 
 <span class="Important">
 8-10 = 56-68<br>
 11 = 69-72<br>
 </span>
 
-<!----><details><summary class="phase">#12 A papír- és vékonyréteg-kromatográfia elve, aminosavak elválasztása.</summary>
+<details><summary class="phase">#12 A papír- és vékonyréteg-kromatográfia elve, aminosavak elválasztása.</summary>
 	<details open class="kerdes 4/6"><summary><strong>A papír- és vékonyréteg-kromatográfia elve, aminosavak elválasztása</strong></summary><ul class="normal">
 		<div style="float:right;max-width:30%">
 			<img data-src="gy4_lnyg.png">
@@ -4084,9 +4016,9 @@ PCR tételek (3db)
 		<li>Pro színe sárga volt, míg a többié lilás, ennek oka, hogy előbbiben nincs aminocsoport a többivel ellentétben.</li>
 		<li>Aromás aminosavak apolárosak.</li>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase" style="background-color:aqua">#14 Az ureáz enzim KM és VMax értékének meghatározása, az ureáz enzim kompetitiv és nem-kompetitiv gátlása.</summary>
+<details><summary class="phase" style="background-color:aqua">#14 Az ureáz enzim KM és VMax értékének meghatározása, az ureáz enzim kompetitiv és nem-kompetitiv gátlása.</summary>
 	<details open class="kerdes 4/6"><summary><strong>Az ureáz enzim KM és VMax értékének meghatározása, az ureáz enzim kompetitiv és nem-kompetitiv gátlása</strong></summary><ul class="normal">
 	  <div>orvosi jelentőségére 1pl</div><div>
 		<li>szívinfarktus &#10140; a coronaria ereknek <abbr title="egy területet csak egy ér lát el">nincs anasztomózisa</abbr> &#10140; így ha az egyik ér elzárul, azt ellátó területen a sejtek elhalnak &#10140; ezen sejtek kippukadnak és az intracelluláris enzimek a vérbe jutnak &#10140; ezzel a módszerrel megmérhető a jelenlétük a vérben</li>
@@ -4115,9 +4047,9 @@ PCR tételek (3db)
 		<li>PCMB &#10140; non-kompetitív-gátlószer, ugyanis az -SH csoportokhoz kötődik, melyek a katalízisben játszanak szerepet</li>
 		<li>merkaptoetanol &#10140; PCMB-t megköti, azaz "leszedi" az enzimről, így az már nem lesz gátolva &#10140; tehát ha volt merkaptoetanol is akkor csökkent a PCMB okozta gátlás mértéke</li>
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#16 Plazmidok emésztése restrikciós endonukleázokkal, a fragmentumok analízise gél-elektroforézissel.</summary>
+<details><summary class="phase">#16 Plazmidok emésztése restrikciós endonukleázokkal, a fragmentumok analízise gél-elektroforézissel.</summary>
 	<details class="kerdes 4/10"><summary>elméleti alapok (60%)</summary><ul class="normal">
 	  <strong><u>rekombináns DNS lényege</u></strong><div>
 		<li>a <span class="WHITE">rekombináns DNS</span> olyan molekula, melyet laboratóriumi körülmények között hoznak létre vektornak és inszert összekapcsolásával</li>
@@ -4196,9 +4128,9 @@ PCR tételek (3db)
 		<li><span class="WHITE">D</span> egy kb 1500bp (luciferáz gén hossza) hosszú és egy 3000bp hosszú részre lett szétvágva</li>
 		<img data-src="gkktrrns.png">
 	</ul></details>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">#17 Egy ízérző receptor genotipizálása PCR-RFLP módszerrel.</summary>
+<details><summary class="phase">#17 Egy ízérző receptor genotipizálása PCR-RFLP módszerrel.</summary>
 	<details class="kerdes 4/10"><summary><strong>Egy ízérző receptor genotipizálása PCR-RFLP módszerrel</strong> (60%)</summary><ul class="normal">
 	  <strong><u>Bevezetés</u></strong><div>
 		<li>5 féle alapíz van: édes,sós,savanyú,keserű,umami</li>
@@ -4331,7 +4263,7 @@ PCR tételek (3db)
 		<li>proteináz K kezelés fontos, hogy gyorsan történjen, mert a membránfelszakadás után az endonukleázok különben odaférnének a DNS-hez és lebontanák</li>
 	  </div>
 	</ul></details>
-<!----></details>
+</details>
 
 
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
@@ -4341,7 +4273,7 @@ PCR tételek (3db)
 
 <!--///////////////////////////-->  <div><div class="mainTitle">egyenlőre nem kategorizált, tudnivalók</div>  <!--///////////////////////////-->
 
-<!----><details><summary class="phase" style="background-color:pink">GÉNEXPRESSZIÓ SZABÁLYOZÁSA - (már ki se dolgozom, inkább skipp).</summary>
+<details><summary class="phase" style="background-color:pink">GÉNEXPRESSZIÓ SZABÁLYOZÁSA - (már ki se dolgozom, inkább skipp).</summary>
 	<div style="float:right;max-width:30%">
 		<img data-src="rvrztrnsz.png">
 		<img data-src="gnmfnm.png">
@@ -4391,9 +4323,9 @@ PCR tételek (3db)
 		</tr>
 	</table>
 	<img data-src="gnxprsszlbyzs.png">
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">egyenlőre nem kategorizált, tudnivalók</summary>
+<details><summary class="phase">egyenlőre nem kategorizált, tudnivalók</summary>
  <div><div style="font-weight:bold; font-size:125%;">mix</div>
 	<details class="kerdes 3/1"><summary>UTR minek a rövidítése?</summary><ul class="normal">
 		<li>UnTranslated Region (nem transzlálódó régió)</li>
@@ -4431,7 +4363,7 @@ PCR tételek (3db)
 		<img data-src="lngctrn.png">
 	</ul></details>
  </div>
-<!----></details>
+</details>
 
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
 
@@ -4440,7 +4372,7 @@ PCR tételek (3db)
 
 <!--///////////////////////////-->  <div><div class="mainTitle">EGYÉB (csak megőrzésre!)</div>  <!--///////////////////////////-->
 
-<!----><details><summary class="phase">Előadások</summary>
+<details><summary class="phase">Előadások</summary>
  <div><div style="font-weight:bold; font-size:125%;">#1 Eukarióta és prokarióta sejt, a genetikai információ &#10140; általános</div>
 	<details class="kerdes 1/j"><summary><span class="WHITE">JR</span> miért tanuljuk a molekuláris sejtbiológiát</summary><ul class="normal">
 		<li>molekuláris medicina felé halad az orvostudomány</li>
@@ -4749,9 +4681,9 @@ PCR tételek (3db)
 		<img data-src="trnszkrpc.png">
 	</ul></details>
  </div>
-<!----></details>
+</details>
 
-<!----><details><summary class="phase">Gyakorlatok</summary>
+<details><summary class="phase">Gyakorlatok</summary>
  <div><div style="font-weight:bold; font-size:125%;">1. feherjék jelenlétének kimutatása (01.31)</div>
 	<details class="kerdes 5/1"><summary>cél?</summary><ul class="normal">
 		<li>fehérje JELENLÉTÉNEK kimutatása kicsapódással &#10140; tehát se nem minőségük, se nem mennyiségük, pusztán az, hogy VAN-e?</li>
@@ -5036,7 +4968,7 @@ http://elte.prompt.hu/sites/default/files/tananyagok/BevBiokemGyak/ch07s03.html
 		<li>telítési érték = koncentrációja az ammónium-szulfátnak <abbr title="ez őő nem szentírás, de egyenlőre így fogom fel">!?</abbr></li>
 	</ul></details>
  </div>
-<!----></details>
+</details>
 
 <!--//////////////////////////////////////////////////////////////-->  </div>  <!--//////////////////////////////////////////////////////////////-->
 
@@ -5049,6 +4981,7 @@ http://elte.prompt.hu/sites/default/files/tananyagok/BevBiokemGyak/ch07s03.html
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 
 
 

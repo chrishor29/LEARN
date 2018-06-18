@@ -7,7 +7,9 @@
  ✖ élettan 8.1 -> gliasejtek img-eit nem tölti be (expQ imgLoad még hibás)
  ✖ olyan opció kéne, hogy van egy tétel, akkor külön osztályozza azt, hogy eszembe jut-e miről kell beszélni, illetve magát azt amiről kell. Pl biológiai jelátvitel kérdésnél ha nemtudom miről kell, de amiről kéne azt tudom, akkor ne kelljen átismételnem az egészet, hanem tudjam, hogy csak az volt a hiba, hogy nemtudtam miről kell bezsélni! --> úgy kéne hogy elsőnek mindenkép megkérdezi, hogy adott tételnél mi kell tudni, majd ha azt megválaszoltam utána az alkérdések közt csak azt kell kifejtenem, ami miatt kidobta a kérdést. Annyi még, hogy az elején az altkérdéseket ne mutassa(osztályzásukat)!
  ✖ androidon mindig a kezdőoldalt töltse be (tehát hiába a questes aloldalon zártam be, ne azt töltse be
+ ✖ töröljem localstorage --> majd nyissam meg biokémiát, látható, hogy nem fogja betölteni
  ✖ rep	min	hossz	left	still	average --> impQ-kat nemszámolja bele (1x belekéne)
+ ✖ zöldnél azt tudjam beállítani, hogy mennyi idő múlva dobja ki legközelebb (tehát ne csak 60/600/stb., hanem kérdésenként változó lehessen --> de ha nem állítok be semmit, akkor ahogy eddig is, a repeat-nél beállított lesz)
  ✖ impQ-t csak akkor töltse be innerHTML, ha megnyitom (+amikor kidobja questbe)
 	[F_impQs newMethod] 9x gyorsabb mint az [F_impQs oldMethod] --> newMethod-dal töltsem be az összeset az elején: jelenleg azok hiányoznak, melyeket egy impQ-n belül kéne importálni. Azonban csak akkor importálja őket, ha szükség van rá (tehát a felette lévő details-ba még nincs benne) -->próbáltam már, ott is hagytam commentbe(#123#), de nem jön össze, mert baromi lassú
 	az elején olvassa ki az altkérdéseket az imp-ből és table-ba(impID = prior,length,Qtxt) tenni. Ebból nézi a chance-t az előhívásra, ebből számolja tétel hány %, továbbá oldQcheck & upgradeQ esetében innen veszi ki a szöveget(ugyanis egy impQ-n belül lehet altkérdés, amit hiányolna különben). Tehát beírni innerHTML-be nem szükséges ilyenkor még --> ez kicsit komplikált, mert ha van még1 alt imp, akkor annak altkérdéseit is ki kell olvassa, és így tovább.. de megoldható --> ez szvsz gyorsabb
@@ -28,9 +30,6 @@
  ✖: F_SpanRepNew + F_SpanRepOld --> rákattolva jelenjenek meg a questek, hogy mennyi idő van belőlük vissza
  ✖: ha zöldra van állítva a dobhat új kérdéseket, akkor még1et rákattolva először legyen kék ami azt jelenti random újat dob következőnek (nem az épp soron következőt)
  ✖: skipek típusa: (KÉK) vizsgáig már nem (FEKETE) Nem volt rá időm (SZÜRKE) vizsga előtt dobja ki őket újra 
- 
- ✖: (100,500,1200) -vizsga előtt kéne valami spec
- ✖: csak azokat számolja átlagba (következő kérdés chance), melyek a minimum időt már elérték
  
  ✖: importált Q esetében a mini IMG-re klikkelve nem működik a script, amennyiben visszamegyek a főoldalra, majd újra a Q-hoz
  
@@ -650,6 +649,7 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 
 		if ( EXPid.indexOf("-") != -1 ) { EXPid = EXPid.slice(0,EXPid.indexOf("-")) } 
 		var string = localStorage.getItem("hkExpQ."+EXPid)
+		console.log(EXPid)
 		var LSid = string.slice(0,string.indexOf(" "))
 		Qtxt = localStorage.getItem(LSid)
 		
@@ -1898,9 +1898,9 @@ function func_calcTimeDiff(repCount){
 		}
 	} else {
 		if ( repCount == 0 ) {
-			timeDiff = 60
+			timeDiff = 100
 		} else if ( repCount == 1 ) {
-			timeDiff = 500
+			timeDiff = 360
 		} else if ( repCount == 2 ) {
 			timeDiff = 1000
 		} else if ( repCount == 3 ) {
@@ -2580,20 +2580,6 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 		}
 	}
 	if ( SkipFix == "btn_skip" ) {
-		if ( priorQid != "nincs" ) {
-			if ( lastQSkip != priorQid ) {
-				document.getElementById("div_Skip").innerHTML = ""
-				var QlocElem = document.getElementById("kerdeslocation")
-				var arrayQ = QlocElem.getElementsByClassName("kerdes")
-				for ( var i=0; i<arrayQ.length; i++ ) {
-					var text = document.getElementById("div_Skip").innerHTML
-					var x = i+1
-					document.getElementById("div_Skip").innerHTML = text + '&nbsp;<span class="white">&nbsp;' + x + '&nbsp;</span>&nbsp;<input type="number" style="width:55px;">&nbsp;<select><option value="min">min</option><option value="hour">hour</option><option value="day">day</option></select> <br>'
-				}
-				document.getElementById("div_Skip").innerHTML = document.getElementById("div_Skip").innerHTML + '<hr>'
-				lastQSkip = priorQid
-			}
-		}
 		document.getElementById("div_Skip").innerHTML = ""
 		var fullText = ""
 		var qCount = 0
@@ -2617,29 +2603,31 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 		document.getElementById("div_Skip").innerHTML = fullText
 	}
 	if ( SkipFix == "btn_vizsgaskip" ) {
-		var date = new Date();
-		var timeText = Math.floor(date.getTime()/60000)
-		timeText = vizsgaTime - timeText
-		document.getElementById("div_Skip").innerHTML = timeText + "perc van még vissza viszga-resethez. <br>"
+		document.getElementById("div_Skip").innerHTML = ""
+		var fullText = ""
+		var qCount = 0
 		for ( var LSid in obj_skip ) {
 			if ( obj_skip[LSid] == "vizsgaSkip" ) {
 				var text = document.getElementById("div_Skip").innerHTML
-				//var Qtext = "<br>itt csak summary legyen és ráklikkelve jelenjen meg a text. különben kifagy </summary>"
 				var Qtext = localStorage.getItem(LSid)
-				Qtext = Qtext.slice(Qtext.indexOf("<summary")+8,Qtext.indexOf("</summary"))
-				Qtext = Qtext.slice(Qtext.indexOf(">")+1)
-				Qtext = '<font color="green" id="testID1" onclick="func_showQtext(this.id)">' + Qtext + '</font><br>'
-				
-				Qtext = "<button id='testID2' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>" + Qtext
-				//alert(Qtext)
-				//var Qtext = LStxt[kerdes]
-				//var newText = " <button id='testID' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button> "+ obj_skip[LSid] +"</summary>"
-				//Qtext = Qtext.replace("</summary>",newText)
-				document.getElementById("div_Skip").innerHTML = text + Qtext
-				document.getElementById("testID1").id = LSid + "_fullText"
-				document.getElementById("testID2").id = LSid + "_skipClear"
+			//console.log(LSid)
+				if ( Qtext != null ) {
+					var Qtext = localStorage.getItem(LSid)
+					Qtext = Qtext.slice(Qtext.indexOf("<summary")+8,Qtext.indexOf("</summary"))
+					Qtext = Qtext.slice(Qtext.indexOf(">")+1)
+					Qtext = '<font color="green" id="'+LSid+'_fullText" onclick="func_showQtext(this.id)">' + Qtext + '</font><br>'
+					Qtext = "<button id='"+LSid+"_skipClear' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>" + Qtext
+					fullText = fullText + Qtext
+					qCount = qCount +1
+				}
 			}
 		}
+		var date = new Date();
+		var timeText = Math.floor(date.getTime()/60000)
+		timeText = vizsgaTime - timeText
+		timeText = timeText + "perc van még vissza viszga-resethez. <br>"
+		fullText = timeText + fullText
+		document.getElementById("div_Skip").innerHTML = fullText
 	}
 }
 function func_spanClick(button){  // btn_fix, btn_skip, btn_vizsgaskip, btn_repFast, btn_newQuest
