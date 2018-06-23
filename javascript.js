@@ -649,7 +649,7 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 
 		if ( EXPid.indexOf("-") != -1 ) { EXPid = EXPid.slice(0,EXPid.indexOf("-")) } 
 		var string = localStorage.getItem("hkExpQ."+EXPid)
-		console.log(EXPid)
+		//console.log(EXPid)
 		var LSid = string.slice(0,string.indexOf(" "))
 		Qtxt = localStorage.getItem(LSid)
 		
@@ -665,7 +665,7 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 			Qtxt = ""
 			var divSpan = ""
 			if ( oldHTML.indexOf('<div class="imp [') > oldHTML.indexOf('<span class="imp [') ) {
-				divSpan = "span"
+				divSpan = "div" // span volt valamiért és átírtam div-re, de lehet rossz (mert error-ozott, és így jó lett)
 			} else if ( oldHTML.indexOf('<div class="imp [') == -1 ) {
 				divSpan = "span"
 			} else {
@@ -1977,6 +1977,10 @@ function F_nextMark(jegy){ // következő kérdés nehézségét beállítja,
 	}*/
 }
 
+localStorage.setItem("msb.I.",0)
+localStorage.setItem("msb.II.",0)
+localStorage.setItem("msb.III.",0)
+localStorage.setItem("msb.IV.",0)
 
 var tetelek = []
 function F_tetelChoose(){ // createli a választható tételek listáját
@@ -2076,7 +2080,7 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 
 		if ( localStorage.getItem(button.id) == "true" ) {
 			label.style.backgroundColor = "paleGreen";
-			F_changeTetelCount("1")
+			F_changeTetelCount("1",button)
 		} else {
 			label.style.backgroundColor = "";
 		}
@@ -2662,22 +2666,29 @@ function func_spanClick(button){  // btn_fix, btn_skip, btn_vizsgaskip, btn_repF
 }
 
 
-function F_changeTetelCount(plus){
+function F_changeTetelCount(plus,button){
 	var num = document.getElementById("button_Marks").innerHTML
 	num = Number(num) + Number(plus)
 	document.getElementById("button_Marks").innerHTML = num
+	
+	var parentText = button.parentElement.parentElement
+	parentText = parentText.innerHTML
+	parentText = parentText.slice(parentText.indexOf("<b>")+3,parentText.indexOf("</b>"))
+	num = localStorage.getItem("msb."+parentText)
+	num = Number(num) + Number(plus)
+	localStorage.setItem("msb."+parentText,num)
 }
-
+	
 
 function F_clickTemaButton(button){
 	if ( localStorage.getItem(button.id) == "true" ) {
 		localStorage.setItem(button.id,false)
 		document.getElementById(button.id+"_label").style.backgroundColor = "";
-		F_changeTetelCount("-1")
+		F_changeTetelCount("-1",button)
 	} else {
 		localStorage.setItem(button.id,true)
 		document.getElementById(button.id+"_label").style.backgroundColor= "paleGreen";
-		F_changeTetelCount("1")
+		F_changeTetelCount("1",button)
 	}
 	
 	func_calcOldNew();

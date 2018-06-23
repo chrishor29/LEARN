@@ -54,7 +54,7 @@
 	var howmany = 4 +1
 	for (i = 1; i < howmany; i++) { document.getElementById("elet"+i+"2").value = localStorage.getItem("elettPerc"+i) }
 	function calcValPerc(){
-		document.getElementById("percentX").innerHTML = 1/100/100
+		document.getElementById("percentX").innerHTML = 1/100/100/100
 		for (i = 1; i < howmany; i++) { 
 			var max = document.getElementById("elet"+i+"1").innerHTML
 			max = Number(max)
@@ -70,7 +70,7 @@
 		document.getElementById("percentX").innerHTML = num.toFixed(2)
 		
 		for (i = 1; i < howmany; i++) { 
-			document.getElementById("elet"+i+"4").innerHTML = 1/100/100
+			document.getElementById("elet"+i+"4").innerHTML = 1/100/100/100
 			for (x = 1; x < howmany; x++) { 
 				var max = document.getElementById("elet"+x+"1").innerHTML
 				max = Number(max)
@@ -98,6 +98,13 @@
 			localStorage.setItem("elettPerc"+id,this.value)
 		} 
 	}
+	
+	
+	document.getElementById("elet12").value = localStorage.getItem("msb.I.")
+	document.getElementById("elet22").value = localStorage.getItem("msb.II.")
+	document.getElementById("elet32").value = localStorage.getItem("msb.III.")
+	document.getElementById("elet42").value = localStorage.getItem("msb.IV.")
+	calcValPerc()
 </script>
 
 
