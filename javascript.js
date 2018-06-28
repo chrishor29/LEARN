@@ -1680,6 +1680,19 @@ function F_CreateQDiv() {
 		span.style.paddingBottom = "2px"
 	}
 	F_SpanRepOld()
+	function F_inputTetel() {
+		var input = document.createElement("input")
+		input.id = "input_Tetel"
+		divSettings.appendChild(input)
+		input.type = "number"
+		input.style.width = "40px"
+		
+		input.value = localStorage.getItem("input_Tetel")
+		input.oninput = function(){
+			localStorage.setItem("input_Tetel",this.value)
+		}
+	}
+	F_inputTetel()
 
 	function F_ButtonNextQdiff() {
 		var button = document.createElement("input")
@@ -1697,9 +1710,9 @@ function F_CreateQDiv() {
 		}
 		button.value = " "
 
-		button.style.position = "fixed"
+		/*button.style.position = "fixed"
 		button.style.right = "5px"
-		button.style.top = "50px"
+		button.style.top = "50px"*/
 	}
 	F_ButtonNextQdiff()
 
@@ -1898,7 +1911,7 @@ function func_calcTimeDiff(repCount){
 		}
 	} else {
 		if ( repCount == 0 ) {
-			timeDiff = 100
+			timeDiff = 60
 		} else if ( repCount == 1 ) {
 			timeDiff = 360
 		} else if ( repCount == 2 ) {
@@ -3286,7 +3299,7 @@ function F_nextQ(){
 	}
 
 	// következő kérdés
-	for ( var x=0; x<50; x++ ) { // custom számot írtam, ennél több egynelőre nincs
+	for ( var x=0; x<50; x++ ) { // custom számot írtam, ennél több egyenlőre nincs
 		if ( document.getElementById("td.0."+x) ) { 
 			document.getElementById("td.0."+x).hidden = true 
 			document.getElementById("td.1."+x).hidden = true 
@@ -3409,8 +3422,19 @@ function F_nextQ(){
 
 	averageCV = 0
 	countCV = 0
+	
 	for ( var tetel in tetelek ) {
-		if ( localStorage.getItem(tetel+"_button") == "true" ) {
+		if ( document.getElementById("btn_nextQdiff").style.backgroundColor == "limegreen" ) {
+			var tetelSzam = localStorage.getItem("input_Tetel")
+			if ( tetel.indexOf(tetelSzam+",") == 0 ) {
+				var childs = document.getElementById(tetel).getElementsByTagName("*")
+				for ( var i = 0;   i < childs.length;   i++ ) {
+					if ( childs[i].classList.contains("kerdes") == true ) {
+						func_calcQValue(childs[i].id)
+					}
+				}
+			}
+		} else if ( localStorage.getItem(tetel+"_button") == "true" ) {
 			var childs = document.getElementById(tetel).getElementsByTagName("*")
 			for ( var i = 0;   i < childs.length;   i++ ) {
 				if ( childs[i].classList.contains("kerdes") == true ) {
@@ -3465,7 +3489,7 @@ function F_nextQ(){
 				parent = parent.parentElement
 			}
 			var tetelcim = parent.id
-			tetelcim = tetelcim.slice(tetelcim.indexOf(",")+1)
+			//tetelcim = tetelcim.slice(tetelcim.indexOf(",")+1)
 			if ( Qelem.className.indexOf("if") == -1 ) { 
 				titleText = tetelcim + titleText 
 			} else {
@@ -3633,6 +3657,13 @@ alert('stop2')*/
 					var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
 					// console.log("Qid:"+Qid+" ––– time:"+idopont)
 					document.getElementById("td.2."+i).innerHTML = idopont
+					
+					var diffVizs = 25504215 - Math.floor(date.getTime()/60000)
+					if ( idopont < diffVizs ) {
+						document.getElementById("td.2."+i).style.borderColor = "red"
+					} else {
+						document.getElementById("td.2."+i).style.borderColor = "black"
+					}
 
 					if ( prior == 1 ) {
 						prior = 0.33
