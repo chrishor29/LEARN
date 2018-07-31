@@ -4,11 +4,8 @@
 }*/
 
 /* PROJECT - PROGRESS
- ✖ élettan 8.1 -> gliasejtek img-eit nem tölti be (expQ imgLoad még hibás)
  ✖ olyan opció kéne, hogy van egy tétel, akkor külön osztályozza azt, hogy eszembe jut-e miről kell beszélni, illetve magát azt amiről kell. Pl biológiai jelátvitel kérdésnél ha nemtudom miről kell, de amiről kéne azt tudom, akkor ne kelljen átismételnem az egészet, hanem tudjam, hogy csak az volt a hiba, hogy nemtudtam miről kell bezsélni! --> úgy kéne hogy elsőnek mindenkép megkérdezi, hogy adott tételnél mi kell tudni, majd ha azt megválaszoltam utána az alkérdések közt csak azt kell kifejtenem, ami miatt kidobta a kérdést. Annyi még, hogy az elején az altkérdéseket ne mutassa(osztályzásukat)!
  ✖ androidon mindig a kezdőoldalt töltse be (tehát hiába a questes aloldalon zártam be, ne azt töltse be
- ✖ töröljem localstorage --> majd nyissam meg biokémiát, látható, hogy nem fogja betölteni
- ✖ rep	min	hossz	left	still	average --> impQ-kat nemszámolja bele (1x belekéne)
  ✖ zöldnél azt tudjam beállítani, hogy mennyi idő múlva dobja ki legközelebb (tehát ne csak 60/600/stb., hanem kérdésenként változó lehessen --> de ha nem állítok be semmit, akkor ahogy eddig is, a repeat-nél beállított lesz)
  ✖ impQ-t csak akkor töltse be innerHTML, ha megnyitom (+amikor kidobja questbe)
 	[F_impQs newMethod] 9x gyorsabb mint az [F_impQs oldMethod] --> newMethod-dal töltsem be az összeset az elején: jelenleg azok hiányoznak, melyeket egy impQ-n belül kéne importálni. Azonban csak akkor importálja őket, ha szükség van rá (tehát a felette lévő details-ba még nincs benne) -->próbáltam már, ott is hagytam commentbe(#123#), de nem jön össze, mert baromi lassú
@@ -19,7 +16,8 @@
  ✖: F_impQbegin előtt létrehozott buttonok nem működnek
 
  ✖: autoUpgrade-lje a questet(ha változtattam a szövegét), de legyen lehetőségem megnézni melyeket upgradelte, és azoka közül törtölhessem, ha mégse kellett volna
- 
+ ✖ rep	min	hossz	left	still	average --> impQ-kat nemszámolja bele (1x belekéne)
+
  ✖: JS - download LS crash - FIX -> először találjam meg a hibát, mert nem mindig van: ezt út csináljam, hogy csinálok egy localstorage mappát, amibe lesznek v1 v2 v3 stb almappák.
  
  ✖: vizsgaskip &#10140; ne JS-be, hanem LS-be mentse el
@@ -57,6 +55,7 @@
 */
 
 /* PROJECT - DONE
+ ✔ élettan 8.1 -> gliasejtek img-eit nem tölti be (expQ imgLoad még hibás)
  ✔: js: skipDate / adott tárgy
  ✔: QuantumFirefox Tablet: video click nél csak a control-bar jelenik meg. Szvsz csináljak egy láthatatlan buttont a videóra, amire írok scriptet.
  ✔: importQ-t változtatva, ne kelljen upgradelni azt a Q-t, melyben az importQ mint alkérdés szerepelt
@@ -638,6 +637,8 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 	var diffTime = myTime-oldTime
 	//console.log("– F_impQs BEGIN – " + diffTime)
 	
+	var MISSid = ""
+	
 	var oldHTML = document.documentElement.innerHTML
 	var newHTML = ""
 	
@@ -650,12 +651,26 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 		if ( EXPid.indexOf("-") != -1 ) { EXPid = EXPid.slice(0,EXPid.indexOf("-")) } 
 		var string = localStorage.getItem("hkExpQ."+EXPid)
 		//console.log(EXPid)
-		var LSid = string.slice(0,string.indexOf(" "))
-		Qtxt = localStorage.getItem(LSid)
+		if ( string != null ) {
+			var LSid = string.slice(0,string.indexOf(" "))
+			Qtxt = localStorage.getItem(LSid)
+			
+			// img-et details-ra klikkelve töltse be 
+			//var IMGloc = "../" + string.slice(string.indexOf(" ")+1)
+			//Qtxt = replaceAll(Qtxt, 'data-src="', 'src="'+IMGloc)
 		
-		var IMGloc = string.slice(string.indexOf(" ")+1)
-		//Qtxt = replaceAll(Qtxt, 'data-src="', 'src="'+IMGloc)
-		// img src írja át!!!
+		/*if ( EXPid == "201" ) { 
+			console.log("---") 
+			console.log(EXPid)
+			console.log(string) 
+			console.log(IMGloc) 
+			console.log("---") 
+			console.log(Qtxt) 
+		}*/
+			// img src írja át!!!
+		} else {
+			MISSid = MISSid + EXPid + ","
+		}
 	}
 	
 	var count = 0
@@ -665,13 +680,29 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 			Qtxt = ""
 			var divSpan = ""
 			if ( oldHTML.indexOf('<div class="imp [') > oldHTML.indexOf('<span class="imp [') ) {
-				divSpan = "div" // span volt valamiért és átírtam div-re, de lehet rossz (mert error-ozott, és így jó lett)
+				divSpan = "span" // span volt valamiért és átírtam div-re, de lehet rossz (mert error-ozott, és így jó lett)
 			} else if ( oldHTML.indexOf('<div class="imp [') == -1 ) {
 				divSpan = "span"
 			} else {
 				divSpan = "div"
 				//if ( oldHTML.indexOf('<div class="imp [') == -1 ) { alert(oldHTML.indexOf('<span class="imp [')) }
 			}
+			
+			/*
+			var indexed = oldHTML.indexOf('<hr><details class="open"><summary><strong>ABC-szupercsalád')
+			console.log(oldHTML.indexOf('[210]'))
+			if ( indexed < 500 && indexed != -1 ) {
+				var sajt = oldHTML.indexOf('49 típusuk van')
+				console.log('---------------')
+				console.log(oldHTML.indexOf('<div class="imp ['))
+				console.log(oldHTML.indexOf('<span class="imp ['))
+				//alert("stop SOROS")
+				//var impBlock = oldHTML.slice(oldHTML.indexOf('<'+divSpan+' class="imp ['))
+				//console.log(impBlock)
+				console.log('---------------')
+			}
+			*/
+			
 			var impBlock = oldHTML.slice(oldHTML.indexOf('<'+divSpan+' class="imp ['))
 			newHTML = newHTML + oldHTML.slice(0,oldHTML.indexOf('<'+divSpan+' class="imp ['))
 			oldHTML = oldHTML.slice(oldHTML.indexOf('<'+divSpan+' class="imp ['))
@@ -765,6 +796,8 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 		while ( oldHTML.indexOf(' class="imp [') != -1 )
 	}
 	document.documentElement.innerHTML = newHTML + oldHTML
+	
+	if ( MISSid != "" ) { alert("Az alábbi EXPid-k még nincsenek LS-be reigsztrálva: "+MISSid + "\nNyisd meg a tárgyválasztás ablaknál az adott tárgyhoz kapcsolódó egyéb tárgy(ak)at egyszer --> pl. Biokémia II esetén nyisd meg Biokémia I, Élettan, Molekuláris Sejtbiológia") }
 	
 	F_getTime()
 	var endTime = myTime-oldTime-diffTime
@@ -874,7 +907,7 @@ function F_impQs(impek){ // 11ms/Q a betöltési ideje
 	var diffTime = myTime-oldTime
 	console.log("– F_impQs END – " + diffTime)*/
 }
-F_impQs(document.getElementsByClassName("imp")) //erre elvileg nincs mát szükség
+//F_impQs(document.getElementsByClassName("imp")) //erre elvileg nincs mát szükség
 
 
 function F_DivSkip() {
@@ -1019,15 +1052,18 @@ var F_seekBar = window.setInterval(function(){
 }, 1000);
 
 
-
+// ha ráklikkelek egy details-ra, akkor nézze meg a child elementeket, amelyek [impQ]-k (div vagy span), azoknál töltse be az image-ket
 function F_loadExpImg(EXPid,imgX){
 	var string = localStorage.getItem("hkExpQ."+EXPid)
 	var LSid = string.slice(0,string.indexOf(" "))
 	var IMGloc = string.slice(string.indexOf(" ")+1)
 	imgX.src = htmlLEARNloc + IMGloc + imgX.dataset.src
+		/*console.log(EXPid)
+		console.log(imgX.src)
+		console.log("- - -")*/
 	imgX.removeAttribute("data-src")
 }
-function F_loadImgX(detElem,imgX){
+/*function F_loadImgX(detElem,imgX){
 	var IMGelem = imgX
 	var parent = imgX
 	
@@ -1047,6 +1083,7 @@ function F_loadImgX(detElem,imgX){
 		var begin = parent.className.indexOf("[")
 		var end = parent.className.indexOf("]")
 		var EXPid = parent.className.slice(begin+1,end)
+		//alert(EXPid)
 		F_loadExpImg(EXPid,imgX)
 	} else if ( parent == detElem ) {
 		if ( parent.className.indexOf("{") > -1 ) {
@@ -1060,8 +1097,21 @@ function F_loadImgX(detElem,imgX){
 			imgX.removeAttribute("data-src")
 		}
 	}
+}*/
+function F_loadImgX(detElem,imgX){
+	var IMGelem = imgX
+	var parent = imgX
+	do { // megkeresi az első details-t, így nem tölti be az összeset, ha ráklikkelnél az egyik tételre (lassú lenne)
+		IMGelem = parent
+		parent = parent.parentElement
+	} while ( parent.className.indexOf("[") == -1 && parent.tagName != "DETAILS" && parent.tagName != "BODY" )
+	if ( parent == detElem || parent.tagName == "BODY" ) {
+		imgX.src = "images/" + imgX.dataset.src
+		imgX.removeAttribute("data-src")
+	}
 }
 function F_loadImgVideo(detElem,e){
+	// impQ img-ek
 	var imgs = detElem.getElementsByTagName("img")
 	for ( var x=0; x<imgs.length; x++ ) {
 		if ( imgs[x].dataset.src ) {
@@ -1069,6 +1119,22 @@ function F_loadImgVideo(detElem,e){
 		}
 	}
 	func_abbrSet(detElem)
+	
+	// impQ img-ek
+	var imps = detElem.getElementsByClassName("imp")
+	for ( var x=0; x<imps.length; x++ ) {
+		var elem = imps[x]
+		var begin = elem.className.indexOf("[")
+		var end = elem.className.indexOf("]")
+		var EXPid = elem.className.slice(begin+1,end)
+		//alert(EXPid)
+		var imgs = elem.getElementsByTagName("img")
+		for ( var i=0; i<imgs.length; i++ ) {
+			if ( imgs[i].dataset.src ) {
+				F_loadExpImg(EXPid,imgs[i])
+			}
+		}
+	}
 	
 	// Youtube Video Load
 	var allYoutube = detElem.getElementsByTagName("iframe") // csak azokat kéne amik direktbe a childjei!!! (különben többit is betölti)
@@ -1911,9 +1977,9 @@ function func_calcTimeDiff(repCount){
 		}
 	} else {
 		if ( repCount == 0 ) {
-			timeDiff = 60
+			timeDiff = 30
 		} else if ( repCount == 1 ) {
-			timeDiff = 360
+			timeDiff = 60
 		} else if ( repCount == 2 ) {
 			timeDiff = 1000
 		} else if ( repCount == 3 ) {
