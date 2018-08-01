@@ -8,22 +8,21 @@ copy C:\Kristof\MIRROR\LEARN\targyvalasztas.html C:\Users\chrishor\Desktop\LEARN
 
 
 
-robocopy C:\Kristof\MIRROR\LEARN\done\II\images C:\Users\chrishor\Desktop\SZEMESZTER\done\II\images /mir
-copy C:\Kristof\MIRROR\LEARN\done\II\expqs.html C:\Users\chrishor\Desktop\SZEMESZTER\done\II\expqs.html
-copy C:\Kristof\MIRROR\LEARN\done\II\style.css C:\Users\chrishor\Desktop\SZEMESZTER\done\II\style.css 
-copy C:\Kristof\MIRROR\LEARN\done\II\javascript.js C:\Users\chrishor\Desktop\SZEMESZTER\done\II\javascript.js
+robocopy C:\Kristof\MIRROR\LEARN\done\II\images C:\Users\chrishor\Desktop\LEARN\done\II\images /mir
+copy C:\Kristof\MIRROR\LEARN\done\II\expqs.html C:\Users\chrishor\Desktop\LEARN\done\II\expqs.html
+copy C:\Kristof\MIRROR\LEARN\done\II\style.css C:\Users\chrishor\Desktop\LEARN\done\II\style.css 
+copy C:\Kristof\MIRROR\LEARN\done\II\javascript.js C:\Users\chrishor\Desktop\LEARN\done\II\javascript.js
 
 
 
-robocopy C:\Kristof\MIRROR\LEARN\done\ANAT\images C:\Users\chrishor\Desktop\SZEMESZTER\done\ANAT\images /mir
-robocopy C:\Kristof\MIRROR\LEARN\done\ANAT\3D C:\Users\chrishor\Desktop\SZEMESZTER\done\ANAT\3D /mir
-copy C:\Kristof\MIRROR\LEARN\done\ANAT\anat.html C:\Users\chrishor\Desktop\SZEMESZTER\done\ANAT\anat.html
+robocopy C:\Kristof\MIRROR\LEARN\done\ANAT\images C:\Users\chrishor\Desktop\LEARN\done\ANAT\images /mir
+copy C:\Kristof\MIRROR\LEARN\done\ANAT\anat.html C:\Users\chrishor\Desktop\LEARN\done\ANAT\anat.html
 
-robocopy C:\Kristof\MIRROR\LEARN\done\ANAT\Histology\images C:\Users\chrishor\Desktop\SZEMESZTER\done\ANAT\Histology\images /mir
-copy C:\Kristof\MIRROR\LEARN\done\ANAT\Histology\histo.html C:\Users\chrishor\Desktop\SZEMESZTER\done\ANAT\Histology\histo.html
+robocopy C:\Kristof\MIRROR\LEARN\done\ANAT\Histology\images C:\Users\chrishor\Desktop\LEARN\done\ANAT\Histology\images /mir
+copy C:\Kristof\MIRROR\LEARN\done\ANAT\Histology\histo.html C:\Users\chrishor\Desktop\LEARN\done\ANAT\Histology\histo.html
 
-robocopy C:\Kristof\MIRROR\LEARN\done\ANAT\Fejlodestan\images C:\Users\chrishor\Desktop\SZEMESZTER\done\ANAT\Fejlodestan\images /mir
-copy C:\Kristof\MIRROR\LEARN\done\ANAT\Fejlodestan\embrio.html C:\Users\chrishor\Desktop\SZEMESZTER\done\ANAT\Fejlodestan\embrio.html
+robocopy C:\Kristof\MIRROR\LEARN\done\ANAT\Fejlodestan\images C:\Users\chrishor\Desktop\LEARN\done\ANAT\Fejlodestan\images /mir
+copy C:\Kristof\MIRROR\LEARN\done\ANAT\Fejlodestan\embrio.html C:\Users\chrishor\Desktop\LEARN\done\ANAT\Fejlodestan\embrio.html
 
 
 robocopy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\images C:\Users\chrishor\Desktop\LEARN\done\Orvosi_Biologia\images /mir
