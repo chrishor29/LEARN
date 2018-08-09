@@ -54,7 +54,7 @@ copy C:\Kristof\MIRROR\LEARN\done\BioKemia\III\biokemia_III.html C:\Users\chrish
 copy C:\Kristof\MIRROR\LEARN\done\BioKemia\III\biokemia.html C:\Users\chrishor\Desktop\LEARN\done\BioKemia\III\biokemia.html 
 copy C:\Kristof\MIRROR\LEARN\done\BioKemia\III\favicon.bmp C:\Users\chrishor\Desktop\LEARN\done\BioKemia\III\favicon.bmp
 
-robocopy C:\Kristof\MIRROR\LEARN\done\SejtBiosz\images C:\Users\chrishor\Desktop\LEARN\done\SejtBiosz\images /mir
+::robocopy C:\Kristof\MIRROR\LEARN\done\SejtBiosz\images C:\Users\chrishor\Desktop\LEARN\done\SejtBiosz\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\SejtBiosz\sejtbiosz1.html C:\Users\chrishor\Desktop\LEARN\done\SejtBiosz\sejtbiosz1.html
 copy C:\Kristof\MIRROR\LEARN\done\SejtBiosz\sejtbiosz2.html C:\Users\chrishor\Desktop\LEARN\done\SejtBiosz\sejtbiosz2.html
 copy C:\Kristof\MIRROR\LEARN\done\SejtBiosz\favicon.bmp C:\Users\chrishor\Desktop\LEARN\done\SejtBiosz\favicon.bmp
