@@ -1,4 +1,4 @@
-﻿
+﻿// ●○■●○■●○■●○■
 
 /*window.onerror = function(msg, url, linenumber) {
 	alert('Error message: '+msg+'\nLine Number: '+linenumber);
@@ -826,6 +826,16 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 //	*/						alert("start")
 //	*/						console.log(Qtxt.slice(Qtxt.indexOf('<',startP-5),Qtxt.indexOf('>',startP)+1))
 //	*/						console.log(oldTXT.slice(1,4))
+							if ( oldTXT.indexOf("hide") != -1 ) {
+								var title = newTXT
+								title = title.slice(0,title.indexOf('</summary>'))
+								title = title.slice(title.indexOf('<summary'))
+								title = title.slice(title.indexOf('>')+1)
+								title = "<strong>"+title+"</strong>"
+								newTXT = newTXT.replace('<ul class="normal">', '<ul class="normal">'+title);
+
+								newTXT = newTXT.replace(/kerdes/g, "");
+							}
 							if ( oldTXT.slice(1,4) == "div" ) {
 								newTXT = newTXT.slice(newTXT.indexOf('<ul class="normal">')+19)
 								newTXT = newTXT.slice(0,-15)
@@ -1218,7 +1228,8 @@ function F_loadImgVideo(detElem,e){
 			allVideo[i].removeAttribute("data-src")
 			allVideo[i].appendChild(source)
 			allVideo[i].style.maxWidth = "98%"
-			allVideo[i].muted = true;
+			allVideo[i].style.borderColor = "red"
+			//allVideo[i].muted = true;
 			
 		// controlBar fix!
 			allVideo[i].onclick = function(){
@@ -1239,7 +1250,7 @@ function F_loadImgVideo(detElem,e){
 				}
 				
 				if ( this.paused == false ) {
-					this.style.borderColor = "black"
+					this.style.borderColor = "red"
 					
 					var widthPx = this.offsetWidth *this.currentTime /this.duration
 					var parentDiv = this.parentElement
@@ -1398,7 +1409,6 @@ function F_toggleAll() {
 		F_checkImpQs()
 		F_oldQcheck()
 		F_tetelChoose()
-		//F_altetelID()
 		F_sortQuests()
 		func_tableSkipFix()
 		F_valFix()
@@ -2026,7 +2036,7 @@ F_CreateQDiv()
 function func_calcTimeDiff(repCount){
 	if ( document.title == "Anat" ) {
 		if ( repCount == 0 ) {
-			timeDiff = 30
+			timeDiff = 45
 		} else if ( repCount == 1 ) {
 			timeDiff = 60
 		} else if ( repCount == 2 ) {
@@ -2259,19 +2269,21 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 		}
 	}
 	//console.log(document.getElementById("Div_Tetelek").innerHTML)
+	
+	function F_altetelID(){ // ezt is tegyem majd be 'func_tetelChooseba'
+		var Table = document.getElementsByClassName("title")
+		for ( var i = 0;   i < Table.length;   i++ ) {
+			Table[i].parentElement.className = "altetel"
+			var altetelID = i + "," + Table[i].innerHTML
+			Table[i].parentElement.id = altetelID
+			var tetelID = Table[i].parentElement.parentElement.id
+			//console.log(Table[i].innerHTML)
+			tetelek[tetelID][altetelID] = []
+		}
+	}
+	F_altetelID()
 }
 
-function F_altetelID(){ // ezt is tegyem majd be 'func_tetelChooseba'
-	var Table = document.getElementsByClassName("title")
-	for ( var i = 0;   i < Table.length;   i++ ) {
-		Table[i].parentElement.className = "altetel"
-		var altetelID = i + "," + Table[i].innerHTML
-		Table[i].parentElement.id = altetelID
-		var tetelID = Table[i].parentElement.parentElement.id
-		console.log(Table[i].innerHTML)
-		tetelek[tetelID][altetelID] = []
-	}
-}
 
 function F_sortQuests(){ // felmegy tételig, ha volt közben altétel is, akkor abba teszi
 	//console.clear()
@@ -2279,14 +2291,14 @@ function F_sortQuests(){ // felmegy tételig, ha volt közben altétel is, akkor
 	//console.log(": "+Qcount)
 	//alert("stop")
 	for ( i=0;  i<Qcount;  i++ ) {
-		//console.clear()
 		var Qid = i +1
 		Qid = "Q."+Qid
 		var parent = document.getElementById(Qid)
 
-		//var Qtxt = arrQid[Qid]
-		//console.log("Qid: "+Qid)
-		//console.log("Qtxt: "+kerdesek[i].innerHTML)
+		/*console.clear()
+		var Qtxt = arrQid[Qid]
+		console.log("Qid: "+Qid)
+		console.log("Qtxt: "+kerdesek[i].innerHTML)*/
 
 		do {
 			parent = parent.parentElement
@@ -3448,7 +3460,7 @@ function F_nextQ(){
 	QlocElem.innerHTML = ""
 
 	// következő kérdés
-	for ( var x=0; x<50; x++ ) { // custom számot írtam, ennél több egyenlőre nincs
+	for ( var x=0; x<50; x++ ) { // custom számot írtam, ennél több egyenlőre nincs (egy változó kéne helyette, ami az eddigi max)
 		if ( document.getElementById("td.0."+x) ) { 
 			document.getElementById("td.0."+x).hidden = true 
 			document.getElementById("td.1."+x).hidden = true 
