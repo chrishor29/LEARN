@@ -1751,6 +1751,27 @@ function F_CreateQDiv() {
 		MainFrame.appendChild(div)
 	}
 	F_ButtonTABS()
+	function F_ButtonNextQdiff() {
+		var button = document.createElement("input")
+		button.id = "btn_nextQdiff"
+		button.type = "button"
+		divSettings.appendChild(button)
+		button.style.backgroundColor = "coral"
+
+		button.onclick = function(){ 
+			if ( this.style.backgroundColor != "limegreen" ) {
+				this.style.backgroundColor = "limegreen"
+			} else {
+				this.style.backgroundColor = "coral"
+			}
+		}
+		button.value = " "
+
+		/*button.style.position = "fixed"
+		button.style.right = "5px"
+		button.style.top = "50px"*/
+	}
+	F_ButtonNextQdiff()
 
 	var br = document.createElement("br")
 	divSettings.appendChild(br)
@@ -1830,27 +1851,6 @@ function F_CreateQDiv() {
 	}
 	F_inputTetel()
 
-	function F_ButtonNextQdiff() {
-		var button = document.createElement("input")
-		button.id = "btn_nextQdiff"
-		button.type = "button"
-		divSettings.appendChild(button)
-		button.style.backgroundColor = "coral"
-
-		button.onclick = function(){ 
-			if ( this.style.backgroundColor != "limegreen" ) {
-				this.style.backgroundColor = "limegreen"
-			} else {
-				this.style.backgroundColor = "coral"
-			}
-		}
-		button.value = " "
-
-		/*button.style.position = "fixed"
-		button.style.right = "5px"
-		button.style.top = "50px"*/
-	}
-	F_ButtonNextQdiff()
 
 
 	function F_DivQLoc() {
