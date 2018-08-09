@@ -6,24 +6,17 @@ copy C:\Kristof\MIRROR\LEARN\targyvalasztas.html C:\Users\chrishor\Desktop\LEARN
 
 
 
-
-
 robocopy C:\Kristof\MIRROR\LEARN\done\II\images C:\Users\chrishor\Desktop\LEARN\done\II\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\II\expqs.html C:\Users\chrishor\Desktop\LEARN\done\II\expqs.html
 copy C:\Kristof\MIRROR\LEARN\done\II\style.css C:\Users\chrishor\Desktop\LEARN\done\II\style.css 
 copy C:\Kristof\MIRROR\LEARN\done\II\javascript.js C:\Users\chrishor\Desktop\LEARN\done\II\javascript.js
 
-
-
-robocopy C:\Kristof\MIRROR\LEARN\done\ANAT\images C:\Users\chrishor\Desktop\LEARN\done\ANAT\images /mir
+::robocopy C:\Kristof\MIRROR\LEARN\done\ANAT\images C:\Users\chrishor\Desktop\LEARN\done\ANAT\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\ANAT\anat.html C:\Users\chrishor\Desktop\LEARN\done\ANAT\anat.html
-
-robocopy C:\Kristof\MIRROR\LEARN\done\ANAT\Histology\images C:\Users\chrishor\Desktop\LEARN\done\ANAT\Histology\images /mir
+::robocopy C:\Kristof\MIRROR\LEARN\done\ANAT\Histology\images C:\Users\chrishor\Desktop\LEARN\done\ANAT\Histology\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\ANAT\Histology\histo.html C:\Users\chrishor\Desktop\LEARN\done\ANAT\Histology\histo.html
-
-robocopy C:\Kristof\MIRROR\LEARN\done\ANAT\Fejlodestan\images C:\Users\chrishor\Desktop\LEARN\done\ANAT\Fejlodestan\images /mir
+::robocopy C:\Kristof\MIRROR\LEARN\done\ANAT\Fejlodestan\images C:\Users\chrishor\Desktop\LEARN\done\ANAT\Fejlodestan\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\ANAT\Fejlodestan\embrio.html C:\Users\chrishor\Desktop\LEARN\done\ANAT\Fejlodestan\embrio.html
-
 
 robocopy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\images C:\Users\chrishor\Desktop\LEARN\done\Orvosi_Biologia\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\ob.html C:\Users\chrishor\Desktop\LEARN\done\Orvosi_Biologia\ob.html
@@ -47,7 +40,6 @@ copy C:\Kristof\MIRROR\LEARN\done\BioFizika\bifiz.html C:\Users\chrishor\Desktop
 copy C:\Kristof\MIRROR\LEARN\done\BioFizika\favicon.bmp C:\Users\chrishor\Desktop\LEARN\done\BioFizika\favicon.bmp
 copy C:\Kristof\MIRROR\LEARN\done\BioFizika\style.css C:\Users\chrishor\Desktop\LEARN\done\BioFizika\style.css
 
-
 robocopy C:\Kristof\MIRROR\LEARN\done\BioKemia\I\images C:\Users\chrishor\Desktop\LEARN\done\BioKemia\I\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\BioKemia\I\biokemia_I.html C:\Users\chrishor\Desktop\LEARN\done\BioKemia\I\biokemia_I.html 
 copy C:\Kristof\MIRROR\LEARN\done\BioKemia\I\favicon.bmp C:\Users\chrishor\Desktop\LEARN\done\BioKemia\I\favicon.bmp
@@ -62,8 +54,6 @@ copy C:\Kristof\MIRROR\LEARN\done\BioKemia\III\biokemia_III.html C:\Users\chrish
 copy C:\Kristof\MIRROR\LEARN\done\BioKemia\III\biokemia.html C:\Users\chrishor\Desktop\LEARN\done\BioKemia\III\biokemia.html 
 copy C:\Kristof\MIRROR\LEARN\done\BioKemia\III\favicon.bmp C:\Users\chrishor\Desktop\LEARN\done\BioKemia\III\favicon.bmp
 
-
-
 robocopy C:\Kristof\MIRROR\LEARN\done\SejtBiosz\images C:\Users\chrishor\Desktop\LEARN\done\SejtBiosz\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\SejtBiosz\sejtbiosz1.html C:\Users\chrishor\Desktop\LEARN\done\SejtBiosz\sejtbiosz1.html
 copy C:\Kristof\MIRROR\LEARN\done\SejtBiosz\sejtbiosz2.html C:\Users\chrishor\Desktop\LEARN\done\SejtBiosz\sejtbiosz2.html
@@ -76,9 +66,6 @@ robocopy C:\Kristof\MIRROR\LEARN\done\Elettan\images C:\Users\chrishor\Desktop\L
 copy C:\Kristof\MIRROR\LEARN\done\Elettan\elettan1.html C:\Users\chrishor\Desktop\LEARN\done\Elettan\elettan1.html 
 copy C:\Kristof\MIRROR\LEARN\done\Elettan\elettan1_old.html C:\Users\chrishor\Desktop\LEARN\done\Elettan\elettan_old.html
 copy C:\Kristof\MIRROR\LEARN\done\Elettan\elettan2.html C:\Users\chrishor\Desktop\LEARN\done\Elettan\elettan2.html 
-
-robocopy C:\Kristof\MIRROR\LEARN\done\II\images C:\Users\chrishor\Desktop\LEARN\done\II\images /mir
-copy C:\Kristof\MIRROR\LEARN\done\II\expqs.html C:\Users\chrishor\Desktop\LEARN\done\II\expqs.html
 
 
 
