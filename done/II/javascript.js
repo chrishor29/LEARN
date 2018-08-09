@@ -3843,8 +3843,11 @@ alert('stop2')*/
 					// console.log("Qid:"+Qid+" ––– time:"+idopont)
 					document.getElementById("td.2."+i).innerHTML = idopont
 					
-					var diffVizs = 25504215 - Math.floor(date.getTime()/60000)
-					if ( idopont < diffVizs ) {
+					var date = new Date();
+					var remain = Math.floor(date.getTime()/3600000)
+					remain = localStorage.getItem("vizsgaSkip") - remain
+					remain = remain*60
+					if ( idopont < remain ) {
 						document.getElementById("td.2."+i).style.borderColor = "red"
 					} else {
 						document.getElementById("td.2."+i).style.borderColor = "black"
@@ -3955,6 +3958,9 @@ alert(actLSid)*/
 		var LSid = "hkQ." + document.getElementById("span_actualLSid").textContent
 //alert(LSid)
 		
+		var date = new Date();
+		var remain = Math.floor(date.getTime()/3600000)
+		remain = localStorage.getItem("vizsgaSkip") - remain
 		
 		/* erre akkor van szükség, ha legfelül nem kérdés van (tehát a legfelül lévő details nem kérdés, csak egy összegző details, pl. élettan ozmózis), ugyanis annak nincs LSid elmentve, így nemtudok note-t menteni neki (persze optimálisabb lenne, ha itt is a legfelsőhöz lenne csatolva, de egyenlőre kihagyom mert nem bonyolítom, és LowPrior)
 		var pQtxt = arrQid[priorQid]
