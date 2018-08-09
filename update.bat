@@ -58,7 +58,6 @@ copy C:\Kristof\MIRROR\LEARN\done\SejtBiosz\sejtbiosz1.html C:\Users\chrishor\De
 copy C:\Kristof\MIRROR\LEARN\done\SejtBiosz\sejtbiosz2.html C:\Users\chrishor\Desktop\LEARN\done\SejtBiosz\sejtbiosz2.html
 copy C:\Kristof\MIRROR\LEARN\done\SejtBiosz\favicon.bmp C:\Users\chrishor\Desktop\LEARN\done\SejtBiosz\favicon.bmp
 
-robocopy C:\Kristof\MIRROR\LEARN\done\ModMem\images C:\Users\chrishor\Desktop\LEARN\done\ModMem\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\ModMem\ModMem.html C:\Users\chrishor\Desktop\LEARN\done\ModMem\ModMem.html 
 
 
