@@ -5,6 +5,9 @@
 }*/
 
 /* PROJECT - PROGRESS
+ ✖ prior alapból 3 legyen, csak akkor kelljen leírni, ha más
+ ✖ Qtxt-t ne mentse el, csak expQ.html-nél. Csak a QuestCímet mentse el + hogy hány betűből állt (commentbe). Azonban ha van még egy azonos nevű quest, akkor mentse el mindegyik Qtxt-ét --> hogy tudjam upgradelni. (ezekből nincs sok, így nem lesz gond)
+ ✖ nextQ-ra kattintva gyorsan dobja a következőt (nézzem meg, miért szaggat)
  ✖ olyan opció kéne, hogy van egy tétel, akkor külön osztályozza azt, hogy eszembe jut-e miről kell beszélni, illetve magát azt amiről kell. Pl biológiai jelátvitel kérdésnél ha nemtudom miről kell, de amiről kéne azt tudom, akkor ne kelljen átismételnem az egészet, hanem tudjam, hogy csak az volt a hiba, hogy nemtudtam miről kell bezsélni! --> úgy kéne hogy elsőnek mindenkép megkérdezi, hogy adott tételnél mi kell tudni, majd ha azt megválaszoltam utána az alkérdések közt csak azt kell kifejtenem, ami miatt kidobta a kérdést. Annyi még, hogy az elején az altkérdéseket ne mutassa(osztályzásukat)!
  ✖ androidon mindig a kezdőoldalt töltse be (tehát hiába a questes aloldalon zártam be, ne azt töltse be
  ✖ zöldnél azt tudjam beállítani, hogy mennyi idő múlva dobja ki legközelebb (tehát ne csak 60/600/stb., hanem kérdésenként változó lehessen --> de ha nem állítok be semmit, akkor ahogy eddig is, a repeat-nél beállított lesz)
@@ -186,6 +189,20 @@ function func_abbrSet(elem){
 					this.style.cursor = ""
 					this.style.backgroundColor = "";
 					this.parentElement.style.visibility = "visible"
+				}
+			}
+		}
+		if ( abbrSpan[j].className == "abbrX" ) {
+			abbrSpan[j].style.cursor = "pointer"
+			if ( !abbrSpan[j].Text ) {
+				abbrSpan[j].style.opacity = "0"
+				abbrSpan[j].style.backgroundColor = "Bisque";
+			}
+			abbrSpan[j].onclick = function(){
+				if ( this.style.opacity != "1" ) { 
+					this.style.cursor = ""
+					this.style.backgroundColor = "";
+					this.style.opacity = "1"
 				}
 			}
 		}
@@ -509,9 +526,9 @@ function F_oldQchange(oldLSid){
 	}
 	if ( arrNEWtxt.length == 1 ) { 
 		document.getElementById("select_replaceQ").value = 1 
-		// itt valami autoupgrage kéne, ha megegyezik nagyjából, így gyorsabb (ha feltétel azért szükséges, mert sajna azis lehet, hogy két ugyanolyan nevű kveszt volt, és egyiknek megváltoztattam a nevét, erre a másikra akarja felupgradelni)
+		// itt valami autoupgrage kéne, ha megegyezik nagyjából, így gyorsabb (ha feltétel azért szükséges, mert sajna azis lehet, hogy két ugyanolyan nevű kveszt volt, és egyiknek megváltoztattam a nevét, erre a másikra akarja felupgradelni) --> ha két azonos nevű Q van, jelezze őket oldal betöltésnél már, és tána írok commentbe mögé egy v1/2/3 stb.-t
 	} else {
-		alert("stop")
+		// alert("stop")
 	}
 	
 	document.getElementById("select_replaceQ").onchange = function() {
@@ -1125,14 +1142,14 @@ var F_seekBar = window.setInterval(function(){
 
 // ha ráklikkelek egy details-ra, akkor nézze meg a child elementeket, amelyek [impQ]-k (div vagy span), azoknál töltse be az image-ket
 function F_loadExpImg(EXPid,imgX){
-	var string = localStorage.getItem("hkExpQ."+EXPid)
-	var LSid = string.slice(0,string.indexOf(" "))
-	var IMGloc = string.slice(string.indexOf(" ")+1)
-	imgX.src = htmlLEARNloc + IMGloc + imgX.dataset.src
-		/*console.log(EXPid)
-		console.log(imgX.src)
-		console.log("- - -")*/
-	imgX.removeAttribute("data-src")
+	if ( imgX.dataset.src && imgX.offsetParent != null ) {
+		var string = localStorage.getItem("hkExpQ."+EXPid)
+		var LSid = string.slice(0,string.indexOf(" "))
+		var IMGloc = string.slice(string.indexOf(" ")+1)
+		imgX.src = htmlLEARNloc + IMGloc + imgX.dataset.src
+		imgX.removeAttribute("data-src")
+		//console.log(imgX.offsetParent+" -EXPid:"+EXPid+"- "+imgX.dataset.src+" - "+imgX.src)
+	}
 }
 /*function F_loadImgX(detElem,imgX){
 	var IMGelem = imgX
@@ -1173,10 +1190,22 @@ function F_loadImgX(imgX){
 	if ( imgX.dataset.src && imgX.offsetParent != null ) {
 		imgX.src = "images/" + imgX.dataset.src
 		imgX.removeAttribute("data-src")
-		//console.log(imgs[x].offsetParent+" "+imgs[x].src)
+		//console.log(imgX.offsetParent+" - "+imgX.dataset.src+" - "+imgX.src)
 	}
 }
 function F_loadImgVideo(detElem,e){
+	//console.clear()
+	//console.log(detElem.innerHTML)
+	if ( detElem.className.indexOf("{") != -1 ) {
+		var begin = detElem.className.indexOf("{")
+		var end = detElem.className.indexOf("}")
+		var EXPid = detElem.className.slice(begin+1,end)
+		var imgs = detElem.getElementsByTagName("img")
+		for ( var i=0; i<imgs.length; i++ ) {
+			F_loadExpImg(EXPid,imgs[i])
+		}
+	}
+	
 	// impQ img-ek
 	var imgs = detElem.getElementsByTagName("img")
 	for ( var x=0; x<imgs.length; x++ ) {
@@ -1191,7 +1220,6 @@ function F_loadImgVideo(detElem,e){
 		var begin = elem.className.indexOf("[")
 		var end = elem.className.indexOf("]")
 		var EXPid = elem.className.slice(begin+1,end)
-		//alert(EXPid)
 		var imgs = elem.getElementsByTagName("img")
 		for ( var i=0; i<imgs.length; i++ ) {
 			if ( imgs[i].dataset.src ) {
@@ -1297,6 +1325,8 @@ function F_loadImgVideo(detElem,e){
 			};
 		}
 	}
+	
+	//alert(detElem.innerHTML)
 	if ( e ) { e.stopPropagation() }
 }
 function F_imgLoad(){ // VIDEOt is itt tölti be!
@@ -1575,7 +1605,6 @@ function F_CreateQDiv() {
 		span.style.overflow = "auto"
 	}
 	F_SpanQid()
-
 	function F_ButtonMarks() {
 		var button = document.createElement("button")
 		button.style.border = "3px solid black"
@@ -1629,6 +1658,27 @@ function F_CreateQDiv() {
 		}
 	}
 	F_ButtonMarks()
+	function F_ButtonNextQdiff() {
+		var button = document.createElement("input")
+		button.id = "btn_nextQdiff"
+		button.type = "button"
+		divSettings.appendChild(button)
+		button.style.backgroundColor = "coral"
+
+		button.onclick = function(){ 
+			if ( this.style.backgroundColor != "limegreen" ) {
+				this.style.backgroundColor = "limegreen"
+			} else {
+				this.style.backgroundColor = "coral"
+			}
+		}
+		button.value = " "
+
+		/*button.style.position = "fixed"
+		button.style.right = "5px"
+		button.style.top = "50px"*/
+	}
+	F_ButtonNextQdiff()
 
 	function F_DivAlertEXPQrosszNum() {
 		var div = document.createElement("div")
@@ -1751,27 +1801,6 @@ function F_CreateQDiv() {
 		MainFrame.appendChild(div)
 	}
 	F_ButtonTABS()
-	function F_ButtonNextQdiff() {
-		var button = document.createElement("input")
-		button.id = "btn_nextQdiff"
-		button.type = "button"
-		divSettings.appendChild(button)
-		button.style.backgroundColor = "coral"
-
-		button.onclick = function(){ 
-			if ( this.style.backgroundColor != "limegreen" ) {
-				this.style.backgroundColor = "limegreen"
-			} else {
-				this.style.backgroundColor = "coral"
-			}
-		}
-		button.value = " "
-
-		/*button.style.position = "fixed"
-		button.style.right = "5px"
-		button.style.top = "50px"*/
-	}
-	F_ButtonNextQdiff()
 
 	var br = document.createElement("br")
 	divSettings.appendChild(br)
@@ -2034,34 +2063,18 @@ F_CreateQDiv()
 
 // –––– –––– –––– –––– –––– –––– –––– –––– –––– ––––
 function func_calcTimeDiff(repCount){
-	if ( document.title == "Anat" ) {
-		if ( repCount == 0 ) {
-			timeDiff = 45
-		} else if ( repCount == 1 ) {
-			timeDiff = 60
-		} else if ( repCount == 2 ) {
-			timeDiff = 800
-		} else if ( repCount == 3 ) {
-			timeDiff = 3500
-		} else if ( repCount == 4 ) {
-			timeDiff = 5000
-		} else if ( repCount == 5 ) {
-			timeDiff = 7000
-		}
-	} else {
-		if ( repCount == 0 ) {
-			timeDiff = 30
-		} else if ( repCount == 1 ) {
-			timeDiff = 60
-		} else if ( repCount == 2 ) {
-			timeDiff = 1000
-		} else if ( repCount == 3 ) {
-			timeDiff = 1500
-		} else if ( repCount == 4 ) {
-			timeDiff = 2000
-		} else if ( repCount == 5 ) {
-			timeDiff = 3000
-		}
+	if ( repCount == 0 ) {
+		timeDiff = 45
+	} else if ( repCount == 1 ) {
+		timeDiff = 60
+	} else if ( repCount == 2 ) {
+		timeDiff = 800
+	} else if ( repCount == 3 ) {
+		timeDiff = 3500
+	} else if ( repCount == 4 ) {
+		timeDiff = 5000
+	} else if ( repCount == 5 ) {
+		timeDiff = 7000
 	}
 }
 var vizsgaTime = Number(localStorage.getItem("vizsgaSkip"))*60
@@ -3230,17 +3243,35 @@ function getItem(key){
 	}
 }
 function func_saveLS() {
-	var objects = {};
 	var text = ""
-	for (var i = 0, len = localStorage.length; i < len; i++) {
-		objects[localStorage.key(i)] = getItem(localStorage.key(i));
+	
+	F_getTime()
+	var diffTime = myTime-oldTime
+	console.log("– download BEGIN – " + diffTime)
+	var lsLength = localStorage.length
+	lsLength = lsLength*2/3
+	lsLength = Math.floor(lsLength)
+	var i = 0
+	for ( i=0; i<lsLength; i++ ) {
 		text = text + localStorage.key(i) + " = " + getItem(localStorage.key(i)) + " NEXTONE "
 	}
+	F_getTime()
+	var diffTime = myTime-oldTime
+	console.log("– download END v1 – " + diffTime)
+	for ( i=lsLength; i<localStorage.length; i++ ) {
+		text = text + localStorage.key(i) + " = " + getItem(localStorage.key(i)) + " NEXTONE "
+	}
+	F_getTime()
+	var diffTime = myTime-oldTime
+	console.log("– download END v2 – " + diffTime)
+	
 	var count = localStorage.getItem("lsCount")
 	count = Number(count) +1
 	localStorage.setItem("lsCount",count)
 	var filename = 'localStorage'+count+'.txt'
+	
 	download(filename, text);
+	
 	//console.log(objects)
 	//window.location = "data:text/plain,"+text
 }
@@ -3604,19 +3635,6 @@ function F_nextQ(){
 			}
 		}
 	}
-	/*for ( var tetel in tetelek ) { // végignézi az összes kérdést
-		if ( localStorage.getItem(tetel+"_button") == "true" ) {
-			for ( var qat in tetelek[tetel] ) {
-				if ( tetelek[tetel][qat] == true ) { // ha nincs altétel
-					func_calcQValue(qat)
-				} else { // ha van altétel
-					for ( var q in tetelek[tetel][qat] ) {
-						func_calcQValue(q)
-					}
-				}
-			}
-		}
-	}*/
 	averageCV = averageCV/countCV
 
 	if ( priorQid == "nincs" ) {
@@ -3715,7 +3733,7 @@ function F_nextQ(){
 				var num = ""
 				var high = ""
 				var imp = []
-				var full = pQelem.className.slice(begin,end) 
+				var full = pQelem.className.slice(begin,end)
 				for ( var x=0; x<=full.length; x++ ) {
 					var kar = full[x]
 					if ( isNaN(kar) == false ) {
@@ -3854,20 +3872,20 @@ alert('stop2')*/
 					}
 
 					if ( prior == 1 ) {
-						prior = 0.33
+						vPrior = 0.33
 					} else if ( prior == 2 ) {
-						prior = 0.66 
+						vPrior = 0.66 
 					} else if ( prior == 3 ) {
-						prior = 1
+						vPrior = 1
 					} else if ( prior == 4 ) {
-						prior = 1.5
+						vPrior = 1.5
 					} else if ( prior == 5 ) {
-						prior = 2.25
+						vPrior = 2.25
 					}
 					if ( prior == "J" || prior == "j" ) { alert("error: J a prior még") } // ha már nem jön elő, törölhetem ezt a sort
 					
 					func_calcTimeDiff(localStorage.getItem(LSid+'_repeat'))
-					checkValue = prior * idopont / timeDiff
+					checkValue = vPrior * idopont / timeDiff
 					if ( timeDiff > idopont ) { // és nincs enabledelve az 'ultiLearn' (hiányzik még)
 						//document.getElementById("td.0."+i).style.backgroundColor = "LawnGreen"
 						selectList.disabled = true
@@ -3903,6 +3921,15 @@ alert('stop2')*/
 						document.getElementById("td.0."+i).style.backgroundColor = "LawnGreen"
 					}
 				}
+				document.getElementById("td.0."+i).style.backgroundColor = "White"
+				if ( prior == 1 || prior == 2 ) {
+					document.getElementById("td.0."+i).style.backgroundColor = "burlywood"
+				} else if ( prior == 4 || prior == 5 ) {
+					document.getElementById("td.0."+i).style.backgroundColor = "aqua"
+				}
+				if ( isJR == "j" ) {
+					document.getElementById("td.0."+i).style.backgroundColor = "lightgrey"
+				}
 				if ( localStorage.getItem(LSid+'_skip') && localStorage.getItem(LSid+'_skip') != "important" ) {
 					document.getElementById("td.0."+i).style.backgroundColor = "Black"
 					if ( localStorage.getItem(LSid+'_skip') == "vizsgaSkip" ) {
@@ -3910,9 +3937,6 @@ alert('stop2')*/
 					}
 					selectList.disabled = true
 					selectList.style.backgroundColor = "Black"
-				}
-				if ( isJR == "j" ) {
-					document.getElementById("td.0."+i).style.backgroundColor = "lightgrey"
 				}
 				if ( document.getElementById("td.0."+i).style.backgroundColor == "blue" || document.getElementById("td.0."+i).style.backgroundColor == "black" || document.getElementById("td.0."+i).style.backgroundColor == "red" ) {
 					document.getElementById("td.0."+i).style.color = "white" // fontColor
@@ -3989,10 +4013,11 @@ alert(actLSid)*/
 	}
 
 	
-	var imgs = QlocElem.getElementsByTagName("img")
+	//F_loadImgVideo(QlocElem)
+	/*var imgs = QlocElem.getElementsByTagName("img")
 	for ( var x=0; x<imgs.length; x++ ) {
 		F_loadImgX(imgs[x])
-	}
+	}*/
 	
 	// img + videókat ezzel tölti be
 	var allDetails = QlocElem.getElementsByTagName("details")

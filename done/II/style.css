@@ -107,7 +107,7 @@ hr.large {
 }
 
 .abbr{
-	 line-height: 30px; /*tablet miatt kell :S*/
+	line-height: 30px;  /*tablet miatt kell :S*/
 }
 span.abbr { 
 	border: Black 1px solid; 
