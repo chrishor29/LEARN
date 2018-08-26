@@ -7,7 +7,8 @@
 /* PROJECT - PROGRESS
  ✖ prior alapból 3 legyen, csak akkor kelljen leírni, ha más
  ✖ Qtxt-t ne mentse el, csak expQ.html-nél. Csak a QuestCímet mentse el + hogy hány betűből állt (commentbe). Azonban ha van még egy azonos nevű quest, akkor mentse el mindegyik Qtxt-ét --> hogy tudjam upgradelni. (ezekből nincs sok, így nem lesz gond)
- ✖ nextQ-ra kattintva gyorsan dobja a következőt (nézzem meg, miért szaggat)
+ ✖ nextQ-ra kattintva gyorsan dobja a következőt (nézzem meg, miért szaggat - anat LS!!)
+ ✖ imgLoad: expQ.html esetében a data-source-okat írja át HTMLimgLoc+datasrc -re, és így mentse el őket. utána az img beöltés: amelyik img láthatóvá válik, és datasrc-a van, azt töltse be a következőképp: (1) ha "images/"-el kezdődik, akkor bemásolja elé a LearnLoc-ot is (2) ha nem, akkor nem
  ✖ olyan opció kéne, hogy van egy tétel, akkor külön osztályozza azt, hogy eszembe jut-e miről kell beszélni, illetve magát azt amiről kell. Pl biológiai jelátvitel kérdésnél ha nemtudom miről kell, de amiről kéne azt tudom, akkor ne kelljen átismételnem az egészet, hanem tudjam, hogy csak az volt a hiba, hogy nemtudtam miről kell bezsélni! --> úgy kéne hogy elsőnek mindenkép megkérdezi, hogy adott tételnél mi kell tudni, majd ha azt megválaszoltam utána az alkérdések közt csak azt kell kifejtenem, ami miatt kidobta a kérdést. Annyi még, hogy az elején az altkérdéseket ne mutassa(osztályzásukat)!
  ✖ androidon mindig a kezdőoldalt töltse be (tehát hiába a questes aloldalon zártam be, ne azt töltse be
  ✖ zöldnél azt tudjam beállítani, hogy mennyi idő múlva dobja ki legközelebb (tehát ne csak 60/600/stb., hanem kérdésenként változó lehessen --> de ha nem állítok be semmit, akkor ahogy eddig is, a repeat-nél beállított lesz)
@@ -123,6 +124,11 @@ for ( var i=0; i<kerdesek.length; i++ ) {
 
 //document.getElementById("testimage").src = document.getElementById("testimage").title
 
+
+var ua = navigator.userAgent.toLowerCase();
+var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+
+
 var myTime
 var oldTime = false
 function F_getTime(){
@@ -158,9 +164,13 @@ function checkExpQHtml(){ // oldal betöltésénél ugorjon el expQkat importoln
 	diffTime = diffTime /60000 /60 // óra
 
 	if ( diffTime > 24 ) {
-		var expLoc = htmlLEARNloc + "expqs.html"
-		localStorage.setItem("loadQs.lastPage",fileName)
-		window.location.href = expLoc
+		if ( isAndroid ) { 
+			alert("látogasd meg a tárgyválasztás weboldalon az 'expqs.html' oldalt (több tárgynál használt kérdéseket onnan tölti be)")
+		} else {
+			var expLoc = htmlLEARNloc + "expqs.html"
+			localStorage.setItem("loadQs.lastPage",fileName)
+			window.location.href = expLoc
+		}
 	} else {
 		localStorage.removeItem("loadQs.lastPage")
 	}
@@ -569,9 +579,17 @@ function F_oldQchange(oldLSid){
 	for ( var i=0; i<allDetails.length; i++ ) {
 		allDetails[i].ontoggle = function(e){
 			F_loadImgVideo(this,e)
+			if ( isAndroid ) { F_setAbbrAndroid(this) }
 		}
 	}
 
+}
+
+function F_setAbbrAndroid(detElem) {
+	var allAbbr = detElem.getElementsByTagName("abbr")
+	for ( var i=0; i<allAbbr.length; i++ ) {
+		allAbbr[i].style.lineHeight = "30"; 
+	}
 }
 
 
@@ -896,7 +914,7 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 	F_getTime()
 	var endTime = myTime-oldTime-diffTime
 	var unitTime = (endTime*1000/count).toFixed(2);
-	console.log("– F_impQs newMethod – "+ unitTime +"ms ("+count+" quest in "+endTime.toFixed(2)+"sec)")
+	console.log("– F_impQs newMethod – "+endTime.toFixed(2)+"sec ("+unitTime+"ms/Q, "+count+"db Q)")
 }
 F_impQbegin()
 function F_impQs(impek){ // 11ms/Q a betöltési ideje
@@ -1125,8 +1143,7 @@ var replaceQs = []
 var defaultText = document.getElementById("div_upgQ").innerHTML
 
 
-
-
+var varNextQ = false
 var F_seekBar = window.setInterval(function(){
 	if ( document.getElementById("playedVideo") ) {
 		var playedVideo = document.getElementById("playedVideo")
@@ -1140,15 +1157,28 @@ var F_seekBar = window.setInterval(function(){
 }, 1000);
 
 
+
+
+
+// sajna komplikált ez a fhos, mert ha van egy impQ, amin belül van egy simaQ, akkor a simaQ img-ét is az impQ-s webről kell betöltse, tehát nem elég azokat amelyek látszanak
 // ha ráklikkelek egy details-ra, akkor nézze meg a child elementeket, amelyek [impQ]-k (div vagy span), azoknál töltse be az image-ket
-function F_loadExpImg(EXPid,imgX){
-	if ( imgX.dataset.src && imgX.offsetParent != null ) {
-		var string = localStorage.getItem("hkExpQ."+EXPid)
-		var LSid = string.slice(0,string.indexOf(" "))
-		var IMGloc = string.slice(string.indexOf(" ")+1)
-		imgX.src = htmlLEARNloc + IMGloc + imgX.dataset.src
-		imgX.removeAttribute("data-src")
-		//console.log(imgX.offsetParent+" -EXPid:"+EXPid+"- "+imgX.dataset.src+" - "+imgX.src)
+function F_loadExpImg(detElem,EXPid,imgX){
+	//if ( imgX.dataset.src && imgX.offsetParent != null ) {
+	if ( imgX.dataset.src ) {
+		var IMGelem = imgX
+		var parent = imgX
+		do { // ha impQ van, akkor be kell töltse mindenképp őket, kivéve ha másik impQ
+			IMGelem = parent
+			parent = parent.parentElement
+		} while ( parent.className.indexOf("[") == -1 && parent.className.indexOf("{") == -1 && parent != detElem )
+		if ( parent == detElem ) {
+			var string = localStorage.getItem("hkExpQ."+EXPid)
+			var LSid = string.slice(0,string.indexOf(" "))
+			var IMGloc = string.slice(string.indexOf(" ")+1)
+			imgX.src = htmlLEARNloc + IMGloc + imgX.dataset.src
+			imgX.removeAttribute("data-src")
+			//console.log(imgX.offsetParent+" -EXPid:"+EXPid+"- "+imgX.dataset.src+" - "+imgX.src)
+		}
 	}
 }
 /*function F_loadImgX(detElem,imgX){
@@ -1190,19 +1220,20 @@ function F_loadImgX(imgX){
 	if ( imgX.dataset.src && imgX.offsetParent != null ) {
 		imgX.src = "images/" + imgX.dataset.src
 		imgX.removeAttribute("data-src")
-		console.log(imgX.offsetParent+" - "+imgX.dataset.src+" - "+imgX.src)
+		//console.log(imgX.offsetParent+" - "+imgX.dataset.src+" - "+imgX.src)
 	}
 }
 function F_loadImgVideo(detElem,e){
 	//console.clear()
-	//console.log(detElem.innerHTML)
+	//console.log(detElem.innerHTML.slice(0,50))
+	
 	if ( detElem.className.indexOf("{") != -1 ) {
 		var begin = detElem.className.indexOf("{")
 		var end = detElem.className.indexOf("}")
 		var EXPid = detElem.className.slice(begin+1,end)
 		var imgs = detElem.getElementsByTagName("img")
 		for ( var i=0; i<imgs.length; i++ ) {
-			F_loadExpImg(EXPid,imgs[i])
+			F_loadExpImg(detElem,EXPid,imgs[i])
 		}
 	}
 	
@@ -1215,14 +1246,12 @@ function F_loadImgVideo(detElem,e){
 		var EXPid = elem.className.slice(begin+1,end)
 		var imgs = elem.getElementsByTagName("img")
 		for ( var i=0; i<imgs.length; i++ ) {
-			if ( imgs[i].dataset.src ) {
-				F_loadExpImg(EXPid,imgs[i])
-			}
+			F_loadExpImg(elem,EXPid,imgs[i])
 		}
 	}
 	
 	// img-ek
-	var imgs = detElem.getElementsByTagName("img")
+	var imgs = detElem.getElementsByTagName("IMG")
 	for ( var x=0; x<imgs.length; x++ ) {
 		F_loadImgX(imgs[x])
 	}
@@ -1347,16 +1376,22 @@ function F_loadImgVideo(detElem,e){
 	//alert(detElem.innerHTML)
 	if ( e ) { e.stopPropagation() }
 }
+function F_detailsToggle(detElem,e){ 
+	//if ( detElem.classList.contains("imgLoaded") != true ) {
+		/*F_getTime()
+		oldTime = myTime*/
+		F_loadImgVideo(detElem,e)
+		detElem.classList.add("imgLoaded");
+		/*F_getTime()
+		myTime = myTime-oldTime
+		console.log("– imagek betöltve – "+myTime)*/
+	// }
+}
 function F_imgLoad(){ // VIDEOt is itt tölti be!
 	var allDetails = document.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) {
 		allDetails[i].ontoggle = function(e){
-			/*F_getTime()
-			oldTime = myTime*/
-			F_loadImgVideo(this,e)
-			/*F_getTime()
-			myTime = myTime-oldTime
-			console.log("– imagek betöltve – "+myTime)*/
+			F_detailsToggle(this,e)
 		}
 	}
 }
@@ -1489,6 +1524,11 @@ function F_toggleAll() {
 		document.getElementById("input_toggleAll").style.display = 'block';
 	}
 	document.getElementById("spanLoading").style.display = "block";
+	document.getElementById("input_toggleAll").style.backgroundColor  = ""
+	document.getElementById("input_toggleAll").style.color  = ""
+	
+	F_getTime()
+	lastQTime = myTime
 }
 
 var var_note = false
@@ -1503,6 +1543,7 @@ function toggleNote() {
 }
 
 var timeDiff
+var lastQTime = 0
 function F_CreateQDiv() {
 	
 	function F_ButtonToggleAll() {
@@ -1511,7 +1552,23 @@ function F_CreateQDiv() {
 		button.type = "button"
 		document.body.appendChild(button)
 
-		button.onclick = function(){ F_toggleAll() }
+		button.onmousedown = function(){ 
+			this.style.backgroundColor  = "black"
+			this.style.color  = "white"
+		}
+		button.onclick = function(){ 
+			F_getTime()
+			var diffTime = myTime - lastQTime
+			console.log(myTime+" vs "+lastQTime)
+			if ( diffTime > 1 ) {
+				this.style.backgroundColor  = "black"
+				this.style.color  = "white"
+				var int_Click = window.setInterval(function(){
+					F_toggleAll()
+					clearInterval(int_Click) 
+				}, 10);
+			}
+		}
 		button.value = "0"
 
 		button.style.position = "fixed"
@@ -1952,11 +2009,23 @@ function F_CreateQDiv() {
 		button.type = "button"
 		button.id = "button_NextQ"
 		divSettings.appendChild(button)
-		button.onmousedown = function(){ 
-			this.style.backgroundColor  = "green"
-		}
 		button.onclick = function(){ 
-			setTimeout(function (){ F_nextQ()  }, 1);
+			F_getTime()
+			var diffTime = myTime - lastQTime
+			console.log(myTime+" vs "+lastQTime)
+			if ( diffTime > 1 ) {
+				if ( this.style.backgroundColor == "aqua" ) { 
+					this.style.backgroundColor  = "blue"
+					this.style.color  = "white"
+				} else {
+					this.style.backgroundColor  = "black"
+					this.style.color  = "white"
+				}
+				var int_Click = window.setInterval(function(){
+					F_nextQ()
+					clearInterval(int_Click) 
+				}, 10);
+			}
 		}
 		button.value = " ► "
 		
@@ -1968,6 +2037,8 @@ function F_CreateQDiv() {
 		button.style.top = "36px"
 		button.style.right = "90px"
 		button.style.overflow = "auto"
+		button.style.border = "3px solid black"
+		button.style.backgroundColor = "white"
 	}
 	F_ButtonNextQ()
 	function F_DivMark() {
@@ -2104,7 +2175,7 @@ var nextRep = "zerus"
 function F_nextMark(jegy){ // következő kérdés nehézségét beállítja, 
 	// repeat alapján
 	//console.clear()
-	console.log("– – – – – – – F_nextMark – – – – – – – –")
+	//console.log("– – – – – – – F_nextMark – – – – – – – –")
 	var zeroVal = 0
 	var arany = []
 	document.getElementById("div_nextQMark").innerHTML = ""
@@ -2907,6 +2978,9 @@ function F_clickTemaButton(button){
 }
 
 function func_putZeroQBack() { // 0-repeaten állót új kérdésbe visszateszi, ha több mint 1 napja nem ismételtem
+	F_getTime()
+	var startTime = myTime
+	
 	for ( var tetel in tetelek ) {
 		if ( localStorage.getItem(tetel+"_button") == "true" ) {
 			var childs = document.getElementById(tetel).getElementsByTagName("*")
@@ -2926,8 +3000,15 @@ function func_putZeroQBack() { // 0-repeaten állót új kérdésbe visszateszi,
 			}
 		}
 	}
+	
+	F_getTime()
+	var diffTime = (myTime-startTime).toFixed(2)
+	console.log("– func_putZeroQBack – " + diffTime+"s")
 }
 function func_calcJegy() { // átlagJegyet kiszámolja
+	F_getTime()
+	var startTime = myTime
+
 	var maxJegy = 0
 	var trueJegy = 0
 	for ( var tetel in tetelek ) {
@@ -2963,9 +3044,16 @@ function func_calcJegy() { // átlagJegyet kiszámolja
 			}
 		}
 	}
-	document.getElementById("btn_Jegy").value = parseInt(document.getElementById(1+"hossz").innerHTML) + parseInt(document.getElementById(0+"hossz").innerHTML) +skipNum
+	document.getElementById("btn_Jegy").value = parseInt(document.getElementById(1+"hossz").innerHTML) + parseInt(document.getElementById(0+"hossz").innerHTML) //+skipNum
+	
+	F_getTime()
+	var diffTime = (myTime-startTime).toFixed(2)
+	console.log("– func_calcJegy – " + diffTime+"s")
 }
 function func_calcWork() { // hány százaléka új kérdés még
+	F_getTime()
+	var startTime = myTime
+	
 	var maxHossz = 0
 	var trueHossz = 0
 	var doneLSid = ","
@@ -2999,8 +3087,15 @@ function func_calcWork() { // hány százaléka új kérdés még
 		}
 	}
 	document.getElementById("span_Work").innerHTML = maxHossz-trueHossz
+	
+	F_getTime()
+	var diffTime = (myTime-startTime).toFixed(2)
+	console.log("– func_calcWork – " + diffTime+"s")
 }
 function func_calcDate() { // átlagIdőt kiszámolja
+	F_getTime()
+	var startTime = myTime
+	
 	var allDate = 0
 	var countDate = 0
 	for ( var tetel in tetelek ) {
@@ -3027,8 +3122,15 @@ function func_calcDate() { // átlagIdőt kiszámolja
 	date = date / 60 / 24
 	date = parseFloat(Math.round(date * 100) / 100).toFixed(1);
 	document.getElementById("span_Date").innerHTML = date
+	
+	F_getTime()
+	var diffTime = (myTime-startTime).toFixed(2)
+	console.log("– func_calcDate – " + diffTime+"s")
 }
 function func_calcRepeat() { // átlagIsmétlések számát kiszámolja
+	F_getTime()
+	var startTime = myTime
+	
 	var questCount = 0
 	var allRepVal = 0
 	for ( var tetel in tetelek ) {
@@ -3070,8 +3172,15 @@ function func_calcRepeat() { // átlagIsmétlések számát kiszámolja
 	var atlag = allRepVal / questCount
 	atlag = +atlag.toFixed(1);
 	document.getElementById("span_Repeat").innerHTML = atlag
+	
+	F_getTime()
+	var diffTime = (myTime-startTime).toFixed(2)
+	console.log("– func_calcRepeat – " + diffTime+"s")
 }
 function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
+	F_getTime()
+	var startTime = myTime
+	
 	var doneLSid = ","
 	for ( var i = 0;   i < 6;   i++ ) { // resetelje a Tablekat 0-ra
 		document.getElementById(i+"left").innerHTML = 0
@@ -3147,11 +3256,18 @@ function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
 		average = +average.toFixed(0);
 		document.getElementById(i+"average").title = average
 	}
+	
+	F_getTime()
+	var diffTime = (myTime-startTime).toFixed(2)
+	console.log("– func_calcRepTable – " + diffTime+"s")
 }
 function func_calcOldNew(){
+	F_getTime()
+	var startTime = myTime
+	
 	var doneLSid = ","
 	//console.clear()
-	console.log("– func_calcOldNew –")
+	//console.log("– func_calcOldNew –")
 	var kerdesNew = 0
 	var repNew = 0
 	var repOld = 0
@@ -3174,16 +3290,14 @@ function func_calcOldNew(){
 						var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
 						func_calcTimeDiff(repCount)
 						
-						/*if ( repCount == 0 ) {
-							if ( timeDiff > idopont ) {
-								repOld = repOld +1
-							} else {
-								repNew = repNew +1
-							}
-						}*/
+						//ez az, hogy csak azt dobhatja ki, melynél a vizsga már közelebb van, mint a repTime
+						var remain = Math.floor(date.getTime()/3600000)
+						remain = localStorage.getItem("vizsgaSkip") - remain
+						remain = remain*60
 						
 						if ( localStorage.getItem(LSid+"_jegy") >= 1 ) {
-							if ( timeDiff >= idopont ) {
+							//if ( timeDiff >= idopont ) {
+							if ( remain > idopont ) {
 								repFast = repFast +1
 							} else {
 								repSlow = repSlow +1
@@ -3226,6 +3340,10 @@ function func_calcOldNew(){
 	document.getElementById("span_RepOld").innerHTML = repOld;
 	document.getElementById("btn_RepFast").value = repFast;
 	document.getElementById("span_RepSlow").innerHTML = repSlow
+	
+	F_getTime()
+	var diffTime = (myTime-startTime).toFixed(2)
+	console.log("– func_calcOldNew – " + diffTime+"s")
 }
 
 
@@ -3267,7 +3385,7 @@ function func_saveLS() {
 	var diffTime = myTime-oldTime
 	console.log("– download BEGIN – " + diffTime)
 	var lsLength = localStorage.length
-	lsLength = lsLength*2/3
+	lsLength = lsLength*3/4
 	lsLength = Math.floor(lsLength)
 	var i = 0
 	for ( i=0; i<lsLength; i++ ) { text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE " }
@@ -3349,13 +3467,12 @@ function F_calculateEXPid(EXPid) {
 }
 
 //setVizsgaSkipTime()
-
 //func_putZeroQBack();
-func_calcOldNew();
+/*func_calcOldNew();
 func_calcJegy()
 func_calcWork()
 func_calcDate()
-func_calcRepeat()
+func_calcRepeat()*/
 
 if ( localStorage.getItem("hk.newQ") == "true" ) {
 	document.getElementById("btn_newQuest").style.borderColor = "limegreen"
@@ -3482,27 +3599,20 @@ function F_prevQ(){
 var intervalOfs = "nincs"
 var priorQid = "nincs"
 var fullTema, checkNum, cloneKerdes
-var lastTime = 0
 var activeQs = []
 function F_nextQ(){
 	console.clear()
 	console.log("– – – – – – – – F_nextQ – – – – – – – – –")
+	
 	F_getTime()
-	var diffTimeX = myTime
-	console.log("– F_nextQ BEGIN – " + 0)
+	var startTime = myTime
+	var diffTimeX = myTime-startTime
+	console.log("– F_nextQ BEGIN – " + diffTimeX)
 	
 	var QlocElem = document.getElementById("kerdeslocation")
-	var date = new Date();
-	var newTime = Math.floor(date.getTime()/1000)
-	var diffTime = newTime - lastTime
 	var averageCV = 0
 	var countCV = 0
 	var nextDiff = 0
-	if ( diffTime < 1 ) { // 2fast 2furious
-		return;
-	} else {
-		lastTime = newTime
-	}
 
 	
 	// előző kérdés
@@ -3527,7 +3637,7 @@ function F_nextQ(){
 	var priorValue_alt = -1
 	var priorType = 1
 	var checkValue = 0
-
+	
 	func_calcRepTable()
 	F_nextMark()
 
@@ -3564,7 +3674,7 @@ function F_nextQ(){
 							priorValue2 = checkValue2
 							priorQid = Qid
 						}
-						console.log(idopont2+ "("+timeDiff+") " +checkValue2+ " vs " +priorValue2+ " ("+LSid+")")
+						//console.log(idopont2+ "("+timeDiff+") " +checkValue2+ " vs " +priorValue2+ " ("+LSid+")")
 					}
 				}
 			}
@@ -3574,11 +3684,20 @@ function F_nextQ(){
 				var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
 				var repCount = Number(localStorage.getItem(LSid+'_repeat'))
 
-				func_calcTimeDiff(repCount)
+				//ez az, hogy csak azt dobhatja ki, melynél a vizsga már közelebb van, mint a repTime
+				var date = new Date();
+				var remain = Math.floor(date.getTime()/3600000)
+				remain = localStorage.getItem("vizsgaSkip") - remain
+				remain = remain*60
+				if ( idopont < remain ) { shouldBreak = true }
 
-				if ( document.getElementById("btn_RepFast").style.borderColor != "limegreen" ) {
-					if ( timeDiff > idopont ) { 
-						shouldBreak = true 
+				if ( shouldBreak == false ) {
+					func_calcTimeDiff(repCount)
+
+					if ( document.getElementById("btn_RepFast").style.borderColor != "limegreen" ) {
+						if ( timeDiff > idopont ) { 
+							shouldBreak = true 
+						}
 					}
 				}
 
@@ -3635,6 +3754,9 @@ function F_nextQ(){
 	averageCV = 0
 	countCV = 0
 	
+	
+	F_getTime()
+	var timecalcQValue = myTime
 	for ( var tetel in tetelek ) {
 		if ( document.getElementById("btn_nextQdiff").style.backgroundColor == "limegreen" ) {
 			var tetelSzam = localStorage.getItem("input_Tetel")
@@ -3656,6 +3778,10 @@ function F_nextQ(){
 		}
 	}
 	averageCV = averageCV/countCV
+	F_getTime()
+	timecalcQValue = myTime-timecalcQValue
+	console.log("– func_calcQValue – " + timecalcQValue)
+
 
 	if ( priorQid == "nincs" ) {
 		if ( priorQ_alt != "nincs" ) {
@@ -3664,6 +3790,7 @@ function F_nextQ(){
 			alert("elfogytak a kérdések");
 		}
 	}
+
 
 	if ( priorQid != "nincs" ) {
 		var Qelem = document.getElementById(priorQid)
@@ -3801,7 +3928,7 @@ function F_nextQ(){
 
 		function F_SetMarks() { // minden kérdés mellé kreál egy osztályzás lehetőséget
 			//console.clear()
-			console.log(" ------ F_SetMarks ------ ")
+			//console.log(" – F_SetMarks – ")
 			var arrayQ = QlocElem.getElementsByClassName("kerdes")
 			for ( var i=0; i<arrayQ.length; i++ ) {
 				var Qelem = arrayQ[i]
@@ -4031,41 +4158,41 @@ alert(actLSid)*/
 			}
 		}
 	}
-
-	
-	//F_loadImgVideo(QlocElem)
-	/*var imgs = QlocElem.getElementsByTagName("img")
-	for ( var x=0; x<imgs.length; x++ ) {
-		F_loadImgX(imgs[x])
-	}*/
 	
 	// img + videókat ezzel tölti be
 	var allDetails = QlocElem.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) {
 		allDetails[i].ontoggle = function(e){
-			F_loadImgVideo(this,e)
+			F_detailsToggle(this,e)
 		}
 	}
-
-	func_enLargeImages()
+	var imgs = QlocElem.getElementsByTagName("img")
+	for ( var x=0; x<imgs.length; x++ ) {
+		F_loadImgX(imgs[x])
+	}
+	
 	func_calcJegy()
 	func_calcWork()
 	func_calcDate()
 	func_calcOldNew()
 	func_calcRepeat()
+	
+	func_enLargeImages()
 	func_TitleChange()
 	func_abbrSet(QlocElem)
 	F_loadImgVideo(QlocElem)
 	
 	// color NewQ
+	document.getElementById("button_NextQ").style.color = ""
 	if ( localStorage.getItem("hk.lastSavedLS") == 10 ) { 
 		document.getElementById("button_NextQ").style.backgroundColor = "aqua" 
 	} else {
-		document.getElementById("button_NextQ").style.backgroundColor = ""
+		document.getElementById("button_NextQ").style.backgroundColor = "white"
 	}
 	
 	F_getTime()
-	diffTimeX = myTime-diffTimeX
+	diffTimeX = myTime-startTime
+	lastQTime = myTime
 	console.log("– F_nextQ END – " + diffTimeX)
 }
 
@@ -4117,7 +4244,7 @@ function F_CreateSelect(i) {
 
 if ( localStorage.getItem("hk.ToggleAll") == "true" ) {
 	localStorage.removeItem("hk.ToggleAll")
-	F_toggleAll()
+	if ( isAndroid == false ) { F_toggleAll() }
 }
 if ( changeStatus == true ) { document.getElementById("div_upgQ").style.display = 'block' }
 if ( changeStatus == false ) { document.getElementById("div_upgQ").style.display = 'none' }
