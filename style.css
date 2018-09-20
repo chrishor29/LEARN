@@ -87,6 +87,7 @@ ul, ol {
 }
 ul.normal {
 	padding-left: 20px;
+	text-align:left;
 }
 div.normal {
 	padding-left: 5px;
@@ -106,9 +107,6 @@ hr.large {
     background-color: #333;
 }
 
-.abbr{
-	 line-height: 30px; /*tablet miatt kell :S*/
-}
 span.abbr { 
 	border: Black 1px solid; 
 	padding-left: 1px; 
@@ -159,6 +157,9 @@ span {
 }
 .miss { 
 	background-color: pink;
+}
+.status { 
+	font-weight: bold;
 }
 /*span.abbr { 
 	border: Black 1px solid; 

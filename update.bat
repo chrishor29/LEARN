@@ -4,7 +4,19 @@ copy C:\Kristof\MIRROR\LEARN\style.css C:\Users\chrishor\Desktop\LEARN\style.css
 robocopy C:\Kristof\MIRROR\LEARN\favicon.bmp C:\Users\chrishor\Desktop\LEARN\favicon.bmp /mir
 copy C:\Kristof\MIRROR\LEARN\targyvalasztas.html C:\Users\chrishor\Desktop\LEARN\targyvalasztas.html
 
+robocopy C:\Kristof\MIRROR\LEARN\Propedeutika\proped.html C:\Users\chrishor\Desktop\SZEMESZTER\Propedeutika\proped.html /mir
+robocopy C:\Kristof\MIRROR\LEARN\Immunologia\immun.html C:\Users\chrishor\Desktop\SZEMESZTER\Immunologia\immun.html /mir
+robocopy C:\Kristof\MIRROR\LEARN\Korelettan\kortan.html C:\Users\chrishor\Desktop\SZEMESZTER\Korelettan\kortan.html /mir
+robocopy C:\Kristof\MIRROR\LEARN\Mikrobiologia\mikrobiosz.html C:\Users\chrishor\Desktop\SZEMESZTER\Mikrobiologia\mikrobiosz.html /mir
+robocopy C:\Kristof\MIRROR\LEARN\Patologia\patosz.html C:\Users\chrishor\Desktop\SZEMESZTER\Patologia\patosz.html /mir
+robocopy C:\Kristof\MIRROR\LEARN\Mutettan\mutettan.html C:\Users\chrishor\Desktop\SZEMESZTER\Mutettan\mutettan.html /mir
 
+robocopy C:\Kristof\MIRROR\LEARN\Propedeutika\images C:\Users\chrishor\Desktop\SZEMESZTER\Propedeutika\images /mir
+robocopy C:\Kristof\MIRROR\LEARN\Immunologia\images C:\Users\chrishor\Desktop\SZEMESZTER\Immunologia\images /mir
+robocopy C:\Kristof\MIRROR\LEARN\Korelettan\images C:\Users\chrishor\Desktop\SZEMESZTER\Korelettan\images /mir
+robocopy C:\Kristof\MIRROR\LEARN\Mikrobiologia\images C:\Users\chrishor\Desktop\SZEMESZTER\Mikrobiologia\images /mir
+robocopy C:\Kristof\MIRROR\LEARN\Patologia\images C:\Users\chrishor\Desktop\SZEMESZTER\Patologia\images /mir
+robocopy C:\Kristof\MIRROR\LEARN\Mutettan\images C:\Users\chrishor\Desktop\SZEMESZTER\Mutettan\images /mir
 
 robocopy C:\Kristof\MIRROR\LEARN\done\II\images C:\Users\chrishor\Desktop\LEARN\done\II\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\II\expqs.html C:\Users\chrishor\Desktop\LEARN\done\II\expqs.html

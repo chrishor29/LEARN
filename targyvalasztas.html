@@ -8,12 +8,17 @@
 
 
 <div class="header">
+	<div><a href="expqs.html">expqs</a></div>
+<hr>
+	<div><a href="Patologia\patosz.html"><strong>Patológia</strong></a></div>
+	<div><a href="Korelettan\kortan.html"><strong>Kórélettan</strong></a></div>
+	<div><a href="Mikrobiologia\mikrobiosz.html"><strong>Mikrobiológia</strong></a></div>
+	<div><a href="Propedeutika\proped.html"><strong>Belgyógyászati Propedeutika</strong></a></div>
+	<div><a href="Immunologia\immun.html"><strong>Immunológia</strong></a></div>
+	<div><a href="Mutettan\mutettan.html"><strong>Kísérletes és sebészeti műtéttan</strong></a></div>
+<hr>
 	<div><a href="done\II\expqs.html">expqs</a></div>
-<hr>
-	<div><a href="done\ANAT\anat.html"><strong>Anatómia</strong></a></div>
-	<div><a href="done\ANAT\Histology\histo.html"><strong>Szövettan</strong></a></div>
-	<div><a href="done\ANAT\Fejlodestan\embrio.html"><strong>Fejlődéstan</strong></a></div>
-<hr>
+	<div><a href="done\ANAT\anat.html">Anatómia</a>, <a href="done\ANAT\Histology\histo.html">Szövet-</a> és <a href="done\ANAT\Fejlodestan\embrio.html">Fejlődéstan</a></div>
 	<div><a href="done\BioKemia\III\biokemia.html">Biokémia</a> <font style="font-size:80%"><a href="done\BioKemia\I\biokemia_I.html">(I)</a> <a href="done\BioKemia\II\biokemia_II.html">(II)</a> <a href="done\BioKemia\III\biokemia_III.html">(III)</a></font></div>
 	<div><a href="done\SejtBiosz\sejtbiosz2.html">Molekuláris Sejtbiológia</a> <font style="font-size:80%"><a href="done\SejtBiosz\sejtbiosz1.html">(I)</a></font></div>
 	<div><a href="done\Elettan\elettan2.html">Élettan II</a> <font style="font-size:80%"><a href="done\Elettan\elettan1.html">(I)</a> <a href="done\Elettan\elettan1_old.html">(+régi)</a></font></div>
@@ -51,6 +56,14 @@
 	</table>
 	<center><font id="percentX">asd</font>%</center>
 </div>
+
+<div><strong>DEMOK</strong></div>
+<li>patológia &#10140; 6.hét, 12.hét</li>
+<li>mikrobiosz &#10140; 6.hét, 11.hét</li>
+<li><abbr title="naptárba még nem jelöltem be">kórtan &#10140; 7.hét, 14.hét</abbr></li>
+<li>immunológia &#10140; nov.14</li>
+<li>(nincs: műtéttan, belgyógy)</li>
+
 <script>
 	var howmany = 4 +1
 	for (i = 1; i < howmany; i++) { document.getElementById("elet"+i+"2").value = localStorage.getItem("elettPerc"+i) }
@@ -107,7 +120,6 @@
 	document.getElementById("elet42").value = localStorage.getItem("msb.IV.")
 	calcValPerc()
 </script>
-
 
 <script>
 	function F_clearLS() {
