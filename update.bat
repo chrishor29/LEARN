@@ -4,12 +4,12 @@ copy C:\Kristof\MIRROR\LEARN\style.css C:\Users\chrishor\Desktop\LEARN\style.css
 robocopy C:\Kristof\MIRROR\LEARN\favicon.bmp C:\Users\chrishor\Desktop\LEARN\favicon.bmp /mir
 copy C:\Kristof\MIRROR\LEARN\targyvalasztas.html C:\Users\chrishor\Desktop\LEARN\targyvalasztas.html
 
-robocopy C:\Kristof\MIRROR\LEARN\Propedeutika\proped.html C:\Users\chrishor\Desktop\LEARN\Propedeutika\proped.html /mir
-robocopy C:\Kristof\MIRROR\LEARN\Immunologia\immun.html C:\Users\chrishor\Desktop\LEARN\Immunologia\immun.html /mir
-robocopy C:\Kristof\MIRROR\LEARN\Korelettan\kortan.html C:\Users\chrishor\Desktop\LEARN\Korelettan\kortan.html /mir
-robocopy C:\Kristof\MIRROR\LEARN\Mikrobiologia\mikrobiosz.html C:\Users\chrishor\Desktop\LEARN\Mikrobiologia\mikrobiosz.html /mir
-robocopy C:\Kristof\MIRROR\LEARN\Patologia\patosz.html C:\Users\chrishor\Desktop\LEARN\Patologia\patosz.html /mir
-robocopy C:\Kristof\MIRROR\LEARN\Mutettan\mutettan.html C:\Users\chrishor\Desktop\LEARN\Mutettan\mutettan.html /mir
+copy C:\Kristof\MIRROR\LEARN\Propedeutika\proped.html C:\Users\chrishor\Desktop\LEARN\Propedeutika\proped.html
+copy C:\Kristof\MIRROR\LEARN\Immunologia\immun.html C:\Users\chrishor\Desktop\LEARN\Immunologia\immun.html
+copy C:\Kristof\MIRROR\LEARN\Korelettan\kortan.html C:\Users\chrishor\Desktop\LEARN\Korelettan\kortan.html
+copy C:\Kristof\MIRROR\LEARN\Mikrobiologia\mikrobiosz.html C:\Users\chrishor\Desktop\LEARN\Mikrobiologia\mikrobiosz.html
+copy C:\Kristof\MIRROR\LEARN\Patologia\patosz.html C:\Users\chrishor\Desktop\LEARN\Patologia\patosz.html
+copy C:\Kristof\MIRROR\LEARN\Mutettan\mutettan.html C:\Users\chrishor\Desktop\LEARN\Mutettan\mutettan.html
 
 robocopy C:\Kristof\MIRROR\LEARN\Propedeutika\images C:\Users\chrishor\Desktop\LEARN\Propedeutika\images /mir
 robocopy C:\Kristof\MIRROR\LEARN\Immunologia\images C:\Users\chrishor\Desktop\LEARN\Immunologia\images /mir
