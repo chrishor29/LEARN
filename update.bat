@@ -4,18 +4,18 @@ copy C:\Kristof\MIRROR\LEARN\style.css C:\Users\chrishor\Desktop\LEARN\style.css
 robocopy C:\Kristof\MIRROR\LEARN\favicon.bmp C:\Users\chrishor\Desktop\LEARN\favicon.bmp /mir
 copy C:\Kristof\MIRROR\LEARN\targyvalasztas.html C:\Users\chrishor\Desktop\LEARN\targyvalasztas.html
 
-copy C:\Kristof\MIRROR\LEARN\Propedeutika\proped.html C:\Users\chrishor\Desktop\LEARN\Propedeutika\proped.html
-copy C:\Kristof\MIRROR\LEARN\Immunologia\immun.html C:\Users\chrishor\Desktop\LEARN\Immunologia\immun.html
-copy C:\Kristof\MIRROR\LEARN\Korelettan\kortan.html C:\Users\chrishor\Desktop\LEARN\Korelettan\kortan.html
-copy C:\Kristof\MIRROR\LEARN\Mikrobiologia\mikrobiosz.html C:\Users\chrishor\Desktop\LEARN\Mikrobiologia\mikrobiosz.html
-copy C:\Kristof\MIRROR\LEARN\Patologia\patosz.html C:\Users\chrishor\Desktop\LEARN\Patologia\patosz.html
+copy C:\Kristof\MIRROR\LEARN\Proped\proped.html C:\Users\chrishor\Desktop\LEARN\Proped\proped.html
+copy C:\Kristof\MIRROR\LEARN\Immun\immun.html C:\Users\chrishor\Desktop\LEARN\Immun\immun.html
+copy C:\Kristof\MIRROR\LEARN\Kortan\kortan.html C:\Users\chrishor\Desktop\LEARN\Kortan\kortan.html
+copy C:\Kristof\MIRROR\LEARN\Mikrobi\mikrobi.html C:\Users\chrishor\Desktop\LEARN\Mikrobi\mikrobiosz.html
+copy C:\Kristof\MIRROR\LEARN\Patosz\patosz.html C:\Users\chrishor\Desktop\LEARN\Patosz\patosz.html
 copy C:\Kristof\MIRROR\LEARN\Mutettan\mutettan.html C:\Users\chrishor\Desktop\LEARN\Mutettan\mutettan.html
 
-robocopy C:\Kristof\MIRROR\LEARN\Propedeutika\images C:\Users\chrishor\Desktop\LEARN\Propedeutika\images /mir
-robocopy C:\Kristof\MIRROR\LEARN\Immunologia\images C:\Users\chrishor\Desktop\LEARN\Immunologia\images /mir
-robocopy C:\Kristof\MIRROR\LEARN\Korelettan\images C:\Users\chrishor\Desktop\LEARN\Korelettan\images /mir
-robocopy C:\Kristof\MIRROR\LEARN\Mikrobiologia\images C:\Users\chrishor\Desktop\LEARN\Mikrobiologia\images /mir
-robocopy C:\Kristof\MIRROR\LEARN\Patologia\images C:\Users\chrishor\Desktop\LEARN\Patologia\images /mir
+robocopy C:\Kristof\MIRROR\LEARN\Proped\images C:\Users\chrishor\Desktop\LEARN\Proped\images /mir
+robocopy C:\Kristof\MIRROR\LEARN\Immun\images C:\Users\chrishor\Desktop\LEARN\Immun\images /mir
+robocopy C:\Kristof\MIRROR\LEARN\Kortan\images C:\Users\chrishor\Desktop\LEARN\Kortan\images /mir
+robocopy C:\Kristof\MIRROR\LEARN\Mikrobi\images C:\Users\chrishor\Desktop\LEARN\Mikrobi\images /mir
+robocopy C:\Kristof\MIRROR\LEARN\Patosz\images C:\Users\chrishor\Desktop\LEARN\Patosz\images /mir
 robocopy C:\Kristof\MIRROR\LEARN\Mutettan\images C:\Users\chrishor\Desktop\LEARN\Mutettan\images /mir
 
 robocopy C:\Kristof\MIRROR\LEARN\done\II\images C:\Users\chrishor\Desktop\LEARN\done\II\images /mir

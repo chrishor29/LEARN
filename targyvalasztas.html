@@ -5,23 +5,31 @@
 	<title>Tárgyválasztás</title>
 	<style>*{line-height: 130%;}</style>
 </head>
+	
+	<style>
+		img.mini{
+			max-width:16px;
+			max-height:16px;
+			border:0px;
+		}
+	</style>
 
 
 <div class="header">
 	<div><a href="expqs.html">expqs</a></div>
 <hr>
-	<div><a href="Patologia\patosz.html"><strong>Patológia</strong></a></div>
-	<div><a href="Korelettan\kortan.html"><strong>Kórélettan</strong></a></div>
-	<div><a href="Mikrobiologia\mikrobiosz.html"><strong>Mikrobiológia</strong></a></div>
-	<div><a href="Propedeutika\proped.html"><strong>Belgyógyászati Propedeutika</strong></a></div>
-	<div><a href="Immunologia\immun.html"><strong>Immunológia</strong></a></div>
-	<div><a href="Mutettan\mutettan.html"><strong>Kísérletes és sebészeti műtéttan</strong></a></div>
+	<div><img class="mini" src="Patosz\favicon.bmp"> <a href="Patosz\patosz.html"><strong>Patológia</strong></a></div>
+	<div><img class="mini" src="Kortan\favicon.bmp"> <a href="Kortan\kortan.html"><strong>Kórélettan</strong></a></div>
+	<div><img class="mini" src="Mikrobi\favicon.bmp"> <a href="Mikrobi\mikrobi.html"><strong>Mikrobiológia</strong></a></div>
+	<div><img class="mini" src="Proped\favicon.bmp"> <a href="Propede\proped.html"><strong>Belgyógyászati Propedeutika</strong></a></div>
+	<div><img class="mini" src="Immun\favicon.bmp"> <a href="Immun\immun.html"><strong>Immunológia</strong></a></div>
+	<div><img class="mini" src="Mutettan\favicon.bmp"> <a href="Mutettan\mutettan.html"><strong>Kísérletes és sebészeti műtéttan</strong></a></div>
 <hr>
 	<div><a href="done\II\expqs.html">expqs</a></div>
-	<div><a href="done\ANAT\anat.html">Anatómia</a>, <a href="done\ANAT\Histology\histo.html">Szövet-</a> és <a href="done\ANAT\Fejlodestan\embrio.html">Fejlődéstan</a></div>
-	<div><a href="done\BioKemia\III\biokemia.html">Biokémia</a> <font style="font-size:80%"><a href="done\BioKemia\I\biokemia_I.html">(I)</a> <a href="done\BioKemia\II\biokemia_II.html">(II)</a> <a href="done\BioKemia\III\biokemia_III.html">(III)</a></font></div>
-	<div><a href="done\SejtBiosz\sejtbiosz2.html">Molekuláris Sejtbiológia</a> <font style="font-size:80%"><a href="done\SejtBiosz\sejtbiosz1.html">(I)</a></font></div>
-	<div><a href="done\Elettan\elettan2.html">Élettan II</a> <font style="font-size:80%"><a href="done\Elettan\elettan1.html">(I)</a> <a href="done\Elettan\elettan1_old.html">(+régi)</a></font></div>
+	<div><img class="mini" src="done\ANAT\favicon.bmp"> <a href="done\ANAT\anat.html">Anatómia</a>, <a href="done\ANAT\Histology\histo.html">Szövet-</a> és <a href="done\ANAT\Fejlodestan\embrio.html">Fejlődéstan</a></div>
+	<div><img class="mini" src="done\BioKemia\favicon.bmp"> <a href="done\BioKemia\III\biokemia.html">Biokémia</a> <font style="font-size:80%"><a href="done\BioKemia\I\biokemia_I.html">(I)</a> <a href="done\BioKemia\II\biokemia_II.html">(II)</a> <a href="done\BioKemia\III\biokemia_III.html">(III)</a></font></div>
+	<div><img class="mini" src="done\SejtBiosz\favicon.bmp"> <a href="done\SejtBiosz\sejtbiosz2.html">Molekuláris Sejtbiológia</a> <font style="font-size:80%"><a href="done\SejtBiosz\sejtbiosz1.html">(I)</a></font></div>
+	<div><img class="mini" src="done\Elettan\favicon.bmp"> <a href="done\Elettan\elettan2.html">Élettan II</a> <font style="font-size:80%"><a href="done\Elettan\elettan1.html">(I)</a> <a href="done\Elettan\elettan1_old.html">(+régi)</a></font></div>
 <hr>
 	<div><a href="done\Orvosi_Biologia\ob.html">Orvosi Biológia</a></div>
 	<div><a href="done\Orvosi_Kemia\kemia.html">Orvosi Kémia</a></div>
@@ -213,18 +221,14 @@
 		var text = ""
 		
 		var lsLength = localStorage.length
-		lsLength = lsLength*2/3
-		lsLength = Math.floor(lsLength)
-		var i = 0
-		for ( i=0; i<lsLength; i++ ) { text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE " }
-		for ( i=lsLength; i<localStorage.length; i++ ) { text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE " }
-		
+		for ( var i=0; i<lsLength; i++ ) { text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE " }
 		var count = localStorage.getItem("lsCount")
 		count = Number(count) +1
 		localStorage.setItem("lsCount",count)
 		var filename = 'localStorage'+count+'.txt'
 		
 		download(filename, text);
+		
 		document.getElementById("btn_saveLS").style.backgroundColor = ""
 	}
 	JSON.stringify(localStorage)
