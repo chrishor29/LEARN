@@ -18,12 +18,12 @@ robocopy C:\Kristof\MIRROR\LEARN\Mikrobi\images C:\Users\chrishor\Desktop\LEARN\
 robocopy C:\Kristof\MIRROR\LEARN\Patosz\images C:\Users\chrishor\Desktop\LEARN\Patosz\images /mir
 robocopy C:\Kristof\MIRROR\LEARN\Mutettan\images C:\Users\chrishor\Desktop\LEARN\Mutettan\images /mir
 
-robocopy C:\Kristof\MIRROR\LEARN\Proped\favicon.bmp C:\Users\chrishor\Desktop\LEARN\Proped\favicon.bmp /mir
-robocopy C:\Kristof\MIRROR\LEARN\Immun\favicon.bmp C:\Users\chrishor\Desktop\LEARN\Immun\favicon.bmp /mir
-robocopy C:\Kristof\MIRROR\LEARN\Kortan\favicon.bmp C:\Users\chrishor\Desktop\LEARN\Kortan\favicon.bmp /mir
-robocopy C:\Kristof\MIRROR\LEARN\Mikrobi\favicon.bmp C:\Users\chrishor\Desktop\LEARN\Mikrobi\favicon.bmp /mir
-robocopy C:\Kristof\MIRROR\LEARN\Patosz\favicon.bmp C:\Users\chrishor\Desktop\LEARN\Patosz\favicon.bmp /mir
-robocopy C:\Kristof\MIRROR\LEARN\Mutettan\favicon.bmp C:\Users\chrishor\Desktop\LEARN\Mutettan\favicon.bmp /mir
+copy C:\Kristof\MIRROR\LEARN\Proped\favicon.bmp C:\Users\chrishor\Desktop\LEARN\Proped\favicon.bmp
+copy C:\Kristof\MIRROR\LEARN\Immun\favicon.bmp C:\Users\chrishor\Desktop\LEARN\Immun\favicon.bmp
+copy C:\Kristof\MIRROR\LEARN\Kortan\favicon.bmp C:\Users\chrishor\Desktop\LEARN\Kortan\favicon.bmp
+copy C:\Kristof\MIRROR\LEARN\Mikrobi\favicon.bmp C:\Users\chrishor\Desktop\LEARN\Mikrobi\favicon.bmp
+copy C:\Kristof\MIRROR\LEARN\Patosz\favicon.bmp C:\Users\chrishor\Desktop\LEARN\Patosz\favicon.bmp
+copy C:\Kristof\MIRROR\LEARN\Mutettan\favicon.bmp C:\Users\chrishor\Desktop\LEARN\Mutettan\favicon.bmp
 
 robocopy C:\Kristof\MIRROR\LEARN\done\II\images C:\Users\chrishor\Desktop\LEARN\done\II\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\II\expqs.html C:\Users\chrishor\Desktop\LEARN\done\II\expqs.html
