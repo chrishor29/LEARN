@@ -32,10 +32,13 @@ copy C:\Kristof\MIRROR\LEARN\done\II\javascript.js C:\Users\chrishor\Desktop\LEA
 
 robocopy C:\Kristof\MIRROR\LEARN\done\ANAT\images C:\Users\chrishor\Desktop\LEARN\done\ANAT\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\ANAT\anat.html C:\Users\chrishor\Desktop\LEARN\done\ANAT\anat.html
+copy C:\Kristof\MIRROR\LEARN\done\ANAT\favicon.bmp C:\Users\chrishor\Desktop\LEARN\done\ANAT\favicon.bmp
 robocopy C:\Kristof\MIRROR\LEARN\done\ANAT\Histology\images C:\Users\chrishor\Desktop\LEARN\done\ANAT\Histology\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\ANAT\Histology\histo.html C:\Users\chrishor\Desktop\LEARN\done\ANAT\Histology\histo.html
+copy C:\Kristof\MIRROR\LEARN\done\ANAT\Histology\favicon.bmp C:\Users\chrishor\Desktop\LEARN\done\ANAT\Histology\favicon.bmp
 robocopy C:\Kristof\MIRROR\LEARN\done\ANAT\Fejlodestan\images C:\Users\chrishor\Desktop\LEARN\done\ANAT\Fejlodestan\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\ANAT\Fejlodestan\embrio.html C:\Users\chrishor\Desktop\LEARN\done\ANAT\Fejlodestan\embrio.html
+copy C:\Kristof\MIRROR\LEARN\done\ANAT\Fejlodestan\favicon.bmp C:\Users\chrishor\Desktop\LEARN\done\ANAT\Fejlodestan\favicon.bmp
 
 robocopy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\images C:\Users\chrishor\Desktop\LEARN\done\Orvosi_Biologia\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\Orvosi_Biologia\ob.html C:\Users\chrishor\Desktop\LEARN\done\Orvosi_Biologia\ob.html
