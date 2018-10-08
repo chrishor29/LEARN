@@ -62,14 +62,13 @@ copy C:\Kristof\MIRROR\LEARN\done\BioFizika\bifiz.html C:\Users\chrishor\Desktop
 copy C:\Kristof\MIRROR\LEARN\done\BioFizika\favicon.bmp C:\Users\chrishor\Desktop\LEARN\done\BioFizika\favicon.bmp
 copy C:\Kristof\MIRROR\LEARN\done\BioFizika\style.css C:\Users\chrishor\Desktop\LEARN\done\BioFizika\style.css
 
+copy C:\Kristof\MIRROR\LEARN\done\BioKemia\favicon.bmp C:\Users\chrishor\Desktop\LEARN\done\BioKemia\favicon.bmp 
 robocopy C:\Kristof\MIRROR\LEARN\done\BioKemia\I\images C:\Users\chrishor\Desktop\LEARN\done\BioKemia\I\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\BioKemia\I\biokemia_I.html C:\Users\chrishor\Desktop\LEARN\done\BioKemia\I\biokemia_I.html 
 copy C:\Kristof\MIRROR\LEARN\done\BioKemia\I\favicon.bmp C:\Users\chrishor\Desktop\LEARN\done\BioKemia\I\favicon.bmp
-
 robocopy C:\Kristof\MIRROR\LEARN\done\BioKemia\II\images C:\Users\chrishor\Desktop\LEARN\done\BioKemia\II\images /mir
 copy C:\Kristof\MIRROR\LEARN\done\BioKemia\II\biokemia_II.html C:\Users\chrishor\Desktop\LEARN\done\BioKemia\II\biokemia_II.html 
 copy C:\Kristof\MIRROR\LEARN\done\BioKemia\II\favicon.bmp C:\Users\chrishor\Desktop\LEARN\done\BioKemia\II\favicon.bmp
-
 robocopy C:\Kristof\MIRROR\LEARN\done\BioKemia\III\images C:\Users\chrishor\Desktop\LEARN\done\BioKemia\III\images /mir
 robocopy  C:\Kristof\MIRROR\LEARN\done\BioKemia\III\videos C:\Users\chrishor\Desktop\LEARN\done\BioKemia\III\videos /mir
 copy C:\Kristof\MIRROR\LEARN\done\BioKemia\III\biokemia_III.html C:\Users\chrishor\Desktop\LEARN\done\BioKemia\III\biokemia_III.html
@@ -85,6 +84,7 @@ robocopy C:\Kristof\MIRROR\LEARN\done\ModMem\images C:\Users\chrishor\Desktop\LE
 copy C:\Kristof\MIRROR\LEARN\done\ModMem\ModMem.html C:\Users\chrishor\Desktop\LEARN\done\ModMem\ModMem.html 
 
 robocopy C:\Kristof\MIRROR\LEARN\done\Elettan\images C:\Users\chrishor\Desktop\LEARN\done\Elettan\images /mir
+copy C:\Kristof\MIRROR\LEARN\done\Elettan\favicon.bmp C:\Users\chrishor\Desktop\LEARN\done\Elettan\favicon.bmp 
 copy C:\Kristof\MIRROR\LEARN\done\Elettan\elettan1.html C:\Users\chrishor\Desktop\LEARN\done\Elettan\elettan1.html 
 copy C:\Kristof\MIRROR\LEARN\done\Elettan\elettan1_old.html C:\Users\chrishor\Desktop\LEARN\done\Elettan\elettan_old.html
 copy C:\Kristof\MIRROR\LEARN\done\Elettan\elettan2.html C:\Users\chrishor\Desktop\LEARN\done\Elettan\elettan2.html 
