@@ -7,7 +7,7 @@ copy C:\Kristof\MIRROR\LEARN\targyvalasztas.html C:\Users\chrishor\Desktop\LEARN
 copy C:\Kristof\MIRROR\LEARN\Proped\proped.html C:\Users\chrishor\Desktop\LEARN\Proped\proped.html
 copy C:\Kristof\MIRROR\LEARN\Immun\immun.html C:\Users\chrishor\Desktop\LEARN\Immun\immun.html
 copy C:\Kristof\MIRROR\LEARN\Kortan\kortan.html C:\Users\chrishor\Desktop\LEARN\Kortan\kortan.html
-copy C:\Kristof\MIRROR\LEARN\Mikrobi\mikrobi.html C:\Users\chrishor\Desktop\LEARN\Mikrobi\mikrobiosz.html
+copy C:\Kristof\MIRROR\LEARN\Mikrobi\mikrobi.html C:\Users\chrishor\Desktop\LEARN\Mikrobi\mikrobi.html
 copy C:\Kristof\MIRROR\LEARN\Patosz\patosz.html C:\Users\chrishor\Desktop\LEARN\Patosz\patosz.html
 copy C:\Kristof\MIRROR\LEARN\Mutettan\mutettan.html C:\Users\chrishor\Desktop\LEARN\Mutettan\mutettan.html
 
@@ -96,4 +96,4 @@ git pull origin master
 git add .
 git commit -m "make some changes"
 git push origin master
-Pause
+
