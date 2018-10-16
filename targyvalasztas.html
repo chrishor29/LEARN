@@ -1,21 +1,31 @@
 <head>
 	<meta charset="UTF-8">
-	<link rel="shortcut icon" href="favicon.bmp">
+	<link rel="shortcut icon" href="favicon.png">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>Tárgyválasztás</title>
 	<style>*{line-height: 130%;}</style>
 </head>
-	
-	<style>
-		img.mini{
-			max-width:16px;
-			max-height:16px;
-			border:0px;
-		}
-	</style>
+
+<!-- û õ õ -->
+
+<style>
+	div.header {
+		border: 4px solid black;
+		padding: 4px;
+		padding-right: 8px;
+		margin-right: -4px;
+		display: inline-block;
+		background-color: azure;
+	}
+	img.mini{
+		max-width:16px;
+		max-height:16px;
+		border:0px;
+	}
+</style>
 
 
-<div class="header">
+<div class="header" style="float:left;">
 	<div><a href="expqs.html">expqs</a></div>
 <hr>
 	<div><img class="mini" src="Patosz\favicon.bmp"> <a href="Patosz\patosz.html"><strong>Patológia</strong></a></div>
@@ -26,7 +36,7 @@
 	<div><img class="mini" src="Mutettan\favicon.bmp"> <a href="Mutettan\mutettan.html"><strong>Kísérletes és sebészeti műtéttan</strong></a></div>
 <hr>
 	<div><a href="done\II\expqs.html">expqs</a></div>
-	<div><img class="mini" src="done\ANAT\favicon.bmp"> <a href="done\ANAT\anat.html">Anatómia</a>, <a href="done\ANAT\Histology\histo.html">Szövet-</a> és <a href="done\ANAT\Fejlodestan\embrio.html">Fejlődéstan</a></div>
+	<div><img class="mini" src="done\ANAT\favicon.bmp"> <a href="done\ANAT\anat.html">Anatómia</a>, <img class="mini" src="done\ANAT\Histology\favicon.bmp"> <a href="done\ANAT\Histology\histo.html">Szövet-</a> és <img class="mini" src="done\ANAT\Fejlodestan\favicon.bmp"> <a href="done\ANAT\Fejlodestan\embrio.html">Fejlődéstan</a></div>
 	<div><img class="mini" src="done\BioKemia\favicon.bmp"> <a href="done\BioKemia\III\biokemia.html">Biokémia</a> <font style="font-size:80%"><a href="done\BioKemia\I\biokemia_I.html">(I)</a> <a href="done\BioKemia\II\biokemia_II.html">(II)</a> <a href="done\BioKemia\III\biokemia_III.html">(III)</a></font></div>
 	<div><img class="mini" src="done\SejtBiosz\favicon.bmp"> <a href="done\SejtBiosz\sejtbiosz2.html">Molekuláris Sejtbiológia</a> <font style="font-size:80%"><a href="done\SejtBiosz\sejtbiosz1.html">(I)</a></font></div>
 	<div><img class="mini" src="done\Elettan\favicon.bmp"> <a href="done\Elettan\elettan2.html">Élettan II</a> <font style="font-size:80%"><a href="done\Elettan\elettan1.html">(I)</a> <a href="done\Elettan\elettan1_old.html">(+régi)</a></font></div>
@@ -36,10 +46,23 @@
 	<div><a href="done\BioFizika\bifiz.html">Biofizika I-II</a></div>
 	<div><a href="done\FejlodesBiologia_I\FejlBiosz.html">Fejlődésbiológia I</a></div>
 	<div><a href="done\ModMem\ModMem.html">Modellmembránok</a></div>
+<hr><div><img class="mini" src="targyak.bmp"> <a href="tárgyak.html">tárgyak</a></div>
 </div>
 
-<div class="header">
-	<center>tételek</center>
+<div class="header" style="float:left;"><center><strong>KÖNYVEK</strong></center>
+  IN PROGRESS
+	<div><a href="Patosz\Robbins - Patológia alapjai.pdf" download>PATOLÓGIA: Robbins</a></div>
+	<div><a href="Patosz\források\defi.pdf" download>PATOLÓGIA: definíciók</a></div>
+	<div><a href="Mikrobi\Mikrobiológia Ádám Éva.pdf" download>MIKROBIOLÓGIA: Ádám Éva</a></div>
+	<div><a href="Mikrobi\Pál, Tibor - Orvosi Mikrobiológia (2013).pdf" download>MIKROBIOLÓGIA: Pál, Tibor</a></div>
+	<div><a href="Mikrobi\Orvosi Mikrobiológia Gyakorlatok.pdf" download>MIKROBIOLÓGIA: Gyakorlatok</a></div>
+	<div><a href="Mikrobi\tematika\AOK_KOLLOKVIUM.pdf" download>MIKROBIOLÓGIA: kollokvium</a></div>
+  DONE
+</div>
+
+<!--<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>-->
+
+<div class="header" style="float:left;"><center><strong>tételek</strong></center>
 	<table>
 		<tr><th id="elet11">21</th>
 			<td><input type="number" id="elet12" style="width:45px"></td>
@@ -221,7 +244,7 @@
 		var text = ""
 		
 		var lsLength = localStorage.length
-		for ( var i=0; i<lsLength; i++ ) { text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE " }
+		for ( var i=0; i<lsLength; i++ ) { text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE \n" }
 		var count = localStorage.getItem("lsCount")
 		count = Number(count) +1
 		localStorage.setItem("lsCount",count)
@@ -235,8 +258,8 @@
 	// LOAD LS
 	function func_loadLS(content) {
 		do {
-			var phaseText = content.slice(0,content.indexOf(" NEXTONE "));
-			content = content.slice(content.indexOf(" NEXTONE ") +9)
+			var phaseText = content.slice(0,content.indexOf(" NEXTONE \n"));
+			content = content.slice(content.indexOf(" NEXTONE ") +10)
 			var variable = phaseText.slice(0,phaseText.indexOf(" = "));
 			var price = phaseText.slice(phaseText.indexOf(" = ") +3);
 			localStorage.setItem(variable, price)
