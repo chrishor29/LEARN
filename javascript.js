@@ -6,7 +6,7 @@
 
 /* PROJECT - PROGRESS
  (?) prior alapból 3 legyen, csak akkor kelljen leírni, ha más
- (?) Qtxt-t ne mentse el, csak expQ.html-nél. Csak a QuestCímet mentse el + mögé commentbe, hogy hány betűből áll a Qtxt. Azonban ha van még egy azonos nevű quest, akkor mentse el mindegyik Qtxt-ét --> hogy tudjam upgradelni. (ezekből nincs sok, így nem lesz gond)
+ (?) Qtxt-t ne mentse el, csak expQ.html-nél. Csak a QuestCímet mentse el + mögé commentbe, hogy hány betűből áll a Qtxt. Azonban ha van még egy azonos nevű quest, akkor legyen az elv, hogy megnézi melyik quest címek tűntek el, és melyek jelentek meg (betűszámot is nézze talán)
 	✖: expQ-t csak akkor mentsen, ha expQ.html LS-be. Egyébként egy tableba. Betöltésnél pedig megnézi, hogy van-e table-ba, ha nincs, akkor LS-ből tölti be (hiszen akkor expQ.html-ről származik, nem az adott weboldal)
 	✖: teszteljem azonos nevű Q-ek upgrade-jét
  ✖: local impQ vs expQ --> máshogy hivatkozzak rájuk (ne csak []-el, hanem expQ esetén {} -el). külön mentse a local impQ-kat egy tömbbe (ne localstorage)
@@ -2977,34 +2977,6 @@ function F_clickTemaButton(button){
 	func_calcRepeat()
 }
 
-function func_putZeroQBack() { // 0-repeaten állót új kérdésbe visszateszi, ha több mint 1 napja nem ismételtem
-	F_getTime()
-	var startTime = myTime
-	
-	for ( var tetel in tetelek ) {
-		if ( localStorage.getItem(tetel+"_button") == "true" ) {
-			var childs = document.getElementById(tetel).getElementsByTagName("*")
-			for ( var i = 0;   i < childs.length;   i++ ) {
-				if ( childs[i].classList.contains("kerdes") == true ) {
-					// itt elvileg még kell egy feltétel, hogy beleszámolja (talán a skippel kapcsolatos lehet, de csak tipp)
-					// if ( kerdesID[fotema][temaKerdes][kerdes] == true ) { // ez volt a régiben
-					var kerdes = localStorage.getItem(childs[i].innerHTML)
-					var repeat = localStorage.getItem(kerdes+'_repeat')
-					var date = new Date();
-					var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont')
-					if ( repeat == 0 && idopont > 1440 ) {
-						localStorage.removeItem(kerdes+'_repeat')
-						localStorage.removeItem(kerdes+'_jegy')
-					}
-				}
-			}
-		}
-	}
-	
-	F_getTime()
-	var diffTime = (myTime-startTime).toFixed(2)
-	//console.log("– func_putZeroQBack – " + diffTime+"s")
-}
 function func_calcJegy() { // átlagJegyet kiszámolja
 	F_getTime()
 	var startTime = myTime
@@ -3284,9 +3256,8 @@ function func_calcOldNew(){
 								func_calcTimeDiff(repCount)
 								
 								//ez az, hogy csak azt dobhatja ki, melynél a vizsga már közelebb van, mint a repTime
-								var remain = Math.floor(date.getTime()/3600000)
-								remain = localStorage.getItem("vizsgaSkip") - remain
-								remain = remain*60
+								var remain = Math.floor(date.getTime()/60000)
+								remain = vizsgaTime - remain
 								
 								if ( localStorage.getItem(LSid+"_jegy") >= 1 ) {
 									//if ( timeDiff >= idopont ) {
@@ -3326,6 +3297,8 @@ function func_calcOldNew(){
 	var diffTime = (myTime-startTime).toFixed(2)
 	//console.log("– func_calcOldNew – " + diffTime+"s")
 }
+
+
 
 
 // SAVE LS (begin)
@@ -3426,7 +3399,6 @@ function func_clearOldHistory() {
 func_clearOldHistory()
 
 //setVizsgaSkipTime()
-//func_putZeroQBack();
 /*func_calcOldNew();
 func_calcJegy()
 func_calcWork()
@@ -3637,28 +3609,28 @@ function F_nextQ(){
 					}
 				}
 			}
-			if ( priorType == 1 && localStorage.getItem(LSid+"_jegy") > 0 ) { // régi kérdés
+			if ( priorType == 1 /*&& localStorage.getItem(LSid+"_jegy") > 0*/ ) { // régi kérdés
 				var date = new Date();
 				var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
 				var repCount = Number(localStorage.getItem(LSid+'_repeat'))
 
-				//ez az, hogy csak azt dobhatja ki, melynél a vizsga már közelebb van, mint a repTime
-				var date = new Date();
-				var remain = Math.floor(date.getTime()/3600000)
-				remain = localStorage.getItem("vizsgaSkip") - remain
-				remain = remain*60
-				if ( idopont < remain ) { shouldBreak = true }
 
 				if ( shouldBreak == false ) {
-					func_calcTimeDiff(repCount)
-
 					if ( document.getElementById("btn_RepFast").style.borderColor != "limegreen" ) {
-						if ( timeDiff > idopont ) { 
-							shouldBreak = true 
-						}
+						//ez az, hogy csak azt dobhatja ki, melynél a vizsga már közelebb van, mint a repTime
+						var date = new Date();
+						var remain = Math.floor(date.getTime()/60000)
+						remain = vizsgaTime - remain
+						if ( idopont < remain ) { shouldBreak = true }
+						//ez az, hogy ...
+						func_calcTimeDiff(repCount)
+						if ( timeDiff > idopont ) { shouldBreak = true }
+						
+						if ( remain < 120 ) { shouldBreak = false }
 					}
 				}
 
+				//alert("er12: "+LSid+" "+shouldBreak+" "+priorType)
 				if ( shouldBreak == false ) {
 					func_calcPriorHosszJegy(Qelem)
 
