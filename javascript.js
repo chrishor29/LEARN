@@ -728,7 +728,7 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 
 		//console.log(EXPid)
 		if ( Qtxt == null ) { MISSid = MISSid + EXPid + "," }
-		if ( Qtxt == null ) { alert(EXPid) }
+		if ( Qtxt == null ) { alert("hiányzik az alábbi kérdés: ["+EXPid+"]") }
 		
 		if ( impBlock.indexOf("hide") != -1 ) {
 			var title = Qtxt

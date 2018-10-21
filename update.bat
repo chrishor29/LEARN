@@ -1,8 +1,10 @@
-copy C:\Kristof\MIRROR\LEARN\javascript.js C:\Users\chrishor\Desktop\LEARN\javascript.js
-copy C:\Kristof\MIRROR\LEARN\lz-string.js C:\Users\chrishor\Desktop\LEARN\lz-string.js        
-copy C:\Kristof\MIRROR\LEARN\style.css C:\Users\chrishor\Desktop\LEARN\style.css
-robocopy C:\Kristof\MIRROR\LEARN\favicon.bmp C:\Users\chrishor\Desktop\LEARN\favicon.bmp /mir
 copy C:\Kristof\MIRROR\LEARN\targyvalasztas.html C:\Users\chrishor\Desktop\LEARN\targyvalasztas.html
+copy C:\Kristof\MIRROR\LEARN\javascript.js C:\Users\chrishor\Desktop\LEARN\javascript.js
+copy C:\Kristof\MIRROR\LEARN\style.css C:\Users\chrishor\Desktop\LEARN\style.css
+copy C:\Kristof\MIRROR\LEARN\expqs.html C:\Users\chrishor\Desktop\LEARN\expqs.html
+robocopy C:\Kristof\MIRROR\LEARN\images C:\Users\chrishor\Desktop\LEARN\images /mir
+copy C:\Kristof\MIRROR\LEARN\lz-string.js C:\Users\chrishor\Desktop\LEARN\lz-string.js        
+robocopy C:\Kristof\MIRROR\LEARN\favicon.bmp C:\Users\chrishor\Desktop\LEARN\favicon.bmp /mir
 
 copy C:\Kristof\MIRROR\LEARN\Proped\proped.html C:\Users\chrishor\Desktop\LEARN\Proped\proped.html
 copy C:\Kristof\MIRROR\LEARN\Immun\immun.html C:\Users\chrishor\Desktop\LEARN\Immun\immun.html
