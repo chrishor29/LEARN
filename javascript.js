@@ -727,10 +727,8 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 		}
 
 		//console.log(EXPid)
-		
-		if ( Qtxt == null ) {
-			MISSid = MISSid + EXPid + ","
-		}
+		if ( Qtxt == null ) { MISSid = MISSid + EXPid + "," }
+		if ( Qtxt == null ) { alert(EXPid) }
 		
 		if ( impBlock.indexOf("hide") != -1 ) {
 			var title = Qtxt
@@ -742,7 +740,6 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 
 			Qtxt = Qtxt.replace(/kerdes/g, "");
 		}
-		//console.log(EXPid)
 	}
 	
 	var divSpan = ""
@@ -766,11 +763,6 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 			Qtxt = ""
 			
 			F_getImpQType()
-			/*console.clear()
-			console.log("div: "+oldHTML.indexOf('<div class="imp ['))
-			console.log("span: "+oldHTML.indexOf('<span class="imp ['))
-			console.log(oldHTML)
-			console.log('<'+divSpan+' class="imp [')*/
 			
 			var impBlock = oldHTML.slice(oldHTML.indexOf('<'+divSpan+' class="imp '))
 			newHTML = newHTML + oldHTML.slice(0,oldHTML.indexOf('<'+divSpan+' class="imp '))
@@ -781,7 +773,6 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 			oldHTML = oldHTML.slice(oldHTML.indexOf('">')+2)
 			
 			F_getImpQtxt(impBlock)
-			
 			//(#123#) --> itt csak addig jutottam, hogy megkeresse a parent detailst, amiben meg kell nézze, nincs-e már importálva a quest... de már ez se jó, mert túl lassú
 			if ( Qtxt.indexOf(' class="imp ') != -1 ) {
 				var expQk = ""
