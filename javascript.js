@@ -720,8 +720,10 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 			end = impBlock.indexOf("}")
 			EXPid = impBlock.slice(begin,end)
 			Qtxt = localStorage.getItem("hkExpQ."+EXPid)
-			var LSid = Qtxt.slice(0,Qtxt.indexOf(" "))
-			Qtxt = localStorage.getItem(LSid)
+			if ( Qtxt != null )  {
+				var LSid = Qtxt.slice(0,Qtxt.indexOf(" "))
+				Qtxt = localStorage.getItem(LSid)
+			}
 		}
 
 		//console.log(EXPid)
