@@ -1166,30 +1166,16 @@ var F_seekBar = window.setInterval(function(){
 }, 1000);
 
 
+/* IMG-load mechanizmusa
+	+ toggle esetén 'for összes image'
+	+ amelyik nem visible, az return
+	+ amelyik nem data-src (tehát már be van töltve) az return
+	- ezután azt nézi meg, hogy impQ image-e:
+		felmegy a toggle eventes details elem-ig, és megnézi volt-e közte {} vagy [] classú elem (lehet div,span,details is)
+		amennyiben van, akkor az elsőnél megáll és az lesz a location-je
+		ha nincs, akkor a defulat location
+*/
 
-// sajna komplikált ez a fhos, mert ha van egy impQ, amin belül van egy simaQ, akkor a simaQ img-ét is az impQ-s webről kell betöltse, tehát nem elég azokat amelyek látszanak
-// ha ráklikkelek egy details-ra, akkor nézze meg a child elementeket, amelyek [impQ]-k (div vagy span), azoknál töltse be az image-ket
-function F_loadExpImg(detElem,EXPid,imgX){
-	//if ( imgX.dataset.src && imgX.offsetParent != null ) {
-	if ( imgX.dataset.src ) {
-		var IMGelem = imgX
-		var parent = imgX
-		do { // ha impQ van, akkor be kell töltse mindenképp őket, kivéve ha másik impQ
-			IMGelem = parent
-			parent = parent.parentElement
-		} while ( parent.className.indexOf("[") == -1 && parent.className.indexOf("{") == -1 && parent != detElem )
-		if ( parent == detElem ) {
-			var string = localStorage.getItem("hkExpQ."+EXPid)
-			var LSid = string.slice(0,string.indexOf(" "))
-			var IMGloc = string.slice(string.indexOf(" ")+1)
-			var srcLoc = htmlLEARNloc + IMGloc + imgX.dataset.src
-			//replaceIMGsrc(imgX,srcLoc)
-			imgX.src = htmlLEARNloc + IMGloc + imgX.dataset.src
-			imgX.removeAttribute("data-src")
-			//console.log(imgX.offsetParent+" -EXPid:"+EXPid+"- "+imgX.dataset.src+" - "+imgX.src)
-		}
-	}
-}
 function F_loadImgX(imgX){
 	if ( imgX.dataset.src && imgX.offsetParent != null ) {
 		imgX.src = "images/" + imgX.dataset.src
@@ -1198,40 +1184,46 @@ function F_loadImgX(imgX){
 	}
 }
 function F_loadImgVideo(detElem,e){
-	//console.clear()
-	//console.log(detElem.innerHTML.slice(0,50))
+	console.clear()
+	console.log(detElem.innerHTML.slice(0,detElem.innerHTML.indexOf("</summary")))
 	
-	if ( detElem.className.indexOf("{") != -1 ) {
-		var begin = detElem.className.indexOf("{")
-		var end = detElem.className.indexOf("}")
-		var EXPid = detElem.className.slice(begin+1,end)
-		var imgs = detElem.getElementsByTagName("img")
-		for ( var i=0; i<imgs.length; i++ ) {
-			F_loadExpImg(detElem,EXPid,imgs[i])
-		}
-	}
-	
-	
-	// impQ img-ek
-	var imps = detElem.getElementsByClassName("imp")
-	for ( var x=0; x<imps.length; x++ ) {
-		var elem = imps[x]
-		if ( elem.className.indexOf("{") != -1 ) {
-			var begin = elem.className.indexOf("{")
-			var end = elem.className.indexOf("}")
-			var EXPid = elem.className.slice(begin+1,end)
-			var imgs = elem.getElementsByTagName("img")
-			for ( var i=0; i<imgs.length; i++ ) {
-				F_loadExpImg(elem,EXPid,imgs[i])
-			}
-		}
-	}
-	
-	// img-ek
 	var imgs = detElem.getElementsByTagName("IMG")
-	for ( var x=0; x<imgs.length; x++ ) {
-		F_loadImgX(imgs[x])
+	for ( var x=0; x<imgs.length; x++ ) { 
+		if ( imgs[x].offsetParent == null ) { continue }
+		if ( imgs[x].dataset.src ) { continue }
+		
+		var IMGelem = imgs[x]
+		var parent = imgs[x]
+		do { // ha impQ van, akkor be kell töltse mindenképp őket, kivéve ha másik impQ
+			IMGelem = parent
+			parent = parent.parentElement
+		} while ( parent.className.indexOf("[") == -1 && parent.className.indexOf("{") == -1 && parent != detElem )
+		var EXPid = null
+		if ( parent.className.indexOf("[") != -1 ) {
+			var begin = detElem.className.indexOf("[")
+			var end = detElem.className.indexOf("]")
+			EXPid = detElem.className.slice(begin+1,end)
+		}
+		if ( parent.className.indexOf("{") != -1 ) {
+			var begin = detElem.className.indexOf("{")
+			var end = detElem.className.indexOf("}")
+			EXPid = detElem.className.slice(begin+1,end)
+		}
+		if ( EXPid != null ) {
+			var string = localStorage.getItem("hkExpQ."+EXPid)
+			console.log("{"+EXPid+"}-imgLoad: "+string)
+			var LSid = string.slice(0,string.indexOf(" "))
+			var IMGloc = string.slice(string.indexOf(" ")+1)
+			var srcLoc = htmlLEARNloc + IMGloc + imgs[x].dataset.src
+			//replaceIMGsrc(imgs[x],srcLoc)
+			imgs[x].src = htmlLEARNloc + IMGloc + imgs[x].dataset.src
+			imgs[x].removeAttribute("data-src")
+			console.log(" -EXPid:"+EXPid+"- "+imgs[x].dataset.src+" - "+imgs[x].src)
+		} else {
+			F_loadImgX(imgs[x])
+		}
 	}
+	
 	func_abbrSet(detElem)
 	
 	// metszet img-ek
@@ -1350,7 +1342,6 @@ function F_loadImgVideo(detElem,e){
 		}
 	}
 	
-	//alert(detElem.innerHTML)
 	if ( e ) { e.stopPropagation() }
 }
 function F_detailsToggle(detElem,e){ 
