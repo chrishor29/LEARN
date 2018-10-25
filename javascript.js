@@ -1175,7 +1175,6 @@ var F_seekBar = window.setInterval(function(){
 		amennyiben van, akkor az elsőnél megáll és az lesz a location-je
 		ha nincs, akkor a defulat location
 */
-
 function F_loadImgX(imgX){
 	if ( imgX.dataset.src && imgX.offsetParent != null ) {
 		imgX.src = "images/" + imgX.dataset.src
@@ -1217,8 +1216,8 @@ function F_loadImgVideo(detElem,e){
 			var srcLoc = htmlLEARNloc + IMGloc + imgs[x].dataset.src
 			//replaceIMGsrc(imgs[x],srcLoc)
 			imgs[x].src = htmlLEARNloc + IMGloc + imgs[x].dataset.src
-			imgs[x].removeAttribute("data-src")
 			console.log(" -EXPid:"+EXPid+"- "+imgs[x].dataset.src+" - "+imgs[x].src)
+			imgs[x].removeAttribute("data-src")
 		} else {
 			F_loadImgX(imgs[x])
 		}
@@ -2783,7 +2782,11 @@ F_valSkip()
 
 
 function func_showQtext(LSid){
-	var Qtext = localStorage.getItem(LSid.slice(0,LSid.indexOf("_")))
+	var text = obj_fixNote[LSid]
+	alert(LSid+": "+text)
+	document.getElementById("div_SkipTexttxt").innerHTML = text
+	
+	/*var Qtext = localStorage.getItem(LSid.slice(0,LSid.indexOf("_")))
 	Qtext = Qtext.replace('<details','<details open')
 	document.getElementById("div_SkipTexttxt").innerHTML = Qtext
 	var qElem = document.getElementById("div_SkipText")
@@ -2795,7 +2798,7 @@ function func_showQtext(LSid){
 		allDetails[i].ontoggle = function(e){
 			F_loadImgVideo(this,e)
 		}
-	}
+	}*/
 }
 
 function func_DeleteSkipFix(kerdes){
@@ -2820,29 +2823,15 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 	var fullText = ""
 	var qCount = 0
 	if ( SkipFix == "btn_fix" ) {
+		console.clear()
 		document.getElementById("div_Fix").innerHTML = ""
 		for ( var LSid in obj_fixNote ) {
 			if ( obj_fixNote[LSid] ) {
-				/*var text = document.getElementById("div_Fix").innerHTML
-				//alert(LSid)
-				var Qtext = localStorage.getItem(LSid)
-				//alert(kerdes + ": " + obj_fixNote[kerdes] + Qtext)
-				var newText = " <button id='testID' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button> " + obj_fixNote[LSid] +"</summary>"
-				Qtext = Qtext.replace("</summary>",newText)
-				
-				document.getElementById("div_Fix").innerHTML = text + Qtext
-				document.getElementById("testID").id = LSid + "_fixClear"
-				*/
-				
-				var text = document.getElementById("div_Fix").innerHTML
-				var Qtext = localStorage.getItem(LSid)
-				if ( Qtext != null ) {
-					var Qtext = localStorage.getItem(LSid)
-					Qtext = Qtext.slice(Qtext.indexOf("<summary")+8,Qtext.indexOf("</summary"))
-					Qtext = Qtext.slice(Qtext.indexOf(">")+1)
-					Qtext = '<font color="green" id="'+LSid+'_fullText" onclick="func_showQtext(this.id)">' + Qtext + " –|– " + obj_fixNote[LSid] + '</font><br>'
-					Qtext = "<button id='"+LSid+"_fixClear' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>" + Qtext
-					fullText = fullText + Qtext
+				var qName = localStorage.getItem(LSid)
+				if ( qName != null ) {
+					var qButon = "<button id='"+LSid+"_fixClear' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>"
+					qName = '<details><summary>'+qButon+' '+qName+'</summary><ul class="normal">'+obj_fixNote[LSid]+'</ul></details>'
+					fullText = fullText + qName
 					qCount = qCount +1
 				}
 			}
