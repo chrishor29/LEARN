@@ -5,6 +5,8 @@
 }*/
 
 /* PROJECT - PROGRESS
+ ✖: impQ: mikrobi: borellia genus jellemzése: spirochaetákat már nem importálja!
+ 
  ✖ Qtxt-t ne mentse el, csak expQ.html-nél. Csak a QuestCímet mentse el + mögé commentbe, hogy hány betűből áll a Qtxt. Azonban ha van még egy azonos nevű quest, akkor legyen az elv, hogy megnézi melyik quest címek tűntek el, és melyek jelentek meg (betűszámot is nézze talán)
 	✖: expQ-t csak akkor mentsen, ha expQ.html LS-be. Egyébként egy tableba. Betöltésnél pedig megnézi, hogy van-e table-ba, ha nincs, akkor LS-ből tölti be (hiszen akkor expQ.html-ről származik, nem az adott weboldal)
 	✖: teszteljem azonos nevű Q-ek upgrade-jét
@@ -867,13 +869,13 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 							newTXT = localStorage.getItem("hkExpQ."+EXPid)
 							var LSid = newTXT.slice(0,newTXT.indexOf(" "))
 							newTXT = localStorage.getItem(LSid)
-							expQk = expQk + expID + " "
+							expQk = expQk + EXPid + " "
 						}
 					} else {
 						EXPid = EXPid.slice(0,EXPid.indexOf(']'))
 						if ( impQk.indexOf(EXPid) == -1 ) {
 							newTXT = arrImpQs[EXPid]
-							impQk = impQk + expID + " "
+							impQk = impQk + EXPid + " "
 						}
 					}
 
@@ -1221,7 +1223,7 @@ function F_loadImgVideo(detElem,e){
 	var imgs = detElem.getElementsByTagName("IMG")
 	for ( var x=0; x<imgs.length; x++ ) { 
 		if ( imgs[x].offsetParent == null ) { continue }
-		if ( imgs[x].dataset.src ) { continue }
+		if ( imgs[x].dataset.src == undefined ) { continue } // ha előtte a főoldalon megnyitottam már a Q-t, akkor nem kell újra betöltenie
 		
 		var IMGelem = imgs[x]
 		var parent = imgs[x]
@@ -1230,27 +1232,18 @@ function F_loadImgVideo(detElem,e){
 			parent = parent.parentElement
 		} while ( parent.className.indexOf("[") == -1 && parent.className.indexOf("{") == -1 && parent != detElem )
 		var EXPid = null
-		if ( parent.className.indexOf("[") != -1 ) {
-			var begin = detElem.className.indexOf("[")
-			var end = detElem.className.indexOf("]")
-			EXPid = detElem.className.slice(begin+1,end)
-		}
-		if ( parent.className.indexOf("{") != -1 ) {
+		if ( parent.className.indexOf("{") != -1 && parent.parentElement.className.indexOf("{") != -1 ) {
 			var begin = detElem.className.indexOf("{")
 			var end = detElem.className.indexOf("}")
 			EXPid = detElem.className.slice(begin+1,end)
 		}
-		if ( EXPid != null && imgs[x].dataset.src != undefined ) {  // ha előtte a főoldalon megnyitottam már a Q-t, akkor nem kell újra betöltenie, ezért van ott a dataset.src feltétel. Tanuló oldalon utána undefined lenne
+		if ( EXPid != null ) {
 			var string = localStorage.getItem("hkExpQ."+EXPid)
 			console.log("{"+EXPid+"}-imgLoad: "+string)
 			var LSid = string.slice(0,string.indexOf(" "))
 			var IMGloc = string.slice(string.indexOf(" ")+1)
 			var srcLoc = htmlLEARNloc + IMGloc + imgs[x].dataset.src
-			if ( imgs[x].dataset.src != undefined ) {
-				srcLoc = htmlLEARNloc + IMGloc + imgs[x].dataset.src
-			} else {
-				srcLoc = htmlLEARNloc + IMGloc + imgs[x].src
-			}
+			srcLoc = htmlLEARNloc + IMGloc + imgs[x].src
 			console.log("{"+EXPid+"}-srcLoc: "+srcLoc)
 			//replaceIMGsrc(imgs[x],srcLoc)
 			imgs[x].src = htmlLEARNloc + IMGloc + imgs[x].dataset.src
@@ -1258,6 +1251,13 @@ function F_loadImgVideo(detElem,e){
 			imgs[x].removeAttribute("data-src")
 		} else {
 			F_loadImgX(imgs[x])
+		}
+		if ( imgs[x].className.indexOf("mwsw") != -1 ) {
+			var width = imgs[x].className.slice(imgs[x].className.indexOf("mwsw")+5)
+			width = Number(width) * screen.width /100
+			width = Math.floor(width)
+			imgs[x].style.maxWidth = width+"px"
+			console.log(width)
 		}
 	}
 	
