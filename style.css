@@ -80,7 +80,6 @@ ul, ol {
 }
 .normal {
 	border-bottom: 4px solid black;
-	margin-top: 5px;
 	margin-bottom: 10px;
 	padding-bottom: 10px;
 	overflow: hidden;
