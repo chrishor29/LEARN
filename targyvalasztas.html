@@ -70,17 +70,17 @@
 
 <div class="header" style="float:left;"><center><strong>tételek</strong></center>
 	<table>
-		<tr><th id="elet11">30</th>
+		<tr><th id="elet11">36</th>
 			<td><input type="number" id="elet12" style="width:45px"></td>
 			<td id="elet13"></td>
 			<th id="elet14"></th>
 		</tr>
-		<tr><th id="elet21">30</th>
+		<tr><th id="elet21">36</th>
 			<td><input type="number" id="elet22" style="width:45px"></td>
 			<td id="elet23"></td>
 			<th id="elet24"></th>
 		</tr>
-		<tr><th id="elet31">30</th>
+		<tr><th id="elet31">36</th>
 			<td><input type="number" id="elet32" style="width:45px"></td>
 			<td id="elet33"></td>
 			<th id="elet34"></th>
@@ -99,7 +99,7 @@
 	var howmany = 3 +1
 	for (i = 1; i < howmany; i++) { document.getElementById("elet"+i+"2").value = localStorage.getItem("elettPerc"+i) }
 	function calcValPerc(){
-		document.getElementById("percentX").innerHTML = 1/100/100/100
+		document.getElementById("percentX").innerHTML = 1/100/100
 		for (i = 1; i < howmany; i++) { 
 			var max = document.getElementById("elet"+i+"1").innerHTML
 			max = Number(max)
@@ -115,7 +115,7 @@
 		document.getElementById("percentX").innerHTML = num.toFixed(2)
 		
 		for (i = 1; i < howmany; i++) { 
-			document.getElementById("elet"+i+"4").innerHTML = 1/100/100/100
+			document.getElementById("elet"+i+"4").innerHTML = 1/100/100
 			for (x = 1; x < howmany; x++) { 
 				var max = document.getElementById("elet"+x+"1").innerHTML
 				max = Number(max)
@@ -140,15 +140,14 @@
 			var id = this.id
 			id = id.slice(-2)
 			id = id.slice(0,1)
-			localStorage.setItem("elettPerc"+id,this.value)
+			localStorage.setItem("elettPerc."+id,this.value)
 		} 
 	}
 	
-	
-	document.getElementById("elet12").value = localStorage.getItem("msb.I.")
-	document.getElementById("elet22").value = localStorage.getItem("msb.II.")
-	document.getElementById("elet32").value = localStorage.getItem("msb.III.")
-	document.getElementById("elet42").value = localStorage.getItem("msb.IV.")
+	console.log()
+	document.getElementById("elet12").value = localStorage.getItem("elettPerc.1")
+	document.getElementById("elet22").value = localStorage.getItem("elettPerc.2")
+	document.getElementById("elet32").value = localStorage.getItem("elettPerc.3")
 	calcValPerc()
 </script>
 
@@ -156,6 +155,9 @@
 	function F_clearLS() {
 		var input = document.createElement("input")
 		input.type = "button"
+		input.style.backgroundColor = "red"
+		input.style.color = "white"
+		input.style.fontWeight = "bold"
 		input.value = "clear LS"
 		document.body.appendChild(input)
 		input.onclick = function(){ 
@@ -189,10 +191,30 @@
 		input.style.top = "10px"
 	}
 	F_InputLoad()
+	function F_InputOpen() {
+		var input = document.createElement("input")
+		input.type = "button"
+		input.id = "btn_openLS"
+		input.value = "Open LS"
+		document.body.appendChild(input)
+		//input.onmousedown = function(){ this.style.backgroundColor  = "green" }
+		input.onclick = function(){ 
+			this.style.backgroundColor  = "black"
+			this.style.color = "white"
+			setTimeout(function () {F_openLS() }, 500) 
+		}
+
+		input.style.position = "absolute"
+		input.style.right = "5px"
+		input.style.top = "50px"
+	}
+	F_InputOpen()
 	function F_InputSave() {
 		var input = document.createElement("input")
 		input.type = "button"
 		input.id = "btn_saveLS"
+		input.style.backgroundColor = "Chartreuse"
+		input.style.fontWeight = "bold"
 		input.value = "Save LS"
 		document.body.appendChild(input)
 		//input.onmousedown = function(){ this.style.backgroundColor  = "green" }
@@ -203,7 +225,7 @@
 
 		input.style.position = "absolute"
 		input.style.right = "5px"
-		input.style.top = "50px"
+		input.style.top = "90px"
 	}
 	F_InputSave()
 	function F_fileinput() {
@@ -241,6 +263,18 @@
 			pom.click();
 		}
 	}
+	function F_openLS() {
+		var text = ""
+		
+		var lsLength = localStorage.length
+		for ( var i=0; i<lsLength; i++ ) { text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE \n" }
+		
+		var wnd = window.open("about:blank", "", "_blank");
+		wnd.document.write(text);
+		
+		document.getElementById("btn_openLS").style.backgroundColor = ""
+		document.getElementById("btn_openLS").style.color = ""
+	}
 	function func_saveLS() {
 		var text = ""
 		
@@ -253,7 +287,8 @@
 		
 		download(filename, text);
 		
-		document.getElementById("btn_saveLS").style.backgroundColor = ""
+		document.getElementById("btn_saveLS").style.backgroundColor = "Chartreuse"
+		document.getElementById("btn_saveLS").style.color = ""
 	}
 	JSON.stringify(localStorage)
 	// LOAD LS
