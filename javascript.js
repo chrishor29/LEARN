@@ -962,7 +962,7 @@ function F_impQs(impek){ // 11ms/Q a betöltési ideje
 		//console.clear()
 		//console.log(Qelem.innerHTML)
 						parent = parent.parentElement
-					} while ( parent.innerHTML.indexOf('<div class="title"') == -1 && parent.innerHTML.indexOf('<summary class="phase"') == -1 && parent.innerHTML.indexOf('<summary class="status"') == -1 )
+					} while ( parent.innerHTML.indexOf('<div class="title"') == -1 && parent.innerHTML.indexOf('<summary class="phase') == -1 && parent.innerHTML.indexOf('<summary class="status"') == -1 )
 					var checkID = Qtext.slice(Qtext.indexOf("{")+1,Qtext.indexOf("}"))
 					if ( Qelem.innerHTML.indexOf("{"+checkID+"}") == -1 && Qelem.className.indexOf("{"+checkID+"}") == -1 ) { 
 						if ( impek[i].nodeName == "DIV" ) {
@@ -2319,9 +2319,11 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 	}
 	createTemakor("uncategorized")
 
-	var Table = document.getElementsByClassName("phase")
+	//var Table = document.getElementsByClassName("phase")
+	var Table = document.querySelectorAll('.phase,.status')
 	for ( var i = 0;   i < Table.length;   i++ ) { // tetelek
-		Table[i].parentElement.className = "tetel"
+		if ( Table[i].className = "phase" ) { Table[i].parentElement.className = "tetel" }
+		if ( Table[i].className = "status" ) { Table[i].parentElement.className = "feltetel" }
 		var tetelID = i + "," + Table[i].innerHTML
 		Table[i].parentElement.id = tetelID
 		tetelek[tetelID] = []
@@ -3633,7 +3635,8 @@ function F_nextQ(){
 		do { // megkeresi a 'családfában' legfelül lévő 'kerdes'-t (ami nem feltétlen az, lehet csak 'open' is)
 			Qelem = parent
 			parent = parent.parentElement
-		} while ( parent.classList.contains("altetel") != true  && parent.classList.contains("tetel") != true )
+		} while ( parent.classList.contains("altetel") != true  && parent.classList.contains("tetel") != true  && parent.classList.contains("feltetel") != true )
+		if ( parent.classList.contains("feltetel") == true ) { Qelem = parent }
 
 		
 		function func_setTitle(){
@@ -3665,6 +3668,8 @@ function F_nextQ(){
 			F_calcLSid(Qelem)
 			var LSid = actLSid
 			var Qtext = actQtext
+			
+			if ( Qelem.classList.contains("feltetel") == true ) { Qtext = Qtext.replace(">"," open>") }
 			
 			QlocElem.innerHTML = QlocElem.innerHTML + Qtext
 		}
