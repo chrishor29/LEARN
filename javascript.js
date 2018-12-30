@@ -25,10 +25,16 @@
  ✖: androidon mindig a kezdőoldalt töltse be (tehát hiába a questes aloldalon zártam be, ne azt töltse be
  ✖: zöldnél azt tudjam beállítani, hogy mennyi idő múlva dobja ki legközelebb (tehát ne csak 60/600/stb., hanem kérdésenként változó lehessen --> de ha nem állítok be semmit, akkor ahogy eddig is, a repeat-nél beállított lesz)
  ✖: impQ-t csak akkor töltse be innerHTML, ha megnyitom (+amikor kidobja questbe)
-	[F_impQs newMethod] 9x gyorsabb mint az [F_impQs oldMethod] --> newMethod-dal töltsem be az összeset az elején: jelenleg azok hiányoznak, melyeket egy impQ-n belül kéne importálni. Azonban csak akkor importálja őket, ha szükség van rá (tehát a felette lévő details-ba még nincs benne) -->próbáltam már, ott is hagytam commentbe(#123#), de nem jön össze, mert baromi lassú
-	az elején olvassa ki az altkérdéseket az imp-ből és table-ba(impID = prior,length,Qtxt) tenni. Ebból nézi a chance-t az előhívásra, ebből számolja tétel hány %, továbbá oldQcheck & upgradeQ esetében innen veszi ki a szöveget(ugyanis egy impQ-n belül lehet altkérdés, amit hiányolna különben). Tehát beírni innerHTML-be nem szükséges ilyenkor még --> ez kicsit komplikált, mert ha van még1 alt imp, akkor annak altkérdéseit is ki kell olvassa, és így tovább.. de megoldható --> ez szvsz gyorsabb
+	most csináltam egy fixet az [F_impQs newMethod]-ra(hogy importálja az összest ami kell), ha nem működik...
+	... akkor visszaállok az oldMethod (ott egyszerűbb a kivitelezés jóval), és beállítom, hogy:
+		elején csak az impQ-kon belüli impQ-kat loadolja
+		egyébként pedig csak akkor loadol, ha megnyitom az adottQ-t
+		továbbá kezdetben akkoris loadoljon, ha átmegyek feladatmegoldóba, és ki van jelölve az adott tétel (abba lévőket loadolja)
+		--> utóbbira később lehet találok jobb megoldást, pl. írtam olyat anno:
+			az elején olvassa ki az altkérdéseket az imp-ből és table-ba(impID = Qtxt) tenni. Ebból nézi a chance-t az előhívásra, ebből számolja tétel hány %, továbbá oldQcheck & upgradeQ esetében innen veszi ki a szöveget(ugyanis egy impQ-n belül lehet altkérdés, amit hiányolna különben). Tehát beírni innerHTML-be nem szükséges ilyenkor még --> ez kicsit komplikált, mert ha van még1 alt imp, akkor annak altkérdéseit is ki kell olvassa, és így tovább.. de megoldható --> ez szvsz gyorsabb
+	[F_impQs newMethod] ~10x gyorsabb mint az [F_impQs oldMethod]
 	azt is kéne majd, hogy a kérdéseket a (neve + hány betűből áll) alapján mentse el, és az alapján diagnosztizáljon ID-t --> többi table (Qid,txtLS,arrQtxt stb. fölös) --> elég arrQnames + impQTable + localstorage.getItem(qName) = LSid
-	cutImpQ funkcióra nem lesz szükség --> ugyanis az elején regisztrálja be a questeket, szóval utána hiába kattolok rá majd valamire és tölti be őket, az nem zavar bele utána. Továbbá a feladatmegoldás során is amikor kidobja az uj questet, akkor mielőtt beimportálja az innerhtml-üket az impQ-knak, azzal dolgozzak
+	cutImpQ funkcióra nem lesz szükség --> ugyanis az elején regisztrálja be a questeket, szóval utána hiába kattolok rá majd valamire és tölti be őket, az nem zavar bele utána. Továbbá a feladatmegoldás során is amikor kidobja az uj questet, akkor mielőtt beimportálja az innerhtml-üket az impQ-knak, azzal dolgozzak (wut?!)
 	((erre a lépésre lehet nincs szükség --> ugyanis lehet, hogyha megcisnálom azt, hogy az adott oldalon lévő impQ-kat ne LocalStorage-ből töltse már be, akkor megszűnik a probléma --> előbb csináljam azt meg)) <-- ezt próbáltam, de fail. Maga az innerHTML bemásolása tart sokáig, nem az LS betöltése
  ✖: F_impQbegin előtt létrehozott buttonok nem működnek
 
@@ -718,14 +724,11 @@ buttonX.onclick = function(){
 	alert("sajt")
 }*/
 
-/* impQ
-+ elején elvileg csak meg kéne néznie
+
+/* impQ - megoldás ?!
+ + csak a impQ-ban töltse be az elején az altQ-kat (oldMethoddal: nem replace, hanem innerHTML)
+ + csak akkor töltse be a többinél az impQ-kat, ha megnyitom --> probléma elvileg, hogy a feladatmegoldó oldalra átklikkelve nem jelenik meg akkor az összes quest ?
 */
-
-
-
-
-
 
 function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, így lassabb, de pontosabban mérhetők az eltérések)
 	F_getTime()
@@ -801,8 +804,10 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 			impBlock = impBlock.slice(0,impBlock.indexOf('">')+2)
 			newHTML = newHTML + impBlock
 			oldHTML = oldHTML.slice(oldHTML.indexOf('">')+2)
+			
+			
 			F_getImpQtxt(impBlock)
-			//(#123#) --> itt csak addig jutottam, hogy megkeresse a parent detailst, amiben meg kell nézze, nincs-e már importálva a quest... de már ez se jó, mert túl lassú
+			
 			if ( Qtxt == undefined ) { continue }
 			if ( Qtxt.indexOf(' class="imp ') != -1 ) {
 				var expQk = ""
@@ -834,57 +839,81 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 					parentTXT = parentTXT.slice(parentTXT.lastIndexOf("<details"))
 				}
 				
-				// megnézi parent-ban milyen questek vannak már importálva
-				if ( parentTXT.indexOf(' class="imp ') != -1 ) {
-					//alert(parentTXT.indexOf(' class="imp ['))
-					var bad = 0
-					var endP = 0
-					var startP = 0
+				
+				function F_checkSearchTXT(searchTxt,elemType) {
+					newTXT = 1
+					elemType = elemType.slice(elemType.lastIndexOf("<")+1, elemType.lastIndexOf("class")-1)
 					do {
 						//console.clear()
-						//console.log(startP)
-						startP = parentTXT.indexOf(' class="imp ',startP) +1
-						if ( parentTXT.lastIndexOf("<details",startP) == parentTXT.indexOf("<details") ) {
-							//expID = parentTXT.slice(startP+12,parentTXT.indexOf(']',startP+12))
-							expID = parentTXT.slice(startP+12)
-							if ( expID.indexOf("}") > expID.indexOf("]") ) {
-								expID = expID.slice(0,expID.indexOf('}'))
-								expQk = expQk + expID + " "
-							} else {
-								expID = expID.slice(0,expID.indexOf(']'))
-								impQk = impQk + expID + " "
-							}
-							//alert("expID:" +expID)
+						//console.log(searchTxt)
+						if ( searchTxt.indexOf('<'+elemType) == searchTxt.indexOf('</'+elemType) ) { // mindkettő -1 (tehát nincs már több)
+							newTXT = -1
+						} else if ( searchTxt.indexOf('<'+elemType) < searchTxt.indexOf('</'+elemType) ) {
+							newTXT = newTXT +1
+							searchTxt = searchTxt.slice(searchTxt.indexOf('<'+elemType)+1)
+						} else if ( searchTxt.indexOf('<'+elemType) > searchTxt.indexOf('</'+elemType) ) {
+							newTXT = newTXT -1
+						//console.log(searchTxt.indexOf('<'+elemType))
+						//console.log(searchTxt.indexOf('</'+elemType))
+							searchTxt = searchTxt.slice(searchTxt.indexOf('</'+elemType)+1)
 						}
-						//alert("startP:" +startP)
-					}
-					while ( parentTXT.indexOf(' class="imp ',startP) != -1 )
+						//console.log(searchTxt)
+						//alert(newTXT)
+					} while ( newTXT > 0 )
 				}
-				
-				// végig importálja az altkérdéseket is, amíg olyanba nem ütközik, ami már volt
+/* végig importálja az altkérdéseket is, amíg olyanba nem ütközik, ami már volt
+<div 16></div>
+<div 2></div>
+<div 2></div>
+
+megkeresi az első altImpQ-t.
+megnézi az ID-jét.
+megnézi, hogy az eddigi Qtext-ben van-e már: visszafele indul, a hozzá legközelebbi utolsót keresi!, ha van:
+	megnézi, hogy a parentje-e, vagyis: 
+		megnézi hogy div/span-e, legyen pl. div --> a (num = 1)
+		utána megkeresi a következő <div vagy </div-et: ha <div akkor a (num = num+1) ha </div akkor a num = num-1
+		addig csinálj amíg a num = 0
+		ha közben áthaladt az altImpQ-n (ami elbírálás alatt) áll, akkor nem lesz importálva -> ha nem, akkor importálva lesz*/
 				var startP = 0
 				do {
 					startP = Qtxt.indexOf(' class="imp ',startP) +1
 					var EXPid = Qtxt.slice(startP+12)
+					var parentQtxt = Qtxt.slice(0,startP)
 					var newTXT = false
 					if ( EXPid.indexOf("}") > EXPid.indexOf("]") ) {
 						EXPid = EXPid.slice(0,EXPid.indexOf('}'))
-						if ( expQk.indexOf(EXPid) == -1 ) {
+						if ( parentQtxt.lastIndexOf("{"+EXPid+"}") != -1 ) {
+							var searchTxt = parentQtxt.slice(parentQtxt.lastIndexOf("{"+EXPid+"}"))
+							var elemType = parentQtxt.slice(0,parentQtxt.lastIndexOf("{"+EXPid+"}"))
+							F_checkSearchTXT(searchTxt,elemType)
+							if ( newTXT == -1 ) { 
+								newTXT == false  // nem importálja majd
+							} else if ( newTXT == 0 ) { 
+								newTXT = localStorage.getItem("hkExpQ."+EXPid)
+								var LSid = newTXT.slice(0,newTXT.indexOf(" "))
+								newTXT = localStorage.getItem(LSid)
+							}
+						} else { 
 							newTXT = localStorage.getItem("hkExpQ."+EXPid)
 							var LSid = newTXT.slice(0,newTXT.indexOf(" "))
 							newTXT = localStorage.getItem(LSid)
-							expQk = expQk + EXPid + " "
 						}
 					} else {
 						EXPid = EXPid.slice(0,EXPid.indexOf(']'))
-						if ( impQk.indexOf(EXPid) == -1 ) {
-							newTXT = arrImpQs[EXPid]
-							impQk = impQk + EXPid + " "
+						if ( parentQtxt.lastIndexOf("["+EXPid+"]") != -1 ) {
+							var searchTxt = parentQtxt.slice(parentQtxt.lastIndexOf("["+EXPid+"]"))
+							var elemType = parentQtxt.slice(0,parentQtxt.lastIndexOf("["+EXPid+"]"))
+							F_checkSearchTXT(searchTxt,elemType)
+							if ( newTXT == -1 ) { 
+								newTXT == false // nem importálja majd
+							} else if ( newTXT == 0 ) { 
+								newTXT = arrImpQs[EXPid] 
+							} 
+						} else { 
+							newTXT = arrImpQs[EXPid] 
 						}
 					}
-
-					if ( newTXT != false ) {
-						// importQ
+					if ( newTXT != false ) { // importQ
 						count = count +1
 						if ( newTXT != null ) {
 							var oldTXT = Qtxt.slice(Qtxt.indexOf('<',startP-6),Qtxt.indexOf('>',startP)+1)
@@ -903,7 +932,7 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 								newTXT = newTXT.slice(0,-15)
 							}
 							newTXT = oldTXT + newTXT
-							Qtxt = Qtxt.replace(oldTXT,newTXT)
+							Qtxt = Qtxt.slice(0,Qtxt.indexOf('<',startP-6)) + newTXT + Qtxt.slice(Qtxt.indexOf('>',startP)+1)
 						} else {
 							MISSid = MISSid + EXPid + ","
 						}
@@ -915,13 +944,11 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 				Qtxt = Qtxt.slice(Qtxt.indexOf('<ul class="normal">')+19)
 				Qtxt = Qtxt.slice(0,Qtxt.lastIndexOf('</ul></details>'))
 			}
-			//console.log(Qtxt)
 			newHTML = newHTML + Qtxt
 		}
 		while ( oldHTML.indexOf(' class="imp ') != -1 )
 	}
 	document.documentElement.innerHTML = newHTML + oldHTML
-	//alert("impQ - done")
 	
 	if ( MISSid != "" ) { alert("Az alábbi EXPid-k még nincsenek LS-be reigsztrálva: "+MISSid + "\nNyisd meg a tárgyválasztás ablaknál az adott tárgyhoz kapcsolódó egyéb tárgy(ak)at egyszer --> pl. Biokémia II esetén nyisd meg Biokémia I, Élettan, Molekuláris Sejtbiológia") }
 	
@@ -1215,7 +1242,7 @@ function F_loadImgX(imgX){
 	if ( imgX.dataset.src && imgX.offsetParent != null ) {
 		imgX.src = "images/" + imgX.dataset.src
 		imgX.removeAttribute("data-src")
-		//console.log(imgX.offsetParent+" - "+imgX.dataset.src+" - "+imgX.src)
+		console.log(imgX.offsetParent+" - "+imgX.dataset.src+" - "+imgX.src)
 	}
 }
 function F_loadImgVideo(detElem,e){
@@ -1423,11 +1450,9 @@ function F_imgActLoad(IMGelem){
 function F_imgPreLoad(){ // ha már alapból nyitott a details, akkor betölti a képet
 	var imgArr = []
 	var allIMG = document.getElementsByTagName("img")
-	for ( var i=0; i<allIMG.length; i++ ) {
-		F_loadImgX(allIMG[i])
-	}
+	for ( var i=0; i<allIMG.length; i++ ) { F_loadImgX(allIMG[i]) }
 }
-F_imgPreLoad()
+//F_imgPreLoad() // túl lassú az imgX.offsetParent checkolása, így nem éri meg betenni :(
 
 
 var imagesAll = document.images
@@ -2172,7 +2197,6 @@ function F_CreateQDiv() {
 	F_TableRepeat()
 }
 F_CreateQDiv()
-
 
 // –––– –––– –––– –––– –––– –––– –––– –––– –––– ––––
 function func_calcTimeDiff(repCount){
@@ -3325,26 +3349,6 @@ JSON.stringify(localStorage)
 // SAVE LS (end)
 
 
-function func_removeRepeat(){ // ha már elkészült a script, és removeltam mind1iket törölhető ez a funkció!
-	for ( var i = 0;   i < kerdesek.length;   i++ ) {
-		var kerdes = localStorage.getItem(kerdesek[i].innerHTML)
-		if ( kerdes+'_repeat' in localStorage ) {
-			//localStorage.removeItem(kerdes+'_fix')
-			//localStorage.removeItem(kerdes+'_idopont')
-			/*var date = new Date();
-			if ( Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont') > 10000 ) {
-				localStorage.removeItem(kerdes+'_idopont')
-				localStorage.removeItem(kerdes+'_changes')
-				localStorage.removeItem(kerdes+'_repeat')
-				localStorage.removeItem(kerdes+'_jegy')
-			}*/
-			if ( 5 < localStorage.getItem(kerdes+'_repeat') ) {
-				localStorage.setItem(kerdes+'_repeat', 5)
-			}
-		}
-	}
-}
-func_removeRepeat()
 
 function func_clearOldHistory() {
 	for ( var i = 0;   i < kerdesek.length;   i++ ) {
@@ -3360,7 +3364,7 @@ function func_clearOldHistory() {
 		}
 	}
 }
-func_clearOldHistory()
+//func_clearOldHistory() // sokáig tart a betöltésnél szóval remove-oltam (max ha megnőtt a localstorage, akkor legyen egy button amivel lehívom és kitakarítja)
 
 if ( localStorage.getItem("hk.newQ") == "true" ) {
 	document.getElementById("btn_newQuest").style.borderColor = "limegreen"
@@ -3383,7 +3387,7 @@ function F_prevQ(){
 	do { // megkeresi a 'családfában' legfelül lévő kérdést!
 		Qelem = parent
 		parent = parent.parentElement
-	} while ( parent.classList.contains("altetel") != true  && parent.classList.contains("tetel") != true )
+	} while ( parent.classList.contains("altetel") != true  && parent.classList.contains("tetel") != true  && parent.classList.contains("feltetel") != true )
 	// END
 	if ( document.getElementById("note").value != "" ) {
 		//localStorage.setItem(Qelem.innerHTML, document.getElementById("note").value);
