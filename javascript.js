@@ -3,13 +3,18 @@
 // window.onerror = function(msg, url, linenumber) { alert('Error message: '+msg+'\nLine Number: '+linenumber) }
 
 /* PROJECT - PROGRESS
- ✖: questID-k száma(ami a nextQ button alatt látható) valamiért gyorsan megugrik, fixáljam!!! --> ugyanis szvsz lehet emiatt is lassú
- ✖: mikrobi JS -> tétel kiválasztása lassú (hogy melből dobjon kérdést)
- ✖: nextQ-ra klikkelve lassan tölti be... (lásd: mikrobi)
+ ✖: IMP Q nem üzemel immun-nál! --> 
+	+ kritérium definíciója: egy impQ-n belül ugyanazon impQ NEM lehet még1x !!!! -- ez NEM jó, ugyanis pl. mikrobi batérium táblázat egy impQ, mégis többször kell benne legyen egy másik impQ --> szóval a kritérium: egy impQ-n belül az adott impQ csak akkor szerepelhet, ha a parentjei közt még nincs
+	(variáció: {1} id-jében van importálva a [2], amibe a [3], a [3]-ba pedig az [1] -> legyenjó)
+	+ newMethod legyen az impQ
+	+ csak akkor töltse be, ha visible.
+	+ Továbbá akkoris, ha kivan jelölve a tétel a Q megoldásnál (de csak ha arra a módra váltok)
+	+ utóbbi helyett kéne egy gyorsabb megoldás (lehet csak bonyolult végiggondolni)
+	(elején semmiképpen ne töltse be az összeset, mert androidon qrva lassú!) 
  ✖: impQ-t csak akkor töltse be innerHTML, ha megnyitom (+amikor kidobja questbe)
 	most csináltam egy fixet az [F_impQs newMethod]-ra(hogy importálja az összest ami kell), ha nem működik...
 	... akkor visszaállok az oldMethod (ott egyszerűbb a kivitelezés jóval), és beállítom, hogy:
-		elején csak az impQ-kon belüli impQ-kat loadolja
+		elején csak az impQ-kon belüli impQ-kat loadolja (végigmegy newMethoddal 1x, majd utána old-methoddal átellenőrzi!)
 		egyébként pedig csak akkor loadol, ha megnyitom az adottQ-t
 		továbbá kezdetben akkoris loadoljon, ha átmegyek feladatmegoldóba, és ki van jelölve az adott tétel (abba lévőket loadolja)
 		--> utóbbira később lehet találok jobb megoldást, pl. írtam olyat anno:
@@ -19,6 +24,14 @@
 	cutImpQ funkcióra nem lesz szükség --> ugyanis az elején regisztrálja be a questeket, szóval utána hiába kattolok rá majd valamire és tölti be őket, az nem zavar bele utána. Továbbá a feladatmegoldás során is amikor kidobja az uj questet, akkor mielőtt beimportálja az innerhtml-üket az impQ-knak, azzal dolgozzak (wut?!)
 	((erre a lépésre lehet nincs szükség --> ugyanis lehet, hogyha megcisnálom azt, hogy az adott oldalon lévő impQ-kat ne LocalStorage-ből töltse már be, akkor megszűnik a probléma --> előbb csináljam azt meg)) <-- ezt próbáltam, de fail. Maga az innerHTML bemásolása tart sokáig, nem az LS betöltése
 	ELVILEG MOST NAGYJÁBÓL JÓ (még nem tökéletes, de funkcióképes)
+ ✖: androidra console.log-ot!!
+ ✖: MIKROBI JS:
+	tétel buttonra klikk lassú
+	tétel kiválasztása lassú (hogy melyből dobjon kérdést)
+	betöltés is lassú
+	nextQ-ra is lassú
+	swich button is lassú (Quest megoldós módra váltó)
+ ✖: questID-k száma(ami a nextQ button alatt látható) valamiért gyorsan megugrik, fixáljam!!! --> ugyanis szvsz lehet emiatt is lassú
 	
  ✖: tesztkérdések: válaszokat random sorrendben dobja (különben nem jól jegyezném meg)
  ✖: impQ: immun: rheumatid arthitis{23}, ha a 'T-sejtek gátlása'-t felcserélem 'B-sejt gátlása'-val (sorrendet csak) akkor nem importálja már
@@ -735,85 +748,91 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 	//console.log("– F_impQs newMethod BEGIN – " + diffTime)
 	
 	var MISSid = ""
-	
 	var oldHTML = document.documentElement.innerHTML
 	var newHTML = ""
 	
-	var Qtxt = ""
-	function F_getImpQtxt(impBlock){
-		var begin, end, EXPid
-		if ( impBlock.indexOf("[") != -1 ) {
-			begin = impBlock.indexOf("[") +1
-			end = impBlock.indexOf("]")
-			EXPid = impBlock.slice(begin,end)
-			Qtxt = arrImpQs[EXPid]
-		} else {
-			begin = impBlock.indexOf("{") +1
-			end = impBlock.indexOf("}")
-			EXPid = impBlock.slice(begin,end)
-			Qtxt = localStorage.getItem("hkExpQ."+EXPid)
-			if ( Qtxt != null )  {
-				var LSid = Qtxt.slice(0,Qtxt.indexOf(" "))
-				Qtxt = localStorage.getItem(LSid)
-			}
-		}
-
-		//console.log(EXPid)
-		if ( Qtxt == null ) { MISSid = MISSid + EXPid + "," }
-		if ( Qtxt == null ) { alert("hiányzik az alábbi kérdés: ["+EXPid+"]") }
-		
-		if ( impBlock.indexOf("hide") != -1 ) {
-			if ( impBlock.slice(1,4) == "div" ) {
-				var title = Qtxt
-				title = title.slice(0,title.indexOf('</summary>'))
-				title = title.slice(title.indexOf('<summary'))
-				title = title.slice(title.indexOf('>')+1)
-				title = "<strong>"+title+"</strong>"
-				Qtxt = Qtxt.replace('<ul class="normal">', '<ul class="normal">'+title);
-			}
-
-			Qtxt = Qtxt.replace(/kerdes/g, "");
-		}
-	}
-	
-	var divSpan = ""
-	function F_getImpQType() {
-		if ( oldHTML.indexOf('<div class="imp ') == -1 ) {
-			divSpan = "span"
-		} else if ( oldHTML.indexOf('<span class="imp ') == -1 ) {
-			divSpan = "div"
-		} else if ( oldHTML.indexOf('<div class="imp ') > oldHTML.indexOf('<span class="imp ') ) {
-			divSpan = "span" // span volt valamiért és átírtam div-re, de lehet rossz (mert error-ozott, és így jó lett)
-		} else {
-			divSpan = "div"
-			//if ( oldHTML.indexOf('<div class="imp [') == -1 ) { alert(oldHTML.indexOf('<span class="imp [')) }
-		}
-	}
 	
 	var count = 0
 	if ( oldHTML.indexOf(' class="imp ') != -1 ) { 
 		do {
+			// expQk + impQk --> ezekbe írom be, hogy mely id-k lettek importálva ezen impID-n belül (sajátját is beleértve, tehát az az első)
+			// ezért megnézi az impQtxt-t, és megnézi van-e abban impQ, ha van, akkor beimportálja, amennyiben még nem volt
+			// utóbbit repeateli, amíg végig nem ér az impQtxt-en
 			count = count +1
-			Qtxt = ""
+			var expQk = ""
+			var impQk = ""
 			
-			F_getImpQType()
-			
-			var impBlock = oldHTML.slice(oldHTML.indexOf('<'+divSpan+' class="imp '))
-			newHTML = newHTML + oldHTML.slice(0,oldHTML.indexOf('<'+divSpan+' class="imp '))
-			oldHTML = oldHTML.slice(oldHTML.indexOf('<'+divSpan+' class="imp '))
-			
-			impBlock = impBlock.slice(0,impBlock.indexOf('">')+2)
-			newHTML = newHTML + impBlock
-			oldHTML = oldHTML.slice(oldHTML.indexOf('">')+2)
-			
-			
-			F_getImpQtxt(impBlock)
-			
-			if ( Qtxt == undefined ) { continue }
-			if ( Qtxt.indexOf(' class="imp ') != -1 ) {
-				var expQk = ""
-				var impQk = ""
+			var EXPid
+			var Qtxt
+			function F_getImpQ() {
+				var divSpan = ""
+				if ( oldHTML.indexOf('<div class="imp ') == -1 ) {
+					divSpan = "span"
+				} else if ( oldHTML.indexOf('<span class="imp ') == -1 ) {
+					divSpan = "div"
+				} else if ( oldHTML.indexOf('<div class="imp ') > oldHTML.indexOf('<span class="imp ') ) {
+					divSpan = "span" // span volt valamiért és átírtam div-re, de lehet rossz (mert error-ozott, és így jó lett)
+				} else {
+					divSpan = "div"
+					//if ( oldHTML.indexOf('<div class="imp [') == -1 ) { alert(oldHTML.indexOf('<span class="imp [')) }
+				}
 				
+				var impBlock = oldHTML.slice(oldHTML.indexOf('<'+divSpan+' class="imp '))
+				newHTML = newHTML + oldHTML.slice(0,oldHTML.indexOf('<'+divSpan+' class="imp '))
+				oldHTML = oldHTML.slice(oldHTML.indexOf('<'+divSpan+' class="imp '))
+				
+				impBlock = impBlock.slice(0,impBlock.indexOf('">')+2)
+				newHTML = newHTML + impBlock
+				oldHTML = oldHTML.slice(oldHTML.indexOf('">')+2)
+				
+				var begin, end
+				if ( impBlock.indexOf("[") != -1 ) {
+					begin = impBlock.indexOf("[") +1
+					end = impBlock.indexOf("]")
+					EXPid = impBlock.slice(begin,end)
+					Qtxt = arrImpQs[EXPid]
+					EXPid = "["+EXPid+"]"
+					impQk = impQk+ "," +EXPid
+				} else {
+					begin = impBlock.indexOf("{") +1
+					end = impBlock.indexOf("}")
+					EXPid = impBlock.slice(begin,end)
+					Qtxt = localStorage.getItem("hkExpQ."+EXPid)
+					EXPid = "{"+EXPid+"}"
+					expQk = expQk+ "," +EXPid
+					if ( Qtxt != null )  {
+						var LSid = Qtxt.slice(0,Qtxt.indexOf(" "))
+						Qtxt = localStorage.getItem(LSid)
+					}
+				}
+
+				if ( Qtxt == null ) { MISSid = MISSid + EXPid + "," }
+				if ( Qtxt == null ) { alert("hiányzik az alábbi kérdés: ["+EXPid+"]") }
+				
+				if ( impBlock.indexOf("hide") != -1 ) {
+					if ( impBlock.slice(1,4) == "div" ) {
+						var title = Qtxt
+						title = title.slice(0,title.indexOf('</summary>'))
+						title = title.slice(title.indexOf('<summary'))
+						title = title.slice(title.indexOf('>')+1)
+						title = "<strong>"+title+"</strong>"
+						Qtxt = Qtxt.replace('<ul class="normal">', '<ul class="normal">'+title);
+					}
+
+					Qtxt = Qtxt.replace(/kerdes/g, "");
+				}
+				
+				if ( divSpan == "div" ) {
+					Qtxt = Qtxt.slice(Qtxt.indexOf('<ul class="normal">')+19)
+					Qtxt = Qtxt.slice(0,Qtxt.lastIndexOf('</ul></details>'))
+				}
+			}
+			F_getImpQ()
+			// megvan a main impQ EXPid-je
+			// megvan a main impQ text-je, ezután megnézem azon belül van(nak)-e további impQ(-k)
+			if ( Qtxt == undefined ) { continue }
+			
+			if ( Qtxt.indexOf(' class="imp ') != -1 ) {
 				// parent-et megkeresi --> ez lesz a parentTXT
 				var parentTXT = newHTML
 				if ( parentTXT.lastIndexOf("<details") < parentTXT.lastIndexOf("</details") ) {
@@ -839,16 +858,22 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 				} else {
 					parentTXT = parentTXT.slice(parentTXT.lastIndexOf("<details"))
 				}
+				console.clear()
+				/*console.log(parentTXT)
+				alert("sajt")*/
 				
 				
 				function F_checkSearchTXT(searchTxt,elemType) {
 					newTXT = 1
-					elemType = elemType.slice(elemType.lastIndexOf("<")+1, elemType.lastIndexOf("class")-1)
+					searchTxt = elemType.slice(elemType.lastIndexOf('<')) +searchTxt
+					elemType = elemType.slice(elemType.lastIndexOf("<")+1)
+					searchTxt = searchTxt.slice(0,searchTxt.lastIndexOf('<'))
 					do {
 						//console.clear()
-						//console.log(searchTxt)
+						console.log(searchTxt)
+						//alert(elemType)
 						if ( searchTxt.indexOf('<'+elemType) == searchTxt.indexOf('</'+elemType) ) { // mindkettő -1 (tehát nincs már több)
-							newTXT = -1
+							newTXT = 0
 						} else if ( searchTxt.indexOf('<'+elemType) < searchTxt.indexOf('</'+elemType) ) {
 							newTXT = newTXT +1
 							searchTxt = searchTxt.slice(searchTxt.indexOf('<'+elemType)+1)
@@ -858,7 +883,6 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 						//console.log(searchTxt.indexOf('</'+elemType))
 							searchTxt = searchTxt.slice(searchTxt.indexOf('</'+elemType)+1)
 						}
-						//console.log(searchTxt)
 						//alert(newTXT)
 					} while ( newTXT > 0 )
 				}
@@ -881,13 +905,15 @@ megnézi, hogy az eddigi Qtext-ben van-e már: visszafele indul, a hozzá legkö
 					var EXPid = Qtxt.slice(startP+12)
 					var parentQtxt = Qtxt.slice(0,startP)
 					var newTXT = false
+					console.clear()
+					console.log(parentQtxt)
 					if ( EXPid.indexOf("}") > EXPid.indexOf("]") ) {
 						EXPid = EXPid.slice(0,EXPid.indexOf('}'))
 						if ( parentQtxt.lastIndexOf("{"+EXPid+"}") != -1 ) {
-							var searchTxt = parentQtxt.slice(parentQtxt.lastIndexOf("{"+EXPid+"}"))
-							var elemType = parentQtxt.slice(0,parentQtxt.lastIndexOf("{"+EXPid+"}"))
+							var searchTxt = parentQtxt.slice(parentQtxt.lastIndexOf('class="imp {'+EXPid+'}'))
+							var elemType = parentQtxt.slice(0,parentQtxt.lastIndexOf('class="imp {'+EXPid+'}'))
 							F_checkSearchTXT(searchTxt,elemType)
-							if ( newTXT == -1 ) { 
+							if ( newTXT == 0 ) { 
 								newTXT == false  // nem importálja majd
 							} else if ( newTXT == 0 ) { 
 								newTXT = localStorage.getItem("hkExpQ."+EXPid)
@@ -902,10 +928,13 @@ megnézi, hogy az eddigi Qtext-ben van-e már: visszafele indul, a hozzá legkö
 					} else {
 						EXPid = EXPid.slice(0,EXPid.indexOf(']'))
 						if ( parentQtxt.lastIndexOf("["+EXPid+"]") != -1 ) {
-							var searchTxt = parentQtxt.slice(parentQtxt.lastIndexOf("["+EXPid+"]"))
-							var elemType = parentQtxt.slice(0,parentQtxt.lastIndexOf("["+EXPid+"]"))
+							var searchTxt = parentQtxt.slice(parentQtxt.lastIndexOf('class="imp ['+EXPid+']'))
+							var elemType = parentQtxt.slice(0,parentQtxt.lastIndexOf('class="imp ['+EXPid+']'))
+						//console.clear()
+						//console.log(parentQtxt)
+						//alert(searchTxt)
 							F_checkSearchTXT(searchTxt,elemType)
-							if ( newTXT == -1 ) { 
+							if ( newTXT == 0 ) { 
 								newTXT == false // nem importálja majd
 							} else if ( newTXT == 0 ) { 
 								newTXT = arrImpQs[EXPid] 
@@ -943,16 +972,12 @@ megnézi, hogy az eddigi Qtext-ben van-e már: visszafele indul, a hozzá legkö
 				} while ( Qtxt.indexOf(' class="imp [',startP) != -1 )
 			}
 			
-			if ( divSpan == "div" ) {
-				Qtxt = Qtxt.slice(Qtxt.indexOf('<ul class="normal">')+19)
-				Qtxt = Qtxt.slice(0,Qtxt.lastIndexOf('</ul></details>'))
-			}
 			newHTML = newHTML + Qtxt
 		}
 		while ( oldHTML.indexOf(' class="imp ') != -1 )
 	}
-	document.documentElement.innerHTML = newHTML + oldHTML
 	
+	document.documentElement.innerHTML = newHTML + oldHTML
 	if ( MISSid != "" ) { alert("Az alábbi EXPid-k még nincsenek LS-be reigsztrálva: "+MISSid + "\nNyisd meg a tárgyválasztás ablaknál az adott tárgyhoz kapcsolódó egyéb tárgy(ak)at egyszer --> pl. Biokémia II esetén nyisd meg Biokémia I, Élettan, Molekuláris Sejtbiológia") }
 	
 	F_getTime()
@@ -2208,9 +2233,9 @@ F_CreateQDiv()
 // –––– –––– –––– –––– –––– –––– –––– –––– –––– ––––
 function func_calcTimeDiff(repCount){
 	if ( repCount == 0 ) {
-		timeDiff = 10
+		timeDiff = 7
 	} else if ( repCount == 1 ) {
-		timeDiff = 20
+		timeDiff = 30
 	} else if ( repCount == 2 ) {
 		timeDiff = 800
 	} else if ( repCount == 3 ) {
