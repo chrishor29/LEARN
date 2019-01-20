@@ -32,9 +32,9 @@
 	<div><img class="mini" src="Kortan\favicon.bmp"> <a href="Kortan\kortan.html"><strong>Kórélettan</strong></a></div>
 	<div><img class="mini" src="Mikrobi\favicon.bmp"> <a href="Mikrobi\mikrobi.html"><strong>Mikrobiológia</strong></a></div>
 	<div><img class="mini" src="Proped\favicon.bmp"> <a href="Proped\proped.html"><strong>Belgyógyászati Propedeutika</strong></a></div>
-	<div><img class="mini" src="Immun\favicon.bmp"> <a href="Immun\immun.html"><strong>Immunológia</strong></a></div>
 	<div><img class="mini" src="Mutettan\favicon.bmp"> <a href="Mutettan\mutettan.html"><strong>Kísérletes és sebészeti műtéttan</strong></a></div>
 <hr>
+	<div><img class="mini" src="Immun\favicon.bmp"> <a href="Immun\immun.html">Immunológia</a></div>
 	<div><a href="LabMed\labmed.html">Laboratóriumi Medicina</a></div>
 <hr>
 	<div><a href="done\II\expqs.html">expqs</a></div>
@@ -70,20 +70,15 @@
 
 <div class="header" style="float:left;"><center><strong>tételek</strong></center>
 	<table>
-		<tr><th id="elet11">36</th>
+		<tr><th id="elet11">48</th>
 			<td><input type="number" id="elet12" style="width:45px"></td>
 			<td id="elet13"></td>
 			<th id="elet14"></th>
 		</tr>
-		<tr><th id="elet21">36</th>
+		<tr><th id="elet21">47</th>
 			<td><input type="number" id="elet22" style="width:45px"></td>
 			<td id="elet23"></td>
 			<th id="elet24"></th>
-		</tr>
-		<tr><th id="elet31">36</th>
-			<td><input type="number" id="elet32" style="width:45px"></td>
-			<td id="elet33"></td>
-			<th id="elet34"></th>
 		</tr>
 	</table>
 	<center><font id="percentX">asd</font>%</center>
@@ -92,14 +87,14 @@
 <div><strong>DEMOK</strong></div>
 <li>patosz &#10140; </li>
 <li>mikrobi &#10140; </li>
-<li>kórtan &#10140; </li>
+<li>kórtan(+belgyógy együtt) &#10140; </li>
 <li>(nincs: )</li>
 
 <script>
-	var howmany = 3 +1
+	var howmany = 2 +1
 	for (i = 1; i < howmany; i++) { document.getElementById("elet"+i+"2").value = localStorage.getItem("elettPerc"+i) }
 	function calcValPerc(){
-		document.getElementById("percentX").innerHTML = 1/100/100
+		document.getElementById("percentX").innerHTML = 1/100
 		for (i = 1; i < howmany; i++) { 
 			var max = document.getElementById("elet"+i+"1").innerHTML
 			max = Number(max)
@@ -115,7 +110,7 @@
 		document.getElementById("percentX").innerHTML = num.toFixed(2)
 		
 		for (i = 1; i < howmany; i++) { 
-			document.getElementById("elet"+i+"4").innerHTML = 1/100/100
+			document.getElementById("elet"+i+"4").innerHTML = 1/100
 			for (x = 1; x < howmany; x++) { 
 				var max = document.getElementById("elet"+x+"1").innerHTML
 				max = Number(max)
@@ -147,7 +142,6 @@
 	console.log()
 	document.getElementById("elet12").value = localStorage.getItem("elettPerc.1")
 	document.getElementById("elet22").value = localStorage.getItem("elettPerc.2")
-	document.getElementById("elet32").value = localStorage.getItem("elettPerc.3")
 	calcValPerc()
 </script>
 
@@ -174,6 +168,33 @@
 		input.style.bottom = "50px"
 	}
 	F_clearLS()
+	function F_clearExpQs() {
+		var input = document.createElement("input")
+		input.type = "button"
+		input.style.fontWeight = "bold"
+		input.value = "clear EXP"
+		document.body.appendChild(input)
+		input.onclick = function(){ 
+			var bgColor = input.style.backgroundColor
+			input.style.backgroundColor = "aqua"
+			var num = localStorage.getItem("hkExp.max")
+			localStorage.removeItem("hkExp.max")
+			for ( var i = 0; i < num; i++ ) {
+				var txt = localStorage.getItem("hkExpQ."+i)
+				localStorage.removeItem("hkExpQ."+i)
+				if ( txt == null ) { continue }
+				var Qid = txt.slice(0,txt.indexOf(" "))
+				console.log("exp."+i+" deleted ("+Qid+")")
+				localStorage.removeItem(Qid)
+			}
+			setTimeout(function () { input.style.backgroundColor = bgColor  }, 500);
+		}
+
+		input.style.position = "absolute"
+		input.style.right = "5px"
+		input.style.bottom = "100px"
+	}
+	F_clearExpQs()
 	function F_InputLoad() {
 		var input = document.createElement("input")
 		input.type = "button"

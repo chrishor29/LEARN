@@ -3,36 +3,25 @@
 // window.onerror = function(msg, url, linenumber) { alert('Error message: '+msg+'\nLine Number: '+linenumber) }
 
 /* PROJECT - PROGRESS
- ✖: IMP Q nem üzemel immun-nál! --> 
-	+ kritérium definíciója: egy impQ-n belül ugyanazon impQ NEM lehet még1x !!!! -- ez NEM jó, ugyanis pl. mikrobi batérium táblázat egy impQ, mégis többször kell benne legyen egy másik impQ --> szóval a kritérium: egy impQ-n belül az adott impQ csak akkor szerepelhet, ha a parentjei közt még nincs
-	(variáció: {1} id-jében van importálva a [2], amibe a [3], a [3]-ba pedig az [1] -> legyenjó)
-	+ newMethod legyen az impQ
-	+ csak akkor töltse be, ha visible.
-	+ Továbbá akkoris, ha kivan jelölve a tétel a Q megoldásnál (de csak ha arra a módra váltok)
-	+ utóbbi helyett kéne egy gyorsabb megoldás (lehet csak bonyolult végiggondolni)
-	(elején semmiképpen ne töltse be az összeset, mert androidon qrva lassú!) 
- ✖: impQ-t csak akkor töltse be innerHTML, ha megnyitom (+amikor kidobja questbe)
-	most csináltam egy fixet az [F_impQs newMethod]-ra(hogy importálja az összest ami kell), ha nem működik...
-	... akkor visszaállok az oldMethod (ott egyszerűbb a kivitelezés jóval), és beállítom, hogy:
-		elején csak az impQ-kon belüli impQ-kat loadolja (végigmegy newMethoddal 1x, majd utána old-methoddal átellenőrzi!)
-		egyébként pedig csak akkor loadol, ha megnyitom az adottQ-t
-		továbbá kezdetben akkoris loadoljon, ha átmegyek feladatmegoldóba, és ki van jelölve az adott tétel (abba lévőket loadolja)
-		--> utóbbira később lehet találok jobb megoldást, pl. írtam olyat anno:
-			az elején olvassa ki az altkérdéseket az imp-ből és table-ba(impID = Qtxt) tenni. Ebból nézi a chance-t az előhívásra, ebből számolja tétel hány %, továbbá oldQcheck & upgradeQ esetében innen veszi ki a szöveget(ugyanis egy impQ-n belül lehet altkérdés, amit hiányolna különben). Tehát beírni innerHTML-be nem szükséges ilyenkor még --> ez kicsit komplikált, mert ha van még1 alt imp, akkor annak altkérdéseit is ki kell olvassa, és így tovább.. de megoldható --> ez szvsz gyorsabb
-	[F_impQs newMethod] ~10x gyorsabb mint az [F_impQs oldMethod]
-	azt is kéne majd, hogy a kérdéseket a (neve + hány betűből áll) alapján mentse el, és az alapján diagnosztizáljon ID-t --> többi table (Qid,txtLS,arrQtxt stb. fölös) --> elég arrQnames + impQTable + localstorage.getItem(qName) = LSid
-	cutImpQ funkcióra nem lesz szükség --> ugyanis az elején regisztrálja be a questeket, szóval utána hiába kattolok rá majd valamire és tölti be őket, az nem zavar bele utána. Továbbá a feladatmegoldás során is amikor kidobja az uj questet, akkor mielőtt beimportálja az innerhtml-üket az impQ-knak, azzal dolgozzak (wut?!)
-	((erre a lépésre lehet nincs szükség --> ugyanis lehet, hogyha megcisnálom azt, hogy az adott oldalon lévő impQ-kat ne LocalStorage-ből töltse már be, akkor megszűnik a probléma --> előbb csináljam azt meg)) <-- ezt próbáltam, de fail. Maga az innerHTML bemásolása tart sokáig, nem az LS betöltése
-	ELVILEG MOST NAGYJÁBÓL JÓ (még nem tökéletes, de funkcióképes)
- ✖: androidra console.log-ot!!
  ✖: MIKROBI JS:
 	tétel buttonra klikk lassú
 	tétel kiválasztása lassú (hogy melyből dobjon kérdést)
 	betöltés is lassú
 	nextQ-ra is lassú
 	swich button is lassú (Quest megoldós módra váltó)
+ ✖: IMP Q
+	✔ kritérium definíciója: egy impQ-n belül ugyanazon impQ NEM lehet még1x !!!! -- ez NEM jó, ugyanis pl. mikrobi batérium táblázat egy impQ, mégis többször kell benne legyen egy másik impQ(pl. Spirochaetak) --> szóval a kritérium: egy impQ-n belül az adott impQ csak akkor szerepelhet, ha a parentjei közt még nincs
+	✔ newMethod legyen az impQ
+	✖ csak akkor töltse be, ha visible.
+	✖ Továbbá akkoris, ha kivan jelölve a tétel a Q megoldásnál (de csak ha arra a módra váltok)
+	✖ utóbbi helyett kéne egy gyorsabb megoldás (lehet csak bonyolult végiggondolni)
+		pl. az elején olvassa ki az altkérdéseket az imp-ből és table-ba(impID = Qtxt) tenni. Ebból nézi a chance-t az előhívásra, ebből számolja tétel hány %, továbbá oldQcheck & upgradeQ esetében innen veszi ki a szöveget(ugyanis egy impQ-n belül lehet altkérdés, amit hiányolna különben). Tehát beírni innerHTML-be nem szükséges ilyenkor még --> ez kicsit komplikált, mert ha van még1 alt imp, akkor annak altkérdéseit is ki kell olvassa, és így tovább.. de megoldható --> ez szvsz gyorsabb
+	(elején semmiképpen ne töltse be az összeset, mert androidon qrva lassú!) 
+ ✖: androidra console.log-ot!!
  ✖: questID-k száma(ami a nextQ button alatt látható) valamiért gyorsan megugrik, fixáljam!!! --> ugyanis szvsz lehet emiatt is lassú
-	
+ ✖: VIDEO - PROPED: propednél pl. szívhangoknál vannak videók:
+	✖ lehessen a videót úgy beszerkeszteni, hogy csak a egy play button látszódik a szövegben, amire ha rákattolok akkor középen megjelenik a videó (mint a zongora kottánál)
+	✖ lehessen a videót úgy beszerkeszteni, mint a képet: tehát a jobb oldalt van
  ✖: tesztkérdések: válaszokat random sorrendben dobja (különben nem jól jegyezném meg)
  ✖: impQ: immun: rheumatid arthitis{23}, ha a 'T-sejtek gátlása'-t felcserélem 'B-sejt gátlása'-val (sorrendet csak) akkor nem importálja már
  ✖: kérdés hosszát számolja majd úgy ki, hogy az altkérdéseket ne vegye bele: ha talál egy '<details'-t, akkor megkeresi a következő '</details'-t és 'kivágja azt'. Így ha vmit változtatok az altQ-n, attól a mainQ-t még nem kell upgradelnem
@@ -870,7 +859,7 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 					searchTxt = searchTxt.slice(0,searchTxt.lastIndexOf('<'))
 					do {
 						//console.clear()
-						console.log(searchTxt)
+						//console.log(searchTxt)
 						//alert(elemType)
 						if ( searchTxt.indexOf('<'+elemType) == searchTxt.indexOf('</'+elemType) ) { // mindkettő -1 (tehát nincs már több)
 							newTXT = 0
@@ -905,8 +894,8 @@ megnézi, hogy az eddigi Qtext-ben van-e már: visszafele indul, a hozzá legkö
 					var EXPid = Qtxt.slice(startP+12)
 					var parentQtxt = Qtxt.slice(0,startP)
 					var newTXT = false
-					console.clear()
-					console.log(parentQtxt)
+					//console.clear()
+					//console.log(parentQtxt)
 					if ( EXPid.indexOf("}") > EXPid.indexOf("]") ) {
 						EXPid = EXPid.slice(0,EXPid.indexOf('}'))
 						if ( parentQtxt.lastIndexOf("{"+EXPid+"}") != -1 ) {
@@ -977,7 +966,7 @@ megnézi, hogy az eddigi Qtext-ben van-e már: visszafele indul, a hozzá legkö
 		while ( oldHTML.indexOf(' class="imp ') != -1 )
 	}
 	
-	document.documentElement.innerHTML = newHTML + oldHTML
+	document.documentElement.innerHTML = newHTML + oldHTML // emiatt kurva lassú
 	if ( MISSid != "" ) { alert("Az alábbi EXPid-k még nincsenek LS-be reigsztrálva: "+MISSid + "\nNyisd meg a tárgyválasztás ablaknál az adott tárgyhoz kapcsolódó egyéb tárgy(ak)at egyszer --> pl. Biokémia II esetén nyisd meg Biokémia I, Élettan, Molekuláris Sejtbiológia") }
 	
 	F_getTime()
@@ -1368,71 +1357,72 @@ function F_loadImgVideo(detElem,e){
 			allVideo[i].style.maxWidth = "98%"
 			allVideo[i].style.borderColor = "red"
 			//allVideo[i].muted = true;
-			
-		// controlBar fix!
-			allVideo[i].onclick = function(){
-				if ( this.parentElement.className != "videoParentDiv" ) {
-					var div = document.createElement("div");
-					var parent = this.parentNode;
-					parent.insertBefore(div, this);
-					div.appendChild(this);
-					div.className = "videoParentDiv"
+			allVideo[i].onloadeddata = function() { // kell, különben ha előbb kattolok rá, már nem tölti be
+				// controlBar fix!
+				this.onclick = function(){
+					if ( this.parentElement.className != "videoParentDiv" ) {
+						var div = document.createElement("div");
+						var parent = this.parentNode;
+						parent.insertBefore(div, this);
+						div.appendChild(this);
+						div.className = "videoParentDiv"
+						
+						var seekBar = document.createElement("div");
+						seekBar.className = "seekBar"
+						div.appendChild(seekBar)
+						var span = document.createElement("span");
+						span.className = "seekBar"
+						span.innerHTML = "&nbsp;"
+						seekBar.appendChild(span)
+					}
 					
-					var seekBar = document.createElement("div");
-					seekBar.className = "seekBar"
-					div.appendChild(seekBar)
-					var span = document.createElement("span");
-					span.className = "seekBar"
-					span.innerHTML = "&nbsp;"
-					seekBar.appendChild(span)
-				}
-				
-				if ( this.paused == false ) {
-					this.style.borderColor = "red"
-					
-					var widthPx = this.offsetWidth *this.currentTime /this.duration
-					var parentDiv = this.parentElement
-					var seekBars = parentDiv.getElementsByTagName("span")
-					seekBars[0].style.width = widthPx
-					seekBars[0].style.left = this.offsetLeft
-					
-					this.pause(); 
-				} else {
-					if ( document.getElementById("playedVideo") ) {
-						if ( document.getElementById("playedVideo") != this ) {
-							document.getElementById("playedVideo").pause();
-							document.getElementById("playedVideo").id = "";
+					if ( this.paused == false ) {
+						this.style.borderColor = "red"
+						
+						var widthPx = this.offsetWidth *this.currentTime /this.duration
+						var parentDiv = this.parentElement
+						var seekBars = parentDiv.getElementsByTagName("span")
+						seekBars[0].style.width = widthPx
+						seekBars[0].style.left = this.offsetLeft
+						
+						this.pause(); 
+					} else {
+						if ( document.getElementById("playedVideo") ) {
+							if ( document.getElementById("playedVideo") != this ) {
+								document.getElementById("playedVideo").pause();
+								document.getElementById("playedVideo").id = "";
+							}
+						}
+						this.id = "playedVideo";
+						this.style.borderColor = "springgreen"
+						this.play();
+						
+						//ezt elég 1x megcsinálni, amikor elindítom (fix majd, mert lehet egyszerűsíteni)
+						var parentDiv = this.parentElement
+						var seekBars = parentDiv.getElementsByTagName("span")
+						theSeekBar = seekBars[0].parentElement
+						theSeekBar.style.width = this.offsetWidth
+						theSeekBar.style.opacity = "1"; 
+						theSeekBar.onclick = function(e){
+							x = e.pageX - this.offsetLeft
+							clickedValue = x * this.max / this.offsetWidth;
+							var percent = x / this.offsetWidth
+							var playedVideo = document.getElementById("playedVideo")
+							playedVideo.style.borderColor = "black"
+							playedVideo.pause();
+							var currTime = percent * playedVideo.duration
+							currTime = Math.floor(currTime);
+							//console.log(currTime);
+							playedVideo.currentTime = currTime
+							
+							var seekBars = parentDiv.getElementsByTagName("span")
+							var widthPx = playedVideo.offsetWidth *playedVideo.currentTime /playedVideo.duration
+							seekBars[0].style.width = widthPx
+							seekBars[0].style.left = playedVideo.offsetLeft
 						}
 					}
-					this.id = "playedVideo";
-					this.style.borderColor = "springgreen"
-					this.play();
-					
-					//ezt elég 1x megcsinálni, amikor elindítom (fix majd, mert lehet egyszerűsíteni)
-					var parentDiv = this.parentElement
-					var seekBars = parentDiv.getElementsByTagName("span")
-					theSeekBar = seekBars[0].parentElement
-					theSeekBar.style.width = this.offsetWidth
-					theSeekBar.style.opacity = "1"; 
-					theSeekBar.onclick = function(e){
-						x = e.pageX - this.offsetLeft
-						clickedValue = x * this.max / this.offsetWidth;
-						var percent = x / this.offsetWidth
-						var playedVideo = document.getElementById("playedVideo")
-						playedVideo.style.borderColor = "black"
-						playedVideo.pause();
-						var currTime = percent * playedVideo.duration
-						currTime = Math.floor(currTime);
-						//console.log(currTime);
-						playedVideo.currentTime = currTime
-						
-						var seekBars = parentDiv.getElementsByTagName("span")
-						var widthPx = playedVideo.offsetWidth *playedVideo.currentTime /playedVideo.duration
-						seekBars[0].style.width = widthPx
-						seekBars[0].style.left = playedVideo.offsetLeft
-					}
-				}
-			};
+				};
+			}
 		}
 	}
 	
@@ -3536,6 +3526,7 @@ function F_nextQ(){
 	
 	F_nextMark()
 
+	var newQs = []
 	function func_calcQValue(Qelem) { // kérdés value-ját kiszámolja, és ha nagyobb, akkor kiválasztja
 		F_calcLSid(Qelem)
 		var Qtext = actQtext
@@ -3543,16 +3534,24 @@ function F_nextQ(){
 		
 		var shouldBreak = false // ehelyett meg kéne próbálni a "return"-t !!!
 		if ( LSid == undefined ) {
-			if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" && priorType < 2 ) {
+			if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" ) {
+				if ( document.getElementById("btn_nextQdiff").style.backgroundColor != "coral" ) {
+					newQs.push(Qelem)
+				} else if ( priorType < 2 ) {
+					priorQelem = Qelem
+				}
 				priorType = 2
-				priorQelem = Qelem
 			}
 		} else {
 			if ( localStorage.getItem(LSid+"_skip") && localStorage.getItem(LSid+"_skip") != "atlag" && localStorage.getItem(LSid+"_skip") != "important" ) { return }
 			/* newQ */if ( localStorage.getItem(LSid+"_jegy") === null ) {
-				if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" && priorType < 2 ) {
+				if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" ) {
+					if ( document.getElementById("btn_nextQdiff").style.backgroundColor != "coral" ) {
+						newQs.push(Qelem)  
+					} else if ( priorType < 2 ) {
+						priorQelem = Qelem
+					}
 					priorType = 2
-					priorQelem = Qelem
 				}
 			}
 			/* important */if ( document.getElementById("btn_newQuest").style.borderColor != "limegreen" && localStorage.getItem(LSid+"_skip") == "important" ) {
@@ -3637,6 +3636,10 @@ function F_nextQ(){
 			var tetelQs = tetelQ.getElementsByClassName("kerdes")
 			for ( var x=0; x<tetelQs.length; x++ ) { func_calcQValue(tetelQs[x]) }
 		}
+	}
+	if ( priorQelem == "nincs" && document.getElementById("btn_nextQdiff").style.backgroundColor != "coral" ) {
+		var rand = newQs[Math.floor(Math.random() * newQs.length)]
+		priorQelem = rand
 	}
 	averageCV = averageCV/countCV
 
