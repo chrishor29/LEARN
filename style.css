@@ -159,7 +159,7 @@ span {
 }
 .status { 
 	color: Black;
-	background-color: Gainsboro;
+	background-color: AliceBlue;
 	border: 1px solid Black;
 	padding-left: 2px;
 	padding-right: 2px;
@@ -269,13 +269,15 @@ sup, sub {
 .phase {
 	padding-left: 2px;
 	padding-right: 2px;
-	padding-top: 3px;
+	padding-top: 2px;
 	padding-bottom: 1px;
 	font-size: large;
+	font-weight: bolder;
 	background-color: Gainsboro;
 	color: Black;
 	border: 2px solid Black;
-	margin-bottom: 5px;
+	margin-top: 2px;
+	margin-bottom: 2px;
 	display: inline-block;
 }
 
