@@ -83,10 +83,10 @@ ul, ol {
 	margin-bottom: 10px;
 	padding-bottom: 10px;
 	overflow: hidden;
-}
-ul.normal {
 	padding-left: 20px;
 	text-align:left;
+}
+ul.normal {
 }
 div.normal {
 	padding-left: 5px;

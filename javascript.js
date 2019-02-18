@@ -1,93 +1,96 @@
-﻿// ●○■●○■●○■●○■
-
 // window.onerror = function(msg, url, linenumber) { alert('Error message: '+msg+'\nLine Number: '+linenumber) }
 
 /* PROJECT - PROGRESS
- ✖: MIKROBI JS:
+
+✖ fölös image/video-k kiszortírozása
+✖ legyen egy funkció, amivel összes img/video-t betölti, és amelyik hiányzik, azt jelezze --> anno ezt írtam <img onerror="alert(this.src)" data-src="gltkklkkjmnm.png">
+
+✖ lehessen látni a kérdéseket táblázatban, melyiket hány perce repeateltem, mert felbssza magát az ember, hogy nemtudja mikor jut a végére
+✖ alapból csak 0 ismételt Q-t dob, 1x ismételtet nem (csak  ha 0-t disabledolom)
+✖ videó proped
+✖ MIKROBI LS:
 	tétel buttonra klikk lassú
-	tétel kiválasztása lassú (hogy melyből dobjon kérdést)
+	tétel kiválasztása lassú (hogy melybol dobjon kérdést)
 	betöltés is lassú
 	nextQ-ra is lassú
 	swich button is lassú (Quest megoldós módra váltó)
- ✖: IMP Q
-	✔ kritérium definíciója: egy impQ-n belül ugyanazon impQ NEM lehet még1x !!!! -- ez NEM jó, ugyanis pl. mikrobi batérium táblázat egy impQ, mégis többször kell benne legyen egy másik impQ(pl. Spirochaetak) --> szóval a kritérium: egy impQ-n belül az adott impQ csak akkor szerepelhet, ha a parentjei közt még nincs
-	✔ newMethod legyen az impQ
-	✖ csak akkor töltse be, ha visible.
-	✖ Továbbá akkoris, ha kivan jelölve a tétel a Q megoldásnál (de csak ha arra a módra váltok)
-	✖ utóbbi helyett kéne egy gyorsabb megoldás (lehet csak bonyolult végiggondolni)
-		pl. az elején olvassa ki az altkérdéseket az imp-ből és table-ba(impID = Qtxt) tenni. Ebból nézi a chance-t az előhívásra, ebből számolja tétel hány %, továbbá oldQcheck & upgradeQ esetében innen veszi ki a szöveget(ugyanis egy impQ-n belül lehet altkérdés, amit hiányolna különben). Tehát beírni innerHTML-be nem szükséges ilyenkor még --> ez kicsit komplikált, mert ha van még1 alt imp, akkor annak altkérdéseit is ki kell olvassa, és így tovább.. de megoldható --> ez szvsz gyorsabb
-	(elején semmiképpen ne töltse be az összeset, mert androidon qrva lassú!) 
- ✖: androidra console.log-ot!!
- ✖: questID-k száma(ami a nextQ button alatt látható) valamiért gyorsan megugrik, fixáljam!!! --> ugyanis szvsz lehet emiatt is lassú
- ✖: VIDEO - PROPED: propednél pl. szívhangoknál vannak videók:
+✖ androidra console.log-ot!!
+✖ questID-k száma(ami a nextQ button alatt látható) valamiért gyorsan megugrik, fixáljam!!! --> ugyanis szvsz lehet emiatt is lassú
+✖: VIDEO - PROPED: propednél pl. szívhangoknál vannak videók:
 	✖ lehessen a videót úgy beszerkeszteni, hogy csak a egy play button látszódik a szövegben, amire ha rákattolok akkor középen megjelenik a videó (mint a zongora kottánál)
 	✖ lehessen a videót úgy beszerkeszteni, mint a képet: tehát a jobb oldalt van
- ✖: tesztkérdések: válaszokat random sorrendben dobja (különben nem jól jegyezném meg)
- ✖: impQ: immun: rheumatid arthitis{23}, ha a 'T-sejtek gátlása'-t felcserélem 'B-sejt gátlása'-val (sorrendet csak) akkor nem importálja már
- ✖: kérdés hosszát számolja majd úgy ki, hogy az altkérdéseket ne vegye bele: ha talál egy '<details'-t, akkor megkeresi a következő '</details'-t és 'kivágja azt'. Így ha vmit változtatok az altQ-n, attól a mainQ-t még nem kell upgradelnem
+✖ tesztkérdések: válaszokat random sorrendben dobja (különben nem jól jegyezném meg)
+✖ impQ: immun: rheumatid arthitis{23}, ha a 'T-sejtek gátlása'-t felcserélem 'B-sejt gátlása'-val (sorrendet csak) akkor nem importálja már
+✖ kérdés hosszát számolja majd úgy ki, hogy az altkérdéseket ne vegye bele: ha talál egy '<details'-t, akkor megkeresi a következo '</details'-t és 'kivágja azt'. Így ha vmit változtatok az altQ-n, attól a mainQ-t még nem kell upgradelnem
  
- ✖ Qtxt-t ne mentse el, csak expQ.html-nél. Csak a QuestCímet mentse el + mögé commentbe, hogy hány betűből áll a Qtxt. Azonban ha van még egy azonos nevű quest, akkor legyen az elv, hogy megnézi melyik quest címek tűntek el, és melyek jelentek meg (betűszámot is nézze talán)
-	✖: expQ-t csak akkor mentsen, ha expQ.html LS-be. Egyébként egy tableba. Betöltésnél pedig megnézi, hogy van-e table-ba, ha nincs, akkor LS-ből tölti be (hiszen akkor expQ.html-ről származik, nem az adott weboldal)
-	✖: teszteljem azonos nevű Q-ek upgrade-jét
- ✖: upgradeQ
-	oldalbetöltésnél mentse el összes qName-t, és nézze meg: melyik új illetve melyik tűnt el LS-ből legutóbbi
-	ez alapján dobja ki a lehetőséget az eltűnt Q-nél, hogy melyikre upgradeljem
-	olyan is kéne, hogy autoUpgrade-lje a questet, de van lehetőségem megnézni melyeket upgradelte, és azoka közül törtölhessem, ha mégse kellett volna
- ✖: hosszat(length) automata módon számolja ki! (pl. 100karakterenként/1hosszú; de soronként is kéne emellett, mert felsorolásoknál durva lenne)
+✖ upgradeQ egyszerubb legyen
+✖ android/telón a tételek nagyobbak legyenek
+✖ mutéttan tételQ-nál (amikor kidobja) ne mutassa a tételcsoportot
+✖ hide alQ-k a tételnél
+✖ Qtxt-t ne mentse el, csak expQ.html-nél. Csak a QuestCímet mentse el + mögé commentbe, hogy hány betubol áll a Qtxt. Azonban ha van még egy azonos nevu quest, akkor legyen az elv, hogy megnézi melyik quest címek tuntek el, és melyek jelentek meg (betuszámot is nézze talán)
+	✖: expQ-t csak akkor mentsen, ha expQ.html LS-be. Egyébként egy tableba. Betöltésnél pedig megnézi, hogy van-e table-ba, ha nincs, akkor LS-bol tölti be (hiszen akkor expQ.html-rol származik, nem az adott weboldal)
+	✖: teszteljem azonos nevu Q-ek upgrade-jét
+✖ upgradeQ
+	oldalbetöltésnél mentse el összes qName-t, és nézze meg: melyik új illetve melyik tunt el LS-bol legutóbbi
+	ez alapján dobja ki a lehetoséget az eltunt Q-nél, hogy melyikre upgradeljem
+	olyan is kéne, hogy autoUpgrade-lje a questet, de van lehetoségem megnézni melyeket upgradelte, és azoka közül törtölhessem, ha mégse kellett volna
+✖ hosszat(length) automata módon számolja ki! (pl. 100karakterenként/1hosszú; de soronként is kéne emellett, mert felsorolásoknál durva lenne)
  
- ✖: nextQ-ra kattintva gyorsan dobja a következőt (nézzem meg, miért szaggat - anat LS!!)
- ✖: imgLoad: expQ.html esetében a data-source-okat írja át HTMLimgLoc+datasrc -re, és így mentse el őket. utána az img beöltés: amelyik img láthatóvá válik, és datasrc-a van, azt töltse be a következőképp: (1) ha "images/"-el kezdődik, akkor bemásolja elé a LearnLoc-ot is (2) ha nem, akkor nem
- ✖: zöldnél azt tudjam beállítani, hogy mennyi idő múlva dobja ki legközelebb (tehát ne csak 60/600/stb., hanem kérdésenként változó lehessen --> de ha nem állítok be semmit, akkor ahogy eddig is, a repeat-nél beállított lesz)
- ✖: F_impQbegin előtt létrehozott buttonok nem működnek
+✖ ImpQ: csak akkor töltse be, ha visible. Továbbá akkoris, ha kivan jelölve a tétel a Q megoldásnál (de csak ha arra a módra váltok) bár utóbbi helyett kéne egy gyorsabb megoldás (lehet csak bonyolult végiggondolni). pl. az elején olvassa ki az altkérdéseket az imp-bol és table-ba(impID = Qtxt) tenni. Ebból nézi a chance-t az elohívásra, ebbol számolja tétel hány %, továbbá oldQcheck & upgradeQ esetében innen veszi ki a szöveget(ugyanis egy impQ-n belül lehet altkérdés, amit hiányolna különben). Tehát beírni innerHTML-be nem szükséges ilyenkor még --> ez kicsit komplikált, mert ha van még1 alt imp, akkor annak altkérdéseit is ki kell olvassa, és így tovább.. de megoldható --> ez szvsz gyorsabb (elején semmiképpen ne töltse be az összeset, mert androidon qrva lassú!) 
+✖ nextQ-ra kattintva gyorsan dobja a következot (nézzem meg, miért szaggat - anat LS!!)
+✖ imgLoad: expQ.html esetében a data-source-okat írja át HTMLimgLoc+datasrc -re, és így mentse el oket. utána az img beöltés: amelyik img láthatóvá válik, és datasrc-a van, azt töltse be a következoképp: (1) ha "images/"-el kezdodik, akkor bemásolja elé a LearnLoc-ot is (2) ha nem, akkor nem
+✖ zöldnél azt tudjam beállítani, hogy mennyi ido múlva dobja ki legközelebb (tehát ne csak 60/600/stb., hanem kérdésenként változó lehessen --> de ha nem állítok be semmit, akkor ahogy eddig is, a repeat-nél beállított lesz)
+✖ F_impQbegin elott létrehozott buttonok nem muködnek
 
- ✖ rep	min	hossz	left	still	average --> impQ-kat nemszámolja bele (1x belekéne)
+✖ rep	min	hossz	left	still	average --> impQ-kat nemszámolja bele (1x belekéne)
 
- ✖: JS - download LS crash android-on - FIX -> először találjam meg a hibát, mert nem mindig van: ezt úgy csináljam, hogy csinálok egy localstorage mappát, amibe lesznek v1 v2 v3 stb almappák.
+✖ JS - download LS crash android-on - FIX -> eloször találjam meg a hibát, mert nem mindig van: ezt úgy csináljam, hogy csinálok egy localstorage mappát, amibe lesznek v1 v2 v3 stb almappák.
  
- ✖: vizsgaskip &#10140; ne JS-be, hanem LS-be mentse el
- ✖: betöltésben mi tart soká, teszteljem (kiíratom console-ba mennyi idő telt el egyes funkciók közt)
+✖ vizsgaskip &#10140; ne JS-be, hanem LS-be mentse el
+✖ betöltésben mi tart soká, teszteljem (kiíratom console-ba mennyi ido telt el egyes funkciók közt)
 
- ✖: expQ-k --> csak a az expQs html-be lévőket mentse el LS-be (új számozás legyen és külön szvsz: tehát a többi localisan a fájlba)
- ✖: LS-méret a vizsgaskippedeknél ha van 500, akkor szinte lefagy (azt fixáljam)
- ✖: F_SpanRepNew + F_SpanRepOld --> rákattolva jelenjenek meg a questek, hogy mennyi idő van belőlük vissza
- ✖: ha zöldra van állítva a dobhat új kérdéseket, akkor még1et rákattolva először legyen kék ami azt jelenti random újat dob következőnek (nem az épp soron következőt)
- ✖: skipek típusa: (KÉK) vizsgáig már nem (FEKETE) Nem volt rá időm (SZÜRKE) vizsga előtt dobja ki őket újra 
+✖ expQ-k --> csak a az expQs html-be lévoket mentse el LS-be (új számozás legyen és külön szvsz: tehát a többi localisan a fájlba)
+✖ LS-méret a vizsgaskippedeknél ha van 500, akkor szinte lefagy (azt fixáljam)
+✖ F_SpanRepNew + F_SpanRepOld --> rákattolva jelenjenek meg a questek, hogy mennyi ido van belolük vissza
+✖ ha zöldra van állítva a dobhat új kérdéseket, akkor még1et rákattolva eloször legyen kék ami azt jelenti random újat dob következonek (nem az épp soron következot)
+✖ skipek típusa: (KÉK) vizsgáig már nem (FEKETE) Nem volt rá idom (SZÃœRKE) vizsga elott dobja ki oket újra 
   
- ✖: legyen egy funkció, amivel összes img-et betölti, és amelyiknél hiba van, azt jelezze valahol (de ne alertbe) --> anno ezt írtam <img onerror="alert(this.src)" data-src="gltkklkkjmnm.png">
- ✖: Qid-t vegyem ki!!!
+✖ Qid-t vegyem ki!!!
 
- ✖: legyen egy funkció az elején, ami lecsekolja, van-e azonos id-n különböző Qtext
- ✖: notepad: macro for impQ
- ✖: autoSave LS --> jó lenne, ha az utolsó 3 maradna csak meg mindig (tehát felülírná őket valahogy)
+✖ autoSave LS --> jó lenne, ha az utolsó 3 maradna csak meg mindig (tehát felülírná oket valahogy)
  
- ✖: nextQ-nál egyből töltse be az img-eket
- ✖: 'F_calculateThis()' --> ezt használom: 'F_kerdesStatus' & 'F_temakorStatus' --> valahogy egyszerűsítsem majd le
+✖ nextQ-nál egybol töltse be az img-eket
+✖ 'F_calculateThis()' --> ezt használom: 'F_kerdesStatus' & 'F_temakorStatus' --> valahogy egyszerusítsem majd le
 ––––––––––––––––––––––––––––––––––––––––––––––––
- ✖: F_ButtonRepFast
- ✖: DATA-SRC IMG: ha egy kérdést megnyitok, akkor betölti a képeit -> ezzel azonban átíródik ugye a Qtext -> ha ezután kattolok rá jobbfelső toggleAll buttonra, akkor az F_checkQs-ban nem találja meg a Qtext-et mert azoknak megváltozott
- ✖: importált Q esetében a mini IMG-re klikkelve nem működik a script, amennyiben visszamegyek a főoldalra, majd újra a Q-hoz
+✖ F_ButtonRepFast
+✖ DATA-SRC IMG: ha egy kérdést megnyitok, akkor betölti a képeit -> ezzel azonban átíródik ugye a Qtext -> ha ezután kattolok rá jobbfelso toggleAll buttonra, akkor az F_checkQs-ban nem találja meg a Qtext-et mert azoknak megváltozott
+✖ importált Q esetében a mini IMG-re klikkelve nem muködik a script, amennyiben visszamegyek a fooldalra, majd újra a Q-hoz
 ––––––––––––––––––––––––––––––––––––––––––––––––
- ✖: note & fix-re elég egy button (egyoldalon legyen a kettő)
- ✖: EXP.html &#10140; load it first, then jump to the page
+✖ note & fix-re elég egy button (egyoldalon legyen a ketto)
+✖ EXP.html &#10140; load it first, then jump to the page
 ––––––––––––––––––––––––––––––––––––––––––––––––
- ✖: skip-nél a perma skippesek máshol legyenek
- ✖: /keressek rá erre a kommentre, és megértem:/ erre akkor van szükség, ha legfelül nem kérdés van (tehát a legfelül lévő details nem kérdés, csak egy összegző details, pl. élettan ozmózis), ugyanis annak nincs LSid elmentve, így nemtudok note-t menteni neki (persze optimálisabb lenne, ha itt is a legfelsőhöz lenne csatolva, de egyenlőre kihagyom mert nem bonyolítom, és LowPrior)
+✖ skip-nél a perma skippesek máshol legyenek
+✖ /keressek rá erre a kommentre, és megértem:/ erre akkor van szükség, ha legfelül nem kérdés van (tehát a legfelül lévo details nem kérdés, csak egy összegzo details, pl. élettan ozmózis), ugyanis annak nincs LSid elmentve, így nemtudok note-t menteni neki (persze optimálisabb lenne, ha itt is a legfelsohöz lenne csatolva, de egyenlore kihagyom mert nem bonyolítom, és LowPrior)
 */
 
 /* PROJECT - DONE
+ ✔ ImpQ
+	✔ kritérium definíciója: egy impQ-n belül ugyanazon impQ NEM lehet még1x !!!! -- ez NEM jó, ugyanis pl. mikrobi batérium táblázat egy impQ, mégis többször kell benne legyen egy másik impQ(pl. Spirochaetak) --> szóval a kritérium: egy impQ-n belül az adott impQ csak akkor szerepelhet, ha a parentjei közt még nincs
+	✔ newMethod legyen az impQ
+	✔ mutéttan: alapveto sebészeti eszközök és használatuk: Szövetszétválasztó eszközök: az érfogók: fogóeszközök: érfogók
  ✔: 10q után mentsen el LS-t, ne 10db nextQ click után (tehát gyakrabban)
  ✔: local impQ vs expQ --> máshogy hivatkozzak rájuk (ne csak []-el, hanem expQ esetén {} -el). külön mentse a local impQ-kat egy tömbbe (ne localstorage)
  ✔: élettan 8.1 -> gliasejtek img-eit nem tölti be (expQ imgLoad még hibás)
  ✔: js: skipDate / adott tárgy
  ✔: QuantumFirefox Tablet: video click nél csak a control-bar jelenik meg. Szvsz csináljak egy láthatatlan buttont a videóra, amire írok scriptet.
- ✔: androidon mindig a kezdőoldalt töltse be (tehát hiába a questes aloldalon zártam be, ne azt töltse be
+ ✔: androidon mindig a kezdooldalt töltse be (tehát hiába a questes aloldalon zártam be, ne azt töltse be
  ✔: importQ-t változtatva, ne kelljen upgradelni azt a Q-t, melyben az importQ mint alkérdés szerepelt
- ✔: upgradeQ -->  ha van olyan című és 1db, akkor 0-ra tegye!!
+ ✔: upgradeQ -->  ha van olyan címu és 1db, akkor 0-ra tegye!!
  ✔: div_Skip.innerHTML beállítása nemjó. Ugyanis ha már van kb.50db amit skippelek és megnyitom, akkor szétfagy az egész.
  ✔: tableten az expQ megnyitása után nem tud visszamenni az oldalra (ugyanis a 'window.location.pathname' = null androidon szvsz)
- ✔: skippedek megnyitása nem működik
- ✔: importált Q-t ha megváltoztatom, akkor ne kelljen upgradelnem a questet (mert ha van egy importált quest, amit 6 helyen használok, akkor egy betűt abban átírva, mind a 6questet fel kell upgradelnem és fárasztó --> helyette automatikusan upgradelje, ha más nem változott)
- ✔: mutassa hány %-on tartok a kijelölt tételek megtanulásával --> valamiért a 10es terjedelműt 1-nek veszi
+ ✔: skippedek megnyitása nem muködik
+ ✔: importált Q-t ha megváltoztatom, akkor ne kelljen upgradelnem a questet (mert ha van egy importált quest, amit 6 helyen használok, akkor egy betut abban átírva, mind a 6questet fel kell upgradelnem és fárasztó --> helyette automatikusan upgradelje, ha más nem változott)
+ ✔: mutassa hány %-on tartok a kijelölt tételek megtanulásával --> valamiért a 10es terjedelmut 1-nek veszi
  ✔: tételek buttonja (miniTétel button legyen)
  ✔: upgrade Q-nál alapból az 1-es legyen kijelölve, ne a skip
  ✔: noteQ --> tehát ha írok megjegyzést, LS-be mentse el, és töltse be
@@ -99,7 +102,7 @@
  ✔: import Q image -> minden html tetején lesz egy variable, amiben benne van az IMAGES\'adott tárgy mappa' címe. ezt az expid mellé csatolja a Qtextbe. A képek betöltésénél (data-src helyett src) ezt írja hozzá.
 */
 
-/* localStorage-be lehet objectset (arrayt is, az egyszerűbb, és ugyanennyit ér mint az objects, tehát nemjutok vele előrébb) menteni (de ezzel se jutok többre, csak 'nehezebb kezelni'(egyébként csak kicsivel, de sajna fölös, szóval minek), de azért megőrzöm):
+/* localStorage-be lehet objectset (arrayt is, az egyszerubb, és ugyanennyit ér mint az objects, tehát nemjutok vele elorébb) menteni (de ezzel se jutok többre, csak 'nehezebb kezelni'(egyébként csak kicsivel, de sajna fölös, szóval minek), de azért megorzöm):
 isayyes = true
 for ( var i=0; i<kerdesek.length; i++ ) {
 	if (isayyes == true) {
@@ -161,7 +164,7 @@ var fileName
 function checkExpQHtml(){ // oldal betöltésénél ugorjon el expQkat importolni, ha régen volt!
 	F_getTime()
 	var diffTime = myTime-oldTime
-	console.log("– checkExpQHtml – " + diffTime)
+	console.log("–“ checkExpQHtml – " + diffTime)
 	
 	var path = window.location.pathname;
 	fileName = path.split("/").pop();
@@ -201,7 +204,7 @@ if ( localStorage.getItem("hkQ.max") === null ) { localStorage.setItem("hkQ.max"
 
 function func_abbrSet(elem){ 
 // azt csináljam, hogy a li textet írja át alapból: <span style="visibility:hidden"> ..text.. <span>, majd amikor ráklikkelek removeolja a spant --> megmaradnak a pontok
-// func_saveQuest előtt kell legyen, de a F_impQs után
+// func_saveQuest elott kell legyen, de a F_impQs után
 	var abbrSpan = elem.getElementsByTagName("*");
 	for ( var j = 0; j < abbrSpan.length; j++ ) {
 		if ( abbrSpan[j].classList.contains("abbr") == true ) {
@@ -244,8 +247,9 @@ var arrNEWid = [] // LSid to Qtxt
 var txtLS = [] // Qtxt to LSid --> cseréljem le erre: localStorage.getItem(Qname)
 
 var arrQid = [] // Qid to Qtxt
-var arrQtxts = []  // arra kell, hogy upgradeQ-nál ezekből nézi meg mikre lehet
-var arrQtxtsImp = []  // ugyanaz, mint előbbi: csak itt már impet kivágva
+var arrQtxts = []  // arra kell, hogy upgradeQ-nál ezekbol nézi meg mikre lehet
+var arrQtxtsImp = []  // ugyanaz, mint elobbi: csak itt már impet kivágva
+var arrQnameQtxt = []  // Qname to Qtxt
 
 var arrQnames = []  // Qname + characterCount (csak ez legyen majd a végén, többi szvsz fölös)
 var arrImpQs = []  // ez is kell a végén még
@@ -296,7 +300,7 @@ function F_getTexts(){
 	//alert(document.title+"_Qtext")
 	var fullString = localStorage.getItem(document.title+"_LSids")
 	if ( fullString ) {
-		fullString = fullString.split(" ") // első alkalommal különben error lesz
+		fullString = fullString.split(" ") // elso alkalommal különben error lesz
 		for ( var i=0; i<fullString.length; i++ ) {
 			if ( fullString[i] != "" ) {  // utolsó mindig ez, és azt ne tegye array-ba
 				var LSid = fullString[i]
@@ -336,7 +340,7 @@ var wrongEXPid = "foglalt vagy upgradelve lett:<br>"
 
 var newText
 function F_cutImpQs(text){
-	// kivágom a <span class="imp [x]"> itt lévő szöveget vágom ki </span> (div-nél is)
+	// kivágom a <span class="imp [x]"> itt lévo szöveget vágom ki </span> (div-nél is)
 	
 	do {
 		var begin = text.indexOf('class="imp [')
@@ -391,11 +395,11 @@ function F_QtxtQname(Qtxt){
 	}
 	if ( qName == null ) { 
 		qName = Qtxt
-		//console.log("ha hiba van, lehet itt találok megoldást: "+Qtxt)  // a funkcióra hivatkozás még különböző Qtxt-ekkel történik, és nem volt időm szépen megírni, de egyenlőre elvileg jó így is, csak hibára fogékonyabb így
+		//console.log("ha hiba van, lehet itt találok megoldást: "+Qtxt)  // a funkcióra hivatkozás még különbözo Qtxt-ekkel történik, és nem volt idom szépen megírni, de egyenlore elvileg jó így is, csak hibára fogékonyabb így
 	}
 }
 
-function F_checkEXPs(){ /* ez egyenlőre előbb kell legyen, mint a CheckQs különben id-t kapnak az import Q-ek, amiből baj lesz.. Vegyem ki az id-t, mert az fölös amúgy is */
+function F_checkEXPs(){ /* ez egyenlore elobb kell legyen, mint a CheckQs különben id-t kapnak az import Q-ek, amibol baj lesz.. Vegyem ki az id-t, mert az fölös amúgy is */
 	for ( var i = 0; i < elems.length; i++ ) {
 		var elem = elems[i]
 		if ( elem.className.indexOf("{") > -1 && elem.className.indexOf("imp") == -1 ) {
@@ -449,6 +453,9 @@ function F_checkQs(){
 		arrQnames[count] = true
 		var Qtxt = '<'+Qelem.tagName+' class="'+Qelem.className+'">'+Qelem.innerHTML+'</'+Qelem.tagName+'>'
 		arrQtxts.push(Qtxt)
+		
+		F_QtxtQname(Qtxt)
+		arrQnameQtxt[qName] = Qtxt
 	}
 	
 	F_getTime()
@@ -552,7 +559,7 @@ function F_oldQchange(oldLSid){
 	for ( var i=0; i<arrNEWtxt.length; i++ ) {
 	//for ( newLSid in arrNEWid ) {
 		var newQtxt = arrNEWtxt[i]
-		var text = document.getElementById("div_upgQ").innerHTML // (kell hogy megőrizze a buttont + selectet)
+		var text = document.getElementById("div_upgQ").innerHTML // (kell hogy megorizze a buttont + selectet)
 		document.getElementById("div_upgQ").innerHTML = text + newQtxt
 		var x = i +1
 		if ( !document.getElementById("option_ReplaceQ_"+x) ) {
@@ -566,7 +573,7 @@ function F_oldQchange(oldLSid){
 	}
 	if ( arrNEWtxt.length == 1 ) { 
 		document.getElementById("select_replaceQ").value = 1 
-		// itt valami autoupgrage kéne, ha megegyezik nagyjából, így gyorsabb (ha feltétel azért szükséges, mert sajna azis lehet, hogy két ugyanolyan nevű kveszt volt, és egyiknek megváltoztattam a nevét, erre a másikra akarja felupgradelni) --> ha két azonos nevű Q van, jelezze őket oldal betöltésnél már, és tána írok commentbe mögé egy v1/2/3 stb.-t
+		// itt valami autoupgrage kéne, ha megegyezik nagyjából, így gyorsabb (ha feltétel azért szükséges, mert sajna azis lehet, hogy két ugyanolyan nevu kveszt volt, és egyiknek megváltoztattam a nevét, erre a másikra akarja felupgradelni) --> ha két azonos nevu Q van, jelezze oket oldal betöltésnél már, és tána írok commentbe mögé egy v1/2/3 stb.-t
 	} else {
 		// alert("stop")
 	}
@@ -604,7 +611,7 @@ function F_oldQchange(oldLSid){
 			arrQtxts.push(Qtxt) // ez nemtudom miért kell
 		} else {
 			localStorage.removeItem(oldLSid)
-			// note idő stb. is remove-olni kéne !!!
+			// note ido stb. is remove-olni kéne !!!
 			
 			var fullString = localStorage.getItem(document.title+"_LSids")
 			fullString = fullString.replace(" "+oldLSid,'')
@@ -652,7 +659,7 @@ function F_oldQcheck(){
 			} else {
 				console.log("remove Old: "+LSid)
 				localStorage.removeItem(LSid)
-				// note idő stb. is remove-olni kéne !!!
+				// note ido stb. is remove-olni kéne !!!
 				fullString = fullString.replace(LSid,'')
 				localStorage.setItem(document.title+"_LSids",fullString)
 			}
@@ -662,7 +669,7 @@ function F_oldQcheck(){
 	// upgradelt Q-ket csekkolja
 	var fullString = localStorage.getItem(document.title+"_LSids")
 	if ( fullString ) {
-		fullArray = fullString.split(" ") // első alkalommal különben error lesz
+		fullArray = fullString.split(" ") // elso alkalommal különben error lesz
 		for ( var i=0; i<fullArray.length; i++ ) {
 			if ( fullArray[i] != "" && fullArray[i] != "null" ) {  // ilyenek belekerülnek valamiért (replace-nél)
 				var LSid = fullArray[i]
@@ -714,7 +721,7 @@ function replaceAll(string,oldTxt,newTxt) {
 }		
 //INNERhtml = replaceAll(INNERhtml, oldTxt, newTxt)
 
-// pl. ez a button nem fog működni, mert az impQbegin előtt van!
+// pl. ez a button nem fog muködni, mert az impQbegin elott van!
 /*var buttonX = document.createElement("BUTTON")
 buttonX.innerHTML = "anyad"
 document.body.appendChild(buttonX)
@@ -731,7 +738,7 @@ buttonX.onclick = function(){
  + csak akkor töltse be a többinél az impQ-kat, ha megnyitom --> probléma elvileg, hogy a feladatmegoldó oldalra átklikkelve nem jelenik meg akkor az összes quest ?
 */
 
-function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, így lassabb, de pontosabban mérhetők az eltérések)
+function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, így lassabb, de pontosabban mérhetok az eltérések)
 	F_getTime()
 	var diffTime = myTime-oldTime
 	//console.log("– F_impQs newMethod BEGIN – " + diffTime)
@@ -744,14 +751,32 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 	var count = 0
 	if ( oldHTML.indexOf(' class="imp ') != -1 ) { 
 		do {
-			// expQk + impQk --> ezekbe írom be, hogy mely id-k lettek importálva ezen impID-n belül (sajátját is beleértve, tehát az az első)
-			// ezért megnézi az impQtxt-t, és megnézi van-e abban impQ, ha van, akkor beimportálja, amennyiben még nem volt
-			// utóbbit repeateli, amíg végig nem ér az impQtxt-en
+			/* method
+			expQk + impQk --> ezekbe írom be, hogy mely id-k lettek importálva ezen impID-n belül (sajátját is beleértve, tehát az az elso)
+			ezért megnézi az impQtxt-t, és megnézi van-e abban impQ, ha van, akkor beimportálja, amennyiben még nem volt
+			utóbbit repeateli, amíg végig nem ér az impQtxt-en
+			de ez NEMJÓ! ehelyett alábbi kéne: 
+				megtalálja az elso <divspan=impQid></divspan> részt
+				betöltöm egy var-ba annak impQtxt-jét:
+				#0 megkeresem benne a következo <divspan=impQid></divspan> --> megnézem, hogy 'elotte volt e már betöltve parentként' a következoképpen:
+					megnézi, hogy impQtxt-ben hányadik betujénél van, pl. 1150-1170
+					megnézi, hogy van-e elotte már az impQtxt-ben olyan, ha van akkor megnézi az elsot amit talál
+					#1 megnézi, hogy az div / span -e, majd elindul benne és megkeresi a következo divspan vagy /divspant
+						ha divspan akkor +1
+						ha /disvpan akkor -1
+						ezt repeateli amíg az érték nem lesz x (mittudménmennyi nem gondoltam végig de ez jó)
+						megnézi, hogy ez a txtBlokk az impQtxt hányadik betujétol meddig tart, pl. 600-1000ig
+						amennyiben magába foglalja az 1150-1170-et, akkor nem importálja és kész
+					#2 ha nem foglalja magába, akkor megkeresi az elotte lévo impQtxt-ben a következo azonos id részt, majd #1
+					#3 addig csinálja, amíg el nem jutott 1150-ig
+					ha nem volt akkor beimportálja, ha volt, akkor áttírja arra, hogy 'title' -> lásd fentebb
+				ezután visszaugrik #0 és repeateli, amíg el nem fogynak
+			*/
 			count = count +1
-			var expQk = ""
-			var impQk = ""
+			var expQk = "" //ez nem kell majd
+			var impQk = "" //ez nem kell majd
 			
-			var EXPid
+			var mEXPid
 			var Qtxt
 			function F_getImpQ() {
 				var divSpan = ""
@@ -778,25 +803,27 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 				if ( impBlock.indexOf("[") != -1 ) {
 					begin = impBlock.indexOf("[") +1
 					end = impBlock.indexOf("]")
-					EXPid = impBlock.slice(begin,end)
-					Qtxt = arrImpQs[EXPid]
-					EXPid = "["+EXPid+"]"
-					impQk = impQk+ "," +EXPid
+					mEXPid = impBlock.slice(begin,end)
+					Qtxt = arrImpQs[mEXPid]
+					mEXPid = "["+mEXPid+"]"
+					impQk = impQk+ "," +mEXPid
 				} else {
 					begin = impBlock.indexOf("{") +1
 					end = impBlock.indexOf("}")
-					EXPid = impBlock.slice(begin,end)
-					Qtxt = localStorage.getItem("hkExpQ."+EXPid)
-					EXPid = "{"+EXPid+"}"
-					expQk = expQk+ "," +EXPid
+					mEXPid = impBlock.slice(begin,end)
+					Qtxt = localStorage.getItem("hkExpQ."+mEXPid)
+					mEXPid = "{"+mEXPid+"}"
+					expQk = expQk+ "," +mEXPid
 					if ( Qtxt != null )  {
 						var LSid = Qtxt.slice(0,Qtxt.indexOf(" "))
 						Qtxt = localStorage.getItem(LSid)
 					}
 				}
 
-				if ( Qtxt == null ) { MISSid = MISSid + EXPid + "," }
-				if ( Qtxt == null ) { alert("hiányzik az alábbi kérdés: ["+EXPid+"]") }
+				if ( Qtxt == null ) { 
+					if ( MISSid.indexOf(mEXPid) == -1 ) { MISSid = MISSid + mEXPid + "," }
+					return
+				}
 				
 				if ( impBlock.indexOf("hide") != -1 ) {
 					if ( impBlock.slice(1,4) == "div" ) {
@@ -817,94 +844,80 @@ function F_impQbegin(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, í
 				}
 			}
 			F_getImpQ()
-			// megvan a main impQ EXPid-je
-			// megvan a main impQ text-je, ezután megnézem azon belül van(nak)-e további impQ(-k)
 			if ( Qtxt == undefined ) { continue }
-			
+			// megvan a main impQ mEXPid-je
+			// megvan a main impQ text-je, ezután megnézem azon belül van(nak)-e további impQ(-k)
 			if ( Qtxt.indexOf(' class="imp ') != -1 ) {
-				// parent-et megkeresi --> ez lesz a parentTXT
-				var parentTXT = newHTML
-				if ( parentTXT.lastIndexOf("<details") < parentTXT.lastIndexOf("</details") ) {
-					var bad = 0
-					var startP = parentTXT.length
-					var endP = parentTXT.length
-					do {
-						//console.clear()
-						if ( parentTXT.lastIndexOf("<details",startP) < parentTXT.lastIndexOf("</details",endP) ) {
-							bad = bad +1
-							//console.log(parentTXT.slice(parentTXT.lastIndexOf("</details",endP)))
-							endP = parentTXT.lastIndexOf("</details",endP) -1
-							//alert(bad)
-						} else {
-							bad = bad -1
-							//console.log(parentTXT.slice(parentTXT.lastIndexOf("<details",startP)))
-							startP = parentTXT.lastIndexOf("<details",startP) -1
-							//alert(bad)
-						}
-					}
-					while ( bad != -1 )
-					parentTXT = parentTXT.slice(parentTXT.lastIndexOf("<details",startP+1))
-				} else {
-					parentTXT = parentTXT.slice(parentTXT.lastIndexOf("<details"))
-				}
-				console.clear()
-				/*console.log(parentTXT)
-				alert("sajt")*/
-				
-				
-				function F_checkSearchTXT(searchTxt,elemType) {
+				//console.log(Qtxt)
+				function F_checkSearchTXT(newQtxt,elemType) {
+					var oldTxt = newQtxt
+					newQtxt = elemType
+					oldTxt = oldTxt.slice(newQtxt.length)
 					newTXT = 1
-					searchTxt = elemType.slice(elemType.lastIndexOf('<')) +searchTxt
-					elemType = elemType.slice(elemType.lastIndexOf("<")+1)
-					searchTxt = searchTxt.slice(0,searchTxt.lastIndexOf('<'))
+					elemType = elemType.slice(elemType.lastIndexOf("<")+1,-1)
 					do {
-						//console.clear()
-						//console.log(searchTxt)
-						//alert(elemType)
-						if ( searchTxt.indexOf('<'+elemType) == searchTxt.indexOf('</'+elemType) ) { // mindkettő -1 (tehát nincs már több)
-							newTXT = 0
-						} else if ( searchTxt.indexOf('<'+elemType) < searchTxt.indexOf('</'+elemType) ) {
+						var divStart = oldTxt.indexOf('<'+elemType) +4
+						var divEnd = oldTxt.indexOf('</'+elemType) +4
+						/*console.clear()
+						console.log(divStart+" vs "+divEnd)
+						console.log(newQtxt)
+						console.log(oldTxt)
+						alert("newTXTstart: "+newTXT)*/
+						if ( divStart < divEnd && divStart != 3 ) { 
 							newTXT = newTXT +1
-							searchTxt = searchTxt.slice(searchTxt.indexOf('<'+elemType)+1)
-						} else if ( searchTxt.indexOf('<'+elemType) > searchTxt.indexOf('</'+elemType) ) {
-							newTXT = newTXT -1
-						//console.log(searchTxt.indexOf('<'+elemType))
-						//console.log(searchTxt.indexOf('</'+elemType))
-							searchTxt = searchTxt.slice(searchTxt.indexOf('</'+elemType)+1)
+							newQtxt = newQtxt + oldTxt.slice(0,divStart)
+							oldTxt = oldTxt.slice(divStart)
 						}
-						//alert(newTXT)
+						if ( divStart > divEnd && divEnd != 3 ) { 
+							newTXT = newTXT -1
+							newQtxt = newQtxt + oldTxt.slice(0,divEnd)
+							oldTxt = oldTxt.slice(divEnd)
+						}
+						if ( divEnd == 3 ) { newTXT = -1 }
+						/*console.clear()
+						console.log(divStart+" vs "+divEnd)
+						console.log(newQtxt)
+						console.log(oldTxt)
+						alert("newTXTend: "+newTXT)*/
 					} while ( newTXT > 0 )
+					if ( newTXT == 0 ) { newTXT = true }
+					if ( newTXT == -1 ) { newTXT = false }
+					//alert(newTXT)
+					/*console.clear()
+					console.log(newQtxt)
+					alert(startP+" vs "+newQtxt.length)*/
 				}
 /* végig importálja az altkérdéseket is, amíg olyanba nem ütközik, ami már volt
 <div 16></div>
 <div 2></div>
 <div 2></div>
 
-megkeresi az első altImpQ-t.
+megkeresi az elso altImpQ-t.
 megnézi az ID-jét.
 megnézi, hogy az eddigi Qtext-ben van-e már: visszafele indul, a hozzá legközelebbi utolsót keresi!, ha van:
 	megnézi, hogy a parentje-e, vagyis: 
 		megnézi hogy div/span-e, legyen pl. div --> a (num = 1)
-		utána megkeresi a következő <div vagy </div-et: ha <div akkor a (num = num+1) ha </div akkor a num = num-1
+		utána megkeresi a következo <div vagy </div-et: ha <div akkor a (num = num+1) ha </div akkor a num = num-1
 		addig csinálj amíg a num = 0
 		ha közben áthaladt az altImpQ-n (ami elbírálás alatt) áll, akkor nem lesz importálva -> ha nem, akkor importálva lesz*/
 				var startP = 0
 				do {
 					startP = Qtxt.indexOf(' class="imp ',startP) +1
 					var EXPid = Qtxt.slice(startP+12)
-					var parentQtxt = Qtxt.slice(0,startP)
+					var prevQtxt = Qtxt.slice(0,startP)
 					var newTXT = false
-					//console.clear()
-					//console.log(parentQtxt)
+					/*console.clear()
+					console.log(startP)
+					console.log(mEXPid)
+					console.log(prevQtxt)
+					console.log(EXPid)
+					alert("sajt")*/
 					if ( EXPid.indexOf("}") > EXPid.indexOf("]") ) {
 						EXPid = EXPid.slice(0,EXPid.indexOf('}'))
-						if ( parentQtxt.lastIndexOf("{"+EXPid+"}") != -1 ) {
-							var searchTxt = parentQtxt.slice(parentQtxt.lastIndexOf('class="imp {'+EXPid+'}'))
-							var elemType = parentQtxt.slice(0,parentQtxt.lastIndexOf('class="imp {'+EXPid+'}'))
-							F_checkSearchTXT(searchTxt,elemType)
+						if ( prevQtxt.lastIndexOf("{"+EXPid+"}") != -1 ) {
+							var elemType = prevQtxt.slice(0,prevQtxt.lastIndexOf('class="imp {'+EXPid+'}'))
+							F_checkSearchTXT(prevQtxt,elemType)
 							if ( newTXT == 0 ) { 
-								newTXT == false  // nem importálja majd
-							} else if ( newTXT == 0 ) { 
 								newTXT = localStorage.getItem("hkExpQ."+EXPid)
 								var LSid = newTXT.slice(0,newTXT.indexOf(" "))
 								newTXT = localStorage.getItem(LSid)
@@ -916,18 +929,25 @@ megnézi, hogy az eddigi Qtext-ben van-e már: visszafele indul, a hozzá legkö
 						}
 					} else {
 						EXPid = EXPid.slice(0,EXPid.indexOf(']'))
-						if ( parentQtxt.lastIndexOf("["+EXPid+"]") != -1 ) {
-							var searchTxt = parentQtxt.slice(parentQtxt.lastIndexOf('class="imp ['+EXPid+']'))
-							var elemType = parentQtxt.slice(0,parentQtxt.lastIndexOf('class="imp ['+EXPid+']'))
-						//console.clear()
-						//console.log(parentQtxt)
-						//alert(searchTxt)
-							F_checkSearchTXT(searchTxt,elemType)
-							if ( newTXT == 0 ) { 
-								newTXT == false // nem importálja majd
-							} else if ( newTXT == 0 ) { 
-								newTXT = arrImpQs[EXPid] 
-							} 
+						if ( prevQtxt.lastIndexOf("["+EXPid+"]") != -1 ) {
+							/*console.clear()
+							console.log(startP)
+							console.log(mEXPid)
+							console.log(prevQtxt)
+							console.log("["+EXPid+"]")
+							alert("sajt")*/
+							//console.clear()
+							//console.log(prevQtxt)
+							//alert(mEXPid+ " startP: " +startP)
+							//alert('sajt '+ EXPid)
+							//alert(prevQtxt)
+							//alert(searchTxt)
+							//var searchTxt = prevQtxt.slice(prevQtxt.lastIndexOf('class="imp ['+EXPid+']'))
+							var elemType = prevQtxt.slice(0,prevQtxt.lastIndexOf('class="imp ['+EXPid+']'))
+							F_checkSearchTXT(prevQtxt,elemType)
+							//alert(newTXT)
+							if ( newTXT == true ) { newTXT = arrImpQs[EXPid] } 
+							//alert(newTXT)
 						} else { 
 							newTXT = arrImpQs[EXPid] 
 						}
@@ -1001,7 +1021,7 @@ function F_impQs(impek){ // 11ms/Q a betöltési ideje
 					// megnézi, hogy nincs-e már importálva
 					var Qelem = impek[i] //var Qelem = impek[i].parentElement.parentElement
 					var parent = impek[i] //var parent = impek[i].parentElement.parentElement
-					do { // megkeresi a 'családfában' legfelül lévő kérdést!
+					do { // megkeresi a 'családfában' legfelül lévo kérdést!
 						Qelem = parent
 		//console.clear()
 		//console.log(Qelem.innerHTML)
@@ -1032,7 +1052,7 @@ function F_impQs(impek){ // 11ms/Q a betöltési ideje
 		if ( impek[i].innerHTML == "" ) {
 			var begin = impek[i].className.indexOf("[") +1
 			var end = impek[i].className.indexOf("]")
-			var full = impek[i].className.slice(begin,end) // lenntebb majd külön választja őket
+			var full = impek[i].className.slice(begin,end) // lenntebb majd külön választja oket
 			var cont = false
 			var num = ""
 			var high = ""
@@ -1252,7 +1272,7 @@ function F_loadImpQs(detElem){
 	+ amelyik nem data-src (tehát már be van töltve) az return
 	- ezután azt nézi meg, hogy impQ image-e:
 		felmegy a toggle eventes details elem-ig, és megnézi volt-e közte {} vagy [] classú elem (lehet div,span,details is)
-		amennyiben van, akkor az elsőnél megáll és az lesz a location-je
+		amennyiben van, akkor az elsonél megáll és az lesz a location-je
 		ha nincs, akkor a defulat location
 */
 function F_loadImgX(imgX){
@@ -1269,31 +1289,26 @@ function F_loadImgVideo(detElem,e){
 	var imgs = detElem.getElementsByTagName("IMG")
 	for ( var x=0; x<imgs.length; x++ ) { 
 		if ( imgs[x].offsetParent == null ) { continue }
-		if ( imgs[x].dataset.src == undefined ) { continue } // ha előtte a főoldalon megnyitottam már a Q-t, akkor nem kell újra betöltenie
+		if ( imgs[x].dataset.src == undefined ) { continue } // ha elotte a fooldalon megnyitottam már a Q-t, akkor nem kell újra betöltenie
 		
 		var IMGelem = imgs[x]
 		var parent = imgs[x]
-		do { // ha impQ van, akkor be kell töltse mindenképp őket, kivéve ha másik impQ
+		do { // ha impQ van, akkor be kell töltse mindenképp oket, kivéve ha másik impQ
 			IMGelem = parent
 			parent = parent.parentElement
-		} while ( parent.className.indexOf("[") == -1 && parent.className.indexOf("{") == -1 && parent != detElem )
-		var EXPid = null
-		if ( parent.className.indexOf("{") != -1 && parent.parentElement.className.indexOf("{") != -1 ) {
-			var begin = detElem.className.indexOf("{")
-			var end = detElem.className.indexOf("}")
-			EXPid = detElem.className.slice(begin+1,end)
-		}
-		if ( EXPid != null ) {
-			var string = localStorage.getItem("hkExpQ."+EXPid)
-			console.log("{"+EXPid+"}-imgLoad: "+string)
-			var LSid = string.slice(0,string.indexOf(" "))
-			var IMGloc = string.slice(string.indexOf(" ")+1)
-			var srcLoc = htmlLEARNloc + IMGloc + imgs[x].dataset.src
-			srcLoc = htmlLEARNloc + IMGloc + imgs[x].src
-			console.log("{"+EXPid+"}-srcLoc: "+srcLoc)
-			//replaceIMGsrc(imgs[x],srcLoc)
-			imgs[x].src = htmlLEARNloc + IMGloc + imgs[x].dataset.src
-			console.log(" -EXPid:"+EXPid+"- "+imgs[x].dataset.src+" - "+imgs[x].src)
+		} while ( parent.className.indexOf("{") == -1 && parent != detElem )
+		
+		//console.log(parent.className)
+		//console.log(parent.tagName)
+		var isExp = false
+		if ( parent.className.indexOf("{") != -1 ) { isExp = true }
+		if ( parent.tagName == "DETAILS" && parent.parentElement.className.indexOf("[") != -1 ) { isExp = false }
+		
+		if ( isExp == true ) {
+			var srcLoc = htmlLEARNloc + "images/" + imgs[x].dataset.src
+			//console.log("srcLoc: "+srcLoc)
+			imgs[x].src = htmlLEARNloc + "images/" + imgs[x].dataset.src
+			//console.log(imgs[x].dataset.src+" - "+imgs[x].src)
 			imgs[x].removeAttribute("data-src")
 		} else {
 			F_loadImgX(imgs[x])
@@ -1357,7 +1372,7 @@ function F_loadImgVideo(detElem,e){
 			allVideo[i].style.maxWidth = "98%"
 			allVideo[i].style.borderColor = "red"
 			//allVideo[i].muted = true;
-			allVideo[i].onloadeddata = function() { // kell, különben ha előbb kattolok rá, már nem tölti be
+			allVideo[i].onloadeddata = function() { // kell, különben ha elobb kattolok rá, már nem tölti be
 				// controlBar fix!
 				this.onclick = function(){
 					if ( this.parentElement.className != "videoParentDiv" ) {
@@ -1397,7 +1412,7 @@ function F_loadImgVideo(detElem,e){
 						this.style.borderColor = "springgreen"
 						this.play();
 						
-						//ezt elég 1x megcsinálni, amikor elindítom (fix majd, mert lehet egyszerűsíteni)
+						//ezt elég 1x megcsinálni, amikor elindítom (fix majd, mert lehet egyszerusíteni)
 						var parentDiv = this.parentElement
 						var seekBars = parentDiv.getElementsByTagName("span")
 						theSeekBar = seekBars[0].parentElement
@@ -1452,7 +1467,7 @@ F_imgLoad()
 
 function F_imgActLoad(IMGelem){ 
 	var parent = IMGelem
-	do { // megkeresi az első details-t
+	do { // megkeresi az elso details-t
 		parent = parent.parentElement
 	} while ( parent.className.indexOf("[") == -1 && parent.tagName != "DETAILS" && parent.tagName != "BODY" )
 	if ( IMGelem.dataset.src ) {
@@ -2012,19 +2027,6 @@ function F_CreateQDiv() {
 		span.style.paddingBottom = "2px"
 	}
 	F_SpanRepOld()
-	function F_inputTetel() {
-		var input = document.createElement("input")
-		input.id = "input_Tetel"
-		divSettings.appendChild(input)
-		input.type = "number"
-		input.style.width = "40px"
-		
-		input.value = localStorage.getItem("input_Tetel")
-		input.oninput = function(){
-			localStorage.setItem("input_Tetel",this.value)
-		}
-	}
-	F_inputTetel()
 
 
 
@@ -2242,7 +2244,7 @@ var vizsgaTime = Number(localStorage.getItem("vizsgaSkip"))*60
 
 var nextMark = 0
 var nextRep = "zerus"
-function F_nextMark(jegy){ // következő kérdés nehézségét beállítja, 
+function F_nextMark(jegy){ // következo kérdés nehézségét beállítja, 
 	// repeat alapján
 	//console.clear()
 	//console.log("– – – – – – – F_nextMark – – – – – – – –")
@@ -2288,7 +2290,7 @@ function F_nextMark(jegy){ // következő kérdés nehézségét beállítja,
 	//alert("STOP")
 	
 
-	// az előző sikere alapján
+	// az elozo sikere alapján
 	/*jegy = parseInt(jegy,10)
 	if ( Math.random() > 0.5 ) {
 		if ( jegy == 1 ) {
@@ -2770,7 +2772,7 @@ function func_tableSkipFix(){
 
 		if ( typeof LSid == "undefined" ) {
 			// alert(kerdesek[i].id+" + LSid=undefined + "+Qtext)
-			// azoknak undefinied egyenlőre, melyek épp az aktuálisak
+			// azoknak undefinied egyenlore, melyek épp az aktuálisak
 		} else if ( localStorage.getItem(LSid+"_note") ) {
 			//if ( LSid == "undefined" ) { alert("a: " + kerdesek[i].innerHTML) }
 			//if ( LSid == "undefined" ) { alert("a: " + kerdesek[i].innerHTML) }
@@ -2846,30 +2848,27 @@ F_valSkip()
 
 
 function func_showQtext(LSid){
-	var text = obj_fixNote[LSid]
-	//alert(LSid+": "+text)
+	LSid = LSid.slice(0,LSid.indexOf('_fullText'))
+	var text = arrQnameQtxt[localStorage.getItem(LSid)]
+	text = text.replace('DETAILS','DETAILS open')
 	document.getElementById("div_SkipTexttxt").innerHTML = text
 	
-	/*var Qtext = localStorage.getItem(LSid.slice(0,LSid.indexOf("_")))
-	Qtext = Qtext.replace('<details','<details open')
-	document.getElementById("div_SkipTexttxt").innerHTML = Qtext
 	var qElem = document.getElementById("div_SkipText")
 	qElem.style.display = 'block';
-	
 	func_abbrSet(qElem)
 	var allDetails = qElem.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) {
 		allDetails[i].ontoggle = function(e){
 			F_loadImgVideo(this,e)
 		}
-	}*/
+	}
 }
 
 function func_DeleteSkipFix(kerdes){
 	if (confirm('biztos törlöd? '+kerdes)) {
 		skipfix = kerdes.slice(kerdes.indexOf("_"))
 		skipfix = skipfix.slice(1,skipfix.length-5)
-		kerdes = kerdes.slice(0,kerdes.indexOf("_"));  // remove "_skipClear" vagy "_fixClear" a nevéből és csak az id marad
+		kerdes = kerdes.slice(0,kerdes.indexOf("_"));  // remove "_skipClear" vagy "_fixClear" a nevébol és csak az id marad
 		//alert(skipfix+": "+kerdes)
 		if ( localStorage.getItem(kerdes+'_skip') == "vizsgaSkip" ) { skipfix = "vizsgaskip" }
 		if ( skipfix == "fix" ) {
@@ -2912,7 +2911,7 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 				var qName = localStorage.getItem(LSid)
 				if ( qName != null ) {
 					var qButton = "<button id='"+LSid+"_skipClear' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>"
-					qName = qButton+'<font color="green" id="'+LSid+'_fullText" onclick="func_showQtext(this.id)">' + qName + '</font><br>'
+					qName = qButton+'<summary id="'+LSid+'_fullText" onclick="func_showQtext(this.id)">' + qName + '</summary><br>'
 					fullText = fullText + qName
 					qCount = qCount +1
 				}
@@ -2931,7 +2930,7 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 				var qName = localStorage.getItem(LSid)
 				if ( qName != null ) {
 					var qButton = "<button id='"+LSid+"_vizsgaskipClear' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>"
-					qName = qButton+'<font color="green" id="'+LSid+'_fullText" onclick="func_showQtext(this.id)">' + qName + '</font><br>'
+					qName = qButton+'<summary id="'+LSid+'_fullText" onclick="func_showQtext(this.id)">' + qName + '</summary><br>'
 					fullText = fullText + qName
 					qCount = qCount +1
 				}
@@ -3077,7 +3076,7 @@ function func_calcWork() { // hány százaléka új kérdés még
 	var diffTime = (myTime-startTime).toFixed(2)
 	console.log("– func_calcWork – " + diffTime+"s")*/
 }
-function func_calcDate() { // átlagIdőt kiszámolja
+function func_calcDate() { // átlagIdot kiszámolja
 	F_getTime()
 	var startTime = myTime
 	
@@ -3312,7 +3311,7 @@ function func_calcOldNew(){
 
 
 // SAVE LS (begin)
-function download(filename, text) { // (netről copyztam) --> (azért kellett, mert androidon máshogy nemtudom lementeni)
+function download(filename, text) { // (netrol copyztam) --> (azért kellett, mert androidon máshogy nemtudom lementeni)
 	 var pom = document.createElement('a');
 	 pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
 	 pom.setAttribute('download', filename);
@@ -3361,14 +3360,14 @@ function func_clearOldHistory() {
 		var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont')
 		if ( localStorage.getItem(kerdes+"_skip") == "skip" ) {
 			if ( idopont < 90 ) {
-			} else { //azért így oldottam meg, mertha időpont == null vagy mi akkor is működjön
+			} else { //azért így oldottam meg, mertha idopont == null vagy mi akkor is muködjön
 				localStorage.removeItem(kerdes+'_skip');
 				localStorage.removeItem(kerdes+'_jegy');
 			}
 		}
 	}
 }
-//func_clearOldHistory() // sokáig tart a betöltésnél szóval remove-oltam (max ha megnőtt a localstorage, akkor legyen egy button amivel lehívom és kitakarítja)
+//func_clearOldHistory() // sokáig tart a betöltésnél szóval remove-oltam (max ha megnott a localstorage, akkor legyen egy button amivel lehívom és kitakarítja)
 
 if ( localStorage.getItem("hk.newQ") == "true" ) {
 	document.getElementById("btn_newQuest").style.borderColor = "limegreen"
@@ -3385,10 +3384,10 @@ function F_prevQ(){
 	var arrayQ = QlocElem.getElementsByClassName("kerdes")
 	var qCountLS = 0
 	
-	// BEGIN – ez a note-hoz kell, hogy a legfelül lévő details-hoz kapcsoltan mentse el (annak sajnos nem mindig van ID-je, mert nem feltétlen kérdés a class-a)
+	// BEGIN – ez a note-hoz kell, hogy a legfelül lévo details-hoz kapcsoltan mentse el (annak sajnos nem mindig van ID-je, mert nem feltétlen kérdés a class-a)
 	var Qelem = priorQelem
 	var parent = priorQelem
-	do { // megkeresi a 'családfában' legfelül lévő kérdést!
+	do { // megkeresi a 'családfában' legfelül lévo kérdést!
 		Qelem = parent
 		parent = parent.parentElement
 	} while ( parent.classList.contains("altetel") != true  && parent.classList.contains("tetel") != true  && parent.classList.contains("feltetel") != true )
@@ -3431,7 +3430,7 @@ function F_prevQ(){
 
 			var date = new Date();
 			localStorage.setItem(LSid+'_idopont', Math.floor(date.getTime()/60000));
-			//console.log(jegy+" :időpontot ment el, ezen LSid-re: "+LSid)
+			//console.log(jegy+" :idopontot ment el, ezen LSid-re: "+LSid)
 		}
 		
 		// skip
@@ -3491,13 +3490,13 @@ function F_nextQ(){
 	var nextDiff = 0
 
 	
-	// előző kérdés
+	// elozo kérdés
 	if ( priorQelem != "nincs" ) { F_prevQ() }
 	activeQs = [] // ezzel resetelem (szükséges mindig!)
 	QlocElem.innerHTML = ""
 
-	// következő kérdés
-	for ( var x=0; x<50; x++ ) { // custom számot írtam, ennél több egyenlőre nincs (egy változó kéne helyette, ami az eddigi max)
+	// következo kérdés
+	for ( var x=0; x<50; x++ ) { // custom számot írtam, ennél több egyenlore nincs (egy változó kéne helyette, ami az eddigi max)
 		if ( document.getElementById("td.0."+x) ) { 
 			document.getElementById("td.0."+x).hidden = true 
 			document.getElementById("td.1."+x).hidden = true 
@@ -3624,14 +3623,7 @@ function F_nextQ(){
 	countCV = 0
 	
 	for ( var tetel in tetelek ) {
-		/*if ( document.getElementById("btn_nextQdiff").style.backgroundColor == "limegreen" ) {
-			var tetelSzam = localStorage.getItem("input_Tetel")
-			if ( tetel.indexOf(tetelSzam+",") == 0 ) {
-				var tetelQ = document.getElementById(tetel)
-				var tetelQs = tetelQ.getElementsByClassName("kerdes")
-				for ( var x=0; x<tetelQs.length; x++ ) { func_calcQValue(tetelQs[x]) }
-			}
-		} else*/ if ( localStorage.getItem(tetel+"_button") == "true" ) {
+		if ( localStorage.getItem(tetel+"_button") == "true" ) {
 			var tetelQ = document.getElementById(tetel)
 			var tetelQs = tetelQ.getElementsByClassName("kerdes")
 			for ( var x=0; x<tetelQs.length; x++ ) { func_calcQValue(tetelQs[x]) }
@@ -3657,7 +3649,7 @@ function F_nextQ(){
 		
 
 		//console.log("pQid: "+priorQid)
-		do { // megkeresi a 'családfában' legfelül lévő 'kerdes'-t (ami nem feltétlen az, lehet csak 'open' is)
+		do { // megkeresi a 'családfában' legfelül lévo 'kerdes'-t (ami nem feltétlen az, lehet csak 'open' is)
 			Qelem = parent
 			parent = parent.parentElement
 		} while ( parent.classList.contains("altetel") != true  && parent.classList.contains("tetel") != true  && parent.classList.contains("feltetel") != true )
@@ -3726,7 +3718,7 @@ function F_nextQ(){
 		
 		QlocElem.innerHTML = QlocElem.innerHTML + "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>"
 
-		function F_SetMarks() { // minden kérdés mellé kreál egy osztályzás lehetőséget
+		function F_SetMarks() { // minden kérdés mellé kreál egy osztályzás lehetoséget
 			//console.clear()
 			console.log(" – F_SetMarks – ")
 			var arrayQ = QlocElem.getElementsByClassName("kerdes")
@@ -3736,7 +3728,7 @@ function F_nextQ(){
 				F_calcLSid(Qelem)
 				var LSid = actLSid
 				var Qtext = actQtext
-				//csak ellenőrzés:
+				//csak ellenorzés:
 				if ( LSid == undefined ) { alert("#1. " +num+ ": "+ LSid) }
 				
 				var num = i+1
@@ -3768,7 +3760,7 @@ function F_nextQ(){
 
 
 				var selectList = document.getElementById("hkSelect."+i)
-				// repeatest beállítja vastagbetűsre
+				// repeatest beállítja vastagbetusre
 				var c = selectList.childNodes;
 				for (var x=0; x < c.length; x++) {
 					if ( c[x].value == localStorage.getItem(LSid+"_repeat") ) {
@@ -3778,7 +3770,7 @@ function F_nextQ(){
 					}
 				}
 
-				//idő
+				//ido
 				document.getElementById("td.0."+i).style.backgroundColor = "white"
 				var date = new Date();
 				selectList.disabled = false
@@ -3860,7 +3852,7 @@ function F_nextQ(){
 					str = str.slice(str.indexOf("]")+1)
 					
 					// elrejti a megoldást
-					newTxt = newTxt.replace(">"+num+str+'</summary><ul class="normal">', '><font class="abbr">'+num+'ismerd fel<!--'+LSid+'--> ►</font>'+str+'</summary><ul class="normal">')
+					newTxt = newTxt.replace(">"+num+str+'</summary><ul class="normal">', '><font class="abbr">'+num+'ismerd fel<!--'+LSid+'--> â–º</font>'+str+'</summary><ul class="normal">')
 					arrayQ[i].innerHTML = newTxt
 					
 					// div-re cseréli a details-t
@@ -3893,7 +3885,7 @@ function F_nextQ(){
 		var Qtext
 		if ( Qelem.id ) { 
 			Qtext = arrQid[Qelem.id]
-		} else { // amennyiben egy <span imp [120]></span>-ban lévő kérdésről van szó, amelynek nincs már Qid-je
+		} else { // amennyiben egy <span imp [120]></span>-ban lévo kérdésrol van szó, amelynek nincs már Qid-je
 			Qtext = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
 		}
 		
@@ -3904,7 +3896,7 @@ function F_nextQ(){
 		var remain = Math.floor(date.getTime()/3600000)
 		remain = localStorage.getItem("vizsgaSkip") - remain
 		
-		/* erre akkor van szükség, ha legfelül nem kérdés van (tehát a legfelül lévő details nem kérdés, csak egy összegző details, pl. élettan ozmózis), ugyanis annak nincs LSid elmentve, így nemtudok note-t menteni neki (persze optimálisabb lenne, ha itt is a legfelsőhöz lenne csatolva, de egyenlőre kihagyom mert nem bonyolítom, és LowPrior)
+		/* erre akkor van szükség, ha legfelül nem kérdés van (tehát a legfelül lévo details nem kérdés, csak egy összegzo details, pl. élettan ozmózis), ugyanis annak nincs LSid elmentve, így nemtudok note-t menteni neki (persze optimálisabb lenne, ha itt is a legfelsohöz lenne csatolva, de egyenlore kihagyom mert nem bonyolítom, és LowPrior)
 		var pQtxt = arrQid[priorQid]
 		var pLSid = txtLS[pQtxt]
 		var LSid = txtLS[Qtext]
@@ -3913,21 +3905,13 @@ function F_nextQ(){
 		}
 		alert("noteIMP:"+LSid)*/
 		if ( localStorage.getItem(LSid+"_note") ) { // note
-			alert(LSid+" "+localStorage.getItem(LSid))
+			//alert(LSid+" "+localStorage.getItem(LSid))
 			document.getElementById("note").value = localStorage.getItem(LSid+"_note")
-			intervalOfs = 0;
-			F_noteFlash = window.setInterval(function(){
-				document.getElementById("btn_fix").style.backgroundColor = 'rgba(255,0,0,'+Math.abs(Math.sin(intervalOfs))+')';
-				intervalOfs += 0.01;
-			}, 10);
+			document.getElementById("button_NextQ").style.borderColor = "red";
 			var_note = true
 		} else {
-			document.getElementById("btn_fix").style.backgroundColor = "red";
+			document.getElementById("button_NextQ").style.borderColor = "black";
 			var_note = false
-			if ( intervalOfs != "nincs" ) { 
-				clearInterval(F_noteFlash) 
-				intervalOfs = "nincs"
-			}
 		}
 	}
 	
@@ -4070,7 +4054,7 @@ console.log("– – – Loading finished – – – " + diffTime)
 
 /* Replace text (regular expression)
 	<li><span class="WHITE">(.*?)</span>(.*?)</li>
-	<div><font class="abbr"><span class="WHITE">\1</span> ►</font>\2</div>
+	<div><font class="abbr"><span class="WHITE">\1</span> â–º</font>\2</div>
 */
 
 

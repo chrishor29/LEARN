@@ -1,0 +1,637 @@
+<head>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="favicon.bmp?v=2">
+	<link rel="stylesheet" type="text/css" href="../style.css">
+	<title>Belgyógyászat I</title>
+	<script>
+		var htmlLEARNloc = "../"
+		var htmlIMGloc = "Belgyogy/images/"
+	</script>
+	<style>*{line-height: 130%;}</style>
+</head><span id="spanLoading" style="position:fixed; height:100%; width:100%; opacity:0.5; background-color:black; visibility:visible;"></span> 
+
+<!-- ● û -->
+
+<!-- oktatási hiba: 
++ köpetekről kénének képek
++ videók nehézlégzésről, tünetei (pl. epigastrium behúzódás)
++ hangok egyértelműek kénének legyenek
++ strydor & stertor mp3 / videó kéne
++ minden órán feladhatnák a leckét, hogy kövire mit kell átnézni (és az egy egyértelműen érthető + leegyszerűsített (paraszt nyelv), normális adag kéne legyen...)
+stb.
+összefoglalva: krva jó ha bemagolom, de fogalmam nincs a jelentéséről (többet érne, ha a jelentést tudnám, de a nevét nem...) -> bár ez általánosan igaz a többi tárgynál is (pl. anat/patosz/műtéttanról/mikrobi(gy) se tesznek fel videókat)
+ui: degenerált barmok
+ --> 
+
+<!----><details><summary class="status">impQk</summary><ul class="normal">
+	<details class="{1} kerdes"><summary><u>szívhangok</u></summary><ul class="normal">
+		<div style="float:right; max-width:40%">
+			<video data-src="videos/szh_oka.mp4"></video>
+			<video data-src="videos/szh_belegzesketto.mp4"></video>
+		</div>
+		<table><tr><th>szisztolés (S1)</th>  <th>szisztolés (S1)</th>  <th>diasztolés (S2)</th></tr>
+			<tr><th>mikor</th>
+				<td>szisztolé elején</td>
+				<td>diasztolé elején</td>
+			</tr>
+			<tr><th>mi okozza</th>
+				<td>AV-billentyűk záródása okozza</td>
+				<td>aorta + pulmonalis záródása okozza</td>
+			</tr>
+			<tr><th><abbr title="billentyűk záródása,csukódása milyen sorrendben. A kettő egymás fordítottja">sorrend</abbr></th> 
+				<td><abbr title="ez a kettő adja a hangot">mitral záródik, tricuspidal záródik</abbr>, pulmo nyílik, aorta nyílik</td>
+				<td><abbr title="ez a kettő adja a hangot">aorta záródik, pulmo záródik</abbr>, tricuspidal nyílik, mitral nyílik</td>
+			</tr>
+			<tr><th>jellemzése</th>
+				<td>dobbanásszerű(bú) &#10140; mélyebb,lágyabb</td>
+				<td>koppanásszerű(tupp) &#10140; magasabb,keményebb</td>
+			</tr>
+			<tr><th>fonendoszkóp</th>
+				<td>harang(mély hangra jobb)</td>
+				<td><abbr title="fonendoszkóp ezen részével hallgassam">'</abbr>membrán(magas hangra jobb)</td>
+			</tr>
+			<tr><th>beteg helyzete</th>
+				<td>bal oldalfekvésben <img class="mini" data-src="mjqrkayk.jpg"></td>
+				<td>ülő helyzetben előrehajolva <img class="mini" data-src="xegollqk.jpg"></td>
+			</tr>
+			<tr><th>egyéb</th>
+				<td></td>
+				<td>a.radialis pulzusával szinkronban van (együtt van a 2)</td>
+			</tr>
+		</table>
+	  <hr>
+		<details class="kerdes"><summary>punctum maximum</summary><ul class="normal">
+			punctum maximum &#10140; terület, ahol az adott hang a legjobban hallható
+			<li>aorta-billentyű (A) &#10140; 2.bordaköz parasternalisan jobb oldalt</li>
+			<li>pulmonalis-billentyű (P) &#10140; 2.bordaköz parasternalisan bal oldalt</li>
+			<li>mitrális billentyű (M) &#10140; szívcsúcs + Erb-pont(4.bordaköz parasternalisan bal oldalt)</li>
+			<li>tricuspidalis billentyű (T) &#10140; 5.bordaköz parasternalisan jobb oldalt</li>
+		  <hr>aorta-billentyű esetében a diasztolés zörej jobban hallható: Erb-pont = <abbr title="3.bordaköz középvonal (tehát a 3.bordaköz magasságában a sternum felett)">3M</abbr> / <abbr title="4.bordaköz left 2cm (tehát a 4.bordaköz magasságában a sternumtól balra 2cm-re)">4L2</abbr>
+			<img data-src="mqteeaqb.jpg">
+		</ul></details>
+	  <hr>alábbiakat vizsgálva kell leírást adni róla:
+		<li><details class="kerdes"><summary>erősségük</summary><ul class="normal">
+			ha normálisak, akkor azt mondom kellően ékelt &#10140; eltérések:
+			<li>I.szívhang erős &#10140; utalhat mitralis-stenosis</li>
+			<li>I.szívhang gyenge &#10140; utalhat pericardialis/pleuralis folyadék szívelégtelenség</li>
+			<li>II.szívhang erős &#10140; utalhat hipertenzió</li>
+			<li>II.szívhang kettőzött &#10140; utalhat aorta-insufficientia</li>
+		</ul></details></li>
+		<li><details class="kerdes"><summary>van-e többlethang(accessorius-hang)</summary><ul class="normal">
+			<table><tr><th>fiziológiás többlethang</th>  <th>oka</th>  <th>hallgatózási helye</th>  <th colspan="2">egyéb</th></tr>
+				<tr><th>III.hang</th>
+					<td>kamra-telődés</td>
+					<td rowspan="2">bal IV. bordaköz + szívcsúcs</td>
+					<td rowspan="2">gyermekkorban hallhatók</td>
+					<td>ha hangos és/vagy időskorban hallható, az patológiás &#10140; ilyenkor a neve S3-galopp</td>
+				</tr>
+				<tr><th>IV.hang</th> <td>pitvar-összehúzódás</td> <td></td></tr>
+			</table>
+		  <hr>NEM fiziológiás többlethangok
+			<li>ilyen pl. a CLICK &#10140; kattanásszerű(magas,rövid)</li>
+			<table><tr><th>protoszisztolés click</th>  <th>mezoszisztolés click</th>  <th>opening snap(protodiasztolés)</th></tr>
+				<tr>
+					<td>szisztolé 1.harmada</td>
+					<td>szisztolé 2.harmada(közepe tájéka)</td>
+					<td>diasztolé 1.harmada</td>
+				</tr>
+				<tr>
+					<td>'aorta & pulmonalis az ok': <abbr title="nagy-, illetve kisvérköri hypertensióban a nagyerekhez(aorta,a.pulmonalis) csapódó véráram okozza">hipertenzió</abbr> <abbr title="vagy valvularis aorta vagy pulmonalis stenosis">'</abbr></td>
+					<td><abbr title="egyik vagy mindkét vitorlája, a bal kamra összehúzódásakor, a billentyű záródás kapcsán különböző mértékben „átesik” a pitvar felé egy rövid időre, majd visszazár">mitrális prolapszus</abbr></td>
+					<td>mitralis stenosis</td>
+				</tr>
+			</table>
+		</ul></details></li>
+		<li><details class="kerdes"><summary>kettőzöttségük</summary><ul class="normal">
+			<li>I.szívhang ha kettőzött az kóros (szárblokk)</li>
+			<li>II.szívhang csak akkor fiziológiás ha kettőzött</li>
+		</ul></details></li>
+		<li><details class="kerdes"><summary>III. és IV.szívhang</summary><ul class="normal">
+			<li>fiziológiásan csak gyermekkorban hallhatóak &#10140; ha felnőttnél az patológiás</li>
+			<li>III &#10140; kamrai telõdési hang (telõdés rezgéseket kelt a kamrafalban)</li>
+			<li>IV &#10140; pitvari sziszolé okozza</li>
+		</ul></details></li>
+	  <hr>hang vs zörej:
+		<li>hang rövid &#10140; hirtelen kezdõdik és hirtelen végzõdik (dobbanásszerûen, koppanásszerûen hangzik)</li>
+		<li>zörej hosszú</li>
+	</ul></details>
+	<details class="{2} kerdes"><summary>pneumonia & pneumonitis</summary><ul class="normal">
+		<li>pneumonia &#10140; alveolusokban & bronchiolusokban tüdőgyulladás</li>
+		<li>pneumonitis &#10140; interstitiumban tüdőgyulladás <font style="font-size:80%">(oka pl. Lupus)</font></li>
+	</ul></details>
+	<details class="{3} kerdes"><summary>polidipszia</summary><ul class="normal">
+		<li>polidipszia = túl sokat iszik</li>
+	</ul></details>
+	<details class="{4} kerdes"><summary>poliuria</summary><ul class="normal">
+		<li>poliuria = túl sok vizelet</li>
+	</ul></details>
+	<details class="{5} kerdes"><summary>dekubitusz</summary><ul class="normal">
+		<li>dekubitusz = felvekvéses fekély</li>
+		<img data-src="coxvfkck.jpg">
+	</ul></details>
+	<details class="{6} kerdes"><summary><u>szívzörejek</u></summary><ul class="normal">
+		<details class="kerdes"><summary>szívhang vs szívzörej:</summary><ul class="normal">
+			<li>hang rövid &#10140; hirtelen kezdõdik és hirtelen végzõdik (dobbanásszerûen, koppanásszerûen hangzik)</li>
+			<li>zörej hosszú</li>
+		</ul></details>
+		<details class="kerdes"><summary>oka:</summary><ul class="normal">
+			<span class="IMPORTANT">lamináris helyett turbulens áramlás lesz</span> &#10140; ennek oka lehet:
+			<li>csökken a vér viszkozitása <div class="mirror">&#10140;</div> pl. anémia</li>
+			<li>nő a vérkeringés sebessége <div class="mirror">&#10140;</div> pl. hipertireózis, tachycardia</li>
+			<li>sztenózis</li>
+			<li>insufficientia</li>
+		</ul></details>
+		<details class="kerdes"><summary>alábbiakat(6) vizsgálva kell leírást adni róla:</summary><ul class="normal">
+			<li><details class="kerdes"><summary>mikor</summary><ul class="normal">
+				<li>szisztolés zörej &#10140; S1 kezdete és S2 kezdete között hallható</li><ul>
+					<li><strong>proto</strong>systolés</li>
+					<li><strong>meso</strong>systolés</li>
+					<li><strong>tele</strong>systolés</li>
+					holosystolés: egészet kitölti
+				</ul>
+				<li>diasztolés zörej &#10140; S2 kezdete és S1 kezdete között hallható</li><ul>
+					<li>proto<strong>dya</strong>stolés</li>
+					<li>meso<strong>dya</strong>tolés</li>
+					<li><strong>presy</strong>stolés</li>
+				</ul>
+			  <hr>
+				<img data-src="fqwzfbep.jpg">
+			</ul></details></li>
+			<li>punctum maximum (hol hallható a legjobban)</li>
+			<li><details class="kerdes"><summary>mennyire hangos &#10140; fokozatok 1–6-ig:</summary><ul class="normal">
+				<li>1=<abbr title="ha a mellkasra helyezzük a hallgatónkat, nem halljuk azonnal a zörejt">alig hallható</abbr></li>
+				<li>2=<abbr title="fonendoszkóp mellkasra helyezése után azonnal lehet a zörejt hallani">halk</abbr></li>
+				<li>6=fonendoszkópot a mellkas falától 1cm-re eltartva is hallható)</li>
+				<img data-src="dklsrgli.jpg">
+			</ul></details></li>
+			<li>milyen a hang magassága (mély, magas)</li>
+			<li><details class="kerdes"><summary>milyen a jellege (crescendo, decrescendo, ejekciós = orsó alakú, szalag alakú)</summary><ul class="normal">
+				<img data-src="hlyyswye.jpg">
+			</ul></details></li>
+			<li><details class="kerdes"><summary>vezetődése</summary><ul class="normal">
+				A zörejek vezetõdnek az õket létrehozó véráram irányában, így az aortastenosis systolés zöreje a jugulum és a carotisok felé, az aortainsufficientia diastolés zöreje balra, többnyire lefelé a sternum felé, a mitralis insufficientia systolés zöreje többnyire a hónalj felé vezetõdik.
+			</ul></details></li>
+		  <hr><span class="IMPORTANT">Tulassay I.66 (34o)</span>
+		</ul></details>
+	  <hr><strong>szisztolés / diasztolés zörej</strong> &#10140; stenosis vagy insufficientia?
+		<span class="imp [1] hide"></span>
+		<details class="kerdes"><summary>szisztolés zörejek</summary><ul class="normal">
+			<li>A/P stenosis</li>
+			<li>M/T insuff, <abbr title="mitralis prolapsus">MPS</abbr></li>
+			<li><font style="font-size:80%"><abbr title="atrial septum defektus">ASD</abbr>,<abbr title="ventricular s.d.">VSD</abbr></font></li>
+		</ul></details>
+		<details class="kerdes"><summary>diasztolés zörejek</summary><ul class="normal">
+			<li>A/P insuff</li>
+			<li>M/T stenosis</li>
+			<li><font style="font-size:80%">Austin-Flint zörej</font></li>
+			megj.tipp: <abbr title="ebből többid levezethetem hisz ha aorta és pulmonal insuff a diasztolés, akkor aorta és pulmonal stenosis szisztolé. továbbá mitral tricuspidal stenosis a diasztolé, és MTis">APid</abbr>
+		</ul></details>
+		<details class="kerdes"><summary>mitrális stenosis felismerése - hallgatózás</summary><ul class="normal">
+			<img style="max-width:45%" data-src="qghgqrlv.jpg">
+			szívcsúcsnál a punctum maximum(itt hallható legjobban):
+			<li>I.hang <strong>erős</strong></li>
+			<li>II.hang + <span class="IMPORTANT">opening snap</span> (nyitási kattanás)</li>
+			<li><span class="IMPORTANT">a diasztolét crescendo zörej tölti ki</span></li>
+			<video data-src="videos/mitralsten.mp3"></video>
+		</ul></details>
+		<details class="kerdes"><summary>mitrális insufficiencia felismerése - hallgatózás</summary><ul class="normal">
+			szívcsúcsnál a punctum maximum(itt hallható legjobban):
+			<li><span class="IMPORTANT">a szisztolét szalagszerű zörej tölti ki(holoszisztolés)</span> (magas ha enyhe:1.videó, mély ha súlyos:2.videó) <img class="mini" data-src="lsgkfitb.jpg"></li>
+		  <hr>mitralis prolapszus, ha mezoszisztolés klikk is van (illetve a zörej, akkor csak teleszisztolés)
+			<video data-src="videos/mitralinsuffenyhe.mp3"></video>
+			<video data-src="videos/mitralinsuff.mp3"></video>
+		</ul></details>
+		<details class="kerdes"><summary>aorta stenosis felismerése - hallgatózás</summary><ul class="normal">
+			jobb 2.bordaközben a punctum maximum(itt hallható legjobban):
+			<li><span class="IMPORTANT">a szisztolét ejekciós(crescendo-decrenscendo) zörej tölti ki(holoszisztolés)</span></li>
+			<video data-src="videos/aotastenosis.mp3"></video>
+			<video data-src="videos/Aortic Stenosis - Auscultation Sound.mp3"></video>
+			<img data-src="pmfywnrm.jpg">
+		</ul></details>
+		<details class="kerdes"><summary>aorta insufficiencia felismerése - hallgatózás</summary><ul class="normal">
+			bal 3.bordaközben a punctum maximum(itt hallható legjobban):
+			<li><span class="IMPORTANT">a diasztolét decrescendo zörej tölti ki</span> <font style="font-size:80%">(ahogy csökken az aortaban a nyomás, úgy egyre kisebb a visszaáramló vér, ezért halkul a zörej)</font></li>
+			<img data-src="ohvbaejq.jpg">
+			<video data-src="videos/aortains.mp3"></video>
+			<video data-src="videos/aortainsu.mp3"></video>
+		</ul></details>
+	</ul></details>
+	<details class="{7} kerdes"><summary><u>ascites</u></summary><ul class="normal">
+		<li>ascites = szabad hasűri folyadék</li>
+		<details class="kerdes"><summary>miknek a tünete?</summary><ul class="normal">
+			<li>pl. májcirrhosis &#10140; ugyanis ilyenkor gátlódik a portális keringés</li>
+		</ul></details>
+	</ul></details>
+	<details class="{8} kerdes"><summary><u>icterus</u></summary><ul class="normal">
+		icterus = sárgaság
+		<li>első jele, hogy a sclera(szaruhártya) sárga ( ez az ún.<abbr title="mert ez az 1jele, azért ,csak szub'">szub</abbr>ikterusz!)</li>
+		<li>ezután bőr is sárga lesz</li>
+		<li>oka: bilirubin megnő a vérben májelégtelenség miatt, pl. májcirrhosis</li>
+	</ul></details>
+	<details class="{9} kerdes"><summary>neuropátia</summary><ul class="normal">
+		neuropátia = érzékkiesés
+		<li>vagy diabetes tünete</li>
+		<li>vagy B12,folsav hiány tünete</li>
+	</ul></details>
+<!----></ul></details>
+
+<details><summary>vizsga tippek</summary><ul class="normal">
+	<li>gyakon endokrin beteggel nemigen találkozunk majd (leginkább pajzsmirigy + diabetes)</li>
+	<li>endokrin betegségekről főként elméletet kell tudni, gyakorlatnál meg az alap fizikális vizsgálatot</li>
+</ul></details>
+
+<details><summary class="phase">latin/magyar</summary>
+	<details class="kerdes"><summary>nyirokcsomó megnagyobbodás</summary><ul class="normal"> lymphadenomegalia </ul></details>
+	<details class="kerdes"><summary>lymphadenomegalia</summary><ul class="normal"> nyirokcsomó megnagyobbodás </ul></details>
+	<details class="kerdes"><summary>anizokoria</summary><ul class="normal">
+		<li>pupillák mérete eltérő</li>
+		<li>oka &#10140; <abbr title="nő a koponyaűri nyomás">intracranialis nyomásfokozódás</abbr> pl. haemorrhagia miatt</li>
+	</ul></details>
+	<details class="kerdes"><summary>epehólyag: gyulladás, eltávolítás</summary><ul class="normal">
+		<li>cholecystitis, cholecystectomia</li>
+	</ul></details>
+	<details class="kerdes"><summary>vakbél: gyulladás, eltávolítás</summary><ul class="normal">
+		<li>appendicitis, appendectomia</li>
+	</ul></details>
+	<details class="kerdes"><summary>vérzés</summary><ul class="normal"> haemorrhagia </ul></details>
+	<details class="kerdes"><summary>haemorrhagia</summary><ul class="normal"> vérzés </ul></details>
+	<details class="kerdes"><summary>dyspnoe</summary><ul class="normal"> nehézlégzés /proped - 10.tétel/</ul></details>
+	<details class="kerdes"><summary>nehézlégézés</summary><ul class="normal"> dispnoe /proped - 10.tétel/</ul></details>
+	<details class="kerdes"><summary>pneumonia</summary><ul class="normal"> <div class="imp [2]"></div> </ul></details>
+	<details class="kerdes"><summary>pneumonitis</summary><ul class="normal"> <div class="imp [2]"></div> </ul></details>
+	<details class="kerdes"><summary>tüdőgyulladás</summary><ul class="normal"> <div class="imp [2]"></div> </ul></details>
+	<details class="kerdes"><summary>polidipszia</summary><ul class="normal"> <div class="imp [3]"></div> </ul></details>
+	<details class="kerdes"><summary>túl sokat iszik</summary><ul class="normal"> <div class="imp [3]"></div> </ul></details>
+	<details class="kerdes"><summary>poliuria</summary><ul class="normal"> <div class="imp [4]"></div> </ul></details>
+	<details class="kerdes"><summary>túl sokat vizelet</summary><ul class="normal"> <div class="imp [4]"></div> </ul></details>
+	<span class="imp {6}"></span> <!-- pneumothorax -->
+	<details class="kerdes"><summary>dekubitusz</summary><ul class="normal"> <div class="imp [5]"></div> </ul></details>
+	<details class="kerdes"><summary>felvekvéses fekély</summary><ul class="normal"> <div class="imp [5]"></div> </ul></details>
+	<details class="kerdes"><summary>emphysema</summary><ul class="normal">
+		<li>alveolusok kóros tágulata az alveolusfal átszakadása miatt</li>
+		<li>tünete &#10140; hordó mellkas</li>
+	</ul></details>
+	<details class="kerdes"><summary>emphysema</summary><ul class="normal">
+		<li>alveolusok kóros tágulata az alveolusfal átszakadása miatt</li>
+		<li>tünete &#10140; hordó mellkas</li>
+	</ul></details>
+	<details class="kerdes"><summary>atelectasia</summary><ul class="normal">
+		<li>alveolusok kitágulásának hiánya, légtelen, tömött állományt eredményezve</li>
+	</ul></details>
+	<span class="imp [6]"></span> <!-- neuropátia -->
+	<details class="kerdes"><summary>hiperszplénia & splenomegalia</summary><ul class="normal">
+		<li>splenomegalia &#10140; lép megnagyobbodás</li>
+		<li>hiperszplénia &#10140; lép túlműködés</li>
+	</ul></details>
+	<details class="kerdes"><summary>ascites</summary><ul class="normal"> <div class="imp [7]"></div> </ul></details>
+	<details class="kerdes"><summary>szabad hasűri folyadék</summary><ul class="normal"> <div class="imp [7]"></div> </ul></details>
+
+
+  <hr>
+		<details class="kerdes"><summary>kirakatbetegség <font style="font-size:80%">/oka,tünet,kockázat,kövekezmény/</font></summary><ul class="normal">
+			<div class="imp {1}"></div>
+		</ul></details>
+		<li><font class="abbr">aneurizma ►</font> verőerek valamelyikén kialakuló tágulat. Leggyakrabban az aorta hasi vagy mellkasi szakaszán jön létre <font style="font-size:80%">(de ritkábban kialakul a comb verőerében, a térdhajlatban futó érben, esetleg a nyaki erekben vagy a szívet ellátó koszorúerekben, valamint az agyi ereken is)</font></li>
+		<li><font class="abbr">láz vs. megfázás ►</font> </li>
+		<li><font class="abbr">hurut ►</font> nyálkahártya gyulladásának kisebb foka (váladékképződéssel jár) &#10140; pl. orrdugulás oka, <font style="font-size:80%">gyomorhurut</font></li>
+		<li><font class="abbr">tüdőembólia <span class="MISS">►</span></font> </li>
+		<li><font class="abbr">tüdőpangás ►</font> tüdő súlyos pangásos állapotát, amelyet fokozatosan kialakuló kisvérköri nyomásfokozódás okoz idült tüdőpangásnak nevezzük. A heveny tüdővizenyővel ellentétben, a pangásos tüdőben a vér torlódása hosszú idő alatt alakul ki, így nem okoz tüdővizenyőt</li>
+		<li><font class="abbr">obesitas ►</font> elhízás (könnyen társul vele: diabetes II, hipertenzió)</li>
+		<li><font class="abbr">ikterusz ►</font> sárgaság /májelégtelenség/</li>
+		<li><font class="abbr">strydor ►</font> a szűkûleten áthaladó levegõ hangot ad /10.tétel/</li>
+		<li><font class="abbr">stertor ►</font> szörcsögõ hang /tüdőembólia/</li>
+		<li><font class="abbr">primer vs szekunder ►</font> pl. pajzsmirigy sok T3/T4-et termel &#10140; primer esetében maga a pajzsmirigy az oka // szekunder esetében viszont a TSH-ból van sok, és ezért termel (hipofízis a probléma oka)</li>
+		<li><font class="abbr">struma ►</font> golyva: pajzsmirigy megnagyobbodás (oka pl. jódhiány)</li>
+		<li><font class="abbr">reflux ►</font> tünete: gyomorégés és/vagy szegycsont mögött égő fájdalom; oka: gyomortartalom visszaáramlása a nyelőcsőbe</li>
+</details>
+
+<details open><summary class="phase">gyakorlati jegyzetek</summary>
+	<details class="kerdes"><summary><u>gyermekkori fertőző betegségek</u></summary><ul class="normal">
+		<li><details class="kerdes"><summary>bárányhimlő = varicella</summary><ul class="normal">
+		</ul></details></li>
+		<li><details class="kerdes"><summary>rózsahimlő = rubeola</summary><ul class="normal">
+		</ul></details></li>
+		<li><details class="kerdes"><summary>skarlát = skarlatina</summary><ul class="normal">
+		</ul></details></li>
+		<li><details class="kerdes"><summary>mumpsz = parotitis epidemica</summary><ul class="normal">
+		</ul></details></li>
+		<li><details class="kerdes"><summary>skarlát = skarlatina</summary><ul class="normal">
+		</ul></details></li>
+		<li><details class="kerdes"><summary>kanyaró = morbilli</summary><ul class="normal">
+		</ul></details></li>
+		<li><details class="kerdes"><summary>szamárköhögés = pertussis</summary><ul class="normal">
+		</ul></details></li>
+		<li><details class="kerdes"><summary>torokgyík = diftéria</summary><ul class="normal">
+		</ul></details></li>
+	</ul></details>
+	<details class="kerdes"><summary><u>endokrin betegségek</u></summary><ul class="normal">
+		<span class="MISS">lényegüket tudjam, amik voltak propedből azokat jobban (dolgozzam ki)</span>
+		<li><details class="kerdes"><summary>Crohn-betegség</summary><ul class="normal">
+		</ul></details></li>
+		<li><details class="kerdes"><summary>Cushing-szindróma</summary><ul class="normal">
+		</ul></details></li>
+		<li><details class="kerdes"><summary>akromegália</summary><ul class="normal">
+		</ul></details></li>
+		<li><details class="kerdes"><summary>pajzsmirigybetegségek</summary><ul class="normal">
+		</ul></details></li>
+		<li><details class="kerdes"><summary>diabetes</summary><ul class="normal">
+		</ul></details></li>
+		<font style="font-size:80%"><abbr title="pajzsm. es diab.">utóbbi 2</abbr> lesz sok</font>
+	</ul></details>
+	<details class="kerdes"><summary>vizelet fajsúlya</summary><ul class="normal">
+		<li><font class="abbr">normál ►</font>  1003-1030g/dm<sup>3</sup></li>
+		<li><font class="abbr">diabetes insipidus ►</font> 1003, ugyanis nagyon nagy mértékű a poliuria (5-10l/nap), ugyanis e betegség lényege, hogy az adenohipofízisben NEM termelődik ADH(vagy hibás)</li>
+		<li><font class="abbr">diabetes mellitus ►</font> 1030, ugyanis glükóz megnöveli (de itt is poliuria van: max.4l/nap)</li>
+		<li><font class="abbr">akut vesebetegség ►</font> 1010 (poliuria itt is: max.4l/nap)</li>
+		<li><font class="abbr">plazma fajsúlya ►</font> 1010, ezért lesz veseelégtelenségnél a vizeleté is annyi</li>
+	</ul></details>
+	<details class="kerdes"><summary>szív &#10140; kontrakció v relaxáció energiaigényes?</summary><ul class="normal">
+		<li>relaxáció, így az károsodik elsőként</li>
+	</ul></details>
+	<details class="kerdes"><summary>anémiák</summary><ul class="normal">
+		<li>anémia &#10140; vvt (hemoglobin) kevés</li>
+		<li>poliglobulia &#10140; vvt (hemoglobin) sok</li>
+		továbbiakban anémia:
+		<li>sk</li>
+	</ul></details>
+</details>
+
+<details open><summary class="phase">szív - fizikális vizsgálat</summary>
+	<details class="kerdes"><summary>szív határok, kopogtatása(percussio)</summary><ul class="normal">
+		<details class="kerdes"><summary>lényege &#10140; szívnél tompább a hang amit hallok, nem TÉNH: ezért szívtompulat a neve</summary><ul class="normal">
+			<li>abszolút szívtompulat &#10140; szív közvetlenül a mellkas alatt fekszik</li>
+			<li>relatív szívtompulat &#10140; szív és mellkas közt a 'tüdő belóg'</li>
+			<img data-src="jjehjxck.jpg">
+		</ul></details>
+		<li>1.lépés: szívcsúcs &#10140; kitapintom hol érezhető legjobban a szívverés (5.bordaköz, medioclavicularis vonal) &#10140; obes,emfizéma,nagy emlő esetén nehéz~lehetetlen, ezért ezt a lépést olyankor hagyjam ki</li>
+		<li>2.lépés: alsó vonal &#10140; jobb oldalt kopogtatva tüdő máj határt meghatározom: majd ez összekötöm a szívcsúccsal</li>
+		<li>3.lépés: jobb határa &#10140; itt csak azt tudom megállapítani, hogy a sternum jobb oldalán van-e tompulat('átlóg-e a szív'). Ha igen, kóros.</li>
+		<li>4.lépés: felső & bal határa &#10140; kikopogtatom meddig tart a tompulat</li><ul>
+			<li>felső &#10140; normálisan parasternalisan a <span class="WHITE">3.borda alsó határa</span></li>
+			<li>bal &#10140; </li>
+		</ul>
+		<span class="IMPORTANT">kopogtatásnál az ujj mindig a határral párhuzamos</span> (logikus! hiszen akkor lesz biztosan csak egyoldalon az ujjam, nem lesz mix)
+	  <hr>normál határok:
+		<li>Alul: 5. bordaköz rekesz</li>
+		<li>Jobb: szternum jobb széle</li>
+		<li>Felső: 3. bordaköz</li>
+		<li>Bal: <abbr title="medioclavicularis vonal">MCV</abbr>. 2cm balra</li>
+	</ul></details>
+	<span class="imp [1]"></span>
+	<span class="imp [6]"></span>
+</details>
+
+<details><summary class="phase">has - fizikális vizsgálat</summary>
+	<details class="kerdes"><summary>lép határok, kopogtatása(percussio)</summary><ul class="normal">
+		<li>jobbra fordul</li>
+		<li>kopogtatást a középsõ hónaljvonalban kezdem felülről lefelé haladva</li><ul>
+			<li>eleinte még TÉNH, mert tüdő</li>
+			<li>amikor tompa, az már lép</li>
+			fiziológiás &#10140; IX-XI.borda közt
+		</ul>
+	</ul></details>
+	<details class="kerdes"><summary>máj határok, meghatározása</summary><ul class="normal">
+		<li>fonendoszkópot a processus xiphoideus alá teszem, majd az ujjakkal huzok felé</li>
+		<li>ameddig van máj addig sercegést hallok &#10140; alatta semmit (vagy mélyebb hangot)</li>
+		<li>kitapintani is meg kell próbálni &#10140; bordaív alá benyúlok és belégzést kell tennie</li>
+	  <hr>
+		<li>kóros esetben túl lóg a bordaív alá &#10140; ilyenkor azt kell megmondani hány harántujjal: ez a medioclavicularis vonalban van értve</li>
+	</ul></details>
+</details>
+
+<details><summary class="phase">betegségek - májcirrhózis, metabolikus szindróma</summary>
+	<span class="imp {9}"></span>
+	<details class="kerdes"><summary>hernia umbilicalis</summary><ul class="normal">
+		<img data-src="ykgffvqm.png">
+	</ul></details>
+	<details class="kerdes"><summary><u>májcirhosis tünetei</u></summary><ul class="normal">
+		<li><details class="kerdes"><summary>icterus = sárgaság</summary><ul class="normal"> <div class="imp [8]"></div> </ul></details></li>
+		<li><details class="kerdes"><summary>ascites</summary><ul class="normal"> <div class="imp [7]"></div> </ul></details></li>
+		<li>végtagok vékonyabbak</li>
+		<li>hipalbuminémia &#10140; ödéma</li>
+		<li>máj fizikális vizsgálata:</li><ul>
+			<li>májtompulat nőhet</li>
+			<li>széle nem puha, hanem kemény (ezt nehéz, szóval nekem nem fog menni)</li>
+		</ul>
+		<li>szplenomegália & hiperszplénia</li>
+		<li>gynecomastia &#10140; emlő megnagyobbodik (mirigyes állománya nő)</li><ul>
+			<li><font style="font-size:80%">ellenben obesitas-nál a zsírállománya nő, így az pseudogynecomastia</font></li>
+			<li>ennek másik oka lehet spiron('gyógyszercsoport') szedése, melyet ascites-nél szednek: ugyanis anti-aldoszteron hatású, így a Na<sup>+</sup> és vízvisszaszívást gátolja</li>
+		</ul>
+		<li>here atrofizál</li>
+		<li>szőrzet gyér</li>
+		<li>"pókvénusok" !? bőrben</li>
+	</ul></details>
+	<details class="open"><summary><u>metabolikus szindróma</u></summary><ul class="normal">
+		<li>gyakori betegség, így gyakon is találkozunk vele</li>
+		<details class="kerdes"><summary>halálos 4es</summary><ul class="normal">
+			<li>abdominalis obesitas (NEM visceralis)</li>
+			<li>hipertónia</li>
+			<li><details class="kerdes"><summary>diszlipidémia</summary><ul class="normal">
+				<li>triglicerid nő a vérben</li>
+				<li>LDL/koleszterin nem feltétlen nő &#10140; azonban small dense LDL nő, HDL csökken</li>
+			</ul></details></li>
+			<li><details class="kerdes"><summary>szénhidrát háztartás zavara</summary><ul class="normal">
+				<li>IFG &#10140; károsodott éhomi glükóz</li><ul>
+					<li>fiziológiásan 3,5-5,5mmol/l</li>
+					<li>IFG 6-7mmol/l</li>
+				</ul>
+				<li>OGT &#10140; éhgyomorra(5,5mmol/l) 70g cukor + 2dl víz &#10140; 0perc és 120perc-nél mérik</li><ul>
+					<li>7,8-11 kóros a glükóz tolerancia</li>
+					<li>11+ már diabetes</li>
+				</ul>
+				<li>diabetes</li>
+			</ul></details></li>
+			hiperurikémia is jellemzi (5.) = húgysav túltermelődés
+		  <hr>Tehát, ha valaki obes, akor meg kell néznem rögtön a másik hármat is (egyből így kezdjem) + utána a szövődményeket (neuropátia, nefropátia stb.)
+		</ul></details>
+		<details class="kerdes"><summary>szövődményei</summary><ul class="normal">
+			<li>policisztás ovarium kockázata nő</li>
+			<li>epekő kockázata nő</li>
+			<li>Alzheimer-kór kockázata nő</li>
+			<li>artériák károsodása:</li><ul>
+				<li>makrovaszkuláris:</li><ul>
+					<li>cerebral szklerózis</li>
+					<li>coronaria szklerózis</li>
+					<li>alsó végtagokon érszűkület</li>
+				</ul>
+				<li>mikrovaszkuláris:</li><ul>
+					<li>retinopátia</li>
+					<li>neuropátia</li>
+					<li><details><summary>neuropátia</summary><ul class="normal"> <div class="imp [9]"></div> </ul></details></li>
+					<li>nefropátia &#10140; azotémia (Se kreatinin & urea nő) / urémia (utóbbi súlyosabb)</li>
+				</ul>
+			</ul>
+		</ul></details>
+	</ul></details>
+</details>
+
+<hr>
+
+<details open><summary class="phase">Tételek - 1</summary>
+	<details><summary class="status">1. Hypophysis hypofunctio.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">2. Hormonálisan inaktív hypophysis daganatok. Craniopharingeoma</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">3. Prolactinoma. Hyperprolactinaemia.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">4. Cushing-kór.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">5. Ektópiás Cushing-szindróma.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">6. Acromegalia.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">7. Diabetes insipidus.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">8. Hyponatraemia okai, tünetei, kezelése. SIADH.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">9. A göbös pajzsmirigy betegség osztályozása, diagnosztikája</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">10. A pajzsmirigy rosszindulatú daganatai. Osztályozás, diagnosztika, kezelési lehetőségek.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">11. A differenciált pajzsmirigyrákos beteg gondozása.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">12. Medulláris pajzsmirigyrák.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">13. Hyperthyreosis.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">14. Graves-Basedow-kór.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">15. Toxikus adenoma. Toxikus göbös golyva.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">16. Hypothyreosis.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">17. Hashimoto-thyreoiditis.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">18. Subacut thyreoiditis.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">19. Hypercalcaemia okai. Tünettan, szövődmények. Általános kezelési elvek.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">20. Primer hyperparathyreosis.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">21. Szekunder hyperparathyreosis. D-vitamin-hiány.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">22. Hypocalcaemia, tetania szindróma. Hypoparathyreosis, pseudohypoparathyreosis.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">23. Postmenopausalis osteoporosis. Diagnosztika, kezelés.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">24. Renalis osteodystrophia.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">25. Paget-kór. Osteogenesis imperfecta.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">26. ACTH-independens hypercortisolismus.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">27. Primer aldosteronismus.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">28. Congenitalis adrenalis hyperplasia.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">29. Addison-kór.</summary><ul class="normal">
+	</ul></details>
+</details>
+
+<details open><summary class="phase">Tételek - 2</summary>
+	<details><summary class="status">30. Hormonálisan inaktív mellékvese daganatok.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">31. Mellékvesekéreg carcinoma.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">32. Phaeochromocytoma. Paraganglioma.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">33. Férfi hypogonadismus.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">34. Klinefelter-szindróma.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">35. Polycystás ovarium szindróma.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">36. Turner-szindróma.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">37. Primer és szekunder amenorrhoea.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">38. A nemi differenciáciálódás zavarai.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">39. Multiplex endokrin neoplasia 1-es típus.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">40. Multiplex endokrin neoplasia 2-es típus.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">41. Diabetes mellitus: epidemiológia, klasszifikáció, diagnózis.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">42. Diabetes mellitus, 1-es típus. LADA.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">43. Diabetes mellitus, 2-es típus. MODY.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">44. Diabetes mellitus: kezelés - étrend és oralis antidiabetikus kezelés.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">45. Diabetes mellitus: kezelés – inzulinkezelés.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">46. Diabetes mellitus: heveny szövődmények.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">47. Diabetes mellitus: idült szövődmények.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">48. Gesztációs diabetes mellitus.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">49. Hypoglycaemia.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">50. Hyperlipidaemia.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">51. Elhízás. Táplálkozási zavarok.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">52. Porphyriák.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">53. Tárolási betegségek.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">54. Secunder osteoporosis.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">55. Neuroendokrin daganatok. A pancreas szigetsejtes daganatai.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">56. Karcinoid szindróma.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">57. Paraneoplasiás szindrómák.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">58. Vitaminhiány-betegségek. Nyomelem-hiány.</summary><ul class="normal">
+	</ul></details>
+	<details><summary class="status">59. A toxikológiai diagnosztika és kezelés alapelemei.</summary><ul class="normal">
+	</ul></details>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+<div> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> </div> <script src="../javascript.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
