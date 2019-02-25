@@ -3,11 +3,9 @@
 /* PROJECT - PROGRESS
 
 ✖ fölös image/video-k kiszortírozása
-✖ legyen egy funkció, amivel összes img/video-t betölti, és amelyik hiányzik, azt jelezze --> anno ezt írtam <img onerror="alert(this.src)" data-src="gltkklkkjmnm.png">
 
 ✖ lehessen látni a kérdéseket táblázatban, melyiket hány perce repeateltem, mert felbssza magát az ember, hogy nemtudja mikor jut a végére
 ✖ alapból csak 0 ismételt Q-t dob, 1x ismételtet nem (csak  ha 0-t disabledolom)
-✖ videó proped
 ✖ MIKROBI LS:
 	tétel buttonra klikk lassú
 	tétel kiválasztása lassú (hogy melybol dobjon kérdést)
@@ -74,6 +72,7 @@
 */
 
 /* PROJECT - DONE
+ ✔ legyen egy funkció, amivel összes img/video-t betölti, és amelyik hiányzik, azt jelezze --> anno ezt írtam <img onerror="alert(this.src)" data-src="gltkklkkjmnm.png">
  ✔ ImpQ
 	✔ kritérium definíciója: egy impQ-n belül ugyanazon impQ NEM lehet még1x !!!! -- ez NEM jó, ugyanis pl. mikrobi batérium táblázat egy impQ, mégis többször kell benne legyen egy másik impQ(pl. Spirochaetak) --> szóval a kritérium: egy impQ-n belül az adott impQ csak akkor szerepelhet, ha a parentjei közt még nincs
 	✔ newMethod legyen az impQ
@@ -622,8 +621,8 @@ function F_oldQchange(oldLSid){
 	}
 	var allDetails = document.getElementById("div_upgQ").getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) {
-		allDetails[i].ontoggle = function(e){
-			F_loadImgVideo(this,e)
+		allDetails[i].ontoggle = function(){
+			F_loadImgVideo(this)
 			if ( isAndroid ) { F_setAbbrAndroid(this) }
 		}
 	}
@@ -912,8 +911,19 @@ megnézi, hogy az eddigi Qtext-ben van-e már: visszafele indul, a hozzá legkö
 					console.log(prevQtxt)
 					console.log(EXPid)
 					alert("sajt")*/
-					if ( EXPid.indexOf("}") > EXPid.indexOf("]") ) {
+					var nextQtype = false
+					if ( EXPid.indexOf("}") != -1 && EXPid.indexOf("]") == -1 ) {
+						nextQtype = "expQ"
+					} else if ( EXPid.indexOf("]") != -1 && EXPid.indexOf("}") == -1 ) {
+						nextQtype = "impQ"
+					} else if  ( EXPid.indexOf("}") > EXPid.indexOf("]") ) {
+						nextQtype = "impQ"
+					} else if  ( EXPid.indexOf("]") > EXPid.indexOf("}") ) {
+						nextQtype = "expQ"
+					}
+					if ( nextQtype == "expQ" ) {
 						EXPid = EXPid.slice(0,EXPid.indexOf('}'))
+						EXPid = EXPid.slice(EXPid.indexOf('{')+1)
 						if ( prevQtxt.lastIndexOf("{"+EXPid+"}") != -1 ) {
 							var elemType = prevQtxt.slice(0,prevQtxt.lastIndexOf('class="imp {'+EXPid+'}'))
 							F_checkSearchTXT(prevQtxt,elemType)
@@ -927,7 +937,11 @@ megnézi, hogy az eddigi Qtext-ben van-e már: visszafele indul, a hozzá legkö
 							var LSid = newTXT.slice(0,newTXT.indexOf(" "))
 							newTXT = localStorage.getItem(LSid)
 						}
-					} else {
+					}
+					if ( nextQtype == "impQ" ) {
+						if ( EXPid.slice(0,3)  == "10}" ) { 
+							console.log(EXPid.indexOf("}") +" vs "+ EXPid.indexOf("]"))
+						}
 						EXPid = EXPid.slice(0,EXPid.indexOf(']'))
 						if ( prevQtxt.lastIndexOf("["+EXPid+"]") != -1 ) {
 							/*console.clear()
@@ -1275,21 +1289,24 @@ function F_loadImpQs(detElem){
 		amennyiben van, akkor az elsonél megáll és az lesz a location-je
 		ha nincs, akkor a defulat location
 */
-function F_loadImgX(imgX){
-	if ( imgX.dataset.src && imgX.offsetParent != null ) {
-		imgX.src = "images/" + imgX.dataset.src
-		imgX.removeAttribute("data-src")
-		console.log(imgX.offsetParent+" - "+imgX.dataset.src+" - "+imgX.src)
-	}
-}
-function F_loadImgVideo(detElem,e){
+var testLoad = false
+var missImgs = ""
+function F_loadImgVideo(detElem){
 	//console.clear()
 	//console.log(detElem.innerHTML.slice(0,detElem.innerHTML.indexOf("</summary")))
 	
 	var imgs = detElem.getElementsByTagName("IMG")
 	for ( var x=0; x<imgs.length; x++ ) { 
-		if ( imgs[x].offsetParent == null ) { continue }
+		if ( imgs[x].offsetParent == null && testLoad == false ) { continue }
 		if ( imgs[x].dataset.src == undefined ) { continue } // ha elotte a fooldalon megnyitottam már a Q-t, akkor nem kell újra betöltenie
+		
+		//imgs[x].onerror = function(){ missImgs = missImgs + this.src + ", " };
+		imgs[x].onerror = function(){
+			var textVar = this.src.slice(this.src.lastIndexOf("/")+1)
+			if ( missImgs.indexOf(textVar+",") == -1 ) {
+				missImgs = missImgs + textVar + ", " 
+			}
+		};
 		
 		var IMGelem = imgs[x]
 		var parent = imgs[x]
@@ -1301,17 +1318,22 @@ function F_loadImgVideo(detElem,e){
 		//console.log(parent.className)
 		//console.log(parent.tagName)
 		var isExp = false
-		if ( parent.className.indexOf("{") != -1 ) { isExp = true }
-		if ( parent.tagName == "DETAILS" && parent.parentElement.className.indexOf("[") != -1 ) { isExp = false }
+		if ( parent.className.indexOf("{") != -1 ) { 
+			if ( parent.className.indexOf("imp") != -1 ) { isExp = true }
+			if ( parent.tagName == "DETAILS" && parent.parentElement.className.indexOf("imp") != -1 && parent.parentElement.className.indexOf("{") != -1 ) { isExp = true }
+		}
+		//if ( parent.tagName == "DETAILS" && parent.parentElement.className.indexOf("[") != -1 ) { isExp = false }
 		
 		if ( isExp == true ) {
 			var srcLoc = htmlLEARNloc + "images/" + imgs[x].dataset.src
 			//console.log("srcLoc: "+srcLoc)
 			imgs[x].src = htmlLEARNloc + "images/" + imgs[x].dataset.src
-			//console.log(imgs[x].dataset.src+" - "+imgs[x].src)
+			console.log(imgs[x].dataset.src+" - "+imgs[x].src)
 			imgs[x].removeAttribute("data-src")
 		} else {
-			F_loadImgX(imgs[x])
+			imgs[x].src = "images/" + imgs[x].dataset.src
+			imgs[x].removeAttribute("data-src")
+			//console.log(imgs[x].offsetParent+" - "+imgs[x].dataset.src+" - "+imgs[x].src)
 		}
 		if ( imgs[x].className.indexOf("mwsw") != -1 ) {
 			var width = imgs[x].className.slice(imgs[x].className.indexOf("mwsw")+5)
@@ -1339,7 +1361,6 @@ function F_loadImgVideo(detElem,e){
 				}
 			}
 		}
-		F_loadImgX(imgs[x])
 	}
 	
 	// Youtube Video Load
@@ -1364,92 +1385,99 @@ function F_loadImgVideo(detElem,e){
 	// Video Load
 	var allVideo = detElem.getElementsByTagName("video")
 	for ( var i=0; i<allVideo.length; i++ ) {
-		if ( allVideo[i].dataset.src && allVideo[i].offsetParent != null ) {
-			var source = document.createElement('source')
-			source.setAttribute('src', allVideo[i].dataset.src)
-			allVideo[i].removeAttribute("data-src")
-			allVideo[i].appendChild(source)
-			allVideo[i].style.maxWidth = "98%"
-			allVideo[i].style.borderColor = "red"
-			//allVideo[i].muted = true;
-			allVideo[i].onloadeddata = function() { // kell, különben ha elobb kattolok rá, már nem tölti be
-				// controlBar fix!
-				this.onclick = function(){
-					if ( this.parentElement.className != "videoParentDiv" ) {
-						var div = document.createElement("div");
-						var parent = this.parentNode;
-						parent.insertBefore(div, this);
-						div.appendChild(this);
-						div.className = "videoParentDiv"
-						
-						var seekBar = document.createElement("div");
-						seekBar.className = "seekBar"
-						div.appendChild(seekBar)
-						var span = document.createElement("span");
-						span.className = "seekBar"
-						span.innerHTML = "&nbsp;"
-						seekBar.appendChild(span)
-					}
-					
-					if ( this.paused == false ) {
-						this.style.borderColor = "red"
-						
-						var widthPx = this.offsetWidth *this.currentTime /this.duration
-						var parentDiv = this.parentElement
-						var seekBars = parentDiv.getElementsByTagName("span")
-						seekBars[0].style.width = widthPx
-						seekBars[0].style.left = this.offsetLeft
-						
-						this.pause(); 
-					} else {
-						if ( document.getElementById("playedVideo") ) {
-							if ( document.getElementById("playedVideo") != this ) {
-								document.getElementById("playedVideo").pause();
-								document.getElementById("playedVideo").id = "";
-							}
-						}
-						this.id = "playedVideo";
-						this.style.borderColor = "springgreen"
-						this.play();
-						
-						//ezt elég 1x megcsinálni, amikor elindítom (fix majd, mert lehet egyszerusíteni)
-						var parentDiv = this.parentElement
-						var seekBars = parentDiv.getElementsByTagName("span")
-						theSeekBar = seekBars[0].parentElement
-						theSeekBar.style.width = this.offsetWidth
-						theSeekBar.style.opacity = "1"; 
-						theSeekBar.onclick = function(e){
-							x = e.pageX - this.offsetLeft
-							clickedValue = x * this.max / this.offsetWidth;
-							var percent = x / this.offsetWidth
-							var playedVideo = document.getElementById("playedVideo")
-							playedVideo.style.borderColor = "black"
-							playedVideo.pause();
-							var currTime = percent * playedVideo.duration
-							currTime = Math.floor(currTime);
-							//console.log(currTime);
-							playedVideo.currentTime = currTime
-							
-							var seekBars = parentDiv.getElementsByTagName("span")
-							var widthPx = playedVideo.offsetWidth *playedVideo.currentTime /playedVideo.duration
-							seekBars[0].style.width = widthPx
-							seekBars[0].style.left = playedVideo.offsetLeft
-						}
-					}
-				};
+		if ( allVideo[i].offsetParent == null && testLoad == false ) { continue }
+		if ( allVideo[i].dataset.src == undefined ) { continue } 
+		var source = document.createElement('source')
+		source.setAttribute('src', allVideo[i].dataset.src)
+		source.onerror = function(){
+			var textVar = this.src.slice(this.src.lastIndexOf("/")+1)
+			if ( missImgs.indexOf(textVar) == -1 ) {
+				missImgs = missImgs+"\n"+textVar
 			}
+		};
+	
+		allVideo[i].removeAttribute("data-src")
+		allVideo[i].appendChild(source)
+		allVideo[i].style.maxWidth = "98%"
+		allVideo[i].style.borderColor = "red"
+		//allVideo[i].muted = true;
+		allVideo[i].onloadeddata = function() { // kell, különben ha elobb kattolok rá, már nem tölti be
+			// controlBar fix!
+			this.onclick = function(){
+				if ( this.parentElement.className != "videoParentDiv" ) {
+					var div = document.createElement("div");
+					var parent = this.parentNode;
+					parent.insertBefore(div, this);
+					div.appendChild(this);
+					div.className = "videoParentDiv"
+					
+					var seekBar = document.createElement("div");
+					seekBar.className = "seekBar"
+					div.appendChild(seekBar)
+					var span = document.createElement("span");
+					span.className = "seekBar"
+					span.innerHTML = "&nbsp;"
+					seekBar.appendChild(span)
+				}
+				
+				if ( this.paused == false ) {
+					this.style.borderColor = "red"
+					
+					var widthPx = this.offsetWidth *this.currentTime /this.duration
+					var parentDiv = this.parentElement
+					var seekBars = parentDiv.getElementsByTagName("span")
+					seekBars[0].style.width = widthPx
+					seekBars[0].style.left = this.offsetLeft
+					
+					this.pause(); 
+				} else {
+					if ( document.getElementById("playedVideo") ) {
+						if ( document.getElementById("playedVideo") != this ) {
+							document.getElementById("playedVideo").pause();
+							document.getElementById("playedVideo").id = "";
+						}
+					}
+					this.id = "playedVideo";
+					this.style.borderColor = "springgreen"
+					this.play();
+					
+					//ezt elég 1x megcsinálni, amikor elindítom (fix majd, mert lehet egyszerusíteni)
+					var parentDiv = this.parentElement
+					var seekBars = parentDiv.getElementsByTagName("span")
+					theSeekBar = seekBars[0].parentElement
+					theSeekBar.style.width = this.offsetWidth
+					theSeekBar.style.opacity = "1"; 
+					theSeekBar.onclick = function(e){
+						x = e.pageX - this.offsetLeft
+						clickedValue = x * this.max / this.offsetWidth;
+						var percent = x / this.offsetWidth
+						var playedVideo = document.getElementById("playedVideo")
+						playedVideo.style.borderColor = "black"
+						playedVideo.pause();
+						var currTime = percent * playedVideo.duration
+						currTime = Math.floor(currTime);
+						//console.log(currTime);
+						playedVideo.currentTime = currTime
+						
+						var seekBars = parentDiv.getElementsByTagName("span")
+						var widthPx = playedVideo.offsetWidth *playedVideo.currentTime /playedVideo.duration
+						seekBars[0].style.width = widthPx
+						seekBars[0].style.left = playedVideo.offsetLeft
+					}
+				}
+			};
 		}
 	}
 	
-	if ( e ) { e.stopPropagation() }
+	//if ( e ) { e.stopPropagation() }
 }
-function F_detailsToggle(detElem,e){ 
+function F_detailsToggle(detElem){ 
 	//if ( detElem.classList.contains("imgLoaded") != true ) {
 		/*F_getTime()
 		oldTime = myTime*/
 		//F_loadImpQs(detElem)
-		F_loadImgVideo(detElem,e)
-		detElem.classList.add("imgLoaded");
+		F_loadImgVideo(detElem)
+		//detElem.classList.add("imgLoaded");
 		/*F_getTime()
 		myTime = myTime-oldTime
 		console.log("– imagek betöltve – "+myTime)*/
@@ -1458,12 +1486,18 @@ function F_detailsToggle(detElem,e){
 function F_imgLoad(){ // VIDEOt is itt tölti be!
 	var allDetails = document.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) {
-		allDetails[i].ontoggle = function(e){
-			F_detailsToggle(this,e)
-		}
+		allDetails[i].ontoggle = function(){ F_detailsToggle(this) }
 	}
 }
 F_imgLoad()
+
+function F_testVideoError() {
+	var allVideo = document.getElementsByTagName("video")
+	for ( var i=0; i<allVideo.length; i++ ) {
+		allVideo[i].onerror = function(){ alert("sajt") };
+	}
+}
+F_testVideoError()
 
 function F_imgActLoad(IMGelem){ 
 	var parent = IMGelem
@@ -1479,13 +1513,6 @@ function F_imgActLoad(IMGelem){
 		IMGelem.removeAttribute("data-src")
 	}
 }
-
-function F_imgPreLoad(){ // ha már alapból nyitott a details, akkor betölti a képet
-	var imgArr = []
-	var allIMG = document.getElementsByTagName("img")
-	for ( var i=0; i<allIMG.length; i++ ) { F_loadImgX(allIMG[i]) }
-}
-//F_imgPreLoad() // túl lassú az imgX.offsetParent checkolása, így nem éri meg betenni :(
 
 
 var imagesAll = document.images
@@ -1829,8 +1856,14 @@ function F_CreateQDiv() {
 		button.onclick = function(){ 
 			if ( this.style.backgroundColor != "limegreen" ) {
 				this.style.backgroundColor = "limegreen"
+				console.clear()
+				missImgs = ""
+				testLoad = true
+				F_loadImgVideo(document.body)
+				testLoad = false
 			} else {
 				this.style.backgroundColor = "coral"
+				alert(missImgs)
 			}
 		}
 		button.value = " "
@@ -2858,9 +2891,7 @@ function func_showQtext(LSid){
 	func_abbrSet(qElem)
 	var allDetails = qElem.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) {
-		allDetails[i].ontoggle = function(e){
-			F_loadImgVideo(this,e)
-		}
+		allDetails[i].ontoggle = function(){ F_loadImgVideo(this) }
 	}
 }
 
@@ -3852,7 +3883,7 @@ function F_nextQ(){
 					str = str.slice(str.indexOf("]")+1)
 					
 					// elrejti a megoldást
-					newTxt = newTxt.replace(">"+num+str+'</summary><ul class="normal">', '><font class="abbr">'+num+'ismerd fel<!--'+LSid+'--> â–º</font>'+str+'</summary><ul class="normal">')
+					newTxt = newTxt.replace(">"+num+str+'</summary><ul class="normal">', '><font class="abbr">'+num+'ismerd fel<!--'+LSid+'--> ►</font>'+str+'</summary><ul class="normal">')
 					arrayQ[i].innerHTML = newTxt
 					
 					// div-re cseréli a details-t
@@ -3918,12 +3949,9 @@ function F_nextQ(){
 	// img + videókat ezzel tölti be
 	var allDetails = QlocElem.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) {
-		allDetails[i].ontoggle = function(e){
-			F_detailsToggle(this,e)
-		}
+		allDetails[i].ontoggle = function(){ F_detailsToggle(this) }
 	}
-	var imgs = QlocElem.getElementsByTagName("img")
-	for ( var x=0; x<imgs.length; x++ ) { F_loadImgX(imgs[x]) }
+	F_loadImgVideo(QlocElem)
 	
 	F_getTime()
 	diffTimeX = myTime-startTime
@@ -4054,7 +4082,7 @@ console.log("– – – Loading finished – – – " + diffTime)
 
 /* Replace text (regular expression)
 	<li><span class="WHITE">(.*?)</span>(.*?)</li>
-	<div><font class="abbr"><span class="WHITE">\1</span> â–º</font>\2</div>
+	<div><font class="abbr"><span class="WHITE">\1</span> ►</font>\2</div>
 */
 
 

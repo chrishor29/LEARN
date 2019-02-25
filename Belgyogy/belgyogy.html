@@ -115,9 +115,11 @@ ui: degenerált barmok
 		<li>hang rövid &#10140; hirtelen kezdõdik és hirtelen végzõdik (dobbanásszerûen, koppanásszerûen hangzik)</li>
 		<li>zörej hosszú</li>
 	</ul></details>
-	<details class="{2} kerdes"><summary>pneumonia & pneumonitis</summary><ul class="normal">
-		<li>pneumonia &#10140; alveolusokban & bronchiolusokban tüdőgyulladás</li>
-		<li>pneumonitis &#10140; interstitiumban tüdőgyulladás <font style="font-size:80%">(oka pl. Lupus)</font></li>
+	<details class="{2} kerdes"><summary>pneumonia & pneumonitis & bronchitis</summary><ul class="normal">
+	  tüdőgyulladások:
+		<li>pneumonia &#10140; alveolus-ok gyulladása</li>
+		<li>pneumonitis &#10140; interstitium gyulladása <font style="font-size:80%">(oka pl. Lupus)</font></li>
+		<li>bronchitis &#10140; bronchus-ok gyulladása</li>
 	</ul></details>
 	<details class="{3} kerdes"><summary>polidipszia</summary><ul class="normal">
 		<li>polidipszia = túl sokat iszik</li>
@@ -242,6 +244,7 @@ ui: degenerált barmok
 <details><summary><strong><u>vizsga tippek</u></strong></summary><ul class="normal">
 	<li>gyakon endokrin beteggel nemigen találkozunk majd (leginkább pajzsmirigy + diabetes)</li>
 	<li>endokrin betegségekről főként elméletet kell tudni, gyakorlatnál meg az alap fizikális vizsgálatot</li>
+	<li>Betegvizsgálat is lesz, gyakran szív, mert az a gyakori hiba, így tudjam az elméletét. Zörejt ha hallok 99% eséllyel szisztolés, bal -> aorta stenosis vagy mitral insufficientia. Ez nem hivatalos, de a többit úgyse hallanánk meg.</li>
 </ul></details>
 
 <details><summary class="phase">latin/magyar</summary>
@@ -275,10 +278,6 @@ ui: degenerált barmok
 		<li>alveolusok kóros tágulata az alveolusfal átszakadása miatt</li>
 		<li>tünete &#10140; hordó mellkas</li>
 	</ul></details>
-	<details class="kerdes"><summary>emphysema</summary><ul class="normal">
-		<li>alveolusok kóros tágulata az alveolusfal átszakadása miatt</li>
-		<li>tünete &#10140; hordó mellkas</li>
-	</ul></details>
 	<details class="kerdes"><summary>atelectasia</summary><ul class="normal">
 		<li>alveolusok kitágulásának hiánya, légtelen, tömött állományt eredményezve</li>
 	</ul></details>
@@ -293,6 +292,7 @@ ui: degenerált barmok
 
 
   <hr>
+		intubálás vs inkubálás
 		<details class="kerdes"><summary>kirakatbetegség <font style="font-size:80%">/oka,tünet,kockázat,kövekezmény/</font></summary><ul class="normal">
 			<div class="imp {1}"></div>
 		</ul></details>
@@ -306,7 +306,7 @@ ui: degenerált barmok
 		<li><font class="abbr">strydor ►</font> a szűkûleten áthaladó levegõ hangot ad /10.tétel/</li>
 		<li><font class="abbr">stertor ►</font> szörcsögõ hang /tüdőembólia/</li>
 		<li><font class="abbr">primer vs szekunder ►</font> pl. pajzsmirigy sok T3/T4-et termel &#10140; primer esetében maga a pajzsmirigy az oka // szekunder esetében viszont a TSH-ból van sok, és ezért termel (hipofízis a probléma oka)</li>
-		<li><font class="abbr">struma ►</font> golyva: pajzsmirigy megnagyobbodás (oka pl. jódhiány)</li>
+		<li><font class="abbr">struma ►</font> = golyva: pajzsmirigy megnagyobbodás (oka pl. jódhiány)</li>
 		<li><font class="abbr">reflux ►</font> tünete: gyomorégés és/vagy szegycsont mögött égő fájdalom; oka: gyomortartalom visszaáramlása a nyelőcsőbe</li>
 </details>
 
@@ -360,65 +360,53 @@ ui: degenerált barmok
 			<li>gyengeség, fáradékonyság</li>
 		</ul></details>
 		<details class="kerdes"><summary>oka lehet (csoportosítva)</summary><ul class="normal">
-			<details class="kerdes"><summary>vvt képzés zavar</summary><ul class="normal">
+			<li><details class="kerdes"><summary>vvt képzés zavar</summary><ul class="normal">
 				<li>alábbiak hiánya &#10140; B12, folsav, Fe, eritropetin</li>
 				<font style="font-size:80%">eritropoetin a vesében termelődik, és segíti a vvt képzést</font>
-			</ul></details>
-			<details class="kerdes"><summary>vvt életideje csökken</summary><ul class="normal">
-				<li> </li>
-			</ul></details>
-			<details class="kerdes"><summary>vérvesztés</summary><ul class="normal">
-				<li> </li>
-			</ul></details>
+			</ul></details></li>
+			<li><details class="kerdes"><summary>vvt életideje csökken = hemolízisek</summary><ul class="normal">
+			  corpuscularis (belső tényezők):
+				<li>membránsérülés:</li><ul>
+					<li>sphaerocytosis</li>
+					<li>elliptocytosis</li>
+					<font style="font-size:80%">így a lépen sérüléssel jutnak át<abbr title="mert alakjuk abnormális">'</abbr></font>
+				</ul>
+				<li>enzimhiány:</li><ul>
+					<li>glükóz-6-P-dehidrogenáz</li>
+					<li>piruvát-kináz</li>
+					<font style="font-size:80%">örökletesek</font>
+				</ul>
+				<li>hemoglobinopátiák &#10140; Hgb-szintézis hibája:</li><ul>
+					<li>mennyiségi &#10140; ezek a thalassaemia-k (tehát kevés Hgb lesz)</li>
+					<li>minőségi &#10140; ilyen pl. a sarlósejtes anaemia (tehát a Hgb szerkezete rossz)</li>
+				</ul>
+			  extracorpuscularis (külső tényezők):
+				<li>antitestek:</li><ul>
+					<li>pl. vérátömlesztés</li>
+					<li>pl. SLE (autoantitestek)</li>
+				</ul>
+				<li>műbillentyű beültetés (szétütik a vvt-ket)</li>
+				<li>gyógyszerek (penicillin, furoszemid)</li>
+				<li>kórokozók, pl. malária</li>
+				<li>metabolikus ok</li>
+				<li>mikroangiopátiák</li>
+			</ul></details></li>
+			<li>vérvesztés</li>
 		</ul></details>
 	</ul></details>
-</details>
-
-<details open><summary class="phase">szív - fizikális vizsgálat</summary>
-	<details class="kerdes"><summary>szív határok, kopogtatása(percussio)</summary><ul class="normal">
-		<details class="kerdes"><summary>lényege &#10140; szívnél tompább a hang amit hallok, nem TÉNH: ezért szívtompulat a neve</summary><ul class="normal">
-			<li>abszolút szívtompulat &#10140; szív közvetlenül a mellkas alatt fekszik</li>
-			<li>relatív szívtompulat &#10140; szív és mellkas közt a 'tüdő belóg'</li>
-			<img data-src="jjehjxck.jpg">
-		</ul></details>
-		<li>1.lépés: szívcsúcs &#10140; kitapintom hol érezhető legjobban a szívverés (5.bordaköz, medioclavicularis vonal) &#10140; obes,emfizéma,nagy emlő esetén nehéz~lehetetlen, ezért ezt a lépést olyankor hagyjam ki</li>
-		<li>2.lépés: alsó vonal &#10140; jobb oldalt kopogtatva tüdő máj határt meghatározom: majd ez összekötöm a szívcsúccsal</li>
-		<li>3.lépés: jobb határa &#10140; itt csak azt tudom megállapítani, hogy a sternum jobb oldalán van-e tompulat('átlóg-e a szív'). Ha igen, kóros.</li>
-		<li>4.lépés: felső & bal határa &#10140; kikopogtatom meddig tart a tompulat</li><ul>
-			<li>felső &#10140; normálisan parasternalisan a <span class="WHITE">3.borda alsó határa</span></li>
-			<li>bal &#10140; </li>
-		</ul>
-		<span class="IMPORTANT">kopogtatásnál az ujj mindig a határral párhuzamos</span> (logikus! hiszen akkor lesz biztosan csak egyoldalon az ujjam, nem lesz mix)
-	  <hr>normál határok:
-		<li>Alul: 5. bordaköz rekesz</li>
-		<li>Jobb: szternum jobb széle</li>
-		<li>Felső: 3. bordaköz</li>
-		<li>Bal: <abbr title="medioclavicularis vonal">MCV</abbr>. 2cm balra</li>
-	</ul></details>
-	<span class="imp [1]"></span>
-	<span class="imp [6]"></span>
-</details>
-
-<details><summary class="phase">has - fizikális vizsgálat</summary>
-	<details class="kerdes"><summary>lép határok, kopogtatása(percussio)</summary><ul class="normal">
-		<li>jobbra fordul</li>
-		<li>kopogtatást a középsõ hónaljvonalban kezdem felülről lefelé haladva</li><ul>
-			<li>eleinte még TÉNH, mert tüdő</li>
-			<li>amikor tompa, az már lép</li>
-			fiziológiás &#10140; IX-XI.borda közt
-		</ul>
-	</ul></details>
-	<details class="kerdes"><summary>máj határok, meghatározása</summary><ul class="normal">
-		<li>fonendoszkópot a processus xiphoideus alá teszem, majd az ujjakkal huzok felé</li>
-		<li>ameddig van máj addig sercegést hallok &#10140; alatta semmit (vagy mélyebb hangot)</li>
-		<li>kitapintani is meg kell próbálni &#10140; bordaív alá benyúlok és belégzést kell tennie</li>
-	  <hr>
-		<li>kóros esetben túl lóg a bordaív alá &#10140; ilyenkor azt kell megmondani hány harántujjal: ez a medioclavicularis vonalban van értve</li>
-	</ul></details>
-</details>
-
-<details><summary class="phase">betegségek - májcirrhózis, metabolikus szindróma</summary>
 	<span class="imp {9}"></span>
+	<details class="kerdes"><summary>szívelégtelenség tünetei?</summary><ul class="normal">
+		<li>fáradékonyság, gyengeség</li>
+		<li>éjszakai vizelés</li>
+		<li>lábödéma</li>
+	</ul></details>
+	<details class="kerdes"><summary>hipertireózis &#10140; szemvizsgálat</summary><ul class="normal">
+		<li>Grafe-teszt &#10140; Az ülő beteg előtt 1m-es sugarú kör mentén felülről lefelé mozgatjuk az ujjunkat (állát egyik kézzel megfogom, hogy ne mozogjon), amelyet a beteg csak a szemével követ, és lefelé nézéskor a sclera fehér sávja ki-kivillan a mozgásában elmaradó felső szemhéj és a cornea között /lásd videón a jobb szemét/</li>
+		<li>Stellwag-tünet &#10140; percenként kevesebb, mint 5x pislog</li>
+		<li>Möbius-tünet &#10140; A szemizmok gyengüléséből eredő konvergálóképesség-csökkenést jelzi: a beteg orrgyökének magasságában kb. 1 m-ről ujjhegyünket közelítve az orrgyök felé a bulbusok nem térnek kellően össze, mint egészségesekben (nem lesz „kancsal”).</li>
+		<video data-src="videos/GrafeBW.mp4"></video>
+		<video data-src="videos/Grafe.mp4"></video>
+	</ul></details>
 	<details class="kerdes"><summary>hernia umbilicalis</summary><ul class="normal">
 		<img data-src="ykgffvqm.png">
 	</ul></details>
@@ -475,12 +463,51 @@ ui: degenerált barmok
 				</ul>
 				<li>mikrovaszkuláris:</li><ul>
 					<li>retinopátia</li>
-					<li>neuropátia</li>
 					<li><details><summary>neuropátia</summary><ul class="normal"> <div class="imp [9]"></div> </ul></details></li>
-					<li>nefropátia &#10140; azotémia (Se kreatinin & urea nő) / urémia (utóbbi súlyosabb)</li>
+					<li>nefropátia &#10140; azotémia (Se kreatinin & urea nő) / urémia (ez <abbr title="azotémiánál is">még</abbr> súlyosabb)</li>
 				</ul>
 			</ul>
 		</ul></details>
+	</ul></details>
+</details>
+
+<details><summary class="phase">fizikális vizsgálatok</summary>
+	<details class="kerdes"><summary>szív határok, kopogtatása(percussio)</summary><ul class="normal">
+		<details class="kerdes"><summary>lényege &#10140; szívnél tompább a hang amit hallok, nem TÉNH: ezért szívtompulat a neve</summary><ul class="normal">
+			<li>abszolút szívtompulat &#10140; szív közvetlenül a mellkas alatt fekszik</li>
+			<li>relatív szívtompulat &#10140; szív és mellkas közt a 'tüdő belóg'</li>
+			<img data-src="jjehjxck.jpg">
+		</ul></details>
+		<li>1.lépés: szívcsúcs &#10140; kitapintom hol érezhető legjobban a szívverés (5.bordaköz, medioclavicularis vonal) &#10140; obes,emfizéma,nagy emlő esetén nehéz~lehetetlen, ezért ezt a lépést olyankor hagyjam ki</li>
+		<li>2.lépés: alsó vonal &#10140; jobb oldalt kopogtatva tüdő máj határt meghatározom: majd ez összekötöm a szívcsúccsal</li>
+		<li>3.lépés: jobb határa &#10140; itt csak azt tudom megállapítani, hogy a sternum jobb oldalán van-e tompulat('átlóg-e a szív'). Ha igen, kóros.</li>
+		<li>4.lépés: felső & bal határa &#10140; kikopogtatom meddig tart a tompulat</li><ul>
+			<li>felső &#10140; normálisan parasternalisan a <span class="WHITE">3.borda alsó határa</span></li>
+			<li>bal &#10140; </li>
+		</ul>
+		<span class="IMPORTANT">kopogtatásnál az ujj mindig a határral párhuzamos</span> (logikus! hiszen akkor lesz biztosan csak egyoldalon az ujjam, nem lesz mix)
+	  <hr>normál határok:
+		<li>Alul: 5. bordaköz rekesz</li>
+		<li>Jobb: szternum jobb széle</li>
+		<li>Felső: 3. bordaköz</li>
+		<li>Bal: <abbr title="medioclavicularis vonal">MCV</abbr>. 2cm balra</li>
+	</ul></details>
+	<span class="imp [1]"></span>
+	<span class="imp [6]"></span>
+	<details class="kerdes"><summary>lép határok, kopogtatása(percussio)</summary><ul class="normal">
+		<li>jobbra fordul</li>
+		<li>kopogtatást a középsõ hónaljvonalban kezdem felülről lefelé haladva</li><ul>
+			<li>eleinte még TÉNH, mert tüdő</li>
+			<li>amikor tompa, az már lép</li>
+			fiziológiás &#10140; IX-XI.borda közt
+		</ul>
+	</ul></details>
+	<details class="kerdes"><summary>máj határok, meghatározása</summary><ul class="normal">
+		<li>fonendoszkópot a processus xiphoideus alá teszem, majd az ujjakkal huzok felé</li>
+		<li>ameddig van máj addig sercegést hallok &#10140; alatta semmit (vagy mélyebb hangot)</li>
+		<li>kitapintani is meg kell próbálni &#10140; bordaív alá benyúlok és belégzést kell tennie</li>
+	  <hr>
+		<li>kóros esetben túl lóg a bordaív alá &#10140; ilyenkor azt kell megmondani hány harántujjal: ez a medioclavicularis vonalban van értve</li>
 	</ul></details>
 </details>
 
