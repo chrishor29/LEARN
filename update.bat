@@ -10,6 +10,8 @@ robocopy %source%\LabMed\images %destination%\LabMed\images /mir
 robocopy %source%\Genetika\images %destination%\Genetika\images /mir
 robocopy %source%\Belgyogy\images %destination%\Belgyogy\images /mir
 
+robocopy %source%\Belgyogy\videos %destination%\Belgyogy\videos /mir
+
 copy %source%\Kortan\kortan.html %destination%\Kortan\kortan.html
 copy %source%\Patosz\patosz.html %destination%\Patosz\patosz.html
 copy %source%\Mikrobi\mikrobi.html %destination%\Patosz\mikrobi.html
