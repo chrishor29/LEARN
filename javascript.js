@@ -190,7 +190,7 @@ function checkExpQHtml(){ // oldal betöltésénél ugorjon el expQkat importoln
 		} else {
 			var expLoc = htmlLEARNloc + "expqs.html"
 			localStorage.setItem("loadQs.lastPage",fileName)
-			window.location.href = expLoc
+			//window.location.href = expLoc
 		}
 	} else {
 		localStorage.removeItem("loadQs.lastPage")
