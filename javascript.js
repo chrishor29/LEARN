@@ -405,8 +405,10 @@ function F_checkEXPs(){ /* ez egyenlore elobb kell legyen, mint a CheckQs külö
 			var begin = elem.className.indexOf("{")
 			var end = elem.className.indexOf("}")
 			var EXPid = elem.className.slice(begin+1,end)
-			if ( Number(EXPid) > localStorage.getItem("hkExp.max") ) { localStorage.setItem("hkExp.max",EXPid) }
 			var Qtext = '<details class="' +elem.className+ '">' +elem.innerHTML+ "</details>"
+			if ( Number(EXPid) > localStorage.getItem("hkExp.max") && fileName == "expqs.html" ) {
+				localStorage.setItem("hkExp.max",EXPid) 
+			}
 			var LSid = false
 			if ( localStorage.getItem("hkExpQ."+EXPid) ) {
 				var string = localStorage.getItem("hkExpQ."+EXPid)

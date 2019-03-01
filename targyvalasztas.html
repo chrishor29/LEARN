@@ -14,7 +14,6 @@
 		padding: 4px;
 		padding-right: 8px;
 		margin-right: -4px;
-		display: inline-block;
 		background-color: azure;
 	}
 	img.mini{
@@ -51,8 +50,8 @@
 	<div><img class="mini" src="done\ANAT\Histology\favicon.bmp"> <a href="done\ANAT\Histology\histo.html">Szövettan</a></div>
 	<div><img class="mini" src="done\ANAT\Fejlodestan\favicon.bmp"> <a href="done\ANAT\Fejlodestan\embrio.html">Fejlődéstan</a></div>
 	<div><img class="mini" src="done\SejtBiosz\favicon.bmp"> <a href="done\SejtBiosz\sejtbiosz2.html">Molekuláris Sejtbiológia</a> <font style="font-size:80%"><a href="done\SejtBiosz\sejtbiosz1.html">(I)</a></font></div>
-	<div><img class="mini" src="done\Elettan\favicon.bmp"> <a href="done\Elettan\elettan2.html">Élettan II</a> <font style="font-size:80%"><a href="done\Elettan\elettan1.html">(I)</a> <a href="done\Elettan\elettan1_old.html">(+régi)</a></font></div>
-	<div><img class="mini" src="done\BioKemia\favicon.bmp"> <a href="done\BioKemia\III\biokemia.html">Biokémia</a> <font style="font-size:80%"><a href="done\BioKemia\I\biokemia_I.html">(I)</a> <a href="done\BioKemia\II\biokemia_II.html">(II)</a> <a href="done\BioKemia\III\biokemia_III.html">(III)</a></font></div>
+	<div><img class="mini" src="done\Elettan\favicon.bmp"> <a href="done\Elettan\elettan2.html">Élettan II</a> <font style="font-size:80%"><a href="done\Elettan\elettan1.html">(I)</a> <a href="done\Elettan\elettan1old.html">(+régi)</a></font></div>
+	<div><img class="mini" src="done\BioKemia\favicon.bmp"> <a href="done\BioKemia\III\biokemia.html">Biokémia</a> <font style="font-size:80%"><a href="done\BioKemia\I\biokemiaI.html">(I)</a> <a href="done\BioKemia\II\biokemiaII.html">(II)</a> <a href="done\BioKemia\III\biokemiaIII.html">(III)</a></font></div>
 <hr>
 	<div><a href="done\Biologia\biosz.html">Orvosi Biológia</a></div>
 	<div><a href="done\Kemia\kemia.html">Orvosi Kémia</a></div>
@@ -61,7 +60,7 @@
 	<div><a href="done\ModMem\ModMem.html">Modellmembránok</a></div>
 </div>
 
-<div class="header" style="float:left;"><center><strong>KÖNYVEK</strong></center>
+<div id="könyvek" class="header" style="float:left;"><center><strong>KÖNYVEK</strong></center>
   IN PROGRESS
 	<div><a href="Patosz\Robbins - Patológia alapjai.pdf">patosz: Robbins</a></div>
 	<div><a href="Patosz\források\defi.pdf">patosz: definíciók</a></div>
@@ -78,7 +77,7 @@
 
 <!--<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>-->
 
-<div class="header" style="float:left;"><center><strong>tételek</strong></center>
+<div id="tetelek" class="header" style="float:left;"><center><strong>tételek</strong></center>
 	<table>
 		<tr><th id="elet11">48</th>
 			<td><input type="number" id="elet12" style="width:45px"></td>
@@ -95,16 +94,25 @@
 </div>
 
 
-<table><tr><th></th> <th>DEMO</th> <th>hiányzás</th></tr>
+<table id="demok"><tr><th></th> <th>DEMO</th> <th>hiányzás</th></tr>
 	<tr><th>patosz</th> <td>5. & <span class="MISS">10.</span></td> <td>(GY) 02.18</td></tr>
 	<tr><th>kórtan</th> <td></td> <td>(EA) (GY)</td></tr>
 	<tr><th>mikrobi</th> <td>7. & 10.</td> <td>(GY)</td></tr>
 	<tr><th>belgyógy</th> <td></td> <td>(GY)</td></tr>
-	<tr><th>genetika</th> <td>10.</td> <td>(GY)</td></tr>
+	<tr><th>genetika</th> <td>10.</td> <td>(GY) (EA) 0.27</td></tr>
 	<tr><th>EKG</th> <td style="background-color:black"></td> <td></td></tr>
 	<tr><th>pszicho</th> <td>3.</td> <td>(GY)</td></tr>
-	<tr><th>taekwondo</th> <td style="background-color:black"></td> <td></td></tr>
 </table>
+
+<script>
+	var ua = navigator.userAgent.toLowerCase();
+	var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+	if ( isAndroid ) { 
+		document.getElementById("könyvek").style.display = "none"
+		document.getElementById("tetelek").style.display = "none"
+		document.getElementById("demok").style.display = "none"
+	}
+</script>
 
 <script>
 	var howmany = 2 +1
