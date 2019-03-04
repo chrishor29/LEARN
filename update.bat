@@ -23,10 +23,10 @@ copy %source%\Belgyogy\belgyogy.html %destination%\Belgyogy\belgyogy.html
 copy %source%\Kortan\favicon.png %destination%\Kortan\favicon.png
 copy %source%\Patosz\favicon.png %destination%\Patosz\favicon.png
 copy %source%\Mikrobi\favicon.png %destination%\Mikrobi\favicon.png
-copy %source%\Pszicho\favicon.png %destination%\Pszicho\favicon.png
+copy %source%\Pszicho\favicon.bmp %destination%\Pszicho\favicon.bmp
 copy %source%\LabMed\favicon.png %destination%\LabMed\favicon.png
-copy %source%\Genetika\favicon.png %destination%\Genetika\favicon.png
-copy %source%\Belgyogy\favicon.png %destination%\Belgyogy\favicon.png
+copy %source%\Genetika\favicon.bmp %destination%\Genetika\favicon.bmp
+copy %source%\Belgyogy\favicon.bmp %destination%\Belgyogy\favicon.bmp
 
 robocopy %source%\images %destination%\images /mir
 copy %source%\expqs.html %destination%\expqs.html
