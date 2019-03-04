@@ -1,28 +1,27 @@
 // window.onerror = function(msg, url, linenumber) { alert('Error message: '+msg+'\nLine Number: '+linenumber) }
 
 /* PROJECT - PROGRESS
-
-✖ impQ új method valamiért 2,5x lassabb!
-
-✖ fölös image/video-k kiszortírozása
-
-✖ lehessen látni a kérdéseket táblázatban, melyiket hány perce repeateltem, mert felbssza magát az ember, hogy nemtudja mikor jut a végére
-✖ alapból csak 0 ismételt Q-t dob, 1x ismételtet nem (csak  ha 0-t disabledolom)
-✖ MIKROBI LS:
+ ✖ impQ új method valamiért 2,5x lassabb!
+ ✖ fölös image/video-k kiszortírozása
+ ✖ lehessen látni a kérdéseket táblázatban, melyiket hány perce repeateltem, mert felbssza magát az ember, hogy nemtudja mikor jut a végére
+ ✖ alapból csak 0 ismételt Q-t dob, 1x ismételtet nem (csak  ha 0-t disabledolom)
+ ✖ MIKROBI LS:
 	tétel buttonra klikk lassú
 	tétel kiválasztása lassú (hogy melybol dobjon kérdést)
 	betöltés is lassú
 	nextQ-ra is lassú
 	swich button is lassú (Quest megoldós módra váltó)
-✖ androidra console.log-ot!!
-✖ questID-k száma(ami a nextQ button alatt látható) valamiért gyorsan megugrik, fixáljam!!! --> ugyanis szvsz lehet emiatt is lassú
-✖: VIDEO - PROPED: propednél pl. szívhangoknál vannak videók:
+ ✖ androidra console.log-ot!!
+ ✖ questID-k száma(ami a nextQ button alatt látható) valamiért gyorsan megugrik, fixáljam!!! --> ugyanis szvsz lehet emiatt is lassú
+ ✖: VIDEO - PROPED: propednél pl. szívhangoknál vannak videók:
 	✖ lehessen a videót úgy beszerkeszteni, hogy csak a egy play button látszódik a szövegben, amire ha rákattolok akkor középen megjelenik a videó (mint a zongora kottánál)
 	✖ lehessen a videót úgy beszerkeszteni, mint a képet: tehát a jobb oldalt van
-✖ tesztkérdések: válaszokat random sorrendben dobja (különben nem jól jegyezném meg)
-✖ impQ: immun: rheumatid arthitis{23}, ha a 'T-sejtek gátlása'-t felcserélem 'B-sejt gátlása'-val (sorrendet csak) akkor nem importálja már
-✖ kérdés hosszát számolja majd úgy ki, hogy az altkérdéseket ne vegye bele: ha talál egy '<details'-t, akkor megkeresi a következo '</details'-t és 'kivágja azt'. Így ha vmit változtatok az altQ-n, attól a mainQ-t még nem kell upgradelnem
- 
+ ✖ tesztkérdések: válaszokat random sorrendben dobja (különben nem jól jegyezném meg)
+ ✖ impQ: immun: rheumatid arthitis{23}, ha a 'T-sejtek gátlása'-t felcserélem 'B-sejt gátlása'-val (sorrendet csak) akkor nem importálja már
+ ✖ kérdés hosszát számolja majd úgy ki, hogy az altkérdéseket ne vegye bele: ha talál egy '<details'-t, akkor megkeresi a következo '</details'-t és 'kivágja azt'. Így ha vmit változtatok az altQ-n, attól a mainQ-t még nem kell upgradelnem
+*/
+
+/* PROJECT - PROGRESS v2
 ✖ upgradeQ egyszerubb legyen
 ✖ android/telón a tételek nagyobbak legyenek
 ✖ mutéttan tételQ-nál (amikor kidobja) ne mutassa a tételcsoportot
@@ -787,8 +786,9 @@ function F_impQs(txtHTML){ // legújabb verzió
 				/*console.clear()
 				console.log(divStart+" vs "+divEnd)
 				console.log(prevTXT)
-				console.log(oldTxt)
-				alert("newTXTstart: "+enabled)*/
+				console.log(prevTXT.slice(divStart-4))
+				console.log(prevTXT.slice(divEnd-4))
+				alert(impBlock+" – "+enabled)*/
 				if ( divStart < divEnd && divStart != 3 ) { 
 					enabled = enabled +1
 					prevTXT = prevTXT.slice(divStart)
@@ -806,11 +806,14 @@ function F_impQs(txtHTML){ // legújabb verzió
 			} while ( enabled > 0 )
 			if ( enabled == 0 ) { enabled = true }
 			if ( enabled == -1 ) { enabled = false }
-			//alert(enabled)
+			/*console.clear()
+			console.log(newHTML.slice(-500))
+			console.log(oldHTML)
+			alert(impBlock+" – "+enabled)*/
 		}
 		var prevTXT = newHTML.slice(0,newHTML.lastIndexOf('imped '+impBlock))
 		if ( prevTXT.indexOf('<'+divSpan+' class="imped '+impBlock) != -1 ) { 
-			prevTXT = prevTXT.slice(prevTXT.indexOf('<'+divSpan+' class="imped '+impBlock)+1)
+			prevTXT = prevTXT.slice(prevTXT.lastIndexOf('<'+divSpan+' class="imped '+impBlock)+1)
 			F_prevTXTcheck(prevTXT,divSpan,impBlock) 
 		}
 		
