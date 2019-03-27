@@ -1,16 +1,17 @@
 // window.onerror = function(msg, url, linenumber) { alert('Error message: '+msg+'\nLine Number: '+linenumber) }
 
 /* PROJECT - PROGRESS
- ✖ impQ új method valamiért 2,5x lassabb!
- ✖ fölös image/video-k kiszortírozása
+ ✖ impQ új method valamiért 5-10x lassabb!
  ✖ lehessen látni a kérdéseket táblázatban, melyiket hány perce repeateltem, mert felbssza magát az ember, hogy nemtudja mikor jut a végére
- ✖ alapból csak 0 ismételt Q-t dob, 1x ismételtet nem (csak  ha 0-t disabledolom)
  ✖ MIKROBI LS:
 	tétel buttonra klikk lassú
 	tétel kiválasztása lassú (hogy melybol dobjon kérdést)
 	betöltés is lassú
 	nextQ-ra is lassú
 	swich button is lassú (Quest megoldós módra váltó)
+ 
+ ✖ fölös image/video-k kiszortírozása
+ ✖ alapból csak 0 ismételt Q-t dob, 1x ismételtet nem (csak  ha 0-t disabledolom)
  ✖ androidra console.log-ot!!
  ✖ questID-k száma(ami a nextQ button alatt látható) valamiért gyorsan megugrik, fixáljam!!! --> ugyanis szvsz lehet emiatt is lassú
  ✖: VIDEO - PROPED: propednél pl. szívhangoknál vannak videók:
@@ -739,7 +740,7 @@ buttonX.onclick = function(){
  + csak akkor töltse be a többinél az impQ-kat, ha megnyitom --> probléma elvileg, hogy a feladatmegoldó oldalra átklikkelve nem jelenik meg akkor az összes quest ?
 */
 
-function F_impQs(txtHTML){ // legújabb verzió
+function F_impQs(txtHTML){ // legújabb verzió, 10x lassabb!!
 	F_getTime()
 	var diffTime = myTime-oldTime
 	
@@ -747,6 +748,7 @@ function F_impQs(txtHTML){ // legújabb verzió
 	var count = 0
 	do {
 		count = count +1
+		//console.log(count)
 		impTXT = ""
 		var divSpan = ""
 		if ( txtHTML.indexOf('<div class="imp ') == -1 ) {
@@ -814,7 +816,7 @@ function F_impQs(txtHTML){ // legújabb verzió
 		var prevTXT = newHTML.slice(0,newHTML.lastIndexOf('imped '+impBlock))
 		if ( prevTXT.indexOf('<'+divSpan+' class="imped '+impBlock) != -1 ) { 
 			prevTXT = prevTXT.slice(prevTXT.lastIndexOf('<'+divSpan+' class="imped '+impBlock)+1)
-			F_prevTXTcheck(prevTXT,divSpan,impBlock) 
+			//F_prevTXTcheck(prevTXT,divSpan,impBlock) 
 		}
 		
 		if ( impBlock.indexOf("[") != -1 ) { 
@@ -840,7 +842,8 @@ function F_impQs(txtHTML){ // legújabb verzió
 		if ( enabled == true ) { txtHTML = newHTML + impTXT + oldHTML }
 		if ( enabled == false ) { txtHTML = newHTML + oldHTML }
 	}
-	while ( txtHTML.indexOf(' class="imp ') != -1 )
+	//while ( txtHTML.indexOf(' class="imp ') != -1 || count < 200 )
+	while ( count < 200 )
 	document.documentElement.innerHTML = txtHTML
 	//alert(count+" - "+MISSid)
 	
@@ -849,7 +852,7 @@ function F_impQs(txtHTML){ // legújabb verzió
 	var unitTime = (endTime*1000/count).toFixed(2);
 	console.log("– F_impQs newMethod – "+endTime.toFixed(2)+"sec ("+unitTime+"ms/Q, "+count+"db Q)")
 }
-F_impQs(document.documentElement.innerHTML)
+//F_impQs(document.documentElement.innerHTML)
 function F_impQold(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, így lassabb, de pontosabban mérhetok az eltérések)
 	F_getTime()
 	var diffTime = myTime-oldTime
@@ -1034,10 +1037,12 @@ megnézi, hogy az eddigi Qtext-ben van-e már: visszafele indul, a hozzá legkö
 						if ( prevQtxt.lastIndexOf("{"+EXPid+"}") != -1 ) {
 							var elemType = prevQtxt.slice(0,prevQtxt.lastIndexOf('class="imp {'+EXPid+'}'))
 							F_checkSearchTXT(prevQtxt,elemType)
-							if ( newTXT == 0 ) { 
+							if ( newTXT == true ) { 
 								newTXT = localStorage.getItem("hkExpQ."+EXPid)
-								var LSid = newTXT.slice(0,newTXT.indexOf(" "))
-								newTXT = localStorage.getItem(LSid)
+								if ( newTXT != null ) {
+									var LSid = newTXT.slice(0,newTXT.indexOf(" "))
+									newTXT = localStorage.getItem(LSid)
+								}
 							}
 						} else { 
 							newTXT = localStorage.getItem("hkExpQ."+EXPid)
@@ -1101,7 +1106,7 @@ megnézi, hogy az eddigi Qtext-ben van-e már: visszafele indul, a hozzá legkö
 	var unitTime = (endTime*1000/count).toFixed(2);
 	console.log("– F_impQs oldMethod – "+endTime.toFixed(2)+"sec ("+unitTime+"ms/Q, "+count+"db Q)")
 }
-//F_impQold()
+F_impQold()
 
 
 function F_DivSkip() {

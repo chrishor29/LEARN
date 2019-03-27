@@ -154,9 +154,6 @@ span {
 	color: white;
 	font-weight: bold;
 }
-.miss { 
-	background-color: pink;
-}
 .status { 
 	color: Black;
 	background-color: AliceBlue;
@@ -164,10 +161,10 @@ span {
 	padding-left: 2px;
 	padding-right: 2px;
 	
-	padding-top: 1px;
-	padding-bottom: 1px;
-	margin-bottom: 1px;
 	display: inline-block;
+}
+.miss { 
+	background-color: pink;
 }
 .pseudo { 
 	color: Black;
@@ -225,7 +222,7 @@ table {
 }
 th, td {
 	border-collapse: collapse;
-	padding: 2px;
+	padding: 3px;
 	border: 3px solid black;
 	padding-top: 3px; 
 	text-align: center;
