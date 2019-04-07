@@ -206,7 +206,9 @@ function func_abbrSet(elem){
 // azt csináljam, hogy a li textet írja át alapból: <span style="visibility:hidden"> ..text.. <span>, majd amikor ráklikkelek removeolja a spant --> megmaradnak a pontok
 // func_saveQuest elott kell legyen, de a F_impQs után
 	var abbrSpan = elem.getElementsByTagName("*");
+	//console.clear()
 	for ( var j = 0; j < abbrSpan.length; j++ ) {
+		//console.log(abbrSpan[j].tagName)
 		if ( abbrSpan[j].classList.contains("abbr") == true ) {
 			if ( elem.open != false ) {
 				abbrSpan[j].style.cursor = "pointer"
@@ -634,9 +636,7 @@ function F_oldQchange(oldLSid){
 
 function F_setAbbrAndroid(detElem) {
 	var allAbbr = detElem.getElementsByTagName("abbr")
-	for ( var i=0; i<allAbbr.length; i++ ) {
-		allAbbr[i].style.lineHeight = "30"; 
-	}
+	for ( var i=0; i<allAbbr.length; i++ ) { allAbbr[i].style.lineHeight = "30" }
 }
 
 function F_oldQcheck(){
@@ -739,11 +739,11 @@ buttonX.onclick = function(){
  + csak a impQ-ban töltse be az elején az altQ-kat (oldMethoddal: nem replace, hanem innerHTML)
  + csak akkor töltse be a többinél az impQ-kat, ha megnyitom --> probléma elvileg, hogy a feladatmegoldó oldalra átklikkelve nem jelenik meg akkor az összes quest ?
 */
-
-function F_impQs(txtHTML){ // legújabb verzió, 10x lassabb!!
+function F_impQs(detElem){ // legújabb verzió, 10x lassabb!!
 	F_getTime()
 	var diffTime = myTime-oldTime
 	
+	var txtHTML = detElem.innerHTML
 	var MISSid = ""
 	var count = 0
 	do {
@@ -844,7 +844,7 @@ function F_impQs(txtHTML){ // legújabb verzió, 10x lassabb!!
 	}
 	//while ( txtHTML.indexOf(' class="imp ') != -1 || count < 200 )
 	while ( count < 200 )
-	document.documentElement.innerHTML = txtHTML
+	detElem.innerHTML = txtHTML
 	//alert(count+" - "+MISSid)
 	
 	F_getTime()
@@ -852,7 +852,7 @@ function F_impQs(txtHTML){ // legújabb verzió, 10x lassabb!!
 	var unitTime = (endTime*1000/count).toFixed(2);
 	console.log("– F_impQs newMethod – "+endTime.toFixed(2)+"sec ("+unitTime+"ms/Q, "+count+"db Q)")
 }
-//F_impQs(document.documentElement.innerHTML)
+//F_impQs(document.documentElement)
 function F_impQold(){ // 1ms/Q a betöltési ideje (POWER SAFER-re az aksi, így lassabb, de pontosabban mérhetok az eltérések)
 	F_getTime()
 	var diffTime = myTime-oldTime
@@ -1107,8 +1107,102 @@ megnézi, hogy az eddigi Qtext-ben van-e már: visszafele indul, a hozzá legkö
 	console.log("– F_impQs oldMethod – "+endTime.toFixed(2)+"sec ("+unitTime+"ms/Q, "+count+"db Q)")
 }
 F_impQold()
+function F_loadImpQs(detElem){ // még nemhasználom!!
+	var Qtxt = detElem.innerHTML
+	var impQk = ""
+	var expQk = ""
+	
+	var oldTxt = Qtxt
+	
+	
+	if ( Qtxt.indexOf(' class="imp ') != -1 ) {
+	//if ( Qtxt.indexOf('<!-- impQ -->') != -1 ) {
+		var startP = 0
+		/*do {
+			startP = Qtxt.indexOf(' class="imp ',startP) +1
+			var EXPid = Qtxt.slice(startP+12)
+			var newTXT = false
+			if ( EXPid.indexOf("}") > EXPid.indexOf("]") ) {
+				EXPid = EXPid.slice(0,EXPid.indexOf('}'))
+				if ( expQk.indexOf(EXPid) == -1 ) {
+					newTXT = localStorage.getItem("hkExpQ."+EXPid)
+					var LSid = newTXT.slice(0,newTXT.indexOf(" "))
+					newTXT = localStorage.getItem(LSid)
+					expQk = expQk + expID + " "
+				}
+			} else {
+				EXPid = EXPid.slice(0,EXPid.indexOf(']'))
+				if ( impQk.indexOf(EXPid) == -1 ) {
+					newTXT = arrImpQs[EXPid]
+					impQk = impQk + expID + " "
+				}
+			}
+		}*/
+	}
+}
+
+function F_midQ(detElem){
+	var midQs = detElem.getElementsByClassName("midQ")
+	for ( var x=0; x<midQs.length; x++ ) {
+		var midQ = midQs[x]
+		midQ.style.backgroundColor = "greenyellow"
+		midQ.style.cursor = "pointer"; 
+		midQ.onclick = function(){ 
+			midQloaded = false
+			
+			var EXPid = this.className
+			EXPid = EXPid.slice(EXPid.indexOf("[")+1,EXPid.indexOf("]"))
+			var impTXT = arrImpQs[EXPid]
+			impTXT = impTXT.slice(impTXT.indexOf("<summary"),impTXT.lastIndexOf("</details"))
+			impTXT = impTXT.replace("summary","center><strong")
+			impTXT = impTXT.replace("summary","strong></center")
+			document.getElementById("div_MidQText").innerHTML = impTXT
+
+			F_impQs(document.getElementById("div_MidQText"))
+			F_loadImgVideo(document.getElementById("div_MidQText"))
+			F_imgClick(document.getElementById("div_MidQText"))
+			F_titleChange(document.getElementById("div_MidQText"))
+			
+			document.getElementById("div_MidQ").style.display = "block"
+		}
+	}
+}
+F_midQ(document)
 
 
+function F_DivMidQ() {
+	var div = document.createElement("div")
+	document.body.appendChild(div)
+	div.id = "div_MidQ"
+	div.style.backgroundColor = "white"
+	div.style.overflow = "auto"
+	div.style.width = "98vw"
+	div.style.height = "81vh"
+	div.style.border = "10px solid black"
+	div.style.display = "none"
+	div.style.position = "fixed"
+	div.style.left = "0px"
+	div.style.top = "15vh"
+	
+	var button = document.createElement("input")
+	button.type = "button"
+	div.appendChild(button)
+	button.style.backgroundColor = "red"
+	button.style.color = "white"
+	button.style.border = "3px solid black"
+	button.onclick = function(){ 
+		document.getElementById("div_MidQ").style.display = "none" 
+		midQloaded = false
+	}
+	button.value = "✖"
+	button.style.position = "absolute"
+	button.style.right = "0px"
+	
+	var divText = document.createElement("div")
+	div.appendChild(divText)
+	divText.id = "div_MidQText"
+}
+F_DivMidQ()
 function F_DivSkip() {
 	var div = document.createElement("div")
 	document.body.appendChild(div)
@@ -1137,8 +1231,7 @@ function F_DivFix() {
 	div.style.position = "fixed"
 	div.style.top = "50%"
 	div.style.left = "50%"
-	div.style.marginTop = "-30vh"
-	div.style.marginLeft = "-40vw"
+	div.style.margin = "-30vh -40vw" // top,left
 	div.style.border = "10px solid red"
 	div.style.display = "none"
 }
@@ -1233,6 +1326,7 @@ var defaultText = document.getElementById("div_upgQ").innerHTML
 
 
 var varNextQ = false
+var midQloaded = false
 var F_seekBar = window.setInterval(function(){
 	if ( document.getElementById("playedVideo") ) {
 		var playedVideo = document.getElementById("playedVideo")
@@ -1243,41 +1337,12 @@ var F_seekBar = window.setInterval(function(){
 		seekBars[0].style.width = widthPx
 		seekBars[0].style.left = playedVideo.offsetLeft
 	}
+	if ( document.getElementById("div_MidQ").style.display == "block" && midQloaded == false ) {
+		F_midQ(document.getElementById("div_MidQ"))
+		midQloaded = true
+	}
 }, 1000);
 
-function F_loadImpQs(detElem){
-	var Qtxt = detElem.innerHTML
-	var impQk = ""
-	var expQk = ""
-	
-	var oldTxt = Qtxt
-	
-	
-	if ( Qtxt.indexOf(' class="imp ') != -1 ) {
-	//if ( Qtxt.indexOf('<!-- impQ -->') != -1 ) {
-		var startP = 0
-		/*do {
-			startP = Qtxt.indexOf(' class="imp ',startP) +1
-			var EXPid = Qtxt.slice(startP+12)
-			var newTXT = false
-			if ( EXPid.indexOf("}") > EXPid.indexOf("]") ) {
-				EXPid = EXPid.slice(0,EXPid.indexOf('}'))
-				if ( expQk.indexOf(EXPid) == -1 ) {
-					newTXT = localStorage.getItem("hkExpQ."+EXPid)
-					var LSid = newTXT.slice(0,newTXT.indexOf(" "))
-					newTXT = localStorage.getItem(LSid)
-					expQk = expQk + expID + " "
-				}
-			} else {
-				EXPid = EXPid.slice(0,EXPid.indexOf(']'))
-				if ( impQk.indexOf(EXPid) == -1 ) {
-					newTXT = arrImpQs[EXPid]
-					impQk = impQk + expID + " "
-				}
-			}
-		}*/
-	}
-}
 
 /* IMG-load mechanizmusa
 	+ toggle esetén 'for összes image'
@@ -1302,9 +1367,7 @@ function F_loadImgVideo(detElem){
 		//imgs[x].onerror = function(){ missImgs = missImgs + this.src + ", " };
 		imgs[x].onerror = function(){
 			var textVar = this.src.slice(this.src.lastIndexOf("/")+1)
-			if ( missImgs.indexOf(textVar+",") == -1 ) {
-				missImgs = missImgs + textVar + ", " 
-			}
+			if ( missImgs.indexOf(textVar+",") == -1 ) { missImgs = missImgs + textVar + ", " }
 		};
 		
 		var IMGelem = imgs[x]
@@ -1514,9 +1577,8 @@ function F_imgActLoad(IMGelem){
 }
 
 
-var imagesAll = document.images
 var tooltipStatus
-function func_enLargeImages(){ // képnagyítás balKlikkel középre
+function F_imgClick(detElem){ // képnagyítás balKlikkel középre
 	var imgStatus
 	document.body.onclick=function(){
 		if ( imgStatus == "hide" ) {
@@ -1527,8 +1589,9 @@ function func_enLargeImages(){ // képnagyítás balKlikkel középre
 		tooltipSpan.style.visibility = "hidden";
 		tooltipStatus = "hide"
 	};
-	for ( var i = 0;   i < imagesAll.length;   i++ ) {
-		imagesAll[i].onclick=function(){
+	var imgs = detElem.getElementsByTagName("IMG")
+	for ( var i = 0;   i < imgs.length;   i++ ) {
+		imgs[i].onclick=function(){
 			imgStatus = "show"
 			centerDiv.style.visibility = "visible";
 			centerImage.src = this.src
@@ -1541,8 +1604,8 @@ function func_enLargeImages(){ // képnagyítás balKlikkel középre
 			centerDiv.style.top = "50%";
 			centerDiv.style.transform = "translate(-50%, -50%)";
 		};
-		if ( imagesAll[i].classList.contains("metszet") == true ) {
-			imagesAll[i].onclick=function(){
+		if ( imgs[i].classList.contains("metszet") == true ) {
+			imgs[i].onclick=function(){
 				var source = this.src
 				if ( this.style.borderColor != "limegreen" ) {
 					source = source.replace(".","m.")
@@ -1573,7 +1636,7 @@ function func_enLargeImages(){ // képnagyítás balKlikkel középre
 	centerDiv.style.visibility = "hidden";
 	centerDiv.style.border = "5px ridge LightGray";
 }
-func_enLargeImages()
+F_imgClick(document)
 
 var refreshAll = false
 function F_toggleAll() {
@@ -1590,7 +1653,7 @@ function F_toggleAll() {
 		func_tableSkipFix()
 		F_valFix()
 		F_valSkip()
-		func_enLargeImages()
+		//F_imgClick(document)
 		func_calcJegy()
 		func_calcWork()
 		func_calcDate()
@@ -1606,6 +1669,7 @@ function F_toggleAll() {
 		document.getElementById("div_SkipText").style.display = 'none';
 		document.getElementById("div_Fix").style.display = 'none';
 		document.getElementById("div_Skip").style.display = 'none';
+		document.getElementById("div_MidQ").style.display = 'none';
 		document.getElementById("div_upgQ").style.display = 'none';
 	} else {
 		localStorage.setItem("hk.ToggleAll","true")
@@ -2257,7 +2321,7 @@ F_CreateQDiv()
 // –––– –––– –––– –––– –––– –––– –––– –––– –––– ––––
 function func_calcTimeDiff(repCount){
 	if ( repCount == 0 ) {
-		timeDiff = 7
+		timeDiff = 15
 	} else if ( repCount == 1 ) {
 		timeDiff = 30
 	} else if ( repCount == 2 ) {
@@ -2405,7 +2469,7 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 	var Table = document.querySelectorAll('.phase,.status')
 	for ( var i = 0;   i < Table.length;   i++ ) { // tetelek
 		if ( Table[i].className == "phase" ) { Table[i].parentElement.classList.add("tetel") }
-		if ( Table[i].className == "status" ) { Table[i].parentElement.classList.add("feltetel") }
+		if ( Table[i].classList.contains("status") == true ) { Table[i].parentElement.classList.add("feltetel") }
 		var tetelID = i + "," + Table[i].innerHTML
 		Table[i].parentElement.id = tetelID
 		tetelek[tetelID] = []
@@ -2616,11 +2680,11 @@ function func_titleVerChange(velement){
 		var posX = this.offsetLeft
 		var posY = this.offsetTop
 
-		tooltipSpan.style.minWidth = null;
-		tooltipSpan.style.maxWidth = 300;
+		tooltipSpan.style.minWidth = null
+		tooltipSpan.style.maxWidth = 300
 		
-		var x = event.clientX;
-		var y = event.clientY;
+		var x = event.clientX
+		var y = event.clientY
 		if ( tooltipSpan.offsetWidth > document.body.offsetWidth - posX -10 ) {
 			tooltipSpan.style.left = posX - tooltipSpan.offsetWidth + document.body.offsetWidth - posX - 10
 		} else {
@@ -2628,24 +2692,19 @@ function func_titleVerChange(velement){
 		}
 		tooltipSpan.style.top = y+10
 
-		table_defText[this] = this.title;
-		this.title = '';
-	};
+		table_defText[this] = this.title
+		this.title = ''
+	}
 	velement.onmouseout = function(){
-		this.title = table_defText[this];
-		if ( tooltipStatus != "show" ) {
-			tooltipSpan.style.visibility = "hidden";
-		}
-	};
-}
-function func_TitleChange(){
-	//var abbrok = document.getElementsByTagName("ABBR");
-	var abbrok = document.querySelectorAll("*[title]");
-	for ( var i = 0; i < abbrok.length; i++ ) {
-		func_titleVerChange(abbrok[i])
+		this.title = table_defText[this]
+		if ( tooltipStatus != "show" ) { tooltipSpan.style.visibility = "hidden" }
 	}
 }
-func_TitleChange()
+function F_titleChange(detElem){
+	var abbrok = detElem.querySelectorAll("*[title]");
+	for ( var i = 0; i < abbrok.length; i++ ) { func_titleVerChange(abbrok[i]) }
+}
+F_titleChange(document)
 
 var prior,hossz,jegy
 function func_calcPriorHosszJegy(elem){
@@ -3420,6 +3479,7 @@ function F_prevQ(){
 	do { // megkeresi a 'családfában' legfelül lévo kérdést!
 		Qelem = parent
 		parent = parent.parentElement
+		console.log(parent.className)
 	} while ( parent.classList.contains("altetel") != true  && parent.classList.contains("tetel") != true  && parent.classList.contains("feltetel") != true )
 	// END
 	if ( document.getElementById("note").value != "" ) {
@@ -3966,10 +4026,12 @@ function F_nextQ(){
 	diffTimeX = myTime-startTime
 	console.log("– F_nextQ test – " + diffTimeX)
 	
-	func_enLargeImages()
-	func_TitleChange()
-	func_abbrSet(QlocElem)
+	F_imgClick(QlocElem)
+	//func_abbrSet(QlocElem)
 	F_loadImgVideo(QlocElem)
+	F_titleChange(QlocElem)
+
+	F_midQ(QlocElem)
 	
 	// color NewQ
 	document.getElementById("button_NextQ").style.color = ""
