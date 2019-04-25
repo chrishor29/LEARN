@@ -1419,6 +1419,7 @@ function F_detailsToggle(detElem){
 		F_loadImgVideo(detElem)
 		F_imgClick(detElem)
 		F_titleChange(detElem)
+		F_midQ(detElem)
 		//detElem.classList.add("imgLoaded");
 		/*F_getTime()
 		myTime = myTime-oldTime
