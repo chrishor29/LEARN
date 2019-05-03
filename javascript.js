@@ -153,6 +153,9 @@ var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
 
 
 
+
+
+
 var myTime
 var oldTime = false
 function F_getTime(){
@@ -715,7 +718,6 @@ function F_oldQcheck(){
 
 var myTestTable = []
 
-
 function escapeRegExp(oldTxt) {
 	return oldTxt.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
 }
@@ -735,12 +737,10 @@ buttonX.onclick = function(){
 	alert("sajt")
 }*/
 
-
 // –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– ––––*/
 // ha ráklikkelek egy details-ra, akkor csak azokat kell betöltse, amik visible-k!! -> erre írjak egyet
 // egyrészt ha ki van jelölve a tétel, akkor be kell töltse az összeset 
 	// ha F_detailsToggle -ba is ezt használnám, akkor látható, hogy ha egy detailst megnyitok, majd csukom, akkor 2x lesznek ott a Q-k
-
 
 /* impQ - megoldás ?!
  + csak a impQ-ban töltse be az elején az altQ-kat (oldMethoddal: nem replace, hanem innerHTML)
@@ -929,7 +929,7 @@ function F_impQfew(detElem){ // ?ms/Q a betöltési ideje
 	var allImpQs = detElem.querySelectorAll('.imp')
 	for ( var i=0;  i<allImpQs.length;  i++ ) {
 		if ( allImpQs[i].offsetParent === null ) { continue }
-		if ( allImpQs[i].classList.contains("imported") == true ) { return }
+		if ( allImpQs[i].classList.contains("imported") == true ) { continue }
 		allImpQs[i].className = allImpQs[i].className+" imported"
 		
 		var impID = allImpQs[i].className
@@ -1037,14 +1037,14 @@ function F_midQ(detElem){
 			document.getElementById("div_MidQ").style.display = "block"
 
 			F_impQs(document.getElementById("div_MidQText"))
-			F_imgLoad(document.getElementById("div_MidQText"))
+			//F_imgLoad(document.getElementById("div_MidQText"))
+			F_detailsToggle(document.getElementById("div_MidQText"))
 			F_imgClick(document.getElementById("div_MidQText"))
 			F_titleChange(document.getElementById("div_MidQText"))
 		}
 	}
 }
 F_midQ(document)
-
 
 function F_DivMidQ() {
 	var div = document.createElement("div")
@@ -1177,7 +1177,6 @@ function F_DivUpgQ() {
 }
 F_DivUpgQ()
 
-
 function func_divButtonETC() {
 	var button = document.createElement("input")
 	button.id = "button_replaceQ"
@@ -1200,7 +1199,6 @@ func_divButtonETC()
 var replaceQs = []
 var defaultText = document.getElementById("div_upgQ").innerHTML
 
-
 var varNextQ = false
 var midQloaded = false
 var F_seekBar = window.setInterval(function(){
@@ -1219,21 +1217,19 @@ var F_seekBar = window.setInterval(function(){
 	}
 }, 1000);
 
-
 /* IMG-load mechanizmusa
 	+ toggle esetén 'for összes image'
 	+ amelyik nem visible, az return
 	+ amelyik nem data-src (tehát már be van töltve) az return
 	- ezután azt nézi meg, hogy impQ image-e:
-		felmegy a toggle eventes details elem-ig, és megnézi volt-e közte {} vagy [] classú elem (lehet div,span,details is)
-		amennyiben van, akkor az elsonél megáll és az lesz a location-je
-		ha nincs, akkor a defulat location
+		felmegy a toggle eventes details elem-ig, és megnézi volt-e közte {} vagy [] class-ú elem (lehet div,span,details is)
+		amennyiben van, akkor az elsönél megáll és az lesz a location-je
+		ha nincs, akkor a default location
 */
 var testLoad = false
 var missImgs = ""
 function F_loadImgVideo(detElem){
 	//console.clear()
-	//console.log(detElem.innerHTML.slice(0,detElem.innerHTML.indexOf("</summary")))
 	
 	var imgs = detElem.getElementsByTagName("IMG")
 	for ( var x=0; x<imgs.length; x++ ) { 
@@ -1414,24 +1410,18 @@ function F_detailsToggle(detElem){
 		/*F_getTime()
 		oldTime = myTime*/
 		F_impQfew(detElem)
-		var allDetails = detElem.getElementsByTagName("details")
-		for ( var i=0; i<allDetails.length; i++ ) { allDetails[i].ontoggle = function(){ F_detailsToggle(this) } }
 		F_loadImgVideo(detElem)
 		F_imgClick(detElem)
 		F_titleChange(detElem)
 		F_midQ(detElem)
+		var allDetails = detElem.getElementsByTagName("details")
+		for ( var i=0; i<allDetails.length; i++ ) { allDetails[i].ontoggle = function(){ F_detailsToggle(this) } }
 		//detElem.classList.add("imgLoaded");
 		/*F_getTime()
 		myTime = myTime-oldTime
 		console.log("– imagek betöltve – "+myTime)*/
 	// }
 }
-function F_imgLoad(detElem){ // VIDEOt is itt tölti be!
-	F_loadImgVideo(detElem)
-	var allDetails = detElem.getElementsByTagName("details")
-	for ( var i=0; i<allDetails.length; i++ ) { allDetails[i].ontoggle = function(){ F_detailsToggle(this) } }
-}
-F_imgLoad(document.documentElement)
 
 function F_testVideoError() {
 	var allVideo = document.getElementsByTagName("video")
@@ -2292,9 +2282,11 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 		div.style.overflow = "auto"
 		div.style.width = "80vw"
 		div.style.height = "80vh"
-		div.style.position = "fixed"
+		div.style.position = "absolute"
 		div.style.top = "50%"
+		//div.style.bottom = "50%"
 		div.style.left = "50%"
+		//div.style.right = "50%"
 		div.style.marginTop = "-40vh"
 		div.style.marginLeft = "-40vw"
 		div.style.border = "10px solid black"
@@ -2440,6 +2432,7 @@ function F_tetelQs() { // impID-ket tételhez kapcsolja - későbbiekre (F_creat
 	}
 	//F_createTable()
 		
+	MISSid = ""
 	var Table = document.querySelectorAll('.phase,.status')
 	for ( var i=0;  i<Table.length;  i++ ) { // tetelek
 		var tetelQ = Table[i]
@@ -2483,16 +2476,22 @@ function F_tetelQs() { // impID-ket tételhez kapcsolja - későbbiekre (F_creat
 			}
 		}
 		function F_newImpQAdd(impID){
-			var Qtxt = null
-			if ( impID.indexOf("[") == 0 ) {
+			Qtxt = null
+			/*if ( impID.indexOf("[") == 0 ) {
 				impID = impID.slice(1,-1)
 				Qtxt = arrImpQs[impID]
 			} else if ( impID.indexOf("{") == 0 ) {
 				impID = impID.slice(1,-1)
 				Qtxt = localStorage.getItem("hkExpQ."+impID)
+				if ( Qtxt == null ) { 
+					return 
+				}
 				var LSid = Qtxt.slice(0,Qtxt.indexOf(" "))
 				Qtxt = localStorage.getItem(LSid)
 			}
+			F_loadQtxt(impID,divSpan)*/
+			F_loadQtxt(impID,"")
+			if ( Qtxt == null ) { return }
 			if ( Qtxt.indexOf(' class="imp ') == -1 ) { return }
 			do {
 				var newImpID
@@ -2528,6 +2527,8 @@ function F_tetelQs() { // impID-ket tételhez kapcsolja - későbbiekre (F_creat
 			}
 		} while ( count != 0 )
 	}
+	
+	if ( MISSid != "" ) { alert("F_impQ: Az alábbi EXPid-k még nincsenek LS-be reigsztrálva: "+MISSid + "\nNyisd meg a tárgyválasztás ablaknál az adott tárgyhoz kapcsolódó egyéb tárgy(ak)at egyszer --> pl. Biokémia II esetén nyisd meg Biokémia I, Élettan, Molekuláris Sejtbiológia") }
 	
 	F_getTime()
 	var diffTime = myTime-oldTime
@@ -2701,7 +2702,6 @@ function func_calcPriorHosszJegy(elem){
 	}
 }
 
-
 function F_kerdesStatus(){ // kérdés hány %-on áll?
 	var allStatusQs = document.getElementsByClassName("status")
 	function F_calculateThis(thisQ){
@@ -2827,7 +2827,6 @@ function F_calcLSid(detElem){
 	}
 }
 
-
 function func_tableSkipFix(){
 	F_getTime()
 	var startTime = myTime
@@ -2912,7 +2911,6 @@ function F_valSkip(){
 }
 F_valSkip()
 
-
 function func_showQtext(LSid){
 	LSid = LSid.slice(0,LSid.indexOf('_fullText'))
 	var text = arrQnameQtxt[localStorage.getItem(LSid)]
@@ -2922,7 +2920,7 @@ function func_showQtext(LSid){
 	var qElem = document.getElementById("div_SkipText")
 	qElem.style.display = 'block';
 	func_abbrSet(qElem)
-	F_imgLoad(qElem)
+	F_detailsToggle(qElem)
 }
 
 function func_DeleteSkipFix(kerdes){
@@ -3045,7 +3043,6 @@ function func_spanClick(button){  // btn_fix, btn_skip, btn_vizsgaskip, btn_repF
 		if ( button.id == 'btn_newQuest' ) { localStorage.setItem("hk.newQ",true) }
 	}
 }
-
 
 function F_changeTetelCount(plus,button){
 	var num = document.getElementById("button_Marks").innerHTML
@@ -3376,34 +3373,65 @@ function func_calcOldNew(){
 	console.log("– func_calcOldNew – " + diffTime+"s")
 }
 
-
 // SAVE LS (begin)
-function download(filename, text) { // (netrol copyztam) --> (azért kellett, mert androidon máshogy nemtudom lementeni)
-	 var pom = document.createElement('a');
-	 pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-	 pom.setAttribute('download', filename);
+var downA = document.createElement('a');
+function download(filename, text) { // (netről copyztam) --> (azért kellett, mert androidon máshogy nemtudom lementeni)
+	/*var element = document.createElement('a');
+	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+	element.setAttribute('download', filename);
+	element.appendChild(document.createTextNode("Save file"));
+  
+	element.style.display = 'none';
+	document.body.appendChild(element);
+	element.click();
+	document.body.removeChild(element);
+	*/
 
-	 if (document.createEvent) {
-		  var event = document.createEvent('MouseEvents');
-		  event.initEvent('click', true, true);
-		  pom.dispatchEvent(event);
-	 }
-	 else {
-		  pom.click();
-	 }
+	downA.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+	downA.setAttribute('download', filename);
+	if (document.createEvent) {
+		var event = document.createEvent('MouseEvents');
+		event.initEvent('click', true, true);
+		downA.dispatchEvent(event);
+	} else {
+		downA.click();
+	}
+	
+	/*alert(text.length) // ha crashel androidon, akkor ezzel megtudom oldani (túl sok a karakter)
+	var num = text.length / 100000
+	num = Math.ceil(num)
+	for ( var i=0; i<num; i++ ) {
+		var acText = text.slice(0,100000)
+		text = text.slice(100000)
+		downA.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(acText));
+		downA.setAttribute('download', filename+"_"+i);
+
+		if (document.createEvent) {
+			var event = document.createEvent('MouseEvents');
+			event.initEvent('click', true, true);
+			downA.dispatchEvent(event);
+		} else {
+			downA.click();
+		}
+	}*/
 }
 function func_saveLS() {
 	var text = ""
 	
-	F_getTime()
-	var diffTime = myTime-oldTime
-	console.log("– download BEGIN – " + diffTime)
 	var lsLength = localStorage.length
-	for ( var i=0; i<lsLength; i++ ) { text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE \n" }
-	//for ( var i=0; i<lsLength; i++ ) { text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE " }
-	F_getTime()
-	var diffTime = myTime-oldTime
-	console.log("– download END – " + diffTime)
+	var expQk = []
+	for ( var i=0; i<lsLength; i++ ) {
+		if ( localStorage.key(i).indexOf("hkExpQ.") != -1 ) {
+			var qID = localStorage.getItem(localStorage.key(i))
+			qID = qID.slice(0,qID.indexOf(" "))
+			expQk[qID] = true
+		}
+	}
+	for ( var i=0; i<lsLength; i++ ) {
+		//if ( localStorage.key(i).indexOf("hkExpQ.") != -1 ) { continue }
+		if ( expQk[localStorage.key(i)] == true ) { continue }
+		text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE \n"
+	}
 	
 	var count = localStorage.getItem("lsCount")
 	count = Number(count) +1
@@ -3411,14 +3439,11 @@ function func_saveLS() {
 	var filename = 'localStorage'+count+'.txt'
 	
 	download(filename, text);
-	
-	//console.log(objects)
-	//window.location = "data:text/plain,"+text
 }
-JSON.stringify(localStorage)
+//JSON.stringify(localStorage) 
 // SAVE LS (end)
 
-
+F_detailsToggle(document.documentElement)
 
 function func_clearOldHistory() {
 	for ( var i = 0;   i < kerdesek.length;   i++ ) {
@@ -3558,7 +3583,6 @@ function F_nextQ(){
 	var countCV = 0
 	var nextDiff = 0
 
-	
 	// elozo kérdés
 	if ( priorQelem != "nincs" ) { F_prevQ() }
 	activeQs = [] // ezzel resetelem (szükséges mindig!)
@@ -3585,8 +3609,6 @@ function F_nextQ(){
 	F_getTime()
 	diffTimeX = myTime-startTime
 	console.log("– F_nextQ test – " + diffTimeX)
-	
-	//func_calcRepTable()
 	
 	F_getTime()
 	diffTimeX = myTime-startTime
@@ -3728,18 +3750,14 @@ function F_nextQ(){
 	}
 
 	if ( priorQelem != "nincs" ) {
-		
 		var Qelem = priorQelem
 		var parent = priorQelem
-		
 
-		//console.log("pQid: "+priorQid)
 		do { // megkeresi a 'családfában' legfelül lévo 'kerdes'-t (ami nem feltétlen az, lehet csak 'open' is)
 			Qelem = parent
 			parent = parent.parentElement
 		} while ( parent.classList.contains("altetel") != true  && parent.classList.contains("tetel") != true  && parent.classList.contains("feltetel") != true )
 		if ( parent.classList.contains("feltetel") == true ) { Qelem = parent }
-
 		
 		function func_setTitle(){
 			var titleText = ""
@@ -3800,8 +3818,11 @@ function F_nextQ(){
 		}
 		F_saveNewQs()
 		
-		
 		QlocElem.innerHTML = QlocElem.innerHTML + "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>"
+		
+		F_detailsToggle(QlocElem)
+		var allImpQs = QlocElem.querySelectorAll('.imp')
+		for ( var i=0;  i<allImpQs.length;  i++ ) { allImpQs[i].className = allImpQs[i].className+" imported" }
 
 		function F_SetMarks() { // minden kérdés mellé kreál egy osztályzás lehetoséget
 			//console.clear()
@@ -3919,7 +3940,7 @@ function F_nextQ(){
 			}
 		}
 		F_SetMarks()
-			
+		
 		function F_setIfQs(){
 			var arrayQ = QlocElem.getElementsByClassName("kerdes")
 			for ( var i=0; i<arrayQ.length; i++ ) {
@@ -3960,12 +3981,7 @@ function F_nextQ(){
 		}
 
 		var childs = QlocElem.childNodes;
-		for ( var i=0; i<childs.length; i++ ) { 
-			if ( childs[i].className.indexOf("open") != -1 ) { 
-				//childs[i].open = false  
-				childs[i].open = true  
-			}
-		}
+		for ( var i=0; i<childs.length; i++ ) { if ( childs[i].className.indexOf("open") != -1 ) { childs[i].open = true } }
 
 		var Qtext
 		if ( Qelem.id ) { 
@@ -3992,8 +4008,6 @@ function F_nextQ(){
 		}
 	}
 	
-	var allDetails = QlocElem.getElementsByTagName("details")
-	for ( var i=0; i<allDetails.length; i++ ) { allDetails[i].ontoggle = function(){ F_detailsToggle(this) } }
 	
 	F_getTime()
 	diffTimeX = myTime-startTime
@@ -4010,7 +4024,7 @@ function F_nextQ(){
 	console.log("– F_nextQ test – " + diffTimeX)
 	
 	F_imgClick(QlocElem)
-	F_imgLoad(QlocElem)
+	//F_imgLoad(QlocElem)
 	F_titleChange(QlocElem)
 
 	F_midQ(QlocElem)

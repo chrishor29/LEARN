@@ -280,11 +280,11 @@
 	}
 	F_fileinput()
 	
-	
 	// SAVE LS
+	var downA = document.createElement('a');
 	function download(filename, text) { // (netről copyztam) --> (azért kellett, mert androidon máshogy nemtudom lementeni)
 		/*var element = document.createElement('a');
-		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + "teszteljük");
+		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
 		element.setAttribute('download', filename);
 		element.appendChild(document.createTextNode("Save file"));
 	  
@@ -294,23 +294,71 @@
 		document.body.removeChild(element);
 		*/
 
-		var pom = document.createElement('a');
-		pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-		pom.setAttribute('download', filename);
-
+		downA.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+		downA.setAttribute('download', filename);
 		if (document.createEvent) {
 			var event = document.createEvent('MouseEvents');
 			event.initEvent('click', true, true);
-			pom.dispatchEvent(event);
+			downA.dispatchEvent(event);
 		} else {
-			pom.click();
+			downA.click();
 		}
+		
+		/*alert(text.length) // ha crashel androidon, akkor ezzel megtudom oldani (túl sok a karakter)
+		var num = text.length / 100000
+		num = Math.ceil(num)
+		for ( var i=0; i<num; i++ ) {
+			var acText = text.slice(0,100000)
+			text = text.slice(100000)
+			downA.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(acText));
+			downA.setAttribute('download', filename+"_"+i);
+
+			if (document.createEvent) {
+				var event = document.createEvent('MouseEvents');
+				event.initEvent('click', true, true);
+				downA.dispatchEvent(event);
+			} else {
+				downA.click();
+			}
+		}*/
 	}
+	function func_saveLS() {
+		var text = ""
+		
+		var lsLength = localStorage.length
+		var expQk = []
+		for ( var i=0; i<lsLength; i++ ) {
+			if ( localStorage.key(i).indexOf("hkExpQ.") != -1 ) {
+				var qID = localStorage.getItem(localStorage.key(i))
+				qID = qID.slice(0,qID.indexOf(" "))
+				expQk[qID] = true
+			}
+		}
+		for ( var i=0; i<lsLength; i++ ) {
+			//if ( localStorage.key(i).indexOf("hkExpQ.") != -1 ) { continue }
+			if ( expQk[localStorage.key(i)] == true ) { continue }
+			text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE \n"
+		}
+		var count = localStorage.getItem("lsCount")
+		count = Number(count) +1
+		localStorage.setItem("lsCount",count)
+		var filename = 'localStorage'+count+'.txt'
+
+		download(filename, text);
+		
+		document.getElementById("btn_saveLS").style.backgroundColor = "Chartreuse"
+		document.getElementById("btn_saveLS").style.color = ""
+	}
+	//JSON.stringify(localStorage)
+	
+	// LOAD LS
 	function F_openLS() {
 		var text = ""
 		
 		var lsLength = localStorage.length
-		for ( var i=0; i<lsLength; i++ ) { text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE \n" }
+		for ( var i=0; i<lsLength; i++ ) { 
+			text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE \n"
+		}
 		
 		var wnd = window.open("about:blank", "", "_blank");
 		wnd.document.write(text);
@@ -318,23 +366,6 @@
 		document.getElementById("btn_openLS").style.backgroundColor = ""
 		document.getElementById("btn_openLS").style.color = ""
 	}
-	function func_saveLS() {
-		var text = ""
-		
-		var lsLength = localStorage.length
-		for ( var i=0; i<lsLength; i++ ) { text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE \n" }
-		var count = localStorage.getItem("lsCount")
-		count = Number(count) +1
-		localStorage.setItem("lsCount",count)
-		var filename = 'localStorage'+count+'.txt'
-		
-		download(filename, text);
-		
-		document.getElementById("btn_saveLS").style.backgroundColor = "Chartreuse"
-		document.getElementById("btn_saveLS").style.color = ""
-	}
-	JSON.stringify(localStorage)
-	// LOAD LS
 	function func_loadLS(content) {
 		do {
 			var phaseText = content.slice(0,content.indexOf(" NEXTONE \n"));
@@ -409,8 +440,6 @@
 <!--
 <script>setTimeout(function(){window.location.href='../../targyvalasztas.html'},5000);</script>
 -->
-
-
 
 
 
