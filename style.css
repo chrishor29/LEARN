@@ -48,7 +48,7 @@ abbr {
 	padding-right: 1px; 
 	padding-top: 0px; 
 	padding-bottom: 0px; 
-	background-color: yellow;
+	background-color: aliceblue;
 }
 abbr.test {
 	position: relative;
@@ -282,7 +282,6 @@ sup, sub {
  font-size: 80%;
 }
 
-
 .phase {
 	padding-left: 2px;
 	padding-right: 2px;
@@ -297,6 +296,21 @@ sup, sub {
 	margin-bottom: 2px;
 	display: inline-block;
 }
+
+.normPhase {
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	font-size: medium;
+	font-weight: normal;
+	border: 1px solid Black;
+	background-color: AliceBlue;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	display: inline-block;
+}
+
 
 input[type=checkbox] {
   transform: scale(1.5);
