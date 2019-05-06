@@ -4,6 +4,8 @@ set destination=C:\Users\chrishor\Desktop\learn
 
 robocopy %source%\Kortan\images %destination%\Kortan\images /mir
 robocopy %source%\Patosz\images %destination%\Patosz\images /mir
+robocopy %source%\Patosz\II %destination%\Patosz\II /mir
+robocopy %source%\Patosz\I %destination%\Patosz\I /mir
 robocopy %source%\Mikrobi\images %destination%\Mikrobi\images /mir
 robocopy %source%\Pszicho\images %destination%\Pszicho\images /mir
 robocopy %source%\LabMed\images %destination%\LabMed\images /mir
