@@ -189,13 +189,12 @@ function checkExpQHtml(){ // oldal betöltésénél ugorjon el expQkat importoln
 	diffTime = diffTime /60000 /60 // óra
 
 	if ( diffTime > 24 ) {
-		if ( isAndroid ) { 
+		/*if ( isAndroid ) { 
 			alert("látogasd meg a tárgyválasztás weboldalon az 'expqs.html' oldalt (több tárgynál használt kérdéseket onnan tölti be)")
-		} else {
+		} else {*/
 			var expLoc = htmlLEARNloc + "expqs.html"
 			localStorage.setItem("loadQs.lastPage",fileName)
 			window.location.href = expLoc
-		}
 	} else {
 		localStorage.removeItem("loadQs.lastPage")
 	}
@@ -743,7 +742,9 @@ buttonX.onclick = function(){
 */
 var Qtxt,count,MISSid
 function F_loadQtxt(impID,divSpan){
-	var begin,end
+	var begin,end,hidden
+	//console.log(impID+" "+divSpan)
+	if ( impID.indexOf("hide") != -1 ) { hidden = true }
 	if ( impID.indexOf("[") != -1 ) {
 		begin = impID.indexOf("[") +1
 		end = impID.indexOf("]")
@@ -766,7 +767,7 @@ function F_loadQtxt(impID,divSpan){
 		if ( MISSid.indexOf(impID) == -1 ) { MISSid = MISSid + impID + "," }
 		return
 	}
-	if ( impID.indexOf("hide") != -1 ) {
+	if ( hidden == true ) {
 		if ( divSpan == "div" || divSpan == "DIV" ) {
 			var title = Qtxt
 			title = title.slice(0,title.indexOf('</summary>'))
@@ -996,7 +997,7 @@ function F_impQlot(detElem){ // 0,4ms/Q a betöltési ideje
 	while ( oldHTML.indexOf(' class="imp ') != -1 )
 	
 	detElem.innerHTML = newHTML + oldHTML // emiatt kurva lassú
-	if ( MISSid != "" ) { alert("F_impQlot: Az alábbi EXPid-k még nincsenek LS-be reigsztrálva: "+MISSid + "\nNyisd meg a tárgyválasztás ablaknál az adott tárgyhoz kapcsolódó egyéb tárgy(ak)at egyszer --> pl. Biokémia II esetén nyisd meg Biokémia I, Élettan, Molekuláris Sejtbiológia") }
+	if ( MISSid != "" ) { alert("F_impQlot: Az alábbi EXPid-k még nincsenek LS-be reigsztrálva: "+MISSid+"\nNyisd meg a tárgyválasztás ablaknál az adott tárgyhoz kapcsolódó egyéb tárgy(ak)at egyszer --> pl. Biokémia II esetén nyisd meg Biokémia I, Élettan, Molekuláris Sejtbiológia") }
 	
 	F_getTime()
 	var endTime = myTime-oldTime-diffTime
@@ -3433,6 +3434,7 @@ function func_saveLS() {
 	}
 	for ( var i=0; i<lsLength; i++ ) {
 		//if ( localStorage.key(i).indexOf("hkExpQ.") != -1 ) { continue }
+		if ( localStorage.key(i) == "loadQs.lastTime" ) { continue }
 		if ( expQk[localStorage.key(i)] == true ) { continue }
 		text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE \n"
 	}
@@ -3444,7 +3446,7 @@ function func_saveLS() {
 	
 	download(filename, text);
 }
-//JSON.stringify(localStorage) 
+// JSON.stringify(localStorage) 
 // SAVE LS (end)
 
 F_detailsToggle(document.documentElement)
@@ -3536,13 +3538,16 @@ function F_prevQ(){
 			localStorage.setItem(LSid+'_skip', "perma")
 			newQvolt = true
 		} else if ( document.getElementById("td.2."+i).style.backgroundColor == "lawngreen" ) {
-			localStorage.setItem(LSid+'_skip', "important")
-			newQvolt = true
+			if ( localStorage.getItem(LSid+'_skip') != "important" ) { 
+				localStorage.setItem(LSid+'_skip', "important")
+				newQvolt = true 
+			}
 		} else if ( document.getElementById("td.2."+i).style.backgroundColor == "blue" ) {
 			localStorage.setItem(LSid+'_skip', "vizsgaSkip")
 			newQvolt = true
-		} else {
-			if ( localStorage.getItem(LSid+'_skip') == "important" ) { localStorage.removeItem(LSid+'_skip') }
+		} else if ( localStorage.getItem(LSid+'_skip') == "important" ) {
+			localStorage.removeItem(LSid+'_skip')
+			newQvolt = true
 		}
 		
 		if ( newQvolt == true ) { qCountLS = qCountLS +1 }
@@ -3560,7 +3565,7 @@ function F_prevQ(){
 
 	var lastSavedLS = localStorage.getItem("hk.lastSavedLS")
 	if ( lastSavedLS > 9 ) {
-		func_saveLS() // androidon crashel, mert a textel baja van
+		func_saveLS() // androidon crashel, mert a text length-el baja van
 		localStorage.setItem("hk.lastSavedLS",0)
 	} else {
 		lastSavedLS = Number(lastSavedLS)

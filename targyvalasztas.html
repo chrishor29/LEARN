@@ -94,10 +94,10 @@
 
 <table id="demok"><tr><th></th> <th>DEMO</th> <th>hiányzás</th></tr>
 	<tr><th>patosz</th> <td>5. & <span class="MISS">10.</span></td> <td>(GY) <span class="WHITE">02.18</span></td></tr>
-	<tr><th>kórtan</th> <td></td> <td>(EA) <span class="WHITE">03.27</span> (GY) <span class="WHITE">03.26</span></td></tr>
+	<tr><th>kórtan</th> <td></td> <td>(EA) <span class="WHITE">03.27</span> <span class="WHITE">05.08</span> <br>(GY) <span class="WHITE">03.26</span></td></tr>
 	<tr><th>mikrobi</th> <td>7. & 10.</td> <td>(GY)</td></tr>
 	<tr><th>belgyógy</th> <td></td> <td>(GY) <span class="WHITE">03.04</span> <span class="WHITE">03.18</span></td></tr>
-	<tr><th>genetika</th> <td>10.</td> <td>(GY) <span class="WHITE">03.26</span> <span class="WHITE">04.02</span> <br>(EA) <span class="WHITE">02.27</span> <span class="WHITE">03.27</span></td></tr>
+	<tr><th>genetika</th> <td>10.</td> <td>(GY) <span class="WHITE">03.26</span> <span class="WHITE">04.02</span> <br>(EA) <span class="WHITE">02.27</span> <span class="WHITE">03.27</span> <span class="WHITE">05.08</span></td></tr>
 	<tr><th>EKG</th> <td style="background-color:black"></td> <td><span class="WHITE">03.05</span> <span class="WHITE">03.26</span></td></tr>
 	<tr><th>pszicho</th> <td>3.</td> <td>(GY) <span class="WHITE">03.22</span> <span class="WHITE">03.29</span></td></tr>
 </table>
@@ -325,6 +325,10 @@
 	function func_saveLS() {
 		var text = ""
 		
+		var count = localStorage.getItem("lsCount")
+		count = Number(count) +1
+		localStorage.setItem("lsCount",count)
+		
 		var lsLength = localStorage.length
 		var expQk = []
 		for ( var i=0; i<lsLength; i++ ) {
@@ -336,12 +340,10 @@
 		}
 		for ( var i=0; i<lsLength; i++ ) {
 			//if ( localStorage.key(i).indexOf("hkExpQ.") != -1 ) { continue }
+			if ( localStorage.key(i) == "loadQs.lastTime" ) { continue }
 			if ( expQk[localStorage.key(i)] == true ) { continue }
 			text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE \n"
 		}
-		var count = localStorage.getItem("lsCount")
-		count = Number(count) +1
-		localStorage.setItem("lsCount",count)
 		var filename = 'localStorage'+count+'.txt'
 
 		download(filename, text);
