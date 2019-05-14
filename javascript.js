@@ -22,6 +22,12 @@
 */
 
 /* PROJECT - PROGRESS v2
+✖ android: midQ a képernyőt töltse ki mindig
+✖ search:
+	jobb felső sarokban egy nagyító, amire ha klikk, akkor..
+	középen megjelenik egy olyan üres(csak text box + search) div -> beírom a szót majd searchre klikk
+	végignézi az összes elemet, és amelyikben megtalálható, azt bemásolja a div-be
+
 ✖ upgradeQ egyszerubb legyen
 ✖ android/telón a tételek nagyobbak legyenek
 ✖ mutéttan tételQ-nál (amikor kidobja) ne mutassa a tételcsoportot
@@ -731,11 +737,11 @@ buttonX.onclick = function(){
 	alert("sajt")
 }*/
 
-// –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– ––––*/
-// ha ráklikkelek egy details-ra, akkor csak azokat kell betöltse, amik visible-k!! -> erre írjak egyet
-// egyrészt ha ki van jelölve a tétel, akkor be kell töltse az összeset 
+/* 
+ ha ráklikkelek egy details-ra, akkor csak azokat kell betöltse, amik visible-k!! -> erre írjak egyet
+ egyrészt ha ki van jelölve a tétel, akkor be kell töltse az összeset 
 	// ha F_detailsToggle -ba is ezt használnám, akkor látható, hogy ha egy detailst megnyitok, majd csukom, akkor 2x lesznek ott a Q-k
-
+*/
 /* impQ - megoldás ?!
  + csak a impQ-ban töltse be az elején az altQ-kat (oldMethoddal: nem replace, hanem innerHTML)
  + csak akkor töltse be a többinél az impQ-kat, ha megnyitom --> probléma elvileg, hogy a feladatmegoldó oldalra átklikkelve nem jelenik meg akkor az összes quest ?
@@ -1033,11 +1039,23 @@ function F_midQ(detElem){
 			F_loadQtxt(impID,this.tagName)
 			var impTXT = Qtxt
 			impTXT = impTXT.slice(impTXT.indexOf("<summary"),impTXT.lastIndexOf("</details"))
-			impTXT = impTXT.replace("summary","center><strong")
-			impTXT = impTXT.replace("summary","strong></center")
-			document.getElementById("div_MidQText").innerHTML = impTXT
+			var qTitle = impTXT.slice(impTXT.indexOf(">")+1,impTXT.indexOf("</summary"))
+			document.getElementById("btn_MidQ").innerHTML = qTitle
 			
+			impTXT = impTXT.slice(impTXT.indexOf("</summary"))
+			impTXT = impTXT.slice(impTXT.indexOf(">")+1)
+			//impTXT = impTXT.replace("summary","center><strong")
+			//impTXT = impTXT.replace("summary","strong></center")
+			impTXT = impTXT.replace('<ul class="normal">','<ul>')
+			/*var index = impTXT.lastIndexOf('</ul>') //jó, de fölös, de megőrzöm azért
+			if (index >= 0 && index + 5 >= impTXT.length) {
+				impTXT = impTXT.substring(0, index)
+			}*/
+			document.getElementById("div_MidQText").innerHTML = impTXT
+
 			document.getElementById("div_MidQ").style.display = "block"
+			document.getElementById("div_MidQ").paddingLeft = "5px"
+			document.getElementById("div_MidQ").paddingRight = "5px"
 
 			F_impQfew(document.getElementById("div_MidQText"))
 			//F_imgLoad(document.getElementById("div_MidQText"))
@@ -1055,19 +1073,24 @@ function F_DivMidQ() {
 	div.id = "div_MidQ"
 	div.style.backgroundColor = "white"
 	div.style.overflow = "auto"
-	div.style.width = "98vw"
-	div.style.height = "81vh"
-	div.style.border = "10px solid black"
+	div.style.border = "8px solid black"
+	div.style.outline = "5px solid yellow"
 	div.style.display = "none"
 	div.style.position = "fixed"
-	div.style.left = "0px"
-	div.style.top = "15vh"
+	div.style.float = "none";
+	div.style.left = "5px"
+	div.style.right = "5px"
+	div.style.top = "4px"
+	div.style.bottom = "4px"
+	div.style.overflow = "auto";
 	
-	var button = document.createElement("input")
+	var button = document.createElement("div")
 	button.type = "button"
 	div.appendChild(button)
+	button.id = "btn_MidQ"
 	button.style.backgroundColor = "red"
 	button.style.color = "white"
+	button.style.fontWeight = "bold"
 	button.style.border = "3px solid black"
 	button.onclick = function(){ 
 		document.getElementById("div_MidQ").style.display = "none" 
@@ -1075,11 +1098,19 @@ function F_DivMidQ() {
 	}
 	button.value = "✖"
 	button.style.position = "absolute"
-	button.style.right = "0px"
+	button.style.left = "50%";
+	button.style.paddingLeft = "3px"
+	button.style.paddingRight = "3px"
+	button.style.transform = "translate(-50%)";
+	button.style.cursor = "pointer";
 	
 	var divText = document.createElement("div")
 	div.appendChild(divText)
 	divText.id = "div_MidQText"
+	divText.style.marginLeft = "-15px"
+	divText.style.paddingBottom = "10px"
+	divText.style.paddingTop = "30px"
+	//divText.style.paddingLeft = "10px"
 }
 F_DivMidQ()
 function F_DivSkip() {
@@ -2025,13 +2056,21 @@ function F_CreateQDiv() {
 		textArea.style.display = "none"
 		textArea.id = "note"
 		textArea.style.zIndex = "1"; 
-		textArea.rows = "5"
+		if ( isAndroid ) { 
+			textArea.rows = "2"
+		} else {
+			textArea.rows = "5"
+		}
 		//textArea.cols = "60"
 
 		textArea.style.position = "fixed"
-		textArea.style.width = "40vw"
-		textArea.style.left = "30%"
-		textArea.style.top = "25px"
+		textArea.style.width = "50vw"
+		textArea.style.left = "25%"
+		if ( isAndroid ) { 
+			textArea.style.top = "5px"
+		} else {
+			textArea.style.top = "15%"
+		}
 		textArea.style.border = "thick solid black"
 	}
 	F_TextAreaNote()
@@ -3380,7 +3419,7 @@ function func_calcOldNew(){
 
 // SAVE LS (begin)
 var downA = document.createElement('a');
-function download(filename, text) { // (netről copyztam) --> (azért kellett, mert androidon máshogy nemtudom lementeni)
+function download(filename,text) { // (netről copyztam) --> (azért kellett, mert androidon máshogy nemtudom lementeni)
 	/*var element = document.createElement('a');
 	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
 	element.setAttribute('download', filename);
@@ -3392,25 +3431,9 @@ function download(filename, text) { // (netről copyztam) --> (azért kellett, m
 	document.body.removeChild(element);
 	*/
 
-	downA.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-	downA.setAttribute('download', filename);
-	if (document.createEvent) {
-		var event = document.createEvent('MouseEvents');
-		event.initEvent('click', true, true);
-		downA.dispatchEvent(event);
-	} else {
-		downA.click();
-	}
-	
-	/*alert(text.length) // ha crashel androidon, akkor ezzel megtudom oldani (túl sok a karakter)
-	var num = text.length / 100000
-	num = Math.ceil(num)
-	for ( var i=0; i<num; i++ ) {
-		var acText = text.slice(0,100000)
-		text = text.slice(100000)
-		downA.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(acText));
-		downA.setAttribute('download', filename+"_"+i);
-
+	function F_downloadTXT(text,filename){
+		downA.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+		downA.setAttribute('download', filename);
 		if (document.createEvent) {
 			var event = document.createEvent('MouseEvents');
 			event.initEvent('click', true, true);
@@ -3418,7 +3441,20 @@ function download(filename, text) { // (netről copyztam) --> (azért kellett, m
 		} else {
 			downA.click();
 		}
-	}*/
+	}
+	
+	//alert(text.length) 
+	if ( isAndroid ) { // androidon crashelne, akkor ezzel megtudom oldani (túl sok a karakter)
+		var num = text.length / 100000
+		num = Math.ceil(num)
+		for ( var i=0; i<num; i++ ) {
+			var acText = text.slice(0,100000)
+			text = text.slice(100000)
+			F_downloadTXT(acText,filename+"_"+i)
+		} 
+	} else {
+		F_downloadTXT(text,filename)
+	}
 }
 function func_saveLS() {
 	var text = ""
@@ -3436,7 +3472,7 @@ function func_saveLS() {
 		//if ( localStorage.key(i).indexOf("hkExpQ.") != -1 ) { continue }
 		if ( localStorage.key(i) == "loadQs.lastTime" ) { continue }
 		if ( expQk[localStorage.key(i)] == true ) { continue }
-		text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE \n"
+		text = text + localStorage.key(i) + " == " + localStorage.getItem(localStorage.key(i)) + " NEXTONE \n"
 	}
 	
 	var count = localStorage.getItem("lsCount")

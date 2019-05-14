@@ -282,7 +282,7 @@
 	
 	// SAVE LS
 	var downA = document.createElement('a');
-	function download(filename, text) { // (netről copyztam) --> (azért kellett, mert androidon máshogy nemtudom lementeni)
+	function download(filename,text) { // (netről copyztam) --> (azért kellett, mert androidon máshogy nemtudom lementeni)
 		/*var element = document.createElement('a');
 		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
 		element.setAttribute('download', filename);
@@ -294,25 +294,9 @@
 		document.body.removeChild(element);
 		*/
 
-		downA.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-		downA.setAttribute('download', filename);
-		if (document.createEvent) {
-			var event = document.createEvent('MouseEvents');
-			event.initEvent('click', true, true);
-			downA.dispatchEvent(event);
-		} else {
-			downA.click();
-		}
-		
-		/*alert(text.length) // ha crashel androidon, akkor ezzel megtudom oldani (túl sok a karakter)
-		var num = text.length / 100000
-		num = Math.ceil(num)
-		for ( var i=0; i<num; i++ ) {
-			var acText = text.slice(0,100000)
-			text = text.slice(100000)
-			downA.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(acText));
-			downA.setAttribute('download', filename+"_"+i);
-
+		function F_downloadTXT(text,filename){
+			downA.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+			downA.setAttribute('download', filename);
 			if (document.createEvent) {
 				var event = document.createEvent('MouseEvents');
 				event.initEvent('click', true, true);
@@ -320,7 +304,20 @@
 			} else {
 				downA.click();
 			}
-		}*/
+		}
+		
+		//alert(text.length) 
+		if ( isAndroid ) { // androidon crashelne, akkor ezzel megtudom oldani (túl sok a karakter)
+			var num = text.length / 100000
+			num = Math.ceil(num)
+			for ( var i=0; i<num; i++ ) {
+				var acText = text.slice(0,100000)
+				text = text.slice(100000)
+				F_downloadTXT(acText,filename+"_"+i)
+			}
+		} else {
+			F_downloadTXT(text,filename)
+		}
 	}
 	function func_saveLS() {
 		var text = ""
@@ -342,10 +339,9 @@
 			//if ( localStorage.key(i).indexOf("hkExpQ.") != -1 ) { continue }
 			if ( localStorage.key(i) == "loadQs.lastTime" ) { continue }
 			if ( expQk[localStorage.key(i)] == true ) { continue }
-			text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE \n"
+			text = text + localStorage.key(i) + " == " + localStorage.getItem(localStorage.key(i)) + " NEXTONE \n"
 		}
 		var filename = 'localStorage'+count+'.txt'
-
 		download(filename, text);
 		
 		document.getElementById("btn_saveLS").style.backgroundColor = "Chartreuse"
@@ -372,8 +368,8 @@
 		do {
 			var phaseText = content.slice(0,content.indexOf(" NEXTONE \n"));
 			content = content.slice(content.indexOf(" NEXTONE ") +10)
-			var variable = phaseText.slice(0,phaseText.indexOf(" = "));
-			var price = phaseText.slice(phaseText.indexOf(" = ") +3);
+			var variable = phaseText.slice(0,phaseText.indexOf(" == "));
+			var price = phaseText.slice(phaseText.indexOf(" == ") +4);
 			localStorage.setItem(variable, price)
 		}
 		while (phaseText.length > 1);
