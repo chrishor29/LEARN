@@ -313,7 +313,8 @@
 			for ( var i=0; i<num; i++ ) {
 				var acText = text.slice(0,100000)
 				text = text.slice(100000)
-				F_downloadTXT(acText,filename+"_"+i)
+				filename = filename.replace(".txt","_"+i+".txt")
+				F_downloadTXT(acText,filename)
 			}
 		} else {
 			F_downloadTXT(text,filename)

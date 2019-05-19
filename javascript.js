@@ -399,10 +399,10 @@ function F_QtxtQname(text){
 	}
 	if ( qName == null ) { 
 		qName = text
-		if ( qName.indexOf("kerdes") != -1 ) { // span,div
+		/*if ( qName.indexOf("kerdes") != -1 ) { // span,div
 			qName = qName.slice(qName.indexOf(">")+1)
 			qName = qName.slice(0,qName.indexOf("</"))
-		}
+		}*/
 		//console.log("ha hiba van, lehet itt találok megoldást: "+Qtxt)  // a funkcióra hivatkozás még különbözo Qtxt-ekkel történik, és nem volt idom szépen megírni, de egyenlore elvileg jó így is, csak hibára fogékonyabb így
 	}
 }
@@ -448,6 +448,20 @@ function F_checkEXPs(){ /* ez egyenlore elobb kell legyen, mint a CheckQs külö
 }
 F_checkEXPs()
 
+var impID
+function F_getImpID(classTXT){
+	impID = " !-nincs-! "
+	if ( classTXT.indexOf("{") != -1 ) {
+		var begin = classTXT.indexOf("{")
+		var end = classTXT.indexOf("}") +1
+		impID = classTXT.slice(begin,end)
+	} else if ( classTXT.indexOf("[") != -1 ) {
+		var begin = classTXT.indexOf("[")
+		var end = classTXT.indexOf("]") +1
+		impID = classTXT.slice(begin,end)
+	}
+}
+
 function F_checkQs(){
 	F_getTime()
 	var diffTime = myTime-oldTime
@@ -457,22 +471,32 @@ function F_checkQs(){
 	for ( var i=0; i<kerdesek.length; i++ ) { 
 		var Qelem = kerdesek[i]
 		F_QtxtQname(Qelem.innerHTML)
-		var count
-		if ( Qelem.innerHTML.indexOf("<summary") != -1 ) { 
-			count = '<'+Qelem.tagName+' class="'+Qelem.className+'">'+Qelem.innerHTML+'</'+Qelem.tagName+'>'
-		} else if ( Qelem.className.indexOf("abbr") != -1 ) { 
-			count = Qelem.parentElement.innerHTML
+		if ( qName.slice(-3) != "-->" ) {
+			//console.log(qName.slice(-10))
+			var count = 0
+			if ( Qelem.className.indexOf("midQ") != -1 ) { 
+				F_getImpID(Qelem.className)
+				count = impID
+				//console.log(count)
+			} else {
+				if ( Qelem.innerHTML.indexOf("<summary") != -1 ) { 
+					count = '<'+Qelem.tagName+' class="'+Qelem.className+'">'+Qelem.innerHTML+'</'+Qelem.tagName+'>'
+				} else if ( Qelem.className.indexOf("abbr") != -1 ) { 
+					count = Qelem.parentElement.innerHTML
+				}
+				count = count.length
+			}
+			count = qName+ "<!--" +count+ "-->"
+			//console.log(count)
+			Qelem.innerHTML = Qelem.innerHTML.replace(qName,count)
+			//if ( Qelem.innerHTML.indexOf("<summary") == -1 ) { console.log(Qelem.innerHTML.slice(0,Qelem.innerHTML.indexOf("-->"))) }
+			arrQnames[count] = true
+			var Qtxt = '<'+Qelem.tagName+' class="'+Qelem.className+'">'+Qelem.innerHTML+'</'+Qelem.tagName+'>'
+			arrQtxts.push(Qtxt)
+			
+			F_QtxtQname(Qtxt)
+			arrQnameQtxt[qName] = Qtxt
 		}
-		count = qName+ "<!--" +count.length+ "-->"
-		Qelem.innerHTML = Qelem.innerHTML.replace(qName,count)
-		//if ( Qelem.innerHTML.indexOf("<summary") == -1 ) { console.log(Qelem.innerHTML.slice(0,Qelem.innerHTML.indexOf("-->"))) }
-		//console.log(count)
-		arrQnames[count] = true
-		var Qtxt = '<'+Qelem.tagName+' class="'+Qelem.className+'">'+Qelem.innerHTML+'</'+Qelem.tagName+'>'
-		arrQtxts.push(Qtxt)
-		
-		F_QtxtQname(Qtxt)
-		arrQnameQtxt[qName] = Qtxt
 	}
 	
 	F_getTime()
@@ -480,32 +504,6 @@ function F_checkQs(){
 	console.log("– F_checkQs END – " + diffTime)
 }
 if ( fileName != "expqs.html" ) { F_checkQs() }
-
-function F_checkImpQs(){
-	F_getTime()
-	var startTime = myTime
-	for ( var i=0; i<kerdesek.length; i++ ) { 
-		if ( kerdesek[i].id == false ) {
-			var Qelem = kerdesek[i]
-			var Qtxt = '<'+Qelem.tagName+' class="'+Qelem.className+'">'+Qelem.innerHTML+'</'+Qelem.tagName+'>'
-			F_QtxtQname(Qelem.innerHTML)
-			var Qname = qName
-			var count = Qname
-			
-			if ( Qname.slice(-3) != "-->" ) {
-				count = Qname+ "<!--" +Qtxt.length+ "-->"
-				Qelem.innerHTML = Qelem.innerHTML.replace(Qname,count)
-			}
-			arrQnames[count] = true
-
-			Qtxt = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
-			arrQtxts.push(Qtxt)
-		}
-	}
-	F_getTime()
-	var diffTime = (myTime-startTime).toFixed(2)
-	console.log("– F_checkImpQs – " + diffTime+"s")
-}
 
 var changeStatus = false
 function F_oldQchange(oldLSid){
@@ -952,7 +950,7 @@ function F_impQfew(detElem){ // ?ms/Q a betöltési ideje
 	F_getTime()
 	var endTime = myTime-oldTime-diffTime
 	var unitTime = (endTime*1000/count).toFixed(2);
-	console.log("– F_impQfew – "+endTime.toFixed(2)+"sec ("+unitTime+"ms/Q, "+count+"db Q)")
+	//console.log("– F_impQfew – "+endTime.toFixed(2)+"sec ("+unitTime+"ms/Q, "+count+"db Q)")
 }
 function F_impQlot(detElem){ // 0,4ms/Q a betöltési ideje
 	F_getTime()
@@ -1008,7 +1006,7 @@ function F_impQlot(detElem){ // 0,4ms/Q a betöltési ideje
 	F_getTime()
 	var endTime = myTime-oldTime-diffTime
 	var unitTime = (endTime*1000/count).toFixed(2);
-	console.log("– F_impQlot – "+endTime.toFixed(2)+"sec ("+unitTime+"ms/Q, "+count+"db Q)")
+	//console.log("– F_impQlot – "+endTime.toFixed(2)+"sec ("+unitTime+"ms/Q, "+count+"db Q)")
 }
 //F_impQlot(document.documentElement)
 function F_loadTetelQs(){ // impQnew-al betölti az aktív tételeket
@@ -1264,7 +1262,7 @@ var testLoad = false
 var missImgs = ""
 function F_loadImgVideo(detElem){
 	//console.clear()
-	console.log("F_loadImgVideo")
+	//console.log("F_loadImgVideo")
 	
 	var imgs = detElem.getElementsByTagName("IMG")
 	for ( var x=0; x<imgs.length; x++ ) { 
@@ -1547,7 +1545,7 @@ function F_toggleAll() {
 	if ( refreshAll != true ) {
 		refreshAll = true
 		F_getTexts()
-		F_checkImpQs()
+		F_checkQs()
 		F_oldQcheck()
 		F_tetelChoose()
 		func_tableSkipFix()
@@ -3450,7 +3448,8 @@ function download(filename,text) { // (netről copyztam) --> (azért kellett, me
 		for ( var i=0; i<num; i++ ) {
 			var acText = text.slice(0,100000)
 			text = text.slice(100000)
-			F_downloadTXT(acText,filename+"_"+i)
+			filename = filename.replace(".txt","_"+i+".txt")
+			F_downloadTXT(acText,filename)
 		} 
 	} else {
 		F_downloadTXT(text,filename)
@@ -3848,6 +3847,12 @@ function F_nextQ(){
 			}
 		}
 		F_saveNewQs()
+/*var arrayQ = QlocElem.getElementsByClassName("kerdes")
+for ( var i=0; i<arrayQ.length; i++ ) {
+	F_calcLSid(arrayQ[i])
+	F_QtxtQname(actQtext)
+	console.log(arrayQ[i].innerHTML)
+}*/
 		
 		QlocElem.innerHTML = QlocElem.innerHTML + "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>"
 		
