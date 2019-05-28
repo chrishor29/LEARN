@@ -1337,6 +1337,8 @@ function F_loadImgVideo(detElem){
 					source = source.slice(0,source.indexOf("."))
 					source = source.slice(0,-1)
 					source = source + imgs[x].src.slice(imgs[x].src.indexOf("."))
+					
+					console.log(imgs[x].src +" "+ source)
 					imgs[x].src = source
 					imgs[x].style.borderColor = "red"
 				}
