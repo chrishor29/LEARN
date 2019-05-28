@@ -1337,8 +1337,6 @@ function F_loadImgVideo(detElem){
 					source = source.slice(0,source.indexOf("."))
 					source = source.slice(0,-1)
 					source = source + imgs[x].src.slice(imgs[x].src.indexOf("."))
-					console.log(imgs[x].src)
-					console.log(source)
 					imgs[x].src = source
 					imgs[x].style.borderColor = "red"
 				}
@@ -1505,7 +1503,7 @@ function F_imgClick(detElem){ // képnagyítás balKlikkel középre
 	};
 	var imgs = detElem.getElementsByTagName("IMG")
 	for ( var i=0;  i<imgs.length;  i++ ) {
-		imgs[i].onclick=function(){
+		imgs[i].onclick = function() {
 			imgStatus = "show"
 			centerDiv.style.visibility = "visible";
 			centerImage.src = this.src
@@ -1523,6 +1521,9 @@ function F_imgClick(detElem){ // képnagyítás balKlikkel középre
 				var source = this.src
 				if ( this.style.borderColor != "limegreen" ) {
 					source = source.replace(".","m.")
+					
+					console.log(source)
+					
 					this.src = source
 					this.style.borderColor = "limegreen"
 				} else {
