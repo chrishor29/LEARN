@@ -1,7 +1,6 @@
 // window.onerror = function(msg, url, linenumber) { alert('Error message: '+msg+'\nLine Number: '+linenumber) }
 
 /* PROJECT - PROGRESS
- ✖ ha egy quest többször is szerepel (nextQ), akkor csak az elsőt tegye ki az osztályzás közé, és a többire mind ezen számot írja (ne generáljon nekik külön még1et)
  ✖ searchText funkció
  ✖ írhassam át a kérdés repeatTime-ját
  
@@ -82,6 +81,7 @@
 */
 
 /* PROJECT - DONE
+ ✔ ha egy quest többször is szerepel (nextQ), akkor csak az elsőt tegye ki az osztályzás közé, és a többire mind ezen számot írja (ne generáljon nekik külön még1et)
  ✔ lehessen látni a kérdéseket táblázatban, melyiket hány perce repeateltem, mert felbssza magát az ember, hogy nemtudja mikor jut a végére --> ne mutassa azokat, melyek skippedek(kék/fekete) már
  ✔ mikrobi load lassú --> impQ-kat elején csak Table-ba loadolja, majd akkor egyesével betölti, ha megnyitottam
  ✔ nem tölti be az összes expQ-t -> lásd pl. kórtan {188}-as Q-t nem tölti be a [10]-esben. --> szvsz az kéne legyen a megoldás, hogy amit már betöltött azt írja át 'imp'-ről 'imped'-re (így még tudok azokkal is foglalkozni később ha kell)
@@ -1337,6 +1337,8 @@ function F_loadImgVideo(detElem){
 					source = source.slice(0,source.indexOf("."))
 					source = source.slice(0,-1)
 					source = source + imgs[x].src.slice(imgs[x].src.indexOf("."))
+					console.log(imgs[x].src)
+					console.log(source)
 					imgs[x].src = source
 					imgs[x].style.borderColor = "red"
 				}
@@ -3614,7 +3616,7 @@ function F_prevQ(){
 		document.getElementById("note").value = ""
 	}
 
-	for ( var i=0; i<activeQs.length; i++ ) {
+	for ( var i in activeQs ) {
 		var LSid = activeQs[i]
 		var jegy = document.getElementById("hkSelect."+i).value
 		var newQvolt = false
@@ -3947,7 +3949,8 @@ for ( var i=0; i<arrayQ.length; i++ ) {
 			//console.clear()
 			console.log(" – F_SetMarks – ")
 			var arrayQ = QlocElem.getElementsByClassName("kerdes")
-			var usedQ = []
+			var numQs = 0
+			var num = 0
 			for ( var i=0; i<arrayQ.length; i++ ) {
 				var Qelem = arrayQ[i]
 
@@ -3956,8 +3959,18 @@ for ( var i=0; i<arrayQ.length; i++ ) {
 				var Qtext = actQtext
 				/* csak ellenorzés: */ if ( LSid == undefined ) { alert("#1. " +num+ ": "+ LSid) }
 				
-				var num = i+1
-				activeQs[i] = LSid 
+				var isNewQ = true
+				for ( var x in activeQs ) {
+					if ( activeQs[x] == LSid ) { 
+						num = Number(x) 
+						isNewQ = false
+					}
+				}
+				if ( isNewQ == true ) {
+					numQs = numQs +1
+					num = numQs
+					activeQs[num] = LSid
+				}
 				
 				if ( Qelem.innerHTML.indexOf("<summary") != -1 ) {  // kérdésbe bekerül, hogy a táblázatban hányas
 					Qelem.innerHTML = Qelem.innerHTML.replace(">",">["+num+"] ")
@@ -3965,25 +3978,27 @@ for ( var i=0; i<arrayQ.length; i++ ) {
 					Qelem.innerHTML = '['+num+'] '+Qelem.innerHTML
 				}
 
-				if ( !document.getElementById("hkSelect."+i) ) { F_CreateSelect(i) }
-				document.getElementById("td.0."+i).hidden = false 
-				document.getElementById("td.1."+i).hidden = false 
-				document.getElementById("td.2."+i).hidden = false 
+				if ( isNewQ == false ) { continue }
+
+				if ( !document.getElementById("hkSelect."+num) ) { F_CreateSelect(num) }
+				document.getElementById("td.0."+num).hidden = false 
+				document.getElementById("td.1."+num).hidden = false 
+				document.getElementById("td.2."+num).hidden = false 
 				if ( localStorage.getItem(LSid+"_skip") == "important" ) {
-					document.getElementById("td.2."+i).style.backgroundColor = "lawngreen"
+					document.getElementById("td.2."+num).style.backgroundColor = "lawngreen"
 				} else {
-					document.getElementById("td.2."+i).style.backgroundColor = "snow"
+					document.getElementById("td.2."+num).style.backgroundColor = "snow"
 				}
 				
-				document.getElementById("td.0."+i).style.borderColor = "black"
+				document.getElementById("td.0."+num).style.borderColor = "black"
 
 				var jegy = localStorage.getItem(LSid+'_jegy')
 				var repeat = localStorage.getItem(LSid+'_repeat')
 				func_calcPriorHosszJegy(arrayQ[i])
-				document.getElementById("td.0."+i).title = LSid+"<br> Jegy:"+jegy+"<br>Repeat:"+repeat+"<br>Prior:"+prior
-				F_titleChange(document.getElementById("td.0."+i).parentElement)
+				document.getElementById("td.0."+num).title = LSid+"<br> Jegy:"+jegy+"<br>Repeat:"+repeat+"<br>Prior:"+prior
+				F_titleChange(document.getElementById("td.0."+num).parentElement)
 
-				var selectList = document.getElementById("hkSelect."+i)
+				var selectList = document.getElementById("hkSelect."+num)
 				// repeatest beállítja vastagbetusre
 				var c = selectList.childNodes;
 				for (var x=0; x < c.length; x++) {
@@ -3995,23 +4010,23 @@ for ( var i=0; i<arrayQ.length; i++ ) {
 				}
 
 				//ido
-				document.getElementById("td.0."+i).style.backgroundColor = "white"
+				document.getElementById("td.0."+num).style.backgroundColor = "white"
 				var date = new Date();
 				selectList.disabled = false
 				selectList.style.backgroundColor = "White"
 				if ( localStorage.getItem(LSid+'_idopont') ) {
 					var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
 					// console.log("Qid:"+Qid+" ––– time:"+idopont)
-					document.getElementById("td.2."+i).innerHTML = idopont
+					document.getElementById("td.2."+num).innerHTML = idopont
 					
 					var date = new Date();
 					var remain = Math.floor(date.getTime()/3600000)
 					remain = localStorage.getItem("vizsgaSkip") - remain
 					remain = remain*60
 					if ( idopont < remain ) {
-						document.getElementById("td.2."+i).style.borderColor = "red"
+						document.getElementById("td.2."+num).style.borderColor = "red"
 					} else {
-						document.getElementById("td.2."+i).style.borderColor = "black"
+						document.getElementById("td.2."+num).style.borderColor = "black"
 					}
 
 					func_calcTimeDiff(localStorage.getItem(LSid+'_repeat'))
@@ -4031,29 +4046,29 @@ for ( var i=0; i<arrayQ.length; i++ ) {
 					}
 					
 					if ( repeat == 0 ) {
-						document.getElementById("td.0."+i).style.backgroundColor = "red"
+						document.getElementById("td.0."+num).style.backgroundColor = "red"
 					} else if ( repeat == 1 ) {
-						document.getElementById("td.0."+i).style.backgroundColor = "orange"
+						document.getElementById("td.0."+num).style.backgroundColor = "orange"
 					} else if ( repeat == 2 ) {
-						document.getElementById("td.0."+i).style.backgroundColor = "yellow"
+						document.getElementById("td.0."+num).style.backgroundColor = "yellow"
 					} else {
-						document.getElementById("td.0."+i).style.backgroundColor = "LawnGreen"
+						document.getElementById("td.0."+num).style.backgroundColor = "LawnGreen"
 					}
 				}
-				document.getElementById("td.0."+i).style.backgroundColor = "White"
-				if ( hossz == "0" ) { document.getElementById("td.0."+i).style.backgroundColor = "lightgrey" }
+				document.getElementById("td.0."+num).style.backgroundColor = "White"
+				if ( hossz == "0" ) { document.getElementById("td.0."+num).style.backgroundColor = "lightgrey" }
 				if ( localStorage.getItem(LSid+'_skip') && localStorage.getItem(LSid+'_skip') != "important" ) {
-					document.getElementById("td.0."+i).style.backgroundColor = "Black"
+					document.getElementById("td.0."+num).style.backgroundColor = "Black"
 					if ( localStorage.getItem(LSid+'_skip') == "vizsgaSkip" ) {
-						document.getElementById("td.0."+i).style.backgroundColor = "Blue"
+						document.getElementById("td.0."+num).style.backgroundColor = "Blue"
 					}
 					selectList.disabled = true
 					selectList.style.backgroundColor = "Black"
 				}
-				if ( document.getElementById("td.0."+i).style.backgroundColor == "blue" || document.getElementById("td.0."+i).style.backgroundColor == "black" || document.getElementById("td.0."+i).style.backgroundColor == "red" ) {
-					document.getElementById("td.0."+i).style.color = "white" // fontColor
+				if ( document.getElementById("td.0."+num).style.backgroundColor == "blue" || document.getElementById("td.0."+num).style.backgroundColor == "black" || document.getElementById("td.0."+num).style.backgroundColor == "red" ) {
+					document.getElementById("td.0."+num).style.color = "white" // fontColor
 				} else {
-					document.getElementById("td.0."+i).style.color = "black" // fontColor
+					document.getElementById("td.0."+num).style.color = "black" // fontColor
 				}
 			}
 		}
@@ -4163,7 +4178,7 @@ for ( var i=0; i<arrayQ.length; i++ ) {
 function F_CreateSelect(i) {
 	var selectList = document.createElement("select")
 	selectList.id = "hkSelect."+i
-	var LSid = activeQs[i]
+	//var LSid = activeQs[i]
 
 	var array = ["empty","0","1","2","3","4"]
 	for ( var x=0;  x<array.length;  x++ ) {
@@ -4184,7 +4199,7 @@ function F_CreateSelect(i) {
 			/*td.style.color = "white"
 			td.style.textShadow = "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black"*/
 			//td.style.textShadow = "-1px 0 white, 0 1px white, 1px 0 white, 0 -1px white"
-			td.innerHTML = i+1
+			td.innerHTML = i
 		} else if ( x == 1 ) {
 			td.appendChild(selectList)
 		} else if ( x == 2 ) {
@@ -4243,7 +4258,6 @@ function F_detailsAll(elem){
 F_detailsAll(document)
 
 */
-
 
 document.getElementById("input_toggleAll").style.backgroundColor = ""
 document.getElementById("spanLoading").style.visibility = "hidden";
