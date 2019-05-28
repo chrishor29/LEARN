@@ -1520,13 +1520,9 @@ function F_imgClick(detElem){ // képnagyítás balKlikkel középre
 		};
 		if ( imgs[i].classList.contains("metszet") == true ) {
 			imgs[i].onclick=function(){
-				var source = this.src
 				if ( this.style.borderColor != "limegreen" ) {
-					source = source.replace(".","m.")
-					
-					console.log(source)
-					
-					this.src = source
+					var locX = this.src.lastIndexOf(".")
+					this.src = this.src.slice(0,locX)+"m"+this.src.slice(locX)
 					this.style.borderColor = "limegreen"
 				} else {
 					imgStatus = "show"
