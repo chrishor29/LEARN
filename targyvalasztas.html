@@ -92,16 +92,6 @@
 </div>
 
 
-<table id="demok"><tr><th></th> <th>DEMO</th> <th>hiányzás</th></tr>
-	<tr><th>patosz</th> <td>5. & <span class="MISS">10.</span></td> <td>(GY) <span class="WHITE">02.18</span></td></tr>
-	<tr><th>kórtan</th> <td></td> <td>(EA) <span class="WHITE">03.27</span> <span class="WHITE">05.08</span> <br>(GY) <span class="WHITE">03.26</span></td></tr>
-	<tr><th>mikrobi</th> <td>7. & 10.</td> <td>(GY)</td></tr>
-	<tr><th>belgyógy</th> <td></td> <td>(GY) <span class="WHITE">03.04</span> <span class="WHITE">03.18</span></td></tr>
-	<tr><th>genetika</th> <td>10.</td> <td>(GY) <span class="WHITE">03.26</span> <span class="WHITE">04.02</span> <br>(EA) <span class="WHITE">02.27</span> <span class="WHITE">03.27</span> <span class="WHITE">05.08</span></td></tr>
-	<tr><th>EKG</th> <td style="background-color:black"></td> <td><span class="WHITE">03.05</span> <span class="WHITE">03.26</span></td></tr>
-	<tr><th>pszicho</th> <td>3.</td> <td>(GY) <span class="WHITE">03.22</span> <span class="WHITE">03.29</span></td></tr>
-</table>
-
 <script>
 	var ua = navigator.userAgent.toLowerCase();
 	var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
@@ -307,7 +297,7 @@
 		}
 		
 		//alert(text.length) 
-		if ( isAndroid ) { // androidon crashelne, akkor ezzel megtudom oldani (túl sok a karakter)
+		/* if ( isAndroid ) { // androidon crashelne, akkor ezzel megtudom oldani (túl sok a karakter)
 			var num = text.length / 100000
 			num = Math.ceil(num)
 			for ( var i=0; i<num; i++ ) {
@@ -316,9 +306,9 @@
 				filename = filename.replace(".txt","_"+i+".txt")
 				F_downloadTXT(acText,filename)
 			}
-		} else {
+		} else { */
 			F_downloadTXT(text,filename)
-		}
+		// }
 	}
 	function func_saveLS() {
 		var text = ""

@@ -1,7 +1,10 @@
 // window.onerror = function(msg, url, linenumber) { alert('Error message: '+msg+'\nLine Number: '+linenumber) }
 
 /* PROJECT - PROGRESS
- ✖ lehessen látni a kérdéseket táblázatban, melyiket hány perce repeateltem, mert felbssza magát az ember, hogy nemtudja mikor jut a végére
+ ✖ ha egy quest többször is szerepel (nextQ), akkor csak az elsőt tegye ki az osztályzás közé, és a többire mind ezen számot írja (ne generáljon nekik külön még1et)
+ ✖ searchText funkció
+ ✖ írhassam át a kérdés repeatTime-ját
+ 
  ✖ MIKROBI LS:
 	tétel buttonra klikk lassú
 	tétel kiválasztása lassú (hogy melybol dobjon kérdést)
@@ -79,6 +82,7 @@
 */
 
 /* PROJECT - DONE
+ ✔ lehessen látni a kérdéseket táblázatban, melyiket hány perce repeateltem, mert felbssza magát az ember, hogy nemtudja mikor jut a végére --> ne mutassa azokat, melyek skippedek(kék/fekete) már
  ✔ mikrobi load lassú --> impQ-kat elején csak Table-ba loadolja, majd akkor egyesével betölti, ha megnyitottam
  ✔ nem tölti be az összes expQ-t -> lásd pl. kórtan {188}-as Q-t nem tölti be a [10]-esben. --> szvsz az kéne legyen a megoldás, hogy amit már betöltött azt írja át 'imp'-ről 'imped'-re (így még tudok azokkal is foglalkozni később ha kell)
  ✔ legyen egy funkció, amivel összes img/video-t betölti, és amelyik hiányzik, azt jelezze --> anno ezt írtam <img onerror="alert(this.src)" data-src="gltkklkkjmnm.png">
@@ -158,10 +162,6 @@ var ua = navigator.userAgent.toLowerCase();
 var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
 
 
-
-
-
-
 var myTime
 var oldTime = false
 function F_getTime(){
@@ -193,14 +193,12 @@ function checkExpQHtml(){ // oldal betöltésénél ugorjon el expQkat importoln
 	var lastTime = localStorage.getItem("loadQs.lastTime")
 	var diffTime = thisTime - lastTime
 	diffTime = diffTime /60000 /60 // óra
+	
 
-	if ( diffTime > 24 ) {
-		/*if ( isAndroid ) { 
-			alert("látogasd meg a tárgyválasztás weboldalon az 'expqs.html' oldalt (több tárgynál használt kérdéseket onnan tölti be)")
-		} else {*/
-			var expLoc = htmlLEARNloc + "expqs.html"
-			localStorage.setItem("loadQs.lastPage",fileName)
-			window.location.href = expLoc
+	if ( diffTime > 24 && fileName != "LabMed/labmed.html" ) {
+		var expLoc = htmlLEARNloc + "expqs.html"
+		localStorage.setItem("loadQs.lastPage",fileName)
+		window.location.href = expLoc
 	} else {
 		localStorage.removeItem("loadQs.lastPage")
 	}
@@ -1075,12 +1073,28 @@ function F_DivMidQ() {
 	div.style.outline = "5px solid yellow"
 	div.style.display = "none"
 	div.style.position = "fixed"
+	//div.style.float = "none";
+	//div.style.height = "96%"
+	//div.style.width = "98%"
+	div.style.left = "5px"
+	div.style.right = "5px"
+	div.style.top = "4px"
+	div.style.bottom = "4px"
+	
+	/*var div = document.createElement("div")
+	document.body.appendChild(div)
+	div.id = "div_MidQ"
+	div.style.backgroundColor = "white"
+	div.style.border = "8px solid black"
+	div.style.outline = "5px solid yellow"
+	div.style.display = "none"
+	div.style.position = "fixed"
 	div.style.float = "none";
 	div.style.left = "5px"
 	div.style.right = "5px"
 	div.style.top = "4px"
 	div.style.bottom = "4px"
-	div.style.overflow = "auto";
+	div.style.overflow = "auto";*/
 	
 	var button = document.createElement("div")
 	button.type = "button"
@@ -1758,7 +1772,6 @@ function F_CreateQDiv() {
 		button.style.border = "3px solid black"
 		button.style.backgroundColor = "Bisque"
 		button.textContent = "0"
-		button.id = "button_Marks"
 		divSettings.appendChild(button)
 		
 		var div = document.createElement("div")
@@ -1767,18 +1780,92 @@ function F_CreateQDiv() {
 		div.style.backgroundColor = "white"
 		div.style.overflow = "auto"
 		div.style.width = "80vw"
-		div.style.height = "80vh"
+		div.style.height = "70vh"
 		div.style.position = "fixed"
 		div.style.top = "50%"
 		div.style.left = "50%"
-		div.style.marginTop = "-40vh"
+		div.style.marginTop = "-30vh"
 		div.style.marginLeft = "-40vw"
 		div.style.border = "10px solid black"
 		div.style.display = "none"
 		
-		var allStatusQs = document.getElementsByClassName("status")
+		var table = document.createElement("TABLE")
+		div.appendChild(table)
 		
 		button.onclick = function(){
+			if ( div.style.display == "none" ) {
+				div.style.display = "block"
+				table.innerHTML = ""
+				var objQtime = []
+				for ( var tetelID in tetelek ) {
+					if ( localStorage.getItem(tetelID+"_button") == "true" ) {
+						var tetelQ = document.getElementById(tetelID)
+						var tetelQs = tetelQ.getElementsByClassName("kerdes")
+						for ( var x=0; x<tetelQs.length; x++ ) {
+							F_calcLSid(tetelQs[x])
+							var LSid = actLSid
+							var date = new Date();
+							var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
+							
+							var Qname = localStorage.getItem(LSid)
+							var jegy = localStorage.getItem(LSid+"_jegy")
+							if ( LSid == null || Qname == null|| jegy == null ) { continue }
+							if ( localStorage.getItem(LSid+"_skip") == "perma" ) { continue }
+							if ( localStorage.getItem(LSid+"_skip") == "vizsgaSkip" ) { continue }
+							
+							objQtime.push([Qname, idopont]);
+							//objQtime[Qname] = idopont
+						}
+					}
+				}
+
+				objQtime.sort(function(a, b) { return b[1] - a[1]})
+				
+				var numX = 0
+				for ( var Qname in objQtime ) {
+					numX = numX +1
+					var tr = document.createElement("TR")
+					table.appendChild(tr)
+					var td = document.createElement("TD")
+					tr.appendChild(td)
+					td.innerHTML = numX
+					var td = document.createElement("TD")
+					tr.appendChild(td)
+					td.innerHTML = objQtime[Qname].slice(0,objQtime[Qname].lastIndexOf(","))
+					var td = document.createElement("TD")
+					tr.appendChild(td)
+					td.innerHTML = objQtime[Qname].slice(objQtime[Qname].lastIndexOf(","))
+				}
+				
+				function F_sorbaRend() {
+					var count = table.getElementsByTagName("tr").length;
+					var switching = true
+					while ( switching ) {
+						switching = false // alapvetően elég 1x végigmennie, ha nincs mit rendezni
+						var shouldSwitch = false
+						for ( var x=0; x<count; x++ ) {
+							var time1 = Number(table.rows[x].cells[1].innerHTML)
+							var time2
+							if ( table.rows[x+1] ) { time2 = Number(table.rows[x+1].cells[1].innerHTML) }
+							
+							if ( time1 < time2 ) {
+							  shouldSwitch = true;
+							  break;
+							}
+						}
+						if ( shouldSwitch ) {
+							table.rows[x].parentNode.insertBefore(table.rows[x+1], table.rows[x]);
+							switching = true;
+						}
+					}
+				}
+				//F_sorbaRend()
+			} else {
+				div.style.display = "none"
+			}
+		}
+		/*button.onclick = function(){
+			var allStatusQs = document.getElementsByClassName("status")
 			if ( div.style.display == "none" ) {
 				div.style.display = "block"
 				
@@ -1803,7 +1890,7 @@ function F_CreateQDiv() {
 			} else {
 				div.style.display = "none"
 			}
-		}
+		}*/
 	}
 	F_ButtonMarks()
 	function F_ButtonNextQdiff() {
@@ -1881,7 +1968,6 @@ function F_CreateQDiv() {
 	var br = document.createElement("br")
 	divSettings.appendChild(br)
 	
-
 	function F_ButtonNewQ() {
 		var button = document.createElement("input")
 		button.id = "btn_newQuest"
@@ -2020,7 +2106,6 @@ function F_CreateQDiv() {
 		span.style.paddingBottom = "2px"
 	}
 	F_SpanRepOld()
-
 
 
 	function F_DivQLoc() {
@@ -2575,7 +2660,6 @@ function F_tetelQs() { // impID-ket tételhez kapcsolja - későbbiekre (F_creat
 }
 F_tetelQs()
 
-
 function F_sortQuests(){ // felmegy tételig, ha volt közben altétel is, akkor abba teszi
 	console.clear()
 	console.log("– F_sortQuests –")
@@ -3087,10 +3171,6 @@ function func_spanClick(button){  // btn_fix, btn_skip, btn_vizsgaskip, btn_repF
 }
 
 function F_changeTetelCount(plus,button){
-	var num = document.getElementById("button_Marks").innerHTML
-	num = Number(num) + Number(plus)
-	document.getElementById("button_Marks").innerHTML = num
-	
 	var parentText = button.parentElement.parentElement
 	parentText = parentText.innerHTML
 	parentText = parentText.slice(parentText.indexOf("<b>")+3,parentText.indexOf("</b>"))
@@ -3867,6 +3947,7 @@ for ( var i=0; i<arrayQ.length; i++ ) {
 			//console.clear()
 			console.log(" – F_SetMarks – ")
 			var arrayQ = QlocElem.getElementsByClassName("kerdes")
+			var usedQ = []
 			for ( var i=0; i<arrayQ.length; i++ ) {
 				var Qelem = arrayQ[i]
 

@@ -16,8 +16,6 @@ a.source {
 	text-decoration: none;
 }
 
-
-
 span.seekBar{
 	position: absolute;
 	background: orange;
@@ -48,7 +46,7 @@ abbr {
 	padding-right: 1px; 
 	padding-top: 0px; 
 	padding-bottom: 0px; 
-	background-color: aliceblue;
+	background-color: lavender;
 }
 abbr.test {
 	position: relative;
@@ -99,7 +97,6 @@ div.normal {
 	padding-right: 5px;
 }
 
-
 hr.mini {
     border: none;
     height: 1px;
@@ -145,7 +142,6 @@ span.abbr {
 	margin-bottom: 0px;
 	display: inline-block;
 }
-
 
 span { 
 	padding-left: 0px; 
