@@ -1495,52 +1495,7 @@ function F_imgActLoad(IMGelem){
 }
 var tooltipStatus
 function F_imgClick(detElem){ // képnagyítás balKlikkel középre
-	var imgStatus
-	document.body.onclick=function(){
-		if ( imgStatus == "hide" ) { centerDiv.style.visibility = "hidden" }
-		imgStatus = "hide"
-
-		tooltipSpan.style.visibility = "hidden";
-		tooltipStatus = "hide"
-	};
-	var imgs = detElem.getElementsByTagName("IMG")
-	for ( var i=0;  i<imgs.length;  i++ ) {
-		imgs[i].onclick = function() {
-			imgStatus = "show"
-			centerDiv.style.visibility = "visible";
-			centerImage.src = this.src
-			centerDiv.style.maxHeight = "95%";
-			centerDiv.style.maxWidth = "95%";
-			centerDiv.style.overflow = "auto";
-
-			centerDiv.style.position = "fixed";
-			centerDiv.style.left = "50%";
-			centerDiv.style.top = "50%";
-			centerDiv.style.transform = "translate(-50%, -50%)";
-		};
-		if ( imgs[i].classList.contains("metszet") == true ) {
-			imgs[i].onclick=function(){
-				if ( this.style.borderColor != "limegreen" ) {
-					var locX = this.src.lastIndexOf(".")
-					this.src = this.src.slice(0,locX)+"m"+this.src.slice(locX)
-					this.style.borderColor = "limegreen"
-				} else {
-					imgStatus = "show"
-					centerDiv.style.visibility = "visible";
-					centerImage.src = this.src
-					centerDiv.style.maxHeight = "95%";
-					centerDiv.style.maxWidth = "95%";
-					centerDiv.style.overflow = "auto";
-
-					centerDiv.style.position = "fixed";
-					centerDiv.style.left = "50%";
-					centerDiv.style.top = "50%";
-					centerDiv.style.transform = "translate(-50%, -50%)";
-				}
-			};
-		}
-	}
-	centerDiv = document.createElement("div")
+	var centerDiv = document.createElement("div")
 	document.body.appendChild(centerDiv)
 	centerImage = document.createElement("img")
 	centerImage.style.maxWidth = "none";
@@ -1548,6 +1503,53 @@ function F_imgClick(detElem){ // képnagyítás balKlikkel középre
 	centerDiv.appendChild(centerImage)
 	centerDiv.style.visibility = "hidden";
 	centerDiv.style.border = "5px ridge LightGray";
+	
+	var imgStatus
+	function F_showCenterDiv(detElem){
+		imgStatus = "show"
+		centerDiv.style.visibility = "visible";
+		centerImage.src = detElem.src
+		centerDiv.style.maxHeight = "95%";
+		centerDiv.style.maxWidth = "95%";
+		centerDiv.style.overflow = "auto";
+
+		centerDiv.style.position = "fixed";
+		centerDiv.style.left = "50%";
+		centerDiv.style.top = "50%";
+		centerDiv.style.transform = "translate(-50%, -50%)";
+	}
+	document.body.onclick = function(){
+		if ( imgStatus == "hide" ) { centerDiv.style.visibility = "hidden" }
+		imgStatus = "hide"
+
+		tooltipSpan.style.visibility = "hidden";
+		tooltipStatus = "hide"
+	}
+	var imgs = detElem.getElementsByTagName("IMG")
+	for ( var i=0;  i<imgs.length;  i++ ) {
+		imgs[i].onclick = function() { F_showCenterDiv(this) }
+		if ( imgs[i].classList.contains("mini") == true ) {
+			imgs[i].onmouseover = function() { 
+				this.style.position = "absolute"
+				this.style.maxHeight = "140px";
+			}
+			imgs[i].onmouseout = function() {
+				this.style.position = ""
+				this.style.maxHeight = "14px"
+			}
+		}
+		if ( imgs[i].classList.contains("metszet") == true ) {
+			imgs[i].onclick=function(){
+				if ( this.style.borderColor != "limegreen" ) {
+					var locX = this.src.lastIndexOf(".")
+					this.src = this.src.slice(0,locX)+"m"+this.src.slice(locX)
+					this.style.borderColor = "limegreen"
+				} else {
+					F_showCenterDiv(this)
+				}
+			};
+		}
+	}
 }
 F_imgClick(document)
 
