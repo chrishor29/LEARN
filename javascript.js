@@ -1,9 +1,11 @@
 // window.onerror = function(msg, url, linenumber) { alert('Error message: '+msg+'\nLine Number: '+linenumber) }
 
 /* PROJECT - PROGRESS
- ✖ impQ-k LS-jegyét letörli, ha unchoose-lom a tételeket, majd frissítek
+ ✖ impQ-jat [ID]-je alapján mentse el LS -> akkor törölje automatikusan a jegy + repTime, ha a qNeve megváltozott
+ ✖ skipQ-k / noteQ-k / importantQ-k(gyors repeat!) közt nem mutatja az impQ-kat
  ✖ searchText funkció
  ✖ írhassam át a kérdés repeatTime-ját
+ ✖ impQ-k LS-jegyét letörli, ha unchoose-lom a tételeket, majd frissítek --> patoszLS
  
  ✖ MIKROBI LS:
 	tétel buttonra klikk lassú
@@ -82,6 +84,7 @@
 */
 
 /* PROJECT - DONE
+ ✔ jelölhessem ki a kérdést importantnak(zöld), a Qlista-repTime-ban
  ✔ ha egy quest többször is szerepel (nextQ), akkor csak az elsőt tegye ki az osztályzás közé, és a többire mind ezen számot írja (ne generáljon nekik külön még1et)
  ✔ lehessen látni a kérdéseket táblázatban, melyiket hány perce repeateltem, mert felbssza magát az ember, hogy nemtudja mikor jut a végére --> ne mutassa azokat, melyek skippedek(kék/fekete) már
  ✔ mikrobi load lassú --> impQ-kat elején csak Table-ba loadolja, majd akkor egyesével betölti, ha megnyitottam
@@ -250,7 +253,7 @@ function func_abbrSet(elem){
 	}
 }
 
-var arrOLDtxt = [] // Qtxt to LSid
+var arrQnameLSid = [] // Qtxt to LSid
 var arrNEWid = [] // LSid to Qtxt
 
 var txtLS = [] // Qtxt to LSid --> cseréljem le erre: localStorage.getItem(Qname)
@@ -315,7 +318,7 @@ function F_getTexts(){
 				var LSid = fullString[i]
 				var Qname = localStorage.getItem(LSid)
 				//Qtext = LZString.decompressFromUTF16(Qtext)
-				arrOLDtxt[Qname] = LSid
+				arrQnameLSid[Qname] = LSid
 				//console.log(LSid+ ": " +Qname)
 			}
 		}
@@ -592,7 +595,7 @@ function F_oldQchange(oldLSid){
 	document.getElementById("select_replaceQ").onchange = function() {
 		var value = document.getElementById("select_replaceQ").value
 		var Qtxt = arrNEWtxt[value]
-		var LSid = arrOLDtxt[Qtxt]
+		var LSid = arrQnameLSid[Qtxt]
 		if ( typeof LSid !== "undefined" ) {
 			var jegy = localStorage.getItem(LSid+"_jegy")
 			var date = new Date();
@@ -700,7 +703,7 @@ function F_oldQcheck(){
 			var LSid = oldString[i]
 			if ( LSid != 0 ) { //valamiért van ilyen is benne
 				F_oldQchange(LSid) 
-				//delete arrOLDtxt[oldQtxt]
+				//delete arrQnameLSid[oldQtxt]
 				break;
 			}
 		}
@@ -1647,6 +1650,7 @@ function F_calcqTimer(detElem) {
 					}
 					if ( Qname == "" ) { console.log(qName) }
 				}
+				Qname = LSid+" "+Qname
 				if ( LSid == null || Qname == null || jegy == null ) { continue }
 				if ( localStorage.getItem(LSid+"_skip") == "perma" ) { continue }
 				if ( localStorage.getItem(LSid+"_skip") == "vizsgaSkip" ) { continue }
@@ -1674,13 +1678,28 @@ function F_calcqTimer(detElem) {
 		td.innerHTML = numX
 		var td = document.createElement("TD")
 		tr.appendChild(td)
-		td.innerHTML = objQtime[Qname].slice(0,objQtime[Qname].lastIndexOf(","))
+		td.innerHTML = objQtime[Qname].slice(0,-1)
+		var LSid = td.innerHTML.slice(0,td.innerHTML.indexOf(" "))
+		td.id = LSid
+		td.innerHTML = td.innerHTML.slice(td.innerHTML.indexOf(" "))
+		if ( localStorage.getItem(LSid+"_skip") == "important" ) { td.style.backgroundColor = "lawngreen" }
+		td.onclick = function(){ 
+			var LSid = this.id
+			if ( LSid == undefined ) { alert("F_calcqTimer hiba: undefined LSid") }
+			if ( this.style.backgroundColor == "lawngreen" ) {
+				this.style.backgroundColor = ""
+				localStorage.setItem(LSid+"_skip","")
+			} else {
+				this.style.backgroundColor = "lawngreen"
+				localStorage.setItem(LSid+"_skip","important")
+			}
+		}
 		var td = document.createElement("TD")
 		tr.appendChild(td)
 		var repTime = objQtime[Qname].slice(objQtime[Qname].lastIndexOf(","))
-		td.innerHTML = objQtime[Qname].slice(objQtime[Qname].lastIndexOf(","))
+		td.innerHTML = objQtime[Qname].slice(objQtime[Qname].lastIndexOf(",")) // repTime
 		//if ( repTime > remain*60 ) { numY = numX }
-		if ( repTime > 3000 ) { numY = numX }
+		if ( repTime > 4500 ) { numY = numX }
 	}
 	detElem.textContent = numY
 }
@@ -3490,6 +3509,7 @@ function download(filename,text) { // (netről copyztam) --> (azért kellett, me
 	// }
 }
 function func_saveLS() {
+	localStorage.setItem("hk.lastSavedLS",0)
 	var text = ""
 	
 	var lsLength = localStorage.length
@@ -3633,7 +3653,6 @@ function F_prevQ(){
 	var lastSavedLS = localStorage.getItem("hk.lastSavedLS")
 	if ( lastSavedLS > 9 ) {
 		func_saveLS() // androidon crashel, mert a text length-el baja van
-		localStorage.setItem("hk.lastSavedLS",0)
 	} else {
 		lastSavedLS = Number(lastSavedLS)
 		lastSavedLS = lastSavedLS +qCountLS
