@@ -3450,6 +3450,10 @@ function func_calcOldNew(){
 		if ( localStorage.getItem(tetel+"_button") == "true" ) {
 			var tetelQ = document.getElementById(tetel)
 			var tetelQs = tetelQ.getElementsByClassName("kerdes")
+			if ( tetelQ.classList.contains("kerdes") == true ) {
+				F_calcLSid(tetelQ)
+				F_calculating(actLSid)
+			}
 			for ( var x=0; x<tetelQs.length; x++ ) {
 				F_calcLSid(tetelQs[x])
 				F_calculating(actLSid)
@@ -3562,6 +3566,18 @@ if ( localStorage.getItem("hk.newQ") == "true" ) {
 	document.getElementById("btn_newQuest").style.borderColor = "black"
 }
 
+var parentQ = ""
+var childQ = ""
+function F_searchParent(elem) { // megkeresi a 'családfában' legfelül lévo 'kerdes'-t (ami nem feltétlen az, lehet csak 'open' is)
+	parentQ = elem
+	childQ = elem
+	do { // megkeresi a 'családfában' legfelül lévo kérdést!
+		childQ = parentQ
+		parentQ = parentQ.parentElement
+		//console.log(parent.className)
+	} while ( parentQ.classList.contains("altetel") != true && parentQ.classList.contains("tetel") != true  && parentQ.classList.contains("feltetel") != true && childQ.classList.contains("altetel") != true && childQ.classList.contains("tetel") != true && childQ.classList.contains("feltetel") != true )
+}
+
 function F_prevQ(){
 	//console.clear()
 	console.log("– – – – – – – – F_prevQ – – – – – – – – –")
@@ -3570,14 +3586,9 @@ function F_prevQ(){
 	var qCountLS = 0
 	
 	// BEGIN – ez a note-hoz kell, hogy a legfelül lévo details-hoz kapcsoltan mentse el (annak sajnos nem mindig van ID-je, mert nem feltétlen kérdés a class-a)
-	var Qelem = priorQelem
-	var parent = priorQelem
+	F_searchParent(priorQelem)
+	var parent = parentQ
 	//console.log(Qelem.className)
-	do { // megkeresi a 'családfában' legfelül lévo kérdést!
-		Qelem = parent
-		parent = parent.parentElement
-		//console.log(parent.className)
-	} while ( parent.classList.contains("altetel") != true  && parent.classList.contains("tetel") != true  && parent.classList.contains("feltetel") != true )
 	// END
 	if ( document.getElementById("note").value != "" ) {
 		//localStorage.setItem(Qelem.innerHTML, document.getElementById("note").value);
@@ -3803,6 +3814,7 @@ function F_nextQ(){
 		if ( localStorage.getItem(tetelID+"_button") == "true" ) {
 			var tetelQ = document.getElementById(tetelID)
 			var tetelQs = tetelQ.getElementsByClassName("kerdes")
+			if ( tetelQ.classList.contains("kerdes") == true ) { F_calcQValue(tetelQ) }
 			for ( var x=0; x<tetelQs.length; x++ ) { F_calcQValue(tetelQs[x]) }
 		/* // impQ esetében:
 			// az LSid-t küldi F_calcQValue-ba --> amennyiben ez lesz a priorQ, akkor betölti az összes impQ-t a tételen belül
@@ -3830,13 +3842,9 @@ function F_nextQ(){
 	}
 
 	if ( priorQelem != "nincs" ) {
-		var Qelem = priorQelem
-		var parent = priorQelem
-
-		do { // megkeresi a 'családfában' legfelül lévo 'kerdes'-t (ami nem feltétlen az, lehet csak 'open' is)
-			Qelem = parent
-			parent = parent.parentElement
-		} while ( parent.classList.contains("altetel") != true  && parent.classList.contains("tetel") != true  && parent.classList.contains("feltetel") != true )
+		F_searchParent(priorQelem)
+		var parent = parentQ
+		var Qelem = childQ
 		if ( parent.classList.contains("feltetel") == true ) { Qelem = parent }
 		
 		function func_setTitle(){
