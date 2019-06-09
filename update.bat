@@ -1,6 +1,6 @@
 
 set source=D:\LEARN
-set destination=C:\Users\chrishor\Desktop\learn
+set destination=C:\Users\chrishor\Desktop\mix\learn
 
 robocopy %source%\Kortan\images %destination%\Kortan\images /mir
 robocopy %source%\Patosz\images %destination%\Patosz\images /mir
