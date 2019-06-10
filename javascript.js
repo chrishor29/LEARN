@@ -161,6 +161,9 @@ for ( var i=0; i<kerdesek.length; i++ ) {
 
 //document.getElementById("testimage").src = document.getElementById("testimage").title
 
+document.getElementById("spanLoading").onclick = function(){
+	document.getElementById("spanLoading").style.visibility = "hidden"
+}
 
 var ua = navigator.userAgent.toLowerCase();
 var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
@@ -1630,37 +1633,48 @@ function F_calcqTimer(detElem) {
 	table.innerHTML = ""
 	var objQtime = []
 	var arrUsedQs = []
+	var arrLSids = []
+	var numTetel = 0
 	for ( var tetelID in tetelek ) {
 		if ( localStorage.getItem(tetelID+"_button") == "true" ) {
 			var tetelQ = document.getElementById(tetelID)
 			var tetelQs = tetelQ.getElementsByClassName("kerdes")
+			if ( tetelQ.classList.contains("kerdes") == true ) { 
+				F_calcLSid(tetelQ)
+				if ( arrLSids.includes(actLSid) != true ) { arrLSids.push(actLSid) }
+			}
 			for ( var x=0; x<tetelQs.length; x++ ) {
 				F_calcLSid(tetelQs[x])
-				var LSid = actLSid
-				var date = new Date();
-				var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-				
-				var Qname = localStorage.getItem(LSid)
-				var jegy = localStorage.getItem(LSid+"_jegy")
-				if ( Qname == null ) { 
-					if ( qName.indexOf('">') != -1 ) {
-						Qname = qName.slice(qName.indexOf(">")+1,qName.indexOf("-->")+3)
-					} else {
-						Qname = qName
-					}
-					if ( Qname == "" ) { console.log(qName) }
-				}
-				Qname = LSid+" "+Qname
-				if ( LSid == null || Qname == null || jegy == null ) { continue }
-				if ( localStorage.getItem(LSid+"_skip") == "perma" ) { continue }
-				if ( localStorage.getItem(LSid+"_skip") == "vizsgaSkip" ) { continue }
-				if ( arrUsedQs.includes(Qname) ) { continue } // 2x ne rakja be
-				
-				objQtime.push([Qname, idopont])
-				arrUsedQs.push(Qname)
+				if ( arrLSids.includes(actLSid) != true ) { arrLSids.push(actLSid) }
 			}
+			numTetel = numTetel +1
 		}
 	}
+	for ( var x in arrLSids ) {
+		var LSid = arrLSids[x]
+		var date = new Date();
+		var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
+		
+		var Qname = localStorage.getItem(LSid)
+		var jegy = localStorage.getItem(LSid+"_jegy")
+		if ( Qname == null ) { 
+			if ( qName.indexOf('">') != -1 ) {
+				Qname = qName.slice(qName.indexOf(">")+1,qName.indexOf("-->")+3)
+			} else {
+				Qname = qName
+			}
+			if ( Qname == "" ) { console.log(qName) }
+		}
+		Qname = LSid+" "+Qname
+		if ( LSid == null || Qname == null || jegy == null ) { continue }
+		if ( localStorage.getItem(LSid+"_skip") == "perma" ) { continue }
+		if ( localStorage.getItem(LSid+"_skip") == "vizsgaSkip" ) { continue }
+		if ( arrUsedQs.includes(Qname) ) { continue } // 2x ne rakja be
+		
+		objQtime.push([Qname, idopont])
+		arrUsedQs.push(Qname)
+	}
+	detElem.textContent = numTetel
 
 	objQtime.sort(function(a, b) { return b[1] - a[1]})
 	
@@ -1698,10 +1712,10 @@ function F_calcqTimer(detElem) {
 		tr.appendChild(td)
 		var repTime = objQtime[Qname].slice(objQtime[Qname].lastIndexOf(","))
 		td.innerHTML = objQtime[Qname].slice(objQtime[Qname].lastIndexOf(",")) // repTime
-		//if ( repTime > remain*60 ) { numY = numX }
-		if ( repTime > 4500 ) { numY = numX }
+		if ( repTime > remain*60 ) { numY = numX }
+		//if ( repTime > 4500 ) { numY = numX }
 	}
-	detElem.textContent = numY
+	//detElem.textContent = numY
 }
 
 var timeDiff
@@ -1848,7 +1862,6 @@ function F_CreateQDiv() {
 		span.id = "span_Repeat"
 		divSettings.appendChild(span)
 		span.className = "WHITE"
-		span.style.border = "1px solid black"
 
 		span.style.paddingLeft = "5px"
 		span.style.paddingRight = "5px"
@@ -1856,27 +1869,6 @@ function F_CreateQDiv() {
 		span.style.paddingBottom = "2px"
 	}
 	F_SpanRepAll()
-	function F_SpanQid() {
-		var span = document.createElement("span")
-		span.id = "span_actualLSid"
-		divSettings.appendChild(span)
-		span.style.border = "1px solid black"
-		span.style.fontSize = "small"
-		span.textContent = "none"
-
-		/*span.style.paddingLeft = "5px"
-		span.style.paddingRight = "5px"
-		span.style.paddingTop = "3px"
-		span.style.paddingBottom = "4px"*/
-		
-		//span.style.textAlign = "center"
-		span.style.position = "absolute"
-		span.style.left = "235px"
-		span.style.top = "75px"
-		//span.style.right = "90px"
-		span.style.overflow = "auto"
-	}
-	F_SpanQid()
 	function F_ButtonMarks() {
 		var button = document.createElement("button")
 		button.id = "btn_qTimer"
@@ -1914,33 +1906,6 @@ function F_CreateQDiv() {
 		}
 	}
 	F_ButtonMarks()
-	function F_ButtonNextQdiff() {
-		var button = document.createElement("input")
-		button.id = "btn_nextQdiff"
-		button.type = "button"
-		divSettings.appendChild(button)
-		button.style.backgroundColor = "coral"
-
-		button.onclick = function(){ 
-			if ( this.style.backgroundColor != "limegreen" ) {
-				this.style.backgroundColor = "limegreen"
-				console.clear()
-				missImgs = ""
-				testLoad = true
-				F_loadImgVideo(document.body)
-				testLoad = false
-			} else {
-				this.style.backgroundColor = "coral"
-				alert(missImgs)
-			}
-		}
-		button.value = " "
-
-		/*button.style.position = "fixed"
-		button.style.right = "5px"
-		button.style.top = "50px"*/
-	}
-	F_ButtonNextQdiff()
 
 	function F_DivAlertEXPQrosszNum() {
 		var div = document.createElement("div")
@@ -2025,20 +1990,6 @@ function F_CreateQDiv() {
 	}
 	F_ButtonRepFast()
 	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
-	function F_SpanWork() {
-		var span = document.createElement("span")
-		span.id = "span_Work"
-		divSettings.appendChild(span)
-		span.className = "white"
-		span.style.border = "1px solid black"
-
-		span.style.paddingLeft = "5px"
-		span.style.paddingRight = "5px"
-		span.style.paddingTop = "1px"
-		span.style.paddingBottom = "2px"
-	}
-	F_SpanWork()
-	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
 	function F_ButtonTABS() {
 		var button = document.createElement("input")
 		button.type = "button"
@@ -2062,6 +2013,30 @@ function F_CreateQDiv() {
 		MainFrame.appendChild(div)
 	}
 	F_ButtonTABS()
+	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
+	function F_ButtonNextQdiff() {
+		var button = document.createElement("input")
+		button.id = "btn_nextQdiff"
+		button.type = "button"
+		divSettings.appendChild(button)
+		button.style.backgroundColor = "coral"
+
+		button.onclick = function(){ 
+			if ( this.style.backgroundColor != "limegreen" ) {
+				this.style.backgroundColor = "limegreen"
+				console.clear()
+				missImgs = ""
+				testLoad = true
+				F_loadImgVideo(document.body)
+				testLoad = false
+			} else {
+				this.style.backgroundColor = "coral"
+				alert(missImgs)
+			}
+		}
+		button.value = " "
+	}
+	F_ButtonNextQdiff()
 
 	var br = document.createElement("br")
 	divSettings.appendChild(br)
@@ -2895,7 +2870,7 @@ function F_temakorStatus(){ // Tétel hány %-on áll? --> beállítja a buttonC
 		}
 		var button = document.getElementById(tetel+"_button")
 		button.style.backgroundColor = "rgb("+red+", "+green+", 0)";
-		button.value = Math.round(100 * trueJegy/maxJegy)
+		//button.value = Math.round(100 * trueJegy/maxJegy)
 		if ( isNaN(button.value) == true ) { button.value = "" }
 	}
 }
@@ -3199,38 +3174,8 @@ function func_calcJegy() { // átlagJegyet kiszámolja
 	var diffTime = (myTime-startTime).toFixed(2)
 	console.log("– func_calcJegy – " + diffTime+"s")
 }
-function func_calcWork() { // hány százaléka új kérdés még
-	document.getElementById("span_Work").innerHTML = localStorage.getItem("hk.lastSavedLS")
-	/*F_getTime()
-	var startTime = myTime*/
-	/*var maxHossz = 0
-	var trueHossz = 0
-	var doneLSid = ","
-	for ( var tetel in tetelek ) {
-		if ( localStorage.getItem(tetel+"_button") == "true" ) {
-			var childs = document.getElementById(tetel).getElementsByTagName("*")
-			for ( var i = 0;   i < childs.length;   i++ ) {
-				if ( childs[i].classList.contains("kerdes") == true ) {
-					var elem = childs[i]
-					
-					func_calcPriorHosszJegy(elem)
-					
-					F_calcLSid(elem)
-					var LSid = actLSid
-					
-					if ( doneLSid.indexOf(LSid) != -1 && LSid != undefined ) { hossz = 0 }
-					doneLSid = doneLSid +LSid+ ","
-					
-					maxHossz = maxHossz + Number(hossz)
-					if ( localStorage.getItem(LSid+'_jegy') || localStorage.getItem(LSid+'_skip') ) { trueHossz = trueHossz + Number(hossz) }
-				}
-			}
-		}
-	}
-	document.getElementById("span_Work").innerHTML = maxHossz-trueHossz*/
-	/*F_getTime()
-	var diffTime = (myTime-startTime).toFixed(2)
-	console.log("– func_calcWork – " + diffTime+"s")*/
+function func_calcWork() { // LS mentés mikor lesz 1-10+
+	document.getElementById("button_NextQ").value = localStorage.getItem("hk.lastSavedLS")
 }
 function func_calcDate() { // átlagIdot kiszámolja
 	F_getTime()
@@ -3578,6 +3523,7 @@ function F_searchParent(elem) { // megkeresi a 'családfában' legfelül lévo '
 	} while ( parentQ.classList.contains("altetel") != true && parentQ.classList.contains("tetel") != true  && parentQ.classList.contains("feltetel") != true && childQ.classList.contains("altetel") != true && childQ.classList.contains("tetel") != true && childQ.classList.contains("feltetel") != true )
 }
 
+var actQid
 function F_prevQ(){
 	//console.clear()
 	console.log("– – – – – – – – F_prevQ – – – – – – – – –")
@@ -3592,7 +3538,7 @@ function F_prevQ(){
 	// END
 	if ( document.getElementById("note").value != "" ) {
 		//localStorage.setItem(Qelem.innerHTML, document.getElementById("note").value);
-		var LSid = "hkQ."+document.getElementById("span_actualLSid").textContent
+		var LSid = "hkQ."+actQid
 		localStorage.setItem(LSid+'_note', document.getElementById("note").value);
 		document.getElementById("note").value = ""
 	}
@@ -4082,9 +4028,9 @@ for ( var i=0; i<arrayQ.length; i++ ) {
 		}
 		F_setIfQs()
 
-		document.getElementById("span_actualLSid").innerHTML = "none"
+		actQid = "none"
 		F_calcLSid(priorQelem)
-		document.getElementById("span_actualLSid").innerHTML = actLSid.slice(4)
+		actQid = actLSid.slice(4)
 		for ( var i=0; i<activeQs.length; i++ ) {
 			if ( activeQs[i] == actLSid ) {
 				document.getElementById("td.0."+i).style.borderColor = "yellow"
@@ -4101,7 +4047,7 @@ for ( var i=0; i<arrayQ.length; i++ ) {
 			Qtext = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
 		}
 		
-		var LSid = "hkQ." + document.getElementById("span_actualLSid").textContent
+		var LSid = "hkQ." + actQid
 		
 		var date = new Date();
 		var remain = Math.floor(date.getTime()/3600000)
