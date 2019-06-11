@@ -1,12 +1,25 @@
 // window.onerror = function(msg, url, linenumber) { alert('Error message: '+msg+'\nLine Number: '+linenumber) }
 
 /* PROJECT - PROGRESS
- ✖ impQ-jat [ID]-je alapján mentse el LS -> akkor törölje automatikusan a jegy + repTime, ha a qNeve megváltozott
+ ✖ impQ-k kal elején szarakodik, amikkor először tölti őket be (lehet már osztályoztam máshol, mégis újnak veszi: lsád belgyógy)
  ✖ skipQ-k / noteQ-k / importantQ-k(gyors repeat!) közt nem mutatja az impQ-kat
- ✖ searchText funkció
+ ✖ search:
+	jobb felső sarokban egy nagyító, amire ha klikk, akkor..
+	középen megjelenik egy olyan üres(csak text box + search) div -> beírom a szót majd searchre klikk
+	végignézi az összes elemet, és amelyikben megtalálható, azt bemásolja a div-be
  ✖ írhassam át a kérdés repeatTime-ját
- ✖ impQ-k LS-jegyét letörli, ha unchoose-lom a tételeket, majd frissítek --> patoszLS
- 
+ ✖ android: midQ a képernyőt töltse ki mindig
+ ✖ upgradeQ egyszerubb legyen
+	oldalbetöltésnél mentse el összes qName-t, és nézze meg: melyik új illetve melyik tunt el LS-bol legutóbbi
+	ez alapján dobja ki a lehetoséget az eltunt Q-nél, hogy melyikre upgradeljem
+	olyan is kéne, hogy autoUpgrade-lje a questet, de van lehetoségem megnézni melyeket upgradelte, és azoka közül törtölhessem, ha mégse kellett volna
+ ✖ Qtxt-t ne mentse el, csak expQ.html-nél. Csak a QuestCímet mentse el + mögé commentbe, hogy hány betubol áll a Qtxt. Azonban ha van még egy azonos nevu quest, akkor legyen az elv, hogy megnézi melyik quest címek tuntek el, és melyek jelentek meg (betuszámot is nézze talán)
+	expQ-t csak akkor mentsen, ha expQ.html LS-be. Egyébként egy tableba. Betöltésnél pedig megnézi, hogy van-e table-ba, ha nincs, akkor LS-bol tölti be (hiszen akkor expQ.html-rol származik, nem az adott weboldal)
+	teszteljem azonos nevu Q-ek upgrade-jét
+ ✖ hide alQ-k a tételnél
+*/
+
+/* PROJECT - PROGRESS v2
  ✖ MIKROBI LS:
 	tétel buttonra klikk lassú
 	tétel kiválasztása lassú (hogy melybol dobjon kérdést)
@@ -24,26 +37,9 @@
  ✖ tesztkérdések: válaszokat random sorrendben dobja (különben nem jól jegyezném meg)
  ✖ impQ: immun: rheumatid arthitis{23}, ha a 'T-sejtek gátlása'-t felcserélem 'B-sejt gátlása'-val (sorrendet csak) akkor nem importálja már
  ✖ kérdés hosszát számolja majd úgy ki, hogy az altkérdéseket ne vegye bele: ha talál egy '<details'-t, akkor megkeresi a következo '</details'-t és 'kivágja azt'. Így ha vmit változtatok az altQ-n, attól a mainQ-t még nem kell upgradelnem
-*/
 
-/* PROJECT - PROGRESS v2
-✖ android: midQ a képernyőt töltse ki mindig
-✖ search:
-	jobb felső sarokban egy nagyító, amire ha klikk, akkor..
-	középen megjelenik egy olyan üres(csak text box + search) div -> beírom a szót majd searchre klikk
-	végignézi az összes elemet, és amelyikben megtalálható, azt bemásolja a div-be
-
-✖ upgradeQ egyszerubb legyen
 ✖ android/telón a tételek nagyobbak legyenek
 ✖ mutéttan tételQ-nál (amikor kidobja) ne mutassa a tételcsoportot
-✖ hide alQ-k a tételnél
-✖ Qtxt-t ne mentse el, csak expQ.html-nél. Csak a QuestCímet mentse el + mögé commentbe, hogy hány betubol áll a Qtxt. Azonban ha van még egy azonos nevu quest, akkor legyen az elv, hogy megnézi melyik quest címek tuntek el, és melyek jelentek meg (betuszámot is nézze talán)
-	✖: expQ-t csak akkor mentsen, ha expQ.html LS-be. Egyébként egy tableba. Betöltésnél pedig megnézi, hogy van-e table-ba, ha nincs, akkor LS-bol tölti be (hiszen akkor expQ.html-rol származik, nem az adott weboldal)
-	✖: teszteljem azonos nevu Q-ek upgrade-jét
-✖ upgradeQ
-	oldalbetöltésnél mentse el összes qName-t, és nézze meg: melyik új illetve melyik tunt el LS-bol legutóbbi
-	ez alapján dobja ki a lehetoséget az eltunt Q-nél, hogy melyikre upgradeljem
-	olyan is kéne, hogy autoUpgrade-lje a questet, de van lehetoségem megnézni melyeket upgradelte, és azoka közül törtölhessem, ha mégse kellett volna
 ✖ hosszat(length) automata módon számolja ki! (pl. 100karakterenként/1hosszú; de soronként is kéne emellett, mert felsorolásoknál durva lenne)
  
 ✖ ImpQ: csak akkor töltse be, ha visible. Továbbá akkoris, ha kivan jelölve a tétel a Q megoldásnál (de csak ha arra a módra váltok) bár utóbbi helyett kéne egy gyorsabb megoldás (lehet csak bonyolult végiggondolni). pl. az elején olvassa ki az altkérdéseket az imp-bol és table-ba(impID = Qtxt) tenni. Ebból nézi a chance-t az elohívásra, ebbol számolja tétel hány %, továbbá oldQcheck & upgradeQ esetében innen veszi ki a szöveget(ugyanis egy impQ-n belül lehet altkérdés, amit hiányolna különben). Tehát beírni innerHTML-be nem szükséges ilyenkor még --> ez kicsit komplikált, mert ha van még1 alt imp, akkor annak altkérdéseit is ki kell olvassa, és így tovább.. de megoldható --> ez szvsz gyorsabb (elején semmiképpen ne töltse be az összeset, mert androidon qrva lassú!) 
@@ -151,19 +147,8 @@ for ( var i=0; i<kerdesek.length; i++ ) {
 }*/
 
 
-/* compress & decompress
-	var string = document.body.innerHTML
-	var compressed = LZString.compress(string);
-	var compressed = LZString.compressToUTF16(string);
-	var compressed = LZString.decompress(string);
-	var compressed = LZString.decompressFromUTF16(string);
-*/
 
-//document.getElementById("testimage").src = document.getElementById("testimage").title
-
-document.getElementById("spanLoading").onclick = function(){
-	document.getElementById("spanLoading").style.visibility = "hidden"
-}
+document.getElementById("spanLoading").onclick = function(){ document.getElementById("spanLoading").style.visibility = "hidden" }
 
 var ua = navigator.userAgent.toLowerCase();
 var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
@@ -1674,7 +1659,7 @@ function F_calcqTimer(detElem) {
 		objQtime.push([Qname, idopont])
 		arrUsedQs.push(Qname)
 	}
-	detElem.textContent = numTetel
+	document.getElementById("button_Tetel").textContent = numTetel
 
 	objQtime.sort(function(a, b) { return b[1] - a[1]})
 	
@@ -1712,10 +1697,15 @@ function F_calcqTimer(detElem) {
 		tr.appendChild(td)
 		var repTime = objQtime[Qname].slice(objQtime[Qname].lastIndexOf(","))
 		td.innerHTML = objQtime[Qname].slice(objQtime[Qname].lastIndexOf(",")) // repTime
-		if ( repTime > remain*60 ) { numY = numX }
+		//numY = numX
+		if ( repTime < remain*60 ) { 
+			td.style.color = "red" 
+		} else {
+			numY = numY +1
+		}
 		//if ( repTime > 4500 ) { numY = numX }
 	}
-	//detElem.textContent = numY
+	detElem.textContent = numY
 }
 
 var timeDiff
@@ -1810,11 +1800,12 @@ function F_CreateQDiv() {
 
 	function F_ButtonTetelek() {
 		var button = document.createElement("button")
+		button.id = "button_Tetel"
 		button.style.border = "3px solid black"
 		button.style.backgroundColor = "Bisque"
 		button.textContent = "TÉTEL"
 		divSettings.appendChild(button)
-		button.onclick = function(){
+		button.onclick = function() {
 			if ( document.getElementById("Div_Tetelek").style.display == "none" ) {
 				document.getElementById("Div_Tetelek").style.display = "block"
 			} else {
