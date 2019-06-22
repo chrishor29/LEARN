@@ -1439,6 +1439,34 @@ function F_loadImgVideo(detElem){
 	
 	//if ( e ) { e.stopPropagation() }
 }
+
+function F_answerQ(detElem){ 
+	var trueA = detElem.getElementsByClassName("trueA")
+	var falseA = detElem.getElementsByClassName("falseA")
+	if ( trueA.length == 0 ) { return }
+	
+	if ( detElem.open == false ) {
+		for ( var i=0; i<trueA.length; i++ ) { trueA[i].style.backgroundColor = "" }
+		for ( var i=0; i<falseA.length; i++ ) {  falseA[i].style.backgroundColor = "" }
+	}
+	
+	var div = detElem.getElementsByClassName("random")
+	if ( div[0].offsetParent === null ) { return }
+	var liA = div[0].getElementsByTagName("li")
+	for (var i = liA.length; i >= 0; i--) { div[0].appendChild(liA[Math.random() * i | 0]) }
+	
+	var answers = detElem.getElementsByClassName("answer")
+	trueA = detElem.getElementsByClassName("trueA")
+	falseA = detElem.getElementsByClassName("falseA")
+	for ( var x=0; x<answers.length; x++ ) { 
+		//alert(answers[x].offsetParent)
+		answers[x].onclick = function(){
+			for ( var i=0; i<trueA.length; i++ ) { trueA[i].style.backgroundColor = "springgreen" }
+			for ( var i=0; i<falseA.length; i++ ) {  falseA[i].style.backgroundColor = "tomato" }
+		}
+	}
+}
+
 function F_detailsToggle(detElem){ 
 	//if ( detElem.classList.contains("imgLoaded") != true ) {
 		/*F_getTime()
@@ -1447,6 +1475,7 @@ function F_detailsToggle(detElem){
 		F_loadImgVideo(detElem)
 		F_imgClick(detElem)
 		F_titleChange(detElem)
+		F_answerQ(detElem)
 		F_midQ(detElem)
 		var allDetails = detElem.getElementsByTagName("details")
 		for ( var i=0; i<allDetails.length; i++ ) { allDetails[i].ontoggle = function(){ F_detailsToggle(this) } }
@@ -1626,17 +1655,19 @@ function F_calcqTimer(detElem) {
 			var tetelQs = tetelQ.getElementsByClassName("kerdes")
 			if ( tetelQ.classList.contains("kerdes") == true ) { 
 				F_calcLSid(tetelQ)
-				if ( arrLSids.includes(actLSid) != true ) { arrLSids.push(actLSid) }
+				if ( arrLSids.includes(actLSid) != true ) { arrLSids.push(actLSid+" – "+qName) }
 			}
 			for ( var x=0; x<tetelQs.length; x++ ) {
 				F_calcLSid(tetelQs[x])
-				if ( arrLSids.includes(actLSid) != true ) { arrLSids.push(actLSid) }
+				if ( arrLSids.includes(actLSid) != true ) { arrLSids.push(actLSid+" – "+qName) }
 			}
 			numTetel = numTetel +1
 		}
 	}
 	for ( var x in arrLSids ) {
 		var LSid = arrLSids[x]
+		qName = LSid.slice(LSid.indexOf(" – ")+3)
+		LSid = LSid.slice(0,LSid.indexOf(" – "))
 		var date = new Date();
 		var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
 		

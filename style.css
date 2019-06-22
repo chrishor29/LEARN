@@ -208,6 +208,17 @@ span {
 	margin-bottom: 1px;
 	display: inline-block;
 }
+.answer { 
+	background-color: AliceBlue;
+	border: 1px solid Black;
+	padding-left: 2px;
+	padding-right: 2px;
+	
+	padding-top: 1px;
+	padding-bottom: 1px;
+	margin-bottom: 1px;
+	display: inline-block;
+}
 /*span.abbr { 
 	border: Black 1px solid; 
 }*/
