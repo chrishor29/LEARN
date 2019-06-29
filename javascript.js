@@ -1,22 +1,27 @@
 // window.onerror = function(msg, url, linenumber) { alert('Error message: '+msg+'\nLine Number: '+linenumber) }
 
 /* PROJECT - PROGRESS
- ✖ impQ-k kal elején szarakodik, amikkor először tölti őket be (lehet már osztályoztam máshol, mégis újnak veszi: lsád belgyógy)
+ ✖ impQ-k kal elején szarakodik, amikor először tölti őket be (lehet már osztályoztam máshol, mégis újnak veszi: lsád belgyógy)
  ✖ skipQ-k / noteQ-k / importantQ-k(gyors repeat!) közt nem mutatja az impQ-kat
+ ✖ tételQ kijelölése lassú (+androidon nehéz is, mert kicsi)
+ ✖ android: midQ a képernyőt töltse ki mindig
+ ✖ android: menuk egy klikkel legyenek előhívhatók és nagyok legyenek / kerdes osztályzás is!
  ✖ search:
 	jobb felső sarokban egy nagyító, amire ha klikk, akkor..
 	középen megjelenik egy olyan üres(csak text box + search) div -> beírom a szót majd searchre klikk
 	végignézi az összes elemet, és amelyikben megtalálható, azt bemásolja a div-be
+ ✖ kérdésnek állíthassam be, hogy hány perc múlva / milyen időpontban dobja ki újra (impQ-ként)
  ✖ írhassam át a kérdés repeatTime-ját
- ✖ android: midQ a képernyőt töltse ki mindig
  ✖ upgradeQ egyszerubb legyen
 	oldalbetöltésnél mentse el összes qName-t, és nézze meg: melyik új illetve melyik tunt el LS-bol legutóbbi
 	ez alapján dobja ki a lehetoséget az eltunt Q-nél, hogy melyikre upgradeljem
-	olyan is kéne, hogy autoUpgrade-lje a questet, de van lehetoségem megnézni melyeket upgradelte, és azoka közül törtölhessem, ha mégse kellett volna
+	olyan is kéne, hogy autoUpgrade-lje a questet, de van lehetoségem megnézni melyeket upgradelte, és azoka közül törölhessem, ha mégse kellett volna
+	ha egy kérdésnél hozzáadtam azt a classba, hogy 'open' / 'if' stb. akkor ne kelljen upgradelni már
  ✖ Qtxt-t ne mentse el, csak expQ.html-nél. Csak a QuestCímet mentse el + mögé commentbe, hogy hány betubol áll a Qtxt. Azonban ha van még egy azonos nevu quest, akkor legyen az elv, hogy megnézi melyik quest címek tuntek el, és melyek jelentek meg (betuszámot is nézze talán)
 	expQ-t csak akkor mentsen, ha expQ.html LS-be. Egyébként egy tableba. Betöltésnél pedig megnézi, hogy van-e table-ba, ha nincs, akkor LS-bol tölti be (hiszen akkor expQ.html-rol származik, nem az adott weboldal)
 	teszteljem azonos nevu Q-ek upgrade-jét
  ✖ hide alQ-k a tételnél
+ ✖ rewrite az egészet (rövidebb legyen)
 */
 
 /* PROJECT - PROGRESS v2
@@ -1460,9 +1465,12 @@ function F_answerQ(detElem){
 	falseA = detElem.getElementsByClassName("falseA")
 	for ( var x=0; x<answers.length; x++ ) { 
 		//alert(answers[x].offsetParent)
+		answers[x].style.cursor = "pointer"
 		answers[x].onclick = function(){
 			for ( var i=0; i<trueA.length; i++ ) { trueA[i].style.backgroundColor = "springgreen" }
 			for ( var i=0; i<falseA.length; i++ ) {  falseA[i].style.backgroundColor = "tomato" }
+			this.style.cursor = ""
+			this.style.backgroundColor = "white"
 		}
 	}
 }
@@ -1610,6 +1618,7 @@ function F_toggleAll() {
 		document.getElementById("div_Skip").style.display = 'none';
 		document.getElementById("div_MidQ").style.display = 'none';
 		document.getElementById("div_upgQ").style.display = 'none';
+		document.getElementById("div_qProp").style.display = 'none';
 	} else {
 		localStorage.setItem("hk.ToggleAll","true")
 		for ( var i=0; i<childs.length; i++ ) { childs[i].style.display = "none" }
@@ -1713,10 +1722,14 @@ function F_calcqTimer(detElem) {
 		td.id = LSid
 		td.innerHTML = td.innerHTML.slice(td.innerHTML.indexOf(" "))
 		if ( localStorage.getItem(LSid+"_skip") == "important" ) { td.style.backgroundColor = "lawngreen" }
+		if ( localStorage.getItem(LSid+"_skip") == "gold" ) { td.style.backgroundColor = "gold" }
 		td.onclick = function(){ 
 			var LSid = this.id
 			if ( LSid == undefined ) { alert("F_calcqTimer hiba: undefined LSid") }
 			if ( this.style.backgroundColor == "lawngreen" ) {
+				this.style.backgroundColor = "gold"
+				localStorage.setItem(LSid+"_skip","gold")
+			} else if ( this.style.backgroundColor == "gold" ) {
 				this.style.backgroundColor = ""
 				localStorage.setItem(LSid+"_skip","")
 			} else {
@@ -1839,8 +1852,10 @@ function F_CreateQDiv() {
 		button.onclick = function() {
 			if ( document.getElementById("Div_Tetelek").style.display == "none" ) {
 				document.getElementById("Div_Tetelek").style.display = "block"
+				this.style.borderColor = "limegreen"
 			} else {
 				document.getElementById("Div_Tetelek").style.display = "none"
+				this.style.borderColor = "black"
 			}
 			F_temakorStatus()
 		}
@@ -1904,26 +1919,29 @@ function F_CreateQDiv() {
 		questDiv.appendChild(div)
 		div.style.backgroundColor = "white"
 		div.style.overflow = "auto"
-		div.style.width = "80vw"
-		div.style.height = "70vh"
+		div.style.width = "97vw"
+		div.style.height = "75vh"
 		div.style.position = "fixed"
 		div.style.top = "50%"
-		div.style.left = "50%"
 		div.style.marginTop = "-30vh"
-		div.style.marginLeft = "-40vw"
 		div.style.border = "10px solid black"
 		div.style.display = "none"
 		div.style.zIndex = "2"
 		
+		var center = document.createElement("center")
+		div.appendChild(center)
+		
 		var table = document.createElement("TABLE")
 		table.id = "table_qTimer"
-		div.appendChild(table)
+		center.appendChild(table)
 
 		button.onclick = function(){
 			if ( div.style.display == "none" ) {
 				div.style.display = "block"
+				this.style.borderColor = "limegreen"
 			} else {
 				div.style.display = "none"
+				this.style.borderColor = "black"
 			}
 		}
 	}
@@ -2098,6 +2116,18 @@ function F_CreateQDiv() {
 		button.value = "0"
 	}
 	F_ButtonSkip()
+	function F_ButtonGold() {
+		var button = document.createElement("input")
+		button.id = "btn_gold"
+		button.type = "button"
+		divSettings.appendChild(button)
+		button.style.backgroundColor = "gold"
+		button.style.fontWeight = "bold"
+		button.style.border = "3px solid black"
+		button.onclick = function(){ /*func_spanClick(this)*/ }
+		//button.value = "0"
+	}
+	F_ButtonGold()
 	function F_SpanRepNew() {
 		var span = document.createElement("span")
 		span.id = "span_RepNew"
@@ -2326,13 +2356,13 @@ F_CreateQDiv()
 
 function func_calcTimeDiff(repCount){
 	if ( repCount == 0 ) {
-		timeDiff = 15
+		timeDiff = 2
 	} else if ( repCount == 1 ) {
 		timeDiff = 30
 	} else if ( repCount == 2 ) {
 		timeDiff = 60
 	} else if ( repCount == 3 ) {
-		timeDiff = 3500
+		timeDiff = 100
 	} else if ( repCount == 4 ) {
 		timeDiff = 5000
 	} else if ( repCount == 5 ) {
@@ -2420,15 +2450,11 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 
 		div.style.backgroundColor = "white"
 		div.style.overflow = "auto"
-		div.style.width = "80vw"
-		div.style.height = "80vh"
-		div.style.position = "absolute"
+		div.style.width = "97vw"
+		div.style.height = "75vh"
+		div.style.position = "fixed"
 		div.style.top = "50%"
-		//div.style.bottom = "50%"
-		div.style.left = "50%"
-		//div.style.right = "50%"
-		div.style.marginTop = "-40vh"
-		div.style.marginLeft = "-40vw"
+		div.style.marginTop = "-30vh"
 		div.style.border = "10px solid black"
 		div.style.display = "none"
 	}
@@ -2951,6 +2977,8 @@ function func_tableSkipFix(){
 				obj_skip[LSid] = localStorage.getItem(LSid+"_skip")
 			} else if ( localStorage.getItem(LSid+"_skip") == "important" ){
 				obj_skip[LSid] = localStorage.getItem(LSid+"_skip")
+			} else if ( localStorage.getItem(LSid+"_skip") == "gold" ){
+				obj_skip[LSid] = localStorage.getItem(LSid+"_skip")
 			} else if ( localStorage.getItem(LSid+"_skip") == "vizsgaSkip" ){
 				var date = new Date();
 				date = Math.floor(date.getTime()/60000)
@@ -2993,6 +3021,7 @@ F_valFix()
 function F_valSkip(){
 	var x = 0
 	var y = 0
+	var z = 0
 	for ( var id in obj_skip ) {
 		if ( obj_skip[id] == "perma" ) {
 			x = x+1
@@ -3001,9 +3030,14 @@ function F_valSkip(){
 			y = y+1
 			//console.log(id+"_skip = vizsgaSkip")
 		}
+		if ( obj_skip[id] == "gold" ) {
+			z = z+1
+			//console.log(id+"_skip = vizsgaSkip")
+		}
 	}
 	document.getElementById("btn_skip").value = x;
 	document.getElementById("btn_vizsgaskip").value = y;
+	document.getElementById("btn_gold").value = z;
 }
 F_valSkip()
 
@@ -3533,6 +3567,84 @@ if ( localStorage.getItem("hk.newQ") == "true" ) {
 	document.getElementById("btn_newQuest").style.borderColor = "black"
 }
 
+function F_divQprop() {
+	var div = document.createElement("div")
+	document.body.appendChild(div)
+	div.id = "div_qProp"
+	div.style.backgroundColor = "white"
+	div.style.overflow = "auto"
+	div.style.width = "40vw"
+	div.style.height = "40vh"
+	div.style.position = "fixed"
+	div.style.top = "20%"
+	div.style.left = "30%"
+	div.style.border = "4px solid black"
+	div.style.display = "none"
+	
+	var qProp = document.createElement("span")
+	div.appendChild(qProp)
+	qProp.id = "span_qProp"
+	
+	/*var input = document.createElement("INPUT")
+	input.setAttribute("type", "text")
+	input.setAttribute("value", "")
+	div.appendChild(input)
+	input.id = "input_qProp"*/
+	
+	function F_clickColor(){
+		var num = this.parentElement.innerHTML
+		//alert(num)
+		num = num.slice(num.indexOf('td.0.')+5,num.indexOf('<br>'))
+		document.getElementById("td.2."+num).style.backgroundColor = this.style.backgroundColor
+	}
+	
+	var snow = document.createElement("span")
+	div.appendChild(snow)
+	snow.style.backgroundColor = "snow"
+	snow.style.width = "50px"
+	snow.style.height = "50px"
+	snow.style.border = "2px solid black"
+	snow.style.display = "inline-block"
+	snow.onclick = function(){ F_clickColor()}
+	
+	var lawngreen = document.createElement("span")
+	div.appendChild(lawngreen)
+	lawngreen.style.backgroundColor = "lawngreen"
+	lawngreen.style.width = "50px"
+	lawngreen.style.height = "50px"
+	lawngreen.style.border = "2px solid black"
+	lawngreen.style.display = "inline-block"
+	lawngreen.onclick = function(){ F_clickColor() }
+	
+	var blue = document.createElement("span")
+	div.appendChild(blue)
+	blue.style.backgroundColor = "blue"
+	blue.style.width = "50px"
+	blue.style.height = "50px"
+	blue.style.border = "2px solid black"
+	blue.style.display = "inline-block"
+	blue.onclick = function(){ F_clickColor() }
+	
+	var black = document.createElement("span")
+	div.appendChild(black)
+	black.style.backgroundColor = "black"
+	black.style.width = "50px"
+	black.style.height = "50px"
+	black.style.border = "2px solid black"
+	black.style.display = "inline-block"
+	black.onclick = function(){ F_clickColor() }
+
+	var gold = document.createElement("span")
+	div.appendChild(gold)
+	gold.style.backgroundColor = "gold"
+	gold.style.width = "50px"
+	gold.style.height = "50px"
+	gold.style.border = "2px solid black"
+	gold.style.display = "inline-block"
+	gold.onclick = function(){ F_clickColor() }
+}
+F_divQprop()
+
 var parentQ = ""
 var childQ = ""
 function F_searchParent(elem) { // megkeresi a 'családfában' legfelül lévo 'kerdes'-t (ami nem feltétlen az, lehet csak 'open' is)
@@ -3610,6 +3722,9 @@ function F_prevQ(){
 			}
 		} else if ( document.getElementById("td.2."+i).style.backgroundColor == "blue" ) {
 			localStorage.setItem(LSid+'_skip', "vizsgaSkip")
+			newQvolt = true
+		} else if ( document.getElementById("td.2."+i).style.backgroundColor == "gold" ) {
+			localStorage.setItem(LSid+'_skip', "gold")
 			newQvolt = true
 		} else if ( localStorage.getItem(LSid+'_skip') == "important" ) {
 			localStorage.removeItem(LSid+'_skip')
@@ -3726,6 +3841,26 @@ function F_nextQ(){
 					if ( idopont2 > timeDiff ) { 
 						priorType = 2
 						
+						var checkValue2 = idopont2 / timeDiff
+						if ( checkValue2 > priorValue2 ) {
+							priorValue2 = checkValue2
+							priorQelem = Qelem
+						}
+					}
+				}
+			}
+			/* gold */if ( document.getElementById("btn_newQuest").style.borderColor != "limegreen" && localStorage.getItem(LSid+"_skip") == "gold" ) {
+				var repCount = Number(localStorage.getItem(LSid+'_repeat'))
+				if ( document.getElementById("hkQ.nextRep"+repCount).style.backgroundColor == "limegreen" ) {
+					var date = new Date();
+					var remain = Math.floor(date.getTime()/3600000)
+					remain = localStorage.getItem("vizsgaSkip") - remain
+					
+					if ( remain < 12 ) { 
+						priorType = 2
+						
+						var idopont2 = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
+						func_calcTimeDiff(repCount)
 						var checkValue2 = idopont2 / timeDiff
 						if ( checkValue2 > priorValue2 ) {
 							priorValue2 = checkValue2
@@ -3931,6 +4066,8 @@ for ( var i=0; i<arrayQ.length; i++ ) {
 				document.getElementById("td.2."+num).hidden = false 
 				if ( localStorage.getItem(LSid+"_skip") == "important" ) {
 					document.getElementById("td.2."+num).style.backgroundColor = "lawngreen"
+				} else if ( localStorage.getItem(LSid+"_skip") == "gold" ) {
+					document.getElementById("td.2."+num).style.backgroundColor = "gold"
 				} else {
 					document.getElementById("td.2."+num).style.backgroundColor = "snow"
 				}
@@ -3940,8 +4077,22 @@ for ( var i=0; i<arrayQ.length; i++ ) {
 				var jegy = localStorage.getItem(LSid+'_jegy')
 				var repeat = localStorage.getItem(LSid+'_repeat')
 				func_calcPriorHosszJegy(arrayQ[i])
-				document.getElementById("td.0."+num).title = LSid+"<br> Jegy:"+jegy+"<br>Repeat:"+repeat+"<br>Prior:"+prior
-				F_titleChange(document.getElementById("td.0."+num).parentElement)
+				if ( isAndroid ) { 
+					document.getElementById("td.0."+num).onclick = function(){
+						var div = document.getElementById("div_qProp")
+						var span = document.getElementById("span_qProp")
+						var num = this.id
+						if ( div.style.display == "none" ) {
+							div.style.display = "block"
+							span.innerHTML = num+"<br>"+LSid+"<br> Jegy:"+jegy+"<br>Repeat:"+repeat+"<br>Prior:"+prior+"<br>"
+						} else {
+							div.style.display = "none"
+						}
+					}
+				} else {
+					document.getElementById("td.0."+num).title = LSid+"<br> Jegy:"+jegy+"<br>Repeat:"+repeat+"<br>Prior:"+prior
+					F_titleChange(document.getElementById("td.0."+num).parentElement)
+				}
 
 				var selectList = document.getElementById("hkSelect."+num)
 				// repeatest beállítja vastagbetusre
@@ -4154,6 +4305,8 @@ function F_CreateSelect(i) {
 				if ( this.style.backgroundColor == "snow" ) { 
 					this.style.backgroundColor = "lawngreen" 
 				} else if ( this.style.backgroundColor == "lawngreen" ) { 
+					this.style.backgroundColor = "gold" 
+				} else if ( this.style.backgroundColor == "gold" ) { 
 					this.style.backgroundColor = "blue" 
 				} else if ( this.style.backgroundColor == "blue" ) { 
 					this.style.backgroundColor = "black" 
@@ -4161,6 +4314,21 @@ function F_CreateSelect(i) {
 					this.style.backgroundColor = "snow" 
 				}
 			});
+			td.addEventListener("contextmenu",function(ev){
+				ev.preventDefault();
+				if ( this.style.backgroundColor == "snow" ) { 
+					this.style.backgroundColor = "black" 
+				} else if ( this.style.backgroundColor == "black" ) { 
+					this.style.backgroundColor = "blue" 
+				} else if ( this.style.backgroundColor == "blue" ) { 
+					this.style.backgroundColor = "gold" 
+				} else if ( this.style.backgroundColor == "gold" ) { 
+					this.style.backgroundColor = "lawngreen" 
+				} else if ( this.style.backgroundColor == "lawngreen" ) { 
+					this.style.backgroundColor = "snow" 
+				}
+				return false;
+			}, false);
 			td.innerHTML = "&nbsp;"
 		}
 		document.getElementById("Tr_QsMark."+x).appendChild(td)
