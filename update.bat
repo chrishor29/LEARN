@@ -21,6 +21,7 @@ copy %source%\Pszicho\pszicho.html %destination%\Pszicho\pszicho.html
 copy %source%\LabMed\labmed.html %destination%\LabMed\labmed.html
 copy %source%\Genetika\genetika.html %destination%\Genetika\genetika.html
 copy %source%\Belgyogy\belgyogy.html %destination%\Belgyogy\belgyogy.html
+copy %source%\sajat\sajat.html %destination%\sajat\sajat.html
 
 copy %source%\Kortan\favicon.png %destination%\Kortan\favicon.png
 copy %source%\Patosz\favicon.png %destination%\Patosz\favicon.png
