@@ -33,67 +33,62 @@ xcopy /y %source%\Genetika\favicon.bmp %destination%\Genetika\
 xcopy /y %source%\Belgyogy\favicon.bmp %destination%\Belgyogy\
 
 robocopy %source%\images %destination%\images /mir
-copy %source%\expqs.html %destination%\expqs.html
-copy %source%\targyvalasztas.html %destination%\targyvalasztas.html
-copy %source%\javascript.js %destination%\javascript.js
-copy %source%\style.css %destination%\style.css
-copy %source%\favicon.png %destination%\favicon.png
+xcopy /y %source%\expqs.html %destination%\
+xcopy /y %source%\targyvalasztas.html %destination%\
+xcopy /y %source%\javascript.js %destination%\
+xcopy /y %source%\style.css %destination%\
+xcopy /y %source%\favicon.png %destination%\
 
-robocopy %source%\done\II %destination%\done\II /mir
-robocopy %source%\done\III %destination%\done\III /mir
 robocopy %source%\done\Immunologia\images %destination%\done\Immunologia\images /mir
-copy %source%\done\Immunologia\immun.html %destination%\done\Immunologia\immun.html
-copy %source%\done\Immunologia\favicon.bmp %destination%\done\Immunologia\favicon.bmp
+xcopy /y %source%\done\Immunologia\immun.html %destination%\done\Immunologia\
+xcopy /y %source%\done\Immunologia\favicon.bmp %destination%\done\Immunologia\
 robocopy %source%\done\Mutettan\images %destination%\done\Mutettan\images /mir
-copy %source%\done\Mutettan\mutettan.html %destination%\done\Mutettan\mutettan.html
-copy %source%\done\Mutettan\favicon.bmp %destination%\done\Mutettan\favicon.bmp
+xcopy /y %source%\done\Mutettan\mutettan.html %destination%\done\Mutettan\
+xcopy /y %source%\done\Mutettan\favicon.bmp %destination%\done\Mutettan\
 robocopy %source%\done\Elettan\images %destination%\done\Elettan\images /mir
 robocopy %source%\done\Elettan\video %destination%\done\Elettan\video /mir
-copy %source%\done\Elettan\elettan1.html %destination%\done\Elettan\elettan1.html
-copy %source%\done\Elettan\elettan1old.html %destination%\done\Elettan\elettan1old.html
-copy %source%\done\Elettan\elettan2.html %destination%\done\Elettan\elettan2.html
-copy %source%\done\Elettan\favicon.bmp %destination%\done\Elettan\favicon.bmp
+xcopy /y %source%\done\Elettan\elettan1.html %destination%\done\Elettan\
+xcopy /y %source%\done\Elettan\elettan1old.html %destination%\done\Elettan\
+xcopy /y %source%\done\Elettan\elettan2.html %destination%\done\Elettan\
+xcopy /y %source%\done\Elettan\favicon.bmp %destination%\done\Elettan\
 robocopy %source%\done\BioFizika\images %destination%\done\BioFizika\images /mir
-copy %source%\done\BioFizika\bifiz.html %destination%\done\BioFizika\bifiz.html
-copy %source%\done\BioFizika\favicon.bmp %destination%\done\BioFizika\favicon.bmp
+xcopy /y %source%\done\BioFizika\bifiz.html %destination%\done\BioFizika\
+xcopy /y %source%\done\BioFizika\favicon.bmp %destination%\done\BioFizika\
 robocopy %source%\done\BioKemia\I\images %destination%\done\BioKemia\I\images /mir
 robocopy %source%\done\BioKemia\II\images %destination%\done\BioKemia\II\images /mir
 robocopy %source%\done\BioKemia\III\images %destination%\done\BioKemia\III\images /mir
-copy %source%\done\BioKemia\favicon.bmp %destination%\done\BioKemia\favicon.bmp
-copy %source%\done\BioKemia\I\biokemiaI.html %destination%\done\BioKemia\I\biokemiaI.html
-copy %source%\done\BioKemia\II\biokemiaII.html %destination%\done\BioKemia\II\biokemiaII.html
-copy %source%\done\BioKemia\III\biokemiaIII.html %destination%\done\BioKemia\III\biokemiaIII.html
-copy %source%\done\BioKemia\III\biokemia.html %destination%\done\BioKemia\III\biokemia.html
-copy %source%\done\BioKemia\I\favicon.bmp %destination%\done\BioKemia\I\favicon.bmp
-copy %source%\done\BioKemia\II\favicon.bmp %destination%\done\BioKemia\II\favicon.bmp
-copy %source%\done\BioKemia\III\favicon.bmp %destination%\done\BioKemia\III\favicon.bmp
+xcopy /y %source%\done\BioKemia\favicon.bmp %destination%\done\BioKemia\
+xcopy /y %source%\done\BioKemia\I\biokemiaI.html %destination%\done\BioKemia\I\
+xcopy /y %source%\done\BioKemia\II\biokemiaII.html %destination%\done\BioKemia\II\
+xcopy /y %source%\done\BioKemia\III\biokemiaIII.html %destination%\done\BioKemia\III\
+xcopy /y %source%\done\BioKemia\III\biokemia.html %destination%\done\BioKemia\III\
+xcopy /y %source%\done\BioKemia\I\favicon.bmp %destination%\done\BioKemia\I\
+xcopy /y %source%\done\BioKemia\II\favicon.bmp %destination%\done\BioKemia\II\
+xcopy /y %source%\done\BioKemia\III\favicon.bmp %destination%\done\BioKemia\III\
 robocopy %source%\done\ANAT\images %destination%\done\ANAT\images /mir
-copy %source%\done\ANAT\anat.html %destination%\done\ANAT\anat.html
-copy %source%\done\ANAT\favicon.bmp %destination%\done\ANAT\favicon.bmp
+xcopy /y %source%\done\ANAT\anat.html %destination%\done\ANAT\
+xcopy /y %source%\done\ANAT\favicon.bmp %destination%\done\ANAT\
 robocopy %source%\done\ANAT\Fejlodestan\images %destination%\done\ANAT\Fejlodestan\images /mir
-copy %source%\done\ANAT\Fejlodestan\embrio.html %destination%\done\ANAT\Fejlodestan\embrio.html
-copy %source%\done\ANAT\Fejlodestan\favicon.bmp %destination%\done\ANAT\Fejlodestan\favicon.bmp
+xcopy /y %source%\done\ANAT\Fejlodestan\embrio.html %destination%\done\ANAT\Fejlodestan\
+xcopy /y %source%\done\ANAT\Fejlodestan\favicon.bmp %destination%\done\ANAT\Fejlodestan\
 robocopy %source%\done\ANAT\Histology\images %destination%\done\ANAT\Histology\images /mir
-copy %source%\done\ANAT\Histology\histo.html %destination%\done\ANAT\Histology\histo.html
-copy %source%\done\ANAT\Histology\favicon.bmp %destination%\done\ANAT\Histology\favicon.bmp
+xcopy /y %source%\done\ANAT\Histology\histo.html %destination%\done\ANAT\Histology\
+xcopy /y %source%\done\ANAT\Histology\favicon.bmp %destination%\done\ANAT\Histology\
 robocopy %source%\done\Sejtbiosz\images %destination%\done\Sejtbiosz\images /mir
-copy %source%\done\Sejtbiosz\sejtbiosz1.html %destination%\done\Sejtbiosz\sejtbiosz1.html
-copy %source%\done\Sejtbiosz\sejtbiosz2.html %destination%\done\Sejtbiosz\sejtbiosz2.html
-copy %source%\done\Sejtbiosz\favicon.bmp %destination%\done\Sejtbiosz\favicon.bmp
+xcopy /y %source%\done\Sejtbiosz\sejtbiosz1.html %destination%\done\Sejtbiosz\
+xcopy /y %source%\done\Sejtbiosz\sejtbiosz2.html %destination%\done\Sejtbiosz\
+xcopy /y %source%\done\Sejtbiosz\favicon.bmp %destination%\done\Sejtbiosz\
 robocopy %source%\done\Biologia\images %destination%\done\Biologia\images /mir
-copy %source%\done\Biologia\biosz.html %destination%\done\Biologia\biosz.html
-copy %source%\done\Biologia\favicon.bmp %destination%\done\Biologia\favicon.bmp
+xcopy /y %source%\done\Biologia\biosz.html %destination%\done\Biologia\
+xcopy /y %source%\done\Biologia\favicon.bmp %destination%\done\Biologia\
 robocopy %source%\done\FejlodesBiosz\images %destination%\done\FejlodesBiosz\images /mir
-copy %source%\done\FejlodesBiosz\FejlBiosz.html %destination%\done\FejlodesBiosz\FejlBiosz.html
-copy %source%\done\FejlodesBiosz\favicon.bmp %destination%\done\FejlodesBiosz\favicon.bmp
-copy %source%\done\FejlodesBiosz\style.css %destination%\done\FejlodesBiosz\style.css
+xcopy /y %source%\done\FejlodesBiosz\FejlBiosz.html %destination%\done\FejlodesBiosz\
+xcopy /y %source%\done\FejlodesBiosz\favicon.bmp %destination%\done\FejlodesBiosz\
 robocopy %source%\done\Kemia\images %destination%\done\Kemia\images /mir
-copy %source%\done\Kemia\kemia.html %destination%\done\Kemia\kemia.html
-copy %source%\done\Kemia\favicon.bmp %destination%\done\Kemia\favicon.bmp
-copy %source%\done\Kemia\style.css %destination%\done\Kemia\style.css
-copy %source%\done\Kemia\javascript.js %destination%\done\Kemia\javascript.js
+xcopy /y %source%\done\Kemia\kemia.html %destination%\done\Kemia\
+xcopy /y %source%\done\Kemia\favicon.bmp %destination%\done\Kemia\
 robocopy %source%\done\ModMem\images %destination%\done\ModMem\images /mir
-copy %source%\done\ModMem\ModMem.html %destination%\done\ModMem\ModMem.html
+xcopy /y %source%\done\ModMem\ModMem.html %destination%\done\ModMem\
 
 
 
