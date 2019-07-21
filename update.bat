@@ -42,6 +42,9 @@ xcopy /y %source%\favicon.png %destination%\
 robocopy %source%\done\Immunologia\images %destination%\done\Immunologia\images /mir
 xcopy /y %source%\done\Immunologia\immun.html %destination%\done\Immunologia\
 xcopy /y %source%\done\Immunologia\favicon.bmp %destination%\done\Immunologia\
+robocopy %source%\done\Proped\images %destination%\done\Proped\images /mir
+xcopy /y %source%\done\Proped\proped.html %destination%\done\Proped\
+xcopy /y %source%\done\Proped\favicon.bmp %destination%\done\Proped\
 robocopy %source%\done\Mutettan\images %destination%\done\Mutettan\images /mir
 xcopy /y %source%\done\Mutettan\mutettan.html %destination%\done\Mutettan\
 xcopy /y %source%\done\Mutettan\favicon.bmp %destination%\done\Mutettan\
