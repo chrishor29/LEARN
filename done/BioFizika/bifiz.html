@@ -1,38 +1,7 @@
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="shortcut icon" href="favicon.bmp">
 	<title>BioFizika I-II</title>
-	<style>
-		* {
-		 font-size: 99%;
-		 font-family: Arial;
-		}
-		sup, sub {
-		 font-size: 80%;
-		}
-
-		.Fix { 
-			background-color: Gainsboro;
-			color: Black;
-			font-weight: normal;
-		}
-		.nemértem { 
-			background-color: red;
-			color: white;
-			font-weight: bold;
-		}
-		.phase {
-			padding-left: 2px;
-			padding-right: 2px;
-			padding-top: 3px;
-			padding-bottom: 1px;
-			font-size: large;
-			background-color: Cyan;
-			color: Black;
-			border: 2px solid Black;
-		}
-	</style>
 </head>
 
 <table><tr><th><abbr title="számolási példák">szp</abbr></th><td>
@@ -96,7 +65,7 @@
 	</td><td>
 		61
 	</td><td>
-		<span class="nemértem">73</span>
+		<span class="fix">73</span>
 		74
 	</td><td>
 		75
@@ -176,17 +145,17 @@
 </td></tr></table>
 <!--<table><tr><th>számítás</th>
 	<td>2011 &#10140; 1 2 3 4</td>
-	<td>2012 &#10140; 1 2 3 <span class="nemértem">4</span></td>
-	<td>2013 &#10140; <span class="nemértem">1</span> 2 <span class="nemértem">3</span> 4</td>
+	<td>2012 &#10140; 1 2 3 <span class="fix">4</span></td>
+	<td>2013 &#10140; <span class="fix">1</span> 2 <span class="fix">3</span> 4</td>
 	<td>2014 &#10140; 1 2 3 <a href="images/mg_2014_4.png">4</a></td>
 	<td>2015 &#10140; <abbr title="VII.2">1</abbr> 2 <abbr title="képlettár áramlás (3)">3</abbr> 4</td>
 </tr></table>
 <table><tr><th>elmélet</th>
-	<td>2011 &#10140; 1 <span class="fix">2a</span> 2bcde <span class="fix">3</span> <span class="fix">4</span></td>
-	<td>2012 &#10140; <span class="fix">1</span> <span class="fix">2</span> <span class="fix">3</span> <span class="fix">4</span></td>
-	<td>2013 &#10140; <span class="fix">1</span> <span class="fix">2</span> <span class="fix">3</span> <span class="fix">4</span></td>
-	<td>2014 &#10140; <span class="fix">1</span> <span class="fix">2</span> <span class="fix">3</span> <span class="fix">4</span></td>
-	<td>2015 &#10140; <span class="nemértem">1</span> <span class="nemértem">2abc</span> 2d <span class="nemértem">3cd</span> 3ab <span class="nemértem">4</span> <span class="nemértem">5</span></td>
+	<td>2011 &#10140; 1 <span class="miss">2a</span> 2bcde <span class="miss">3</span> <span class="miss">4</span></td>
+	<td>2012 &#10140; <span class="miss">1</span> <span class="miss">2</span> <span class="miss">3</span> <span class="miss">4</span></td>
+	<td>2013 &#10140; <span class="miss">1</span> <span class="miss">2</span> <span class="miss">3</span> <span class="miss">4</span></td>
+	<td>2014 &#10140; <span class="miss">1</span> <span class="miss">2</span> <span class="miss">3</span> <span class="miss">4</span></td>
+	<td>2015 &#10140; <span class="fix">1</span> <span class="fix">2abc</span> 2d <span class="fix">3cd</span> 3ab <span class="fix">4</span> <span class="fix">5</span></td>
 </tr></table>-->
 Gyakorlati tételek, amiket nem kell vizsgán: <span class="WHITE">15.dozimetria</span> <span class="WHITE">12.izotópdiagnosztika</span> <span class="WHITE">17.méréstechnika</span> <span class="WHITE">5.fényemisszió</span> <span class="WHITE">3.Mikroszkópia II.</span>
 
@@ -594,8 +563,8 @@ Gyakorlati tételek, amiket nem kell vizsgán: <span class="WHITE">15.dozimetria
 		<li>K = 2r&pi;</li>
 		<li>T = r<sup>2</sup>&pi;</li>
 	</ul></details>
-	<details><summary><font color="Gainsboro">&#9609;</font> prefixumok?</summary><ul class="normal">
-		<a href="images/prefix.png"><img src="images/prefix.png"></a>
+	<details><summary><font color="Gainsboro">&#9609;</font> premissumok?</summary><ul class="normal">
+		<a href="images/premiss.png"><img src="images/premiss.png"></a>
 	</ul></details>
 	<details><summary><font color="Gainsboro">&#9609;</font> kritikus_csillapítás (definíció is)?</summary><ul class="normal">
 		<li>csillapítási_tényező olyan nagy, hogy nem lendül át a test másik irányba, hanem egyből egyensúlyi helyzetbe áll</li>
@@ -5065,7 +5034,7 @@ Gyakorlati tételek, amiket nem kell vizsgán: <span class="WHITE">15.dozimetria
 		<a href="images/feladat_impgen.png"><img src="images/feladat_impgen.png"></a>
 		<li>10év alatt ennyi db trigger kell &#10140; 10*365*24*60*70</li>
 		<li>1trigger ennyi energiából áll</li><ul>
-			<li><abbr title="nemértem miértnem 1/2CUnégyzet, de mind1">E =</abbr> &tau; * <abbr title="5V">U</abbr><sup>2</sup>/R</li>
+			<li><abbr title="fix miértnem 1/2CUnégyzet, de mind1">E =</abbr> &tau; * <abbr title="5V">U</abbr><sup>2</sup>/R</li>
 		</ul>
 		<li>hatásfok 25% &#10140; db * E * 4 = E<sub>sum</sub></li>
 		<li>E<sub>sum</sub> = <abbr title="5,6V">U</abbr> * I * t</li>
@@ -5183,11 +5152,9 @@ Gyakorlati tételek, amiket nem kell vizsgán: <span class="WHITE">15.dozimetria
 </div>
 
 
-
-<br><br><br><br><br><br><center><a href="../../targyvalasztas.html"><strong style="font-size: 150%;">tárgyválasztás</strong></a></center>
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<center><a href="../../targyvalasztas.html"><strong style="font-size: 150%;">tárgyválasztás</strong></a></center>
+<div> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> </div>
+<script> window.parent.postMessage(['varA', document.body.innerHTML], '*') </script>
 
 
 

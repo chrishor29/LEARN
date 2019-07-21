@@ -1,5 +1,6 @@
 <head>
 	<meta charset="UTF-8">
+	<!-- <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
 	<link rel="shortcut icon" href="favicon.png?v=2">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>Tárgyválasztás</title>
@@ -9,100 +10,119 @@
 <!-- û õ õ -->
 
 <style>
-	div.header {
-		border: 4px solid black;
-		padding: 4px;
-		padding-right: 8px;
-		margin-right: -4px;
-		background-color: azure;
+	span.page {
+		color: blue;
+		text-decoration: underline;
 	}
-	img.mini{
+	span.page:hover {
+		background-color: yellow;
+		cursor: pointer;
+	}
+	img.targy{
 		max-width:16px;
 		max-height:16px;
 		border:0px;
+		float: none;
+		margin-bottom: -2px
 	}
 </style>
 
+<script> // load Time
+	var myTime
+	var oldTime = false
+	function F_getTime(){
+		var myDate = new Date()
+		myTime = myDate.getTime() /1000
+		if ( oldTime == false ) { oldTime = myTime }
+	}
+	F_getTime()
+	function F_loadTime() {
+		F_getTime()
+		var diffTime = myTime-oldTime
+		console.log("– – – Loading finished – – – " + diffTime+"s")
+	}
+</script>
 
-<div class="header" style="float:left;">
-	<div><a href="expqs.html">expqs</a></div>
-  <hr>
-	<div><img class="mini" src="Belgyogy\favicon.bmp"> <a href="Belgyogy\belgyogy.html"><strong>Belgyógyászat</strong></a></div>
-	<div><img class="mini" src="Patosz\favicon.bmp"> <a href="Patosz\patosz.html"><strong>Patológia</strong></a></div>
-	<div><img class="mini" src="Kortan\favicon.bmp"> <a href="Kortan\kortan.html"><strong>Kórélettan</strong></a></div>
-	<div><img class="mini" src="Mikrobi\favicon.bmp"> <a href="Mikrobi\mikrobi.html"><strong>Mikrobiológia</strong></a></div>
-	<div><img class="mini" src="Genetika\favicon.bmp"> <a href="Genetika\genetika.html"><strong>Genetika</strong></a></div>
-	<div><img class="mini" src="Pszicho\favicon.bmp"> <a href="Pszicho\pszicho.html"><strong>Pszichológia</strong></a></div>
-	<div><a href="LabMed\labmed.html"><strong>Laboratóriumi Medicina</strong></a></div>
-  <hr>
-	<div><a href="done\Mutettan\mutettan.html">Kísérletes és sebészeti műtéttan</a></div>
-	<div><a href="done\Immunologia\immun.html">Immunológia</a></div>
-	<div><a href="done\Proped\proped.html">Belgyógyászati Propedeutika</a></div>
-	<div><a href="FirstAid\1staid.html">Elsősegélynyújtás</a></div>
-  <hr>
-	<div><img class="mini" src="targyak.bmp"> <a href="targyak.html">tárgyak</a></div>
-</div>
+<table id="table_weboldalak"><tr> <!-- weboldalak -->
+	<!-- III.év --> <td style="text-align:left">
+		<span class="page" data-src="expqs.html">expqs</span><br>
+		<span class="page" data-src="sajat/sajat.html">sajat</span><br>
+	  <hr>
+		<span class="page" data-src="Belgyogy/belgyogy.html"><img class="targy"> Belgyógyászat</span><br>
+		<span class="page" data-src="Patosz/patosz.html"><img class="targy"> Patológia</span><br>
+		<span class="page" data-src="Kortan/kortan.html"><img class="targy"> Kórélettan</span><br>
+		<span class="page" data-src="Mikrobi/mikrobi.html"><img class="targy"> Mikrobiológia</span><br>
+		<span class="page" data-src="Genetika/genetika.html"><img class="targy"> Genetika</span><br>
+		<span class="page" data-src="Pszicho/pszicho.html"><img class="targy"> Pszichológia</span><br>
+		<span class="page" data-src="LabMed/labmed.html">Laboratóriumi Medicina</span><br>
+	  <hr>
+		<span class="page" data-src="done/Mutettan/mutettan.html">Műtéttan</span><br>
+		<span class="page" data-src="done/Immunologia/immun.html">Immunológia</span><br>
+		<span class="page" data-src="done/Proped/proped.html">Propedeutika</span><br>
+	  <hr>
+		<div><img class="targy" src="targyak.bmp"> <a href="targyak.html">tárgyak</a></div>
+	</td>
+	<!-- I-II.év --> <td style="text-align:left">
+		<span class="page" data-src="done/ANAT/anat.html"><img class="targy"> Anatómia</span><br>
+		<span class="page" data-src="done/ANAT/Histology/histo.html"><img class="targy"> Szövettan</span><br>
+		<span class="page" data-src="done/ANAT/Fejlodestan/embrio.html"><img class="targy"> Fejlődéstan</span><br>
+		<span class="page" data-src="done/SejtBiosz/sejtbiosz2.html"><img class="targy"> Molekuláris Sejtbiológia</span> 
+			<span class="page" style="font-size:80%" data-src="done/SejtBiosz/sejtbiosz1.html">(I)</span><br>
+		<span class="page" data-src="done/Elettan/elettan2.html"><img class="targy"> Élettan</span>
+			<span class="page" style="font-size:80%" data-src="done/Elettan/elettan1.html">(I)</span>
+			<span class="page" style="font-size:80%" data-src="done/Elettan/elettan1old.html">(régi)</span><br>
+		<span class="page" data-src="done/BioKemia/III/biokemia.html"><img class="targy"> Biokémia</span>
+			<span class="page" style="font-size:80%" data-src="done/BioKemia/I/biokemiaI.html">(I)</span>
+			<span class="page" style="font-size:80%" data-src="done/BioKemia/II/biokemiaII.html">(II)</span>
+			<span class="page" style="font-size:80%" data-src="done/BioKemia/III/biokemiaIII.html">(III)</span><br>
+	  <hr>
+		<span class="page" data-src="done/Biologia/biosz.html"><img class="targy"> Orvosi Biológia</span><br>
+		<span class="page" data-src="done/Kemia/kemia.html"><img class="targy"> Orvosi Kémia</span><br>
+		<span class="page" data-src="done/BioFizika/bifiz.html"><img class="targy"> Biofizika I-II</span><br>
+		<span class="page" data-src="done/FejlodesBiosz/FejlBiosz.html">Fejlődésbiológia I</span><br>
+		<span class="page" data-src="done/ModMem/ModMem.html">Modellmembránok</span><br>
+	</td>
+	<!-- KÖNYVEK --> <td id="könyvek" style="text-align:left">
+	  IN PROGRESS
+		<div><a href="Patosz\Robbins - Patológia alapjai.pdf">patosz: Robbins</a></div>
+		<div><a href="Patosz\források\defi.pdf">patosz: definíciók</a></div>
+		<div><a href="Mikrobi\Mikrobiológia Ádám Éva.pdf">mikrobi: Ádám Éva</a></div>
+		<div><a href="Mikrobi\Pál, Tibor - Orvosi Mikrobiológia (2013).pdf">mikrobi: Pál, Tibor</a></div>
+		<div><a href="Mikrobi\Orvosi Mikrobiológia Gyakorlatok.pdf">mikrobi: Gyakorlatok</a></div>
+		<div><a href="Mikrobi\tematika\AOK_KOLLOKVIUM.pdf">mikrobi: kollokvium</a></div>
+		<div><a href="Proped\Belgyógyászati fizikális vizsgálat – A diagnosztika alapmódszere.pdf">proped: TK</a></div>
+		<div><a href="Proped\Tulassay A belgyogyaszat alapjai I.pdf">proped: Tulassay I</a></div>
+		<div><a href="Proped\Tulassay A belgyogyaszat alapjai II.pdf">proped: Tulassay II</a></div>
+		<div><a href="Immun\az_immunologia_alapjai_-_2._kiadas.pdf">immun: TK</a></div>
+	  DONE
+	</td>
+	<!-- tételek --> <td id="tetelek" style="text-align:left">
+		<table>
+			<tr><th id="elet11">14</th>
+				<td><input type="number" id="elet12" style="width:45px"></td>
+				<td id="elet13"></td>
+				<th id="elet14"></th>
+			</tr>
+			<tr><th id="elet21">23</th>
+				<td><input type="number" id="elet22" style="width:45px"></td>
+				<td id="elet23"></td>
+				<th id="elet24"></th>
+			</tr>
+		</table>
+		<center><font id="percentX">asd</font>%</center>
+	</td>
+</tr></table>
 
-<div class="header" style="float:left;">
-	<div><img class="mini" src="done\ANAT\favicon.bmp"> <a href="done\ANAT\anat.html">Anatómia</a></div>
-	<div><img class="mini" src="done\ANAT\Histology\favicon.bmp"> <a href="done\ANAT\Histology\histo.html">Szövettan</a></div>
-	<div><img class="mini" src="done\ANAT\Fejlodestan\favicon.bmp"> <a href="done\ANAT\Fejlodestan\embrio.html">Fejlődéstan</a></div>
-	<div><img class="mini" src="done\SejtBiosz\favicon.bmp"> <a href="done\SejtBiosz\sejtbiosz2.html">Molekuláris Sejtbiológia</a> <font style="font-size:80%"><a href="done\SejtBiosz\sejtbiosz1.html">(I)</a></font></div>
-	<div><img class="mini" src="done\Elettan\favicon.bmp"> <a href="done\Elettan\elettan2.html">Élettan II</a> <font style="font-size:80%"><a href="done\Elettan\elettan1.html">(I)</a> <a href="done\Elettan\elettan1old.html">(+régi)</a></font></div>
-	<div><img class="mini" src="done\BioKemia\favicon.bmp"> <a href="done\BioKemia\III\biokemia.html">Biokémia</a> <font style="font-size:80%"><a href="done\BioKemia\I\biokemiaI.html">(I)</a> <a href="done\BioKemia\II\biokemiaII.html">(II)</a> <a href="done\BioKemia\III\biokemiaIII.html">(III)</a></font></div>
-<hr>
-	<div><a href="done\Biologia\biosz.html">Orvosi Biológia</a></div>
-	<div><a href="done\Kemia\kemia.html">Orvosi Kémia</a></div>
-	<div><a href="done\BioFizika\bifiz.html">Biofizika I-II</a></div>
-	<div><a href="done\FejlodesBiosz\FejlBiosz.html">Fejlődésbiológia I</a></div>
-	<div><a href="done\ModMem\ModMem.html">Modellmembránok</a></div>
-</div>
-
-<div id="könyvek" class="header" style="float:left;"><center><strong>KÖNYVEK</strong></center>
-  IN PROGRESS
-	<div><a href="Patosz\Robbins - Patológia alapjai.pdf">patosz: Robbins</a></div>
-	<div><a href="Patosz\források\defi.pdf">patosz: definíciók</a></div>
-	<div><a href="Mikrobi\Mikrobiológia Ádám Éva.pdf">mikrobi: Ádám Éva</a></div>
-	<div><a href="Mikrobi\Pál, Tibor - Orvosi Mikrobiológia (2013).pdf">mikrobi: Pál, Tibor</a></div>
-	<div><a href="Mikrobi\Orvosi Mikrobiológia Gyakorlatok.pdf">mikrobi: Gyakorlatok</a></div>
-	<div><a href="Mikrobi\tematika\AOK_KOLLOKVIUM.pdf">mikrobi: kollokvium</a></div>
-	<div><a href="Proped\Belgyógyászati fizikális vizsgálat – A diagnosztika alapmódszere.pdf">proped: TK</a></div>
-	<div><a href="Proped\Tulassay A belgyogyaszat alapjai I.pdf">proped: Tulassay I</a></div>
-	<div><a href="Proped\Tulassay A belgyogyaszat alapjai II.pdf">proped: Tulassay II</a></div>
-	<div><a href="Immun\az_immunologia_alapjai_-_2._kiadas.pdf">immun: TK</a></div>
-  DONE
-</div>
-
-<!--<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>-->
-
-<div id="tetelek" class="header" style="float:left;"><center><strong>tételek</strong></center>
-	<table>
-		<tr><th id="elet11">36</th>
-			<td><input type="number" id="elet12" style="width:45px"></td>
-			<td id="elet13"></td>
-			<th id="elet14"></th>
-		</tr>
-		<tr><th id="elet21">84</th>
-			<td><input type="number" id="elet22" style="width:45px"></td>
-			<td id="elet23"></td>
-			<th id="elet24"></th>
-		</tr>
-	</table>
-	<center><font id="percentX">asd</font>%</center>
-</div>
-
-
-<script>
+<script> // androidon elrejti a könyveket + tételeket
 	var ua = navigator.userAgent.toLowerCase();
 	var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
 	if ( isAndroid ) { 
 		document.getElementById("könyvek").style.display = "none"
 		document.getElementById("tetelek").style.display = "none"
-		document.getElementById("demok").style.display = "none"
 	}
 </script>
 
-<script>
+<script> // tételek
 	var howmany = 2 +1
 	for (i = 1; i < howmany; i++) { document.getElementById("elet"+i+"2").value = localStorage.getItem("elettPerc"+i) }
 	function calcValPerc(){
@@ -151,285 +171,306 @@
 		} 
 	}
 	
-	console.log()
+	//console.log()
 	document.getElementById("elet12").value = localStorage.getItem("elettPerc.1")
 	document.getElementById("elet22").value = localStorage.getItem("elettPerc.2")
 	calcValPerc()
 </script>
 
-<script>
-	function F_clearLS() {
-		var input = document.createElement("input")
-		input.type = "button"
-		input.style.backgroundColor = "red"
-		input.style.color = "white"
-		input.style.fontWeight = "bold"
-		input.value = "clear LS"
-		document.body.appendChild(input)
-		input.onclick = function(){ 
-			var bgColor = input.style.backgroundColor
-			input.style.backgroundColor = "aqua"
-			setTimeout(localStorage.clear(), 500)
-			setTimeout(function () { input.style.backgroundColor = bgColor  }, 500);
-			
-			localStorage.setItem("lsCount",0)
+<script> // pageopen
+	var pageLinks = document.getElementsByClassName("page")
+	var pagePath // használja img betöltésnél is pl
+	for ( var i=0; i<pageLinks.length; i++ ) { 
+		var detElem = pageLinks[i]
+		detElem.onclick = function() {
+			var pageDiv = document.getElementById("div_pageQTargy")
+			pagePath = this.dataset.src
+			pageDiv.innerHTML = pageTexts[pagePath]
+			F_checkEXPs()
+			F_detailsToggle(pageDiv)
+			//F_impQlot(pageDiv)
 		}
-
-		input.style.position = "absolute"
-		input.style.right = "5px"
-		input.style.bottom = "50px"
+		// favicon
+		var favicons = detElem.getElementsByClassName("targy")
+		var path = detElem.dataset.src
+		if (favicons[0] ) { favicons[0].src = path.slice(0,path.lastIndexOf("/")+1)+"favicon.bmp" }
 	}
-	F_clearLS()
-	function F_clearExpQs() {
-		var input = document.createElement("input")
-		input.type = "button"
-		input.style.fontWeight = "bold"
-		input.value = "clear EXP"
-		document.body.appendChild(input)
-		input.onclick = function(){ 
-			var bgColor = input.style.backgroundColor
-			input.style.backgroundColor = "aqua"
-			var num = localStorage.getItem("hkExp.max")
-			localStorage.removeItem("hkExp.max")
-			for ( var i = 0; i < num; i++ ) {
-				var txt = localStorage.getItem("hkExpQ."+i)
-				localStorage.removeItem("hkExpQ."+i)
-				if ( txt == null ) { continue }
-				var Qid = txt.slice(0,txt.indexOf(" "))
-				console.log("exp."+i+" deleted ("+Qid+")")
-				localStorage.removeItem(Qid)
-			}
-			setTimeout(function () { input.style.backgroundColor = bgColor  }, 500);
-		}
-
-		input.style.position = "absolute"
-		input.style.right = "5px"
-		input.style.bottom = "100px"
-	}
-	F_clearExpQs()
-	function F_InputLoad() {
-		var input = document.createElement("input")
-		input.type = "button"
-		input.value = "load LS"
-		document.body.appendChild(input)
-		input.onclick = function(){ 
-			var bgColor = input.style.backgroundColor
-			input.style.backgroundColor = "aqua"
-			setTimeout(document.getElementById('fileinput').click(), 500)
-			setTimeout(function () { input.style.backgroundColor = bgColor }, 500);
-		}
-
-		input.style.position = "absolute"
-		input.style.right = "5px"
-		input.style.top = "10px"
-	}
-	F_InputLoad()
-	function F_InputOpen() {
-		var input = document.createElement("input")
-		input.type = "button"
-		input.id = "btn_openLS"
-		input.value = "Open LS"
-		document.body.appendChild(input)
-		//input.onmousedown = function(){ this.style.backgroundColor  = "green" }
-		input.onclick = function(){ 
-			this.style.backgroundColor  = "black"
-			this.style.color = "white"
-			setTimeout(function () {F_openLS() }, 500) 
-		}
-
-		input.style.position = "absolute"
-		input.style.right = "5px"
-		input.style.top = "50px"
-	}
-	F_InputOpen()
-	function F_InputSave() {
-		var input = document.createElement("input")
-		input.type = "button"
-		input.id = "btn_saveLS"
-		input.style.backgroundColor = "Chartreuse"
-		input.style.fontWeight = "bold"
-		input.value = "Save LS"
-		document.body.appendChild(input)
-		//input.onmousedown = function(){ this.style.backgroundColor  = "green" }
-		input.onclick = function(){ 
-			this.style.backgroundColor  = "green"
-			setTimeout(function () {func_saveLS() }, 500) 
-		}
-
-		input.style.position = "absolute"
-		input.style.right = "5px"
-		input.style.top = "90px"
-	}
-	F_InputSave()
-	function F_fileinput() {
-		var input = document.createElement("input")
-		input.type = "file"
-		input.id = "fileinput"
-		document.body.appendChild(input)
-		input.style.display = "none"
-	}
-	F_fileinput()
-	
-	// SAVE LS
-	var downA = document.createElement('a');
-	function download(filename,text) { // (netről copyztam) --> (azért kellett, mert androidon máshogy nemtudom lementeni)
-		/*var element = document.createElement('a');
-		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-		element.setAttribute('download', filename);
-		element.appendChild(document.createTextNode("Save file"));
-	  
-		element.style.display = 'none';
-		document.body.appendChild(element);
-		element.click();
-		document.body.removeChild(element);
-		*/
-
-		function F_downloadTXT(text,filename){
-			downA.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-			downA.setAttribute('download', filename);
-			if (document.createEvent) {
-				var event = document.createEvent('MouseEvents');
-				event.initEvent('click', true, true);
-				downA.dispatchEvent(event);
-			} else {
-				downA.click();
-			}
-		}
-		
-		//alert(text.length) 
-		/* if ( isAndroid ) { // androidon crashelne, akkor ezzel megtudom oldani (túl sok a karakter)
-			var num = text.length / 100000
-			num = Math.ceil(num)
-			for ( var i=0; i<num; i++ ) {
-				var acText = text.slice(0,100000)
-				text = text.slice(100000)
-				filename = filename.replace(".txt","_"+i+".txt")
-				F_downloadTXT(acText,filename)
-			}
-		} else { */
-			F_downloadTXT(text,filename)
-		// }
-	}
-	function func_saveLS() {
-		localStorage.setItem("hk.lastSavedLS",0)
-		var text = ""
-		
-		var count = localStorage.getItem("lsCount")
-		count = Number(count) +1
-		localStorage.setItem("lsCount",count)
-		
-		var lsLength = localStorage.length
-		var expQk = []
-		for ( var i=0; i<lsLength; i++ ) {
-			if ( localStorage.key(i).indexOf("hkExpQ.") != -1 ) {
-				var qID = localStorage.getItem(localStorage.key(i))
-				qID = qID.slice(0,qID.indexOf(" "))
-				expQk[qID] = true
-			}
-		}
-		for ( var i=0; i<lsLength; i++ ) {
-			//if ( localStorage.key(i).indexOf("hkExpQ.") != -1 ) { continue }
-			if ( localStorage.key(i) == "loadQs.lastTime" ) { continue }
-			if ( expQk[localStorage.key(i)] == true ) { continue }
-			text = text + localStorage.key(i) + " == " + localStorage.getItem(localStorage.key(i)) + " NEXTONE \n"
-		}
-		var filename = 'localStorage'+count+'.txt'
-		download(filename, text);
-		
-		document.getElementById("btn_saveLS").style.backgroundColor = "Chartreuse"
-		document.getElementById("btn_saveLS").style.color = ""
-	}
-	//JSON.stringify(localStorage)
-	
-	// LOAD LS
-	function F_openLS() {
-		var text = ""
-		
-		var lsLength = localStorage.length
-		for ( var i=0; i<lsLength; i++ ) { 
-			text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE \n"
-		}
-		
-		var wnd = window.open("about:blank", "", "_blank");
-		wnd.document.write(text);
-		
-		document.getElementById("btn_openLS").style.backgroundColor = ""
-		document.getElementById("btn_openLS").style.color = ""
-	}
-	function func_loadLS(content) {
-		do {
-			var phaseText = content.slice(0,content.indexOf(" NEXTONE \n"));
-			content = content.slice(content.indexOf(" NEXTONE ") +10)
-			var variable = phaseText.slice(0,phaseText.indexOf(" == "));
-			var price = phaseText.slice(phaseText.indexOf(" == ") +4);
-			localStorage.setItem(variable, price)
-		}
-		while (phaseText.length > 1);
-	}
-	var fileInput = document.getElementById('fileinput');
-	fileInput.addEventListener('change', function(e){
-		var file = fileInput.files[0];
-		var textType = /text.*/;
-		var content
-
-		if (file.type.match(textType)) {
-			var reader = new FileReader();
-
-			reader.onload = function(e) {
-				content = reader.result
-				func_loadLS(content)
-			}
-
-			reader.readAsText(file);    
-		} else {
-			alert("File not supported!")
-		}
-	});
-	
-	// set SkipTime
-	function F_skipTime() {
-		var input = document.createElement("input")
-		//input.id = "skipHour"
-		input.type = "number"
-		input.style.width = "50px"
-		document.body.appendChild(input)
-		input.style.position = "absolute"
-		input.style.right = "5px"
-		input.style.bottom = "50%"
-		var date = new Date();
-		var remain = Math.floor(date.getTime()/3600000)
-		remain = localStorage.getItem("vizsgaSkip") - remain
-		if ( remain < 0 ) { remain = 0 }
-		input.value = remain
-		
-		input.oninput = function(){ 
-			var date = new Date();
-			var time = Math.floor(date.getTime()/3600000)
-			time = time + Number(this.value)
-			localStorage.setItem("vizsgaSkip",time)
-		}
-		/*
-		var input = document.createElement("input")
-		input.type = "button"
-		input.value = "skip"
-		document.body.appendChild(input)
-		input.onclick = function(){ 
-			var date = new Date();
-			var time = Math.floor(date.getTime()/3600000)
-			time = time + Number(skipHour.value)
-			localStorage.setItem("vizsgaSkip",time)
-		}
-		input.style.position = "absolute"
-		input.style.right = "55px"
-		input.style.bottom = "50%"
-		*/
-	}
-	F_skipTime()
 </script>
 
-<!--
-<script>setTimeout(function(){window.location.href='../../targyvalasztas.html'},5000);</script>
--->
+<script> // search word
+	var objQnameQtxt = {}
+	var pageTexts = {}
+	var searchPath // img betöltésnél használja
+	function F_refreshTexts() {
+		var links = document.getElementsByTagName("a")
+		var max = links.length // közben bekerülnek, és azokat is bevenné, így infinite lenne a for
+		var hianyzik = ""
+		var paths = []
+		for ( var i=0; i<pageLinks.length; i++ ) { paths.push(pageLinks[i].dataset.src) }
+		document.getElementById("iframe_targyak").src = paths[0]
+		if ( typeof window.addEventListener != 'undefined' ) {
+			window.addEventListener('message', function(e) {
+				var targyText = e.data[1];
+				if ( targyText != undefined && targyText != "" ) {
+					//var page = paths[0].slice(paths[0].lastIndexOf("/")+1,paths[0].indexOf(".html"))
+					pageTexts[paths[0]] = targyText
+					paths.shift()
+					if ( paths.length != 0 ) { 
+						document.getElementById("div_SearchW").style.backgroundColor = "grey"
+						document.getElementById("div_Refreshng").innerHTML = paths[0]
+						document.getElementById("iframe_targyak").src = paths[0]
+					} else {
+						document.getElementById("div_SearchW").style.backgroundColor = "white"
+						F_getTime()
+						var timeX = Math.round((myTime-oldTime)*100)/100
+						document.getElementById("div_Refreshng").innerHTML = timeX+"s"
+					}
+				}
+			}, false);
+		}
+	}
+	function F_searchResult() {
+		var paths = Object.keys(pageTexts)
+		//document.getElementById("input_SearchW").value = "stressz"
+		var searchText = document.getElementById("input_SearchW").value
+		var fullText = ""
+		document.getElementById("div_SearchWText").innerHTML = ""
+		var hianyzik = ""
+		
+		for ( var x in paths ) {
+			var path = paths[x]
+			var targyText = pageTexts[path]
+			if ( targyText == null ) { 
+				hianyzik = hianyzik +path.slice(path.lastIndexOf("/"))+" "
+				continue
+			}
+			if ( targyText.indexOf(searchText) == -1 ) { continue }
+			fullText = fullText+ path
+			do {
+				var locST = targyText.indexOf(searchText)
+				var prevText, postText, positive
+				function F_searchPrevText(){
+					positive = false
+					prevText = targyText.slice(0 , targyText.indexOf(searchText))
+					var string
+					do {
+						index = prevText.lastIndexOf("<details")
+						string = prevText.slice(prevText.lastIndexOf("<details"))
+						//console.clear()
+						//console.log(string)
+						//console.log(prevText)
+						prevText = prevText.slice(0 , prevText.lastIndexOf("<details"))
+						if ( string.indexOf("</details") == -1 ) { positive = true }
+					} while ( prevText.indexOf("<details") != -1 && positive != true )
+					if ( positive = true ) { prevText = targyText.slice(index , targyText.indexOf(searchText)) }
+				}
+				F_searchPrevText()
+				function F_searchPostText(){
+					positive = false
+					postText = targyText.slice(targyText.indexOf(searchText))
+					var string
+					var index = 0
+					do {
+						index = index + postText.indexOf("</details") +10
+						string = postText.slice(0 , postText.indexOf("</details"))
+						//console.clear()
+						//console.log(string)
+						//console.log(postText)
+						//alert(index)
+						postText = postText.slice(postText.indexOf("</details")+10)
+						if ( string.indexOf("<details") == -1 ) { positive = true }
+					} while ( postText.indexOf("</details") != -1 && positive != true )
+					if ( positive = true ) { postText = targyText.slice(targyText.indexOf(searchText) , targyText.indexOf(searchText) +index) }
+				} // <a>ez itt <a>egy</a> teszt szöveg, melyben <a>azt</a> teszt-elem</a>
+				if ( positive == true ) { F_searchPostText() }
+				
+				if ( positive == false ) { continue }
+				var resultText = prevText + postText
+				//console.clear()
+				//console.log(prevText)
+				//console.log(postText)
+				//alert(searchText)
+				
+				var summaryText = resultText.slice(resultText.indexOf("summary")+2)
+				summaryText = summaryText.slice(summaryText.indexOf(">")+1)
+				summaryText = summaryText.slice(0,summaryText.indexOf("</summary"))
+				objQnameQtxt[summaryText] = resultText
+				
+				fullText = fullText+ "<li><span data-path='"+path+"' style='color:green; cursor:pointer' onclick='F_searchQText(this)'>"+summaryText+"</span></li>"
+				targyText = targyText.slice(targyText.indexOf(resultText)+resultText.length)
+			} while ( targyText.indexOf(searchText) != -1 )
+			document.getElementById("div_SearchWText").innerHTML = fullText
+			console.log(path)
+		}
+		if ( hianyzik != "" ) { console.log("HIÁNYZIK:"+hianyzik) }
+	}
+	function F_searchQText(detElem){
+		searchPath = detElem.dataset.path
+		var targyText = pageTexts[searchPath]
+		document.getElementById("div_searchQTargy").innerHTML = targyText
+		document.getElementById("div_MidQ").dataset.origin = "searchQs"
+		F_checkEXPs()
+		
+		var qTxt = objQnameQtxt[detElem.innerHTML]
+		qTxt = qTxt.slice(qTxt.indexOf("<summary"),qTxt.lastIndexOf("</details"))
+		var qTitle = qTxt.slice(qTxt.indexOf(">")+1,qTxt.indexOf("</summary"))
+		document.getElementById("btn_MidQ").innerHTML = qTitle
+		qTxt = qTxt.slice(qTxt.indexOf("</summary"))
+		qTxt = qTxt.slice(qTxt.indexOf(">")+1)
+		document.getElementById("div_MidQText").innerHTML = qTxt
+
+		document.getElementById("div_MidQ").style.display = "block"
+		F_detailsToggle(document.getElementById("div_MidQText"))
+	}
+	
+	function F_DivSearchWord() {
+		var div = document.createElement("div")
+		document.body.appendChild(div)
+		div.id = "div_SearchW"
+		div.style.backgroundColor = "white"
+		div.style.overflow = "auto"
+		div.style.border = "8px solid black"
+		div.style.outline = "5px solid aqua"
+		div.style.display = "none"
+		//div.style.display = "block"
+		div.style.position = "fixed"
+		div.style.left = "5px"
+		div.style.right = "5px"
+		div.style.top = "4px"
+		div.style.bottom = "4px"
+		div.style.zIndex = "1"
+		
+		var iframe = document.createElement("iframe")
+		document.body.appendChild(iframe)
+		iframe.style.display = "none"
+		iframe.id = "iframe_targyak"
+		iframe.name = "iframe_targyak"
+		
+		F_refreshTexts()
+		
+		var input = document.createElement("input")
+		div.appendChild(input)
+		input.type = "text"
+		input.id = "input_SearchW"
+		input.style.fontSize = "xx-large"
+		input.style.position = "absolute"
+		input.style.top = "1%";
+		input.style.left = "50%";
+		input.style.paddingLeft = "3px"
+		input.style.paddingRight = "3px"
+		input.style.transform = "translate(-50%)";
+		//input.onchange = function() { F_searchResult() }
+		//input.value = "inzulin";
+		
+		var button = document.createElement("button")
+		div.appendChild(button)
+		button.id = "btn_SearchW"
+		button.style.fontSize = "xx-large"
+		button.innerHTML = "search"
+		button.style.position = "absolute"
+		button.style.top = "1%";
+		button.style.cursor = "pointer"
+		button.onclick = function() { F_searchResult() }
+
+		var divText = document.createElement("div")
+		div.appendChild(divText)
+		divText.id = "div_SearchWText"
+		divText.style.marginLeft = "3px"
+		divText.style.paddingBottom = "10px"
+		divText.style.paddingTop = "60px"
+		divText.style.fontSize = "x-large"
+		
+		var divText = document.createElement("div")
+		document.getElementById("table_weboldalak").appendChild(divText)
+		divText.style.position = "absolute"
+		divText.style.right = "1%"
+		divText.id = "div_Refreshng"
+	}
+	F_DivSearchWord()
+	function F_DivMidQ() {
+		var div = document.createElement("div")
+		document.body.appendChild(div)
+		div.id = "div_searchQTargy"
+		div.style.display = "none"
+		
+		var div = document.createElement("div")
+		document.body.appendChild(div)
+		div.id = "div_expQTargy"
+		div.style.display = "none"
+		
+		var div = document.createElement("div")
+		document.body.appendChild(div)
+		div.id = "div_MidQ"
+		div.dataset.origin = "pageQs"
+		div.style.backgroundColor = "white"
+		div.style.overflow = "auto"
+		div.style.border = "8px solid black"
+		div.style.outline = "5px solid yellow"
+		div.style.display = "none"
+		div.style.position = "fixed"
+		div.style.left = "5px"
+		div.style.right = "5px"
+		div.style.top = "4px"
+		div.style.bottom = "4px"
+		div.style.zIndex = "3"
+		
+		var button = document.createElement("div")
+		//button.type = "button"
+		div.appendChild(button)
+		button.id = "btn_MidQ"
+		button.style.backgroundColor = "red"
+		button.style.color = "white"
+		button.style.fontWeight = "bold"
+		button.style.border = "3px solid black"
+		button.onclick = function(){ 
+			document.getElementById("div_MidQ").style.display = "none" 
+			document.getElementById("div_MidQ").dataset.origin = "pageQs"
+			midQloaded = false
+		}
+		button.style.textAlign = "center"
+		//button.style.position = "absolute"
+		//button.style.left = "50%";
+		button.style.paddingLeft = "3px"
+		button.style.paddingRight = "3px"
+		//button.style.transform = "translate(-50%)";
+		button.style.cursor = "pointer";
+		
+		var divText = document.createElement("div")
+		div.appendChild(divText)
+		divText.id = "div_MidQText"
+		divText.style.paddingBottom = "10px"
+		//divText.style.paddingTop = "30px"
+	}
+	F_DivMidQ()
+	function F_ButtonSearchWord() {
+		var button = document.createElement("input")
+		button.type = "button"
+		document.body.appendChild(button)
+		button.style.zIndex = "2"
+		//button.style.height = "50px"
+		//button.style.width = "50px"
+		button.style.position = "absolute"
+		button.style.right = "150px"
+		button.style.top = "15px"
+		button.value = "🔍"
+		button.style.fontSize = 'xx-large';
+		button.style.cursor = "pointer"
+
+		button.onclick = function(){ 
+			if ( document.getElementById("div_SearchW") != "[object HTMLDivElement]" ) { F_DivSearchWord() }
+			if ( document.getElementById("div_SearchW").style.display == "block" ) {
+				document.getElementById("div_SearchW").style.display = "none"
+			} else {
+				document.getElementById("div_SearchW").style.display = "block"
+			}
+		}
+	}
+	F_ButtonSearchWord()
+</script>
+
+<div id="div_pageQTargy" style="width:100%"></div>
+
+<script src="javascript.js"></script>
 
 
 
