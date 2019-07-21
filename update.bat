@@ -14,22 +14,23 @@ robocopy %source%\Belgyogy\images %destination%\Belgyogy\images /mir
 
 robocopy %source%\Belgyogy\videos %destination%\Belgyogy\videos /mir
 
-copy %source%\Kortan\kortan.html %destination%\Kortan\kortan.html
-copy %source%\Patosz\patosz.html %destination%\Patosz\patosz.html
-copy %source%\Mikrobi\mikrobi.html %destination%\Patosz\mikrobi.html
-copy %source%\Pszicho\pszicho.html %destination%\Pszicho\pszicho.html
-copy %source%\LabMed\labmed.html %destination%\LabMed\labmed.html
-copy %source%\Genetika\genetika.html %destination%\Genetika\genetika.html
-copy %source%\Belgyogy\belgyogy.html %destination%\Belgyogy\belgyogy.html
-copy %source%\sajat\sajat.html %destination%\sajat\sajat.html
+xcopy /y %source%\done\Mutettan\mutettan.html %destination%\done\Mutettan\
+xcopy /y %source%\Kortan\kortan.html %destination%\Kortan\
+xcopy /y %source%\Patosz\patosz.html %destination%\Patosz\
+xcopy /y %source%\Mikrobi\mikrobi.html %destination%\Mikrobi\
+xcopy /y %source%\Pszicho\pszicho.html %destination%\Pszicho\
+xcopy /y %source%\LabMed\labmed.html %destination%\LabMed\
+xcopy /y %source%\Genetika\genetika.html %destination%\Genetika\
+xcopy /y %source%\Belgyogy\kortan.html %destination%\Belgyogy\
+xcopy /y %source%\sajat\sajat.html %destination%\sajat\
 
-copy %source%\Kortan\favicon.png %destination%\Kortan\favicon.png
-copy %source%\Patosz\favicon.png %destination%\Patosz\favicon.png
-copy %source%\Mikrobi\favicon.png %destination%\Mikrobi\favicon.png
-copy %source%\Pszicho\favicon.bmp %destination%\Pszicho\favicon.bmp
-copy %source%\LabMed\favicon.png %destination%\LabMed\favicon.png
-copy %source%\Genetika\favicon.bmp %destination%\Genetika\favicon.bmp
-copy %source%\Belgyogy\favicon.bmp %destination%\Belgyogy\favicon.bmp
+xcopy /y %source%\Kortan\favicon.bmp %destination%\Kortan\
+xcopy /y %source%\Patosz\favicon.bmp %destination%\Patosz\
+xcopy /y %source%\Mikrobi\favicon.bmp %destination%\Mikrobi\
+xcopy /y %source%\Pszicho\favicon.bmp %destination%\Pszicho\
+xcopy /y %source%\LabMed\favicon.bmp %destination%\LabMed\
+xcopy /y %source%\Genetika\favicon.bmp %destination%\Genetika\
+xcopy /y %source%\Belgyogy\favicon.bmp %destination%\Belgyogy\
 
 robocopy %source%\images %destination%\images /mir
 copy %source%\expqs.html %destination%\expqs.html
