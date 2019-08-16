@@ -11,8 +11,10 @@
 
 <style>
 	span.page {
-		color: blue;
 		text-decoration: underline;
+	}
+	span.page {
+		color: blue;
 	}
 	span.page:hover {
 		background-color: yellow;
@@ -51,7 +53,8 @@
 		<span class="page" data-src="Belgyogy/belgyogy.html"><img class="targy"> Belgyógyászat</span><br>
 		<span class="page" data-src="Patosz/patosz.html"><img class="targy"> Patológia</span><br>
 		<span class="page" data-src="Kortan/kortan.html"><img class="targy"> Kórélettan</span><br>
-		<span class="page" data-src="Mikrobi/mikrobi.html"><img class="targy"> Mikrobiológia</span><br>
+		<span class="page" data-src="Mikrobi/mikrobi.html"><img class="targy"> Mikrobiológia</span>
+			<span class="page" style="font-size:80%" data-src="Mikrobi/mikrobi1.html">(regi)</span><br>
 		<span class="page" data-src="Genetika/genetika.html"><img class="targy"> Genetika</span><br>
 		<span class="page" data-src="Pszicho/pszicho.html"><img class="targy"> Pszichológia</span><br>
 		<span class="page" data-src="LabMed/labmed.html">Laboratóriumi Medicina</span><br>
@@ -82,391 +85,45 @@
 		<span class="page" data-src="done/FejlodesBiosz/FejlBiosz.html">Fejlődésbiológia I</span><br>
 		<span class="page" data-src="done/ModMem/ModMem.html">Modellmembránok</span><br>
 	</td>
-	<!-- KÖNYVEK --> <td id="könyvek" style="text-align:left">
-	  IN PROGRESS
-		<div><a href="Patosz\Robbins - Patológia alapjai.pdf">patosz: Robbins</a></div>
-		<div><a href="Patosz\források\defi.pdf">patosz: definíciók</a></div>
-		<div><a href="Mikrobi\Mikrobiológia Ádám Éva.pdf">mikrobi: Ádám Éva</a></div>
-		<div><a href="Mikrobi\Pál, Tibor - Orvosi Mikrobiológia (2013).pdf">mikrobi: Pál, Tibor</a></div>
-		<div><a href="Mikrobi\Orvosi Mikrobiológia Gyakorlatok.pdf">mikrobi: Gyakorlatok</a></div>
-		<div><a href="Mikrobi\tematika\AOK_KOLLOKVIUM.pdf">mikrobi: kollokvium</a></div>
-		<div><a href="Proped\Belgyógyászati fizikális vizsgálat – A diagnosztika alapmódszere.pdf">proped: TK</a></div>
-		<div><a href="Proped\Tulassay A belgyogyaszat alapjai I.pdf">proped: Tulassay I</a></div>
-		<div><a href="Proped\Tulassay A belgyogyaszat alapjai II.pdf">proped: Tulassay II</a></div>
-		<div><a href="Immun\az_immunologia_alapjai_-_2._kiadas.pdf">immun: TK</a></div>
-	  DONE
-	</td>
 	<!-- tételek --> <td id="tetelek" style="text-align:left">
+		<input type="button" value="load LS" style="font-size:large" onclick="F_InputLoad(this)"></input>
+	  <br><br>
+		<input type="button" id="btn_saveLS" style="font-size:large; background-color:Chartreuse; font-weight:bold;" value="save LS" onclick="F_InputSave(this)"></input>
+	  <br><br>
 		<table>
-			<tr><th id="elet11">14</th>
+			<tr><th id="elet11">37</th>
 				<td><input type="number" id="elet12" style="width:45px"></td>
 				<td id="elet13"></td>
 				<th id="elet14"></th>
 			</tr>
-			<tr><th id="elet21">23</th>
+			<tr><th id="elet21">37</th>
 				<td><input type="number" id="elet22" style="width:45px"></td>
 				<td id="elet23"></td>
 				<th id="elet24"></th>
 			</tr>
+			<tr><th id="elet31">37</th>
+				<td><input type="number" id="elet32" style="width:45px"></td>
+				<td id="elet33"></td>
+				<th id="elet34"></th>
+			</tr>
+			<tr><th id="elet41">37</th>
+				<td><input type="number" id="elet42" style="width:45px"></td>
+				<td id="elet43"></td>
+				<th id="elet44"></th>
+			</tr>
+			<tr><th id="elet51">37</th>
+				<td><input type="number" id="elet52" style="width:45px"></td>
+				<td id="elet53"></td>
+				<th id="elet54"></th>
+			</tr>
 		</table>
 		<center><font id="percentX">asd</font>%</center>
+	  <br>
+		<input type="button" style="background-color:red; color:white; font-weight:bold;" value="clear LS" onclick="F_clearLS(this)"></input>
+		<input type="file" id="fileinput" style="display:none;"></input>
 	</td>
 </tr></table>
 
-<script> // androidon elrejti a könyveket + tételeket
-	var ua = navigator.userAgent.toLowerCase();
-	var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
-	if ( isAndroid ) { 
-		document.getElementById("könyvek").style.display = "none"
-		document.getElementById("tetelek").style.display = "none"
-	}
-</script>
-
-<script> // tételek
-	var howmany = 2 +1
-	for (i = 1; i < howmany; i++) { document.getElementById("elet"+i+"2").value = localStorage.getItem("elettPerc"+i) }
-	function calcValPerc(){
-		document.getElementById("percentX").innerHTML = 1/100
-		for (i = 1; i < howmany; i++) { 
-			var max = document.getElementById("elet"+i+"1").innerHTML
-			max = Number(max)
-			var now = document.getElementById("elet"+i+"2").value
-			now = Number(now)
-			var perc = 100*now/max
-			document.getElementById("elet"+i+"3").innerHTML = Math.round(perc) + "%"
-			
-			perc = 100*now* Number(document.getElementById("percentX").innerHTML) /max
-			document.getElementById("percentX").innerHTML = perc
-		}
-		var num = Number(document.getElementById("percentX").innerHTML)
-		document.getElementById("percentX").innerHTML = num.toFixed(2)
-		
-		for (i = 1; i < howmany; i++) { 
-			document.getElementById("elet"+i+"4").innerHTML = 1/100
-			for (x = 1; x < howmany; x++) { 
-				var max = document.getElementById("elet"+x+"1").innerHTML
-				max = Number(max)
-				var now = document.getElementById("elet"+x+"2").value
-				now = Number(now)
-				if ( x == i ) { now = now+1 }
-				
-				perc = 100*now* Number(document.getElementById("elet"+i+"4").innerHTML) /max
-				document.getElementById("elet"+i+"4").innerHTML = perc
-			}
-			var num = Number(document.getElementById("elet"+i+"4").innerHTML)
-			num = num.toFixed(2)
-			num = num - Number(document.getElementById("percentX").innerHTML)
-			document.getElementById("elet"+i+"4").innerHTML = "+"+num.toFixed(2)+"%"
-		}
-	}
-	calcValPerc()
-	for (i = 1; i < howmany; i++) { 
-		document.getElementById("elet"+i+"2").oninput = function(){ 
-			calcValPerc()
-			
-			var id = this.id
-			id = id.slice(-2)
-			id = id.slice(0,1)
-			localStorage.setItem("elettPerc."+id,this.value)
-		} 
-	}
-	
-	//console.log()
-	document.getElementById("elet12").value = localStorage.getItem("elettPerc.1")
-	document.getElementById("elet22").value = localStorage.getItem("elettPerc.2")
-	calcValPerc()
-</script>
-
-<script> // pageopen
-	var pageLinks = document.getElementsByClassName("page")
-	var pagePath // használja img betöltésnél is pl
-	for ( var i=0; i<pageLinks.length; i++ ) { 
-		var detElem = pageLinks[i]
-		detElem.onclick = function() {
-			var pageDiv = document.getElementById("div_pageQTargy")
-			pagePath = this.dataset.src
-			pageDiv.innerHTML = pageTexts[pagePath]
-			F_checkEXPs()
-			F_detailsToggle(pageDiv)
-			//F_impQlot(pageDiv)
-		}
-		// favicon
-		var favicons = detElem.getElementsByClassName("targy")
-		var path = detElem.dataset.src
-		if (favicons[0] ) { favicons[0].src = path.slice(0,path.lastIndexOf("/")+1)+"favicon.bmp" }
-	}
-</script>
-
-<script> // search word
-	var objQnameQtxt = {}
-	var pageTexts = {}
-	var searchPath // img betöltésnél használja
-	function F_refreshTexts() {
-		var links = document.getElementsByTagName("a")
-		var max = links.length // közben bekerülnek, és azokat is bevenné, így infinite lenne a for
-		var hianyzik = ""
-		var paths = []
-		for ( var i=0; i<pageLinks.length; i++ ) { paths.push(pageLinks[i].dataset.src) }
-		document.getElementById("iframe_targyak").src = paths[0]
-		if ( typeof window.addEventListener != 'undefined' ) {
-			window.addEventListener('message', function(e) {
-				var targyText = e.data[1];
-				if ( targyText != undefined && targyText != "" ) {
-					//var page = paths[0].slice(paths[0].lastIndexOf("/")+1,paths[0].indexOf(".html"))
-					pageTexts[paths[0]] = targyText
-					paths.shift()
-					if ( paths.length != 0 ) { 
-						document.getElementById("div_SearchW").style.backgroundColor = "grey"
-						document.getElementById("div_Refreshng").innerHTML = paths[0]
-						document.getElementById("iframe_targyak").src = paths[0]
-					} else {
-						document.getElementById("div_SearchW").style.backgroundColor = "white"
-						F_getTime()
-						var timeX = Math.round((myTime-oldTime)*100)/100
-						document.getElementById("div_Refreshng").innerHTML = timeX+"s"
-					}
-				}
-			}, false);
-		}
-	}
-	function F_searchResult() {
-		var paths = Object.keys(pageTexts)
-		//document.getElementById("input_SearchW").value = "stressz"
-		var searchText = document.getElementById("input_SearchW").value
-		var fullText = ""
-		document.getElementById("div_SearchWText").innerHTML = ""
-		var hianyzik = ""
-		
-		for ( var x in paths ) {
-			var path = paths[x]
-			var targyText = pageTexts[path]
-			if ( targyText == null ) { 
-				hianyzik = hianyzik +path.slice(path.lastIndexOf("/"))+" "
-				continue
-			}
-			if ( targyText.indexOf(searchText) == -1 ) { continue }
-			fullText = fullText+ path
-			do {
-				var locST = targyText.indexOf(searchText)
-				var prevText, postText, positive
-				function F_searchPrevText(){
-					positive = false
-					prevText = targyText.slice(0 , targyText.indexOf(searchText))
-					var string
-					do {
-						index = prevText.lastIndexOf("<details")
-						string = prevText.slice(prevText.lastIndexOf("<details"))
-						//console.clear()
-						//console.log(string)
-						//console.log(prevText)
-						prevText = prevText.slice(0 , prevText.lastIndexOf("<details"))
-						if ( string.indexOf("</details") == -1 ) { positive = true }
-					} while ( prevText.indexOf("<details") != -1 && positive != true )
-					if ( positive = true ) { prevText = targyText.slice(index , targyText.indexOf(searchText)) }
-				}
-				F_searchPrevText()
-				function F_searchPostText(){
-					positive = false
-					postText = targyText.slice(targyText.indexOf(searchText))
-					var string
-					var index = 0
-					do {
-						index = index + postText.indexOf("</details") +10
-						string = postText.slice(0 , postText.indexOf("</details"))
-						//console.clear()
-						//console.log(string)
-						//console.log(postText)
-						//alert(index)
-						postText = postText.slice(postText.indexOf("</details")+10)
-						if ( string.indexOf("<details") == -1 ) { positive = true }
-					} while ( postText.indexOf("</details") != -1 && positive != true )
-					if ( positive = true ) { postText = targyText.slice(targyText.indexOf(searchText) , targyText.indexOf(searchText) +index) }
-				} // <a>ez itt <a>egy</a> teszt szöveg, melyben <a>azt</a> teszt-elem</a>
-				if ( positive == true ) { F_searchPostText() }
-				
-				if ( positive == false ) { continue }
-				var resultText = prevText + postText
-				//console.clear()
-				//console.log(prevText)
-				//console.log(postText)
-				//alert(searchText)
-				
-				var summaryText = resultText.slice(resultText.indexOf("summary")+2)
-				summaryText = summaryText.slice(summaryText.indexOf(">")+1)
-				summaryText = summaryText.slice(0,summaryText.indexOf("</summary"))
-				objQnameQtxt[summaryText] = resultText
-				
-				fullText = fullText+ "<li><span data-path='"+path+"' style='color:green; cursor:pointer' onclick='F_searchQText(this)'>"+summaryText+"</span></li>"
-				targyText = targyText.slice(targyText.indexOf(resultText)+resultText.length)
-			} while ( targyText.indexOf(searchText) != -1 )
-			document.getElementById("div_SearchWText").innerHTML = fullText
-			console.log(path)
-		}
-		if ( hianyzik != "" ) { console.log("HIÁNYZIK:"+hianyzik) }
-	}
-	function F_searchQText(detElem){
-		searchPath = detElem.dataset.path
-		var targyText = pageTexts[searchPath]
-		document.getElementById("div_searchQTargy").innerHTML = targyText
-		document.getElementById("div_MidQ").dataset.origin = "searchQs"
-		F_checkEXPs()
-		
-		var qTxt = objQnameQtxt[detElem.innerHTML]
-		qTxt = qTxt.slice(qTxt.indexOf("<summary"),qTxt.lastIndexOf("</details"))
-		var qTitle = qTxt.slice(qTxt.indexOf(">")+1,qTxt.indexOf("</summary"))
-		document.getElementById("btn_MidQ").innerHTML = qTitle
-		qTxt = qTxt.slice(qTxt.indexOf("</summary"))
-		qTxt = qTxt.slice(qTxt.indexOf(">")+1)
-		document.getElementById("div_MidQText").innerHTML = qTxt
-
-		document.getElementById("div_MidQ").style.display = "block"
-		F_detailsToggle(document.getElementById("div_MidQText"))
-	}
-	
-	function F_DivSearchWord() {
-		var div = document.createElement("div")
-		document.body.appendChild(div)
-		div.id = "div_SearchW"
-		div.style.backgroundColor = "white"
-		div.style.overflow = "auto"
-		div.style.border = "8px solid black"
-		div.style.outline = "5px solid aqua"
-		div.style.display = "none"
-		//div.style.display = "block"
-		div.style.position = "fixed"
-		div.style.left = "5px"
-		div.style.right = "5px"
-		div.style.top = "4px"
-		div.style.bottom = "4px"
-		div.style.zIndex = "1"
-		
-		var iframe = document.createElement("iframe")
-		document.body.appendChild(iframe)
-		iframe.style.display = "none"
-		iframe.id = "iframe_targyak"
-		iframe.name = "iframe_targyak"
-		
-		F_refreshTexts()
-		
-		var input = document.createElement("input")
-		div.appendChild(input)
-		input.type = "text"
-		input.id = "input_SearchW"
-		input.style.fontSize = "xx-large"
-		input.style.position = "absolute"
-		input.style.top = "1%";
-		input.style.left = "50%";
-		input.style.paddingLeft = "3px"
-		input.style.paddingRight = "3px"
-		input.style.transform = "translate(-50%)";
-		//input.onchange = function() { F_searchResult() }
-		//input.value = "inzulin";
-		
-		var button = document.createElement("button")
-		div.appendChild(button)
-		button.id = "btn_SearchW"
-		button.style.fontSize = "xx-large"
-		button.innerHTML = "search"
-		button.style.position = "absolute"
-		button.style.top = "1%";
-		button.style.cursor = "pointer"
-		button.onclick = function() { F_searchResult() }
-
-		var divText = document.createElement("div")
-		div.appendChild(divText)
-		divText.id = "div_SearchWText"
-		divText.style.marginLeft = "3px"
-		divText.style.paddingBottom = "10px"
-		divText.style.paddingTop = "60px"
-		divText.style.fontSize = "x-large"
-		
-		var divText = document.createElement("div")
-		document.getElementById("table_weboldalak").appendChild(divText)
-		divText.style.position = "absolute"
-		divText.style.right = "1%"
-		divText.id = "div_Refreshng"
-	}
-	F_DivSearchWord()
-	function F_DivMidQ() {
-		var div = document.createElement("div")
-		document.body.appendChild(div)
-		div.id = "div_searchQTargy"
-		div.style.display = "none"
-		
-		var div = document.createElement("div")
-		document.body.appendChild(div)
-		div.id = "div_expQTargy"
-		div.style.display = "none"
-		
-		var div = document.createElement("div")
-		document.body.appendChild(div)
-		div.id = "div_MidQ"
-		div.dataset.origin = "pageQs"
-		div.style.backgroundColor = "white"
-		div.style.overflow = "auto"
-		div.style.border = "8px solid black"
-		div.style.outline = "5px solid yellow"
-		div.style.display = "none"
-		div.style.position = "fixed"
-		div.style.left = "5px"
-		div.style.right = "5px"
-		div.style.top = "4px"
-		div.style.bottom = "4px"
-		div.style.zIndex = "3"
-		
-		var button = document.createElement("div")
-		//button.type = "button"
-		div.appendChild(button)
-		button.id = "btn_MidQ"
-		button.style.backgroundColor = "red"
-		button.style.color = "white"
-		button.style.fontWeight = "bold"
-		button.style.border = "3px solid black"
-		button.onclick = function(){ 
-			document.getElementById("div_MidQ").style.display = "none" 
-			document.getElementById("div_MidQ").dataset.origin = "pageQs"
-			midQloaded = false
-		}
-		button.style.textAlign = "center"
-		//button.style.position = "absolute"
-		//button.style.left = "50%";
-		button.style.paddingLeft = "3px"
-		button.style.paddingRight = "3px"
-		//button.style.transform = "translate(-50%)";
-		button.style.cursor = "pointer";
-		
-		var divText = document.createElement("div")
-		div.appendChild(divText)
-		divText.id = "div_MidQText"
-		divText.style.paddingBottom = "10px"
-		//divText.style.paddingTop = "30px"
-	}
-	F_DivMidQ()
-	function F_ButtonSearchWord() {
-		var button = document.createElement("input")
-		button.type = "button"
-		document.body.appendChild(button)
-		button.style.zIndex = "2"
-		//button.style.height = "50px"
-		//button.style.width = "50px"
-		button.style.position = "absolute"
-		button.style.right = "150px"
-		button.style.top = "15px"
-		button.value = "🔍"
-		button.style.fontSize = 'xx-large';
-		button.style.cursor = "pointer"
-
-		button.onclick = function(){ 
-			if ( document.getElementById("div_SearchW") != "[object HTMLDivElement]" ) { F_DivSearchWord() }
-			if ( document.getElementById("div_SearchW").style.display == "block" ) {
-				document.getElementById("div_SearchW").style.display = "none"
-			} else {
-				document.getElementById("div_SearchW").style.display = "block"
-			}
-		}
-	}
-	F_ButtonSearchWord()
-</script>
 
 <div id="div_pageQTargy" style="width:100%"></div>
 

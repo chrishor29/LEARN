@@ -169,7 +169,7 @@ span {
 	color: white;
 }
 .IMPORTANT { 
-	background-color: Aqua /*PaleTurquoise*/
+	background-color: Lime /*SpringGreen*/
 }
 .lasd { 
 	font-size: 80%;
@@ -237,7 +237,7 @@ span {
 	padding-right: 1px; 
 }
 .Done { 
-	background-color: SpringGreen
+	background-color: Aqua /*PaleTurquoise < Aqua < aquamarine < DarkTurquoise < deepskyblue < LightSeaGreen < dodgerblue*/
 }
 .skip { 
 	background-color: dodgerblue;
@@ -277,12 +277,6 @@ img, iframe, object {
 	border: 3px solid black;
 	max-width: 98%;
 	float: right;
-}
-img.HUN {
-	border: 0px solid black;
-	max-width: 98%;
-	float: none;
-	content:url(hun.png);
 }
 img.mini {
 	border: 2px solid DeepSkyBlue;

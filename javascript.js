@@ -167,7 +167,6 @@ for ( var i=0; i<kerdesek.length; i++ ) {
 var ua = navigator.userAgent.toLowerCase();
 var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
 
-
 var myTime
 var oldTime = false
 function F_getTime(){
@@ -177,6 +176,11 @@ function F_getTime(){
 }
 F_getTime()
 
+function wait(ms) {
+	var start = new Date().getTime()
+	var end = start
+	while (end < start + ms) { end = new Date().getTime() }
+}
 
 var kerdesek = document.getElementsByClassName("kerdes")
 if ( localStorage.getItem("hkQ.max") === null ) { localStorage.setItem("hkQ.max",0) } 
@@ -394,7 +398,7 @@ function F_impQlot(detElem){ // 0,4ms/Q a betöltési ideje
 			oldHTML = oldHTML.slice(oldHTML.indexOf('">')+2)
 			
 			F_loadQtxt(impBlock,divSpan)
-			alert(impBlock)
+			//alert(impBlock)
 		}
 		F_getImpQ()
 		if ( Qtxt == undefined ) { continue }
@@ -466,7 +470,7 @@ function F_loadImpQ(locTXT){
 */
 	var startP = 0
 	do {
-		if ( locTXT.indexOf(' class="imp [',startP) == -1 ) { break }
+		if ( locTXT.indexOf(' class="imp ',startP) == -1 ) { break }
 		startP = locTXT.indexOf(' class="imp ',startP) +1
 		var EXPid = locTXT.slice(startP+12)
 		var prevQtxt = locTXT.slice(0,startP)
@@ -559,12 +563,11 @@ function F_midQ(detElem){
 	var midQs = detElem.getElementsByClassName("midQ")
 	for ( var x=0; x<midQs.length; x++ ) {
 		var midQ = midQs[x]
-		midQ.style.backgroundColor = "yellow"
-		midQ.style.paddingLeft = "1px"
-		midQ.style.paddingRight = "1px"
+		midQ.style.color = "blue"
+		midQ.style.textShadow = "0 0 1px yellow, 0 0 1px black"
 		midQ.style.cursor = "pointer"; 
-		midQ.onmouseover = function(){ this.style.backgroundColor = "Chartreuse" }
-		midQ.onmouseout = function(){ this.style.backgroundColor = "yellow" }
+		midQ.onmouseover = function(){ this.style.color = "green" }
+		midQ.onmouseout = function(){ this.style.color = "blue" }
 		midQ.onclick = function(){ 
 			midQloaded = false
 			var impID = this.className
@@ -777,7 +780,7 @@ function func_tooltipFuncs(){
 	tooltipSpan.style.top = "50%";
 	tooltipSpan.style.fontSize = "smaller";
 	tooltipSpan.style.padding = "2px 2px 2px 5px";
-	tooltipSpan.style.zIndex = "3";
+	tooltipSpan.style.zIndex = "4";
 }
 func_tooltipFuncs()
 function func_showTooltip(element){
@@ -935,7 +938,7 @@ function F_centIMG(){ // create center div + image
 	document.body.appendChild(centerDiv)
 	centerDiv.style.visibility = "hidden"
 	centerDiv.style.border = "5px ridge LightGray"
-	centerDiv.style.zIndex = "3"
+	centerDiv.style.zIndex = "4"
 	var centerImage = document.createElement("img")
 	centerImage.id = "img_centIMG"
 	centerDiv.appendChild(centerImage)
@@ -952,73 +955,24 @@ function F_centIMG(){ // create center div + image
 }
 F_centIMG()
 
-
-function F_clearLS() {
-	var input = document.createElement("input")
-	input.type = "button"
-	input.style.backgroundColor = "red"
-	input.style.color = "white"
-	input.style.fontWeight = "bold"
-	input.value = "clear LS"
-	document.body.appendChild(input)
-	input.onclick = function(){ 
-		var bgColor = input.style.backgroundColor
-		input.style.backgroundColor = "aqua"
-		setTimeout(localStorage.clear(), 500)
-		setTimeout(function () { input.style.backgroundColor = bgColor  }, 500);
-		
-		localStorage.setItem("lsCount",0)
-	}
-
-	input.style.position = "absolute"
-	input.style.right = "5px"
-	input.style.bottom = "200px"
+function F_clearLS(detElem) {
+	var bgColor = detElem.style.backgroundColor
+	detElem.style.backgroundColor = "aqua"
+	setTimeout(localStorage.clear(), 500)
+	setTimeout(function () { detElem.style.backgroundColor = bgColor  }, 500);
+	
+	localStorage.setItem("lsCount",0)
 }
-F_clearLS()
-function F_InputLoad() {
-	var input = document.createElement("input")
-	input.type = "button"
-	input.value = "load LS"
-	document.body.appendChild(input)
-	input.onclick = function(){ 
-		var bgColor = input.style.backgroundColor
-		input.style.backgroundColor = "aqua"
-		setTimeout(document.getElementById('fileinput').click(), 500)
-		setTimeout(function () { input.style.backgroundColor = bgColor }, 500);
-	}
-
-	input.style.position = "absolute"
-	input.style.right = "5px"
-	input.style.top = "10px"
+function F_InputLoad(detElem) {
+	var bgColor = detElem.style.backgroundColor
+	detElem.style.backgroundColor = "aqua"
+	setTimeout(document.getElementById('fileinput').click(), 500)
+	setTimeout(function () { detElem.style.backgroundColor = bgColor }, 500);
 }
-F_InputLoad()
-function F_InputSave() {
-	var input = document.createElement("input")
-	input.type = "button"
-	input.id = "btn_saveLS"
-	input.style.backgroundColor = "Chartreuse"
-	input.style.fontWeight = "bold"
-	input.value = "Save LS"
-	document.body.appendChild(input)
-	//input.onmousedown = function(){ this.style.backgroundColor  = "green" }
-	input.onclick = function(){ 
-		this.style.backgroundColor  = "green"
-		setTimeout(function () { F_saveLS() }, 500) 
-	}
-
-	input.style.position = "absolute"
-	input.style.right = "5px"
-	input.style.top = "90px"
+function F_InputSave(detElem) {
+	detElem.style.backgroundColor  = "green"
+	setTimeout(function () { F_saveLS() }, 500) 
 }
-F_InputSave()
-function F_fileinput() {
-	var input = document.createElement("input")
-	input.type = "file"
-	input.id = "fileinput"
-	document.body.appendChild(input)
-	input.style.display = "none"
-}
-F_fileinput()
 
 // LOAD LS
 function F_openLS() {
@@ -1303,7 +1257,6 @@ function F_checkQs(){
 	var diffTime = myTime-oldTime
 	console.log("– F_checkQs END – " + diffTime)*/
 }
-if ( fileName != "expqs.html" ) { F_checkQs() }
 
 var changeStatus = false
 function F_oldQchange(oldLSid){
@@ -1587,7 +1540,7 @@ function F_loadTetelQs(){ // impQnew-al betölti az aktív tételeket
 	// azért elején töltööm be, mert toggleAll-ra klikk így gyorsabb lesz (nem kell ott még ezt is betöltenie)
 	// de ha akarom, akkor elég ezt a funkció lehívást commentbe tenni, akkor is betölti ToggleAll-nál (beírtam kódba már azt is)
 	var Table = document.querySelectorAll('.phase,.status')
-	for ( var i = 0;   i < Table.length;   i++ ) { // tetelek
+	for ( var i=0;  i<Table.length;  i++ ) { // tetelek
 		var tetelID = i+","+ Table[i].innerHTML +"_button"
 		var phaseDiv = Table[i].parentElement
 		if ( localStorage.getItem(tetelID) == "true" ) { F_impQlot(phaseDiv) }
@@ -1595,6 +1548,315 @@ function F_loadTetelQs(){ // impQnew-al betölti az aktív tételeket
 }
 F_loadTetelQs()
 
+var pageLinks = document.getElementsByClassName("page")
+var pagePath, searchPath // img betöltésnél használja
+var pageTexts = {}
+var objQnameQtxt = {}
+function F_andrHide() { // androidon elrejti a könyveket + tételeket
+	var ua = navigator.userAgent.toLowerCase();
+	var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+	if ( isAndroid ) { document.getElementById("tetelek").style.display = "none" }
+}
+//F_andrHide()
+function F_pageOpen() {
+	for ( var i=0; i<pageLinks.length; i++ ) { 
+		var detElem = pageLinks[i]
+		detElem.onmousedown = function(event) {
+			if ( event.button == 1 ) { // middle click
+				pagePath = this.dataset.src
+				var currPath = window.location.href
+				currPath = currPath.slice(0,currPath.lastIndexOf("/")+1)
+				currPath = currPath +pagePath
+				window.location.href = currPath
+			} else if ( event.button == 0 ) { // left click
+				F_loadPageText(this.dataset.src)
+			}
+		}
+		// favicon
+		var favicons = detElem.getElementsByClassName("targy")
+		var path = detElem.dataset.src
+		if (favicons[0] ) { favicons[0].src = path.slice(0,path.lastIndexOf("/")+1)+"favicon.bmp" }
+	}
+}
+F_pageOpen()
+function F_targyTetelek() { // hány %-on állok velük
+	var howmany = 5 +1
+	for (i = 1; i < howmany; i++) { document.getElementById("elet"+i+"2").value = localStorage.getItem("elettPerc"+i) }
+	function calcValPerc(){
+		document.getElementById("percentX").innerHTML = 1/100/100/100/100
+		for (i = 1; i < howmany; i++) { 
+			var max = document.getElementById("elet"+i+"1").innerHTML
+			max = Number(max)
+			var now = document.getElementById("elet"+i+"2").value
+			now = Number(now)
+			var perc = 100*now/max
+			document.getElementById("elet"+i+"3").innerHTML = Math.round(perc) + "%"
+			
+			perc = 100*now* Number(document.getElementById("percentX").innerHTML) /max
+			document.getElementById("percentX").innerHTML = perc
+		}
+		var num = Number(document.getElementById("percentX").innerHTML)
+		document.getElementById("percentX").innerHTML = num.toFixed(2)
+		
+		for (i = 1; i < howmany; i++) { 
+			document.getElementById("elet"+i+"4").innerHTML = 1/100/100/100/100
+			for (x = 1; x < howmany; x++) { 
+				var max = document.getElementById("elet"+x+"1").innerHTML
+				max = Number(max)
+				var now = document.getElementById("elet"+x+"2").value
+				now = Number(now)
+				if ( x == i ) { now = now+1 }
+				
+				perc = 100*now* Number(document.getElementById("elet"+i+"4").innerHTML) /max
+				document.getElementById("elet"+i+"4").innerHTML = perc
+			}
+			var num = Number(document.getElementById("elet"+i+"4").innerHTML)
+			num = num.toFixed(2)
+			num = num - Number(document.getElementById("percentX").innerHTML)
+			document.getElementById("elet"+i+"4").innerHTML = "+"+num.toFixed(2)+"%"
+		}
+	}
+	calcValPerc()
+	for (i = 1; i < howmany; i++) { 
+		document.getElementById("elet"+i+"2").oninput = function(){ 
+			calcValPerc()
+			var id = this.id
+			id = id.slice(-2)
+			id = id.slice(0,1)
+			localStorage.setItem("elettPerc."+id,this.value)
+		} 
+	}
+	
+	//console.log()
+	document.getElementById("elet12").value = localStorage.getItem("elettPerc.1")
+	document.getElementById("elet22").value = localStorage.getItem("elettPerc.2")
+	document.getElementById("elet32").value = localStorage.getItem("elettPerc.3")
+	document.getElementById("elet42").value = localStorage.getItem("elettPerc.4")
+	document.getElementById("elet52").value = localStorage.getItem("elettPerc.5")
+	calcValPerc()
+}
+F_targyTetelek()
+function F_searchQText(detElem){
+	searchPath = detElem.dataset.path
+	var targyText = pageTexts[searchPath]
+	document.getElementById("div_searchQTargy").innerHTML = targyText
+	document.getElementById("div_MidQ").dataset.origin = "searchQs"
+	F_checkEXPs()
+	
+	var qTxt = objQnameQtxt[detElem.innerHTML]
+	qTxt = qTxt.slice(qTxt.indexOf("<summary"),qTxt.lastIndexOf("</details"))
+	var qTitle = qTxt.slice(qTxt.indexOf(">")+1,qTxt.indexOf("</summary"))
+	document.getElementById("btn_MidQ").innerHTML = qTitle
+	qTxt = qTxt.slice(qTxt.indexOf("</summary"))
+	qTxt = qTxt.slice(qTxt.indexOf(">")+1)
+	document.getElementById("div_MidQText").innerHTML = qTxt
+
+	document.getElementById("div_MidQ").style.display = "block"
+	F_detailsToggle(document.getElementById("div_MidQText"))
+}
+function F_searchWord() {
+	function F_searchResult() {
+		var paths = Object.keys(pageTexts)
+		//document.getElementById("input_SearchW").value = "stressz"
+		var searchText = document.getElementById("input_SearchW").value
+		var fullText = ""
+		document.getElementById("div_SearchWText").innerHTML = ""
+		var hianyzik = ""
+		
+		for ( var x in paths ) {
+			var path = paths[x]
+			var targyText = pageTexts[path]
+			if ( targyText == null ) { 
+				hianyzik = hianyzik +path.slice(path.lastIndexOf("/"))+" "
+				continue
+			}
+			if ( targyText.indexOf(searchText) == -1 ) { continue }
+			fullText = fullText+ path
+			do {
+				var locST = targyText.indexOf(searchText)
+				var prevText, postText, positive
+				function F_searchPrevText(){
+					positive = false
+					prevText = targyText.slice(0 , targyText.indexOf(searchText))
+					var string
+					do {
+						index = prevText.lastIndexOf("<details")
+						string = prevText.slice(prevText.lastIndexOf("<details"))
+						//console.clear()
+						//console.log(string)
+						//console.log(prevText)
+						prevText = prevText.slice(0 , prevText.lastIndexOf("<details"))
+						if ( string.indexOf("</details") == -1 ) { positive = true }
+					} while ( prevText.indexOf("<details") != -1 && positive != true )
+					if ( positive = true ) { prevText = targyText.slice(index , targyText.indexOf(searchText)) }
+				}
+				F_searchPrevText()
+				function F_searchPostText(){
+					positive = false
+					postText = targyText.slice(targyText.indexOf(searchText))
+					var string
+					var index = 0
+					do {
+						index = index + postText.indexOf("</details") +10
+						string = postText.slice(0 , postText.indexOf("</details"))
+						//console.clear()
+						//console.log(string)
+						//console.log(postText)
+						//alert(index)
+						postText = postText.slice(postText.indexOf("</details")+10)
+						if ( string.indexOf("<details") == -1 ) { positive = true }
+					} while ( postText.indexOf("</details") != -1 && positive != true )
+					if ( positive = true ) { postText = targyText.slice(targyText.indexOf(searchText) , targyText.indexOf(searchText) +index) }
+				} // <a>ez itt <a>egy</a> teszt szöveg, melyben <a>azt</a> teszt-elem</a>
+				if ( positive == true ) { F_searchPostText() }
+				
+				if ( positive == false ) { continue }
+				var resultText = prevText + postText
+				//console.clear()
+				//console.log(prevText)
+				//console.log(postText)
+				//alert(searchText)
+				
+				var summaryText = resultText.slice(resultText.indexOf("summary")+2)
+				summaryText = summaryText.slice(summaryText.indexOf(">")+1)
+				summaryText = summaryText.slice(0,summaryText.indexOf("</summary"))
+				objQnameQtxt[summaryText] = resultText
+				
+				fullText = fullText+ "<li><span data-path='"+path+"' style='color:green; cursor:pointer' onclick='F_searchQText(this)'>"+summaryText+"</span></li>"
+				targyText = targyText.slice(targyText.indexOf(resultText)+resultText.length)
+			} while ( targyText.indexOf(searchText) != -1 )
+			document.getElementById("div_SearchWText").innerHTML = fullText
+			console.log(path)
+		}
+		if ( hianyzik != "" ) { console.log("HIÁNYZIK:"+hianyzik) }
+	}
+	
+	function F_DivSearchWord() {
+		var div = document.createElement("div")
+		document.body.appendChild(div)
+		div.id = "div_SearchW"
+		div.style.backgroundColor = "white"
+		div.style.overflow = "auto"
+		div.style.border = "8px solid black"
+		div.style.outline = "5px solid aqua"
+		div.style.display = "none"
+		//div.style.display = "block"
+		div.style.position = "fixed"
+		div.style.left = "5px"
+		div.style.right = "5px"
+		div.style.top = "4px"
+		div.style.bottom = "4px"
+		div.style.zIndex = "1"
+		
+		var iframe = document.createElement("iframe")
+		document.body.appendChild(iframe)
+		iframe.style.display = "none"
+		iframe.id = "iframe_targyak"
+		iframe.name = "iframe_targyak"
+		
+		var input = document.createElement("input")
+		div.appendChild(input)
+		input.type = "text"
+		input.id = "input_SearchW"
+		input.style.fontSize = "xx-large"
+		input.style.position = "absolute"
+		input.style.top = "1%";
+		input.style.left = "50%";
+		input.style.paddingLeft = "3px"
+		input.style.paddingRight = "3px"
+		input.style.transform = "translate(-50%)";
+		//input.onchange = function() { F_searchResult() }
+		//input.value = "inzulin";
+		
+		var button = document.createElement("button")
+		div.appendChild(button)
+		button.id = "btn_SearchW"
+		button.style.fontSize = "xx-large"
+		button.innerHTML = "search"
+		button.style.position = "absolute"
+		button.style.top = "1%";
+		button.style.cursor = "pointer"
+		button.onclick = function() { F_searchResult() }
+
+		var divText = document.createElement("div")
+		div.appendChild(divText)
+		divText.id = "div_SearchWText"
+		divText.style.marginLeft = "3px"
+		divText.style.paddingBottom = "10px"
+		divText.style.paddingTop = "60px"
+		divText.style.fontSize = "x-large"
+		
+		var divText = document.createElement("div")
+		document.getElementById("table_weboldalak").appendChild(divText)
+		divText.style.position = "absolute"
+		divText.style.right = "1%"
+		divText.id = "div_Refreshng"
+		
+		var divText = document.createElement("div")
+		document.getElementById("div_SearchW").appendChild(divText)
+		divText.style.position = "absolute"
+		divText.style.top = "1%"
+		divText.style.right = "1%"
+		divText.id = "div_RefreshStatus"
+	}
+	F_DivSearchWord()
+	function F_DivMidQ() {
+		var div = document.createElement("div")
+		document.body.appendChild(div)
+		div.id = "div_searchQTargy"
+		div.style.display = "none"
+		
+		var div = document.createElement("div")
+		document.body.appendChild(div)
+		div.id = "div_expQTargy"
+		div.style.display = "none"
+		
+		var div = document.createElement("div")
+		document.body.appendChild(div)
+		div.id = "div_MidQ"
+		div.dataset.origin = "pageQs"
+		div.style.backgroundColor = "white"
+		div.style.overflow = "auto"
+		div.style.border = "8px solid black"
+		div.style.outline = "5px solid yellow"
+		div.style.display = "none"
+		div.style.position = "fixed"
+		div.style.left = "5px"
+		div.style.right = "5px"
+		div.style.top = "4px"
+		div.style.bottom = "4px"
+		div.style.zIndex = "3"
+		
+		var button = document.createElement("div")
+		//button.type = "button"
+		div.appendChild(button)
+		button.id = "btn_MidQ"
+		button.style.backgroundColor = "red"
+		button.style.color = "white"
+		button.style.fontWeight = "bold"
+		button.style.border = "3px solid black"
+		button.onclick = function(){ 
+			document.getElementById("div_MidQ").style.display = "none" 
+			document.getElementById("div_MidQ").dataset.origin = "pageQs"
+			midQloaded = false
+		}
+		button.style.textAlign = "center"
+		//button.style.position = "absolute"
+		//button.style.left = "50%";
+		button.style.paddingLeft = "3px"
+		button.style.paddingRight = "3px"
+		//button.style.transform = "translate(-50%)";
+		button.style.cursor = "pointer";
+		
+		var divText = document.createElement("div")
+		div.appendChild(divText)
+		divText.id = "div_MidQText"
+		divText.style.paddingBottom = "10px"
+		//divText.style.paddingTop = "30px"
+	}
+	F_DivMidQ()
+}
+F_searchWord()
 
 function F_DivSkip() {
 	var div = document.createElement("div")
@@ -1801,8 +2063,9 @@ function F_toggleAll() {
 
 	if ( refreshAll != true ) {
 		refreshAll = true
-		F_getTexts()
 		F_checkQs()
+		F_tetelQs()
+		F_getTexts()
 		F_oldQcheck()
 		F_tetelChoose()
 		func_tableSkipFix()
@@ -1827,17 +2090,20 @@ function F_toggleAll() {
 		document.getElementById("div_MidQ").style.display = 'none';
 		document.getElementById("div_upgQ").style.display = 'none';
 		document.getElementById("div_qProp").style.display = 'none';
+		document.getElementById("div_SearchW").style.display = 'none';
+		document.getElementById("iframe_targyak").style.display = 'none';
+		document.getElementById("fileinput").style.display = 'none';
 	} else {
 		localStorage.setItem("hk.ToggleAll","true")
 		for ( var i=0; i<childs.length; i++ ) { childs[i].style.display = "none" }
 		document.getElementById("div_MainFrame").style.display = 'block';
 		tooltipSpan.style.display = 'block';
 
-		document.getElementById("input_toggleAll").style.display = 'block';
+		document.getElementById("btn_toggleAll").style.display = 'block';
 	}
 	document.getElementById("div_centIMG").style.display = "block";
-	document.getElementById("input_toggleAll").style.backgroundColor  = ""
-	document.getElementById("input_toggleAll").style.color  = ""
+	document.getElementById("btn_toggleAll").style.backgroundColor  = ""
+	document.getElementById("btn_toggleAll").style.color  = ""
 	
 	F_getTime()
 	lastClickTime = myTime
@@ -1965,7 +2231,7 @@ function F_CreateQDiv() {
 	
 	function F_ButtonToggleAll() {
 		var button = document.createElement("input")
-		button.id = "input_toggleAll"
+		button.id = "btn_toggleAll"
 		button.type = "button"
 		document.body.appendChild(button)
 		button.style.width = "45px"
@@ -2012,6 +2278,31 @@ function F_CreateQDiv() {
 		}*/
 	}
 	F_ButtonToggleAll()
+	function F_ButtonSearchWord() {
+		var button = document.createElement("input")
+		button.type = "button"
+		document.body.appendChild(button)
+		button.style.zIndex = "2"
+		//button.style.height = "50px"
+		//button.style.width = "50px"
+		button.style.position = "absolute"
+		button.style.right = "150px"
+		button.style.top = "15px"
+		button.value = "🔍"
+		button.style.fontSize = 'xx-large';
+		button.style.cursor = "pointer"
+
+		button.onclick = function(){ 
+			if ( document.getElementById("div_SearchW") != "[object HTMLDivElement]" ) { F_DivSearchWord() }
+			if ( document.getElementById("div_SearchW").style.display == "block" ) {
+				document.getElementById("div_SearchW").style.display = "none"
+			} else {
+				document.getElementById("div_SearchW").style.display = "block"
+				F_loadAllPageTexts()
+			}
+		}
+	}
+	F_ButtonSearchWord()
 
 	function F_DivMainFrame() {
 		var div = document.createElement("div")
@@ -2090,13 +2381,15 @@ function F_CreateQDiv() {
 		button.style.backgroundColor = "Bisque"
 		button.onclick = function(){
 			if ( document.getElementById("div_nextQMark").style.display == 'none' ) {
-				document.getElementById("div_nextQMark").style.display = 'block';
+				document.getElementById("div_nextQMark").style.display = 'block'
 			} 
 			if ( document.getElementById("repTable").style.display == 'block' ) {
-				document.getElementById("repTable").style.display = 'none';
+				document.getElementById("repTable").style.display = 'none'
+				this.style.borderColor = "black"
 			} else {
 				func_calcRepTable()
-				document.getElementById("repTable").style.display = 'block';
+				document.getElementById("repTable").style.display = 'block'
+				this.style.borderColor = "limegreen"
 			} 
 		}
 	}
@@ -2907,8 +3200,6 @@ function F_tetelQs() { // impID-ket tételhez kapcsolja - későbbiekre (F_creat
 	var diffTime = myTime-oldTime
 	console.log("– F_tetelQs END – " + diffTime)*/
 }
-F_tetelQs()
-
 
 var prior,hossz,jegy
 function func_calcPriorHosszJegy(elem){
@@ -2994,7 +3285,7 @@ function F_temakorStatus(){ // Tétel hány %-on áll? --> beállítja a buttonC
 		var maxJegy = 0
 		var trueJegy = 0
 		var childs = document.getElementById(tetel).getElementsByTagName("*")
-		for ( var i = 0;   i < childs.length;   i++ ) {
+		for ( var i=0;  i<childs.length;  i++ ) {
 			if ( childs[i].classList.contains("kerdes") == true ) {
 				var Qid = childs[i].id
 				var Qtxt = arrQid[Qid]
@@ -3028,6 +3319,10 @@ function F_temakorStatus(){ // Tétel hány %-on áll? --> beállítja a buttonC
 			red = 255
 		}
 		var button = document.getElementById(tetel+"_button")
+		if ( button == null ) {
+			alert("button hiba – F_temakorStatus() – "+tetel)
+			continue
+		}
 		button.style.backgroundColor = "rgb("+red+", "+green+", 0)";
 		//button.value = Math.round(100 * trueJegy/maxJegy)
 		if ( isNaN(button.value) == true ) { button.value = "" }
@@ -3304,8 +3599,10 @@ function F_clickTemaButton(button){
 		document.getElementById(button.id+"_label").style.backgroundColor= "paleGreen";
 		F_changeTetelCount("1",button)
 		var tetelID = button.id
-		tetelID = tetelID.slice(0,tetelID.lastIndexOf("_button"))
-		F_impQlot(document.getElementById(tetelID))
+		tetelID = tetelID.slice(0,tetelID.indexOf(","))
+		//console.log(tetelID)
+		var Table = document.querySelectorAll('.phase,.status')
+		F_impQlot(Table[tetelID].parentElement)
 	}
 	
 	func_calcOldNew();
@@ -3798,7 +4095,7 @@ var priorQelem = "nincs"
 var fullTema, checkNum, cloneKerdes
 var activeQs = []
 function F_nextQ(){
-	console.clear()
+	//console.clear()
 	console.log("– – – – – – – – F_nextQ – – – – – – – – –")
 	
 	F_getTime()
@@ -4374,46 +4671,85 @@ function F_CreateSelect(i) {
 	}
 }
 
-if ( localStorage.getItem("hk.ToggleAll") == "true" ) {
-	if ( isAndroid == false ) { F_toggleAll() }
+function F_loadPageText(path) {
+	document.getElementById("iframe_targyak").src = path
+	var handler = function(e) {
+		var targyPath = path
+		var targyText = e.data[1]
+		pageTexts[targyPath] = targyText
+		document.getElementById("div_SearchW").style.backgroundColor = "grey"
+		document.getElementById("div_Refreshng").innerHTML = targyPath
+		document.getElementById("iframe_targyak").src = targyPath
+		
+		if ( targyPath != "expqs.html" ) {
+			pagePath = targyPath // képek betöltéséhez kell pl
+			var pageDiv = document.getElementById("div_pageQTargy")
+			pageDiv.innerHTML = pageTexts[pagePath]
+			F_checkEXPs()
+			F_detailsToggle(pageDiv)
+			if ( localStorage.getItem("hk.ToggleAll") == "true" ) { F_toggleAll() }
+			localStorage.setItem("hk.pagePath",pagePath) 
+			document.getElementById("iframe_targyak").src = ""
+			//F_impQlot(pageDiv)
+		} else if ( localStorage.getItem("hk.ToggleAll") == "true" ) { 
+			F_loadPageText(localStorage.getItem("hk.pagePath"))
+			//alert("sajt")
+		}
+		for ( var i=0; i<pageLinks.length; i++ ) { 
+			if ( pageLinks[i].dataset.src == targyPath ) {
+				pageLinks[i].dataset.loaded = true 
+			}
+		}
+		removeEventListener('message', handler, false)
+	}
+	window.addEventListener('message', handler, false)
 }
+function F_loadAllPageTexts() {
+	removeEventListener('message', handler, false)
+	var full = pageLinks.length -1
+	var count
+	for ( var i=0; i<pageLinks.length; i++ ) { 
+		count = i
+		document.getElementById("div_RefreshStatus").innerHTML = count+"/"+full
+		if ( pageLinks[count].dataset.loaded != "true" ) {
+			document.getElementById("iframe_targyak").src = pageLinks[count].dataset.src
+			break
+		}
+	}
+	var handler = function(e) {
+		//alert(count)
+		var targyText = e.data[1];
+		if ( targyText != undefined && targyText != "" ) {
+			var path = pageLinks[count].dataset.src
+			pageTexts[path] = targyText
+			//alert(path+" "+targyText)
+			document.getElementById("div_SearchW").style.backgroundColor = "grey"
+			document.getElementById("div_Refreshng").innerHTML = path
+			document.getElementById("div_RefreshStatus").innerHTML = count+"/"+full
+			pageLinks[count].style.color = "blue"
+			pageLinks[count].dataset.loaded = true 
+			count = count +1
+			if ( count < pageLinks.length ) { 
+				path = pageLinks[count].dataset.src
+				document.getElementById("iframe_targyak").src = path
+			} else {
+				document.getElementById("div_SearchW").style.backgroundColor = "white"
+				F_getTime()
+				var timeX = Math.round((myTime-oldTime)*100)/100
+				document.getElementById("div_Refreshng").innerHTML = timeX+"s"
+				removeEventListener('message', handler, false)
+			}
+		}
+	}
+	window.addEventListener('message', handler, false)
+}
+F_loadPageText("expqs.html")
+//if ( localStorage.getItem("hk.ToggleAll") != "true" ) { F_loadAllPageTexts() }
+
 if ( changeStatus == true ) { document.getElementById("div_upgQ").style.display = 'block' }
 if ( changeStatus == false ) { document.getElementById("div_upgQ").style.display = 'none' }
 
-/*
-
-function F_detailsClick(elem){
-	elem.onclick = function(){ 
-		F_impQs(this.getElementsByClassName("imp"))
-		
-		this.onclick = function(){}
-		
-		var details = this.getElementsByTagName("DETAILS");
-		for ( var i=0; i<details.length; i++ ) {
-			details[i].onclick = function(){}
-		}
-	}
-}
-function F_detailsAll(elem){
-	F_getTime()
-	var diffTime = myTime-oldTime
-	console.log("– F_detailsAll BEGIN – " + diffTime)
-	
-	var details = elem.getElementsByTagName("DETAILS");
-	for ( var i=0; i<details.length; i++ ) {
-		F_detailsClick(details[i])
-	}
-	
-	F_getTime()
-	var diffTime = myTime-oldTime
-	console.log("– F_detailsAll END – " + diffTime)
-}
-F_detailsAll(document)
-
-*/
-
-document.getElementById("input_toggleAll").style.backgroundColor = ""
-
+document.getElementById("btn_toggleAll").style.backgroundColor = ""
 
 F_getTime()
 var diffTime = myTime-oldTime
