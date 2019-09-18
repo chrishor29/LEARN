@@ -2855,7 +2855,7 @@ function F_CreateQDiv() {
 F_CreateQDiv()
 
 function func_calcTimeDiff(repCount){
-	if ( repCount == 0 ) {
+	/*if ( repCount == 0 ) {
 		timeDiff = 10
 	} else if ( repCount == 1 ) {
 		timeDiff = 30
@@ -2863,6 +2863,19 @@ function func_calcTimeDiff(repCount){
 		timeDiff = 60
 	} else if ( repCount == 3 ) {
 		timeDiff = 100
+	} else if ( repCount == 4 ) {
+		timeDiff = 5000
+	} else if ( repCount == 5 ) {
+		timeDiff = 7000
+	}*/
+	if ( repCount == 0 ) {
+		timeDiff = 20
+	} else if ( repCount == 1 ) {
+		timeDiff = 40
+	} else if ( repCount == 2 ) {
+		timeDiff = 2000
+	} else if ( repCount == 3 ) {
+		timeDiff = 3000
 	} else if ( repCount == 4 ) {
 		timeDiff = 5000
 	} else if ( repCount == 5 ) {
