@@ -2,34 +2,21 @@
 set source=D:\LEARN
 set destination=C:\Users\chrishor\Desktop\mix\learn
 
-robocopy %source%\done\Kortan\images %destination%\done\Kortan\images /mir
-robocopy %source%\done\Patosz\images %destination%\done\Patosz\images /mir
-robocopy %source%\done\Patosz\II %destination%\done\Patosz\II /mir
-robocopy %source%\done\Patosz\I %destination%\done\Patosz\I /mir
+
+robocopy %source%\Farmak\images %destination%\Farmak\images /mir
 robocopy %source%\Mikrobi\images %destination%\Mikrobi\images /mir
 robocopy %source%\Pszicho\images %destination%\Pszicho\images /mir
-robocopy %source%\LabMed\images %destination%\LabMed\images /mir
-robocopy %source%\done\Genetika\images %destination%\done\Genetika\images /mir
 robocopy %source%\Belgyogy\images %destination%\Belgyogy\images /mir
-
 robocopy %source%\Belgyogy\videos %destination%\Belgyogy\videos /mir
 
-xcopy /y %source%\done\Mutettan\mutettan.html %destination%\done\Mutettan\
-xcopy /y %source%\done\Kortan\kortan.html %destination%\done\Kortan\
-xcopy /y %source%\done\Patosz\patosz.html %destination%\done\Patosz\
-xcopy /y %source%\done\Genetika\genetika.html %destination%\done\Genetika\
+xcopy /y %source%\Farmak\farmak.html %destination%\Farmak\
 xcopy /y %source%\Mikrobi\mikrobi.html %destination%\Mikrobi\
 xcopy /y %source%\Pszicho\pszicho.html %destination%\Pszicho\
-xcopy /y %source%\LabMed\labmed.html %destination%\LabMed\
 xcopy /y %source%\Belgyogy\kortan.html %destination%\Belgyogy\
 xcopy /y %source%\sajat\sajat.html %destination%\sajat\
 
-xcopy /y %source%\done\Kortan\favicon.bmp %destination%\done\Kortan\
-xcopy /y %source%\done\Patosz\favicon.bmp %destination%\done\Patosz\
-xcopy /y %source%\done\Genetika\favicon.bmp %destination%\done\Genetika\
 xcopy /y %source%\Mikrobi\favicon.bmp %destination%\Mikrobi\
 xcopy /y %source%\Pszicho\favicon.bmp %destination%\Pszicho\
-xcopy /y %source%\LabMed\favicon.bmp %destination%\LabMed\
 xcopy /y %source%\Belgyogy\favicon.bmp %destination%\Belgyogy\
 
 robocopy %source%\images %destination%\images /mir
@@ -39,6 +26,20 @@ xcopy /y %source%\javascript.js %destination%\
 xcopy /y %source%\style.css %destination%\
 xcopy /y %source%\favicon.png %destination%\
 
+robocopy %source%\done\LabMed\images %destination%\done\LabMed\images /mir
+xcopy /y %source%\done\LabMed\labmed.html %destination%\done\LabMed\
+xcopy /y %source%\done\LabMed\favicon.bmp %destination%\done\LabMed\
+robocopy %source%\done\Genetika\images %destination%\done\Genetika\images /mir
+xcopy /y %source%\done\Genetika\genetika.html %destination%\done\Genetika\
+xcopy /y %source%\done\Genetika\favicon.bmp %destination%\done\Genetika\
+robocopy %source%\done\Patosz\images %destination%\done\Patosz\images /mir
+robocopy %source%\done\Patosz\II %destination%\done\Patosz\II /mir
+robocopy %source%\done\Patosz\I %destination%\done\Patosz\I /mir
+xcopy /y %source%\done\Patosz\patosz.html %destination%\done\Patosz\
+xcopy /y %source%\done\Patosz\favicon.bmp %destination%\done\Patosz\
+robocopy %source%\done\Kortan\images %destination%\done\Kortan\images /mir
+xcopy /y %source%\done\Kortan\kortan.html %destination%\done\Kortan\
+xcopy /y %source%\done\Kortan\favicon.bmp %destination%\done\Kortan\
 robocopy %source%\done\Immunologia\images %destination%\done\Immunologia\images /mir
 xcopy /y %source%\done\Immunologia\immun.html %destination%\done\Immunologia\
 xcopy /y %source%\done\Immunologia\favicon.bmp %destination%\done\Immunologia\
