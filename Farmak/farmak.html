@@ -4,14 +4,15 @@
 	<title>Mikrobiológia</title>
 </head>
 
-<table> <!-- × -->
-  <tr><th>EA</th>
+<table><tr> <!-- × -->
+  <th>EA</th>
 	<td class="miss">1</td>
 	<td class="important">2a</td>
 	<td class="done">2b</td>
 	<td class="miss">3</td>
 	<td class="miss">4</td>
-	<td class="">5</td>
+	<td class="miss">5a</td>
+	<td class="important">5b</td>
 	<td class="">6</td>
 	<td class="">7</td>
 	<td class="">8</td>
@@ -27,7 +28,7 @@
 	<td class="miss">2</td>
 	<td class="miss">3</td>
 	<td class="miss">4</td>
-	<td class="">5</td>
+	<td class="miss">5</td>
 	<td class="">6</td>
 	<td class="">7</td>
 	<td class="">8</td>
@@ -87,10 +88,11 @@
 		<font style="font-size:80%">pl. Coldrex</font>
 	</ul></details>
 	<details class="{6} kerdes"><summary>adrenerg receptorok</summary><ul class="normal">
-		<table><tr><th colspan="2">receptor</th>  <th><abbr title="milyen G-fehérjét aktivál">&#10045;</abbr></th>  <th>hol fordul elő</th></tr>
+		<table><tr><th colspan="2">receptor</th>  <th><abbr title="milyen G-fehérjét aktivál">&#10045;</abbr></th>  <th><abbr title="melyikre nagyobb: adrenalin vagy noradrenalin">affinitás</abbr></th>  <th>hol fordul elő</th></tr>
 			<tr><th rowspan="2">α-adrenerg</th>
 				<th><span class="Important">α<sub>1</sub></span></th>
-				<td>G<sub>q/11</sub></td>
+				<td><span class="midQ [19]">G<sub>q</sub></span></td>
+				<td rowspan="2">NA</td>
 				<td style="text-align:left"><center>simaizomsejt kontrakciója</center>
 					<li><span class="Important">vazokonstrikció</span> (<abbr title="bőrt, vesét, GI-t ellátó erek">többi</abbr>)</li>
 					<li>pupilla tágítás</li>
@@ -101,27 +103,24 @@
 				</td>
 			  </tr><tr>
 				<th>α<sub>2</sub></th>
-				<td>G<sub>i/o</sub></td>
+				<td><span class="midQ [19]">G<sub>i</sub></span></td>
 				<td style="text-align:left">
 					<li>neurotranszmitter felszabadulás gátlása <font style="font-size:80%">(preszinaptikus gátlás)</font></li>
-					<details><summary style="color:blue"><font style="font-size:80%">(preszinaptikus-gátlás)</font></summary>
-						<li>a varicoitasokból felszabaduló noradrenalin eljut a végződés membránján lévő &alpha;2-receptorokhoz</li>
-						<li>ez gátolja a további noradrenalin felszabadulást a varicositasokból</li>
-						<img style="float:none" data-src="nrdfkrmn.png">
-					<hr></details>
 					<li>pancreas &beta;-sejtekben gátolja az inzulin-szekréciót</li>
 					<li><font style="font-size:80%"><abbr title="ezzel csak akkor foglalkozzak, ha lesz róla később szó">thrombocyta</abbr></font></li>
 				</td>
 			</tr>
 			<tr><th rowspan="3">β-adrenerg</th>
 				<th>β<sub>1</sub></th>
-				<td rowspan="3">G<sub>s</sub></td>
+				<td rowspan="3"><span class="midQ [19]">G<sub>s</sub></span></td>
+				<td>=</td>
 				<td style="text-align:left">
 					<li>szív <span class="lasd">2.5.t & <span class="Vocab">TAB</span> kolinerg & adrenerg hatások</span></li>
 					<li>vese: fokozza a renin szekréciót <span class="lasd">4.5.t</span></li>
 				</td>
 			  </tr><tr>
 				<th><span class="Important">β<sub>2</sub></span></th>
+				<td>Adr</td>
 				<td style="text-align:left"><center>simaizomsejt relaxációja</center>
 					<li><span class="Important">bronchodilatáció</span></li>
 					<li><span class="Important">vazodilatáció (váz- & szívizmokat ellátó erek!)</span></li>
@@ -132,6 +131,7 @@
 				</td>
 			  </tr><tr>
 				<th>β<sub>3</sub></th>
+				<td>NA</td>
 				<td>zsírsejtekben aktiválják a zsírsav-mobilizálást (perilipin + HSL<abbr title="lásd bikém">'</abbr>)</td>
 			</tr>
 		</table>
@@ -285,92 +285,12 @@
 				<td>idegi típusú (I–III)
 					<li>KIR</li>
 					<li><span class="midQ [31]">vegetatív ggl</span></li>
+					<li><span class="midQ [31]">psy postggl rost</span> (+symp postggl rost verejtékmirigy)</li>
 				</td>
-				<td>izom típusú (IV) &#10140; hcs.izom kontrakció</td>
-			</tr>
-			<tr><th>gyógyszer</th>
-				<td></td>
-				<td></td>
-				<td>Alzheimer &#10140; ACh hiány van &#10140; terápia: rivastigmin, ami <abbr title="ACh-t ez bontja el az exocitózis után, így ha gátolva van, akkor erősebb/hosszabb hatást fejt ki az ACh">ACh-észteráz</abbr> gátló
-					<br><font style="font-size:80%">(a Parkinson-nál dopamin hiány van!)</font>
-				</td>
-				<td>myasthenia gravis &#10140; terápia: neostigmin, ami ACh-észteráz gátló</td>
+				<td>izom típusú (IV) &#10140; <span class="midQ [48]">hcs.izom kontrakció</span></td>
 			</tr>
 		</table>
-		<li>neurotranszmitter mechanizmus &#10140; a legfontosabb, hogy a kolin-észteráz bontja el az ACh-t, ami meghatározza a hatás időtartamát &#10140; fontos gyógyszer target</li>
-		<li><span class="WHITE">psy</span> transzmittere: ACh</li><ul>
-			<li>M<sub>2</sub> szívben</li>
-			<li>M<sub>3</sub> többinél</li>
-		</ul>
-		<li><span class="WHITE">symp</span> transzmittere:</li><ul>
-			<li>ACh &#10140; verejtékezés (psy hatás kiváltásánál ez is jelentkezhet)</li>
-			<li>noradrenalin / adrenalin</li>
-		</ul><strong>ACh</strong>
-		<li>receptorok &#10140; nikotinerg & muszkarinerg</li>
-		<table><tr><th>vegetatív hatások</th> <td>psy</td> <td>symp</td></tr>
-			<tr><th style="text-align:left"><center>szem</center>
-					<li>akkomodáció <img class="mini" data-src="rspylkfa.png"></li>
-					<li>csarnokvíz elfolyásának szabályozása (<abbr title="olyankor összeszűkül, így elfér mellette">psy</abbr> segíti, symp gátolja)</li>
-					<font style="font-size:80%">ha a csarnokvíz nem tud elfolyni, akkor lesz glaukóma!</font>
-				</th>
-				<td>szűkül (<abbr title="circularis rostok">m.sphincter pupillae</abbr> kontrakció) (M3)</td>
-				<td>tágul (<abbr title="radialis rostok 'kívülről'">m.dilatator pupillae</abbr> kontrakció) (&alpha;1)</td>
-			</tr>
-			<tr><th>légzőrendszer</th>
-				<td>bronchokonstrikció(M3)</td>
-				<td>bronchodilatáció(&beta;2)</td>
-			</tr>
-			<tr><th>GI-rendszer</th>
-				<td>motilitást növel(M3)</td>
-				<td>motilitást csökkenti</td>
-			</tr>
-			<tr><th>sphincterek</th>
-				<td>ellazul(M3 - NO-mediált)</td>
-				<td>összehúzódik (&alpha;1)</td>
-			</tr>
-			<tr><th>húgyhólyag</th>
-				<td>detrusor kontrakció (vizeletet kipréseli) + sphincter relaxál (M3) &#10140; vizelés</td>
-				<td>detrusor relaxáció + sphincter kontrahál &#10140; vizelet retenció</td>
-			</tr>
-			
-			<tr><th>szív</th>
-				<td>negatív <abbr title="frekvencia">kronotróp</abbr>, <abbr title="ingerületvezetés sebessége">dromotróp</abbr> (M2)</td>
-				<td>pozitív kronotróp, dromotróp, <abbr title="szívizom relaxációs képessége">luzitróp</abbr>, <abbr title="kontraktilitás (összehúzódás ereje)">inotróp</abbr> (&beta;1)</td>
-			</tr>
-			<tr><th><abbr title="GI">splanchnicus</abbr> arteriolák</th>
-				<td>dilatáció</td>
-				<td>kontrakció(&alpha;1)</td>
-			</tr>
-			<tr><th>hcs.izom arteriolák</th>
-				<td></td>
-				<td>dilatáció(&beta;2)</td>
-			</tr>
-			
-			<tr><th>koronáriák</th>
-				<td>dilatáció</td>
-				<td>dilatáció</td>
-			</tr>
-			<tr><th>bőrerek</th>
-				<td>(nincs!)</td>
-				<td>kontrakció</td>
-			</tr>
-			<tr><th>mirigyek</th>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr><th>mellékvese</th>
-				<td>nincs</td>
-				<td>stimulálja</td>
-			</tr>
-			<tr><th>anyagcsere(glükoneogenzis,inzulin,lipolízis)</th>
-				<td>nincs</td>
-				<td>fokozza</td>
-			</tr>
-			<tr><th></th>
-				<td></td>
-				<td></td>
-			</tr>
-		</table>
+		<li><span class="midQ [30]">neurotranszmitter mechanizmus</span> &#10140; a legfontosabb, hogy a kolin-észteráz bontja el az ACh-t, ami meghatározza a hatás időtartamát &#10140; fontos gyógyszer target</li>
 	</ul></details>
  </div>
  <div> <!-- 21 – 40 -->
@@ -462,137 +382,532 @@
 		<li>utána ACh-észteráz elbontja acetil + kolin-ra</li>
 		<img data-src="fyrrovhx.png">
 	</ul></details>
-	<details class="{31} kerdes"><summary>symp & psy (anat,élettan)</summary><ul class="normal">
-		<table>
-		  <tr><th style="width:15%">anatómiai tudnivalók</th>  <th style="width:30%">paraszimpatikus</th>  <th style="width:30%">szimpatikus</th>  <th style="width:20%">megjegyzés</th></tr>
-			<tr><th style="width:15%">KIR-ből történő kilépés</th>
-				<td>
-					<li style="text-align:left">4 agyideg(III,VII,IX,X)</li>
-					<li style="text-align:left">S2-S4</li>
+	<details class="{31} kerdes"><summary>vegetatív IR (symp & psy)</summary><ul class="normal">
+		<details><summary>általános (anat,élettan)</summary><ul class="normal">
+			<table><tr><th style="width:15%">anatómiai tudnivalók</th>  <th style="width:30%">paraszimpatikus</th>  <th colspan="2" style="width:50%">szimpatikus</th></tr>
+				<tr><th style="width:15%">KIR-ből történő kilépés</th>
+					<td>
+						<li style="text-align:left">4 agyideg(III,VII,IX,X)</li>
+						<li style="text-align:left">S2-S4</li>
+					</td>
+					<td colspan="2">Th1-L3</td>
+				</tr>
+				<tr><th style="width:15%" rowspan="2">vegetatív ggl</th>
+					<td colspan="2">a KIR-ből történő kilépés és a vegetatív szerv között egy átkapcsolás van <img class="mini" data-src="psztfgknlkhj.jpg"></td>
+				  </tr><tr>
+					<td>intramurális ggl &#10140; gerincvelőtől távol, a beidegzett szerv falában van</td>
+					<td>paravertebralis/prevertebralis ggl &#10140; gerincvelő közelében</td>
+				</tr>
+				<tr><th style="width:15%" rowspan="2"><abbr title="ganglion elhelyezkedés 'következtében'">'</abbr><strong>pre</strong>ggl-rost</th>
+					<td colspan="3">B-típúsú<abbr title="lásd anat-táblázat">(vékony myelinhüvely!)</abbr></td>
+				  </tr><tr>
+					<td>hosszú</td>
+					<td colspan="2">rövid</td>
+				</tr>
+				<tr><th style="width:15%" rowspan="2"><strong>poszt</strong>ggl-rost</th>
+					<td>rövid</td>
+					<td>hosszú</td>
+				  </tr><tr>
+					<td colspan="2">C-típúsú<abbr title="lásd anat-táblázat">(NINCS myelinhüvely!)</abbr></td>
+				</tr>
+			 <tr><th style="width:15%">élettani tudnivalók</th>  <th style="width:30%">paraszimpatikus</th>  <th style="width:30%">szimpatikus</th>  <th style="width:20%"><abbr title="szimpatikus mellékvesevelőhöz tartó része">szimp. mellékvesevelő</abbr></th></tr>
+				<tr><th style="width:15%"><strong>pre</strong>ggl-rost <abbr title="tehát amivel a vegetatív ggl-ban átadja az információt">'</abbr></th>
+					<td colspan="3"><span class="IMPORTANT">ACh</span>(neurotranszmitter) &#10140; <span class="midQ [20]">nikotinerg-receptor</span>(idegi típusú)</td>
+				</tr>
+				<tr><th style="width:15%"><strong>poszt</strong>ggl-rost</th>
+					<td style="text-align:left">
+						<center><span class="Important">ACh</span>(neurotranszmitter) &#10140; </center>
+						<li>M2-receptor szívnél</li>
+						<li>M3-receptor többinél</li>
+						<details><summary><font style="font-size:80%">(de lehet mellette kotranszmitter is:)</font></summary><ul class="normal">
+							<li><abbr title="vasoactive intestinal peptide">VIP</abbr>, <span class="MISS">pl. gyomor-bélcsatornánál</span></li>
+							<li>NO, pl. erekciónál</li>
+						</ul></details>
+					</td>
+					<td style="text-align:left">
+						<center><span class="Important">noradrenalin</span>(neurotranszmitter) &#10140; <span class="midQ [6]">noradrenerg</span>-receptorok</center>
+						<li>kivéve verejtékmirigy, ott ACh &#10140; <span class="midQ [20]">muszkarinerg</span>-receptor</li>
+					</td>
+					<td>
+						<center><span class="Important">adrenalin</span> &#10140; <span class="midQ [6]">noradrenerg</span>-receptorok</center>
+						<span class="Important">itt NINCS posztggl rost, hanem a vérbe jut!!</span>
+					</td>
+				</tr>
+				<tr><th style="width:15%">neurotranszmitter<abbr title="posztganglionáris">'</abbr> sorsa</th>
+					<td style="text-align:left" colspan="3">
+						<li><span class="midQ [30]">ACh sorsa elbomlás</span></li>
+						<li>noradrenalin &#10140; visszavételre kerül preszinaptikus citoplazmába</li>
+						<font style="font-size:80%">többi nem lényeges</font>
+					</td>
+				</tr>
+			</table>
+			<img data-src="vhconqgb.png">
+		</ul></details>
+		<details><summary>szem</summary><ul class="normal">
+			<table><tr><th>hatás</th> <th>psy</th> <th>symp</th></tr>
+				<tr><th>akkomodáció: a pupilla... <img class="mini" data-src="rspylkfa.png"></th>
+					<td>szűkül: <abbr title="circularis rostok">m.sphincter pupillae</abbr> kontrakció(M3)</td>
+					<td>tágul: <abbr title="radialis rostok 'kívülről'">m.dilatator pupillae</abbr> kontrakció) (&alpha;1)</td>
+				</tr>
+				<tr>
+					<th>
+						csarnokvíz elfolyását..
+						<br><font style="font-size:80%">ha a csarnokvíz nem tud elfolyni, akkor lesz glaukóma!</font>
+					</th>
+					<td>segíti: m.ciliaris relaxáció</td>
+					<td>gátolja: m.ciliaris kontrakció</td>
+				</tr>
+			</table>
+		</ul></details>
+		<details><summary>GI,húgyhólyag,légzőrendszer</summary><ul class="normal">
+			<table><tr><th>hatás</th> <th>psy</th> <th>symp</th></tr>
+				<tr><th>GI-motilitás</th>
+					<td>növeli(M3)</td>
+					<td>csökkenti(&beta;2)</td>
+				</tr>
+				<tr><th>GI-sphincterek</th>
+					<td>relaxáció(NO)</td>
+					<td>kontrakció(&alpha;1)</td>
+				</tr>
+				<tr><th>húgyhólyag</th>
+					<td>detrusor kontrakció(M3) + sphincter relaxál(NO) &#10140; vizelés</td>
+					<td>detrusor relaxáció(&beta;2) + sphincter kontrahál(&alpha;1) &#10140; vizelet retenció</td>
+				</tr>
+				<tr><th>légzőrendszer</th>
+					<td>bronchokonstrikció(M3)</td>
+					<td>bronchodilatáció(&beta;2)</td>
+				</tr>
+			</table>
+		</ul></details>
+		<details><summary>cardiovascular</summary><ul class="normal">
+			<table><tr><th>hatás</th> <th>psy</th> <th>symp</th></tr>
+				<tr><th>szív</th>
+					<td>negatív <abbr title="frekvencia">kronotróp</abbr>, <abbr title="ingerületvezetés sebessége">dromotróp</abbr> (M2)</td>
+					<td>pozitív kronotróp, dromotróp, <abbr title="szívizom relaxációs képessége">luzitróp</abbr>, <abbr title="kontraktilitás (összehúzódás ereje)">inotróp</abbr> (&beta;1)</td>
+				</tr>
+				<tr><th><abbr title="GI">splanchnicus</abbr> arteriolák</th>
+					<td>dilatáció(NO)</td>
+					<td>kontrakció(&alpha;1)</td>
+				</tr>
+				<tr><th>koronáriák</th>
+					<td>dilatáció(NO)</td>
+					<td>dilatáció(&beta;2)</td>
+				</tr>
+				<tr><th>hcs.izom arteriolák</th>
+					<td></td>
+					<td>dilatáció(&beta;2)</td>
+				</tr>
+				<tr><th>bőrerek</th>
+					<td>(nincs!)</td>
+					<td>kontrakció(&alpha;1)</td>
+				</tr>
+			</table>
+		</ul></details>
+		<details><summary>egyéb</summary><ul class="normal">
+			<table><tr><th>hatás</th> <th>psy</th> <th>symp</th></tr>
+			<tr><th>verejtékmirigyek</th>
+				<td><font style="font-size:80%">nincs</font></td>
+				<td>fokozza</td>
+			</tr>
+			<tr><th>nyálmirigyek</th>
+				<td>hígabb, fokozott szekréció</td>
+				<td>koncentráltabb, redukált szekréció</td>
+			</tr>
+			<tr><th>mellékvese</th>
+				<td><font style="font-size:80%">nincs</font></td>
+				<td>stimulálja</td>
+			</tr>
+			<tr><th>anyagcsere</th>
+				<td><font style="font-size:80%">nincs</font></td>
+				<td>fokozza:
+					<li>lipolízis</li>
+					<li><abbr title="glükóz szintézis">glükoneogenezis</abbr> + <abbr title="glikogén lebontás">glikolízis</abbr> fokozódik</li>
 				</td>
-				<td>Th1-L3</td>
 			</tr>
-			<tr><th style="width:15%" rowspan="2">vegetatív ggl</th>
-				<td colspan="2">a KIR-ből történő kilépés és a vegetatív szerv között egy átkapcsolás van <img class="mini" data-src="psztfgknlkhj.jpg"></td>
-			  </tr><tr>
-				<td>intramurális ggl &#10140; gerincvelőtől távol, a beidegzett szerv falában van</td>
-				<td>paravertebralis/prevertebralis ggl &#10140; gerincvelő közelében</td>
-			</tr>
-			<tr><th style="width:15%" rowspan="2"><abbr title="ganglion elhelyezkedés 'következtében'">'</abbr><strong>pre</strong>ggl-rost</th>
-				<td colspan="2">B-típúsú<abbr title="lásd anat-táblázat">(vékony myelinhüvely!)</abbr></td>
-			  </tr><tr>
-				<td>hosszú</td>
-				<td>rövid</td>
-			</tr>
-			<tr><th style="width:15%" rowspan="2"><strong>poszt</strong>ggl-rost</th>
-				<td>rövid</td>
-				<td>hosszú</td>
-			  </tr><tr>
-				<td colspan="2">C-típúsú<abbr title="lásd anat-táblázat">(NINCS myelinhüvely!)</abbr></td>
-			</tr>
-		  <tr><th style="width:15%">élettani tudnivalók</th>  <th style="width:30%">paraszimpatikus</th>  <th style="width:30%">szimpatikus</th>  <th style="width:20%"><abbr title="szimpatikus mellékvesevelőhöz tartó része">szimp. mellékvesevelő</abbr></th></tr>
-			<tr><th style="width:15%">neurotranszmittere a <strong>pre</strong>ggl-rostnak <abbr title="tehát amivel a vegetatív ggl-ban átadja az információt">'</abbr></th>
-				<td colspan="3">ACh</td>
-			</tr>
-			<tr><th style="width:15%"><abbr title="fő receptor, tehát amely preganglionárisból jövő infot fogadja (hiszen afferens szimp. paraszimp. re is vannak, lásd begetatív_ganglion)">'</abbr>receptor a <abbr title="= <strong>poszt</strong>ganglionaris_sejt">ganglionsejten</abbr></th>
-				<td colspan="3"><span class="midQ [20]">nikotinerg-receptor</span>(idegi típusú)</td>
-			</tr>
-			<tr><th style="width:15%">neurotranszmittere a <strong>poszt</strong>ggl-rostnak</th>
-				<td style="text-align:left">
-					<center><span class="Important">ACh</span></center>
-					kotranszmitterként(ACh mellett!) szerepelhet még:
-					<li><abbr title="vasoactive intestinal peptide">VIP</abbr>, <span class="MISS">pl. gyomor-bélcsatornánál</span></li>
-					<li>NO, pl. erekciónál</li>
-				</td>
-				<td style="text-align:left">
-					<center><span class="Important">noradrenalin</span></center>
-					kotranszmitterként(NA mellett!) szerepelhet még:
-					<li>különböző peptidek <abbr title="114o.">'</abbr> <abbr title="tankönyvbe elvileg van táblázat róluk, én nem találtam">'</abbr></li>
-					<li><font style="font-size:80%">ACh is előfordul kivételes rostokban, pl. verejtékmirigy</font></li>
-				</td>
-				<td>
-					<center><span class="Important">adrenalin</span></center>
-					<span class="Important">itt NINCS posztggl rost, hanem a vérbe jut!!</span>
-				</td>
-			</tr>
-			<tr><th style="width:15%">receptor az effektor-sejteken</th>
-				<td style="text-align:left">
-					<li>ACh esetében:</li><ul>
-						<li>M2 szívnél</li>
-						<li>M3 többinél</li>
-					</ul>
-					<li>(VIP esetében &#10140; simaizom relaxáció)</li>
-					<li>(NO esetében &#10140; simaizom relaxáció)</li>
-				</td>
-				<td colspan="2">
-					<li style="text-align:left">katekolaminok (adrenalin + noradrenalin) esetében &#10140; noradrenerg-receptorok</li>
-					<li style="text-align:left">ACh esetében &#10140; muszkarinerg-receptor</li>
-				</td>
-			</tr>
-			<tr><th style="width:15%">neurotranszmitter<abbr title="posztganglionáris">'</abbr> sorsa</th>
-				<td style="text-align:left" colspan="3">
-					<li><span class="midQ [30]">ACh sorsa elbomlás</span></li>
-					<li>noradrenalin &#10140; visszavételre kerül preszinaptikus citoplazmába</li>
-					<font style="font-size:80%">többi nem lényeges</font>
-				</td>
-			</tr>
-		</table>
+			</table>
+		</ul></details>
 	</ul></details>
-	<details class="{32} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
+	<details class="{32} kerdes"><summary>kolinomimetikumok (kolinerg-izgatók)</summary><ul class="normal">
+		paraszimpatomimetikumok(psy-izgatók):
+		<details><summary>direkt kolinomimetikumok</summary><ul class="normal">
+			<li>lényegük &#10140; az <abbr title="amit a psy posztggl.rost ingerel">effektorsejt</abbr>-en muszkarinerg-receptor agonisták</li>
+			<table>
+				<tr><th>ACh</th><td>csak kutatásra használatos (rendkívül rövid féléletidő)</td></tr>
+				<tr><th>metacholine</th><td>
+					<li>terápiában nem használatos, mert ennek se sokkal hosszabb a féléletideje</li>
+					<li>asthma bronchiale diagnóziára használatos (rohamot vált ki, teszt)</li>
+				</td></tr>
+				<tr><th>carbachol</th> <td>szemészetben használatos</td></tr>
+				<tr><th>bethanechol</th> <td>vizelet-retencióra használják</td></tr>
+			</table>
+			<li>ezek használata terápiában limitált</li>
+			<li>asthma esetében kontraindikált, mert mellékhatása bronchospasmus(roham)</li>
+			<li>túladagolásuk atropin-nal kezelhető</li>
+		</ul></details>
+		<details><summary>indirekt kolinomimetikumok</summary><ul class="normal">
+			<li>lényegük &#10140; <span class="midQ [48]">kolinészteráz</span> bénítók</li>
+		  <strong>irreverzibilis</strong> &#10140; enzim utána már NEM funkcióképes, így hetekig tart
+			<li>lipidoldékonyak, így KIR-be bejutnak, így jellemzően toxikusak</li>
+			<li>így felhasználásuk ritka</li>
+			<li>de az <u>Echothiophate</u> nem lipidoldékony, így glaucoma kezelésére lehet</li>
+		  <strong>reverzibilis</strong> &#10140; ezek a leggyakrabban gyógyszerként használtak
+			<li><u>Edrophonium</u></li><ul>
+				<li>hatása kb. 10perc &#10140; diagnosztikában használják, pl. Tensilon-teszt (<span class="midQ {201}">myasthenia gravis</span> diagnózisában használt)</li>
+			</ul>
+			<li><u>Neostigmin</u></li><ul>
+				<li>kvaterner-amin &#10140; vér-agy gáton NEM jutnak át</li>
+				<li>használat:</li><ul>
+					<li><span class="midQ [49]">altatás után hcs.izmok újraindítása</span></li>
+					<li><span class="midQ {201}">myasthenia gravis</span></li>
+				</ul>
+			</ul>
+			<li><u>Rivastigmin</u></li><ul>
+				<li>tertier-amin &#10140; átjut a vér-agy gáton (nincs töltésük)</li>
+				<li>felhasználás &#10140; Alzheimer-kór terápia (mert ott ACh-hiány!)</li>
+				<font style="font-size:80%">(a Parkinson-nál dopamin hiány van!)</font>
+				<li>mellékhatás: hányás</li>
+			</ul>
+		</ul></details>
+		<details><summary>ggl izgatók</summary><ul class="normal">
+			<li>lényegük &#10140; nikotinerg-receptor agonisták (postggl.neuron-on)</li><ul>
+				<li>így ez psy & symp-izgató is egyben!</li>
+			</ul>
+			<li>pl. <span class="midQ [34]"><u>nikotin</u></span></li>
+		</ul></details>
 	</ul></details>
-	<details class="{33} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
+	<details class="{33} kerdes"><summary>kolinolítikumok (kolinerg-gátlók)</summary><ul class="normal">
+	  <strong>muszkarinerg-antagonisták</strong>
+		<li><u>Atropin</u> hatására symp nő, így alábbiak ellen használható:</li><ul>
+			<li>kolinomimetikumok túladagolás</li>
+			<li>hasmenés</li>
+			<li>COPD, asthma bronchiale</li>
+			<li>vizelet inkontincencia</li>
+			<li>súlyos bradychardia, hipotónia</li>
+		</ul>
+		<li><u>Scopolamin</u></li><ul>
+			<li>Atropinnal szemben a különbség, hogy KIR-ben sokkal erősebb hatást fejt ki</li>
+			<li>ezért terápiás dózis felett toxikus(delírium,bénulás,halál)</li>
+			<li>indikáció &#10140; tengeribetegség(hányinger)</li>
+		</ul>
+		<li><u>Homatropin</u></li><ul>
+			<li>atropinnál 4–6-szor gyengébb</li>
+			<li>indikáció &#10140; pupillatágító</li>
+		</ul>
+	  <strong>ggl.bénítók</strong> &#10140; symp & psy gátlók is
+		<li>ACh felszabadulásának gátlása &#10140; pl. <u>botulinum-toxin</u></li>
+		<li>nikotinerg-antagonisták &#10140; pl. <u>hexamethonium</u></li>
+		<li>nikotinerg-agonista &#10140; ugyanis kezdetben ez serkenti, de bizonyos dózis felett már gátolja! &#10140; pl. <span class="midQ [34]"><u>nikotin</u></span></li>
 	</ul></details>
-	<details class="{34} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
+	<details class="{34} kerdes"><summary>nikotin</summary><ul class="normal">
+		<li>nikotinerg-agonista</li>
+		<li>kezdetben ez serkenti, de bizonyos dózis felett már gátolja a receptort</li>
+		<li>így izgató és gátló is, dózistól(+időtartamtól) függően</li>
+		<li>hatásai:</li><ul>
+			<li>KIR (tremor)</li>
+			<li>vegetatív ggl (tachycardia)</li>
+			<li>NMJ (eleinte görcs, utána bénulás)</li>
+		</ul>
+		<font style="font-size:80%">dohányzás tachycardiat okoz!</font>
 	</ul></details>
-	<details class="{35} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
+	<details class="{35} kerdes"><summary>adrenerg transzmisszió befolyásolása</summary><ul class="normal">
+	  <strong>preszinaptikus:</strong>
+		<li><span class="midQ [36]">szimpatomimetikumok</span></li>
+		<li><span class="midQ [38]">szimpatolítikumok</span></li>
+	  <strong>posztszinaptikus:</strong>
+		<li><span class="midQ [39]">szimpatomimetikumok</span></li>
+		<li><span class="midQ [45]">szimpatolítikumok</span></li>
 	</ul></details>
-	<details class="{36} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
+	<details class="{36} kerdes"><summary>preszinaptikus szimpatomimetikumok</summary><ul class="normal">
+		<li>transzmitter felszabadulás serkentése:</li><ul>
+			<li><span class="midQ [40]">indirekt szimpatomimetikumok</span></li>
+			<li>depolarizáció &#10140; K<sup>+</sup>-csatorna blokkolók és/vagy Ca<sup>2+</sup>-szint emelése</li>
+			<li>Latrotoxin (fekete özvegy toxinja) - robbanásszerűen felszabadítja a noradrenalint</li>
+			<li>gátló preszinaptikus α2-receptor gátlása(yohimbin)</li>
+			<li>serkentő preszinaptikus β2-receptor serkentése</li>
+		</ul>
+		<li>MAO-gátlók <span class="midQ [44]">&#10140;</span> noradrenalin raktárak feltöltődnek</li><ul>
+			<li>MAO-A gátló, pl. <u>Moclobemid</u> &#10140; anti-depresszáns</li>
+			<li>MAO-B gátló, pl. <u>Selegilin</u> &#10140; Parkinson-kór ellen</li>
+		</ul>
+		<li>reuptake-inhibitor, pl.</li><ul>
+			<li><u>kokain</u></li>
+			<li><u>amfetamin</u></li>
+			<li>triciklikus antidepressszánsok(amitryptilin, desipramin, <abbr title="serotonin & NA reuptake inhibitor">SNRI</abbr>)</li>
+		</ul>
 	</ul></details>
-	<details class="{37} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
+	<details class="{37} kerdes"><summary><u>katekolaminok</u></summary><ul class="normal">
+		<details class="kerdes"><summary>szerkezet & hatás összefüggés</summary><ul class="normal">
+			<img data-src="rgcoqulh.png">
+			<li>-OH szubsztitúció</li><ul>
+				<li>ha van &#10140; jó farmakodinámia(hatékonysága), de rossz farmakokinetika(felszívódás + vér-agy gáton átjutás) &#10140; azaz gyorsan hat, de rövid ideig</li>
+				<li>ha nincs &#10140; rossz farmakodinámia, de jó <abbr title="jól szívódnak fel és bejutnak az agyba (KIR hatások!)">farmakokinetika</abbr></li>
+			</ul>
+			<li>ha metilcsoport van rajta, akkor &beta;2-receptorhoz nagyobb az affinitása &#10140; pl. adrenalin-nak van, NA-nak nincs</li>
+			&#10140; A katecholaminok a legerősebb szimpatomimetikumok, de rövid a hatástartamuk, orálisan hatástalanok, és nem jutnak át a vér-agy gáton.
+		</ul></details>
+		<details class="kerdes"><summary>adrenalin = epinefrin</summary><ul class="normal">
+			<li>mellékvesevelő kromaffin sejtjeiben <abbr title="noradrenalin metilációjával">keletkezik</abbr>, hormon (nem neurotranszmitter már!)</li>
+		  <strong>hatásai:</strong>
+			<li>GI,vese,bőr vérellátását csökkenti (vazokonstrikció, &alpha;1)</li>
+			<li>szív-,vázizom + máj vérelllátását fokozza (vazodilatáció, &beta;2)</li>
+			<li>szív pozitív <abbr title="kontraktilitás (összehúzódás ereje)">inotróp</abbr>, <abbr title="frekvencia">kronotróp</abbr>, luzitróp, dromotróp (&beta;1)</li>
+			<li>glikogén(máj) & lipidek(zsírsejt) lebomlása nő (zsírsav + glükóz nő a vérben)</li>
+			<li>lép vazokonstriktor &#10140; keringő vér mennyisége nő</li>
+			<li>hipertónia, tachycardia</li>
+			<li>izgatottság, tremor</li>
+		  <strong>farmakokinetika</strong>
+			<li>per os adva hatástalan &#10140; sc. rosszul szívódik fel &#10140; iv., im. hatásos</li>
+			<li>gyorsan metabolizálódik(májban: MAO & COMT), rövid hatástartam</li>
+		  <strong>használata</strong>
+			<li>szívleállás esetén iv. adva</li>
+			<li>allergia, anaphylaxiás sokk esetén im. adva (esetleg sc.)</li>
+			<li>status asthmaticus esetén im. adva (esetleg sc.)</li>
+			<li><abbr title="vírusfertőzés következtében a gégében duzzanat, ami obstrukciót okoz (obstruktív laryngitis). szteroid / adrenalin adásával gyógyítható">krupp-betegség</abbr> esetén im. adva (esetleg sc.)</li>
+		  <strong>gyógyszerinterakciók</strong>
+			<li>hatását fokozza a kokain, amfetamin, ganglionbénítók, MAO- és COMT-gátlók</li>
+			<li><abbr title="hipertireóis! (Merseburgi-triász: struma,tachycardia,exophthalmus)">Graves-Basedow-kór</abbr>ban jelentősen fokozódik az adrenalin-érzékenység a β-receptorok expressziójának fokozódása következtében!!</li>
+		</ul></details>
+		<details class="kerdes"><summary>noradrenalin</summary><ul class="normal">
+			<li>noradrenerg neuronokban(KIR) ez keletkezik</li>
+		  <strong>hatásai:</strong>
+			<li>vazokonstrikció(&alpha;1) &#10140; hipertónia</li>
+			<li>szív munkáját alig fokozza</li>
+			<li>α2 receptorokon hatva csökkenti az ACh felszabadulását, így csökkenti a motilitást, szekréciót  obstipáció</li>
+		  <strong>használata:</strong>
+			<li>neurogén shock</li>
+			<li>szeptikus shock</li>
+		  <strong>mellékhatások:</strong>
+			<li>aritmia</li>
+			<li>erős vazokonstriktor hatása miatt gangréna, fekély jelenhet meg</li> 
+		</ul></details>
+		<details class="kerdes"><summary>dopamin</summary><ul class="normal">
+			<li>dopaminerg neuronokban(KIR) ez keletkezik (nincs bennük dopamin-β-hidroxiláz, így nem keletkezik NA)</li>
+			<li>fiziológiás szerepe</li><ul>
+				<li>extrapyramidalis rendszer működése</li>
+				<li>egyes hormonok szekréciójának szabályozása</li>
+			</ul>
+			<li>hatásai dózistól függőek:</li><ul>
+				<li>kis dózis &#10140; vazodilatáció (D1-receptor)</li>
+				<li>nagyobb dózis &#10140; (&beta;1)</li>
+				<li>még nagyobb dózis &#10140; (&alpha;1)</li>
+			</ul>
+			<li>használata:</li><ul>
+				<li>cardiogen shock (&beta;1)</li>
+				<li>vascularis hatása miatt (dilatáció vagy konstrukció)</li>
+				IR-be nem jut be (vér-agy gát)
+			</ul>
+			<li>dopexamin &#10140; dopamin származéka, szeptikus sokk kezelésére használatos</li>
+		</ul></details>
+		<details class="kerdes"><summary>isoprenalin</summary><ul class="normal">
+			<li>β1 és β2 szelektív agonista</li>
+			<li>hatásai:</li><ul>
+				<li>vazodilatációt okoz, hipotóniát</li>
+				<li>szív: pozitív <abbr title="kontraktilitás (összehúzódás ereje)">inotróp</abbr>, <abbr title="frekvencia">kronotróp</abbr></li>
+				<li>bronchodilatáció</li>
+			</ul>
+			<li>COMT bontja el</li>
+			<li>használata:</li><ul>
+				<li>bradycardia</li>
+				<li>AV-blokk</li>
+			</ul>
+		</ul></details>
 	</ul></details>
-	<details class="{38} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
+	<details class="{38} kerdes"><summary>preszinaptikus szimpatolítikumok</summary><ul class="normal">
+		<li>enzim:</li><ul>
+			<li><abbr title="tirozinból L-DOPA-t szintetizál">tirozin hidroxiláz</abbr> gátlása &#10140; <u>α-metiltirozin</u></li>
+			<li><abbr title="L-DOPA-ból dopamint szintetizál">DOPA-dekarboxiláz</abbr> gátlása &#10140; <u>Metildopa</u></li>
+		</ul>
+		<li>VMAT(H<sup>+</sup>-antiporter)-t gátolja, így a raktározást &#10140; <u>Reserpin</u></li>
+		<li>transzmitter felszabadulás gátlása:</li><ul>
+			<li>gátló preszinaptikus α2-receptor aktiválása &#10140; <u>Metildopa</u>, <u>Clonidin</u></li>
+			<li>Ca<sup>2+</sup>-csatornák blokkolása &#10140; <u>ω-Conotoxin</u></li>
+			<li>ff.Na<sup>+</sup> csatornák blokkolása: <u>tetrodotoxin</u></li>
+			<li>adrenerg neuron bénítók &#10140; <u>guanethidin</u>, <u>bretylium</u></li>
+		</ul>
 	</ul></details>
-	<details class="{39} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
+	<details class="{39} kerdes"><summary>posztszinaptikus szimpatomimetikumok</summary><ul class="normal">
+		direkt szimpatomimetikumok = &alpha;-, és &beta;-recepor agonisták:
+		<li><span class="midQ [37]">katekolaminok</span></li>
+		<li>fenilalkilamin-származékok</li>
 	</ul></details>
-	<details class="{40} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
+	<details class="{40} kerdes"><summary>indirekt szimpatomimetikumok</summary><ul class="normal">
+	  <strong>amfetamin</strong>
+		<div class="imp [41]"></div>
+	  <strong>ephedrin</strong>
+		<div class="imp [42]"></div>
+	  <strong>tiramin</strong>
+		<div class="imp [43]"></div>
 	</ul></details>
  </div>
  <div> <!-- 41 – 60 -->
-	<details class="{41} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
+	<details class="{41} kerdes"><summary>amfetamin</summary><ul class="normal">
+		<li>mechanizmusai:</li><ul>
+			<li><span class="midQ [40]">indirekt szimpatomimetikumok</span> &#10140; NA és dopamin felszabadítók idegimpulzustól függetlenül, kémiai úton</li>
+			<li>reuptake-inhibitor(NA és dopamin)</li>
+		</ul>
+		<li>hatásai:</li><ul>
+			<li>fokozza locus coeruleusból a NA felszabadulását valamint a limbikus rendszerben a dopamin felszabadulást</li>
+			<li><abbr title="KIR működését fokozza">pszichostimuláns</abbr> &#10140; fokozza az önbizalmat és a koncentrációs képességet</li>
+			<li>csökkenti az étvágyat</li>
+			<li>erős függőséggel jár (hiánya ingerlékenység, depresszió, öngyilkossági gondolatok, fokozott étvágy)</li>
+		</ul>
 	</ul></details>
-	<details class="{42} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
+	<details class="{42} kerdes"><summary>ephedrin</summary><ul class="normal">
+		<li>mechanizmusai:</li><ul>
+			<li><span class="midQ [40]">indirekt szimpatomimetikumok</span> &#10140; NA szabadít fel idegimpulzustól függetlenül, kémiai úton</li>
+		</ul>
+		<li>hatásai:</li><ul>
+			<li>pszichostimulánsként gyenge (vér-agy gáton nem jut rendesen át)</li>
+			<li>alacsony vérnyomás kezelésére használható, ugyanis hosszan tartó enyhe vérnyomásemelkedést okoz</li>
+			<li>hátránya &#10140; idővel tolerancia alakul ki vele szemben</li>
+		</ul>
 	</ul></details>
-	<details class="{43} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
+	<details class="{43} kerdes"><summary>tiramin</summary><ul class="normal">
+		<li>élelmiszerek tartalmazzák &#10140; sajt, csirkemáj, vörösbor stb.</li>
+		<li>ha az élelmiszerekből a béltraktusba kerül, az ott található MAO-A lebontja, ezért nem jut be a szisztémás keringésbe</li>
+		<li>Irreverzibilis MAO-A bénítóval kezelt betegeknek szigorú diétát kell tartani: nem fogyaszthatnak tiramin tartalmú élelmiszert. Ha a diétát nem tartják be, a tiramin a szisztémás keringésükbe jut, noradrenalint szabadít fel, ami a szimpatikus tónus fokozódásához vezet. Mindez hipertóniás krízis formájában manifesztálódhat</li>
 	</ul></details>
-	<details class="{44} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
+	<details class="{44} kerdes"><summary>adrenerg szinapszis</summary><ul class="normal">
+		<img style="max-width:45%" data-src="fzegypoo.png">
+		sorsuk:
+		<li>visszavételre kerülnek</li>
+		<li>ezután egy részük nem kerül vissza a vezikulába, hanem lebomlik &#10140; COMT & <abbr title="mono-amino-oxidáz">MAO</abbr> végzi</li>
+		<img style="max-width:45%" data-src="cucicjcw.png">
 	</ul></details>
-	<details class="{45} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
+	<details class="{45} kerdes"><summary>posztszinaptikus szimpatolítikumok</summary><ul class="normal">
+		<li><span class="midQ [47]">&alpha;-recepor antagonisták</span></li>
+		<li><span class="midQ [46]">&beta;-recepor antagonisták</span></li>
 	</ul></details>
-	<details class="{46} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
+	<details class="{46} kerdes"><summary>&beta;-recepor antagonisták</summary><ul class="normal">
+		<li>felsorolás</li><ul>
+			<li>szelektív &beta;1-receptor antagonisták &#10140; <u>Metoprolol</u>, <u>Acebutolol</u>, <u>Esmolol</u>, <u>Betaxolol</u>, <u>Nebivolol</u>, Bisoprolol</li>
+			<li>nem szelektív &beta;1 és &beta;2-receptor antagonisták &#10140; <u>Sotalol</u>, <u>Timolol</u>, <u>Propranolol</u>, <u>Timolol</u></li>
+			<li>a szelektív β1 blokkolók kevésbé hajlamosítanak pl. bronchokonstrikcióra, hipoglikémiára és perifériás keringési zavarokra</li>
+		</ul>
+		<li>jellemzés</li><ul>
+			<li><abbr title="egy részük">lipofilek</abbr> &#10140; adszorpció jó, KIR-be bejut (rémálmot okozhatnak), de KIR indikáció(pl. tremor)-ra így használhatók</li>
+			<li>lipofób &#10140; nincs, KIR-be nem jutnak be</li>
+		</ul>
+		<li>felhasználás: (ezt a diát mindet tudni kell)</li><ul>
+			<li>hipertónia</li>
+			<li>tachycardia</li>
+			<li>angina pectoris</li>
+			<li>myocardialis infarktuson átesett beteg</li>
+			<li>krónikus szívelégtelenség</li>
+			<li>hipertireózis, pheochromocytoma</li>
+			<li>glaucoma(szemcseppként)</li>
+			<li>hypertrophiás obstructiv cardiomyopathia</li>
+		</ul>
+		<li>kontraindikáció:</li><ul>
+			<li>szív &#10140; bradycardia, magas fokú AV-blokk, <abbr title="vasospazmus">prinzmetal angina</abbr></li>
+			<li>tüdő &#10140; súlyos asthma</li>
+			<li>diabetes mellitus</li>
+			<li>perifériás érmegbetegedések</li>
+			<li>centrális &#10140; súlyos depresszió</li>
+			<li>hyperlipidaemia &#10140; cardiovascularis betegeket pedig ez gyakran érinti (nekik statin-t is adnak)</li>
+		</ul>
+	  <hr>
+		<li><u>Sotalol</u> &#10140; blokkolja a K<sup>+</sup> csatornákat is - az antiarrhythmiás szerek III. csoportjába is tartozik</li>
+		<li><u>Nebivolol</u> &#10140; NO-mediált vasodilatációt is okoz</li>
+		<li><u>Carvedilol</u>, <u>Labetalol</u> &#10140; α1 és β antagonista hatásúak egyben</li>
 	</ul></details>
-	<details class="{47} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
+	<details class="{47} kerdes"><summary>&alpha;-recepor antagonisták</summary><ul class="normal">
+		<li>a szelektív α1-antagonisták kevésbé okoznak tachycardiát mint a nem-szelektív α-blokkolók</li>
+		<details class="kerdes"><summary>nem szelektív &alpha;-antagonisták</summary><ul class="normal">
+			<li>&alpha;1 és &alpha;2-receptort is egyaránt gátolnak</li>
+			<li>pheochromocytoma esetén használtak &#10140; <u>phenoxybenzamin</u>, <u>phentolamin</u>, <u>tolazolin</u></li>
+			<li><u>ergot alkaloid</u>-ok &#10140; szülészetben használják (posztpartum vérzés ellen)</li>
+		</ul></details>
+		<details class="kerdes"><summary>szelektív &alpha;1-antagonisták</summary><ul class="normal">
+		  <strong><u>Prazosin</u>, <u>Doxasozin</u>, <u>Terazosin</u></strong>
+			<li>másodvonalbeli &#10140; ACE-gátló vagy angiotenzin-receptor blokkoló mellett adják (önmagukban nem)</li>
+			<li>mellékhatás &#10140; "első dózis hatás:" súlyos hipotenziót okoz, így ájulást &#10140; este kell bevenni (ágyban fekvő)</li>
+			<li>felhasználás</li><ul>
+				<li>prosztata hiperplázia ellen</li>
+				<li>vérnyomáscsökkentő</li>
+			</ul>
+		  <strong>továbbiak:</strong>
+			<li><u>Urapidil</u> &#10140; hipertenzív krízisben használják (lassú iv injekció)</li>
+			<li><u>Carvedilol</u>, <u>Labetalol</u> &#10140; α1 és β antagonista hatásúak egyben</li>
+		</ul></details>
+		<details class="kerdes"><summary>urapidil</summary><ul class="normal">
+			<li>&alpha;1-receptor antagonista</li>
+		</ul></details>
+		<details class="kerdes"><summary>metildopa</summary><ul class="normal">
+			<li>hamis neurotranszmitter &#10140; dopa-dekarboxiláz szubsztrátja, de metabolitja nem aktív (lefoglalja az adrenalin/noradrenalin szintézist)</li>
+			<li>indikáció &#10140; terhességi hipertenzió ellen (ugyanis olyankor ACE-gátlók nem adhatók!!!)</li>
+		</ul></details>
 	</ul></details>
-	<details class="{48} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
+	<details class="{48} kerdes"><summary>NMJ - molekuláris mechanizmusa</summary><ul class="normal">
+		<img style="max-width:28%" data-src="acktjhmn.png">
+		<li><strong>poszt</strong>szinaptikus(motoros véglemez) membránon lévő <span class="midQ [20]">izomtípusú-nACh-R</span> megköt 2-5db ACh-t &#10140; Na<sup>+</sup> & K<sup>+</sup> enged át <span class="WHITE">kép</span> <abbr title="mert az egyensúlyi potenciálhoz való viszony">&#10140;</abbr> Na<sup>+</sup> be K<sup>+</sup> ki &#10140; mivel Na<sup>+</sup> hajtóereje nagyobb, így ez depolarizációt eredményez</li>
+		<li>a depolarizáció(<abbr title="end plate potential">EPP</abbr>) amplitúdója nagy, ezért mindig elég ahhoz, hogy az ff.Na<sup>+</sup>-csatornákhoz jutva még elérje a küszöb E<sub>m</sub>-t &#10140; <abbr title="akciós potenciál, tehát egy tovaterjedő depolarizáció">AP</abbr> jön létre az izomrost felszínén <span class="WHITE">kép</span></li>
+		<li>a szinaptikus résben lévő ACh-kat közben azonnal el is bontja az ott lévő <span class="done">ACh-észteráz</span> (kolin + acetil -ra, majd a kolin visszavételre kerül)</li>
+		<li>fontos, hogy a ff.Na csatornáknak három konformációja van &#10140; nyitott, zárt-inaktív, zárt-aktiválható</li><ul>
+			<li>alapból aktiválhatóban van, amikor kialakul az EPP, akkor kinyílik egy bizonyos ideig, majd bezárul. utána NEM aktiválható utána egészen addig, amíg nem lesz újra repolarizáció (tehát a membránpotenciál nem csökken vissza -70mV-ra)</li>
+			<li>tehát ha tartós depolarizáció van, akkor az izom nem lesz ingerelhető &#10140; jelentőségét lásd: szukcinilkolin</li>
+		</ul>
+		<li>ez tovább terjed a ff.Na<sup>+</sup>-csatornákkal a plazmamembránon és eljut a <abbr title="képen a C">T-tubulusba</abbr></li>
+		<li>itt a DHPR aktiválódik &#10140; konformációváltozással aktiválja a RyR-t, ami így Ca<sup>2+</sup> enged be SR-ből</li>
+		<table><tr><th></th> <th>hol</th> <th>aktiválása</th> <th>hatása</th></tr>
+			<tr><th rowspan="2"><abbr title="dihidropiridin-receptor">DHPR</abbr> <br><span class="lasd">1.3.t</span></th>
+				<td rowspan="2">T-tubulus</td>
+				<td rowspan="2">ez egy L-típusú ff.Ca<sup>2+</sup>-csatorna <br>&#10140; tehát a terjedő AP hatására aktiválódik</td>
+				<td>RyR-t nyitja</td>
+			  </tr><tr>
+				<td>szívizom + simaizom esetében kinyílik, <span class="important">Ca<sup>2+</sup> enged be EC-ből</span> <br><font style="font-size:80%">ezeknél nem DHPR a neve, de ugyanúgy L-típusú</font></td>
+			</tr>
+			<tr><th><abbr title="ryanodin-receptor">RyR</abbr></th>
+				<td>teminális ciszterna</td>
+				<td>DHPR konformációváltozása</td>
+				<td>kinyílik, <span class="important">Ca<sup>2+</sup> enged be SR-ből</span></td>
+			</tr>
+		</table>
+		<img data-src="vhkztmhjc.gif">
 	</ul></details>
-	<details class="{49} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
+	<details class="{49} kerdes"><summary>kuráré típusúak relaxánsok</summary><ul class="normal">
+		<li><span class="midQ [20]">izomtípusú-nACh-R</span> kompetitív antagonistája (tehát ACh-t be)</li><ul>
+			<li>tehát ha az ACh megnő, akkor 'kiiktatható'-'visszaállítható az eredeti helyzet' &#10140; <span class="midQ [32]">kolinészteráz-gátlók</span>kal ez elérhető!</li>
+		</ul>
+		<li>vízoldékonyak, így...</li><ul>
+			<li>intravénásan jól adhatók &#10140; így is kell őket!</li>
+			<li>a vér-agy gáton nem jutnak át &#10140; IR mellékhatása nincs!</li>
+		</ul>
+		<li>csoportosításuk:</li><ul>
+			<li>d-tubocurarine &#10140; nyílméregbéka toxinja &#10140; kb 2-6percen belül végbemegy a teljes izombénulás (először szemizmok, végül légzőizmok, ami már halálos)</li>
+			<li>kuraré-származékok:</li><ul>
+				<li>izokinolinvázasok &#10140; <u>atr<strong>acurium</strong></u>, <u>cisatracurium</u>, <u>mivacurium</u></li>
+				<li>szteroidok &#10140; <u>pipe<strong>curonium</strong></u>, <u>rocuronium</u></li>
+			</ul>
+		</ul>
+	  <strong>hatástartamuk</strong> &#10140; metabolizációjuktól függ
+		<li>hosszú(1óra felett) &#10140; nem metabolizálódnak, csak a vese választja ki őket idővel &#10140; pipecuronium</li>
+		<li>közepes(15perc-1óra):</li><ul>
+			<li>májban metabolizálódnak &#10140; rocuronium</li>
+			<li>spontán metabolizálódnak (így máj/vese transzplantáció esetében előnyösebb ezeket használni) &#10140; atracuronium, cisatracurium</li>
+		</ul>
+		<li>rövid(10-15perc) &#10140; pszeudokolinészteráz(ami a szövetekben ott van, májig se kell eljutnia) bontja &#10140; mivacurium</li>
+	  <strong>mellékhatások</strong>
+		<li>rekurarizáció &#10140; hatás felfüggesztése után izmok újra jók, de utána röviddel ismét lesz egy enyhébb bénulásuk</li>
+		<li>hisztamin felszabadítás hízósejtekből: &#10140; izokinolinvázasokra jellemző!</li><ul>
+			<li>vazodilatáció &#10140; hipotónia</li>
+			<li>bronchospazmus</li>
+		</ul>
+		<li><u>atracuronium</u> metabolitja a <u>laudanosin</u>, ami átjutva a vér-agy gáton epileptiform görcsöket okozhat</li>
+	  <strong>hatás felfüggesztése:</strong>
+		<li><span class="midQ [32]">kolinészteráz bénítókkal</span>:</li><ul>
+			<li>neostigmin, distigmin</li>
+			<li>atropint mellé adva a paraszimpatomimetikus hatás kivédhető (ugye a kolinészteráz gátlással psy aktivitás is fokozódna, gondolom azért mert posztggl-nél ACh szintén a neurotranszmitter)</li>
+		</ul>
+		<li>Sugammadex &#10140; szteránvázasokat megköti a plazmában</li>
+	  <strong>hatás csökkentése:</strong>
+		<li><span class="midQ [32]">kolinészteráz-gátlók</span></li>
+		<li>motoneuron léziók</li>
+	  <strong>hatás fokozása:</strong>
+		<li>általános érzéstelenítők (különösen a fluranoknak)</li>
+		<li>helyi érzéstelenítők</li>
+		<li>aminoglikozidok, tetraciklinek</li>
+		<li><span class="midQ {201}">myasthenia gravis</span></li>
 	</ul></details>
 	<details class="{50} kerdes"><summary> </summary><ul class="normal">
 		<li></li>
@@ -931,7 +1246,120 @@
 		<li>az adagolási ráta = <abbr title="steady-state koncentráció">c<sub>ss</sub></abbr> × <abbr title="clearence">Cl</abbr></li>
 	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:coral">5. Helyi érzéstelenítők.</summary><ul class="normal">
+<details class="kerdes"><summary class="status" style="background-color:yellow">5. Helyi érzéstelenítők.</summary><ul class="normal">
+	<li>lokálanesztetikumok = helyi érzéstelenítők</li>
+	<li>reverzibilisen felfüggesztik az idegrostok ingerületvezető képességét</li>
+	<li>injekció esetén csak vizes oldat formában adják</li>
+	<details><summary>történet</summary><ul class="normal">
+	  <strong>kokain</strong>
+		<li>alkaloid = nitrogén van benne + növényi eredetű</li>
+		<li>kezdetben (19.sz vége) ezt használták 30évig pl. sebészet, fogászat; noha tudták az IR-i kábító mellékhatását, de nem volt jobb</li>
+		<li>később szintetikusan előállítottak olyan vegyületeket - procain - már, melynek a kábító hatása már nem érvényesült</li>
+		<font style="font-size:80%">kokain ugyanis gátolja a dopamin visszavételét is, ezért okoz eufóriát</font>
+		<li>ma a leggyakrabban használt a lidocain már</li>
+	</ul></details>
+	<details><summary>szerkezetük & csoportosításuk</summary><ul class="normal">
+		<li>3 részből állnak &#10140; kép(lipofil aromás gyök, intermedier lánc + amid/észter)</li><ul>
+			<li>lipofil aromás gyök</li>
+			<li>intermedier lánc, benne amid/észter</li>
+			<li>hidrofil csoport</li>
+		</ul>
+		<table> <!-- táblázat -->
+		  <tr><th>észterszármazékok (nevükben egy 'i')</th> <th>hatékonyság(relatív)</th> <th>hatástartam</th></tr>
+			<tr><th>cocain</th> <td>2</td> <td></td></tr>
+			<tr><th>benzocain</th> <td colspan="2">csak kenőcsben, hintőporban (vízben nem oldódik)</td></tr>
+			<tr><th>procain</th> <td>1</td> <td>rövid</td></tr>
+			<tr><th>chloroprocain</th> <td>2</td> <td>rövid</td></tr>
+			<tr><th>tetracain</th> <td>16</td> <td>hosszú</td></tr>
+		  <tr><th>amidszármazékok (nevükben két 'i')</th> <th>hatékonyság(relatív)</th> <th>hatástartam</th></tr>
+			<tr><th>lidocain</th> <td>4</td> <td>közepes</td></tr>
+			<tr><th>mepivacain</th> <td>2</td> <td>közepes</td></tr>
+			<tr><th>bupivacain</th> <td>16</td> <td>hosszú</td></tr>
+			<tr><th>ropivacain</th> <td>12</td> <td>hosszú</td></tr>
+			<tr><th>etidocain</th> <td>16</td> <td>hosszú</td></tr>
+			<tr><th>prilocain</th> <td>3</td> <td>közepes</td></tr>
+			<tr><th>articain</th> <td>2</td> <td>hosszú</td></tr>
+		</table>
+		<li></li>
+	</ul></details>
+	<details><summary>pKa & 'hatékonyság összefüggése'</summary><ul class="normal">
+		<img data-src="vexiyqtn.png">
+		<li>a lokális érzéstelenítők gyenge bázisok</li>
+		<li>pl. lidocain-nak a pKa = 7,7</li>
+		<li>szövetnek 7,4</li>
+		<li>számolás &#10140; 7,4 - 7,7 = 0,3 = log(ionizált/nem ionizált) &#10140; ionizált : nem ionizált = 10<sub>0,3</sub> = 2 : 1 &#10140; 1hat, 2 nem hat</li>
+		<li>nem ionizált hat, mert az megy át a sejten, és ott lesz ionizált ami hat (ionizált nem jut át!)</li>
+		<li>ha gyulladás van, akkor a szövet savas lesz &#10140; pl. 6,7 - 7,7 = -1 &#10140; nem ionizált / ionizált = 0,1 &#10140; sokkal kevésbé hatékony</li>
+		<li><span class="done">savas pH-n tehát kevésbé hatékony</span> &#10140; <span class="done">gyulladásos területen a helyi érzéstelenítés gyakran sikertelen</span></li>
+	</ul></details>
+	<details><summary>mechanizmusuk</summary><ul class="normal">
+		<li>idegroston található ff.Na<sup>+</sup>-csatornák működését gátolják, ezáltal az ingerültterjedést</li>
+	</ul></details>
+	<details><summary>farmakokinetika</summary><ul class="normal">
+		<li>felszívódás &#10140; beadásnál fontos, hogy ne kerüljenek a vérbe, ugyanis ha a felszívódás nő, akkor a toxicitása is &#10140; adrenalinnal együtt adják így vazokonstrikció, így erekbe nem jut, továbbá hatástartama is nő, illetve a vérzés is csökken</li>
+		<li>metabolizmus</li><ul>
+			<li>észterek:</li><ul>
+				<li>pszeudokolinészteráz metabolizálja őket</li>
+				<li>ha CSF-ben adják, ott nincs ilyen enzim, így csak diffúzióval jut ki, és ezzel csökken a hatása (jóval lassabban)</li>
+			</ul>
+			<li>amidok &#10140; p450 izoenzimek metabolizálják őket, és vesén keresztül távozik</li><ul>
+				<li>ha a vizelet pH-ja savas, akkor jól távoznak(mert ezek bázisok), így toxicitása csökken</li>
+			</ul>
+		</ul>
+	</ul></details>
+	<details><summary>felhasználás</summary><ul class="normal">
+		<li>szemészet</li>
+		<li>urológia</li>
+		<li>GI-beavatkozás</li>
+		<li>fogászat</li>
+		<li>szülészet</li>
+		<li>égési sérülések</li>
+		<li>torokfájdalom (pl. szopogató tablettákban is van)</li>
+	</ul></details>
+	<details><summary>alkalmazás formái</summary><ul class="normal">
+		<li></li>
+	</ul></details>
+	<details><summary>mellékhatások</summary><ul class="normal">
+		<li></li>
+	</ul></details>
+	<details><summary>farmakodinámiai kölcsönhatások</summary><ul class="normal">
+		<li>összesre igaz, hogyha alábbival együtt van adva, akkor nő mellékhatása:</li><ul>
+			<li>MAO-gátlók &#10140; cardiovascular nő</li>
+			<li>triciklusos antidepresszánsok &#10140; cardiovascular nő</li>
+			<li>alkohol &#10140; légzésdepresszió</li>
+			<li>anticoagulansok, NSAID &#10140; vérzés</li>
+		</ul>
+		<li>továbbiak</li><ul>
+			<li>lidokain + antiepileptikus szer &#10140; toxikus(KIR + cardiovascularis) mellékhatások nő</li>
+			<li>anticoagulansok, NSAID &#10140; vérzés</li>
+		</ul>
+	</ul></details>
+  <strong>szerkezetük alapján csoportosításuk</strong>
+	<li>észter típusúak &#10140; nevükben egy 'i' betű van</li><ul>
+		<li>2-chloroprocain &#10140; toxikus</li>
+	</ul>
+	<li>amid típusúak &#10140; nevükben két 'i' betű van</li><ul>
+		<li>bupivacain &#10140; cardiotoxikus(mellékhatása)</li>
+		<li>levobupivacain &#10140; cardiotoxicitása kisebb már</li>
+		<li>etidocain &#10140; mellékhatása a motoros blokád(myelinhüvely kötődés)</li>
+	</ul>
+  <strong>alkalmazás formái</strong>
+	<li>felületi &#10140; bőrben lévő idegvégződésekre hat, pl. fogászat, bőrgyógyászat, sebészet &#10140; tetracain, lidocain, prilocain, benzocain</li>
+	<li>infiltrációs &#10140; subcutan idegvégződések &#10140; ...</li>
+	<li>vezetéses / intravénás &#10140; kevert ideg &#10140; ...</li>
+	<li>spinalis &#10140; gerincvelő &#10140; nőgyógyászat, urológia, sebészeti anesthesia &#10140; bupivacain</li>
+	<li>epiduralis &#10140; spinalis ideggyökök &#10140; szülés &#10140; bupivacain</li>
+  <strong>mellékhatások</strong>
+	<li>toxikus hatások:</li><ul>
+		<li>KIR hatások &#10140; izgalmi állapot(tremor,akár görcsök), utána depresszió</li>
+		<li>cardiovascularis hatások &#10140; negatív kronotróp, dromotróp ... (dia) &#10140; kivéve cocain!</li>
+	</ul>
+	<li>simaizom hatások &#10140; !?!?</li>
+	<li>motoros véglemez & ggl</li>
+	<li>túlérzékenységi reakciók (allergia, anafilaxiás shock)</li>
+	<li>lidocain spinalis adása esetén 1órával később kisugárzó fájdalom az alsó végtagra, 1hétig tart kb.</li>
+  <strong>farmakodinámiai kölcsönhatások</strong>
+	<li>dia - figyelmeztetés! fontos hogy lokalanesztetikum + adrenalin kombinációja nem adható intravénásan</li>
 </ul></details>
 <details><summary class="status" style="background-color:coral">6. Szisztémásan alkalmazható glukokortikoidok.</summary><ul class="normal">
 	<span class="imp {4}"></span>
@@ -1023,194 +1451,149 @@
 
 
 <!----> <details open><summary class="mainTitle">B</summary>
-<details open><summary class="status" style="background-color:yellow">1. A kolinerg transzmisszió és preszinaptikus befolyásolásának lehetőségei.</summary><ul class="normal">
-	<span class="imp [20]"></span>
-	<span class="imp [31]"></span> <!-- symp & psy (anat,élettan) -->
-	<details class="kerdes"><summary>psy & symp hatások (szervekre lebontva)</summary><ul class="normal">
-		<li>parasympathomethic &#10140; psy hatást vált ki</li><ul>
-			<li>glaucoma esetében hasznos</li>
-			<li>bélmotilitás fokozása (ileus ha neuronális)</li>
-			<li>kontraindikáció &#10140; bélmotilitás fokozása, ha az ileus oka obstrukció (hisz akkor fokozva csak mégnagyobb gond lesz)</li>
-			<li></li>
-		</ul>
-		<li>parasympatholytic &#10140; symp hatást vált ki</li><ul>
-			<li>kontraindikáció &#10140; glaucoma esetében (pl. atropin)</li>
-			<li>vizelettartási problémák esetén</li>
-			<li>COPD / asthma</li>
-			<li></li>
-		</ul>
-	</ul></details>
-	<li>csoportosítás:</li><ul>
-		<li>direkt &#10140; kolinerg származékok</li>
-		<li>indirekt &#10140; ACh-észteráz gátlók &#10140; féléletidő megnő ACh-nak</li>
-	</ul>
-	<details class="kerdes"><summary>direkt</summary><ul class="normal">
-		<li>ACh &#10140; csak kutatásra használatos (rendkívül rövid féléletidú)</li>
-		<li>Metacholine</li><ul>
-			<li>terápiában nem használatos, mert ennek se sokkal hosszabb a féléletideje</li>
-			<li>pulmonológus-uk használják, hogy COPD/aszthmás -nál rohamot váltanak ki (teszt)</li>
-		</ul>
-		<li>Carbachol &#10140; szemészetben használatos</li>
-		<li>Betanechol &#10140; vizelet-retencióra használják</li>ű
-		ezek használata terápiában limitált
-	</ul></details>
-	<details class="kerdes"><summary>indirekt</summary><ul class="normal">
-	  <strong>irreverzibilis</strong> &#10140; enzim utána már nem funkcióképes, így hetekig tart
-		<li>felhasználása így ritka, de pl. glaucoma esetében lehet &#10140; Echothiophate</li>
-	  <strong>reverzibilis</strong> &#10140; ezek a leggyakrabban gyógyszerként használtak
-		<li>Edrophonium</li><ul>
-			<li>hatása kb. 10perc &#10140; diagnosztikában használják, pl. Tensilon-teszt (myasthenia gravis diagnózisában használt)</li>
-			<li>myasthenia gravis ➜ autoimmun betegség: antitest termelődik a hcs.izom nikotinerg-receptora ellen &#10140; így ha megnő ACh féléletideje, kompenzálni lehet</li>
-		</ul>
-		<li>Neostigmine, Pyridostigmine</li><ul>
-			<li>kvaterner aminok &#10140; vér-agy gáton nem jutnak át</li>
-			<li>használat:</li><ul>
-				<li>altatás után hcs.izmok újraindítása</li>
-				<li>myasthenia gravis (a Neostigmine)</li>
-			</ul>
-		</ul>
-		<li>Physostigmine, Rivastigmine, Donezepil</li><ul>
-			<li>tertier-aminok &#10140; átmennek a vér-agy gáton (nincs töltésük) &#10140; Alzheimer-kórban van pozitív hatásuk</li>
-			<li>mellékhatás (hányás, hányinger)</li>
-		</ul>
-		<li></li><ul>
-			<li></li>
-		</ul>
-		<li></li><ul>
-			<li></li>
-		</ul>
-		<li></li>
-	</ul></details>
-	<details class="kerdes"><summary>muszkarinerg-antagonisták (kolinerg-inhibitorok)</summary><ul class="normal">
-		<li>...</li>
-	</ul></details>
+<details><summary class="status">1. A kolinerg transzmisszió és preszinaptikus befolyásolásának lehetőségei.</summary><ul class="normal">
 	<details class="kerdes"><summary><strong>A kolinerg transzmisszió</strong> és preszinaptikus befolyásolásának lehetőségei.</summary><ul class="normal">
 		<span class="imp [30]"></span> <!-- kolinerg-szinapszis -->
-		<li></li>
+		<span class="imp [20]"></span> <!-- kolinerg-receptorok -->
+		<span class="imp [31]"></span> <!-- symp & psy (anat,élettan) -->
 	</ul></details>
 	<details class="kerdes"><summary>A kolinerg transzmisszió és <strong>preszinaptikus befolyásolásának lehetőségei.</strong></summary><ul class="normal">
-		<li></li>
+		<span class="imp [32]"></span> <!-- kolinomimetikumok (kolinerg-izgatók) -->
+		<span class="imp [33]"></span> <!-- kolinolítikumok (kolinerg-gátlók) -->
 	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:yellow">2. Az adrenerg transzmisszió és preszinaptikus befolyásolásának lehetőségei.</summary><ul class="normal">
-	<span class="imp [6]"></span>
-	<details class="kerdes"><summary>katekolaminok</summary><ul class="normal">
-		<li>dopamin &#10140; dopaminerg neuronokban(KIR) ez keletkezik</li>
-		<li>noradrenalin &#10140; noradrenerg neuronokban(KIR) ez keletkezik</li>
-		<li>adrenalin &#10140; mellékvesevelő kromaffin sejtjeiben keletkezik, hormon (nem neurotranszmitter már!)</li>
-	  <hr>
-		<li>szintézisük & szinapszis</li>
-		<li>sorsuk:</li><ul>
-			<li>vagy visszavételre kerülnek</li>
-			<li>vagy lebomlanak &#10140; COMT & <abbr title="mono-amino-oxidáz">MAO</abbr> végzi</li>
+<details><summary class="status">2. Az adrenerg transzmisszió és preszinaptikus befolyásolásának lehetőségei.</summary><ul class="normal">
+	<details class="kerdes"><summary><strong>Az adrenerg transzmisszió</strong> és preszinaptikus befolyásolásának lehetőségei.</summary><ul class="normal">
+		<span class="imp [6]"></span> <!-- adrenerg receptorok -->
+		<span class="imp [44]"></span> <!-- adrenerg szinapszis -->
+	</ul></details>
+	<details class="kerdes"><summary>Az adrenerg transzmisszió és <strong>preszinaptikus befolyásolásának lehetőségei.</strong></summary><ul class="normal">
+		<div class="imp [35]"></div> <!-- adrenerg transzmisszió befolyásolása -->
+	</ul></details>
+</ul></details>
+<details class="kerdes"><summary class="status">3. Kolinerg izgatók</summary><ul class="normal">
+	<div class="imp [32]"></div> <!-- kolinomimetikumok (kolinerg-izgatók) -->
+</ul></details>
+<details class="kerdes"><summary class="status">4. Paraszimpatikus bénítók</summary><ul class="normal">
+	<div class="imp [33]"></div> <!-- kolinolítikumok (kolinerg-gátlók) -->
+</ul></details>
+<details class="kerdes"><summary class="status">5. Katecholaminok</summary><ul class="normal">
+	<span class="imp [44]"></span> <!-- adrenerg szinapszis -->
+	<div class="imp [37]"></div> <!-- katekolaminok -->
+</ul></details>
+<details><summary class="status">6. Indirekt szimpatikus izgatók és &alpha;2-agonisták. Imidazolin receptorra ható szerek</summary><ul class="normal">
+	<details class="kerdes"><summary><strong>Indirekt szimpatikus izgatók</strong> és &alpha;2-agonisták. Imidazolin receptorra ható szerek</summary><ul class="normal">
+		<div class="imp [40]"></div>
+	</ul></details>
+	<details class="kerdes"><summary>Indirekt szimpatikus izgatók és <strong>&alpha;2-agonisták</strong>. Imidazolin receptorra ható szerek</summary><ul class="normal">
+		<li>csökkentik a szimpatikus tónust, mivel az α2-receptor aktivációja csökkenti a NA felszabadulását</li>
+	  <strong>Clonidin</strong>
+		<li>mechanizmusa &#10140; csökkenti a NA felszabadulását a preszinaptikus α2-receptor aktiváción keresztül</li>
+		<li>hatása &#10140; vérnyomáscsökkentő</li>
+		<li>mellékhatásai &#10140; szedáció, obstipáció, szájszárazság</li>
+		<li>felhasználása:</li><ul>
+			<li>glaucoma kezelése</li>
+			<li>opioid- és alkoholfüggőség elvonásakor jelentkező tünetek enyhítése</li>
+			<li>(vérnyomáscsökkentőnek már elavult)</li>
 		</ul>
-		<img data-src="fzegypoo.png">
+	  <strong>továbbiak:</strong>
+		<li><u>Brimonidine</u> &#10140; glaucoma kezelése</li>
+		<li><u>Xylazine</u> &#10140; ÁLLATorvosi gyakorlatban szedatívumok, anesztetikumok</li>
+		<li><u>α-metildopa</u> &#10140; terhességi hipertónia kezelése</li>
 	</ul></details>
-  <strong>gyógyszerek - &alpha;</strong> (ezeket elég tudnom)
-	<details class="kerdes"><summary>nem szelektív alfa-receptorok</summary><ul class="normal">
-		<li>&alpha;1 és &alpha;2-receptort is gátol egyaránt</li>
-		<li>pheochromocytoma esetén használtak</li>
-		<li>nevüket tudjam csak (3van)</li>
+	<details class="kerdes"><summary>Indirekt szimpatikus izgatók és &alpha;2-agonisták. <strong>Imidazolin receptorra ható szerek</strong></summary><ul class="normal">
+		<li>KIR-ben találhatók az imidazolin-receptorok</li>
+		<li>szerek &#10140; <u>Clonidin</u>, <u>Moxonidin</u>, <u>Rilmenidin</u></li>
+		<li>hatásuk &#10140; vérnyomáscsökkentők</li>
 	</ul></details>
-	<details class="kerdes"><summary>szelektív alfa1-blokkolók</summary><ul class="normal">
-		<li>prasozin,doxasozin,terazosin</li><ul>
-			<li>antagonisták</li>
-			<li>másodvonalbeli &#10140; ACE-gátló vagy angiotenzin-receptor blokkoló mellett adják (önmagukban nem)</li>
-			<li>mellékhatás &#10140; "első dózis" este kell bevenni (mert hipotenziót okoz)</li>
+</ul></details>
+<details class="kerdes"><summary class="status">7. &alpha;-antagonisták</summary><ul class="normal">
+	<div class="imp [47]"></div>
+</ul></details>
+<details class="kerdes"><summary class="status">8. &beta;-receptor antagonisták</summary><ul class="normal">
+	<div class="imp [46]"></div>
+</ul></details>
+<details><summary class="status">9. Centrálisan ható harántcsíkolt izom-relaxánsok. <font style="color:red;font-weight:bold;">Dantrolen, botulinum toxin</font></summary><ul class="normal">
+	<details class="kerdes"><summary>hcs.izom-ra ható anyagok</summary><ul class="normal">
+		<li>összehúzódást okozók (kevés van + terápiásan nincs jelentőségük)</li><ul>
+			<li>tetanus toxin</li>
+			<li>sztrichin &#10140; Gly-1-R antagonista, erős méreg</li>
+			<li>genetikailag eltérő RyR aktivátorok (lásd: neuro?petikus malignus szindróma) &#10140; pl. halothan, succynylcholin, antipszichotikumok</li>
+			<li>szimpatomimetikumok &#10140; fokozzák az izomerőt</li>
+			<li>centralisan </li>
 		</ul>
-		<li>xyz,xyz</li><ul>
-			<li>prosztata hiperplázia ellen</li>
+		<li>relaxánsok</li><ul>
+			<li>centralisak (9.tétel) &#10140; spaszticitást enyhítik, az akaratlagos izommozgást nem befolyásolják(paralízist nem okoz)</li>
+			<li>periferiások &#10140; ezek viszont paralízist okoznak</li><ul>
+				<li>NMJ gátlók (10.tétel)</li>
+				<li>botulinum toxin</li>
+				<li>tetraciklinek, aminoglikozidok</li>
+			</ul>
 		</ul>
 	</ul></details>
-	<details class="kerdes"><summary>ergotalkaloidok</summary><ul class="normal">
-		<li>alfa-receptor agonista</li>
-		<li>származékaikat szülészetben használják (posztpartum vérzés ellen)</li>
+	<details class="kerdes"><summary><strong>Centrálisan ható harántcsíkolt izom-relaxánsok.</strong> Dantrolen, botulinum toxin</summary><ul class="normal">
+		<li>használatuk:</li><ul>
+			<li>csak <abbr title="állandósult, kóros izomösszehúzódás">spaszticitást</abbr> enyhítik, pl. <abbr title="autoimmun betegség, lényege: demyelinizáció">sclerosis multiplex</abbr></li><ul>
+				<li><u>baclofen</u> &#10140; GABA<sub>B</sub> agonista, erősen <abbr title="szorongáscsillapító, nyugtató">szedatív</abbr></li>
+			</ul>
+			<li>csak akut izomspazmusban alkalmazott szerek &#10140; pl. CO-mérgezés következtében szájzár</li><ul>
+				<li>(guafenesin)</li>
+				<li>(chlorzoxazon)</li>
+				<font style="font-size:80%">(mechanizmusuk még nem ismert)</font>
+			</ul>
+			<li>akut és krónikus spaszticitásban is használt</li><ul>
+				<li><u>diazepam</u> &#10140; ez egy benzodiazepin, erősen <abbr title="szorongáscsillapító, nyugtató">szedatív</abbr><abbr title="valójában nyugtatóként használják, de emelett izomrelaxációt is okoz. tehát úgyis fel lehet fogni, hogyha nyugtatónak akarom, akkor a mellékhatása hogy izomrelaxáns. ha izomrelaxánsként akkor a mellékhatása hogy nyugtató">&#10045;</abbr></li>
+				<li><abbr title="Clonidin-hez hasonló (6t)"><u>tizanidin</u></abbr> &#10140; <abbr title="preszinaptikus receptor!">&alpha;2</abbr>-agonista, <abbr title="mint minden &alpha;2-agonista">ez is</abbr> szedatív</li>
+				<li><u>tolperison</u> &#10140; mechanizmusa ismeretlen</li>
+			</ul>
+		</ul>
+		<li>az akaratlagos izommozgást nem befolyásolják(parézist,paralízist nem okoz)</li>
 	</ul></details>
-	<details class="kerdes"><summary>urapidil</summary><ul class="normal">
-		<li>&alpha;1-receptor antagonista</li>
-		<li>hipertenzív krízisben használják (lassú iv injekció)</li>
-	</ul></details>
-	<details class="kerdes"><summary>metildopa</summary><ul class="normal">
-		<li>hamis neurotranszmitter &#10140; dopa-dekarboxiláz szubsztrátja, de metabolitja nem aktív (lefoglalja az adrenalin/noradrenalin szintézist)</li>
-		<li>indikáció &#10140; terhességi hipertenzió ellen (ugyanis olyankor ACE-gátlók nem adhatók!!!)</li>
-	</ul></details>
-  <strong>gyógyszerek - &beta;</strong> (ezeket elég tudnom)
-	<li>felsorolás</li><ul>
-		<li>szelektív &beta;1-receptor antagonisták &#10140; metoprolol, acebutolol, esmolol, betaxolol, nebivolol, bisoprolol</li>
-		<li>nem szelektív &beta;1 és &beta;2-receptor antagonisták &#10140; sotalol, timolol, propranolol, timolol</li>
-	</ul>
-	<li>jellemzés</li><ul>
-		<li><abbr title="egy részük">lipofilek</abbr> &#10140; adszorpció jó, KIR-be bejut (rémálmot okozhatnak), de tremor-ra így használhatók</li>
-		<li>lipofób &#10140; nincs, KIR-be nem jutnak be</li>
-	</ul>
-	<li>gyak diákat itt tudni kell</li>
-	<li>felhasználás (ezt a diát mindet tudni kell)</li><ul>
-		<li>hipertónia</li>
-		<li>ritmuszavar</li>
-		<li>angina</li>
-		<li>myocardialis infarktus</li>
-		<li>krónikus szívelégtelenség</li>
-		<li>pheochromocytoma</li>
-		<li>glaucoma(zöldhályog)</li>
-	</ul>
-	<li>kontraindikáció:</li><ul>
-		<li>szív &#10140; bradycardia, magas fokú AV-blokk, <abbr title="vasospazmus">prinzmetal angina</abbr></li>
-		<li>tüdő &#10140; súlyos asthma</li>
-		<li>diabetes mellitus</li>
-		<li>perifériás érmegbetegedések</li>
-		<li>centrális &#10140; súlyos depresszió</li>
-		<li>hyperlipidaemia &#10140; cardiovascularis betegeket pedig ez gyakran érinti (nekik statin-t is adnak)</li>
-	</ul>
-	<details class="kerdes"><summary></summary><ul class="normal">
-		<li></li>
-		<li></li>
-	</ul></details>
-	<details class="kerdes"><summary></summary><ul class="normal">
-		<li></li>
-	</ul></details>
-	<details class="kerdes"><summary></summary><ul class="normal">
+	<details class="kerdes"><summary>Centrálisan ható harántcsíkolt izom-relaxánsok. Dantrolen, botulinum toxin</summary><ul class="normal">
 		<li></li>
 	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:coral">3. Kolinerg izgatók</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-		<li></li>
+<details><summary class="status">10. A neuromuscularis junctiot blokkoló izomrelaxánsok.</summary><ul class="normal">
+	<span class="imp [48]"></span> <!-- NMJ -->
+	<details class="kerdes"><summary>használatuk</summary><ul class="normal">
+		<li><span class="done">műtéti narkózisban</span> &#10140; hasi műtétnél kiemelten fontos! (vágás közben rángatózna)</li>
+		<li>súlyos COPD esetében a beteg lélegeztetőgépre szorul &#10140; ilyenkor a 'mellkas hcs.izma ellenáll annak hogy a gép belefújja a levegőt', ezért kell mellé adni izomrelaxánst &#10140; de hosszútávú használata nemjó, mert akkor később a spontán légzését a beteg elfelejti, és újra kell tanítani</li>
+		<li>intubáció (könnyebb a tubust a trachean lenyomni, ha a garatizmok relaxáltak)</li>
+		<li>tetanusz kezelése</li>
+		<li><abbr title="skizofrének kezelésére használt módszer">elektrosokk</abbr> közben ne rángatózzon</li>
+		<li>epilepsziás roham</li>
+		<li>egyes gyógyszerek okozta intoxikáció &#10140; theophylin, amphetamin</li>
 	</ul></details>
-</ul></details>
-<details><summary class="status" style="background-color:coral">4. Paraszimpatikus bénítók</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-		<li></li>
+	<span class="imp [49]"></span> <!-- kuráré típusúak relaxánsok -->
+	<details class="kerdes"><summary>szukcinilkolin relaxánsok</summary><ul class="normal">
+		<li>izomtípusú nACh-R kompetitív agonistája &#10140; de! tartós depolarizációt okoz, így a ff.Na<sup>+</sup> inaktív stádiumban maradnak, ezért lesz relaxáns</li><ul>
+			<li>(beadásakor az elején ilyenkor apró rángások vannak értelemszerűen, hisz agonista)</li>
+		</ul>
+		<li>intravénásan adandó</li>
+		<li>hatástartama 5-10perc &#10140; metabolizáció: pszeudokolinészteráz + májban</li>
+		<li><span class="done">így kolinészteráz-bénítóval nem függeszthető fel</span>, csupán idővel múlik el</li>
+		<li>indikáció &#10140; rövid műtét, intubáció stb.</li>
+	  <strong>mellékhatásai</strong>
+		<li>izomfájdalmak</li>
+		<li><span class="done">malignus hipertermia</span></li><ul>
+			<li>genetikai betegés, RyR-t érinti</li>
+			<li>lényege &#10140; ismeretlen okból a szukcinilkolin hatására a RyR aktiváció fennmarad &#10140; folyamatos, nagy mennyiségű Ca<sup>2+</sup> kiáramlás a sarcoplasmas reticulumból</li>
+			<li>ennek hatására</li><ul>
+				<li>folyamatos izomremegés  → hőtermelés → hyperthermia</li>
+				<li><font style="font-size:80%">laktacidózis</font></li>
+				<li><font style="font-size:80%">myoglobinaemia, myoglobinuria, akut veseelégtelenség</font></li>
+			</ul>
+			<li>kezelés</li><ul>
+				<li>Dantrolen &#10140; RyR-antagonista</li>
+				<li>beteg hűtése</li>
+			</ul>
+		</ul>
+		<li>szívritmuszavar - bradycardia</li>
+		<li>hiperkalémia &#10140; <span class="midQ [48]">hisz a nikotinos ACh-R K<sup>+</sup>-t is vezet kifele</span></li>
+		<li>intraocularis nyomásfokozódás</li>
+		<li>hányás</li>
 	</ul></details>
-</ul></details>
-<details><summary class="status" style="background-color:coral">5. Katecholaminok</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-		<li></li>
-	</ul></details>
-</ul></details>
-<details><summary class="status" style="background-color:coral">6. Indirekt szimpatikus izgatók és &alpha;2-agonisták. Imidazolin receptorra ható szerek</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-		<li></li>
-	</ul></details>
-</ul></details>
-<details><summary class="status" style="background-color:yellow">7. &alpha;-antagonisták</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-		<li></li>
-	</ul></details>
-</ul></details>
-<details><summary class="status" style="background-color:yellow">8. &beta;-receptor antagonisták</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-		<li></li>
-	</ul></details>
-</ul></details>
-<details><summary class="status" style="background-color:coral">9. Centrálisan ható harántcsíkolt izom-relaxánsok. Dantrolen, botulinum toxin</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-		<li></li>
-	</ul></details>
-</ul></details>
-<details><summary class="status" style="background-color:coral">10. A neuromuscularis junctiot blokkoló izomrelaxánsok.</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-		<li></li>
-	</ul></details>
+	<li></li>
 </ul></details>
 <details><summary class="status" style="background-color:coral">11. Szelektív &beta;2-izgatók és egyéb bronchodilatátorok. Az asztma és a COPD kezelési stratégiája.</summary><ul class="normal">
 	<details class="kerdes"><summary></summary><ul class="normal">
@@ -1229,7 +1612,7 @@
 </ul></details>
 <details><summary class="status" style="background-color:yellow">14. Szívelégtelenségben használt gyógyszerek I: A szívet tehermentesítő gyógyszerek. Krónikus szívelegtelenség kezelési stratégiája.</summary><ul class="normal">
 	<details class="kerdes"><summary>szívelégtelenség</summary><ul class="normal">
-		<li>definíció &#10140; csökkent pumpafunkció, PTF csökkenése</li>
+		<li>definíció &#10140; PTF csökkenése (már nem elegendő szervezet normál ellátásához)</li>
 		<li>etiológia, típusai &#10140; dia!</li>
 		<li>kompenzációs mechanizmusok</li><ul>
 			<li>symp megnő &#10140; PTF nő, fokozottab kontraktilitás</li>
@@ -1273,7 +1656,7 @@
 		<li>gyak-dia kép!</li>
 	  <strong>élettan</strong>
 		<img style="max-width:20%" data-src="csgkmzkg.jpg">
-		<font style="font-size:80%">itt is hasonló a harántcsíkolt izoméhoz &#10140; itt azonban EC-ből történő Ca<sup>2+</sup> beáramlás szükséges hogy kiváltsa, annál nem</font>
+		<font style="font-size:80%">itt is hasonló a hcs.izoméhoz &#10140; itt azonban EC-ből történő Ca<sup>2+</sup> beáramlás szükséges hogy kiváltsa, annál nem</font>
 		<li>az EC-ből az L-típusú ff.Ca<sup>2+</sup>-csatornán át beáramló kevés Ca<sup>2+</sup> aktiválja az SR membránjában lévő ryanodin-receptorok(RyR)-at <img class="mini" data-src="srkkcpkkghmkl.jpg"></li>
 		<li>a RyR megnyílik és SR-ből Ca<sup>2+</sup>-t juttat IC-be</li>
 		&#10140; [Ca<sup>2+</sup>]<sub>IC</sub> növekedés 90%a az SR-ből, 10% EC-ből jön
@@ -1290,12 +1673,6 @@
 		<li>hcs.izom &#10140; csak a SERCA (logikus, hiszen itt EC-ből nem áramlott be!!)</li>
 		<li>bél<span class="LASD">5.5t</span> és vese(distalis tubulus)<span class="LASD">7.10t</span> &#10140; SERCA nincs (logikus, hiszen itt SR nincs is, és Ca<sup>2+</sup>-reabszorpció zajlik!!)</li>
 	</ul></details>
-	<details class="kerdes"><summary>szívglikozidok &#10140; digoxin, digitoxin</summary><ul class="normal">
-		<li>gátolja az Na/K-ATPázt &#10140; Na<sub>IC</sub></li>
-		<li>használatuk már visszaszorulóban van, de vizsgán ezt nagyon kérdezik!!</li>
-		<li>gyak-dia...</li>
-		<li></li>
-	</ul></details>
 	<li>Ivabradin</li><ul>
 		<li>indikáció &#10140; szívelégtelenség, iszkémia</li>
 		<li>hatásmechanizmusa &#10140; 'funny-áram' ra hat</li>
@@ -1309,11 +1686,62 @@
 	</ul></details>
 </ul></details>
 <details><summary class="status" style="background-color:yellow">15. Szívelégtelenségben használt gyógyszerek II: Pozitív inotróp szerek. Akut kardiális elégtelenség kezelési stratégiája.</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
+	<details class="kerdes"><summary><strong>Szívelégtelenségben</strong> használt gyógyszerek II: Pozitív inotróp szerek. Akut kardiális elégtelenség kezelési stratégiája.</summary><ul class="normal">
+		<li>Szívelégtelenségben a mioplazma Ca++-koncentrációja nyugalmi állapotban a fiziológiásnál nagyobb (Ca++-túlterhelés), a kontrakció során lassabban és kisebb mértékben emelkedik, a relaxációs fázisban helyreállása elhúzódó. Mindez a kontrakciók erejének, valamint a systole és a diastole sebességének csökkenéséhez vezet</li>
+		<img data-src="rdcvktpu.png">
+	</ul></details>
+	<details class="kerdes"><summary>Szívelégtelenségben használt gyógyszerek II: <strong>Pozitív inotróp szerek</strong>&#10140; . Akut kardiális elégtelenség kezelési stratégiája.</summary><ul class="normal">
+		<li>elsősorban a kontrakciós erőt fokozzák és kevésbé okoznak frekvencianövekedést</li>
+		<details class="kerdes"><summary>digitalis = szívglikozidok &#10140; digoxin, digitoxin</summary><ul class="normal">
+			<li>hatásuk &#10140; pozitív <abbr title="kontraktilitás erőssége">inotróp</abbr> & negatív <abbr title="frekvencia">kronotróp</abbr></li>
+			<li>felhasználás &#10140; krónikus szívelégtelenség kezelésének alapgyógyszere</li><ul>
+				<li><font style="font-size:80%">bár használatuk már visszaszorulóban van, de vizsgán ezt nagyon kérdezik!!</font></li>
+			</ul>
+			<li>mechanizmusa:</li><ul>
+				<li>gátolja az Na/K-ATPázt, így..</li>
+				<li>Na<sup>+</sup>/Ca<sup>2+</sup>-antiporter <abbr title="működése az Na/K-hoz kötött">(szekunder)</abbr> is gátlódik, így gátlódik a Ca<sup>2+</sup> visszajuttatés EC, így [Ca<sup>2+</sup>]IC megnő</li>
+				<li>Ca<sup>2+</sup> kötődik troponin-hoz &#10140; szívizom-kontraktilitás megemelkedik</li>
+			</ul>
+			<li>toxicitás (túladagolás esetén) &#10140; súlyos bradycardia (akár AV-blokk)</li>
+			<li>gyógyszerek</li><ul>
+				<li>digoxin &#10140; 1-2 nap felezési idő</li>
+				<li>digitoxin &#10140; 1hét felezési idő</li>
+				<li>deslanozid</li>
+			</ul>
+			<li>indikáció</li><ul>
+				<li>szívelégtelenség(dekompenzáció) pitvarfibrillációval</li>
+				<li>pitvarlebegés, pitvarfibrilláció</li>
+				<li>akut supraventricukaris tachycardia</li>
+				<li>súlyos krónikus szívelégtelenség(dekompenzáció)</li>
+			</ul>
+			<li>kontraindinkáció</li><ul>
+				<li>AV-blokk</li>
+				<li>hipertrófiás cardiomyopathia</li>
+				<li>WPW-szindróma</li>
+			</ul>
+		</ul></details>
+		<details class="kerdes"><summary>többi</summary><ul class="normal">
+			<li>hatásuk &#10140; pozitív <abbr title="kontraktilitás erőssége">inotróp</abbr> & pozitív <abbr title="frekvencia">kronotróp</abbr></li>
+		</ul></details>
+		<details class="kerdes"><summary>ß1-agonisták</summary><ul class="normal">
+			<li>mechanizmusuk &#10140; &beta;1(Gs) &#10140; cAMP nő</li>
+			<li>dobutamin, dopamin</li>
+			<li>használat &#10140; sürgősségin</li>
+			<li>mellékhatás &#10140; megnövelik a szív oxigénigényét, és akár tachyarrhythmiákat is okozhatnak</li>
+		</ul></details>
+		<details class="kerdes"><summary>foszfodiészteráz-gátlók</summary><ul class="normal">
+			<li></li>
+		</ul></details>
+		<details class="kerdes"><summary>kalcium-érzékenyítők</summary><ul class="normal">
+			<li></li>
+		</ul></details>
+		<li></li>
+	</ul></details>
+	<details class="kerdes"><summary>Szívelégtelenségben használt gyógyszerek II: Pozitív inotróp szerek. Akut kardiális elégtelenség kezelési stratégiája.</summary><ul class="normal">
 		<li></li>
 	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:yellow">16. Ritmuszavarok kezelésében használatos gyógyszerek</summary><ul class="normal">
+<details><summary class="status" style="background-color:coral">16. Ritmuszavarok kezelésében használatos gyógyszerek</summary><ul class="normal">
 	<details class="kerdes"><summary></summary><ul class="normal">
 		<li></li>
 	</ul></details>
@@ -1374,15 +1802,76 @@
 	</ul></details>
 </ul></details>
 <details><summary class="status" style="background-color:yellow">18. A hypertónia kezelésében használt gyógyszerek II: Ca++-csatorna blokkolók és egyéb vazodilatátorok.</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
+	vazodilatátorok &#10140; , 
+	<li>mechanizmusuk:</li><ul>
+		<li>NO-donorok (cGMP)</li>
+		<li>Ca2+-csatorna blokkolók</li>
+	</ul>
+	<li>indikáció &#10140; iszkémia, hipertónia, subarachnoidalis vérzés</li>
+	<li>kontraindikáció &#10140; obstruktív szívbetegségek (billentyű stenosis / HCM), mert ilyenkor a vénák dilatálnak, így csökken a preload, így csökken a stroke volume (ez a preload és kontrakció ereje határozza meg)</li>
+	<details class="kerdes"><summary>Nitropussid natrium</summary><ul class="normal">
+		<li>NO-donor</li>
+		<li>rövid hatástartam</li>
+		<li>metabolizációja során cianid származékok keletkeznek</li>
+		<li>tolerancia nem alakul ki, szemben a nitroglicerinnel</li>
+		<li>indikáció &#10140; akut hipertónia</li>
+		<li>mellékhatása</li><ul>
+			<li>hipotónia</li>
+			<li>laktacidózis</li>
+			<li><abbr title="gyógyszer megvonása után, rosszabb lesz mint előtte (ezért fokozatosan kell adni)">rebound</abbr> hipertónia</li>
+		</ul>
+	</ul></details>
+	<details><summary>hydralazin, dihydralazin</summary><ul class="normal">
+		<li>hatásmechanizmusa ismeretlen</li>
+		<li>adható per os és parenteralisan</li>
+		<li>indikáció &#10140; akut hipertónia</li>
+		<li>mellékhatása &#10140; allergia, immunológiai reakció(lupus)</li>
+	</ul></details>
+	<details><summary>diazoxid</summary><ul class="normal">
+		<li>K+-csatorna serkentő &#10140; arteriális vazodilatáció</li>
+		<li>adható per os és parenteralisan</li>
+		<li>indikáció &#10140; akut hipertónia</li>
+		<li>kontraindikáció &#10140; 2es-típusú DM</li>
+	</ul></details>
+	<details><summary>minoxidil</summary><ul class="normal">
+		<li>K+-csatorna serkentő &#10140; arteriális vazodilatáció</li>
+		<li>adható per os és parenteralisan</li>
+		<li>indikáció &#10140; akut hipertónia</li>
+	</ul></details>
+  <strong>Ca2+-csatorna blokkolók</strong>
+	<li>L-típusú Ca<sup>2+</sup>-csatornát blokkolnak &#10140; </li><ul>
+		<li>szív &#10140; izom, SA, AV-csomó &#10140; negatív inotrópia, chronotrópia</li>
+		<li>arterialis vazodilatáció</li>
+	</ul>
+	<li>indikáció &#10140; </li><ul>
+		<li>hipertónia, főleg ACE-gátló rezisztencs és komorbid-betegeknél</li>
+		<li>iszkémiás szívbetegség, angina pectoris</li>
+		<li>subarachnoidalis vérzés &#10140; nimodipin</li>
+		<li>antiaritmiás szer &#10140; verapamil, diltiazem</li>
+		<li>terhességi magasvérnyomás (preeclampsia)</li>
+	</ul>
+	<li>csoportosításuk</li><ul>
+		<li>DHP-k &#10140; nifedipin, amlodipin, nicardipin, nimodipin, felodipin, nisoldipin, lacidipin</li>
+		<li>fenilalkilamin &#10140; verapamil</li>
+		<li>benzotiazepin &#10140; diltiazem</li>
+	</ul>
+	<li>nifedipin &#10140; legrövidebb hatástartamú</li>
+	<li>mellékhatások</li><ul>
+		<li>értágító hatás közvetlen következményei</li>
+		<li>székrekedés</li>
+		<li>verapamil &#10140; AV-blokkot okozhat</li>
+		<li>gingiva hyperplasia</li>
+	</ul>
+	<li>kontraindikáció &#10140; négerek</li>
+	<details class="kerdes"><summary>A hypertónia kezelésében használt gyógyszerek II: Ca++-csatorna blokkolók és egyéb vazodilatátorok.</summary><ul class="normal">
 		<li></li>
 	</ul></details>
 </ul></details>
 <details><summary class="status" style="background-color:yellow">19. A hypertónia kezelésében használt gyógyszerek III: A renin-angiotenzin-aldoszteron rendszerre ható gyógyszerek.</summary><ul class="normal">
-	<details class="kerdes"><summary>DRI (direkt-renin-inhibitor)</summary><ul class="normal">
+	<details class="kerdes"><summary></summary><ul class="normal">
 		<li></li>
 	</ul></details>
-	<details class="kerdes"><summary></summary><ul class="normal">
+	<details class="kerdes"><summary>DRI (direkt-renin-inhibitor)</summary><ul class="normal">
 		<li></li>
 	</ul></details>
 </ul></details>
@@ -1396,14 +1885,197 @@
 		<li></li>
 	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:coral">22. Káliumvesztő diuretikumok.</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-		<li></li>
+<details><summary class="status">22. Káliumvesztő diuretikumok.</summary><ul class="normal">
+	<details><summary>vese - szakaszok, transzporterek</summary><ul class="normal">
+		<img data-src="ovxwwytg.png">
+		diuretikum = húgyhajtó &#10140; kiválasztott vizelet mennyiségének a növelését eredményezi
+		<li>proximalis kanyarulatos tubulus &#10140; acetazolamid</li>
+		<li>Henle-kacs felszálló vastag szegmens &#10140; kacsdiuretikum-ok</li>
+		<li>distalis kanyarulatos tubulus &#10140; thiazid-ok</li>
+		<li>gyűjtőcsatornák:</li><ul>
+			<li>K<sup>+</sup>-megtakarító diuretikumok</li>
+			<li>ADH-antagonisták</li>
+		</ul>
+	</ul></details>
+	<details class="kerdes"><summary>acetazolamid</summary><ul class="normal">
+		<img style="max-width:40%" data-src="dzxutggd.png">
+		<li>diuretikumként nem használt (minimális a vízhajtó hatása)</li>
+	  <strong>mechanizmusa</strong>
+		<li>lokalizáció &#10140; proximalis kanyarulatos tubulus</li>
+		<li>lényege &#10140; <span class="done">karboanhidráz-t gátolja</span>(reverzibilis,nem kompetitív)</li>
+		<li>következményei:</li><ul>
+			<li>vesztés nő &#10140; NaHCO<sub>3</sub>, K<sup>+</sup>, víz</li>
+			<li>reabszorpció nő &#10140; <abbr title="hajtóerő: koncentrációgrádiens, potenciálkülönbség">Cl<sup>-</sup></abbr></li>
+			<li>vizelet pH-ja megnő, metabolikus acidózis(hisz bikarbonát reabszorpció csökken)</li>
+		</ul>
+	  <table><tr><th>indikáció</th> <th>mellékhatás</th> <th>kontraindikáció</th></tr><tr>
+		<td style="text-align:left">
+			<li>húgyhajtóként(diuretikum) valójában nem is használják</li>
+			<li>glaucoma &#10140; <abbr title="ott lévő karboanhidráz gátlás hatására">csökken a humor aquosus termelése</abbr>, ezért glaucomában csökkentik az intraocularis nyomást</li>
+			<li>metabolikus alkalosis</li>
+			<li>epilepszia</li>
+		</td>
+		<td style="text-align:left">
+			<li>hiperklorémia</li>
+			<li>metabolikus acidózis</li>
+			<li>hipokalémia</li>
+		</td>
+		<td style="text-align:left">
+			<li>vesebetegség, májbetegség (cirrhosis, hepatitis) <font style="font-size:80%">(mert a vesében keletkező NH4 a szisztémás keringésbe jutva hepaticus encephalopathiát okozhat)</font></li>
+			<li>hypokalaemia</li>
+			<li>hyponatrémia</li>
+			<li>metabolikus acidózis</li>
+		</td>
+	  </tr></table>
+	  <strong>egyéb</strong>
+		<li>'a metabolikus acidózis ahogy nő, úgy csökken a hatékonysága' (bikarbonát reabszorpció már végbe fog menni)</li>
+		<li>oralis adagolás során jó, hatása 1órán belül alakul ki, és 6–8óráig tart</li>
+	</ul></details>
+	<details class="kerdes"><summary>kacsdiuretikum-ok</summary><ul class="normal">
+		<img style="max-width:40%" data-src="tstcyltz.png">
+		<li>ez a legerőteljesebben ható diuretikum (ugyanis ez a rész igen nagy NaCl-reabszorpciós kapacitással rendelkezik)</li>
+	  <strong>felsorolás</strong>
+		<li><u>furosemid</u></li>
+		<li><u>torsemid</u></li>
+		<li><u>etakrinsav</u></li>
+		<li><u>bumetanid</u></li>
+	  <strong>mechanizmusa</strong>
+		<li>lokalizáció &#10140; Henle-kacs felszálló vastag szegmense</li>
+		<li>lényege &#10140; <span class="done">NaK2Cl-kotranszportert gátolja</span></li>
+		<li>hatása:</li><ul>
+			<li>vesztés nő &#10140; víz, NaKCl, <abbr title="ezek reabszorpciója is itt történik, potenciálkülönbség miatt, de ne érdekeljen a pontos mechanizmusa">Ca<sup>2+</sup>, Mg<sup>2+</sup></abbr></li>
+		</ul>
+		<li>itt még nincs víz reabszorpció, csupán a lumen hipoozmotikussá válása történik &#10140; mivel ez a kacsdiuretikum hatására lecsökken, így a gyűjtőcsatornákban csökkeni fog a víz-reabszorpció (ugyanis ott az a hajtóerő)</li>
+	  <table><tr><th>indikáció</th> <th>mellékhatás, gyógyszer-interakciók, kontraindikáció</th></tr><tr>
+		<td style="text-align:left">
+			<li>ödéma:</li><ul>
+				<li>legfőbb indikáció az akut tüdőoedema és az agyoedema &#10140; ilyenkor a leggyakrabban alkalmazott szer az iv. furosemid</li>
+				<li>cardialis, hepaticus, renalis</li>
+			</ul>
+			<li>hypertonia</li>
+			<li><abbr title="albuminuria, így proteinaemia, így ödéma">nephrosis</abbr>, veseelégtelenség(akut,krónikus)</li>
+			<li>hipercalcaemia</li>
+		</td>
+		<td style="text-align:left">
+			<li>gyógyszerallergia (furoszemid)</li>
+			<li><u>Probenicid</u> / NSAID alkalmazása csökkenti a diuretikus hatást</li>
+			<li>warfarin-nal kompetitíció a plazmafehérjéhez kötődésért! (vérzékenység!!)</li>
+		</td>
+	  </tr></table>
+	</ul></details>
+	<details class="kerdes"><summary>thiazid-ok</summary><ul class="normal">
+		<img style="max-width:40%" data-src="hhqlyzwr.png">
+		<li>diuretikumként kevésbé jelentős a kacsdiuretikumokhoz képest</li>
+	  <strong>példák</strong>
+		<li>thiazidok &#10140; <u>chlorothiazid</u>, <u>hydrochlorothiazid</u></li>
+		<li>thiazid-szerű származékok &#10140; <u>chlortalidon</u>, <u>indapamid</u>, <u>clopamid</u></li>
+	  <strong>mechanizmusa</strong>
+		<li>lokalizáció &#10140; distalis kanyarulatos tubulus</li>
+		<li>lényege &#10140; <span class="done">NaCl-szimportert gátolja</span></li>
+		<li>következményei:</li><ul>
+			<li>vesztés nő &#10140; NaCl, K<sup>+</sup>, víz</li>
+			<li>reabszorpció nő &#10140; Ca<sup>2+</sup></li>
+			<li><abbr title="purinbázisok lebontása során keletkezik, ha megnő(vesében rossz a kiválasztása), akkor lesz köszvény">húgysav(urát)</abbr> kiválasztása..</li><ul>
+				<li>nő, ha akut az alkalmazása</li>
+				<li>csökken, ha krónikus az alkalmazása</li>
+			</ul>
+		</ul>
+		<li>egyes tiazidok emellett karboanhidráz-bénító hatással is rendelkeznek, csakúgy mint az aminoglikozidok &#10140; ezek esetében bikarbonát szekréció is fokozódik (&#10140; metabolikus acidózis)</li>
+	  <table><tr><th>indikáció</th> <th>mellékhatás, gyógyszer-interakciók</th></tr><tr>
+		<td style="text-align:left">
+			<li><span class="done">oedema</span></li>
+			<li><span class="done">hipertenzió</span></li>
+			<li><span class="done">diabetes insipidus</span> &#10140; <abbr title="a vártal ellentétes, hiszen a thiatid húgyhajtó. a diabetes insipidus esetében pedig pont hogy polyuria van (tehát nem rendes a vízvisszaszívás). szóval ugye azt várná az ember, hogy ez csak méginkább ront a helyzeten, de nem">ez ugye paradox!!!</abbr> (magyarázata még nem teljesen tisztázott)</li>
+			<li>Ca<sup>2+</sup>-űrítést csökkentő hatása miatt:</li><ul>
+				<li><span class="done">hypercalciuria</span><abbr title="kockázata nő">(vesekő!)</abbr></li>
+				<li><span class="done">osteoporosis</span> <abbr title="mert hypercalcaemiat okoz a thiazid (osteoporosis-nál meg a csontlebontás fokozódik)">kezelése</abbr></li>
+			</ul>
+		</td>
+		<td style="text-align:left">
+			<li><span class="done">hipokalémia</span></li><ul>
+				<li>szívglikozidokkal kezelt betegen arrhythmia felléptét válthatja ki, illetve izomgörcsöket okozhat</li>
+				<li>májbetegségeknél a hypokalaemia encephalopathiát és comát hozhat létre</li>
+				&#10140; káliumpótlás szükséges!
+			</ul>
+			<li>húgysav kiválasztás csökken eleinte, így akut köszvényesrohamot válthat ki</li>
+			<li>növelik a vércukorszintet</li>
+			<li>szekunder hiperlipidaemia (LDL↑)</li>
+			<li><u>Probenicid</u> és NSAID csökkenti a diuretikus hatást</li>
+			<li><u>szívglikozidok</u> (arrhythmia, izomgörcsök)</li>
+			<li>szteroidok, ösztrogének (fogamzásgátlók) folyadékretenciót okoznak, és így antagonizálják a tiazidok hatását</li>
+			<li>warfarin-nal kompetitíció a plazmafehérjéhez kötődésért! (vérzékenység!!)</li>
+		</td>
+	  </tr></table>
+	  <strong>farmakokinetika</strong>
+		<li>hatástartamuk a vegyület clearance-értékétől függ; A legtöbb tiazid hatástalan kis glumorulusfiltráció (30ml/min) esetén; A tiazidok mint savak a vesében filtrálódnak, és tubularis szekrécióval ürülnek <span class="MISS">(ez mit jelent !?) &#10140; (szvsz arányos, mivel Probenicid csökkenti a kiválasztását, illetve a diuretikus hatását)</span></li>
 	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:coral">23. Kálium-megtakarító diuretikumok, ADH antagonisták, ozmotikus diuretikumok.</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-		<li></li>
+<details><summary class="status">23. Kálium-megtakarító diuretikumok, ADH antagonisták, ozmotikus diuretikumok.</summary><ul class="normal">
+	<details class="kerdes"><summary><strong>Kálium-megtakarító diuretikumok</strong>, ADH antagonisták, ozmotikus diuretikumok.</summary><ul class="normal">
+		<img style="max-width:40%" data-src="uloelofi.png">
+		<li><u>triamtere</u> és <u>amilorid</u></li>
+	  <strong>mechanizmusa</strong>
+		<li>lokalizáció &#10140; gyűjtőcsatornák</li>
+		<li>lényege &#10140; Na<sup>+</sup>-csatornát(<abbr title="epithelialis Na-channel (lumen felőli oldalon lévő Na-csatorna, a vese gyűjtőcsatornákban (de máshol is van))">ENaC</abbr>) gátolja</li>
+		<li>hatása:</li><ul>
+			<li>K<sup>+</sup>-szekréció csökken</li>
+			<li>Na<sup>+</sup>-reabszorpció csökken</li>
+			<li>víz-reabszorpció csökken</li>
+		</ul>
+	  <strong>farmakokinetika</strong>
+		<li>orálisan adhatók</li>
+		<li>toxicitása máj- és vesebetegség esetén nő (metabolizmus & kiválasztásuk miatt)</li>
+	  <strong>indikáció</strong>
+		<li>ödéma-, hipertóniában önmagukban ritkán alkalmazzák gyenge Na<sup>+</sup>-ürítő hatásuk miatt &#10140; azonban más K<sup>+</sup>-ürítű diuretikumokkal való együttadás már előnyös</li>
+	  <strong>mellékhatások</strong>
+		<li>hiperkalémia &#10140; alábbiakkal nem jó együtt adni: spironolacton, ACE-gátlók, angiotenzinreceptor-gátlók, β-receptor-blokkolók, <abbr title="különösen indometacin">NSAID</abbr></li>
+	</ul></details>
+	<details class="kerdes"><summary>Kálium-megtakarító diuretikumok, <strong>ADH antagonisták</strong>, ozmotikus diuretikumok.</summary><ul class="normal">
+		<img style="max-width:40%" data-src="uloelofi.png">
+		<li><u>spironolacton</u> és a szervezetben keletkező metabolitjai is használatosak gyógyszerként:</li><ul>
+			<li><u>canrenon</u></li>
+			<li><u>canrenoat</u></li>
+		</ul>
+		<li><u>spironolacton</u>, <u>eplerenon</u></li>
+	  <strong>mechanizmusa</strong>
+		<li>lokalizáció &#10140; gyűjtőcsatornák</li>
+		<li>lényege &#10140; aldszteron kötődését a receptorhoz gátolja (Na/K-antiporter és H<sup>+</sup>-pumpa működését befolyásol)</li><ul>
+			<li>ENaC nem helyeződik ki &#10140; Na<sup>+</sup>-reabszorpció csökken &#10140; K<sup>+</sup>-szekréció csökken & víz-reabszorpció csökken</li>
+			<li><abbr title="apkális membránon van, és kifele tolja (képen hiányzik)">H+-pumpa</abbr> működése nem fokozódik &#10140; H<sup>+</sup>-szekréció csökken</li>
+		</ul>
+		<li>klinikai hatékonysága az aldoszteron szintjétől függ</li>
+	  <strong>indikáció</strong>
+		<li>leggyakrabban tiazidokkal vagy kacsdiuretikumokkal való kombinációban adják oedemákban és hypertoniában</li>
+	  <strong>mellékhatások</strong>
+		<li><u>spironolacton</u> esetében endokrin mellékhatások, pl. gynaecomastia</li><ul>
+			<li>ugyanis más szteroidreceptor működését is befolyásolja</li>
+			<li><u>eplerenon</u> esetében ez nincs, mert szelektív antagonista</li>
+		</ul>
+		<li>megváltoztatja a szívglikozidok clearance-ét</li>
+		<li>szalicilátok gátolják diuretikus hatékonyságát</li>
+		<li>hiperkalémia &#10140; alábbiakkal nem jó együtt adni: triamtere, amilorid, ACE-gátlók, angiotenzinreceptor-gátlók, β-receptor-blokkolók, <abbr title="különösen indometacin">NSAID</abbr></li>
+		<li>KIR mellékhatások (fejfájás,letargia stb.)</li>
+		<li>GI mellékhatások (hányás,hasmenés stb.)</li>
+	</ul></details>
+	<details class="kerdes"><summary>Kálium-megtakarító diuretikumok, ADH antagonisták, <strong>ozmotikus diuretikumok</strong>.</summary><ul class="normal">
+	 <strong>felsorolás</strong>
+		<li><u>mannitol</u></li>
+		<li><u>glycerin</u></li>
+		<li><u>isosorbitol</u></li>
+		<li><u>karbamid</u></li>
+	  <strong>mechanizmusuk</strong>
+		<li>intravénásan beadják &#10140; <span class="done">növelik a plazma ozmolaritását</span>, így 'interstitiumból több folyadék jut vérbe &#10140; több folyadék filtrálódik a vesébe'</li>
+		<li><span class="done">szabadon filtrálódnak a glomerulusba, de NEM reabszorbeálódnak</span> a tubulusban (nem elektrolit természetűek) &#10140; <span class="done">tubularis folyadék ozmolaritását megnövelik</span></li>
+		<li><span class="done">ezek eredője, hogy a Henle-kacs Na<sup>+</sup>- és vízfelszívódása csökken</span></li>
+	  <table><tr><th>indikáció</th> <th>mellékhatás, gyógyszer-interakciók, kontraindikáció</th></tr><tr>
+		<td style="text-align:left">
+			legfőbb alkalmazási területe akut veseelégtelenség (pl. mérgezés, égés, trauma)
+		</td>
+		<td style="text-align:left">
+			<li><abbr title="szívelégtelenség, tehát nem képes ellátni pumpa-funkcióját">cardialis decompensatio</abbr> esetében tüdőoedema <abbr title="Mivel az EC víztér expanzióját hozzák létre, alkalmazásuk veszélyes lehet fennálló">léphet fel</abbr> <span class="MISS"><font style="font-size:80%">!?!?</font></span></li>
+			<li>kontraindikált, ha az anuria oka súlyos vesebetegség <span class="MISS"><font style="font-size:80%">!?!?</font></span></li>
+		</td>
+	  </tr></table>
 	</ul></details>
 </ul></details>
 <details><summary class="status" style="background-color:coral">24. Hisztamin és H1-blokkolók.</summary><ul class="normal">
