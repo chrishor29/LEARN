@@ -95,6 +95,7 @@
 */
 
 /* PROJECT - DONE
+ ✔ search: nagybetü vs kisbetü
  ✔ jelölhessem ki a kérdést importantnak(zöld), a Qlista-repTime-ban
  ✔ ha egy quest többször is szerepel (nextQ), akkor csak az elsőt tegye ki az osztályzás közé, és a többire mind ezen számot írja (ne generáljon nekik külön még1et)
  ✔ lehessen látni a kérdéseket táblázatban, melyiket hány perce repeateltem, mert felbssza magát az ember, hogy nemtudja mikor jut a végére --> ne mutassa azokat, melyek skippedek(kék/fekete) már
@@ -274,9 +275,9 @@ var wrongEXPid = "foglalt vagy upgradelve lett:<br>"
 
 
 /* Search method
- egy ID-s iframe van, amibe for ciklussal betölti a tárgyakat, majd a textjüket kimenti egy array-ba (nagyítóra klikkelésnél)
- a searchWordot megnézi az arrayban melyiknél van, majd kidobja a resultokat (ahogy eddig is)
- egy resultra ráklikkelve az iframe/div(amelyik gyorsabb, display:none)-be tölti a tárgyat -> és abból szedi a parent/midQ stb. (ahogy eddig is)
+ ► egy ID-s iframe van, amibe for ciklussal betölti a tárgyakat, majd a textjüket kimenti egy array-ba (nagyítóra klikkelésnél)
+ ► a searchWordot megnézi az arrayban melyiknél van, majd kidobja a resultokat (ahogy eddig is)
+ ► egy resultra ráklikkelve az iframe/div(amelyik gyorsabb, display:none)-be tölti a tárgyat -> és abból szedi a parent/midQ stb. (ahogy eddig is)
 */
 var fileName
 var arrImpQs = []
@@ -1659,6 +1660,7 @@ function F_searchWord() {
 		var paths = Object.keys(pageTexts)
 		//document.getElementById("input_SearchW").value = "stressz"
 		var searchText = document.getElementById("input_SearchW").value
+		searchText = searchText.toLowerCase()
 		var fullText = ""
 		document.getElementById("div_SearchWText").innerHTML = ""
 		var hianyzik = ""
@@ -1670,14 +1672,14 @@ function F_searchWord() {
 				hianyzik = hianyzik +path.slice(path.lastIndexOf("/"))+" "
 				continue
 			}
-			if ( targyText.indexOf(searchText) == -1 ) { continue }
+			if ( targyText.toLowerCase().indexOf(searchText) == -1 ) { continue }
 			fullText = fullText+ path
 			do {
-				var locST = targyText.indexOf(searchText)
+				//var locST = targyText.toLowerCase().indexOf(searchText)
 				var prevText, postText, positive
 				function F_searchPrevText(){
 					positive = false
-					prevText = targyText.slice(0 , targyText.indexOf(searchText))
+					prevText = targyText.slice(0 , targyText.toLowerCase().indexOf(searchText))
 					var string
 					do {
 						index = prevText.lastIndexOf("<details")
@@ -1688,12 +1690,12 @@ function F_searchWord() {
 						prevText = prevText.slice(0 , prevText.lastIndexOf("<details"))
 						if ( string.indexOf("</details") == -1 ) { positive = true }
 					} while ( prevText.indexOf("<details") != -1 && positive != true )
-					if ( positive = true ) { prevText = targyText.slice(index , targyText.indexOf(searchText)) }
+					if ( positive = true ) { prevText = targyText.slice(index , targyText.toLowerCase().indexOf(searchText)) }
 				}
 				F_searchPrevText()
 				function F_searchPostText(){
 					positive = false
-					postText = targyText.slice(targyText.indexOf(searchText))
+					postText = targyText.slice(targyText.toLowerCase().indexOf(searchText))
 					var string
 					var index = 0
 					do {
@@ -1706,7 +1708,7 @@ function F_searchWord() {
 						postText = postText.slice(postText.indexOf("</details")+10)
 						if ( string.indexOf("<details") == -1 ) { positive = true }
 					} while ( postText.indexOf("</details") != -1 && positive != true )
-					if ( positive = true ) { postText = targyText.slice(targyText.indexOf(searchText) , targyText.indexOf(searchText) +index) }
+					if ( positive = true ) { postText = targyText.slice(targyText.toLowerCase().indexOf(searchText) , targyText.toLowerCase().indexOf(searchText) +index) }
 				} // <a>ez itt <a>egy</a> teszt szöveg, melyben <a>azt</a> teszt-elem</a>
 				if ( positive == true ) { F_searchPostText() }
 				
