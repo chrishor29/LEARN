@@ -15,7 +15,7 @@ xcopy /y %source%\Farmak\farmak.html %destination%\Farmak\
 xcopy /y %source%\Belgyogy\kortan.html %destination%\Belgyogy\
 xcopy /y %source%\Mikrobi\mikrobi.html %destination%\Mikrobi\
 xcopy /y %source%\Pszicho\pszicho.html %destination%\Pszicho\
-xcopy /y %source%\Kardio\farmak.html %destination%\Kardio\
+xcopy /y %source%\Kardio\kardio.html %destination%\Kardio\
 
 xcopy /y %source%\Farmak\favicon.bmp %destination%\Farmak\
 xcopy /y %source%\Mikrobi\favicon.bmp %destination%\Mikrobi\
