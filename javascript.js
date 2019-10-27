@@ -1571,6 +1571,8 @@ function F_pageOpen() {
 				currPath = currPath +pagePath
 				window.location.href = currPath
 			} else if ( event.button == 0 ) { // left click
+				for ( var x=0; x<pageLinks.length; x++ ) { pageLinks[x].style.backgroundColor = "" }
+				this.style.backgroundColor = "yellow"
 				F_loadPageText(this.dataset.src)
 			}
 		}
@@ -4791,7 +4793,7 @@ function F_loadAllPageTexts() {
 	}
 	window.addEventListener('message', handler, false)
 }
-F_loadPageText("expqs.html")
+//F_loadPageText("expqs.html")
 //if ( localStorage.getItem("hk.ToggleAll") != "true" ) { F_loadAllPageTexts() }
 
 if ( changeStatus == true ) { document.getElementById("div_upgQ").style.display = 'block' }

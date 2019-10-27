@@ -2,22 +2,26 @@
 set source=D:\LEARN
 set destination=C:\Users\chrishor\Desktop\mix\learn
 
-
 robocopy %source%\Farmak\images %destination%\Farmak\images /mir
-robocopy %source%\Mikrobi\images %destination%\Mikrobi\images /mir
-robocopy %source%\Pszicho\images %destination%\Pszicho\images /mir
 robocopy %source%\Belgyogy\images %destination%\Belgyogy\images /mir
 robocopy %source%\Belgyogy\videos %destination%\Belgyogy\videos /mir
+robocopy %source%\Mikrobi\images %destination%\Mikrobi\images /mir
+robocopy %source%\Pszicho\images %destination%\Pszicho\images /mir
+robocopy %source%\Kardio\images %destination%\Kardio\images /mir
+robocopy %source%\Kardio\videos %destination%\Kardio\videos /mir
 
+xcopy /y %source%\sajat\sajat.html %destination%\sajat\
 xcopy /y %source%\Farmak\farmak.html %destination%\Farmak\
+xcopy /y %source%\Belgyogy\kortan.html %destination%\Belgyogy\
 xcopy /y %source%\Mikrobi\mikrobi.html %destination%\Mikrobi\
 xcopy /y %source%\Pszicho\pszicho.html %destination%\Pszicho\
-xcopy /y %source%\Belgyogy\kortan.html %destination%\Belgyogy\
-xcopy /y %source%\sajat\sajat.html %destination%\sajat\
+xcopy /y %source%\Kardio\farmak.html %destination%\Kardio\
 
+xcopy /y %source%\Farmak\favicon.bmp %destination%\Farmak\
 xcopy /y %source%\Mikrobi\favicon.bmp %destination%\Mikrobi\
 xcopy /y %source%\Pszicho\favicon.bmp %destination%\Pszicho\
 xcopy /y %source%\Belgyogy\favicon.bmp %destination%\Belgyogy\
+xcopy /y %source%\Kardio\favicon.bmp %destination%\Kardio\
 
 robocopy %source%\images %destination%\images /mir
 xcopy /y %source%\expqs.html %destination%\
