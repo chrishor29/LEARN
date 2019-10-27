@@ -1563,6 +1563,7 @@ function F_pageOpen() {
 	for ( var i=0; i<pageLinks.length; i++ ) { 
 		var detElem = pageLinks[i]
 		detElem.onmousedown = function(event) {
+			threeSec = 0
 			if ( event.button == 1 ) { // middle click
 				pagePath = this.dataset.src
 				var currPath = window.location.href
@@ -1755,7 +1756,7 @@ function F_searchWord() {
 		iframe.style.display = "none"
 		iframe.id = "iframe_targyak"
 		iframe.name = "iframe_targyak"
-		
+ 		
 		var input = document.createElement("input")
 		div.appendChild(input)
 		input.type = "text"
@@ -1767,6 +1768,7 @@ function F_searchWord() {
 		input.style.paddingLeft = "3px"
 		input.style.paddingRight = "3px"
 		input.style.transform = "translate(-50%)";
+		input.addEventListener("keyup", function(event) { if (event.keyCode === 13) { F_searchResult() } })
 		//input.onchange = function() { F_searchResult() }
 		//input.value = "inzulin";
 		
@@ -1986,6 +1988,7 @@ var defaultText = document.getElementById("div_upgQ").innerHTML
 
 var varNextQ = false
 var midQloaded = false
+var threeSec = 0
 var F_seekBar = window.setInterval(function(){
 	if ( document.getElementById("playedVideo") ) {
 		var playedVideo = document.getElementById("playedVideo")
@@ -2000,24 +2003,40 @@ var F_seekBar = window.setInterval(function(){
 		F_midQ(document.getElementById("div_MidQ"))
 		midQloaded = true
 	}
+	threeSec = threeSec +1
+	var loadTime = 3
+	if ( isAndroid == false ) { loadTime = 0 }
+	if ( threeSec > loadTime && document.getElementById("div_SearchW").style.display != "block" && document.getElementById("div_MainFrame").style.display != 'block' ) {
+		var full = pageLinks.length -1
+		for ( var i=0; i<pageLinks.length; i++ ) { 
+			document.getElementById("div_RefreshStatus").innerHTML = i+"/"+full
+			if ( pageLinks[i].dataset.loaded != "true" ) {
+				F_loadPathText(pageLinks[i].dataset.src,i)
+				break
+			}
+		}
+		threeSec = 0
+	}
 }, 1000);
 
 function F_answerQ(detElem){ 
 	var trueA = detElem.getElementsByClassName("trueA")
 	var falseA = detElem.getElementsByClassName("falseA")
+	var answers = detElem.getElementsByClassName("answer")
 	if ( trueA.length == 0 ) { return }
 	
-	if ( detElem.open == false ) {
+	if ( detElem.open != true ) {
 		for ( var i=0; i<trueA.length; i++ ) { trueA[i].style.backgroundColor = "" }
-		for ( var i=0; i<falseA.length; i++ ) {  falseA[i].style.backgroundColor = "" }
+		for ( var i=0; i<falseA.length; i++ ) { falseA[i].style.backgroundColor = "" }
+		for ( var i=0; i<answers.length; i++ ) { answers[i].style.backgroundColor = "gold" }
+		return
 	}
 	
 	var div = detElem.getElementsByClassName("random")
 	if ( div[0].offsetParent === null ) { return }
 	var liA = div[0].getElementsByTagName("li")
-	for (var i = liA.length; i >= 0; i--) { div[0].appendChild(liA[Math.random() * i | 0]) }
+	for (var i=0; i<liA.length; i++) { div[0].appendChild(liA[Math.random() * i | 0]) }
 	
-	var answers = detElem.getElementsByClassName("answer")
 	trueA = detElem.getElementsByClassName("trueA")
 	falseA = detElem.getElementsByClassName("falseA")
 	for ( var x=0; x<answers.length; x++ ) { 
@@ -4693,8 +4712,8 @@ function F_loadPageText(path) {
 		var targyText = e.data[1]
 		pageTexts[targyPath] = targyText
 		document.getElementById("div_SearchW").style.backgroundColor = "grey"
-		document.getElementById("div_Refreshng").innerHTML = targyPath
-		document.getElementById("iframe_targyak").src = targyPath
+		//document.getElementById("div_Refreshng").innerHTML = targyPath
+		//document.getElementById("iframe_targyak").src = targyPath
 		
 		if ( targyPath != "expqs.html" ) {
 			pagePath = targyPath // képek betöltéséhez kell pl
@@ -4712,6 +4731,7 @@ function F_loadPageText(path) {
 		}
 		for ( var i=0; i<pageLinks.length; i++ ) { 
 			if ( pageLinks[i].dataset.src == targyPath ) {
+				pageLinks[i].style.color = "blue"
 				pageLinks[i].dataset.loaded = true 
 			}
 		}
@@ -4719,8 +4739,21 @@ function F_loadPageText(path) {
 	}
 	window.addEventListener('message', handler, false)
 }
+function F_loadPathText(path,i) {
+	document.getElementById("iframe_targyak").src = path
+	var handler = function(e) {
+		var targyPath = path
+		var targyText = e.data[1]
+		pageTexts[targyPath] = targyText
+		removeEventListener('message', handler, false)
+		pageLinks[i].style.color = "blue"
+		pageLinks[i].dataset.loaded = true 
+	}
+	window.addEventListener('message', handler, false)
+}
 function F_loadAllPageTexts() {
 	removeEventListener('message', handler, false)
+	document.getElementById("div_SearchW").style.backgroundColor = "white"
 	var full = pageLinks.length -1
 	var count
 	for ( var i=0; i<pageLinks.length; i++ ) { 
@@ -4769,7 +4802,6 @@ document.getElementById("btn_toggleAll").style.backgroundColor = ""
 F_getTime()
 var diffTime = myTime-oldTime
 //console.log("– – – Loading finished – – – " + diffTime)
-
 
 
 /* Replace text (regular expression)
