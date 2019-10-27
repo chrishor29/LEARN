@@ -245,14 +245,14 @@
 		<li>akut SZE esetében jellemzően bal kamra elégtelenség tünetei</li>
 		<li>krónikus SZE jobb vagy jobb + bal kamra elégtelenség tünetei</li>
 	</ul></details>
-	<details class="{10} kerdes"><summary>angina pectoris</summary><ul class="normal">
-	  cardiovascularis okok, amit azonnal ki kell zárni:
-		<li>AMI</li>
-		<li>pulmonalis embólia</li>
-		<li>oesophagus ruptúra</li>
-		<li>??</li>
-	  további cardiovascularis okok:
-		<li>aorta stenosis</li>
+	<details class="{10} kerdes"><summary>tüdőembolia</summary><ul class="normal">
+		<li>oka &#10140; mélyvénás trombózis: vérrög leszakad, majd jobbpitvar, jobbkamrán keresztül a tüdőbe jutva elzáródást okoz</li>
+		<li>tünetek:</li><ul>
+			<li>hirtelen <span class="midQ [17]">angina pectoris</span></li>
+			<li>syncope(ájulás)</li>
+			<li></li>
+		</ul>
+		<li></li>
 	</ul></details>
 	<details class="{11} kerdes"><summary>EKG - bal kamra hipertrófia</summary><ul class="normal">
 		<li>mellkasi elvezetések QRS</li><ul>
@@ -295,13 +295,20 @@
 		<li>vérzés (antikoaguláns miatt)</li>
 	</ul></details>
 	<details class="{17} kerdes"><summary>angina pectoris</summary><ul class="normal">
-	  <strong>oka</strong>
-		<li>koronária szűkület(stenosis), elzáródás(okklúzió)</li><ul>
-			<li>atherosclerosis</li>
-			<li>vasospasmus</li>
-			<li>plakk ruptúra / embólia</li>
-		</ul>
+	  <strong>okok, amit azonnal ki kell zárni:</strong>
+		<li>AMI <div class="mirror">&#10140;</div> koronária elzáródás(okklúzió) <div class="mirror">&#10140;</div> plakk ruptúra / embólia</li>
+		<li>aorta dissectio</li>
+		<li>pulmonalis embólia</li>
+		<li>PTX</li>
+		<li>gyomor/bél perforáció</li>
+		<li>oesophagus ruptúra</li>
+	  <strong>további okokra példák:</strong>
+		<li>koronária szűkület(stenosis) <div class="mirror">&#10140;</div> atherosclerosis</li>
+		<li>koronária spasmus</li>
 		<li>microvascularis keringés diszfunkció</li>
+		<li>aorta stenosis</li>
+		<li>pleuritis</li>
+		<li>pneumonia</li>
 	  <strong>típusai</strong>
 		<li>instabil angina pectoris &#10140; restrosternalis nyomó fájdalom, melyre az alábbiak közül egy legalább igaz:</li><ul>
 			<li>nyugalomban jelentkezik</li>
@@ -314,7 +321,19 @@
 			<li>nitrát hatására megszűnik</li>
 			<li>bal karba sugárzik</li>
 		</ul>
-	  <strong>kísérőtünetek</strong>
+	  <strong>diagnózis</strong>
+		<li>alábbiak hívják fel veszélyre a figyelmet:</li><ul>
+			<li>hiperventilláció</li>
+			<li>verejtékezés</li>
+			<li>vérnyomás / pulzus eltér</li>
+			<li>EKG jelek</li>
+			<li>sO<sub>2</sub></li>
+		</ul>
+		<li>első feladat <span class="midQ [23] kerdes">ACS kizárása</span></li>
+		<li>utána a többi</li><ul>
+			<li><span class="midQ [10] kerdes">tüdőembolia</span></li>
+			<li></li>
+		</ul>
 		<li></li>
 	  <strong>kezelés</strong>
 		<li>prevenció (<span class="midQ [18]">primordiális</span> & <span class="midQ [19]">primer</span>)</li>
@@ -773,7 +792,7 @@
 	var oneDay = 1000 * 60 * 60 * 24;
 	var day = Math.floor(diff / oneDay);
 	var diff = 307-day
-	var tetelLeft = 29
+	var tetelLeft = 27
 	var tetelDay = tetelLeft/diff
 	document.getElementById("statusX").innerHTML = (tetelDay.toFixed(2) + "tétel/nap; ("+diff+"nap & "+tetelLeft+"tétel left)");
 </script>
@@ -909,7 +928,6 @@ krónikus jobb szívfél elégtelenség prezentáció
 	</ul>
 </ul></details>
 
-	
 <!----> <details open><summary class="mainTitle">A</summary>
 <details><summary class="status" style="background-color:pink">1. Diastoles zörejek. Szívhangok</summary><ul class="normal">
 	<details class="kerdes"><summary></summary><ul class="normal">
@@ -1112,7 +1130,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 	<details class="kerdes"><summary>tünetek</summary><ul class="normal">
 		<table><tr><th style="width:48%">stenosis</th>  <th style="width:48%">insufficientia</th></tr><tr>
 			<td style="text-align:left">
-				<li><span class="midQ [10]">angina pectoris</span></li>
+				<li><span class="midQ [17]">angina pectoris</span></li>
 				<li>dyspnoe</li>
 				<li>syncope</li>
 			</td>
@@ -1245,18 +1263,24 @@ krónikus jobb szívfél elégtelenség prezentáció
 	<details class="kerdes"><summary></summary><ul class="normal">
 	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status" style="background-color:pink">16. Hypertonia 1: etiológia, diagnosztika.</summary><ul class="normal">
+<details class="kerdes"><summary class="status">16. Hypertonia 1: etiológia, diagnosztika.</summary><ul class="normal">
 	<details class="kerdes"><summary>Hypertonia 1: <strong>etiológia</strong>, diagnosztika.</summary><ul class="normal">
 	  <strong>primer</strong>
 		<li>ismeretlen okú</li>
 	  <strong>szekunder</strong> (ismert okú!)
 		<li><abbr title="légzés kimarad időközönként alvás közben &#10140; oka alapján megkülönböztetünk: obstruktív / centralis">alvási apnoe</abbr></li>
-		<li>gyógyszer (szimpatomimetikumok)</li>
+		<li>gyógyszerek:</li><ul>
+			<li>NSAID</li>
+			<li>szimpatomimetikumok</li>
+			<li>orális fogamzásgátlók</li>
+			<li>gyógynövények, pl. édesgyökér</li>
+		</ul>
 		<li>renális</li>
 		<li>coarctatio aortae</li>
 		<li>endokrin</li><ul>
-			<li>primer hiperaldoszteronizmus</li>
-			<li>krónikus szteroid terápia / Cushing</li>
+			<li>primer hiperaldoszteronizmus (Conn-szindróma)</li>
+			<li>Cushing-szindróma</li>
+			<li>krónikus szteroid terápia</li>
 			<li>pheochromocytoma</li>
 			<li>pajzsmirigy/mellékajzsmirigy betegség</li>
 		</ul>
@@ -1288,21 +1312,37 @@ krónikus jobb szívfél elégtelenség prezentáció
 			<li>boka/kar index</li>
 			<li>fundus(szemfenék)-ben lévő erek <img class="mini" data-src="bgsqitho.png"></li>
 		</ul>
-		&#10140; 
-		
-		<li>cél</li><ul>
-			<li>vérnyomásmérés</li>
-			<li>etiológia meghatározása</li>
-			<li>kardiovaszkuláris rizikó nagysága</li>
-		</ul>
 	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status" style="background-color:pink">17. Hypertonia 2: kardiológiai vonatkozások és kezelés.</summary><ul class="normal">
+<details class="kerdes"><summary class="status" style="background-color:DarkGrey">17. Hypertonia 2: kardiológiai vonatkozások és kezelés.</summary><ul class="normal">
 	<details class="kerdes"><summary>Hypertonia 2: kardiológiai <strong>vonatkozások</strong> és kezelés.</summary><ul class="normal">
 		<li>atherosclerosison keresztül károsítja a szerveket</li>
+		gyűjtsem össze, miknél van hipertónia!
 	</ul></details>
 	<details class="kerdes"><summary>Hypertonia 2: kardiológiai vonatkozások és <strong>kezelés</strong>.</summary><ul class="normal">
-		<li></li>
+	  <strong>nem gyógyszeres</strong>
+		<li>életmódváltás</li><ul>
+			<li>sóbevitel 5g/nap alá</li>
+			<li>alkohol, dohányzás STOP</li>
+			<li>mediterrán étrend</li>
+			<li>BMI beállítása</li>
+			<li>fizikai aktivitás növelése</li>
+		</ul>
+		<li>oki kezelés (szekunder hipertónia esetén lehetséges)</li>
+	  <strong>gyógyszeres</strong>
+		<li>II. III. fokú esetében kell, I.fokú esetében megfontolandó <img class="mini" data-src="pmghmnkh.png"></li>
+		<li>gyógyszerek:</li><ul>
+			<li>ACE-gátlók</li>
+			<li>&beta;-blokkolók &#10140; ezt csak speciális indikáció esetén</li>
+			<li>angiotenzin-receptor antagonisták</li>
+			<li>Ca<sup>2+</sup>-csatorna blokkolók</li>
+			<li>diuretikumok</li>
+		</ul>
+		<li>a beadandó gyógyszer két összetevőből áljon:</li><ul>
+			<li>egyik &#10140; <abbr title="RAS(renin-angiotenzin rendszer) gátlók">ACE-gátló / ARB</abbr></li>
+			<li>másik &#10140; Ca<sup>2+</sup>-antagonista / diuretikum</li>
+		</ul>
+		<li>célérték: &lt;140/90Hgmm (de függ: életkor & vesétől is!)</li>
 	</ul></details>
 </ul></details>
 <details class="kerdes"><summary class="status">18. Anticoagulans kezelés, thrombocyta aggregatio gátló kezelés indikációi.</summary><ul class="normal">
@@ -1444,11 +1484,13 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<div class="imp [31]"></div>
 	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:pink">9. Mellkasi fájdalom differenciál diagnosztikája.</summary><ul class="normal">
+<details open class="kerdes"><summary class="status" style="background-color:pink">9. Mellkasi fájdalom differenciál diagnosztikája.</summary><ul class="normal">
+	<div class="imp [17]"></div>
 	<details class="kerdes"><summary></summary><ul class="normal">
 	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:coral">10. Tüdőembolia.</summary><ul class="normal">
+<details><summary class="status" style="background-color:pink">10. Tüdőembolia.</summary><ul class="normal">
+	<div class="imp [10]"></div>
 	<details class="kerdes"><summary></summary><ul class="normal">
 	</ul></details>
 </ul></details>
@@ -1731,7 +1773,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<li>rizikófaktorok csökkentése &#10140; egézséges táplálkozás, dohányzás stop, koleszterin-szint stb.</li>
 	  <strong>antikoaguláns</strong>
 		<li>subcutan <abbr title="kis molekulasúlyú heparin, antikoaguláns">LMWH</abbr> 1hétig</li>
-		<li>emelett orális antikoaguláns = K-vitamin antagonisták(kumarin = warfarin/syncumar) kezelést kell indítani egy nappal később és 3-6hónapig tartson (INR: 2-3 között)</li>
+		<li>emelett <span class="midQ [35]">K-vitamin antagonista</span> kezelést kell indítani egy nappal később és 3-6hónapig tartson (INR: 2-3 között)</li>
 		&#10140; NOAC is használható már (apixaban & rivaroxaban esetében nem is kell LMWH előtte)
 	  <hr><strong>tüdőembólia</strong>
 		<li>beteg sokkos állapotban jön be: hipotónia, tachycardia stb.</li>
