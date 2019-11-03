@@ -4,6 +4,9 @@
 	<title>Kardiológia</title>
 </head>
 
+<!-- kéne egy általános anamnézis, fizikális vizsgálat impQ, és azt az egyet magoljam, amibe minden benne van: tételeknél ezt használom
+továbbá a 'műszeresekről' (labor,echo,MR,CT stb.) is -->
+
 <div id="statusX"></div>
 <details><summary><strong>impQs</strong></summary>
  <div> <!-- 1 – 20 -->
@@ -56,8 +59,8 @@
 			<li>bal SZE lesz, ha nagy vérköri</li>
 		</ul>
 		<li><span class="done">billentyű-elégtelenség</span></li><ul>
-			<li>jobb SZE &#10140; AS és/vagy MI</li>
-			<li>bal SZE &#10140; PS és/vagy TI</li>
+			<li>bal SZE &#10140; AS és/vagy MI</li>
+			<li>jobb SZE &#10140; PS és/vagy TI</li>
 		</ul>
 		<li>veseelégtelenség</li>
 		<li>septum defektus (ASD,VSD)</li>
@@ -100,9 +103,7 @@
 		<details><summary>koronarográfia</summary><ul class="normal">
 			<li>koszorúereket kontrasztanyaggal festése katéterrel(pl. a.radialistól) &#10140; szűkület kiszűrhető &#10140; azonnal kezelhető: stent + 'ballon'</li>
 		</ul></details>
-		<details><summary>MR</summary><ul class="normal">
-			<li>cardiomyopathia gyanú esetén kell</li>
-		</ul></details>
+		<details><summary>MR</summary><ul class="normal"> <div class="imp [53]"></div> </ul></details>
 	</ul></details>
 	<details class="{5} kerdes"><summary>CRT</summary><ul class="normal">
 	  <font style="font-size:80%">cardialis reszinkronizációs terápia</font>
@@ -246,9 +247,12 @@
 		<li>krónikus SZE jobb vagy jobb + bal kamra elégtelenség tünetei</li>
 	</ul></details>
 	<details class="{10} kerdes"><summary>tüdőembolia</summary><ul class="normal">
-		<li>oka &#10140; mélyvénás trombózis: vérrög leszakad, majd jobbpitvar, jobbkamrán keresztül a tüdőbe jutva elzáródást okoz</li><ul>
+	  <strong>oka</strong>
+		<li>alsó végtagi mélyvénás trombózis: vérrög leszakad, majd jobbpitvar, jobbkamrán keresztül a tüdőbe jutva elzáródást okoz</li><ul>
 			<li><font style="font-size:80%">esetek 90%-ban ez, de lehet pl. légembólia, zsírembólia</font></li>
 		</ul>
+		<li>így nő a pulmonalis ellenállás (hisz párhuzamos kapcsolás) &#10140; jobb kamra terhelése nő &#10140; akus <abbr title="tüdőbegetség miatti jobb SZE">cor pulmonale</abbr></li>
+		<li>ha ez distalis részen okozott elzáródást, akkor pulmonalis infarctust is okoz (mert akkor aa.brachiales-t is érinti, így a tüdő nem kap vért)</li>
 	  <strong>diagnózis:</strong>
 		<li>tünetek:</li><ul>
 			<li>dyspnoe</li>
@@ -263,7 +267,13 @@
 			<li>ha pozitív, akkor LEHET hogy tüdőembólia</li>
 		</ul>
 		<li><span class="midQ [26]">echokardiográfia</span> &#10140; D-jel</li>
+		<li>EKG (JTSZB, <span class="midQ [15]">P pulmonale</span>)</li>
 		<li>ha alapos a gyanú, akkor CT-angiographia &#10140; ez ami biztossá teszi a diagnózist</li>
+	  <strong>kezelés:</strong>
+		<li><span class="midQ [37]">UFH /+ trombolízis</span></li>
+		<li>oxigén</li>
+		<li>fájdalomcsillapító</li>
+		<li>fél-ülőhelyzet</li>
 	</ul></details>
 	<details class="{11} kerdes"><summary>EKG - bal kamra hipertrófia</summary><ul class="normal">
 		<li>mellkasi elvezetések QRS</li><ul>
@@ -274,13 +284,50 @@
 		<img data-src="osupmvfm.png">
 		<img data-src="belaunek.png">
 	</ul></details>
-	<details class="{12} kerdes"><summary>pulzusamplitúdó</summary><ul class="normal">
-		<li>systolés és diastolésnyomás közötti különbség</li>
-		<li>a verőtérfogat nagyságára utal</li>
-		tippre a.radialis 
+	<details class="{12} kerdes"><summary>mitral stenosis/insuff</summary><ul class="normal">
+		<table><tr><th style="width:48%">stenosis</th>  <th style="width:48%">insufficientia</th></tr><tr>
+			<td style="text-align:left">
+				<img data-src="qghgqrlv.jpg">
+				hallgatózás:
+				<li>bal oldalfekvésben hallható legjobban</li>
+				<li>I.hang <strong>dobbanó</strong>, előtte presystoles crescendo</li>
+				<li>II.hang + <span class="IMPORTANT">opening snap</span> (nyitási kattanás)</li>
+				<li>mesodiastoles decrescendo</li>
+				<video data-src="videos/mitralsten.mp3"></video>
+				<video data-src="videos/Murmur of mitral stenosis as heard at the apex.mp4"></video>
+				<video data-src="videos/Mitral Stenosis Heart Sound - MEDZCOOOL.mp4"></video>
+			</td>
+			<td style="text-align:left">
+				<img data-src="lxyacjkl.png">
+				hallgatózás:
+				<li>bal oldalfekvésben hallható legjobban</li>
+				<li>holoszisztolés zörej</li>
+				<li>ha van prolapszus is, akkor mezoszisztolés klikk is hallható</li>
+				<li>axilla felé sugárzik</li>
+				<video data-src="videos/mitralinsuffenyhe.mp3"></video>
+				<video data-src="videos/mitralinsuff.mp3"></video>
+			</td>
+		</tr></table>
 	</ul></details>
-	<details class="{13} kerdes"><summary>szívhangok - videó</summary><ul class="normal">
-		<video data-src="Heart Sounds and Heart Murmurs, Animation..mp4"></video>
+	<details class="{13} kerdes"><summary>aorta stenosis/insuff</summary><ul class="normal">
+		<table><tr><th style="width:48%">stenosis</th>  <th style="width:48%">insufficientia</th></tr><tr>
+			<td style="text-align:left">
+				<img data-src="pmfywnrm.jpg">
+				hallgatózás:
+				<li>a szisztoléban: crescendo-decrenscendo zörej</li>
+				<li>carotisok felé vezetődik</li>
+				<video data-src="videos/aotastenosis.mp3"></video>
+				<video data-src="videos/Aortic Stenosis - Auscultation Sound.mp3"></video>
+			</td>
+			<td style="text-align:left">
+				<img data-src="ohvbaejq.jpg">
+				<li><abbr title="a fej szívütésekkel szinkron bólogatása">Musset-jel</abbr></li>
+				hallgatózás:
+				<li>diasztolét decrescendo zörej tölti ki</li>
+				<video data-src="videos/aortains.mp3"></video>
+				<video data-src="videos/aortainsu.mp3"></video>
+			</td>
+		</tr></table>
 	</ul></details>
 	<details class="{14} kerdes"><summary>mitrális prolapsus</summary><ul class="normal">
 		<li>ktsz rendellenesség, tehát a billentyű szöveti felépítésének normálistól való eltérése, mely születéstől fennáll</li>
@@ -306,20 +353,15 @@
 		<li>vérzés (antikoaguláns miatt)</li>
 	</ul></details>
 	<details class="{17} kerdes"><summary>angina pectoris</summary><ul class="normal">
-	  <strong>okok, amit azonnal ki kell zárni:</strong>
+	  <strong>okok, amiket azonnal ki kell zárni:</strong> (gyors beavatkozást igényelnek)
 		<li>AMI <div class="mirror">&#10140;</div> koronária elzáródás(okklúzió) <div class="mirror">&#10140;</div> plakk ruptúra / embólia</li>
-		<li>aorta dissectio</li>
+		<li><span class="midQ [38]">aorta dissectio</span></li>
 		<li>pulmonalis embólia</li>
 		<li>PTX</li>
 		<li>gyomor/bél perforáció</li>
 		<li>oesophagus ruptúra</li>
 	  <strong>további okokra példák:</strong>
-		<li>koronária szűkület(stenosis) <div class="mirror">&#10140;</div> atherosclerosis</li>
-		<li>koronária spasmus</li>
-		<li>microvascularis keringés diszfunkció</li>
-		<li>aorta stenosis</li>
-		<li>pleuritis</li>
-		<li>pneumonia</li>
+		<li><abbr title="atherosclerosis miatt">koronária szűkület(stenosis)</abbr>, koronária spasmus, microvascularis keringés diszfunkció, aorta stenosis, <span class="midQ [54]">pericarditis</span>, pleuritis, pneumonia, <span class="midQ [50]">cardiomyopathia-k</span></li>
 	  <strong>típusai</strong>
 		<li>instabil angina pectoris &#10140; restrosternalis nyomó fájdalom, melyre az alábbiak közül egy legalább igaz:</li><ul>
 			<li>nyugalomban jelentkezik</li>
@@ -343,7 +385,7 @@
 		<li>első feladat <span class="midQ [23] kerdes">ACS kizárása</span></li>
 		<li>utána a többi:</li><ul>
 			<li><span class="midQ [10] kerdes">tüdőembolia</span></li>
-			<li><span class="midQ [38] kerdes">aortaaneurizma</span></li>
+			<li><span class="midQ [38] kerdes">aortadissectio</span></li>
 			<li>PTX</li><ul>
 				<li>dobos kopogtatási hang</li>
 				<li>mellkas-rtg</li>
@@ -387,7 +429,7 @@
 	<details class="{21} kerdes"><summary>ischaemias szívbetegségek (formái)</summary><ul class="normal">
 	  klinikai megjelenési formái:
 		<li><abbr title="betegnek nincs panasza, de terhelésnél már jelentkezik pl. ST depresszió &#10140; idősekre /+ cukorbetegekre jellemző">tünetmentes(silent)</abbr></li>
-		<li><span class="midQ [33]">stabil koronáriabetegség</span></li>
+		<li><span class="midQ [33] kerdes">stabil koronáriabetegség</span></li>
 		<li>krónikus SZE</li>
 		<li><span class="midQ [22]">ACS</span></li>
 		<li>hirtelen szívhalál</li>
@@ -509,14 +551,21 @@
 	<details class="{26} kerdes"><summary>echokardiográfia</summary><ul class="normal">
 		<font style="font-size:80%">ultrahangos vizsgálat</font>
 		<li>EF meghatározása</li>
+		<li>PTF meghatározás</li>
 	  van-e..
-		<li>hipertrófia</li>
-		<li>vitium</li>
+		<li>hipertrófia</li><ul>
+			<li>pl. <span class="midQ [52]">HCM</span></li>
+		</ul>
+		<li>vitium</li><ul>
+			<li>stenosis, insuff</li>
+			<li>vegetatio (endocarditis)</li>
+		</ul>
 		<li>D-jel &#10140; jobb kamra ürege <abbr title="benyomja a bal kamrát, mert megnőtt a nyomás benne">megnagyobbodik</abbr> (D-alakú lesz)</li><ul>
 			<li>ha krónikus, akkor pl. jobb SZE</li>
 			<li>ha akut, akkor pl. tüdőembólia</li>
 		</ul>
 		<li>ischaemia (fal mozgása elmarad ott)</li>
+		<li><span class="midQ [54]">pericardialis folyadék</span></li>
 		<li>hipokinézia</li>
 	</ul></details>
 	<details class="{27} kerdes"><summary>akut SZE - tüneti kezelés: FelMOND</summary><ul class="normal">
@@ -709,50 +758,516 @@
 			</ul>
 		</ul>
 		<li>műbillentyű beültetés</li>
-		<li>tüdőembólia &#10140; UFH / trombolízis</li>
+		<li><span class="midQ [10]">tüdőembólia</span> &#10140; UFH / trombolízis</li>
 		<li>(bal kamrai trombus, LVAD implantáció után, periprocedurális antikoaguláns kezelés)</li>
 	  <strong>TAG + antikoaguláns együttesen</strong>
 		<li>mechanikus műbillentyű &#10140; KVA + kettős TAG</li>
 		<li>percutaneous transluminal angioplasty (PTA) = balloon angioplasty <img class="mini" data-src="ttvihlnt.png"></li>
 	</ul></details>
 	<details class="{38} kerdes"><summary>aortadissectio</summary><ul class="normal">
-		<li>rizikófaktorok:</li><ul>
-			<li>hipertónia</li>
-		</ul>
-		<li>lényege &#10140; aorta tunica intima részének ruptúrája, így tunica mediaba folyik vér</li>
+	  <strong>lényege</strong>
+		<li>az aorta tunica intima részének ruptúrája, így tunica mediaba folyik vér &#10140; két lemez szétválik és köztük ál-lumen keletkezik</li>
 		<li>típusai:</li><ul>
 			<li><span class="WHITE">A</span> aorta ascendens értintett</li>
 			<li><span class="WHITE">B</span> aorta ascendens NEM érintett</li>
 		</ul>
+	  <strong>rizikófaktorok</strong>
+		<li>hipertónia</li>
+		<li>előző műtét aortán</li>
+		<li>aorta-aneurizma</li>
+		<li>bicuspidalis aortabillentyű</li>
+		<li>Marfan-szindróma (ktsz betegség)</li>
+		<li>stb.</li>
 	  <strong>diagnózis</strong>
-		<li><span class="midQ [17]">angina pectoris</span></li>
+		<li><span class="midQ [17]">angina pectoris</span></li><ul>
+			<li>hirtelen kialakuló, nagyon erős (hasító/szakító jellegű)</li>
+		</ul>
 		<li>vérnyomásmérés &#10140; alsó és felső végtag között, illetve a két oldalt között van-e különbség</li>
 		<li>labor &#10140; D-dimer nőtt-e?</li>
 		<li>ha alapos a gyanú, akkor CT-angiographia &#10140; ez ami biztossá teszi a diagnózist</li>
 	  <strong>kezelés</strong>
-		<li><span class="WHITE">A</span> esetén sebészi beavatkozás</li>
+		<li><span class="WHITE">A</span> esetén sebészi beavatkozás (<abbr title="endovascularis aorta rekonstrukció">EVAR</abbr>)</li>
+		<li><span class="WHITE">B</span> esetén előszőr gyógyszeres, ha szövődmény van akkor sebészi (EVAR)</li>
 	</ul></details>
-	<details class="{39} kerdes"><summary></summary><ul class="normal">
-		<li></li>
+	<details class="{39} kerdes"><summary>szívhangok</summary><ul class="normal">
+		<table><tr><th></th>  <th>szisztolés (S1)</th>  <th>diasztolés (S2)</th></tr>
+			<tr><th>mikor</th><td colspan="2">szisztolé = S1 és S2 közti szünet; diasztolé = S2 és S1 közti szünet</td></tr>
+			<tr><th>mi okozza</th>
+				<td>AV-billentyűk záródása okozza</td>
+				<td>aorta + pulmonalis záródása okozza</td>
+			</tr>
+			<tr><th><abbr title="billentyűk záródása,csukódása milyen sorrendben. A kettő egymás fordítottja">sorrend</abbr></th> 
+				<td><abbr title="ez a kettő adja a hangot"><u>mitral záródik, tricuspidal záródik</u></abbr>, pulmo nyílik, aorta nyílik</td>
+				<td><abbr title="ez a kettő adja a hangot"><u>aorta záródik, pulmo záródik</u></abbr>, tricuspidal nyílik, mitral nyílik</td>
+			</tr>
+			<tr><th>jellemzése</th>
+				<td>dobbanásszerű(bú) &#10140; mélyebb,lágyabb</td>
+				<td>koppanásszerű(tupp) &#10140; magasabb,keményebb</td>
+			</tr>
+			<tr><th>fonendoszkóp</th>
+				<td>harang(mély hangra jobb)</td>
+				<td><abbr title="fonendoszkóp ezen részével hallgassam">'</abbr>membrán(magas hangra jobb)</td>
+			</tr>
+			<tr><th>beteg helyzete</th>
+				<td>bal oldalfekvésben <img class="mini" data-src="mjqrkayk.jpg"></td>
+				<td>ülő helyzetben előrehajolva <img class="mini" data-src="xegollqk.jpg"></td>
+			</tr>
+			<tr><th>egyéb</th>
+				<td></td>
+				<td>a.radialis pulzusával szinkronban van (együtt van a 2)</td>
+			</tr>
+		</table>
+	  <hr>
+		<details class="kerdes"><summary>punctum maximum</summary><ul class="normal">
+			punctum maximum &#10140; terület, ahol az adott hang a legjobban hallható
+			<li><abbr title="aorta-billentyű">(A)</abbr> &#10140; <abbr title="2.bordaköz parasternalisan jobb oldalt">2R</abbr></li>
+			<li><abbr title="pulmonalis-billentyű">(P)</abbr> &#10140; <abbr title="2.bordaköz parasternalisan bal oldalt">2L</abbr></li>
+			<li><abbr title="mitrális billentyű">(M)</abbr> &#10140; szívcsúcs / <abbr title="4.bordaköz parasternalisan bal oldalt">4L</abbr>(Erb-pont)</li>
+			<li><abbr title="tricuspidalis billentyű">(T)</abbr> &#10140; <abbr title="4.bordaköz parasternalisan bal oldalt">4L</abbr>-<abbr title="5.bordaköz parasternalisan bal oldalt">5L</abbr></li>
+			<img data-src="mqteeaqb.jpg">
+		</ul></details>
+		<li><details><summary>hang vs zörej</summary><ul class="normal">
+			<li>hang rövid &#10140; hirtelen kezdődik és hirtelen végződik (dobbanásszerûen, koppanásszerûen hangzik)</li>
+			<li>zörej hosszú</li>
+		</ul></details></li>
+	  <hr>alábbiakat vizsgálva kell leírást adni róla:
+		<li><details class="kerdes"><summary>erősségük</summary><ul class="normal">
+			ha normálisak, akkor azt mondom kellően ékelt &#10140; eltérések:
+			<li>I.szívhang erős &#10140; utalhat mitralis-stenosis</li>
+			<li>II.szívhang gyenge &#10140; utalhat aorta-insufficientia</li>
+		</ul></details></li>
+		<li><details class="kerdes"><summary>többlethangok(accessorius-hang)</summary><ul class="normal">
+			<table><tr><th>diasztolés</th>  <th colspan="2">oka</th></tr>
+				<tr><th>III.hang ('S3-galopp')</th>
+					<td>kamra-telődés</td>
+					<td>gyermekkorban hallható / aorta stenosis</td>
+				</tr>
+				<tr><th>IV.hang ('pitvari galopp')</th>
+					<td>pitvar-összehúzódás</td>
+					<td>mitral insufficientia</td>
+				</tr>
+				<tr><th>opening snap</th> <td colspan="2">mitral stenosis!</td></tr>
+			</table>
+			<table><tr><th>protoszisztolés click</th>  <th>mezoszisztolés click</th></tr>
+				<tr>
+					<td>szisztolé 1.harmada</td>
+					<td>szisztolé 2.harmada(közepe tájéka)</td>
+				</tr>
+				<tr>
+					<td>bicuspidalis aorta</td>
+					<td><abbr title="egyik vagy mindkét vitorlája, a bal kamra összehúzódásakor, a billentyű záródás kapcsán különböző mértékben „átesik” a pitvar felé egy rövid időre, majd visszazár">mitrális prolapszus</abbr></td>
+				</tr>
+			</table>
+		</ul></details></li>
+		<li><details class="kerdes"><summary>kettőzöttségük</summary><ul class="normal">
+			<li>I.szívhang ha kettőzött az kóros, pl. JTSZB</li>
+			<li>II.szívhang belégzésnél kettőzött: aorta és pulmonális záródás ilyenkor 'eltér' egymástól</li>
+			<video data-src="videos/szh_belegzesketto.mp4"></video>
+		</ul></details></li>
 	</ul></details>
-	<details class="{40} kerdes"><summary></summary><ul class="normal">
-		<li></li>
+	<details class="{40} kerdes"><summary>szívzörejek</summary><ul class="normal">
+	  <strong>szívzörejek</strong>
+		<details><summary>oka:</summary><ul class="normal">
+			<span class="IMPORTANT">lamináris helyett turbulens áramlás lesz</span> &#10140; ennek oka lehet:
+			<li>csökken a vér viszkozitása <div class="mirror">&#10140;</div> pl. anémia</li>
+			<li>nő a vérkeringés sebessége <div class="mirror">&#10140;</div> pl. hipertireózis, tachycardia</li>
+			<li>sztenózis</li>
+			<li>insufficientia</li>
+		</ul></details>
+		<details class="kerdes"><summary>alábbiakat(6) vizsgálva kell leírást adni róla:</summary><ul class="normal">
+			<li><details class="kerdes"><summary>mikor</summary><ul class="normal">
+				<li>szisztolés zörej &#10140; S1 kezdete és S2 kezdete között hallható</li><ul>
+					<li><strong>proto</strong>systolés</li>
+					<li><strong>meso</strong>systolés</li>
+					<li><strong>tele</strong>systolés</li>
+					holosystolés: egészet kitölti
+				</ul>
+				<li>diasztolés zörej &#10140; S2 kezdete és S1 kezdete között hallható</li><ul>
+					<li>proto<strong>dya</strong>stolés</li>
+					<li>meso<strong>dya</strong>tolés</li>
+					<li><strong>presy</strong>stolés</li>
+				</ul>
+			</ul></details></li>
+			<li>punctum maximum (hol hallható a legjobban)</li>
+			<li><details class="kerdes"><summary>mennyire hangos &#10140; fokozatok 1–6-ig:</summary><ul class="normal">
+				<li>1=<abbr title="ha a mellkasra helyezzük a hallgatónkat, nem halljuk azonnal a zörejt">alig hallható</abbr></li>
+				<li>2=<abbr title="fonendoszkóp mellkasra helyezése után azonnal lehet a zörejt hallani">halk</abbr></li>
+				<li>6=fonendoszkópot a mellkas falától 1cm-re eltartva is hallható)</li>
+			</ul></details></li>
+			<li>milyen a hang magassága (mély, magas)</li>
+			<li><details class="kerdes"><summary>milyen a jellege (crescendo, decrescendo, ejekciós = orsó alakú, szalag alakú)</summary><ul class="normal">
+				<img data-src="hlyyswye.jpg">
+			</ul></details></li>
+			<li><details class="kerdes"><summary>vezetődése</summary><ul class="normal">
+				A zörejek vezetődnek az őket létrehozó véráram irányában, így az aortastenosis systolés zöreje a carotisok felé, az aortainsufficientia diastolés zöreje balra, többnyire lefelé a sternum felé, a mitralis insufficientia systolés zöreje többnyire a hónalj felé vezetődik.
+			</ul></details></li>
+		</ul></details>
+	  <hr><strong>szisztolés / diasztolés zörej</strong> &#10140; stenosis vagy insufficientia?
+		<details class="kerdes"><summary>stenosis & insufficientia</summary><ul class="normal">
+			<img style="max-width:45%" data-src="lxyacjkl.png">
+			<li>4 billentyű van, és 2 féle megbetegedés így 8féle eset van</li>
+			<li>a <span class="IMPORTANT">leggyakoribb az aorta stenosis</span>!</li>
+			<table><tr><th></th> <th>stenosis</th> <th>insufficientia</th></tr>
+				<tr><th>lényege</th>
+					<td><abbr title="nyitott állapotban akadályozza a vér átfolyását">szájadék szűkület</abbr></td>
+					<td>billentyű nem zár rendesen</td>
+				</tr>
+				<tr><th>következmény</th> <td><abbr title="pl. aorta stenosis esetében a vér nem jut át kamrából az aortába rendesen, mert az aorta billentyű nem nyílik normálisan ki (szisztolé során!!)">vér nem jut át</abbr></td> <td><abbr title="pl. aorta insuff esetében a vér visszafolyik az aortából a kamrába, mert a billentyű nem zár rendesen (diasztolé során!!)">vér visszafolyik</abbr></td></tr>
+			</table>
+		  <hr><strong>fontos szabály:</strong><abbr title="tricuspidal + pulmonal-nal is ugyanígy levezetve">'</abbr> &#10140; a zörej abban a fázisban várható, amelyben az adott billentyûnek funkcionálnia kellene.
+			<table>
+				<tr><th title="mitral/aorta stenosis/insuff"></th>  <th>MS</th>  <th>MI</th>  <th>AS</th>  <th>AI</th></tr>
+				<tr><th><abbr title="..hallom zörejt">mikor</abbr></th>
+					<td>szisztolé</td>
+					<td>diasztolé</td>
+					<td>szisztolé</td>
+					<td>diasztolé</td>
+				</tr>
+			</table>tehát, ha ..
+			<li>mitralis-billentyű hallgatásnál hallok diasztolés zörejt &#10140; diasztolé során nyitva van, ezt NEM végzi rendesen &#10140; stenosis</li>
+			<li>mitralis-billentyű hallgatásnál hallok szisztolés zörejt &#10140; szisztolé során zárva van, ezt NEM végzi rendesen &#10140; insuff.</li>
+		  <hr>
+			<li>I.hang erős &#10140; mitralis-stenosis -ra utalhat</li>
+			<li>II.hang halk &#10140; aorta-insuff -ra utalhat</li>
+		</ul></details>
+		<details class="kerdes"><summary>szisztolés zörejek</summary><ul class="normal">
+			<li>A/P stenosis</li>
+			<li>M/T insuff, <abbr title="mitralis prolapsus">MPS</abbr></li>
+			<li><font style="font-size:80%"><abbr title="atrial septum defektus">ASD</abbr>,<abbr title="ventricular s.d.">VSD</abbr></font></li>
+			megj.tipp: <abbr title="a/p:s, m/t:i">logika</abbr> + 'asd'
+		</ul></details>
+		<details class="kerdes"><summary>diasztolés zörejek</summary><ul class="normal">
+			<li>A/P insuff</li>
+			<li>M/T stenosis</li>
+			<li><font style="font-size:80%">Austin-Flint zörej</font></li>
+		</ul></details>
+		<span class="imp [13]"></span> <!-- aorta sten/insuff -->
+		<span class="imp [12]"></span> <!-- mitral sten/insuff -->
+		<video data-src="Heart Sounds and Heart Murmurs, Animation.mp4"></video>
 	</ul></details>
  </div>
  <div> <!-- 41 – 60 -->
-	<details class="{46} kerdes"><summary> </summary><ul class="normal">
+	<details class="{41} kerdes"><summary>ritmuszavarok</summary><ul class="normal">
+		<details class="kerdes"><summary>felosztás, terápia</summary><ul class="normal">
+			<li>tachyarrhytmia, tachycardia (>100)</li><ul>
+				<li>supraventricularis</li><ul>
+					<li>AV-csomó függők &#10140; AVNRT, járulékos kötegesek(WPW,AVRT,FBI)</li>
+					<li>AV-csomótól független &#10140; pitvari tachycardia<font style="font-size:80%">(120-240/min)</font> / flutter<font style="font-size:80%">(240-300/min)</font> / fibrilláció(300felett)</li>
+				</ul>
+				<li>ventricularis</li><ul>
+					<li>kamrai tachycardia</li>
+					<li>kamrafibrilláció</li>
+				</ul>
+			</ul>
+			<li>bradyarrhytmia, bradycardia (&lt;50) &#10140; pacemaker kell</li>
+		  <hr><span class="MISS">szvsz:</span>
+			<li>fokális &#10140; bizonyos sejtekből(fókusz) indul ki, bizonyos hatásra (hormonok, oxigénhiány stb)</li><ul>
+				<li>fokális pitvari tachycardia</li>
+				<li>pitvarfibrilláció & pitvar flutter ilyen szvsz</li>
+			</ul>
+			<li>reentry &#10140; 'itt meg egy kör alakul ki'</li><ul>
+				<li>AV-csomó függő supraventricularis ritmuszavarok</li>
+				<li>kamrai ritmuszavarok főként ilyenek</li>
+			</ul>
+			<img data-src="wgpjwjbc.png">
+		</ul></details>
+		<details class="kerdes"><summary>tünetek</summary><ul class="normal">
+			<li>tünetmentes (pl. pitvarfibrilláció)</li>
+			<span class="imp [48]"></span>
+		</ul></details>
 	</ul></details>
-	
-	<details class="{57} kerdes"><summary> </summary><ul class="normal">
+	<details class="{42} kerdes"><summary>pacemakerek</summary><ul class="normal">
+	  <strong>lokalizáció</strong>
+		<li>pitvari = jobb pitvar fülcséje</li>
+		<li>kamrai = jobb kamra</li>
+	  <hr><strong>kódolása</strong>
+		<li>1. pace = mit ingerel(<abbr title="atrial,ventricular,dual">A/V/D</abbr>), 2. hol érzékel (A/V/D), 3. output(inhibitor/trigger/dual)</li>
+		<li>AAI &#10140; 1elektróda, pitvart ingerli, azt érzékeli, inhibitor &#10140; ha sinus betegség, és nincs AV-blokk</li>
+		<li>VVI &#10140; 1elektróda, kamrában ingerel, ott érzékel, inhibitor &#10140; ha AV-blokk van, és pitvarfibrilláció!</li>
+		<li>DDD &#10140; 2elektróda, kamrában és pitvart is ingerelheti, mindkettőt érzékeli, inhibitor és triggerelni is tud &#10140; ha AV-blokk van, és nincs pitvarfibrilláció:</li><ul>
+			<li>hiszen ha pl. teljes AV-blokk van, és beteszünk jobb kamrába egy elektródát, akkor fontos, hogy a kamrai ritmus (amit a pacemaker diktál) szinkronban legyen a pitvaréval (amit ugye a szervezet diktál)</li>
+		</ul>
+		<li>VDD &#10140; <span class="done">1elektróda</span>, kamrát ingerli, mindkettőben érzékel, inhibitor és triggerelni is tud &#10140; ha AV-blokk van, és nincs pitvarfibrilláció &#10140; ennek előnye DDD-vel szemben, hogy elég 1eletródát betenni (Európában ez a <abbr title="ha AV-blokk van, és nincs pitvarfibrilláció">gyakoribb</abbr>, Amerikában a DDD)</li>
+		<li>ha 4.betű is van, ami <span class="WHITE">R</span> &#10140; piezoelektromos-kristály van benne &#10140; érzékeli, hogy a páciens mennyit mozog, pl. lépcsőzik &#10140; ez alapján állítja be a frekvenciát &#10140; <abbr title="sinus csomó nem képes megnövelni a szívfrekvenciát az adott helyzetben">indikáció: konotróp inkompetencia</abbr> <img class="mini" data-src="rlooditd.png"></li>
+	  <hr><strong>output = válasza az érzékelésre</strong>
+		<li>'ez azt mutatja, hogyan reagál a pacemaker az érzékelésre. nem azt, hogy a szívet ingerli/gátolja-e, ugyanis azt mindig csak ingerli'</li>
+	  <hr><strong>beültetése</strong>
+		<li>mivel 'vénás oldalon' (jobb szívfél) történik, így:</li><ul>
+			<li>kisebb a rizikó vérzésre</li>
+			<li>nem kell antikoaguláns</li>
+			<li>stb.</li>
+		</ul>
+		<li>v.cephalica-n keresztül történik (bal oldali!) <font style="font-size:80%">(ha nem lehet, akkor v.subclavia, de ennél PTX rizikó van)</font></li>
+		<li>rizikó &#10140; szívtamponád (szívfalat átfúrja a tip)</li>
+	  <hr><strong>unipolaris vs bipolaris</strong>
+		<li>lásd kép <img class="mini" data-src="ljmhwshw.png"></li>
+		<li>unipolaris hátránya &#10140; zaj-ok belekavarhatnak</li>
+		<li>unipolaris 'előnye' &#10140; ennél a spike jobban látható EKG-n</li><ul>
+			<li>(ha látok egy EKG-t, amint BTSZB szerű + előtte egy kis spike van, akkor valószínű bipoláris pacemakere van)</li>
+		</ul>
+	  <hr>
+		<li>kamrai pacemaker: jobbkamrából(septum) terjed balra az inger:</li><ul>
+			<li>BTSZB morfológia</li>
+			<li>lassan terjed, disszinkróniát okoz &#10140; hosszútávon SZE-hez vezethet: akár 35% alá is lemehet az EF</li>
+			<li>ezért csak akkor kell működnie, ha saját ingerülete nincs &#10140; <span class="done">kell érzékelő is!</span></li>
+		</ul>
+		<li>pitvar fibrilláció esetén pitvari elektróda fölös</li>
+		<img data-src="rnksnapv.png">
+	</ul></details>
+	<details class="{43} kerdes"><summary>supraventricularis arrhytmia kezelése</summary><ul class="normal">
+	  <strong>akut</strong>
+		<li>Valsalva-manőver &#10140; <abbr title="dobhártyák kifeszülnek gondolom">nagy légvétel után, a levegőt benntartjuk, préseljük</abbr> (symp aktivitás csökken)</li>
+		<li>carotis masszás &#10140; mesterségesen stimuláljuk a sinusban lévő nyújtási receptorokat, a falfeszülés növekedésével symp aktivitás csökken</li>
+		<li>AV-függő &#10140; &beta;-blokkoló /+ adenozin ('AV-csomót kiütik')</li><ul>
+			<li><font style="font-size:80%">WPW-szindrómás pitvarfibrilláló betegnek tilos adni (járulékos köteg irányába tolódik el az ingerületvezetés)</font></li>
+		</ul>
+		<li>ha hemodinamikai instabilitást okoz &#10140; cardioversio: szinkronizált!!</li>
+	  <strong>későbbiekben</strong>
+		<li><span class="kerdes midQ [45]">abláció(katéteres)</span></li>
+	</ul></details>
+	<details class="{44} kerdes"><summary>cardioversio</summary><ul class="normal">
+	  <strong>indikáció</strong>
+		<li><span class="midQ [46]">pitvarfibrilláció</span></li>
+		<li><span class="midQ [43]">supraventricularis arrhytmia, ha hemodinamikai instabilitással jár</span></li>
+		<li>kamrai tachycardia, kamrafibrilláció</li>
+	  <strong>gyógyszeres</strong>
+		<li>amiodaron (K+-csatorna blokkoló)</li>
+		<li>propafenon</li>
+		<li>sotalol</li>
+	  <strong>elektromos</strong>
+		<li>defibrillátorral történik, szinkronizáltan</li>
+	</ul></details>
+	<details class="{45} kerdes"><summary>abláció</summary><ul class="normal">
+		<li>lényege &#10140; az arrhytmia-ért felelős terület roncsolása</li>
+		<li>katéteres</li>
+		<li>fő típusai:</li><ul>
+			<li>radiofrekvenciás &#10140; felhevítéssel történik</li>
+			<li>krioabláció &#10140; fagyasztással történik</li>
+		</ul>
+	  <hr>
+		<li>AVNRT &#10140; lassú pályát kell</li>
+		<li>WPW, AVRT, FBI &#10140; járulékos köteget kell</li>
+		<li>pitvari flutter &#10140; a <u>cavo-tricuspidalis isthmus</u> területét kell &#10140; ez a sinus coronarius, v.cava inferior, tricuspidalis billentyűk közti terület <img class="mini" data-src="ukgktvsh.png"></li>
+		<li>pitvarfibrilláció &#10140; pulmonális vénákat kell izolálni, mert onnan ered az ingerület &#10140; de! ennek sikeressége sajnos a többihez(90%) képest jóval ritkább</li>
+		<li>kamrai tachycardia:</li><ul>
+			<li>idiopátiás esetben sikerre(90%) számíthatunk</li>
+			<li>strukturális esetben már kisebb az esély(50%)</li>
+		</ul>
+		<li>kamrafibrilláció &#10140; nem ablálható</li>
+	</ul></details>
+	<details class="{46} kerdes"><summary>pitvarfibrilláció</summary><ul class="normal">
+		<li>rizikófaktorok:</li><ul>
+			<li>obesitas</li>
+			<li>alkohol</li>
+			<li>extrém sport (maraton futó)</li>
+			<li>hipertireózis</li>
+			<li>mitral stenosis</li>
+		</ul>
+		<li>EKG</li><ul>
+			<li>arrhytmia absoluta</li>
+			<li>P-hullám</li>
+			<li>(kamrai) frekvencia lehet mind3:</li><ul>
+				<li>brady-</li>
+				<li>normo-</li>
+				<li>tacyhcardia</li>
+			</ul>
+		</ul>
+	  <strong>kezelés</strong>
+		<li>életmódváltás (obes, alkohol)</li>
+		<li>alapbetegség (hipertireózis/mitral stenosis) kezelése</li>
+		<li><span class="midQ [37]">CHADS-VASc</span> alapján antikoaguláció &#10140; stroke prevenció</li>
+		<li>(kamrai) frekvencia beállítása:</li><ul>
+			<li>ha tacyhcard &#10140; &beta;-blokkoló, Ca-antagonista</li>
+			<li>ha normál</li>
+			<li>ha bradycard &#10140; pacemaker</li>
+		</ul>
+		<li>pitvari ritmuszavar helyreállítása</li><ul>
+			<li>kardioverzió &#10140; <span class="midQ [44]">elektromos / gyógyszeres</span></li>
+			<li><span class="midQ [45]">abláció(katéteres)</span></li>
+		</ul>
+	</ul></details>
+	<details class="{47} kerdes"><summary>ICD</summary><ul class="normal">
+		<li>implantálható cardioverter defibrillátor</li>
+	  <strong>funkciója</strong>
+		<li>egyrészt pacemakerként is képes funkcionálni &#10140; bradyarrhytmia esetén</li>
+		<li>de fő funkciója, a <span class="midQ [47]">kardioverzió</span>: kamrai tachycardia / fibrilláció 'leállítása'</li><ul>
+			<li>ha kamrai tachycardia &#10140; ATP = anti-tachycardia pacing</li>
+			<li>ha kamra fibrilláció &#10140; sokk-ot végez (defibrillátor)</li>
+		</ul>
+		<li>úgy néz ki első ránézésre, mint egy <span class="midQ [42]">pacemaker</span></li>
+	  <strong>ATP = anti-tachycardia pacing</strong> &#10140; a kamrát ingerléssel próbálja megállítani
+		<li>vagy burst (rövid ideig, állandó, nagy frekvencia)</li>
+		<li>vagy ramp (rövid ideig, egyre gyorsuló frekvencia)</li>
+		&#10140; sikerül vagy átmegy fibrillációba
+	  <br><strong>indikáció</strong>
+		<li>szekunder prevenció &#10140; hirtelen szívhalált /+ tartós kamrai tachycardiat túlélt beteg</li>
+		<li>primer prevenció &#10140; még nem volt kamrai ritmuszavar, de nagy a rizikó: EF alacsony, hipertrófiás cardiomyopathia stb.</li>
+	</ul></details>
+	<details class="{48} kerdes"><summary>tünetek</summary><ul class="normal">
+		<!-- ritmuszavarok -->
+		<li>palpitatio</li>
+		<li>dyspnoe</li>
+		<li>verejtékezés</li>
+		<li>gyengeség</li>
+		<li>szédülés, syncope(eszméletvesztés) &#10140; fontos, hogy snycope van-e!</li>
+		<li><span class="midQ [17]">angina pectoris</span></li>
+		<span class="done">fontos, mert kamra tachycardia az egyik leggyakoribb hirtelen szívhalál oka, tehát ott nincs idő semmire kb! (azonnal kell cselekednem)</span>
+	</ul></details>
+	<details class="{49} kerdes"><summary>bradycardia-k</summary><ul class="normal">
+	  <strong>ingerképzési zavarok</strong>
+		<li><u>sinus bradycardia</u> (sinus-szomó frekvenciája lassú tartósan)</li>
+		<li><u>SSS = sick sinus szindróma</u> &#10140; sinus bradycardia, sinus arrest, <abbr title="így ez ingerületvezetési is">SA-blokk</abbr> egyben</li>
+	  <strong>ingerképzési zavarok</strong>
+		<details class="kerdes"><summary>SA-blokkok</summary><ul class="normal">
+			<li>sinuscsomóról a pitvarra nem vezetődik át rendesen</li>
+		  EKG-n ugyanaz a lényegük, mint AV esetében, így itt csak az eltéréseket írom le:
+			<li>I.fokú &#10140; mindegyik átvezetődik pitvarra, de lassabban &#10140; nincs EKG jele!!</li>
+			<li>II.fokú &#10140; némelyik vezetődik át pitvarra &#10140; hiányoznak P-hullámok!!</li><ul>
+				<li>Mobitz I &#10140; itt PP-távolság csökken</li>
+			</ul>
+			<li>III.fokú &#10140; egyik sem vezetődik pitvarra &#10140; nincs P-hullám!!</li>
+		</ul></details>
+		<details class="kerdes"><summary>AV-blokkok</summary><ul class="normal">
+		  súlyossága a blokk helyzetétől függ <img class="mini" data-src="pnleofzq.png">
+			<li>supra His &#10140; nem okoz hirtelen szívhalált, syncope nincs, QRS-keskeny &#10140; <abbr title="nem értem, de mindegy">itt átveheti a junkciós köteg a pótritmust</abbr></li><ul>
+				<li>I.fokú</li>
+				<li>Mobitz I</li>
+			</ul>
+			<li>infra His &#10140; hirtelen szívhalált okozhat, syncope lehet, QRS-széles &#10140; itt nem biztos, hogy lesz stabil pótritmus</li><ul>
+				<li>Mobitz II</li>
+				<li>magasfokú</li>
+				&#10140; ezeknél <span class="midQ [42]">pacemaker</span> kell!
+			  <hr>
+				III.fokúnál már kialakult egy stabil pótritmus, így az nem olyan veszélyes, mint a fennti kettő
+			</ul>
+		  <hr>
+			<li><span class="WHITE">I.fokú</span> PQ > 0,2s <img class="mini" data-src="55.png"></li>
+			<li><span class="WHITE">II.fokú</span></li><ul>
+				<li><span class="WHITE">Mobitz I</span> &#10140; PQ távolságok egyre nőnek, majd kimarad egy átvezetés és restart <img  <img class="mini" data-src="60.png"></li>
+				<li><span class="WHITE">2:1</span> &#10140; minden 2. ávezetés kimarad <img class="mini" data-src="63.png"></li>
+				<li><span class="WHITE">Mobitz II</span> &#10140; néha kimarad egy átvezetés (de ez kevesebb mint a fele) <img class="mini" data-src="68.png"></li>
+			</ul>
+			<li><span class="WHITE">magasfokú</span> &#10140; többször marad ki átvezetés (több mint a fele) <img class="mini" data-src="69.png"></li>
+			<li><span class="WHITE">III.fokú</span> &#10140; nincs már átvezetés <img class="mini" data-src="68.png"></li>
+			<font style="font-size:80%">utóbbi kettőnél már kamrai/junkcionális pótritmus van (és magasfokúnál néha egy átvezetés még, ami az ún. <u>befogott ütés</u>)</font>
+		</ul></details>
+	</ul></details>
+	<details class="{50} kerdes"><summary>cadiomyopathia</summary><ul class="normal">
+		<li>myocardiumot érintő betegségek csoportja, de..</li>
+		<li>..ebbe NEM tartoznak ➜ billentyű-elégtelenség, hipertónia, ischameia következtébeni betegségek</li>
+	  <strong>típusai:</strong>
+		<li><span class="midQ [51]">dilatatív (DCM)</span></li>
+		<li><span class="midQ [52]">hipertrófiás (HCM)</span></li>
+		<li>restriktív (RCM) &#10140; pl. amiloidózis, sarcoidosis</li>
+		<li>aritmogén jobb kamrai (ARVC)</li><ul>
+			<li>fiatalkori sportolók hirtelen szívhalálának oka az esetek 10-20%-ban</li>
+			<li>myocardium zsíros/fibrotikus degenerációja</li>
+		</ul>
+		<img data-src="xmasczbz.png">
+	</ul></details>
+	<details class="{51} kerdes"><summary>DCM</summary><ul class="normal">
+	  dilatatív <span class="midQ [50]">cadiomyopathia</span>
+		<li>morfológia &#10140; szív 4ürege dilatált, szív megnagyobbodott 2-3x-osára, falak elvékonyodnak</li>
+		<li>oka, lehet pl.</li><ul>
+			<li>primer &#10140; dystrophin gén mutáció, Cocksackiae-virus következtébeni myocarditis &#10140; gyors lefolyású, ritkább</li>
+			<li>szekunder &#10140; alkohol, idős kor, terhesség, autoimmun betegségek stb. &#10140; lassabb lefolyású, gyakoribb</li>
+		</ul>
+		<li>funkciózavar:</li><ul>
+			<li>főként systolés &#10140; EF &lt; 40%</li>
+			<li>de diasztolés is</li>
+		</ul>
+	  <strong>diagnózis</strong>
+		<li><span class="kerdes midQ [48]">tünetek</span> &#10140; systolés funkciózavar tünetek</li>
+		<li>EKG</li>
+		<li><span class="kerdes midQ [26]">echokardiográfia</span></li>
+		<li><span class="kerdes midQ [53]">MRI</span></li>
+	  <strong>kezelés</strong>
+		<li>toxikus ágensek kizárása (alkohol, kábítószer, permetezőszer)</li>
+		<li>gyógyszerek &#10140; ACE-gátlók, &beta;-blokkolók, diuretikumok, amiodaron</li>
+		<li>szívátültetés</li>
+		<img data-src="xmasczbz.png">
+	</ul></details>
+	<details class="{52} kerdes"><summary>HCM</summary><ul class="normal">
+	  hipertrófiás <span class="midQ [50]">cadiomyopathia</span>
+		<li>oka &#10140; sarcomer fehérje mutációja; autoszomális domináns</li>
+		<li>morfológia &#10140; bal kamra fal megvastagodik</li><ul>
+			<li>a rostok rendezetlenek, köztük fibrotikus szövet keletkezik</li>
+		</ul>
+		<li>fiatalkori sportolók hirtelen szívhalálának oka az esetek 30-40%-ban</li>
+		<li>funkciózavar &#10140; diasztolés (systoles nincs: EF > 40%)</li>
+		<li>két típusa:</li><ul>
+			<li>obstrukcióval(kiáramlási pálya akadályozódik) járó &#10140; ilyenkor a septum hipertrófizál főként, ritkább(30%)</li>
+			<li>obstrukcióval NEM járó &#10140; általános hipertrófia, gyakoribb(70%)</li>
+		</ul>
+	  <strong>diagnózis</strong>
+		<li><span class="kerdes midQ [48]">tünetek</span></li>
+		<li>anamnézis!</li>
+		<li>EKG &#10140; Sokolow-Lyon index > 35mm</li>
+		<li><span class="kerdes midQ [26]">echokardiográfia</span></li>
+		<li><span class="kerdes midQ [53]">MRI</span></li>
+	  <strong>kezelés</strong>
+		<li>rokonok szűrése</li>
+		<li>max. mérsékelt sportolás</li>
+		<li>ha obstruktív:</li><ul>
+			<li>gyógyszeres (&beta;-blokkoló, Ca-antagonista)</li>
+			<li>sebészi</li>
+		</ul>
+		<li>ICD implantáció, ha volt kamrai tachycardia, kamrafibrilláció</li>
+		<img data-src="xmasczbz.png">
+	</ul></details>
+	<details class="{53} kerdes"><summary>MRI</summary><ul class="normal">
+		cardiomyopathia gyanú esetén kell &#10140; fibrózis mértéke meghatározható
+	</ul></details>
+	<details class="{54} kerdes"><summary>pericardialis szindrómák</summary><ul class="normal">
+		<li>gyakorisága &#10140; 2:10ezer</li>
+	  <strong>perikardiális szindrómák típusai</strong>
+		<li>pericarditis</li>
+		<li>perikardiális tamponád(szívtamponád) &#10140; a pericardiumban <abbr title="fluid">folyadék</abbr>(pl. vér) halmozódik fel</li>
+	  <strong>pericarditis</strong>
+		<li>oka</li><ul>
+			<li>vírusok &#10140; echo-, herpes-, adeno-, Coxsackie-, parvovírus</li>
+			<li>baktérium &#10140; Stphylocous, Streptococcus, Enterococcus, TBC stb.</li>
+		</ul>
+		<li>tünetek</li><ul>
+			<li>angina pectoris</li>
+			<li>EKG &#10140; ST-eleváció</li>
+			<li>hallgatózás &#10140; pericarditises zörej (dörzs-zörej)</li>
+			<li><span class="midQ [26]">echokardiográfia</span> &#10140; pericardialis folyadék lehet (nem feltétlen!)</li>
+		</ul>
+		<li>kezelés:</li><ul>
+			<li>enyhe esetben &#10140; aszpirin + ibuprofén + kolhicin</li>
+			<li>súlyos esetben kortikoszteroid is</li>
+			<li>ha szívtamponád van, akkor műtőbe!</li>
+		</ul>
+	  <strong>perikardiális tamponád(szívtamponád)</strong>
+		<li>oka</li><ul>
+			<li>krónikus &#10140; pericarditis, daganat</li>
+			<li>akut &#10140; aorta disszekció, trauma, iatrogén, AMI következtében szabadfali ruptúra</li>
+			<span class="done">életveszélyes, azonnali felismerést és ellátást igényel</span>
+		</ul>
+		<li>kezelés:</li><ul>
+			<li>folyadék</li>
+			<li>akut ellátás &#10140; anesztetikum + beteg megszúrása, majd kanülön keresztül vér leszívás</li>
+			<li>véralvadásgátló kezelést megszűntetni</li>
+			<li>ha ezek sem elegek, akkor műtőbe</li>
+		</ul>
+	</ul></details>
+	<details class="{55} kerdes"><summary></summary><ul class="normal">
 		<li></li>
 	</ul></details>
-	<details class="{58} kerdes"><summary> </summary><ul class="normal">
+	<details class="{56} kerdes"><summary></summary><ul class="normal">
 		<li></li>
 	</ul></details>
-	<details class="{59} kerdes"><summary> </summary><ul class="normal">
+	<details class="{57} kerdes"><summary></summary><ul class="normal">
 		<li></li>
 	</ul></details>
-	<details class="{60} kerdes"><summary> </summary><ul class="normal">
+	<details class="{58} kerdes"><summary></summary><ul class="normal">
+		<li></li>
+	</ul></details>
+	<details class="{59} kerdes"><summary></summary><ul class="normal">
+		<li></li>
+	</ul></details>
+	<details class="{60} kerdes"><summary></summary><ul class="normal">
 		<li></li>
 	</ul></details>
  </div>
@@ -827,11 +1342,11 @@
 	var oneDay = 1000 * 60 * 60 * 24;
 	var day = Math.floor(diff / oneDay);
 	var diff = 307-day
-	var tetelLeft = 27
+	var tetelLeft = 8
 	var tetelDay = tetelLeft/diff
 	document.getElementById("statusX").innerHTML = (tetelDay.toFixed(2) + "tétel/nap; ("+diff+"nap & "+tetelLeft+"tétel left)");
 </script>
-<details><summary>prezentáció</summary><ul class="normal">
+<!-- <details><summary>prezentáció</summary><ul class="normal">
 56 éves férfi
 krónikus jobb szívfél elégtelenség prezentáció
 2019.11.30
@@ -941,6 +1456,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 <strong>kezelés</strong>
 	<li>kapott 2egység vért 10.20 (elmondsa szerint)</li>
 </ul></details>
+ -->
 
 <details><summary>AJÁNLÁSOK</summary><ul class="normal">
 	<li>I = ajánlott</li>
@@ -964,15 +1480,23 @@ krónikus jobb szívfél elégtelenség prezentáció
 </ul></details>
 
 <!----> <details open><summary class="mainTitle">A</summary>
-<details><summary class="status" style="background-color:coral">1. Diastoles zörejek. Szívhangok</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
+<details class="kerdes"><summary class="status">1. Diastoles zörejek. Szívhangok</summary><ul class="normal">
+	<details class="kerdes"><summary><strong>Diastoles zörejek.</strong> Szívhangok</summary><ul class="normal">
+		<div class="imp [40]"></div>
+	</ul></details>
+	<details class="kerdes"><summary>Diastoles zörejek. <strong>Szívhangok</strong></summary><ul class="normal">
+		<div class="imp [39]"></div>
 	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:coral">2. Systoles zörejek. Szívhangok</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
+<details class="kerdes"><summary class="status">2. Systoles zörejek. Szívhangok</summary><ul class="normal">
+	<details class="kerdes"><summary><strong>Systoles zörejek.</strong> Szívhangok</summary><ul class="normal">
+		<div class="imp [40]"></div>
+	</ul></details>
+	<details class="kerdes"><summary>Systoles zörejek. <strong>Szívhangok</strong></summary><ul class="normal">
+		<div class="imp [39]"></div>
 	</ul></details>
 </ul></details>
-<details><summary class="status">3. Rizikófaktorok, primer és secunder prevenció.</summary><ul class="normal">
+<details class="kerdes"><summary class="status">3. Rizikófaktorok, primer és secunder prevenció.</summary><ul class="normal">
 	<details class="kerdes"><summary><strong>Rizikófaktorok</strong>, primer és secunder prevenció.</summary><ul class="normal">
 	  <strong>NEM befolyásolhatók</strong>
 		<li>életkor</li>
@@ -998,7 +1522,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<div class="imp [20]"></div>
 	</ul></details>
 </ul></details>
-<details><summary class="status">4. Szívelégtelenség (etiológia, diagnosztika).</summary><ul class="normal">
+<details class="kerdes"><summary class="status">4. Szívelégtelenség (etiológia, diagnosztika).</summary><ul class="normal">
 	<details class="kerdes"><summary><strong>Szívelégtelenség</strong> (etiológia, diagnosztika).</summary><ul class="normal">
 		<div class="imp [1]"></div>
 	</ul></details>
@@ -1010,13 +1534,13 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<div class="imp [4]"></div>
 	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:coral">5. Dilatatív cardiomyopathia.</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-	</ul></details>
+<details class="kerdes"><summary class="status">5. Dilatatív cardiomyopathia.</summary><ul class="normal">
+	<span class="imp [50]"></span> <!-- cardiomyopathia -->
+	<span class="imp [51]"></span> <!-- Dilatatív -->
 </ul></details>
-<details><summary class="status" style="background-color:coral">6. Hypertrophias cardiomyopathia.</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-	</ul></details>
+<details class="kerdes"><summary class="status">6. Hypertrophias cardiomyopathia.</summary><ul class="normal">
+	<span class="imp [50]"></span> <!-- cardiomyopathia -->
+	<span class="imp [52]"></span> <!-- Hypertrophias -->
 </ul></details>
 <details><summary class="status">7. Akut szívelégtelenség kardiogén sokk – etiológia, tünettan, diagnosztika.</summary><ul class="normal">
 	<details class="kerdes"><summary><strong>Akut szívelégtelenség kardiogén sokk</strong> – etiológia, tünettan, diagnosztika.</summary><ul class="normal">
@@ -1057,11 +1581,11 @@ krónikus jobb szívfél elégtelenség prezentáció
 	<details class="kerdes"><summary>tüneti kezelés - FelMOND</summary><ul class="normal"> <div class="imp [27]"></div> </ul></details>
 	<details class="kerdes"><summary>oki terápia</summary><ul class="normal">
 		<li><span class="midQ [28]">revaszkularizáció, ha akut koronária szindróma</span></li>
-		<li>kardioverzió, ha</li><ul>
+		<li><span class="midQ [47]">kardioverzió</span>, ha</li><ul>
 			<li>pitvarfibrilláció</li>
 			<li>kamrai tachycardia</li>
 		</ul>
-		<li>pacemaker, ha</li><ul>
+		<li><span class="midQ [42]">pacemaker</span>, ha</li><ul>
 			<li>súlyos bradycardia</li>
 			<li>ingerületvezetési zavar</li>
 		</ul>
@@ -1108,12 +1632,12 @@ krónikus jobb szívfél elégtelenség prezentáció
 			<font style="font-size:80%">(kis dózissal kezdeni, és fokozatosan növelni, eljutva a céldózishoz)</font>
 			<li><span class="midQ [1]">a szervezet kompenzációs mechanizmusait veszik célba!</span></li>
 		</ul>
-		..ha a fentiek ellenére tünetes marad és EF&t;35%, akkor..
+		..ha a fentiek ellenére tünetes marad és EF&lt;35%, akkor..
 		<li><abbr title="angiotenzin-receptor neprilysin inhibitor">ARNI</abbr> az ACE-gátló helyett</li><ul>
 			<li>ez egy sacubritil(neprilysin blokkoló) + valsartan(ARB) kombináció</li>
 			<li>a neprilysin a BNP-t lebontó enzim (ami ugye diuretikum)</li>
 		</ul>
-		<li>ivabradin &#10140;  &#10140; ez akkor kell, ha frekvvencia > 70/min</li><ul>
+		<li>ivabradin &#10140; ez akkor kell, ha frekvencia > 70/min</li><ul>
 			<li>szinuszcsomóra hat, tehát kizárólag sinus-ritmusos betegeken alkalmazható</li>
 			<li>hatása &#10140; negatív <abbr title="frekvencia">kronotróp</abbr></li>
 		</ul>
@@ -1131,22 +1655,40 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<div class="imp [8]"></div>
 	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:coral">11. Infectív endocarditis.</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-	</ul></details>
-</ul></details>
-<details><summary class="status" style="background-color:coral">12. Pericarditis, pericardialis folyadék.</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-	</ul></details>
-	<li>perikardiális tamponád(szívtamponád) &#10140; a pericardiumban folyadék(pl. vér) halmozódik fel, oka pl.</li><ul>
-		<li>daganat (krónikus)</li>
-		<li>aorta disszekció (akut)</li>
-		<li>stb.</li>
+<details class="kerdes"><summary class="status">11. Infectív endocarditis.</summary><ul class="normal">
+	<li>endocardium, billentyűk, beépített eszközök felszínén létrejövő fertőzéses gyulladás</li>
+	<li>szükséges hozzá:</li><ul>
+		<li>bacteraemia (vérben lévő baktérium)</li>
+		<li>adhezív felszín (sérült / idegen test) &#10140; thrombocyta / fibrin alakul ki &#10140; baktérium ezen tapad meg &#10140; vegetatiot(szürkéssárga felrakódés a billentyűn) hoznak létre</li>
 	</ul>
-  <strong>kezelés</strong>
-	<li>akut ellátás &#10140; anesztetikum + beteg megszúrása, majd kanülön keresztül vér leszívás</li>
-	<li>véralvadásgátló kezelést megszűntetni</li>
-	<li>ha ezek sem elegek, akkor műtőbe</li>
+	<li>kórokozó:</li><ul>
+		<li>Staphylococcus</li>
+		<li>Streptococcus</li>
+		<li>Enterococcus</li>
+	</ul>
+	<li>mortalitás magas &#10140; 25-40%</li>
+	<li>gyakorisága &#10140; 1:10ezer</li>
+	<li>szövődmények, társbetegségek:</li><ul>
+		<li>embolia (vegetatioról leszakadt)</li>
+		<li>glomerulonephritis</li>
+		<li>szeptikus sokk</li>
+	</ul>
+	<li>prevenció</li><ul>
+		<li><span class="midQ [42]">pacemaker</span> és egyéb implantáció esetén antibiotikus profilaxis</li>
+		<li>szájhigénia, fogászati szűrővizsgálat</li>
+	</ul>
+	<li>diagnózis</li><ul>
+		<li>hemokultúra</li>
+		<li>képalkotó módszerek &#10140; <span class="midQ [26]">echo</span>, CT</li>
+		<li>láz</li>
+	</ul>
+	<li>kezelés</li><ul>
+		<li>antibiotikum iv. 4-6hétig</li>
+		<li>ha szükséges, sebészi is (billentyűcsere stb.)</li>
+	</ul>
+</ul></details>
+<details class="kerdes"><summary class="status">12. Pericarditis, pericardialis folyadék.</summary><ul class="normal">
+	<div class="imp [54]"></div>
 </ul></details>
 <details class="kerdes"><summary class="status">13. Aorta billentyű stenosis, aorta billentyű insuffitientia diagnózisa.</summary><ul class="normal">
 	<details class="kerdes"><summary>etiológia</summary><ul class="normal">
@@ -1173,30 +1715,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		</tr></table>
 	</ul></details>
 	<details class="kerdes"><summary>fizikális vizsgálat</summary><ul class="normal">
-		<table><tr><th style="width:48%">stenosis</th>  <th style="width:48%">insufficientia</th></tr><tr>
-			<td style="text-align:left">
-				<img data-src="pmfywnrm.jpg">
-				<li>csökkent <span class="midQ [12]">pulzusamplitúdó</span></li>
-				<li><span class="midQ [13]">hallgatózás</span></li><ul>
-					<li>punctum maximum: <span class="WHITE">2R</span></li>
-					<li>a szisztoléban: crescendo-decrenscendo zörej</li>
-					<li>carotisok felé vezetődik</li>
-				</ul>
-				<video data-src="videos/aotastenosis.mp3"></video>
-				<video data-src="videos/Aortic Stenosis - Auscultation Sound.mp3"></video>
-			</td>
-			<td style="text-align:left">
-				<img data-src="ohvbaejq.jpg">
-				<li>megnövekedett <span class="midQ [12]">pulzusamplitúdó</span> &#10140; <abbr title="a fej szívütésekkel szinkron bólogatása">Musset-jel</abbr></li>
-				<li><span class="midQ [13]">hallgatózás</span></li><ul>
-					<li>punctum maximum: 3L(Erb-pont)</li>
-					<li>diasztolét decrescendo zörej tölti ki</li>
-					<li>Austin-Flint zörej is hallható lehet &#10140; szívcsúcsban hallható, presystolesan <img class="mini" data-src="tdaiapgc.png"></li>
-				</ul>
-				<video data-src="videos/aortains.mp3"></video>
-				<video data-src="videos/aortainsu.mp3"></video>
-			</td>
-		</tr></table>
+		<div class="imp [13]"></div>
 	</ul></details>
 	<details class="kerdes"><summary>további vizsgálatok</summary><ul class="normal">
 		<table><tr><th style="width:48%">stenosis</th>  <th style="width:48%">insufficientia</th></tr><tr>
@@ -1248,31 +1767,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		</tr></table>
 	</ul></details>
 	<details class="kerdes"><summary>fizikális vizsgálat</summary><ul class="normal">
-		<table><tr><th style="width:48%">stenosis</th>  <th style="width:48%">insufficientia</th></tr><tr>
-			<td style="text-align:left">
-				<img data-src="qghgqrlv.jpg">
-				<li><span class="midQ [13]">hallgatózás</span></li><ul>
-					<li>punctum maximum: szívcsúcs, bal oldalfekvésben hallható legjobban</li>
-					<li>I.hang <strong>dobbanó</strong>, előtte presystoles crescendo</li>
-					<li>II.hang + <span class="IMPORTANT">opening snap</span> (nyitási kattanás)</li>
-					<li>mesodiastoles decrescendo</li>
-				</ul>
-				<video data-src="videos/mitralsten.mp3"></video>
-				<video data-src="videos/Murmur of mitral stenosis as heard at the apex.mp4"></video>
-				<video data-src="videos/Mitral Stenosis Heart Sound - MEDZCOOOL.mp4"></video>
-			</td>
-			<td style="text-align:left">
-				<img data-src="lsgkfitb.jpg">
-				<li><span class="midQ [13]">hallgatózás</span></li><ul>
-					<li>punctum maximum: szívcsúcs, bal oldalfekvésben hallható legjobban</li>
-					<li>holoszisztolés zörej</li>
-					<li>ha van prolapszus is, akkor mezoszisztolés klikk is hallható</li>
-					<li>axilla felé sugárzik</li>
-				</ul>
-				<video data-src="videos/mitralinsuffenyhe.mp3"></video>
-				<video data-src="videos/mitralinsuff.mp3"></video>
-			</td>
-		</tr></table>
+		<div class="imp [12]"></div>
 	</ul></details>
 	<details class="kerdes"><summary>további vizsgálatok</summary><ul class="normal">
 		<table><tr><th style="width:48%">stenosis</th>  <th style="width:48%">insufficientia</th></tr><tr>
@@ -1294,9 +1789,87 @@ krónikus jobb szívfél elégtelenség prezentáció
 		</tr></table>
 	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:coral">15. Pitvari, kamrai septumdefektusok, veleszületett strukturális szívbetegségek</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-	</ul></details>
+<details class="kerdes"><summary class="status">15. Pitvari, kamrai septumdefektusok, veleszületett strukturális szívbetegségek</summary><ul class="normal">
+		<li>születések 1%-ában fordul elő valamelyik</li>
+	  <strong>shunt nélküli</strong>
+		<details><summary>pulmonalis stenosis</summary><ul class="normal">
+			<li>lényege &#10140; jobb kamrából a tüdőbe jutó szakaszon akadályozottság lép fel:</li><ul>
+				<li>valvuláris</li>
+				<li>erek szűkülete</li>
+			</ul>
+			<li>tünet &#10140; systoles ejekciós klikk a bal felső sternalis szögletben</li>
+			<li>kezelés</li><ul>
+				<li>ha súlyos, akkor először prosztaglandin(PGE<sub>1</sub>) infúzió &#10140; nyitva tartja 1 hétig a ductus arteriosus Botalli-t</li>
+				<li>ballonos valvuloplasztika / sebészi</li>
+			</ul>
+		</ul></details>
+		<details><summary>coarctatio aortae</summary><ul class="normal">
+			<li>lényege &#10140; aorta szűkülete &#10140; lehet:</li><ul>
+				<li>preductalis (ductus arteriosus Botalli előtt)</li>
+				<li>postductalis</li>
+			</ul>
+			<li>tünet</li><ul>
+				<li>lábon a pulzus kevésbé tapintható, mint karon <abbr title="truncus brachiocephalicus az első">(jobb karon nézzem!)</abbr></li>
+				<li>ha postductalis, akkor a ductus arteriosus Botalli záródása (születés után 2-3nap) után észlelhető ez</li>
+				<li>továbbá ha a karon magasabb a vérnyomás +20Hgmm-el, már az is gyanú</li>
+			</ul>
+			<li>kezelés</li><ul>
+				<li>ha súlyos, akkor először prosztaglandin(PGE<sub>1</sub>) infúzió &#10140; nyitva tartja 1 hétig a ductus arteriosus Botalli-t</li>
+				<li>ballonos angioplasztika / sebészi</li>
+			</ul>
+		</ul></details>
+		<details><summary>aorta stenosis</summary><ul class="normal">
+			<li>lényege &#10140; bal kamra kiáramlása akadályozottsága, oka: billentyű-stenosis</li>
+			<li>tünet &#10140; systoles zörej a jobb felső sternalis szögletben</li>
+			<li>kezelés &#10140; ballonos dilatáció</li><ul>
+				<li>ha súlyos, akkor először prosztaglandin(PGE<sub>1</sub>) infúzió &#10140; nyitva tartja 1 hétig a ductus arteriosus Botalli-t</li>
+			</ul>
+		</ul></details>
+	  <strong>bal-jobb shunt</strong>
+		<li>bal szívfélben a nyomás nagyobb &#10140; onnan áramlik át oxigéngazdag vér a jobba</li>
+		<li>így cianózissal nem jár</li>
+		<li>jobb szívfél terhelődik</li>
+		<details><summary>ASD (pitvari septum defektus)</summary><ul class="normal">
+			<li>tünet &#10140; szisztolés zörej a bal felső parasternalis régióban</li><ul>
+				<li>továbbá kettőzött 2.hang</li>
+			</ul>
+			<li>kezelés &#10140; transzkatéteres / műtéti úton zárása</li>
+		</ul></details>
+		<details><summary>VSD (kamrai septum defektus)</summary><ul class="normal">
+			<li>típusai:</li><ul>
+				<li>perimembranosus</li>
+				<li>muscularis</li>
+			</ul>
+			<li>tünet &#10140; szisztolés zörej a bal felső parasternalis régióban</li>
+			<li>kezelés:</li><ul>
+				<li>6hónapos korig gyógyszeres (diuretikum, ACE-gátló)</li>
+				<li>utána, ha nem záródik műtéttel zárása</li>
+			</ul>
+		</ul></details>
+	  <strong>jobb-bal shunt</strong>
+		<li><span class="done">cianózissal jár</span></li>
+		<details><summary>Fallot-tetralógia</summary><ul class="normal">
+			<img data-src="igkclhgk.png">
+			<li>pulmonalis stenosis</li>
+			<li>VSD</li>
+			<li>lovagló aorta</li>
+			<li>jobbkamra hipetrófia</li>
+		  <hr>tünet:
+			<li>systoles zörej a bal felső parasternalis régióban</li>
+			<li>EKG - jobb kamra hipertrófia</li>
+		  <hr>kezelés &#10140; műtéti
+		</ul></details>
+		<details><summary>nagyér transzpozíció</summary><ul class="normal">
+			<li>lényege:</li><ul>
+				<li>jobb kamrából ered az aorta, bal kamrából a truncus pulmonalis</li>
+				<li>így két külön vérkör van, ami nincs egymással kapcsolatban</li>
+				<li>ez magzat korban még nem okoz gondot, mert foramen ovale + ductus arteriosus Botalli</li>
+				<li>azonban születés után, ha nincs azonnal kezelve akkor végzetes</li>
+				<li>javítja a túlélési esélyt ilyenkor, ha van valamilyen septum-defektus (ASD/VSD)</li>
+			</ul>
+			<li>tünet &#10140; systoles zörej a bal felső parasternalis régióban</li>
+			<li>kezelés &#10140; műtéti</li>
+		</ul></details>
 </ul></details>
 <details class="kerdes"><summary class="status">16. Hypertonia 1: etiológia, diagnosztika.</summary><ul class="normal">
 	<details class="kerdes"><summary>Hypertonia 1: <strong>etiológia</strong>, diagnosztika.</summary><ul class="normal">
@@ -1476,7 +2049,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<li>ha SZE, akkor</li>
 	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status">5. ST elevációs myocardiális infarktus 1 – etiológia, pathomechanizmus, diagnosztika.</summary><ul class="normal">
+<details class="kerdes"><summary class="status" style="background-color:DarkGrey">5. ST elevációs myocardiális infarktus 1 – etiológia, pathomechanizmus, diagnosztika.</summary><ul class="normal">
 	<details class="kerdes"><summary>ST elevációs <strong>myocardiális infarktus</strong> 1 – etiológia, pathomechanizmus, diagnosztika.</summary><ul class="normal">
 		<span class="midQ [22]">pályafutásom során biztosan találkozom ilyennel(ACS/AMI), és a kimenetele azon múlik hogy reagálok rá, ezért kiemelten fontos a téma</span>
 	</ul></details>
@@ -1507,8 +2080,72 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<li>ha SZE, akkor</li>
 	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:coral">7. Szívkatéterezés, hemodynamikai vizsgálat. Perkután koronária intervenció. A szívciklus</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
+<details><summary class="status">7. Szívkatéterezés, hemodynamikai vizsgálat. Perkután koronária intervenció. A szívciklus</summary><ul class="normal">
+	<details class="kerdes"><summary>Szívkatéterezés, hemodynamikai vizsgálat. Perkután koronária intervenció. <strong>A szívciklus</strong></summary><ul class="normal">
+	  <strong>szívciklus</strong>
+		<li>görbék</li><ul>
+			<li>legfelső &#10140; bal pitvar, bal kamra, aorta nyomása idő fv.ében</li>
+			<li>alatta lévő &#10140; bal kamra térfogata idő fv-ében</li>
+			<li>alatta lévő &#10140; EKG</li>
+			<li>legalsó &#10140; szívhangok</li>
+		</ul>
+		<li>időtartom</li><ul>
+			<li>systole = 0,23s</li>
+			<li>diasztolé = 0,57s</li>
+		</ul>
+		<li>EF = ejekciós frakció = 50-70% = systoles volumen (80ml) / EDV(end diasztolés volumen, 140ml)</li>
+		<li>artériás középnyomás = 1/3 * systoles + 2/3 * diasztolés = 90-100Hgm</li>
+	  <strong>bal kamra munkadiagramja</strong>
+		<div><span class="WHITE">DA</span> = telődés <font style="font-size:80%">(AV-billentyű nyitva, térfogat nő, nyomás nem változik lényegében)</font></div>
+		<div><span class="WHITE">AB</span> = izovolumetriás kontrakció <font style="font-size:80%">(mindkét billentyű zárva, térfogat nem változik, nyomás nő)</font></div>
+		<div><span class="WHITE">BC</span> = ejekció (nyomás & térfogat is változik)</div>
+		<div><span class="WHITE">CD</span> = izovolumetriás relaxáció <font style="font-size:80%">(mindkét billentyű zárva, térfogat nem változik, nyomás csökken)</font></div>
+		<img style="max-width:45%" data-src="tgfddrci.png">
+		<img style="max-width:45%" data-src="csbktmvp.png">
+	</ul></details>
+	<details class="kerdes"><summary>Szívkatéterezés, <strong>hemodynamikai vizsgálat</strong>. Perkután koronária intervenció. A szívciklus</summary><ul class="normal">
+	  <strong>nyomásmérés</strong>
+		<li>mandzsettával &#10140; alapja a Riva-Rocci módszer</li>
+		<li>invazív</li><ul>
+			<li>artériás kanül &#10140; artériás nyomás mérhető vele</li>
+			<li>centralis vénás kanül &#10140; jobb pitvari nyomás mérhető vele (megegyezik szinte a vénással)</li>
+		</ul>
+		<li></li>
+	  <strong>PTF vizsgálat</strong>
+		<li></li><ul>
+			<li>preload ➜ a szívbe áramló vérmennyiség ➜ a vénás rendszer tónusától függ: ha dilatálnak, akkor csökken</li>
+			<li>afterload ➜ a TPR-től függ (+aorta falának rugalmassága) ➜ ha TPR csökken, akkor csökken (és akkor a vérnyomás is)</li>
+			<li>kontraktilitás (inotróp)</li>
+			<li>frekvencia</li>
+		</ul>
+		<li>nem invazív módszer</li><ul>
+			<li>aorta Doppler &#10140; nyelőcsőbe vezetett műszer méri az aortán átáramló vérmennyiséget</li>
+			<li><span class="important"><span class="midQ [26]">echokardiográfia</span></span></li>
+			<li><span class="midQ [53]">MRI</span></li>
+		</ul>
+		<li></li>
+	</ul></details>
+	<details class="kerdes"><summary><strong>Szívkatéterezés</strong>, hemodynamikai vizsgálat. Perkután koronária intervenció. A szívciklus</summary><ul class="normal">
+		<li>nagy ereken keresztül vékony cső vezetése a szívbe</li><ul>
+			<li>v.jugularis interna, v.subclavia, v.femoralis (bal szívfélbe transz-szeptálisan jutnak át)</li>
+			<li>a.radialis, a.femoralis, a.brachialis</li>
+		</ul>
+		<li>felhasználás</li><ul>
+			<li>elektrofiziológiai vizsgálat (elektródákat juttatva a szívbe; 'invazív EKG')</li>
+			<li>biopszia (myocardium) &#10140; sarcoidosis, amyloidosis, myocarditis stb.</li>
+			<li>koronarográfia (koszorúérfestés) &#10140; kontrasztanyag befecskendezése és közben rtg-el követni</li>
+		</ul>
+	  <strong>Seldinger-techniká</strong>-val történik
+		<li>tűt az érbe</li>
+		<li>vezetődrót rajta keresztül be</li>
+		<li>tűt ki</li>
+		<li>(tágítóhüvely)</li>
+		<li>kanül bevezetése</li>
+		<li>vezetődrót ki</li>
+		<img data-src="noizkjtr.png">
+	</ul></details>
+	<details class="kerdes"><summary>Szívkatéterezés, hemodynamikai vizsgálat. <strong>Perkután koronária intervenció</strong>. A szívciklus</summary><ul class="normal">
+		<div class="imp [31]"></div>
 	</ul></details>
 </ul></details>
 <details class="kerdes"><summary class="status">8. Koronária revaszkularizáció: PCI</summary><ul class="normal">
@@ -1519,47 +2156,142 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<div class="imp [31]"></div>
 	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status" style="background-color:pink">9. Mellkasi fájdalom differenciál diagnosztikája.</summary><ul class="normal">
+<details class="kerdes"><summary class="status">9. Mellkasi fájdalom differenciál diagnosztikája.</summary><ul class="normal">
 	<div class="imp [17]"></div>
-	<details class="kerdes"><summary></summary><ul class="normal">
-	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:pink">10. Tüdőembolia.</summary><ul class="normal">
+<details class="kerdes"><summary class="status">10. Tüdőembolia.</summary><ul class="normal">
 	<div class="imp [10]"></div>
-	<details class="kerdes"><summary></summary><ul class="normal">
-	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:coral">11. Bradycardiák.</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-	</ul></details>
+<details class="kerdes"><summary class="status">11. Bradycardiák.</summary><ul class="normal">
+	<span class="imp [41]"></span> <!-- ritmuszavarok -->
+	<span class="imp [49]"></span> <!-- Bradycardiák -->
 </ul></details>
-<details><summary class="status" style="background-color:coral">12. Supraventricularis ritmuszavarok.</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
+<details class="kerdes"><summary class="status">12. Supraventricularis ritmuszavarok.</summary><ul class="normal">
+	<span class="imp [41]"></span> <!-- ritmuszavarok -->
+	<span class="imp [43]"></span> <!-- kezelés -->
+  <strong>AV-csomó függők</strong>
+	<details class="kerdes"><summary>AVNRT</summary><ul class="normal">
+		<li>lényege:</li><ul>
+			<li>náluk az AV-csomóból 2 pálya megy tovább His-köteghez</li><ul>
+				<li>gyors pálya (refrakter stádium ideje nagy) &#10140; ez a His-köteg, Purkinje stb.</li>
+				<li>lassú pálya (refrakter stádium ideje kicsi) &#10140; ez pedig egy kört alkotva visszajut</li>
+			</ul>
+			<li>alapból a lassún és gyorson egyszerre indulnak meg, így a lassú mire eljut a gyorsig, az már refrakterben van, így nem lesz repeat</li>
+			<li>azonban ha jön egy pitvari extrasystole, amikor a gyors még refreakterben van, akkor..</li>
+			<li>ll: a lassú pálya végigmegy, majd a His-kötegen tovább illetve a gyors pályán vissza :ll</li>
+			<li>videó (kb a felénél kezdődik)</li>
+		  <hr>
+			<li>AV-csomóból indul:</li><ul>
+				<li>kamra fele His-kötegen, majd Purkinje-rostok (ingervezető rendszeren)</li>
+				<li>pitvar fele a szivízmon keresztül terjed</li>
+				<font style="font-size:80%">&#10140; egyszerre húzódnak össze &#10140; P-hullám nem látszik (vagy beleolvad)</font>
+			</ul>
+		</ul>
+		<li>EKG</li><ul>
+			<li>tachycardia</li>
+			<li>QRS-keskeny</li>
+			<li>V2-V6 ascendáló ST depresszió</li>
+		</ul>
+		<video data-src="videos/Atrioventricular reentrant tachycardia (AVRT) & AV nodal reentrant tachycardia (AVNRT).mp4"></video>
 	</ul></details>
+	<details class="kerdes"><summary>járulékos köteg</summary><ul class="normal">
+		<li>az anulus fibrosus-on át összeköttetést teremt a pitvar és kamra között</li><ul>
+			<li><font style="font-size:80%">anulus fibrosuson tehát nem csak a His-köteg megy át, hanem egy másik 'lyuk' is van, amit izomrost tölt ki</font></li>
+		</ul>
+		<li>ha valakinek járulékos kötege van (leggyakoribb a WPW-szindróma), és látható EKG-n, akkor ki kell vizsgálni azt &#10140; mert ha refrakteritása alacsony, akkor életveszélyes lehet a későbbiekben (FBI)</li>
+	</ul></details>
+	<details class="kerdes"><summary>WPW-szindróma</summary><ul class="normal">
+		kamra így két oldalról jön ingerületben:
+		<li>járulékos köteg &#10140; P-hullám után egyből &delta;-hullám (nincs anulus fibrosus általi késleltetés)</li>
+		<li>AV-Purkinje &#10140; keskeny QRS</li>
+	</ul></details>
+	<details class="kerdes"><summary>AVRT</summary><ul class="normal">
+		lényege: <img class="mini" data-src="wihhujdc.png">
+		<li>a kamra ingerületbe jöhet a pitvar izomzatról a járulékos kötegen keresztül (nem csak a His-Purkinjén)</li>
+		<li>ez alapján két típusa van:</li><ul>
+			<li>ortodom &#10140; AV-junkció-Purkinjen át aktiválódik a kamra, majd a Kent-nyalábon vissza a pitvar és repeat &#10140; keskeny QRS</li>
+			<li>antidrom &#10140; Kent-nyalábon át aktiválódik a kamra, majd AV-junkció-Purkinjen vissza, és repeat &#10140; széles QRS</li>
+		</ul>
+	</ul></details>
+	<details class="kerdes"><summary>FBI tachycardia</summary><ul class="normal">
+		<li>oka &#10140; a járulékos köteg refrakteritása alacsony</li>
+		<li>ennek következtében a pitvarfibrilláció átterjed a kamrára 'nagy arányban' &#10140; kamrai tachycardiat/fibrillációt okoz</li>
+		<li>hirtelen szívhalált okoz(hat)</li>
+	</ul></details>
+  <hr><strong>AV-függetlenek</strong>
+	<li><u>sinus tachycardia</u> &#10140; oka, pl. hipertireózis</li>
+	<li><u>pitvari tachycardia</u></li>
+	<details class="kerdes"><summary>pitvari flutter</summary><ul class="normal">
+		<li>inferior elvezetésekben(II,III,aVF) &#10140; F-hullámok</li>
+		<li>pumpa funkció hatékonysága limitált &#10140; fülcsékben pangás &#10140; vérrögképződés esélye nő</li>
+		<li><span class="kerdes midQ [37]">CHADS-VASc</span> alapján antikoaguláció &#10140; stroke prevenció</li>
+		<li><span class="kerdes midQ [46]">abláció(katéteres)</span></li>
+	</ul></details>
+	<li><span class="midQ [46]">pitvarfibrilláció</span></li>
 </ul></details>
-<details><summary class="status" style="background-color:coral">13. Pitvarfibrillatio.</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-	</ul></details>
+<details class="kerdes"><summary class="status">13. Pitvarfibrillatio.</summary><ul class="normal">
+	<span class="imp [41]"></span> <!-- ritmuszavarok -->
+	<span class="imp [43]"></span> <!-- kezelés -->
+	<span class="imp [46]"></span> <!-- pitvarfibrilláció -->
 </ul></details>
-<details><summary class="status" style="background-color:coral">14. Gyógyszeres és elektromos cardioversio.</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-	</ul></details>
+<details><summary class="status" style="background-color:DarkGrey">14. Gyógyszeres és elektromos cardioversio.</summary><ul class="normal">
+	<span class="imp [41]"></span> <!-- ritmuszavarok -->
+	<span class="imp [44]"></span> <!-- cardioversio -->
 </ul></details>
-<details><summary class="status" style="background-color:coral">15. Ventricularis ritmuszavarok.</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-	</ul></details>
+<details class="kerdes"><summary class="status">15. Ventricularis ritmuszavarok.</summary><ul class="normal">
+	<span class="imp [41]"></span> <!-- ritmuszavarok -->
+	<li>kamrai tachycardia & kamrafibrilláció a hirtelen szívhalál egyik leggyakoribb oka</li>
+  <strong>ventricularis tachycardia</strong>
+	<li>leggyakoribb oka: heg következtében kialakuló reentry &#10140; korábbi MI során megindul a szövetkárosodás, de PCI-vel időben megállítódik a terjedése &#10140; 'azonban ahogy a heget kétoldalról kikerüli az ingerületterjedés, a két oldal közül az egyik még refrakter-stádiumban lesz, a másik nem, ez lesz a re-entry oka' (kéne egy gif)</li>
+	<li>típusai: <img class="mini" data-src="ystlkbye.png"></li><ul>
+		<li>monomorf</li>
+		<li>polimorf, pl. <abbr title="torszád dö poánt">Torsades de Point:</abbr></li><ul>
+			<li>leállhat önmagától..</li>
+			<li>vagy átmehet kamrafibrillációba</li>
+		</ul>
+	</ul>
+	<li>rizikófaktorok &#10140; iszkémia, hipokalémia, antiarrhytmiás szerek nem megfelelő alkalmazása</li>
+  <strong>diagnózis</strong>
+	<li>EKG &#10140; széles QRS, ritmusos &#10140; de lehet ettől még supraventricularis, ha pl. Tawara-szár blokk van &#10140; de egész addig kamraiként kezeljük, amíg nincs kizárva:</li><ul>
+		<li>P-hullámot kell megtalálni: ha azok függetlenül mennek QRS-től, akkor kamrai</li>
+		<li>Tawara-szár blokk morfológia nem fedezhető fel</li>
+		<li>fúziós ütés &#10140; ritkán a supraventricularis & kamrai együtt jelentkezik</li>
+		<li>befogott ütés &#10140; ritkán a supraventricularis eredetű végigmegy (pont úgy van az időzítés, hogy a kamrai eredetű előtt érkezik oda)</li>
+	</ul>
+  <strong>kezelés</strong>
+	<li>prevenció &#10140; &beta;-blokkoló</li>
+	<li>hosszútávú</li><ul>
+		<li>abláció(katéteres) <font style="font-size:80%">(történhet epicardialisan/endocardialisan, a heg lokalizációtól függően) </font></li>
+		<li>ICD <font style="font-size:80%">(ha nem tisztázható az etiológia, nem megoldható az abláció)</font></li>
+	</ul>
+  <strong>kezelés - akut esetben</strong>
+	<li>újraélesztést elkezdeni és közben szerezni egy defibrillátort, majd azzal <span class="midQ [47]">kardioverzió</span>:</li><ul>
+		<li>kardioverzió &#10140; szinkron módban történik &#10140; ezt kell</li>
+		<li>defibrilláció &#10140; NEM szinkron módban történik &#10140; ha T-hullámra csapunk rá, akkor kamrafibrillációba megy át, ezért nem ezt kell</li><ul>
+			<li>ez csak kamrafibrilláció esetében használható (mert olyankor nincs mihez szinkronizálni) &#10140; összes többinél a szinkron mód be kell legyen kapcsolva</li>
+			<li><span class="done">pitvarfibrilláció esetén még sokkal-sokkal fontosabb, hogy szinkron mód be legyen kapcsolva!!</span> (rendkívül nagy műhiba, ha nincs)</li>
+		</ul>
+	</ul>
+	<li>(ITO-s mire ideér, vénás gyógyszer egyéb túl lassú lenne, és addigra a beteg meghal)</li>
+	<li><span class="midQ [47]">gyógyszeres kardioverzió</span> &#10140; ha még nem szükséges elektromos kardioverzió, meg lehet próbálni ezzel</li>
+  <strong>kamrafibrilláció</strong>
+	<li>magától soha nem áll le &#10140; csak defibrilláció után</li>
 </ul></details>
-<details><summary class="status" style="background-color:coral">16. Ritmuszavarok ablációs kezelése.</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-	</ul></details>
+<details class="kerdes"><summary class="status">16. Ritmuszavarok ablációs kezelése.</summary><ul class="normal">
+	<span class="imp [41]"></span> <!-- ritmuszavarok -->
+	<span class="imp [45]"></span> <!-- ablációs -->
 </ul></details>
-<details><summary class="status" style="background-color:coral">17. Pacemaker kezelés</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
+<details class="kerdes"><summary class="status">17. Pacemaker kezelés</summary><ul class="normal">
+	<span class="imp [41]"></span> <!-- ritmuszavarok -->
+	<details class="kerdes"><summary>bradycardia - oka</summary><ul class="normal">
+		<li>sinus-csomó betegség</li>
+		<li>AV-blokk</li>
 	</ul></details>
+	<span class="imp [42]"></span> <!-- pacemaker -->
 </ul></details>
-<details><summary class="status" style="background-color:coral">18. ICD kezelés</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
-	</ul></details>
+<details class="kerdes"><summary class="status">18. ICD kezelés</summary><ul class="normal">
+	<span class="imp [41]"></span> <!-- ritmuszavarok -->
+	<span class="imp [47]"></span> <!-- ICD -->
 </ul></details>
 <!---->  </details>
 
@@ -1622,10 +2354,8 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<video data-src="videos/MitraClip Procedure - Nebraska Medicine.mp4"></video>
 	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:pink">3. Aorta dissectio diagnosztikája, kezelése</summary><ul class="normal">
+<details class="kerdes"><summary class="status">3. Aorta dissectio diagnosztikája, kezelése</summary><ul class="normal">
 	<div class="imp [38]"></div>
-	<details class="kerdes"><summary></summary><ul class="normal">
-	</ul></details>
 </ul></details>
 <details class="kerdes"><summary class="status">4. Koronária revaszkularizáció: CABG</summary><ul class="normal">
 	<details class="kerdes"><summary><strong>Koronária revaszkularizáció:</strong> CABG</summary><ul class="normal">

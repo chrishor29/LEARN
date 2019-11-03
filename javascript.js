@@ -2006,18 +2006,21 @@ var F_seekBar = window.setInterval(function(){
 		midQloaded = true
 	}
 	threeSec = threeSec +1
-	var loadTime = 3
-	if ( isAndroid == false ) { loadTime = 0 }
-	if ( threeSec > loadTime && document.getElementById("div_SearchW").style.display != "block" && document.getElementById("div_MainFrame").style.display != 'block' ) {
-		var full = pageLinks.length -1
-		for ( var i=0; i<pageLinks.length; i++ ) { 
-			document.getElementById("div_RefreshStatus").innerHTML = i+"/"+full
-			if ( pageLinks[i].dataset.loaded != "true" ) {
-				F_loadPathText(pageLinks[i].dataset.src,i)
-				break
+	
+	var testLoad = false
+	if ( isAndroid == false && testLoad == true ) {
+		var loadTime = 0
+		if ( threeSec > loadTime && document.getElementById("div_SearchW").style.display != "block" && document.getElementById("div_MainFrame").style.display != 'block' ) {
+			var full = pageLinks.length -1
+			for ( var i=0; i<pageLinks.length; i++ ) { 
+				document.getElementById("div_RefreshStatus").innerHTML = i+"/"+full
+				if ( pageLinks[i].dataset.loaded != "true" ) {
+					F_loadPathText(pageLinks[i].dataset.src,i)
+					break
+				}
 			}
+			threeSec = 0
 		}
-		threeSec = 0
 	}
 }, 1000);
 
