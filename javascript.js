@@ -4796,6 +4796,7 @@ function F_loadAllPageTexts() {
 	}
 	window.addEventListener('message', handler, false)
 }
+if ( localStorage.getItem("hk.ToggleAll") == "true" ) { F_loadPageText("expqs.html") }
 //F_loadPageText("expqs.html")
 //if ( localStorage.getItem("hk.ToggleAll") != "true" ) { F_loadAllPageTexts() }
 
