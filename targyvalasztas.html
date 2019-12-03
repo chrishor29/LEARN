@@ -8,9 +8,15 @@
 </head>
 
 <!-- û õ õ -->
+<!-- PROJECT
+belgyógyászat: hiányzó tételeket pótolni!
+élettan: átdolgozni (impQ-k értelmesebben, meg tudom mi a fontos már)
+Kórélettan: kidolgozni (TK-t szerezzem be!)
+Patológia: kidolgozni (TK-t szerezzem be!)
+ -->
 <!-- hiányzás:
-farmak  09.25
-tesi  3.hét, 4.hét
+farmak  09.25, 11.06
+tesi  3.hét, 4.hét, 9.hét
  -->
 
 <style>
@@ -49,7 +55,7 @@ tesi  3.hét, 4.hét
 <table id="table_weboldalak"><tr> <!-- weboldalak -->
 	<!-- IV.év --> <td style="text-align:left"> 
 		<span class="page" data-src="Farmak/farmak.html"><img class="targy"> <strong>Farmakológia</strong></span><br>
-		<span class="page" data-src="Kardio/kardio.html"><img class="targy"> <strong>Kardiológia</strong></span><br>
+		<span class="page" data-src="Kardio/kardio.html"><img class="targy"> Kardiológia</span><br>
 		<span class="page" data-src="done/FOG/FOG.html">Fül-orr-gégészet</span><br>
 	  <hr>
 		<span class="page" data-src="expqs.html">expqs</span><br>
@@ -61,8 +67,8 @@ tesi  3.hét, 4.hét
 		<span class="page" data-src="Mikrobi/mikrobi.html"><img class="targy"> <strong>Mikrobiológia</strong></span>
 			<span class="page" style="font-size:80%" data-src="Mikrobi/mikrobi1.html">(regi)</span><br>
 		<span class="page" data-src="Pszicho/pszicho.html"><img class="targy"> <strong>Pszichológia</strong></span><br>
-		<span class="page" data-src="done/Patosz/patosz.html"><img class="targy"> Patológia</span><br>
-		<span class="page" data-src="done/Kortan/kortan.html"><img class="targy"> Kórélettan</span><br>
+		<span class="page" data-src="done/Patosz/patosz.html"><img class="targy"> <i>Patológia</i></span><br>
+		<span class="page" data-src="done/Kortan/kortan.html"><img class="targy"> <i>Kórélettan</i></span><br>
 		<span class="page" data-src="done/Genetika/genetika.html"><img class="targy"> Genetika</span><br>
 		<span class="page" data-src="done/Mutettan/mutettan.html">Műtéttan</span><br>
 		<span class="page" data-src="done/LabMed/labmed.html">Laboratóriumi Medicina</span><br>
@@ -75,7 +81,7 @@ tesi  3.hét, 4.hét
 		<span class="page" data-src="done/ANAT/Fejlodestan/embrio.html"><img class="targy"> Fejlődéstan</span><br>
 		<span class="page" data-src="done/SejtBiosz/sejtbiosz2.html"><img class="targy"> Molekuláris Sejtbiológia</span> 
 			<span class="page" style="font-size:80%" data-src="done/SejtBiosz/sejtbiosz1.html">(I)</span><br>
-		<span class="page" data-src="done/Elettan/elettan2.html"><img class="targy"> Élettan</span>
+		<span class="page" data-src="done/Elettan/elettan2.html"><img class="targy"> <i>Élettan</i></span>
 			<span class="page" style="font-size:80%" data-src="done/Elettan/elettan1.html">(I)</span>
 			<span class="page" style="font-size:80%" data-src="done/Elettan/elettan1old.html">(régi)</span><br>
 		<span class="page" data-src="done/BioKemia/III/biokemia.html"><img class="targy"> Biokémia</span>
@@ -91,6 +97,7 @@ tesi  3.hét, 4.hét
 	</td>
 	<!-- tételek --> <td id="tetelek" style="text-align:left">
 		<input type="button" value="load LS" style="font-size:large" onclick="F_InputLoad(this)"></input>
+		<input type="button" id="btn_toggleLoad" value=" " style="font-size:large; float:right" onclick="F_toggleLoad(this)"></input>
 	  <br><br>
 		<input type="button" id="btn_saveLS" style="font-size:large; background-color:Chartreuse; font-weight:bold;" value="save LS" onclick="F_InputSave(this)"></input>
 	  <br><br>
@@ -128,9 +135,14 @@ tesi  3.hét, 4.hét
 	</td>
 </tr></table>
 
+<div id="centVideoDiv" style="position:fixed; top:20%; left:30%; border:15px solid black; visibility:hidden; z-index:4;" width="480">
+	<video id="centVideo" width="480"></video>
+	<div id="centVideoSeek" style="height:21px; background:grey;"><span style="position:absolute; background:gold;" id="centVideoBar">&nbsp;</span></div>
+</div>
 
 <div id="div_pageQTargy" style="width:100%"></div>
 
+<script src="lz-string.js"></script>
 <script src="javascript.js"></script>
 
 

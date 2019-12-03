@@ -1,8 +1,10 @@
 // window.onerror = function(msg, url, linenumber) { alert('Error message: '+msg+'\nLine Number: '+linenumber) }
 
 /* PROJECT - PROGRESS
+ ✖ tárgyakat el kéne mentse localstorage-be tömörítve, az gyorsabb
+ ✖ kardio impQ.52 altkérdéseit egybeveszi az 51-ével, ha nincs comment
+ ✖ tétel kérdésben átírok valamit, akkor a tételt deselectálja (gondolom, mert kérdés, és a hossza megváltozik, ami note-ban van)
  ✖ android: midQ a képernyőt töltse ki mindig
- ✖ impQ-k kal elején szarakodik, amikor először tölti őket be (lehet már osztályoztam máshol, mégis újnak veszi: lásd pl. belgyógy 1.tétel - adenohipofízis hormonok táblázat)
 
  ✖ HTML imgLoc & LearnLoc nem kell már a html HEAD-ekben
  ✖ lz-string nem kell már a html HEAD-ekben + amúgy sem
@@ -15,7 +17,7 @@
  ✖ lehet összes impQ-t elején betölthetném, ha style display none-ban van (talán úgy gyorsabb lenne az egész: meglepően gyors úgy)
  SEARCH:
 	✖ (ha az image nevében (/abbr) van a szó akkor is kidobja)
-	✖ (kis vs nagy betűk)
+	✔ (kis vs nagy betűk)
  ✖ skipQ-k / noteQ-k / importantQ-k(gyors repeat!) közt nem mutatja az impQ-kat
  ✖ tételQ kijelölése lassú
  ✖ kérdésnek állíthassam be, hogy hány perc múlva / milyen időpontban dobja ki újra (impQ-ként)
@@ -95,6 +97,7 @@
 */
 
 /* PROJECT - DONE
+ ✔ elsőre valamiért szarakszik feladatmegoldásnál azon questekkel, amelyikben impQ van (még nem tölti be őket). impQ-k kal elején szarakodik, amikor először tölti őket be (lehet már osztályoztam máshol, mégis újnak veszi: lásd pl. belgyógy 1.tétel - adenohipofízis hormonok táblázat)
  ✔ search: nagybetü vs kisbetü
  ✔ jelölhessem ki a kérdést importantnak(zöld), a Qlista-repTime-ban
  ✔ ha egy quest többször is szerepel (nextQ), akkor csak az elsőt tegye ki az osztályzás közé, és a többire mind ezen számot írja (ne generáljon nekik külön még1et)
@@ -168,6 +171,8 @@ for ( var i=0; i<kerdesek.length; i++ ) {
 var ua = navigator.userAgent.toLowerCase();
 var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
 
+document.documentElement.style.overflowX = 'hidden';
+
 var myTime
 var oldTime = false
 function F_getTime(){
@@ -186,20 +191,16 @@ function wait(ms) {
 var kerdesek = document.getElementsByClassName("kerdes")
 if ( localStorage.getItem("hkQ.max") === null ) { localStorage.setItem("hkQ.max",0) } 
 
-
 var arrQnameLSid = [] // Qtxt to LSid
-var arrNEWid = [] // LSid to Qtxt
-
-var arrQid = [] // Qid to Qtxt
 var arrQtxts = []  // arra kell, hogy upgradeQ-nál ezekbol nézi meg mikre lehet
-var arrQtxtsImp = []  // ugyanaz, mint elobbi: csak itt már impet kivágva
 var objQnameQtxt = {}  // Qname to Qtxt
-
 var arrQnames = []  // Qname + characterCount (csak ez legyen majd a végén, többi szvsz fölös)
+var arrImpQs = [] // ExpID to Qtxt
 
 var missQs = []
 
 var Qcount = 0
+var impID
 
 function F_checkMissImgs(){
 	var MissIMGS = []
@@ -272,7 +273,7 @@ function F_newLSid(){
 }
 
 var wrongEXPid = "foglalt vagy upgradelve lett:<br>"
-
+if ( localStorage.getItem("hk.ToggleAll") == "true" ) { document.body.style.backgroundColor = "Gainsboro" }
 
 /* Search method
  ► egy ID-s iframe van, amibe for ciklussal betölti a tárgyakat, majd a textjüket kimenti egy array-ba (nagyítóra klikkelésnél)
@@ -280,8 +281,6 @@ var wrongEXPid = "foglalt vagy upgradelve lett:<br>"
  ► egy resultra ráklikkelve az iframe/div(amelyik gyorsabb, display:none)-be tölti a tárgyat -> és abból szedi a parent/midQ stb. (ahogy eddig is)
 */
 var fileName
-var arrImpQs = []
-var txtLS = [] // Qtxt to LSid --> cseréljem le erre: localStorage.getItem(Qname)
 var elems = document.body.getElementsByTagName("*")
 var expQsLoaded = false
 function F_loadExpQs(parentDiv,origin) {
@@ -295,9 +294,12 @@ function F_loadExpQs(parentDiv,origin) {
 		var begin = elem.className.indexOf("{")
 		var end = elem.className.indexOf("}")
 		var EXPid = elem.className.slice(begin+1,end)
-		var Qtext = '<details class="' +elem.className+ '">' +elem.innerHTML+ "</details>"
-		arrImpQs[origin][EXPid] = Qtext
-		//console.log(EXPid)
+		
+		var qName = F_QtxtQname(elem.innerHTML)
+		if ( qName == "" || qName == " " ) { continue }
+		if ( qName.slice(-3) != "-->" ) { F_setCount(elem) }
+		//arrImpQs[origin][EXPid] = '<'+elem.tagName+' class="'+elem.className+'">'+elem.innerHTML+'</'+elem.tagName+'>' // ez vmiért nem jó, ha "open" van a classname-ben (farmak szívelégtelenség 1 tételnél nem volt jó, de másiknál meg igen)
+		arrImpQs[origin][EXPid] = '<details class="'+elem.className+'">'+elem.innerHTML+'</details>'
 	}
 }
 function F_checkEXPs() {
@@ -306,16 +308,8 @@ function F_checkEXPs() {
 	var parentDiv
 	if ( origin == "searchQs" ) { parentDiv = document.getElementById("div_searchQTargy") }
 	if ( origin == "pageQs" ) { parentDiv = document.getElementById("div_pageQTargy") }
+	//console.log(origin)
 	F_loadExpQs(parentDiv,origin)
-	
-	if ( expQsLoaded == false ) {
-		parentDiv = document.getElementById("div_expQTargy")
-		parentDiv.innerHTML = pageTexts["expqs.html"]
-		arrImpQs["expQs"] = []
-		F_loadExpQs(parentDiv,"expQs")
-		expQsLoaded = true
-	}
-	
 }
 
 function F_detailsToggle(detElem){ 
@@ -417,11 +411,12 @@ function F_impQlot(detElem){ // 0,4ms/Q a betöltési ideje
 	var unitTime = (endTime*1000/count).toFixed(2);
 	//console.log("– F_impQlot – "+endTime.toFixed(2)+"sec ("+unitTime+"ms/Q, "+count+"db Q)")
 }
-//F_impQlot(document.documentElement)
+F_impQlot(document.documentElement)
 function F_loadQtxt(impID,divSpan,origin){
 	var begin,end,hidden
 	//console.log(impID+" "+divSpan)
 	if ( impID.indexOf("hide") != -1 ) { hidden = true }
+	//console.log(impID)
 	if ( impID.indexOf("[") != -1 ) {
 		begin = impID.indexOf("[") +1
 		end = impID.indexOf("]")
@@ -433,6 +428,7 @@ function F_loadQtxt(impID,divSpan,origin){
 		begin = impID.indexOf("{") +1
 		end = impID.indexOf("}")
 		impID = impID.slice(begin,end)
+		//console.log(impID)
 		Qtxt = arrImpQs["expQs"][impID]
 		impID = "{"+impID+"}"
 	}
@@ -572,12 +568,18 @@ function F_midQ(detElem){
 		midQ.onclick = function(){ 
 			midQloaded = false
 			var impID = this.className
+			if ( impID.indexOf("{") != -1 ) { 
+				midQisExp = true
+			} else {
+				midQisExp = false
+			}
 			F_loadQtxt(impID,this.tagName)
 			F_midQText(Qtxt)
 		}
 	}
 }
 F_midQ(document)
+var midQisExp
 
 /* IMG-load mechanizmusa
 	+ toggle esetén 'for összes image'
@@ -590,6 +592,7 @@ F_midQ(document)
 */
 var testLoad = false
 var missImgs = ""
+var vidStatus
 function F_loadImgVideo(detElem){
 	//console.clear()
 	//console.log("F_loadImgVideo")
@@ -597,6 +600,7 @@ function F_loadImgVideo(detElem){
 	var origin = document.getElementById("div_MidQ").dataset.origin
 	if ( origin == "searchQs" ) { path = searchPath }
 	if ( origin == "pageQs" ) { path = pagePath }
+	//console.log(path)
 	
 	var imgs = detElem.getElementsByTagName("IMG")
 	for ( var x=0; x<imgs.length; x++ ) { 
@@ -626,7 +630,7 @@ function F_loadImgVideo(detElem){
 		//if ( parent.tagName == "DETAILS" && parent.parentElement.className.indexOf("[") != -1 ) { isExp = false }
 		
 		//alert("htmlIMGloc: "+htmlIMGloc)
-		if ( isExp == true ) {
+		if ( isExp == true || midQisExp == true ) {
 			imgs[x].src = "images/" + imgs[x].dataset.src
 			imgs[x].removeAttribute("data-src")
 		} else {
@@ -643,6 +647,7 @@ function F_loadImgVideo(detElem){
 	}
 	
 	F_abbrSet(detElem)
+	F_synonyms(detElem)
 	
 	// metszet img-ek
 	var imgs = detElem.getElementsByTagName("img")
@@ -687,7 +692,11 @@ function F_loadImgVideo(detElem){
 		if ( allVideo[i].offsetParent == null && testLoad == false ) { continue }
 		if ( allVideo[i].dataset.src == undefined ) { continue } 
 		var source = document.createElement('source')
-		source.setAttribute('src', path.slice(0,path.lastIndexOf("/")+1) + allVideo[i].dataset.src)
+		if ( midQisExp == true ) {
+			source.setAttribute('src', allVideo[i].dataset.src)
+		} else {
+			source.setAttribute('src', path.slice(0,path.lastIndexOf("/")+1) + allVideo[i].dataset.src)
+		}
 		source.onerror = function(){
 			var textVar = this.src.slice(this.src.lastIndexOf("/")+1)
 			if ( missImgs.indexOf(textVar) == -1 ) { missImgs = missImgs+"\n"+textVar }
@@ -766,6 +775,62 @@ function F_loadImgVideo(detElem){
 		}
 	}
 	
+	// centVideos Load
+	var centVideo = document.getElementById("centVideo")
+	var allVideoCent = detElem.getElementsByClassName("video")
+	for ( var i=0; i<allVideoCent.length; i++ ) {
+		allVideoCent[i].onclick = function(){
+			if ( midQisExp == true ) {
+				centVideo.setAttribute('src', this.dataset.src)
+			} else {
+				centVideo.setAttribute('src', path.slice(0,path.lastIndexOf("/")+1) + this.dataset.src)
+			}
+			document.getElementById("centVideoDiv").style.visibility = 'visible';
+			vidStatus = "show"
+		}
+	}
+	
+	// centVideo Load
+	//ezt elég 1x megcsinálni, amikor elindítom (fix majd, mert lehet egyszerusíteni)
+	document.getElementById("div_centIMG").appendChild(document.getElementById("centVideoDiv"))
+	document.getElementById("centVideoDiv").onclick = function() { vidStatus = true }
+	centVideo.onclick = function(){
+		if ( this.paused == false ) {
+			this.style.borderColor = "black"
+			
+			var widthPx = this.offsetWidth *this.currentTime /this.duration
+			centVideoBar.style.width = widthPx
+			centVideoBar.style.left = this.offsetLeft
+			
+			this.pause(); 
+		} else {
+			this.style.borderColor = "springgreen"
+			this.play();
+			
+			var centVideoSeek = document.getElementById("centVideoSeek")
+			centVideoSeek.onclick = function(e){
+				var rect = e.target.getBoundingClientRect();
+				//var testX = e.clientX - centVideoSeek.left
+				//var testX = rect.left
+				var x = e.pageX - rect.left
+				var percent = x / this.offsetWidth
+				//alert(e.pageX+" - "+rect.left+" = "+x)
+				//alert(x+" "+this.offsetWidth+" "+percent)
+				centVideo.style.borderColor = "black"
+				centVideo.pause();
+				var currTime = percent * centVideo.duration
+				currTime = Math.floor(currTime);
+				//console.log(currTime);
+				centVideo.currentTime = currTime
+				
+				var widthPx = centVideo.offsetWidth *centVideo.currentTime /centVideo.duration
+				centVideoBar.style.width = widthPx
+				centVideoBar.style.left = centVideo.offsetLeft
+			}
+		}
+	}
+	
+	
 	//if ( e ) { e.stopPropagation() }
 }
 
@@ -816,7 +881,7 @@ function func_titleVerChange(velement){
 	velement.onclick = function(event){
 		tooltipSpan.style.visibility = "visible";
 		tooltipSpan.innerHTML = table_defText[this]
-		tooltipStatus = "show"
+		tooltipStatus = 1
 		event.stopPropagation();
 			
 		var posX = this.offsetLeft
@@ -858,7 +923,7 @@ function func_titleVerChange(velement){
 	}
 	velement.onmouseout = function(){
 		this.title = table_defText[this]
-		if ( tooltipStatus != "show" ) { tooltipSpan.style.visibility = "hidden" }
+		if ( tooltipStatus != 1 ) { tooltipSpan.style.visibility = "hidden" }
 	}
 }
 function F_titleChange(detElem){
@@ -866,6 +931,36 @@ function F_titleChange(detElem){
 	for ( var i = 0; i < abbrok.length; i++ ) { func_titleVerChange(abbrok[i]) }
 }
 F_titleChange(document)
+
+function F_synonyms(detElem){
+	function getRandomInt(max) { return Math.floor(Math.random() * Math.floor(max)) }
+	var synonyms = detElem.getElementsByTagName("SPAN")
+	for ( var x=0; x<synonyms.length; x++ ) {
+		if ( synonyms[x].offsetParent == null ) { continue }
+		if ( synonyms[x].dataset.syno == null ) { continue }
+		
+		synonyms[x].style.fontStyle = "italic"
+		synonyms[x].style.backgroundColor = "#FFFFB0"
+		synonyms[x].style.cursor = "pointer"
+
+		// egy randomot kiválaszt
+		var synos = synonyms[x].dataset.syno
+		synos = synos.split(" | ")
+		var num = getRandomInt(synos.length)
+		synonyms[x].innerHTML = synos[num]
+
+		synonyms[x].onclick = function() { // sorban következőt kiválasztja
+			var synos = this.dataset.syno
+			synos = synos.split(" | ")
+			if ( this.innerHTML == synos[0] ) { 
+				synos.push(synos[0])
+				synos.shift()
+				this.dataset.syno = synos.join(" | ")
+			}
+			this.innerHTML = synos[0]
+		}
+	}
+}
 
 var imgStatus
 function F_abbrSet(elem){ 
@@ -898,6 +993,7 @@ function F_imgClick(detElem){ // képnagyítás balKlikkel középre
 		centerDiv.style.visibility = "visible";
 		centerImage.src = detElem.src
 		centerDiv.style.maxHeight = "95%";
+		centerImage.style.maxHeight = ""
 		centerDiv.style.maxWidth = "95%";
 		centerDiv.style.overflow = "auto";
 
@@ -909,15 +1005,20 @@ function F_imgClick(detElem){ // képnagyítás balKlikkel középre
 	var imgs = detElem.getElementsByTagName("IMG")
 	for ( var i=0;  i<imgs.length;  i++ ) {
 		imgs[i].onclick = function() { F_showCenterDiv(this) }
-		if ( imgs[i].classList.contains("mini") == true ) {
+		if ( imgs[i].classList.contains("mini") == true && isAndroid == false ) {
 			imgs[i].onmouseover = function() { 
 				this.style.position = "absolute"
-				this.style.transform = "scale(8,8)";
-				//this.style.maxHeight = "140px";
+				var rect = this.getBoundingClientRect()
+				var thisW = this.width *4
+				if ( rect.left < thisW ) { this.style.left = thisW }
+				this.style.transform = "scale(8)"
+				this.style.zIndex = "4"
 			}
 			imgs[i].onmouseout = function() {
-				this.style.position = ""
-				this.style.transform = "scale(1,1)";
+				this.style.position = "static"
+				this.style.transform = "scale(1)"
+				this.style.left = ""
+				this.style.zIndex = "1"
 			}
 		}
 		if ( imgs[i].classList.contains("metszet") == true ) {
@@ -950,11 +1051,18 @@ function F_centIMG(){ // create center div + image
 		if ( imgStatus == "hide" ) { centerDiv.style.visibility = "hidden" }
 		imgStatus = "hide"
 
-		tooltipSpan.style.visibility = "hidden";
-		tooltipStatus = "hide"
+		tooltipStatus = tooltipStatus -1
+		if ( tooltipStatus != 1 ) { tooltipSpan.style.visibility = "hidden" }
+
+		if ( vidStatus == "hide" ) { 
+			document.getElementById("centVideoDiv").style.visibility = "hidden" 
+			document.getElementById("centVideo").pause()
+		}
+		vidStatus = "hide"
 	}
 }
 F_centIMG()
+tooltipSpan.onclick = function(){ tooltipStatus = tooltipStatus +1 }
 
 function F_clearLS(detElem) {
 	var bgColor = detElem.style.backgroundColor
@@ -1133,6 +1241,21 @@ function F_skipTime() {
 }
 F_skipTime()
 
+function F_toggleLoad(btn) {
+	console.log("F_toggleLoad: "+localStorage.getItem("toggleLoad"))
+	if ( localStorage.getItem("toggleLoad") != "false" ) {
+		localStorage.setItem("toggleLoad", "false")
+		btn.style.backgroundColor = ""
+	} else {
+		localStorage.setItem("toggleLoad", "true")
+		btn.style.backgroundColor = "green"
+	}
+}
+if ( isAndroid != false ) { localStorage.setItem("toggleLoad","false") }
+if ( localStorage.getItem("toggleLoad") != "false" ) { 
+	document.getElementById("btn_toggleLoad").style.backgroundColor = "green"
+}
+
 var newText
 function F_cutImpQs(text){
 	// kivágom a <span class="imp [x]"> itt lévo szöveget vágom ki </span> (div-nél is)
@@ -1178,9 +1301,8 @@ function F_cutImpQs(text){
 	newText = text
 }
 
-var qName
 function F_QtxtQname(text){
-	qName = null
+	var qName = null
 	if ( text.indexOf("<summary") != -1 ) { 
 		qName = text.slice(text.indexOf("<summary"),text.indexOf("</summary>")) 
 		qName = qName.slice(qName.indexOf(">")+1)
@@ -1189,6 +1311,7 @@ function F_QtxtQname(text){
 		qName = qName.slice(qName.indexOf(">")+1)
 	}
 	if ( qName == null ) { 
+		//console.log(text)
 		qName = text
 		/*if ( qName.indexOf("kerdes") != -1 ) { // span,div
 			qName = qName.slice(qName.indexOf(">")+1)
@@ -1196,9 +1319,9 @@ function F_QtxtQname(text){
 		}*/
 		//console.log("ha hiba van, lehet itt találok megoldást: "+Qtxt)  // a funkcióra hivatkozás még különbözo Qtxt-ekkel történik, és nem volt idom szépen megírni, de egyenlore elvileg jó így is, csak hibára fogékonyabb így
 	}
+	return qName
 }
 
-var impID
 function F_getImpID(classTXT){
 	impID = " !-nincs-! "
 	if ( classTXT.indexOf("{") != -1 ) {
@@ -1212,6 +1335,37 @@ function F_getImpID(classTXT){
 	}
 }
 
+function F_setCount(Qelem) {
+	var count
+	if ( Qelem.className.indexOf("[") != -1  || Qelem.className.indexOf("{") != -1 ) { 
+		F_getImpID(Qelem.className)
+		count = impID
+		var altQk = Qelem.getElementsByClassName("kerdes")
+		for ( var i = 0; i < altQk.length; i++ ) {
+			var altQ = altQk[i]
+			var qName = F_QtxtQname(altQ.innerHTML)
+			if ( qName.slice(-3) == "-->" ) { continue }
+			if ( altQ.className.indexOf("[") != -1  || altQ.className.indexOf("{") != -1 ) { continue }
+			altQ.innerHTML = altQ.innerHTML.replace(qName,qName+ "<!--" +count+ "-->")
+		}
+		/*if ( Qelem.className.indexOf("imp") != -1 ) { // ez esetben a Quest hosszát mentené el impQ-nál is, így változtatásakor upgradelni kéne mindig (ami fölös sztem, mert nagyon ritka)
+			F_getImpID(Qelem.className)
+			F_loadQtxt(impID)
+			count = Qtxt
+		} else {
+			count = Qelem.innerHTML
+		}*/
+	} else if ( Qelem.className.indexOf("abbr") != -1 ) { 
+		count = Qelem.parentElement.innerHTML
+		count = count.length
+	} else { // details, span, font, abbr
+		count = Qelem.innerHTML
+		count = count.length
+	}
+	var qName = F_QtxtQname(Qelem.innerHTML)
+	count = qName+ "<!--" +count+ "-->"
+	Qelem.innerHTML = Qelem.innerHTML.replace(qName,count)
+}
 function F_checkQs(){
 	/*F_getTime()
 	var diffTime = myTime-oldTime
@@ -1220,33 +1374,13 @@ function F_checkQs(){
 //console.clear()
 	for ( var i=0; i<kerdesek.length; i++ ) { 
 		var Qelem = kerdesek[i]
-		F_QtxtQname(Qelem.innerHTML)
-		if ( qName.slice(-3) != "-->" ) {
-			//console.log(qName.slice(-10))
-			var count = 0
-			if ( Qelem.className.indexOf("midQ") != -1 ) { 
-				F_getImpID(Qelem.className)
-				count = impID
-				//console.log(count)
-			} else {
-				if ( Qelem.innerHTML.indexOf("<summary") != -1 ) { 
-					count = '<'+Qelem.tagName+' class="'+Qelem.className+'">'+Qelem.innerHTML+'</'+Qelem.tagName+'>'
-				} else if ( Qelem.className.indexOf("abbr") != -1 ) { 
-					count = Qelem.parentElement.innerHTML
-				}
-				count = count.length
-			}
-			count = qName+ "<!--" +count+ "-->"
-			//console.log(count)
-			Qelem.innerHTML = Qelem.innerHTML.replace(qName,count)
-			//if ( Qelem.innerHTML.indexOf("<summary") == -1 ) { console.log(Qelem.innerHTML.slice(0,Qelem.innerHTML.indexOf("-->"))) }
-			arrQnames[count] = true
-			var Qtxt = '<'+Qelem.tagName+' class="'+Qelem.className+'">'+Qelem.innerHTML+'</'+Qelem.tagName+'>'
-			arrQtxts.push(Qtxt)
-			
-			F_QtxtQname(Qtxt)
-			//objQnameQtxt[qName] = Qtxt
-		}
+		var qName = F_QtxtQname(Qelem.innerHTML)
+		if ( qName == "" || qName == " " ) { continue }
+		if ( qName.slice(-3) != "-->" ) { F_setCount(Qelem) }
+		qName = F_QtxtQname(Qelem.innerHTML)
+		arrQnames[qName] = true
+		var Qtxt = '<'+Qelem.tagName+' class="'+Qelem.className+'">'+Qelem.innerHTML+'</'+Qelem.tagName+'>'
+		arrQtxts.push(Qtxt)
 	}
 	var details = document.body.getElementsByTagName("DETAILS");
 	for ( var i=0; i<details.length; i++ ) { 
@@ -1283,17 +1417,12 @@ function F_oldQchange(oldLSid){
 	
 	var arrNEWtxt = []
 	console.log(oldQtxt)
-	//F_QtxtQname(oldQtxt)
-	//console.log(qName)
 	var summaryQ = oldQtxt.slice(0,oldQtxt.lastIndexOf("<!--"))
-	//console.clear()
-	//console.log(summaryQ)
 	
 	for ( var i=0; i<kerdesek.length; i++ ) { 
 		var Qelem = kerdesek[i]
 		var Qtext = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
-		F_QtxtQname(Qtext)
-		var Qname = qName
+		var Qname = F_QtxtQname(Qtext)
 		Qname = Qname.slice(0,Qname.lastIndexOf("<!--"))
 		if ( Qname == summaryQ && arrNEWtxt.indexOf(Qtext) == -1 ) {
 			//console.log(Qtext)
@@ -1302,18 +1431,6 @@ function F_oldQchange(oldLSid){
 	}
 	document.getElementById("div_upgQ").innerHTML = defaultText + oldQtxt + "<hr>" // utána kell legyen, különben ezt is beleveszi a kerdesek[i]-be
 	//alert("stop")
-	
-	
-	//impQ-kat is át kell nézze, ha nem lesznek importálva kapásból --> azok egy tömbbe legyenek (impId = Qtxt), és a Qtxt-eket átnézi
-	
-	/*for ( var i=0; i<arrQtxts.length; i++ ) { 
-		var Qtext = arrQtxts[i]
-		var summaryQnew = Qtext.slice(Qtext.indexOf("<summary")+9,Qtext.indexOf("</summary>"))
-		if ( summaryQ == summaryQnew ) {
-			//alert(Qtext)
-			arrNEWtxt.push(Qtext)
-		}
-	}*/
 
 	// skip BEGIN
 		var option = document.createElement("option")
@@ -1323,7 +1440,6 @@ function F_oldQchange(oldLSid){
 		option.appendChild(text)
 	// skip END
 	for ( var i=0; i<arrNEWtxt.length; i++ ) {
-	//for ( newLSid in arrNEWid ) {
 		var newQtxt = arrNEWtxt[i]
 		var text = document.getElementById("div_upgQ").innerHTML // (kell hogy megorizze a buttont + selectet)
 		document.getElementById("div_upgQ").innerHTML = text + newQtxt
@@ -1366,9 +1482,7 @@ function F_oldQchange(oldLSid){
 		if ( value != "–––" ) {
 			var Qtxt = arrNEWtxt[value-1]
 			//alert(Qtxt)
-			F_QtxtQname(Qtxt)
-			//alert(qName)
-			
+			var qName = F_QtxtQname(Qtxt)
 			
 			localStorage.removeItem(oldQtxt) // régit letörli
 			localStorage.setItem(oldLSid,qName) // frissíti
@@ -1552,10 +1666,8 @@ F_loadTetelQs()
 var pageLinks = document.getElementsByClassName("page")
 var pagePath, searchPath // img betöltésnél használja
 var pageTexts = {}
-var objQnameQtxt = {}
 function F_andrHide() { // androidon elrejti a könyveket + tételeket
 	var ua = navigator.userAgent.toLowerCase();
-	var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
 	if ( isAndroid ) { document.getElementById("tetelek").style.display = "none" }
 }
 //F_andrHide()
@@ -1734,6 +1846,9 @@ function F_searchWord() {
 			console.log(path)
 		}
 		if ( hianyzik != "" ) { console.log("HIÁNYZIK:"+hianyzik) }
+		document.getElementById("btn_SearchW").style.color = ""
+		document.getElementById("btn_SearchW").style.backgroundColor = ""
+		document.getElementById("div_SearchW").style.backgroundColor = "white"
 	}
 	
 	function F_DivSearchWord() {
@@ -1770,7 +1885,18 @@ function F_searchWord() {
 		input.style.paddingLeft = "3px"
 		input.style.paddingRight = "3px"
 		input.style.transform = "translate(-50%)";
-		input.addEventListener("keyup", function(event) { if (event.keyCode === 13) { F_searchResult() } })
+		input.addEventListener("keyup", function(event) { if (event.keyCode === 13) { 
+			F_getTime()
+			var diffTime = myTime - lastClickTime
+			//console.log(myTime+" vs "+lastClickTime)
+			if ( diffTime > 1 ) {
+				document.getElementById("div_SearchW").style.backgroundColor = "grey"
+				var int_Click = window.setInterval(function(){
+					F_searchResult()
+					clearInterval(int_Click) 
+				}, 100);
+			}
+		} })
 		//input.onchange = function() { F_searchResult() }
 		//input.value = "inzulin";
 		
@@ -1782,7 +1908,20 @@ function F_searchWord() {
 		button.style.position = "absolute"
 		button.style.top = "1%";
 		button.style.cursor = "pointer"
-		button.onclick = function() { F_searchResult() }
+		button.onclick = function(){ 
+			F_getTime()
+			var diffTime = myTime - lastClickTime
+			//console.log(myTime+" vs "+lastClickTime)
+			if ( diffTime > 1 ) {
+				this.style.backgroundColor  = "black"
+				this.style.color  = "white"
+				document.getElementById("div_SearchW").style.backgroundColor = "grey"
+				var int_Click = window.setInterval(function(){
+					F_searchResult()
+					clearInterval(int_Click) 
+				}, 100);
+			}
+		}
 
 		var divText = document.createElement("div")
 		div.appendChild(divText)
@@ -1845,6 +1984,7 @@ function F_searchWord() {
 			document.getElementById("div_MidQ").style.display = "none" 
 			document.getElementById("div_MidQ").dataset.origin = "pageQs"
 			midQloaded = false
+			midQisExp = false
 		}
 		button.style.textAlign = "center"
 		//button.style.position = "absolute"
@@ -1992,6 +2132,17 @@ var varNextQ = false
 var midQloaded = false
 var threeSec = 0
 var F_seekBar = window.setInterval(function(){
+	if ( document.getElementById("centVideo").paused == false ) {
+		var centVideo = document.getElementById("centVideo")
+		var centVideoBar = document.getElementById("centVideoBar")
+		var widthPx = centVideo.offsetWidth *centVideo.currentTime /centVideo.duration
+		centVideoBar.style.width = widthPx
+		centVideoBar.style.left = centVideo.offsetLeft
+	} else if ( document.getElementById("centVideo").currentTime == document.getElementById("centVideo").duration ) {
+		document.getElementById("centVideo").currentTime = 0;
+		document.getElementById("centVideo").play();
+	}
+	
 	if ( document.getElementById("playedVideo") ) {
 		var playedVideo = document.getElementById("playedVideo")
 		var parentDiv = playedVideo.parentElement
@@ -2007,10 +2158,9 @@ var F_seekBar = window.setInterval(function(){
 	}
 	threeSec = threeSec +1
 	
-	var testLoad = false
-	if ( isAndroid == false && testLoad == true ) {
-		var loadTime = 0
-		if ( threeSec > loadTime && document.getElementById("div_SearchW").style.display != "block" && document.getElementById("div_MainFrame").style.display != 'block' ) {
+	if ( localStorage.getItem("toggleLoad") != "false" ) {
+		var loadTime = 2
+		if ( threeSec > loadTime && document.getElementById("div_SearchW").style.display != "block" ) {
 			var full = pageLinks.length -1
 			for ( var i=0; i<pageLinks.length; i++ ) { 
 				document.getElementById("div_RefreshStatus").innerHTML = i+"/"+full
@@ -2022,6 +2172,16 @@ var F_seekBar = window.setInterval(function(){
 			threeSec = 0
 		}
 	}
+	
+	/*var firstPass = false
+	if ( pageLinks[pageLinks.length].dataset.loaded == "true" && firstPass == false ) {
+		for ( var targyPath in pageTexts ) {
+			var targyText = pageTexts[targyPath]
+			targyText = LZString.compressToUTF16(targyText)
+			localStorage.setItem(targyPath,targyText)
+		}
+		firstPass = true
+	}*/
 }, 1000);
 
 function F_answerQ(detElem){ 
@@ -2059,7 +2219,7 @@ function F_answerQ(detElem){
 function F_testVideoError() {
 	var allVideo = document.getElementsByTagName("video")
 	for ( var i=0; i<allVideo.length; i++ ) {
-		allVideo[i].onerror = function(){ alert("sajt") };
+		allVideo[i].onerror = function(){ alert("video betöltési hiba") };
 	}
 }
 F_testVideoError()
@@ -2093,7 +2253,7 @@ function F_toggleAll() {
 		F_tetelQs()
 		F_getTexts()
 		F_oldQcheck()
-		F_tetelChoose()
+		F_tetelChoose() //
 		func_tableSkipFix()
 		F_valFix()
 		F_valSkip()
@@ -2163,10 +2323,12 @@ function F_calcqTimer(detElem) {
 			var tetelQs = tetelQ.getElementsByClassName("kerdes")
 			if ( tetelQ.classList.contains("kerdes") == true ) { 
 				F_calcLSid(tetelQ)
+				var qName = F_QtxtQname(tetelQ.innerHTML)
 				if ( arrLSids.includes(actLSid) != true ) { arrLSids.push(actLSid+" – "+qName) }
 			}
 			for ( var x=0; x<tetelQs.length; x++ ) {
 				F_calcLSid(tetelQs[x])
+				var qName = F_QtxtQname(tetelQs[x].innerHTML)
 				if ( arrLSids.includes(actLSid) != true ) { arrLSids.push(actLSid+" – "+qName) }
 			}
 			numTetel = numTetel +1
@@ -2221,21 +2383,56 @@ function F_calcqTimer(detElem) {
 		td.id = LSid
 		td.innerHTML = td.innerHTML.slice(td.innerHTML.indexOf(" "))
 		if ( localStorage.getItem(LSid+"_skip") == "important" ) { td.style.backgroundColor = "lawngreen" }
-		if ( localStorage.getItem(LSid+"_skip") == "gold" ) { td.style.backgroundColor = "gold" }
-		td.onclick = function(){ 
+		if ( localStorage.getItem(LSid+"_skip") == "tempskip" ) { td.style.backgroundColor = "gold" }
+
+		function F_clickEvent() {
+			var LSid = this.id
+			console.log(event)
+			if ( LSid == undefined ) { alert("F_calcqTimer hiba: undefined LSid") }
+			
+			var statusX
+			if ( this.style.backgroundColor == "" ) { statusX == 0 }
+			if ( this.style.backgroundColor == "lawngreen" ) { statusX == 1 }
+			if ( this.style.backgroundColor == "gold" ) { statusX == 0 }
+			
+			if ( event == "click" ) { statusX = statusX +1 }
+			if ( event.button == "contextmenu" ) { statusX = statusX -1 }
+			
+			if ( statusX == 0 ) { this.style.backgroundColor == "" }
+			if ( statusX == 1 ) { this.style.backgroundColor == "lawngreen" }
+			if ( statusX == 2 ) { this.style.backgroundColor == "gold" }
+			
+			if ( this.style.backgroundColor == "" ) { localStorage.setItem(LSid+"_skip","") }
+			if ( this.style.backgroundColor == "lawngreen" ) { localStorage.setItem(LSid+"_skip","important") }
+			if ( this.style.backgroundColor == "gold" ) { localStorage.setItem(LSid+"_skip","tempskip") }
+			
+			func_calcOldNew()
+		}
+
+		td.addEventListener("contextmenu",function(ev){ ev.preventDefault() })
+		td.addEventListener("mousedown",function(){
 			var LSid = this.id
 			if ( LSid == undefined ) { alert("F_calcqTimer hiba: undefined LSid") }
-			if ( this.style.backgroundColor == "lawngreen" ) {
-				this.style.backgroundColor = "gold"
-				localStorage.setItem(LSid+"_skip","gold")
-			} else if ( this.style.backgroundColor == "gold" ) {
-				this.style.backgroundColor = ""
-				localStorage.setItem(LSid+"_skip","")
-			} else {
-				this.style.backgroundColor = "lawngreen"
-				localStorage.setItem(LSid+"_skip","important")
-			}
-		}
+			
+			var statusX
+			if ( this.style.backgroundColor == "" ) { statusX = 0 }
+			if ( this.style.backgroundColor == "lawngreen" ) { statusX = 1 }
+			if ( this.style.backgroundColor == "gold" ) { statusX = 2 }
+			
+			if ( event.button == 0 ) { statusX = statusX +1 }
+			if ( event.button == 2 ) { statusX = statusX -1 }
+			
+			if ( statusX == 0 || statusX == 3 ) { this.style.backgroundColor = "" }
+			if ( statusX == 1 ) { this.style.backgroundColor = "lawngreen" }
+			if ( statusX == 2 || statusX == -1 ) { this.style.backgroundColor = "gold" }
+			
+			if ( this.style.backgroundColor == "" ) { localStorage.setItem(LSid+"_skip","") }
+			if ( this.style.backgroundColor == "lawngreen" ) { localStorage.setItem(LSid+"_skip","important") }
+			if ( this.style.backgroundColor == "gold" ) { localStorage.setItem(LSid+"_skip","tempskip") }
+			
+			func_calcOldNew()
+		})
+
 		var td = document.createElement("TD")
 		tr.appendChild(td)
 		var repTime = objQtime[Qname].slice(objQtime[Qname].lastIndexOf(","))
@@ -2319,13 +2516,29 @@ function F_CreateQDiv() {
 		button.style.cursor = "pointer"
 
 		button.onclick = function(){ 
-			if ( document.getElementById("div_SearchW") != "[object HTMLDivElement]" ) { F_DivSearchWord() }
-			if ( document.getElementById("div_SearchW").style.display == "block" ) {
-				document.getElementById("div_SearchW").style.display = "none"
-			} else {
-				document.getElementById("div_SearchW").style.display = "block"
-				F_loadAllPageTexts()
+			F_getTime()
+			var diffTime = myTime - lastClickTime
+			//console.log(myTime+" vs "+lastClickTime)
+			if ( diffTime > 1 ) {
+				if ( document.getElementById("div_SearchW").style.display == "none" ) {
+					this.style.backgroundColor  = "black"
+					this.style.color  = "white"
+				}
+				var int_Click = window.setInterval(function(){
+					if ( document.getElementById("div_SearchW").style.display == "block" ) {
+						document.getElementById("div_SearchW").style.display = "none"
+					} else {
+						document.getElementById("div_SearchW").style.display = "block"
+						button.style.color = ""
+						button.style.backgroundColor = ""
+						F_loadAllPageTexts()
+					}
+					//F_searchResult()
+					clearInterval(int_Click) 
+				}, 100);
 			}
+			
+			//if ( document.getElementById("div_SearchW") != "[object HTMLDivElement]" ) { F_DivSearchWord() }
 		}
 	}
 	F_ButtonSearchWord()
@@ -2381,7 +2594,6 @@ function F_CreateQDiv() {
 				document.getElementById("Div_Tetelek").style.display = "none"
 				this.style.borderColor = "black"
 			}
-			F_temakorStatus()
 		}
 	}
 	F_ButtonTetelek()
@@ -2642,18 +2854,18 @@ function F_CreateQDiv() {
 		button.value = "0"
 	}
 	F_ButtonSkip()
-	function F_ButtonGold() {
+	function F_ButtonTempSkip() {
 		var button = document.createElement("input")
-		button.id = "btn_gold"
+		button.id = "btn_tempskip"
 		button.type = "button"
 		divSettings.appendChild(button)
 		button.style.backgroundColor = "gold"
 		button.style.fontWeight = "bold"
 		button.style.border = "3px solid black"
-		button.onclick = function(){ /*func_spanClick(this)*/ }
+		button.onclick = function(){ func_spanClick(this) }
 		//button.value = "0"
 	}
-	F_ButtonGold()
+	F_ButtonTempSkip()
 	function F_SpanRepNew() {
 		var span = document.createElement("span")
 		span.id = "span_RepNew"
@@ -2971,11 +3183,6 @@ function F_nextMark(jegy){ // következo kérdés nehézségét beállítja,
 	}*/
 }
 
-localStorage.setItem("msb.I.",0)
-localStorage.setItem("msb.II.",0)
-localStorage.setItem("msb.III.",0)
-localStorage.setItem("msb.IV.",0)
-
 var tetelek = []
 function F_tetelChoose(){ // createli a választható tételek listáját
 	F_getTime()
@@ -3028,36 +3235,25 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 
 	var Table = document.getElementsByClassName("mainTitle")
 	for ( var i = 0;   i < Table.length;   i++ ) { // temakorok
-		szoveg = Table[i].innerHTML
 		Table[i].parentElement.className = "temakor"
-		Table[i].parentElement.id = szoveg
-		createTemakor(szoveg)
+		Table[i].parentElement.id = Table[i].innerHTML
+		createTemakor(Table[i].innerHTML)
 	}
 	createTemakor("uncategorized")
 
 	var Table = document.querySelectorAll('.phase,.status')
 	for ( var i = 0;   i < Table.length;   i++ ) { // tetelek
+		var phaseDiv = Table[i].parentElement // ez maga a tétel DETAILS-a, amiben az összes kérdése megtalálható
 		var tetelID = i + "," + Table[i].innerHTML
-		var szoveg = Table[i].innerHTML
+		phaseDiv.id = tetelID
+		//console.log(tetelID)
 		var div = document.createElement("div");
-		
-		var button = document.createElement("input");
-		button.type = "button";
-		button.style.border = "2px solid black";
-		button.style.height = "23px";
-		button.style.width = "30px";
-		button.style.fontSize = "small"
-		button.id = tetelID+"_button";
-		div.appendChild(button)
 
 		var label = document.createElement("label")
-		label.id = tetelID +"_button_label"
-		label.innerHTML = '<b>'+ szoveg +'</b>'
+		label.id = tetelID+"_button"
+		label.innerHTML = '<b>'+ Table[i].innerHTML +'</b>'
+		label.style.cursor = "pointer"; 
 		div.appendChild(label)
-
-		var ul = document.createElement("div")
-		ul.style.display = "none"
-		div.appendChild(ul)
 
 		if ( Table[i].parentElement.parentElement.className == "temakor" ) {
 			var elem = document.getElementById(Table[i].parentElement.parentElement.id + "_details")
@@ -3066,46 +3262,38 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 			var elem = document.getElementById("uncategorized_details")
 			elem.appendChild(div)
 		}
-	
-		var phaseDiv = Table[i].parentElement
-		var title = phaseDiv.getElementsByClassName("title")
-		for ( var y = 0;   y < title.length;   y++ ) { // title
-			var li = document.createElement("li")
-			li.innerHTML = title[y].innerHTML
-			li.onclick = function(){
-				if ( this.style.color != "red" ) {
-					this.style.color = "red"
-				} else {
-					this.style.color = "black"
-				}
-			}
-			ul.appendChild(li)
-		}
 
-		if ( localStorage.getItem(button.id) == "true" ) {
+		if ( localStorage.getItem(tetelID+"_button") == "true" ) {
 			label.style.backgroundColor = "paleGreen";
-			F_changeTetelCount("1",button)
 			F_impQlot(phaseDiv)
 		} else {
 			label.style.backgroundColor = "";
 		}
 		
-		var button = document.getElementById(tetelID+"_button")
-		button.onclick = function(){ F_clickTemaButton(this) }
-		var label = document.getElementById(tetelID+"_button_label")
 		label.onclick = function(){
-			var parent = this.parentElement
-			var div = parent.getElementsByTagName("DIV")[0];
-			if ( div.style.display == "none" ) {
-				div.style.display = "block"
+			if ( localStorage.getItem(this.id) == "true" ) {
+				localStorage.setItem(this.id,false)
+				this.style.backgroundColor = "";
 			} else {
-				div.style.display = "none"
+				localStorage.setItem(this.id,true)
+				this.style.backgroundColor= "paleGreen";
+				var tetelID = this.id
+				tetelID = tetelID.slice(0,tetelID.indexOf(","))
+				//console.log(tetelID)
+				var Table = document.querySelectorAll('.phase,.status')
+				F_impQlot(Table[tetelID].parentElement)
 			}
+			
+			func_calcOldNew();
+			func_calcJegy()
+			func_calcWork()
+			func_calcDate()
+			func_calcRepeat()
 		}
 	}
 	F_getTime()
 	var diffTime = (myTime-startTime).toFixed(2)
-	console.log("– F_tetelChoose – " + diffTime+"s")
+	//console.log("– F_tetelChoose – " + diffTime+"s")
 }
 
 // –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– ––––*/
@@ -3291,13 +3479,7 @@ function F_kerdesStatus(){ // kérdés hány %-on áll?
 		var trueJegy = 0
 		var statusQ = allStatusQs[i].parentElement
 		if ( statusQ.parentElement.id != "kerdeslocation" ) {
-			if ( statusQ.className.indexOf("kerdes") != -1 ) {
-				/*var Qtext = '<details class="' +statusQ.className+ '">' +statusQ.innerHTML+ "</details>"
-				var find = ' id="(.*?)"'
-				Qtext = Qtext.replace(new RegExp(find, 'g'), "")
-				var LSid = txtLS[Qtext]*/
-				F_calculateThis(statusQ)
-			}
+			if ( statusQ.className.indexOf("kerdes") != -1 ) { F_calculateThis(statusQ) }
 			var altQs = statusQ.getElementsByTagName("*")
 			for ( var y = 0;   y < altQs.length;   y++ ) {
 				if ( altQs[y].className.indexOf("kerdes") != -1 ) {
@@ -3319,54 +3501,6 @@ function F_kerdesStatus(){ // kérdés hány %-on áll?
 		}
 	}
 }
-function F_temakorStatus(){ // Tétel hány %-on áll? --> beállítja a buttonColort ez alapján
-	for ( var tetel in tetelek ) {
-		var maxJegy = 0
-		var trueJegy = 0
-		var childs = document.getElementById(tetel).getElementsByTagName("*")
-		for ( var i=0;  i<childs.length;  i++ ) {
-			if ( childs[i].classList.contains("kerdes") == true ) {
-				var Qid = childs[i].id
-				var Qtxt = arrQid[Qid]
-				var LSid = txtLS[Qtxt]
-				func_calcPriorHosszJegy(childs[i])
-
-				var date = new Date();
-				var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-
-				if ( localStorage.getItem(LSid+'_repeat') == null) {
-					localStorage.setItem(LSid+'_repeat', 0);
-				}
-				var repCount = Number(localStorage.getItem(LSid+'_repeat'))
-				func_calcTimeDiff(repCount)
-				
-				if ( localStorage.getItem(LSid+'_skip') == "vizsgaSkip") { idopont = 0 }
-				if ( localStorage.getItem(LSid+'_skip') == "perma") { prior = 0 }
-
-				trueJegy = trueJegy + Math.pow(0.8, idopont / timeDiff) * prior * hossz * jegy
-				maxJegy = maxJegy + prior * hossz * 10
-			} 
-		}
-		var red, green
-		if ( 2*trueJegy/maxJegy > 1 ) {
-			var more = 2*trueJegy/maxJegy -1
-			red = Math.round(255*(1-more))
-			green = 255
-		} else {
-			var less = 2*trueJegy/maxJegy
-			green = Math.round(255*less)
-			red = 255
-		}
-		var button = document.getElementById(tetel+"_button")
-		if ( button == null ) {
-			alert("button hiba – F_temakorStatus() – "+tetel)
-			continue
-		}
-		button.style.backgroundColor = "rgb("+red+", "+green+", 0)";
-		//button.value = Math.round(100 * trueJegy/maxJegy)
-		if ( isNaN(button.value) == true ) { button.value = "" }
-	}
-}
 
 var obj_fixNote = [] // object (nem table és nem array!)
 var obj_skip = [] // object (nem table és nem array!)
@@ -3382,14 +3516,14 @@ function F_calcLSid(detElem){
 		var end = detElem.className.indexOf("}")
 		var EXPid = detElem.className.slice(begin+1,end)
 	
-		F_QtxtQname(detElem.innerHTML)
+		var qName = F_QtxtQname(detElem.innerHTML)
 		actLSid = localStorage.getItem(qName)
 		
 		//var string = localStorage.getItem("hkExpQ."+EXPid)
 		//if ( string != null ) { actLSid = string.slice(0,string.indexOf(" ")) }
 	} 
 	if ( actLSid == undefined )  {
-		F_QtxtQname(actQtext)
+		var qName = F_QtxtQname(actQtext)
 		if ( localStorage.getItem(qName) ) { actLSid = localStorage.getItem(qName) }
 	}
 }
@@ -3422,7 +3556,7 @@ function func_tableSkipFix(){
 				obj_skip[LSid] = localStorage.getItem(LSid+"_skip")
 			} else if ( localStorage.getItem(LSid+"_skip") == "important" ){
 				obj_skip[LSid] = localStorage.getItem(LSid+"_skip")
-			} else if ( localStorage.getItem(LSid+"_skip") == "gold" ){
+			} else if ( localStorage.getItem(LSid+"_skip") == "tempskip" ){
 				obj_skip[LSid] = localStorage.getItem(LSid+"_skip")
 			} else if ( localStorage.getItem(LSid+"_skip") == "vizsgaSkip" ){
 				var date = new Date();
@@ -3451,7 +3585,7 @@ function func_tableSkipFix(){
 	}
 	F_getTime()
 	var diffTime = (myTime-startTime).toFixed(2)
-	console.log("– func_tableSkipFix – " + diffTime+"s")
+	//console.log("– func_tableSkipFix – " + diffTime+"s")
 }
 function F_valFix(){
 	var x = 0
@@ -3475,14 +3609,14 @@ function F_valSkip(){
 			y = y+1
 			//console.log(id+"_skip = vizsgaSkip")
 		}
-		if ( obj_skip[id] == "gold" ) {
+		if ( obj_skip[id] == "tempskip" ) {
 			z = z+1
 			//console.log(id+"_skip = vizsgaSkip")
 		}
 	}
 	document.getElementById("btn_skip").value = x;
 	document.getElementById("btn_vizsgaskip").value = y;
-	document.getElementById("btn_gold").value = z;
+	document.getElementById("btn_tempskip").value = z;
 }
 F_valSkip()
 
@@ -3507,7 +3641,7 @@ function func_DeleteSkipFix(kerdes){
 		if ( localStorage.getItem(kerdes+'_skip') == "vizsgaSkip" ) { skipfix = "vizsgaskip" }
 		if ( skipfix == "fix" ) {
 			localStorage.removeItem(kerdes+'_note')
-		} else if ( skipfix == "skip" || skipfix == "vizsgaskip" ) {
+		} else if ( skipfix == "skip" || skipfix == "vizsgaskip" || skipfix == "tempskip" ) {
 			localStorage.removeItem(kerdes+'_skip')
 		}
 		func_tableSkipFix()
@@ -3539,8 +3673,9 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 	}
 	if ( SkipFix == "btn_skip" ) {
 		document.getElementById("div_Skip").innerHTML = ""
+		document.getElementById("div_Skip").style.borderColor = "black"
 		for ( var LSid in obj_skip ) {
-			if ( obj_skip[LSid] != "important" && obj_skip[LSid] != "vizsgaSkip" ) {
+			if ( obj_skip[LSid] == "perma" ) {
 				var text = document.getElementById("div_Skip").innerHTML
 				var qName = localStorage.getItem(LSid)
 				if ( qName != null ) {
@@ -3556,6 +3691,7 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 	}
 	if ( SkipFix == "btn_vizsgaskip" ) {
 		document.getElementById("div_Skip").innerHTML = ""
+		document.getElementById("div_Skip").style.borderColor = "blue"
 		var fullText = ""
 		var qCount = 0
 		for ( var LSid in obj_skip ) {
@@ -3587,9 +3723,27 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 		fullText = timeText + fullText
 		document.getElementById("div_Skip").innerHTML = fullText
 	}
+	if ( SkipFix == "btn_tempskip" ) {
+		document.getElementById("div_Skip").innerHTML = ""
+		document.getElementById("div_Skip").style.borderColor = "gold"
+		for ( var LSid in obj_skip ) {
+			if ( obj_skip[LSid] == "tempskip" ) {
+				var text = document.getElementById("div_Skip").innerHTML
+				var qName = localStorage.getItem(LSid)
+				if ( qName != null ) {
+					var qButton = "<button id='"+LSid+"_tempskipClear' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>"
+					qName = qButton+'<summary id="'+LSid+'_fullText" onclick="func_showQtext(this.id)">' + qName + '</summary><br>'
+					fullText = fullText + qName
+					qCount = qCount +1
+				}
+			}
+		}
+		fullText = "qCount:" +qCount+ "<br>" +fullText
+		document.getElementById("div_Skip").innerHTML = fullText
+	}
 }
 function func_spanClick(button){  // btn_fix, btn_skip, btn_vizsgaskip, btn_repFast, btn_newQuest
-	if ( button.id == 'btn_skip' || button.id == 'btn_note' || button.id == 'btn_fix' || button.id == 'btn_vizsgaskip' ) {
+	if ( button.id == 'btn_tempskip' || button.id == 'btn_skip' || button.id == 'btn_note' || button.id == 'btn_fix' || button.id == 'btn_vizsgaskip' ) {
 		func_SetTextOfSkipFixDiv(button.id)
 		document.getElementById("div_Fix").style.display = 'none';
 		document.getElementById("div_Skip").style.display = 'none';
@@ -3604,8 +3758,9 @@ function func_spanClick(button){  // btn_fix, btn_skip, btn_vizsgaskip, btn_repF
 			document.getElementById("btn_fix").style.borderColor = "black"
 			document.getElementById("btn_skip").style.borderColor = "black"
 			document.getElementById("btn_vizsgaskip").style.borderColor = "black"
+			document.getElementById("btn_tempskip").style.borderColor = "black"
 		}
-		if ( button.id == 'btn_skip'||  button.id == 'btn_vizsgaskip' ) {
+		if ( button.id == 'btn_skip' ||  button.id == 'btn_vizsgaskip' ||  button.id == 'btn_tempskip' ) {
 			document.getElementById("div_Skip").style.display = 'block';
 		}
 		if ( button.id == 'btn_note' ) {
@@ -3617,38 +3772,6 @@ function func_spanClick(button){  // btn_fix, btn_skip, btn_vizsgaskip, btn_repF
 		button.style.borderColor = "limegreen"
 		if ( button.id == 'btn_newQuest' ) { localStorage.setItem("hk.newQ",true) }
 	}
-}
-
-function F_changeTetelCount(plus,button){
-	var parentText = button.parentElement.parentElement
-	parentText = parentText.innerHTML
-	parentText = parentText.slice(parentText.indexOf("<b>")+3,parentText.indexOf("</b>"))
-	num = localStorage.getItem("msb."+parentText)
-	num = Number(num) + Number(plus)
-	localStorage.setItem("msb."+parentText,num)
-}
-
-function F_clickTemaButton(button){
-	if ( localStorage.getItem(button.id) == "true" ) {
-		localStorage.setItem(button.id,false)
-		document.getElementById(button.id+"_label").style.backgroundColor = "";
-		F_changeTetelCount("-1",button)
-	} else {
-		localStorage.setItem(button.id,true)
-		document.getElementById(button.id+"_label").style.backgroundColor= "paleGreen";
-		F_changeTetelCount("1",button)
-		var tetelID = button.id
-		tetelID = tetelID.slice(0,tetelID.indexOf(","))
-		//console.log(tetelID)
-		var Table = document.querySelectorAll('.phase,.status')
-		F_impQlot(Table[tetelID].parentElement)
-	}
-	
-	func_calcOldNew();
-	func_calcJegy()
-	func_calcWork()
-	func_calcDate()
-	func_calcRepeat()
 }
 
 function func_calcJegy() { // átlagJegyet kiszámolja
@@ -3675,7 +3798,7 @@ function func_calcJegy() { // átlagJegyet kiszámolja
 	
 	F_getTime()
 	var diffTime = (myTime-startTime).toFixed(2)
-	console.log("– func_calcJegy – " + diffTime+"s")
+	//console.log("– func_calcJegy – " + diffTime+"s")
 }
 function func_calcWork() { // LS mentés mikor lesz 1-10+
 	document.getElementById("button_NextQ").value = localStorage.getItem("hk.lastSavedLS")
@@ -3712,7 +3835,7 @@ function func_calcDate() { // átlagIdot kiszámolja
 	
 	F_getTime()
 	var diffTime = (myTime-startTime).toFixed(2)
-	console.log("– func_calcDate – " + diffTime+"s")
+	//console.log("– func_calcDate – " + diffTime+"s")
 }
 function func_calcRepeat() { // átlagIsmétlések számát kiszámolja
 	F_getTime()
@@ -3755,7 +3878,7 @@ function func_calcRepeat() { // átlagIsmétlések számát kiszámolja
 	
 	F_getTime()
 	var diffTime = (myTime-startTime).toFixed(2)
-	console.log("– func_calcRepeat – " + diffTime+"s")
+	//console.log("– func_calcRepeat – " + diffTime+"s")
 }
 function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
 	F_getTime()
@@ -3781,16 +3904,13 @@ function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
 					func_calcPriorHosszJegy(childs[i])
 					var actQhossz = Number(hossz)
 					
-					//var Qid = childs[i].id
-					//var Qtxt = arrQid[Qid]
 					var Qtxt = childs[i].innerHTML
 					/*console.clear()
 					console.log(Qid)
 					console.log(Qtxt)
 					alert("stop")*/
-					F_QtxtQname(Qtxt)
+					var qName = F_QtxtQname(Qtxt)
 					var LSid = localStorage.getItem(qName)
-					if ( LSid == null || LSid == undefined ) { LSid = txtLS[Qtxt] }
 					
 					if ( doneLSid.indexOf(LSid) == -1 || LSid == undefined ) { 
 						doneLSid = doneLSid +LSid+ ","
@@ -3852,13 +3972,15 @@ function func_calcOldNew(){
 	var repOld = 0
 	var repFast = 0
 	var repSlow = 0
+	var allCount = 0
 	
 	function F_calculating(LSid){
 		if ( LSid != undefined ) {
-			if ( doneLSid.indexOf(LSid) == -1 ) { 
+			if ( doneLSid.indexOf(","+LSid+",") == -1 ) { 
+				allCount = allCount +1
 				doneLSid = doneLSid +LSid+ ","
-				//console.log(Qid+ " :Qid-LSid: "+LSid)
-				if ( localStorage.getItem(LSid+"_skip") != "perma" && localStorage.getItem(LSid+"_skip") != "vizsgaSkip" ) {
+				//console.log(allCount+". "+LSid)
+				if ( localStorage.getItem(LSid+"_skip") != "perma" && localStorage.getItem(LSid+"_skip") != "vizsgaSkip" && localStorage.getItem(LSid+"_skip") != "tempskip" ) {
 					if ( localStorage.getItem(LSid+'_jegy') != null && localStorage.getItem(LSid+'_jegy') != "" ) {
 						var repCount = Number(localStorage.getItem(LSid+'_repeat'))
 						var date = new Date();
@@ -3896,12 +4018,13 @@ function func_calcOldNew(){
 	}
 	for ( var tetel in tetelek ) { // végignézi az összes kérdést
 		if ( localStorage.getItem(tetel+"_button") == "true" ) {
+			//console.log(tetel)
 			var tetelQ = document.getElementById(tetel)
-			var tetelQs = tetelQ.getElementsByClassName("kerdes")
 			if ( tetelQ.classList.contains("kerdes") == true ) {
 				F_calcLSid(tetelQ)
 				F_calculating(actLSid)
 			}
+			var tetelQs = tetelQ.getElementsByClassName("kerdes")
 			for ( var x=0; x<tetelQs.length; x++ ) {
 				F_calcLSid(tetelQs[x])
 				F_calculating(actLSid)
@@ -3909,7 +4032,6 @@ function func_calcOldNew(){
 		}
 	}
 	document.getElementById("btn_newQuest").value = kerdesNew
-	//document.getElementById("span_RepNew").innerHTML = repNew;
 	document.getElementById("span_RepNew").innerHTML = repNew;
 	document.getElementById("span_RepOld").innerHTML = repOld;
 	document.getElementById("btn_RepFast").value = repFast;
@@ -3917,7 +4039,7 @@ function func_calcOldNew(){
 	
 	F_getTime()
 	var diffTime = (myTime-startTime).toFixed(2)
-	console.log("– func_calcOldNew – " + diffTime+"s")
+	//console.log("– func_calcOldNew – " + diffTime+"s")
 }
 
 function func_clearOldHistory() {
@@ -4099,7 +4221,7 @@ function F_prevQ(){
 			localStorage.setItem(LSid+'_skip', "vizsgaSkip")
 			newQvolt = true
 		} else if ( document.getElementById("td.2."+i).style.backgroundColor == "gold" ) {
-			localStorage.setItem(LSid+'_skip', "gold")
+			localStorage.setItem(LSid+'_skip', "tempskip")
 			newQvolt = true
 		} else if ( localStorage.getItem(LSid+'_skip') == "important" ) {
 			localStorage.removeItem(LSid+'_skip')
@@ -4117,10 +4239,8 @@ function F_prevQ(){
 	F_valFix()
 	F_valSkip()
 
-	F_temakorStatus()
-
 	var lastSavedLS = localStorage.getItem("hk.lastSavedLS")
-	if ( lastSavedLS > 9 ) {
+	if ( lastSavedLS > 4 ) {
 		F_saveLS() // androidon crashel, mert a text length-el baja van
 	} else {
 		lastSavedLS = Number(lastSavedLS)
@@ -4169,14 +4289,6 @@ function F_nextQ(){
 	var priorValue_alt = -1
 	var priorType = 1
 	var checkValue = 0
-	
-	F_getTime()
-	diffTimeX = myTime-startTime
-	console.log("– F_nextQ test – " + diffTimeX)
-	
-	F_getTime()
-	diffTimeX = myTime-startTime
-	console.log("– F_nextQ test – " + diffTimeX)
 	
 	F_nextMark()
 
@@ -4324,6 +4436,7 @@ function F_nextQ(){
 		var parent = parentQ
 		var Qelem = childQ
 		if ( parent.classList.contains("feltetel") == true ) { Qelem = parent }
+		//console.log(Qelem.innerHTML)
 		
 		function func_setTitle(){
 			var titleText = ""
@@ -4356,9 +4469,7 @@ function F_nextQ(){
 			F_calcLSid(Qelem)
 			var LSid = actLSid
 			var Qtext = actQtext
-			
 			if ( Qelem.classList.contains("open") == true ) { Qtext = Qtext.replace(">"," open>") }
-			
 			QlocElem.innerHTML = QlocElem.innerHTML + Qtext
 		}
 		F_copyQs(Qelem) // nem feltétlen van id-je !! (mármint ez nem hiba)
@@ -4370,26 +4481,21 @@ function F_nextQ(){
 				F_calcLSid(Qelem)
 				var LSid = actLSid
 				var Qtext = actQtext
-				if ( LSid == undefined ) { 
-					LSid = F_newLSid() 
-					var string = localStorage.getItem(document.title+"_LSids")
-					string = string+ " " +LSid
-					localStorage.setItem(document.title+"_LSids",string)
-					
-					F_QtxtQname(Qtext)
-					localStorage.setItem(qName,LSid)
-					localStorage.setItem(LSid,qName)
-					console.log(LSid+" "+qName)
-				}
+				if ( LSid != undefined ) { continue }
+				
+				LSid = F_newLSid() 
+				var string = localStorage.getItem(document.title+"_LSids")
+				string = string+ " " +LSid
+				localStorage.setItem(document.title+"_LSids",string)
+				
+				var qName = F_QtxtQname(Qtext)
+				//if ( qName.slice(-3) != "-->" ) { F_setCount(Qelem) }
+				localStorage.setItem(qName,LSid)
+				localStorage.setItem(LSid,qName)
+				//console.log(LSid+" "+qName)
 			}
 		}
 		F_saveNewQs()
-/*var arrayQ = QlocElem.getElementsByClassName("kerdes")
-for ( var i=0; i<arrayQ.length; i++ ) {
-	F_calcLSid(arrayQ[i])
-	F_QtxtQname(actQtext)
-	console.log(arrayQ[i].innerHTML)
-}*/
 		
 		QlocElem.innerHTML = QlocElem.innerHTML + "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>"
 		
@@ -4412,7 +4518,7 @@ for ( var i=0; i<arrayQ.length; i++ ) {
 				F_calcLSid(Qelem)
 				var LSid = actLSid
 				var Qtext = actQtext
-				/* csak ellenorzés: */ if ( LSid == undefined ) { alert("#1. " +num+ ": "+ LSid) }
+				/* csak ellenorzés: */ if ( LSid == undefined ) { alert("#1. "+ num +": "+ LSid +" (az LSid)") }
 				
 				var isNewQ = true
 				for ( var x in activeQs ) {
@@ -4441,7 +4547,7 @@ for ( var i=0; i<arrayQ.length; i++ ) {
 				document.getElementById("td.2."+num).hidden = false 
 				if ( localStorage.getItem(LSid+"_skip") == "important" ) {
 					document.getElementById("td.2."+num).style.backgroundColor = "lawngreen"
-				} else if ( localStorage.getItem(LSid+"_skip") == "gold" ) {
+				} else if ( localStorage.getItem(LSid+"_skip") == "tempskip" ) {
 					document.getElementById("td.2."+num).style.backgroundColor = "gold"
 				} else {
 					document.getElementById("td.2."+num).style.backgroundColor = "snow"
@@ -4589,11 +4695,7 @@ for ( var i=0; i<arrayQ.length; i++ ) {
 		for ( var i=0; i<childs.length; i++ ) { if ( childs[i].className.indexOf("open") != -1 ) { childs[i].open = true } }
 
 		var Qtext
-		if ( Qelem.id ) { 
-			Qtext = arrQid[Qelem.id]
-		} else { // amennyiben egy <span imp [120]></span>-ban lévo kérdésrol van szó, amelynek nincs már Qid-je
-			Qtext = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
-		}
+		Qtext = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
 		
 		var LSid = "hkQ." + actQid
 		
@@ -4635,7 +4737,7 @@ for ( var i=0; i<arrayQ.length; i++ ) {
 	F_calcqTimer(document.getElementById("btn_qTimer"))
 	
 	document.getElementById("button_NextQ").style.color = ""
-	if ( localStorage.getItem("hk.lastSavedLS") > 9 ) { 
+	if ( localStorage.getItem("hk.lastSavedLS") > 4 ) { 
 		document.getElementById("button_NextQ").style.backgroundColor = "aqua" 
 	} else {
 		document.getElementById("button_NextQ").style.backgroundColor = "white"
@@ -4720,24 +4822,35 @@ function F_loadPageText(path) {
 		//document.getElementById("div_Refreshng").innerHTML = targyPath
 		//document.getElementById("iframe_targyak").src = targyPath
 		
-		if ( targyPath != "expqs.html" ) {
+		if ( targyPath == "expqs.html" ) { 
+			if ( expQsLoaded == false ) {
+				parentDiv = document.getElementById("div_expQTargy")
+				parentDiv.innerHTML = pageTexts["expqs.html"]
+				arrImpQs["expQs"] = []
+				F_loadExpQs(parentDiv,"expQs")
+				expQsLoaded = true
+			}
+			if ( localStorage.getItem("hk.ToggleAll") == "true" ) { F_loadPageText(localStorage.getItem("hk.pagePath")) }
+			//alert("sajt")
+		} else {
 			pagePath = targyPath // képek betöltéséhez kell pl
 			var pageDiv = document.getElementById("div_pageQTargy")
 			pageDiv.innerHTML = pageTexts[pagePath]
 			F_checkEXPs()
 			F_detailsToggle(pageDiv)
 			if ( localStorage.getItem("hk.ToggleAll") == "true" ) { F_toggleAll() }
+			document.body.style.backgroundColor = ""
 			localStorage.setItem("hk.pagePath",pagePath) 
 			document.getElementById("iframe_targyak").src = ""
 			//F_impQlot(pageDiv)
-		} else if ( localStorage.getItem("hk.ToggleAll") == "true" ) { 
-			F_loadPageText(localStorage.getItem("hk.pagePath"))
-			//alert("sajt")
 		}
 		for ( var i=0; i<pageLinks.length; i++ ) { 
 			if ( pageLinks[i].dataset.src == targyPath ) {
 				pageLinks[i].style.color = "blue"
 				pageLinks[i].dataset.loaded = true 
+			}
+			if ( targyPath == localStorage.getItem("hk.pagePath") && pageLinks[i].dataset.src == localStorage.getItem("hk.pagePath") ) {
+				pageLinks[i].style.backgroundColor = "yellow"
 			}
 		}
 		removeEventListener('message', handler, false)
@@ -4769,10 +4882,13 @@ function F_loadAllPageTexts() {
 			break
 		}
 	}
+	
+	var timeX = 100
+	if ( isAndroid != false ) { timeX = 400 }
 	var handler = function(e) {
-		//alert(count)
 		var targyText = e.data[1];
 		if ( targyText != undefined && targyText != "" ) {
+			// savePage
 			var path = pageLinks[count].dataset.src
 			pageTexts[path] = targyText
 			//alert(path+" "+targyText)
@@ -4780,24 +4896,29 @@ function F_loadAllPageTexts() {
 			document.getElementById("div_Refreshng").innerHTML = path
 			document.getElementById("div_RefreshStatus").innerHTML = count+"/"+full
 			pageLinks[count].style.color = "blue"
-			pageLinks[count].dataset.loaded = true 
-			count = count +1
-			if ( count < pageLinks.length ) { 
-				path = pageLinks[count].dataset.src
-				document.getElementById("iframe_targyak").src = path
-			} else {
-				document.getElementById("div_SearchW").style.backgroundColor = "white"
-				F_getTime()
-				var timeX = Math.round((myTime-oldTime)*100)/100
-				document.getElementById("div_Refreshng").innerHTML = timeX+"s"
-				removeEventListener('message', handler, false)
-			}
+			pageLinks[count].dataset.loaded = true
+			
+			// nextPage
+			var F_timer = window.setInterval(function(){
+				clearInterval(F_timer) 
+				count = count +1
+				if ( count < pageLinks.length ) { 
+					path = pageLinks[count].dataset.src
+					document.getElementById("iframe_targyak").src = path
+				} else {
+					document.getElementById("div_SearchW").style.backgroundColor = "white"
+					F_getTime()
+					var timeX = Math.round((myTime-oldTime)*100)/100
+					document.getElementById("div_Refreshng").innerHTML = timeX+"s"
+					removeEventListener('message', handler, false)
+				}
+			}, timeX)
 		}
 	}
 	window.addEventListener('message', handler, false)
 }
-if ( localStorage.getItem("hk.ToggleAll") == "true" ) { F_loadPageText("expqs.html") }
-//F_loadPageText("expqs.html")
+//if ( localStorage.getItem("hk.ToggleAll") == "true" ) { F_loadPageText("expqs.html") }
+F_loadPageText("expqs.html")
 //if ( localStorage.getItem("hk.ToggleAll") != "true" ) { F_loadAllPageTexts() }
 
 if ( changeStatus == true ) { document.getElementById("div_upgQ").style.display = 'block' }

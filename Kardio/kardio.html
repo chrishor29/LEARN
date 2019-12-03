@@ -7,10 +7,10 @@
 <!-- kéne egy általános anamnézis, fizikális vizsgálat impQ, és azt az egyet magoljam, amibe minden benne van: tételeknél ezt használom
 továbbá a 'műszeresekről' (labor,echo,MR,CT stb.) is -->
 
-jövedelem:80402ft/fő
-A-adatlap
+<!-- oktatas@kardio.sote.hu
+Tel: (+36-1) 458-6847 -->
 
-
+graphiak, CT, EKG - posterior infarktus & jobbkamrai
 <div id="statusX"></div>
 <details><summary><strong>impQs</strong></summary>
  <div> <!-- 1 – 20 -->
@@ -169,9 +169,8 @@ A-adatlap
 		</ul></details>
 	  <strong>hosszú távú keringéstámogatók</strong>
 		<li>I.generációs eszközök:</li><ul>
-			<li>ezek vannak mellkason kívül egyedül &#10140; használata kényelmetlen (magával kell hordani a bőröndöt folyamatosan)</li>
-			<li>egyedül gyermekek esetében haszálatosak (nekik nincs helyük a mellkasban)</li>
-			<li>másik fő hátránya hogy erős antikoaglulációt igényel, különben thromboembólia, így viszont vérzékenység</li>
+			<li>ezek vannak mellkason kívül egyedül &#10140; használata kényelmetlen, mert magával kell hordani a bőröndöt folyamatosan</li>
+			<li>egyedül gyermekek esetében haszálatosak, mert nekik nincs helyük a mellkasban</li>
 		</ul>
 		<li>II. és III. generációs eszközök <img class="mini" data-src="nxqaikko.png"></li><ul>
 			<li>bal kamra csúcsból kiszívja a vért &#10140; intrathoracalisan van a motor &#10140; aortába juttatja vissza</li>
@@ -181,12 +180,11 @@ A-adatlap
 				<li>van náluk (pénztárca feltételezhetően) egy betegkártya, amiben le van írva mit kell tenni!!</li>
 				<li>mellkaskompressziót kerüljük</li>
 			</ul>
-			<li>hátrányai: (ritkák)</li><ul>
-				<li>antikoagulánst kell szednie, különben thromboembólia, így meg vérzés</li>
-				<li>infekciók</li>
-			</ul>
 		</ul>
-		nekik K-vitamin antagonisták(syncumar,warfarin) adható csak! NOAK nem!
+		<li>hátrányaik:</li><ul>
+			<li><span class="midQ []">KVA</span>-t kell szedniük, különben thromboembólia, így meg vérzés /NOAC nem jó!/</li>
+			<li>infekciók</li>
+		</ul>
 	</ul></details>
 	<details class="{7} kerdes"><summary>HTX = szívtranszplantáció</summary><ul class="normal">
 	  <strong>indikáció</strong>
@@ -347,7 +345,7 @@ A-adatlap
 		<li>biológiai &#10140; elmeszesedik, így kb. 10 évig bírja</li><ul>
 			<li>indikáció &#10140; idős, fiatal nő aki még gyereket vállal, antikoaguláció kontraindikált(vérzékenység miatt)</li>
 		</ul>
-		<li>mechanikus &#10140; magasabb trombózis rizikó &#10140; K-vitamin antagonistát<abbr title="orális antikoaguláns">(OAC)</abbr> kell szednie &#10140; a NOAC ilyenkor kontraindikált!!</li><ul>
+		<li>mechanikus &#10140; magasabb trombózis rizikó &#10140; <span class="midQ [37]">KVA</span>-t + kettős TAG (INR: 2,5 - 3,5) kell szednie &#10140; a NOAC ilyenkor kontraindikált!!</li><ul>
 			<li>indikáció &#10140; fiatal, egészséges, antikoaguláció más okból is indokolt már</li>
 		</ul>
 	  <hr>szövődmények(rizikó):
@@ -427,10 +425,10 @@ A-adatlap
 		rizikófaktora van (pl. hipertónia), de CV betegsége még nem volt &#10140; CV betegség megelőzése a cél
 		<li>primordialis prevenció + alábbiak tartoznak ide:</li>
 		<li>vércukorszint kezelése</li>
-		<li>vérnyomás kezelése</li>
+		<li><span class="midQ [66]">vérnyomás kezelése</span></li>
 		<li>diszlipidémia kezelése</li>
 	</ul></details>
-	<details class="{20} kerdes"><summary>secunder prevenció</summary><ul class="normal">
+	<details class="{20} kerdes"><summary>szekunder prevenció</summary><ul class="normal">
 		CV eseményt átélt, és a következő megakadályozása a cél (pl. stroke-ja volt, de nem akarjuk hogy újra legyen)
 		<li>ebbe tartozik primer prevenció + alábbiak</li>
 		<li>aspirin</li>
@@ -449,7 +447,7 @@ A-adatlap
 		<li><span class="midQ [22]">ACS</span></li>
 		<li>hirtelen szívhalál</li>
 	  <hr>
-		<li><span class="midQ [17] kerdes">stabil angina pectoris</span> a jellegzetes tünetük</li>
+		<li><span class="midQ [17] kerdes">angina pectoris</span> a jellegzetes tünetük</li>
 	</ul></details>
 	<details class="{22} kerdes"><summary>ACS</summary><ul class="normal">
 		akut koronária szindróma
@@ -544,24 +542,31 @@ A-adatlap
 	</ul></details>
 	<details class="{25} kerdes"><summary>EKG - MI jelek</summary><ul class="normal">
 		<img style="max-width:45%" data-src="mqetnmut.png">
-		<li>jelek:</li><ul>
-			<li>iszkémia:</li><ul>
-				<li>ST elevatio</li><ul>
-					<li><span class="done">ha BTSZB/JTSZB van, azt is eként kell kezelni!</span> <font style="font-size:80%">(mert elfedhetik)</font></li>
-				</ul>
-				<li>negatív T-hullám</li>
+	  <strong>jelek:</strong>
+		<li>iszkémia:</li><ul>
+			<li>ST elevatio</li><ul>
+				<li><span class="done">ha BTSZB/JTSZB van, azt is eként kell kezelni!</span> <font style="font-size:80%">(mert elfedhetik)</font></li>
 			</ul>
-			<li>nekrózis &#10140; patológiás Q</li>
+			<li>negatív T-hullám</li>
 		</ul>
-		<li>típusai:</li><ul>
-			<li>lateralis &#10140; I,aVL,V5,V6</li>
-			<li>inferior(jobb kamrai) &#10140; II,III,aVF</li><ul>
-				<li>ennél a nitrát kontraindikált!</li>
-				<li>verifikálása: V1-V6 tükörképszerű felhelyezése, és V3-V4–ben ST elevatio látható</li>
+		<li>nekrózis &#10140; patológiás Q</li>
+	  <strong>típusai:</strong>
+		<li>anterior &#10140; V3-V4</li>
+		<li>septalis &#10140; V1-V2</li>
+		<li>lateralis &#10140; I,aVL,V5,V6</li>
+		<li>inferior &#10140; II,III,aVF</li>
+		<li>posterior &#10140; V1-V3 "tükörképjelenség": ST-elevatio helyett ST-depresszió! (/+ Q-hullám helyett R-hullám)</li><ul>
+			<li>V7-V9 felhelyezése(mellkasi elvezetések folytatásaként a hátra) akkor patológiás ST-elevatio (/+ Q-hullám)</li>
+		</ul>
+		<li>jobb kamrai <img class="mini" data-src="scowuuad.png"> &#10140; V1-V6 tükörképszerű felhelyezése(sternum mellett jobb oldalra), és V3-V4–ben ST elevatio (/+ Q-hullám) látható</li><ul>
+			<li>így ha inferior infarktus van, akkor kb. 50% csak az esély hogy van így meg kell nézni!</li>
+			<li>azért 'csak' 50%, mert ez kevésbé érzékeny MI infarktusra, mivel vékony a fala (O<sub>2</sub> igény kicsi)</li>
+			<li>ha van jobb kamrai infarktus, akkor hipotónia alakul ki:</li><ul>
+				<li>a nitrát kontraindikált! &#10140; ugyanis súlyos hipotóniát okozna (preload csökkenés miatt)</li>
+				<li>helyette folyadék adása javasolt</li>
 			</ul>
-			<li>anterior &#10140; V3-V4</li>
-			<li>septalis &#10140; V1-V2</li>
 		</ul>
+		<li><img class="mini" data-src="kvlshfkm.png"> <span><font class="abbr">ez mi?</font> V1-V3 ST-depresszió így posterior; II+III+aVF ST-elevatio így inferior; V4R ST-elevatio így jobb kamrai &#10140; inferior & posterior & jobb kamrai MI</span></li>
 	</ul></details>
 	<details class="{26} kerdes"><summary>echokardiográfia</summary><ul class="normal">
 		<font style="font-size:80%">ultrahangos vizsgálat</font>
@@ -585,10 +590,6 @@ A-adatlap
 	</ul></details>
 	<details class="{27} kerdes"><summary>akut SZE - tüneti kezelés: FelMOND</summary><ul class="normal">
 		<li>FELültetni a beteget (légzési segédizmok, orthopnoe)</li>
-		<li>véralvadásgátlók ACS esetében:</li><ul>
-			<li>trombocita-aggregáció &#10140; aspirin(COX-gátló) + clopidogrel/prasugrel(P2Y-gátlók)</li>
-			<li>heparin(antikoaguláns)</li>
-		</ul>
 		<li>morfin - iv.</li><ul>
 			<li>csökkenti a fájdalmat</li>
 			<li>csökkenti a katekolamin hatást &#10140; márpedig ilyenkor halálfélelme van (maszkot leakarja tépni és ablakba állni), így symp nő, ami TPR növekedést okoz &#10140; ezt gátolja</li>
@@ -693,7 +694,7 @@ A-adatlap
 	</ul></details>
 	<details class="{33} kerdes"><summary>stabil koronáriabetegség</summary><ul class="normal">
 		<li><span class="midQ [21]">ischaemias szívbetegségek</span> egy típusa</li>
-		<li>gyógyszeres kezelés ellenére panaszos beteg, coronaria szűkülettel</li>
+		<li><span class="midQ [37]">TAG</span> ellenére panaszos beteg, coronaria szűkülettel</li>
 		<li>ilyenkor <span class="midQ [30]">koronária revaszkularizáció</span> jöhet szóba</li>
 	</ul></details>
 	<details class="{34} kerdes"><summary>atherosclerosis kockázati tényezők (angiológia)</summary><ul class="normal">
@@ -750,16 +751,17 @@ A-adatlap
 	<details class="{37} kerdes"><summary>TAG /+ antikoaguláns indikációk</summary><ul class="normal">
 		<li>'szempont' &#10140; hatékonyság & vérzéses rizikó állandó mérlegelése a kezelés során</li>
 	  <strong><span class="midQ [36]">TAG</span></strong>
-		<li>stabil coronariabetegség</li>
+		<li><span class="midQ [33]">stabil coronariabetegség</span></li>
 		<li>ACS & PCI &#10140; <span class="midQ [31]">cél: stenttrombózis megelőzése:</span></li><ul>
 			<li>PCI előtt egyszeri telítő dózis kettős <abbr title="trombocita aggregáció gátló">TAG</abbr>: aszpirin + clopidogrel</li>
 			<li>utána 6hónapig kettős TAG</li>
 			<li>utána élethosszan <abbr title="tehát elég mrá csak 1 ilyenkor, nem kell kettős">egy</abbr> TAG</li>
 		</ul>
+		<li><span class="midQ [67]">TAVI</span></li>
 		<li>perifériás érbetegség (carotisstenosis, tünetmentes alsó végtagi(ASO))</li>
 	  <strong><span class="midQ [35]">antikoagulánsok</span></strong>
 		<br><font style="font-size:80%">szvsz úgy fogjam fel, hogy sürgős esetben UFH(/LMWH), egyébként KVA/NOAC</font>
-		<li>pitvarfibrilláció esetén a stroke megelőzése céljából</li><ul>
+		<li><span class="midQ [46]">pitvarfibrilláció</span> esetén a stroke megelőzése céljából</li><ul>
 			<li>NOAC a javasolt</li>
 			<li>CHADS-VASc score alapján állapítható meg a stroke rizikója mennyi<abbr title="ha nem szed antikoagulánst, mennyi az esélye, hogy abban az évben lesz neki">'</abbr></li><ul>
 				<li>függ &#10140; életkor, nem<abbr title="a női nem önmagában nem fokozza a rizikót egyéb faktorok hiánya esetén">'</abbr>, hipertónia, DM, korábbi érbetegség, SZE stb. <img class="mini" data-src="pyjtegwi.png"></li>
@@ -768,14 +770,15 @@ A-adatlap
 			</ul>
 		</ul>
 		<li><span class="midQ [10]">tüdőembólia</span> &#10140; UFH / trombolízis</li>
+		<li><span class="midQ [6]">hosszútávú keringéstámogatók</span> &#10140; KVA</li>
 		<li>NOAC tilos:</li><ul>
 			<li>terhesség során</li>
-			<li>mechanikus műbillentyű &#10140; KVA kell (+aszpirin), INR: 2,5 - 3,5</li>
+			<li><span class="midQ [16]">mechanikus műbillentyű</span></li>
 			<li><span class="midQ [6]">hosszútávú keringéstámogatók</span></li>
 		</ul>
 	  <strong>TAG + antikoaguláns együttesen</strong>
-		<li><span class="midQ [16]">mechanikus műbillentyű</span> &#10140; KVA + kettős TAG</li>
-		<li>percutaneous transluminal angioplasty (PTA) = balloon angioplasty <img class="mini" data-src="ttvihlnt.png"></li>
+		<li><span class="midQ [16]">mechanikus műbillentyű</span> &#10140; KVA + kettős TAG, INR: 2,5 - 3,5</li>
+		<li><font style="font-size:80%">percutaneous transluminal angioplasty (PTA) = balloon angioplasty</font> <img class="mini" data-src="ttvihlnt.png"></li>
 	</ul></details>
 	<details class="{38} kerdes"><summary>aortadissectio</summary><ul class="normal">
 	  <div class="imp [56]"></div> <!-- lényege, rizikófaktorok -->
@@ -1139,67 +1142,74 @@ A-adatlap
 			<font style="font-size:80%">utóbbi kettőnél már kamrai/junkcionális pótritmus van (és magasfokúnál néha egy átvezetés még, ami az ún. <u>befogott ütés</u>)</font>
 		</ul></details>
 	</ul></details>
-	<details class="{50} kerdes"><summary>cadiomyopathia</summary><ul class="normal">
+	<details class="{50} kerdes"><summary>cardiomyopathia</summary><ul class="normal">
 		<li>myocardiumot érintő betegségek csoportja, de..</li>
 		<li>..ebbe NEM tartoznak ➜ billentyű-elégtelenség, hipertónia, ischameia következtébeni betegségek</li>
 	  <strong>típusai:</strong>
 		<li><span class="midQ [51]">dilatatív (DCM)</span></li>
 		<li><span class="midQ [52]">hipertrófiás (HCM)</span></li>
 		<li>restriktív (RCM) &#10140; pl. amiloidózis, sarcoidosis</li>
-		<li>aritmogén jobb kamrai (ARVC)</li><ul>
-			<li>fiatalkori sportolók hirtelen szívhalálának oka az esetek 10-20%-ban</li>
-			<li>myocardium zsíros/fibrotikus degenerációja</li>
+		<li>aritmogén jobb kamrai (ARVC) &#10140; myocardium zsíros/fibrotikus degenerációja</li><ul>
+			<li><font style="font-size:80%">fiatalkori sportolók hirtelen szívhalálának oka az esetek 10-20%-ban</font></li>
 		</ul>
 		<img data-src="xmasczbz.png">
 	</ul></details>
 	<details class="{51} kerdes"><summary>DCM</summary><ul class="normal">
-	  dilatatív <span class="midQ [50]">cadiomyopathia</span>
-		<li>morfológia &#10140; szív 4ürege dilatált, szív megnagyobbodott 2-3x-osára, falak elvékonyodnak</li>
-		<li>oka, lehet pl.</li><ul>
-			<li>primer &#10140; dystrophin gén mutáció, Cocksackiae-virus következtébeni myocarditis &#10140; gyors lefolyású, ritkább</li>
-			<li>szekunder &#10140; alkohol, idős kor, terhesség, autoimmun betegségek stb. &#10140; lassabb lefolyású, gyakoribb</li>
-		</ul>
-		<li>funkciózavar:</li><ul>
-			<li>főként systolés &#10140; EF &lt; 40%</li>
-			<li>de diasztolés is</li>
-		</ul>
-	  <strong>diagnózis</strong>
-		<li><span class="kerdes midQ [48]">tünetek</span> &#10140; systolés funkciózavar tünetek</li>
-		<li>EKG</li>
-		<li><span class="kerdes midQ [26]">echokardiográfia</span></li>
-		<li><span class="kerdes midQ [53]">MRI</span></li>
-	  <strong>kezelés</strong>
-		<li>toxikus ágensek kizárása (alkohol, kábítószer, permetezőszer)</li>
-		<li>gyógyszerek &#10140; ACE-gátlók, &beta;-blokkolók, diuretikumok, amiodaron</li>
-		<li>szívátültetés</li>
+	  <font style="font-size:80%">dilatatív <span class="midQ [50]">cardiomyopathia</span></font>
+		<details class="kerdes"><summary>lényege</summary><ul class="normal">
+			<li>morfológia &#10140; szív 4ürege dilatált, szív megnagyobbodott 2-3x-osára, falak elvékonyodnak</li>
+			<li>oka, lehet pl.</li><ul>
+				<li>primer &#10140; dystrophin gén mutáció, Coxsackiae-virus következtébeni myocarditis &#10140; gyors lefolyású, ritkább</li>
+				<li>szekunder &#10140; alkohol, idős kor, terhesség, autoimmun betegségek stb. &#10140; lassabb lefolyású, gyakoribb</li>
+			</ul>
+			<li>funkciózavar:</li><ul>
+				<li>főként systolés &#10140; EF &lt; 40%</li>
+				<li>de diasztolés is</li>
+			</ul>
+		</ul></details>
+		<details class="kerdes"><summary>diagnózisa</summary><ul class="normal">
+			<li><span class="kerdes midQ [48]">tünetek</span> &#10140; systolés funkciózavar tünetek</li>
+			<li>EKG</li>
+			<li><span class="midQ [26]">echokardiográfia</span></li>
+			<li><span class="kerdes midQ [53]">MRI</span></li>
+		</ul></details>
+		<details class="kerdes"><summary>kezelése</summary><ul class="normal">
+			<li>toxikus ágensek kizárása (alkohol, kábítószer, permetezőszer)</li>
+			<li>gyógyszerek &#10140; ACE-gátlók, &beta;-blokkolók, diuretikumok, amiodaron</li>
+			<li>szívátültetés</li>
+		</ul></details>
 		<img data-src="xmasczbz.png">
 	</ul></details>
 	<details class="{52} kerdes"><summary>HCM</summary><ul class="normal">
 	  hipertrófiás <span class="midQ [50]">cadiomyopathia</span>
-		<li>oka &#10140; sarcomer fehérje mutációja; autoszomális domináns</li>
-		<li>morfológia &#10140; bal kamra fal megvastagodik</li><ul>
-			<li>a rostok rendezetlenek, köztük fibrotikus szövet keletkezik</li>
-		</ul>
-		<li>fiatalkori sportolók hirtelen szívhalálának oka az esetek 30-40%-ban</li>
-		<li>funkciózavar &#10140; diasztolés (systoles nincs: EF > 40%)</li>
-		<li>két típusa:</li><ul>
-			<li>obstrukcióval(kiáramlási pálya akadályozódik) járó &#10140; ilyenkor a septum hipertrófizál főként, ritkább(30%)</li>
-			<li>obstrukcióval NEM járó &#10140; általános hipertrófia, gyakoribb(70%)</li>
-		</ul>
-	  <strong>diagnózis</strong>
-		<li><span class="kerdes midQ [48]">tünetek</span></li>
-		<li>anamnézis!</li>
-		<li>EKG &#10140; Sokolow-Lyon index > 35mm</li>
-		<li><span class="kerdes midQ [26]">echokardiográfia</span></li>
-		<li><span class="kerdes midQ [53]">MRI</span></li>
-	  <strong>kezelés</strong>
-		<li>rokonok szűrése</li>
-		<li>max. mérsékelt sportolás</li>
-		<li>ha obstruktív:</li><ul>
-			<li>gyógyszeres (&beta;-blokkoló, Ca-antagonista)</li>
-			<li>sebészi</li>
-		</ul>
-		<li><span class="midQ [47]">ICD</span> implantáció, ha volt kamrai tachycardia, kamrafibrilláció</li>
+		<details class="kerdes"><summary>lényege</summary><ul class="normal">
+			<li>oka &#10140; sarcomer fehérje mutációja; autoszomális domináns</li>
+			<li>morfológia &#10140; bal kamra fal megvastagodik</li><ul>
+				<li>a rostok rendezetlenek, köztük fibrotikus szövet keletkezik</li>
+			</ul>
+			<li>fiatalkori sportolók hirtelen szívhalálának oka az esetek 30-40%-ban</li>
+			<li>funkciózavar &#10140; diasztolés (systoles nincs: EF > 40%)</li>
+			<li>két típusa:</li><ul>
+				<li>obstrukcióval(kiáramlási pálya akadályozódik) járó &#10140; ilyenkor a septum hipertrófizál főként, ritkább(30%)</li>
+				<li>obstrukcióval NEM járó &#10140; általános hipertrófia, gyakoribb(70%)</li>
+			</ul>
+		</ul></details>
+		<details class="kerdes"><summary>diagnózisa</summary><ul class="normal">
+			<li><span class="kerdes midQ [48]">tünetek</span></li>
+			<li>anamnézis!</li>
+			<li>EKG &#10140; Sokolow-Lyon index > 35mm</li>
+			<li><span class="kerdes midQ [26]">echokardiográfia</span></li>
+			<li><span class="kerdes midQ [53]">MRI</span></li>
+		</ul></details>
+		<details class="kerdes"><summary>kezelése</summary><ul class="normal">
+			<li>rokonok szűrése</li>
+			<li>max. mérsékelt sportolás</li>
+			<li>ha obstruktív:</li><ul>
+				<li>gyógyszeres (&beta;-blokkoló, Ca-antagonista)</li>
+				<li>sebészi</li>
+			</ul>
+			<li><span class="midQ [47]">ICD</span> implantáció, ha volt kamrai tachycardia, kamrafibrilláció</li>
+		</ul></details>
 		<img data-src="xmasczbz.png">
 	</ul></details>
 	<details class="{53} kerdes"><summary>MRI</summary><ul class="normal">
@@ -1208,36 +1218,37 @@ A-adatlap
 	<details class="{54} kerdes"><summary>pericardialis szindrómák</summary><ul class="normal">
 		<li>gyakorisága &#10140; 2:10ezer</li>
 	  <strong>perikardiális szindrómák típusai</strong>
-		<li>pericarditis</li>
-		<li>perikardiális tamponád(szívtamponád) &#10140; a pericardiumban <abbr title="fluid">folyadék</abbr>(pl. vér) halmozódik fel</li>
-	  <strong>pericarditis</strong>
-		<li>oka</li><ul>
-			<li>vírusok &#10140; echo-, herpes-, adeno-, Coxsackie-, parvovírus</li>
-			<li>baktérium &#10140; Stphylocous, Streptococcus, Enterococcus, TBC stb.</li>
-		</ul>
-		<li>tünetek</li><ul>
-			<li>angina pectoris</li>
-			<li>EKG &#10140; ST-eleváció</li>
-			<li>hallgatózás &#10140; pericarditises zörej (dörzs-zörej)</li>
-			<li><span class="midQ [26]">echokardiográfia</span> &#10140; pericardialis folyadék lehet (nem feltétlen!)</li>
-		</ul>
-		<li>kezelés:</li><ul>
-			<li>enyhe esetben &#10140; aszpirin + ibuprofén + kolhicin</li>
-			<li>súlyos esetben kortikoszteroid is</li>
-			<li>ha szívtamponád van, akkor műtőbe!</li>
-		</ul>
-	  <strong>perikardiális tamponád(szívtamponád)</strong>
-		<li>oka</li><ul>
-			<li>krónikus &#10140; pericarditis, daganat</li>
-			<li>akut &#10140; aorta disszekció, trauma, iatrogén, AMI következtében szabadfali ruptúra</li>
-			<span class="done">életveszélyes, azonnali felismerést és ellátást igényel</span>
-		</ul>
-		<li>kezelés:</li><ul>
-			<li>folyadék</li>
-			<li>akut ellátás &#10140; anesztetikum + beteg megszúrása, majd kanülön keresztül vér leszívás</li>
-			<li>véralvadásgátló kezelést megszűntetni</li>
-			<li>ha ezek sem elegek, akkor műtőbe</li>
-		</ul>
+		<details class="kerdes"><summary>pericarditis</summary><ul class="normal">
+			<li>oka</li><ul>
+				<li>vírusok &#10140; echo-, herpes-, adeno-, Coxsackie-, parvovírus</li>
+				<li>baktérium &#10140; Stphylocous, Streptococcus, Enterococcus, TBC stb.</li>
+			</ul>
+			<li>tünetek</li><ul>
+				<li>angina pectoris</li>
+				<li>EKG &#10140; ST-eleváció</li>
+				<li>hallgatózás &#10140; pericarditises zörej (dörzs-zörej)</li>
+				<li><span class="midQ [26]">echokardiográfia</span> &#10140; pericardialis folyadék lehet (nem feltétlen!)</li>
+			</ul>
+			<li>kezelés:</li><ul>
+				<li>enyhe esetben &#10140; aszpirin + ibuprofén + kolhicin</li>
+				<li>súlyos esetben kortikoszteroid is</li>
+				<li>ha szívtamponád van, akkor műtőbe!</li>
+			</ul>
+		</ul></details>
+		<details class="kerdes"><summary>perikardiális tamponád(szívtamponád)</summary><ul class="normal">
+			a pericardiumban <abbr title="fluid">folyadék</abbr>(pl. vér) halmozódik fel
+			<li>oka</li><ul>
+				<li>krónikus &#10140; pericarditis, daganat</li>
+				<li>akut &#10140; aorta disszekció, trauma, iatrogén, AMI következtében szabadfali ruptúra</li>
+				<span class="done">életveszélyes, azonnali felismerést és ellátást igényel</span>
+			</ul>
+			<li>kezelés:</li><ul>
+				<li>folyadék</li>
+				<li>akut ellátás &#10140; anesztetikum + beteg megszúrása, majd kanülön keresztül vér leszívás</li>
+				<li>véralvadásgátló kezelést megszűntetni</li>
+				<li>ha ezek sem elegek, akkor műtőbe</li>
+			</ul>
+		</ul></details>
 	</ul></details>
 	<details class="{55} kerdes"><summary>ritmuszavarok - tünetek</summary><ul class="normal">
 		<li>tünetmentes (pl. pitvarfibrilláció)</li>
@@ -1274,38 +1285,45 @@ A-adatlap
 	<details class="{59} kerdes"><summary>kamrai ritmuszavarok</summary><ul class="normal">
 		<li>kamrai tachycardia & kamrafibrilláció a hirtelen szívhalál egyik leggyakoribb oka</li>
 	  <strong>ventricularis tachycardia</strong>
-		<li>leggyakoribb oka: heg következtében kialakuló reentry &#10140; korábbi MI során megindul a szövetkárosodás, de PCI-vel időben megállítódik a terjedése &#10140; 'azonban ahogy a heget kétoldalról kikerüli az ingerületterjedés, a két oldal közül az egyik még refrakter-stádiumban lesz, a másik nem, ez lesz a re-entry oka' (kéne egy gif)</li>
-		<li>típusai: <img class="mini" data-src="ystlkbye.png"></li><ul>
-			<li>monomorf</li>
-			<li>polimorf, pl. <abbr title="torszád dö poánt">Torsades de Point:</abbr></li><ul>
-				<li>leállhat önmagától..</li>
-				<li>vagy átmehet kamrafibrillációba</li>
+		<details class="kerdes"><summary>lényege <!-- v3 --></summary><ul class="normal">
+			<li>leggyakoribb oka: heg következtében kialakuló reentry &#10140; korábbi MI során megindul a szövetkárosodás, de PCI-vel időben megállítódik a terjedése &#10140; 'azonban ahogy a heget kétoldalról kikerüli az ingerületterjedés, a két oldal közül az egyik még refrakter-stádiumban lesz, a másik nem, ez lesz a re-entry oka' (kéne egy gif)</li>
+			<li>típusai: <img class="mini" data-src="ystlkbye.png"></li><ul>
+				<li>monomorf</li>
+				<li>polimorf, pl. <abbr title="torszád dö poánt">Torsades de Point:</abbr></li><ul>
+					<li>leállhat önmagától..</li>
+					<li>vagy átmehet kamrafibrillációba</li>
+				</ul>
 			</ul>
-		</ul>
-		<li>rizikófaktorok &#10140; iszkémia, hipokalémia, antiarrhytmiás szerek nem megfelelő alkalmazása</li>
-	  <strong>diagnózis</strong>
-		<li>EKG &#10140; széles QRS, ritmusos &#10140; de lehet ettől még supraventricularis, ha pl. Tawara-szár blokk van &#10140; de egész addig kamraiként kezeljük, amíg nincs kizárva:</li><ul>
+			<li>rizikófaktorok &#10140; iszkémia, hipokalémia, antiarrhytmiás szerek nem megfelelő alkalmazása</li>
+		</ul></details>
+		<details class="kerdes"><summary>diagnózis <!-- v3 --></summary><ul class="normal">
+		  <strong>EKG:</strong>
+			<li>széles QRS</li>
+			<li>ritmusos</li>
 			<li>P-hullámot kell megtalálni: ha azok függetlenül mennek QRS-től, akkor kamrai</li>
 			<li>Tawara-szár blokk morfológia nem fedezhető fel</li>
+		  <hr>
 			<li>fúziós ütés &#10140; ritkán a supraventricularis & kamrai együtt jelentkezik</li>
 			<li>befogott ütés &#10140; ritkán a supraventricularis eredetű végigmegy (pont úgy van az időzítés, hogy a kamrai eredetű előtt érkezik oda)</li>
-		</ul>
-	  <strong>kezelés</strong>
-		<li>prevenció &#10140; &beta;-blokkoló</li>
-		<li>hosszútávú</li><ul>
-			<li><span class="midQ [45]">abláció(katéteres)</span> <font style="font-size:80%">(történhet epicardialisan/endocardialisan, a heg lokalizációtól függően) </font></li>
-			<li><span class="midQ [47]">ICD</span> <font style="font-size:80%">(ha nem tisztázható az etiológia, nem megoldható az abláció)</font></li>
-		</ul>
-	  <strong>kezelés - akut esetben</strong>
-		<li>újraélesztést elkezdeni és közben szerezni egy defibrillátort, majd azzal <span class="midQ [44]">kardioverzió</span>:</li><ul>
-			<li>kardioverzió &#10140; szinkron módban történik &#10140; ezt kell</li>
-			<li>defibrilláció &#10140; NEM szinkron módban történik &#10140; ha T-hullámra csapunk rá, akkor kamrafibrillációba megy át, ezért nem ezt kell</li><ul>
-				<li>ez csak kamrafibrilláció esetében használható (mert olyankor nincs mihez szinkronizálni) &#10140; összes többinél a szinkron mód be kell legyen kapcsolva</li>
-				<li><span class="done">pitvarfibrilláció esetén még sokkal-sokkal fontosabb, hogy szinkron mód be legyen kapcsolva!!</span> (rendkívül nagy műhiba, ha nincs)</li>
+		</ul></details>
+		<details class="kerdes"><summary>kezelés <!-- v3 --></summary><ul class="normal">
+			<li>prevenció &#10140; &beta;-blokkoló</li>
+			<li>hosszútávú</li><ul>
+				<li><span class="midQ [45]">abláció(katéteres)</span> <font style="font-size:80%">(történhet epicardialisan/endocardialisan, a heg lokalizációtól függően) </font></li>
+				<li><span class="midQ [47]">ICD</span> <font style="font-size:80%">(ha nem tisztázható az etiológia, nem megoldható az abláció)</font></li>
 			</ul>
-		</ul>
-		<li>(ITO-s mire ideér, vénás gyógyszer egyéb túl lassú lenne, és addigra a beteg meghal)</li>
-		<li><span class="midQ [44]">gyógyszeres kardioverzió</span> &#10140; ha még nem szükséges elektromos kardioverzió, meg lehet próbálni ezzel</li>
+		</ul></details>
+		<details class="kerdes"><summary>kezelés - akut esetben <!-- v3 --></summary><ul class="normal">
+			<li>újraélesztést elkezdeni és közben szerezni egy defibrillátort, majd azzal <span class="midQ [44]">kardioverzió</span>:</li><ul>
+				<li>kardioverzió &#10140; szinkron módban történik &#10140; ezt kell</li>
+				<li>defibrilláció &#10140; NEM szinkron módban történik &#10140; ha T-hullámra csapunk rá, akkor kamrafibrillációba megy át, ezért nem ezt kell</li><ul>
+					<li>ez csak kamrafibrilláció esetében használható (mert olyankor nincs mihez szinkronizálni) &#10140; összes többinél a szinkron mód be kell legyen kapcsolva</li>
+					<li><span class="done">pitvarfibrilláció esetén még sokkal-sokkal fontosabb, hogy szinkron mód be legyen kapcsolva!!</span> (rendkívül nagy műhiba, ha nincs)</li>
+				</ul>
+			</ul>
+			<li>(ITO-s mire ideér, vénás gyógyszer egyéb túl lassú lenne, és addigra a beteg meghal)</li>
+			<li><span class="midQ [44]">gyógyszeres kardioverzió</span> &#10140; ha még nem szükséges elektromos kardioverzió, meg lehet próbálni ezzel</li>
+		</ul></details>
 	  <strong>kamrafibrilláció</strong>
 		<li>magától soha nem áll le &#10140; csak defibrilláció után</li>
 	</ul></details>
@@ -1314,31 +1332,76 @@ A-adatlap
 	</ul></details>
  </div>
  <div> <!-- 61 – 80 -->
-	<details class="{61} kerdes"><summary> </summary><ul class="normal">
+	<details class="{61} kerdes"><summary>thrombendarteriectomia</summary><ul class="normal">
+		<li>egyik leggyakoribb eljárás<abbr title="értelmes képet /+ leírást mégse sikerül felbszni róla">'</abbr></li>
+		<li>az ér lumenében lévő thrombust a megvastagodott intimával, olykor mediával együtt eltávolítjuk</li>
+		<li>történhet:</li><ul>
+			<li>gyűrűs eszközzel vakon (Vollmar)</li>
+			<li>verőér megnyitásával, szemellenőrzéssel is elvégezhető (pl. carotisvilla)</li>
+		</ul>
+	</ul></details>
+	<details class="{62} kerdes"><summary>interpositio</summary><ul class="normal">
+		<img data-src="jpyezolg.png">
+		<li>beteg érszakaszt eltávolítjuk, és helyére épet teszünk (másik eret felhasználva)</li>
+		<li>2db end to end anastomosis</li>
+	</ul></details>
+	<details class="{63} kerdes"><summary>bypass</summary><ul class="normal">
+		<li>lézió benntmarad, áthidalása történik</li>
+		<li>lásd pl. CABG</li>
+		<li>2db end to side anastomosis</li>
+		<img data-src="whdccswx.png">
+	</ul></details>
+	<details class="{64} kerdes"><summary>transpositio</summary><ul class="normal">
+		<li>pl. a.subclavia kezeti szakasza rossz</li>
+		<li>elvágjuk ott, ahol már jó, és azt csatlakoztatjuk az a.carotisba &#10140; rossz szakasz kimarad</li>
+	</ul></details>
+	<details class="{65} kerdes"><summary>PTA</summary><ul class="normal">
+		<font style="font-size:80%">perkután transzluminális angioplasztika</font>
+		<li>gyakran sikertelen, oka</li><ul>
+			<li>mitral fibrózis</li>
+			<li>tumor</li>
+			<li>intima hiperplázia</li>
+			&#10140; ezek állandó perivascularis kompressziót okoznak
+		</ul>
+	</ul></details>
+	<details class="{66} kerdes"><summary>hipertónia - kezelés</summary><ul class="normal">
+	  <strong>nem gyógyszeres</strong>
+		<li>életmódváltás</li><ul>
+			<li>sóbevitel 5g/nap alá</li>
+			<li>alkohol, dohányzás STOP</li>
+			<li>mediterrán étrend</li>
+			<li>BMI beállítása</li>
+			<li>fizikai aktivitás növelése</li>
+		</ul>
+		<li>oki kezelés (szekunder hipertónia esetén lehetséges)</li>
+	  <strong>gyógyszeres</strong>
+		<li>II. III. fokú esetében kell, I.fokú esetében megfontolandó <img class="mini" data-src="pmghmnkh.png"></li>
+		<li>gyógyszerek:</li><ul>
+			<li>ACE-gátlók</li>
+			<li>&beta;-blokkolók &#10140; ezt csak speciális indikáció esetén</li>
+			<li>angiotenzin-receptor antagonisták</li>
+			<li>Ca<sup>2+</sup>-csatorna blokkolók</li>
+			<li>diuretikumok</li>
+		</ul>
+		<li>a beadandó gyógyszer két összetevőből áljon:</li><ul>
+			<li>egyik &#10140; <abbr title="RAS(renin-angiotenzin rendszer) gátlók">ACE-gátló / ARB</abbr></li>
+			<li>másik &#10140; Ca<sup>2+</sup>-antagonista / diuretikum</li>
+		</ul>
+		<li>célérték: &lt;140/90Hgmm (de függ: életkor & vesétől is!)</li>
+	</ul></details>
+	<details class="{67} kerdes"><summary>TAVI</summary><ul class="normal">
+		<font style="font-size:80%">transzkatéteres aorta billentyű implantáció</font>
+		<li>behatolási kapu:</li><ul>
+			<li>a.femoralis &#10140; éber szedációban elvégezhető</li>
+			<li>a.subclavia &#10140; anesztézia szükséges</li>
+		</ul>
+		<li>anyaga &#10140; sertés / marha pericardium</li>
+		<li><span class="midQ [37]">TAG</span>-ot kell utána szedni élethossziglan</li>
+	</ul></details>
+	<details class="{68} kerdes"><summary></summary><ul class="normal">
 		<li></li>
 	</ul></details>
-	<details class="{62} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
-	</ul></details>
-	<details class="{63} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
-	</ul></details>
-	<details class="{64} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
-	</ul></details>
-	<details class="{65} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
-	</ul></details>
-	<details class="{66} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
-	</ul></details>
-	<details class="{67} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
-	</ul></details>
-	<details class="{68} kerdes"><summary> </summary><ul class="normal">
-		<li></li>
-	</ul></details>
-	<details class="{69} kerdes"><summary> </summary><ul class="normal">
+	<details class="{69} kerdes"><summary></summary><ul class="normal">
 		<li></li>
 	</ul></details>
 	<details class="{70} kerdes"><summary> </summary><ul class="normal">
@@ -1522,7 +1585,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 </ul></details>
 
 <!----> <details open><summary class="mainTitle">A</summary>
-<details class="kerdes"><summary class="status">1. Diastoles zörejek. Szívhangok</summary><ul class="normal">
+<details class="open"><summary class="status">1. Diastoles zörejek. Szívhangok</summary><ul class="normal">
 	<details class="kerdes"><summary><strong>Diastoles zörejek.</strong> Szívhangok</summary><ul class="normal">
 		<div class="imp [40]"></div>
 	</ul></details>
@@ -1530,7 +1593,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<div class="imp [39]"></div>
 	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status">2. Systoles zörejek. Szívhangok</summary><ul class="normal">
+<details class="open"><summary class="status">2. Systoles zörejek. Szívhangok</summary><ul class="normal">
 	<details class="kerdes"><summary><strong>Systoles zörejek.</strong> Szívhangok</summary><ul class="normal">
 		<div class="imp [40]"></div>
 	</ul></details>
@@ -1538,7 +1601,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<div class="imp [39]"></div>
 	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status">3. Rizikófaktorok, primer és secunder prevenció.</summary><ul class="normal">
+<details class="open"><summary class="status">3. Rizikófaktorok, primer és secunder prevenció.</summary><ul class="normal">
 	<details class="kerdes"><summary><strong>Rizikófaktorok</strong>, primer és secunder prevenció.</summary><ul class="normal">
 	  <strong>NEM befolyásolhatók</strong>
 		<li>életkor</li>
@@ -1564,7 +1627,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<div class="imp [20]"></div>
 	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status">4. Szívelégtelenség (etiológia, diagnosztika).</summary><ul class="normal">
+<details class="open"><summary class="status">4. Szívelégtelenség (etiológia, diagnosztika).</summary><ul class="normal">
 	<details class="kerdes"><summary><strong>Szívelégtelenség</strong> (etiológia, diagnosztika).</summary><ul class="normal">
 		<div class="imp [1]"></div>
 	</ul></details>
@@ -1577,13 +1640,21 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<div class="imp [4]"></div>
 	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status">5. Dilatatív cardiomyopathia.</summary><ul class="normal">
-	<span class="imp [50]"></span> <!-- cardiomyopathia -->
-	<span class="imp [51]"></span> <!-- Dilatatív -->
+<details class="open"><summary class="status">5. Dilatatív cardiomyopathia.</summary><ul class="normal">
+	<details class="kerdes"><summary>Dilatatív <strong>cardiomyopathia</strong>.</summary><ul class="normal">
+		<div class="imp [50]"></div>
+	</ul></details>
+	<details class="kerdes"><summary><strong>Dilatatív</strong> cardiomyopathia.</summary><ul class="normal">
+		<div class="imp [51]"></div>
+	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status">6. Hypertrophias cardiomyopathia.</summary><ul class="normal">
-	<span class="imp [50]"></span> <!-- cardiomyopathia -->
-	<span class="imp [52]"></span> <!-- Hypertrophias -->
+<details class="open"><summary class="status">6. Hypertrophias cardiomyopathia.</summary><ul class="normal">
+	<details class="kerdes"><summary>Hypertrophias <strong>cardiomyopathia</strong>.</summary><ul class="normal">
+		<div class="imp [50]"></div>
+	</ul></details>
+	<details class="kerdes"><summary><strong>Hypertrophias</strong> cardiomyopathia.</summary><ul class="normal">
+		<div class="imp [52]"></div>
+	</ul></details>
 </ul></details>
 <details><summary class="status">7. Akut szívelégtelenség kardiogén sokk – etiológia, tünettan, diagnosztika.</summary><ul class="normal">
 	<details class="kerdes"><summary><strong>Akut szívelégtelenség kardiogén sokk</strong> – etiológia, tünettan, diagnosztika.</summary><ul class="normal">
@@ -1637,7 +1708,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 	</ul></details>
 	<img data-src="kszvgth.jpg">
 </ul></details>
-<details><summary class="status">9. Krónikus szívelégtelenség – etiológia, tünettan, diagnosztika.</summary><ul class="normal">
+<details class="open"><summary class="status">9. Krónikus szívelégtelenség – etiológia, tünettan, diagnosztika.</summary><ul class="normal">
 	<details class="kerdes"><summary>Krónikus <strong>szívelégtelenség</strong> – etiológia, tünettan, diagnosztika.</summary><ul class="normal">
 		<div class="imp [1]"></div>
 	</ul></details>
@@ -1908,7 +1979,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		</ul></details>
 	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status">16. Hypertonia 1: etiológia, diagnosztika.</summary><ul class="normal">
+<details class="open"><summary class="status">16. Hypertonia 1: etiológia, diagnosztika.</summary><ul class="normal">
 	<details class="kerdes"><summary>Hypertonia 1: <strong>etiológia</strong>, diagnosztika.</summary><ul class="normal">
 	  <strong>primer</strong>
 		<li>ismeretlen okú</li>
@@ -1959,7 +2030,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		</ul>
 	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status" style="background-color:DarkGrey">17. Hypertonia 2: kardiológiai vonatkozások és kezelés.</summary><ul class="normal">
+<details class="open"><summary class="status" style="background-color:DarkGrey">17. Hypertonia 2: kardiológiai vonatkozások és kezelés.</summary><ul class="normal">
 	<details class="kerdes"><summary>Hypertonia 2: kardiológiai <strong>vonatkozások</strong> és kezelés.</summary><ul class="normal">
 	  rizikófaktor pl:
 		<li><span class="midQ [34] IMPORTANT">atherosclerosis</span> &#10140; fő jelentősége tán, az ezen keresztüli szervkárosító hatása</li>
@@ -1967,32 +2038,10 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<li><span class="midQ [56]">aortadissectio</span></li>
 	</ul></details>
 	<details class="kerdes"><summary>Hypertonia 2: kardiológiai vonatkozások és <strong>kezelés</strong>.</summary><ul class="normal">
-	  <strong>nem gyógyszeres</strong>
-		<li>életmódváltás</li><ul>
-			<li>sóbevitel 5g/nap alá</li>
-			<li>alkohol, dohányzás STOP</li>
-			<li>mediterrán étrend</li>
-			<li>BMI beállítása</li>
-			<li>fizikai aktivitás növelése</li>
-		</ul>
-		<li>oki kezelés (szekunder hipertónia esetén lehetséges)</li>
-	  <strong>gyógyszeres</strong>
-		<li>II. III. fokú esetében kell, I.fokú esetében megfontolandó <img class="mini" data-src="pmghmnkh.png"></li>
-		<li>gyógyszerek:</li><ul>
-			<li>ACE-gátlók</li>
-			<li>&beta;-blokkolók &#10140; ezt csak speciális indikáció esetén</li>
-			<li>angiotenzin-receptor antagonisták</li>
-			<li>Ca<sup>2+</sup>-csatorna blokkolók</li>
-			<li>diuretikumok</li>
-		</ul>
-		<li>a beadandó gyógyszer két összetevőből áljon:</li><ul>
-			<li>egyik &#10140; <abbr title="RAS(renin-angiotenzin rendszer) gátlók">ACE-gátló / ARB</abbr></li>
-			<li>másik &#10140; Ca<sup>2+</sup>-antagonista / diuretikum</li>
-		</ul>
-		<li>célérték: &lt;140/90Hgmm (de függ: életkor & vesétől is!)</li>
+		<div class="imp [66]"></div>
 	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status">18. Anticoagulans kezelés, thrombocyta aggregatio gátló kezelés indikációi.</summary><ul class="normal">
+<details class="open"><summary class="status">18. Anticoagulans kezelés, thrombocyta aggregatio gátló kezelés indikációi.</summary><ul class="normal">
 	<details class="kerdes"><summary><strong>Anticoagulans kezelés</strong>, thrombocyta aggregatio gátló kezelés indikációi.</summary><ul class="normal">
 		<div class="imp [35]"></div>
 	</ul></details>
@@ -2006,7 +2055,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 <!---->  </details>
 
 <!----> <details open><summary class="mainTitle">B</summary>
-<details class="kerdes"><summary class="status">1. Ischaemias szívbetegség formái, vizsgálata.</summary><ul class="normal">
+<details class="open"><summary class="status">1. Ischaemias szívbetegség formái, vizsgálata.</summary><ul class="normal">
 	<details class="kerdes"><summary><strong>Ischaemia</strong>s szívbetegség formái, vizsgálata.</summary><ul class="normal">
 		<li>ischaemia &#10140; oxigén és/vagy tápanyaghiány</li>
 		oka:
@@ -2050,7 +2099,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 <details class="kerdes"><summary class="status">2. Angina pectoris.</summary><ul class="normal">
 	<div class="imp [17]"></div>
 </ul></details>
-<details class="kerdes"><summary class="status">3. Nem ST elevációs acut coronaria syndroma 1: etiológia, formái, diagnosztikája.</summary><ul class="normal">
+<details class="open"><summary class="status">3. Nem ST elevációs acut coronaria syndroma 1: etiológia, formái, diagnosztikája.</summary><ul class="normal">
 	<details class="kerdes"><summary>Nem ST elevációs <strong>acut coronaria syndroma</strong> 1: etiológia, formái, diagnosztikája.</summary><ul class="normal">
 		<span class="midQ [22]">pályafutásom során biztosan találkozom ilyennel(ACS/AMI), és a kimenetele azon múlik hogy reagálok rá, ezért kiemelten fontos a téma</span>
 	</ul></details>
@@ -2064,7 +2113,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<div class="imp [23]"></div>
 	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status">4. Nem ST elevációs acut coronaria syndroma 2: kezelése.</summary><ul class="normal">
+<details class="open"><summary class="status">4. Nem ST elevációs acut coronaria syndroma 2: kezelése.</summary><ul class="normal">
 	<details class="kerdes"><summary>Nem ST elevációs <strong>acut coronaria syndroma</strong> 2: kezelése.</summary><ul class="normal">
 		<span class="midQ [22]">pályafutásom során biztosan találkozom ilyennel(ACS/AMI), és a kimenetele azon múlik hogy reagálok rá, ezért kiemelten fontos a téma</span>
 	</ul></details>
@@ -2082,12 +2131,16 @@ krónikus jobb szívfél elégtelenség prezentáció
 	  <strong>oki terápia</strong> <div class="imp [28]"></div>
 	  <strong>tüneti kezelés</strong> <div class="imp [27]"></div>
 	  <hr><strong>utókezelés</strong>
-		<li>aszpirin + 12hónapig clopidogrel/prasugrel</li>
+		<li>ACS & PCI &#10140; <span class="midQ [31]">cél: stenttrombózis megelőzése:</span></li><ul>
+			<li>PCI előtt egyszeri telítő dózis kettős <abbr title="trombocita aggregáció gátló">TAG</abbr>: aszpirin + clopidogrel/prasugrel</li>
+			<li>utána 6hónapig kettős TAG</li>
+			<li>utána élethosszan <abbr title="tehát elég mrá csak 1 ilyenkor, nem kell kettős">egy</abbr> TAG</li>
+		</ul>
 		<li>sztatin</li>
 		<li>ACE-gátló + &beta;-blokkoló</li>
 	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status" style="background-color:DarkGrey">5. ST elevációs myocardiális infarktus 1 – etiológia, pathomechanizmus, diagnosztika.</summary><ul class="normal">
+<details class="open"><summary class="status" style="background-color:DarkGrey">5. ST elevációs myocardiális infarktus 1 – etiológia, pathomechanizmus, diagnosztika.</summary><ul class="normal">
 	<details class="kerdes"><summary>ST elevációs <strong>myocardiális infarktus</strong> 1 – etiológia, pathomechanizmus, diagnosztika.</summary><ul class="normal">
 		<span class="midQ [22]">pályafutásom során biztosan találkozom ilyennel(ACS/AMI), és a kimenetele azon múlik hogy reagálok rá, ezért kiemelten fontos a téma</span>
 	</ul></details>
@@ -2100,7 +2153,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<div class="imp [23]"></div>
 	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status">6. ST elevációs myocardiális infarktus 2 – kezelése.</summary><ul class="normal">
+<details class="open"><summary class="status">6. ST elevációs myocardiális infarktus 2 – kezelése.</summary><ul class="normal">
 	<details class="kerdes"><summary>ST elevációs <strong>myocardiális infarktus</strong> 2 – kezelése.</summary><ul class="normal">
 		<span class="midQ [22]">pályafutásom során biztosan találkozom ilyennel(ACS/AMI), és a kimenetele azon múlik hogy reagálok rá, ezért kiemelten fontos a téma</span>
 	</ul></details>
@@ -2118,7 +2171,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<li>ha SZE, akkor</li>
 	</ul></details>
 </ul></details>
-<details><summary class="status">7. Szívkatéterezés, hemodynamikai vizsgálat. Perkután koronária intervenció. A szívciklus</summary><ul class="normal">
+<details class="open"><summary class="status">7. Szívkatéterezés, hemodynamikai vizsgálat. Perkután koronária intervenció. A szívciklus</summary><ul class="normal">
 	<details class="kerdes"><summary>Szívkatéterezés, hemodynamikai vizsgálat. Perkután koronária intervenció. <strong>A szívciklus</strong></summary><ul class="normal">
 	  <strong>szívciklus</strong>
 		<li>görbék</li><ul>
@@ -2148,9 +2201,8 @@ krónikus jobb szívfél elégtelenség prezentáció
 			<li>artériás kanül &#10140; artériás nyomás mérhető vele</li>
 			<li>centralis vénás kanül &#10140; jobb pitvari nyomás mérhető vele (megegyezik szinte a vénással)</li>
 		</ul>
-		<li></li>
 	  <strong>PTF vizsgálat</strong>
-		<li></li><ul>
+		<li>PTF függ</li><ul>
 			<li>preload ➜ a szívbe áramló vérmennyiség ➜ a vénás rendszer tónusától függ: ha dilatálnak, akkor csökken</li>
 			<li>afterload ➜ a TPR-től függ (+aorta falának rugalmassága) ➜ ha TPR csökken, akkor csökken (és akkor a vérnyomás is)</li>
 			<li>kontraktilitás (inotróp)</li>
@@ -2161,17 +2213,19 @@ krónikus jobb szívfél elégtelenség prezentáció
 			<li><span class="important"><span class="midQ [26]">echokardiográfia</span></span></li>
 			<li><span class="midQ [53]">MRI</span></li>
 		</ul>
-		<li></li>
+		<li>invazív &#10140; termodilúciós módszer: ismert hőmérsékletű sóoldat injektálása vénás kanülön keresztül, majd az 'artériás oldalon mérés'(hőmérséklet alapján)</li>
 	</ul></details>
 	<details class="kerdes"><summary><strong>Szívkatéterezés</strong>, hemodynamikai vizsgálat. Perkután koronária intervenció. A szívciklus</summary><ul class="normal">
 		<li>nagy ereken keresztül vékony cső vezetése a szívbe</li><ul>
 			<li>v.jugularis interna, v.subclavia, v.femoralis (bal szívfélbe transz-szeptálisan jutnak át)</li>
 			<li>a.radialis, a.femoralis, a.brachialis</li>
 		</ul>
-		<li>felhasználás</li><ul>
+		<li>felhasználás:</li><ul>
 			<li>elektrofiziológiai vizsgálat (elektródákat juttatva a szívbe; 'invazív EKG')</li>
-			<li>biopszia (myocardium) &#10140; sarcoidosis, amyloidosis, myocarditis stb.</li>
 			<li>koronarográfia (koszorúérfestés) &#10140; kontrasztanyag befecskendezése és közben rtg-el követni</li>
+			<li>abláció</li>
+			<li><span class="midQ [31]">PCI</span></li>
+			<li>biopszia (myocardium) &#10140; sarcoidosis, amyloidosis, myocarditis stb.</li>
 		</ul>
 	  <strong>Seldinger-techniká</strong>-val történik
 		<li>tűt az érbe</li>
@@ -2186,7 +2240,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<div class="imp [31]"></div>
 	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status">8. Koronária revaszkularizáció: PCI</summary><ul class="normal">
+<details class="open"><summary class="status">8. Koronária revaszkularizáció: PCI</summary><ul class="normal">
 	<details class="kerdes"><summary><strong>Koronária revaszkularizáció</strong>: PCI</summary><ul class="normal">
 		<div class="imp [30]"></div>
 	</ul></details>
@@ -2195,7 +2249,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 	</ul></details>
 </ul></details>
 <details class="kerdes"><summary class="status">9. Mellkasi fájdalom differenciál diagnosztikája.</summary><ul class="normal">
-	<div class="imp [17]"></div>
+	<div class="imp [17] hide"></div>
 </ul></details>
 <details class="kerdes"><summary class="status">10. Tüdőembolia.</summary><ul class="normal">
 	<div class="imp [10]"></div>
@@ -2306,22 +2360,14 @@ krónikus jobb szívfél elégtelenség prezentáció
 <!---->  </details>
 
 <!----> <details open><summary class="mainTitle">C</summary>
-<details><summary class="status">1. Aorta billentyű stenosis, aorta billentyű insuffitientia kezelése.</summary><ul class="normal">
+<details class="open"><summary class="status">1. Aorta billentyű stenosis, aorta billentyű insuffitientia kezelése.</summary><ul class="normal">
 	csak az invazív kezelé a hatékony, a gyógyszeres nem!!
 	<details class="kerdes"><summary><strong>Aorta billentyű stenosis</strong>, aorta billentyű insuffitientia kezelése.</summary><ul class="normal">
 		<li><details class="kerdes"><summary>nyitott szívműtét(sebészi) &#10140; műbillentyű (mechanikus/biológiai) implantáció</summary><ul class="normal">
 			<div class="imp [16]"></div>
 		</ul></details></li>
 		<li><abbr title="csupán egy, esetleg két szúrásból és a továbbiakban ebből a szúrásból bevezetett tűn, katéteren, egyéb eszközön keresztül történik a terápia">perkután intervenció</abbr> &#10140; krónikus SZE, idős beteg esetén ez javasolt inkább</li><ul>
-			<li><details class="kerdes"><summary>TAVI</summary><ul class="normal"></li>
-				transzkatéteres aorta billentyű implantáció
-				<li>behatolási kapu:</li><ul>
-					<li>a.femoralis &#10140; éber szedációban elvégezhető</li>
-					<li>a.subclavia &#10140; anesztézia szükséges</li>
-				</ul>
-				<li>anyaga &#10140; sertés / marha pericardium</li>
-				<li>trombocita-aggregáció gátlót kell utána szedni élethossziglan</li>
-			</ul></details>
+			<li><details class="kerdes"><summary>TAVI</summary><ul class="normal"></li> <div class="imp [67]"></div> </ul></details>
 			<li><details class="kerdes"><summary>BAV</summary><ul class="normal"></li>
 				ballonos aorta valvuloplasztika
 				<li>lényege &#10140; katéteresen bejutva az aorta billentyűk tágítása ballonnal</li>
@@ -2343,7 +2389,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		</ul>
 	</ul></details>
 </ul></details>
-<details><summary class="status">2. Mitralis billentyű stenosis, mitralis billentyű insuffitientia kezelése.</summary><ul class="normal">
+<details class="open"><summary class="status">2. Mitralis billentyű stenosis, mitralis billentyű insuffitientia kezelése.</summary><ul class="normal">
 	<details class="kerdes"><summary><strong>Mitralis billentyű stenosis</strong>, mitralis billentyű insuffitientia kezelése.</summary><ul class="normal">
 		<li><details class="kerdes"><summary>vagy nyitott szívműtét: billentyű-implantáció</summary><ul class="normal">
 			<div class="imp [16]"></div>
@@ -2366,7 +2412,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<video data-src="videos/MitraClip Procedure - Nebraska Medicine.mp4"></video>
 	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status">3. Aorta dissectio diagnosztikája, kezelése</summary><ul class="normal">
+<details class="open"><summary class="status">3. Aorta dissectio diagnosztikája, kezelése</summary><ul class="normal">
 	<details class="kerdes"><summary><strong>Aorta dissectio</strong> diagnosztikája, kezelése</summary><ul class="normal">
 		<div class="imp [56]"></div>
 	</ul></details>
@@ -2377,7 +2423,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<div class="imp [58]"></div>
 	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status">4. Koronária revaszkularizáció: CABG</summary><ul class="normal">
+<details class="open"><summary class="status">4. Koronária revaszkularizáció: CABG</summary><ul class="normal">
 	<details class="kerdes"><summary><strong>Koronária revaszkularizáció:</strong> CABG</summary><ul class="normal">
 		<div class="imp [30]"></div>
 	</ul></details>
@@ -2438,7 +2484,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<li>infekciók (pl. pericarditis) &#10140; ritkák már</li>
 	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status">7. Az alsóvégtagi perifériás verőérbetegség klinikuma és diagnosztikája</summary><ul class="normal">
+<details class="open"><summary class="status">7. Az alsóvégtagi perifériás verőérbetegség klinikuma és diagnosztikája</summary><ul class="normal">
 	<details class="kerdes"><summary>Az alsóvégtagi perifériás verőérbetegség <strong>klinikuma</strong> és diagnosztikája</summary><ul class="normal">
 	  <strong>kockázati tényezők:</strong> <div class="imp [34]"></div>
 	  <hr>
@@ -2501,7 +2547,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		</ul>
 	</ul>
 </ul></details>
-<details class="kerdes"><summary class="status">9. A mélyvénás thrombosis klinikuma és diagnosztikája</summary><ul class="normal">
+<details class="open"><summary class="status">9. A mélyvénás thrombosis klinikuma és diagnosztikája</summary><ul class="normal">
 	<details class="kerdes"><summary>A <strong>mélyvénás thrombosis klinikuma</strong> és diagnosztikája</summary><ul class="normal">
 		mélyvénás thrombosis az esetek több mint 90%-ában a láb-ban alakul ki (de bármely mély vénában előfordulhat)
 		<li>75%-ban térd felett (proximalis thrombosis)</li>
@@ -2548,7 +2594,7 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<font style="font-size:80%">artériás keringészavar esetén a végtag hideg, fehér, fájdalmas, az artériás elzáródástól distalisan pulzus nem tapintható</font>
 	</ul></details>
 </ul></details>
-<details class="kerdes"><summary class="status">10. A mélyvénás thrombosis konzervatív terápiája, késői következményei</summary><ul class="normal">
+<details class="open"><summary class="status">10. A mélyvénás thrombosis konzervatív terápiája, késői következményei</summary><ul class="normal">
 	<details class="kerdes"><summary>A mélyvénás thrombosis <strong>konzervatív terápiája</strong>, késői következményei</summary><ul class="normal">
 		<li>rizikófaktorok csökkentése &#10140; egézséges táplálkozás, dohányzás stop, koleszterin-szint stb.</li>
 	  <strong>antikoaguláns</strong>
@@ -2570,20 +2616,121 @@ krónikus jobb szívfél elégtelenség prezentáció
 		<li>oka &#10140; a vénabillentyűk károsodása következtében fokozott vénás nyomás van</li>
 	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:coral">11. Alapvető érsebészeti technikák és érpótló anyagok</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
+<details class="open"><summary class="status">11. Alapvető érsebészeti technikák és érpótló anyagok</summary><ul class="normal">
+	<details class="kerdes"><summary><strong>Alapvető érsebészeti technikák</strong> és érpótló anyagok</summary><ul class="normal">
+		<details class="kerdes"><summary>arteriotomia</summary><ul class="normal">
+			<li>haránt</li>
+			<li>hosszanti</li>
+			<img data-src="hwicpkhj.png">
+		</ul></details>
+		<details class="kerdes"><summary>anasztomozóisok készítése történhet</summary><ul class="normal">
+			<img data-src="plprjhxk.png">
+		</ul></details>
+	  <hr><abbr title="obliteráció = elzáródás">desobliterációk</abbr>
+		<details class="kerdes"><summary>embolectomia, thrombectomia</summary><ul class="normal">
+			<li>érpályában keletkezett vagy más területről odasodródott vérrög eltávolítása a Fogarty által leírt technikával, ballonkatéter segítségével</li>
+			<li>az érpályát elzáró vérrög mögé juttatott katéter végén lévő ballont felfújva, az a thrombust (embolust) visszahúzza az ér sebzéséig, így onnan a sebész kiemelheti</li>
+			<img data-src="hgtdxheq.png">
+		</ul></details>
+		<details class="kerdes"><summary>thrombendarteriectomia</summary><ul class="normal">
+			<div class="imp [61]"></div>
+		</ul></details>
+	  <hr>
+		<details class="kerdes"><summary>interpositio</summary><ul class="normal">
+			<div class="imp [62]"></div>
+		</ul></details>
+		<details class="kerdes"><summary>transpositio</summary><ul class="normal">
+			<div class="imp [64]"></div>
+		</ul></details>
+		<details class="kerdes"><summary>bypass</summary><ul class="normal">
+			<div class="imp [63]"></div>
+		</ul></details>
+	</ul></details>
+	<details class="kerdes"><summary>Alapvető érsebészeti technikák és <strong>érpótló anyagok</strong></summary><ul class="normal">
+		<details class="kerdes"><summary>biológiai</summary><ul class="normal">
+			<li>saját ér</li><ul>
+				<li>legjobb</li><ul>
+					<li>infekció nincs</li>
+					<li>sokáig nyitva</li>
+				</ul>
+				<li>vénák gyakran (v.saphena magna stb.), artériák ritkábban</li>
+			</ul>
+			<li>más ember</li><ul>
+				<li>infekció lehet</li>
+				<li>rövidebb ideig nyitva</li>
+			</ul>
+			<li>más faj (xenograft)</li><ul>
+				<li>szarvasmarha a gyakori</li>
+				<li>jó &#10140; sokáig nyitva, ritka az infekció</li>
+				<li>de drága</li>
+			</ul>
+		</ul></details>
+		<details class="kerdes"><summary>műanyag</summary><ul class="normal">
+		  <strong>Dacron</strong>
+			<li>ez szövött graft</li>
+			<li>leggyakrabban alkalmazott anyag (maga a Dacron az anyag neve)</li>
+		  <strong><abbr title="anyag neve ez is">Gore-tex</abbr></strong>
+			<li>ez öntött graft</li>
+			<li>femoro-poplitealis rekonstrukciók, AV shuntökhöz</li>
+		</ul></details>
 	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:coral">12. Okkluzív artériás betegségek nyitott műtéti és hibrid ellátása</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
+<details class="open"><summary class="status">12. Okkluzív artériás betegségek nyitott műtéti és hibrid ellátása</summary><ul class="normal">
+	<details class="kerdes"><summary>Okkluzív artériás betegségek <strong>nyitott műtéti</strong> és hibrid ellátása</summary><ul class="normal">
+		<li><span class="midQ [61] kerdes">thrombendarteriectomia</span> &#10140; nyitott / zárt</li>
+		<li><span class="midQ [62] kerdes">bypass</span> / <span class="midQ [63] kerdes">interpositio</span> / <span class="midQ [64] kerdes">transpositio</span></li>
+		<li>amputáció</li>
+		<li>everziós endarterectomia &#10140; carotisoknál (lásd dia!) &#10140; nyitott desobliteráció, majd reimplantáció</li>
+	</ul></details>
+	<details class="kerdes"><summary>Okkluzív artériás betegségek nyitott műtéti és <strong>hibrid</strong> ellátása</summary><ul class="normal">
+	  <strong>lényege</strong>
+		<li>endovascularis és nyitott műtét kombinációja</li>
+		<li>pl. kétoldali iliaca okklúzió:</li><ul>
+			<li>egyik oldal <span class="midQ [65]">PTA</span> /+ stent beültetés</li>
+			<li>másik oldal ezután bypass-al</li>
+		</ul>
+	  <strong>előnyei</strong> &#10140; kisebb feltárást igényel, így
+		<li>infekció esélye csökken</li>
+		<li>hamarabb gyógyul</li>
+		<li>kevésbé fáj</li>
+	  <strong>hátrányai</strong>
+		<li>műtéti idő nőhet</li>
+		<li>sugár és kontrsztanyag terhelés</li>
+		<li>speciális eszközök & szakember igény</li>
 	</ul></details>
 </ul></details>
 <details><summary class="status" style="background-color:coral">13. Dilatatív (hasi, mellkasi és végtagi aneurysmák) artériás betegségek nyitott műtéti és hibrid ellátása</summary><ul class="normal">
 	<details class="kerdes"><summary></summary><ul class="normal">
 	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:coral">14. A vénás betegségek érsebészeti ellátása</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
+<details class="open"><summary class="status">14. A vénás betegségek érsebészeti ellátása</summary><ul class="normal">
+	<details class="kerdes"><summary>A <strong>vénás betegségek</strong> érsebészeti ellátása</summary><ul class="normal">
+		<li>krónikus vénás betegségek lényege &#10140; visszaáramlás akadályozottsága van valami oknál fogva:</li><ul>
+			<li>obstrukció &#10140; külső kompresszió, trombózis</li>
+			<li>billentyűelégtelenség</li>
+			<li>mozgáshiány (izompumpa)</li>
+		</ul>
+		<li>ennek következtében pangás, nő a nyomás, kitágulnak</li>
+	</ul></details>
+	<details class="kerdes"><summary>A vénás betegségek <strong>érsebészeti ellátása</strong></summary><ul class="normal">
+		<details class="kerdes"><summary>konzervatív</summary><ul class="normal">
+			<li>nem gyógyszeres &#10140; izompumpa, kompresszió</li>
+			<li>gyógyszeres</li><ul>
+				<li>venotonikum-ok</li>
+				<li>antikoagulánsok</li>
+			</ul>
+		</ul></details>
+		<details class="kerdes"><summary>endovascularis</summary><ul class="normal">
+		  <strong><abbr title="felszíni vénák kóros tágulata">visszereség</abbr></strong>
+			<li>ajánlott, de nincs rá állami támogatás</li>
+			<li>a keringést leállítjuk trombózissal vagy érbelfelszín károsítással</li><ul>
+				<li>először hleyi érzéstelenítés: ún. tumeszcens anesztézia &#10140; érzéstelenít + hűti is a szöveteket</li>
+				<li>radiofrekvencia / krioabláció</li>
+			</ul>
+		  <strong>mélyvénák stenosis / okklúziója</strong>
+			<li>oka &#10140; tumor okozta kompresszió, mélyvénás trombózis</li>
+			<li>kezelés &#10140; <span class="midQ [65] kerdes">PTA</span></li>
+		</ul></details>
 	</ul></details>
 </ul></details>
 <details><summary class="status" style="background-color:coral">15. Alapvető endovaszkuláris technikák</summary><ul class="normal">
@@ -2594,12 +2741,54 @@ krónikus jobb szívfél elégtelenség prezentáció
 	<details class="kerdes"><summary></summary><ul class="normal">
 	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:coral">17. Endovaszkuláris beavatkozások a vénás betegségekben</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
+<details class="kerdes"><summary class="status">17. Endovaszkuláris beavatkozások a vénás betegségekben</summary><ul class="normal">
+	<details class="kerdes"><summary>szelektív katéteres trombolízis</summary><ul class="normal">
+		<li>80-85%-ban sikeres</li>
+		<li>1éves nyitvamaradás magas 65-80%</li>
+		<li>szövődmények &#10140; vérzéses (5-10%)</li>
+		<li>pl. mélyvénás trombózisban használatos</li>
+	</ul></details>
+	<details class="kerdes"><summary>mechanikus thromboectomia</summary><ul class="normal">
+		<li>gyorsabb a trombolízisnél</li>
+		<li>módjai</li><ul>
+			<li>thrombus aspiráció</li>
+			<li>hidrodinamikus</li>
+			<li>ultrasound energiájú eszközök</li>
+		</ul>
+		<img data-src="vvieqlse.png">
+	</ul></details>
+	<details class="kerdes"><summary>rekanalizáció</summary><ul class="normal">
+		<img data-src="vxpofeeo.png">
+		<li>stent beültetés</li><ul>
+			<li>v.cava superior/inferior esetében gyakran használt</li>
+		</ul>
+		<li>PTA</li><ul> <span class="imp [65]"></div> </ul>
 	</ul></details>
 </ul></details>
-<details><summary class="status" style="background-color:coral">18. Az extracorporalis keringés elmélete és gyakorlati kivitelezése.</summary><ul class="normal">
-	<details class="kerdes"><summary></summary><ul class="normal">
+<details class="open"><summary class="status">18. Az extracorporalis keringés elmélete és gyakorlati kivitelezése.</summary><ul class="normal">
+	<details class="kerdes"><summary><strong>Az extracorporalis keringés elmélete</strong> és gyakorlati kivitelezése.</summary><ul class="normal">
+	  <strong>lényege</strong>
+		<li>a test felől érkező vér a visszerekből a [szív-tüdő készülékbe] jut, ahol oxigénnel dúsul, majd az aortában lévő kanülön keresztül visszajut a szervezetbe, ezáltal pótolt a szív pumpafunkciója és a tüdő gázcsere funkciója</li>
+	  <strong>felhasználása</strong>
+		<li>szívműtét során lehetővé válik a szívüregek és a nagyerek megnyitása &#10140; pl. Bentall-műtét</li>
+	</ul></details>
+	<details class="kerdes"><summary>Az extracorporalis keringés elmélete és <strong>gyakorlati kivitelezése.</strong></summary><ul class="normal">
+	  <strong>kellékek:</strong>
+		<li>[szív-tüdő készülékbe]</li><ul>
+			<li>oxigenátor (CO2/O2 csere)</li>
+			<li>pumpa (szívfunkció)</li>
+			<li>heat-exchanger (hőmérséklet beállítást végez)</li>
+		</ul>
+		<li>csőrendszer</li>
+		<li>cardiotomiás szívók &#10140; vért a műtéti területről a szív-tüdő készülék tartályába juttatják</li>
+	  <strong>kivitelezés:</strong>
+		<li>a csőben van 500ml vérplazma &#10140; beteg hematokritje lecsökken &#10140; műtéti vérveszteség csökken</li>
+		<li>antikoaguláció heparinnal <div class="mirror">&#10140;</div> oxigenátor és a csőkészlet felszíne thrombogen</li>
+		<li>kanülálás &#10140; az aortába és a test felől érkező visszerekbe (venae cavae) műanyag csöveket (kanülöket) helyeznek, amelyek a [szív-tüdő készülékbe] kapcsolódnak</li><ul>
+			<li>jobb pitvar / v.cava inferior+superior / stb.</li>
+			<li>aorta ascendens / stb.</li>
+		</ul>
+		<li>a beteg szervezetét lehűtjük, így oxigénigénye csökken, majd a szívet leállítjuk és a készüléket beindítjuk</li>
 	</ul></details>
 </ul></details>
 <!---->  </details>
@@ -2609,7 +2798,6 @@ krónikus jobb szívfél elégtelenség prezentáció
 
 <div> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> </div>
 <script> window.parent.postMessage(['mikrobi', document.body.innerHTML], '*') </script>
-
 
 
 
