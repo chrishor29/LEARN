@@ -1,6 +1,8 @@
 // window.onerror = function(msg, url, linenumber) { alert('Error message: '+msg+'\nLine Number: '+linenumber) }
 
 /* PROJECT - PROGRESS
+ ✖ !!! tétel ha kérdés, akkor addig ne mutassa altkérdések számát (osztályzást) !!! high prior !!!
+ 
  ✖ tárgyakat el kéne mentse localstorage-be tömörítve, az gyorsabb
  ✖ kardio impQ.52 altkérdéseit egybeveszi az 51-ével, ha nincs comment
  ✖ tétel kérdésben átírok valamit, akkor a tételt deselectálja (gondolom, mert kérdés, és a hossza megváltozik, ami note-ban van)
@@ -934,16 +936,17 @@ F_titleChange(document)
 
 function F_synonyms(detElem){
 	function getRandomInt(max) { return Math.floor(Math.random() * Math.floor(max)) }
-	var synonyms = detElem.getElementsByTagName("SPAN")
+	var synonyms = detElem.getElementsByClassName("syno")
 	for ( var x=0; x<synonyms.length; x++ ) {
 		if ( synonyms[x].offsetParent == null ) { continue }
-		if ( synonyms[x].dataset.syno == null ) { continue }
+		//if ( synonyms[x].dataset.syno == null ) { continue }
 		
 		synonyms[x].style.fontStyle = "italic"
-		synonyms[x].style.backgroundColor = "#FFFFB0"
+		//synonyms[x].style.backgroundColor = "#FFFFB0"
 		synonyms[x].style.cursor = "pointer"
 
 		// egy randomot kiválaszt
+		synonyms[x].dataset.syno = synonyms[x].innerHTML
 		var synos = synonyms[x].dataset.syno
 		synos = synos.split(" | ")
 		var num = getRandomInt(synos.length)
@@ -993,7 +996,6 @@ function F_imgClick(detElem){ // képnagyítás balKlikkel középre
 		centerDiv.style.visibility = "visible";
 		centerImage.src = detElem.src
 		centerDiv.style.maxHeight = "95%";
-		centerImage.style.maxHeight = ""
 		centerDiv.style.maxWidth = "95%";
 		centerDiv.style.overflow = "auto";
 
@@ -1011,12 +1013,12 @@ function F_imgClick(detElem){ // képnagyítás balKlikkel középre
 				var rect = this.getBoundingClientRect()
 				var thisW = this.width *4
 				if ( rect.left < thisW ) { this.style.left = thisW }
-				this.style.transform = "scale(8)"
+				this.style.transform = "scale(8,8)"
 				this.style.zIndex = "4"
 			}
 			imgs[i].onmouseout = function() {
-				this.style.position = "static"
-				this.style.transform = "scale(1)"
+				this.style.position = ""
+				this.style.transform = "scale(1,1)"
 				this.style.left = ""
 				this.style.zIndex = "1"
 			}
@@ -4870,6 +4872,8 @@ function F_loadPathText(path,i) {
 	window.addEventListener('message', handler, false)
 }
 function F_loadAllPageTexts() {
+	F_getTime()
+	var startTime = myTime
 	removeEventListener('message', handler, false)
 	document.getElementById("div_SearchW").style.backgroundColor = "white"
 	var full = pageLinks.length -1
@@ -4888,6 +4892,11 @@ function F_loadAllPageTexts() {
 	var handler = function(e) {
 		var targyText = e.data[1];
 		if ( targyText != undefined && targyText != "" ) {
+			F_getTime()
+			var diffTime = (myTime-startTime).toFixed(2)
+			console.log("F_loadAllPageTexts – " + count+". "+pageLinks[count].dataset.src+" "+diffTime+"s")
+			startTime = myTime
+			
 			// savePage
 			var path = pageLinks[count].dataset.src
 			pageTexts[path] = targyText
