@@ -326,7 +326,10 @@ function F_detailsToggle(detElem){
 		F_titleChange(detElem)
 		F_answerQ(detElem)
 		var allDetails = detElem.getElementsByTagName("details")
-		for ( var i=0; i<allDetails.length; i++ ) { allDetails[i].ontoggle = function(){ F_detailsToggle(this) } }
+		for ( var i=0; i<allDetails.length; i++ ) { allDetails[i].ontoggle = function(){ 
+			F_detailsToggle(this) 
+			func_calcOldNew()
+		} }
 		//detElem.classList.add("imgLoaded");
 		/*F_getTime()
 		myTime = myTime-oldTime
@@ -4004,7 +4007,6 @@ function func_calcOldNew(){
 					} else {
 						kerdesNew = kerdesNew +1
 					}
-				
 					if ( localStorage.getItem(LSid+"_skip") == "important" ) {
 						if ( timeDiff >= idopont ) {
 							repOld = repOld +1
@@ -4017,7 +4019,9 @@ function func_calcOldNew(){
 		} else {
 			kerdesNew = kerdesNew +1
 		}
+		//console.log(kerdesNew+" "+LSid)
 	}
+	var text = objQnameQtxt[localStorage.getItem("hkQ.257")]
 	for ( var tetel in tetelek ) { // végignézi az összes kérdést
 		if ( localStorage.getItem(tetel+"_button") == "true" ) {
 			//console.log(tetel)
@@ -4944,7 +4948,6 @@ var diffTime = myTime-oldTime
 	<li><span class="WHITE">(.*?)</span>(.*?)</li>
 	<div><font class="abbr"><span class="WHITE">\1</span> ►</font>\2</div>
 */
-
 
 
 
