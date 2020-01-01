@@ -1,7 +1,9 @@
 // window.onerror = function(msg, url, linenumber) { alert('Error message: '+msg+'\nLine Number: '+linenumber) }
 
 /* PROJECT - PROGRESS
- ✖ !!! tétel ha kérdés, akkor addig ne mutassa altkérdések számát (osztályzást) !!! high prior !!!
+ ✖ mikrobi: részl.bakt: Bacillus anthracis -> 2x megnyitom és 2.-nál már rosszul írja ki
+ ✖ android: tételQ kijelölése nehéz, mert kicsi
+ ✖ android: menuk egy klikkel legyenek előhívhatók és nagyok legyenek / kerdes osztályzás is!
  
  ✖ tárgyakat el kéne mentse localstorage-be tömörítve, az gyorsabb
  ✖ kardio impQ.52 altkérdéseit egybeveszi az 51-ével, ha nincs comment
@@ -12,8 +14,6 @@
  ✖ lz-string nem kell már a html HEAD-ekben + amúgy sem
 
  ✖ alert funkciót replace-ljem
- ✖ android: tételQ kijelölése nehéz, mert kicsi
- ✖ android: menuk egy klikkel legyenek előhívhatók és nagyok legyenek / kerdes osztályzás is!
  ✖ img-eket csekk, mert lehet hiányoznak (tárgyakban)
  ✖ (img-eket csekk amik fölösek (batch-el txt-be lementem, majd végignézi őket))
  ✖ lehet összes impQ-t elején betölthetném, ha style display none-ban van (talán úgy gyorsabb lenne az egész: meglepően gyors úgy)
@@ -99,6 +99,7 @@
 */
 
 /* PROJECT - DONE
+ ✔ !!! tétel ha kérdés, akkor addig ne mutassa altkérdések számát (osztályzást) !!! high prior !!!
  ✔ elsőre valamiért szarakszik feladatmegoldásnál azon questekkel, amelyikben impQ van (még nem tölti be őket). impQ-k kal elején szarakodik, amikor először tölti őket be (lehet már osztályoztam máshol, mégis újnak veszi: lásd pl. belgyógy 1.tétel - adenohipofízis hormonok táblázat)
  ✔ search: nagybetü vs kisbetü
  ✔ jelölhessem ki a kérdést importantnak(zöld), a Qlista-repTime-ban
@@ -314,22 +315,26 @@ function F_checkEXPs() {
 	F_loadExpQs(parentDiv,origin)
 }
 
+function F_loadDetails(detElem){ 
+	F_impQfew(detElem)
+	//F_impQlot(detElem)
+	F_midQ(detElem)
+	F_loadImgVideo(detElem)
+	F_imgClick(detElem)
+	F_titleChange(detElem)
+	F_answerQ(detElem)
+}
 function F_detailsToggle(detElem){ 
 	//if ( detElem.classList.contains("imgLoaded") != true ) {
 		/*F_getTime()
 		oldTime = myTime*/
-		F_impQfew(detElem)
-		//F_impQlot(detElem)
-		F_midQ(detElem)
-		F_loadImgVideo(detElem)
-		F_imgClick(detElem)
-		F_titleChange(detElem)
-		F_answerQ(detElem)
+		F_loadDetails(detElem)
 		var allDetails = detElem.getElementsByTagName("details")
 		for ( var i=0; i<allDetails.length; i++ ) { allDetails[i].ontoggle = function(){ 
 			F_detailsToggle(this) 
 			func_calcOldNew()
 		} }
+
 		//detElem.classList.add("imgLoaded");
 		/*F_getTime()
 		myTime = myTime-oldTime
@@ -565,6 +570,7 @@ function F_midQ(detElem){
 	var midQs = detElem.getElementsByClassName("midQ")
 	for ( var x=0; x<midQs.length; x++ ) {
 		var midQ = midQs[x]
+		//console.log(midQ.innerHTML)
 		midQ.style.color = "blue"
 		midQ.style.textShadow = "0 0 1px yellow, 0 0 1px black"
 		midQ.style.cursor = "pointer"; 
@@ -647,7 +653,7 @@ function F_loadImgVideo(detElem){
 			width = Number(width) * screen.width /100
 			width = Math.floor(width)
 			imgs[x].style.maxWidth = width+"px"
-			console.log(width)
+			//console.log(width)
 		}
 	}
 	
@@ -1308,11 +1314,22 @@ function F_cutImpQs(text){
 
 function F_QtxtQname(text){
 	var qName = null
+	/*if ( text.slice(0,1) == "<" ) { 
+		qName = text.slice(text.indexOf(">"),text.lastIndexOf("</")) 
+		//console.log(text)
+		//alert("stop")
+	}*/
 	if ( text.indexOf("<summary") != -1 ) { 
 		qName = text.slice(text.indexOf("<summary"),text.indexOf("</summary>")) 
 		qName = qName.slice(qName.indexOf(">")+1)
-	} else if ( text.indexOf("<FONT") != -1 ) { 
-		qName = text.slice(text.indexOf("<FONT")+1,text.indexOf("</FONT")) 
+	} else if ( text.indexOf("<font") != -1 ) { 
+		qName = text.slice(text.indexOf("<font")+1,text.indexOf("</font")) 
+		qName = qName.slice(qName.indexOf(">")+1)
+	} else if ( text.indexOf("<div") != -1 ) { 
+		qName = text.slice(text.indexOf("<div")+1,text.indexOf("</div")) 
+		qName = qName.slice(qName.indexOf(">")+1)
+	} else if ( text.indexOf("<span") != -1 ) { 
+		qName = text.slice(text.indexOf("<span")+1,text.indexOf("</span")) 
 		qName = qName.slice(qName.indexOf(">")+1)
 	}
 	if ( qName == null ) { 
@@ -1324,6 +1341,7 @@ function F_QtxtQname(text){
 		}*/
 		//console.log("ha hiba van, lehet itt találok megoldást: "+Qtxt)  // a funkcióra hivatkozás még különbözo Qtxt-ekkel történik, és nem volt idom szépen megírni, de egyenlore elvileg jó így is, csak hibára fogékonyabb így
 	}
+	if ( qName.slice(0,1) == "[" ) { qName = qName.slice(qName.indexOf("]")+2) }
 	return qName
 }
 
@@ -2960,7 +2978,7 @@ function F_CreateQDiv() {
 		button.onclick = function(){ 
 			F_getTime()
 			var diffTime = myTime - lastClickTime
-			console.log(myTime+" vs "+lastClickTime)
+			//console.log(myTime+" vs "+lastClickTime)
 			if ( diffTime > 1 ) {
 				if ( this.style.backgroundColor == "aqua" ) { 
 					document.getElementById("divLoading").style.visibility = 'visible'
@@ -3514,22 +3532,35 @@ function F_calcLSid(detElem){
 	actLSid = undefined
 	var tagName = detElem.tagName
 	tagName = tagName.toLowerCase()
-	actQtext = '<'+tagName+' class="'+detElem.className+'">'+detElem.innerHTML+'</'+tagName+'>'
 	//console.log(actQtext)
+	actQtext = '<'+tagName+' class="'+detElem.className+'">'+detElem.innerHTML+'</'+tagName+'>'
+	var EXPid = null
 	if ( detElem.className.indexOf("{") > -1 ) {
 		var begin = detElem.className.indexOf("{")
 		var end = detElem.className.indexOf("}")
-		var EXPid = detElem.className.slice(begin+1,end)
+		EXPid = detElem.className.slice(begin,end+1)
 	
-		var qName = F_QtxtQname(detElem.innerHTML)
+		var qName = F_QtxtQname(detElem.innerHTML + " " + EXPid)
 		actLSid = localStorage.getItem(qName)
+		
+		//var qName = F_QtxtQname(detElem.innerHTML)
+		//actLSid = localStorage.getItem(qName)
 		
 		//var string = localStorage.getItem("hkExpQ."+EXPid)
 		//if ( string != null ) { actLSid = string.slice(0,string.indexOf(" ")) }
 	} 
+	if ( detElem.className.indexOf("[") > -1 ) {
+		var begin = detElem.className.indexOf("[")
+		var end = detElem.className.indexOf("]")
+		EXPid = detElem.className.slice(begin,end+1)
+		
+		var qName = F_QtxtQname(detElem.innerHTML + " " + EXPid)
+		actLSid = localStorage.getItem(qName)
+	} 
 	if ( actLSid == undefined )  {
 		var qName = F_QtxtQname(actQtext)
 		if ( localStorage.getItem(qName) ) { actLSid = localStorage.getItem(qName) }
+		//if ( actLSid != null ) { console.log(qName) }
 	}
 }
 
@@ -4150,14 +4181,22 @@ F_divQprop()
 
 var parentQ = ""
 var childQ = ""
+var parQord = ""
 function F_searchParent(elem) { // megkeresi a 'családfában' legfelül lévo 'kerdes'-t (ami nem feltétlen az, lehet csak 'open' is)
 	parentQ = elem
 	childQ = elem
+	parQord = ""
 	do { // megkeresi a 'családfában' legfelül lévo kérdést!
+		if ( parentQ.classList.contains("kerdes") == true ) { 
+			F_calcLSid(parentQ)
+			var LSid = actLSid
+			parQord = LSid+" + "+parQord
+		}
 		childQ = parentQ
 		parentQ = parentQ.parentElement
-		//console.log(parent.className)
-	} while ( parentQ.classList.contains("altetel") != true && parentQ.classList.contains("tetel") != true  && parentQ.classList.contains("feltetel") != true && childQ.classList.contains("altetel") != true && childQ.classList.contains("tetel") != true && childQ.classList.contains("feltetel") != true )
+		//console.log(childQ.className)
+		//console.log(parentQ.className)
+	} while ( /*parentQ.classList.contains("altetel") != true && parentQ.classList.contains("tetel") != true  && parentQ.classList.contains("feltetel") != true &&*/ childQ.classList.contains("altetel") != true && childQ.classList.contains("tetel") != true && childQ.classList.contains("feltetel") != true )
 }
 
 var actQid
@@ -4510,21 +4549,23 @@ function F_nextQ(){
 			if ( allImpQs[i].className.indexOf("imported") != -1 ) { continue } 
 			allImpQs[i].className = allImpQs[i].className+" imported" 
 		} // ez kell
-		F_detailsToggle(QlocElem)
 		
-		function F_SetMarks() { // minden kérdés mellé kreál egy osztályzás lehetoséget
+		var numQs = 0
+		function F_SetMarks(parQ) { // minden kérdés mellé kreál egy osztályzás lehetoséget
 			//console.clear()
 			console.log(" – F_SetMarks – ")
-			var arrayQ = QlocElem.getElementsByClassName("kerdes")
-			var numQs = 0
-			var num = 0
+			var arrayQ = parQ.getElementsByClassName("kerdes")
+			var num
 			for ( var i=0; i<arrayQ.length; i++ ) {
 				var Qelem = arrayQ[i]
+				if ( Qelem.offsetParent === null ) { continue }
 
+		//console.clear()
+		//console.log(i)
 				F_calcLSid(Qelem)
 				var LSid = actLSid
 				var Qtext = actQtext
-				/* csak ellenorzés: */ if ( LSid == undefined ) { alert("#1. "+ num +": "+ LSid +" (az LSid)") }
+				/* csak ellenorzés: */ if ( LSid == undefined ) { alert("F_SetMarks() - "+ num +": "+ LSid +" (az LSid)") }
 				
 				var isNewQ = true
 				for ( var x in activeQs ) {
@@ -4540,9 +4581,14 @@ function F_nextQ(){
 				}
 				
 				if ( Qelem.innerHTML.indexOf("<summary") != -1 ) {  // kérdésbe bekerül, hogy a táblázatban hányas
-					Qelem.innerHTML = Qelem.innerHTML.replace(">",">["+num+"] ")
-				} else {
+					if ( Qelem.innerHTML.indexOf('>['+num+'] ') == -1 ) { 
+						Qelem.innerHTML = Qelem.innerHTML.replace(">",">["+num+"] ")
+					}
+				} else if ( Qelem.innerHTML.slice(0,Qelem.innerHTML.indexOf(' ')) != '['+num+']' ) {
+					//alert("new: "+Qelem.innerHTML.slice(0,Qelem.innerHTML.indexOf(' ')))
 					Qelem.innerHTML = '['+num+'] '+Qelem.innerHTML
+				} else {
+					//alert("old: "+Qelem.slice(0,Qelem.innerHTML.indexOf(' ')))
 				}
 
 				if ( isNewQ == false ) { continue }
@@ -4655,7 +4701,18 @@ function F_nextQ(){
 				}
 			}
 		}
-		F_SetMarks()
+		F_SetMarks(QlocElem)
+		
+		F_loadDetails(QlocElem)
+		function F_onToggle(){
+			var arrayDetails = QlocElem.getElementsByTagName("DETAILS")
+			for ( var i=0; i<arrayDetails.length; i++ ) { arrayDetails[i].ontoggle = function(){ 
+				F_loadDetails(this)
+				F_SetMarks(this) 
+				F_highlightQ()
+			} }
+		}
+		F_onToggle()
 		
 		function F_setIfQs(){
 			var arrayQ = QlocElem.getElementsByClassName("kerdes")
@@ -4688,14 +4745,33 @@ function F_nextQ(){
 		}
 		F_setIfQs()
 
-		actQid = "none"
-		F_calcLSid(priorQelem)
-		actQid = actLSid.slice(4)
-		for ( var i=0; i<activeQs.length; i++ ) {
-			if ( activeQs[i] == actLSid ) {
-				document.getElementById("td.0."+i).style.borderColor = "yellow"
+		function F_highlightQ(){
+			for ( var i=1; i<activeQs.length; i++ ) { document.getElementById("td.0."+i).style.borderColor = "black" }
+			
+			F_calcLSid(priorQelem)
+			for ( var i=1; i<activeQs.length; i++ ) {
+				if ( activeQs[i] == actLSid ) { 
+					document.getElementById("td.0."+i).style.borderColor = "yellow"
+					//console.log(actLSid)
+					return
+				}
 			}
+			
+			var subLSid = null
+			var priorNum = -1
+			//console.log(parQord)
+			for ( var i=0; i<activeQs.length; i++ ) { if  ( parQord.indexOf(activeQs[i]) > priorNum ) { subLSid = activeQs[i] } }
+			for ( var i=1; i<activeQs.length; i++ ) {
+				//console.log(activeQs[i])
+				if ( activeQs[i] == subLSid ) { 
+					document.getElementById("td.0."+i).style.borderColor = "yellow"
+					return
+				}
+			}
+			if ( subLSid = null ) { console.log("HIBA: F_highlightQ()") }
+			
 		}
+		F_highlightQ()
 
 		var childs = QlocElem.childNodes;
 		for ( var i=0; i<childs.length; i++ ) { if ( childs[i].className.indexOf("open") != -1 ) { childs[i].open = true } }
@@ -4703,6 +4779,9 @@ function F_nextQ(){
 		var Qtext
 		Qtext = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
 		
+		actQid = "none"
+		F_calcLSid(priorQelem)
+		actQid = actLSid.slice(4)
 		var LSid = "hkQ." + actQid
 		
 		var date = new Date();
@@ -4723,7 +4802,7 @@ function F_nextQ(){
 	
 	F_getTime()
 	diffTimeX = myTime-startTime
-	console.log("– F_nextQ test – " + diffTimeX)
+	//console.log("– F_nextQ test – " + diffTimeX)
 	
 	func_calcJegy()
 	func_calcWork()
@@ -4733,7 +4812,7 @@ function F_nextQ(){
 	
 	F_getTime()
 	diffTimeX = myTime-startTime
-	console.log("– F_nextQ test – " + diffTimeX)
+	//console.log("– F_nextQ test – " + diffTimeX)
 	
 	F_abbrSet(QlocElem)
 	F_imgClick(QlocElem)
@@ -4752,6 +4831,7 @@ function F_nextQ(){
 	F_getTime()
 	diffTimeX = myTime-startTime
 	lastClickTime = myTime
+
 	console.log("– F_nextQ END – " + diffTimeX)
 }
 
