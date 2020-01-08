@@ -2,6 +2,8 @@
 
 /* PROJECT - PROGRESS
  ✖ mikrobi: részl.bakt: Bacillus anthracis -> 2x megnyitom és 2.-nál már rosszul írja ki
+ ✖ mikrobi: kijelölök egy új tételt (impQ van benne), majd rámegyek kövi kérdésre, hogy kidobja, akkor még az impQ-t nem tölti be (kell egy refresht-t tolnom valamiért)
+ 
  ✖ android: tételQ kijelölése nehéz, mert kicsi
  ✖ android: menuk egy klikkel legyenek előhívhatók és nagyok legyenek / kerdes osztályzás is!
  
@@ -4646,7 +4648,12 @@ function F_nextQ(){
 				if ( localStorage.getItem(LSid+'_idopont') ) {
 					var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
 					// console.log("Qid:"+Qid+" ––– time:"+idopont)
-					document.getElementById("td.2."+num).innerHTML = idopont
+					if ( idopont > 99 ) {
+						document.getElementById("td.2."+num).innerHTML = Math.floor(idopont/60)
+					} else {
+						document.getElementById("td.2."+num).innerHTML = "<strong>"+idopont+"</strong>"
+					}
+					//document.getElementById("td.2."+num).innerHTML = idopont
 					
 					var date = new Date();
 					var remain = Math.floor(date.getTime()/3600000)
