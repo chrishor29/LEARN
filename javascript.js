@@ -1827,6 +1827,7 @@ function F_searchWord() {
 						//console.clear()
 						//console.log(string)
 						//console.log(prevText)
+						//alert("stop")
 						prevText = prevText.slice(0 , prevText.lastIndexOf("<details"))
 						if ( string.indexOf("</details") == -1 ) { positive = true }
 					} while ( prevText.indexOf("<details") != -1 && positive != true )
@@ -1866,7 +1867,7 @@ function F_searchWord() {
 				
 				fullText = fullText+ "<li><span data-path='"+path+"' style='color:green; cursor:pointer' onclick='F_searchQText(this)'>"+summaryText+"</span></li>"
 				targyText = targyText.slice(targyText.indexOf(resultText)+resultText.length)
-			} while ( targyText.indexOf(searchText) != -1 )
+			} while ( targyText.toLowerCase().indexOf(searchText) != -1 )
 			document.getElementById("div_SearchWText").innerHTML = fullText
 			console.log(path)
 		}
