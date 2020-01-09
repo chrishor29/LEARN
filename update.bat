@@ -30,9 +30,10 @@ xcopy /y %source%\javascript.js %destination%\
 xcopy /y %source%\style.css %destination%\
 xcopy /y %source%\favicon.png %destination%\
 
+robocopy %source%\done\FOG\images %destination%\done\FOG\images /mir
+xcopy /y %source%\done\FOG\FOG.html %destination%\done\FOG\
 robocopy %source%\done\LabMed\images %destination%\done\LabMed\images /mir
 xcopy /y %source%\done\LabMed\labmed.html %destination%\done\LabMed\
-xcopy /y %source%\done\LabMed\favicon.bmp %destination%\done\LabMed\
 robocopy %source%\done\Genetika\images %destination%\done\Genetika\images /mir
 xcopy /y %source%\done\Genetika\genetika.html %destination%\done\Genetika\
 xcopy /y %source%\done\Genetika\favicon.bmp %destination%\done\Genetika\

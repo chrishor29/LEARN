@@ -4198,7 +4198,15 @@ function F_searchParent(elem) { // megkeresi a 'családfában' legfelül lévo '
 		parentQ = parentQ.parentElement
 		//console.log(childQ.className)
 		//console.log(parentQ.className)
-	} while ( /*parentQ.classList.contains("altetel") != true && parentQ.classList.contains("tetel") != true  && parentQ.classList.contains("feltetel") != true &&*/ childQ.classList.contains("altetel") != true && childQ.classList.contains("tetel") != true && childQ.classList.contains("feltetel") != true )
+	} while ( 
+		parentQ.classList.contains("altetel") != true &&
+		parentQ.classList.contains("tetel") != true && 
+		parentQ.classList.contains("feltetel") != true &&
+		// parentQ kell pl. mikrobiológia minimum kérdéseknél, különben egybe dobja ki összeset
+		childQ.classList.contains("altetel") != true && 
+		childQ.classList.contains("tetel") != true && 
+		childQ.classList.contains("feltetel") != true
+	)
 }
 
 var actQid
