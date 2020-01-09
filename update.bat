@@ -14,6 +14,7 @@ xcopy /y %source%\sajat\sajat.html %destination%\sajat\
 xcopy /y %source%\Farmak\farmak.html %destination%\Farmak\
 xcopy /y %source%\Belgyogy\kortan.html %destination%\Belgyogy\
 xcopy /y %source%\Mikrobi\mikrobi.html %destination%\Mikrobi\
+xcopy /y %source%\Mikrobi\mikrobi1.html %destination%\Mikrobi\
 xcopy /y %source%\Pszicho\pszicho.html %destination%\Pszicho\
 xcopy /y %source%\Kardio\kardio.html %destination%\Kardio\
 
