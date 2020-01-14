@@ -4,13 +4,16 @@
  ✖ mikrobi: részl.bakt: Bacillus anthracis -> 2x megnyitom és 2.-nál már rosszul írja ki
  ✖ mikrobi: kijelölök egy új tételt (impQ van benne), majd rámegyek kövi kérdésre, hogy kidobja, akkor még az impQ-t nem tölti be (kell egy refresht-t tolnom valamiért)
  
+ ✖ android: midQ a képernyőt töltse ki mindig
  ✖ android: tételQ kijelölése nehéz, mert kicsi
  ✖ android: menuk egy klikkel legyenek előhívhatók és nagyok legyenek / kerdes osztályzás is!
+ ✖ android: upgrade/stb. -re klikk-nél sötétüljön el, hogy lássam érzékelte (mint amikor betölti az oldalt, vagy nextQ)
  
+ ✖ mikrobi: túl lassú, +1/-1 tétel kiválasztás
+ ✖ mikrobi: túl lassú, tehát ha átírok valamit a .html-be majd frissítek, hogy újra a kérdést kidobja elém, az eltart 5-10secig(amikor már 500kérdésnél tartok főleg)
  ✖ tárgyakat el kéne mentse localstorage-be tömörítve, az gyorsabb
  ✖ kardio impQ.52 altkérdéseit egybeveszi az 51-ével, ha nincs comment
  ✖ tétel kérdésben átírok valamit, akkor a tételt deselectálja (gondolom, mert kérdés, és a hossza megváltozik, ami note-ban van)
- ✖ android: midQ a képernyőt töltse ki mindig
 
  ✖ HTML imgLoc & LearnLoc nem kell már a html HEAD-ekben
  ✖ lz-string nem kell már a html HEAD-ekben + amúgy sem
@@ -2336,6 +2339,8 @@ function toggleNote() {
 	}
 }
 
+function F_calcTetel() {
+}
 function F_calcqTimer(detElem) {
 	var table = document.getElementById("table_qTimer")
 	table.innerHTML = ""
@@ -2343,6 +2348,7 @@ function F_calcqTimer(detElem) {
 	var arrUsedQs = []
 	var arrLSids = []
 	var numTetel = 0
+	
 	for ( var tetelID in tetelek ) {
 		if ( localStorage.getItem(tetelID+"_button") == "true" ) {
 			var tetelQ = document.getElementById(tetelID)
@@ -3315,6 +3321,7 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 			func_calcWork()
 			func_calcDate()
 			func_calcRepeat()
+			F_calcqTimer(document.getElementById("btn_qTimer"))
 		}
 	}
 	F_getTime()
