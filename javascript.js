@@ -10,11 +10,13 @@
  ✖ android: menuk egy klikkel legyenek előhívhatók és nagyok legyenek / kerdes osztályzás is!
  ✖ android: upgrade/stb. -re klikk-nél sötétüljön el, hogy lássam érzékelte (mint amikor betölti az oldalt, vagy nextQ)
  
+ ✖ lehessen átírni a kidobott quest repeat time-ját /+ lehessen skippelni, hogy x óráig ne dobhassa ki
  ✖ mikrobi: túl lassú, +1/-1 tétel kiválasztás
  ✖ mikrobi: túl lassú, tehát ha átírok valamit a .html-be majd frissítek, hogy újra a kérdést kidobja elém, az eltart 5-10secig(amikor már 500kérdésnél tartok főleg)
  ✖ tárgyakat el kéne mentse localstorage-be tömörítve, az gyorsabb
  ✖ kardio impQ.52 altkérdéseit egybeveszi az 51-ével, ha nincs comment
  ✖ tétel kérdésben átírok valamit, akkor a tételt deselectálja (gondolom, mert kérdés, és a hossza megváltozik, ami note-ban van)
+ ✖ nephro --> fizikalis vizsgálat impQ kérdést egybe dobja ki, ha az a nextQ (pedig div-ben van, nem span)
 
  ✖ HTML imgLoc & LearnLoc nem kell már a html HEAD-ekben
  ✖ lz-string nem kell már a html HEAD-ekben + amúgy sem
@@ -4373,13 +4375,21 @@ function F_nextQ(){
 			}
 		} else {
 			/* skipQ */ if ( localStorage.getItem(LSid+"_skip") && localStorage.getItem(LSid+"_skip") != "atlag" && localStorage.getItem(LSid+"_skip") != "important" ) { return }
+			/* newQ */if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" ) {
+				if ( localStorage.getItem(LSid+"_jegy") != null ) { return }
+				if ( document.getElementById("btn_nextQdiff").style.backgroundColor != "coral" ) {
+					newQs.push(Qelem)
+					return
+				}
+				if (  priorType < 2 ) { priorQelem = Qelem }
+				priorType = 2
+			}
 			/* newQ */if ( localStorage.getItem(LSid+"_jegy") == null ) {
-				if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" ) {
-					if ( document.getElementById("btn_nextQdiff").style.backgroundColor != "coral" ) {
-						newQs.push(Qelem)  
-					} else if ( priorType < 2 ) {
-						priorQelem = Qelem
-					}
+				if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" && priorType < 2 ) {
+					priorType = 2
+				}
+				if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" && priorType < 2 ) {
+					priorQelem = Qelem
 					priorType = 2
 				}
 			}
@@ -4932,17 +4942,7 @@ function F_loadPageText(path) {
 		//document.getElementById("div_Refreshng").innerHTML = targyPath
 		//document.getElementById("iframe_targyak").src = targyPath
 		
-		if ( targyPath == "expqs.html" ) { 
-			if ( expQsLoaded == false ) {
-				parentDiv = document.getElementById("div_expQTargy")
-				parentDiv.innerHTML = pageTexts["expqs.html"]
-				arrImpQs["expQs"] = []
-				F_loadExpQs(parentDiv,"expQs")
-				expQsLoaded = true
-			}
-			if ( localStorage.getItem("hk.ToggleAll") == "true" ) { F_loadPageText(localStorage.getItem("hk.pagePath")) }
-			//alert("sajt")
-		} else {
+		function F_kiirja(){
 			pagePath = targyPath // képek betöltéséhez kell pl
 			var pageDiv = document.getElementById("div_pageQTargy")
 			pageDiv.innerHTML = pageTexts[pagePath]
@@ -4953,6 +4953,21 @@ function F_loadPageText(path) {
 			localStorage.setItem("hk.pagePath",pagePath) 
 			document.getElementById("iframe_targyak").src = ""
 			//F_impQlot(pageDiv)
+		}
+		if ( targyPath == "expqs.html" ) { 
+			if ( expQsLoaded == false ) {
+				parentDiv = document.getElementById("div_expQTargy")
+				parentDiv.innerHTML = pageTexts["expqs.html"]
+				arrImpQs["expQs"] = []
+				F_loadExpQs(parentDiv,"expQs")
+				expQsLoaded = true
+			} else { 
+				F_kiirja()
+			}
+			if ( localStorage.getItem("hk.ToggleAll") == "true" ) { F_loadPageText(localStorage.getItem("hk.pagePath")) }
+			//alert("sajt")
+		} else {
+			F_kiirja()
 		}
 		for ( var i=0; i<pageLinks.length; i++ ) { 
 			if ( pageLinks[i].dataset.src == targyPath ) {
