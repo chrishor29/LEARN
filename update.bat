@@ -1,7 +1,4 @@
 
-git lfs track "*.pdf"
-git add .gitattributes
-
 git remote add origin
 git pull origin master
 git add .

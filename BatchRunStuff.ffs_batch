@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FreeFileSync XmlType="BATCH" XmlFormat="14">
     <Compare>
-        <Variant>Size</Variant>
+        <Variant>TimeAndSize</Variant>
         <Symlinks>Exclude</Symlinks>
         <IgnoreTimeShift/>
     </Compare>
@@ -36,26 +36,8 @@
     </Filter>
     <FolderPairs>
         <Pair>
-            <Left>D:\mix</Left>
-            <Right>mtp:\HUAWEI P20 lite\Belső tárhely\mix</Right>
-        </Pair>
-        <Pair>
-            <Left>C:\Users\chrishor\Desktop\MIX\learn</Left>
+            <Left>C:\Users\chrishor\Desktop\MIX\learnStuff</Left>
             <Right>mtp:\HUAWEI P20 lite\Belső tárhely\LEARN</Right>
-            <Filter>
-                <Include>
-                    <Item>*</Item>
-                </Include>
-                <Exclude>
-                    <Item>/.git/</Item>
-                    <Item>BatchRun.ffs_batch</Item>
-                    <Item>BatchRunStuff.ffs_batch</Item>
-                    <Item>update.bat</Item>
-                </Exclude>
-                <TimeSpan Type="None">0</TimeSpan>
-                <SizeMin Unit="None">0</SizeMin>
-                <SizeMax Unit="None">0</SizeMax>
-            </Filter>
         </Pair>
     </FolderPairs>
     <Errors Ignore="false" Retry="0" Delay="5"/>
