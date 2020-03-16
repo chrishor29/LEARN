@@ -1090,6 +1090,7 @@ function F_clearLS(detElem) {
 	setTimeout(function () { detElem.style.backgroundColor = bgColor  }, 500);
 	
 	localStorage.setItem("lsCount",0)
+	localStorage.setItem("toggleLoad", "false")
 }
 function F_InputLoad(detElem) {
 	var bgColor = detElem.style.backgroundColor
