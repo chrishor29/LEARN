@@ -155,15 +155,15 @@ span {
 }
 .plus { 
 	border: Black 1px solid; 
-	padding-left: 1px; 
-	padding-right: 1px; 
+	padding-left: 3px; 
+	padding-right: 3px; 
 	background-color: green;
 	color: white;
 }
 .minus { 
 	border: Black 1px solid; 
-	padding-left: 1px; 
-	padding-right: 1px; 
+	padding-left: 4px; 
+	padding-right: 4px; 
 	background-color: red;
 	color: white;
 }
