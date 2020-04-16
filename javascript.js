@@ -5009,8 +5009,8 @@ function F_loadAllPageTexts() {
 		}
 	}
 	
-	var timeX = 100
-	if ( isAndroid != false ) { timeX = 400 }
+	var timeX = 10
+	if ( isAndroid != false ) { timeX = 200 }
 	var handler = function(e) {
 		var targyText = e.data[1];
 		if ( targyText != undefined && targyText != "" ) {
