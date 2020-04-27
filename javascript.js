@@ -350,6 +350,7 @@ function F_detailsToggle(detElem){
 	// }
 }
 
+var prevMidQ = []
 var MISSID
 function F_impQfew(detElem){ // ?ms/Q a betöltési ideje
 	MISSID = ""
@@ -574,6 +575,20 @@ function F_midQText(qTxt){
 	//F_imgClick(document.getElementById("div_MidQText"))
 	//F_titleChange(document.getElementById("div_MidQText"))
 }
+function F_midQload(impID){
+	if ( impID.indexOf("{") != -1 ) { 
+		midQisExp = true
+	} else {
+		midQisExp = false
+	}
+	F_loadQtxt(impID,this.tagName)
+	F_midQText(Qtxt)
+	if ( prevMidQ.length > 1 ) {
+		document.getElementById("btn_MidQback").style.display = "block"
+	} else {
+		document.getElementById("btn_MidQback").style.display = "none"
+	}
+}
 function F_midQ(detElem){
 	var midQs = detElem.getElementsByClassName("midQ")
 	for ( var x=0; x<midQs.length; x++ ) {
@@ -587,13 +602,8 @@ function F_midQ(detElem){
 		midQ.onclick = function(){ 
 			midQloaded = false
 			var impID = this.className
-			if ( impID.indexOf("{") != -1 ) { 
-				midQisExp = true
-			} else {
-				midQisExp = false
-			}
-			F_loadQtxt(impID,this.tagName)
-			F_midQText(Qtxt)
+			prevMidQ.push(impID)
+			F_midQload(impID)
 		}
 	}
 }
@@ -2003,27 +2013,57 @@ function F_searchWord() {
 		div.style.bottom = "4px"
 		div.style.zIndex = "3"
 		
-		var button = document.createElement("div")
-		//button.type = "button"
+		var button = document.createElement("span")
 		div.appendChild(button)
-		button.id = "btn_MidQ"
 		button.style.backgroundColor = "red"
 		button.style.color = "white"
 		button.style.fontWeight = "bold"
 		button.style.border = "3px solid black"
 		button.onclick = function(){ 
+			prevMidQ = []
 			document.getElementById("div_MidQ").style.display = "none" 
 			document.getElementById("div_MidQ").dataset.origin = "pageQs"
 			midQloaded = false
 			midQisExp = false
 		}
-		button.style.textAlign = "center"
-		//button.style.position = "absolute"
-		//button.style.left = "50%";
-		button.style.paddingLeft = "3px"
-		button.style.paddingRight = "3px"
-		//button.style.transform = "translate(-50%)";
 		button.style.cursor = "pointer";
+		button.innerHTML = "✖"
+		button.style.width = "30px"
+		button.style.position = "absolute"
+		button.style.right = "0px"
+		button.style.textAlign = "center"
+		button.style.fontSize  = "large"
+		
+		var button = document.createElement("span")
+		div.appendChild(button)
+		button.id = "btn_MidQback"
+		button.style.backgroundColor = "Gainsboro"
+		button.style.fontWeight = "bold"
+		button.style.border = "3px solid black"
+		button.onclick = function(){ 
+			prevMidQ.pop() // uccsót (ami a jelenlegi letörli)
+			F_midQload(prevMidQ[prevMidQ.length-1]) // uccsót (ami így már az előző lett) betölti
+		}
+		button.style.cursor = "pointer";
+		button.innerHTML = "🡠"
+		button.style.width = "30px"
+		button.style.position = "absolute"
+		button.style.textAlign = "center"
+		
+		var title = document.createElement("div")
+		div.appendChild(title)
+		title.style.textAlign = "center"
+		title.style.height = "30px"
+		var span = document.createElement("span")
+		title.appendChild(span)
+		span.id = "btn_MidQ"
+		span.style.fontWeight = "bold"
+		span.style.fontSize  = "large"
+		//span.style.position = "absolute"
+		//span.style.left = "50%";
+		//span.style.transform = "translate(-50%)";
+		//span.style.paddingLeft = "3px"
+		//span.style.paddingRight = "3px"
 		
 		var divText = document.createElement("div")
 		div.appendChild(divText)

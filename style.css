@@ -290,7 +290,6 @@ img.metszet {
 .mirror {
 	display:inline-block;
 	transform: scale(-1,1);
-	text-indent: 0;
 }
 .rotate {
      -moz-transform: rotate(-90.0deg);  /* FF3.5+ */
