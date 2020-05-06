@@ -2045,7 +2045,7 @@ function F_searchWord() {
 			F_midQload(prevMidQ[prevMidQ.length-1]) // uccsót (ami így már az előző lett) betölti
 		}
 		button.style.cursor = "pointer";
-		button.innerHTML = "🡠"
+		button.innerHTML = "&#129120;"
 		button.style.width = "30px"
 		button.style.position = "absolute"
 		button.style.textAlign = "center"

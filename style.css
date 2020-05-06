@@ -153,6 +153,18 @@ span {
 	padding-right: 1px; 
 	background-color: White;
 }
+.ORANGE { 
+	border: Black 1px solid; 
+	padding-left: 1px; 
+	padding-right: 1px; 
+	background-color: orange;
+}
+.LIME { 
+	border: Black 1px solid; 
+	padding-left: 1px; 
+	padding-right: 1px; 
+	background-color: lime;
+}
 .plus { 
 	border: Black 1px solid; 
 	padding-left: 3px; 
