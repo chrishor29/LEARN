@@ -3,8 +3,10 @@
 /* PROJECT - PROGRESS
  ✖ mikrobi: részl.bakt: Bacillus anthracis -> 2x megnyitom és 2.-nál már rosszul írja ki
  ✖ mikrobi: kijelölök egy új tételt (impQ van benne), majd rámegyek kövi kérdésre, hogy kidobja, akkor még az impQ-t nem tölti be (kell egy refresht-t tolnom valamiért)
+ ✖ farmak: impQ.90: NSAID hatásai --> terhességgel kapcsolatos tudnivalók ha kerdes; akkor azt amikor kidobja, nem jelenik meg az osztályozhatósága, így nem tudok továbbhaladni (A/16 tétel esetén)
  
  ✖ ANDROID: töltsek le egy emulatort, úgy hátha gyorsabban tudom tesztelni, és nem annyira idegölő
+ ✖ android: felnagyítva legyen az egész alapból már (ne keljen folyton ráközelítenem)
  ✖ android: midQ a képernyőt töltse ki mindig
  ✖ android: tételQ kijelölése nehéz, mert kicsi
  ✖ android: menuk egy klikkel legyenek előhívhatók és nagyok legyenek / kerdes osztályzás is!
@@ -461,7 +463,7 @@ function F_loadQtxt(impID,divSpan,origin){
 			title = title.slice(0,title.indexOf('</summary>'))
 			title = title.slice(title.indexOf('<summary'))
 			title = title.slice(title.indexOf('>')+1)
-			title = "<strong>"+title+"</strong>"
+			title = "<div><strong>"+title+"</strong></div>"
 			Qtxt = Qtxt.replace('<ul class="normal">', '<ul class="normal">'+title);
 		}
 
@@ -1160,7 +1162,7 @@ fileInput.addEventListener('change', function(e){
 
 // SAVE LS
 var downA = document.createElement('a');
-function download(filename,text) { // (netről copyztam) --> (azért kellett, mert androidon máshogy nemtudom lementeni)
+function download(fileName,text) { // (netről copyztam) --> (azért kellett, mert androidon máshogy nemtudom lementeni)
 	/*var element = document.createElement('a');
 	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
 	element.setAttribute('download', filename);
@@ -1172,9 +1174,9 @@ function download(filename,text) { // (netről copyztam) --> (azért kellett, me
 	document.body.removeChild(element);
 	*/
 
-	function F_downloadTXT(text,filename){
+	function F_downloadTXT(text,fileName){
 		downA.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-		downA.setAttribute('download', filename);
+		downA.setAttribute('download', fileName);
 		if (document.createEvent) {
 			var event = document.createEvent('MouseEvents');
 			event.initEvent('click', true, true);
@@ -1191,20 +1193,23 @@ function download(filename,text) { // (netről copyztam) --> (azért kellett, me
 		for ( var i=0; i<num; i++ ) {
 			var acText = text.slice(0,100000)
 			text = text.slice(100000)
-			filename = filename.replace(".txt","_"+i+".txt")
-			F_downloadTXT(acText,filename)
+			fileName = fileName.replace(".txt","_"+i+".txt")
+			F_downloadTXT(acText,fileName)
 		}
 	} else { */
-		F_downloadTXT(text,filename)
+		F_downloadTXT(text,fileName)
 	// }
 }
 function F_saveLS() {
+	if ( localStorage.getItem("lsName") == null ) { localStorage.setItem("lsName","localStorage") }
+	
 	localStorage.setItem("hk.lastSavedLS",0)
 	var text = ""
 	
 	var count = localStorage.getItem("lsCount")
 	count = Number(count) +1
 	localStorage.setItem("lsCount",count)
+	
 	
 	var lsLength = localStorage.length
 	var expQk = []
@@ -1221,8 +1226,8 @@ function F_saveLS() {
 		if ( expQk[localStorage.key(i)] == true ) { continue }
 		text = text + localStorage.key(i) + " == " + localStorage.getItem(localStorage.key(i)) + " NEXTONE \n"
 	}
-	var filename = 'localStorage'+count+'.txt'
-	download(filename, text);
+	var fileName = localStorage.getItem("lsName") +count +'.txt'
+	download(fileName, text);
 	
 	if ( document.getElementById("btn_saveLS") ) {
 		document.getElementById("btn_saveLS").style.backgroundColor = "Chartreuse"
@@ -3183,15 +3188,15 @@ function func_calcTimeDiff(repCount){
 	if ( repCount == 0 ) {
 		timeDiff = 20
 	} else if ( repCount == 1 ) {
-		timeDiff = 40
+		timeDiff = 1000
 	} else if ( repCount == 2 ) {
 		timeDiff = 2000
 	} else if ( repCount == 3 ) {
 		timeDiff = 3000
 	} else if ( repCount == 4 ) {
-		timeDiff = 5000
+		timeDiff = 4000
 	} else if ( repCount == 5 ) {
-		timeDiff = 7000
+		timeDiff = 5000
 	}
 }
 var vizsgaTime = Number(localStorage.getItem("vizsgaSkip"))*60
@@ -4546,6 +4551,7 @@ function F_nextQ(){
 
 	if ( priorQelem != "nincs" ) {
 		F_searchParent(priorQelem)
+		//console.log(priorQelem.innerHTML)
 		var parent = parentQ
 		var Qelem = childQ
 		if ( parent.classList.contains("feltetel") == true ) { Qelem = parent }
@@ -4576,7 +4582,7 @@ function F_nextQ(){
 		}
 		func_setTitle()
 		
-		F_impQlot(QlocElem)
+		F_impQlot(QlocElem) // szvsz ez fölös, mert a QlocElem.innerHTML empty itt még
 		
 		function F_copyQs(Qelem){
 			F_calcLSid(Qelem)
@@ -4626,7 +4632,7 @@ function F_nextQ(){
 			var num
 			for ( var i=0; i<arrayQ.length; i++ ) {
 				var Qelem = arrayQ[i]
-				if ( Qelem.offsetParent === null ) { continue }
+				if ( Qelem.offsetParent === null ) { continue } // így altkérdések rejtve maradnak elején
 
 		//console.clear()
 		//console.log(i)
@@ -4780,9 +4786,10 @@ function F_nextQ(){
 		function F_onToggle(){
 			var arrayDetails = QlocElem.getElementsByTagName("DETAILS")
 			for ( var i=0; i<arrayDetails.length; i++ ) { arrayDetails[i].ontoggle = function(){ 
-				F_loadDetails(this)
 				F_SetMarks(this) 
+				F_loadDetails(this)
 				F_highlightQ()
+				F_onToggle()
 			} }
 		}
 		F_onToggle()

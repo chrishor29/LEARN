@@ -153,17 +153,17 @@ span {
 	padding-right: 1px; 
 	background-color: White;
 }
-.ORANGE { 
-	border: Black 1px solid; 
-	padding-left: 1px; 
-	padding-right: 1px; 
-	background-color: orange;
-}
 .LIME { 
 	border: Black 1px solid; 
-	padding-left: 1px; 
-	padding-right: 1px; 
+	padding-left: 3px; 
+	padding-right: 3px; 
 	background-color: lime;
+}
+.ORANGE { 
+	border: Black 1px solid; 
+	padding-left: 3px; 
+	padding-right: 3px; 
+	background-color: orange;
 }
 .plus { 
 	border: Black 1px solid; 
@@ -179,7 +179,7 @@ span {
 	background-color: red;
 	color: white;
 }
-.IMPORTANT { 
+.important { 
 	background-color: Lime /*SpringGreen*/
 }
 .lasd { 
