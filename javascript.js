@@ -3186,9 +3186,9 @@ function func_calcTimeDiff(repCount){
 		timeDiff = 7000
 	}*/
 	if ( repCount == 0 ) {
-		timeDiff = 20
+		timeDiff = 10
 	} else if ( repCount == 1 ) {
-		timeDiff = 1000
+		timeDiff = 20
 	} else if ( repCount == 2 ) {
 		timeDiff = 2000
 	} else if ( repCount == 3 ) {
@@ -4251,8 +4251,8 @@ function F_searchParent(elem) { // megkeresi a 'családfában' legfelül lévo '
 		}
 		childQ = parentQ
 		parentQ = parentQ.parentElement
-		//console.log(childQ.className)
-		//console.log(parentQ.className)
+		console.log(childQ.className)
+		console.log(parentQ.className)
 	} while ( 
 		parentQ.classList.contains("altetel") != true &&
 		parentQ.classList.contains("tetel") != true && 
@@ -5043,6 +5043,7 @@ function F_loadPathText(path,i) {
 function F_loadAllPageTexts() {
 	F_getTime()
 	var startTime = myTime
+	var startTimeX = myTime
 	removeEventListener('message', handler, false)
 	document.getElementById("div_SearchW").style.backgroundColor = "white"
 	var full = pageLinks.length -1
@@ -5086,11 +5087,12 @@ function F_loadAllPageTexts() {
 				} else {
 					document.getElementById("div_SearchW").style.backgroundColor = "white"
 					F_getTime()
-					var timeX = Math.round((myTime-oldTime)*100)/100
-					document.getElementById("div_Refreshng").innerHTML = timeX+"s"
+					var diffTime = (myTime-startTimeX).toFixed(2)
+					//var timeX = Math.round((myTime-oldTime)*100)/100
+					document.getElementById("div_Refreshng").innerHTML = diffTime+"s"
 					removeEventListener('message', handler, false)
 				}
-			}, timeX)
+			}, /*timeX*/)
 		}
 	}
 	window.addEventListener('message', handler, false)
