@@ -16,15 +16,14 @@ Return
 
 GuiClose:
 Gui, Cancel
-; RunWait szemeszter.bat
+RunWait szemeszter.bat
 if varAndroid = true
 {
-	RunWait BatchRun.ffs_batch ; %destination%\BatchRun.ffs_batch
+	Run BatchRun.ffs_batch ; %destination%\BatchRun.ffs_batch
 	RunWait BatchRunStuff.ffs_batch ; %destination%\BatchRunStuff.ffs_batch
 }
 if varUpdate = true
 {
-	MsgBox done
 	RunWait update.bat
 }
 MsgBox done
