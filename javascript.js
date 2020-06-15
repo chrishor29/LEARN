@@ -3186,9 +3186,9 @@ function func_calcTimeDiff(repCount){
 		timeDiff = 7000
 	}*/
 	if ( repCount == 0 ) {
-		timeDiff = 10
+		timeDiff = 15
 	} else if ( repCount == 1 ) {
-		timeDiff = 20
+		timeDiff = 500
 	} else if ( repCount == 2 ) {
 		timeDiff = 2000
 	} else if ( repCount == 3 ) {
