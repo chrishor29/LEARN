@@ -5,4 +5,3 @@ git add .
 git commit -m "make some changes"
 git push origin master
 
-pause

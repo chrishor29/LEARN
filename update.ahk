@@ -24,6 +24,7 @@ if varAndroid = true
 }
 if varUpdate = true
 {
+	MsgBox done
 	RunWait update.bat
 }
 MsgBox done
