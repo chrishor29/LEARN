@@ -21,7 +21,7 @@ robocopy %source%\Borgyogy\images %destination%\Borgyogy\images /mir
 xcopy /y %source%\Borgyogy\borgyogy.html %destination%\Borgyogy\ /d
 robocopy %source%\Ortopedia\images %destination%\Ortopedia\images /mir
 xcopy /y %source%\Ortopedia\ortop.html %destination%\Ortopedia\ /d
-xcopy /y %source%\Radiologia\radio.html %destination%\Borgyogy\ /d
+xcopy /y %source%\Radiologia\radio.html %destination%\Radiologia\ /d
 
 REM 4.év
 xcopy /y %source%\Sebeszet\sebeszet.html %destination%\Sebeszet\ /d
