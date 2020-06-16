@@ -2,8 +2,9 @@
 
 /* PROJECT - PROGRESS
  ✖ mikrobi: részl.bakt: Bacillus anthracis -> 2x megnyitom és 2.-nál már rosszul írja ki
- ✖ mikrobi: kijelölök egy új tételt (impQ van benne), majd rámegyek kövi kérdésre, hogy kidobja, akkor még az impQ-t nem tölti be (kell egy refresht-t tolnom valamiért)
  ✖ farmak: impQ.90: NSAID hatásai --> terhességgel kapcsolatos tudnivalók ha kerdes; akkor azt amikor kidobja, nem jelenik meg az osztályozhatósága, így nem tudok továbbhaladni (A/16 tétel esetén)
+ ✖ bőrgyógy: kijelölök egy új tételt (impQ van benne), majd rámegyek kövi kérdésre, hogy kidobja, akkor még az impQ-t nem tölti be (kell egy refresht-t tolnom valamiért)
+ ✖ bőrgyógy: diabetes tételnél megjelenik egy új kérdés valamiért, pedig nincs ott új már (nembiztos, hogy előjön majd a hiba az LS-el, teszteljem)
  
  ✖ ANDROID: töltsek le egy emulatort, úgy hátha gyorsabban tudom tesztelni, és nem annyira idegölő
  ✖ android: felnagyítva legyen az egész alapból már (ne keljen folyton ráközelítenem)
@@ -12,6 +13,7 @@
  ✖ android: menuk egy klikkel legyenek előhívhatók és nagyok legyenek / kerdes osztályzás is!
  ✖ android: upgrade/stb. -re klikk-nél sötétüljön el, hogy lássam érzékelte (mint amikor betölti az oldalt, vagy nextQ)
  
+ ✖ search: ha hiányzik az egyik oldal html-je, akkor azt skippelje a betöltésnél, ne álljon meg
  ✖ lehessen átírni a kidobott quest repeat time-ját /+ lehessen skippelni, hogy x óráig ne dobhassa ki
  ✖ mikrobi: túl lassú, +1/-1 tétel kiválasztás
  ✖ mikrobi: túl lassú, tehát ha átírok valamit a .html-be majd frissítek, hogy újra a kérdést kidobja elém, az eltart 5-10secig(amikor már 500kérdésnél tartok főleg)
