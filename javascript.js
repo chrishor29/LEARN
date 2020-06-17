@@ -4,7 +4,7 @@
  ✖ mikrobi: részl.bakt: Bacillus anthracis -> 2x megnyitom és 2.-nál már rosszul írja ki
  ✖ farmak: impQ.90: NSAID hatásai --> terhességgel kapcsolatos tudnivalók ha kerdes; akkor azt amikor kidobja, nem jelenik meg az osztályozhatósága, így nem tudok továbbhaladni (A/16 tétel esetén)
  ✖ bőrgyógy: kijelölök egy új tételt (impQ van benne), majd rámegyek kövi kérdésre, hogy kidobja, akkor még az impQ-t nem tölti be (kell egy refresht-t tolnom valamiért)
- ✖ bőrgyógy: diabetes tételnél megjelenik egy új kérdés valamiért, pedig nincs ott új már (nembiztos, hogy előjön majd a hiba az LS-el, teszteljem)
+ ✖ bőrgyógy: diabetes tételnél megjelenik egy új kérdés valamiért, pedig nincs ott új már: lépjek vissza főoldal, majd frissítsek, utána jelöljem ki bőrgyógyászat, majd lépjek át kérdésmegoldó oldalra (így jön elő a hiba)
  
  ✖ ANDROID: töltsek le egy emulatort, úgy hátha gyorsabban tudom tesztelni, és nem annyira idegölő
  ✖ android: felnagyítva legyen az egész alapból már (ne keljen folyton ráközelítenem)
