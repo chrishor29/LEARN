@@ -17,8 +17,6 @@ robocopy %source%\Pszicho\images %destination%\Pszicho\images /mir
 xcopy /y %source%\Pszicho\pszicho.html %destination%\Pszicho\ /d
 robocopy %source%\Pulmo\images %destination%\Pulmo\images /mir
 xcopy /y %source%\Pulmo\pulmo.html %destination%\Pulmo\ /d
-robocopy %source%\Borgyogy\images %destination%\Borgyogy\images /mir
-xcopy /y %source%\Borgyogy\borgyogy.html %destination%\Borgyogy\ /d
 robocopy %source%\Ortopedia\images %destination%\Ortopedia\images /mir
 xcopy /y %source%\Ortopedia\ortop.html %destination%\Ortopedia\ /d
 xcopy /y %source%\Radiologia\radio.html %destination%\Radiologia\ /d
@@ -26,16 +24,18 @@ xcopy /y %source%\Radiologia\radio.html %destination%\Radiologia\ /d
 REM 4.év
 xcopy /y %source%\Sebeszet\sebeszet.html %destination%\Sebeszet\ /d
 xcopy /y %source%\Sebeszet\2011_0001_524_Sebeszet.pdf %learnStuff%\Sebeszet\ /d
-robocopy %source%\Farmak\images %destination%\Farmak\images /mir
-robocopy %source%\Farmak\videos %destination%\Farmak\videos /mir
-xcopy /y %source%\Farmak\favicon.bmp %destination%\Farmak\ /d
-xcopy /y %source%\Farmak\farmak.html %destination%\Farmak\ /d
-xcopy /y %source%\Farmak\farmak1.html %destination%\Farmak\ /d
-xcopy /y %source%\Farmak\2011_0001_524_Farmakologia.pdf %learnStuff%\Farmak\ /d
 robocopy %source%\Belgyogy\könyvek %destination%\Belgyogy\könyvek /mir
 robocopy %source%\Belgyogy\Nefro\images %destination%\Belgyogy\Nefro\images /mir
 xcopy /y %source%\Belgyogy\Nefro\favicon.bmp %destination%\Belgyogy\Nefro\ /d
 xcopy /y %source%\Belgyogy\Nefro\nephro.html %destination%\Belgyogy\Nefro\ /d
+robocopy %source%\done\Borgyogy\images %destination%\done\Borgyogy\images /mir
+xcopy /y %source%\done\Borgyogy\borgyogy.html %destination%\done\Borgyogy\ /d
+robocopy %source%\done\Farmak\images %destination%\done\Farmak\images /mir
+robocopy %source%\done\Farmak\videos %destination%\done\Farmak\videos /mir
+xcopy /y %source%\done\Farmak\favicon.bmp %destination%\done\Farmak\ /d
+xcopy /y %source%\done\Farmak\farmak.html %destination%\done\Farmak\ /d
+xcopy /y %source%\done\Farmak\farmak1.html %destination%\done\Farmak\ /d
+xcopy /y %source%\done\Farmak\2011_0001_524_Farmakologia.pdf %learnStuff%\done\Farmak\ /d
 xcopy /y %source%\done\Trauma\trauma.html %destination%\done\Trauma\ /d
 xcopy /y %source%\done\Szajseb\szajseb.html %destination%\done\Szajseb\ /d
 robocopy %source%\done\FOG\images %destination%\done\FOG\images /mir
