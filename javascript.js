@@ -1,6 +1,8 @@
 // window.onerror = function(msg, url, linenumber) { alert('Error message: '+msg+'\nLine Number: '+linenumber) }
 
 /* PROJECT - PROGRESS
+ ✖ nehéz vs könnyű kérdés (+ osztályzás 0/1/2)
+ 
  ✖ mikrobi: részl.bakt: Bacillus anthracis -> 2x megnyitom és 2.-nál már rosszul írja ki
  ✖ farmak: impQ.90: NSAID hatásai --> terhességgel kapcsolatos tudnivalók ha kerdes; akkor azt amikor kidobja, nem jelenik meg az osztályozhatósága, így nem tudok továbbhaladni (A/16 tétel esetén)
  ✖ bőrgyógy: kijelölök egy új tételt (impQ van benne), majd rámegyek kövi kérdésre, hogy kidobja, akkor még az impQ-t nem tölti be (kell egy refresht-t tolnom valamiért)
@@ -3188,9 +3190,9 @@ function func_calcTimeDiff(repCount){
 		timeDiff = 7000
 	}*/
 	if ( repCount == 0 ) {
-		timeDiff = 15
+		timeDiff = 10
 	} else if ( repCount == 1 ) {
-		timeDiff = 500
+		timeDiff = 20
 	} else if ( repCount == 2 ) {
 		timeDiff = 2000
 	} else if ( repCount == 3 ) {
