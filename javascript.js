@@ -10,6 +10,8 @@
  
  ✖ ANDROID: töltsek le egy emulatort, úgy hátha gyorsabban tudom tesztelni, és nem annyira idegölő
  ✖ android: felnagyítva legyen az egész alapból már (ne keljen folyton ráközelítenem)
+	+ ezt rohadt nehéz megcsinálni: (1) zoom nem lehet (firefox) (2) helette van a transform-scale, de akkor kilóg a képernyőből, meg összevissza baszakszik. (3) fontok méretét növelhetem még, de akkor is elcsesződik (4) először írjak egy üres html-t, amibe csak text van és abból építsem fel (teszek bele image-t később stb.)
+	+ "divQloc" nevű div-en megcsináltam már elvileg; 3x nagyítás
  ✖ android: midQ a képernyőt töltse ki mindig
  ✖ android: tételQ kijelölése nehéz, mert kicsi
  ✖ android: menuk egy klikkel legyenek előhívhatók és nagyok legyenek / kerdes osztályzás is!
@@ -181,7 +183,6 @@ for ( var i=0; i<kerdesek.length; i++ ) {
 	}
 	return hash;
 }*/
-
 
 
 
@@ -2740,9 +2741,9 @@ function F_CreateQDiv() {
 		questDiv.appendChild(div)
 		div.style.backgroundColor = "white"
 		div.style.overflow = "auto"
+		div.style.position = "fixed"
 		div.style.width = "97vw"
 		div.style.height = "75vh"
-		div.style.position = "fixed"
 		div.style.top = "50%"
 		div.style.marginTop = "-30vh"
 		div.style.border = "10px solid black"
@@ -2982,6 +2983,12 @@ function F_CreateQDiv() {
 		MainFrame.appendChild(divQloc)
 		//divQloc.style.overflow = "auto"
 		//divQloc.style.height = "87vh"
+		
+		if ( isAndroid != false ) {
+			divQloc.style.transform = 'scale(3)'
+			divQloc.style.transformOrigin = '0 0'
+			divQloc.style.maxWidth = '33%'
+		}
 	}
 	F_DivQLoc()
 	var divQloc = document.getElementById("divQloc");
@@ -3176,19 +3183,6 @@ function F_CreateQDiv() {
 F_CreateQDiv()
 
 function func_calcTimeDiff(repCount){
-	/*if ( repCount == 0 ) {
-		timeDiff = 10
-	} else if ( repCount == 1 ) {
-		timeDiff = 30
-	} else if ( repCount == 2 ) {
-		timeDiff = 60
-	} else if ( repCount == 3 ) {
-		timeDiff = 100
-	} else if ( repCount == 4 ) {
-		timeDiff = 5000
-	} else if ( repCount == 5 ) {
-		timeDiff = 7000
-	}*/
 	if ( repCount == 0 ) {
 		timeDiff = 10
 	} else if ( repCount == 1 ) {
@@ -3278,12 +3272,12 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 		questDiv.appendChild(div)
 
 		div.style.backgroundColor = "white"
-		div.style.overflow = "auto"
-		div.style.width = "97vw"
-		div.style.height = "75vh"
-		div.style.position = "fixed"
+		div.style.width = "97vw" 
 		div.style.top = "50%"
 		div.style.marginTop = "-30vh"
+		div.style.height = "75vh"
+		div.style.overflow = "auto"
+		div.style.position = "fixed"
 		div.style.border = "10px solid black"
 		div.style.display = "none"
 	}
