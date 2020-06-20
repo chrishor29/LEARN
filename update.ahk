@@ -1,4 +1,4 @@
-﻿
+﻿Run szemeszter.bat,,Min, szemPID
 
 Gui, Add, CheckBox, gfunAndroid, Android ON
 Gui, Add, CheckBox, gfunUpdate, Update ON
@@ -16,17 +16,20 @@ Return
 
 GuiClose:
 Gui, Cancel
-RunWait szemeszter.bat
+
+Process,WaitClose,%szemPID% ;MsgBox szemeszter.bat closed.
+
 if varAndroid = true
 {
-	Run BatchRun.ffs_batch ; %destination%\BatchRun.ffs_batch
-	RunWait BatchRunStuff.ffs_batch ; %destination%\BatchRunStuff.ffs_batch
+	Run BatchRun.ffs_batch,,, andPID ; %destination%\BatchRun.ffs_batch
+	Run BatchRunStuff.ffs_batch,,, andrPID ; %destination%\BatchRunStuff.ffs_batch
 }
 if varUpdate = true
 {
-	RunWait update.bat
+	Run update.bat,,, updPID
 }
+Process,WaitClose,%andPID%
+Process,WaitClose,%andrPID%
+Process,WaitClose,%updPID%
 MsgBox done
 ExitApp
-
-
