@@ -2,10 +2,10 @@
 
 /* PROJECT - PROGRESS
  ✖ nehéz vs könnyű kérdés (+ osztályzás 0/1/2)
+ ✖ bőrgyógy: kijelölök egy új tételt (impQ van benne), majd rámegyek kövi kérdésre, hogy kidobja, akkor még az impQ-t nem tölti be (kell egy refresht-t tolnom valamiért)
  
  ✖ mikrobi: részl.bakt: Bacillus anthracis -> 2x megnyitom és 2.-nál már rosszul írja ki
  ✖ farmak: impQ.90: NSAID hatásai --> terhességgel kapcsolatos tudnivalók ha kerdes; akkor azt amikor kidobja, nem jelenik meg az osztályozhatósága, így nem tudok továbbhaladni (A/16 tétel esetén)
- ✖ bőrgyógy: kijelölök egy új tételt (impQ van benne), majd rámegyek kövi kérdésre, hogy kidobja, akkor még az impQ-t nem tölti be (kell egy refresht-t tolnom valamiért)
  ✖ bőrgyógy: diabetes tételnél megjelenik egy új kérdés valamiért, pedig nincs ott új már: lépjek vissza főoldal, majd frissítsek, utána jelöljem ki bőrgyógyászat, majd lépjek át kérdésmegoldó oldalra (így jön elő a hiba)
  
  ✖ ANDROID: töltsek le egy emulatort, úgy hátha gyorsabban tudom tesztelni, és nem annyira idegölő
@@ -358,6 +358,7 @@ function F_detailsToggle(detElem){
 }
 
 var prevMidQ = []
+var prevScrollTop = 0
 var MISSID
 function F_impQfew(detElem){ // ?ms/Q a betöltési ideje
 	MISSID = ""
@@ -576,6 +577,14 @@ function F_midQText(qTxt){
 	//qTxt = qTxt.replace('<ul class="normal">','<ul>')
 	document.getElementById("div_MidQText").innerHTML = qTxt
 
+	if ( document.getElementById("div_MidQ").style.display != "block" ) {
+		prevScrollTop = document.body.scrollTop
+		document.getElementById("btn_toggleAll").style.display = 'none'
+		document.getElementById("table_weboldalak").style.display = 'none'
+		document.getElementById("div_pageQTargy").style.display = 'none'
+		document.getElementById("div_MainFrame").style.display = 'none'
+	}
+	
 	document.getElementById("div_MidQ").style.display = "block"
 	//F_impQfew(document.getElementById("div_MidQText"))
 	F_detailsToggle(document.getElementById("div_MidQText"))
@@ -1241,16 +1250,14 @@ function F_saveLS() {
 }
 //JSON.stringify(localStorage)
 
-// set SkipTime
-function F_skipTime() {
+function F_skipTime() { // következő vizsga hány óra múlva lesz
 	var input = document.createElement("input")
-	//input.id = "skipHour"
+	document.getElementById("table_weboldalak").appendChild(input)
 	input.type = "number"
 	input.style.width = "50px"
-	document.body.appendChild(input)
 	input.style.position = "absolute"
 	input.style.right = "5px"
-	input.style.bottom = "50%"
+	input.style.top = "200px"
 	var date = new Date();
 	var remain = Math.floor(date.getTime()/3600000)
 	remain = localStorage.getItem("vizsgaSkip") - remain
@@ -1263,21 +1270,6 @@ function F_skipTime() {
 		time = time + Number(this.value)
 		localStorage.setItem("vizsgaSkip",time)
 	}
-	/*
-	var input = document.createElement("input")
-	input.type = "button"
-	input.value = "skip"
-	document.body.appendChild(input)
-	input.onclick = function(){ 
-		var date = new Date();
-		var time = Math.floor(date.getTime()/3600000)
-		time = time + Number(skipHour.value)
-		localStorage.setItem("vizsgaSkip",time)
-	}
-	input.style.position = "absolute"
-	input.style.right = "55px"
-	input.style.bottom = "50%"
-	*/
 }
 F_skipTime()
 
@@ -2009,6 +2001,7 @@ function F_searchWord() {
 		
 		var div = document.createElement("div")
 		document.body.appendChild(div)
+		//document.body.insertBefore(div, document.body.firstChild);
 		div.id = "div_MidQ"
 		div.dataset.origin = "pageQs"
 		div.style.backgroundColor = "white"
@@ -2016,7 +2009,7 @@ function F_searchWord() {
 		div.style.border = "8px solid black"
 		div.style.outline = "5px solid yellow"
 		div.style.display = "none"
-		div.style.position = "fixed"
+		div.style.position = "absolute"
 		div.style.left = "5px"
 		div.style.right = "5px"
 		div.style.top = "4px"
@@ -2035,6 +2028,18 @@ function F_searchWord() {
 			document.getElementById("div_MidQ").dataset.origin = "pageQs"
 			midQloaded = false
 			midQisExp = false
+			
+			document.getElementById("btn_toggleAll").style.display = 'block'
+			if ( localStorage.getItem("hk.ToggleAll") == "true") {
+				document.getElementById("table_weboldalak").style.display = 'none'
+				document.getElementById("div_pageQTargy").style.display = 'none'
+				document.getElementById("div_MainFrame").style.display = 'block'
+			} else {
+				document.getElementById("table_weboldalak").style.display = 'block'
+				document.getElementById("div_pageQTargy").style.display = 'block'
+				document.getElementById("div_MainFrame").style.display = 'none'
+			}
+			document.body.scrollTop = prevScrollTop
 		}
 		button.style.cursor = "pointer";
 		button.innerHTML = "✖"
@@ -2085,74 +2090,6 @@ function F_searchWord() {
 }
 F_searchWord()
 
-function F_DivSkip() {
-	var div = document.createElement("div")
-	document.body.appendChild(div)
-	div.id = "div_Skip"
-	div.style.backgroundColor = "white"
-	div.style.overflow = "auto"
-	div.style.width = "80vw"
-	div.style.height = "60vh"
-	div.style.position = "fixed"
-	div.style.top = "50%"
-	div.style.left = "50%"
-	div.style.marginTop = "-30vh"
-	div.style.marginLeft = "-40vw"
-	div.style.border = "10px solid black"
-	div.style.display = "none"
-}
-F_DivSkip()
-function F_DivFix() {
-	var div = document.createElement("div")
-	document.body.appendChild(div)
-	div.id = "div_Fix"
-	div.style.backgroundColor = "white"
-	div.style.overflow = "auto"
-	div.style.width = "80vw"
-	div.style.height = "60vh"
-	div.style.position = "fixed"
-	div.style.top = "50%"
-	div.style.left = "50%"
-	div.style.margin = "-30vh -40vw" // top,left
-	div.style.border = "10px solid red"
-	div.style.display = "none"
-}
-F_DivFix()
-function F_DivSkipText() {
-	var div = document.createElement("div")
-	document.body.appendChild(div)
-	div.id = "div_SkipText"
-	div.style.backgroundColor = "white"
-	div.style.overflow = "auto"
-	div.style.border = "8px solid black"
-	div.style.outline = "5px solid aqua"
-	div.style.display = "none"
-	div.style.position = "fixed"
-	div.style.left = "5px"
-	div.style.right = "5px"
-	div.style.top = "4px"
-	div.style.bottom = "4px"
-	div.style.display = "none"
-		
-	var textdiv = document.createElement("div")
-	textdiv.id = "div_SkipTexttxt"
-	div.appendChild(textdiv)
-	
-	var button = document.createElement("input")
-	button.type = "button"
-	div.appendChild(button)
-	button.style.backgroundColor = "red"
-	button.style.color = "white"
-	button.style.border = "3px solid black"
-	button.onclick = function(){ document.getElementById("div_SkipText").style.display = "none" }
-	button.value = "◄"
-	button.style.cursor = "pointer"
-	
-	button.style.position = "fixed"
-	button.style.right = "5px"
-	button.style.bottom = "2px"
-}
-F_DivSkipText()
 function F_DivUpgQ() {
 	var div = document.createElement("div")
 	document.body.appendChild(div)
@@ -2348,11 +2285,26 @@ function F_toggleAll() {
 	var childs = document.body.children; 
 	if ( document.getElementById("div_MainFrame").style.display != 'none' ) {
 		localStorage.removeItem("hk.ToggleAll")
+		document.getElementById("table_weboldalak").style.display = 'block';
+		document.getElementById("div_pageQTargy").style.display = 'block';
+		document.getElementById("div_MainFrame").style.display = 'none';
+		
+		//document.getElementById("div_SearchW").style.display = 'none';
+		//document.getElementById("div_MidQ").style.display = 'none';
+		//document.getElementById("div_upgQ").style.display = 'none';
+	} else {
+		localStorage.setItem("hk.ToggleAll","true")
+		document.getElementById("table_weboldalak").style.display = 'none';
+		document.getElementById("div_pageQTargy").style.display = 'none';
+		document.getElementById("div_MainFrame").style.display = 'block';
+	}
+	/*if ( document.getElementById("div_MainFrame").style.display != 'none' ) {
+		localStorage.removeItem("hk.ToggleAll")
 		for ( var i=0; i<childs.length; i++ ) { childs[i].style.display = "block" }
 		document.getElementById("div_MainFrame").style.display = 'none';
-
+		
 		document.getElementById("div_SkipText").style.display = 'none';
-		document.getElementById("div_Fix").style.display = 'none';
+		document.getElementById("div_skipFix").style.display = 'none';
 		document.getElementById("div_Skip").style.display = 'none';
 		document.getElementById("div_MidQ").style.display = 'none';
 		document.getElementById("div_upgQ").style.display = 'none';
@@ -2367,7 +2319,7 @@ function F_toggleAll() {
 		tooltipSpan.style.display = 'block';
 
 		document.getElementById("btn_toggleAll").style.display = 'block';
-	}
+	}*/
 	document.getElementById("div_centIMG").style.display = "block";
 	document.getElementById("btn_toggleAll").style.backgroundColor  = ""
 	document.getElementById("btn_toggleAll").style.color  = ""
@@ -2532,6 +2484,24 @@ function F_calcqTimer(detElem) {
 	detElem.textContent = numY
 }
 
+function F_hideQArea() {
+	document.getElementById("divQloc").style.display = "none" // nextQ-t ahova kidobja
+	
+	document.getElementById("div_skipFix").style.display = "none" // kék-piros-fekete-sárga
+	document.getElementById("div_qProp").style.display = "none" // android osztályzás
+	document.getElementById("div_qMarks").style.display = "none" // már osztályzott kérdések sorrendbe egymás alatt
+	document.getElementById("Div_Tetelek").style.display = "none" // tételválasztás
+	document.getElementById("note").style.display = 'none'
+	
+	document.getElementById("btn_qTimer").style.borderColor = "black" // már osztályzott kérdések sorrendbe egymás alatt
+	document.getElementById("button_Tetel").style.borderColor = "black" // tételválasztás
+	document.getElementById("btn_skip").style.borderColor = "black" // fekete
+	document.getElementById("btn_fix").style.borderColor = "black" // piros
+	document.getElementById("btn_tempskip").style.borderColor = "black" // gold
+	document.getElementById("btn_vizsgaskip").style.borderColor = "black" // kek
+	document.getElementById("btn_note").style.borderColor = "black"
+}
+
 var timeDiff
 var lastClickTime = 0
 function F_CreateQDiv() {
@@ -2541,9 +2511,9 @@ function F_CreateQDiv() {
 		button.id = "btn_toggleAll"
 		button.type = "button"
 		document.body.appendChild(button)
-		button.style.width = "45px"
-		button.style.height = "30px"
-		button.style.position = "fixed"
+		button.style.width = "90px"
+		button.style.height = "90px"
+		button.style.position = "absolute"
 		button.style.right = "2px"
 		button.style.top = "2px"
 		button.style.cursor = "pointer"
@@ -2588,10 +2558,7 @@ function F_CreateQDiv() {
 	function F_ButtonSearchWord() {
 		var button = document.createElement("input")
 		button.type = "button"
-		document.body.appendChild(button)
-		button.style.zIndex = "2"
-		//button.style.height = "50px"
-		//button.style.width = "50px"
+		document.getElementById("table_weboldalak").appendChild(button)
 		button.style.position = "absolute"
 		button.style.right = "150px"
 		button.style.top = "15px"
@@ -2631,7 +2598,8 @@ function F_CreateQDiv() {
 		var div = document.createElement("div")
 		div.id = "div_MainFrame"
 		div.style.display = "none"
-		div.style.maxHeight = "50%"
+		div.style.position = "relative"
+		//div.style.maxHeight = "50%"
 		var parent = document.body
 		parent.insertBefore(div,parent.firstChild)
 	}
@@ -2672,11 +2640,12 @@ function F_CreateQDiv() {
 		divSettings.appendChild(button)
 		button.onclick = function() {
 			if ( document.getElementById("Div_Tetelek").style.display == "none" ) {
+				F_hideQArea()
 				document.getElementById("Div_Tetelek").style.display = "block"
 				this.style.borderColor = "limegreen"
 			} else {
-				document.getElementById("Div_Tetelek").style.display = "none"
-				this.style.borderColor = "black"
+				F_hideQArea()
+				document.getElementById("divQloc").style.display = "block"
 			}
 		}
 	}
@@ -2737,17 +2706,13 @@ function F_CreateQDiv() {
 		divSettings.appendChild(button)
 		
 		var div = document.createElement("div")
-		var questDiv = document.getElementById("div_MainFrame")
-		questDiv.appendChild(div)
+		div.id = "div_qMarks"
+		MainFrame.appendChild(div)
 		div.style.backgroundColor = "white"
-		div.style.overflow = "auto"
-		div.style.position = "fixed"
-		div.style.width = "97vw"
-		div.style.height = "75vh"
-		div.style.top = "50%"
-		div.style.marginTop = "-30vh"
 		div.style.border = "10px solid black"
 		div.style.display = "none"
+		div.style.height = "73vh"
+		div.style.overflow = "auto"
 		div.style.zIndex = "2"
 		
 		var center = document.createElement("center")
@@ -2759,11 +2724,12 @@ function F_CreateQDiv() {
 
 		button.onclick = function(){
 			if ( div.style.display == "none" ) {
+				F_hideQArea()
 				div.style.display = "block"
 				this.style.borderColor = "limegreen"
 			} else {
-				div.style.display = "none"
-				this.style.borderColor = "black"
+				F_hideQArea()
+				document.getElementById("divQloc").style.display = "block"
 			}
 		}
 	}
@@ -2771,8 +2737,7 @@ function F_CreateQDiv() {
 
 	function F_DivAlertEXPQrosszNum() {
 		var div = document.createElement("div")
-		var doc = document.getElementById("div_MainFrame")
-		doc.appendChild(div)
+		MainFrame.appendChild(div)
 		div.style.backgroundColor = "white"
 		div.style.overflow = "auto"
 		div.style.width = "200px"
@@ -2823,7 +2788,15 @@ function F_CreateQDiv() {
 		divSettings.appendChild(button)
 		button.style.backgroundColor = "white"
 		button.style.border = "3px solid black"
-		button.onclick = function(){ func_spanClick(this) }
+		button.onclick = function(){ 
+			if ( this.style.borderColor == "limegreen" ) {
+				this.style.borderColor = "black"
+				localStorage.removeItem("hk.newQ")
+			} else {
+				this.style.borderColor = "limegreen"
+				localStorage.setItem("hk.newQ",true)
+			}
+		}
 		button.value = "0"
 	}
 	F_ButtonNewQ()
@@ -2847,19 +2820,35 @@ function F_CreateQDiv() {
 		divSettings.appendChild(button)
 		button.className = "MISS"
 		button.style.border = "3px solid black"
-		button.onclick = function(){ func_spanClick(this) }
+		button.onclick = function(){ 
+			if ( this.style.borderColor == "limegreen" ) {
+				this.style.borderColor = "black"
+			} else {
+				this.style.borderColor = "limegreen"
+			}
+		}
 		button.value = "0"
 	}
 	F_ButtonRepFast()
 	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
-	function F_ButtonTABS() {
+	function F_ButtonNote() {
 		var button = document.createElement("input")
 		button.type = "button"
 		button.id = "btn_note"
 		divSettings.appendChild(button)
 		button.style.border = "3px solid black"
 		button.style.backgroundColor = "Bisque"
-		button.onclick = function(){ func_spanClick(this) }
+		button.onclick = function(){ 
+			if ( this.style.borderColor == "limegreen" ) {
+				F_hideQArea()
+				document.getElementById("divQloc").style.display = 'block';
+			} else {
+				F_hideQArea()
+				this.style.borderColor = "limegreen"
+				document.getElementById("note").style.display = 'block';
+				func_SetTextOfSkipFixDiv(this.id)
+			}
+		}
 		button.value = "✍"
 		
 		var div = document.createElement("div")
@@ -2874,7 +2863,7 @@ function F_CreateQDiv() {
 		//document.body.appendChild(div)
 		MainFrame.appendChild(div)
 	}
-	F_ButtonTABS()
+	F_ButtonNote()
 	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
 	function F_ButtonNextQdiff() {
 		var button = document.createElement("input")
@@ -2912,7 +2901,17 @@ function F_CreateQDiv() {
 		button.style.color = "white"
 		button.style.fontWeight = "bold"
 		button.style.border = "3px solid black"
-		button.onclick = function(){ func_spanClick(this) }
+		button.onclick = function(){ 
+			if ( this.style.borderColor == "limegreen" ) {
+				F_hideQArea()
+				document.getElementById("divQloc").style.display = 'block';
+			} else {
+				F_hideQArea()
+				this.style.borderColor = "limegreen"
+				document.getElementById("div_skipFix").style.display = 'block';
+				func_SetTextOfSkipFixDiv(this.id)
+			}
+		}
 		button.value = "0"
 	}
 	F_ButtonVizsgaSkip()
@@ -2923,7 +2922,17 @@ function F_CreateQDiv() {
 		divSettings.appendChild(button)
 		button.className = "fix"
 		button.style.border = "3px solid black"
-		button.onclick = function(){ func_spanClick(this) }
+		button.onclick = function(){ 
+			if ( this.style.borderColor == "limegreen" ) {
+				F_hideQArea()
+				document.getElementById("divQloc").style.display = 'block';
+			} else {
+				F_hideQArea()
+				this.style.borderColor = "limegreen"
+				document.getElementById("div_skipFix").style.display = 'block';
+				func_SetTextOfSkipFixDiv(this.id)
+			}
+		}
 		button.value = "0"
 	}
 	F_ButtonFix()
@@ -2934,7 +2943,17 @@ function F_CreateQDiv() {
 		divSettings.appendChild(button)
 		button.className = "dark"
 		button.style.border = "3px solid black"
-		button.onclick = function(){ func_spanClick(this) }
+		button.onclick = function(){ 
+			if ( this.style.borderColor == "limegreen" ) {
+				F_hideQArea()
+				document.getElementById("divQloc").style.display = 'block';
+			} else {
+				F_hideQArea()
+				this.style.borderColor = "limegreen"
+				document.getElementById("div_skipFix").style.display = 'block';
+				func_SetTextOfSkipFixDiv(this.id)
+			}
+		}
 		button.value = "0"
 	}
 	F_ButtonSkip()
@@ -2946,7 +2965,17 @@ function F_CreateQDiv() {
 		button.style.backgroundColor = "gold"
 		button.style.fontWeight = "bold"
 		button.style.border = "3px solid black"
-		button.onclick = function(){ func_spanClick(this) }
+		button.onclick = function(){ 
+			if ( this.style.borderColor == "limegreen" ) {
+				F_hideQArea()
+				document.getElementById("divQloc").style.display = 'block';
+			} else {
+				F_hideQArea()
+				this.style.borderColor = "limegreen"
+				document.getElementById("div_skipFix").style.display = 'block';
+				func_SetTextOfSkipFixDiv(this.id)
+			}
+		}
 		//button.value = "0"
 	}
 	F_ButtonTempSkip()
@@ -2976,6 +3005,18 @@ function F_CreateQDiv() {
 		span.style.paddingBottom = "2px"
 	}
 	F_SpanRepOld()
+	
+	function F_divSkipFix() {
+		var div = document.createElement("div")
+		div.id = "div_skipFix"
+		MainFrame.appendChild(div)
+		div.style.backgroundColor = "white"
+		div.style.overflow = "auto"
+		div.style.height = "73vh"
+		div.style.border = "10px solid black"
+		div.style.display = "none"
+	}
+	F_divSkipFix()
 
 	function F_DivQLoc() {
 		var divQloc = document.createElement("div")
@@ -2984,10 +3025,10 @@ function F_CreateQDiv() {
 		//divQloc.style.overflow = "auto"
 		//divQloc.style.height = "87vh"
 		
-		if ( isAndroid != false ) {
-			divQloc.style.transform = 'scale(3)'
+		if ( isAndroid ) {
+			divQloc.style.transform = 'scale(1.75)'
 			divQloc.style.transformOrigin = '0 0'
-			divQloc.style.maxWidth = '33%'
+			divQloc.style.maxWidth = '57%'
 		}
 	}
 	F_DivQLoc()
@@ -3067,7 +3108,7 @@ function F_CreateQDiv() {
 		
 		button.style.position = "absolute"
 		button.style.left = "235px"
-		button.style.top = "36px"
+		button.style.top = "26px"
 		button.style.right = "90px"
 		button.style.overflow = "auto"
 		button.style.border = "3px solid black"
@@ -3081,7 +3122,7 @@ function F_CreateQDiv() {
 
 		div.style.position = "absolute"
 		div.style.left = "275px"
-		div.style.top = "5px"
+		div.style.top = "-5px"
 		div.style.right = "90px"
 		div.style.overflow = "auto"
 	}
@@ -3267,19 +3308,13 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 	function F_MainDiv() {
 		var div = document.createElement("div")
 		div.id = "Div_Tetelek"
-
 		var questDiv = document.getElementById("div_MainFrame");
 		questDiv.appendChild(div)
-
 		div.style.backgroundColor = "white"
-		div.style.width = "97vw" 
-		div.style.top = "50%"
-		div.style.marginTop = "-30vh"
-		div.style.height = "75vh"
-		div.style.overflow = "auto"
-		div.style.position = "fixed"
 		div.style.border = "10px solid black"
 		div.style.display = "none"
+		div.style.height = "73vh"
+		div.style.overflow = "auto"
 	}
 	F_MainDiv()
 
@@ -3715,12 +3750,7 @@ function func_showQtext(LSid){
 	LSid = LSid.slice(0,LSid.indexOf('_fullText'))
 	var text = objQnameQtxt[localStorage.getItem(LSid)]
 	text = text.replace('DETAILS','DETAILS open')
-	document.getElementById("div_SkipTexttxt").innerHTML = text
-	
-	var qElem = document.getElementById("div_SkipText")
-	qElem.style.display = 'block';
-	F_abbrSet(qElem)
-	F_detailsToggle(qElem)
+	F_midQText(text)
 }
 
 function func_DeleteSkipFix(kerdes){
@@ -3743,11 +3773,13 @@ function func_DeleteSkipFix(kerdes){
 }
 var lastQSkip
 function func_SetTextOfSkipFixDiv(SkipFix){
+	console.clear()
 	var fullText = ""
 	var qCount = 0
+	var div = document.getElementById("div_skipFix")
+	div.innerHTML = fullText
 	if ( SkipFix == "btn_fix" ) {
-		console.clear()
-		document.getElementById("div_Fix").innerHTML = ""
+		div.style.borderColor = "red"
 		for ( var LSid in obj_fixNote ) {
 			if ( obj_fixNote[LSid] ) {
 				var qName = localStorage.getItem(LSid)
@@ -3760,14 +3792,11 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 			}
 		}
 		fullText = "qCount:" +qCount+ "<br>" +fullText
-		document.getElementById("div_Fix").innerHTML = fullText
 	}
 	if ( SkipFix == "btn_skip" ) {
-		document.getElementById("div_Skip").innerHTML = ""
-		document.getElementById("div_Skip").style.borderColor = "black"
+		div.style.borderColor = "black"
 		for ( var LSid in obj_skip ) {
 			if ( obj_skip[LSid] == "perma" ) {
-				var text = document.getElementById("div_Skip").innerHTML
 				var qName = localStorage.getItem(LSid)
 				if ( qName != null ) {
 					var qButton = "<button id='"+LSid+"_skipClear' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>"
@@ -3778,16 +3807,13 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 			}
 		}
 		fullText = "qCount:" +qCount+ "<br>" +fullText
-		document.getElementById("div_Skip").innerHTML = fullText
 	}
 	if ( SkipFix == "btn_vizsgaskip" ) {
-		document.getElementById("div_Skip").innerHTML = ""
-		document.getElementById("div_Skip").style.borderColor = "blue"
+		div.style.borderColor = "blue"
 		var fullText = ""
 		var qCount = 0
 		for ( var LSid in obj_skip ) {
 			if ( obj_skip[LSid] == "vizsgaSkip" ) {
-				var text = document.getElementById("div_Skip").innerHTML
 				var qName = localStorage.getItem(LSid)
 				if ( qName != null ) {
 					var qButton = "<button id='"+LSid+"_vizsgaskipClear' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>"
@@ -3795,16 +3821,6 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 					fullText = fullText + qName
 					qCount = qCount +1
 				}
-				/*var Qtext = localStorage.getItem(LSid)
-				if ( Qtext != null ) {
-					var Qtext = localStorage.getItem(LSid)
-					Qtext = Qtext.slice(Qtext.indexOf("<summary")+8,Qtext.indexOf("</summary"))
-					Qtext = Qtext.slice(Qtext.indexOf(">")+1)
-					Qtext = '<font color="green" id="'+LSid+'_fullText" onclick="func_showQtext(this.id)">' + Qtext + '</font><br>'
-					Qtext = "<button id='"+LSid+"_skipClear' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>" + Qtext
-					fullText = fullText + Qtext
-					qCount = qCount +1
-				}*/
 			}
 		}
 		var date = new Date();
@@ -3812,14 +3828,11 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 		timeText = vizsgaTime - timeText
 		timeText = timeText + "perc van még vissza viszga-resethez. <br>"
 		fullText = timeText + fullText
-		document.getElementById("div_Skip").innerHTML = fullText
 	}
 	if ( SkipFix == "btn_tempskip" ) {
-		document.getElementById("div_Skip").innerHTML = ""
-		document.getElementById("div_Skip").style.borderColor = "gold"
+		div.style.borderColor = "gold"
 		for ( var LSid in obj_skip ) {
 			if ( obj_skip[LSid] == "tempskip" ) {
-				var text = document.getElementById("div_Skip").innerHTML
 				var qName = localStorage.getItem(LSid)
 				if ( qName != null ) {
 					var qButton = "<button id='"+LSid+"_tempskipClear' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>"
@@ -3830,39 +3843,8 @@ function func_SetTextOfSkipFixDiv(SkipFix){
 			}
 		}
 		fullText = "qCount:" +qCount+ "<br>" +fullText
-		document.getElementById("div_Skip").innerHTML = fullText
 	}
-}
-function func_spanClick(button){  // btn_fix, btn_skip, btn_vizsgaskip, btn_repFast, btn_newQuest
-	if ( button.id == 'btn_tempskip' || button.id == 'btn_skip' || button.id == 'btn_note' || button.id == 'btn_fix' || button.id == 'btn_vizsgaskip' ) {
-		func_SetTextOfSkipFixDiv(button.id)
-		document.getElementById("div_Fix").style.display = 'none';
-		document.getElementById("div_Skip").style.display = 'none';
-		document.getElementById("note").style.display = 'none';
-	}
-	if ( button.style.borderColor == "limegreen" ) {
-		button.style.borderColor = "black"
-		if ( button.id == 'btn_newQuest' ) { localStorage.removeItem("hk.newQ") }
-	} else {
-		if ( button.id == 'btn_skip' || button.id == 'btn_note' || button.id == 'btn_fix' || button.id == 'btn_vizsgaskip' ) {
-			document.getElementById("btn_note").style.borderColor = "black"
-			document.getElementById("btn_fix").style.borderColor = "black"
-			document.getElementById("btn_skip").style.borderColor = "black"
-			document.getElementById("btn_vizsgaskip").style.borderColor = "black"
-			document.getElementById("btn_tempskip").style.borderColor = "black"
-		}
-		if ( button.id == 'btn_skip' ||  button.id == 'btn_vizsgaskip' ||  button.id == 'btn_tempskip' ) {
-			document.getElementById("div_Skip").style.display = 'block';
-		}
-		if ( button.id == 'btn_note' ) {
-			document.getElementById("note").style.display = 'block';
-		}
-		if ( button.id == 'btn_fix' ) {
-			document.getElementById("div_Fix").style.display = 'block';
-		}
-		button.style.borderColor = "limegreen"
-		if ( button.id == 'btn_newQuest' ) { localStorage.setItem("hk.newQ",true) }
-	}
+	div.innerHTML = fullText
 }
 
 function func_calcJegy() { // átlagJegyet kiszámolja
@@ -4158,17 +4140,15 @@ if ( localStorage.getItem("hk.newQ") == "true" ) {
 
 function F_divQprop() {
 	var div = document.createElement("div")
-	document.body.appendChild(div)
 	div.id = "div_qProp"
+	var questDiv = document.getElementById("div_MainFrame");
+	questDiv.appendChild(div)
 	div.style.backgroundColor = "white"
-	div.style.overflow = "auto"
-	div.style.width = "40vw"
-	div.style.height = "40vh"
-	div.style.position = "fixed"
-	div.style.top = "20%"
-	div.style.left = "30%"
-	div.style.border = "4px solid black"
+	div.style.border = "10px solid black"
 	div.style.display = "none"
+	div.style.height = "73vh"
+	div.style.overflow = "auto"
+	
 	
 	var qProp = document.createElement("span")
 	div.appendChild(qProp)
@@ -4182,7 +4162,7 @@ function F_divQprop() {
 	
 	function F_clickColor(){
 		var num = this.parentElement.innerHTML
-		//alert(num)
+		alert(num)
 		num = num.slice(num.indexOf('td.0.')+5,num.indexOf('<br>'))
 		document.getElementById("td.2."+num).style.backgroundColor = this.style.backgroundColor
 	}
@@ -4190,46 +4170,61 @@ function F_divQprop() {
 	var snow = document.createElement("span")
 	div.appendChild(snow)
 	snow.style.backgroundColor = "snow"
-	snow.style.width = "50px"
-	snow.style.height = "50px"
+	snow.style.height = "25%"
+	snow.style.width = "120px"
 	snow.style.border = "2px solid black"
 	snow.style.display = "inline-block"
+	snow.style.position = "absolute"
+	snow.style.left = "15px"
+	snow.style.bottom = "15px"
 	snow.onclick = function(){ F_clickColor()}
 	
 	var lawngreen = document.createElement("span")
 	div.appendChild(lawngreen)
 	lawngreen.style.backgroundColor = "lawngreen"
-	lawngreen.style.width = "50px"
-	lawngreen.style.height = "50px"
+	lawngreen.style.height = "25%"
+	lawngreen.style.width = "120px"
 	lawngreen.style.border = "2px solid black"
 	lawngreen.style.display = "inline-block"
+	lawngreen.style.position = "absolute"
+	lawngreen.style.left = "20%"
+	lawngreen.style.bottom = "15px"
 	lawngreen.onclick = function(){ F_clickColor() }
 	
 	var blue = document.createElement("span")
 	div.appendChild(blue)
 	blue.style.backgroundColor = "blue"
-	blue.style.width = "50px"
-	blue.style.height = "50px"
+	blue.style.height = "25%"
+	blue.style.width = "120px"
 	blue.style.border = "2px solid black"
 	blue.style.display = "inline-block"
+	blue.style.position = "absolute"
+	blue.style.left = "40%"
+	blue.style.bottom = "15px"
 	blue.onclick = function(){ F_clickColor() }
 	
 	var black = document.createElement("span")
 	div.appendChild(black)
 	black.style.backgroundColor = "black"
-	black.style.width = "50px"
-	black.style.height = "50px"
+	black.style.height = "25%"
+	black.style.width = "120px"
 	black.style.border = "2px solid black"
 	black.style.display = "inline-block"
+	black.style.position = "absolute"
+	black.style.left = "60%"
+	black.style.bottom = "15px"
 	black.onclick = function(){ F_clickColor() }
 
 	var gold = document.createElement("span")
 	div.appendChild(gold)
 	gold.style.backgroundColor = "gold"
-	gold.style.width = "50px"
-	gold.style.height = "50px"
+	gold.style.height = "25%"
+	gold.style.width = "120px"
 	gold.style.border = "2px solid black"
 	gold.style.display = "inline-block"
+	gold.style.position = "absolute"
+	gold.style.left = "80%"
+	gold.style.bottom = "15px"
 	gold.onclick = function(){ F_clickColor() }
 }
 F_divQprop()
@@ -4688,10 +4683,13 @@ function F_nextQ(){
 						var span = document.getElementById("span_qProp")
 						var num = this.id
 						if ( div.style.display == "none" ) {
+							F_hideQArea()
 							div.style.display = "block"
+							
 							span.innerHTML = num+"<br>"+LSid+"<br> Jegy:"+jegy+"<br>Repeat:"+repeat+"<br>Prior:"+prior+"<br>"
 						} else {
-							div.style.display = "none"
+							F_hideQArea()
+							document.getElementById("divQloc").style.display = "block"
 						}
 					}
 				} else {
