@@ -17,6 +17,8 @@ robocopy %source%\Pszicho\images %destination%\Pszicho\images /mir
 xcopy /y %source%\Pszicho\pszicho.html %destination%\Pszicho\ /d
 robocopy %source%\Pulmo\images %destination%\Pulmo\images /mir
 xcopy /y %source%\Pulmo\pulmo.html %destination%\Pulmo\ /d
+robocopy %source%\Onkologia\images %destination%\Onkologia\images /mir
+xcopy /y %source%\Onkologia\onko.html %destination%\Onkologia\ /d
 robocopy %source%\Ortopedia\images %destination%\Ortopedia\images /mir
 xcopy /y %source%\Ortopedia\ortop.html %destination%\Ortopedia\ /d
 xcopy /y %source%\Radiologia\radio.html %destination%\Radiologia\ /d

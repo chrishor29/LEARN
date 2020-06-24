@@ -1,6 +1,6 @@
 // window.onerror = function(msg, url, linenumber) { alert('Error message: '+msg+'\nLine Number: '+linenumber) }
 
-/* PROJECT - PROGRESS
+/* PROJECT - PROGRESS                       ↑ ↓ ± ≥
  ✖ nehéz vs könnyű kérdés (+ osztályzás 0/1/2)
  ✖ bőrgyógy: kijelölök egy új tételt (impQ van benne), majd rámegyek kövi kérdésre, hogy kidobja, akkor még az impQ-t nem tölti be (kell egy refresht-t tolnom valamiért)
  
@@ -219,6 +219,12 @@ var missQs = []
 
 var Qcount = 0
 var impID
+var obj_repCount = {
+	1 : 10,
+	2 : 20,
+	3 : 1000,
+	4 : 2000
+}
 
 function F_checkMissImgs(){
 	var MissIMGS = []
@@ -1923,11 +1929,11 @@ function F_searchWord() {
 		input.id = "input_SearchW"
 		input.style.fontSize = "xx-large"
 		input.style.position = "absolute"
-		input.style.top = "1%";
-		input.style.left = "50%";
+		input.style.top = "1%"
+		input.style.left = "50%"
 		input.style.paddingLeft = "3px"
 		input.style.paddingRight = "3px"
-		input.style.transform = "translate(-50%)";
+		input.style.transform = "translate(-50%)"
 		input.addEventListener("keyup", function(event) { if (event.keyCode === 13) { 
 			F_getTime()
 			var diffTime = myTime - lastClickTime
@@ -1965,7 +1971,33 @@ function F_searchWord() {
 				}, 100);
 			}
 		}
+		
+		var divText = document.createElement("div")
+		div.appendChild(divText)
+		divText.id = "div_RefreshStatus"
+		divText.style.position = "absolute"
+		divText.style.top = "2px"
+		divText.style.right = "250px"
 
+		var button = document.createElement("input")
+		button.type = "button"
+		div.appendChild(button)
+		button.style.position = "absolute"
+		button.style.right = "2px"
+		button.style.top = "2px"
+		button.value = "✖"
+		button.style.fontSize = 'xx-large'
+		button.style.cursor = "pointer"
+		button.style.color = "white"
+		button.style.backgroundColor = "red"
+		button.style.border = "3px solid black"
+		//button.style.width = "50px"
+		button.onclick = function(){
+			document.getElementById("table_weboldalak").style.display = 'block';
+			document.getElementById("div_pageQTargy").style.display = 'block';
+			document.getElementById("div_SearchW").style.display = "none"
+		}
+		
 		var divText = document.createElement("div")
 		div.appendChild(divText)
 		divText.id = "div_SearchWText"
@@ -1976,16 +2008,9 @@ function F_searchWord() {
 		
 		var divText = document.createElement("div")
 		document.getElementById("table_weboldalak").appendChild(divText)
-		divText.style.position = "absolute"
-		divText.style.right = "1%"
 		divText.id = "div_Refreshng"
-		
-		var divText = document.createElement("div")
-		document.getElementById("div_SearchW").appendChild(divText)
 		divText.style.position = "absolute"
-		divText.style.top = "1%"
 		divText.style.right = "1%"
-		divText.id = "div_RefreshStatus"
 	}
 	F_DivSearchWord()
 	function F_DivMidQ() {
@@ -2090,61 +2115,7 @@ function F_searchWord() {
 }
 F_searchWord()
 
-function F_DivUpgQ() {
-	var div = document.createElement("div")
-	document.body.appendChild(div)
-	div.id = "div_upgQ"
-	div.style.backgroundColor = "white"
-	div.style.overflow = "auto"
-	div.style.width = "80vw"
-	div.style.height = "60vh"
-	div.style.position = "fixed"
-	div.style.top = "50%"
-	div.style.left = "50%"
-	div.style.marginTop = "-30vh"
-	div.style.marginLeft = "-40vw"
-	div.style.border = "10px solid red"
-	div.style.display = "none"
-	
-	var oldJEGY = document.createElement('div');
-	oldJEGY.id = "div_oldJEGY"
-	document.getElementById("div_upgQ").appendChild(oldJEGY)
-	oldJEGY.style.border = "1px solid black"
-	oldJEGY.style.position = "absolute"
-	oldJEGY.style.bottom ='2px'
-	oldJEGY.style.left = '35%'
-	
-	var newJEGY = document.createElement('div');
-	newJEGY.id = "div_newJEGY"
-	document.getElementById("div_upgQ").appendChild(newJEGY)
-	newJEGY.style.border = "1px solid black"
-	newJEGY.style.position = "absolute"
-	newJEGY.style.bottom ='2px'
-	newJEGY.style.left = '65%'
-}
-F_DivUpgQ()
-
-function func_divButtonETC() {
-	var button = document.createElement("input")
-	button.id = "button_replaceQ"
-	button.type = "button";
-	document.getElementById("div_upgQ").appendChild(button)
-	button.style.position = "absolute"
-	button.style.bottom = "10px"
-	button.style.right = "10px"
-	button.value = "upgrade"
-	
-	var select = document.createElement("SELECT")
-	select.id = "select_replaceQ"
-	document.getElementById("div_upgQ").appendChild(select)
-	select.style.position = "absolute"
-	select.style.bottom = "10px"
-	select.style.left = "10px"
-}
-func_divButtonETC()
-
 var replaceQs = []
-var defaultText = document.getElementById("div_upgQ").innerHTML
 
 var varNextQ = false
 var midQloaded = false
@@ -2343,8 +2314,6 @@ function toggleNote() {
 	}
 }
 
-function F_calcTetel() {
-}
 function F_calcqTimer(detElem) {
 	var table = document.getElementById("table_qTimer")
 	table.innerHTML = ""
@@ -2502,7 +2471,6 @@ function F_hideQArea() {
 	document.getElementById("btn_note").style.borderColor = "black"
 }
 
-var timeDiff
 var lastClickTime = 0
 function F_CreateQDiv() {
 	
@@ -2561,9 +2529,11 @@ function F_CreateQDiv() {
 		document.getElementById("table_weboldalak").appendChild(button)
 		button.style.position = "absolute"
 		button.style.right = "150px"
-		button.style.top = "15px"
+		button.style.top = "2px"
+		button.style.width = "90px"
+		button.style.height = "90px"
 		button.value = "🔍"
-		button.style.fontSize = 'xx-large';
+		button.style.fontSize = '300%'
 		button.style.cursor = "pointer"
 
 		button.onclick = function(){ 
@@ -2576,15 +2546,12 @@ function F_CreateQDiv() {
 					this.style.color  = "white"
 				}
 				var int_Click = window.setInterval(function(){
-					if ( document.getElementById("div_SearchW").style.display == "block" ) {
-						document.getElementById("div_SearchW").style.display = "none"
-					} else {
-						document.getElementById("div_SearchW").style.display = "block"
-						button.style.color = ""
-						button.style.backgroundColor = ""
-						F_loadAllPageTexts()
-					}
-					//F_searchResult()
+					document.getElementById("table_weboldalak").style.display = 'none';
+					document.getElementById("div_pageQTargy").style.display = 'none';
+					document.getElementById("div_SearchW").style.display = "block"
+					button.style.color = ""
+					button.style.backgroundColor = ""
+					F_loadAllPageTexts()
 					clearInterval(int_Click) 
 				}, 100);
 			}
@@ -3005,7 +2972,7 @@ function F_CreateQDiv() {
 		span.style.paddingBottom = "2px"
 	}
 	F_SpanRepOld()
-	
+
 	function F_divSkipFix() {
 		var div = document.createElement("div")
 		div.id = "div_skipFix"
@@ -3017,6 +2984,55 @@ function F_CreateQDiv() {
 		div.style.display = "none"
 	}
 	F_divSkipFix()
+	function F_DivUpgQ() {
+		var div = document.createElement("div")
+		div.id = "div_upgQ"
+		MainFrame.appendChild(div)
+		div.style.backgroundColor = "white"
+		div.style.overflow = "auto"
+		div.style.width = "80vw"
+		div.style.height = "60vh"
+		div.style.position = "fixed"
+		div.style.top = "50%"
+		div.style.left = "50%"
+		div.style.marginTop = "-30vh"
+		div.style.marginLeft = "-40vw"
+		div.style.border = "10px solid red"
+		div.style.display = "none"
+		
+		var oldJEGY = document.createElement('div');
+		oldJEGY.id = "div_oldJEGY"
+		div.appendChild(oldJEGY)
+		oldJEGY.style.border = "1px solid black"
+		oldJEGY.style.position = "absolute"
+		oldJEGY.style.bottom ='2px'
+		oldJEGY.style.left = '35%'
+		
+		var newJEGY = document.createElement('div');
+		newJEGY.id = "div_newJEGY"
+		div.appendChild(newJEGY)
+		newJEGY.style.border = "1px solid black"
+		newJEGY.style.position = "absolute"
+		newJEGY.style.bottom ='2px'
+		newJEGY.style.left = '65%'
+
+		var button = document.createElement("input")
+		button.id = "button_replaceQ"
+		button.type = "button";
+		div.appendChild(button)
+		button.style.position = "absolute"
+		button.style.bottom = "10px"
+		button.style.right = "10px"
+		button.value = "upgrade"
+		
+		var select = document.createElement("SELECT")
+		select.id = "select_replaceQ"
+		div.appendChild(select)
+		select.style.position = "absolute"
+		select.style.bottom = "10px"
+		select.style.left = "10px"
+	}
+	F_DivUpgQ()
 
 	function F_DivQLoc() {
 		var divQloc = document.createElement("div")
@@ -3122,9 +3138,9 @@ function F_CreateQDiv() {
 
 		div.style.position = "absolute"
 		div.style.left = "275px"
-		div.style.top = "-5px"
+		div.style.top = "-10px"
 		div.style.right = "90px"
-		div.style.overflow = "auto"
+		//div.style.overflow = "auto"
 	}
 	F_DivMark()
 
@@ -3132,6 +3148,8 @@ function F_CreateQDiv() {
 		var table = document.createElement("TABLE")
 		table.id = "Table_QsMark"
 		document.getElementById("Div_QsMark").appendChild(table)
+		table.style.borderSpacing = "0px 0px"
+		table.style.borderCollapse = "separate"
 
 		for ( var i=0; i<3; i++ ) {
 			var tr = document.createElement("TR")
@@ -3173,7 +3191,7 @@ function F_CreateQDiv() {
 		th.innerHTML = "average"
 		tr.appendChild(th)
 		
-		for ( var i=0; i<6; i++ ) {
+		for ( var i=1; i<5; i++ ) {
 			var tr = document.createElement("TR")
 			table.appendChild(tr)
 
@@ -3198,8 +3216,7 @@ function F_CreateQDiv() {
 
 			var td = document.createElement("TD")
 			td.id = i+"min"
-			func_calcTimeDiff(i)
-			td.innerHTML = timeDiff
+			td.innerHTML = obj_repCount[i]
 			tr.appendChild(td)
 
 			var td = document.createElement("TD")
@@ -3223,21 +3240,7 @@ function F_CreateQDiv() {
 }
 F_CreateQDiv()
 
-function func_calcTimeDiff(repCount){
-	if ( repCount == 0 ) {
-		timeDiff = 10
-	} else if ( repCount == 1 ) {
-		timeDiff = 20
-	} else if ( repCount == 2 ) {
-		timeDiff = 2000
-	} else if ( repCount == 3 ) {
-		timeDiff = 3000
-	} else if ( repCount == 4 ) {
-		timeDiff = 4000
-	} else if ( repCount == 5 ) {
-		timeDiff = 5000
-	}
-}
+var defaultText = document.getElementById("div_upgQ").innerHTML
 var vizsgaTime = Number(localStorage.getItem("vizsgaSkip"))*60
 
 var nextMark = 0
@@ -3249,11 +3252,10 @@ function F_nextMark(jegy){ // következo kérdés nehézségét beállítja,
 	var zeroVal = 0
 	var arany = []
 	document.getElementById("div_nextQMark").innerHTML = ""
-	for ( var i=0;  i<6;  i++ ) {
+	for ( var i=1;  i<5;  i++ ) {
 		var averageTime = Number(document.getElementById(i+"average").title)
 		var defTime
-		func_calcTimeDiff(i)
-		defTime = timeDiff
+		defTime = obj_repCount[i]
 		
 		if ( isNaN(averageTime) == false ) {
 			zeroVal = zeroVal + averageTime/defTime
@@ -3541,19 +3543,18 @@ function F_tetelQs() { // impID-ket tételhez kapcsolja - későbbiekre (F_creat
 	console.log("– F_tetelQs END – " + diffTime)*/
 }
 
-var prior,hossz,jegy
-function func_calcPriorHosszJegy(elem){
+var hossz,jegy
+function F_calcHosszJegy(elem){
 	hossz = 1
-	prior = 100
 	if ( elem.classList.contains("jr") == true ) { hossz = 0 }
 	if ( isNaN(hossz) == true ) { hossz = 0 }
 	F_calcLSid(elem)
 	var LSid = actLSid
 	jegy = localStorage.getItem(LSid+'_jegy')
-	if ( jegy == "1" && localStorage.getItem(LSid+'_repeat') > 0 ) { // repeat is kell, mert ha 0ra osztályzom a jegyet akkoris 1nek menti el
-		jegy = 4
+	if ( jegy == 1 ) {
+		jegy = 0
 	} else if ( jegy == 2 ) {
-		jegy = 7
+		jegy = 4
 	} else if ( jegy == 3 ) {
 		jegy = 8
 	} else if ( jegy == 4 ) {
@@ -3569,7 +3570,7 @@ function F_kerdesStatus(){ // kérdés hány %-on áll?
 		F_calcLSid(thisQ)
 		var LSid = actLSid
 		
-		func_calcPriorHosszJegy(thisQ)
+		F_calcHosszJegy(thisQ)
 		
 		var date = new Date();
 		var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
@@ -3577,13 +3578,12 @@ function F_kerdesStatus(){ // kérdés hány %-on áll?
 		if ( localStorage.getItem(LSid+'_repeat') == null) {
 			localStorage.setItem(LSid+'_repeat', 0);
 		}
-		var repCount = Number(localStorage.getItem(LSid+'_repeat'))
-		func_calcTimeDiff(repCount)
 		//console.log(LSid+ " " +hossz)
 
 		// if ( localStorage.getItem(LSid+"_skip") != "perma" ){
-			trueJegy = trueJegy + Math.pow(0.8, idopont / timeDiff) * prior * hossz * jegy
-			maxJegy = maxJegy + prior * hossz * 10
+		var timeDiff = obj_repCount[repCount]
+		trueJegy = trueJegy + Math.pow(0.8, idopont / timeDiff) * hossz * jegy
+		maxJegy = maxJegy + hossz * 10
 		// }
 	}
 	
@@ -3858,11 +3858,10 @@ function func_calcJegy() { // átlagJegyet kiszámolja
 			var childs = document.getElementById(tetel).getElementsByTagName("*")
 			for ( var i = 0;   i < childs.length;   i++ ) {
 				if ( childs[i].classList.contains("kerdes") == true ) {
-					func_calcPriorHosszJegy(childs[i])
-					//alert(maxJegy+" : "+prior+" : "+hossz)
-					maxJegy = maxJegy + prior * hossz * 10
+					F_calcHosszJegy(childs[i])
+					maxJegy = maxJegy + hossz * 10
 					//if ( isNaN(maxJegy) ==  true ) { alert(jegy) }
-					trueJegy = trueJegy + prior * hossz * jegy
+					trueJegy = trueJegy + hossz * jegy
 				}
 			}
 		}
@@ -3927,7 +3926,7 @@ function func_calcRepeat() { // átlagIsmétlések számát kiszámolja
 					var Qtext = actQtext
 					var LSid = actLSid
 					
-					func_calcPriorHosszJegy(childs[i])
+					F_calcHosszJegy(childs[i])
 
 					var repeat
 					if ( LSid == undefined ) { 
@@ -3938,8 +3937,8 @@ function func_calcRepeat() { // átlagIsmétlések számát kiszámolja
 					
 					
 					if ( isNaN(hossz) ==  false ) {
-						questCount = questCount + prior*hossz
-						allRepVal = allRepVal + prior*hossz *repeat
+						questCount = questCount + hossz
+						allRepVal = allRepVal + hossz *repeat
 					}
 				}
 			}
@@ -3958,7 +3957,7 @@ function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
 	var startTime = myTime
 	
 	var doneLSid = ","
-	for ( var i = 0;   i < 6;   i++ ) { // resetelje a Tablekat 0-ra
+	for ( var i in obj_repCount ) { // resetelje a Tablekat 0-ra
 		document.getElementById(i+"left").innerHTML = 0
 		document.getElementById(i+"still").innerHTML = 0
 		document.getElementById(i+"average").innerHTML = 0
@@ -3974,7 +3973,7 @@ function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
 					// itt elvileg még kell egy feltétel, hogy beleszámolja (talán a skippel kapcsolatos lehet, de csak tipp)
 					// if ( kerdesID[fotema][temaKerdes][kerdes] == true ) { // ez volt a régiben
 					
-					func_calcPriorHosszJegy(childs[i])
+					F_calcHosszJegy(childs[i])
 					var actQhossz = Number(hossz)
 					
 					var Qtxt = childs[i].innerHTML
@@ -4017,7 +4016,8 @@ function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
 			}
 		}
 	}
-	for ( var i = 0;   i < 6;   i++ ) { // resetelje a Tablekat 0-ra
+	for ( var i in obj_repCount ) { // resetelje a Tablekat 0-ra
+		alert(i)
 		var average = parseInt(document.getElementById(i+"average").innerHTML)
 		var count = parseInt(document.getElementById(i+"still").innerHTML) + parseInt(document.getElementById(i+"left").innerHTML)
 		average = average / count
@@ -4058,14 +4058,13 @@ function func_calcOldNew(){
 						var repCount = Number(localStorage.getItem(LSid+'_repeat'))
 						var date = new Date();
 						var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-						func_calcTimeDiff(repCount)
 						
 						//ez az, hogy csak azt dobhatja ki, melynél a vizsga már közelebb van, mint a repTime
 						var remain = Math.floor(date.getTime()/60000)
 						remain = vizsgaTime - remain
 						
 						if ( localStorage.getItem(LSid+"_jegy") >= 1 ) {
-							if ( timeDiff >= idopont ) {
+							if ( obj_repCount[repCount] >= idopont ) {
 							//if ( remain > idopont ) {
 								repFast = repFast +1
 							} else {
@@ -4076,7 +4075,7 @@ function func_calcOldNew(){
 						kerdesNew = kerdesNew +1
 					}
 					if ( localStorage.getItem(LSid+"_skip") == "important" ) {
-						if ( timeDiff >= idopont ) {
+						if ( obj_repCount[repCount] >= idopont ) {
 							repOld = repOld +1
 						} else {
 							repNew = repNew +1
@@ -4148,7 +4147,6 @@ function F_divQprop() {
 	div.style.display = "none"
 	div.style.height = "73vh"
 	div.style.overflow = "auto"
-	
 	
 	var qProp = document.createElement("span")
 	div.appendChild(qProp)
@@ -4244,8 +4242,8 @@ function F_searchParent(elem) { // megkeresi a 'családfában' legfelül lévo '
 		}
 		childQ = parentQ
 		parentQ = parentQ.parentElement
-		console.log(childQ.className)
-		console.log(parentQ.className)
+		//console.log(childQ.className)
+		//console.log(parentQ.className)
 	} while ( 
 		parentQ.classList.contains("altetel") != true &&
 		parentQ.classList.contains("tetel") != true && 
@@ -4279,35 +4277,27 @@ function F_prevQ(){
 
 	for ( var i in activeQs ) {
 		var LSid = activeQs[i]
-		var jegy = document.getElementById("hkSelect."+i).value
+		var jegy = document.getElementById("div_jegy."+i).innerHTML
 		var newQvolt = false
 		//console.log(i+" : "+LSid+" : "+jegy)
-		document.getElementById("hkSelect."+i).value = "empty"
+		document.getElementById("div_jegy."+i).innerHTML = "&nbsp;"
 		
 		// jegy
-		if ( jegy != "empty" ) {
+		if ( jegy != "&nbsp;" ) {
 			newQvolt = true
-			var repCount = Number(localStorage.getItem(LSid+'_repeat'))
-			if ( repCount == jegy || jegy > repCount ) {
-				changes = 1
-			} else if ( jegy-repCount == -1 ) {
-				changes = 1.5
-			} else if ( jegy-repCount < -1 ) {
-				changes = 2
-			}
-			localStorage.setItem(LSid+'_changes', changes);
+			var repCount = Number(localStorage.getItem(LSid+"_repeat"))
 			if ( jegy > repCount ) {
 				repCount = repCount+1
 			} else {
 				repCount = jegy
 			}
-			localStorage.setItem(LSid+'_repeat', repCount)
+			localStorage.setItem(LSid+"_repeat", repCount)
 
 			if ( jegy == 0 ) { jegy = 1 }
-			localStorage.setItem(LSid+'_jegy', jegy)
+			localStorage.setItem(LSid+"_jegy", jegy)
 
 			var date = new Date();
-			localStorage.setItem(LSid+'_idopont', Math.floor(date.getTime()/60000));
+			localStorage.setItem(LSid+"_idopont", Math.floor(date.getTime()/60000));
 			//console.log(jegy+" :idopontot ment el, ezen LSid-re: "+LSid)
 		}
 		
@@ -4435,11 +4425,10 @@ function F_nextQ(){
 				if ( document.getElementById("hkQ.nextRep"+repCount).style.backgroundColor == "limegreen" ) {
 					var date = new Date();
 					var idopont2 = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-					func_calcTimeDiff(repCount)
-					if ( idopont2 > timeDiff ) { 
+					if ( idopont2 > obj_repCount[repCount] ) { 
 						priorType = 2
 						
-						var checkValue2 = idopont2 / timeDiff
+						var checkValue2 = idopont2 / obj_repCount[repCount]
 						if ( checkValue2 > priorValue2 ) {
 							priorValue2 = checkValue2
 							priorQelem = Qelem
@@ -4458,8 +4447,7 @@ function F_nextQ(){
 						priorType = 2
 						
 						var idopont2 = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-						func_calcTimeDiff(repCount)
-						var checkValue2 = idopont2 / timeDiff
+						var checkValue2 = idopont2 / obj_repCount[repCount]
 						if ( checkValue2 > priorValue2 ) {
 							priorValue2 = checkValue2
 							priorQelem = Qelem
@@ -4473,13 +4461,12 @@ function F_nextQ(){
 				var repCount = Number(localStorage.getItem(LSid+'_repeat'))
 
 				if ( document.getElementById("btn_RepFast").style.borderColor != "limegreen" ) {
-					func_calcTimeDiff(repCount)
-					if ( timeDiff > idopont ) { return }
+					if ( obj_repCount[repCount] > idopont ) { return }
 				}
 
-				func_calcPriorHosszJegy(Qelem)
+				F_calcHosszJegy(Qelem)
 
-				checkValue = prior * idopont / timeDiff
+				checkValue = idopont / obj_repCount[repCount]
 				averageCV = averageCV + checkValue
 				countCV = countCV + 1
 				if ( document.getElementById("hkQ.nextRep"+repCount).style.backgroundColor != "limegreen" ) { return }
@@ -4660,7 +4647,8 @@ function F_nextQ(){
 
 				if ( isNewQ == false ) { continue }
 
-				if ( !document.getElementById("hkSelect."+num) ) { F_CreateSelect(num) }
+				if ( !document.getElementById('td.1.'+num) ) { F_CreateSelect(num) }
+				var jegySelect = document.getElementById('div_jegy.'+num)
 				document.getElementById("td.0."+num).hidden = false 
 				document.getElementById("td.1."+num).hidden = false 
 				document.getElementById("td.2."+num).hidden = false 
@@ -4676,43 +4664,12 @@ function F_nextQ(){
 
 				var jegy = localStorage.getItem(LSid+'_jegy')
 				var repeat = localStorage.getItem(LSid+'_repeat')
-				func_calcPriorHosszJegy(arrayQ[i])
-				if ( isAndroid ) { 
-					document.getElementById("td.0."+num).onclick = function(){
-						var div = document.getElementById("div_qProp")
-						var span = document.getElementById("span_qProp")
-						var num = this.id
-						if ( div.style.display == "none" ) {
-							F_hideQArea()
-							div.style.display = "block"
-							
-							span.innerHTML = num+"<br>"+LSid+"<br> Jegy:"+jegy+"<br>Repeat:"+repeat+"<br>Prior:"+prior+"<br>"
-						} else {
-							F_hideQArea()
-							document.getElementById("divQloc").style.display = "block"
-						}
-					}
-				} else {
-					document.getElementById("td.0."+num).title = LSid+"<br> Jegy:"+jegy+"<br>Repeat:"+repeat+"<br>Prior:"+prior
-					F_titleChange(document.getElementById("td.0."+num).parentElement)
-				}
-
-				var selectList = document.getElementById("hkSelect."+num)
-				// repeatest beállítja vastagbetusre
-				var c = selectList.childNodes;
-				for (var x=0; x < c.length; x++) {
-					if ( c[x].value == localStorage.getItem(LSid+"_repeat") ) {
-						c[x].style.fontWeight = "bolder"
-					} else {
-						c[x].style.fontWeight = "normal"
-					}
-				}
+				F_calcHosszJegy(arrayQ[i])
 
 				//ido
 				document.getElementById("td.0."+num).style.backgroundColor = "white"
 				var date = new Date();
-				selectList.disabled = false
-				selectList.style.backgroundColor = "White"
+				jegySelect.style.backgroundColor = "White"
 				if ( localStorage.getItem(LSid+'_idopont') ) {
 					var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
 					// console.log("Qid:"+Qid+" ––– time:"+idopont)
@@ -4733,12 +4690,10 @@ function F_nextQ(){
 						document.getElementById("td.2."+num).style.borderColor = "black"
 					}
 
-					func_calcTimeDiff(localStorage.getItem(LSid+'_repeat'))
-					checkValue = prior * idopont / timeDiff
-					if ( timeDiff > idopont ) { // és nincs enabledelve az 'ultiLearn' (hiányzik még)
+					checkValue = idopont / obj_repCount[localStorage.getItem(LSid+'_repeat')]
+					if ( obj_repCount[localStorage.getItem(LSid+'_repeat')] > idopont ) { // és nincs enabledelve az 'ultiLearn' (hiányzik még)
 						//document.getElementById("td.0."+i).style.backgroundColor = "LawnGreen"
-						selectList.disabled = true
-						selectList.style.backgroundColor = "Black"
+						jegySelect.style.backgroundColor = "Black"
 					/*
 					} else if ( idopont > timeDiff*3 ) {
 						document.getElementById("td.0."+i).style.backgroundColor = "red"
@@ -4766,8 +4721,7 @@ function F_nextQ(){
 					if ( localStorage.getItem(LSid+'_skip') == "vizsgaSkip" ) {
 						document.getElementById("td.0."+num).style.backgroundColor = "Blue"
 					}
-					selectList.disabled = true
-					selectList.style.backgroundColor = "Black"
+					jegySelect.style.backgroundColor = "Black"
 				}
 				if ( document.getElementById("td.0."+num).style.backgroundColor == "blue" || document.getElementById("td.0."+num).style.backgroundColor == "black" || document.getElementById("td.0."+num).style.backgroundColor == "red" ) {
 					document.getElementById("td.0."+num).style.color = "white" // fontColor
@@ -4911,33 +4865,105 @@ function F_nextQ(){
 	console.log("– F_nextQ END – " + diffTimeX)
 }
 
-function F_CreateSelect(i) {
-	var selectList = document.createElement("select")
-	selectList.id = "hkSelect."+i
-	//var LSid = activeQs[i]
-
-	var array = ["empty","0","1","2","3","4"]
+var jegyStatus, jegyNum
+window.onclick = function(event) {
+	if ( jegyStatus != true ) { document.getElementById("div_selectJegy").style.display = "none" }
+	jegyStatus = false
+}
+function F_divSelectJegy() {
+	var div = document.createElement("div")
+	div.id = "div_selectJegy"
+	document.getElementById("div_MainFrame").appendChild(div)
+	div.style.position = "absolute"
+	div.style.width = "45px"
+	div.style.display = "none"
+	div.style.backgroundColor = "#f1f1f1"
+	div.style.boxShadow = "0px 8px 16px 0px rgba(0,0,0,0.4)"
+	div.style.border = "1px solid grey"
+	var array = ["&nbsp","1","2","3"]
 	for ( var x=0;  x<array.length;  x++ ) {
-		var option = document.createElement("option");
-		option.value = array[x];
-		if ( array[x] == "empty" ) {
-			option.text = ""
-		} else {
-			option.text = array[x];
+		var a = document.createElement("a")
+		div.appendChild(a)
+		a.innerHTML = array[x]
+		a.style.padding = "5px 10px"
+		a.style.display = "block"
+		a.style.cursor = "pointer"
+		a.onclick = function() { 
+			var td = this.parentElement.parentElement
+			var num = td.id
+			num = num.slice(num.lastIndexOf(".")+1)
+			document.getElementById("div_jegy."+num).innerHTML = this.innerHTML
 		}
-		selectList.appendChild(option);
 	}
-
+}
+F_divSelectJegy()
+function F_CreateSelect(i) {
 	for ( var x=0;  x<3;  x++ ) {
 		var td = document.createElement("TD")
 		td.id = "td."+x+"."+i
+		document.getElementById("Tr_QsMark."+x).appendChild(td)
+		td.style.width = "45px"
+		td.style.height = "31px"
 		if ( x == 0 ) {
-			/*td.style.color = "white"
-			td.style.textShadow = "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black"*/
-			//td.style.textShadow = "-1px 0 white, 0 1px white, 1px 0 white, 0 -1px white"
 			td.innerHTML = i
+			td.style.fontWeight = "bold"
+			
+			if ( isAndroid == true ) { 
+				td.onclick = function(){
+					var div = document.getElementById("div_qProp")
+					var span = document.getElementById("span_qProp")
+					
+					var num = this.innerHTML
+					var LSid = activeQs[num]
+					var jegy = localStorage.getItem(LSid+'_jegy')
+					var repeat = localStorage.getItem(LSid+'_repeat')
+					
+					if ( div.style.display == "none" ) {
+						F_hideQArea()
+						div.style.display = "block"
+						span.innerHTML = num+"<br>"+LSid+"<br> Jegy:"+jegy+"<br>Repeat:"+repeat+"<br>"
+					} else {
+						F_hideQArea()
+						document.getElementById("divQloc").style.display = "block"
+					}
+				}
+			} else {
+				var LSid = activeQs[i]
+				var jegy = localStorage.getItem(LSid+'_jegy')
+				var repeat = localStorage.getItem(LSid+'_repeat')
+				
+				td.title = LSid+"<br> Jegy:"+jegy+"<br>Repeat:"+repeat
+				F_titleChange(td.parentElement)
+			}
 		} else if ( x == 1 ) {
-			td.appendChild(selectList)
+			var div = document.createElement("DIV")
+			td.appendChild(div)
+			div.id = "div_jegy."+i
+			div.innerHTML = "&nbsp"
+			td.onclick = function(){ 
+				var dropdown = document.getElementById("div_selectJegy")
+				this.appendChild(dropdown)
+				var num = this.id
+				num = num.slice(num.lastIndexOf(".")+1)
+				if ( dropdown.style.display == "block" && jegyNum == num ) {
+					dropdown.style.display = "none"
+				} else if ( this.style.backgroundColor != "black" ) {
+					jegyStatus = true
+					jegyNum = num
+					dropdown.style.display = "block"
+					
+					// repeatest beállítja vastagbetusre
+					var LSid = activeQs[jegyNum]
+					var child = dropdown.childNodes
+					for (var y=0; y < child.length; y++) {
+						if ( child[y].innerHTML == localStorage.getItem(LSid+"_repeat") ) {
+							child[y].style.fontWeight = "bolder"
+						} else {
+							child[y].style.fontWeight = "normal"
+						}
+					}
+				}
+			}
 		} else if ( x == 2 ) {
 			td.style.fontSize = "small"
 			td.addEventListener("click",function(){
@@ -4968,9 +4994,11 @@ function F_CreateSelect(i) {
 				}
 				return false;
 			}, false);
-			td.innerHTML = "&nbsp;"
 		}
-		document.getElementById("Tr_QsMark."+x).appendChild(td)
+		/*var td = document.createElement("TD")
+		td.style.border = "0px solid black"
+		td.style.width = "50px"
+		document.getElementById("Tr_QsMark."+x).appendChild(td)*/
 	}
 }
 
