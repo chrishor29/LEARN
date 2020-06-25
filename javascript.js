@@ -115,6 +115,7 @@
 */
 
 /* PROJECT - DONE
+ ✔ search: egfr: pulmo: A nem kissejtes tüdődaganatok célzott kezelése és immunterápiája: legörgetem és tádám!
  ✔ !!! tétel ha kérdés, akkor addig ne mutassa altkérdések számát (osztályzást) !!! high prior !!!
  ✔ elsőre valamiért szarakszik feladatmegoldásnál azon questekkel, amelyikben impQ van (még nem tölti be őket). impQ-k kal elején szarakodik, amikor először tölti őket be (lehet már osztályoztam máshol, mégis újnak veszi: lásd pl. belgyógy 1.tétel - adenohipofízis hormonok táblázat)
  ✔ search: nagybetü vs kisbetü
@@ -1713,6 +1714,7 @@ function F_loadTetelQs(){ // impQnew-al betölti az aktív tételeket
 }
 F_loadTetelQs()
 
+var searchMidQ = false
 var pageLinks = document.getElementsByClassName("page")
 var pagePath, searchPath // img betöltésnél használja
 var pageTexts = {}
@@ -1815,6 +1817,9 @@ function F_searchQText(detElem){
 	qTxt = qTxt.slice(qTxt.indexOf(">")+1)
 	document.getElementById("div_MidQText").innerHTML = qTxt
 
+	searchMidQ = true
+	prevScrollTop = document.body.scrollTop
+	document.getElementById("div_SearchW").style.display = "none"
 	document.getElementById("div_MidQ").style.display = "block"
 	F_detailsToggle(document.getElementById("div_MidQText"))
 }
@@ -1954,8 +1959,8 @@ function F_searchWord() {
 		button.id = "btn_SearchW"
 		button.style.fontSize = "xx-large"
 		button.innerHTML = "search"
-		button.style.position = "absolute"
-		button.style.top = "1%";
+		button.style.position = "relative"
+		button.style.top = "1%"
 		button.style.cursor = "pointer"
 		button.onclick = function(){ 
 			F_getTime()
@@ -1973,11 +1978,14 @@ function F_searchWord() {
 		}
 		
 		var divText = document.createElement("div")
-		div.appendChild(divText)
+		button.appendChild(divText)
+		divText.style.fontSize = "medium"
 		divText.id = "div_RefreshStatus"
 		divText.style.position = "absolute"
-		divText.style.top = "2px"
-		divText.style.right = "250px"
+		divText.style.top = "50%"
+		divText.style.transform = "translateY(-50%)";
+		divText.style.bottom = "1%"
+		divText.style.left = "105%"
 
 		var button = document.createElement("input")
 		button.type = "button"
@@ -2003,7 +2011,7 @@ function F_searchWord() {
 		divText.id = "div_SearchWText"
 		divText.style.marginLeft = "3px"
 		divText.style.paddingBottom = "10px"
-		divText.style.paddingTop = "60px"
+		divText.style.paddingTop = "10px"
 		divText.style.fontSize = "x-large"
 		
 		var divText = document.createElement("div")
@@ -2054,15 +2062,20 @@ function F_searchWord() {
 			midQloaded = false
 			midQisExp = false
 			
-			document.getElementById("btn_toggleAll").style.display = 'block'
-			if ( localStorage.getItem("hk.ToggleAll") == "true") {
-				document.getElementById("table_weboldalak").style.display = 'none'
-				document.getElementById("div_pageQTargy").style.display = 'none'
-				document.getElementById("div_MainFrame").style.display = 'block'
+			if ( searchMidQ == true ) {
+				searchMidQ = false
+				document.getElementById("div_SearchW").style.display = "block"
 			} else {
-				document.getElementById("table_weboldalak").style.display = 'block'
-				document.getElementById("div_pageQTargy").style.display = 'block'
-				document.getElementById("div_MainFrame").style.display = 'none'
+				document.getElementById("btn_toggleAll").style.display = 'block'
+				if ( localStorage.getItem("hk.ToggleAll") == "true") {
+					document.getElementById("table_weboldalak").style.display = 'none'
+					document.getElementById("div_pageQTargy").style.display = 'none'
+					document.getElementById("div_MainFrame").style.display = 'block'
+				} else {
+					document.getElementById("table_weboldalak").style.display = 'block'
+					document.getElementById("div_pageQTargy").style.display = 'block'
+					document.getElementById("div_MainFrame").style.display = 'none'
+				}
 			}
 			document.body.scrollTop = prevScrollTop
 		}
@@ -2269,28 +2282,6 @@ function F_toggleAll() {
 		document.getElementById("div_pageQTargy").style.display = 'none';
 		document.getElementById("div_MainFrame").style.display = 'block';
 	}
-	/*if ( document.getElementById("div_MainFrame").style.display != 'none' ) {
-		localStorage.removeItem("hk.ToggleAll")
-		for ( var i=0; i<childs.length; i++ ) { childs[i].style.display = "block" }
-		document.getElementById("div_MainFrame").style.display = 'none';
-		
-		document.getElementById("div_SkipText").style.display = 'none';
-		document.getElementById("div_skipFix").style.display = 'none';
-		document.getElementById("div_Skip").style.display = 'none';
-		document.getElementById("div_MidQ").style.display = 'none';
-		document.getElementById("div_upgQ").style.display = 'none';
-		document.getElementById("div_qProp").style.display = 'none';
-		document.getElementById("div_SearchW").style.display = 'none';
-		document.getElementById("iframe_targyak").style.display = 'none';
-		document.getElementById("fileinput").style.display = 'none';
-	} else {
-		localStorage.setItem("hk.ToggleAll","true")
-		for ( var i=0; i<childs.length; i++ ) { childs[i].style.display = "none" }
-		document.getElementById("div_MainFrame").style.display = 'block';
-		tooltipSpan.style.display = 'block';
-
-		document.getElementById("btn_toggleAll").style.display = 'block';
-	}*/
 	document.getElementById("div_centIMG").style.display = "block";
 	document.getElementById("btn_toggleAll").style.backgroundColor  = ""
 	document.getElementById("btn_toggleAll").style.color  = ""
