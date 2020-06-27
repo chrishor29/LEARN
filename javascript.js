@@ -1748,10 +1748,10 @@ function F_pageOpen() {
 }
 F_pageOpen()
 function F_targyTetelek() { // hány %-on állok velük
-	var howmany = 3 +1
-	for (i = 1; i < howmany; i++) { document.getElementById("elet"+i+"2").value = localStorage.getItem("elettPerc"+i) }
+	var howmany = 2 +1
+	for (i = 1; i < howmany; i++) { document.getElementById("elet"+i+"2").value = localStorage.getItem("elettPerc."+i) }
 	function calcValPerc(){
-		document.getElementById("percentX").innerHTML = 1/100/100
+		document.getElementById("percentX").innerHTML = 1/100
 		for (i = 1; i < howmany; i++) { 
 			var max = document.getElementById("elet"+i+"1").innerHTML
 			max = Number(max)
@@ -1794,11 +1794,6 @@ function F_targyTetelek() { // hány %-on állok velük
 			localStorage.setItem("elettPerc."+id,this.value)
 		} 
 	}
-	
-	//console.log()
-	document.getElementById("elet12").value = localStorage.getItem("elettPerc.1")
-	document.getElementById("elet22").value = localStorage.getItem("elettPerc.2")
-	document.getElementById("elet32").value = localStorage.getItem("elettPerc.3")
 	calcValPerc()
 }
 F_targyTetelek()
