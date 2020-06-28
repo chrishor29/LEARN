@@ -1768,7 +1768,7 @@ function F_targyTetelek() { // hány %-on állok velük
 		document.getElementById("percentX").innerHTML = num.toFixed(2)
 		
 		for (i = 1; i < howmany; i++) { 
-			document.getElementById("elet"+i+"4").innerHTML = 1/100/100
+			document.getElementById("elet"+i+"4").innerHTML = 1/100
 			for (x = 1; x < howmany; x++) { 
 				var max = document.getElementById("elet"+x+"1").innerHTML
 				max = Number(max)
