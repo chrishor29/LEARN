@@ -1430,6 +1430,7 @@ function F_checkQs(){
 		if ( qName.slice(-3) != "-->" ) { F_setCount(Qelem) }
 		qName = F_QtxtQname(Qelem.innerHTML)
 		arrQnames[qName] = true
+		//console.log("checkQ: "+qName)
 		var Qtxt = '<'+Qelem.tagName+' class="'+Qelem.className+'">'+Qelem.innerHTML+'</'+Qelem.tagName+'>'
 		arrQtxts.push(Qtxt)
 	}
@@ -2484,6 +2485,7 @@ function F_CreateQDiv() {
 					this.style.color  = "white"
 				}
 				var int_Click = window.setInterval(function(){
+					console.log("toggleAll")
 					F_toggleAll()
 					clearInterval(int_Click) 
 					document.getElementById("divLoading").style.visibility = 'hidden'
@@ -3345,7 +3347,7 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 	for ( var i = 0;   i < Table.length;   i++ ) { // tetelek
 		var phaseDiv = Table[i].parentElement // ez maga a tétel DETAILS-a, amiben az összes kérdése megtalálható
 		var tetelID = i + "," + Table[i].innerHTML
-		phaseDiv.id = tetelID
+		//phaseDiv.id = tetelID  --> F_tetelQs() -ban csinálja meg, valahogy összekéne vonnom a kettőt (ezt ki kellett törölnöm, hogy jó legyen, de messze nem stabil)
 		//console.log(tetelID)
 		var div = document.createElement("div");
 
@@ -3434,6 +3436,7 @@ function F_tetelQs() { // impID-ket tételhez kapcsolja - későbbiekre (F_creat
 		if ( tetelQ.classList.contains("status") == true ) { tetelQ.parentElement.classList.add("feltetel") }
 		var tetelID = i + "," + tetelQ.innerHTML
 		tetelQ.parentElement.id = tetelID
+		//console.log(tetelQ.parentElement.id)
 		tetelek[tetelID] = []
 		
 		if ( document.getElementById("impRow1") ) {
@@ -3841,6 +3844,7 @@ function func_calcJegy() { // átlagJegyet kiszámolja
 	var trueJegy = 0
 	for ( var tetel in tetelek ) {
 		if ( localStorage.getItem(tetel+"_button") == "true" ) {
+			//console.log("tetelID: "+tetel)
 			var childs = document.getElementById(tetel).getElementsByTagName("*")
 			for ( var i = 0;   i < childs.length;   i++ ) {
 				if ( childs[i].classList.contains("kerdes") == true ) {
