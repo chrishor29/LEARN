@@ -1,12 +1,14 @@
 // window.onerror = function(msg, url, linenumber) { alert('Error message: '+msg+'\nLine Number: '+linenumber) }
 
-/* PROJECT - PROGRESS                       ↑ ↓ ± ≥
- ✖ nehéz vs könnyű kérdés (+ osztályzás 0/1/2)
+/* PROJECT - PROGRESS
+ ✖ nehéz vs könnyű kérdés (+ osztályzás 1/2/3)
  ✖ bőrgyógy: kijelölök egy új tételt (impQ van benne), majd rámegyek kövi kérdésre, hogy kidobja, akkor még az impQ-t nem tölti be (kell egy refresht-t tolnom valamiért)
  
  ✖ mikrobi: részl.bakt: Bacillus anthracis -> 2x megnyitom és 2.-nál már rosszul írja ki
  ✖ farmak: impQ.90: NSAID hatásai --> terhességgel kapcsolatos tudnivalók ha kerdes; akkor azt amikor kidobja, nem jelenik meg az osztályozhatósága, így nem tudok továbbhaladni (A/16 tétel esetén)
  ✖ bőrgyógy: diabetes tételnél megjelenik egy új kérdés valamiért, pedig nincs ott új már: lépjek vissza főoldal, majd frissítsek, utána jelöljem ki bőrgyógyászat, majd lépjek át kérdésmegoldó oldalra (így jön elő a hiba)
+ 
+ ✖ newQ kiválasztást egyszerűsítsem: opciók: random(újQ legyen-e választható) választ, újQ(+important felette legyen-e priorba választható), skip, oldQ, stb.. ---> szebbre írjam át, mert csúnya 
  
  ✖ ANDROID: töltsek le egy emulatort, úgy hátha gyorsabban tudom tesztelni, és nem annyira idegölő
  ✖ android: felnagyítva legyen az egész alapból már (ne keljen folyton ráközelítenem)
@@ -631,7 +633,7 @@ function F_midQ(detElem){
 	}
 }
 F_midQ(document)
-var midQisExp
+var midQisExp = false
 
 /* IMG-load mechanizmusa
 	+ toggle esetén 'for összes image'
@@ -665,10 +667,19 @@ function F_loadImgVideo(detElem){
 			if ( missImgs.indexOf(textVar+",") == -1 ) { missImgs = missImgs + textVar + ", " }
 		};
 		
-		var IMGelem = imgs[x]
 		var parent = imgs[x]
+		var impElem = false
+		//var alt_impElem = false
+		do {
+			parent = parent.parentElement
+			if ( parent.className.indexOf("imp") != -1 ) { impElem = parent }
+			//if ( alt_impElem == "false" && parent.className.indexOf("{") != -1 ) { alt_impElem = parent }
+		} while ( parent.className.indexOf("imp") == -1 && parent != document.documentElement )
+		var isExp = false
+		if ( impElem != false ) { if ( impElem.className.indexOf("{") != -1 ) { isExp = true } }
+		
+		/*var parent = imgs[x]
 		do { // ha impQ van, akkor be kell töltse mindenképp oket, kivéve ha másik impQ
-			IMGelem = parent
 			parent = parent.parentElement
 		} while ( parent.className.indexOf("{") == -1 && parent != detElem )
 		
@@ -680,6 +691,7 @@ function F_loadImgVideo(detElem){
 			if ( parent.tagName == "DETAILS" && parent.parentElement.className.indexOf("imp") != -1 && parent.parentElement.className.indexOf("{") != -1 ) { isExp = true }
 		}
 		//if ( parent.tagName == "DETAILS" && parent.parentElement.className.indexOf("[") != -1 ) { isExp = false }
+		*/
 		
 		//alert("htmlIMGloc: "+htmlIMGloc)
 		if ( isExp == true || midQisExp == true ) {
@@ -832,11 +844,24 @@ function F_loadImgVideo(detElem){
 	var allVideoCent = detElem.getElementsByClassName("video")
 	for ( var i=0; i<allVideoCent.length; i++ ) {
 		allVideoCent[i].onclick = function(){
-			if ( midQisExp == true ) {
+			var parent = this
+			var impElem = false
+			//var alt_impElem = false
+			do {
+				parent = parent.parentElement
+				if ( parent.className.indexOf("imp") != -1 ) { impElem = parent }
+				//if ( alt_impElem == "false" && parent.className.indexOf("{") != -1 ) { alt_impElem = parent }
+			} while ( parent.className.indexOf("imp") == -1 && parent != document.documentElement )
+			
+			var isExp = false
+			if ( impElem != false ) { if ( impElem.className.indexOf("{") != -1 ) { isExp = true } }
+
+			if ( isExp == true || midQisExp == true ) {
 				centVideo.setAttribute('src', this.dataset.src)
 			} else {
 				centVideo.setAttribute('src', path.slice(0,path.lastIndexOf("/")+1) + this.dataset.src)
 			}
+			console.log(isExp+"-"+midQisExp+" "+centVideo.getAttribute("src"))
 			document.getElementById("centVideoDiv").style.visibility = 'visible';
 			vidStatus = "show"
 		}
@@ -1644,8 +1669,9 @@ function replaceAll(string,oldTxt,newTxt) {
 }		
 //INNERhtml = replaceAll(INNERhtml, oldTxt, newTxt)
 
-// pl. ez a button nem fog muködni, mert az impQbegin elott van!
-/*var buttonX = document.createElement("BUTTON")
+
+/* // pl. ez a button nem fog muködni, mert az impQbegin elott van!
+var buttonX = document.createElement("BUTTON")
 buttonX.innerHTML = "anyad"
 document.body.appendChild(buttonX)
 buttonX.style.position = "absolute"
@@ -1654,7 +1680,6 @@ buttonX.style.top = "20px"
 buttonX.onclick = function(){ 
 	alert("sajt")
 }*/
-
 /* 
  ha ráklikkelek egy details-ra, akkor csak azokat kell betöltse, amik visible-k!! -> erre írjak egyet
  egyrészt ha ki van jelölve a tétel, akkor be kell töltse az összeset 
@@ -2931,33 +2956,38 @@ function F_CreateQDiv() {
 				func_SetTextOfSkipFixDiv(this.id)
 			}
 		}
-		//button.value = "0"
 	}
 	F_ButtonTempSkip()
+	function F_spanImportant() {
+		var span = document.createElement("span")
+		span.id = "span_important"
+		divSettings.appendChild(span)
+		span.style.border = "3px solid black"
+		span.onclick = function(){ 
+			if ( this.style.borderColor == "limegreen" ) {
+				this.style.borderColor = "black"
+			} else {
+				this.style.borderColor = "limegreen"
+			}
+		}
+	}
+	F_spanImportant()
 	function F_SpanRepNew() {
 		var span = document.createElement("span")
 		span.id = "span_RepNew"
-		divSettings.appendChild(span)
-		span.className = "WHITE"
-		span.style.border = "1px solid black"
-
+		document.getElementById("span_important").appendChild(span)
+		span.style.backgroundColor = "White"
 		span.style.paddingLeft = "5px"
 		span.style.paddingRight = "5px"
-		span.style.paddingTop = "1px"
-		span.style.paddingBottom = "2px"
 	}
 	F_SpanRepNew()
 	function F_SpanRepOld() {
 		var span = document.createElement("span")
 		span.id = "span_RepOld"
-		divSettings.appendChild(span)
-		span.className = "vocab"
-		span.style.border = "1px solid black"
-
+		document.getElementById("span_important").appendChild(span)
+		span.style.backgroundColor = "Gainsboro"
 		span.style.paddingLeft = "5px"
 		span.style.paddingRight = "5px"
-		span.style.paddingTop = "1px"
-		span.style.paddingBottom = "2px"
 	}
 	F_SpanRepOld()
 
@@ -4007,7 +4037,6 @@ function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
 		}
 	}
 	for ( var i in obj_repCount ) { // resetelje a Tablekat 0-ra
-		alert(i)
 		var average = parseInt(document.getElementById(i+"average").innerHTML)
 		var count = parseInt(document.getElementById(i+"still").innerHTML) + parseInt(document.getElementById(i+"left").innerHTML)
 		average = average / count
@@ -4346,7 +4375,7 @@ function F_nextQ(){
 	console.log("– F_nextQ BEGIN – " + diffTimeX)
 	
 	var QlocElem = document.getElementById("kerdeslocation")
-	var averageCV = 0
+	//var averageCV = 0
 	var countCV = 0
 	var nextDiff = 0
 
@@ -4380,8 +4409,7 @@ function F_nextQ(){
 		var LSid
 		F_calcLSid(Qelem)
 		LSid = actLSid
-		var shouldBreak = false // ehelyett meg kéne próbálni a "return"-t !!!
-		if ( LSid == undefined || LSid == null ) {
+		/* newQ */ if ( LSid == undefined || LSid == null ) {
 			if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" ) {
 				if ( document.getElementById("btn_nextQdiff").style.backgroundColor != "coral" ) {
 					newQs.push(Qelem)
@@ -4390,10 +4418,11 @@ function F_nextQ(){
 				}
 				priorType = 2
 			}
-		} else {
-			/* skipQ */ if ( localStorage.getItem(LSid+"_skip") && localStorage.getItem(LSid+"_skip") != "atlag" && localStorage.getItem(LSid+"_skip") != "important" ) { return }
-			/* newQ */if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" ) {
-				if ( localStorage.getItem(LSid+"_jegy") != null ) { return }
+			return
+		}
+		/* skipQ */if ( localStorage.getItem(LSid+"_skip") && localStorage.getItem(LSid+"_skip") != "atlag" && localStorage.getItem(LSid+"_skip") != "important" ) { return }
+		/* newQ */if ( localStorage.getItem(LSid+"_jegy") == null ) {
+			if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" ) {
 				if ( document.getElementById("btn_nextQdiff").style.backgroundColor != "coral" ) {
 					newQs.push(Qelem)
 					return
@@ -4401,91 +4430,85 @@ function F_nextQ(){
 				if (  priorType < 2 ) { priorQelem = Qelem }
 				priorType = 2
 			}
-			/* newQ */if ( localStorage.getItem(LSid+"_jegy") == null ) {
-				if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" && priorType < 2 ) {
-					priorType = 2
-				}
-				if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" && priorType < 2 ) {
-					priorQelem = Qelem
-					priorType = 2
-				}
+		}
+		/* important */if ( localStorage.getItem(LSid+"_skip") == "important" ) {
+			if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" ) {
+				if ( document.getElementById("span_important").style.borderColor != "limegreen" ) { return }
 			}
-			/* important */if ( document.getElementById("btn_newQuest").style.borderColor != "limegreen" && localStorage.getItem(LSid+"_skip") == "important" ) {
-				var repCount = Number(localStorage.getItem(LSid+'_repeat'))
-				if ( document.getElementById("hkQ.nextRep"+repCount).style.backgroundColor == "limegreen" ) {
-					var date = new Date();
-					var idopont2 = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-					if ( idopont2 > obj_repCount[repCount] ) { 
-						priorType = 2
-						
-						var checkValue2 = idopont2 / obj_repCount[repCount]
-						if ( checkValue2 > priorValue2 ) {
-							priorValue2 = checkValue2
-							priorQelem = Qelem
-						}
-					}
-				}
-			}
-			/* gold */if ( document.getElementById("btn_newQuest").style.borderColor != "limegreen" && localStorage.getItem(LSid+"_skip") == "gold" ) {
-				var repCount = Number(localStorage.getItem(LSid+'_repeat'))
-				if ( document.getElementById("hkQ.nextRep"+repCount).style.backgroundColor == "limegreen" ) {
-					var date = new Date();
-					var remain = Math.floor(date.getTime()/3600000)
-					remain = localStorage.getItem("vizsgaSkip") - remain
-					
-					if ( remain < 12 ) { 
-						priorType = 2
-						
-						var idopont2 = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-						var checkValue2 = idopont2 / obj_repCount[repCount]
-						if ( checkValue2 > priorValue2 ) {
-							priorValue2 = checkValue2
-							priorQelem = Qelem
-						}
-					}
-				}
-			}
-			/* oldQ */if ( priorType == 1 && localStorage.getItem(LSid+"_jegy") != null ) {
+			var repCount = Number(localStorage.getItem(LSid+'_repeat'))
+			if ( document.getElementById("hkQ.nextRep"+repCount).style.backgroundColor == "limegreen" ) {
 				var date = new Date();
-				var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-				var repCount = Number(localStorage.getItem(LSid+'_repeat'))
-
-				if ( document.getElementById("btn_RepFast").style.borderColor != "limegreen" ) {
-					if ( obj_repCount[repCount] > idopont ) { return }
-				}
-
-				F_calcHosszJegy(Qelem)
-
-				checkValue = idopont / obj_repCount[repCount]
-				averageCV = averageCV + checkValue
-				countCV = countCV + 1
-				if ( document.getElementById("hkQ.nextRep"+repCount).style.backgroundColor != "limegreen" ) { return }
-
-				if ( checkValue > priorValue_alt ) {
-					priorValue_alt = checkValue;
-					priorQ_alt = Qelem;
-				}
-				
-				if ( document.getElementById("btn_nextQdiff").style.backgroundColor != "coral" ) {
-					nextDiff = nextDiff +1
-					var xyz = Math.random();
-					var refX = 1/nextDiff
-					console.log(xyz+" vs "+refX)
-					if ( xyz < refX ) {
-						priorValue = checkValue;
-						priorQelem = Qelem
-					}
-				} else if ( localStorage.getItem(LSid+"_repeat") == nextRep || nextRep == "zerus" ) { 
-					if ( checkValue > priorValue ) {
-						priorValue = checkValue;
+				var idopont2 = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
+				if ( idopont2 > obj_repCount[repCount] ) { 
+					priorType = 2
+					
+					var checkValue2 = idopont2 / obj_repCount[repCount]
+					if ( checkValue2 > priorValue2 ) {
+						priorValue2 = checkValue2
 						priorQelem = Qelem
 					}
 				}
 			}
 		}
+		/* gold */if ( document.getElementById("btn_newQuest").style.borderColor != "limegreen" && localStorage.getItem(LSid+"_skip") == "gold" ) {
+			var repCount = Number(localStorage.getItem(LSid+'_repeat'))
+			if ( document.getElementById("hkQ.nextRep"+repCount).style.backgroundColor == "limegreen" ) {
+				var date = new Date();
+				var remain = Math.floor(date.getTime()/3600000)
+				remain = localStorage.getItem("vizsgaSkip") - remain
+				
+				if ( remain < 12 ) { 
+					priorType = 2
+					
+					var idopont2 = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
+					var checkValue2 = idopont2 / obj_repCount[repCount]
+					if ( checkValue2 > priorValue2 ) {
+						priorValue2 = checkValue2
+						priorQelem = Qelem
+					}
+				}
+			}
+		}
+		/* oldQ */if ( priorType == 1 && localStorage.getItem(LSid+"_jegy") != null ) {
+			var date = new Date();
+			var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
+			var repCount = Number(localStorage.getItem(LSid+'_repeat'))
+
+			if ( document.getElementById("btn_RepFast").style.borderColor != "limegreen" ) {
+				if ( obj_repCount[repCount] > idopont ) { return }
+			}
+
+			F_calcHosszJegy(Qelem)
+
+			checkValue = idopont / obj_repCount[repCount]
+			//averageCV = averageCV + checkValue
+			countCV = countCV + 1
+			if ( document.getElementById("hkQ.nextRep"+repCount).style.backgroundColor != "limegreen" ) { return }
+
+			if ( checkValue > priorValue_alt ) {
+				priorValue_alt = checkValue;
+				priorQ_alt = Qelem;
+			}
+			
+			if ( document.getElementById("btn_nextQdiff").style.backgroundColor != "coral" ) {
+				nextDiff = nextDiff +1
+				var xyz = Math.random();
+				var refX = 1/nextDiff
+				console.log(xyz+" vs "+refX)
+				if ( xyz < refX ) {
+					priorValue = checkValue;
+					priorQelem = Qelem
+				}
+			} else if ( localStorage.getItem(LSid+"_repeat") == nextRep || nextRep == "zerus" ) { 
+				if ( checkValue > priorValue ) {
+					priorValue = checkValue;
+					priorQelem = Qelem
+				}
+			}
+		}
 	}
 
-	averageCV = 0
+	//averageCV = 0
 	countCV = 0
 	
 	for ( var tetelID in tetelek ) {
@@ -4494,15 +4517,6 @@ function F_nextQ(){
 			var tetelQs = tetelQ.getElementsByClassName("kerdes")
 			if ( tetelQ.classList.contains("kerdes") == true ) { F_calcQValue(tetelQ) }
 			for ( var x=0; x<tetelQs.length; x++ ) { F_calcQValue(tetelQs[x]) }
-		/* // impQ esetében:
-			// az LSid-t küldi F_calcQValue-ba --> amennyiben ez lesz a priorQ, akkor betölti az összes impQ-t a tételen belül
-			// erre azért van szükség, mert különben nemtudom elérni, hogy a legfelső Q-et dobja ki :S
-			for ( var impID in tetelek[tetelID] ) {
-				if ( tetelek[tetelID][impID] == true ) {
-					F_calcQValue(impID+" – "+tetelID)
-				}
-			}
-		*/
 		}
 	}
 	
@@ -4510,7 +4524,7 @@ function F_nextQ(){
 		var rand = newQs[Math.floor(Math.random() * newQs.length)]
 		priorQelem = rand
 	}
-	averageCV = averageCV/countCV
+	//averageCV = averageCV/countCV
 	if ( priorQelem == "nincs" ) {
 		if ( priorQ_alt != "nincs" ) {
 			priorQelem = priorQ_alt
