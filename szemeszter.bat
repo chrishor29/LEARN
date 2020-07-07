@@ -5,6 +5,7 @@ set learnStuff=C:\Users\chrishor\Desktop\MIX\learnStuff
 
 robocopy %source%\Sajat %destination%\Sajat /mir
 robocopy %source%\images %destination%\images /mir
+robocopy %source%\videos %destination%\videos /mir
 xcopy /y %source%\expqs.html %destination%\ /d
 xcopy /y %source%\targyvalasztas.html %destination%\ /d
 xcopy /y %source%\javascript.js %destination%\ /d
