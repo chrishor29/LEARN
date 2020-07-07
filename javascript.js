@@ -4,6 +4,7 @@
  ✖ nehéz vs könnyű kérdés (+ osztályzás 1/2/3)
  ✖ bőrgyógy: kijelölök egy új tételt (impQ van benne), majd rámegyek kövi kérdésre, hogy kidobja, akkor még az impQ-t nem tölti be (kell egy refresht-t tolnom valamiért)
  
+ ✖ pulmo: ált.2t: 'értékelés - összefoglaló' --> {208} -> nem dobja ki, ha meg akarom oldani (osztályozás)
  ✖ mikrobi: részl.bakt: Bacillus anthracis -> 2x megnyitom és 2.-nál már rosszul írja ki
  ✖ farmak: impQ.90: NSAID hatásai --> terhességgel kapcsolatos tudnivalók ha kerdes; akkor azt amikor kidobja, nem jelenik meg az osztályozhatósága, így nem tudok továbbhaladni (A/16 tétel esetén)
  ✖ bőrgyógy: diabetes tételnél megjelenik egy új kérdés valamiért, pedig nincs ott új már: lépjek vissza főoldal, majd frissítsek, utána jelöljem ki bőrgyógyászat, majd lépjek át kérdésmegoldó oldalra (így jön elő a hiba)
@@ -301,6 +302,7 @@ function F_newLSid(){
 
 var wrongEXPid = "foglalt vagy upgradelve lett:<br>"
 if ( localStorage.getItem("hk.ToggleAll") == "true" ) { document.body.style.backgroundColor = "Gainsboro" }
+var toggleAll = false
 
 /* Search method
  ► egy ID-s iframe van, amibe for ciklussal betölti a tárgyakat, majd a textjüket kimenti egy array-ba (nagyítóra klikkelésnél)
@@ -2088,7 +2090,7 @@ function F_searchWord() {
 				document.getElementById("div_SearchW").style.display = "block"
 			} else {
 				document.getElementById("btn_toggleAll").style.display = 'block'
-				if ( localStorage.getItem("hk.ToggleAll") == "true") {
+				if ( toggleAll == true ) {
 					document.getElementById("table_weboldalak").style.display = 'none'
 					document.getElementById("div_pageQTargy").style.display = 'none'
 					document.getElementById("div_MainFrame").style.display = 'block'
@@ -2119,7 +2121,8 @@ function F_searchWord() {
 			F_midQload(prevMidQ[prevMidQ.length-1]) // uccsót (ami így már az előző lett) betölti
 		}
 		button.style.cursor = "pointer";
-		button.innerHTML = "&#129120;"
+		button.innerHTML = "&#x27A4;"
+		button.style.transform = "scale(-1, 1)"
 		button.style.width = "30px"
 		button.style.position = "absolute"
 		button.style.textAlign = "center"
@@ -2290,6 +2293,7 @@ function F_toggleAll() {
 	var childs = document.body.children; 
 	if ( document.getElementById("div_MainFrame").style.display != 'none' ) {
 		localStorage.removeItem("hk.ToggleAll")
+		toggleAll = false
 		document.getElementById("table_weboldalak").style.display = 'block';
 		document.getElementById("div_pageQTargy").style.display = 'block';
 		document.getElementById("div_MainFrame").style.display = 'none';
@@ -2299,6 +2303,7 @@ function F_toggleAll() {
 		//document.getElementById("div_upgQ").style.display = 'none';
 	} else {
 		localStorage.setItem("hk.ToggleAll","true")
+		toggleAll = true
 		document.getElementById("table_weboldalak").style.display = 'none';
 		document.getElementById("div_pageQTargy").style.display = 'none';
 		document.getElementById("div_MainFrame").style.display = 'block';
@@ -2962,7 +2967,7 @@ function F_CreateQDiv() {
 		var span = document.createElement("span")
 		span.id = "span_important"
 		divSettings.appendChild(span)
-		span.style.border = "3px solid black"
+		span.style.border = "3px solid limegreen"
 		span.onclick = function(){ 
 			if ( this.style.borderColor == "limegreen" ) {
 				this.style.borderColor = "black"
@@ -5013,8 +5018,6 @@ function F_loadPageText(path) {
 		var targyText = e.data[1]
 		pageTexts[targyPath] = targyText
 		document.getElementById("div_SearchW").style.backgroundColor = "grey"
-		//document.getElementById("div_Refreshng").innerHTML = targyPath
-		//document.getElementById("iframe_targyak").src = targyPath
 		
 		function F_kiirja(){
 			pagePath = targyPath // képek betöltéséhez kell pl
@@ -5022,11 +5025,10 @@ function F_loadPageText(path) {
 			pageDiv.innerHTML = pageTexts[pagePath]
 			F_checkEXPs()
 			F_detailsToggle(pageDiv)
-			if ( localStorage.getItem("hk.ToggleAll") == "true" ) { F_toggleAll() }
+			if ( localStorage.getItem("hk.ToggleAll") == "true" && refreshAll != true ) { F_toggleAll() }
 			document.body.style.backgroundColor = ""
 			localStorage.setItem("hk.pagePath",pagePath) 
 			document.getElementById("iframe_targyak").src = ""
-			//F_impQlot(pageDiv)
 		}
 		if ( targyPath == "expqs.html" ) { 
 			if ( expQsLoaded == false ) {
@@ -5039,7 +5041,6 @@ function F_loadPageText(path) {
 				F_kiirja()
 			}
 			if ( localStorage.getItem("hk.ToggleAll") == "true" ) { F_loadPageText(localStorage.getItem("hk.pagePath")) }
-			//alert("sajt")
 		} else {
 			F_kiirja()
 		}
@@ -5131,8 +5132,6 @@ F_loadPageText("expqs.html")
 
 if ( changeStatus == true ) { document.getElementById("div_upgQ").style.display = 'block' }
 if ( changeStatus == false ) { document.getElementById("div_upgQ").style.display = 'none' }
-
-document.getElementById("btn_toggleAll").style.backgroundColor = ""
 
 F_getTime()
 var diffTime = myTime-oldTime
