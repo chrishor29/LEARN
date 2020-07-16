@@ -4657,6 +4657,13 @@ function F_nextQ(){
 				if ( isNewQ == false ) { continue }
 
 				if ( !document.getElementById('td.1.'+num) ) { F_CreateSelect(num) }
+				if ( isAndroid != true ) { 
+					var jegy = localStorage.getItem(LSid+'_jegy')
+					var repeat = localStorage.getItem(LSid+'_repeat')
+					
+					document.getElementById("td.0."+num).title = LSid+"<br> Jegy:"+jegy+"<br>Repeat:"+repeat
+					F_titleChange(document.getElementById("td.0."+num).parentElement)
+				}
 				var jegySelect = document.getElementById('div_jegy.'+num)
 				document.getElementById("td.0."+num).hidden = false 
 				document.getElementById("td.1."+num).hidden = false 
@@ -4916,7 +4923,6 @@ function F_CreateSelect(i) {
 		if ( x == 0 ) {
 			td.innerHTML = i
 			td.style.fontWeight = "bold"
-			
 			if ( isAndroid == true ) { 
 				td.onclick = function(){
 					var div = document.getElementById("div_qProp")
@@ -4936,13 +4942,6 @@ function F_CreateSelect(i) {
 						document.getElementById("divQloc").style.display = "block"
 					}
 				}
-			} else {
-				var LSid = activeQs[i]
-				var jegy = localStorage.getItem(LSid+'_jegy')
-				var repeat = localStorage.getItem(LSid+'_repeat')
-				
-				td.title = LSid+"<br> Jegy:"+jegy+"<br>Repeat:"+repeat
-				F_titleChange(td.parentElement)
 			}
 		} else if ( x == 1 ) {
 			var div = document.createElement("DIV")

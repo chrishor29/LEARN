@@ -16,11 +16,6 @@ xcopy /y %source%\favicon.png %destination%\ /d
 
 robocopy %source%\Pszicho\images %destination%\Pszicho\images /mir
 xcopy /y %source%\Pszicho\pszicho.html %destination%\Pszicho\ /d
-robocopy %source%\Pulmo\images %destination%\Pulmo\images /mir
-xcopy /y %source%\Pulmo\pulmo.html %destination%\Pulmo\ /d
-robocopy %source%\Ortopedia\images %destination%\Ortopedia\images /mir
-xcopy /y %source%\Ortopedia\ortop.html %destination%\Ortopedia\ /d
-xcopy /y %source%\Radiologia\radio.html %destination%\Radiologia\ /d
 
 REM 4.év
 xcopy /y %source%\Sebeszet\sebeszet.html %destination%\Sebeszet\ /d
@@ -29,10 +24,15 @@ robocopy %source%\Belgyogy\könyvek %destination%\Belgyogy\könyvek /mir
 robocopy %source%\Belgyogy\Nefro\images %destination%\Belgyogy\Nefro\images /mir
 xcopy /y %source%\Belgyogy\Nefro\favicon.bmp %destination%\Belgyogy\Nefro\ /d
 xcopy /y %source%\Belgyogy\Nefro\nephro.html %destination%\Belgyogy\Nefro\ /d
-robocopy %source%\done\Onkologia\images %destination%\Onkologia\images /mir
-xcopy /y %source%\done\Onkologia\onko.html %destination%\Onkologia\ /d
 robocopy %source%\done\Borgyogy\images %destination%\done\Borgyogy\images /mir
 xcopy /y %source%\done\Borgyogy\borgyogy.html %destination%\done\Borgyogy\ /d
+robocopy %source%\done\Onkologia\images %destination%\done\Onkologia\images /mir
+xcopy /y %source%\done\Onkologia\onko.html %destination%\done\Onkologia\ /d
+robocopy %source%\done\Ortopedia\images %destination%\done\Ortopedia\images /mir
+xcopy /y %source%\done\Ortopedia\ortop.html %destination%\done\Ortopedia\ /d
+robocopy %source%\done\Pulmo\images %destination%\done\Pulmo\images /mir
+xcopy /y %source%\done\Pulmo\pulmo.html %destination%\done\Pulmo\ /d
+xcopy /y %source%\done\Radiologia\radio.html %destination%\done\Radiologia\ /d
 robocopy %source%\done\Farmak\images %destination%\done\Farmak\images /mir
 robocopy %source%\done\Farmak\videos %destination%\done\Farmak\videos /mir
 xcopy /y %source%\done\Farmak\favicon.bmp %destination%\done\Farmak\ /d
