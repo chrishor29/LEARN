@@ -20,7 +20,6 @@
  ✖ android: menuk egy klikkel legyenek előhívhatók és nagyok legyenek / kerdes osztályzás is!
  ✖ android: upgrade/stb. -re klikk-nél sötétüljön el, hogy lássam érzékelte (mint amikor betölti az oldalt, vagy nextQ)
  
- ✖ search: ha hiányzik az egyik oldal html-je, akkor azt skippelje a betöltésnél, ne álljon meg
  ✖ lehessen átírni a kidobott quest repeat time-ját /+ lehessen skippelni, hogy x óráig ne dobhassa ki
  ✖ mikrobi: túl lassú, +1/-1 tétel kiválasztás
  ✖ mikrobi: túl lassú, tehát ha átírok valamit a .html-be majd frissítek, hogy újra a kérdést kidobja elém, az eltart 5-10secig(amikor már 500kérdésnél tartok főleg)
@@ -118,6 +117,7 @@
 */
 
 /* PROJECT - DONE
+ ✔ search: ha hiányzik az egyik oldal html-je, akkor azt skippelje a betöltésnél, ne álljon meg
  ✔ search: egfr: pulmo: A nem kissejtes tüdődaganatok célzott kezelése és immunterápiája: legörgetem és tádám!
  ✔ !!! tétel ha kérdés, akkor addig ne mutassa altkérdések számát (osztályzást) !!! high prior !!!
  ✔ elsőre valamiért szarakszik feladatmegoldásnál azon questekkel, amelyikben impQ van (még nem tölti be őket). impQ-k kal elején szarakodik, amikor először tölti őket be (lehet már osztályoztam máshol, mégis újnak veszi: lásd pl. belgyógy 1.tétel - adenohipofízis hormonok táblázat)
@@ -2157,6 +2157,7 @@ var replaceQs = []
 var varNextQ = false
 var midQloaded = false
 var threeSec = 0
+var currPageId
 var F_seekBar = window.setInterval(function(){
 	if ( document.getElementById("centVideo").paused == false ) {
 		var centVideo = document.getElementById("centVideo")
@@ -2191,7 +2192,8 @@ var F_seekBar = window.setInterval(function(){
 			for ( var i=0; i<pageLinks.length; i++ ) { 
 				document.getElementById("div_RefreshStatus").innerHTML = i+"/"+full
 				if ( pageLinks[i].dataset.loaded != "true" ) {
-					F_loadPathText(pageLinks[i].dataset.src,i)
+					currPageId = i
+					F_loadPathText(i)
 					break
 				}
 			}
@@ -2570,6 +2572,7 @@ function F_CreateQDiv() {
 					button.style.color = ""
 					button.style.backgroundColor = ""
 					F_loadAllPageTexts()
+					loadAllPage = true
 					clearInterval(int_Click) 
 				}, 100);
 			}
@@ -5013,7 +5016,8 @@ function F_CreateSelect(i) {
 function F_loadPageText(path) {
 	document.getElementById("iframe_targyak").src = path
 	var handler = function(e) {
-		var targyPath = path
+		var targyPath = document.getElementById("iframe_targyak").src
+		targyPath = targyPath.slice(targyPath.indexOf("LEARN/")+6)
 		var targyText = e.data[1]
 		pageTexts[targyPath] = targyText
 		document.getElementById("div_SearchW").style.backgroundColor = "grey"
@@ -5056,22 +5060,27 @@ function F_loadPageText(path) {
 	}
 	window.addEventListener('message', handler, false)
 }
-function F_loadPathText(path,i) {
-	document.getElementById("iframe_targyak").src = path
+function F_loadPathText(i) {
+	document.getElementById("iframe_targyak").src = pageLinks[currPageId].dataset.src
 	var handler = function(e) {
-		var targyPath = path
+		var targyPath = document.getElementById("iframe_targyak").src
+		targyPath = targyPath.slice(targyPath.indexOf("LEARN/")+6)
 		var targyText = e.data[1]
 		pageTexts[targyPath] = targyText
 		removeEventListener('message', handler, false)
-		pageLinks[i].style.color = "blue"
-		pageLinks[i].dataset.loaded = true 
+		for ( var x=0; x<pageLinks.length; x++ ) { 
+			if ( pageLinks[x].dataset.src == targyPath ) { pageLinks[x].style.color = "blue" }
+		}
 	}
 	window.addEventListener('message', handler, false)
+	pageLinks[currPageId].style.color = "red"
+	pageLinks[currPageId].dataset.loaded = true 
 }
 function F_loadAllPageTexts() {
 	F_getTime()
 	var startTime = myTime
 	var startTimeX = myTime
+	var startTimeY = myTime
 	removeEventListener('message', handler, false)
 	document.getElementById("div_SearchW").style.backgroundColor = "white"
 	var full = pageLinks.length -1
@@ -5085,45 +5094,55 @@ function F_loadAllPageTexts() {
 		}
 	}
 	
+	function nextPageLoad() {
+		count = count +1
+		if ( count < pageLinks.length ) { 
+			path = pageLinks[count].dataset.src
+			document.getElementById("iframe_targyak").src = path
+		} else {
+			document.getElementById("div_SearchW").style.backgroundColor = "white"
+			F_getTime()
+			var diffTime = (myTime-startTimeX).toFixed(2)
+			//var timeX = Math.round((myTime-oldTime)*100)/100
+			document.getElementById("div_Refreshng").innerHTML = diffTime+"s"
+			removeEventListener('message', handler, false)
+		}
+	}
+	
 	var timeX = 10
 	if ( isAndroid != false ) { timeX = 200 }
 	var handler = function(e) {
+		F_getTime()
+		startTimeY = myTime
 		var targyText = e.data[1];
 		if ( targyText != undefined && targyText != "" ) {
 			F_getTime()
 			var diffTime = (myTime-startTime).toFixed(2)
-			console.log("F_loadAllPageTexts – " + count+". "+pageLinks[count].dataset.src+" "+diffTime+"s")
+			console.log("F_loadAllPageTexts – "+count+". "+pageLinks[count].dataset.src+" "+diffTime+"s")
 			startTime = myTime
 			
-			// savePage
 			var path = pageLinks[count].dataset.src
 			pageTexts[path] = targyText
-			//alert(path+" "+targyText)
 			document.getElementById("div_SearchW").style.backgroundColor = "grey"
 			document.getElementById("div_Refreshng").innerHTML = path
 			document.getElementById("div_RefreshStatus").innerHTML = count+"/"+full
 			pageLinks[count].style.color = "blue"
 			pageLinks[count].dataset.loaded = true
-			
-			// nextPage
-			var F_timer = window.setInterval(function(){
-				clearInterval(F_timer) 
-				count = count +1
-				if ( count < pageLinks.length ) { 
-					path = pageLinks[count].dataset.src
-					document.getElementById("iframe_targyak").src = path
-				} else {
-					document.getElementById("div_SearchW").style.backgroundColor = "white"
-					F_getTime()
-					var diffTime = (myTime-startTimeX).toFixed(2)
-					//var timeX = Math.round((myTime-oldTime)*100)/100
-					document.getElementById("div_Refreshng").innerHTML = diffTime+"s"
-					removeEventListener('message', handler, false)
-				}
-			}, /*timeX*/)
+			nextPageLoad()
 		}
 	}
 	window.addEventListener('message', handler, false)
+	
+	var F_checkTimer = window.setInterval( function() {
+		F_getTime()
+		var diffTime = myTime - startTimeY
+		if ( diffTime > 1.5 ) {
+			pageLinks[count].style.color = "red"
+			pageLinks[count].dataset.loaded = true
+			nextPageLoad()
+		}
+		if ( count == pageLinks.length ) { clearInterval(F_checkTimer) }
+	}, 300 )
 }
 //if ( localStorage.getItem("hk.ToggleAll") == "true" ) { F_loadPageText("expqs.html") }
 F_loadPageText("expqs.html")

@@ -26,7 +26,7 @@ if varAndroid = true
 }
 if varUpdate = true
 {
-	Run update.bat,,, updPID
+	Run update.bat,,Min, updPID
 }
 Process,WaitClose,%andPID%
 Process,WaitClose,%andrPID%

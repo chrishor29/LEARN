@@ -1,7 +1,7 @@
 ﻿
 set source=D:\LEARN
-set destination=C:\Users\chrishor\Desktop\MIX\learn
-set learnStuff=C:\Users\chrishor\Desktop\MIX\learnStuff
+set destination=C:\Users\Kristof\Desktop\MIX\learn
+set learnStuff=C:\Users\Kristof\Desktop\MIX\learnStuff
 
 robocopy %source%\Sajat %destination%\Sajat /mir
 robocopy %source%\images %destination%\images /mir

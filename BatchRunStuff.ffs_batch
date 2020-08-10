@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FreeFileSync XmlType="BATCH" XmlFormat="14">
+<FreeFileSync XmlType="BATCH" XmlFormat="16">
     <Compare>
         <Variant>TimeAndSize</Variant>
         <Symlinks>Exclude</Symlinks>
@@ -36,13 +36,14 @@
     </Filter>
     <FolderPairs>
         <Pair>
-            <Left>C:\Users\chrishor\Desktop\MIX\learnStuff</Left>
+            <Left>C:\Users\Kristof\Desktop\MIX\learnStuff</Left>
             <Right>mtp:\HUAWEI P20 lite\Belső tárhely\LEARN</Right>
         </Pair>
     </FolderPairs>
     <Errors Ignore="false" Retry="0" Delay="5"/>
-    <LogFolder/>
     <PostSyncCommand Condition="Completion"/>
+    <LogFolder/>
+    <EmailNotification Condition="Always"/>
     <Batch>
         <ProgressDialog Minimized="true" AutoClose="true"/>
         <ErrorDialog>Show</ErrorDialog>
