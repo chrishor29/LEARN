@@ -5036,7 +5036,7 @@ function F_loadPageText(path,kiiras) {
 		for ( var i=0; i<pageLinks.length; i++ ) { 
 			pageLinks[i].style.backgroundColor = ""
 			if ( pageLinks[i].dataset.src == path ) { id = i }
-			console.log(i+" vs "+id)
+			console.log(i+" vs "+id+" – "+pageLinks[i].dataset.src)
 		}
 		saveIDB(path,targyText,id)
 		pageLinks[id].dataset.loaded = true 
