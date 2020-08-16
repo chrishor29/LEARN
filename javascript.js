@@ -311,7 +311,6 @@ var toggleAll = false
 */
 var fileName
 var elems = document.body.getElementsByTagName("*")
-var expQsLoaded = false
 function F_loadExpQs(parentDiv,origin) {
 	var childs = parentDiv.getElementsByTagName("*");
 	//console.log(origin)
@@ -1764,8 +1763,9 @@ function F_pageOpen() {
 				window.location.href = currPath
 			} else if ( event.button == 0 ) { // left click
 				for ( var x=0; x<pageLinks.length; x++ ) { pageLinks[x].style.backgroundColor = "" }
-				this.style.backgroundColor = "yellow"
-				F_loadPageText(this.dataset.src)
+				loadAllPage = false
+				this.style.color = "red"
+				F_loadPageText(this.dataset.src,true)
 			}
 		}
 		// favicon
@@ -2014,6 +2014,25 @@ function F_searchWord() {
 		button.type = "button"
 		div.appendChild(button)
 		button.style.position = "absolute"
+		button.style.right = "150px"
+		button.style.top = "2px"
+		button.value = "⟳"
+		button.style.fontSize = 'xx-large'
+		button.style.cursor = "pointer"
+		button.style.border = "3px solid black"
+		//button.style.width = "50px"
+		button.onclick = function(){ // refresh 
+			for ( var x=0; x<pageLinks.length; x++ ) { 
+				pageLinks[x].style.color = "black"
+				pageLinks[x].dataset.loaded = false
+			}
+			F_loadAllPageTexts()
+		}
+		
+		var button = document.createElement("input")
+		button.type = "button"
+		div.appendChild(button)
+		button.style.position = "absolute"
 		button.style.right = "2px"
 		button.style.top = "2px"
 		button.value = "✖"
@@ -2183,8 +2202,8 @@ var F_seekBar = window.setInterval(function(){
 		F_midQ(document.getElementById("div_MidQ"))
 		midQloaded = true
 	}
-	threeSec = threeSec +1
 	
+	threeSec = threeSec +1
 	if ( localStorage.getItem("toggleLoad") != "false" ) {
 		var loadTime = 2
 		if ( threeSec > loadTime && document.getElementById("div_SearchW").style.display != "block" ) {
@@ -2192,24 +2211,13 @@ var F_seekBar = window.setInterval(function(){
 			for ( var i=0; i<pageLinks.length; i++ ) { 
 				document.getElementById("div_RefreshStatus").innerHTML = i+"/"+full
 				if ( pageLinks[i].dataset.loaded != "true" ) {
-					currPageId = i
-					F_loadPathText(i)
+					F_loadPageText(pageLinks[i].dataset.src,false)
 					break
 				}
 			}
 			threeSec = 0
 		}
 	}
-	
-	/*var firstPass = false
-	if ( pageLinks[pageLinks.length].dataset.loaded == "true" && firstPass == false ) {
-		for ( var targyPath in pageTexts ) {
-			var targyText = pageTexts[targyPath]
-			targyText = LZString.compressToUTF16(targyText)
-			localStorage.setItem(targyPath,targyText)
-		}
-		firstPass = true
-	}*/
 }, 1000);
 
 function F_answerQ(detElem){ 
@@ -2571,8 +2579,9 @@ function F_CreateQDiv() {
 					document.getElementById("div_SearchW").style.display = "block"
 					button.style.color = ""
 					button.style.backgroundColor = ""
-					F_loadAllPageTexts()
+					F_getTime() // időt elvileg innen számolja: F_loadAllPageTexts-ben használja fel az iteni myTime-ot startTime-nak
 					loadAllPage = true
+					F_loadAllPageTexts()
 					clearInterval(int_Click) 
 				}, 100);
 			}
@@ -5013,17 +5022,28 @@ function F_CreateSelect(i) {
 	}
 }
 
-function F_loadPageText(path) {
+var expQsLoaded = false
+var loadAllPage = false
+function F_loadPageText(path,kiiras) {
 	document.getElementById("iframe_targyak").src = path
 	var handler = function(e) {
-		var targyPath = document.getElementById("iframe_targyak").src
-		targyPath = targyPath.slice(targyPath.indexOf("LEARN/")+6)
+		var path = document.getElementById("iframe_targyak").src
+		path = path.slice(path.indexOf("LEARN/")+6)
 		var targyText = e.data[1]
-		pageTexts[targyPath] = targyText
-		document.getElementById("div_SearchW").style.backgroundColor = "grey"
+		pageTexts[path] = targyText
 		
-		function F_kiirja(){
-			pagePath = targyPath // képek betöltéséhez kell pl
+		saveData(path,targyText)
+		
+		var id
+		for ( var i=0; i<pageLinks.length; i++ ) { 
+			pageLinks[i].style.backgroundColor = ""
+			if ( pageLinks[i].dataset.src == path ) { id = i }
+		}
+		pageLinks[id].style.color = "blue"
+		pageLinks[id].dataset.loaded = true 
+		
+		function F_kiirja(){ // betölti (látható lesz) a weboldalt a főoldalra is (nem csak a látatlanba, ahonnan szöveget másol)
+			pagePath = path // képek betöltéséhez kell pl
 			var pageDiv = document.getElementById("div_pageQTargy")
 			pageDiv.innerHTML = pageTexts[pagePath]
 			F_checkEXPs()
@@ -5032,124 +5052,108 @@ function F_loadPageText(path) {
 			document.body.style.backgroundColor = ""
 			localStorage.setItem("hk.pagePath",pagePath) 
 			document.getElementById("iframe_targyak").src = ""
+			pageLinks[id].style.backgroundColor = "yellow"
 		}
-		if ( targyPath == "expqs.html" ) { 
+		
+		if ( path == "expqs.html" ) { 
 			if ( expQsLoaded == false ) {
 				parentDiv = document.getElementById("div_expQTargy")
 				parentDiv.innerHTML = pageTexts["expqs.html"]
 				arrImpQs["expQs"] = []
 				F_loadExpQs(parentDiv,"expQs")
 				expQsLoaded = true
-			} else { 
+			} else if ( kiiras == true ) { 
 				F_kiirja()
 			}
-			if ( localStorage.getItem("hk.ToggleAll") == "true" ) { F_loadPageText(localStorage.getItem("hk.pagePath")) }
-		} else {
+			if ( localStorage.getItem("hk.ToggleAll") == "true" ) { F_loadPageText(localStorage.getItem("hk.pagePath"),true) }
+		} else if ( kiiras == true ) {
 			F_kiirja()
 		}
-		for ( var i=0; i<pageLinks.length; i++ ) { 
-			if ( pageLinks[i].dataset.src == targyPath ) {
-				pageLinks[i].style.color = "blue"
-				pageLinks[i].dataset.loaded = true 
-			}
-			if ( targyPath == localStorage.getItem("hk.pagePath") && pageLinks[i].dataset.src == localStorage.getItem("hk.pagePath") ) {
-				pageLinks[i].style.backgroundColor = "yellow"
-			}
-		}
+		
+		if ( loadAllPage == true ) { F_loadAllPageTexts() }
 		removeEventListener('message', handler, false)
 	}
 	window.addEventListener('message', handler, false)
-}
-function F_loadPathText(i) {
-	document.getElementById("iframe_targyak").src = pageLinks[currPageId].dataset.src
-	var handler = function(e) {
-		var targyPath = document.getElementById("iframe_targyak").src
-		targyPath = targyPath.slice(targyPath.indexOf("LEARN/")+6)
-		var targyText = e.data[1]
-		pageTexts[targyPath] = targyText
-		removeEventListener('message', handler, false)
-		for ( var x=0; x<pageLinks.length; x++ ) { 
-			if ( pageLinks[x].dataset.src == targyPath ) { pageLinks[x].style.color = "blue" }
-		}
-	}
-	window.addEventListener('message', handler, false)
-	pageLinks[currPageId].style.color = "red"
-	pageLinks[currPageId].dataset.loaded = true 
 }
 function F_loadAllPageTexts() {
-	F_getTime()
-	var startTime = myTime
-	var startTimeX = myTime
-	var startTimeY = myTime
-	removeEventListener('message', handler, false)
-	document.getElementById("div_SearchW").style.backgroundColor = "white"
+	//removeEventListener('message', handler, false)
+	document.getElementById("div_SearchW").style.backgroundColor = "grey"
+	
 	var full = pageLinks.length -1
 	var count
 	for ( var i=0; i<pageLinks.length; i++ ) { 
 		count = i
 		document.getElementById("div_RefreshStatus").innerHTML = count+"/"+full
 		if ( pageLinks[count].dataset.loaded != "true" ) {
-			document.getElementById("iframe_targyak").src = pageLinks[count].dataset.src
+			F_loadPageText(pageLinks[count].dataset.src,false)
 			break
 		}
-	}
-	
-	function nextPageLoad() {
-		count = count +1
-		if ( count < pageLinks.length ) { 
-			path = pageLinks[count].dataset.src
-			document.getElementById("iframe_targyak").src = path
-		} else {
+		if ( count == full ) {
 			document.getElementById("div_SearchW").style.backgroundColor = "white"
-			F_getTime()
-			var diffTime = (myTime-startTimeX).toFixed(2)
-			//var timeX = Math.round((myTime-oldTime)*100)/100
-			document.getElementById("div_Refreshng").innerHTML = diffTime+"s"
-			removeEventListener('message', handler, false)
-		}
-	}
-	
-	var timeX = 10
-	if ( isAndroid != false ) { timeX = 200 }
-	var handler = function(e) {
-		F_getTime()
-		startTimeY = myTime
-		var targyText = e.data[1];
-		if ( targyText != undefined && targyText != "" ) {
+			var startTime = myTime
 			F_getTime()
 			var diffTime = (myTime-startTime).toFixed(2)
-			console.log("F_loadAllPageTexts – "+count+". "+pageLinks[count].dataset.src+" "+diffTime+"s")
-			startTime = myTime
-			
-			var path = pageLinks[count].dataset.src
-			pageTexts[path] = targyText
-			document.getElementById("div_SearchW").style.backgroundColor = "grey"
-			document.getElementById("div_Refreshng").innerHTML = path
-			document.getElementById("div_RefreshStatus").innerHTML = count+"/"+full
-			pageLinks[count].style.color = "blue"
-			pageLinks[count].dataset.loaded = true
-			nextPageLoad()
+			//var timeX = Math.round((myTime-oldTime)*100)/100
+			document.getElementById("div_Refreshng").innerHTML = diffTime+"s"
 		}
 	}
-	window.addEventListener('message', handler, false)
-	
-	var F_checkTimer = window.setInterval( function() {
-		F_getTime()
-		var diffTime = myTime - startTimeY
-		if ( diffTime > 1.5 ) {
-			pageLinks[count].style.color = "red"
-			pageLinks[count].dataset.loaded = true
-			nextPageLoad()
-		}
-		if ( count == pageLinks.length ) { clearInterval(F_checkTimer) }
-	}, 300 )
 }
-//if ( localStorage.getItem("hk.ToggleAll") == "true" ) { F_loadPageText("expqs.html") }
-F_loadPageText("expqs.html")
-//if ( localStorage.getItem("hk.ToggleAll") != "true" ) { F_loadAllPageTexts() }
+F_loadPageText("expqs.html",false)
 
-if ( changeStatus == true ) { document.getElementById("div_upgQ").style.display = 'block' }
-if ( changeStatus == false ) { document.getElementById("div_upgQ").style.display = 'none' }
+function saveData(path,text){
+	var objectData = [ { pageHTML: text } ]
+	var request = indexedDB.deleteDatabase(path);
+	request.onsuccess = function(event) { console.log("database DELETE – "+path) }
+	
+	var request = indexedDB.open(path, 1);
+	request.onupgradeneeded = function (event) {
+		var db = event.target.result;
+		var store = db.createObjectStore("webpage", { keyPath: "id", autoIncrement: true });
+		store.put(objectData)
+		//alert("update")
+	}
+	request.onerror = function(event) { console.log("database ERROR: " + event.target.errorCode) }
+	request.onsuccess = function(event) {
+		var db = event.target.result;
+		var transaction = db.transaction("webpage","readwrite")
+		var store = transaction.objectStore("webpage");  
+		store.get(1).onsuccess = function(event) { console.log("database REFRESH – "+path /* this.result */) }
+		transaction.oncomplete = function() { db.close() }
+	}
+}
+function loadData(path){
+	var request = indexedDB.open(path, 1);
+	request.onerror = function(event) { console.log("database ERROR: " + event.target.errorCode) }
+	request.onsuccess = function(event) {
+		var db = event.target.result;
+		var transaction = db.transaction("webpage","readwrite")
+		var store = transaction.objectStore("webpage");  
+		store.get(1).onsuccess = function(event) { 
+			//console.log(this.result)
+			var text = this.result[0]["pageHTML"]
+			//console.log(path+" : "+text)
+			pageTexts[path] = text
+			
+			for ( var x=0; x<pageLinks.length; x++ ) { 
+				if ( pageLinks[x].dataset.src == path ) {
+					pageLinks[x].style.color = "blue"
+					pageLinks[x].dataset.loaded = true
+					break
+				}
+			}
+		}
+		transaction.oncomplete = function() { db.close() }
+	}
+}
+for ( var i=0; i<pageLinks.length; i++ ) { loadData(pageLinks[i].dataset.src) }
+
+
+
+
+
+
+
+
 
 F_getTime()
 var diffTime = myTime-oldTime
