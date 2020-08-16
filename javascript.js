@@ -5104,7 +5104,8 @@ function clearIDB(path,text){
 	var request = indexedDB.deleteDatabase(path);
 	request.onsuccess = function(event) { console.log("database DELETE – "+path) }
 }
-for ( var i=0; i<pageLinks.length; i++ ) { clearIDB(pageLinks[i].dataset.src) }
+function clearFullIDB(){ for ( var i=0; i<pageLinks.length; i++ ) { clearIDB(pageLinks[i].dataset.src) } }
+
 function saveIDB(path,text){
 	var objectData = [ { pageHTML: text } ]
 	var request = indexedDB.deleteDatabase(path);
