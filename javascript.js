@@ -1764,7 +1764,6 @@ function F_pageOpen() {
 			} else if ( event.button == 0 ) { // left click
 				for ( var x=0; x<pageLinks.length; x++ ) { pageLinks[x].style.backgroundColor = "" }
 				loadAllPage = false
-				this.style.color = "red"
 				F_loadPageText(this.dataset.src,true)
 			}
 		}
@@ -5037,6 +5036,7 @@ function F_loadPageText(path,kiiras) {
 		for ( var i=0; i<pageLinks.length; i++ ) { 
 			pageLinks[i].style.backgroundColor = ""
 			if ( pageLinks[i].dataset.src == path ) { id = i }
+			console.log(i+" vs "+id)
 		}
 		saveIDB(path,targyText,id)
 		pageLinks[id].dataset.loaded = true 
@@ -5114,6 +5114,7 @@ function saveIDB(path,text,id){
 	var objectData = [ { pageHTML: text } ]
 	var request = indexedDB.deleteDatabase(path);
 	request.onsuccess = function(event) { console.log("database DELETE – "+path) }
+	console.log(id)
 	pageLinks[id].style.color = "red"
 	
 	var request = indexedDB.open(path, 1);
