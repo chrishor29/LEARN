@@ -5038,6 +5038,14 @@ function F_loadPageText(path,kiiras) {
 			if ( pageLinks[i].dataset.src == path ) { id = i }
 			console.log(i+" vs "+id+" – "+pageLinks[i].dataset.src)
 		}
+		// test a
+		// test a
+		// test a
+		// test a
+		// test a
+		// test a
+		// test a
+		// test a
 		saveIDB(path,targyText,id)
 		pageLinks[id].dataset.loaded = true 
 		
