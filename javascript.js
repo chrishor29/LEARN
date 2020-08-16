@@ -23,7 +23,6 @@
  ✖ lehessen átírni a kidobott quest repeat time-ját /+ lehessen skippelni, hogy x óráig ne dobhassa ki
  ✖ mikrobi: túl lassú, +1/-1 tétel kiválasztás
  ✖ mikrobi: túl lassú, tehát ha átírok valamit a .html-be majd frissítek, hogy újra a kérdést kidobja elém, az eltart 5-10secig(amikor már 500kérdésnél tartok főleg)
- ✖ tárgyakat el kéne mentse localstorage-be tömörítve, az gyorsabb
  ✖ kardio impQ.52 altkérdéseit egybeveszi az 51-ével, ha nincs comment
  ✖ tétel kérdésben átírok valamit, akkor a tételt deselectálja (gondolom, mert kérdés, és a hossza megváltozik, ami note-ban van)
  ✖ nephro --> fizikalis vizsgálat impQ kérdést egybe dobja ki, ha az a nextQ (pedig div-ben van, nem span)
@@ -117,6 +116,7 @@
 */
 
 /* PROJECT - DONE
+ ✔ tárgyakat el kéne mentse localstorage-be tömörítve, az gyorsabb -- indexedDB lett a megoldás!!
  ✔ search: ha hiányzik az egyik oldal html-je, akkor azt skippelje a betöltésnél, ne álljon meg
  ✔ search: egfr: pulmo: A nem kissejtes tüdődaganatok célzott kezelése és immunterápiája: legörgetem és tádám!
  ✔ !!! tétel ha kérdés, akkor addig ne mutassa altkérdések számát (osztályzást) !!! high prior !!!
@@ -5029,10 +5029,10 @@ function F_loadPageText(path,kiiras) {
 	var handler = function(e) {
 		var path = document.getElementById("iframe_targyak").src
 		path = path.slice(path.indexOf("LEARN/")+6)
+		console.log(path+" – LOADED")
 		var targyText = e.data[1]
 		pageTexts[path] = targyText
-		
-		saveData(path,targyText)
+		saveIDB(path,targyText)
 		
 		var id
 		for ( var i=0; i<pageLinks.length; i++ ) { 
@@ -5100,7 +5100,12 @@ function F_loadAllPageTexts() {
 }
 F_loadPageText("expqs.html",false)
 
-function saveData(path,text){
+function clearIDB(path,text){
+	var request = indexedDB.deleteDatabase(path);
+	request.onsuccess = function(event) { console.log("database DELETE – "+path) }
+}
+for ( var i=0; i<pageLinks.length; i++ ) { clearIDB(pageLinks[i].dataset.src) }
+function saveIDB(path,text){
 	var objectData = [ { pageHTML: text } ]
 	var request = indexedDB.deleteDatabase(path);
 	request.onsuccess = function(event) { console.log("database DELETE – "+path) }
@@ -5121,11 +5126,14 @@ function saveData(path,text){
 		transaction.oncomplete = function() { db.close() }
 	}
 }
-function loadData(path){
+function loadIDB(path){
 	var request = indexedDB.open(path, 1);
 	request.onerror = function(event) { console.log("database ERROR: " + event.target.errorCode) }
 	request.onsuccess = function(event) {
 		var db = event.target.result;
+		//console.log(path+" – "+db.objectStoreNames.contains('webpage'))
+		//console.log(db.objectStoreNames)
+		if ( db.objectStoreNames.contains('webpage') != true ) { return }
 		var transaction = db.transaction("webpage","readwrite")
 		var store = transaction.objectStore("webpage");  
 		store.get(1).onsuccess = function(event) { 
@@ -5145,15 +5153,7 @@ function loadData(path){
 		transaction.oncomplete = function() { db.close() }
 	}
 }
-for ( var i=0; i<pageLinks.length; i++ ) { loadData(pageLinks[i].dataset.src) }
-
-
-
-
-
-
-
-
+for ( var i=0; i<pageLinks.length; i++ ) { loadIDB(pageLinks[i].dataset.src) }
 
 F_getTime()
 var diffTime = myTime-oldTime
