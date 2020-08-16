@@ -5032,14 +5032,13 @@ function F_loadPageText(path,kiiras) {
 		console.log(path+" – LOADED")
 		var targyText = e.data[1]
 		pageTexts[path] = targyText
-		saveIDB(path,targyText)
 		
 		var id
 		for ( var i=0; i<pageLinks.length; i++ ) { 
 			pageLinks[i].style.backgroundColor = ""
 			if ( pageLinks[i].dataset.src == path ) { id = i }
 		}
-		pageLinks[id].style.color = "blue"
+		saveIDB(path,targyText,id)
 		pageLinks[id].dataset.loaded = true 
 		
 		function F_kiirja(){ // betölti (látható lesz) a weboldalt a főoldalra is (nem csak a látatlanba, ahonnan szöveget másol)
@@ -5100,16 +5099,22 @@ function F_loadAllPageTexts() {
 }
 F_loadPageText("expqs.html",false)
 
-function clearIDB(path,text){
+function clearIDB(path,id){
 	var request = indexedDB.deleteDatabase(path);
 	request.onsuccess = function(event) { console.log("database DELETE – "+path) }
+	if ( pageTexts[path] == undefined ) { 
+		pageLinks[id].style.color = ""
+	} else {
+		pageLinks[id].style.color = "red"
+	}
 }
-function clearFullIDB(){ for ( var i=0; i<pageLinks.length; i++ ) { clearIDB(pageLinks[i].dataset.src) } }
+function clearFullIDB(){ for ( var i=0; i<pageLinks.length; i++ ) { clearIDB(pageLinks[i].dataset.src,i) } }
 
-function saveIDB(path,text){
+function saveIDB(path,text,id){
 	var objectData = [ { pageHTML: text } ]
 	var request = indexedDB.deleteDatabase(path);
 	request.onsuccess = function(event) { console.log("database DELETE – "+path) }
+	pageLinks[id].style.color = "red"
 	
 	var request = indexedDB.open(path, 1);
 	request.onupgradeneeded = function (event) {
@@ -5125,6 +5130,8 @@ function saveIDB(path,text){
 		var store = transaction.objectStore("webpage");  
 		store.get(1).onsuccess = function(event) { console.log("database REFRESH – "+path /* this.result */) }
 		transaction.oncomplete = function() { db.close() }
+		
+		pageLinks[id].style.color = "blue"
 	}
 }
 function loadIDB(path){
