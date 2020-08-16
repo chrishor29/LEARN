@@ -5027,8 +5027,10 @@ function F_loadPageText(path,kiiras) {
 	document.getElementById("iframe_targyak").src = path
 	var handler = function(e) {
 		var path = document.getElementById("iframe_targyak").src
-		if ( path.indexOf("learn/") != -1 ) { path = path.slice(path.indexOf("learn/")+6) }
-		if ( path.indexOf("LEARN/") != -1 ) { path = path.slice(path.indexOf("LEARN/")+6) }
+		console.log(path)
+		if ( path.indexOf("learn/") != -1 ) { path = path.slice(path.indexOf("learn/")+6) } // git
+		if ( path.indexOf("LEARN/") != -1 ) { path = path.slice(path.indexOf("LEARN/")+6) } // gép
+		// learn átnevezése után a könyvjelzőket is átkéne notepad-ban, szóval maradjon így inkább (gitnél meg nem tudom mi lenne)
 		console.log(path+" – LOADED")
 		var targyText = e.data[1]
 		pageTexts[path] = targyText
