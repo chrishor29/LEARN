@@ -5029,7 +5029,7 @@ function F_loadPageText(path,kiiras) {
 		var path = document.getElementById("iframe_targyak").src
 		console.log(path)
 		if ( path.indexOf("learn/") != -1 ) { path = path.slice(path.indexOf("learn/")+6) } // git
-		if ( path.indexOf("master/") != -1 ) { // git (benne van egy 'master/ is')
+		if ( path.indexOf("master/") != -1 ) { // git-ben van egy 'master/' is, amit ki kell vágni
 			path = path.slice(0,path.indexOf("master/")) + path.slice(path.indexOf("master/")+7)
 		}
 		if ( path.indexOf("LEARN/") != -1 ) { path = path.slice(path.indexOf("LEARN/")+6) } // gép

@@ -16,6 +16,7 @@ xcopy /y %source%\favicon.png %destination%\ /d
 
 robocopy %source%\Pszicho\images %destination%\Pszicho\images /mir /max:50000000
 xcopy /y %source%\Pszicho\pszicho.html %destination%\Pszicho\ /d
+xcopy /y %source%\Pszicho\favicon.bmp %destination%\Pszicho\ /d
 
 REM 4.év
 xcopy /y %source%\Sebeszet\sebeszet.html %destination%\Sebeszet\ /d
@@ -32,6 +33,7 @@ robocopy %source%\done\Ortopedia\images %destination%\done\Ortopedia\images /mir
 xcopy /y %source%\done\Ortopedia\ortop.html %destination%\done\Ortopedia\ /d
 robocopy %source%\done\Pulmo\images %destination%\done\Pulmo\images /mir /max:50000000
 xcopy /y %source%\done\Pulmo\pulmo.html %destination%\done\Pulmo\ /d
+xcopy /y %source%\done\Pulmo\favicon.bmp %destination%\done\Pulmo\ /d
 xcopy /y %source%\done\Radiologia\radio.html %destination%\done\Radiologia\ /d
 robocopy %source%\done\Farmak\images %destination%\done\Farmak\images /mir /max:50000000
 robocopy %source%\done\Farmak\videos %destination%\done\Farmak\videos /mir /max:50000000
@@ -85,6 +87,7 @@ xcopy /y %source%\done\Mutettan\mutettan.html %destination%\done\Mutettan\ /d
 xcopy /y %source%\done\Mutettan\Wéber Gy., Ferencz A., Sándor J. - Műtéttan (2015).pdf %learnStuff%\done\Mutettan\ /d
 robocopy %source%\done\Patosz\images %destination%\done\Patosz\images /mir /max:50000000
 xcopy /y %source%\done\Patosz\patosz.html %destination%\done\Patosz\ /d
+xcopy /y %source%\done\Patosz\favicon.bmp %destination%\done\Patosz\ /d
 robocopy %source%\done\Proped\images %destination%\done\Proped\images /mir /max:50000000
 robocopy %source%\done\Proped\videos %destination%\done\Proped\videos /mir /max:50000000
 xcopy /y %source%\done\Proped\proped.html %destination%\done\Proped\ /d
