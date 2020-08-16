@@ -18,6 +18,8 @@ robocopy %source%\Pszicho\images %destination%\Pszicho\images /mir /max:50000000
 xcopy /y %source%\Pszicho\pszicho.html %destination%\Pszicho\ /d
 xcopy /y %source%\Pszicho\favicon.bmp %destination%\Pszicho\ /d
 
+REM 5.év
+
 REM 4.év
 xcopy /y %source%\Sebeszet\sebeszet.html %destination%\Sebeszet\ /d
 xcopy /y %source%\Sebeszet\2011_0001_524_Sebeszet.pdf %learnStuff%\Sebeszet\ /d

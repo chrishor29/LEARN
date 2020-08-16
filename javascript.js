@@ -733,7 +733,7 @@ function F_loadImgVideo(detElem){
 		}
 	}
 	
-	// Youtube Video Load
+	// Youtube Video Load ---- ezektől meg kéne szabadulni!!!
 	var allYoutube = detElem.getElementsByTagName("iframe")
 	for ( var i=0; i<allYoutube.length; i++ ) {
 		if ( allYoutube[i].dataset.src && allYoutube[i].offsetParent != null ) {
@@ -1855,14 +1855,33 @@ function F_searchWord() {
 		document.getElementById("div_SearchWText").innerHTML = ""
 		var hianyzik = ""
 		
-		for ( var x in paths ) {
+		var spanStatus = document.getElementById("span_searchStatus")
+		spanStatus.parentElement.style.display = "block" 
+		
+		var x = 0
+		var progress = false
+		var int_Click = window.setInterval(function(){
+			if (progress == true) { return } 
+			progress = true
+			spanStatus.style.width = spanStatus.parentElement.offsetWidth * x / paths.length
+			
 			var path = paths[x]
+			x = x +1
+			if ( Number(x) == Number(paths.length) ) { 
+				clearInterval(int_Click)
+				spanStatus.parentElement.style.display = "none" 
+				document.getElementById("div_SearchW").style.backgroundColor = "white"
+			}
 			var targyText = pageTexts[path]
 			if ( targyText == null ) { 
 				hianyzik = hianyzik +path.slice(path.lastIndexOf("/"))+" "
-				continue
+				progress = false
+				return
 			}
-			if ( targyText.toLowerCase().indexOf(searchText) == -1 ) { continue }
+			if ( targyText.toLowerCase().indexOf(searchText) == -1 ) {
+				progress = false
+				return
+			}
 			fullText = fullText+ path
 			do {
 				//var locST = targyText.toLowerCase().indexOf(searchText)
@@ -1919,12 +1938,13 @@ function F_searchWord() {
 				targyText = targyText.slice(targyText.indexOf(resultText)+resultText.length)
 			} while ( targyText.toLowerCase().indexOf(searchText) != -1 )
 			document.getElementById("div_SearchWText").innerHTML = fullText
-			console.log(path)
-		}
+			
+			console.log(x+" "+progress+" "+path)
+			progress = false
+		}, 5);
 		if ( hianyzik != "" ) { console.log("HIÁNYZIK:"+hianyzik) }
 		document.getElementById("btn_SearchW").style.color = ""
 		document.getElementById("btn_SearchW").style.backgroundColor = ""
-		document.getElementById("div_SearchW").style.backgroundColor = "white"
 	}
 	
 	function F_DivSearchWord() {
@@ -1944,13 +1964,13 @@ function F_searchWord() {
 		div.style.bottom = "4px"
 		div.style.zIndex = "1"
 		
-		var iframe = document.createElement("iframe")
+		var iframe = document.createElement("iframe") // ebbe tölti be a webpage-ket, majd innen másolja ki innerhtml-üket
 		document.body.appendChild(iframe)
 		iframe.style.display = "none"
 		iframe.id = "iframe_targyak"
 		iframe.name = "iframe_targyak"
  		
-		var input = document.createElement("input")
+		var input = document.createElement("input") // ebbe írom a keresett szót
 		div.appendChild(input)
 		input.type = "text"
 		input.id = "input_SearchW"
@@ -2060,6 +2080,25 @@ function F_searchWord() {
 		divText.id = "div_Refreshng"
 		divText.style.position = "absolute"
 		divText.style.right = "1%"
+		
+		var spanStatus = document.createElement("span")
+		div.appendChild(spanStatus)
+		spanStatus.style.display = "none"
+		spanStatus.style.position = "absolute"
+		spanStatus.style.backgroundColor = "grey"
+		spanStatus.style.border = "2px solid white"
+		spanStatus.style.width = "30%"
+		spanStatus.style.height = "21px"
+		spanStatus.style.top = "60px"
+		spanStatus.style.left = "50%"
+		spanStatus.style.transform = "translate(-50%)"
+		
+		var spanStatusChild = document.createElement("span")
+		spanStatus.appendChild(spanStatusChild)
+		spanStatusChild.id = "span_searchStatus"
+		spanStatusChild.style.backgroundColor = "gold"
+		spanStatusChild.style.position = "absolute"
+		spanStatusChild.innerHTML = "&nbsp;"
 	}
 	F_DivSearchWord()
 	function F_DivMidQ() {
