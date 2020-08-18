@@ -353,6 +353,15 @@ function F_detailsToggle(detElem){
 	//if ( detElem.classList.contains("imgLoaded") != true ) {
 		/*F_getTime()
 		oldTime = myTime*/
+			
+			var summElem = detElem.firstChild
+			var bgColor = summElem.style.backgroundColor
+			summElem.style.backgroundColor = "yellow"
+			var int_Click = window.setInterval(function(){
+				summElem.style.backgroundColor  = bgColor
+				clearInterval(int_Click) 
+			}, 50);
+		
 		F_loadDetails(detElem)
 		var allDetails = detElem.getElementsByTagName("details")
 		for ( var i=0; i<allDetails.length; i++ ) { allDetails[i].ontoggle = function(){ 
@@ -1825,7 +1834,39 @@ function F_targyTetelek() { // hány %-on állok velük
 }
 F_targyTetelek()
 function F_searchQText(detElem){
-	searchPath = detElem.dataset.path
+	F_getTime()
+	var diffTime = myTime - lastClickTime
+	//console.log(myTime+" vs "+lastClickTime)
+	if ( diffTime > 1 ) {
+		detElem.style.backgroundColor  = "yellow"
+		var int_Click = window.setInterval(function(){
+			searchPath = detElem.dataset.path
+			var targyText = pageTexts[searchPath]
+			document.getElementById("div_searchQTargy").innerHTML = targyText
+			document.getElementById("div_MidQ").dataset.origin = "searchQs"
+			F_checkEXPs()
+			
+			var qTxt = objQnameQtxt[detElem.innerHTML]
+			qTxt = qTxt.slice(qTxt.indexOf("<summary"),qTxt.lastIndexOf("</details"))
+			var qTitle = qTxt.slice(qTxt.indexOf(">")+1,qTxt.indexOf("</summary"))
+			document.getElementById("btn_MidQ").innerHTML = qTitle
+			qTxt = qTxt.slice(qTxt.indexOf("</summary"))
+			qTxt = qTxt.slice(qTxt.indexOf(">")+1)
+			document.getElementById("div_MidQText").innerHTML = qTxt
+
+			searchMidQ = true
+			prevScrollTop = document.body.scrollTop
+			document.getElementById("div_SearchW").style.display = "none"
+			document.getElementById("div_MidQ").style.display = "block"
+			F_detailsToggle(document.getElementById("div_MidQText"))
+			
+			detElem.style.backgroundColor  = ""
+			clearInterval(int_Click) 
+		}, 100);
+	}
+	
+	
+	/*searchPath = detElem.dataset.path
 	var targyText = pageTexts[searchPath]
 	document.getElementById("div_searchQTargy").innerHTML = targyText
 	document.getElementById("div_MidQ").dataset.origin = "searchQs"
@@ -1843,7 +1884,7 @@ function F_searchQText(detElem){
 	prevScrollTop = document.body.scrollTop
 	document.getElementById("div_SearchW").style.display = "none"
 	document.getElementById("div_MidQ").style.display = "block"
-	F_detailsToggle(document.getElementById("div_MidQText"))
+	F_detailsToggle(document.getElementById("div_MidQText"))*/
 }
 function F_searchWord() {
 	function F_searchResult() {
