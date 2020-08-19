@@ -354,13 +354,13 @@ function F_detailsToggle(detElem){
 		/*F_getTime()
 		oldTime = myTime*/
 			
-			var summElem = detElem.firstChild
-			var bgColor = summElem.style.backgroundColor
-			summElem.style.backgroundColor = "yellow"
-			var int_Click = window.setInterval(function(){
-				summElem.style.backgroundColor  = bgColor
-				clearInterval(int_Click) 
-			}, 50);
+		/*var summElem = detElem.firstChild
+		var bgColor = summElem.style.backgroundColor
+		summElem.style.backgroundColor = "yellow"
+		var int_Click = window.setInterval(function(){
+			summElem.style.backgroundColor  = bgColor
+			clearInterval(int_Click) 
+		}, 5000)*/
 		
 		F_loadDetails(detElem)
 		var allDetails = detElem.getElementsByTagName("details")
