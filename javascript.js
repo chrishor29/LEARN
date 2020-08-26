@@ -3,6 +3,7 @@
 /* PROJECT - PROGRESS
  ✖ nehéz vs könnyű kérdés (+ osztályzás 1/2/3)
  ✖ bőrgyógy: kijelölök egy új tételt (impQ van benne), majd rámegyek kövi kérdésre, hogy kidobja, akkor még az impQ-t nem tölti be (kell egy refresht-t tolnom valamiért)
+ ✖ jshiba_magtud: töltsem be az LS-t, majd pszichot indítsam el: a hiba az, hogy 2db kérdéshez írtam hibát~notificationt (pirosba kerülnek) --> azonban ha a pirosra rákattintok (ami alapból mutatja, hogy 2q-nál van hiba), akkor nem mutat egy q-t sem ki
  
  ✖ pulmo: ált.2t: 'értékelés - összefoglaló' --> {208} -> nem dobja ki, ha meg akarom oldani (osztályozás)
  ✖ mikrobi: részl.bakt: Bacillus anthracis -> 2x megnyitom és 2.-nál már rosszul írja ki
@@ -1837,33 +1838,37 @@ function F_searchQText(detElem){
 	F_getTime()
 	var diffTime = myTime - lastClickTime
 	//console.log(myTime+" vs "+lastClickTime)
-	if ( diffTime > 1 ) {
-		detElem.style.backgroundColor  = "yellow"
-		var int_Click = window.setInterval(function(){
-			searchPath = detElem.dataset.path
-			var targyText = pageTexts[searchPath]
-			document.getElementById("div_searchQTargy").innerHTML = targyText
-			document.getElementById("div_MidQ").dataset.origin = "searchQs"
-			F_checkEXPs()
-			
-			var qTxt = objQnameQtxt[detElem.innerHTML]
-			qTxt = qTxt.slice(qTxt.indexOf("<summary"),qTxt.lastIndexOf("</details"))
-			var qTitle = qTxt.slice(qTxt.indexOf(">")+1,qTxt.indexOf("</summary"))
-			document.getElementById("btn_MidQ").innerHTML = qTitle
-			qTxt = qTxt.slice(qTxt.indexOf("</summary"))
-			qTxt = qTxt.slice(qTxt.indexOf(">")+1)
-			document.getElementById("div_MidQText").innerHTML = qTxt
-
-			searchMidQ = true
-			prevScrollTop = document.body.scrollTop
-			document.getElementById("div_SearchW").style.display = "none"
-			document.getElementById("div_MidQ").style.display = "block"
-			F_detailsToggle(document.getElementById("div_MidQText"))
-			
-			detElem.style.backgroundColor  = ""
-			clearInterval(int_Click) 
-		}, 100);
+	if ( diffTime < 1 ) { 
+		alert(sajt)
+		return
 	}
+
+	
+	detElem.style.backgroundColor  = "yellow"
+	var int_Click = window.setInterval(function(){
+		searchPath = detElem.dataset.path
+		var targyText = pageTexts[searchPath]
+		document.getElementById("div_searchQTargy").innerHTML = targyText
+		document.getElementById("div_MidQ").dataset.origin = "searchQs"
+		F_checkEXPs()
+		
+		var qTxt = objQnameQtxt[detElem.innerHTML]
+		qTxt = qTxt.slice(qTxt.indexOf("<summary"),qTxt.lastIndexOf("</details"))
+		var qTitle = qTxt.slice(qTxt.indexOf(">")+1,qTxt.indexOf("</summary"))
+		document.getElementById("btn_MidQ").innerHTML = qTitle
+		qTxt = qTxt.slice(qTxt.indexOf("</summary"))
+		qTxt = qTxt.slice(qTxt.indexOf(">")+1)
+		document.getElementById("div_MidQText").innerHTML = qTxt
+
+		searchMidQ = true
+		prevScrollTop = document.body.scrollTop
+		document.getElementById("div_SearchW").style.display = "none"
+		document.getElementById("div_MidQ").style.display = "block"
+		F_detailsToggle(document.getElementById("div_MidQText"))
+		
+		detElem.style.backgroundColor  = ""
+		clearInterval(int_Click) 
+	}, 100);
 	
 	
 	/*searchPath = detElem.dataset.path
@@ -1911,7 +1916,12 @@ function F_searchWord() {
 			if ( Number(x) == Number(paths.length) ) { 
 				clearInterval(int_Click)
 				spanStatus.parentElement.style.display = "none" 
+				spanStatus.style.width = 0
 				document.getElementById("div_SearchW").style.backgroundColor = "white"
+				document.getElementById("btn_SearchW").style.color = ""
+				document.getElementById("btn_SearchW").style.backgroundColor = ""
+				F_getTime()
+				lastClickTime = myTime
 			}
 			var targyText = pageTexts[path]
 			if ( targyText == null ) { 
@@ -1980,12 +1990,10 @@ function F_searchWord() {
 			} while ( targyText.toLowerCase().indexOf(searchText) != -1 )
 			document.getElementById("div_SearchWText").innerHTML = fullText
 			
-			console.log(x+" "+progress+" "+path)
+			//console.log(x+" "+progress+" "+path)
 			progress = false
 		}, 5);
 		if ( hianyzik != "" ) { console.log("HIÁNYZIK:"+hianyzik) }
-		document.getElementById("btn_SearchW").style.color = ""
-		document.getElementById("btn_SearchW").style.backgroundColor = ""
 	}
 	
 	function F_DivSearchWord() {
@@ -2026,13 +2034,14 @@ function F_searchWord() {
 			F_getTime()
 			var diffTime = myTime - lastClickTime
 			//console.log(myTime+" vs "+lastClickTime)
-			if ( diffTime > 1 ) {
-				document.getElementById("div_SearchW").style.backgroundColor = "grey"
-				var int_Click = window.setInterval(function(){
-					F_searchResult()
-					clearInterval(int_Click) 
-				}, 100);
-			}
+			if ( diffTime < 1 ) { return }
+			document.getElementById("div_SearchW").style.backgroundColor = "grey"
+			var int_Click = window.setInterval(function(){
+				document.getElementById("btn_SearchW").style.color = "white"
+				document.getElementById("btn_SearchW").style.backgroundColor = "black"
+				F_searchResult()
+				clearInterval(int_Click) 
+			}, 100)
 		} })
 		//input.onchange = function() { F_searchResult() }
 		//input.value = "inzulin";
@@ -2049,15 +2058,14 @@ function F_searchWord() {
 			F_getTime()
 			var diffTime = myTime - lastClickTime
 			//console.log(myTime+" vs "+lastClickTime)
-			if ( diffTime > 1 ) {
-				this.style.backgroundColor  = "black"
-				this.style.color  = "white"
-				document.getElementById("div_SearchW").style.backgroundColor = "grey"
-				var int_Click = window.setInterval(function(){
-					F_searchResult()
-					clearInterval(int_Click) 
-				}, 100);
-			}
+			if ( diffTime < 1 ) { return }
+			this.style.backgroundColor  = "black"
+			this.style.color  = "white"
+			document.getElementById("div_SearchW").style.backgroundColor = "grey"
+			var int_Click = window.setInterval(function(){
+				F_searchResult()
+				clearInterval(int_Click) 
+			}, 100)
 		}
 		
 		var divText = document.createElement("div")
@@ -2070,7 +2078,7 @@ function F_searchWord() {
 		divText.style.bottom = "1%"
 		divText.style.left = "105%"
 
-		var button = document.createElement("input")
+		/*var button = document.createElement("input") // refresh
 		button.type = "button"
 		div.appendChild(button)
 		button.style.position = "absolute"
@@ -2081,13 +2089,13 @@ function F_searchWord() {
 		button.style.cursor = "pointer"
 		button.style.border = "3px solid black"
 		//button.style.width = "50px"
-		button.onclick = function(){ // refresh 
+		button.onclick = function(){
 			for ( var x=0; x<pageLinks.length; x++ ) { 
 				pageLinks[x].style.color = "black"
 				pageLinks[x].dataset.loaded = false
 			}
 			F_loadAllPageTexts()
-		}
+		}*/
 		
 		var button = document.createElement("input")
 		button.type = "button"
@@ -2108,7 +2116,7 @@ function F_searchWord() {
 			document.getElementById("div_SearchW").style.display = "none"
 		}
 		
-		var divText = document.createElement("div")
+		var divText = document.createElement("div") // ebbe írja a találati eredményt
 		div.appendChild(divText)
 		divText.id = "div_SearchWText"
 		divText.style.marginLeft = "3px"
@@ -2116,7 +2124,7 @@ function F_searchWord() {
 		divText.style.paddingTop = "10px"
 		divText.style.fontSize = "x-large"
 		
-		var divText = document.createElement("div")
+		var divText = document.createElement("div") // mennyi idő alatt töltötte be, melyik oldalt tölti be stb. (ez lehet fölös)
 		document.getElementById("table_weboldalak").appendChild(divText)
 		divText.id = "div_Refreshng"
 		divText.style.position = "absolute"
@@ -2596,38 +2604,20 @@ function F_CreateQDiv() {
 			F_getTime()
 			var diffTime = myTime - lastClickTime
 			console.log(myTime+" vs "+lastClickTime)
-			if ( diffTime > 1 ) {
-				if ( this.style.backgroundColor == "aqua" ) { 
-					document.getElementById("divLoading").style.visibility = 'visible'
-				} else {
-					this.style.backgroundColor  = "black"
-					this.style.color  = "white"
-				}
-				var int_Click = window.setInterval(function(){
-					console.log("toggleAll")
-					F_toggleAll()
-					clearInterval(int_Click) 
-					document.getElementById("divLoading").style.visibility = 'hidden'
-				}, 100);
-			}
-		}
-		/*button.onmousedown = function(){ 
-			this.style.backgroundColor  = "black"
-			this.style.color  = "white"
-		}
-		button.onclick = function(){ 
-			F_getTime()
-			var diffTime = myTime - lastClickTime
-			console.log(myTime+" vs "+lastClickTime)
-			if ( diffTime > 1 ) {
+			if ( diffTime < 1 ) { return }
+			if ( this.style.backgroundColor == "aqua" ) { 
+				document.getElementById("divLoading").style.visibility = 'visible'
+			} else {
 				this.style.backgroundColor  = "black"
 				this.style.color  = "white"
-				var int_Click = window.setInterval(function(){
-					F_toggleAll()
-					clearInterval(int_Click) 
-				}, 100);
 			}
-		}*/
+			var int_Click = window.setInterval(function(){
+				console.log("toggleAll")
+				F_toggleAll()
+				clearInterval(int_Click) 
+				document.getElementById("divLoading").style.visibility = 'hidden'
+			}, 100)
+		}
 	}
 	F_ButtonToggleAll()
 	function F_ButtonSearchWord() {
@@ -2644,28 +2634,21 @@ function F_CreateQDiv() {
 		button.style.cursor = "pointer"
 
 		button.onclick = function(){ 
-			F_getTime()
-			var diffTime = myTime - lastClickTime
-			//console.log(myTime+" vs "+lastClickTime)
-			if ( diffTime > 1 ) {
-				if ( document.getElementById("div_SearchW").style.display == "none" ) {
-					this.style.backgroundColor  = "black"
-					this.style.color  = "white"
-				}
-				var int_Click = window.setInterval(function(){
-					document.getElementById("table_weboldalak").style.display = 'none';
-					document.getElementById("div_pageQTargy").style.display = 'none';
-					document.getElementById("div_SearchW").style.display = "block"
-					button.style.color = ""
-					button.style.backgroundColor = ""
-					F_getTime() // időt elvileg innen számolja: F_loadAllPageTexts-ben használja fel az iteni myTime-ot startTime-nak
-					loadAllPage = true
-					F_loadAllPageTexts()
-					clearInterval(int_Click) 
-				}, 100);
+			if ( document.getElementById("div_SearchW").style.display == "none" ) {
+				this.style.backgroundColor  = "black"
+				this.style.color  = "white"
 			}
-			
-			//if ( document.getElementById("div_SearchW") != "[object HTMLDivElement]" ) { F_DivSearchWord() }
+			var int_Click = window.setInterval(function(){
+				document.getElementById("table_weboldalak").style.display = 'none';
+				document.getElementById("div_pageQTargy").style.display = 'none';
+				document.getElementById("div_SearchW").style.display = "block"
+				button.style.color = ""
+				button.style.backgroundColor = ""
+				F_getTime() // időt elvileg innen számolja: F_loadAllPageTexts-ben használja fel az iteni myTime-ot startTime-nak
+				loadAllPage = true
+				F_loadAllPageTexts()
+				clearInterval(int_Click) 
+			}, 100)
 		}
 	}
 	F_ButtonSearchWord()
@@ -3217,19 +3200,18 @@ function F_CreateQDiv() {
 			F_getTime()
 			var diffTime = myTime - lastClickTime
 			//console.log(myTime+" vs "+lastClickTime)
-			if ( diffTime > 1 ) {
-				if ( this.style.backgroundColor == "aqua" ) { 
-					document.getElementById("divLoading").style.visibility = 'visible'
-				} else {
-					this.style.backgroundColor  = "black"
-					this.style.color  = "white"
-				}
-				var int_Click = window.setInterval(function(){
-					F_nextQ()
-					clearInterval(int_Click) 
-					document.getElementById("divLoading").style.visibility = 'hidden'
-				}, 100);
+			if ( diffTime < 1 ) { return }
+			if ( this.style.backgroundColor == "aqua" ) { 
+				document.getElementById("divLoading").style.visibility = 'visible'
+			} else {
+				this.style.backgroundColor  = "black"
+				this.style.color  = "white"
 			}
+			var int_Click = window.setInterval(function(){
+				F_nextQ()
+				clearInterval(int_Click) 
+				document.getElementById("divLoading").style.visibility = 'hidden'
+			}, 100)
 		}
 		button.value = " ► "
 		
@@ -5179,6 +5161,9 @@ function F_loadAllPageTexts() {
 			var diffTime = (myTime-startTime).toFixed(2)
 			//var timeX = Math.round((myTime-oldTime)*100)/100
 			document.getElementById("div_Refreshng").innerHTML = diffTime+"s"
+			document.getElementById("div_RefreshStatus").style.display = "none"
+		} else {
+			document.getElementById("div_RefreshStatus").style.display = "block"
 		}
 	}
 }
