@@ -14,9 +14,6 @@ xcopy /y %source%\lz-string.js %destination%\ /d
 xcopy /y %source%\style.css %destination%\ /d
 xcopy /y %source%\favicon.png %destination%\ /d
 
-robocopy %source%\Pszicho\images %destination%\Pszicho\images /mir /max:50000000
-xcopy /y %source%\Pszicho\pszicho.html %destination%\Pszicho\ /d
-xcopy /y %source%\Pszicho\favicon.bmp %destination%\Pszicho\ /d
 
 REM 5.év
 
@@ -93,6 +90,9 @@ xcopy /y %source%\done\Patosz\favicon.bmp %destination%\done\Patosz\ /d
 robocopy %source%\done\Proped\images %destination%\done\Proped\images /mir /max:50000000
 robocopy %source%\done\Proped\videos %destination%\done\Proped\videos /mir /max:50000000
 xcopy /y %source%\done\Proped\proped.html %destination%\done\Proped\ /d
+robocopy %source%\done\Pszicho\images %destination%\done\Pszicho\images /mir /max:50000000
+xcopy /y %source%\done\Pszicho\pszicho.html %destination%\done\Pszicho\ /d
+xcopy /y %source%\done\Pszicho\favicon.bmp %destination%\done\Pszicho\ /d
 
 
 REM 1-2.év

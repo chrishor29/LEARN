@@ -1159,7 +1159,7 @@ function F_clearLS(detElem) {
 	setTimeout(function () { detElem.style.backgroundColor = bgColor  }, 500);
 	
 	localStorage.setItem("lsCount",0)
-	localStorage.setItem("toggleLoad", "false")
+	//localStorage.setItem("toggleLoad", "false")
 }
 function F_InputLoad(detElem) {
 	var bgColor = detElem.style.backgroundColor
@@ -5167,7 +5167,6 @@ function F_loadAllPageTexts() {
 		}
 	}
 }
-F_loadPageText("expqs.html",false)
 
 function clearIDB(path,id){
 	var request = indexedDB.deleteDatabase(path);
@@ -5179,9 +5178,17 @@ function clearIDB(path,id){
 	}
 }
 function clearFullIDB(){ for ( var i=0; i<pageLinks.length; i++ ) { clearIDB(pageLinks[i].dataset.src,i) } }
+if ( localStorage.getItem("lsIDB") == null ) { // azért kell, mert..
+	// a time-ot idb-be régen nem mentette el, így amikor leakarom hívni hibát ír ki. ezért akik abban az 1hónapban felmentek weboldalra, azoknál hiba lenne, így kell egy 'frissítés' (későbbiekben is, ha hozzáakarok majd adni egy új változót idb-be a path-hez lehet ez ilyen fog kelleni)
+	localStorage.setItem("lsIDB","done") 
+	clearFullIDB()
+}
+F_loadPageText("expqs.html",false)
+
 
 function saveIDB(path,text,id){
-	var objectData = [ { pageHTML: text } ]
+	F_getTime()
+	var objectData = [ { pageHTML: text }, { pageTIME: myTime } ]
 	var request = indexedDB.deleteDatabase(path);
 	request.onsuccess = function(event) { console.log("database DELETE – "+path) }
 	pageLinks[id].style.color = "red"
@@ -5191,6 +5198,7 @@ function saveIDB(path,text,id){
 		var db = event.target.result;
 		var store = db.createObjectStore("webpage", { keyPath: "id", autoIncrement: true });
 		store.put(objectData)
+		//store.put("asd")
 		//alert("update")
 	}
 	request.onerror = function(event) { console.log("database ERROR: " + event.target.errorCode) }
@@ -5217,13 +5225,20 @@ function loadIDB(path){
 		store.get(1).onsuccess = function(event) { 
 			//console.log(this.result)
 			var text = this.result[0]["pageHTML"]
+			//console.log(path+" : "+this.result[1]["pageTIME"])
 			//console.log(path+" : "+text)
 			pageTexts[path] = text
-			
+			F_getTime()
+			var time = myTime - this.result[1]["pageTIME"]
 			for ( var x=0; x<pageLinks.length; x++ ) { 
 				if ( pageLinks[x].dataset.src == path ) {
-					pageLinks[x].style.color = "blue"
-					pageLinks[x].dataset.loaded = true
+					//if ( time < 10 ) { // 1 hét
+					if ( time < 604800 ) { // 1 hét
+						pageLinks[x].style.color = "blue"
+						pageLinks[x].dataset.loaded = true
+					} else {
+						pageLinks[x].style.color = "red"
+					}
 					break
 				}
 			}
