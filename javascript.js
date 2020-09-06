@@ -2,7 +2,8 @@
 
 /* PROJECT - PROGRESS
  ✖ nehéz vs könnyű kérdés (+ osztályzás 1/2/3)
- ✖ bőrgyógy: kijelölök egy új tételt (impQ van benne), majd rámegyek kövi kérdésre, hogy kidobja, akkor még az impQ-t nem tölti be (kell egy refresht-t tolnom valamiért)
+ ✖ details mindig lefele scroll down!
+ ✖ osztályzás - size -- android!!
  ✖ jshiba_magtud: töltsem be az LS-t, majd pszichot indítsam el: a hiba az, hogy 2db kérdéshez írtam hibát~notificationt (pirosba kerülnek) --> azonban ha a pirosra rákattintok (ami alapból mutatja, hogy 2q-nál van hiba), akkor nem mutat egy q-t sem ki
  
  ✖ pulmo: ált.2t: 'értékelés - összefoglaló' --> {208} -> nem dobja ki, ha meg akarom oldani (osztályozás)
@@ -12,7 +13,6 @@
  
  ✖ newQ kiválasztást egyszerűsítsem: opciók: random(újQ legyen-e választható) választ, újQ(+important felette legyen-e priorba választható), skip, oldQ, stb.. ---> szebbre írjam át, mert csúnya 
  
- ✖ ANDROID: töltsek le egy emulatort, úgy hátha gyorsabban tudom tesztelni, és nem annyira idegölő
  ✖ android: felnagyítva legyen az egész alapból már (ne keljen folyton ráközelítenem)
 	+ ezt rohadt nehéz megcsinálni: (1) zoom nem lehet (firefox) (2) helette van a transform-scale, de akkor kilóg a képernyőből, meg összevissza baszakszik. (3) fontok méretét növelhetem még, de akkor is elcsesződik (4) először írjak egy üres html-t, amibe csak text van és abból építsem fel (teszek bele image-t később stb.)
 	+ "divQloc" nevű div-en megcsináltam már elvileg; 3x nagyítás
@@ -28,6 +28,7 @@
  ✖ tétel kérdésben átírok valamit, akkor a tételt deselectálja (gondolom, mert kérdés, és a hossza megváltozik, ami note-ban van)
  ✖ nephro --> fizikalis vizsgálat impQ kérdést egybe dobja ki, ha az a nextQ (pedig div-ben van, nem span)
 
+ ✖ expQs.html nem kell már
  ✖ HTML imgLoc & LearnLoc nem kell már a html HEAD-ekben
  ✖ lz-string nem kell már a html HEAD-ekben + amúgy sem
 
@@ -36,6 +37,7 @@
  ✖ (img-eket csekk amik fölösek (batch-el txt-be lementem, majd végignézi őket))
  ✖ lehet összes impQ-t elején betölthetném, ha style display none-ban van (talán úgy gyorsabb lenne az egész: meglepően gyors úgy)
  SEARCH:
+	✖ legyen egy CANCEL button közben, ha véletlen olyanra kerestem, ami túl gyakran van, pl. "az" szó, vagy akármi
 	✖ (ha az image nevében (/abbr) van a szó akkor is kidobja)
 	✔ (kis vs nagy betűk)
  ✖ skipQ-k / noteQ-k / importantQ-k(gyors repeat!) közt nem mutatja az impQ-kat
@@ -117,6 +119,7 @@
 */
 
 /* PROJECT - DONE
+ ✔ osztályzás - ha sok kérdés van pl. kommunikáció 2.tétel összes alkérdést kinyitom -> összemegy az osztályzás (nem pedig görgő jelenik meg)
  ✔ tárgyakat el kéne mentse localstorage-be tömörítve, az gyorsabb -- indexedDB lett a megoldás!!
  ✔ search: ha hiányzik az egyik oldal html-je, akkor azt skippelje a betöltésnél, ne álljon meg
  ✔ search: egfr: pulmo: A nem kissejtes tüdődaganatok célzott kezelése és immunterápiája: legörgetem és tádám!
@@ -767,11 +770,12 @@ function F_loadImgVideo(detElem){
 		if ( allVideo[i].offsetParent == null && testLoad == false ) { continue }
 		if ( allVideo[i].dataset.src == undefined ) { continue } 
 		var source = document.createElement('source')
-		if ( midQisExp == true ) {
+		source.setAttribute('src', allVideo[i].dataset.src)
+		/*if ( midQisExp == true ) {
 			source.setAttribute('src', allVideo[i].dataset.src)
 		} else {
 			source.setAttribute('src', path.slice(0,path.lastIndexOf("/")+1) + allVideo[i].dataset.src)
-		}
+		}*/
 		source.onerror = function(){
 			var textVar = this.src.slice(this.src.lastIndexOf("/")+1)
 			if ( missImgs.indexOf(textVar) == -1 ) { missImgs = missImgs+"\n"+textVar }
@@ -867,11 +871,13 @@ function F_loadImgVideo(detElem){
 			var isExp = false
 			if ( impElem != false ) { if ( impElem.className.indexOf("{") != -1 ) { isExp = true } }
 
-			if ( isExp == true || midQisExp == true ) {
+			centVideo.setAttribute('src', this.dataset.src)
+			
+			/* már összes videót a fő mappába localizálom */ /*if ( isExp == true || midQisExp == true ) {
 				centVideo.setAttribute('src', this.dataset.src)
 			} else {
 				centVideo.setAttribute('src', path.slice(0,path.lastIndexOf("/")+1) + this.dataset.src)
-			}
+			}*/
 			console.log(isExp+"-"+midQisExp+" "+centVideo.getAttribute("src"))
 			document.getElementById("centVideoDiv").style.visibility = 'visible';
 			vidStatus = "show"
@@ -1293,28 +1299,6 @@ function F_saveLS() {
 }
 //JSON.stringify(localStorage)
 
-function F_skipTime() { // következő vizsga hány óra múlva lesz
-	var input = document.createElement("input")
-	document.getElementById("table_weboldalak").appendChild(input)
-	input.type = "number"
-	input.style.width = "50px"
-	input.style.position = "absolute"
-	input.style.right = "5px"
-	input.style.top = "200px"
-	var date = new Date();
-	var remain = Math.floor(date.getTime()/3600000)
-	remain = localStorage.getItem("vizsgaSkip") - remain
-	if ( remain < 0 ) { remain = 0 }
-	input.value = remain
-	
-	input.oninput = function(){ 
-		var date = new Date();
-		var time = Math.floor(date.getTime()/3600000)
-		time = time + Number(this.value)
-		localStorage.setItem("vizsgaSkip",time)
-	}
-}
-F_skipTime()
 
 function F_toggleLoad(btn) {
 	console.log("F_toggleLoad: "+localStorage.getItem("toggleLoad"))
@@ -1839,7 +1823,7 @@ function F_searchQText(detElem){
 	var diffTime = myTime - lastClickTime
 	//console.log(myTime+" vs "+lastClickTime)
 	if ( diffTime < 1 ) { 
-		alert(sajt)
+		alert("sajt")
 		return
 	}
 
@@ -1847,12 +1831,13 @@ function F_searchQText(detElem){
 	detElem.style.backgroundColor  = "yellow"
 	var int_Click = window.setInterval(function(){
 		searchPath = detElem.dataset.path
+		//console.log(searchPath)
 		var targyText = pageTexts[searchPath]
 		document.getElementById("div_searchQTargy").innerHTML = targyText
 		document.getElementById("div_MidQ").dataset.origin = "searchQs"
 		F_checkEXPs()
 		
-		var qTxt = objQnameQtxt[detElem.innerHTML]
+		var qTxt = objQnameQtxt[detElem.dataset.id]
 		qTxt = qTxt.slice(qTxt.indexOf("<summary"),qTxt.lastIndexOf("</details"))
 		var qTitle = qTxt.slice(qTxt.indexOf(">")+1,qTxt.indexOf("</summary"))
 		document.getElementById("btn_MidQ").innerHTML = qTitle
@@ -1869,27 +1854,6 @@ function F_searchQText(detElem){
 		detElem.style.backgroundColor  = ""
 		clearInterval(int_Click) 
 	}, 100);
-	
-	
-	/*searchPath = detElem.dataset.path
-	var targyText = pageTexts[searchPath]
-	document.getElementById("div_searchQTargy").innerHTML = targyText
-	document.getElementById("div_MidQ").dataset.origin = "searchQs"
-	F_checkEXPs()
-	
-	var qTxt = objQnameQtxt[detElem.innerHTML]
-	qTxt = qTxt.slice(qTxt.indexOf("<summary"),qTxt.lastIndexOf("</details"))
-	var qTitle = qTxt.slice(qTxt.indexOf(">")+1,qTxt.indexOf("</summary"))
-	document.getElementById("btn_MidQ").innerHTML = qTitle
-	qTxt = qTxt.slice(qTxt.indexOf("</summary"))
-	qTxt = qTxt.slice(qTxt.indexOf(">")+1)
-	document.getElementById("div_MidQText").innerHTML = qTxt
-
-	searchMidQ = true
-	prevScrollTop = document.body.scrollTop
-	document.getElementById("div_SearchW").style.display = "none"
-	document.getElementById("div_MidQ").style.display = "block"
-	F_detailsToggle(document.getElementById("div_MidQText"))*/
 }
 function F_searchWord() {
 	function F_searchResult() {
@@ -1905,6 +1869,7 @@ function F_searchWord() {
 		spanStatus.parentElement.style.display = "block" 
 		
 		var x = 0
+		var summaryID = 0
 		var progress = false
 		var int_Click = window.setInterval(function(){
 			if (progress == true) { return } 
@@ -1983,9 +1948,10 @@ function F_searchWord() {
 				var summaryText = resultText.slice(resultText.indexOf("summary")+2)
 				summaryText = summaryText.slice(summaryText.indexOf(">")+1)
 				summaryText = summaryText.slice(0,summaryText.indexOf("</summary"))
-				objQnameQtxt[summaryText] = resultText
+				summaryID = summaryID +1
+				objQnameQtxt[summaryID] = resultText
 				
-				fullText = fullText+ "<li><span data-path='"+path+"' style='color:green; cursor:pointer' onclick='F_searchQText(this)'>"+summaryText+"</span></li>"
+				fullText = fullText+ "<li><span data-id='"+summaryID+"' data-path='"+path+"' style='color:green; cursor:pointer' onclick='F_searchQText(this)'>"+summaryText+"</span></li>"
 				targyText = targyText.slice(targyText.indexOf(resultText)+resultText.length)
 			} while ( targyText.toLowerCase().indexOf(searchText) != -1 )
 			document.getElementById("div_SearchWText").innerHTML = fullText
@@ -2592,12 +2558,13 @@ function F_CreateQDiv() {
 		var button = document.createElement("input")
 		button.id = "btn_toggleAll"
 		button.type = "button"
-		document.body.appendChild(button)
+		document.getElementById("table_weboldalak").parentElement.appendChild(button)
+		document.getElementById("table_weboldalak").parentElement.style.position = "relative"
 		button.style.width = "90px"
 		button.style.height = "90px"
 		button.style.position = "absolute"
-		button.style.right = "2px"
-		button.style.top = "2px"
+		button.style.right = "0px"
+		button.style.top = "0px"
 		button.style.cursor = "pointer"
 
 		button.onclick = function(){ 
@@ -2623,10 +2590,11 @@ function F_CreateQDiv() {
 	function F_ButtonSearchWord() {
 		var button = document.createElement("input")
 		button.type = "button"
-		document.getElementById("table_weboldalak").appendChild(button)
+		document.getElementById("table_weboldalak").parentElement.appendChild(button)
+		document.getElementById("table_weboldalak").parentElement.style.position = "relative"
 		button.style.position = "absolute"
-		button.style.right = "150px"
-		button.style.top = "2px"
+		button.style.right = "0px"
+		button.style.bottom = "0px" // parent position-jént relative-ra kellett állítani, illetve ezt absolute-ra, hogy működjön!!
 		button.style.width = "90px"
 		button.style.height = "90px"
 		button.value = "🔍"
@@ -2652,6 +2620,30 @@ function F_CreateQDiv() {
 		}
 	}
 	F_ButtonSearchWord()
+	function F_skipTime() { // következő vizsga hány óra múlva lesz
+		var input = document.createElement("input")
+		document.getElementById("table_weboldalak").parentElement.appendChild(input)
+		document.getElementById("table_weboldalak").parentElement.style.position = "relative"
+		input.type = "number"
+		input.style.width = "50px"
+		input.style.position = "absolute"
+		input.style.right = "5px"
+		input.style.bottom = "47%"
+		
+		var date = new Date();
+		var remain = Math.floor(date.getTime()/3600000)
+		remain = localStorage.getItem("vizsgaSkip") - remain
+		if ( remain < 0 ) { remain = 0 }
+		input.value = remain
+		
+		input.oninput = function(){ 
+			var date = new Date();
+			var time = Math.floor(date.getTime()/3600000)
+			time = time + Number(this.value)
+			localStorage.setItem("vizsgaSkip",time)
+		}
+	}
+	F_skipTime()
 
 	function F_DivMainFrame() {
 		var div = document.createElement("div")
@@ -3236,7 +3228,6 @@ function F_CreateQDiv() {
 		div.style.left = "275px"
 		div.style.top = "-10px"
 		div.style.right = "90px"
-		//div.style.overflow = "auto"
 	}
 	F_DivMark()
 
@@ -3246,6 +3237,9 @@ function F_CreateQDiv() {
 		document.getElementById("Div_QsMark").appendChild(table)
 		table.style.borderSpacing = "0px 0px"
 		table.style.borderCollapse = "separate"
+		table.style.display = "block"
+		table.style.maxWidth = "100%"
+		table.style.overflow = "auto"
 
 		for ( var i=0; i<3; i++ ) {
 			var tr = document.createElement("TR")
@@ -4729,6 +4723,102 @@ function F_nextQ(){
 
 				if ( isNewQ == false ) { continue }
 
+				function F_CreateSelect(i) {
+					for ( var x=0;  x<3;  x++ ) {
+						var td = document.createElement("TD")
+						td.id = "td."+x+"."+i
+						document.getElementById("Tr_QsMark."+x).appendChild(td)
+						td.style.minWidth = "45px"
+						td.style.height = "31px"
+						if ( x == 0 ) {
+							td.innerHTML = i
+							td.style.fontWeight = "bold"
+							if ( isAndroid == true ) { 
+								td.onclick = function(){
+									var div = document.getElementById("div_qProp")
+									var span = document.getElementById("span_qProp")
+									
+									var num = this.innerHTML
+									var LSid = activeQs[num]
+									var jegy = localStorage.getItem(LSid+'_jegy')
+									var repeat = localStorage.getItem(LSid+'_repeat')
+									
+									if ( div.style.display == "none" ) {
+										F_hideQArea()
+										div.style.display = "block"
+										span.innerHTML = num+"<br>"+LSid+"<br> Jegy:"+jegy+"<br>Repeat:"+repeat+"<br>"
+									} else {
+										F_hideQArea()
+										document.getElementById("divQloc").style.display = "block"
+									}
+								}
+							}
+						} else if ( x == 1 ) {
+							var div = document.createElement("DIV")
+							td.appendChild(div)
+							div.id = "div_jegy."+i
+							div.innerHTML = "&nbsp"
+							td.onclick = function(){ 
+								var dropdown = document.getElementById("div_selectJegy")
+								this.appendChild(dropdown)
+								var num = this.id
+								num = num.slice(num.lastIndexOf(".")+1)
+								if ( dropdown.style.display == "block" && jegyNum == num ) {
+									dropdown.style.display = "none"
+								} else if ( this.style.backgroundColor != "black" ) {
+									jegyStatus = true
+									jegyNum = num
+									dropdown.style.display = "block"
+									
+									// repeatest beállítja vastagbetusre
+									var LSid = activeQs[jegyNum]
+									var child = dropdown.childNodes
+									for (var y=0; y < child.length; y++) {
+										if ( child[y].innerHTML == localStorage.getItem(LSid+"_repeat") ) {
+											child[y].style.fontWeight = "bolder"
+										} else {
+											child[y].style.fontWeight = "normal"
+										}
+									}
+								}
+							}
+						} else if ( x == 2 ) {
+							td.style.fontSize = "small"
+							td.addEventListener("click",function(){
+								if ( this.style.backgroundColor == "snow" ) { 
+									this.style.backgroundColor = "lawngreen" 
+								} else if ( this.style.backgroundColor == "lawngreen" ) { 
+									this.style.backgroundColor = "gold" 
+								} else if ( this.style.backgroundColor == "gold" ) { 
+									this.style.backgroundColor = "blue" 
+								} else if ( this.style.backgroundColor == "blue" ) { 
+									this.style.backgroundColor = "black" 
+								} else if ( this.style.backgroundColor == "black" ) { 
+									this.style.backgroundColor = "snow" 
+								}
+							});
+							td.addEventListener("contextmenu",function(ev){
+								ev.preventDefault();
+								if ( this.style.backgroundColor == "snow" ) { 
+									this.style.backgroundColor = "black" 
+								} else if ( this.style.backgroundColor == "black" ) { 
+									this.style.backgroundColor = "blue" 
+								} else if ( this.style.backgroundColor == "blue" ) { 
+									this.style.backgroundColor = "gold" 
+								} else if ( this.style.backgroundColor == "gold" ) { 
+									this.style.backgroundColor = "lawngreen" 
+								} else if ( this.style.backgroundColor == "lawngreen" ) { 
+									this.style.backgroundColor = "snow" 
+								}
+								return false;
+							}, false);
+						}
+						/*var td = document.createElement("TD")
+						td.style.border = "0px solid black"
+						td.style.width = "50px"
+						document.getElementById("Tr_QsMark."+x).appendChild(td)*/
+					}
+				}
 				if ( !document.getElementById('td.1.'+num) ) { F_CreateSelect(num) }
 				if ( isAndroid != true ) { 
 					var jegy = localStorage.getItem(LSid+'_jegy')
@@ -4986,102 +5076,6 @@ function F_divSelectJegy() {
 	}
 }
 F_divSelectJegy()
-function F_CreateSelect(i) {
-	for ( var x=0;  x<3;  x++ ) {
-		var td = document.createElement("TD")
-		td.id = "td."+x+"."+i
-		document.getElementById("Tr_QsMark."+x).appendChild(td)
-		td.style.width = "45px"
-		td.style.height = "31px"
-		if ( x == 0 ) {
-			td.innerHTML = i
-			td.style.fontWeight = "bold"
-			if ( isAndroid == true ) { 
-				td.onclick = function(){
-					var div = document.getElementById("div_qProp")
-					var span = document.getElementById("span_qProp")
-					
-					var num = this.innerHTML
-					var LSid = activeQs[num]
-					var jegy = localStorage.getItem(LSid+'_jegy')
-					var repeat = localStorage.getItem(LSid+'_repeat')
-					
-					if ( div.style.display == "none" ) {
-						F_hideQArea()
-						div.style.display = "block"
-						span.innerHTML = num+"<br>"+LSid+"<br> Jegy:"+jegy+"<br>Repeat:"+repeat+"<br>"
-					} else {
-						F_hideQArea()
-						document.getElementById("divQloc").style.display = "block"
-					}
-				}
-			}
-		} else if ( x == 1 ) {
-			var div = document.createElement("DIV")
-			td.appendChild(div)
-			div.id = "div_jegy."+i
-			div.innerHTML = "&nbsp"
-			td.onclick = function(){ 
-				var dropdown = document.getElementById("div_selectJegy")
-				this.appendChild(dropdown)
-				var num = this.id
-				num = num.slice(num.lastIndexOf(".")+1)
-				if ( dropdown.style.display == "block" && jegyNum == num ) {
-					dropdown.style.display = "none"
-				} else if ( this.style.backgroundColor != "black" ) {
-					jegyStatus = true
-					jegyNum = num
-					dropdown.style.display = "block"
-					
-					// repeatest beállítja vastagbetusre
-					var LSid = activeQs[jegyNum]
-					var child = dropdown.childNodes
-					for (var y=0; y < child.length; y++) {
-						if ( child[y].innerHTML == localStorage.getItem(LSid+"_repeat") ) {
-							child[y].style.fontWeight = "bolder"
-						} else {
-							child[y].style.fontWeight = "normal"
-						}
-					}
-				}
-			}
-		} else if ( x == 2 ) {
-			td.style.fontSize = "small"
-			td.addEventListener("click",function(){
-				if ( this.style.backgroundColor == "snow" ) { 
-					this.style.backgroundColor = "lawngreen" 
-				} else if ( this.style.backgroundColor == "lawngreen" ) { 
-					this.style.backgroundColor = "gold" 
-				} else if ( this.style.backgroundColor == "gold" ) { 
-					this.style.backgroundColor = "blue" 
-				} else if ( this.style.backgroundColor == "blue" ) { 
-					this.style.backgroundColor = "black" 
-				} else if ( this.style.backgroundColor == "black" ) { 
-					this.style.backgroundColor = "snow" 
-				}
-			});
-			td.addEventListener("contextmenu",function(ev){
-				ev.preventDefault();
-				if ( this.style.backgroundColor == "snow" ) { 
-					this.style.backgroundColor = "black" 
-				} else if ( this.style.backgroundColor == "black" ) { 
-					this.style.backgroundColor = "blue" 
-				} else if ( this.style.backgroundColor == "blue" ) { 
-					this.style.backgroundColor = "gold" 
-				} else if ( this.style.backgroundColor == "gold" ) { 
-					this.style.backgroundColor = "lawngreen" 
-				} else if ( this.style.backgroundColor == "lawngreen" ) { 
-					this.style.backgroundColor = "snow" 
-				}
-				return false;
-			}, false);
-		}
-		/*var td = document.createElement("TD")
-		td.style.border = "0px solid black"
-		td.style.width = "50px"
-		document.getElementById("Tr_QsMark."+x).appendChild(td)*/
-	}
-}
 
 var expQsLoaded = false
 var loadAllPage = false
@@ -5089,14 +5083,14 @@ function F_loadPageText(path,kiiras) {
 	document.getElementById("iframe_targyak").src = path
 	var handler = function(e) {
 		var path = document.getElementById("iframe_targyak").src
-		console.log(path)
+		//console.log(path)
 		if ( path.indexOf("learn/") != -1 ) { path = path.slice(path.indexOf("learn/")+6) } // git
 		if ( path.indexOf("master/") != -1 ) { // git-ben van egy 'master/' is, amit ki kell vágni
 			path = path.slice(0,path.indexOf("master/")) + path.slice(path.indexOf("master/")+7)
 		}
 		if ( path.indexOf("LEARN/") != -1 ) { path = path.slice(path.indexOf("LEARN/")+6) } // gép
 		// learn átnevezése után a könyvjelzőket is átkéne notepad-ban, szóval maradjon így inkább (gitnél meg nem tudom mi lenne)
-		console.log(path+" – LOADED")
+		//console.log(path+" – LOADED")
 		var targyText = e.data[1]
 		pageTexts[path] = targyText
 		
@@ -5182,7 +5176,7 @@ function saveIDB(path,text,id){
 	F_getTime()
 	var objectData = [ { pageHTML: text }, { pageTIME: myTime } ]
 	var request = indexedDB.deleteDatabase(path);
-	request.onsuccess = function(event) { console.log("database DELETE – "+path) }
+	//request.onsuccess = function(event) { console.log("database DELETE – "+path) }
 	pageLinks[id].style.color = "red"
 	
 	var request = indexedDB.open(path, 1);
@@ -5196,7 +5190,7 @@ function saveIDB(path,text,id){
 		var db = event.target.result;
 		var transaction = db.transaction("webpage","readwrite")
 		var store = transaction.objectStore("webpage");  
-		store.get(1).onsuccess = function(event) { console.log("database REFRESH – "+path /* this.result */) }
+		//store.get(1).onsuccess = function(event) { console.log("database REFRESH – "+path /* this.result */) }
 		transaction.oncomplete = function() { db.close() }
 		
 		pageLinks[id].style.color = "blue"
