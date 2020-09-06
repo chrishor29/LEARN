@@ -16,6 +16,8 @@ xcopy /y %source%\favicon.png %destination%\ /d
 
 
 REM 5.év
+xcopy /y %source%\Belgyogy\HIIRLm\hiirlm.html %destination%\Belgyogy\HIIRLm\ /d
+robocopy %source%\Belgyogy\HIIRLm\images %destination%\Belgyogy\HIIRLm\images /mir /max:50000000
 
 REM 4.év
 xcopy /y %source%\Sebeszet\sebeszet.html %destination%\Sebeszet\ /d
@@ -35,7 +37,6 @@ xcopy /y %source%\done\Pulmo\pulmo.html %destination%\done\Pulmo\ /d
 xcopy /y %source%\done\Pulmo\favicon.bmp %destination%\done\Pulmo\ /d
 xcopy /y %source%\done\Radiologia\radio.html %destination%\done\Radiologia\ /d
 robocopy %source%\done\Farmak\images %destination%\done\Farmak\images /mir /max:50000000
-robocopy %source%\done\Farmak\videos %destination%\done\Farmak\videos /mir /max:50000000
 xcopy /y %source%\done\Farmak\favicon.bmp %destination%\done\Farmak\ /d
 xcopy /y %source%\done\Farmak\farmak.html %destination%\done\Farmak\ /d
 xcopy /y %source%\done\Farmak\farmak1.html %destination%\done\Farmak\ /d
@@ -43,18 +44,15 @@ xcopy /y %source%\done\Farmak\2011_0001_524_Farmakologia.pdf %learnStuff%\done\F
 xcopy /y %source%\done\Trauma\trauma.html %destination%\done\Trauma\ /d
 xcopy /y %source%\done\Szajseb\szajseb.html %destination%\done\Szajseb\ /d
 robocopy %source%\done\FOG\images %destination%\done\FOG\images /mir /max:50000000
-robocopy %source%\done\FOG\videos %destination%\done\FOG\videos /mir /max:50000000
 xcopy /y %source%\done\FOG\FOG.html %destination%\done\FOG\ /d
 xcopy /y %source%\done\FOG\tankonyv.pdf %learnStuff%\done\FOG\ /d
 robocopy %source%\done\Kardio\images %destination%\done\Kardio\images /mir /max:50000000
-robocopy %source%\done\Kardio\videos %destination%\done\Kardio\videos /mir /max:50000000
 xcopy /y %source%\done\Kardio\favicon.bmp %destination%\done\Kardio\ /d
 xcopy /y %source%\done\Kardio\kardio.html %destination%\done\Kardio\ /d
 
 REM 3.év
 robocopy %source%\done\III %destination%\done\III /mir /max:50000000
 robocopy %source%\Belgyogy\Endokrin\images %destination%\Belgyogy\Endokrin\images /mir /max:50000000
-robocopy %source%\Belgyogy\Endokrin\videos %destination%\Belgyogy\Endokrin\videos /mir /max:50000000
 xcopy /y %source%\Belgyogy\Endokrin\favicon.bmp %destination%\Belgyogy\Endokrin\ /d
 xcopy /y %source%\Belgyogy\Endokrin\belgyogy.html %destination%\Belgyogy\Endokrin\ /d
 xcopy /y %source%\Belgyogy\Endokrin\favicon.bmp %destination%\Belgyogy\Endokrin\ /d
@@ -73,7 +71,6 @@ xcopy /y %source%\done\Kortan\referencia_ertekek.pdf %learnStuff%\done\Kortan\ /
 xcopy /y %source%\done\LabMed\labmed.html %destination%\done\LabMed\ /d
 xcopy /y %source%\done\LabMed\FullTeszt.pdf %learnStuff%\done\LabMed\ /d
 robocopy %source%\done\Mikrobi\images %destination%\done\Mikrobi\images /mir /max:50000000
-robocopy %source%\done\Mikrobi\videos %destination%\done\Mikrobi\videos /mir /max:50000000
 xcopy /y %source%\done\Mikrobi\favicon.bmp %destination%\done\Mikrobi\ /d
 xcopy /y %source%\done\Mikrobi\mikrobi.html %destination%\done\Mikrobi\ /d
 xcopy /y %source%\done\Mikrobi\mikrobi1.html %destination%\done\Mikrobi\ /d
@@ -81,14 +78,12 @@ xcopy /y %source%\done\Mikrobi\Pál, Tibor - Orvosi Mikrobiológia (2013).pdf %l
 xcopy /y %source%\done\Mikrobi\Orvosi Mikrobiológia Gyakorlatok.pdf %learnStuff%\done\Mikrobi\ /d
 xcopy /y %source%\done\Mikrobi\Mikrobiológia Ádám Éva.pdf %learnStuff%\done\Mikrobi\ /d
 robocopy %source%\done\Mutettan\images %destination%\done\Mutettan\images /mir /max:50000000
-robocopy %source%\done\Mutettan\videos %destination%\done\Mutettan\videos /mir /max:50000000
 xcopy /y %source%\done\Mutettan\mutettan.html %destination%\done\Mutettan\ /d
 xcopy /y %source%\done\Mutettan\Wéber Gy., Ferencz A., Sándor J. - Műtéttan (2015).pdf %learnStuff%\done\Mutettan\ /d
 robocopy %source%\done\Patosz\images %destination%\done\Patosz\images /mir /max:50000000
 xcopy /y %source%\done\Patosz\patosz.html %destination%\done\Patosz\ /d
 xcopy /y %source%\done\Patosz\favicon.bmp %destination%\done\Patosz\ /d
 robocopy %source%\done\Proped\images %destination%\done\Proped\images /mir /max:50000000
-robocopy %source%\done\Proped\videos %destination%\done\Proped\videos /mir /max:50000000
 xcopy /y %source%\done\Proped\proped.html %destination%\done\Proped\ /d
 robocopy %source%\done\Pszicho\images %destination%\done\Pszicho\images /mir /max:50000000
 xcopy /y %source%\done\Pszicho\pszicho.html %destination%\done\Pszicho\ /d
@@ -98,7 +93,6 @@ xcopy /y %source%\done\Pszicho\favicon.bmp %destination%\done\Pszicho\ /d
 REM 1-2.év
 robocopy %source%\done\II %destination%\done\II /mir /max:50000000
 robocopy %source%\done\Elettan\images %destination%\done\Elettan\images /mir /max:50000000
-robocopy %source%\done\Elettan\video %destination%\done\Elettan\video /mir /max:50000000
 xcopy /y %source%\done\Elettan\elettan1.html %destination%\done\Elettan\ /d
 xcopy /y %source%\done\Elettan\elettan1old.html %destination%\done\Elettan\ /d
 xcopy /y %source%\done\Elettan\elettan2.html %destination%\done\Elettan\ /d
