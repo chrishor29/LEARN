@@ -120,7 +120,7 @@
 
 /* PROJECT - DONE
  ✔ osztályzás - ha sok kérdés van pl. kommunikáció 2.tétel összes alkérdést kinyitom -> összemegy az osztályzás (nem pedig görgő jelenik meg)
- ✔ tárgyakat el kéne mentse localstorage-be tömörítve, az gyorsabb -- indexedDB lett a megoldás!!
+ ✔ tárgyakat el kéne mentse localstorage-be tömörítve, az gyorsabb -- indexedDB lett a megoldás!! 
  ✔ search: ha hiányzik az egyik oldal html-je, akkor azt skippelje a betöltésnél, ne álljon meg
  ✔ search: egfr: pulmo: A nem kissejtes tüdődaganatok célzott kezelése és immunterápiája: legörgetem és tádám!
  ✔ !!! tétel ha kérdés, akkor addig ne mutassa altkérdések számát (osztályzást) !!! high prior !!!
@@ -233,6 +233,7 @@ var obj_repCount = {
 	3 : 1000,
 	4 : 2000
 }
+
 
 function F_checkMissImgs(){
 	var MissIMGS = []
@@ -681,40 +682,9 @@ function F_loadImgVideo(detElem){
 			if ( missImgs.indexOf(textVar+",") == -1 ) { missImgs = missImgs + textVar + ", " }
 		};
 		
-		var parent = imgs[x]
-		var impElem = false
-		//var alt_impElem = false
-		do {
-			parent = parent.parentElement
-			if ( parent.className.indexOf("imp") != -1 ) { impElem = parent }
-			//if ( alt_impElem == "false" && parent.className.indexOf("{") != -1 ) { alt_impElem = parent }
-		} while ( parent.className.indexOf("imp") == -1 && parent != document.documentElement )
-		var isExp = false
-		if ( impElem != false ) { if ( impElem.className.indexOf("{") != -1 ) { isExp = true } }
+		imgs[x].src = "images/" + imgs[x].dataset.src
+		imgs[x].removeAttribute("data-src")
 		
-		/*var parent = imgs[x]
-		do { // ha impQ van, akkor be kell töltse mindenképp oket, kivéve ha másik impQ
-			parent = parent.parentElement
-		} while ( parent.className.indexOf("{") == -1 && parent != detElem )
-		
-		//console.log(parent.className)
-		//console.log(parent.tagName)
-		var isExp = false
-		if ( parent.className.indexOf("{") != -1 ) { 
-			if ( parent.className.indexOf("imp") != -1 ) { isExp = true }
-			if ( parent.tagName == "DETAILS" && parent.parentElement.className.indexOf("imp") != -1 && parent.parentElement.className.indexOf("{") != -1 ) { isExp = true }
-		}
-		//if ( parent.tagName == "DETAILS" && parent.parentElement.className.indexOf("[") != -1 ) { isExp = false }
-		*/
-		
-		//alert("htmlIMGloc: "+htmlIMGloc)
-		if ( isExp == true || midQisExp == true ) {
-			imgs[x].src = "images/" + imgs[x].dataset.src
-			imgs[x].removeAttribute("data-src")
-		} else {
-			imgs[x].src = path.slice(0,path.lastIndexOf("/")+1) +"images/"+ imgs[x].dataset.src
-			imgs[x].removeAttribute("data-src")
-		}
 		if ( imgs[x].className.indexOf("mwsw") != -1 ) {
 			var width = imgs[x].className.slice(imgs[x].className.indexOf("mwsw")+5)
 			width = Number(width) * screen.width /100
@@ -1300,8 +1270,8 @@ function F_saveLS() {
 //JSON.stringify(localStorage)
 
 
-function F_toggleLoad(btn) {
-	console.log("F_toggleLoad: "+localStorage.getItem("toggleLoad"))
+function F_clickAutoLoadPagesBtn(btn) {
+	console.log("F_clickAutoLoadPagesBtn: "+localStorage.getItem("toggleLoad"))
 	if ( localStorage.getItem("toggleLoad") != "false" ) {
 		localStorage.setItem("toggleLoad", "false")
 		btn.style.backgroundColor = ""
@@ -1691,14 +1661,16 @@ function F_checkSearchTXT(newQtxt,elemType) {
 	oldTxt = oldTxt.slice(newQtxt.length)
 	newTXT = 1
 	elemType = elemType.slice(elemType.lastIndexOf("<")+1,-1)
+	console.clear()
+	console.log(elemType)
 	do {
 		var divStart = oldTxt.indexOf('<'+elemType) +4
 		var divEnd = oldTxt.indexOf('</'+elemType) +4
-		/*console.clear()
+		//console.clear()
 		console.log(divStart+" vs "+divEnd)
 		console.log(newQtxt)
 		console.log(oldTxt)
-		alert("newTXTstart: "+newTXT)*/
+		//alert("newTXTstart: "+newTXT)
 		if ( divStart < divEnd && divStart != 3 ) { 
 			newTXT = newTXT +1
 			newQtxt = newQtxt + oldTxt.slice(0,divStart)
@@ -1710,11 +1682,12 @@ function F_checkSearchTXT(newQtxt,elemType) {
 			oldTxt = oldTxt.slice(divEnd)
 		}
 		if ( divEnd == 3 ) { newTXT = -1 }
-		/*console.clear()
+		//console.clear()
+		console.log(" – – – – – – – – – ")
 		console.log(divStart+" vs "+divEnd)
 		console.log(newQtxt)
 		console.log(oldTxt)
-		alert("newTXTend: "+newTXT)*/
+		//alert("newTXTend: "+newTXT)
 	} while ( newTXT > 0 )
 	if ( newTXT == 0 ) { newTXT = true }
 	if ( newTXT == -1 ) { newTXT = false }
@@ -2357,7 +2330,7 @@ function F_toggleAll() {
 	if ( document.getElementById("div_MainFrame").style.display != 'none' ) {
 		localStorage.removeItem("hk.ToggleAll")
 		toggleAll = false
-		document.getElementById("table_weboldalak").style.display = 'block';
+		document.getElementById("table_weboldalak").parentElement.style.display = 'block';
 		document.getElementById("div_pageQTargy").style.display = 'block';
 		document.getElementById("div_MainFrame").style.display = 'none';
 		
@@ -2367,7 +2340,7 @@ function F_toggleAll() {
 	} else {
 		localStorage.setItem("hk.ToggleAll","true")
 		toggleAll = true
-		document.getElementById("table_weboldalak").style.display = 'none';
+		document.getElementById("table_weboldalak").parentElement.style.display = 'none';
 		document.getElementById("div_pageQTargy").style.display = 'none';
 		document.getElementById("div_MainFrame").style.display = 'block';
 	}
@@ -2558,13 +2531,13 @@ function F_CreateQDiv() {
 		var button = document.createElement("input")
 		button.id = "btn_toggleAll"
 		button.type = "button"
-		document.getElementById("table_weboldalak").parentElement.appendChild(button)
-		document.getElementById("table_weboldalak").parentElement.style.position = "relative"
+		document.body.appendChild(button)
+		//document.getElementById("table_weboldalak").parentElement.style.position = "relative"
 		button.style.width = "90px"
 		button.style.height = "90px"
 		button.style.position = "absolute"
-		button.style.right = "0px"
-		button.style.top = "0px"
+		button.style.right = "7px"
+		button.style.top = "4px"
 		button.style.cursor = "pointer"
 
 		button.onclick = function(){ 
@@ -5170,7 +5143,6 @@ function clearIDB(path,id){
 	}
 }
 function clearFullIDB(){ for ( var i=0; i<pageLinks.length; i++ ) { clearIDB(pageLinks[i].dataset.src,i) } }
-
 
 function saveIDB(path,text,id){
 	F_getTime()
