@@ -1272,7 +1272,7 @@ function F_saveLS() {
 
 function F_clickAutoLoadPagesBtn(btn) {
 	console.log("F_clickAutoLoadPagesBtn: "+localStorage.getItem("toggleLoad"))
-	if ( localStorage.getItem("toggleLoad") != "false" ) {
+	if ( localStorage.getItem("toggleLoad") == "true" ) {
 		localStorage.setItem("toggleLoad", "false")
 		btn.style.backgroundColor = ""
 	} else {
@@ -1280,8 +1280,8 @@ function F_clickAutoLoadPagesBtn(btn) {
 		btn.style.backgroundColor = "green"
 	}
 }
-if ( isAndroid != false ) { localStorage.setItem("toggleLoad","false") }
-if ( localStorage.getItem("toggleLoad") != "false" ) { 
+if ( isAndroid == false && localStorage.getItem("toggleLoad") == null ) { 
+	localStorage.setItem("toggleLoad","true")
 	document.getElementById("btn_toggleLoad").style.backgroundColor = "green"
 }
 
