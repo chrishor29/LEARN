@@ -121,7 +121,7 @@ farmakSzabvál: 02.27, 03.23, 04.06
 		<input type="button" value="LS" style="font-size:large; width:50px; height:50px;" onclick="F_InputLoad(this)"></input>
 		<input type="button" id="btn_saveLS" style="font-size:large; background-color:Chartreuse; font-weight:bold;  float:right; width:50px; height:50px;" value="LS" onclick="F_InputSave(this)"></input>
 	  <br><br>
-		<center><input type="button" id="btn_toggleLoad" value=" " style="font-size:large; width:35px; height:35px;" onclick="F_toggleLoad(this)"></input></center>
+		<center><input type="button" id="btn_toggleLoad" value=" " style="font-size:large; width:35px; height:35px;" onclick="F_clickAutoLoadPagesBtn(this)"></input></center>
 	  <br>
 		<table>
 			<tr><th id="elet11">31</th>
@@ -160,8 +160,8 @@ farmakSzabvál: 02.27, 03.23, 04.06
 		s.parentNode.insertBefore(scriptTag, s);
 	}
 
-	var isayes = false
-	isayes = true
+	var isayes = true
+	//isayes = false
 	if ( isayes == true ) {
 		registerScript("javascript.js");
 	} else {

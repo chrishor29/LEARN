@@ -1271,7 +1271,6 @@ function F_saveLS() {
 
 
 function F_clickAutoLoadPagesBtn(btn) {
-	console.log("F_clickAutoLoadPagesBtn: "+localStorage.getItem("toggleLoad"))
 	if ( localStorage.getItem("toggleLoad") == "true" ) {
 		localStorage.setItem("toggleLoad", "false")
 		btn.style.backgroundColor = ""
