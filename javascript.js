@@ -385,6 +385,53 @@ var prevMidQ = []
 var prevScrollTop = 0
 var MISSID
 function F_impQfew(detElem){ // ?ms/Q a betöltési ideje
+	F_getTime()
+	var diffTime = myTime-oldTime
+	
+	var count = 0
+	var repeat = false
+	function F_loadImpQs(detElem) {
+		var impQs = detElem.getElementsByClassName("imp")
+		var error = ""
+		var repeat = false
+		for ( var i=0; i<impQs.length; i++ ) { 
+			if ( impQs[i].className.indexOf("[") == -1 && impQs[i].className.indexOf("{") == -1 ) { continue }
+			if ( impQs[i].dataset.loaded == "true" ) { continue } else { impQs[i].dataset.loaded = "true" }
+			repeat = true
+			
+			// parentek között volt-e már (loop elkerülése)
+			var contains = false
+			function F_checkParents() {
+				var impID = F_getImpID(impQs[i].className)
+				var parent = impQs[i]
+				do {
+					parent = parent.parentElement
+					if ( parent.className.indexOf(impID) == -1 ) { continue } // checkolja, hogy az [impID]-jük megyegyezik-e
+					contains = true
+				} while ( parent != detElem && contains == false )
+			}
+			F_checkParents()
+			if ( contains == true ) { continue }
+			F_loadQtxt(impQs[i].className,impQs[i].tagName)
+			impQs[i].innerHTML = Qtxt
+			count = count +1
+		}
+		if ( error != "" ) { // ha hiányozott valamelyik [impQ]
+			console.log(error)
+			alert("hiányzik impQ (lásd console.log)")
+		}
+		return repeat
+	}
+	do {
+		repeat = F_loadImpQs(detElem)
+	} while ( repeat == true )
+	
+	F_getTime()
+	var endTime = myTime-oldTime-diffTime
+	var unitTime = (endTime*1000/count).toFixed(2);
+	//console.log("–F_impQfew– "+endTime.toFixed(2)+"sec ("+unitTime+"ms/Q, "+count+"db Q)")
+}
+/*function F_impQfew(detElem){ // ?ms/Q a betöltési ideje
 	MISSID = ""
 	var allImpQs = detElem.querySelectorAll('.imp')
 	for ( var i=0;  i<allImpQs.length;  i++ ) {
@@ -404,7 +451,7 @@ function F_impQfew(detElem){ // ?ms/Q a betöltési ideje
 	}
 	
 	if ( MISSID != "" ) { alert("F_impQfew: Az alábbi EXPid-k még nincsenek LS-be reigsztrálva: "+MISSID + "\nNyisd meg a tárgyválasztás ablaknál az adott tárgyhoz kapcsolódó egyéb tárgy(ak)at egyszer -> pl. Biokémia II esetén nyisd meg Biokémia I, Élettan, Molekuláris Sejtbiológia") }
-}
+}*/
 function F_impQlot(detElem){ // 0,4ms/Q a betöltési ideje
 	F_getTime()
 	var diffTime = myTime-oldTime
@@ -463,25 +510,28 @@ function F_impQlot(detElem){ // 0,4ms/Q a betöltési ideje
 	//console.log("– F_impQlot – "+endTime.toFixed(2)+"sec ("+unitTime+"ms/Q, "+count+"db Q)")
 }
 F_impQlot(document.documentElement)
+function F_getImpID(impID) {
+	if ( impID.indexOf("[") != -1 ) {
+		begin = impID.indexOf("[")
+		end = impID.indexOf("]") +1
+	} else {
+		begin = impID.indexOf("{")
+		end = impID.indexOf("}") +1
+	}
+	impID = impID.slice(begin,end)
+	return impID
+}
 function F_loadQtxt(impID,divSpan,origin){
 	var begin,end,hidden
 	//console.log(impID+" "+divSpan)
 	if ( impID.indexOf("hide") != -1 ) { hidden = true }
+	impID = F_getImpID(impID)
 	//console.log(impID)
 	if ( impID.indexOf("[") != -1 ) {
-		begin = impID.indexOf("[") +1
-		end = impID.indexOf("]")
-		impID = impID.slice(begin,end)
 		var origin = document.getElementById("div_MidQ").dataset.origin
-		Qtxt = arrImpQs[origin][impID]
-		impID = "["+impID+"]"
+		Qtxt = arrImpQs[origin][impID.slice(1,-1)]
 	} else {
-		begin = impID.indexOf("{") +1
-		end = impID.indexOf("}")
-		impID = impID.slice(begin,end)
-		//console.log(impID)
-		Qtxt = arrImpQs["expQs"][impID]
-		impID = "{"+impID+"}"
+		Qtxt = arrImpQs["expQs"][impID.slice(1,-1)]
 	}
 	if ( Qtxt == null ) { 
 		if ( MISSID.indexOf(impID) == -1 ) { MISSID = MISSID + impID + "," }
@@ -1362,24 +1412,10 @@ function F_QtxtQname(text){
 	return qName
 }
 
-function F_getImpID(classTXT){
-	impID = " !-nincs-! "
-	if ( classTXT.indexOf("{") != -1 ) {
-		var begin = classTXT.indexOf("{")
-		var end = classTXT.indexOf("}") +1
-		impID = classTXT.slice(begin,end)
-	} else if ( classTXT.indexOf("[") != -1 ) {
-		var begin = classTXT.indexOf("[")
-		var end = classTXT.indexOf("]") +1
-		impID = classTXT.slice(begin,end)
-	}
-}
-
 function F_setCount(Qelem) {
 	var count
 	if ( Qelem.className.indexOf("[") != -1  || Qelem.className.indexOf("{") != -1 ) { 
-		F_getImpID(Qelem.className)
-		count = impID
+		count = F_getImpID(Qelem.className)
 		var altQk = Qelem.getElementsByClassName("kerdes")
 		for ( var i = 0; i < altQk.length; i++ ) {
 			var altQ = altQk[i]
@@ -1388,13 +1424,6 @@ function F_setCount(Qelem) {
 			if ( altQ.className.indexOf("[") != -1  || altQ.className.indexOf("{") != -1 ) { continue }
 			altQ.innerHTML = altQ.innerHTML.replace(qName,qName+ "<!--" +count+ "-->")
 		}
-		/*if ( Qelem.className.indexOf("imp") != -1 ) { // ez esetben a Quest hosszát mentené el impQ-nál is, így változtatásakor upgradelni kéne mindig (ami fölös sztem, mert nagyon ritka)
-			F_getImpID(Qelem.className)
-			F_loadQtxt(impID)
-			count = Qtxt
-		} else {
-			count = Qelem.innerHTML
-		}*/
 	} else if ( Qelem.className.indexOf("abbr") != -1 ) { 
 		count = Qelem.parentElement.innerHTML
 		count = count.length
@@ -1794,11 +1823,6 @@ function F_searchQText(detElem){
 	F_getTime()
 	var diffTime = myTime - lastClickTime
 	//console.log(myTime+" vs "+lastClickTime)
-	if ( diffTime < 1 ) { 
-		alert("sajt")
-		return
-	}
-
 	
 	detElem.style.backgroundColor  = "yellow"
 	var int_Click = window.setInterval(function(){

@@ -208,9 +208,7 @@ span {
 	
 	display: inline-block;
 }
-.miss { 
-	background-color: pink;
-}
+.miss { background-color: pink }
 .pseudo { 
 	color: Black;
 	background-color: AliceBlue;
