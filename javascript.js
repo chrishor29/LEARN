@@ -330,7 +330,7 @@ function F_loadExpQs(parentDiv,origin) {
 		
 		var qName = F_QtxtQname(elem.innerHTML)
 		if ( qName == "" || qName == " " ) { continue }
-		if ( qName.slice(-3) != "-->" ) { F_setCount(elem) }
+		//if ( qName.slice(-3) != "-->" ) { F_setCount(elem) }
 		//arrImpQs[origin][EXPid] = '<'+elem.tagName+' class="'+elem.className+'">'+elem.innerHTML+'</'+elem.tagName+'>' // ez vmiért nem jó, ha "open" van a classname-ben (farmak szívelégtelenség 1 tételnél nem volt jó, de másiknál meg igen)
 		arrImpQs[origin][EXPid] = '<details class="'+elem.className+'">'+elem.innerHTML+'</details>'
 	}
@@ -346,8 +346,7 @@ function F_checkEXPs() {
 }
 
 function F_loadDetails(detElem){ 
-	F_impQfew(detElem)
-	//F_impQlot(detElem)
+	F_impQfew(detElem,false)
 	F_midQ(detElem)
 	F_loadImgVideo(detElem)
 	F_imgClick(detElem)
@@ -383,18 +382,19 @@ function F_detailsToggle(detElem){
 
 var prevMidQ = []
 var prevScrollTop = 0
-var MISSID
-function F_impQfew(detElem){ // ?ms/Q a betöltési ideje
+var MISSID = ""
+function F_impQfew(detElem,hidden){ // ?ms/Q a betöltési ideje
 	F_getTime()
 	var diffTime = myTime-oldTime
 	
 	var count = 0
 	var repeat = false
-	function F_loadImpQs(detElem) {
+	function F_loadImpQs(detElem,hidden) {
 		var impQs = detElem.getElementsByClassName("imp")
 		var error = ""
 		var repeat = false
 		for ( var i=0; i<impQs.length; i++ ) { 
+			if ( impQs[i].offsetParent === null && hidden == false ) { continue }
 			if ( impQs[i].className.indexOf("[") == -1 && impQs[i].className.indexOf("{") == -1 ) { continue }
 			if ( impQs[i].dataset.loaded == "true" ) { continue } else { impQs[i].dataset.loaded = "true" }
 			repeat = true
@@ -422,9 +422,7 @@ function F_impQfew(detElem){ // ?ms/Q a betöltési ideje
 		}
 		return repeat
 	}
-	do {
-		repeat = F_loadImpQs(detElem)
-	} while ( repeat == true )
+	do { repeat = F_loadImpQs(detElem,hidden) } while ( repeat == true )
 	
 	F_getTime()
 	var endTime = myTime-oldTime-diffTime
@@ -455,6 +453,7 @@ function F_impQfew(detElem){ // ?ms/Q a betöltési ideje
 function F_impQlot(detElem){ // 0,4ms/Q a betöltési ideje
 	F_getTime()
 	var diffTime = myTime-oldTime
+	console.log("– F_impQlot –")
 	
 	if ( detElem.classList.contains("imported") == true ) { return }
 	detElem.className = detElem.className+" imported"
@@ -509,7 +508,7 @@ function F_impQlot(detElem){ // 0,4ms/Q a betöltési ideje
 	var unitTime = (endTime*1000/count).toFixed(2);
 	//console.log("– F_impQlot – "+endTime.toFixed(2)+"sec ("+unitTime+"ms/Q, "+count+"db Q)")
 }
-F_impQlot(document.documentElement)
+//F_impQlot(document.documentElement)
 function F_getImpID(impID) {
 	if ( impID.indexOf("[") != -1 ) {
 		begin = impID.indexOf("[")
@@ -1329,7 +1328,12 @@ function F_clickAutoLoadPagesBtn(btn) {
 		btn.style.backgroundColor = "green"
 	}
 }
-if ( isAndroid == false && localStorage.getItem("toggleLoad") == null ) { 
+if ( localStorage.getItem("toggleLoad") == null ) { 
+	if ( isAndroid == false ) { 
+		localStorage.setItem("toggleLoad","true")
+		document.getElementById("btn_toggleLoad").style.backgroundColor = "green"
+	}
+} else if ( localStorage.getItem("toggleLoad") == "true" ) {
 	localStorage.setItem("toggleLoad","true")
 	document.getElementById("btn_toggleLoad").style.backgroundColor = "green"
 }
@@ -1445,7 +1449,7 @@ function F_checkQs(){
 		var Qelem = kerdesek[i]
 		var qName = F_QtxtQname(Qelem.innerHTML)
 		if ( qName == "" || qName == " " ) { continue }
-		if ( qName.slice(-3) != "-->" ) { F_setCount(Qelem) }
+		//if ( qName.slice(-3) != "-->" ) { F_setCount(Qelem) }
 		qName = F_QtxtQname(Qelem.innerHTML)
 		arrQnames[qName] = true
 		//console.log("checkQ: "+qName)
@@ -1689,7 +1693,7 @@ function F_checkSearchTXT(newQtxt,elemType) {
 	oldTxt = oldTxt.slice(newQtxt.length)
 	newTXT = 1
 	elemType = elemType.slice(elemType.lastIndexOf("<")+1,-1)
-	console.clear()
+	//console.clear()
 	console.log(elemType)
 	do {
 		var divStart = oldTxt.indexOf('<'+elemType) +4
@@ -1734,7 +1738,7 @@ function F_loadTetelQs(){ // impQnew-al betölti az aktív tételeket
 		if ( localStorage.getItem(tetelID) == "true" ) { F_impQlot(phaseDiv) }
 	}
 }
-F_loadTetelQs()
+//F_loadTetelQs()
 
 var searchMidQ = false
 var pageLinks = document.getElementsByClassName("page")
@@ -2334,6 +2338,7 @@ function F_toggleAll() {
 
 	if ( refreshAll != true ) {
 		refreshAll = true
+		F_impQfew(document.documentElement,true)
 		F_checkQs()
 		F_tetelQs()
 		F_getTexts()
@@ -3465,7 +3470,8 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 
 		if ( localStorage.getItem(tetelID+"_button") == "true" ) {
 			label.style.backgroundColor = "paleGreen";
-			F_impQlot(phaseDiv)
+			//F_impQfew(phaseDiv,true)
+			//F_impQlot(phaseDiv)
 		} else {
 			label.style.backgroundColor = "";
 		}
@@ -3481,7 +3487,8 @@ function F_tetelChoose(){ // createli a választható tételek listáját
 				tetelID = tetelID.slice(0,tetelID.indexOf(","))
 				//console.log(tetelID)
 				var Table = document.querySelectorAll('.phase,.status')
-				F_impQlot(Table[tetelID].parentElement)
+				//F_impQfew(Table[tetelID].parentElement,true)
+				//F_impQlot(Table[tetelID].parentElement)
 			}
 			
 			func_calcOldNew();
@@ -4634,7 +4641,7 @@ function F_nextQ(){
 		}
 		func_setTitle()
 		
-		F_impQlot(QlocElem) // szvsz ez fölös, mert a QlocElem.innerHTML empty itt még
+		//F_impQlot(QlocElem) // szvsz ez fölös, mert a QlocElem.innerHTML empty itt még
 		
 		function F_copyQs(Qelem){
 			F_calcLSid(Qelem)
@@ -5095,7 +5102,7 @@ function F_loadPageText(path,kiiras) {
 		saveIDB(path,targyText,id)
 		pageLinks[id].dataset.loaded = true 
 		
-		function F_kiirja(){ // betölti (látható lesz) a weboldalt a főoldalra is (nem csak a látatlanba, ahonnan szöveget másol)
+		if ( kiiras == true ) {
 			pagePath = path // képek betöltéséhez kell pl
 			var pageDiv = document.getElementById("div_pageQTargy")
 			pageDiv.innerHTML = pageTexts[pagePath]
@@ -5104,24 +5111,9 @@ function F_loadPageText(path,kiiras) {
 			if ( localStorage.getItem("hk.ToggleAll") == "true" && refreshAll != true ) { F_toggleAll() }
 			document.body.style.backgroundColor = ""
 			localStorage.setItem("hk.pagePath",pagePath) 
-			document.getElementById("iframe_targyak").src = ""
 			pageLinks[id].style.backgroundColor = "yellow"
 		}
-		
-		if ( path == "expqs.html" ) { 
-			if ( expQsLoaded == false ) {
-				parentDiv = document.getElementById("div_expQTargy")
-				parentDiv.innerHTML = pageTexts["expqs.html"]
-				arrImpQs["expQs"] = []
-				F_loadExpQs(parentDiv,"expQs")
-				expQsLoaded = true
-			} else if ( kiiras == true ) { 
-				F_kiirja()
-			}
-			if ( localStorage.getItem("hk.ToggleAll") == "true" ) { F_loadPageText(localStorage.getItem("hk.pagePath"),true) }
-		} else if ( kiiras == true ) {
-			F_kiirja()
-		}
+		document.getElementById("iframe_targyak").src = ""
 		
 		if ( loadAllPage == true ) { F_loadAllPageTexts() }
 		removeEventListener('message', handler, false)
@@ -5154,7 +5146,6 @@ function F_loadAllPageTexts() {
 		}
 	}
 }
-F_loadPageText("expqs.html",false)
 
 function clearIDB(path,id){
 	var request = indexedDB.deleteDatabase(path);
@@ -5218,6 +5209,15 @@ function loadIDB(path){
 			}
 			
 			pageTexts[path] = text
+			if ( expQsLoaded == false && path == "expqs.html" ) {
+				parentDiv = document.getElementById("div_expQTargy")
+				parentDiv.innerHTML = pageTexts["expqs.html"]
+				arrImpQs["expQs"] = []
+				F_loadExpQs(parentDiv,"expQs")
+				expQsLoaded = true
+			} else if ( localStorage.getItem("hk.ToggleAll") == "true" && localStorage.getItem("hk.pagePath") == path ) {
+				F_loadPageText(localStorage.getItem("hk.pagePath"),true)
+			}
 			F_getTime()
 			var time = myTime - this.result[1]["pageTIME"]
 			//console.log(path+" : "+this.result[1]["pageTIME"])
