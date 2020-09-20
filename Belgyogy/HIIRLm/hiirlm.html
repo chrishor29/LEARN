@@ -5,13 +5,13 @@
   <tr><th>EA</th></tr>
 	<tr><td style="background-color:coral">autoimmun</td></tr>
 	<tr><td style="background-color:coral">vérkép + lép</td></tr>
-	<tr><td style="background-color:coral">alvadászavarok</td></tr>
+	<tr><td>alvadászavarok</td></tr>
 	<tr><td style="background-color:coral"></td></tr>
   <tr><th>SZEMI</th></tr>
 	<tr><td style="background-color:coral">limphoproliferativ</td></tr>
 	<tr><td style="background-color:coral">myeloproliferativ</td></tr>
 	<tr><td style="background-color:coral">nozokomiális & mrk</td></tr>
-	<tr><td style="background-color:coral">friss VTE</td></tr>
+	<tr><td>friss VTE</td></tr>
 	<tr><td>szepszis</td></tr>
 	<tr><td style="background-color:coral"></td></tr>
   <tr><th>GYAK</th></tr>
@@ -35,8 +35,19 @@
 		<li>előfordulás &#10140; lymphomák: <span class="midQ [5]">Hodgkin</span>, <span class="midQ [6]">diffúz nagy B-sejtes</span>, <span class="midQ [8]">akut leukaemia</span></li>
 	  <font style="font-size:80%">ezen tünetek nem specifikusak, tehát más betegségekben is lehetnek, pl. TBC, atoimmun</font>
 	</ul></details>
-	<details class="{2} kerdes"><summary>LABOR</summary><ul class="normal">
-	  <strong>'hematológia'</strong>
+	<details class="{2} kerdes"><summary>LABOR</summary><ul class="normal"> <!-- 2.5 -->
+		<li><details class="{2.5} kerdes"><summary>specificitás & szenzitivitás</summary><ul class="normal">
+			<img data-src="pswrgcaw.png">
+			<li>szenzitivitás &#10140; ha van betegség, mekkora az esélye, hogy pozitív lesz a teszt</li><ul>
+				ez akkor alacsony, ha nem feltétlen jár a betegséggel a tünet, pl. SLE 95%-ban van ANA, ellenben SLE ~50%-ban van csak anti-dsDNS
+			</ul>
+			<li>specificitás &#10140; ha van betegség, mekkora az esélye, hogy negatív lesz a teszt</li><ul>
+				ez akkor alacsony, ha más betegségek is pozitív eredményt váltanak ki, pl. ANA pozitiv rheumatoid arthritis és SLE-ben is, így hiába nincs lupusa, simán lehet pozitív, mert rheumatoid arthritis-e viszont van
+			</ul>
+			<li><abbr title="positive predictive value">PPV</abbr> &#10140; mekkora az esély, hogy a pozitív teszt esetén van betegsége az illetőnek</li>
+			<li><abbr title="negative predictive value">NPV</abbr> &#10140; mekkora az esély, hogy a negatív teszt esetén nincs betegsége az illetőnek</li>
+		</ul></details></li>
+	  <strong>'hematológia'</strong><div>
 		<li><details class="{2.1} kerdes"><summary>gyulladásos paraméterek</summary><ul class="normal">
 			<li>leukocytosis (16–18 G/l)</li>
 			<li><abbr title="C reaktív protein (pozitív akut fázisú fehérje)">CRP</abbr>↑</li>
@@ -58,8 +69,51 @@
 			<li>plazma = vér - sejtek</li>
 			<li>szérum = plazma - alvadási faktorok</li>
 		</ul></details></li>
-		<li></li>
-	  <strong>'veseparaméterek'</strong>
+		<li><details class="{2.4} kerdes"><summary>véralvadási paraméterek</summary><ul class="normal">
+			<span class="midQ [38]" style="font-size:80%">koaguláció mechanizmusa</span>
+			<li>thrombocytaszám</li>
+			<li>vérzési idő &#10140; thrombocyta-k adhézió(kitapadás)-jának idejét mutatja</li><ul>
+				<li>hivatalos leírás szerint: ha megnő &#10140; <span class="midQ [30]">thrombocytopenia</span>, thrombocytopathia (pl. <span class="midQ [35]">von Willebrand kór</span>) <abbr title="lehet más is gondolom">...</abbr></li>
+				<li>előadás alapján viszont inkább úgy fogjam fel, hogy ez valójában nem jó semmire</li>
+			</ul>
+			<li><details class="kerdes"><summary><abbr title="aktivált parciális tromboplasztin idő"><span class="syno">aPTT | aPTI</span></abbr></summary><ul class="normal">
+				<li>intrinsic út hossza (beleértve közös utat) <img class="mini" data-src="yqurmigq.png"></li>
+				<li>a csőben <img class="mini" data-src="bvhntnxp.png"> citrát van alapból, ez a Ca<sup>2+</sup> egy részét megköti, így a véralvadást lassítja</li>
+			  ha megnő..
+				<li>1) lehet csak citrát túlsúly van, így túl sok Ca<sup>2+</sup> köt meg &#10140; vagyis amit levettünk vért, abban kevés volt a plazma &#10140; ennek oka lehet pl. <span class="midQ [23]">polycythemia vera</span></li>
+				<li>2) ha PT is megnő &#10140; KVA(kumarin)</li>
+				<li>3) ha TI megnő↑↑↑ &#10140; <abbr title="unfrakcionált heparin, ami gátolja a trombint">UFH</abbr></li>
+				<li>4) keveréses vizsgálat (lásd lentebb)</li>
+				<li>ha izoláltan nő meg &#10140; <span class="WHITE">VIII</span> <span class="WHITE">IX</span> <span class="WHITE">XI</span> <span class="WHITE">XII</span> hiány &#10140; <span class="midQ [31]">haemophilia A / B</span></li>
+			</ul></details></li>
+			<li><abbr title="protrombin idő"><span class="syno">PI | PT</span></abbr>(INR) &#10140; az extrinsic út hossza (beleértve közös utat)</li><ul>
+				<li>ha izoláltan nő meg &#10140; <span class="WHITE">VII</span> hiány, nagyon ritka</li>
+			</ul>
+			<li><abbr title="thrombin idő"><span class="syno">TI | TT</span></abbr></li><ul>
+				<li>fibrinogén mennyisége következtethető ki belőle</li>
+				<li>ha megnő<abbr title="a TI">'</abbr>:</li><ul>
+					<li>vagy fibrinogén↓ &#10140; DIC</li>
+					<li>vagy UFH van (thrombint gátolja)</li>
+				</ul>
+			</ul>
+			<li><details class="kerdes"><summary>keveréses vizsgálat <font style="font-size:80%">(Tulassay 122o + ea-veralvadas)</font></summary><ul class="normal">
+				<li>eldönthető vele, hogy faktorhiány van-e</li>
+				<li>pl. ha van egy beteg, akinek mondjuk <span class="WHITE">V</span> hiánya van &#10140; ennek következtében megnyúlik mondjuk az aPTT és PT</li>
+				<font style="font-size:80%">megj. a példa gondolom abszurd, hiszen ha nem lenne egyáltalán V faktora, akkor...</font>
+				<li>a plazmáját ha 1:1 arányban összekeverem egészséges plazmájával, akkor az <span class="WHITE">V</span> szintje 50% lesz (többié 100% továbbra is)</li>
+				<li>a faktorok mennyisége alapból jóval több, mint ami szükséges az alvadáshoz, tehát az 50% elég lesz &#10140; megnyúlt aPTT & PT visszaáll normálisra</li>
+				<li>tehát ilyenkor a faktor korrigálható</li>
+				<li>azonban ha van egy beteg, akinek NEM faktorhiány miatt nyúlt meg az alvadási idő, hanem mert faktor inhibitor / lupus antikoaguláns jelent meg a plazmában, akkor nem fog visszaállni</li><ul>
+					<li>ilyenkor NEM korrigálható a faktor</li>
+					<li>faktor inhibitor létrejöhet &#10140; ismétlődő faktorpótlás esetén, autoimmun betegségben, daganat stb.</li>
+					<li>lupus antikoaguláns &#10140; <span class="midQ [22]">anti-foszfolipid szindróma</span></li>
+				</ul>
+			</ul></details></li>
+			<li><span class="WHITE">vWF</span> külön kell mérni</li>
+			<li><span class="WHITE">XIII</span> külön kell mérni<abbr title="mert aPTT, PTT, TT nem ad róla infót">'</abbr></li>
+		</ul></details></li>
+	  </div>
+	  <strong>'veseparaméterek'</strong><div>
 		<details class="kerdes"><summary>napi vizelet mennyiség</summary><ul class="normal">
 			<li>poliuria > 2000ml</li>
 			<li>oliguria &lt; 200-500ml</li>
@@ -98,7 +152,8 @@
 			<li>hipovolémia &#10140; a kreatinin szérumszintje nő, ezért az eGFR fals csökkenést mutat</li>
 			<li>izomvesztéssel járó állapot (pl. végtagamputáció) &#10140; a kreatinin képzése csökkent, így szérumszintje alacsony, ezért az eGFR fals emelkedést mutat</li>
 		</ul></details>
-	  <strong>'májparaméterek'</strong>
+	  </div>
+	  <strong>'májparaméterek'</strong><div>
 		<li><details><summary>bilirubin</summary><ul class="normal">
 			<img style="max-width:50%" data-src="sqpidayf.png">
 			<li>bilirubin(Se)</li><ul>
@@ -141,7 +196,8 @@
 			<li>ha↑, de K-vitamin adása után változatlan &#10140; hepatikus</li>
 			<li>ha↑, majd K-vitamin adása után visszaáll &#10140; post-hepatikus</li>
 		</ul></details></li>
-	  <strong>szerológia</strong>
+	  </div>
+	  <strong>szerológia</strong><div>
 		<li><details><summary>ANA</summary><ul class="normal"></li>
 			<div><span class="plus">+</span> <span class="midQ [35]">autoimmun hepatitis: 1-es típus</span></div>
 			<div><span class="minus">–</span> <span class="midQ [15]">ANCA-vasculitis-ek</span></div>
@@ -177,6 +233,7 @@
 		<li><details><summary>γ-globulin</summary><ul class="normal"></li>
 			<li>ha↑ (főként IgG) &#10140; autoimmun hepatitis gyanú</li>
 		</ul></details>
+	  </div>
 	</ul></details>
 	<details class="{3} kerdes"><summary>lymphoma-k</summary><ul class="normal">
 	  <div class="imp [3.1]"></div>
@@ -973,7 +1030,10 @@
 			<li>primer &#10140; önállóan jelenik meg</li>
 			<li>szekunder &#10140; más betegséghez kapcsoltan jelenik meg, pl. SLE-k 30-40% esetében ez is jelen van</li>
 		</ul>
-		<li>pathomechanizmus &#10140; a koagulációban szerepet játszó foszfolipidek(Pi) és fehérjék(pl. protein C) ellen termelődik antitest, melyek következtében a koaguláció fokozódik <img class="mini" data-src="vrlvcgkhjmn.jpg"></li>
+		<li>pathomechanizmus &#10140; a koagulációban szerepet játszó foszfolipidek(Pi) és fehérjék(pl. protein C) ellen termelődik antitest, melyek következtében a koaguláció fokozódik <img class="mini" data-src="vrlvcgkhjmn.jpg"></li><ul>
+			<li>nem teljesen tiszta még</li>
+			<li>ugyanis a thrombosis kockázatát fokozzák, mégis az aPTI-t megnyújtják (ráadásul thrombocytopenia is lehet)</li>
+		</ul>
 		<li>CAPS = katasztrófa APS &#10140; <abbr title="napokon belül többszervi elégtelenség, majd halál">súlyos formája</abbr>, de rendkívül ritka</li>
 	  <strong>diagnózis</strong>
 		<li>kritériumai &#10140; 1 klinikai tünet + 2 szerológiai pozitív</li>
@@ -985,12 +1045,17 @@
 			</ul>
 			<li>ismételt vetélések<abbr title="(avagy patológiás terhesség: spontán abortusok, magzati elhalások)">'</abbr> (valójában ez is a fokozott koaguláció következtébeni thrombosis miatt, de külön pontba van véve, lásd: diagnosztikus kritérium)</li>
 		</ul>
-		<li>szerológia &#10140; 3 antitestet vizsgálunk, abból 2 pozitív kell legyen:</li><ul>
-			<li>anti-kardiolipin <abbr title="antitest">AT</abbr></li>
-			<li>lupus AT</li>
-			<li>&beta;2GPI</li>
+		<li>labor:</li><ul>
+			<li>aPTI↑</li>
+			<li>thrombocytopenia lehet</li>
 		</ul>
-		<li>thrombocytopenia lehet</li>
+		<li>szerológia <font style="font-size:80%">(antitest kimutatása) (2x is kell mérni, legalább 3hónap eltéréssel)</font></li><ul>
+			<li>anti-kardiolipin antitest(ACA)</li>
+			<li>lupus antikoaguláns(LA) &#10140; aPTI-t ez nyújtja meg, ha nincs elég Pi</li><ul>
+				<font style="font-size:80%"><abbr title="PI-t hozzáadva visszaáll az aPTI">foszfolipid neutralizációs teszt</abbr></font>
+			</ul>
+			<li>&beta;2GPI1 <abbr title="előadáson + gyakon is ezt mondták, de ez nem AT szerintem, és nem pontosan tiszta számomra"><font style="font-size:80%">(?!)</font></abbr></li>
+		</ul>
 	  <strong>terápia</strong>
 		<li>heparin</li>
 		<li>kumarin &#10140; <abbr title="terhesség alatt KI">teratogén</abbr>!!</li>
@@ -1122,14 +1187,27 @@
 	</ul></details>
 	<details class="{27} kerdes"><summary>húgyúti infekció</summary><ul class="normal">
 		<li>húgyúti infekció &#10140; hűgycső végétől a vesemedencéig terjedő részt érinti</li>
-		<li>csoportosításuk:</li><ul>
-			<li><u>NEM komplikált UTI</u> &#10140; cystitis, <abbr title="tehát ha férfinak van cystitise / terhes nőnek / idős nőnek, akkor komplikált">ha menstruáló nő</abbr> &#10140; összes többi UTI komplikáltnak tekintendő</li><ul>
-				<li>NEM súlyos, csak panaszok jelentősek</li>
-			</ul>
-			<li><u>komplikált <abbr title="urinari tract infection (tippre)">UTI</abbr></u> &#10140; pyelonephritis, többi cystitis</li><ul>
-				<li>súlyos, ugyanis lehetséges szövődménye &#10140; tályog, szepszis</li>
-			</ul>
-		</ul>
+		<table><tr><th>NEM komplikált <abbr title="urinari tract infection (tippre)">UTI</abbr></th>  <th>komplikált UTI</th></tr>
+		<tr>
+			<td> egészséges <abbr title="tehát ha férfinak van cystitise / terhes nőnek / idős nőnek, akkor komplikált">ha menstruáló nő</abbr> &#10140; összes többi UTI komplikáltnak tekintendő </td>
+			<td> férfi, nő(terhes,idős,alapbetegsége van) </td>
+		</tr>
+		<tr>
+			<td> NEM súlyos, csak panaszok jelentősek </td>
+			<td> súlyos, ugyanis lehetséges szövődménye &#10140; tályog, <span class="midQ [28]">szepszis</span> </td>
+		</tr>
+		<tr>
+			<td style="text-align:left">
+				<li>akut cystitis</li>
+				<li>akut pyelonephritis</li>
+			</td>
+			<td style="text-align:left">
+				<li>akut / rekurrens cystitis</li>
+				<li>akut pyelonephritis</li>
+				<li>katéter asszociált UTI</li>
+			</td>
+		</tr>
+		</table>
 	  <strong>etiológia</strong>
 		<li>kórokozók:</li><ul>
 			<li>Escherichia coli</li>
@@ -1157,10 +1235,10 @@
 	  <strong>diagnózis</strong>
 		<li>anamnézis</li><ul>
 			<li>cystitis &#10140; <abbr title="fájdalmas vizelés">dysuria</abbr><abbr title="hirtelen kezdetű, gyakori, sürgető">'</abbr>, haematuria, hólyagtáji fájdalom és érzékenység kíséri</li>
-			<li>ha vizelési panaszok mellett megjelenik láz / hidegrázás / deréktáji fájdalom &#10140; komplikált UTI</li>
+			<li>ha vizelési panaszok mellett megjelenik láz / hidegrázás / deréktáji fájdalom &#10140; akut pyelonephritis</li>
 		</ul>
 		<li>fizikális vizsgálat:</li><ul>
-			<li>vesefájdalom (kopogtatás) &#10140; ha igen, komplikált</li>
+			<li>vesefájdalom (kopogtatás) &#10140; ha igen: akut pyelonephritis</li>
 		</ul>
 		<li>hasi UH:</li><ul>
 			<li>tályog van-e</li>
@@ -1168,14 +1246,16 @@
 		</ul>
 		<li>labor &#10140; <span class="midQ [2.1]">gyulladásos paraméterek</span></li>
 		<li>középsugár vizelet mintavétel:</li><ul>
-			<li>lehet pyuria &#10140; ez makro(szemmel látható) / mikro</li>
-			<li>ha komplikált, akkor kell: tenyésztés + antibiogram</li>
+			<li>lehet pyuria(fvs a vizeletben) &#10140; ez makro(szemmel látható) / mikro</li>
+			<li>tenyésztés + antibiogram</li><ul>
+				<font style="font-size:80%">NEM komplikált akut cystitis esetében nem kötelező</font>
+			</ul>
 		</ul>
 	  <strong>terápia</strong>
 		<li>katéter csere (ha lehet eltávolítás)</li>
-		<li>ha nem komplikált &#10140; foszfomycin</li>
-		<li>ha komplikált:</li><ul>
-			<li>kezdetben empirikus &#10140; széles spektrumú AB, pl. karbapenem, ceftriaxon, fluorokinolon</li>
+		<li>ha NEM komplikált akut cystitis &#10140; foszfomycin</li>
+		<li>többi esetben:</li><ul>
+			<li>kezdetben empirikus &#10140; széles spektrumú AB, pl. karbapenem, ceftriaxon (fluorokinolon-okat kerüljük ha lehet)</li>
 			<li>ha sikeres, a láz visszaáll</li>
 			<li>3nap után megjön az antibiogram, és az alapján</li>
 		</ul>
@@ -1238,25 +1318,275 @@
 			</ul>
 		</ul>
 	</ul></details>
-	<details class="{29} kerdes"><summary></summary><ul class="normal">
+	<details class="{29} kerdes"><summary>vérzéscsillapodás</summary><ul class="normal">
+		<div><span class="WHITE">1.lépés</span> vazokonstrikció</li><ul>
+			<font style="font-size:80%">a helyben felszabadult érszűkítő anyagok okozzák (TXA<sub>2</sub>, <span class="syno">5-HT | szerotonin</span>, Adr)</font>
+		</ul>
+		<div><span class="WHITE">2.lépés</span> thrombocyta-k <abbr title="kitapadnak">adhézió</abbr> ► aktiválódnak ► <abbr title="összecsapzódnak">aggregálódnak</abbr> &#10140; kialakul a fehér thrombus</div>
+		<div><span class="WHITE">3.lépés</span> <span class="syno">koaguláció | véralvadás</span>: oldott fibrinogén átalakul oldhatatlan fibrinné, azaz kialakul a fibrinháló &#10140; kialakul a vörös thrombus (vvt-k akadnak el benne)</div>
+		<div><span class="WHITE">végül</span> fibrinolízis</div>
+		<div style="font-size:80%">primer hemosztázis = <span class="WHITE">1.</span> + <span class="WHITE">2.</span> –––– szekunder hemosztázis = <span class="WHITE">3.</span></div>
+	  <hr>patológiás esetben a következők mondhatók el:
+		<li>artériás oldalon (pl. atherosclerosis ► akut koronária szindróma) a vérlemezkék játszák a főszerepet (fehér trombus képződik)</li>
+		<li>vénás oldalon (pl. mélyvénás trombózis) a <span class="syno">koaguláció | véralvadás</span> játsza a főszerepet (vörös trombus képződik)</li>
+		<video data-src="videos/Blood Clot Formation - Coagulation Factors & Platelets.mp4"></video>
 	</ul></details>
-	<details class="{30} kerdes"><summary></summary><ul class="normal">
+	<details class="{30} kerdes"><summary>thrombocytopenia</summary><ul class="normal">
+		<li><span class="midQ [33]">primer haemosztázis zavara</span></li><ul>
+			<li><span class="midQ [34]">vérzéstípus & nemi eloszlás</span></li>
+		</ul>
+		<table><tr><th>csökkent termelődés</th>  <th>csökkent túlélés / fokozott pusztulás</th>  <th>egyéb</th></tr><tr>
+			<td style="text-align:left">
+				<li>gyógyszer (pl. thiazid, alkohol)</li>
+				<li>infekció (pl. kanyaró, HIV)</li>
+				<li>B12- +// folsav-hiány</li>
+				<li>csontvelőelégtelenség (pl. aplasztikus anaemia)</li>
+				<li>csontvelő térfoglaló folyamatok: leukaemia, metasztázis, granulomatosus betegség</li>
+				<li>ineffektív hematopoesis: <span class="midQ [26]">MDS</span></li>
+			</td>
+			<td style="text-align:left">
+				<li>immunológiai:</li><ul>
+					<li>ITP</li>
+					<li>SLE</li>
+					<li>B sejtes tumor</li>
+					<li>gyógyszer</li>
+					<li>poszt-transzfúzió</li>
+					<li>fertőzés</li>
+					<li><font style="font-size:80%">allo-immun (neonatális)</font></li>
+				</ul>
+				<li>NEM immunológiai:</li><ul>
+					<li>DIC</li>
+					<li>TTP/HUS</li>
+					<li>hemangioma</li>
+				</ul>
+			</td>
+			<td style="text-align:left">
+				<li>szekvesztráció &#10140; hypersplenia(splenomegalia)</li>
+				<li>hígulás &#10140; masszív transzfúzió</li>
+			</td>
+		</tr></table>
+		<li></li>
+		<li></li>
+		<li></li>
 	</ul></details>
-	<details class="{31} kerdes"><summary></summary><ul class="normal">
+	<details class="{31} kerdes"><summary>haemophilia-k</summary><ul class="normal">
+		<li><span class="midQ [33]">coagulopathia, herediter</span></li><ul>
+			<li><span class="midQ [34]">vérzéstípus & nemi eloszlás</span></li>
+		</ul>
+		<li>típusai:</li><ul>
+			<li>haemophilia A <font style="font-size:80%">(85%)</font> &#10140; <span class="WHITE">VIII</span> faktor hiánya/inaktív, súlyosabb</li>
+			<li>haemophilia B <font style="font-size:80%">(15%)</font> &#10140; <span class="WHITE">IX</span> faktor hiánya/inaktív</li>
+			<font style="font-size:80%">mindkettő oka az X kromoszóma mutációja</font>
+		</ul>
+		<li>X kromoszómán történő mutáció az oka, recesszív</li>
+	  <strong>diagnózis</strong>
+		<li>családi anamnézis</li>
+		<li>hematoma (súlyossága eltérő: spontán > nagyobb trauma > kis trauma)</li>
+		<li><span class="midQ [2.4]">labor:</span></li><ul>
+			<li><font style="font-size:80%">vérzésidő normál - ellentétben <span class="midQ [35]">von Willebrand kór</span></font></li>
+			<li>aPTT↑ <font style="font-size:80%">(izoláltan, tehát PT nem!)</font></li>
+			<li><span class="WHITE">VIII</span> & <span class="WHITE">IX</span> aktivitásának meghatározása</li>
+		</ul>
+	  <strong>terápia</strong>
+		<li>profilaxis &#10140; im. injekció kerülése, TAG(pl.aspirin) kerülése</li>
+		<li>gondos vérzéscsillapítás: varrat, kompresszió stb.</li>
+		<li>ha súlyos +// műtét előtt &#10140; faktor pótlás</li>
+	  <hr><font style="font-size:80%">ritka, de van szerzett haemophilia is: <span class="WHITE">VIII</span> ellen termelődik inhibitor &#10140; <abbr title="hematóma">tünetek</abbr> + <abbr title="nem korrigál">keveréses vizsgálat</abbr></font>
 	</ul></details>
-	<details class="{32} kerdes"><summary></summary><ul class="normal">
+	<details class="{32} kerdes"><summary>haemostasis</summary><ul class="normal">
+		<li>hemosztázis = vérzéscsillapodás</li>
+		<li><details class="kerdes"><summary>lépései</summary><ul class="normal"> <div class="imp [29]"></div> </ul></details></li>
+		<li><details class="kerdes"><summary>koaguláció mechanizmusa</summary><ul class="normal">
+			<div class="imp [38]"></div>
+		</ul></details></li>
+	  <hr>
+		<li><details class="kerdes"><summary>betegségek</summary><ul class="normal"> <div class="imp [33]"></div> </ul></details></li>
+		<li><details class="kerdes"><summary>haemorrhagias diathesisek</summary><ul class="normal">
+			<div class="imp [34]"></div>
+		</ul></details></li>
 	</ul></details>
-	<details class="{33} kerdes"><summary></summary><ul class="normal">
+	<details class="{33} kerdes"><summary>haemostasis betegségei</summary><ul class="normal"><table><tr>
+		<th>haemorrhagias diathesisek</th>  <th>thrombosis</th></tr>   <tr><td colspan="2"><u>DIC</u></td></tr><tr>
+		<td style="text-align:left">
+			<li>thrombocyta eredetű(70%)</li><ul>
+				<li><span class="midQ [30]">thrombocytopenia(mennyiség↓)</span></li>
+				<li>thrombocytopathia(minőség↓) &#10140; pl. <span class="midQ [35]">von Willebrand kór</span></li>
+			</ul>
+			<li>coagulopathia-k(20%)</li><ul>
+				<li>defekt</li><ul>
+					<li>herediter:</li><ul>
+						<li><span class="midQ [35]">von Willebrand kór</span> (gyakoribb)</li>
+						<li><span class="midQ [31]">haemophilia-k</span> (ritkább)</li>
+					</ul>
+					<li>szerzett &#10140; K-vitamin hiány</li>
+				</ul>
+				<li>immun &#10140; antitest az alvadási faktorok ellen, pl. SLE</li>
+				<font style="font-size:80%"><abbr title="Herold">stb.</abbr></font>
+			</ul>
+			<li>vascularis eredetű(10%)</li><ul>
+				<li><u>fertőzéses vasculitis</u> <font style="font-size:80%">(pl. kanyaró, rickettsia, meningococcus, Dengue-láz)</font></li>
+				<li><u>amyloidosis</u><abbr title="könnyű lánc">'</abbr></li>
+				<li><font style="font-size:80%">stb.</font></li>
+			</ul>
+		</td>
+		<td style="text-align:left">
+			<li><span class="midQ [37]">MVT</span> (+PE)</li>
+			<li></li>
+		</td>
+	</tr></table></ul></details>
+	<details class="{34} kerdes"><summary>haemorrhagias diathesisek</summary><ul class="normal">
+		<li>90% szerzett &#10140; leggyakoribb a gyógyszer okozta</li>
+		<li>10% herediter &#10140; leggyakoribb a <span class="midQ [35]">von Willebrand kór</span></li>
+		<table><tr><th>eredete</th>  <th>zavar</th>  <th>lényege</th>  <th>ffi:nő</th></tr>
+			<tr><th>thrombocyta(70%)</th>
+				<td rowspan="2">primer hemosztázis</td>
+				<td rowspan="2" style="text-align:left">
+					<li>petechiás vérzés</li>
+					<li><span class="syno">nyh/bőr | mucocutan</span>: apró karcolású sebek vérzése se szűnik meg</li>
+					<li><abbr title="pl. foghúzás után nem akar elállni">vérzés egyáltalán nem áll el</abbr></li>
+				</td>
+				<td rowspan="2">1:1</td>
+			</tr>
+			<tr><th>vascularis(10%)</th></tr>
+			<tr><th>coagulopathia-k(20%)</th>
+				<td>szekunder hemosztázis</td>
+				<td style="text-align:left">
+					<li>hemofíliás vérzés</li>
+					<li>ízületekbe/lágyrészek: mély nagy kiterjedésű hematoma</li>
+					<li><abbr title="pl. foghúzás után vérzés csökken, majd lefekszik aludni, de kiderül mégse állt el (bár a foghúzásnál ez amúgy is normális, de mindegy, érthető)">itt a vérzés elsőre úgy tűnik mintha ellállna</abbr></li>
+				</td>
+				<td>4:1</td>
+			</tr>
+		</table>
+		<li>koagulopátia mechanizmusa:</li><ul>
+			<li>a koaguláció & fibrionolízis fiziológiás körülmények között egyensúlyban van &#10140; ha fibrinolízis irányába eltolódik (kogauláció↓ +// fibrinolízis↑), akkor koagulopáthia (ha másik irányba, akkor fokozott véralvadás nyilván)</li>
+			<li><details><summary>mindkét folyamatot aktivátorok és inhibitorok szabályozzák</summary><ul class="normal">
+				<table><tr><th>koaguláció aktivátorai</th>  <th>koaguláció inhibitorai</th></tr><tr>
+					<td> alvadási faktorok </td>
+					<td style="text-align:left">
+						<li>protein C, protein S (ezek K-vitamin függők)</li>
+						<li><span class="syno">antithrombin | AT-III</span></li>
+						<li>gyógyszerek (heparin-ok, hirudin-ok, kumarin-ok)</li>
+					</td>
+				</tr></table>
+				<table><tr><th>fibrinolízis aktivátorai</th>  <th>fibrinolízis inhibitorai</th></tr><tr>
+					<td style="text-align:left">
+						<li>exogén <font style="font-size:80%">(antitest NEM termelődik ellene)</font></li><ul>
+							<li>fiziológiás: <abbr title="tissue plasminogen activator">tPA</abbr></li>
+							<li>gyógyszerek: altepláz, retepláz</li>
+						</ul>
+						<li>exogén <font style="font-size:80%">(antitest termelődik ellene)</font></li><ul>
+							<li>gyógyszerek: sztreptokináz</li>
+						</ul>
+					</td>
+					<td style="text-align:left">
+						<li>&alpha;<sub>2</sub>-antiplazmin</li>
+						<li>plazminogén aktivátor inhibitor</li>
+					</td>
+				</tr></table>
+			</ul></details></li>
+		</ul>
 	</ul></details>
-	<details class="{34} kerdes"><summary></summary><ul class="normal">
+	<details class="{35} kerdes"><summary>von Willebrand kór</summary><ul class="normal">
+		<li><span class="WHITE">vWF</span> thrombocytak adheziójában játszik szerepet ('kiragasztja az érfalra őket')</li>
+		<li></li>
 	</ul></details>
-	<details class="{35} kerdes"><summary></summary><ul class="normal">
+	<details class="{36} kerdes"><summary>haemostasis vizsgálata</summary><ul class="normal">
+		<li>indikáció &#10140; <span class="midQ [33]">haemostasis betegségei</span>nek gyanúja</li>
+	  <strong>vizsgálatok</strong>
+		<li><details class="kerdes"><summary>labor paraméterek</summary><ul class="normal"> <div class="imp [2.4]"></div> </ul></details></li><ul>
+			<span class="imp [2.5]"></span> <!-- spec & szenz -->
+		</ul>
+		<li><span class="midQ [34]">szabályozó faktorok</span> kimutatása &#10140; alvadási faktorok, protein C/S, AT-III</li>
+		<li>genetikai vizsgálat</li>
+	  <strong>algoritmus</strong>
+		<li>anamnézis</li><ul>
+			<li>gyógyszer &#10140; pl. kumarin-t szed, akkor INR-t befolyásolja &#10140; tesztnél figyelembe kell venni</li>
+			<li>mióta? korábban volt?</li><ul>
+				<li>műtétnél kellett transzfúzió?</li>
+				<li>foghúzás után meddig tartott? (fiziológiás is 1-2napig)</li>
+			</ul>
+			<li>családban volt-e</li>
+			<li>máshol van-e? (pl. íny)</li>
+		</ul>
+		<li>első lépés ezután, hogy eldöntsük: thrombocyta-eredetű / coagulopathia / vascularis eredetű</li><ul>
+			<li><span class="midQ [34]">klinikai tünetek</span></li>
+			<li>labor:</li><ul>
+				<li>thrombocyta-eredetű &#10140; thrombocytaszám, vWF</li>
+				<li>koagulopátia &#10140; <span class="syno">aPTT | aPTI</span><abbr title="megnyúlt">↑</abbr>, <span class="syno">PI | PT</span>(INR)<abbr title="megnyúlt">↑</abbr>, <abbr title="trombin idő">TI</abbr><abbr title="megnyúlt">↑</abbr></li>
+			</ul>
+		</ul>
 	</ul></details>
-	<details class="{36} kerdes"><summary></summary><ul class="normal">
+	<details class="{37} kerdes"><summary>MVT</summary><ul class="normal">
+		<li>lokalizáció: láb<abbr title="de bármely mély vénában előfordulhat"><font style="font-size:80%">(90%)</font></abbr></li><ul>
+			<li>75%-ban térd felett (proximalis thrombosis)</li>
+			<li>25%-ban térd alatt (distalis thrombosis)</li>
+		</ul>
+		<li>etiológia alapján csoportosítás:</li><ul>
+			<li>van kiváltó oka &#10140; pl. műtét, trauma, <abbr title="centrális véna katéter">CVC</abbr></li>
+			<li>összes többi idiopathias</li>
+		</ul>
+	  <strong>diagnózis</strong>
+		<li>anamnézis</li><ul>
+			<li>fájdalom</li><ul>
+				<li>claudicatio intermittens (bizonyos távolság megtételét követően)</li>
+				<li>nyugalmi <font style="font-size:80%">(ez értelemszerűen súlyosabb)</font></li>
+			</ul>
+			<li>feszülés, duzzanat</li>
+			<li>rizikófaktorok pl. műtét, trauma, <abbr title="centrális véna katéter">CVC</abbr>, obes, immobilitás, idős kor stb.</li>
+			<li><abbr title="PE esetében is van, a kettő kissé különbözik!!">Wells-score</abbr> &#10140; teszt kitöltése, ami alapján MVT rizikóbecslés &#10140; pl. daganat, volt már MVT, tünetek, stb.</li>
+		</ul>
+		<li>fizikális vizsgálat</li><ul>
+			<li>meleg</li>
+			<li>ödéma, jellemzően féloldali</li>
+			<li>végartériák pulzálnak</li>
+			<li>Homans-tünet &#10140; behajlított térdel, a lábfej dorsalflexiója során a thrombosis helyén a beteg fájdalmat jelez</li>
+		</ul>
+		<li>labor &#10140; <abbr title="fibrinolízis során keletkezik">D-dimer</abbr> mérés, csak KIZÁRÁSRA: tehát alacsony rizikó esetén van értelme, és ha negatív akkor megerősítés, hogy nincs (ugyanis szenztivitása nagy) (ellenben a pozitív kb. semmit NEM jelent, mert <span class="midQ [2.5]">specificitása</span> nagyon alacsony)</li>
+		<li>UH &#10140; Doppler-teszt:</li><ul>
+			<li>áramlás követése</li>
+			<li>véna nem nyomható teljesen össze</li>
+		</ul>
+	  <strong>terápia</strong>
+		<li>antikoaguláns:</li><ul>
+			<font style="font-size:80%">megj: ez a vérrögöt nem bontja le -szemben a fibrinolízissel- csupán a növekedését gátolja!!</font>
+			<li>subcutan <abbr title="kis molekulasúlyú heparin">LMWH</abbr> 1hétig</li><ul>
+				<li>ha <abbr title="heparin indukálta thrombocytopenia">HIT</abbr> van, akkor helyette hirudin!!</li>
+			</ul>
+			<li>emelett KVA kezelést kell indítani egy nappal később és 3-6hónapig tartson (INR: 2-3 között)</li>
+			<font style="font-size:80%">&#10140; NOAC is használható már (apixaban & rivaroxaban esetében nem is kell LMWH előtte)</font>
+		</ul>
+		<li>kompressziós harisnya viselése</li>
+		<li>(<span class="syno">trombolízis | fibrinolízis</span> &#10140; a vérzéses kockázat magas (stroke esélye 2%, míg antikoaguláns esetben 0,6%) &#10140; fiatalok esetében van értelme, ha az végtagot veszélyeztető)</li>
+	  <strong>szövődmény</strong>
+		<li>tüdőembólia (hiszen szisztémás keringésből jobb pitvar, jobb kamra, majd tüdő)</li><ul>
+			<li>MVT-os betegek 50%-ának <abbr title="tünetmentes">néma</abbr> PE-ja ban!</li>
+			<li>ha distalis trombózis van, akkor kicsi a rizikó</li>
+			<li>ágynyugalom (hospitalizáció) nem befolyásolja a kockázatát</li>
+		</ul>
+		<li>paradox embólia (septumon átjut, így stroke / alsó végtag / bél)</li>
+		<li>poszttrombotikus szindróma</li><ul>
+			<li>betegek 20%-ában alakul ki, 10éven belül</li>
+			<li>végtagi fájdalom, oedema, amely álláskor és munkavégzéskor fokozódik</li>
+			<li>súlyos esetekben a végtag distalis harmadában, leggyakrabban a belső boka környékén barnásan elszíneződött bőr, majd nehezen gyógyuló lábszárfekély (ulcus cruris) alakul ki, amely a beteget munkaképtelenné teheti</li>
+			<li>oka &#10140; a vénabillentyűk károsodása következtében fokozott vénás nyomás van</li>
+		</ul>
 	</ul></details>
-	<details class="{37} kerdes"><summary></summary><ul class="normal">
-	</ul></details>
-	<details class="{38} kerdes"><summary></summary><ul class="normal">
+	<details class="{38} kerdes"><summary>koaguláció mechanizmusa</summary><ul class="normal">
+		<span class="done">lényege &#10140; fibrinhálózat képződik</span>
+		<img class="mini" data-src="wviuylbv.png">
+		<img class="mini" data-src="lckjweny.png">
+		<img class="mini" data-src="dombtkuo.png">
+		<img class="mini" data-src="uvbfonwx.png">
+		<li>érfal sérülése következtében a <span class="WHITE"><abbr title="szöveti faktor">TF</abbr></span> hozzáférhetővé válik a plazmában keringő <span class="WHITE">VII</span> számára</li>
+		<li>így az <u>extrinsic-tenáz komplex</u> aktiválódik &#10140; keletkezik kevés <span class="WHITE"><span class="syno">trombin | II</span></span></li><ul>
+			<li>ez a fibrinogént alakítja fibrinné <abbr title="(A és B peptidet hasít le róla)">'</abbr> <span style="font-size:80%" class="WHITE"><abbr title="a trombin által létrejött 'fibrin' még instabil, és a trombin által aktivált XIII is kell utána, hogy stabilizálódjon">XIII</abbr></span></li>
+			<li>továbbá aktiválja a <span class="WHITE">V</span> <span class="WHITE">VIII</span> <span class="WHITE">XI</span>-t</li><ul>
+				<li>így az <u>intrinsic-tenáz komplex</u> aktiválódik, és ez már sok trombint aktivál &#10140; közben az extrinsic-tenáz komplex leáll</li>
+			</ul>
+		</ul>
+		<li><font class="abbr">K-vitamin függő alvadási faktorok ►</font> <span class="WHITE">II</span> <span class="WHITE">VII</span> <span class="WHITE">IX</span> <span class="WHITE">X</span></li>
+		<video data-src="videos/Coagulation Cascade Animation - Physiology of Hemostasis.mp4"></video>
 	</ul></details>
 	<details class="{39} kerdes"><summary></summary><ul class="normal">
 	</ul></details>
@@ -1264,6 +1594,48 @@
 	</ul></details>
  </div>
  <div> <!-- 41 – 60 -->
+	<details class="{41} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+	<details class="{42} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+	<details class="{43} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+	<details class="{44} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+	<details class="{45} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+	<details class="{46} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+	<details class="{47} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+	<details class="{48} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+	<details class="{49} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+	<details class="{50} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+	<details class="{51} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+	<details class="{52} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+	<details class="{53} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+	<details class="{54} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+	<details class="{55} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+	<details class="{56} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+	<details class="{57} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+	<details class="{58} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+	<details class="{59} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+	<details class="{60} kerdes"><summary></summary><ul class="normal">
+	</ul></details>
+ </div>
+ <div> <!-- 61 – 80 -->
 	<details class="{1} kerdes"><summary></summary><ul class="normal">
 	</ul></details>
 	<details class="{2} kerdes"><summary></summary><ul class="normal">
@@ -1312,18 +1684,7 @@
 <!---->  <details><summary class="mainTitle">bevezetés, ismétlés, általános</summary>
 	<details><summary class="phase">fizikális vizsgálatok</summary> <div class="imp {205}"></div> </details>
 	<details><summary class="phase">Hematológia</summary><ul class="normal">
-		<details class="kerdes"><summary>véralvadás lépései</summary><ul class="normal">
-			<div><span class="WHITE">1.lépés</span> vazokonstrikció</li><ul>
-				<li>a helyben felszabadult érszűkítő anyagok okozzák &#10140; <span class="midQ [92]">TXA<sub>2</sub></span>, <span class="syno">5-HT | szerotonin</span>, Adr</li>
-			</ul>
-			<div><span class="WHITE">2.lépés</span> trombociták <abbr title="kitapadnak">adhézió</abbr> ► aktiválódnak(felületük nő) ► <abbr title="összecsapzódnak">aggregálódnak</abbr> &#10140; kialakul a fehér thrombus</div>
-			<div><span class="WHITE">3.lépés</span> <span class="syno">koaguláció | véralvadás</span>: oldott fibrinogén átalakul oldhatatlan fibrinné, azaz kialakul a fibrinháló &#10140; kialakul a vörös thrombus (vvt-k akadnak el benne)</div>
-			<li>fibrinolízis</li>
-		  <hr>patológiás esetben a következők mondhatók el:
-			<li>artériás oldalon (pl. atherosclerosis ► akut koronária szindróma) a vérlemezkék játszák a főszerepet (fehér trombus képződik)</li>
-			<li>vénás oldalon (pl. mélyvénás trombózis) a <span class="syno">koaguláció | véralvadás</span> játsza a főszerepet (vörös trombus képződik)</li>
-			<video data-src="videos/Blood Clot Formation - Coagulation Factors & Platelets.mp4"></video>
-		</ul></details>
+		<details class="kerdes"><summary>vérzécsillapodás</summary><ul class="normal"> <div class="imp [29]"></div> </ul></details>
 		<details class="kerdes"><summary>véralvadásgátló gyógyszerek</summary><ul class="normal">
 		  <strong>TAG gátlók</strong> – artériás oldalon használhatók
 			<li>aszpirin</li>
@@ -1367,24 +1728,36 @@
 	</ul></details>
 	<details class="kerdes"><summary class="status" style="background-color:coral">6. Aplasztikus anaemia</summary><ul class="normal">
 	</ul></details>
-	<details class="kerdes"><summary class="status" style="background-color:coral">7. Alvadási rendszer vizsgálata</summary><ul class="normal">
+	<details class="open"><summary class="status">7. Alvadási rendszer vizsgálata</summary><ul class="normal">
+		<details class="kerdes"><summary><strong>Alvadási rendszer</strong> vizsgálata</summary><ul class="normal">
+			<div class="imp [32]"></div>
+		</ul></details>
+		<details class="kerdes"><summary><strong>Alvadási rendszer vizsgálata</strong></summary><ul class="normal">
+			<div class="imp [36]"></div>
+		</ul></details>
 	</ul></details>
-	<details class="kerdes"><summary class="status" style="background-color:coral">8. Thrombosis kivizsgálása</summary><ul class="normal">
+	<details class="kerdes"><summary class="status" style="background-color:gainsboro">8. Thrombosis kivizsgálása</summary><ul class="normal">
+		<center><strong>itt MVT-ről írtam</strong></center>
+		<div class="imp [37]"></div>
 	</ul></details>
 	<details class="kerdes"><summary class="status" style="background-color:coral">9. Szerzett thrombophiliák</summary><ul class="normal">
 	</ul></details>
 	<details class="kerdes"><summary class="status">10. Antifoszfolipid szindróma</summary><ul class="normal">
 		<div class="imp [22]"></div> <!-- APS -->
 	</ul></details>
-	<details class="kerdes"><summary class="status" style="background-color:coral">11. Öröklött haemophiliák (Haemophilia A és B)</summary><ul class="normal">
+	<details class="kerdes"><summary class="status" style="background-color:gainsboro">11. Öröklött haemophiliák (Haemophilia A és B)</summary><ul class="normal">
+		<div class="imp [31]"></div>
 	</ul></details>
-	<details class="kerdes"><summary class="status" style="background-color:coral">12. Von Willebrand betegség</summary><ul class="normal">
+	<details class="kerdes"><summary class="status" style="background-color:yellow">12. Von Willebrand betegség</summary><ul class="normal">
+		<div class="imp [35]"></div>
 	</ul></details>
 	<details class="kerdes"><summary class="status" style="background-color:coral">13. Antikoaguláns terápia indikációi és módjai</summary><ul class="normal">
+		<li>pl. <span class="midQ [37]">MVT</span></li>
 	</ul></details>
 	<details class="kerdes"><summary class="status" style="background-color:coral">14. DIC</summary><ul class="normal">
 	</ul></details>
-	<details class="kerdes"><summary class="status" style="background-color:coral">15. Thrombocytopeniás beteg kivizsgálása</summary><ul class="normal">
+	<details class="kerdes"><summary class="status" style="background-color:yellow">15. Thrombocytopeniás beteg kivizsgálása</summary><ul class="normal">
+		<div class="imp [30]"></div>
 	</ul></details>
 	<details class="kerdes"><summary class="status" style="background-color:coral">16. Thrombocythosis</summary><ul class="normal">
 	</ul></details>
