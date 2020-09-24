@@ -1867,6 +1867,8 @@ function F_searchWord() {
 		
 		var spanStatus = document.getElementById("span_searchStatus")
 		spanStatus.parentElement.style.display = "block" 
+		spanStatus.parentElement.style.top = "60px"
+		document.getElementById("div_SearchW").appendChild(spanStatus.parentElement)
 		
 		var x = 0
 		var summaryID = 0
@@ -2374,7 +2376,6 @@ function F_toggleAll() {
 	}
 	document.getElementById("div_centIMG").style.display = "block";
 	document.getElementById("btn_toggleAll").style.backgroundColor  = ""
-	document.getElementById("btn_toggleAll").style.color  = ""
 	
 	F_getTime()
 	lastClickTime = myTime
@@ -2573,12 +2574,8 @@ function F_CreateQDiv() {
 			var diffTime = myTime - lastClickTime
 			console.log(myTime+" vs "+lastClickTime)
 			if ( diffTime < 1 ) { return }
-			if ( this.style.backgroundColor == "aqua" ) { 
-				document.getElementById("divLoading").style.visibility = 'visible'
-			} else {
-				this.style.backgroundColor  = "black"
-				this.style.color  = "white"
-			}
+			document.getElementById("divLoading").style.visibility = 'visible'
+			this.style.backgroundColor  = "black"
 			var int_Click = window.setInterval(function(){
 				console.log("toggleAll")
 				F_toggleAll()
@@ -2660,7 +2657,7 @@ function F_CreateQDiv() {
 	
 	function F_divLoading(){
 		var div = document.createElement("span")
-		MainFrame.appendChild(div)
+		document.body.appendChild(div)
 		div.id = "divLoading"
 		div.style.backgroundColor = "black"
 		div.style.position = "fixed"
@@ -5158,6 +5155,12 @@ function clearIDB(path,id){
 }
 function clearFullIDB(){ for ( var i=0; i<pageLinks.length; i++ ) { clearIDB(pageLinks[i].dataset.src,i) } }
 
+function F_lsADDidbPath(path){
+	var lsPaths = JSON.parse(localStorage.getItem("idbPaths"))
+	if ( lsPaths == null ) { lsPaths = [] }
+	if ( lsPaths.includes(path) == false ) { lsPaths.push(path) }
+	localStorage.setItem("idbPaths", JSON.stringify(lsPaths))
+}
 function saveIDB(path,text,id){
 	F_getTime()
 	var objectData = [ { pageHTML: text }, { pageTIME: myTime } ]
@@ -5180,6 +5183,7 @@ function saveIDB(path,text,id){
 		transaction.oncomplete = function() { db.close() }
 		
 		pageLinks[id].style.color = "blue"
+		F_lsADDidbPath(path)
 	}
 }
 function loadIDB(path){
@@ -5191,8 +5195,24 @@ function loadIDB(path){
 		//console.log(db.objectStoreNames)
 		if ( db.objectStoreNames.contains('webpage') != true ) { return }
 		var transaction = db.transaction("webpage","readwrite")
-		var store = transaction.objectStore("webpage");  
+		var store = transaction.objectStore("webpage")
 		store.get(1).onsuccess = function(event) { 
+			if ( arrLSpaths.includes(path) == true ) { 
+				var lsPaths = JSON.parse(localStorage.getItem("idbPaths")) // ezt csak első betöltésnél használja
+				var ctMax = lsPaths.length
+				
+				var index = arrLSpaths.indexOf(path)
+				arrLSpaths.splice(index,1) // kiveszem array-ból a path-et
+				var ctCurr = ctMax - arrLSpaths.length
+				
+				var spanStatus = document.getElementById("span_searchStatus")
+				spanStatus.style.width = spanStatus.parentElement.offsetWidth * ctCurr / ctMax
+				if ( ctCurr == ctMax ) {
+					spanStatus.parentElement.style.display = "none"
+					document.getElementById("divLoading").style.visibility = 'hidden'
+				}
+			}
+			
 			var text = this.result[0]["pageHTML"]
 			//console.log(path+" : "+text)
 			var id
@@ -5231,7 +5251,17 @@ function loadIDB(path){
 		transaction.oncomplete = function() { db.close() }
 	}
 }
-for ( var i=0; i<pageLinks.length; i++ ) { loadIDB(pageLinks[i].dataset.src) }
+var arrLSpaths = JSON.parse(localStorage.getItem("idbPaths")) // ezt csak első betöltésnél használja
+function F_loadpageIDBs(){
+	document.getElementById("divLoading").style.visibility = 'visible'
+	var spanStatus = document.getElementById("span_searchStatus")
+	document.body.appendChild(spanStatus.parentElement) 
+	spanStatus.parentElement.style.display = "block" 
+	spanStatus.parentElement.style.top = "80%"
+	if ( arrLSpaths == null ) { arrLSpaths = [] }
+	for ( var x in arrLSpaths ) { loadIDB(arrLSpaths[x]) }
+}
+F_loadpageIDBs()
 
 F_getTime()
 var diffTime = myTime-oldTime
