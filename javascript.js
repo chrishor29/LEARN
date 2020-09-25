@@ -1320,21 +1320,15 @@ function F_saveLS() {
 
 
 function F_clickAutoLoadPagesBtn(btn) {
-	if ( localStorage.getItem("toggleLoad") == "true" ) {
-		localStorage.setItem("toggleLoad", "false")
-		btn.style.backgroundColor = ""
-	} else {
-		localStorage.setItem("toggleLoad", "true")
+	if ( localStorage.getItem("toggleLoad") == "disabled" ) {
+		localStorage.removeItem("toggleLoad")
 		btn.style.backgroundColor = "green"
+	} else {
+		localStorage.setItem("toggleLoad", "disabled")
+		btn.style.backgroundColor = ""
 	}
 }
-if ( localStorage.getItem("toggleLoad") == null ) { 
-	if ( isAndroid == false ) { 
-		localStorage.setItem("toggleLoad","true")
-		document.getElementById("btn_toggleLoad").style.backgroundColor = "green"
-	}
-} else if ( localStorage.getItem("toggleLoad") == "true" ) {
-	localStorage.setItem("toggleLoad","true")
+if ( localStorage.getItem("toggleLoad") != "disabled" ) { 
 	document.getElementById("btn_toggleLoad").style.backgroundColor = "green"
 }
 
@@ -1868,7 +1862,6 @@ function F_searchWord() {
 		var spanStatus = document.getElementById("span_searchStatus")
 		spanStatus.parentElement.style.display = "block" 
 		spanStatus.parentElement.style.top = "60px"
-		document.getElementById("div_SearchW").appendChild(spanStatus.parentElement)
 		
 		var x = 0
 		var summaryID = 0
@@ -2099,7 +2092,7 @@ function F_searchWord() {
 		divText.style.right = "1%"
 		
 		var spanStatus = document.createElement("span")
-		div.appendChild(spanStatus)
+		document.body.appendChild(spanStatus)
 		spanStatus.style.display = "none"
 		spanStatus.style.position = "absolute"
 		spanStatus.style.backgroundColor = "grey"
@@ -2109,6 +2102,7 @@ function F_searchWord() {
 		spanStatus.style.top = "60px"
 		spanStatus.style.left = "50%"
 		spanStatus.style.transform = "translate(-50%)"
+		spanStatus.style.zIndex = "2"
 		
 		var spanStatusChild = document.createElement("span")
 		spanStatus.appendChild(spanStatusChild)
@@ -2258,19 +2252,21 @@ var F_seekBar = window.setInterval(function(){
 		midQloaded = true
 	}
 	
-	threeSec = threeSec +1
-	if ( localStorage.getItem("toggleLoad") != "false" ) {
-		var loadTime = 2
-		if ( threeSec > loadTime && document.getElementById("div_SearchW").style.display != "block" ) {
-			var full = pageLinks.length -1
-			for ( var i=0; i<pageLinks.length; i++ ) { 
-				document.getElementById("div_RefreshStatus").innerHTML = i+"/"+full
-				if ( pageLinks[i].dataset.loaded != "true" ) {
-					F_loadPageText(pageLinks[i].dataset.src,false)
-					break
+	if ( document.getElementById("btn_toggleLoad").style.backgroundColor == "green" ) {
+		threeSec = threeSec +1
+		if ( localStorage.getItem("toggleLoad") != "false" ) {
+			var loadTime = 2
+			if ( threeSec > loadTime && document.getElementById("div_SearchW").style.display != "block" ) {
+				var full = pageLinks.length -1
+				for ( var i=0; i<pageLinks.length; i++ ) { 
+					document.getElementById("div_RefreshStatus").innerHTML = i+"/"+full
+					if ( pageLinks[i].dataset.loaded != "true" ) {
+						F_loadPageText(pageLinks[i].dataset.src,false)
+						break
+					}
 				}
+				threeSec = 0
 			}
-			threeSec = 0
 		}
 	}
 }, 1000);
@@ -2574,13 +2570,13 @@ function F_CreateQDiv() {
 			var diffTime = myTime - lastClickTime
 			console.log(myTime+" vs "+lastClickTime)
 			if ( diffTime < 1 ) { return }
-			document.getElementById("divLoading").style.visibility = 'visible'
+			document.body.style.backgroundColor = "Gainsboro"
 			this.style.backgroundColor  = "black"
 			var int_Click = window.setInterval(function(){
 				console.log("toggleAll")
 				F_toggleAll()
 				clearInterval(int_Click) 
-				document.getElementById("divLoading").style.visibility = 'hidden'
+				document.body.style.backgroundColor = ""
 			}, 100)
 		}
 	}
@@ -2654,22 +2650,6 @@ function F_CreateQDiv() {
 	}
 	F_DivMainFrame()
 	var MainFrame = document.getElementById("div_MainFrame");
-	
-	function F_divLoading(){
-		var div = document.createElement("span")
-		document.body.appendChild(div)
-		div.id = "divLoading"
-		div.style.backgroundColor = "black"
-		div.style.position = "fixed"
-		div.style.top = "1%"
-		div.style.right = "0.5%"
-		div.style.width = "99%"
-		div.style.height = "98%"
-		div.style.opacity = "0.3"
-		//div.style.display = 'block'
-		div.style.visibility = 'hidden'
-	}
-	F_divLoading()
 
 	function F_DivQSettings() {
 		var div = document.createElement("div")
@@ -3192,7 +3172,7 @@ function F_CreateQDiv() {
 			//console.log(myTime+" vs "+lastClickTime)
 			if ( diffTime < 1 ) { return }
 			if ( this.style.backgroundColor == "aqua" ) { 
-				document.getElementById("divLoading").style.visibility = 'visible'
+				document.body.style.backgroundColor = "Gainsboro"
 			} else {
 				this.style.backgroundColor  = "black"
 				this.style.color  = "white"
@@ -3200,7 +3180,7 @@ function F_CreateQDiv() {
 			var int_Click = window.setInterval(function(){
 				F_nextQ()
 				clearInterval(int_Click) 
-				document.getElementById("divLoading").style.visibility = 'hidden'
+				document.body.style.backgroundColor = ""
 			}, 100)
 		}
 		button.value = " ► "
@@ -5153,7 +5133,10 @@ function clearIDB(path,id){
 		pageLinks[id].style.color = "red"
 	}
 }
-function clearFullIDB(){ for ( var i=0; i<pageLinks.length; i++ ) { clearIDB(pageLinks[i].dataset.src,i) } }
+function clearFullIDB(){ 
+	for ( var i=0; i<pageLinks.length; i++ ) { clearIDB(pageLinks[i].dataset.src,i) }
+	localStorage.removeItem("idbPaths")
+}
 
 function F_lsADDidbPath(path){
 	var lsPaths = JSON.parse(localStorage.getItem("idbPaths"))
@@ -5204,12 +5187,11 @@ function loadIDB(path){
 				var index = arrLSpaths.indexOf(path)
 				arrLSpaths.splice(index,1) // kiveszem array-ból a path-et
 				var ctCurr = ctMax - arrLSpaths.length
-				
 				var spanStatus = document.getElementById("span_searchStatus")
 				spanStatus.style.width = spanStatus.parentElement.offsetWidth * ctCurr / ctMax
 				if ( ctCurr == ctMax ) {
 					spanStatus.parentElement.style.display = "none"
-					document.getElementById("divLoading").style.visibility = 'hidden'
+					document.body.style.backgroundColor = ""
 				}
 			}
 			
@@ -5253,12 +5235,11 @@ function loadIDB(path){
 }
 var arrLSpaths = JSON.parse(localStorage.getItem("idbPaths")) // ezt csak első betöltésnél használja
 function F_loadpageIDBs(){
-	document.getElementById("divLoading").style.visibility = 'visible'
+	if ( arrLSpaths == null ) { return }
+	document.body.style.backgroundColor = "Gainsboro"
 	var spanStatus = document.getElementById("span_searchStatus")
-	document.body.appendChild(spanStatus.parentElement) 
 	spanStatus.parentElement.style.display = "block" 
 	spanStatus.parentElement.style.top = "80%"
-	if ( arrLSpaths == null ) { arrLSpaths = [] }
 	for ( var x in arrLSpaths ) { loadIDB(arrLSpaths[x]) }
 }
 F_loadpageIDBs()
