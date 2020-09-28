@@ -305,11 +305,6 @@ img.metszet {
 	display:inline-block;
 	transform: scale(-1,1);
 }
-.rotate {
-     -moz-transform: rotate(-90.0deg);  /* FF3.5+ */
-       -o-transform: rotate(-90.0deg);  /* Opera 10.5 */
-  -webkit-transform: rotate(-90.0deg);  /* Saf3.1+, Chrome */
-}
 
 
 summary {
