@@ -5191,7 +5191,11 @@ function loadIDB(path){
 				spanStatus.style.width = spanStatus.parentElement.offsetWidth * ctCurr / ctMax
 				if ( ctCurr == ctMax ) {
 					spanStatus.parentElement.style.display = "none"
-					document.body.style.backgroundColor = ""
+					if ( localStorage.getItem("hk.ToggleAll") == "true" ) {
+						F_loadPageText(localStorage.getItem("hk.pagePath"),true)
+					} else {
+						document.body.style.backgroundColor = ""
+					}
 				}
 			}
 			
@@ -5217,8 +5221,6 @@ function loadIDB(path){
 				arrImpQs["expQs"] = []
 				F_loadExpQs(parentDiv,"expQs")
 				expQsLoaded = true
-			} else if ( localStorage.getItem("hk.ToggleAll") == "true" && localStorage.getItem("hk.pagePath") == path ) {
-				F_loadPageText(localStorage.getItem("hk.pagePath"),true)
 			}
 			F_getTime()
 			var time = myTime - this.result[1]["pageTIME"]

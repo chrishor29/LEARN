@@ -268,26 +268,29 @@
 		</ul></details></li>
 	  </div>
 	  <strong>szerológia</strong><div>
-		<details class="{2.8} kerdes"><summary>ANA, ANCA</summary><ul class="normal"><table>
-			<tr><th>ANA</th><td style="text-align:left">
+		<details class="{2.8} kerdes"><summary>autoantitestek</summary><ul class="normal"><table>
+			https://en.wikipedia.org/wiki/Autoantibody#List_of_some_autoantibodies_and_commonly_associated_diseases
+			<tr><th rowspan="2">ANA</th>	<th><abbr title="első teszt csak, hogy megnézzük van-e ANA, utána lehet annak altípusait nézni">teszt</abbr></th><td style="text-align:left">
 				<div><span class="plus">+</span> <span class="midQ [63]">SLE</span></div>
 				<div><span class="minus">–</span> <span class="midQ [47]">ANCA-vasculitis-ek</span></div>
 			</td></tr>
-			<tr><th>ANCA</th><td style="text-align:left">
+				<tr><th>anti-dsDNA</th><td style="text-align:left">
+					<div><span class="plus">+</span> <span class="midQ [63]">SLE</span></div>
+				</td></tr>
+			<tr><th colspan="2">ANCA</th><td style="text-align:left">
 				<li><span class="midQ [15]">ANCA-vasculitis-ek</span> (anti-MPO /+ anti-PR3)</li>
 				<li>(IBD-k) (Goodpasture szindróma)</li>
 			</td></tr>
-			<tr><th>anti-dsDNA</th><td style="text-align:left">
+			<tr><th colspan="2">anti-C1q</th><td style="text-align:left">
 				<div><span class="plus">+</span> <span class="midQ [63]">SLE</span></div>
 			</td></tr>
-			<tr><th>anti-C1q</th><td style="text-align:left">
-				<div><span class="plus">+</span> <span class="midQ [63]">SLE</span></div>
-			</td></tr>
-			<tr><th>APA(anti-foszfolipid antitest)-k</th><td style="text-align:left">
+			<tr><th rowspan="3"><abbr title="anti-foszfolipid antitest">APA</abbr>-k</th><th><abbr title="lupus antikoaguláns">LA</abbr></th><td rowspan="3" style="text-align:left">
 				<div><span class="plus">+</span> <span class="midQ [22]">APS</span></div>
 				<div><span class="plus">+</span> <span class="midQ [63]">SLE</span></div>
 			</td></tr>
-			<tr><th>RF</th><td style="text-align:left">
+				<tr><th><abbr title="anti-kardiolipin antitest">ACA</abbr></th></tr>
+				<tr><th>anti-β2GPI<abbr title="ez római 1 (glikoprotein I)">I</abbr></th></tr>
+			<tr><th colspan="2">RF</th><td style="text-align:left">
 				<li><span class="midQ [64]">Sjögren syndroma</span></li>
 				<li><span class="midQ [67]">rheumatoid arthritis</span></li>
 				<li>egészséges idős<font style="font-size:80%">(5%)</font></li>
@@ -761,7 +764,6 @@
 	<details class="{13} kerdes"><summary>myeloma multiplex</summary><ul class="normal">
 	  <div class="imp [13.1]"></div>
 	  <strong>pathomechanizmus</strong> <div class="imp [13.2]"></div>
-	  <strong>plazmasejtes betegségek</strong> <div class="imp [13.3]"></div>
 	  <strong>tünetek</strong> <div class="imp [13.4]"></div>
 	  <strong>diagnózis</strong> <div class="imp [13.5]"></div>
 	  <strong>stádium</strong> <div class="imp [13.6]"></div>
@@ -775,9 +777,10 @@
 				<li><details class="kerdes"><summary>prognózis</summary><ul class="normal"> <div class="imp [4.4]"></div> </ul></details></li>
 			</ul>
 			<li><span class="midQ [4.4]">kis kockázatú</span></li>
+			<li>plazmasejtes betegség <span class="midQ [13.3]">(plazmasejtes betegségek)</span></li>
 		</ul></details>
 		<details class="{13.2} kerdes"><summary>pathomechanizmusa</summary><ul class="normal">
-			<li><span class="done">egy elfajult plazmasejt infiltrálja a csontvelőt &#10140; felszaporodik, ezek..</span></li>
+			<div><span class="done">egy elfajult plazmasejt infiltrálja a csontvelőt &#10140; felszaporodik, ezek..</span></div>
 			<li><span class="done">egyrészt <span class="syno">paraprotein | M-protein</span>-t termelnek</span>, ami lehet..</li><ul>
 				<li>monoklonális antitest: IgG/IgA/IgD</li>
 				<li>és/vagy az Ig-nek csak egy része, pl. könnyű-lánc(Bence-Jones protein)</li>
@@ -808,26 +811,27 @@
 		</ul></details>
 		<details class="{13.5} kerdes"><summary>diagnózis</summary><ul class="normal">
 			<li>csont-rtg &#10140; csont lézió <font style="font-size:80%">(osteolysis, osteoporosis)</font> <img class="mini" data-src="bucqqwiw.png"></li>
-			<li>vérkép:</li><ul>
-				<li><span class="midQ [2.2] done">vvt-süllyedés</span> jelentősen gyorsult</li>
+			<li>labor:</li><ul>
 				<li>hiperkalcémia</li>
 				<li>anaemia</li>
-				<li>fehérjeszint↑ (70g helyett pl. 100) <div class="mirror">&#10140;</div> <span class="syno">paraprotein | M-protein</span>-ek mennyisége nőtt</li><ul>
-					<li>ezután <span class="midQ [14]">elektroforézis</span> elvégzése &#10140; <abbr title="tehát hegyes csúcs a &gamma;-globulin részen, mert csak egy típusú Ig mennyisége szaporodik fel, hisz monoklonális">M-spike!</abbr> &#10140; e jelenség oka:</li><ul>
-						<li><span class="midQ [13.3]">monoklonális gammopathia</span>-k</li>
-						<li>DE! egyéb is lehet, pl. <span class="midQ [13.3]">MGUS</span>, <span class="midQ [15]">CLL</span>, autoimmun betegség stb.</li>
-					</ul>
+				<font style="font-size:80%">ha plazmasejt jelenik meg a vérben (ritka) &#10140; <span class="midQ [13.3]"><u>plazmasejtes leukaemia</u></span></font>
+			</ul>
+			<li><abbr title="megjegyzést segíti! logika">Ig↑ következményei:</abbr></li><ul>
+				<li>fehérjeszint↑ (70g helyett pl. 100) <div class="mirror">&#10140;</div> <span class="syno">paraprotein | M-protein</span>-ek mennyisége nőtt</li>
+				<li><span class="midQ [14]">elektroforézis</span> &#10140; <abbr title="tehát hegyes csúcs a &gamma;-globulin részen, mert csak egy típusú Ig mennyisége szaporodik fel, hisz monoklonális">M-spike!</abbr> &#10140; e jelenség oka:</li><ul>
+					<li><span class="midQ [13.3]">monoklonális gammopathia</span>-k</li>
+					<li>DE! egyéb is lehet, pl. <span class="midQ [13.3]">MGUS</span>, <span class="midQ [15]">CLL</span>, autoimmun betegség stb.</li>
 					<li>ha <abbr title="csak könnyűlánc felszaporodás van">Bence-Jones myeloma</abbr>, akkor nincs M-spike</li>
-					<li><abbr title="ne foglalkozzak vele, csak magoljam">&beta;<sub>2</sub>-microglobulin</abbr>↑</li>
-					<li>emellett immunfixációval a <span class="syno">paraprotein | M-protein</span> <abbr title="mennyiségre az elektroforézis kell">típusa</abbr> meghatározható (IgG/A/D vagy <abbr title="ez lehet kappa(&kappa;) / lambda(&lambda;)">könnyű-lánc</abbr>)</li>
 				</ul>
-				<li>ha plazmasejt jelenik meg a vérben (ritka) &#10140; plazmasejtes leukaemia</li>
+				<li><span class="midQ [2.2] done">vvt-süllyedés</span> jelentősen gyorsult (aggregáció fokozódik)</li>
+				<li>proteinuria &#10140; <abbr title="antitest vizeletbe már nem jut ki!">könnyű-láncok↑</abbr> <font style="font-size:80%"><abbr title="immunfixáció = elektroforézis + festés (search-ben keressek rá, ha érdekel)">(elektroforézis, immunfixációval mutatható ki</abbr>, vizelet tesztcsík NEM elég!)</font></li>
+				<li>kenet &#10140; vvt-k összecsapzódnak 'péntekercs'-ekké <img class="mini" data-src="htspyfgt.png"></li><ul>
+					<font style="font-size:80%">előrehaladott állapot már!</font>
+				</ul>
+				<li>immunfixációval a <span class="syno">paraprotein | M-protein</span> <abbr title="mennyiségre az elektroforézis kell">típusa</abbr> meghatározható (IgG/A/D vagy <abbr title="ez lehet kappa(&kappa;) / lambda(&lambda;)">könnyű-lánc</abbr>)</li>
 			</ul>
-			<li>kenet &#10140; vvt-k összecsapzódnak 'péntekercs'-ekké <img class="mini" data-src="htspyfgt.png"></li><ul>
-				<font style="font-size:80%">előrehaladott állapot már!</font>
-			</ul>
+			<li><abbr title="olyan sejtek juttatják a vérbe, mint a B-limfociták és a tumor sejtek">&beta;<sub>2</sub>-microglobulin</abbr>↑</li>
 			<li><span class="midQ [16]">csontvelő</span> &#10140; <div class="imp [13.9]"></div></li>
-			<li>proteinuria &#10140; <abbr title="antitest vizeletbe már nem jut ki!">könnyű-láncok↑</abbr> <abbr title="immunfixáció = elektroforézis + festés (search-ben keressek rá, ha érdekel)">(elektroforézis, immunfixációval mutatható ki</abbr>, vizelet tesztcsík NEM elég!)</li>
 			<li><span style="font-size:80%" class="MISS">immuntipizálás CD markerek alapján</span> (kórtan ea 25:30)</li>
 		</ul></details>
 		<details class="{13.6} kerdes"><summary>stádium</summary><ul class="normal">
@@ -836,25 +840,24 @@
 			<div><span class="WHITE">III</span> &beta;2-mikroglobulin magas</div>
 		</ul></details>
 		<details class="{13.7} kerdes"><summary>terápia</summary><ul class="normal">
-			<li>ha MGUS &#10140; évente ellenőrizni progrediált-e pl. myeloma multiplex-be (pl. elektroforézis: M-sipke nőtt-e)</li>
-			<li>myeloma multiplex:</li><ul>
-				<li>elsővonalbeli + recidíva &#10140; gyógyszerek<abbr title="(különböző protokoll szerint adhatók, ne foglalkozzak vele)">'</abbr> pl.</li><ul>
-					<li>különböző protokoll szerint adhatók</li>
-					<li>pl. vtd = bortezomib + thalidomid + szteroid</li>
-				</ul>
-				<li>szupportív:</li><ul>
-					<li>biszfoszfonát<font style="font-size:80%">(alendronat, zoledronat)</font> &#10140; osteoclastokat gátolják</li>
-					<li><abbr title="erythropoietin">EPO</abbr> &#10140; anaemia kezelésre</li>
-					<li><abbr title="granulocyták érését fokozó citokin">G-CSF</abbr> &#10140; granulocytopenia</li>
-				</ul>
-				<li><span class="midQ [62]">allogén őssejt transzplantáció:</span></li><ul>
-					<li>halálozás rizikó nagy &#10140; csak fiatal betegek agresszív betegségénél jön szóba ()</li>
-					<li>azonban teljes gyógyulás elérhető vele</li>
-				</ul>
-				<li><span class="midQ [62]">autológ őssejt transzplantáció:</span></li><ul>
-					<li>halálozás rizikó kicsi</li>
-					<li>azonban teljes gyógyulás NEM érhető el vele (csak a medián túlélést fokozza)</li>
-				</ul>
+		  <strong>gyógyszerek</strong>
+			<li>elsővonalbeli + recidíva:</li><ul>
+				<li>különböző protokoll szerint adhatók</li>
+				<li>pl. vtd = bortezomib + thalidomid + szteroid</li>
+			</ul>
+			<li>szupportív:</li><ul>
+				<li>biszfoszfonát<font style="font-size:80%">(alendronat, zoledronat)</font> &#10140; osteoclastokat gátolják</li>
+				<li><abbr title="erythropoietin">EPO</abbr> &#10140; anaemia kezelésre</li>
+				<li><abbr title="granulocyták érését fokozó citokin">G-CSF</abbr> &#10140; granulocytopenia</li>
+			</ul>
+		  <strong>transzplantáció</strong>
+			<li><span class="midQ [62]">allogén őssejt:</span></li><ul>
+				<li>halálozás rizikó nagy &#10140; csak fiatal betegek agresszív betegségénél jön szóba ()</li>
+				<li>azonban teljes gyógyulás elérhető vele</li>
+			</ul>
+			<li><span class="midQ [62]">autológ őssejt:</span></li><ul>
+				<li>halálozás rizikó kicsi</li>
+				<li>azonban teljes gyógyulás NEM érhető el vele (csak a medián túlélést fokozza)</li>
 			</ul>
 		</ul></details>
 		<details class="{13.8} kerdes"><summary>prognózis</summary><ul class="normal">
@@ -2629,11 +2632,11 @@
 	  <strong>terápia</strong> <div class="imp [63.3]"></div>
 		<!----> </ul></details><ul> 
 		<details class="{63.1} kerdes"><summary>tünetek</summary><ul class="normal">
-			<li>általános panaszok &#10140; hőemelkedés, fogyás, étvágytalanság</li>
+			<li>általános panaszok &#10140; hőemelkedés, fogyás</li>
 			<li>mucosceletalis: arthritis<font style="font-size:80%">(80%)</font> / myositis<font style="font-size:80%">(40%)</font></li>
 			<li>bőr<font style="font-size:80%">(85%)</font>:</li><ul>
-				<li>pillangóerythema, de nincs hegképződés(discoid)</li><ul>
-					<font style="font-size:80%">akkor CLE lenne</font>
+				<li>pillangóerythema</li><ul>
+					<font style="font-size:80%">de nincs hegképződés(discoid), akkor CLE lenne</font>
 				</ul>
 				<li>fényérzékenység</li>
 				<li>szájnyh. fekélyek</li>
@@ -2813,17 +2816,20 @@
 			</ul>
 			<li>krónikus gyulladás</li>
 			<li>szisztémás</li>
-			<li><span class="midQ [69]">arthritis</span></li>
-			<li>pathomechanizmus</li><ul>
-				<li>egyrészt KIS ízületeket érinti &#10140; a csontvégeket borító porcot lebontják enzimek (majd a csontot is elkezdik)</li><ul>
-					<font style="font-size:80%">gyulladásos sejtek által termelt egyes citokinek (pl. TNF-α és IL-1), enzimek (pl. mátrix metalloproteinázok: kollagenáz, stromelizin), prosztanoidok (pl. prosztaglandin E2) károsítják</font>
-				</ul>
-				<li>másrészt immunkomplex lerakódás miatt vasculitis &#10140; belső szervek érintettek</li>
+		  <strong>pathomechanizmus</strong>
+			<li>egyrészt <span class="midQ [69]">arthritis</span>:</li><ul>
+				<li>KIS ízületeket érinti</li>
+				<li>a csontvégeket borító porcot lebontják enzimek (majd a csontot is elkezdik)</li>
+				<font style="font-size:80%">gyulladásos sejtek által termelt egyes citokinek (pl. TNF-α és IL-1), enzimek (pl. mátrix metalloproteinázok: kollagenáz, stromelizin), prosztanoidok (pl. prosztaglandin E2) károsítják</font>
+			</ul>
+			<li>másrészt vasculitis:</li><ul>
+				<li>belső szervek érintettek</li>
+				<li>immunkomplex lerakódás miatt</li>
 			</ul>
 		</ul></details>
 		<details class="{67.2} kerdes"><summary>tünetek</summary><ul class="normal">
-			<li>articularis:</li><ul>
-				<li>kezdetben leggyakrabban a csuklók és a kéz kisízületeinek (MCP, PIP) polyarthritise jelentkezik (DIP ízületeket a betegség általában megkíméli) &#10140; fájdalmas kézfogás, flexio stb.</li>
+			<li>articularis: <img class="mini" data-src="xdatkewn.png"></li><ul>
+				<li>kezdetben MCP + PIP arthritise (DIP-eket a betegség általában megkíméli) &#10140; fájdalmas kézfogás, flexio stb.</li>
 				<li>reggelente fél-1óráig ízületi merevség</li>
 				<li><details class="kerdes"><summary>carpal tunnel syndrome</summary><ul class="normal">
 					<li>a n.medianus a csukló magasságában a carpalis harántszalagok alatt összenyomódik</li>
@@ -2847,32 +2853,29 @@
 			</ul>
 		</ul></details>
 		<details class="{67.3} kerdes"><summary>diagnózis</summary><ul class="normal">
-			<li>UH &#10140; ízületek</li>
+			<li>képalkotók</li><ul>
+				<li>UH &#10140; ízületek</li>
+				<li>rtg alapján 4 stádiumra osztható (Steinbrocker)</li>
+				<li>MR</li>
+			</ul>
 			<li>n.medianus ingervezetési sebességének mérése (carpal tunnel)</li>
 			<li>labor:</li><ul>
 				<li><span class="midQ [2.1]">gyulladásos paraméterek</span> <font style="font-size:80%">(nem spec. aktivitási jelek)</font></li>
 				<li><span class="midQ [2.8]">RF</span>↑<font style="font-size:80%">(60%)</font></li>
 				<div><span class="plus">+</span> <span class="midQ [2.8]">anti-CCP</span><font style="font-size:80%">(60%)</font></div>
-				<li></li>
-			</ul>
-			<li>képalkotó &#10140; rtg / MR</li><ul>
-				<li>rtg alapján 4 stádiumra osztható (Steinbrocker)</li>
 			</ul>
 		</ul></details>
 		<details class="{67.4} kerdes"><summary>terápia</summary><ul class="normal">
-		  <strong>DMARD</strong>-ok &#10140; progressziót lassítják (/+javulást okoznak)
-			<li>az elsőként választandó &#10140; <u>methotrexat</u></li><ul>
-				<font style="font-size:80%">hetente 1x elég szedni (tehát ritkán & orálisan)</font>
+			<li>az elsőként választandó &#10140; <u>methotrexat</u> &#10140; hetente 1x, po.</li><ul>
+				<font style="font-size:80%">ha valamiért nem jó (intolerancia, mellékhatás, stb.) akkor adható helyette... &#10140; <u>leflunomid</u>, <u>tofacitinib</u>, <u>sulfasalazin</u>, <u>rituximab</u>, TNF&alpha; antagonisták, <u>abatacept</u></font>
 			</ul>
-			<li>ha valamiért nem jó (intolerancia, mellékhatás, stb.) akkor adható helyette... &#10140; <u>leflunomid</u>, <u>tofacitinib</u>, <u>sulfasalazin</u>, <u>rituximab</u>, TNF&alpha; antagonisták, <u>abatacept</u></li>
+			<li>progressziót lassítja, akár javulást okoz</li>
 		  <strong>ha súlyos szakasz van</strong> &#10140; <u>glukokortikoid</u>
 			<li>lokálisan ajánlottak (kevesebb mellékhatás!) &#10140; intraartikulárisan (injekció)</li>
 			<li>rövid hatástartamú, egyre csökkenő dózisút</li><ul>
 				<li>(hiszen mellékhatásai &#10140; csontritkulás, iatrogén Cushing, obes, stb.)</li>
 			</ul>
-		  <strong>csak tüneti</strong> &#10140; <u>NSAID</u>
-			<li>mellékhatás &#10140; gyomorfekély (vérzékenység nem, hisz nagy dózis)</li>
-			<li>szteroiddal nem szabad együtt</li>
+		  <strong>csak tüneti</strong> &#10140; <u>NSAID</u> &#10140; <span class="minus">ki</span> szteroiddal együtt
 		</ul></details>
 	</ul>
 	<details class="{68} kerdes"><summary>seronegativ spondylarthritisek</summary><ul class="normal">
@@ -3850,7 +3853,7 @@
 <!---->  </details>
 
 <!---->  <details><summary class="mainTitle">Immunológia & Reumatológia</summary>
-	<details class="kerdes"><summary class="status">1. SLE klinikai képe</summary><ul class="normal">
+	<details class="open"><summary class="status">1. SLE klinikai képe</summary><ul class="normal">
 		<details class="kerdes"><summary><strong>SLE</strong> klinikai képe</summary><ul class="normal">
 			<div class="imp [63.4]"></div>
 		</ul></details>
@@ -3858,7 +3861,7 @@
 			<div class="imp [63.1]"></div>
 		</ul></details>
 	</ul></details>
-	<details class="kerdes"><summary class="status">2. SLE diagnosztikája, kezelése</summary><ul class="normal">
+	<details class="open"><summary class="status">2. SLE diagnosztikája, kezelése</summary><ul class="normal">
 		<details class="kerdes"><summary><strong>SLE</strong> diagnosztikája, kezelése</summary><ul class="normal">
 			<div class="imp [63.4]"></div>
 		</ul></details>
@@ -3869,7 +3872,7 @@
 			<div class="imp [63.3]"></div>
 		</ul></details>
 	</ul></details>
-	<details class="kerdes"><summary class="status">3. Rheumatoid arthritis klinikai képe</summary><ul class="normal">
+	<details class="open"><summary class="status">3. Rheumatoid arthritis klinikai képe</summary><ul class="normal">
 		<details class="kerdes"><summary><strong>Rheumatoid arthritis</strong> klinikai képe</summary><ul class="normal">
 			<div class="imp [67.1]"></div>
 		</ul></details>
@@ -3877,7 +3880,7 @@
 			<div class="imp [67.2]"></div>
 		</ul></details>
 	</ul></details>
-	<details class="kerdes"><summary class="status">4. Rheumatoid arthritis diagnosztikája, kezelése</summary><ul class="normal">
+	<details class="open"><summary class="status">4. Rheumatoid arthritis diagnosztikája, kezelése</summary><ul class="normal">
 		<details class="kerdes"><summary><strong>Rheumatoid arthritis</strong> diagnosztikája, kezelése</summary><ul class="normal">
 			<div class="imp [67.1]"></div>
 		</ul></details>
@@ -3965,7 +3968,7 @@
 	<details class="kerdes"><summary class="status">12. Progressziv szisztémás sclerosis</summary><ul class="normal">
 		<div class="imp [65]"></div>
 	</ul></details>
-	<details class="kerdes"><summary class="status">13. Primer és secunder immundefitientiák</summary><ul class="normal">
+	<details class="open"><summary class="status">13. Primer és secunder immundefitientiák</summary><ul class="normal">
 		<details class="kerdes"><summary>Primer és secunder <strong>immundefitientiák</strong></summary><ul class="normal">
 			<div class="imp [71]"></div>
 		</ul></details>
