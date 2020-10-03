@@ -5085,10 +5085,16 @@ function F_loadPageText(path,kiiras) {
 			pageDiv.innerHTML = pageTexts[pagePath]
 			F_checkEXPs()
 			F_detailsToggle(pageDiv)
-			if ( localStorage.getItem("hk.ToggleAll") == "true" && refreshAll != true ) { F_toggleAll() }
-			document.body.style.backgroundColor = ""
-			localStorage.setItem("hk.pagePath",pagePath) 
 			pageLinks[id].style.backgroundColor = "yellow"
+			if ( localStorage.getItem("hk.ToggleAll") == "true" && refreshAll != true ) { 
+				var int_Click = window.setInterval(function(){
+					console.log("toggleAll")
+					F_toggleAll()
+					document.body.style.backgroundColor = ""
+					localStorage.setItem("hk.pagePath",pagePath) 
+					clearInterval(int_Click) 
+				}, 100)
+			}
 		}
 		document.getElementById("iframe_targyak").src = ""
 		
