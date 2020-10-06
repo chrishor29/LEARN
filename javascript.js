@@ -2573,7 +2573,6 @@ function F_CreateQDiv() {
 			document.body.style.backgroundColor = "Gainsboro"
 			this.style.backgroundColor  = "black"
 			var int_Click = window.setInterval(function(){
-				console.log("toggleAll")
 				F_toggleAll()
 				clearInterval(int_Click) 
 				document.body.style.backgroundColor = ""
@@ -5079,6 +5078,7 @@ function F_loadPageText(path,kiiras) {
 		saveIDB(path,targyText,id)
 		pageLinks[id].dataset.loaded = true 
 		
+		localStorage.setItem("hk.pagePath",path) 
 		if ( kiiras == true ) {
 			pagePath = path // képek betöltéséhez kell pl
 			var pageDiv = document.getElementById("div_pageQTargy")
@@ -5087,11 +5087,10 @@ function F_loadPageText(path,kiiras) {
 			F_detailsToggle(pageDiv)
 			pageLinks[id].style.backgroundColor = "yellow"
 			if ( localStorage.getItem("hk.ToggleAll") == "true" && refreshAll != true ) { 
+				document.getElementById("btn_toggleAll").style.backgroundColor  = "black"
 				var int_Click = window.setInterval(function(){
-					console.log("toggleAll")
 					F_toggleAll()
 					document.body.style.backgroundColor = ""
-					localStorage.setItem("hk.pagePath",pagePath) 
 					clearInterval(int_Click) 
 				}, 100)
 			}

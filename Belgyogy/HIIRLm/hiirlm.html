@@ -41,7 +41,7 @@
 			<li>szenzitivitás &#10140; ha van betegség, mekkora az esélye, hogy pozitív lesz a teszt</li><ul>
 				ez akkor alacsony, ha nem feltétlen jár a betegséggel a tünet, pl. SLE 95%-ban van ANA, ellenben SLE ~50%-ban van csak anti-dsDNS
 			</ul>
-			<li>specificitás &#10140; ha van betegség, mekkora az esélye, hogy negatív lesz a teszt</li><ul>
+			<li>specificitás &#10140; ha nincs betegség, mekkora az esélye, hogy negatív lesz a teszt</li><ul>
 				ez akkor alacsony, ha más betegségek is pozitív eredményt váltanak ki, pl. ANA pozitiv rheumatoid arthritis és SLE-ben is, így hiába nincs lupusa, simán lehet pozitív, mert rheumatoid arthritis-e viszont van
 			</ul>
 			<li><abbr title="positive predictive value">PPV</abbr> &#10140; mekkora az esély, hogy a pozitív teszt esetén van betegsége az illetőnek</li>
@@ -165,7 +165,7 @@
 					<td style="text-align:left">
 						<li>heparin</li>
 						<li>lupus antikoaguláns</li>
-						<li>DIC</li>
+						<li><span class="midQ [60]">DIC</span></li>
 					</td>
 				</tr>
 			</table>
@@ -569,14 +569,14 @@
 		<!----> </ul></details><ul> 
 		<details class="{7.1} kerdes"><summary>jellemzés</summary><ul class="normal">
 			<li><span class="midQ [4]">nHL</span>, tehát..</li><ul>
-				<li><details class="kerdes"><summary>jellemzés</summary><ul class="normal"> <div class="imp [4.2]"></div> </ul></details></li>
-				<li><details class="kerdes"><summary>etiológia</summary><ul class="normal"> <div class="imp [4.3]"></div> </ul></details></li>
-				<li><details class="kerdes"><summary>prognózis</summary><ul class="normal"> <div class="imp [4.4]"></div> </ul></details></li>
+				<li><details class="kerdes"><summary>jellemzés <!-- 4.2 --></summary><ul class="normal"> <div class="imp [4.2]"></div> </ul></details></li>
+				<li><details class="kerdes"><summary>etiológia <!-- 4.3 --></summary><ul class="normal"> <div class="imp [4.3]"></div> </ul></details></li>
+				<li><details class="kerdes"><summary>prognózis <!-- 4.4 --></summary><ul class="normal"> <div class="imp [4.4]"></div> </ul></details></li>
 			</ul>
 			<li><span class="midQ [8]">akut leukaemia</span>, tehát..</li><ul>
-				<li><details><summary>jellemzés</summary><ul class="normal"> <div class="imp [8.1]"></div> </ul></details></li>
-				<li><details><summary>tünetek</summary><ul class="normal"> <div class="imp [8.2]"></div> </ul></details></li>
-				<li><details><summary>diagnózis</summary><ul class="normal"> <div class="imp [8.3]"></div> </ul></details></li>
+				<li><details class="kerdes"><summary>jellemzés <!-- 8.1 --></summary><ul class="normal"> <div class="imp [8.1]"></div> </ul></details></li>
+				<li><details class="kerdes"><summary>tünetek <!-- 8.2 --></summary><ul class="normal"> <div class="imp [8.2]"></div> </ul></details></li>
+				<li><details class="kerdes"><summary>diagnózis <!-- 8.3 --></summary><ul class="normal"> <div class="imp [8.3]"></div> </ul></details></li>
 			</ul>
 			<li>epidemiológia & prognózis:</li><ul>
 				<li>gyermekekben gyakori, prognózis kedvező (><abbr title="5éves túlélés">85%</abbr>)</li>
@@ -633,13 +633,10 @@
 			<li>labor:</li><ul>
 				<div class="imp [8.4]"></div>
 				<li>vérkenet <span class="WHITE">FM</span> &#10140; blast megjelenik</li>
-				<li>kromoszóma-eltérések vizsgálata &#10140; pl. <span class="syno">bcr-abl | t(9;22)</span> van-e</li>
-				<li>szerológia &#10140; <span class="midQ [9]">AML</span> vs <span class="midQ [7]">ALL</span>:</li><ul>
-					<li><span class="WHITE">TdT</span> (terminális deoxinukleotidil transzferáz) &#10140; ALL felszínén van, AML-én nincs<abbr title="persze kivétel van mindkettőnél">'</abbr></li>
-					<li><span class="WHITE">CD10</span> &#10140; B-sejtes ALL felszínén van <font style="font-size:80%">(márpedig az ALL-ek 85%a B-sejtes)</font></li>
-				</ul>
+				<li>kromoszóma-eltérések vizsgálata &#10140; pl. <span class="WHITE"><span class="syno">bcr-abl | t(9;22)</span></span> van-e</li>
+				<li>szerológia &#10140; <span class="WHITE"><abbr title="terminális deoxinukleotidil transzferáz">TdT</abbr></span> & <span class="WHITE">CD10</span> &#10140; <span class="plus">+</span>ALL <span class="minus">–</span>AML</li>
 			</ul>
-			<li>nycs biopszia'</li>
+			<li>nycs biopszia</li>
 			<li><span class="midQ [16]">csontvelő</span> &#10140; <div class="imp [8.5]"></div></li>
 		</ul></details>
 		<details class="{8.4} kerdes"><summary>labor vérkép</summary><ul class="normal">
@@ -989,29 +986,28 @@
 		<li>típusai:</li><ul>
 			<li><span class="midQ [19]">CML</span></li>
 			<li><span class="midQ [23]">polycythaemia vera(PV)</span></li>
-			<li><span class="midQ [24]">esszenciális thrombocytaemia(ET)</span></li>
-			<li><span class="midQ [25]">osteomyelofibrosis(OMF)</span></li>
+			<li><span class="midQ [23]">esszenciális thrombocytaemia(ET)</span></li>
+			<li><span class="midQ [23]">osteomyelofibrosis(OMF)</span></li>
 		</ul>
 		<li>genetikai jelek <abbr title="PV-nél 90%, másik kettőnél 50%">PV + ET + OMF</abbr> esetében:</li><ul>
 			<li>JAK-mutáció a haematopoesis-ben</li>
 			<li><span class="MISS">erythropoeticus kolóniák</span> képződése EPO mentes időkben</li>
 			<li>PRV1 gén expressziója neutrophileken</li>
 		</ul>
-		<li>közös ismertetőjegyek:</li><ul>
-			<li>kezdetben mindhárom sejtsor felszaporodása: erythro-, leuko-, thrombocytosis</li><ul>
-				<font style="font-size:80%">basophilek is! <abbr title="gyorsult sejtforgalom(nukleotidok)">hyperuricaemia!</abbr></font>
-			</ul>
-			<li>splenomegalia <font style="font-size:80%">(gyakori, kivéve ET)</font></li>
-			<li>csontvelő fibrózis, sclerosis</li>
-			<li>extramedullaris(máj,lép,nycs) vérképzés - főként OMF esetén</li>
+	  <strong>tünetek</strong>
+		<li>kezdetben mindhárom sejtsor felszaporodása: erythro-, leuko-, thrombocytosis</li><ul>
+			<font style="font-size:80%">basophilek is!</font>
 		</ul>
+		<li><abbr title="gyorsult sejtforgalom(nukleotidok)"><span class="midQ [70]">hyperuricaemia</span></abbr></li>
+		<li>splenomegalia <font style="font-size:80%">(gyakori, kivéve ET)</font></li>
+		<li>csontvelő fibrózis, sclerosis</li>
+		<li>extramedullaris(máj,lép,nycs) vérképzés - főként OMF esetén</li>
 	  <hr>
 		<font style="font-size:80%">csak (Herold) használtam &#10140; ezeket még nem néztem (kórtan) (ea) (Tulassay)</font>
 	</ul></details>
 	<details class="{19} kerdes"><summary>CML</summary><ul class="normal">
 	  <div class="imp [19.1]"></div>
-		<li>diagnosztikai kritérium &#10140; bcr-abl (+) <font style="font-size:80%">(vér/csontvelő)</font></li>
-	  <strong>tünetek</strong> <div class="imp [19.2]"></div>
+	  <!-- tünetek --> <div class="imp [19.2]"></div>
 	  <strong>diagnózis</strong> <div class="imp [19.3]"></div>
 	  <strong>terápia</strong> <div class="imp [19.4]"></div>
 	  <hr><font style="font-size:80%">csak (Herold) használtam, azt se teljesen &#10140; ezeket még nem néztem (kórtan) (ea) (Tulassay)</font>
@@ -1019,7 +1015,7 @@
 		<details class="{19.1} kerdes"><summary>jellemzés</summary><ul class="normal">
 			<li><details class="kerdes"><summary>leukaemia, tehát..</summary><ul class="normal"> <div class="imp [17]"></div> </ul></details></li>
 			<li><details class="kerdes"><summary>MPD, tehát..</summary><ul class="normal"> <div class="imp [18]"></div> </ul></details></li>
-			<li>3 fázisra osztható, melyek <abbr title="krónikus &#10140; átmeneti &#10140; blastos">egymást követik</abbr> (lásd tünetek)</li>
+			<li>3 fázisra osztható, melyek <abbr title="krónikus &#10140; átmeneti &#10140; blastos">egymást követik</abbr>:</li>
 		</ul></details>
 		<details class="{19.2} kerdes"><summary>tünetek</summary><ul class="normal"><!----><table>
 			<tr><th>fázis</th>  <th>tünetek</th>  <th>lényege</th>  <th>lefolyása</th></tr>
@@ -1045,6 +1041,7 @@
 			</tr>
 		</table></ul></details>
 		<details class="{19.3} kerdes"><summary>diagnózis</summary><ul class="normal">
+			<li><span class="done">kritérium</span> &#10140; <span class="plus">+</span> bcr-abl <font style="font-size:80%">(vér/csontvelő)</font></li>
 			<li>anamnézis:</li><ul>
 				<li><span class="done">rendszerint panaszmentes</span></li><ul>
 					<font style="font-size:80%">ugyanis a diagnózis egyszerű(pl.szűrés) vérvizsgálat során derül ki(fvs↑↑), amikor még nincsenek tünetek</font>
@@ -1065,7 +1062,6 @@
 				<li>hyperuricaemia</li>
 			</ul>
 			<li>csontvelő <font style="font-size:80%">(csak <abbr title="szóval mennyiségi eltérés az egyes sejtalakok közt: granulcyták aránya nő">kvantitatív</abbr> eltérés látható, így csekély jelentőségű)</font></li>
-			<li><span class="done">bcr-abl kimutatása</span></li>
 		</ul></details>
 		<details class="{19.4} kerdes"><summary>terápia</summary><ul class="normal">
 			<li>hidroxi-urea</li>
@@ -1101,7 +1097,7 @@
 		<li>epidemiológia:</li><ul>
 			<li><abbr title="hisz autoimmun">nőkben gyakori</abbr></li>
 			<li>25-35éves kor</li>
-			<li>SLE-vel gyakran együtt jelenik meg!</li>
+			<li><span class="midQ [63]">SLE</span>-vel gyakran együtt jelenik meg!</li>
 		</ul>
 		<li>etiológia &#10140; idiopathias</li>
 		<li>típusai:</li><ul>
@@ -1139,99 +1135,128 @@
 		<li>kumarin &#10140; <abbr title="terhesség alatt KI">teratogén</abbr>!!</li>
 	</ul></details>
 	<details class="{23} kerdes"><summary>polycythaemia vera(PV)</summary><ul class="normal">
-		<li><details class="kerdes"><summary>MPD, tehát..</summary><ul class="normal"> <div class="imp [18]"></div> </ul></details></li>
-		<li>etiológia &#10140; JAK2 gén mutáció (szerzett<abbr title="a herediter ritka">'</abbr>)</li>
-		<li>pathomechanizmus &#10140; a haematopoeticus őssejt mutációja következtében a vvt-szám megnő EPO-tól függetlenül <img class="mini" data-src="dnfqrjly.png"></li>
-	  <strong>tünetek</strong>
-		<li>anamnézis</li><ul>
-			<li>szédülés, fejfájás, fülzúgás, látászavar</li>
-			<li>orrvérzés, hipertónia</li>
-			<li>stb.</li>
-		</ul>
-		<li>fizikális vizsgálat</li><ul>
-			<li>plethora = vörös arc</li>
-			<li>erythromelalgia &#10140; végtagok kivörösödése, fájdalmas</li>
-		</ul>
-	  <strong>diagnózis</strong>
-		<li>labor</li><ul>
-			<li>vvt↑ & Hgb↑ (hematokrit↑)</li>
-			<li><font style="font-size:80%">leukocyta↑ thrombocyta↑</font></li>
-			<li><span class="syno">húgysav↑ | hyperuricaemia</span> <abbr title="LDH↑-t nem találtam se Tulassay, se Herold-ban (pedig úgy könnyebb lenne megjegyezni, meg nekem első ránézésre az lenne logikus)">'</abbr></li>
-			<li><font style="font-size:80%">EPO↓</font></li>
-		</ul>
-		<li>JAK2 kimutatása</li>
-		<li>diff.diag:</li><ul>
-			<li><span class="syno">polyglobulia | reaktív erythrocytosis</span> &#10140; csökkent oxigénszaturáció, EPO↑, normál fvs, normál thrombocytaszám, nincs splenomegalia</li>
-		</ul>
-	  <strong>lehetséges szövődmények</strong> (4fő halálhoz vezető ok):
-		<li>thromboembólia</li>
-		<li>haemorrhágiás diathesis <abbr title="vérzés következtébeni..">!?</abbr></li>
-		<li>akut leukaemia</li>
-		<li>osteomyelofibrosis <font style="font-size:80%">(csontvelőelégtelenséggel)</font></li>
-	  <strong>terápia</strong>
-		<li>rendszeres(kb. havi) vérleszívás &#10140; ha ez magában nem elég, akkor a lenntiek közül is kell valamelyik</li>
-		<li>hydroxyurea (vvt érést gátol) &#10140; 55-70év között</li>
-		<li>&alpha;interferon &#10140; 55év alatt</li>
+		<table>
+		<tr><th style="width:20px"></th>  <th>polycythaemia vera(PV)</th>  <th>essentialis thrombocytopenia(ET)</th>  <th><span class="syno">osteomyelofibrosis(OMF) | osteomyelosclerosis(OMS)</span></th></tr>
+		<tr><th rowspan="2" style="writing-mode:vertical-rl;">jellemzés</th>
+			<td colspan="3"><details class="kerdes"><summary>MPD, tehát..</summary><ul class="normal"> <div class="imp [18]"></div> </ul></details></td>
+		  </tr><tr>
+			<td style="text-align:left"> <!-- PV -->
+				<li>etiológia &#10140; JAK2 gén mutáció (szerzett<abbr title="a herediter ritka">'</abbr>)</li>
+				<li>pathomechanizmus &#10140; a haematopoeticus őssejt mutációja következtében a vvt-szám megnő EPO-tól függetlenül <img class="mini" data-src="dnfqrjly.png"></li>
+			</td>
+			<td style="text-align:left"> <!-- ET -->
+				<li>pathomechanizmus &#10140; a megakaryocyták proliferációja következtében fokozottan érzékenyek a <abbr title="növekedési faktor">GF</abbr>-ekre, amely a thrombocytaszám lassú progresszív emelkedését okozza <img class="mini" data-src="dnfqrjly.png"></li>
+			</td>
+			<td style="text-align:left"> <!-- OMF -->
+			  definíció &#10140; ismeretlen etiológiájú MPN, klinikai triásszal:
+				<li><abbr title="csontvelő">myelo</abbr>fibrosis</li>
+				<li>extramedullaris vérképzés: lép + máj, vérsejt előalakok megjelennek a vérben</li>
+				<li>splenomegalia</li>
+			</td>
+		</tr>
+		<tr><th style="writing-mode:vertical-rl;">tünetek</th>
+			<td style="text-align:left"> <!-- PV -->
+				<li>anamnézis</li><ul>
+					<li>szédülés, fejfájás, fülzúgás, látászavar</li>
+					<li>orrvérzés, hipertónia</li>
+					<li>stb.</li>
+				</ul>
+				<li>fizikális vizsgálat</li><ul>
+					<li>plethora = vörös arc</li>
+					<li>erythromelalgia &#10140; végtagok kivörösödése, fájdalmas</li>
+				</ul>
+			</td>
+			<td style="text-align:left"> <!-- ET -->
+				<li>1/3 tünetmentes</li>
+				<li>kéz, láb mikrocirkulációs zavara; szédülés, fejfájás, látászavar</li>
+				<li>splenomegália <font style="font-size:80%">(késői fázis)</font></li>
+			</td>
+			<td style="text-align:left"> <!-- OMF -->
+				<li>lappangó kezdet</li>
+				<li>splenomegália <font style="font-size:80%">+hepatomegalia</font></li>
+				<li>súlyvesztés, teljesítménycsökkenés, láz</li>
+			</td>
+		</tr>
+		<tr><th style="writing-mode:vertical-rl;">diagnózis</th>
+			<td style="text-align:left"> <!-- PV -->
+				<li>labor</li><ul>
+					<li>vvt↑ & Hgb↑ (hematokrit↑)</li>
+					<li><font style="font-size:80%">leukocyta↑ thrombocyta↑</font></li>
+					<li><span class="syno">húgysav↑ | hyperuricaemia</span> <abbr title="LDH↑-t nem találtam se Tulassay, se Herold-ban (pedig úgy könnyebb lenne megjegyezni, meg nekem első ránézésre az lenne logikus)">'</abbr></li>
+					<li><font style="font-size:80%">EPO↓</font></li>
+				</ul>
+				<li>JAK2 kimutatása</li>
+				<li>diff.diag:</li><ul>
+					<li><span class="syno">polyglobulia | reaktív erythrocytosis</span> &#10140; csökkent oxigénszaturáció, EPO↑, normál fvs, normál thrombocytaszám, nincs splenomegalia</li>
+				</ul>
+			</td>
+			<td style="text-align:left"> <!-- ET -->
+				<li>labor</li><ul>
+					<li>thrombocyta↑</li>
+					<li><span class="syno">húgysav↑ | hyperuricaemia</span> LDH↑</li>
+				</ul>
+				<li>JAK2 pozitív az esetek ~50%-ban</li>
+				<li>csontvelő biopszia<abbr title="cito/hiszto">'</abbr> &#10140; megakaryocyták proliferációja</li>
+				<li>diff.diag:</li><ul>
+					<li><span class="syno">polyglobulia | reaktív erythrocytosis</span> &#10140; csökkent oxigénszaturáció, EPO↑, normál fvs, normál thrombocytaszám, nincs splenomegalia</li>
+				</ul>
+			</td>
+			<td style="text-align:left"> <!-- OMF -->
+				<li>labor:</li><ul>
+					<li>korai fázis &#10140; leukocytosis, thrombocytosis <abbr title="vvt normal">'</abbr></li>
+					<li>késői fázis:</li><ul>
+						<li><abbr title="vvt↓ fvs↓ thrombcyta↓">pancytopenia</abbr></li>
+						<li>blastok a vérben, 'könnycsepp alakú' erythrocytak</li>
+					</ul>
+				</ul>
+				<li>JAK2 pozitív az esetek ~50%-ban</li>
+				<li>diff.diag:</li><ul>
+					<li><span class="midQ [23]">polycythaemia vera</span></li>
+					<li>CML &#10140; bcr-abl pozitív</li>
+					<li>MDS</li>
+				</ul>
+			</td>
+		</tr>
+		<tr><th style="writing-mode:vertical-rl;">szövődmények</th>
+			<td style="text-align:left"> <!-- PV -->
+			  (4fő halálhoz vezető ok):
+				<li>thromboembólia</li>
+				<li>haemorrhágiás diathesis <abbr title="vérzés következtébeni..">!?</abbr></li>
+				<li>akut leukaemia</li>
+				<li>osteomyelofibrosis <font style="font-size:80%">(csontvelőelégtelenséggel)</font></li>
+			</td>
+			<td style="text-align:left"> <!-- ET -->
+				<li>thromboembólia</li>
+				<li>haemorrhágiás diathesis <abbr title="vérzés következtébeni..">!?</abbr></li>
+				<li>akut leukaemia</li>
+				<li>osteomyelofibrosis <font style="font-size:80%">(csontvelőelégtelenséggel)</font></li>
+			</td>
+			<td style="text-align:left"> <!-- OMF -->
+				<li>korai fázis thrombosis</li>
+				<li>késői fázis haemorrhagia + infekció</li>
+				<li>akut leukaemia</li>
+			</td>
+		</tr>
+		<tr><th style="writing-mode:vertical-rl;">terápia</th>
+			<td style="text-align:left"> <!-- PV -->
+				<li>rendszeres(kb. havi) vérleszívás &#10140; ha ez magában nem elég, akkor a lenntiek közül is kell valamelyik</li>
+				<li>hydroxyurea (vvt érést gátol) &#10140; 55-70év között</li>
+				<li>&alpha;-interferon &#10140; 55év alatt</li>
+			</td>
+			<td style="text-align:left"> <!-- ET -->
+				<li>hydroxyurea (vvt érést gátol)</li>
+				<li>&alpha;interferon (thrombocyta érést gátol)</li>
+			</td>
+			<td style="text-align:left"> <!-- OMF -->
+				<li>korai fázis &#10140; &alpha;interferon (thrombocyta & leukocyta érést gátol)</li>
+				<li>késői fázis &#10140; vvt pótlás</li>
+			</td>
+		</tr>
+		</table>
 	</ul></details>
-	<details class="{24} kerdes"><summary>essentialis thrombocytopenia(ET)</summary><ul class="normal">
-		<li><details class="kerdes"><summary>MPD, tehát..</summary><ul class="normal"> <div class="imp [18]"></div> </ul></details></li>
-		<li>pathomechanizmus &#10140; a megakaryocyták proliferációja következtében fokozottan érzékenyek a <abbr title="növekedési faktor">GF</abbr>-ekre, amely a thrombocytaszám lassú progresszív emelkedését okozza <img class="mini" data-src="dnfqrjly.png"></li>
-	  <strong>tünetek</strong>
-		<li>1/3 tünetmentes</li>
-		<li>kéz, láb mikrocirkulációs zavara; szédülés, fejfájás, látászavar</li>
-		<li>splenomegália <font style="font-size:80%">(késői fázis)</font></li>
-	  <strong>diagnózis</strong>
-		<li>labor</li><ul>
-			<li>thrombocyta↑</li>
-			<li><span class="syno">húgysav↑ | hyperuricaemia</span> LDH↑</li>
-		</ul>
-		<li>JAK2 pozitív az esetek ~50%-ban</li>
-		<li>csontvelő biopszia<abbr title="cito/hiszto">'</abbr> &#10140; megakaryocyták proliferációja</li>
-		<li>diff.diag:</li><ul>
-			<li><span class="syno">polyglobulia | reaktív erythrocytosis</span> &#10140; csökkent oxigénszaturáció, EPO↑, normál fvs, normál thrombocytaszám, nincs splenomegalia</li>
-		</ul>
-	  <strong>lehetséges szövődmények</strong>
-		<li>thromboembólia</li>
-		<li>haemorrhágiás diathesis <abbr title="vérzés következtébeni..">!?</abbr></li>
-		<li>akut leukaemia</li>
-		<li>osteomyelofibrosis <font style="font-size:80%">(csontvelőelégtelenséggel)</font></li>
-	  <strong>terápia</strong>
-		<li>hydroxyurea (vvt érést gátol)</li>
-		<li>&alpha;interferon (thrombocyta érést gátol)</li>
+	<details class="{24} kerdes"><summary></summary><ul class="normal">
 	</ul></details>
-	<details class="{25} kerdes"><summary>osteomyelofibrosis(OMF) = osteomyelosclerosis(OMS)</summary><ul class="normal">
-		<span style="font-size:80%" class="syno">osteomyelofibrosis(OMF) | osteomyelosclerosis(OMS)</span>
-		<li><details class="kerdes"><summary>MPD, tehát..</summary><ul class="normal"> <div class="imp [18]"></div> </ul></details></li>
-		<li>definíció &#10140; ismeretlen etiológiájú MPN, klinikai triásszal:</li><ul>
-			<li><abbr title="csontvelő">myelo</abbr>fibrosis</li>
-			<li>extramedullaris vérképzés: lép + máj, vérsejt előalakok megjelennek a vérben</li>
-			<li>splenomegalia</li>
-		</ul>
-	  <strong>tünetek</strong>
-		<li>lappangó kezdet</li>
-		<li>splenomegália <font style="font-size:80%">+hepatomegalia</font></li>
-		<li>súlyvesztés, teljesítménycsökkenés, láz</li>
-	  <strong>szövődmények</strong>
-		<li>korai fázis thrombosis</li>
-		<li>késői fázis haemorrhagia + infekció</li>
-		<li>akut leukaemia</li>
-	  <strong>diagnózis</strong>
-		<li>labor:</li><ul>
-			<li>korai fázis &#10140; leukocytosis, thrombocytosis <abbr title="vvt normal">'</abbr></li>
-			<li>késői fázis:</li><ul>
-				<li><abbr title="vvt↓ fvs↓ thrombcyta↓">pancytopenia</abbr></li>
-				<li>blastok a vérben, 'könnycsepp alakú' erythrocytak</li>
-			</ul>
-		</ul>
-		<li>JAK2 pozitív az esetek ~50%-ban</li>
-		<li>diff.diag:</li><ul>
-			<li><span class="midQ [23]">polycythaemia vera</span></li>
-			<li>CML &#10140; bcr-abl pozitív</li>
-			<li>MDS</li>
-		</ul>
-	  <strong>terápia</strong>
-		<li>korai fázis &#10140; &alpha;interferon (thrombocyta & leukocyta érést gátol)</li>
-		<li>késői fázis &#10140; vvt pótlás</li>
+	<details class="{25} kerdes"><summary></summary><ul class="normal">
 	</ul></details>
 	<details class="{26} kerdes"><summary>myelodysplasias szindróma(MDS)</summary><ul class="normal">
 		<li>definíció &#10140; haemopoeticus őssejt betegedése következtébeni <span class="syno">sejthiány | cytopenia</span></li><ul>
@@ -1361,7 +1386,7 @@
 					<li>hogy milyen hatást vált ki a szervezetben az az LPS mennyiségétől függ</li><ul>
 						<li>ha kevés &#10140; csak lokálisan aktiválódik az immunrendszer, és elpusztítja a kórokozókat</li>
 						<li>ha közepes &#10140; leukocitózis(fvs nő vérben) & láz</li>
-						<li>ha sok &#10140; <span class="midQ [24]">szepszist</span> vált ki</li>
+						<li>ha sok &#10140; <span class="midQ [28]">szepszist</span> vált ki</li>
 					</ul>
 					<li>a <span class="syno">shock | szepszis</span> kezdetben még reverzibilis, egy idő után azonban már több szervi elégtelenség, így halálhoz vezet</li>
 				</ul></details>
@@ -1423,30 +1448,23 @@
 			<li><span class="midQ [34]">vérzéstípus & nemi eloszlás</span></li>
 			<li>a hemorrhágiás diathesis-ek leggyakoribb típusa</li>
 		</ul>
+		<li><abbr title="CSF, csakúgy mint EPO, G-CSF">thrombopoetin</abbr> fokozza a <abbr title="megakaryocyta-két">termelődését</abbr>, melyet vese+máj termel</li>
 		<table><tr><th>csökkent termelődés</th>  <th>csökkent túlélés / fokozott pusztulás</th>  <th>egyéb</th></tr><tr>
 			<td style="text-align:left">
+				<li><span class="midQ [58] kerdes done">B12- +// folsav-hiány</span></li>
+				<li>csontvelőelégtelenség (pl. <span class="done">aplasztikus anaemia</span>)</li>
+				<li>csontvelő térfoglaló folyamatok: <span class="done">leukaemia</span>, metasztázis, granulomatosus betegség</li>
+				<li>ineffektív hematopoesis: <span class="midQ [26] kerdes done">MDS</span></li>
 				<li>gyógyszer (pl. thiazid, alkohol)</li>
 				<li>infekció (pl. kanyaró, HIV)</li>
-				<li>B12- +// folsav-hiány</li>
-				<li>csontvelőelégtelenség (pl. aplasztikus anaemia)</li>
-				<li>csontvelő térfoglaló folyamatok: leukaemia, metasztázis, granulomatosus betegség</li>
-				<li>ineffektív hematopoesis: <span class="midQ [26]">MDS</span></li>
 			</td>
 			<td style="text-align:left">
-				<li>immunológiai:</li><ul>
-					<li>ITP</li>
-					<li>SLE</li>
-					<li>B sejtes tumor</li>
-					<li>gyógyszer</li>
-					<li>poszt-transzfúzió</li>
-					<li>fertőzés</li>
-					<li><font style="font-size:80%">allo-immun (neonatális)</font></li>
-				</ul>
-				<li>NEM immunológiai:</li><ul>
-					<li>DIC</li>
-					<li>TTP/HUS</li>
-					<li>hemangioma</li>
-				</ul>
+				<li><span class="midQ [48] kerdes done">TTP/HUS</span></li>
+				<li><span class="midQ [50] kerdes done">ITP</span></li>
+				<li><span class="midQ [60] kerdes done">DIC</span></li>
+				<li>gyógyszer</li>
+				<li>infekció</li>
+				<li><font style="font-size:80%">poszt-transzfúzió, hemangioma, allo-immun (neonatális), <span class="midQ [63]">SLE</span></font></li>
 			</td>
 			<td style="text-align:left">
 				<li>szekvesztráció &#10140; hypersplenia(splenomegalia)</li>
@@ -1509,7 +1527,7 @@
 		</ul></details></li>
 	</ul></details>
 	<details class="{33} kerdes"><summary>haemostasis betegségei</summary><ul class="normal"><table><tr>
-		<th>haemorrhagias diathesisek</th>  <th>thrombophilia-k</th></tr>   <tr><td colspan="2"><u>DIC</u></td></tr><tr>
+		<th>haemorrhagias diathesisek</th>  <th class="midQ [42]">thrombophilia-k</th></tr>   <tr><td colspan="2"><u>DIC</u></td></tr><tr>
 		<td style="text-align:left">
 			<li>thrombocyta eredetű(70%)</li><ul>
 				<li><span class="midQ [30]">thrombocytopenia(mennyiség↓)</span></li>
@@ -1533,11 +1551,13 @@
 			</ul>
 		</td>
 		<td style="text-align:left">
-			<li><font style="font-size:80%">Leiden-mutáció</font></li>
-			<li><span class="midQ [37]">MVT</span> (+PE)</li>
-			<li>APS</li>
-			<li>hyperhomocysteinaemia</li>
-			<li>stb.</li>
+			<li><span class="done">protein C -hiány</span></li>
+			<li><span class="done">protein S -hiány</span></li>
+			<li><span class="midQ [48] done">TTP</span></li>
+			<li><span class="midQ [43] done">hyperhomocysteinaemia</span></li>
+			<li><span class="midQ [22] done">APS</span></li>
+			<li><span class="midQ [45] done">PNH</span></li>
+			<li><span class="midQ [46] done">HIT</span></li>
 		</td>
 	</tr></table></ul></details>
 	<details class="{34} kerdes"><summary>haemorrhagias diathesisek</summary><ul class="normal">
@@ -1667,27 +1687,7 @@
 			<li>van kiváltó oka &#10140; pl. műtét, trauma, <abbr title="centrális véna katéter">CVC</abbr></li>
 			<li>összes többi idiopathias</li>
 		</ul>
-	  <strong>diagnózis</strong>
-		<li>anamnézis</li><ul>
-			<li>fájdalom</li><ul>
-				<li>claudicatio intermittens (bizonyos távolság megtételét követően)</li>
-				<li>nyugalmi <font style="font-size:80%">(ez értelemszerűen súlyosabb)</font></li>
-			</ul>
-			<li>feszülés, duzzanat</li>
-			<li>rizikófaktorok pl. műtét, trauma, <abbr title="centrális véna katéter">CVC</abbr>, obes, immobilitás, idős kor stb.</li>
-			<li><abbr title="PE esetében is van, a kettő kissé különbözik!!">Wells-score</abbr> &#10140; teszt kitöltése, ami alapján MVT rizikóbecslés &#10140; pl. daganat, volt már MVT, tünetek, stb.</li>
-		</ul>
-		<li>fizikális vizsgálat</li><ul>
-			<li>meleg</li>
-			<li>ödéma, jellemzően féloldali</li>
-			<li>végartériák pulzálnak</li>
-			<li>Homans-tünet &#10140; behajlított térdel, a lábfej dorsalflexiója során a thrombosis helyén a beteg fájdalmat jelez</li>
-		</ul>
-		<li>labor &#10140; <abbr title="fibrinolízis során keletkezik">D-dimer</abbr> mérés, csak KIZÁRÁSRA: tehát alacsony rizikó esetén van értelme, és ha negatív akkor megerősítés, hogy nincs (ugyanis szenztivitása nagy) (ellenben a pozitív kb. semmit NEM jelent, mert <span class="midQ [2.5]">specificitása</span> nagyon alacsony)</li>
-		<li>UH &#10140; Doppler-teszt:</li><ul>
-			<li>áramlás követése</li>
-			<li>véna nem nyomható teljesen össze</li>
-		</ul>
+	  <strong>diagnózis</strong> <div class="imp [37.1]"></div>
 	  <strong>terápia</strong>
 		<li>antikoaguláns:</li><ul>
 			<font style="font-size:80%">megj: ez a vérrögöt nem bontja le -szemben a fibrinolízissel- csupán a növekedését gátolja!!</font>
@@ -1712,7 +1712,30 @@
 			<li>súlyos esetekben a végtag distalis harmadában, leggyakrabban a belső boka környékén barnásan elszíneződött bőr, majd nehezen gyógyuló lábszárfekély (ulcus cruris) alakul ki, amely a beteget munkaképtelenné teheti</li>
 			<li>oka &#10140; a vénabillentyűk károsodása következtében fokozott vénás nyomás van</li>
 		</ul>
-	</ul></details>
+		<!----> </ul></details><ul> 
+		<details class="{37.1} kerdes"><summary>diagnózis</summary><ul class="normal">
+			<li>anamnézis</li><ul>
+				<li>fájdalom</li><ul>
+					<li>claudicatio intermittens (bizonyos távolság megtételét követően)</li>
+					<li>nyugalmi <font style="font-size:80%">(ez értelemszerűen súlyosabb)</font></li>
+				</ul>
+				<li>feszülés, duzzanat</li>
+				<li>rizikófaktorok pl. műtét, trauma, <abbr title="centrális véna katéter">CVC</abbr>, obes, immobilitás, idős kor stb.</li>
+				<li><abbr title="PE esetében is van, a kettő kissé különbözik!!">Wells-score</abbr> &#10140; teszt kitöltése, ami alapján MVT rizikóbecslés &#10140; pl. daganat, volt már MVT, tünetek, stb.</li>
+			</ul>
+			<li>fizikális vizsgálat</li><ul>
+				<li>meleg</li>
+				<li>ödéma, jellemzően féloldali</li>
+				<li>végartériák pulzálnak</li>
+				<li>Homans-tünet &#10140; behajlított térdel, a lábfej dorsalflexiója során a thrombosis helyén a beteg fájdalmat jelez</li>
+			</ul>
+			<li>labor &#10140; <abbr title="fibrinolízis során keletkezik">D-dimer</abbr> mérés, csak KIZÁRÁSRA: tehát alacsony rizikó esetén van értelme, és ha negatív akkor megerősítés, hogy nincs (ugyanis szenztivitása nagy) (ellenben a pozitív kb. semmit NEM jelent, mert <span class="midQ [2.5]">specificitása</span> nagyon alacsony)</li>
+			<li>UH &#10140; Doppler-teszt:</li><ul>
+				<li>áramlás követése</li>
+				<li>véna nem nyomható teljesen össze</li>
+			</ul>
+		</ul></details>
+	</ul>
 	<details class="{38} kerdes"><summary>koaguláció mechanizmusa</summary><ul class="normal">
 		<span class="done">lényege &#10140; fibrinhálózat képződik</span>
 		<img class="mini" data-src="wviuylbv.png">
@@ -1952,100 +1975,108 @@
 		</ul></details>
 	</ul></details>
 	<details class="{42} kerdes"><summary>thrombophilia, thrombosis</summary><ul class="normal">
-		<li>thrombophilia &#10140; fokozott hajlam a vérrögösödésre</li>
-	  <strong>pathogenesis</strong> <img class="mini" data-src="bvqfeupf.png">
-		<li>táblázat: Virchoff-triász</li>
-		<table>
-			<tr><th colspan="2">endothel sérülése ➜ thrombocyta-k így kitapadhatnak</th> <td rowspan="2">artériás</td></tr>
-			<tr><th rowspan="2">véráramlás megváltozása</th>  <th>turbulens áramlás (lamináris helyett)</th></tr>
-				<tr><th>stasis(lelassul)</th>  <td rowspan="2">vénás</td></tr>
-			<tr><th colspan="2">hiperkoagulabilitás</th></tr>
-		</table>
-	  <div><strong>etiológia</strong></div>
-		<table style="float:right"><tr><th>artériás</th>  <th>vénás</th>  <th>mindkettő</th></tr><tr>
-			<td style="text-align:left">
-				<li>TTP</li>
-				<li>vasculitis</li>
-				<li>atherosclerosis</li>
-				<li>dohányzás</li>
-				<li>embólusforrás, pl. pitvarfibrilláció, endocarditis</li>
-				<li>gyógyszerek</li>
-			</td>
-			<td style="text-align:left">
-				<li>örökletes thrombophiliak</li>
-				<li>malignusok</li>
-				<li>IBD-k</li>
-				<li>nephrosis</li>
-			</td>
-			<td style="text-align:left">
-				<li>myeloproliferatív betegség</li>
-				<li>lupus antikoaguláns</li>
-				<li><span class="midQ [43]">hyperhomocysteinaemia</span></li>
-				<li><span class="midQ [44]">hiperviszkozitás</span></li>
-				<li><span class="midQ [22]">APS</span></li>
-				<li><span class="midQ [45]">PNH</span></li>
-				<li><span class="midQ [46]">HIT</span></li>
-			</td>
-		</tr></table>
-		<table><tr><th><abbr title="lásd 'tételsor hemat + infekt.pdf'">örökletes</abbr></th>  <th>szerzett</th></tr><tr>
-			<td style="text-align:left"><center>ritkák</center>
-				<li>Leiden-mutáció, </li>
-				<li>prothrombin mutáció</li>
-				<li>protein C -hiány</li>
-				<li>protein S -hiány</li>
-				<li>antithrombin -hiány</li>
-			</td>
-			<td style="text-align:left">
-				<li>műtét</li>
-				<li>tartós immobilizáció</li>
-				<li><span class="midQ [22]">APS</span></li>
-				<li>trauma</li>
-				<li>terhesség</li>
-				<li><span class="midQ [43]">hyperhomocysteinaemia</span></li>
-				<li>nephrosis</li>
-				<li>stb.</li>
-			</td>
-		</tr>
-		</table>
-	  <strong>lokalizáció</strong><table>
-		<tr><th rowspan="2">artériás</th>
-			<td>okklúzív</td>
-			<td> infarktus &#10140; AMI, stroke, bél </td>
-		  </tr><tr><td>NEM okklúzív</td>
-			<td> ischaemia &#10140; pl. alsó végtagi</td>
-		</tr>
-		<tr><th>vénás</th>
-			<td>mindig okklúzív</td>
-			<td> 90%-ban <span class="midQ [37]">MVT</span> (&#10140; PE) </td>
-		</tr>
-		</table>
-	  <strong>anamnézis</strong>
-		<li>mióta?</li>
-		<li>családban volt-e?</li>
-		<li>dohányzik?</li>
-		<li>gyógyszerek?</li>
-		<li>műtét?</li>
-	  <strong>fizikális vizsgálat</strong>
-		<li>láb</li><ul>
-			<li><details class="kerdes"><summary>artériás</summary><ul class="normal">
-				<li>sápadtabb, esetleg cyanoticus /+ lógatáskor elvörösödik</li>
-				<li>fekély</li>
-				<li>hideg</li>
-				<li><span class="midQ {205.a}">pulzus tapintás</span></li>
-				<li>benyomva a körmöket 2sec alatt vissza kell nyerje a színét (crt = capillary reload time)</li>
-				<li><span class="midQ {210} done">BKI = boka kar index meghatározása</span></li>
-			</ul></details></li>
-			<li><span class="midQ [37]">MVT</span></li>
-		</ul>
-		<li><span class="MISS">felsővégtag (thoracic outlet sy, nyaki borda), agyi sinusok, visceralis (PNH, MPN), v.renalis (nephrosis)</span></li>
-		<li><span class="MISS">megtekintés: livedo reticularis – antifoszfolipid szindróma, cyanosis – tüdő/szívbetegség, fogyás, pyoderma – IBD, splenomegalia – MPN</span></li>
-		<li><span class="MISS">perifériás kenet: fragmentocytosis – DIC, TTP, reticulocytosis + blastok – MPN, leukastasis – lymphoproliferatív kórképek</span></li>
-	  <strong>labor</strong>
-		<li>aPC-rezisztencia</li>
-		<li>Leiden-mutáció és prothrombin mutáció &#10140; molekuláris genetikai módszerek</li>
-		<li>plazma homocystein-szint</li>
-		<li>antifoszfolipid-Ab-ek</li>
-		<li>antithrombin, PC, PS &#10140; ELISA</li>
+		<details class="{42.1} kerdes"><summary>általános</summary><ul class="normal">
+			<li>thrombophilia &#10140; fokozott hajlam a vérrögösödésre</li>
+		  <strong>pathogenesis</strong> <img class="mini" data-src="bvqfeupf.png">
+			<li>táblázat: Virchoff-triász</li>
+			<table>
+				<tr><th colspan="2">endothel sérülése ➜ thrombocyta-k így kitapadhatnak</th> <td rowspan="2">artériás</td></tr>
+				<tr><th rowspan="2">véráramlás megváltozása</th>  <th>turbulens áramlás (lamináris helyett)</th></tr>
+					<tr><th>stasis(lelassul)</th>  <td rowspan="2">vénás</td></tr>
+				<tr><th colspan="2">hiperkoagulabilitás</th></tr>
+			</table>
+		  <div><strong>etiológia</strong></div>
+			<table style="float:right"><tr><th>artériás</th>  <th>vénás</th>  <th>mindkettő</th></tr><tr>
+				<td style="text-align:left">
+					<li><span class="midQ [48] done">TTP</span></li>
+					<li>vasculitis</li>
+					<li>atherosclerosis</li>
+					<li>dohányzás</li>
+					<li>embólusforrás, pl. pitvarfibrilláció, endocarditis</li>
+					<li>gyógyszerek</li>
+				</td>
+				<td style="text-align:left">
+					<li>örökletes thrombophiliak</li>
+					<li>malignusok</li>
+					<li>IBD-k</li>
+					<li>nephrosis</li>
+				</td>
+				<td style="text-align:left">
+					<li>myeloproliferatív betegség</li>
+					<li>lupus antikoaguláns</li>
+					<li><span class="midQ [43] done">hyperhomocysteinaemia</span></li>
+					<li><span class="midQ [22] done">APS</span></li>
+					<li><span class="midQ [45] done">PNH</span></li>
+					<li><span class="midQ [46] done">HIT</span></li>
+					<li><span class="midQ [44]">hiperviszkozitás</span></li>
+				</td>
+			</tr></table>
+			<table><tr><th><abbr title="lásd 'tételsor hemat + infekt.pdf'">örökletes</abbr></th>  <th>szerzett</th></tr><tr>
+				<td style="text-align:left"><center>ritkák</center>
+					<li>Leiden-mutáció, </li>
+					<li>prothrombin mutáció</li>
+					<li><span class="done">protein C -hiány</span></li>
+					<li><span class="done">protein S -hiány</span></li>
+					<li>antithrombin -hiány</li>
+				</td>
+				<td style="text-align:left">
+					<li>műtét</li>
+					<li>tartós immobilizáció</li>
+					<li><span class="midQ [22] done">APS</span></li>
+					<li>trauma</li>
+					<li>terhesség</li>
+					<li><span class="midQ [43] done">hyperhomocysteinaemia</span></li>
+					<li>nephrosis</li>
+					<li>stb.</li>
+				</td>
+			</tr>
+			</table>
+		  <strong>lokalizáció</strong><table>
+			<tr><th rowspan="2">artériás</th>
+				<td>okklúzív</td>
+				<td> infarktus &#10140; AMI, stroke, bél </td>
+			  </tr><tr><td>NEM okklúzív</td>
+				<td> ischaemia &#10140; pl. alsó végtagi</td>
+			</tr>
+			<tr><th>vénás</th>
+				<td>mindig okklúzív</td>
+				<td> 90%-ban <span class="midQ [37]">MVT</span> (&#10140; PE) </td>
+			</tr>
+		  </table>
+		</ul></details>
+		<details class="{42.2} kerdes"><summary>kivizsgálása</summary><ul class="normal">
+		  <strong>anamnézis</strong>
+			<li>mióta?</li>
+			<li>családban volt-e?</li>
+			<li>dohányzik?</li>
+			<li>gyógyszerek?</li>
+			<li>műtét?</li>
+		  <strong>fizikális vizsgálat</strong>
+			<li>láb</li><ul>
+				<li><details class="kerdes"><summary>artériás</summary><ul class="normal">
+					<li>sápadtabb, esetleg cyanoticus /+ lógatáskor elvörösödik</li>
+					<li>fekély</li>
+					<li>hideg</li>
+					<li><span class="midQ {205.a}">pulzus tapintás</span></li>
+					<li>benyomva a körmöket 2sec alatt vissza kell nyerje a színét (crt = capillary reload time)</li>
+					<li><span class="midQ {210} done">BKI = boka kar index meghatározása</span></li>
+				</ul></details></li>
+				<li><details class="kerdes"><summary>MVT</summary><ul class="normal">
+					<div class="imp [37.1]"></div>
+				</ul></details></li>
+			</ul>
+			<li><span class="MISS">felsővégtag (thoracic outlet sy, nyaki borda), agyi sinusok, visceralis (PNH, MPN), v.renalis (nephrosis)</span></li>
+			<li><span class="MISS">megtekintés: livedo reticularis – antifoszfolipid szindróma, cyanosis – tüdő/szívbetegség, fogyás, pyoderma – IBD, splenomegalia – MPN</span></li>
+			<li><span class="MISS">perifériás kenet: fragmentocytosis – DIC, TTP, reticulocytosis + blastok – MPN, leukastasis – lymphoproliferatív kórképek</span></li>
+		  <strong>labor</strong>
+			<li>aPC-rezisztencia</li>
+			<li>Leiden-mutáció és prothrombin mutáció &#10140; molekuláris genetikai módszerek</li>
+			<li>plazma homocystein-szint</li>
+			<li>szerológia</li><ul>
+				<li><abbr title="anti-foszfolipid antitest">APA</abbr>-k</li>
+				<li>antithrombin, protein C, protein S</li>
+			</ul>
+		</ul></details>
 	</ul></details>
 	<details class="{43} kerdes"><summary>hyperhomocysteinaemia</summary><ul class="normal">
 		<li>lényege &#10140; a metionin-acs zavara következtében a homocystein mennyisége a vérben↑↑</li>
@@ -2182,13 +2213,14 @@
 			<li>láz</li>
 		</ul>
 		<li>labor:</li><ul>
-			<li>Hgb↓, fragmentocyták a vérkenetben &#10140; microangiopathiás haemolyticus anaemia</li>
-			<li>(consumptiós) thrombocytopenia</li>
 			<li>ADAMTS13 aktivitása↓</li>
+			<li>thrombocytopenia</li>
+			<li>kreatinin</li>
+			<li>Hgb↓ & fragmentocyták a vérkenetben &#10140; haemolyticus anaemia</li>
 		</ul>
 	  <strong>terápia</strong>
 		<li><span class="midQ [49]">plasmapeheresis</span> az első</li>
-		<li><span class="minus">KI</span> thrombocyta transzfúzió</li>
+		<div><span class="minus">KI</span> thrombocyta transzfúzió</div>
 		<li>ha ADAMTS13↓ &#10140; rituximab</li>
 		<li>ha EHEC &#10140; <span class="minus">KI</span> AB és motilitásgátló</li>
 	</ul></details>
@@ -2448,7 +2480,7 @@
 		<li>vvt élettartam meghatározása &#10140; Cr<sup>51</sup>-izotóppal jelölt vvt-k alapján</li>
 	</ul></details>
 	<details class="{58} kerdes"><summary>makrociter anaemia-k</summary><ul class="normal">
-		<li><span class="midQ [56] kerdes">etiológia</span></li>
+		<li><span class="midQ [56] kerdes">etiológia <!-- 56 --></span></li>
 	  <div><strong>B12<font style="font-size:80%">(kobalamin)</font> & folsav<font style="font-size:80%">(B9)</font></strong></div>
 		<li>funkciójuk &#10140; DNS-szintézishez kellenek</li>
 		<details><summary style="font-size:80%">molekuláris mechanizmus</summary><ul class="normal">
@@ -2519,11 +2551,12 @@
 		<li>szepszis</li>
 		<li>trauma</li>
 		<li>akut pancreatitis</li>
-		<li>daganatok</li>
+		<li>daganatok</li><ul>
+			<li>pl. <span class="midQ [8]">akut leukaemia</span></li>
+		</ul>
 		<li>infekció &#10140; Neisseria meningitidis (Waterhouse-Friderichsen)</li>
 		<li>kígyómérgek</li>
-		<li>akut leukaemia</li>
-		<li>PNH</li>
+		<li><span class="midQ [45]">PNH</span></li>
 	  <strong>labor</strong>
 		<li><span class="midQ [2.4]">aPTI↑ és <span class="done">PI↑</span></span></li>
 		<li><span class="done">D-dimer↑</span></li>
@@ -2615,11 +2648,11 @@
 			</td>
 			<td style="text-align:left">
 				<li><span class="midQ [4]">nHL</span>-k &#10140; <abbr title="ennyit jegyezzek meg">nHL-k esetében ha kell, akkor ilyet, kivéve:</abbr></li><ul>
-					<li><span class="midQ [13]">myeloma multiplex</span></li><ul>
+					<li>ALL & CLL <abbr title="szvsz">'</abbr></li>
+					<li><span class="midQ [13]">myeloma multiplex</span>, ennél max azért:</li><ul>
 						<li>halálozás rizikó kicsi</li>
 						<li>azonban teljes gyógyulás NEM érhető el vele (csak a medián túlélést fokozza)</li>
 					</ul>
-					<font style="font-size:80%">ALL sem szvsz</font>
 				</ul>
 				<li><span class="midQ [5]">Hodgkin-lymphoma</span></li><ul>
 					<li>ma ez javallt</li>
@@ -2668,7 +2701,7 @@
 				<li><abbr title="anti-nukleáris antitest">ANA</abbr> pozitiv esetek 95%-ban, de NEM specifikus rá, mert pl. rheumatoid arthritisben is van</li>
 				<li>anti-<abbr title="double strand (kettős szálú)">ds</abbr>DNS ha pozitív, már specifikus rá</li>
 				<li>anti-C1q ha pozitív, már specifikus rá</li>
-				<li><span class="midQ [22]">APA</span>(anti-foszfolipid antitest)-k<font style="font-size:80%">(35%)</font></li>
+				<li><abbr title="anti-foszfolipid antitest">APA</abbr>-k<font style="font-size:80%">(35%)</font></li>
 				<li><span class="midQ {206} kerdes">Coombs-teszt</span></li>
 			</ul>
 			<li>szövettan:</li><ul>
@@ -2854,10 +2887,8 @@
 			</ul>
 		</ul></details>
 		<details class="{67.3} kerdes"><summary>diagnózis</summary><ul class="normal">
-			<li>képalkotók</li><ul>
-				<li>UH &#10140; ízületek</li>
-				<li>rtg alapján 4 stádiumra osztható (Steinbrocker)</li>
-				<li>MR</li>
+			<li>képalkotók &#10140; UH, rtg, MR</li><ul>
+				<font style="font-size:80%">Steinbrocker klasszifikáció rtg alapján (4 stádium)</font>
 			</ul>
 			<li>n.medianus ingervezetési sebességének mérése (carpal tunnel)</li>
 			<li>labor:</li><ul>
@@ -2867,7 +2898,7 @@
 			</ul>
 		</ul></details>
 		<details class="{67.4} kerdes"><summary>terápia</summary><ul class="normal">
-			<li>az elsőként választandó &#10140; <u>methotrexat</u> &#10140; hetente 1x, po.</li><ul>
+			<li>az elsőként választandó &#10140; <u>MTX</u> &#10140; hetente 1x, po.</li><ul>
 				<font style="font-size:80%">ha valamiért nem jó (intolerancia, mellékhatás, stb.) akkor adható helyette... &#10140; <u>leflunomid</u>, <u>tofacitinib</u>, <u>sulfasalazin</u>, <u>rituximab</u>, TNF&alpha; antagonisták, <u>abatacept</u></font>
 			</ul>
 			<li>progressziót lassítja, akár javulást okoz</li>
@@ -2976,9 +3007,10 @@
 	</ul></details>
 	<details class="{69} kerdes"><summary>arthritis-ek = ízületi gyulladások</summary><ul class="normal">
 	  <strong>alábbi (itt tanult)betegségek jár(hat)nak arthritis-el:</strong>
-		<li><span class="midQ [67]">rheumatoid arthritis</span></li>
-		<li><span class="midQ [68]">seronegativ spondylarthritisek</span></li>
-		<li><span class="midQ [70]">köszvény</span></li>
+		<li><span class="midQ [67] kerdes">rheumatoid arthritis</span></li>
+		<li><span class="midQ [68] kerdes">seronegativ spondylarthritisek</span></li>
+		<li><span class="midQ [70] kerdes">köszvény</span></li>
+	  <hr>
 		<li><span class="midQ [64]">Sjögren-szindróma</span></li>
 		<li><span class="midQ [65]">scleroderma</span></li>
 		<li><span class="midQ [47]">ANCA vasculitis-ek</span></li>
@@ -3048,29 +3080,26 @@
 			<td style="text-align:left">
 				<li>agammaglobulinaemia &#10140; B-sejt fejlődési zavara: összes Ig-hiánya</li>
 				<li>IgA-deficiencia &#10140; B-sejt fejlődési zavara: IgA-hiánya</li>
-				<li>hiper IgM-synd. &#10140; <abbr title="T sejt CD40L hiánya ➜ a CD40L nem tud a B sejtek CD40 molekulájához kötődni ➜ nincs osztályváltás ➜ nem termelődik IgG, IgA, IgE, de normál vagy emelkedett IgM szint jellemzi őket ">B-sejt fejlődési zavara:</abbr> IgM nőhet, IgG-IgA-IgE csökken</li>
+				<li>hiper IgM-synd. &#10140; <abbr title="T sejt CD40L hiánya ➜ a CD40L nem tud a B sejtek CD40 molekulájához kötődni ➜ nincs osztályváltás ➜ nem termelődik IgG, IgA, IgE, de normál vagy emelkedett IgM szint jellemzi őket ">B-sejt fejlődési zavara:</abbr> IgM nőhet, többi csökken</li>
 				<li><abbr title="severe(súlyos) kombinált immun def">SCID</abbr> &#10140; T-sejt hiány</li>
 				<li>DiGeorge &#10140; T-sejt hiba <font style="font-size:80%">(tímusz fejlődési zavar)</font></li>
 				<li>CGD (krónikus granulomatózus betegség) &#10140; fagociták száma csökken</li>
 			</td>
 			<td style="text-align:left">
-				<li>iatrogén &#10140; sugárterápia, kemoterápia, szteroidok (autoimmun / daganat / transzplantáció)</li>
-				<li>lymphoma, leukaemia</li>
-				<li>fertőzések &#10140; HIV(Th), <span class="midQ [74]">EBV</span>(B), COVID stb.</li>
+				<li>iatrogén &#10140; <span class="done">sugárterápia</span>, <span class="done">kemoterápia</span>, <span class="done">szteroidok</span> (autoimmun / daganat / transzplantáció)</li>
+				<li><span class="done">lymphoma, leukaemia</span></li>
+				<li>fertőzések &#10140; <span class="midQ [40] done">HIV</span>(Th), <span class="midQ [74]">EBV</span>(B), COVID stb.</li>
 				<li>szisztémás gyulladások &#10140; SLE, rheumatoid arthritis, stb.</li>
-				<li>malnutritio(alultápláltság) &#10140; leggyakoribb!!</li>
+				<li>malnutritio(alultápláltság) &#10140; <span class="done">leggyakoribb!!</span></li>
 			</td>
 		</tr>
 		<tr> <!-- diagnosztika -->
 			<td colspan="2" style="text-align:left">
-				<li>tünetek: &#10140; gyakori / visszatérő / ritka fertőzés</li>
-				<li>B-sejt:</li><ul>
-					<li>Ig-k vizsgálata &#10140; szerológia</li>
-					<li>oltási antitestek vizsgálata &#10140; szerológia</li>
-				</ul>
-				<li>T-sejt: CD-markerek vizsgálata &#10140; áramlási citometria</li>
-				<li>komplement rendszer(C3,C4) vizsgálata (?szerológia?)</li>
-				<li>fagocyták vizsgálata </li>
+				<li>tünetek &#10140; fertőzések: ritka típusú / gyakran</li>
+				<li>B-sejt &#10140; Ig-k vizsgálata, pl. oltási antitestek <font style="font-size:80%">(szerológia)</font></li>
+				<li>T-sejt &#10140; CD-markerek vizsgálata (áramlási citometria)</li>
+				<li>komplementszint(C3,C4) vizsgálata</li>
+				<li>phagocyták vizsgálata</li>
 			</td>
 		</tr>
 	</table></ul></details>
@@ -3334,42 +3363,33 @@
 		<li>formái:</li><ul>
 			<li>klasszikus FUO</li>
 			<li>nosocomiális FUO</li>
-			<li>neutropeniás FUO</li>
+			<li><span class="syno">immundeficiens | neutropeniás</span> FUO (neutrophil&lt;500/&micro;l) &#10140; kemoterápia / lymphoma / leukaemia</li>
 			<li>HIV-fertőzéshez asszociált FUO</li>
 		</ul>
 		<li>A klasszikus FUO-val szemben az utóbbi három kategória körülhatárolt klinikai helyzetben jelentkező lázat jelez: a nosocomialis FUO nem felderített nosocomialis fertőzést sejtet és a neutropeniás és AIDS-es betegekben is nehezen felismerhető fertőzésről van szó.</li>
-	  <strong>klasszikus FUO - etiológia</strong>
-		<table><tr><th>fertőzések</th>  <th>malignus kórkép</th>  <th>immun és autoimmun kórkép</th>  <th>egyéb</th></tr><tr>
+		<table><tr><th colspan="3">klasszikus FUO</th></tr><tr><th>fertőzések</th>  <th>malignus kórkép</th>  <th>egyéb</th></tr><tr>
 			<td style="text-align:left">
-				<li>TBC - mivel a kivizsgálása hosszú, ezért lett FUO (&#10140; PCR javasolt)</li>
-				<li>endocarditis - fel kell merüljön</li>
-				<li><span class="midQ [78]">hasüregi tályogok</span> - képalkotóval ellenőrzini</li>
-				<li>ritkán (macskakarmolási betegség (Bartonella henselae), Whipple kór (Tropheryma whippleii), EBV, CMV, HIV) </li>
+				<li><details class="kerdes"><summary>TBC</summary><ul class="normal">
+					<li>a tenyésztés 4-6 hetet vesz igénybe (Löwenstein-Jensen)</li>
+					<li>a kenet (Ziehl-Neelsen saválló festés) nem feltétlen megbízható</li>
+					<li>a PCR vizsgálat pontosabb és gyorsabb eredményt hozhat</li>
+				</ul></details></li>
+				<li>endocarditis</li>
+				<li>tályogok(pl.<span class="midQ [78]">hasüregi</span>!)</li>
+				<li>komplikált UTI</li>
 			</td>
+			<td> lymphomák, leukaemiák (B tünetek) </td>
 			<td style="text-align:left">
-				<li>lymphomák, leukaemiák (B aktivitási tünetek)</li>
-				<li>colon-cc, vese-cc</li>
-				<li>epe, májtumorok</li>
-				<li>áttétes bronchus v. emlődaganat</li>
-			</td>
-			<td style="text-align:left">
-				<li>polyarteritis nodosa</li>
-				<li>arteritis temporalis</li>
-				<li>subacut thyroiditis</li>
-			</td>
-			<td style="text-align:left">
-				<li>tüdő microembolisatio</li>
-				<li>haematoma</li>
-				<li>sarcoidosis</li>
-				<li>alkoholos heptatitis</li>
-				<li>Crohn</li>
+				<li>rheumatoid arthritis</li>
+				<li>SLE</li>
+				<li>stb.</li>
 			</td>
 		</tr></table>
-		<li>TBC:</li><ul>
-			<li>a tenyésztés 4-6 hetet vesz igénybe (Löwenstein-Jensen)</li>
-			<li>a kenet (Ziehl-Neelsen saválló festés) nem feltétlen megbízható</li>
-			<li>a PCR vizsgálat pontosabb és gyorsabb eredményt hozhat</li>
-		</ul>
+	  <strong>nosocomiális FUO - etiológia</strong>
+		<li>katéter &#10140; UTI</li>
+		<li>Clostridium difficile</li>
+		<li>tüdőembólia</li>
+		<li>stb.</li>
 	</ul></details>
 	<details class="{80} kerdes"><summary></summary><ul class="normal">
 	</ul></details>
@@ -3416,6 +3436,8 @@
 			<li>hatásmechanizmus &#10140; <span class="midQ [81] kerdes">fehérjeszintézis gátlók</span></li>
 			<li>bakteriosztatikusak <font style="font-size:80%">(kivéve aminoglikozidok)</font></li>
 			<li>időfüggők <font style="font-size:80%">(makrolidok koncentrációfüggők IS)</font></li>
+			<li>BBB-t nem penetrálják<abbr title="legalábbis a tetraciklinek, lincosamidok. makrolidok se valószínúleg.">'</abbr></li>
+			<li>po. & iv. is adhatók<abbr title="legalábbis a tetraciklinek, lincosamidok, makrolidok">'</abbr></li>
 		</td></tr>
 		<tr><th style="writing-mode:vertical-rl;">tetraciklinek</th>
 			<td style="text-align:left">
@@ -3423,17 +3445,11 @@
 				<li>doxycyclin</li>
 			</td>
 			<td style="text-align:left">
-				<li>farmakokinetika:</li><ul>
-					<li>po./iv./lokális</li>
-					<li>BBB-t nem penetrálja</li>
-				</ul>
 				<div><span class="ORANGE">mh</span> nephro-, hepato-, <abbr title="hallás">oto</abbr>toxikus</div>
 			</td>
 			<td style="text-align:left">
 			  <font style="font-size:80%">rezisztencia elterjedt ellene</font>
-				<li>Lyme-kór</li>
-				<li>IC bacik <font style="font-size:80%">(pl. Chlamydia, Rickettsia)</font></li>
-				<li>sejtfal nélküliek <font style="font-size:80%">(pl. Mycoplasma, Ureaplasma)</font></li>
+				<li><span class="midQ [72]">Lyme-kór</span></li>
 			  <font style="font-size:80%">stb.</font>
 			</td>
 		</tr>
@@ -3448,7 +3464,6 @@
 				<li>lincosamidokkal együtt nem adandók (ugyanaz a hatásmechanizmus)</li>
 			</td>
 			<td style="text-align:left">
-			  <font style="font-size:80%">olyan mint egy penicillin + tetraciklin</font>
 				<li>penicillin helyett, ha allergiás rá</li>
 				<li><abbr title="Chlamydia, Mycoplasma, Legionella">CML</abbr></li>
 			  <font style="font-size:80%">stb.</font>
@@ -3461,16 +3476,11 @@
 			</td>
 			<td style="text-align:left">
 				<li>makrolidokkal együtt nem adandók (ugyanaz a hatásmechanizmus)</li>
-				<li>farmakokinetika:</li><ul>
-					<li>po./iv./lokális</li>
-					<li>BBB-t nem penetrálja</li>
-					<li>májban metabolizálódik</li>
-				</ul>
+				<li>farmakokinetika &#10140; májban metabolizálódik</li>
 			</td>
 			<td style="text-align:left">
 				<li>penicillin helyett, ha allergiás rá</li>
-				<li>toxintermelő törzsek</li>
-				<div><span class="minus">–</span> MSBL törzsek</div>
+			  <font style="font-size:80%">stb.</font>
 			</td>
 		</tr>
 	</table></ul></details>
@@ -3820,8 +3830,13 @@
 			<div class="imp [36]"></div>
 		</ul></details>
 	</ul></details>
-	<details class="kerdes"><summary class="status">8. Thrombosis kivizsgálása</summary><ul class="normal">
-		<div class="imp [42]"></div>
+	<details class="open"><summary class="status">8. Thrombosis kivizsgálása</summary><ul class="normal">
+		<details class="kerdes"><summary><strong>Thrombosis</strong> kivizsgálása</summary><ul class="normal">
+			<div class="imp [42.1]"></div>
+		</ul></details>
+		<details class="kerdes"><summary>Thrombosis <strong>kivizsgálása</strong></summary><ul class="normal">
+			<div class="imp [42.2]"></div>
+		</ul></details>
 	</ul></details>
 	<details class="kerdes"><summary class="status">9. Szerzett thrombophiliák</summary><ul class="normal">
 		<div class="imp [42]"></div>
@@ -3902,10 +3917,10 @@
 			<div class="imp [23]"></div>
 		</ul></details>
 		<details class="kerdes"><summary>Ph-negatív myeloproliferatív neoplazmák (PV, <strong>ET</strong>, MF)</summary><ul class="normal">
-			<div class="imp [24]"></div>
+			<div class="imp [23]"></div>
 		</ul></details>
 		<details class="kerdes"><summary>Ph-negatív myeloproliferatív neoplazmák (PV, ET, <strong>MF</strong>)</summary><ul class="normal">
-			<div class="imp [25]"></div>
+			<div class="imp [23]"></div>
 		</ul></details>
 	</ul></details>
 	<details class="kerdes"><summary class="status">31. Krónikus myeloid leukémia</summary><ul class="normal">
@@ -4031,14 +4046,16 @@
 			<li>diasztolés hipertónia</li>
 		</ul>
 		<li>fizikális vizsgálat</li><ul>
-			<li>bőr - livedo reticularis</li>
+			<li>bőr - livedo reticularis <img class="mini" data-src="gpgwddsf.png"></li>
 		</ul>
 		<li>angiográfia (erek vizsgálata)</li>
 		<li>biopszia</li>
-		<li>BUN / Se kreatinin↑</li>
+		<li><span class="syno">BUN | urea | karbamid</span>/kreatinin hányados megnő</li>
 	  <strong>terápia</strong>
-		<li>tartós glükokortikoid + cyclophosphamid</li>
-		<li>ha nem elég &#10140; plasmapheresis</li>
+		<li>glükokortikoid + cyclophosphamid</li><ul>
+			<li>ha nem elég &#10140; plasmapheresis</li>
+		</ul>
+		<li>min. 2évig, a kiújulás ritka</li>
 	</ul></details>
 	<details class="kerdes"><summary class="status">10. Sjögren syndroma</summary><ul class="normal">
 		<div class="imp [64]"></div>
@@ -4127,7 +4144,7 @@
 		</ul></details>
 		<font style="font-size:80%">Tulassay, Herold nem néztem</font><abbr title="csak: gyak + 3.-4.év jegyzet + net">'</abbr>
 	</ul></details>
-	<details class="kerdes"><summary class="status" style="background-color:peachpuff">15. Izületi gyulladás differenciáldiagnosztikája</summary><ul class="normal">
+	<details class="kerdes"><summary class="status" style="background-color:gainsboro">15. Izületi gyulladás differenciáldiagnosztikája</summary><ul class="normal">
 		<div class="imp [69]"></div>
 	</ul></details>
 <!---->  </details>
@@ -4135,35 +4152,6 @@
 <!---->  <details open><summary class="mainTitle">Infektológia</summary>
 	<details class="open"><summary class="status">1. Az antimikrobális kezelés alapelvei, infektológiai gondolkodásmód (infektológiai anamnézis és betegvizsgálat sajátosságai, definitív, empirikus, profilaktikus terápia, góctalanítás jelentősége, véráram-fertőzések)</summary><ul class="normal">
 		<details class="kerdes"><summary><strong>Az antimikrobális kezelés alapelvei, infektológiai gondolkodásmód</strong> (infektológiai anamnézis és betegvizsgálat sajátosságai, definitív, empirikus, profilaktikus terápia, góctalanítás jelentősége, véráram-fertőzések)</summary><ul class="normal">
-			<details class="kerdes"><summary>AB - rezisztencia</summary><ul class="normal">
-				<img style="max-width:25%" data-src="tkraswgh.jpg">
-				<li><span class="IMPORTANT">antibiotikum-ot enzim lebontja</span> &#10140; fő képviselőjök a <u>&beta;-laktamáz</u>ok</li>
-				<li><span class="IMPORTANT">efflux-pumpák</span> &#10140; MDR-protein kipumpálja az antibiotikumot a sejtből</li>
-				<li><span class="IMPORTANT">célmolekula túltermelése</span> &#10140; szulfonamid rezisztencia esetében PABA túltermelése</li>
-				<table><tr><th>primer (természetes) rezisztencia</th> <th>szekunder (szerzett) rezisztencia</th></tr>
-					<tr>
-						<td>eleve kódolva van</td>
-						<td style="text-align:left">
-							<li>antibiotikum-használat miatt alakul ki:</li><ul>
-								<li>vertikális &#10140; mutációk</li>
-								<li>horizontális &#10140; génátvitel</li>
-							</ul>
-							<li>ez az, mely az utóbbi évtizedekben nagy kihívást jelenti a medicina számára</li>
-						</td>
-					</tr>
-					<tr>
-						<td style="text-align:left">
-							<li>pl. Enterococcus-ok a szulfonamidokra &#10140; mert nem szintetizálnak folsavat</li>
-							<li>pl. Lactobacillusok a glikopeptidekre &#10140; mert D-Ala–D-Laktát van</li>
-						</td>
-						<td style="text-align:left">
-							<li>pl. S.aureus a penicillináz-t (rezisztencia gének megszerzése plazmid felvétellel)</li>
-							<li>pl. glikopeptid rezisztencia: VRE, VRSA</li>
-						</td>
-					</tr>
-				</table>
-				<li>ezért fontos, hogy az empírikus terápiák száma minél kevesebb legyen, a célzott terápiák száma nőjön</li>
-			</ul></details>
 			<details class="kerdes"><summary>AB - spektum (szűk/széles)</summary><ul class="normal">
 				<li>szűk &#10140; egy vagy néhány baktérium genus (pl. csak Gram-poz.) elpusztítására képes, a többire pedig hatástalan &#10140; pl. penicillin, vankomicin</li><ul>
 					<li>kis rizikó +// célzott terápia esetén</li>
@@ -4189,9 +4177,9 @@
 				<tr><th>időfüggő AB-k</th>  <th>koncentrációfüggő AB-k</th>  <th>idő & konc. függő AB-l</th></tr>
 				<tr>
 					<td style="text-align:left">
-						<li>MIC-et el kell érnie, de</li>
+						<li><span class="syno">MIC | MBC</span>-et el kell érnie, de</li>
 						<li>az mindegy mennyivel nagyobb, a lényeg</li>
-						<li>hogy minél tovább MIC felett legyen</li>
+						<li>hogy minél tovább <span class="syno">MIC | MBC</span> felett legyen</li>
 						<li>napi 2-3x adagolás</li>
 					</td>
 					<td style="text-align:left">
@@ -4214,7 +4202,7 @@
 				pl. HIV-fertőzöttekben, akik plazmájában a vírus RNS magas kópiaszámban van jelen, kifejezetten indokolt a kombinált kezelés. (toxicitás csökkentése, rezisztens mutánsok kialakulásának csökkentése)
 			</ul></details>
 		</ul></details>
-		<details class="kerdes"><summary>Az antimikrobális kezelés alapelvei, infektológiai gondolkodásmód (infektológiai anamnézis és betegvizsgálat sajátosságai, definitív, empirikus, profilaktikus terápia, góctalanítás jelentősége, véráram-fertőzések)</summary><ul class="normal">
+		<details class="kerdes"><summary>Az antimikrobális kezelés alapelvei, infektológiai gondolkodásmód (<strong>infektológiai anamnézis és betegvizsgálat sajátosságai</strong>, definitív, empirikus, profilaktikus terápia, góctalanítás jelentősége, véráram-fertőzések)</summary><ul class="normal">
 			<li>kézfertőtlenítés:</li><ul>
 				<li>alkoholos &#10140; Clostridium-ot nem szedi le</li>
 				<li>szappan &#10140; Clostridium-ot leszedi (de a többit nem)</li>
@@ -4463,7 +4451,7 @@
 	</ul></details>
 	<details class="kerdes"><summary class="status" style="background-color:coral">17. Neutropéniás láz, szisztémás mycosisok, immunszupprimált beteg további fertőzései</summary><ul class="normal">
 	</ul></details>
-	<details class="kerdes"><summary class="status">18. Fertőzés okozta hasmenés (bakteriális, virális, Cl.diff.), ételmérgezések</summary><ul class="normal">
+	<details class="open"><summary class="status">18. Fertőzés okozta hasmenés (bakteriális, virális, Cl.diff.), ételmérgezések</summary><ul class="normal">
 		<details class="kerdes"><summary><strong>Fertőzés okozta hasmenés (bakteriális, virális, Cl.diff.)</strong>, ételmérgezések</summary><ul class="normal">
 			<table><tr><th></th> <th>dysenteria(vérhas=véres hasmenés)</th> <th>diarrhea(vizes hasmenés)</th></tr>
 				<tr><th></th>
@@ -4476,7 +4464,10 @@
 						<li>magas láz</li>
 						<li>hasi görcsök <font style="font-size:80%">(fájdalmas-görcsös székelési inger)</font></li>
 					</td>
-					<td>dehidráció</td>
+					<td style="text-align:left">
+						<li>vizes hasmenés</li>
+						<li>dehidráció</li>
+					</td>
 				</tr>
 				<tr><th><span class="IMPORTANT">kórokozók</span></th>
 					<td style="text-align:left"> <!-- véres -->
@@ -4560,6 +4551,39 @@
 		</ul></details>
 	</ul></details>
 	<details class="kerdes"><summary class="status" style="background-color:coral">21. Antimikróbás rezisztencia, rezisztens kórokozók klinikai jelentősége, antimikróbás stewardship</summary><ul class="normal">
+		<details class="kerdes"><summary><strong>Antimikróbás rezisztencia</strong>, rezisztens kórokozók klinikai jelentősége, antimikróbás stewardship</summary><ul class="normal">
+			<img style="max-width:25%" data-src="tkraswgh.jpg">
+			<li><span class="IMPORTANT">antibiotikum-ot enzim lebontja</span> &#10140; fő képviselőjök a <u>&beta;-laktamáz</u>ok</li>
+			<li><span class="IMPORTANT">efflux-pumpák</span> &#10140; MDR-protein kipumpálja az antibiotikumot a sejtből</li>
+			<li><span class="IMPORTANT">célmolekula túltermelése</span> &#10140; szulfonamid rezisztencia esetében PABA túltermelése</li>
+			<table><tr><th>primer (természetes) rezisztencia</th> <th>szekunder (szerzett) rezisztencia</th></tr>
+				<tr>
+					<td>eleve kódolva van</td>
+					<td style="text-align:left">
+						<li>antibiotikum-használat miatt alakul ki:</li><ul>
+							<li>vertikális &#10140; mutációk</li>
+							<li>horizontális &#10140; génátvitel</li>
+						</ul>
+						<li>ez az, mely az utóbbi évtizedekben nagy kihívást jelenti a medicina számára</li>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:left">
+						<li>pl. Enterococcus-ok a szulfonamidokra &#10140; mert nem szintetizálnak folsavat</li>
+						<li>pl. Lactobacillusok a glikopeptidekre &#10140; mert D-Ala–D-Laktát van</li>
+					</td>
+					<td style="text-align:left">
+						<li>pl. S.aureus a penicillináz-t (rezisztencia gének megszerzése plazmid felvétellel)</li>
+						<li>pl. glikopeptid rezisztencia: VRE, VRSA</li>
+					</td>
+				</tr>
+			</table>
+			<li>ezért fontos, hogy az empírikus terápiák száma minél kevesebb legyen, a célzott terápiák száma nőjön</li>
+		</ul></details>
+		<details class="kerdes"><summary>Antimikróbás rezisztencia, <strong>rezisztens kórokozók klinikai jelentősége</strong>, antimikróbás stewardship</summary><ul class="normal">
+		</ul></details>
+		<details class="kerdes"><summary>Antimikróbás rezisztencia, rezisztens kórokozók klinikai jelentősége, <strong>antimikróbás stewardship</strong></summary><ul class="normal">
+		</ul></details>
 	</ul></details>
 <!---->  </details>
 
