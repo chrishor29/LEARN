@@ -101,17 +101,6 @@ div.normal {
 	padding-right: 5px;
 }
 
-hr.mini {
-    border: none;
-    height: 1px;
-    background-color: #333;
-}
-hr.large {
-    border: none;
-    height: 2px;
-    background-color: #333;
-}
-
 span.abbr { 
 	border: Black 1px solid; 
 	padding-left: 1px; 
