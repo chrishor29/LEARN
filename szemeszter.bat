@@ -15,6 +15,7 @@ xcopy /y %source%\favicon.png %destination%\ /d
 
 REM 5.év
 xcopy /y %source%\Belgyogy\HIIRLm\hiirlm.html %destination%\Belgyogy\HIIRLm\ /d
+xcopy /y %source%\Urologia\urologia.html %destination%\Urologia\ /d
 
 REM 4.év
 xcopy /y %source%\Sebeszet\sebeszet.html %destination%\Sebeszet\ /d
