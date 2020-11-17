@@ -39,6 +39,7 @@ if varTelefon = true
 	; MsgBox Telefon update
 	Run BatchRun.ffs_batch,,, andPID ; %destination%\BatchRun.ffs_batch
 	Run BatchRunStuff.ffs_batch,,, andrPID ; %destination%\BatchRunStuff.ffs_batch
+	Run ZeneBatch.ffs_batch,,, androPID ; %destination%\ZeneBatch.ffs_batch
 }
 if varWebPage = true
 {
@@ -47,6 +48,7 @@ if varWebPage = true
 }
 Process,WaitClose,%andPID%
 Process,WaitClose,%andrPID%
+Process,WaitClose,%androPID%
 Process,WaitClose,%updPID%
 MsgBox done
 ExitApp

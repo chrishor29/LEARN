@@ -7,7 +7,7 @@
 	<style>*{line-height: 130%;}</style>
 </head>
 
-<!-- û õ õ ≥ ↑ ↓ ± -->
+<!-- û õ õ ≥ ↑ ↓ ± ✖ ✔ -->
 <!-- PROJECT
 Belgyógy: egybe tegyem (endokrin,szív,GI,nefro,hepato)
 Sebészet: kidolgozni
@@ -64,7 +64,9 @@ farmakSzabvál: 02.27, 03.23, 04.06
 <div><table id="table_weboldalak"><tr> <!-- weboldalak -->
 	<!-- V.év --> <td style="text-align:left"> 
 		<span class="page" data-src="Belgyogy/HIIRLm/hiirlm.html"><img class="targy"> Hem,Inf,Rhe</span><br>
-		<span class="page" data-src="Urologia/urologia.html"><strong>Urológia</strong></span><br>
+		<span class="page" data-src="done/Urologia/urologia.html">Urológia</span><br>
+		<span class="page" data-src="IgOr/igor.html"><strong>Ig.Orvostan</strong></span><br>
+		<span class="page" data-src="Neurologia/neurologia.html"><strong>Neurológia</strong></span><br>
 	  <hr>
 		<span class="page" data-src="expqs.html">expqs</span><br>
 		<span class="page" data-src="sajat/sajat.html">sajat</span><br>
@@ -96,7 +98,7 @@ farmakSzabvál: 02.27, 03.23, 04.06
 		<span class="page" data-src="done/Mutettan/mutettan.html">Műtéttan</span><br>
 		<span class="page" data-src="done/LabMed/labmed.html">Laboratóriumi Medicina</span><br>
 		<span class="page" data-src="done/Immunologia/immun.html">Immunológia</span><br>
-		<span class="page" data-src="done/Proped/proped.html">Propedeutika</span><br>
+		<span class="page" data-src="Belgyogy/Proped/proped.html">Propedeutika</span><br>
 	</td>
 	<!-- I-II.év --> <td style="text-align:left">
 		<span class="page" data-src="done/ANAT/anat.html">Anatómia</span><br>
@@ -144,9 +146,11 @@ farmakSzabvál: 02.27, 03.23, 04.06
 	</td>
 </tr></table></div>
 
-<div id="centVideoDiv" style="position:fixed; top:20%; left:30%; border:15px solid black; visibility:hidden; z-index:4;" width="480">
-	<video id="centVideo" width="480"></video>
+<div id="centVideoBG" style="position:fixed; top:5px; left:5px; right:5px; bottom:5px; visibility:hidden; z-index:4; background-color:rgba(0,0,0,0.7);">
+<div id="centVideoBorder" style="position:fixed; top:20%; left:30%; border:15px solid black;" width="480">
+	<video width="480" style="cursor:pointer"></video>
 	<div id="centVideoSeek" style="height:21px; background:grey;"><span style="position:absolute; background:gold;" id="centVideoBar">&nbsp;</span></div>
+</div>
 </div>
 
 <div id="div_pageQTargy"></div>

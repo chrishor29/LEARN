@@ -15,7 +15,9 @@ xcopy /y %source%\favicon.png %destination%\ /d
 
 REM 5.év
 xcopy /y %source%\Belgyogy\HIIRLm\hiirlm.html %destination%\Belgyogy\HIIRLm\ /d
-xcopy /y %source%\Urologia\urologia.html %destination%\Urologia\ /d
+xcopy /y %source%\Neurologia\neurologia.html %destination%\Neurologia\ /d
+xcopy /y %source%\IgOr\igor.html %destination%\IgOr\ /d
+xcopy /y %source%\done\Urologia\urologia.html %destination%\done\Urologia\ /d
 
 REM 4.év
 xcopy /y %source%\Sebeszet\sebeszet.html %destination%\Sebeszet\ /d
@@ -65,7 +67,7 @@ xcopy /y %source%\done\Mutettan\mutettan.html %destination%\done\Mutettan\ /d
 xcopy /y %source%\done\Mutettan\Wéber Gy., Ferencz A., Sándor J. - Műtéttan (2015).pdf %learnStuff%\done\Mutettan\ /d
 xcopy /y %source%\done\Patosz\patosz.html %destination%\done\Patosz\ /d
 xcopy /y %source%\done\Patosz\favicon.bmp %destination%\done\Patosz\ /d
-xcopy /y %source%\done\Proped\proped.html %destination%\done\Proped\ /d
+xcopy /y %source%\Belgyogy\\Proped\proped.html %destination%\Belgyogy\\Proped\ /d
 xcopy /y %source%\done\Pszicho\pszicho.html %destination%\done\Pszicho\ /d
 xcopy /y %source%\done\Pszicho\favicon.bmp %destination%\done\Pszicho\ /d
 

@@ -710,7 +710,6 @@ var midQisExp = false
 */
 var testLoad = false
 var missImgs = ""
-var vidStatus
 function F_loadImgVideo(detElem){
 	//console.clear()
 	//console.log("F_loadImgVideo")
@@ -789,7 +788,7 @@ function F_loadImgVideo(detElem){
 		if ( allVideo[i].offsetParent == null && testLoad == false ) { continue }
 		if ( allVideo[i].dataset.src == undefined ) { continue } 
 		var source = document.createElement('source')
-		source.setAttribute('src', allVideo[i].dataset.src)
+		source.setAttribute('src', "videos/"+ allVideo[i].dataset.src)
 		/*if ( midQisExp == true ) {
 			source.setAttribute('src', allVideo[i].dataset.src)
 		} else {
@@ -874,7 +873,7 @@ function F_loadImgVideo(detElem){
 	}
 	
 	// centVideos Load
-	var centVideo = document.getElementById("centVideo")
+	var centVideo = F_centVideoElem()
 	var allVideoCent = detElem.getElementsByClassName("video")
 	for ( var i=0; i<allVideoCent.length; i++ ) {
 		allVideoCent[i].onclick = function(){
@@ -890,7 +889,7 @@ function F_loadImgVideo(detElem){
 			var isExp = false
 			if ( impElem != false ) { if ( impElem.className.indexOf("{") != -1 ) { isExp = true } }
 
-			centVideo.setAttribute('src', this.dataset.src)
+			centVideo.setAttribute('src', "videos/"+ this.dataset.src)
 			
 			/* már összes videót a fő mappába localizálom */ /*if ( isExp == true || midQisExp == true ) {
 				centVideo.setAttribute('src', this.dataset.src)
@@ -898,15 +897,29 @@ function F_loadImgVideo(detElem){
 				centVideo.setAttribute('src', path.slice(0,path.lastIndexOf("/")+1) + this.dataset.src)
 			}*/
 			console.log(isExp+"-"+midQisExp+" "+centVideo.getAttribute("src"))
-			document.getElementById("centVideoDiv").style.visibility = 'visible';
-			vidStatus = "show"
+			document.getElementById("centVideoBG").style.visibility = 'visible';
 		}
 	}
 	
 	// centVideo Load
 	//ezt elég 1x megcsinálni, amikor elindítom (fix majd, mert lehet egyszerusíteni)
-	document.getElementById("div_centIMG").appendChild(document.getElementById("centVideoDiv"))
-	document.getElementById("centVideoDiv").onclick = function() { vidStatus = true }
+	var keepVideo
+	var centVideoBorder = document.getElementById("centVideoBorder")
+	centVideoBorder.onclick = function(){
+		keepVideo = true
+	}
+	var centVideoBG = document.getElementById("centVideoBG")
+	centVideoBG.onclick = function(){
+		if ( keepVideo != true ) { 
+			this.style.visibility = 'hidden'
+			centVideo.pause()
+			centVideo.style.borderColor = "black"
+			
+			centVideoBar.style.width = 0
+			centVideoBar.style.left = centVideo.offsetLeft
+		}
+		keepVideo = false
+	}
 	centVideo.onclick = function(){
 		if ( this.paused == false ) {
 			this.style.borderColor = "black"
@@ -1166,12 +1179,6 @@ function F_centIMG(){ // create center div + image
 
 		tooltipStatus = tooltipStatus -1
 		if ( tooltipStatus != 1 ) { tooltipSpan.style.visibility = "hidden" }
-
-		if ( vidStatus == "hide" ) { 
-			document.getElementById("centVideoDiv").style.visibility = "hidden" 
-			document.getElementById("centVideo").pause()
-		}
-		vidStatus = "hide"
 	}
 }
 F_centIMG()
@@ -2222,6 +2229,13 @@ function F_searchWord() {
 }
 F_searchWord()
 
+function F_centVideoElem(){
+	var centVideoBorder = document.getElementById("centVideoBorder")
+	var videoElems = centVideoBorder.getElementsByTagName("video")
+	var centVideoElem = videoElems[0]
+	return centVideoElem
+}
+
 var replaceQs = []
 
 var varNextQ = false
@@ -2229,15 +2243,15 @@ var midQloaded = false
 var threeSec = 0
 var currPageId
 var F_seekBar = window.setInterval(function(){
-	if ( document.getElementById("centVideo").paused == false ) {
-		var centVideo = document.getElementById("centVideo")
+	var centVideo = F_centVideoElem()
+	if ( centVideo.paused == false ) {
 		var centVideoBar = document.getElementById("centVideoBar")
 		var widthPx = centVideo.offsetWidth *centVideo.currentTime /centVideo.duration
 		centVideoBar.style.width = widthPx
 		centVideoBar.style.left = centVideo.offsetLeft
-	} else if ( document.getElementById("centVideo").currentTime == document.getElementById("centVideo").duration ) {
-		document.getElementById("centVideo").currentTime = 0;
-		document.getElementById("centVideo").play();
+	} else if ( centVideo.currentTime == centVideo.duration ) {
+		centVideo.currentTime = 0;
+		centVideo.play();
 	}
 	
 	if ( document.getElementById("playedVideo") ) {
