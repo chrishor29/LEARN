@@ -733,6 +733,10 @@ function F_loadImgVideo(detElem){
 		imgs[x].src = "images/" + imgs[x].dataset.src
 		imgs[x].removeAttribute("data-src")
 		
+		imgs[x].style.border = "3px solid black"
+		imgs[x].style.maxWidth = "40%"
+		imgs[x].style.float = "right"
+		
 		if ( imgs[x].className.indexOf("mwsw") != -1 ) {
 			var width = imgs[x].className.slice(imgs[x].className.indexOf("mwsw")+5)
 			width = Number(width) * screen.width /100
@@ -883,7 +887,6 @@ function F_loadImgVideo(detElem){
 			do {
 				parent = parent.parentElement
 				if ( parent.className.indexOf("imp") != -1 ) { impElem = parent }
-				//if ( alt_impElem == "false" && parent.className.indexOf("{") != -1 ) { alt_impElem = parent }
 			} while ( parent.className.indexOf("imp") == -1 && parent != document.documentElement )
 			
 			var isExp = false
@@ -891,35 +894,14 @@ function F_loadImgVideo(detElem){
 
 			centVideo.setAttribute('src', "videos/"+ this.dataset.src)
 			
-			/* már összes videót a fő mappába localizálom */ /*if ( isExp == true || midQisExp == true ) {
-				centVideo.setAttribute('src', this.dataset.src)
-			} else {
-				centVideo.setAttribute('src', path.slice(0,path.lastIndexOf("/")+1) + this.dataset.src)
-			}*/
 			console.log(isExp+"-"+midQisExp+" "+centVideo.getAttribute("src"))
-			document.getElementById("centVideoBG").style.visibility = 'visible';
+			document.getElementById("div_centVideoBg").style.visibility = 'visible';
 		}
 	}
 	
 	// centVideo Load
 	//ezt elég 1x megcsinálni, amikor elindítom (fix majd, mert lehet egyszerusíteni)
 	var keepVideo
-	var centVideoBorder = document.getElementById("centVideoBorder")
-	centVideoBorder.onclick = function(){
-		keepVideo = true
-	}
-	var centVideoBG = document.getElementById("centVideoBG")
-	centVideoBG.onclick = function(){
-		if ( keepVideo != true ) { 
-			this.style.visibility = 'hidden'
-			centVideo.pause()
-			centVideo.style.borderColor = "black"
-			
-			centVideoBar.style.width = 0
-			centVideoBar.style.left = centVideo.offsetLeft
-		}
-		keepVideo = false
-	}
 	centVideo.onclick = function(){
 		if ( this.paused == false ) {
 			this.style.borderColor = "black"
@@ -933,7 +915,7 @@ function F_loadImgVideo(detElem){
 			this.style.borderColor = "springgreen"
 			this.play();
 			
-			var centVideoSeek = document.getElementById("centVideoSeek")
+			var centVideoSeek = document.getElementById("div_centVideoSeek")
 			centVideoSeek.onclick = function(e){
 				var rect = e.target.getBoundingClientRect();
 				//var testX = e.clientX - centVideoSeek.left
@@ -954,6 +936,20 @@ function F_loadImgVideo(detElem){
 				centVideoBar.style.left = centVideo.offsetLeft
 			}
 		}
+		keepVideo = true
+	}
+
+	var centVideoBG = document.getElementById("div_centVideoBg")
+	centVideoBG.onclick = function(){
+		if ( keepVideo != true ) { 
+			this.style.visibility = 'hidden'
+			centVideo.pause()
+			centVideo.style.borderColor = "black"
+			
+			centVideoBar.style.width = 0
+			centVideoBar.style.left = centVideo.offsetLeft
+		}
+		keepVideo = false
 	}
 	
 	
@@ -1131,20 +1127,26 @@ function F_imgClick(detElem){ // képnagyítás balKlikkel középre
 	var imgs = detElem.getElementsByTagName("IMG")
 	for ( var i=0;  i<imgs.length;  i++ ) {
 		imgs[i].onclick = function() { F_showCenterDiv(this) }
-		if ( imgs[i].classList.contains("mini") == true && isAndroid == false ) {
-			imgs[i].onmouseover = function() { 
-				this.style.position = "absolute"
-				var rect = this.getBoundingClientRect()
-				var thisW = this.width *4
-				if ( rect.left < thisW ) { this.style.left = thisW }
-				this.style.transform = "scale(8,8)"
-				this.style.zIndex = "4"
-			}
-			imgs[i].onmouseout = function() {
-				this.style.position = ""
-				this.style.transform = "scale(1,1)"
-				this.style.left = ""
-				this.style.zIndex = "1"
+		if ( imgs[i].classList.contains("mini") == true ) {
+			imgs[i].style.border = "2px solid DeepSkyBlue"
+			imgs[i].style.maxHeight = "14px"
+			imgs[i].style.marginBottom = "-2px"
+			imgs[i].style.float = "none"
+			if ( isAndroid == false ) {
+				imgs[i].onmouseover = function() { 
+					this.style.position = "absolute"
+					var rect = this.getBoundingClientRect()
+					var thisW = this.width *4
+					if ( rect.left < thisW ) { this.style.left = thisW }
+					this.style.transform = "scale(8,8)"
+					this.style.zIndex = "4"
+				}
+				imgs[i].onmouseout = function() {
+					this.style.position = ""
+					this.style.transform = "scale(1,1)"
+					this.style.left = ""
+					this.style.zIndex = "1"
+				}
 			}
 		}
 		if ( imgs[i].classList.contains("metszet") == true ) {
@@ -2230,10 +2232,7 @@ function F_searchWord() {
 F_searchWord()
 
 function F_centVideoElem(){
-	var centVideoBorder = document.getElementById("centVideoBorder")
-	var videoElems = centVideoBorder.getElementsByTagName("video")
-	var centVideoElem = videoElems[0]
-	return centVideoElem
+	return document.getElementById("video_cent")
 }
 
 var replaceQs = []
@@ -2289,30 +2288,37 @@ var F_seekBar = window.setInterval(function(){
 
 function F_answerQ(detElem){ 
 	var trueA = detElem.getElementsByClassName("trueA")
+	var tippA = detElem.getElementsByClassName("tippA")
 	var falseA = detElem.getElementsByClassName("falseA")
 	var answers = detElem.getElementsByClassName("answer")
-	if ( trueA.length == 0 ) { return }
+	var hiddens = detElem.getElementsByClassName("hidden")
+	//if ( trueA.length == 0 ) { return }
 	
 	if ( detElem.open != true ) {
 		for ( var i=0; i<trueA.length; i++ ) { trueA[i].style.backgroundColor = "" }
+		for ( var i=0; i<tippA.length; i++ ) { tippA[i].style.backgroundColor = "" }
 		for ( var i=0; i<falseA.length; i++ ) { falseA[i].style.backgroundColor = "" }
 		for ( var i=0; i<answers.length; i++ ) { answers[i].style.backgroundColor = "gold" }
+		for ( var i=0; i<hiddens.length; i++ ) { hiddens[i].style.display = "none" }
 		return
 	}
 	
 	var div = detElem.getElementsByClassName("random")
+	if ( div.length == 0 ) { return }
 	if ( div[0].offsetParent === null ) { return }
 	var liA = div[0].getElementsByTagName("li")
 	for (var i=0; i<liA.length; i++) { div[0].appendChild(liA[Math.random() * i | 0]) }
 	
-	trueA = detElem.getElementsByClassName("trueA")
-	falseA = detElem.getElementsByClassName("falseA")
+	//trueA = detElem.getElementsByClassName("trueA")
+	//falseA = detElem.getElementsByClassName("falseA")
 	for ( var x=0; x<answers.length; x++ ) { 
 		//alert(answers[x].offsetParent)
 		answers[x].style.cursor = "pointer"
 		answers[x].onclick = function(){
 			for ( var i=0; i<trueA.length; i++ ) { trueA[i].style.backgroundColor = "springgreen" }
+			for ( var i=0; i<tippA.length; i++ ) { tippA[i].style.backgroundColor = "yellow" }
 			for ( var i=0; i<falseA.length; i++ ) {  falseA[i].style.backgroundColor = "tomato" }
+			for ( var i=0; i<hiddens.length; i++ ) { hiddens[i].style.display = "block" }
 			this.style.cursor = ""
 			this.style.backgroundColor = "white"
 		}
@@ -3718,12 +3724,6 @@ function F_calcLSid(detElem){
 	
 		var qName = F_QtxtQname(detElem.innerHTML + " " + EXPid)
 		actLSid = localStorage.getItem(qName)
-		
-		//var qName = F_QtxtQname(detElem.innerHTML)
-		//actLSid = localStorage.getItem(qName)
-		
-		//var string = localStorage.getItem("hkExpQ."+EXPid)
-		//if ( string != null ) { actLSid = string.slice(0,string.indexOf(" ")) }
 	} 
 	if ( detElem.className.indexOf("[") > -1 ) {
 		var begin = detElem.className.indexOf("[")
@@ -4755,7 +4755,7 @@ function F_nextQ(){
 							div.innerHTML = "&nbsp"
 							td.onclick = function(){ 
 								var dropdown = document.getElementById("div_selectJegy")
-								this.appendChild(dropdown)
+								this.appendChild(dropdown) // cseréljem le az egész táblázatot majd div + borderre, abba csak jó lesz már (a JSnew.js-ben, addig jóez)
 								var num = this.id
 								num = num.slice(num.lastIndexOf(".")+1)
 								if ( dropdown.style.display == "block" && jegyNum == num ) {
@@ -5048,7 +5048,7 @@ function F_divSelectJegy() {
 	var div = document.createElement("div")
 	div.id = "div_selectJegy"
 	document.getElementById("div_MainFrame").appendChild(div)
-	div.style.position = "absolute"
+	//div.style.position = "absolute"
 	div.style.width = "45px"
 	div.style.display = "none"
 	div.style.backgroundColor = "#f1f1f1"

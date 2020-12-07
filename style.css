@@ -267,18 +267,6 @@ th {
 	background: Silver;
 }
 
-
-img, iframe, object {
-	border: 3px solid black;
-	max-width: 98%;
-	float: right;
-}
-img.mini {
-	border: 2px solid DeepSkyBlue;
-	max-height: 14px;
-	float: none;
-	margin-bottom: -2px
-}
 img.metszet {
 	border: 5px solid red;
 }

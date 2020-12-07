@@ -7,7 +7,7 @@
 	<style>*{line-height: 130%;}</style>
 </head>
 
-<!-- û õ õ ≥ ↑ ↓ ± ✖ ✔ -->
+<!-- û õ õ ≥ ↑ ↓ ± ✖ ✔ „” -->
 <!-- PROJECT
 Belgyógy: egybe tegyem (endokrin,szív,GI,nefro,hepato)
 Sebészet: kidolgozni
@@ -146,10 +146,15 @@ farmakSzabvál: 02.27, 03.23, 04.06
 	</td>
 </tr></table></div>
 
-<div id="centVideoBG" style="position:fixed; top:5px; left:5px; right:5px; bottom:5px; visibility:hidden; z-index:4; background-color:rgba(0,0,0,0.7);">
-<div id="centVideoBorder" style="position:fixed; top:20%; left:30%; border:15px solid black;" width="480">
-	<video width="480" style="cursor:pointer"></video>
-	<div id="centVideoSeek" style="height:21px; background:grey;"><span style="position:absolute; background:gold;" id="centVideoBar">&nbsp;</span></div>
+<div id="div_centVideoBg" style="position:fixed; top:5px; left:5px; right:5px; bottom:5px; visibility:hidden; z-index:4; background-color:rgba(0,0,0,0.7);">
+<div style="border:15px solid black; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); max-width:90%; max-height:90%">
+	<video id="video_cent" width="100%" height="100%" style="cursor:pointer"></video>
+	<div id="div_centVideoSeek" style="height:21px; background:grey;"><span style="height:21px; position:absolute; background:gold;" id="centVideoBar">&nbsp;</span></div>
+</div>
+</div>
+<div id="div_centImgBg" style="position:fixed; top:5px; left:5px; right:5px; bottom:5px; visibility:hidden; z-index:4; background-color:rgba(0,0,0,0.7);">
+<div style="position:fixed; overflow:auto; transform:translate(-50%,-50%); top:50%; left:50%; max-width:90%; max-height:90%"> <!-- hozzá ne nyúljak, mert 2órát baszakodtam mire sikerült (előtte SAFETY!!) -->
+	<img id="img_cent" style="border:15px solid black"></img>
 </div>
 </div>
 
@@ -165,12 +170,12 @@ farmakSzabvál: 02.27, 03.23, 04.06
 		s.parentNode.insertBefore(scriptTag, s);
 	}
 
-	var isayes = true
-	//isayes = false
-	if ( isayes == true ) {
-		registerScript("javascript.js");
-	} else {
+	var jsNEW = false
+	//jsNEW = true
+	if ( jsNEW == true ) {
 		registerScript("javascriptNEW.js");
+	} else {
+		registerScript("javascript.js");
 	}
 </script>
 
