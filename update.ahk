@@ -49,7 +49,7 @@ Process,WaitClose,%szemPID% ;MsgBox szemeszter.bat closed.
 if varWebPage = true
 {
 	; MsgBox WebPage update
-	Run update.bat,,Min, updPID
+	Run update.bat,,, updPID
 }
 if varTelefon = true
 {
