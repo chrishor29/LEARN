@@ -55,9 +55,7 @@ if varTelefon = true
 {
 	; MsgBox Telefon update
 	Run BatchRun.ffs_batch,,, andPID ; %destination%\BatchRun.ffs_batch
-	Process,WaitClose,%andPID%
 	Run BatchRunStuff.ffs_batch,,, andrPID ; %destination%\BatchRunStuff.ffs_batch
-	Process,WaitClose,%andrPID%
 }
 if varZene = true
 {
