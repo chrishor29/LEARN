@@ -61,8 +61,10 @@ if varZene = true
 {
 	; MsgBox Zene update
 	Run ZeneBatch.ffs_batch,,, androPID ; %destination%\ZeneBatch.ffs_batch
-	Process,WaitClose,%androPID%
 }
+Process,WaitClose,%andPID%
+Process,WaitClose,%andrPID%
+Process,WaitClose,%androPID%
 Process,WaitClose,%updPID%
 MsgBox done
 ExitApp
