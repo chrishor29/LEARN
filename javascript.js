@@ -2300,7 +2300,7 @@ function F_answerQ(detElem){
 		for ( var i=0; i<falseA.length; i++ ) { falseA[i].style.backgroundColor = "" }
 		for ( var i=0; i<answers.length; i++ ) { answers[i].style.backgroundColor = "gold" }
 		for ( var i=0; i<hiddens.length; i++ ) { hiddens[i].style.display = "none" }
-		return
+		//return // ez nem tudom miért kellett anno, de kivettem így a search esetén is működik már
 	}
 	
 	var div = detElem.getElementsByClassName("random")
