@@ -9,6 +9,7 @@ robocopy %source%\videos %destination%\videos /mir /max:50000000
 xcopy /y %source%\expqs.html %destination%\ /d
 xcopy /y %source%\targyvalasztas.html %destination%\ /d
 xcopy /y %source%\javascript.js %destination%\ /d
+xcopy /y %source%\javascriptNEW.js %destination%\ /d
 xcopy /y %source%\style.css %destination%\ /d
 xcopy /y %source%\favicon.png %destination%\ /d
 

@@ -36,10 +36,6 @@
  ✖ img-eket csekk, mert lehet hiányoznak (tárgyakban)
  ✖ (img-eket csekk amik fölösek (batch-el txt-be lementem, majd végignézi őket))
  ✖ lehet összes impQ-t elején betölthetném, ha style display none-ban van (talán úgy gyorsabb lenne az egész: meglepően gyors úgy)
- SEARCH:
-	✖ legyen egy CANCEL button közben, ha véletlen olyanra kerestem, ami túl gyakran van, pl. "az" szó, vagy akármi
-	✖ (ha az image nevében (/abbr) van a szó akkor is kidobja)
-	✔ (kis vs nagy betűk)
  ✖ skipQ-k / noteQ-k / importantQ-k(gyors repeat!) közt nem mutatja az impQ-kat
  ✖ tételQ kijelölése lassú
  ✖ kérdésnek állíthassam be, hogy hány perc múlva / milyen időpontban dobja ki újra (impQ-ként)
