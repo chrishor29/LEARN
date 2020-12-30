@@ -52,7 +52,6 @@ function F_getQPath(detElem,impID) {
 		} }
 		if ( count != 1 ) { console.log("ERROR: ["+impID+"] dataset-src("+count+"): nem található(0) / több page-re utal(1+)") }
 	}
-	console.log(path+" "+impID)
 	return path
 }
 function F_getQText(path,impID) {
@@ -103,7 +102,6 @@ function F_loadImpQs(detElem) {
 			var end = impQs[i].className.indexOf("]")
 			var impID = impQs[i].className.slice(begin+1,end)
 			
-			console.log(detElem.dataset.src)
 			// path beállítása
 			var path = F_getQPath(impQs[i],impID)
 			
@@ -735,7 +733,7 @@ function F_clickSearchResult(detElem) { // egy találati eredményre klikk
 		clearInterval(int_Click) 
 	}, 100);
 }
-function F_createSearchElements() {
+function F_createSearchElems() {
 	function F_btnNagyito() { // fő oldalon a nagyító
 		var button = document.createElement("input")
 		button.type = "button"
@@ -776,7 +774,7 @@ function F_createSearchElements() {
 		div.style.overflow = "auto"
 		div.style.border = "8px solid black"
 		div.style.outline = "5px solid aqua"
-	//div.style.display = "none"
+		div.style.display = "none"
 		div.style.position = "fixed"
 		div.style.left = "5px"
 		div.style.right = "5px"
@@ -825,7 +823,6 @@ function F_createSearchElements() {
 			// entert ha lenyomom search!
 			F_searchStart()
 		} })
-		input.value = "SLE</strong> klinikai képe"
 	}
 	F_inpText()
 	function F_btnSearch() { // bal felső sarokban SEARCH -> erre klikkelve megkezdi a keresést
@@ -916,9 +913,75 @@ function F_createSearchElements() {
 	}
 	F_spanStatus()
 }
-F_createSearchElements()
+F_createSearchElems()
 // –––––––––––––––  Search END  –––––––––––––––
 
+// –––––––––––––––  Qing BEGIN  –––––––––––––––
+function F_createQingElems() {
+	function F_btnToggleQing() {
+		var button = document.createElement("input")
+		button.id = "btn_toggleQing"
+		button.type = "button"
+		document.body.appendChild(button)
+		button.style.width = "90px"
+		button.style.height = "90px"
+		button.style.position = "absolute"
+		button.style.right = "7px"
+		button.style.top = "4px"
+		button.style.cursor = "pointer"
+
+		var lastClickTime = F_getTime()
+		button.onclick = function(){ 
+			var currTime = F_getTime()
+			var diffTime = currTime - lastClickTime
+			//console.log(myTime+" vs "+lastClickTime)
+			if ( diffTime < 1 ) { return }
+			lastClickTime = currTime
+			document.getElementById("div_QingBg").style.display = "block"
+			// ne ez legyen, hanem alpha
+			this.style.backgroundColor  = "black"
+			var int_Click = window.setInterval(function(){
+				clearInterval(int_Click) 
+				F_toggleQing()
+				document.getElementById("div_QingBg").style.display = "none"
+				document.getElementById("btn_toggleQing").style.backgroundColor = ""
+			}, 100)
+		}
+	}
+	F_btnToggleQing()
+	
+	function F_divQingBg() { // toggle alatt elszürkül
+		var div = document.createElement("div")
+		document.body.appendChild(div)
+		div.id = "div_QingBg"
+		div.style.backgroundColor = "black"
+		div.style.opacity = "0.35"
+		div.style.overflow = "auto"
+		div.style.display = "none"
+		div.style.position = "fixed"
+		div.style.left = "5px"
+		div.style.right = "5px"
+		div.style.top = "4px"
+		div.style.bottom = "4px"
+		div.style.zIndex = "1"
+	}
+	F_divQingBg()
+}
+F_createQingElems()
+function F_toggleQing() {
+	if ( document.getElementById("div_pageQTargy").style.display == 'none' ) {
+		localStorage.removeItem("hk.ToggleAll")
+		document.getElementById("table_weboldalak").parentElement.style.display = 'block';
+		document.getElementById("div_pageQTargy").style.display = 'block';
+		//document.getElementById("div_MainFrame").style.display = 'none';
+	} else {
+		localStorage.setItem("hk.ToggleAll","true")
+		document.getElementById("table_weboldalak").parentElement.style.display = 'none';
+		document.getElementById("div_pageQTargy").style.display = 'none';
+		//document.getElementById("div_MainFrame").style.display = 'block';
+	}
+}
+// –––––––––––––––  Qing END  –––––––––––––––
 
 
 function F_loadIMGs(detElem) {
