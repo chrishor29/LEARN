@@ -37,7 +37,7 @@
     <FolderPairs>
         <Pair>
             <Left>D:\mix</Left>
-            <Right>mtp:\HUAWEI P20 lite\Belső tárhely\mix</Right>
+            <Right>mtp:\HUAWEI P20 lite\Internal shared storage\mix</Right>
             <Filter>
                 <Include>
                     <Item>mix.html</Item>
@@ -50,15 +50,15 @@
         </Pair>
         <Pair>
             <Left>D:\mix\KOTTA</Left>
-            <Right>mtp:\HUAWEI P20 lite\Belső tárhely\mix\KOTTA</Right>
+            <Right>mtp:\HUAWEI P20 lite\Internal shared storage\mix\KOTTA</Right>
         </Pair>
         <Pair>
             <Left>D:\mix\images</Left>
-            <Right>mtp:\HUAWEI P20 lite\Belső tárhely\mix\images</Right>
+            <Right>mtp:\HUAWEI P20 lite\Internal shared storage\mix\images</Right>
         </Pair>
         <Pair>
             <Left>C:\Users\Kristof\Desktop\MIX\learn</Left>
-            <Right>mtp:\HUAWEI P20 lite\Belső tárhely\LEARN</Right>
+            <Right>mtp:\HUAWEI P20 lite\Internal shared storage\LEARN</Right>
             <Filter>
                 <Include>
                     <Item>*</Item>
