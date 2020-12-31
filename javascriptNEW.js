@@ -1,5 +1,6 @@
 
 document.body.style.backgroundColor = "azure"
+document.body.style.margin = "2px" // ez valahol nagyobbra van állítva, visszakéne
 
 function F_isAndroid() {
 	var ua = navigator.userAgent.toLowerCase()
@@ -918,7 +919,7 @@ F_createSearchElems()
 
 // –––––––––––––––  Qing BEGIN  –––––––––––––––
 function F_createQingElems() {
-	function F_btnToggleQing() {
+	function F_btnToggleQing() { // jobb felső sarokban a Toggle ... mindig látható
 		var button = document.createElement("input")
 		button.id = "btn_toggleQing"
 		button.type = "button"
@@ -926,9 +927,10 @@ function F_createQingElems() {
 		button.style.width = "90px"
 		button.style.height = "90px"
 		button.style.position = "absolute"
-		button.style.right = "7px"
-		button.style.top = "4px"
+		button.style.right = "2px"
+		button.style.top = "2px"
 		button.style.cursor = "pointer"
+		button.style.zIndex = "2"
 
 		var lastClickTime = F_getTime()
 		button.onclick = function(){ 
@@ -938,7 +940,6 @@ function F_createQingElems() {
 			if ( diffTime < 1 ) { return }
 			lastClickTime = currTime
 			document.getElementById("div_QingBg").style.display = "block"
-			// ne ez legyen, hanem alpha
 			this.style.backgroundColor  = "black"
 			var int_Click = window.setInterval(function(){
 				clearInterval(int_Click) 
@@ -949,8 +950,7 @@ function F_createQingElems() {
 		}
 	}
 	F_btnToggleQing()
-	
-	function F_divQingBg() { // toggle alatt elszürkül
+	function F_divQingBg() { // töltés(toggle,) alatt elszürkül
 		var div = document.createElement("div")
 		document.body.appendChild(div)
 		div.id = "div_QingBg"
@@ -966,6 +966,364 @@ function F_createQingElems() {
 		div.style.zIndex = "1"
 	}
 	F_divQingBg()
+	function F_divMain() { // ebbe az összes Qing element --> elhide-lásuk easy legyen, azért kell
+		var div = document.createElement("div")
+		div.id = "div_QingMain"
+		div.style.display = "none"
+		div.style.position = "relative"
+		document.body.appendChild(div)
+		/*var parent = document.body
+		parent.insertBefore(div,parent.firstChild)*/
+	}
+	F_divMain()
+	function F_divUpperPart() { // felső kis rész: kiírások (tételszám, Q szám) + Q-ek osztájzása
+		var div = document.createElement("div")
+		document.getElementById("div_QingMain").appendChild(div)
+		div.id = "div_QingUpperPart"
+		//div.className = "normal"
+		div.style.borderBottom = "4px solid black"
+		div.style.marginBottom = "2px"
+		div.style.paddingBottom = "10px"
+		div.style.height = "80px" // 17vh
+	}
+	F_divUpperPart()
+	function F_divLowerPart() { // alsó nagy rész: Q amit kidob
+		var div = document.createElement("div")
+		div.id = "div_QingLowerPart"
+		div.className = "normal"
+		div.style.backgroundColor = "yellow"
+		document.getElementById("div_QingMain").appendChild(div)
+	}
+	F_divLowerPart()
+	
+	function F_divSettings() { // bal felső sarok kiírások: tételszám, Q szám, ...
+		var div = document.createElement("div")
+		document.getElementById("div_QingUpperPart").appendChild(div)
+		div.id = "div_QingSettings"
+		div.style.height = "80px"
+		div.style.width = "220px"
+		div.style.backgroundColor = "yellow"
+		div.style.cursor = "pointer"
+		div.onclick = function(){ 
+			if ( document.getElementById("div_QingMenu").style.display == "none" ) {
+				document.getElementById("div_QingMenu").style.display = "block"
+				document.getElementById("div_QingLowerPart").style.display = "none"
+			} else {
+				document.getElementById("div_QingMenu").style.display = "none"
+				document.getElementById("div_QingLowerPart").style.display = "block"
+			}
+		}
+	}
+	F_divSettings()
+	function F_btnNextQ() {
+		var button = document.createElement("button")
+		button.id = "btn_QingNextQ"
+		document.getElementById("div_QingUpperPart").appendChild(button)
+		button.innerHTML = " ► "
+		
+		button.style.height = "50px"
+		button.style.width = "50px"
+		button.style.border = "3px solid black"
+		button.style.backgroundColor = "white"
+		button.style.cursor = "pointer"
+		
+		button.style.position = "absolute"
+		button.style.left = "235px"
+		button.style.top = "18px"
+		button.style.right = "90px"
+		button.style.overflow = "auto"
+		button.onclick = function(){ 
+			/*
+			F_getTime()
+			var diffTime = myTime - lastClickTime
+			//console.log(myTime+" vs "+lastClickTime)
+			if ( diffTime < 1 ) { return }
+			if ( this.style.backgroundColor == "aqua" ) { 
+				document.body.style.backgroundColor = "Gainsboro"
+			} else {
+				this.style.backgroundColor  = "black"
+				this.style.color  = "white"
+			}
+			var int_Click = window.setInterval(function(){
+				F_nextQ()
+				clearInterval(int_Click) 
+				document.body.style.backgroundColor = ""
+			}, 100)
+			*/
+		}
+	}
+	F_btnNextQ()
+	// 1st line
+	function F_btnTetels() {
+		var button = document.createElement("button")
+		document.getElementById("div_QingSettings").appendChild(button)
+		button.id = "btn_QingTetels"
+		button.style.border = "3px solid black"
+		button.style.backgroundColor = "Bisque"
+		button.innerHTML = "TETEL"
+
+		button.style.paddingLeft = "5px"
+		button.style.paddingRight = "5px"
+		button.style.paddingTop = "1px"
+		button.style.paddingBottom = "2px"
+	}
+	F_btnTetels()
+	function F_spanTime() { // mennyi ideje oldottam meg átlagosan őket
+		var span = document.createElement("span")
+		document.getElementById("div_QingSettings").appendChild(span)
+		span.id = "span_QingTime"
+		span.style.border = "3px solid black"
+		span.style.backgroundColor = "White"
+
+		span.style.paddingLeft = "5px"
+		span.style.paddingRight = "5px"
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
+		
+		span.innerHTML = "6.6"
+	}
+	F_spanTime()
+	function F_spanJegy() { // mennyi az átlag jegy
+		var span = document.createElement("span")
+		document.getElementById("div_QingSettings").appendChild(span)
+		span.id = "span_QingJegy"
+		span.style.border = "3px solid black"
+		span.style.backgroundColor = "White"
+
+		span.style.paddingLeft = "5px"
+		span.style.paddingRight = "5px"
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
+		
+		span.innerHTML = "1.2"
+	}
+	F_spanJegy()
+	function F_btnQuests() {
+		var button = document.createElement("button")
+		document.getElementById("div_QingSettings").appendChild(button)
+		button.id = "btn_QingQuests"
+		button.style.border = "3px solid black"
+		button.style.backgroundColor = "Bisque"
+
+		button.style.paddingLeft = "5px"
+		button.style.paddingRight = "5px"
+		button.style.paddingTop = "1px"
+		button.style.paddingBottom = "2px"
+		
+		button.innerHTML = "666"
+	}
+	F_btnQuests()
+	
+	// 2nd line
+	var br = document.createElement("br")
+	document.getElementById("div_QingSettings").appendChild(br)
+	var br = document.createElement("br")
+	document.getElementById("div_QingSettings").appendChild(br)
+	function F_spanNewQ() {
+		var span = document.createElement("span")
+		span.id = "span_newQuest"
+		document.getElementById("div_QingSettings").appendChild(span)
+		span.style.border = "3px solid black"
+		span.style.backgroundColor = "White"
+
+		span.style.paddingLeft = "5px"
+		span.style.paddingRight = "5px"
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
+		span.onclick = function(){ 
+			if ( this.style.borderColor == "limegreen" ) {
+				this.style.borderColor = "black"
+				localStorage.removeItem("hk.newQ")
+			} else {
+				this.style.borderColor = "limegreen"
+				localStorage.setItem("hk.newQ",true)
+			}
+		}
+		
+		span.innerHTML = "100"
+	}
+	F_spanNewQ()
+	function F_spanRepSlow() {
+		var span = document.createElement("span")
+		span.id = "span_RepSlow"
+		document.getElementById("div_QingSettings").appendChild(span)
+		span.style.border = "3px solid black"
+		span.style.backgroundColor = "Gainsboro"
+
+		span.style.paddingLeft = "5px"
+		span.style.paddingRight = "5px"
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
+		
+		span.innerHTML = "100"
+	}
+	F_spanRepSlow()
+	function F_spanRepFast() {
+		var span = document.createElement("span")
+		span.id = "span_repFast"
+		document.getElementById("div_QingSettings").appendChild(span)
+		span.style.border = "3px solid black"
+		span.style.backgroundColor = "pink"
+
+		span.style.paddingLeft = "5px"
+		span.style.paddingRight = "5px"
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
+		
+		span.onclick = function(){ 
+			if ( this.style.borderColor == "limegreen" ) {
+				this.style.borderColor = "black"
+			} else {
+				this.style.borderColor = "limegreen"
+			}
+		}
+		
+		span.innerHTML = "100"
+	}
+	F_spanRepFast()
+	function F_spanNewOldBorder() {
+		var span = document.createElement("span")
+		span.id = "span_QingNewOldBorder"
+		document.getElementById("div_QingSettings").appendChild(span)
+		span.style.border = "3px solid limegreen"
+
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
+		span.onclick = function(){ 
+			if ( this.style.borderColor == "limegreen" ) {
+				this.style.borderColor = "black"
+			} else {
+				this.style.borderColor = "limegreen"
+			}
+		}
+	}
+	F_spanNewOldBorder()
+	function F_SpanRepNew() {
+		var span = document.createElement("span")
+		span.id = "span_QingRepNew"
+		document.getElementById("span_QingNewOldBorder").appendChild(span)
+		span.style.backgroundColor = "White"
+
+		span.style.paddingLeft = "5px"
+		span.style.paddingRight = "5px"
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
+		
+		span.innerHTML = "100"
+	}
+	F_SpanRepNew()
+	function F_SpanRepOld() {
+		var span = document.createElement("span")
+		span.id = "span_QingRepOld"
+		document.getElementById("span_QingNewOldBorder").appendChild(span)
+		span.style.backgroundColor = "Gainsboro"
+
+		span.style.paddingLeft = "5px"
+		span.style.paddingRight = "5px"
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
+		
+		span.innerHTML = "100"
+	}
+	F_SpanRepOld()
+	
+	function F_divMenu() { // tételválasztás, save/clear/load LS, stb. ennél
+		var div = document.createElement("div")
+		div.id = "div_QingMenu"
+		document.getElementById("div_QingMain").appendChild(div)
+		div.style.backgroundColor = "white"
+		div.style.border = "10px solid black"
+		div.style.display = "none"
+		div.style.height = "72vh"
+		div.style.overflow = "auto"
+	}
+	F_divMenu()
+	function F_btnSaveLS() {
+		var button = document.createElement("button")
+		document.getElementById("div_QingMenu").appendChild(button)
+		button.id = "btn_saveLS"
+		button.innerHTML = "LS"
+		button.style.cursor = "pointer"
+		
+		button.style.fontWeight = "bold"
+		button.style.backgroundColor = "Chartreuse"
+		button.style.border = "3px solid black"
+		
+		button.style.width = "90px"
+		button.style.height = "90px"
+		var lastClickTime = F_getTime()
+		button.onclick = function() {
+			var currTime = F_getTime()
+			var diffTime = currTime - lastClickTime
+			if ( diffTime < 1 ) { return }
+			lastClickTime = currTime
+			
+			this.style.backgroundColor = "aqua"
+			var int_Click = window.setInterval(function(){
+				// saveLS
+				document.getElementById('btn_saveLS').style.backgroundColor = "Chartreuse"
+			}, 500)
+		}
+	}
+	F_btnSaveLS()
+	function F_btnLoadLS() {
+		var button = document.createElement("button")
+		document.getElementById("div_QingMenu").appendChild(button)
+		button.id = "btn_clearLS"
+		button.innerHTML = "LS"
+		button.style.cursor = "pointer"
+		
+		button.style.fontWeight = "bold"
+		button.style.border = "3px solid black"
+		
+		button.style.width = "90px"
+		button.style.height = "90px"
+		var lastClickTime = F_getTime()
+		button.onclick = function() {
+			var currTime = F_getTime()
+			var diffTime = currTime - lastClickTime
+			if ( diffTime < 1 ) { return }
+			lastClickTime = currTime
+			
+			this.style.backgroundColor = "aqua"
+			var int_Click = window.setInterval(function(){
+				document.getElementById('fileinput').click()
+				document.getElementById('btn_clearLS').style.backgroundColor = ""
+			}, 500)
+		}
+	}
+	F_btnLoadLS()
+	function F_btnClearLS() {
+		var button = document.createElement("button")
+		document.getElementById("div_QingMenu").appendChild(button)
+		button.innerHTML = "LS"
+		button.style.cursor = "pointer"
+		
+		button.style.color = "white"
+		button.style.backgroundColor = "red"
+		button.style.fontWeight = "bold"
+		button.style.border = "3px solid black"
+		
+		button.style.width = "90px"
+		button.style.height = "90px"
+		var lastClickTime = F_getTime()
+		button.onclick = function() {
+			var currTime = F_getTime()
+			var diffTime = currTime - lastClickTime
+			if ( diffTime < 1 ) { return }
+			lastClickTime = currTime
+			
+			this.style.backgroundColor = "aqua"
+			var int_Click = window.setInterval(function(){
+				localStorage.clear()
+				localStorage.setItem("lsCount",0)
+				document.getElementById('btn_saveLS').style.backgroundColor = "red"
+			}, 500)
+		}
+	}
+	F_btnClearLS()
+	
+	
 }
 F_createQingElems()
 function F_toggleQing() {
@@ -973,12 +1331,12 @@ function F_toggleQing() {
 		localStorage.removeItem("hk.ToggleAll")
 		document.getElementById("table_weboldalak").parentElement.style.display = 'block';
 		document.getElementById("div_pageQTargy").style.display = 'block';
-		//document.getElementById("div_MainFrame").style.display = 'none';
+		document.getElementById("div_QingMain").style.display = 'none';
 	} else {
 		localStorage.setItem("hk.ToggleAll","true")
 		document.getElementById("table_weboldalak").parentElement.style.display = 'none';
 		document.getElementById("div_pageQTargy").style.display = 'none';
-		//document.getElementById("div_MainFrame").style.display = 'block';
+		document.getElementById("div_QingMain").style.display = 'block';
 	}
 }
 // –––––––––––––––  Qing END  –––––––––––––––
@@ -1041,16 +1399,6 @@ function F_loadCentImg() {
 	}
 }
 F_loadCentImg()
-
-function F_clearLS(detElem) {
-	var bgColor = detElem.style.backgroundColor
-	detElem.style.backgroundColor = "aqua"
-	setTimeout(localStorage.clear(), 500)
-	setTimeout(function () { detElem.style.backgroundColor = bgColor  }, 500);
-	
-	localStorage.setItem("lsCount",0)
-	//localStorage.setItem("toggleLoad", "false")
-}
 
 function F_loadElem(detElem){ // detailsok megnyitásánál is ezt a funkciót használjam!
 	//console.log(detElem.innerHTML)
