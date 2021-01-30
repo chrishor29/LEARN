@@ -1,0 +1,11 @@
+
+
+.normal { margin-left: -40px; } /* detailson belül ne tolja jobbra fölösen az elsőket */
+ul, ol { margin-left: 0px; } /* annyira nem kell beljebb a következőt */
+li { margin-left: 35px; } /* jobbra tolja: ha a parent nem <ul>, akkor ne lógjon ki a DISC a képernyőn balra */
+
+
+
+
+
+

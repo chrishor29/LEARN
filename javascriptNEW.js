@@ -2,10 +2,9 @@
 document.body.style.backgroundColor = "azure"
 document.body.style.margin = "2px" // ez valahol nagyobbra van állítva, visszakéne
 
-function F_isAndroid() {
-	var ua = navigator.userAgent.toLowerCase()
-	return ua.indexOf("android") > -1 
-}
+var ua = navigator.userAgent.toLowerCase()
+var isAndroid = ua.indexOf("android") > -1 
+
 function F_getTime() {
 	var myDate = new Date()
 	//var time = myDate.getTime() /1000
@@ -739,14 +738,14 @@ function F_createSearchElems() {
 		var button = document.createElement("input")
 		button.type = "button"
 		document.getElementById("table_weboldalak").parentElement.appendChild(button)
-		document.getElementById("table_weboldalak").parentElement.style.position = "relative"
+		document.getElementById("table_weboldalak").parentElement.parentElement.style.position = "relative"
 		button.style.position = "absolute"
 		button.style.right = "0px"
 		button.style.bottom = "0px" // parent position-jént relative-ra kellett állítani, illetve ezt absolute-ra, hogy működjön!!
 		button.style.width = "90px"
 		button.style.height = "90px"
 		button.value = "🔍"
-		button.style.fontSize = '300%'
+		if ( isAndroid ) { button.style.fontSize = '100%' } else { button.style.fontSize = '300%' }
 		button.style.cursor = "pointer"
 
 		button.onclick = function(){ 
@@ -928,8 +927,11 @@ function F_clickTetel(detElem) {
 function F_loadTetels() {
 	var elems = document.getElementById("div_QingTargyText").getElementsByTagName("*")
 	var string = ""
-	var titleStyle = ' style="background-color:gainsboro; font-size:140%; font-weight:bold; color:black;"'
-	var spanStyle = ' style="font-size:120%; font-weight:bold; cursor:pointer" onclick="F_clickTetel(this)"'
+	var fontSize
+	if ( isAndroid ) { fontSize = 420 } else { fontSize = 140 }
+	var titleStyle = ' style="background-color:gainsboro; font-size:'+fontSize+'%; font-weight:bold; color:black;"'
+	if ( isAndroid ) { fontSize = 360 } else { fontSize = 120 }
+	var spanStyle = ' style="font-size:'+fontSize+'%; font-weight:bold; cursor:pointer" onclick="F_clickTetel(this)"'
 	for ( var x = 0;   x < elems.length;   x++ ) {
 		if ( elems[x].className.indexOf("mainTitle") != -1 ) {
 			string = string+ "<details><summary" +titleStyle+ ">" +elems[x].innerHTML+ "</summary>"
@@ -1437,6 +1439,38 @@ function F_toggleQing() {
 }
 // –––––––––––––––  Qing END  –––––––––––––––
 
+function F_andrFont() {
+	if ( isAndroid ) { 
+		document.body.style.fontSize = "300%" // android font size
+		document.getElementById('link_style').href = 'styleAndroid.css'; // android li,table position
+	} 
+}
+F_andrFont()
+function F_tableScrollable(detElem) { // table ha nem fér ki, akkor vízszintesen scrollable (ANDROID)
+/* Hogyan?
+	✔ megnézi a detElem összes table child-ját
+		detElem = amit megnyitottam (details / page)
+	✔ feltételek: (1) visible (2) parentje még nem lett le kreálva
+	✔ kreál egy parent div-et, ami overflow-X:auto
+*/
+	var allTable = detElem.getElementsByTagName("TABLE")
+	for ( var i=0; i<allTable.length; i++ ) { 
+		var tableElem = allTable[i]
+		
+		if ( tableElem.offsetParent === null ) { continue }
+		if ( tableElem.parentElement.style.overflowX == "auto" ) { continue }
+		
+		// `element` is the element you want to wrap
+		var parent = tableElem.parentNode;
+		var wrapper = document.createElement('div');
+
+		// set the wrapper as child (instead of the element)
+		parent.replaceChild(wrapper, tableElem);
+		// set element as child of wrapper
+		wrapper.appendChild(tableElem);
+		wrapper.style.overflowX = "auto"
+	}
+}
 
 function F_loadIMGs(detElem) {
 	var imgs = detElem.getElementsByTagName("IMG")
@@ -1465,7 +1499,7 @@ function F_loadIMGs(detElem) {
 			imgs[i].style.maxHeight = "14px"
 			imgs[i].style.marginBottom = "-2px"
 			imgs[i].style.float = "none"
-			if ( F_isAndroid == false ) {
+			if ( isAndroid == false ) {
 				imgs[i].onmouseover = function() { 
 					this.style.position = "absolute"
 					var rect = this.getBoundingClientRect()
@@ -1502,6 +1536,7 @@ function F_loadElem(detElem){ // detailsok megnyitásánál is ezt a funkciót h
 	F_loadMidQs(detElem)
 	F_loadIMGs(detElem)
 	F_loadVideos(detElem)
+	F_tableScrollable(detElem)
 	
 	var allDetails = detElem.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) { allDetails[i].ontoggle = function(){ F_loadElem(this) } }
@@ -1509,6 +1544,7 @@ function F_loadElem(detElem){ // detailsok megnyitásánál is ezt a funkciót h
 	// img-ek is!
 	// stb.
 }
+
 
 
 

@@ -1748,6 +1748,15 @@ function F_andrHide() { // androidon elrejti a könyveket + tételeket
 	if ( isAndroid ) { document.getElementById("tetelek").style.display = "none" }
 }
 //F_andrHide()
+function F_andrFont() { // android font size
+	if ( isAndroid ) { 
+		document.body.style.fontSize = "300%" 
+		document.getElementById("IV.év").innerHTML = "<details><summary>I-II.év</summary><div>"+ document.getElementById("IV.év").innerHTML +"</div></details>"
+		document.getElementById("III.év").innerHTML = "<details><summary>III.év</summary><div>"+ document.getElementById("III.év").innerHTML +"</div></details>"
+		document.getElementById("I-II.év").innerHTML = "<details><summary>IV.év</summary><div>"+ document.getElementById("I-II.év").innerHTML +"</div></details>"
+	}
+}
+F_andrFont()
 function F_pageOpen() {
 	for ( var i=0; i<pageLinks.length; i++ ) { 
 		var detElem = pageLinks[i]

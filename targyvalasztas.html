@@ -1,8 +1,10 @@
+<!DOCTYPE html>
 <head>
 	<meta charset="UTF-8">
 	<!-- <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
 	<link rel="shortcut icon" href="favicon.png?v=2">
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="stylePC.css" id="link_style">
 	<title>Tárgyválasztás</title>
 	<style>*{line-height: 130%;}</style>
 </head>
@@ -62,7 +64,7 @@ farmakSzabvál: 02.27, 03.23, 04.06
 	}
 </script>
 <div><table id="table_weboldalak"><tr> <!-- weboldalak -->
-	<!-- V.év --> <td style="text-align:left"> 
+	<!-- V.év --> <td id="V.év" style="text-align:left"> 
 		<span class="page" data-src="Belgyogy/HIIRLm/hiirlm.html"><img class="targy"> Hem,Inf,Rhe</span><br>
 		<span class="page" data-src="done/Urologia/urologia.html">Urológia</span><br>
 		<span class="page" data-src="IgOr/igor.html"><strong>Ig.Orvostan</strong></span><br>
@@ -73,7 +75,7 @@ farmakSzabvál: 02.27, 03.23, 04.06
 		<span class="page" data-src="sajat/sajat.html">sajat</span><br>
 		<div><img class="targy" src="targyak.bmp"> <a href="targyak.html">tárgyak</a></div>
 	</td>
-	<!-- IV.év --> <td style="text-align:left"> 
+	<!-- IV.év --> <td id="IV.év" style="text-align:left"> 
 		<span class="page" data-src="Belgyogy/Nefro/nephro.html"><img class="targy"> Nephro, GI</span><br>
 		<span class="page" data-src="done/Borgyogy/borgyogy.html">Bőrgyógyászat</span> <br>
 		<span class="page" data-src="done/Farmak/farmak.html">Farmakológia</span> 
@@ -88,7 +90,7 @@ farmakSzabvál: 02.27, 03.23, 04.06
 		<span class="page" data-src="done/Szajseb/szajseb.html"><font style="color:red">S</font>zájsebészet</span><br>
 		<span class="page" data-src="done/Trauma/trauma.html"><font style="color:red">T</font>raumatológia</span><br>
 	</td>
-	<!-- III.év --> <td style="text-align:left">
+	<!-- III.év --> <td id="III.év" style="text-align:left">
 		<span class="page" data-src="Belgyogy/Endokrin/belgyogy.html"><img class="targy"> Endokrinológia</span><br>
 		<span class="page" data-src="done/Mikrobi/mikrobi.html">Mikrobiológia</span>
 			<span class="page" style="font-size:80%" data-src="done/Mikrobi/mikrobi1.html">(regi)</span><br>
@@ -101,7 +103,7 @@ farmakSzabvál: 02.27, 03.23, 04.06
 		<span class="page" data-src="done/Immunologia/immun.html">Immunológia</span><br>
 		<span class="page" data-src="Belgyogy/Proped/proped.html">Propedeutika</span><br>
 	</td>
-	<!-- I-II.év --> <td style="text-align:left">
+	<!-- I-II.év --> <td id="I-II.év" style="text-align:left;">
 		<span class="page" data-src="done/ANAT/anat.html">Anatómia</span><br>
 		<span class="page" data-src="done/ANAT/Histology/histo.html">Szövettan</span><br>
 		<span class="page" data-src="done/ANAT/Fejlodestan/embrio.html">Fejlődéstan</span><br>
@@ -119,9 +121,9 @@ farmakSzabvál: 02.27, 03.23, 04.06
 		<span class="page" data-src="done/Kemia/kemia.html">Orvosi Kémia</span><br>
 		<span class="page" data-src="done/BioFizika/bifiz.html">Biofizika I-II</span><br>
 		<span class="page" data-src="done/FejlodesBiosz/FejlBiosz.html">Fejlődésbiológia I</span><br>
-		<span class="page" data-src="done/ModMem/ModMem.html">Modellmembránok</span><br>
+		<span style="font-size:80%" class="page" data-src="done/ModMem/ModMem.html">Modellmembránok</span><br>
 	</td>
-	<!-- tételek --> <td id="tetelek" style="text-align:left">
+	<!-- tételek --> <td id="tetelek" style="text-align:left;">
 		<input type="button" value="LS" style="font-size:large; width:50px; height:50px;" onclick="F_InputLoad(this)"></input>
 		<input type="button" id="btn_saveLS" style="font-size:large; background-color:Chartreuse; font-weight:bold;  float:right; width:50px; height:50px;" value="LS" onclick="F_InputSave(this)"></input>
 	  <br><br>

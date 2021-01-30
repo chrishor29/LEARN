@@ -1,8 +1,10 @@
+<!DOCTYPE html>
 <head>
 	<meta charset="UTF-8">
 	<!-- <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
 	<link rel="shortcut icon" href="favicon.png?v=2">
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="stylePC.css" id="link_style">
 	<title>Tárgyválasztás</title>
 	<style>*{line-height: 130%;}</style>
 </head>
@@ -39,7 +41,6 @@ traumatológia: kötések, gipsz, ezeket kéne tudnom (+1st aid)
 		margin-bottom: -2px
 	}
 </style>
-
 <script> // load Time
 	var myTime
 	var oldTime = false
@@ -55,8 +56,11 @@ traumatológia: kötések, gipsz, ezeket kéne tudnom (+1st aid)
 		console.log("– – – Loading finished – – – " + diffTime+"s")
 	}
 </script>
-<div><table id="table_weboldalak"><tr> <!-- weboldalak -->
-	<!-- V.év --> <td style="text-align:left"> 
+
+<body>
+
+<div style="overflow-x:auto"><table id="table_weboldalak"><tr> <!-- weboldalak -->
+	<!-- V.év --> <td id="V.év" style="text-align:left"> 
 		<span class="page" data-src="Belgyogy/HIIRLm/hiirlm.html">Hem,Inf,Rhe</span><br>
 		<span class="page" data-src="done/Urologia/urologia.html">Urológia</span><br>
 		<span class="page" data-src="IgOr/igor.html"><strong>Ig.Orvostan</strong></span><br>
@@ -67,7 +71,7 @@ traumatológia: kötések, gipsz, ezeket kéne tudnom (+1st aid)
 		<span class="page" data-src="sajat/sajat.html">sajat</span><br>
 		<div><img class="targy" src="targyak.bmp"> <a href="targyak.html">tárgyak</a></div>
 	</td>
-	<!-- IV.év --> <td style="text-align:left"> 
+	<!-- IV.év --> <td id="IV.év" style="text-align:left"> 
 		<span class="page" data-src="Belgyogy/Nefro/nephro.html">Nephro, GI</span><br>
 		<span class="page" data-src="done/Borgyogy/borgyogy.html">Bőrgyógyászat</span> <br>
 		<span class="page" data-src="done/Farmak/farmak.html">Farmakológia</span> 
@@ -82,7 +86,7 @@ traumatológia: kötések, gipsz, ezeket kéne tudnom (+1st aid)
 		<span class="page" data-src="done/Szajseb/szajseb.html"><font style="color:red">S</font>zájsebészet</span><br>
 		<span class="page" data-src="done/Trauma/trauma.html"><font style="color:red">T</font>raumatológia</span><br>
 	</td>
-	<!-- III.év --> <td style="text-align:left">
+	<!-- III.év --> <td id="III.év" style="text-align:left">
 		<span class="page" data-src="Belgyogy/Endokrin/belgyogy.html">Endokrinológia</span><br>
 		<span class="page" data-src="done/Mikrobi/mikrobi.html">Mikrobiológia</span>
 			<span class="page" style="font-size:80%" data-src="done/Mikrobi/mikrobi1.html">(regi)</span><br>
@@ -95,7 +99,7 @@ traumatológia: kötések, gipsz, ezeket kéne tudnom (+1st aid)
 		<span class="page" data-src="done/Immunologia/immun.html">Immunológia</span><br>
 		<span class="page" data-src="Belgyogy/Proped/proped.html">Propedeutika</span><br>
 	</td>
-	<!-- I-II.év --> <td style="text-align:left">
+	<!-- I-II.év --> <td id="I-II.év" style="text-align:left">
 		<span class="page" data-src="done/ANAT/anat.html">Anatómia</span><br>
 		<span class="page" data-src="done/ANAT/Histology/histo.html">Szövettan</span><br>
 		<span class="page" data-src="done/ANAT/Fejlodestan/embrio.html">Fejlődéstan</span><br>
@@ -137,6 +141,9 @@ traumatológia: kötések, gipsz, ezeket kéne tudnom (+1st aid)
 </div>
 
 <div id="div_pageQTargy"></div>
+
+</body>
+
 
 <script> //javascript.js
 	function registerScript(scriptPath) {
