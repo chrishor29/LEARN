@@ -737,8 +737,8 @@ function F_createSearchElems() {
 	function F_btnNagyito() { // fő oldalon a nagyító
 		var button = document.createElement("input")
 		button.type = "button"
-		document.getElementById("table_weboldalak").parentElement.appendChild(button)
-		document.getElementById("table_weboldalak").parentElement.style.position = "relative"
+		document.getElementById("table_weboldalak").parentElement.parentElement.appendChild(button)
+		document.getElementById("table_weboldalak").parentElement.parentElement.style.position = "relative"
 		button.style.position = "absolute"
 		button.style.right = "0px"
 		button.style.bottom = "0px" // parent position-jént relative-ra kellett állítani, illetve ezt absolute-ra, hogy működjön!!
