@@ -715,7 +715,7 @@ function F_searchResult() { // találati eredmények betöltése...
 			fullText = fullText+ "<li><span data-id='"+summaryID+"' data-path='"+path+"' style='color:green; cursor:pointer' onclick='F_clickSearchResult(this)'>"+summaryText+"</span></li>"
 			//targyText = targyText.slice(targyText.indexOf(resultText)+resultText.length)
 		} while ( targyText.toLowerCase().indexOf(searchText,locST+1) != -1 )
-		document.getElementById("div_searchResults").innerHTML = fullText
+		document.getElementById("div_searchResults").innerHTML = "<ul class='normal'>" +fullText+ "</ul>"
 		
 		//console.log(x+" "+progress+" "+path)
 		progress = false
