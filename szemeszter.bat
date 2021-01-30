@@ -7,7 +7,6 @@ robocopy %source%\Sajat %destination%\Sajat /mir /max:50000000
 robocopy %source%\images %destination%\images /mir /max:50000000
 robocopy %source%\videos %destination%\videos /mir /max:50000000
 xcopy /y %source%\expqs.html %destination%\ /d
-xcopy /y %source%\teszt.html %destination%\ /d
 xcopy /y %source%\targyvalasztas.html %destination%\ /d
 xcopy /y %source%\targyvalasztasNEW.html %destination%\ /d
 xcopy /y %source%\javascript.js %destination%\ /d
