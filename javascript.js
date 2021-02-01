@@ -647,7 +647,7 @@ function F_midQText(qTxt){
 	document.getElementById("div_MidQText").innerHTML = qTxt
 
 	if ( document.getElementById("div_MidQ").style.display != "block" ) {
-		prevScrollTop = document.body.scrollTop
+		prevScrollTop = document.body.parentElement.scrollTop
 		document.getElementById("btn_toggleAll").style.display = 'none'
 		document.getElementById("table_weboldalak").style.display = 'none'
 		document.getElementById("div_pageQTargy").style.display = 'none'
@@ -1751,9 +1751,6 @@ function F_andrHide() { // androidon elrejti a könyveket + tételeket
 function F_andrFont() { // android font size
 	if ( isAndroid ) { 
 		document.body.style.fontSize = "300%" 
-		document.getElementById("IV.év").innerHTML = "<details><summary>I-II.év</summary><div>"+ document.getElementById("IV.év").innerHTML +"</div></details>"
-		document.getElementById("III.év").innerHTML = "<details><summary>III.év</summary><div>"+ document.getElementById("III.év").innerHTML +"</div></details>"
-		document.getElementById("I-II.év").innerHTML = "<details><summary>IV.év</summary><div>"+ document.getElementById("I-II.év").innerHTML +"</div></details>"
 	}
 }
 F_andrFont()
@@ -1856,7 +1853,7 @@ function F_searchQText(detElem){
 		document.getElementById("div_MidQText").innerHTML = qTxt
 
 		searchMidQ = true
-		prevScrollTop = document.body.scrollTop
+		prevScrollTop = document.body.parentElement.scrollTop
 		document.getElementById("div_SearchW").style.display = "none"
 		document.getElementById("div_MidQ").style.display = "block"
 		F_detailsToggle(document.getElementById("div_MidQText"))
@@ -2184,7 +2181,7 @@ function F_searchWord() {
 					document.getElementById("div_MainFrame").style.display = 'none'
 				}
 			}
-			document.body.scrollTop = prevScrollTop
+			document.body.parentElement.scrollTop = prevScrollTop
 		}
 		button.style.cursor = "pointer";
 		button.innerHTML = "✖"
@@ -2610,8 +2607,8 @@ function F_CreateQDiv() {
 	function F_ButtonSearchWord() {
 		var button = document.createElement("input")
 		button.type = "button"
-		document.getElementById("table_weboldalak").parentElement.appendChild(button)
-		document.getElementById("table_weboldalak").parentElement.style.position = "relative"
+		document.getElementById("table_weboldalak").parentElement.parentElement.appendChild(button)
+		document.getElementById("table_weboldalak").parentElement.parentElement.style.position = "relative"
 		button.style.position = "absolute"
 		button.style.right = "0px"
 		button.style.bottom = "0px" // parent position-jént relative-ra kellett állítani, illetve ezt absolute-ra, hogy működjön!!
@@ -2642,8 +2639,8 @@ function F_CreateQDiv() {
 	F_ButtonSearchWord()
 	function F_skipTime() { // következő vizsga hány óra múlva lesz
 		var input = document.createElement("input")
-		document.getElementById("table_weboldalak").parentElement.appendChild(input)
-		document.getElementById("table_weboldalak").parentElement.style.position = "relative"
+		document.getElementById("table_weboldalak").parentElement.parentElement.appendChild(input)
+		document.getElementById("table_weboldalak").parentElement.parentElement.style.position = "relative"
 		input.type = "number"
 		input.style.width = "50px"
 		input.style.position = "absolute"

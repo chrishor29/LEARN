@@ -384,7 +384,7 @@ function F_divMidQ() { // lekreálja középre a divet, ahova kidobja majd a mid
 			document.getElementById("div_MidQ").style.display = "none" 
 			document.getElementById("div_pageQTargy").style.display = "block"
 			document.getElementById("table_weboldalak").style.display = "block"
-			document.body.scrollTop = prevScrollTop
+			document.body.parentElement.scrollTop = prevScrollTop
 			//currPath = targyPath
 		}
 	}
@@ -401,6 +401,8 @@ function F_divMidQ() { // lekreálja középre a divet, ahova kidobja majd a mid
 }
 F_divMidQ()
 function F_setMidQ(qText,path) { // középen megjeleníti a div-et, benne a szöveggel
+	prevScrollTop = document.body.parentElement.scrollTop // ez előbb kell legyen, minthogy megjelenne a div_MidQ --> elmentse, hogy hol voltam az oldalon(mondjuk a közepe tájékán), hogy miután bezárom oda scrolloljon vissza(ne a tetejére ugorjon!)
+	
 	document.getElementById("div_MidQ").style.display = "block" // ez előbb kell legyen, mint az F_loadElem --> hogy láthatók legyenek az impQ-k, amiket be kell töltenie
 	document.getElementById("div_pageQTargy").style.display = "none"
 	document.getElementById("table_weboldalak").style.display = "none"
@@ -416,8 +418,6 @@ function F_setMidQ(qText,path) { // középen megjeleníti a div-et, benne a sz�
 	
 	F_setAltQsPath(document.getElementById("div_MidQText"),path)
 	F_loadElem(document.getElementById("div_MidQText"))
-
-	prevScrollTop = document.body.scrollTop
 	if ( prevMidQs.length > 1 ) {
 		document.getElementById("btn_MidQback").style.display = "block"
 	} else {
@@ -737,6 +737,7 @@ function F_createSearchElems() {
 	function F_btnNagyito() { // fő oldalon a nagyító
 		var button = document.createElement("input")
 		button.type = "button"
+		button.id = "btn_toggleSearch"
 		document.getElementById("table_weboldalak").parentElement.parentElement.appendChild(button)
 		document.getElementById("table_weboldalak").parentElement.parentElement.style.position = "relative"
 		button.style.position = "absolute"
@@ -745,7 +746,6 @@ function F_createSearchElems() {
 		button.style.width = "90px"
 		button.style.height = "90px"
 		button.value = "🔍"
-		if ( isAndroid ) { button.style.fontSize = '100%' } else { button.style.fontSize = '300%' }
 		button.style.cursor = "pointer"
 
 		button.onclick = function(){ 
@@ -1439,13 +1439,25 @@ function F_toggleQing() {
 }
 // –––––––––––––––  Qing END  –––––––––––––––
 
-function F_andrFont() {
+function F_andrSize() {
 	if ( isAndroid ) { 
 		document.body.style.fontSize = "300%" // android font size
 		document.getElementById('link_style').href = 'styleAndroid.css'; // android li,table position
-	} 
+		
+		document.getElementById('btn_toggleSearch').style.fontSize = '100%'
+		document.getElementById('btn_toggleLoad').style.width = "90px"
+		document.getElementById('btn_toggleLoad').style.height = "90px"
+		//document.getElementById('btn_clearIDB').style.width = "90px"
+		document.getElementById('btn_clearIDB').style.height = "90px"
+	} else {
+		document.getElementById('btn_toggleSearch').style.fontSize = '300%'
+		document.getElementById('btn_toggleLoad').style.width = "40px"
+		document.getElementById('btn_toggleLoad').style.height = "40px"
+		//document.getElementById('btn_clearIDB').style.width = "40px"
+		document.getElementById('btn_clearIDB').style.height = "40px"
+	}
 }
-F_andrFont()
+F_andrSize()
 function F_tableScrollable(detElem) { // table ha nem fér ki, akkor vízszintesen scrollable (ANDROID)
 /* Hogyan?
 	✔ megnézi a detElem összes table child-ját
