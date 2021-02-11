@@ -2677,7 +2677,10 @@ function F_CreateQDiv() {
 	function F_DivQSettings() {
 		var div = document.createElement("div")
 		div.id = "div_QSettings"
-		div.className = "normal"
+		//div.className = "normal"
+		div.style.borderBottom = "4px solid black"
+		div.style.marginBottom = "10px"
+		div.style.paddingBottom = "10px"
 		MainFrame.appendChild(div)
 	}
 	F_DivQSettings()
