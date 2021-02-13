@@ -5,6 +5,14 @@ document.body.style.margin = "2px" // ez valahol nagyobbra van állítva, vissza
 var ua = navigator.userAgent.toLowerCase()
 var isAndroid = ua.indexOf("android") > -1 
 
+/* if ( isAndroid ) { // ezis egy variáció, font size hejett, de pl. middle img problem (bonyolultabb?)
+	var scale = 1.3
+	document.body.style.transform = 'scale('+scale+')'
+	document.body.style.transformOrigin = '0 0'
+	var width = 100 / scale
+	document.body.style.maxWidth = width+'%'
+} */
+
 function F_getTime() {
 	var myDate = new Date()
 	//var time = myDate.getTime() /1000
@@ -464,29 +472,30 @@ function F_setSeekBarWidth(thisVideo){
 	var parentDiv = thisVideo.parentElement
 	var seekBars = parentDiv.getElementsByTagName("span")
 	var seekBarSpan = seekBars[0]
-	seekBarSpan.style.width = thisVideo.offsetWidth *thisVideo.currentTime /thisVideo.duration
+	//var seekBarSpan = document.getElementById("centVideoBar")
+	seekBarSpan.style.width = thisVideo.offsetWidth *thisVideo.currentTime /thisVideo.duration +"px"
 	seekBarSpan.style.left = thisVideo.offsetLeft
 }
 function F_stopVideo(thisVideo){
-	thisVideo.id = ""
+	if ( thisVideo.id != "video_cent" ) { thisVideo.id = "" }
 	thisVideo.style.borderColor = "black"
 	thisVideo.pause()
 	F_setSeekBarWidth(thisVideo)
 }
 function F_playVideo(thisVideo){
 	if ( document.getElementById("playedVideo") ) { F_stopVideo(document.getElementById("playedVideo")) }
-	thisVideo.id = "playedVideo"
+	if ( thisVideo.id != "video_cent" ) { thisVideo.id = "playedVideo" }
 	thisVideo.style.borderColor = "springgreen"
 	thisVideo.play()
 	var F_seekBar = window.setInterval(function(){
 		F_setSeekBarWidth(thisVideo)
-		if ( thisVideo != document.getElementById("playedVideo") ) { clearInterval(F_seekBar) }
+		if ( thisVideo.id != "playedVideo" && thisVideo.id != "video_cent" ) { clearInterval(F_seekBar) }
 	}, 1000)
 }
 function F_setVideoSource(videoElem,srcTxt){
+	srcTxt = srcTxt.slice(srcTxt.lastIndexOf("/")+1) // a régi jegyzetekben még benne van, hogy 'videos/', ezért kell
 	videoElem.setAttribute('src', "videos/"+srcTxt)
 	videoElem.onerror = function(){
-		srcTxt = srcTxt.slice(srcTxt.lastIndexOf("/")+1)
 		console.log("'"+srcTxt+"' video is missing!") 
 		alert("'"+srcTxt+"' video is missing! --> console.log: line number") 
 	}
@@ -528,12 +537,16 @@ function F_loadVideos(detElem){
 				parentDiv.appendChild(seekBarDiv)
 				seekBarDiv.style.width = videoElem.offsetWidth
 				seekBarDiv.style.opacity = "1"; 
+				seekBarDiv.style.backgroundColor = "grey"; 
+				seekBarDiv.style.height = "21px"; 
 				seekBarDiv.onclick = function(e){ F_clickSeekBar(this,e) }
 				
 				var seekBarSpan = document.createElement("span") // sárga, hogy hol tart
 				seekBarSpan.className = "seekBar"
-				seekBarSpan.innerHTML = "&nbsp;"
 				seekBarDiv.appendChild(seekBarSpan)
+				seekBarSpan.style.backgroundColor = "gold"; 
+				seekBarSpan.style.height = "21px"; 
+				seekBarSpan.style.position = "absolute"; 
 			}
 			F_createSeekBar()
 		}
@@ -549,7 +562,7 @@ function F_loadVideos(detElem){
 
 	var allVideoCent = detElem.getElementsByClassName("video")
 	for ( var i=0; i<allVideoCent.length; i++ ) {
-		allVideoCent[i].onclick = function(){
+		allVideoCent[i].onclick = function() {
 			document.getElementById("div_centVideoBg").style.visibility = 'visible'
 			var centVideo = document.getElementById("video_cent")
 			F_setVideoSource(centVideo,this.dataset.src)
@@ -569,18 +582,8 @@ function F_loadCentVideo(){
 		}
 		keepVideo = true
 	}
-	
-	var centVideoBG = document.getElementById("div_centVideoBg")
-	centVideoBG.onclick = function(){
-		if ( keepVideo != true ) { 
-			this.style.visibility = 'hidden'
-			F_stopVideo(centVideo)
-		}
-		keepVideo = false
-	}
 
 	var centVideoSeek = document.getElementById("div_centVideoSeek")
-	
 	centVideoSeek.onclick = function(e){
 		var rect = e.target.getBoundingClientRect();
 		//var testX = e.clientX - centVideoSeek.left
@@ -593,6 +596,17 @@ function F_loadCentVideo(){
 		currTime = Math.floor(currTime);
 		centVideo.currentTime = currTime
 		F_stopVideo(centVideo)
+		
+		keepVideo = true
+	}
+	
+	var centVideoBG = document.getElementById("div_centVideoBg")
+	centVideoBG.onclick = function(){
+		if ( keepVideo != true ) { 
+			this.style.visibility = 'hidden'
+			F_stopVideo(centVideo)
+		}
+		keepVideo = false
 	}
 }
 F_loadCentVideo()
@@ -1425,12 +1439,12 @@ F_createQingElems()
 function F_toggleQing() {
 	if ( document.getElementById("div_pageQTargy").style.display == 'none' ) {
 		localStorage.removeItem("hk.ToggleAll")
-		document.getElementById("table_weboldalak").parentElement.style.display = 'block';
+		document.getElementById("table_weboldalak").parentElement.parentElement.style.display = 'block';
 		document.getElementById("div_pageQTargy").style.display = 'block';
 		document.getElementById("div_QingMain").style.display = 'none';
 	} else {
 		localStorage.setItem("hk.ToggleAll","true")
-		document.getElementById("table_weboldalak").parentElement.style.display = 'none';
+		document.getElementById("table_weboldalak").parentElement.parentElement.style.display = 'none';
 		document.getElementById("div_pageQTargy").style.display = 'none';
 		document.getElementById("div_QingMain").style.display = 'block';
 		
@@ -1439,24 +1453,24 @@ function F_toggleQing() {
 }
 // –––––––––––––––  Qing END  –––––––––––––––
 
-function F_andrSize() {
-	if ( isAndroid ) { 
-		document.body.style.fontSize = "300%" // android font size
-		document.getElementById('link_style').href = 'styleAndroid.css'; // android li,table position
-		
-		document.getElementById('btn_toggleSearch').style.fontSize = '100%'
-		document.getElementById('btn_toggleLoad').style.width = "90px"
-		document.getElementById('btn_toggleLoad').style.height = "90px"
-		//document.getElementById('btn_clearIDB').style.width = "90px"
-		document.getElementById('btn_clearIDB').style.height = "90px"
-	} else {
-		document.getElementById('btn_toggleSearch').style.fontSize = '300%'
-		document.getElementById('btn_toggleLoad').style.width = "40px"
-		document.getElementById('btn_toggleLoad').style.height = "40px"
-		//document.getElementById('btn_clearIDB').style.width = "40px"
-		document.getElementById('btn_clearIDB').style.height = "40px"
-	}
-}
+function F_andrSize() { if ( isAndroid ) { 
+	document.body.style.fontSize = "300%" // android font size
+	document.getElementById('link_style').href = 'styleAndroid.css'; // android li,table position
+	
+	imgMiniHeight = "35px"
+	document.getElementById('btn_toggleSearch').style.fontSize = '100%'
+	document.getElementById('btn_toggleLoad').style.width = "90px"
+	document.getElementById('btn_toggleLoad').style.height = "90px"
+	//document.getElementById('btn_clearIDB').style.width = "90px"
+	document.getElementById('btn_clearIDB').style.height = "90px"
+  } else {
+	imgMiniHeight = "18px"
+	document.getElementById('btn_toggleSearch').style.fontSize = '300%'
+	document.getElementById('btn_toggleLoad').style.width = "40px"
+	document.getElementById('btn_toggleLoad').style.height = "40px"
+	//document.getElementById('btn_clearIDB').style.width = "40px"
+	document.getElementById('btn_clearIDB').style.height = "40px"
+} }
 F_andrSize()
 function F_tableScrollable(detElem) { // table ha nem fér ki, akkor vízszintesen scrollable (ANDROID)
 /* Hogyan?
@@ -1484,6 +1498,37 @@ function F_tableScrollable(detElem) { // table ha nem fér ki, akkor vízszintes
 	}
 }
 
+function F_synonyms(detElem){
+	function getRandomInt(max) { return Math.floor(Math.random() * Math.floor(max)) }
+	var synonyms = detElem.getElementsByClassName("syno")
+	for ( var x=0; x<synonyms.length; x++ ) {
+		if ( synonyms[x].offsetParent == null ) { continue }
+		//if ( synonyms[x].dataset.syno == null ) { continue }
+		
+		synonyms[x].style.fontStyle = "italic"
+		//synonyms[x].style.backgroundColor = "#FFFFB0"
+		synonyms[x].style.cursor = "pointer"
+
+		// egy randomot kiválaszt
+		synonyms[x].dataset.syno = synonyms[x].innerHTML
+		var synos = synonyms[x].dataset.syno
+		synos = synos.split(" | ")
+		var num = getRandomInt(synos.length)
+		synonyms[x].innerHTML = synos[num]
+
+		synonyms[x].onclick = function() { // sorban következőt kiválasztja
+			var synos = this.dataset.syno
+			synos = synos.split(" | ")
+			if ( this.innerHTML == synos[0] ) { 
+				synos.push(synos[0])
+				synos.shift()
+				this.dataset.syno = synos.join(" | ")
+			}
+			this.innerHTML = synos[0]
+		}
+	}
+}
+
 function F_loadIMGs(detElem) {
 	var imgs = detElem.getElementsByTagName("IMG")
 	for ( var i=0; i<imgs.length; i++ ) { 
@@ -1508,7 +1553,7 @@ function F_loadIMGs(detElem) {
 		}
 		if ( imgs[i].classList.contains("mini") == true ) {
 			imgs[i].style.border = "2px solid DeepSkyBlue"
-			imgs[i].style.maxHeight = "14px"
+			imgs[i].style.maxHeight = imgMiniHeight
 			imgs[i].style.marginBottom = "-2px"
 			imgs[i].style.float = "none"
 			if ( isAndroid == false ) {
@@ -1549,6 +1594,7 @@ function F_loadElem(detElem){ // detailsok megnyitásánál is ezt a funkciót h
 	F_loadIMGs(detElem)
 	F_loadVideos(detElem)
 	F_tableScrollable(detElem)
+	F_synonyms(detElem)
 	
 	var allDetails = detElem.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) { allDetails[i].ontoggle = function(){ F_loadElem(this) } }

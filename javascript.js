@@ -193,6 +193,12 @@ for ( var i=0; i<kerdesek.length; i++ ) {
 var ua = navigator.userAgent.toLowerCase();
 var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
 
+ /* if ( isAndroid ) {
+	document.body.style.transform = 'scale(1.5)'
+	document.body.style.transformOrigin = '0 0'
+	document.body.style.maxWidth = '66%'
+ } */
+
 document.documentElement.style.overflowX = 'hidden';
 
 var myTime
@@ -1749,9 +1755,7 @@ function F_andrHide() { // androidon elrejti a könyveket + tételeket
 }
 //F_andrHide()
 function F_andrFont() { // android font size
-	if ( isAndroid ) { 
-		document.body.style.fontSize = "300%" 
-	}
+	if ( isAndroid ) { document.body.style.fontSize = "300%" }
 }
 F_andrFont()
 function F_pageOpen() {
@@ -2329,9 +2333,7 @@ function F_answerQ(detElem){
 
 function F_testVideoError() {
 	var allVideo = document.getElementsByTagName("video")
-	for ( var i=0; i<allVideo.length; i++ ) {
-		allVideo[i].onerror = function(){ alert("video betöltési hiba") };
-	}
+	for ( var i=0; i<allVideo.length; i++ ) { allVideo[i].onerror = function(){ alert("video betöltési hiba") } }
 }
 F_testVideoError()
 function F_imgActLoad(IMGelem){ 
@@ -2380,7 +2382,7 @@ function F_toggleAll() {
 	if ( document.getElementById("div_MainFrame").style.display != 'none' ) {
 		localStorage.removeItem("hk.ToggleAll")
 		toggleAll = false
-		document.getElementById("table_weboldalak").parentElement.style.display = 'block';
+		document.getElementById("table_weboldalak").parentElement.parentElement.style.display = 'block';
 		document.getElementById("div_pageQTargy").style.display = 'block';
 		document.getElementById("div_MainFrame").style.display = 'none';
 		
@@ -2390,7 +2392,7 @@ function F_toggleAll() {
 	} else {
 		localStorage.setItem("hk.ToggleAll","true")
 		toggleAll = true
-		document.getElementById("table_weboldalak").parentElement.style.display = 'none';
+		document.getElementById("table_weboldalak").parentElement.parentElement.style.display = 'none';
 		document.getElementById("div_pageQTargy").style.display = 'none';
 		document.getElementById("div_MainFrame").style.display = 'block';
 	}
@@ -3134,11 +3136,6 @@ function F_CreateQDiv() {
 		//divQloc.style.overflow = "auto"
 		//divQloc.style.height = "87vh"
 		
-		if ( isAndroid ) {
-			divQloc.style.transform = 'scale(1.75)'
-			divQloc.style.transformOrigin = '0 0'
-			divQloc.style.maxWidth = '57%'
-		}
 	}
 	F_DivQLoc()
 	var divQloc = document.getElementById("divQloc");
