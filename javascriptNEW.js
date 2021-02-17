@@ -5,13 +5,20 @@ document.body.style.margin = "2px" // ez valahol nagyobbra van állítva, vissza
 var ua = navigator.userAgent.toLowerCase()
 var isAndroid = ua.indexOf("android") > -1 
 
-/* if ( isAndroid ) { // ezis egy variáció, font size hejett, de pl. middle img problem (bonyolultabb?)
-	var scale = 1.3
-	document.body.style.transform = 'scale('+scale+')'
-	document.body.style.transformOrigin = '0 0'
-	var width = 100 / scale
-	document.body.style.maxWidth = width+'%'
-} */
+if ( isAndroid ) { // ezis egy variáció, font size hejett, de pl. middle img problem (bonyolultabb?)
+	andrScale = 2.5
+	//var divBody = document.body
+	var divBody = document.getElementById("div_body")
+	divBody.style.transform = 'scale('+andrScale+')'
+	divBody.style.transformOrigin = '0 0'
+	var width = 100 / andrScale
+	var height = 100 / andrScale
+	divBody.style.maxWidth = width+'%'
+	divBody.style.maxHeight = height+'%'
+	
+	document.body.appendChild(document.getElementById("div_centVideoBg"))
+	document.body.appendChild(document.getElementById("div_centImgBg"))
+}
 
 function F_getTime() {
 	var myDate = new Date()
@@ -85,6 +92,7 @@ function F_setAltQsPath(detElem,path) {
 }
 function F_loadImpQs(detElem) {
 /* Hogyan?
+  adott tárgy impQ-it nézzem meg, nincsenek-e véletlen az alján üres 1,2,3 impQ-k, mert akkor azok felülírják a fenntieket!
 	✔ megnézi a detElem összes imp child-ját
 	✔ feltételek: visible, van benne [], még nem volt betöltve
 		detElem = amit megnyitottam (details / page)
@@ -329,8 +337,8 @@ var prevMidQs = []
 function F_divMidQ() { // lekreálja középre a divet, ahova kidobja majd a midQ/searchQ-kat
 	function F_divMidQ() { // mainDiv: ebbe lesz minden, sárga bordere van ...
 		var div = document.createElement("div")
-		document.body.appendChild(div)
-		//document.body.insertBefore(div, document.body.firstChild);
+		document.getElementById("div_body").appendChild(div)
+		//document.body.appendChild(div)
 		div.id = "div_MidQ"
 		div.dataset.origin = "pageQs"
 		div.style.backgroundColor = "white"
@@ -347,7 +355,6 @@ function F_divMidQ() { // lekreálja középre a divet, ahova kidobja majd a mid
 	}
 	F_divMidQ()
 	var div = document.getElementById("div_MidQ")
-	
 	function F_btnBack() { // bal felső sarokban a vissza
 		var button = document.createElement("span")
 		div.appendChild(button)
@@ -372,7 +379,6 @@ function F_divMidQ() { // lekreálja középre a divet, ahova kidobja majd a mid
 		}
 	}
 	F_btnBack()
-	
 	function F_btnTitle() { // Q title-je középen fenn
 		var title = document.createElement("div")
 		div.appendChild(title)
@@ -390,14 +396,17 @@ function F_divMidQ() { // lekreálja középre a divet, ahova kidobja majd a mid
 		span.onclick = function(){ 
 			prevMidQs = []
 			document.getElementById("div_MidQ").style.display = "none" 
-			document.getElementById("div_pageQTargy").style.display = "block"
-			document.getElementById("table_weboldalak").style.display = "block"
-			document.body.parentElement.scrollTop = prevScrollTop
+			if ( document.getElementById("div_searchBg").style.display != "block" ) {
+				document.getElementById("div_pageQTargy").style.display = "block"
+				document.getElementById("table_weboldalak").style.display = "block"
+				document.getElementById("btn_toggleQing").style.display = "block"
+				document.body.parentElement.scrollTop = prevScrollTop
+			}
+			
 			//currPath = targyPath
 		}
 	}
 	F_btnTitle()
-	
 	function F_divText() { // Q szövege ide jön
 		var divText = document.createElement("div")
 		div.appendChild(divText)
@@ -414,6 +423,7 @@ function F_setMidQ(qText,path) { // középen megjeleníti a div-et, benne a sz�
 	document.getElementById("div_MidQ").style.display = "block" // ez előbb kell legyen, mint az F_loadElem --> hogy láthatók legyenek az impQ-k, amiket be kell töltenie
 	document.getElementById("div_pageQTargy").style.display = "none"
 	document.getElementById("table_weboldalak").style.display = "none"
+	document.getElementById("btn_toggleQing").style.display = "none"
 	
 	//console.log(prevMidQs)
 	qText = qText.slice(qText.indexOf("<summary"),qText.lastIndexOf("</details"))
@@ -478,14 +488,14 @@ function F_setSeekBarWidth(thisVideo){
 }
 function F_stopVideo(thisVideo){
 	if ( thisVideo.id != "video_cent" ) { thisVideo.id = "" }
-	thisVideo.style.borderColor = "black"
+	//thisVideo.style.borderColor = "black"
 	thisVideo.pause()
 	F_setSeekBarWidth(thisVideo)
 }
 function F_playVideo(thisVideo){
 	if ( document.getElementById("playedVideo") ) { F_stopVideo(document.getElementById("playedVideo")) }
 	if ( thisVideo.id != "video_cent" ) { thisVideo.id = "playedVideo" }
-	thisVideo.style.borderColor = "springgreen"
+	//thisVideo.style.borderColor = "springgreen"
 	thisVideo.play()
 	var F_seekBar = window.setInterval(function(){
 		F_setSeekBarWidth(thisVideo)
@@ -618,8 +628,10 @@ var objSearchTexts = {} // Qname to Qtxt (ráklikk a resultra, dobja ki a szöve
 function F_searchStart() { // search-re klikkelésnél vagy enter lenyomásnál ez történik először
 	document.getElementById("btn_searchBreak").style.display = "block"
 	document.getElementById("div_searchingBg").style.display = "block"
-	document.getElementById("btn_SearchW").style.backgroundColor = "black"
-	document.getElementById("btn_SearchW").style.color = "white"
+	if ( document.getElementById("btn_SearchW") ) {
+		document.getElementById("btn_SearchW").style.backgroundColor = "black"
+		document.getElementById("btn_SearchW").style.color = "white"
+	}
 	var int_Click = window.setInterval(function(){
 		F_searchResult()
 		clearInterval(int_Click) 
@@ -649,7 +661,11 @@ function F_searchResult() { // találati eredmények betöltése...
 	var int_Click = window.setInterval(function(){
 		if (progress == true) { return } 
 		progress = true
-		spanStatus.style.width = spanStatus.parentElement.offsetWidth * x / paths.length
+		var statusWidth = spanStatus.parentElement.offsetWidth * x / paths.length
+		spanStatus.style.width = statusWidth+"px"
+		console.log(spanStatus.parentElement.offsetWidth)
+		console.log(x / paths.length)
+		console.log(spanStatus.parentElement.offsetWidth * x / paths.length)
 		
 		var path = paths[x]
 		x = x +1
@@ -660,8 +676,10 @@ function F_searchResult() { // találati eredmények betöltése...
 			spanStatus.style.width = 0
 			document.getElementById("btn_searchBreak").style.display = "none"
 			document.getElementById("div_searchingBg").style.display = "none"
-			document.getElementById("btn_SearchW").style.color = ""
-			document.getElementById("btn_SearchW").style.backgroundColor = ""
+			if ( document.getElementById("btn_SearchW") ) {
+				document.getElementById("btn_SearchW").style.color = ""
+				document.getElementById("btn_SearchW").style.backgroundColor = ""
+			}
 		}
 		var targyText = pageTexts[path]
 		if ( targyText == null ) { 
@@ -757,8 +775,10 @@ function F_createSearchElems() {
 		button.style.position = "absolute"
 		button.style.right = "0px"
 		button.style.bottom = "0px" // parent position-jént relative-ra kellett állítani, illetve ezt absolute-ra, hogy működjön!!
-		button.style.width = "90px"
-		button.style.height = "90px"
+		//button.style.width = "90px"
+		button.style.maxWidth = "90px"
+		//button.style.height = "90px"
+		button.style.maxHeight = "90px"
 		button.value = "🔍"
 		button.style.cursor = "pointer"
 
@@ -768,8 +788,10 @@ function F_createSearchElems() {
 				this.style.color  = "white"
 			}
 			var int_Click = window.setInterval(function(){
+				document.getElementById("btn_toggleQing").style.display = 'none'
 				document.getElementById("table_weboldalak").style.display = 'none'
 				document.getElementById("div_pageQTargy").style.display = 'none'
+				document.getElementById("btn_toggleSearch").style.display = 'none'
 				// első kettő azért kell, hogy a fölös scrollbar eltűnjön bal oldalt (pl. megvan nyitva farmakológia, majd ráklikkelnék nagyítóra...)
 				document.getElementById("div_searchBg").style.display = "block"
 				button.style.color = ""
@@ -779,26 +801,25 @@ function F_createSearchElems() {
 		}
 	}
 	F_btnNagyito()
-	
 	function F_divBg() { // ezt nyitom meg, ez a mainDiv --> ebbe az összes többi
 		var div = document.createElement("div")
-		document.body.appendChild(div)
+		document.getElementById("div_body").appendChild(div)
+		//document.body.appendChild(div)
 		div.id = "div_searchBg"
 		div.style.backgroundColor = "white"
 		div.style.overflow = "auto"
 		div.style.border = "8px solid black"
 		div.style.outline = "5px solid aqua"
 		div.style.display = "none"
-		div.style.position = "fixed"
+		div.style.position = "absolute"
 		div.style.left = "5px"
 		div.style.right = "5px"
 		div.style.top = "4px"
 		div.style.bottom = "4px"
-		div.style.zIndex = "3"
+		//div.style.zIndex = "3"
 	}
 	F_divBg()
 	var divBg = document.getElementById("div_searchBg")
-	
 	function F_btnClose() { // jobb felső sarok, close btn
 		var button = document.createElement("input")
 		button.type = "button"
@@ -812,15 +833,16 @@ function F_createSearchElems() {
 		button.style.color = "white"
 		button.style.backgroundColor = "red"
 		button.style.border = "3px solid black"
-		//button.style.width = "50px"
+		if ( isAndroid ) { button.style.width = "50px" }
 		button.onclick = function(){
 			document.getElementById("table_weboldalak").style.display = 'block';
 			document.getElementById("div_pageQTargy").style.display = 'block';
+			document.getElementById("btn_toggleQing").style.display = 'block'
+			document.getElementById("btn_toggleSearch").style.display = 'block'
 			document.getElementById("div_searchBg").style.display = "none"
 		}
 	}
 	F_btnClose()
-	
 	function F_inpText() { // ebbe írom a keresett szót -> entert lenyomva megkezdi a keresést
 		var input = document.createElement("input")
 		divBg.appendChild(input)
@@ -829,10 +851,16 @@ function F_createSearchElems() {
 		input.style.fontSize = "xx-large"
 		input.style.position = "absolute"
 		input.style.top = "1%"
-		input.style.left = "50%"
-		input.style.paddingLeft = "3px"
-		input.style.paddingRight = "3px"
-		input.style.transform = "translate(-50%)"
+		if ( isAndroid ) {
+			input.style.left = "1%"
+			var width = screen.width -53
+			input.style.width = width+"px"
+		} else {
+			input.style.left = "50%"
+			input.style.paddingLeft = "3px"
+			input.style.paddingRight = "3px"
+			input.style.transform = "translate(-50%)"
+		}
 		input.addEventListener("keyup", function(event) { if (event.keyCode === 13) { 
 			// entert ha lenyomom search!
 			F_searchStart()
@@ -850,19 +878,17 @@ function F_createSearchElems() {
 		button.style.cursor = "pointer"
 		button.onclick = function(){ F_searchStart() }
 	}
-	F_btnSearch()
-	
+	if ( isAndroid == false ) { F_btnSearch() }
 	function F_divResults() { // ebbe írja a találati eredmény(eke)t
 		var divText = document.createElement("div") 
 		divBg.appendChild(divText)
 		divText.id = "div_searchResults"
 		divText.style.marginLeft = "3px"
 		divText.style.paddingBottom = "10px"
-		divText.style.paddingTop = "10px"
+		if ( isAndroid ) { divText.style.paddingTop = "15px" } else { divText.style.paddingTop = "10px" }
 		divText.style.fontSize = "x-large"
 	}
 	F_divResults()
-	
 	function F_divSearchingBg() { // search alatt elszürkül (+a cancel btn ezen lesz)
 		var div = document.createElement("div")
 		document.body.appendChild(div)
@@ -900,11 +926,10 @@ function F_createSearchElems() {
 		button.onclick = function() { breakSearch = true }
 	}
 	F_btnBreak()
-	
 	function F_spanStatus() { // statusbar, hogy a search hol tart
 		// szürke háttér & fehér border fojton látszik
-		var spanStatus = document.createElement("span")
-		document.body.appendChild(spanStatus)
+		var spanStatus = document.createElement("div")
+		divBg.appendChild(spanStatus)
 		spanStatus.style.display = "none"
 		spanStatus.style.position = "absolute"
 		spanStatus.style.backgroundColor = "grey"
@@ -922,7 +947,6 @@ function F_createSearchElems() {
 		spanStatusChild.id = "span_searchStatus"
 		spanStatusChild.style.backgroundColor = "gold"
 		spanStatusChild.style.position = "absolute"
-		spanStatusChild.innerHTML = "&nbsp;"
 		spanStatusChild.style.height = "21px"
 	}
 	F_spanStatus()
@@ -1454,17 +1478,17 @@ function F_toggleQing() {
 // –––––––––––––––  Qing END  –––––––––––––––
 
 function F_andrSize() { if ( isAndroid ) { 
-	document.body.style.fontSize = "300%" // android font size
+	//document.body.style.fontSize = "300%" // android font size
 	document.getElementById('link_style').href = 'styleAndroid.css'; // android li,table position
 	
-	imgMiniHeight = "35px"
+	//imgMiniHeight = "54px"
 	document.getElementById('btn_toggleSearch').style.fontSize = '100%'
 	document.getElementById('btn_toggleLoad').style.width = "90px"
 	document.getElementById('btn_toggleLoad').style.height = "90px"
 	//document.getElementById('btn_clearIDB').style.width = "90px"
 	document.getElementById('btn_clearIDB').style.height = "90px"
   } else {
-	imgMiniHeight = "18px"
+	//imgMiniHeight = "18px"
 	document.getElementById('btn_toggleSearch').style.fontSize = '300%'
 	document.getElementById('btn_toggleLoad').style.width = "40px"
 	document.getElementById('btn_toggleLoad').style.height = "40px"
@@ -1553,29 +1577,45 @@ function F_loadIMGs(detElem) {
 		}
 		if ( imgs[i].classList.contains("mini") == true ) {
 			imgs[i].style.border = "2px solid DeepSkyBlue"
-			imgs[i].style.maxHeight = imgMiniHeight
+			imgs[i].style.maxHeight = "16px"
+			//imgs[i].style.maxHeight = imgMiniHeight
 			imgs[i].style.marginBottom = "-2px"
 			imgs[i].style.float = "none"
 			if ( isAndroid == false ) {
 				imgs[i].onmouseover = function() { 
-					this.style.position = "absolute"
-					var rect = this.getBoundingClientRect()
-					var thisW = this.width *4
-					if ( rect.left < thisW ) { this.style.left = thisW }
-					this.style.transform = "scale(8,8)"
-					this.style.zIndex = "4"
-				}
-				imgs[i].onmouseout = function() {
-					this.style.position = ""
-					this.style.transform = "scale(1,1)"
-					this.style.left = ""
-					this.style.zIndex = "1"
+					var minImg = document.getElementById("img_mini")
+					minImg.style.display = "inline-block" //block esetén új sor lenne; inline esetén nem lehetne width állítani
+					minImg.src = this.src
+					
+					minImg.width = this.width*8
+					//minImg.style.transform = "scale(8,8)"
+
+					function offset(elem) { // absolute position-t (top,left) kér vissza: tehát a görgő is benne (y>1000 is lehet)
+						var rect = elem.getBoundingClientRect(),
+						scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+						scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+						return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+					}
+					var divOffset = offset(this);
+					//console.log(divOffset.left, divOffset.top);
+					var posX = divOffset.left -minImg.width/2 +this.width/2
+					var posXright = posX + minImg.width
+					if ( posX < 0 ) {
+						minImg.style.left = "0px"
+					} else if ( document.body.clientWidth < posXright ) {
+						posX = document.body.clientWidth - minImg.width -10/*border*/
+						minImg.style.left = posX +"px"
+					} else {
+						minImg.style.left = posX +"px"
+					}
+					var posY = divOffset.top -minImg.height/2 +this.height/2
+					minImg.style.top = posY +"px"
 				}
 			}
 		}
 	}
 }
-function F_loadCentImg() {
+function F_loadImg_cent_mini() {
 	var keepImg = false
 	document.getElementById("img_cent").onclick = function() {
 		keepImg = true
@@ -1584,8 +1624,16 @@ function F_loadCentImg() {
 		if ( keepImg != true ) { this.style.visibility = "hidden" }
 		keepImg = false
 	}
+	
+	if ( isAndroid == false ) {
+		document.getElementById("img_mini").onmouseout = function() { this.style.display = "none" }
+		document.getElementById("img_mini").onclick = function() { // középen kinagyítja
+			document.getElementById("div_centImgBg").style.visibility = "visible"
+			document.getElementById("img_cent").src = this.src
+		}
+	}
 }
-F_loadCentImg()
+F_loadImg_cent_mini()
 
 function F_loadElem(detElem){ // detailsok megnyitásánál is ezt a funkciót használjam!
 	//console.log(detElem.innerHTML)
