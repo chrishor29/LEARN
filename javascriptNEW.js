@@ -351,7 +351,7 @@ function F_divMidQ() { // lekreálja középre a divet, ahova kidobja majd a mid
 		div.style.right = "5px"
 		div.style.top = "4px"
 		div.style.bottom = "4px"
-		div.style.zIndex = "4"
+		div.style.zIndex = "3"
 	}
 	F_divMidQ()
 	var div = document.getElementById("div_MidQ")
@@ -488,14 +488,14 @@ function F_setSeekBarWidth(thisVideo){
 }
 function F_stopVideo(thisVideo){
 	if ( thisVideo.id != "video_cent" ) { thisVideo.id = "" }
-	//thisVideo.style.borderColor = "black"
+	thisVideo.style.outlineColor = "black"
 	thisVideo.pause()
 	F_setSeekBarWidth(thisVideo)
 }
 function F_playVideo(thisVideo){
 	if ( document.getElementById("playedVideo") ) { F_stopVideo(document.getElementById("playedVideo")) }
 	if ( thisVideo.id != "video_cent" ) { thisVideo.id = "playedVideo" }
-	//thisVideo.style.borderColor = "springgreen"
+	thisVideo.style.outlineColor = "springgreen"
 	thisVideo.play()
 	var F_seekBar = window.setInterval(function(){
 		F_setSeekBarWidth(thisVideo)
