@@ -14,7 +14,8 @@ details[open] > summary.mainTitle {
 	text-align: center;
 	color: orange;
 	background-color:black; 
-	/* border: 5px solid black; */
+	border: 5px solid black;
+	display: block; /* div legyen, ne csak span! -> tehát teljes sor, NE csak amíg a szöveg tart */
 	/* min-width: 99%; */
 	/* left: -10px; */
 }
@@ -24,9 +25,11 @@ details[open] > summary.mainTitle {
 	padding-right: 2px;
 	padding-top: 2px;
 	padding-bottom: 1px;
-	margin-top: 2px;
-	margin-bottom: 2px;
 	*/
+	
+	margin-top: 1px;
+	margin-bottom: 1px;
+	
 	font-weight: bold;
 	background-color: Gainsboro;
 	color: Black;
@@ -54,11 +57,17 @@ details[open] > summary.mainTitle {
 summary {
 	color: Green;
 	cursor: pointer;
-	/* display: inline-block; */
+	display: inline-block; /* ne legyen div, csak span! -> tehát ne teljes sor, hanem amíg a szöveg tart */
+}
+
+video{
+	border: 5px solid black;
+	background-color: blueviolet;
+	display: block;
 }
 
 table {
-	 border-collapse: collapse;
+	border-collapse: collapse; /* borderek egybe legyenek */
 	/* padding: 2px; */
 	/* padding-top: 3px; */
 	text-align: center;
@@ -66,7 +75,7 @@ table {
 th, td {
 	border: 3px solid black;
 	/* border-collapse: collapse; */
-	/* padding: 3px; */
+	padding: 3px;
 	/* padding-top: 3px; */
 }
 th { background: Silver }
@@ -79,11 +88,42 @@ ul, ol {
 	border-bottom: 4px solid black;
 	margin-bottom: 10px; /* vonal felett kis hej */
 	padding-bottom: 10px; /* vonal alatt kis hej */
-	/* overflow: hidden; */
+	overflow: hidden; /* ha van egy kép, akkor az ne lógjon át az alatta lévő kérdésekre, hanem 'tegye lejjeb a vonalat' */
 	/* text-align: left; */
 }
 
+.mirror {
+	display:inline-block;
+	transform: scale(-1,1);
+}
 
+.ORANGE { 
+	border: Black 1px solid; 
+	padding-left: 3px; 
+	padding-right: 3px; 
+	background-color: orange;
+}
+.plus { 
+	border: Black 1px solid; 
+	padding-left: 3px; 
+	padding-right: 3px; 
+	background-color: green;
+	color: white;
+}
+.minus { 
+	border: Black 1px solid; 
+	padding-left: 4px; 
+	padding-right: 4px; 
+	background-color: red;
+	color: white;
+}
+.important { background-color: Lime /*SpringGreen*/ }
+.done { background-color: Aqua /*PaleTurquoise < Aqua < aquamarine < DarkTurquoise < deepskyblue < LightSeaGreen < dodgerblue*/ }
+.fix { 
+	background-color: red;
+	color: white;
+	font-weight: bold;
+}
 .WHITE { 
 	border: Black 1px solid; 
 	padding-left: 1px; 
@@ -91,12 +131,28 @@ ul, ol {
 	background-color: White;
 }
 .miss { background-color: pink }
-.mirror {
-	display:inline-block;
-	transform: scale(-1,1);
+
+abbr {
+	/*position: relative;*/
+	padding-left: 1px; /* a szürke háttér kicsit szélesebb oldalt */
+	padding-right: 1px; 
+	/*padding-top: 0px; 
+	padding-bottom: 0px;*/
+	text-decoration: none;
+	background-color: gainsboro;
 }
-
-
+/*abbr.test {
+	position: relative;
+	text-decoration: none;
+	padding-left: 1px; 
+	padding-right: 1px; 
+	padding-top: 0px; 
+	padding-bottom: 0px; 
+	background-color: #ffffff;
+}*/
+abbr:hover{
+	background-color: Chartreuse
+}
 
 
 

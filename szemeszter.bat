@@ -8,9 +8,10 @@ robocopy %source%\images %destination%\images /mir /max:50000000
 robocopy %source%\videos %destination%\videos /mir /max:50000000
 xcopy /y %source%\expqs.html %destination%\ /d
 xcopy /y %source%\targyvalasztas.html %destination%\ /d
-xcopy /y %source%\targyvalasztasNEW.html %destination%\ /d
+xcopy /y %source%\targyvalasztasOLD.html %destination%\ /d
 xcopy /y %source%\javascript.js %destination%\ /d
-xcopy /y %source%\javascriptNEW.js %destination%\ /d
+xcopy /y %source%\javascriptOLD.js %destination%\ /d
+xcopy /y %source%\style.css %destination%\ /d
 xcopy /y %source%\stylePC.css %destination%\ /d
 xcopy /y %source%\styleAndroid.css %destination%\ /d
 xcopy /y %source%\favicon.png %destination%\ /d
@@ -22,7 +23,7 @@ xcopy /y %source%\IgOr\igor.html %destination%\IgOr\ /d
 xcopy /y %source%\Nepegeszsegtan\nepeg.html %destination%\Nepegeszsegtan\ /d
 xcopy /y %source%\Neurologia\neurologia.html %destination%\Neurologia\ /d
 xcopy /y %source%\Szemeszet\szemeszet.html %destination%\Szemeszet\ /d
-xcopy /y %source%\Szülészet\szuleszet.html %destination%\Szülészet\ /d
+xcopy /y %source%\Szuleszet\szuleszet.html %destination%\Szuleszet\ /d
 xcopy /y %source%\done\Urologia\urologia.html %destination%\done\Urologia\ /d
 
 REM 4.év

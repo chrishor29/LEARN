@@ -1,1060 +1,1526 @@
-// window.onerror = function(msg, url, linenumber) { alert('Error message: '+msg+'\nLine Number: '+linenumber) }
 
-/* PROJECT - PROGRESS
- ✖ nehéz vs könnyű kérdés (+ osztályzás 1/2/3)
- ✖ details mindig lefele scroll down!
- ✖ osztályzás - size -- android!!
- ✖ jshiba_magtud: töltsem be az LS-t, majd pszichot indítsam el: a hiba az, hogy 2db kérdéshez írtam hibát~notificationt (pirosba kerülnek) --> azonban ha a pirosra rákattintok (ami alapból mutatja, hogy 2q-nál van hiba), akkor nem mutat egy q-t sem ki
- 
- ✖ pulmo: ált.2t: 'értékelés - összefoglaló' --> {208} -> nem dobja ki, ha meg akarom oldani (osztályozás)
- ✖ mikrobi: részl.bakt: Bacillus anthracis -> 2x megnyitom és 2.-nál már rosszul írja ki
- ✖ farmak: impQ.90: NSAID hatásai --> terhességgel kapcsolatos tudnivalók ha kerdes; akkor azt amikor kidobja, nem jelenik meg az osztályozhatósága, így nem tudok továbbhaladni (A/16 tétel esetén)
- ✖ bőrgyógy: diabetes tételnél megjelenik egy új kérdés valamiért, pedig nincs ott új már: lépjek vissza főoldal, majd frissítsek, utána jelöljem ki bőrgyógyászat, majd lépjek át kérdésmegoldó oldalra (így jön elő a hiba)
- 
- ✖ newQ kiválasztást egyszerűsítsem: opciók: random(újQ legyen-e választható) választ, újQ(+important felette legyen-e priorba választható), skip, oldQ, stb.. ---> szebbre írjam át, mert csúnya 
- 
- ✖ android: felnagyítva legyen az egész alapból már (ne keljen folyton ráközelítenem)
-	+ ezt rohadt nehéz megcsinálni: (1) zoom nem lehet (firefox) (2) helette van a transform-scale, de akkor kilóg a képernyőből, meg összevissza baszakszik. (3) fontok méretét növelhetem még, de akkor is elcsesződik (4) először írjak egy üres html-t, amibe csak text van és abból építsem fel (teszek bele image-t később stb.)
-	+ "divQloc" nevű div-en megcsináltam már elvileg; 3x nagyítás
- ✖ android: midQ a képernyőt töltse ki mindig
- ✖ android: tételQ kijelölése nehéz, mert kicsi
- ✖ android: menuk egy klikkel legyenek előhívhatók és nagyok legyenek / kerdes osztályzás is!
- ✖ android: upgrade/stb. -re klikk-nél sötétüljön el, hogy lássam érzékelte (mint amikor betölti az oldalt, vagy nextQ)
- 
- ✖ lehessen átírni a kidobott quest repeat time-ját /+ lehessen skippelni, hogy x óráig ne dobhassa ki
- ✖ mikrobi: túl lassú, +1/-1 tétel kiválasztás
- ✖ mikrobi: túl lassú, tehát ha átírok valamit a .html-be majd frissítek, hogy újra a kérdést kidobja elém, az eltart 5-10secig(amikor már 500kérdésnél tartok főleg)
- ✖ kardio impQ.52 altkérdéseit egybeveszi az 51-ével, ha nincs comment
- ✖ tétel kérdésben átírok valamit, akkor a tételt deselectálja (gondolom, mert kérdés, és a hossza megváltozik, ami note-ban van)
- ✖ nephro --> fizikalis vizsgálat impQ kérdést egybe dobja ki, ha az a nextQ (pedig div-ben van, nem span)
+document.body.style.backgroundColor = "azure"
+document.body.style.margin = "2px" // ez valahol nagyobbra van állítva, visszakéne
 
- ✖ expQs.html nem kell már
- ✖ HTML imgLoc & LearnLoc nem kell már a html HEAD-ekben
- ✖ lz-string nem kell már a html HEAD-ekben + amúgy sem
+var ua = navigator.userAgent.toLowerCase()
+var isAndroid = ua.indexOf("android") > -1 
 
- ✖ alert funkciót replace-ljem
- ✖ img-eket csekk, mert lehet hiányoznak (tárgyakban)
- ✖ (img-eket csekk amik fölösek (batch-el txt-be lementem, majd végignézi őket))
- ✖ lehet összes impQ-t elején betölthetném, ha style display none-ban van (talán úgy gyorsabb lenne az egész: meglepően gyors úgy)
- ✖ skipQ-k / noteQ-k / importantQ-k(gyors repeat!) közt nem mutatja az impQ-kat
- ✖ tételQ kijelölése lassú
- ✖ kérdésnek állíthassam be, hogy hány perc múlva / milyen időpontban dobja ki újra (impQ-ként)
- ✖ írhassam át a kérdés repeatTime-ját
- ✖ upgradeQ egyszerubb legyen
-	oldalbetöltésnél mentse el összes qName-t, és nézze meg: melyik új illetve melyik tunt el LS-bol legutóbbi
-	ez alapján dobja ki a lehetoséget az eltunt Q-nél, hogy melyikre upgradeljem
-	olyan is kéne, hogy autoUpgrade-lje a questet, de van lehetoségem megnézni melyeket upgradelte, és azoka közül törölhessem, ha mégse kellett volna
-	ha egy kérdésnél hozzáadtam azt a classba, hogy 'open' / 'if' stb. akkor ne kelljen upgradelni már
- ✖ Qtxt-t ne mentse el, csak expQ.html-nél. Csak a QuestCímet mentse el + mögé commentbe, hogy hány betubol áll a Qtxt. Azonban ha van még egy azonos nevu quest, akkor legyen az elv, hogy megnézi melyik quest címek tuntek el, és melyek jelentek meg (betuszámot is nézze talán)
-	expQ-t csak akkor mentsen, ha expQ.html LS-be. Egyébként egy tableba. Betöltésnél pedig megnézi, hogy van-e table-ba, ha nincs, akkor LS-bol tölti be (hiszen akkor expQ.html-rol származik, nem az adott weboldal)
-	teszteljem azonos nevu Q-ek upgrade-jét
- ✖ hide alQ-k a tételnél
- ✖ rewrite az egészet (rövidebb legyen)
-*/
-
-/* PROJECT - PROGRESS v2
- ✖ MIKROBI LS:
-	tétel buttonra klikk lassú
-	tétel kiválasztása lassú (hogy melybol dobjon kérdést)
-	betöltés is lassú
-	nextQ-ra is lassú
-	swich button is lassú (Quest megoldós módra váltó)
- 
- ✖ fölös image/video-k kiszortírozása
- ✖ alapból csak 0 ismételt Q-t dob, 1x ismételtet nem (csak  ha 0-t disabledolom)
- ✖ androidra console.log-ot!!
- ✖ questID-k száma(ami a nextQ button alatt látható) valamiért gyorsan megugrik, fixáljam!!! --> ugyanis szvsz lehet emiatt is lassú
- ✖: VIDEO - PROPED: propednél pl. szívhangoknál vannak videók:
-	✖ lehessen a videót úgy beszerkeszteni, hogy csak a egy play button látszódik a szövegben, amire ha rákattolok akkor középen megjelenik a videó (mint a zongora kottánál)
-	✖ lehessen a videót úgy beszerkeszteni, mint a képet: tehát a jobb oldalt van
- ✖ tesztkérdések: válaszokat random sorrendben dobja (különben nem jól jegyezném meg)
- ✖ impQ: immun: rheumatid arthitis{23}, ha a 'T-sejtek gátlása'-t felcserélem 'B-sejt gátlása'-val (sorrendet csak) akkor nem importálja már
- ✖ kérdés hosszát számolja majd úgy ki, hogy az altkérdéseket ne vegye bele: ha talál egy '<details'-t, akkor megkeresi a következo '</details'-t és 'kivágja azt'. Így ha vmit változtatok az altQ-n, attól a mainQ-t még nem kell upgradelnem
-
-✖ android/telón a tételek nagyobbak legyenek
-✖ mutéttan tételQ-nál (amikor kidobja) ne mutassa a tételcsoportot
-✖ hosszat(length) automata módon számolja ki! (pl. 100karakterenként/1hosszú; de soronként is kéne emellett, mert felsorolásoknál durva lenne)
- 
-✖ ImpQ: csak akkor töltse be, ha visible. Továbbá akkoris, ha kivan jelölve a tétel a Q megoldásnál (de csak ha arra a módra váltok) bár utóbbi helyett kéne egy gyorsabb megoldás (lehet csak bonyolult végiggondolni). pl. az elején olvassa ki az altkérdéseket az imp-bol és table-ba(impID = Qtxt) tenni. Ebból nézi a chance-t az elohívásra, ebbol számolja tétel hány %, továbbá oldQcheck & upgradeQ esetében innen veszi ki a szöveget(ugyanis egy impQ-n belül lehet altkérdés, amit hiányolna különben). Tehát beírni innerHTML-be nem szükséges ilyenkor még --> ez kicsit komplikált, mert ha van még1 alt imp, akkor annak altkérdéseit is ki kell olvassa, és így tovább.. de megoldható --> ez szvsz gyorsabb (elején semmiképpen ne töltse be az összeset, mert androidon qrva lassú!) 
-✖ nextQ-ra kattintva gyorsan dobja a következot (nézzem meg, miért szaggat - anat LS!!)
-✖ imgLoad: expQ.html esetében a data-source-okat írja át HTMLimgLoc+datasrc -re, és így mentse el oket. utána az img beöltés: amelyik img láthatóvá válik, és datasrc-a van, azt töltse be a következoképp: (1) ha "images/"-el kezdodik, akkor bemásolja elé a LearnLoc-ot is (2) ha nem, akkor nem
-✖ zöldnél azt tudjam beállítani, hogy mennyi ido múlva dobja ki legközelebb (tehát ne csak 60/600/stb., hanem kérdésenként változó lehessen --> de ha nem állítok be semmit, akkor ahogy eddig is, a repeat-nél beállított lesz)
-✖ F_impQold elott létrehozott buttonok nem muködnek
-
-✖ rep	min	hossz	left	still	average --> impQ-kat nemszámolja bele (1x belekéne)
-
-✖ JS - download LS crash android-on - FIX -> eloször találjam meg a hibát, mert nem mindig van: ezt úgy csináljam, hogy csinálok egy localstorage mappát, amibe lesznek v1 v2 v3 stb almappák.
- 
-✖ vizsgaskip &#10140; ne JS-be, hanem LS-be mentse el
-✖ betöltésben mi tart soká, teszteljem (kiíratom console-ba mennyi ido telt el egyes funkciók közt)
-
-✖ expQ-k --> csak a az expQs html-be lévoket mentse el LS-be (új számozás legyen és külön szvsz: tehát a többi localisan a fájlba)
-✖ LS-méret a vizsgaskippedeknél ha van 500, akkor szinte lefagy (azt fixáljam)
-✖ F_SpanRepNew + F_SpanRepOld --> rákattolva jelenjenek meg a questek, hogy mennyi ido van belolük vissza
-✖ ha zöldra van állítva a dobhat új kérdéseket, akkor még1et rákattolva eloször legyen kék ami azt jelenti random újat dob következonek (nem az épp soron következot)
-✖ skipek típusa: (KÉK) vizsgáig már nem (FEKETE) Nem volt rá idom (SZÃœRKE) vizsga elott dobja ki oket újra 
-  
-✖ Qid-t vegyem ki!!!
-
-✖ autoSave LS --> jó lenne, ha az utolsó 3 maradna csak meg mindig (tehát felülírná oket valahogy)
- 
-✖ nextQ-nál egybol töltse be az img-eket
-✖ 'F_calculateThis()' --> ezt használom: 'F_kerdesStatus' & 'F_temakorStatus' --> valahogy egyszerusítsem majd le
-––––––––––––––––––––––––––––––––––––––––––––––––
-✖ F_ButtonRepFast
-✖ DATA-SRC IMG: ha egy kérdést megnyitok, akkor betölti a képeit -> ezzel azonban átíródik ugye a Qtext -> ha ezután kattolok rá jobbfelso toggleAll buttonra, akkor az F_checkQs-ban nem találja meg a Qtext-et mert azoknak megváltozott
-✖ importált Q esetében a mini IMG-re klikkelve nem muködik a script, amennyiben visszamegyek a fooldalra, majd újra a Q-hoz
-––––––––––––––––––––––––––––––––––––––––––––––––
-✖ note & fix-re elég egy button (egyoldalon legyen a ketto)
-✖ EXP.html &#10140; load it first, then jump to the page
-––––––––––––––––––––––––––––––––––––––––––––––––
-✖ skip-nél a perma skippesek máshol legyenek
-✖ /keressek rá erre a kommentre, és megértem:/ erre akkor van szükség, ha legfelül nem kérdés van (tehát a legfelül lévo details nem kérdés, csak egy összegzo details, pl. élettan ozmózis), ugyanis annak nincs LSid elmentve, így nemtudok note-t menteni neki (persze optimálisabb lenne, ha itt is a legfelsohöz lenne csatolva, de egyenlore kihagyom mert nem bonyolítom, és LowPrior)
-
-► ↔ ♫ • » &#9733; &#10004; &#10006; &#10010; &#10033; &#10041; &#10045; &#10067; &#10070;
-*/
-
-/* PROJECT - DONE
- ✔ osztályzás - ha sok kérdés van pl. kommunikáció 2.tétel összes alkérdést kinyitom -> összemegy az osztályzás (nem pedig görgő jelenik meg)
- ✔ tárgyakat el kéne mentse localstorage-be tömörítve, az gyorsabb -- indexedDB lett a megoldás!! 
- ✔ search: ha hiányzik az egyik oldal html-je, akkor azt skippelje a betöltésnél, ne álljon meg
- ✔ search: egfr: pulmo: A nem kissejtes tüdődaganatok célzott kezelése és immunterápiája: legörgetem és tádám!
- ✔ !!! tétel ha kérdés, akkor addig ne mutassa altkérdések számát (osztályzást) !!! high prior !!!
- ✔ elsőre valamiért szarakszik feladatmegoldásnál azon questekkel, amelyikben impQ van (még nem tölti be őket). impQ-k kal elején szarakodik, amikor először tölti őket be (lehet már osztályoztam máshol, mégis újnak veszi: lásd pl. belgyógy 1.tétel - adenohipofízis hormonok táblázat)
- ✔ search: nagybetü vs kisbetü
- ✔ jelölhessem ki a kérdést importantnak(zöld), a Qlista-repTime-ban
- ✔ ha egy quest többször is szerepel (nextQ), akkor csak az elsőt tegye ki az osztályzás közé, és a többire mind ezen számot írja (ne generáljon nekik külön még1et)
- ✔ lehessen látni a kérdéseket táblázatban, melyiket hány perce repeateltem, mert felbssza magát az ember, hogy nemtudja mikor jut a végére --> ne mutassa azokat, melyek skippedek(kék/fekete) már
- ✔ mikrobi load lassú --> impQ-kat elején csak Table-ba loadolja, majd akkor egyesével betölti, ha megnyitottam
- ✔ nem tölti be az összes expQ-t -> lásd pl. kórtan {188}-as Q-t nem tölti be a [10]-esben. --> szvsz az kéne legyen a megoldás, hogy amit már betöltött azt írja át 'imp'-ről 'imped'-re (így még tudok azokkal is foglalkozni később ha kell)
- ✔ legyen egy funkció, amivel összes img/video-t betölti, és amelyik hiányzik, azt jelezze --> anno ezt írtam <img onerror="alert(this.src)" data-src="gltkklkkjmnm.png">
- ✔ ImpQ
-	✔ kritérium definíciója: egy impQ-n belül ugyanazon impQ NEM lehet még1x !!!! -- ez NEM jó, ugyanis pl. mikrobi batérium táblázat egy impQ, mégis többször kell benne legyen egy másik impQ(pl. Spirochaetak) --> szóval a kritérium: egy impQ-n belül az adott impQ csak akkor szerepelhet, ha a parentjei közt még nincs
-	✔ newMethod legyen az impQ
-	✔ mutéttan: alapveto sebészeti eszközök és használatuk: Szövetszétválasztó eszközök: az érfogók: fogóeszközök: érfogók
- ✔: 10q után mentsen el LS-t, ne 10db nextQ click után (tehát gyakrabban)
- ✔: local impQ vs expQ --> máshogy hivatkozzak rájuk (ne csak []-el, hanem expQ esetén {} -el). külön mentse a local impQ-kat egy tömbbe (ne localstorage)
- ✔: élettan 8.1 -> gliasejtek img-eit nem tölti be (expQ imgLoad még hibás)
- ✔: js: skipDate / adott tárgy
- ✔: QuantumFirefox Tablet: video click nél csak a control-bar jelenik meg. Szvsz csináljak egy láthatatlan buttont a videóra, amire írok scriptet.
- ✔: androidon mindig a kezdooldalt töltse be (tehát hiába a questes aloldalon zártam be, ne azt töltse be
- ✔: importQ-t változtatva, ne kelljen upgradelni azt a Q-t, melyben az importQ mint alkérdés szerepelt
- ✔: upgradeQ -->  ha van olyan címu és 1db, akkor 0-ra tegye!!
- ✔: div_Skip.innerHTML beállítása nemjó. Ugyanis ha már van kb.50db amit skippelek és megnyitom, akkor szétfagy az egész.
- ✔: tableten az expQ megnyitása után nem tud visszamenni az oldalra (ugyanis a 'window.location.pathname' = null androidon szvsz)
- ✔: skippedek megnyitása nem muködik
- ✔: importált Q-t ha megváltoztatom, akkor ne kelljen upgradelnem a questet (mert ha van egy importált quest, amit 6 helyen használok, akkor egy betut abban átírva, mind a 6questet fel kell upgradelnem és fárasztó --> helyette automatikusan upgradelje, ha más nem változott)
- ✔: mutassa hány %-on tartok a kijelölt tételek megtanulásával --> valamiért a 10es terjedelmut 1-nek veszi
- ✔: tételek buttonja (miniTétel button legyen)
- ✔: upgrade Q-nál alapból az 1-es legyen kijelölve, ne a skip
- ✔: noteQ --> tehát ha írok megjegyzést, LS-be mentse el, és töltse be
- ✔: saveLS (stb.) button klikknél színes legyen
- ✔: autoSave LS --> általam kiválasztott db osztályzásonként (pl. 3,10)
- ✔: csekkolja, hogy az LSid biztos ne legyen foglalt már valahogy, hogy nehogy az Expid és pure_LSid-s azonosat kapjon, ha igen akkor mégis javítsa!
- ✔: localStorage(ExpID,LSid) formátumban legyen elmentve, mert a Qtext az ott lesz csak simán LSid-hez csatoltan!!
- ✔: summary-nél valami jelezze, ha meg van nyitva
- ✔: import Q image -> minden html tetején lesz egy variable, amiben benne van az IMAGES\'adott tárgy mappa' címe. ezt az expid mellé csatolja a Qtextbe. A képek betöltésénél (data-src helyett src) ezt írja hozzá.
-*/
-
-/* localStorage-be lehet objectset (arrayt is, az egyszerubb, és ugyanennyit ér mint az objects, tehát nemjutok vele elorébb) menteni (de ezzel se jutok többre, csak 'nehezebb kezelni'(egyébként csak kicsivel, de sajna fölös, szóval minek), de azért megorzöm):
-isayyes = true
-for ( var i=0; i<kerdesek.length; i++ ) {
-	if (isayyes == true) {
-		var person = {
-			 firstName : "John",
-			 lastName  : "Doe",
-			 age       : 50,
-			 eyeColor  : "blue"
-		};
-
-				var Qtext = '<details class="' + kerdesek[i].className + '">' + kerdesek[i].innerHTML + "</details>"
-				person.Qtext = "id.107"
-		localStorage.setItem("savedData", JSON.stringify(person));
-		var objects = JSON.parse(localStorage.getItem("savedData"));
-		alert(objects.Qtext)
-		isayyes = false
-	}
+if ( isAndroid ) { // ezis egy variáció, font size hejett, de pl. middle img problem (bonyolultabb?)
+	andrScale = 2.5
+	//var divBody = document.body
+	var divBody = document.getElementById("div_body")
+	divBody.style.transform = 'scale('+andrScale+')'
+	divBody.style.transformOrigin = '0 0'
+	var width = 100 / andrScale
+	var height = 100 / andrScale
+	divBody.style.maxWidth = width+'%'
+	divBody.style.maxHeight = height+'%'
+	
+	document.body.appendChild(document.getElementById("div_centVideoBg"))
+	document.body.appendChild(document.getElementById("div_centImgBg"))
 }
-*/
 
-
-/*function F_hash(str){
-	var hash = 0;
-	if (str.length == 0) return hash;
-	for (var i = 0; i < str.length; i++) {
-		 char = str.charCodeAt(i);
-		 hash = ((hash<<5)-hash)+char;
-	}
-	return hash;
-}*/
-
-
-
-var ua = navigator.userAgent.toLowerCase();
-var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
-
- /* if ( isAndroid ) {
-	document.body.style.transform = 'scale(1.5)'
-	document.body.style.transformOrigin = '0 0'
-	document.body.style.maxWidth = '66%'
- } */
-
-document.documentElement.style.overflowX = 'hidden';
-
-var myTime
-var oldTime = false
-function F_getTime(){
+function F_getTime() {
 	var myDate = new Date()
-	myTime = myDate.getTime() /1000
-	if ( oldTime == false ) { oldTime = myTime }
-}
-F_getTime()
-
-function wait(ms) {
-	var start = new Date().getTime()
-	var end = start
-	while (end < start + ms) { end = new Date().getTime() }
+	//var time = myDate.getTime() /1000
+	//return time
+	return myDate.getTime() /1000
 }
 
-var kerdesek = document.getElementsByClassName("kerdes")
-if ( localStorage.getItem("hkQ.max") === null ) { localStorage.setItem("hkQ.max",0) } 
+// –––––––––––––––  impQs BEGIN   –––––––––––––––
+var pageImpQs = [] // path to impQs --> tárgyak {expQ}-jait lementi ide is
+var pageTexts = [] // path to txt --> tárgyak textjét lementi ide is
+var pageLinks = document.getElementsByClassName("page")
+var currPath = null // betöltött tárgyé (ami látható is)
+var prevScrollTop = 0 // midQ betöltése után, ha bezárom ugyanott legyen a scrollbar
 
-var arrQnameLSid = [] // Qtxt to LSid
-var arrQtxts = []  // arra kell, hogy upgradeQ-nál ezekbol nézi meg mikre lehet
-var objQnameQtxt = {}  // Qname to Qtxt
-var arrQnames = []  // Qname + characterCount (csak ez legyen majd a végén, többi szvsz fölös)
-var arrImpQs = [] // ExpID to Qtxt
-
-var missQs = []
-
-var Qcount = 0
-var impID
-var obj_repCount = {
-	1 : 10,
-	2 : 20,
-	3 : 1000,
-	4 : 2000
-}
-
-
-function F_checkMissImgs(){
-	var MissIMGS = []
-	var testImg = document.getElementById("testMiss")
-	testImg.onerror = function(){ console.log("error: "+this.src) }; 
-	var Allimgs = document.getElementsByTagName("img")
-	for ( var i=0; i<Allimgs.length; i++ ) {
-		testImg.src = "images/" + Allimgs[i].dataset.src
-		alert("stop")
+function F_saveImpQs(path) {
+	pageImpQs[path] = {}
+	if ( document.getElementById("span_ExpQs") == null ) {
+		var span = document.createElement("span")
+		document.body.appendChild(span)
+		span.style.display = "none"
+		span.id = "span_ExpQs"
 	}
-}
-//F_checkMissImgs()
-function F_checkDelImgs(){
-	var deleteIMGs = []
-	var allIMGs = document.getElementById("allimagesTXT").innerHTML
-	allIMGs = allIMGs.slice(allIMGs.indexOf("\n")+1);
-	var count = (allIMGs.match(/\n/g) || []).length
-	var innHTML = document.documentElement.innerHTML
-	innHTML = innHTML.slice(innHTML.indexOf("</div>")+5)
-	alert(count)
-	for ( var i=0; i<count; i++ ) {
-		var fileName = allIMGs.slice(0,allIMGs.indexOf("\n"));
-		allIMGs = allIMGs.slice(allIMGs.indexOf("\n")+1);
-		fileName = fileName.slice(fileName.indexOf("images")+7,-1)
-		if ( innHTML.indexOf(fileName) == -1 ) {
-			var testName = fileName.slice(0,fileName.indexOf("."))
-			if ( testName.endsWith("m") != true ) {
-				deleteIMGs.push(fileName) 
-			}
-		}
-	}
-	for ( var i=0; i<deleteIMGs.length; i++ ) {
-		console.log(deleteIMGs[i])
-	}
-	alert("stop")
-}
-//F_checkDelImgs()
-
-function F_getTexts(){
-	//alert(document.title+"_Qtext")
-	var fullString = localStorage.getItem(document.title+"_LSids")
-	if ( fullString ) {
-		fullString = fullString.split(" ") // elso alkalommal különben error lesz
-		for ( var i=0; i<fullString.length; i++ ) {
-			if ( fullString[i] != "" ) {  // utolsó mindig ez, és azt ne tegye array-ba
-				var LSid = fullString[i]
-				var Qname = localStorage.getItem(LSid)
-				//Qtext = LZString.decompressFromUTF16(Qtext)
-				arrQnameLSid[Qname] = LSid
-				//console.log(LSid+ ": " +Qname)
-			}
-		}
-	}
-}
-
-function F_newLSid(){
-	var LSid
-	LSid = parseInt(localStorage.getItem("hkQ.max"))+1
-	localStorage.setItem("hkQ.max",LSid)
-	LSid = "hkQ."+LSid
-	
-	// erre szükség van még
-	localStorage.removeItem(LSid+"_skip")
-	localStorage.removeItem(LSid+"_note")
-	localStorage.removeItem(LSid+"_jegy")
-	localStorage.removeItem(LSid+"_repeat")
-	localStorage.removeItem(LSid+"_idopont")
-	if ( LSid == "undefined" ) { alert("UNDEFINED") }
-	return LSid
-}
-
-var wrongEXPid = "foglalt vagy upgradelve lett:<br>"
-if ( localStorage.getItem("hk.ToggleAll") == "true" ) { document.body.style.backgroundColor = "Gainsboro" }
-var toggleAll = false
-
-/* Search method
- ► egy ID-s iframe van, amibe for ciklussal betölti a tárgyakat, majd a textjüket kimenti egy array-ba (nagyítóra klikkelésnél)
- ► a searchWordot megnézi az arrayban melyiknél van, majd kidobja a resultokat (ahogy eddig is)
- ► egy resultra ráklikkelve az iframe/div(amelyik gyorsabb, display:none)-be tölti a tárgyat -> és abból szedi a parent/midQ stb. (ahogy eddig is)
-*/
-var fileName
-var elems = document.body.getElementsByTagName("*")
-function F_loadExpQs(parentDiv,origin) {
-	var childs = parentDiv.getElementsByTagName("*");
-	//console.log(origin)
+	var span = document.getElementById("span_ExpQs")
+	var pageText = pageTexts[path]
+	span.innerHTML = pageText
+	var childs = span.getElementsByTagName("*");
 	for ( var i = 0; i < childs.length; i++ ) {
-		var elem = childs[i]
-		if ( elem.className.indexOf("{") == -1 ) { continue }
-		if ( elem.className.indexOf("imp") != -1 ) { continue }
-		if ( elem.className.indexOf("midQ") != -1 ) { continue }
-		var begin = elem.className.indexOf("{")
-		var end = elem.className.indexOf("}")
-		var EXPid = elem.className.slice(begin+1,end)
-		
-		var qName = F_QtxtQname(elem.innerHTML)
-		if ( qName == "" || qName == " " ) { continue }
-		//if ( qName.slice(-3) != "-->" ) { F_setCount(elem) }
-		//arrImpQs[origin][EXPid] = '<'+elem.tagName+' class="'+elem.className+'">'+elem.innerHTML+'</'+elem.tagName+'>' // ez vmiért nem jó, ha "open" van a classname-ben (farmak szívelégtelenség 1 tételnél nem volt jó, de másiknál meg igen)
-		arrImpQs[origin][EXPid] = '<details class="'+elem.className+'">'+elem.innerHTML+'</details>'
+		var impQ = childs[i]
+		if ( impQ.className.indexOf("{") == -1 ) { continue }
+		if ( impQ.className.indexOf("imp") != -1 ) { continue }
+		if ( impQ.className.indexOf("midQ") != -1 ) { continue }
+		var begin = impQ.className.indexOf("{")
+		var end = impQ.className.indexOf("}")
+		var impID = impQ.className.slice(begin+1,end)
+		pageImpQs[path][impID] = '<details class="'+impQ.className+'">'+impQ.innerHTML+'</details>'
 	}
 }
-function F_checkEXPs() {
-	var origin = document.getElementById("div_MidQ").dataset.origin
-	arrImpQs[origin] = []
-	var parentDiv
-	if ( origin == "searchQs" ) { parentDiv = document.getElementById("div_searchQTargy") }
-	if ( origin == "pageQs" ) { parentDiv = document.getElementById("div_pageQTargy") }
-	//console.log(origin)
-	F_loadExpQs(parentDiv,origin)
-}
-
-function F_loadDetails(detElem){ 
-	F_impQfew(detElem,false)
-	F_midQ(detElem)
-	F_loadImgVideo(detElem)
-	F_imgClick(detElem)
-	F_titleChange(detElem)
-	F_answerQ(detElem)
-}
-function F_detailsToggle(detElem){ 
-	//if ( detElem.classList.contains("imgLoaded") != true ) {
-		/*F_getTime()
-		oldTime = myTime*/
-			
-		/*var summElem = detElem.firstChild
-		var bgColor = summElem.style.backgroundColor
-		summElem.style.backgroundColor = "yellow"
-		var int_Click = window.setInterval(function(){
-			summElem.style.backgroundColor  = bgColor
-			clearInterval(int_Click) 
-		}, 5000)*/
-		
-		F_loadDetails(detElem)
-		var allDetails = detElem.getElementsByTagName("details")
-		for ( var i=0; i<allDetails.length; i++ ) { allDetails[i].ontoggle = function(){ 
-			F_detailsToggle(this) 
-			func_calcOldNew()
+function F_getQPath(detElem,impID) {
+	var path = currPath
+	if ( detElem.dataset.src ) { 
+		var count = 0
+		for ( var pagePath in pageTexts ) { if ( pagePath.indexOf(detElem.dataset.src) != -1 ) { 
+			count = count +1
+			path = pagePath
 		} }
-
-		//detElem.classList.add("imgLoaded");
-		/*F_getTime()
-		myTime = myTime-oldTime
-		console.log("– imagek betöltve – "+myTime)*/
-	// }
+		if ( count != 1 ) { console.log("ERROR: ["+impID+"] dataset-src("+count+"): nem található(0) / több page-re utal(1+)") }
+	}
+	return path
 }
-
-var prevMidQ = []
-var prevScrollTop = 0
-var MISSID = ""
-function F_impQfew(detElem,hidden){ // ?ms/Q a betöltési ideje
-	F_getTime()
-	var diffTime = myTime-oldTime
+function F_getQText(path,impID) {
+	if ( pageImpQs[path] == undefined ) { F_saveImpQs(path) }
+	var qText = pageImpQs[path][impID]
+	return qText
+}
+function F_setAltQsPath(detElem,path) {
+	if ( currPath == path ) { return }
+	var altImpQs = detElem.getElementsByClassName("imp")
+	for ( var x=0; x<altImpQs.length; x++ ) { 
+		if ( altImpQs[x].className.indexOf("[") == -1 ) { continue }
+		if ( altImpQs[x].dataset.src ) { continue } // kivéve ha az altImpQ-nak van jelölve path már
+		altImpQs[x].dataset.src = path
+	}
 	
-	var count = 0
-	var repeat = false
-	function F_loadImpQs(detElem,hidden) {
-		var impQs = detElem.getElementsByClassName("imp")
+	var altMidQs = detElem.getElementsByClassName("midQ")
+	for ( var x=0; x<altMidQs.length; x++ ) { 
+		if ( altMidQs[x].className.indexOf("[") == -1 ) { continue }
+		if ( altMidQs[x].dataset.src ) { continue } // kivéve ha az altImpQ-nak van jelölve path már
+		altMidQs[x].dataset.src = path
+	}
+}
+function F_loadImpQs(detElem) {
+/* Hogyan?
+  adott tárgy impQ-it nézzem meg, nincsenek-e véletlen az alján üres 1,2,3 impQ-k, mert akkor azok felülírják a fenntieket!
+	✔ megnézi a detElem összes imp child-ját
+	✔ feltételek: visible, van benne [], még nem volt betöltve
+		detElem = amit megnyitottam (details / page)
+	✔ ha talált köztük egyet, ami a feltételnek megfelel, akkor újra visszaugrik az elejére és végigmegy rajtuk, de ezt nem fogja már még1x (return) -> azért kell, hogy mindegyiket betöltse, tehát pl. ha van a betöltöttben is egy, azt is (biztos van ennél jobb módszer is, de én ezt választottam)
+	✔ path beállítása: ha nincs 'data-source', akkor az aktuális megnyitott tárgy lesz
+	✔ parentek között(detElem-ig) nem-e volt már? végtelen loop elkerülése
+	✔ más Page-ről származás
+		tárgyválasztásnál a tárgy teljes linkjét kell másolnom "data-src"-ba
+		ha azon belül is van impQ, akkor azt is abból a tárgyból fogja értelemszerűen (kivéve, ha meg van adva más)
+*/
+	var repeat
+	function F_loadNextImpQ(detElem) {
 		var error = ""
 		var repeat = false
+		var impQs = detElem.getElementsByClassName("imp")
 		for ( var i=0; i<impQs.length; i++ ) { 
-			if ( impQs[i].offsetParent === null && hidden == false ) { continue }
-			if ( impQs[i].className.indexOf("[") == -1 && impQs[i].className.indexOf("{") == -1 ) { continue }
+			if ( impQs[i].offsetParent === null ) { continue }
+			if ( impQs[i].className.indexOf("[") == -1 ) { continue }
 			if ( impQs[i].dataset.loaded == "true" ) { continue } else { impQs[i].dataset.loaded = "true" }
 			repeat = true
+			
+			var begin = impQs[i].className.indexOf("[")
+			var end = impQs[i].className.indexOf("]")
+			var impID = impQs[i].className.slice(begin+1,end)
+			
+			// path beállítása
+			var path = F_getQPath(impQs[i],impID)
 			
 			// parentek között volt-e már (loop elkerülése)
 			var contains = false
 			function F_checkParents() {
-				var impID = F_getImpID(impQs[i].className)
 				var parent = impQs[i]
 				do {
 					parent = parent.parentElement
-					if ( parent.className.indexOf(impID) == -1 ) { continue } // checkolja, hogy az [impID]-jük megyegyezik-e
+					// checkolja, hogy az [impID]-jük megyegyezik-e
+					if ( parent.className.indexOf("["+impID+"]") == -1 ) { continue } 
+					// checkolja hogy a path-jük megegyezik-e
+					if ( path == currPath ) { 
+						if ( parent.dataset.src ) { continue }
+					} else {
+						if ( parent.dataset.src == undefined ) { continue }
+						if ( path.indexOf(parent.dataset.src) == -1 ) { continue }
+					}
 					contains = true
 				} while ( parent != detElem && contains == false )
 			}
 			F_checkParents()
 			if ( contains == true ) { continue }
-			F_loadQtxt(impQs[i].className,impQs[i].tagName)
-			impQs[i].innerHTML = Qtxt
-			count = count +1
+			
+			// betöltés
+			var qText = F_getQText(path,impID)
+			if ( qText == undefined ) { // ha hiányozna az [impQ]
+				var string = i+" ["+impID+"] - "+path +"\n"
+				if ( error.indexOf(string) == -1 ) { error = error + string }
+				continue
+			}
+			if ( impQs[i].tagName == "div" || impQs[i].tagName == "DIV" ) {
+				qText = qText.slice(qText.indexOf('<ul class="normal">')+19)
+				qText = qText.slice(0,qText.lastIndexOf('</ul></details>'))
+			}
+			impQs[i].innerHTML = qText
+			
+			// ha más pageről származik, akkor az altImpQ-i is onnan származzanak!
+			F_setAltQsPath(impQs[i],path)
 		}
-		if ( error != "" ) { // ha hiányozott valamelyik [impQ]
+		// ha hiányzott valamelyik [impQ]
+		if ( error != "" ) { 
 			console.log(error)
 			alert("hiányzik impQ (lásd console.log)")
 		}
 		return repeat
 	}
-	do { repeat = F_loadImpQs(detElem,hidden) } while ( repeat == true )
-	
-	F_getTime()
-	var endTime = myTime-oldTime-diffTime
-	var unitTime = (endTime*1000/count).toFixed(2);
-	//console.log("–F_impQfew– "+endTime.toFixed(2)+"sec ("+unitTime+"ms/Q, "+count+"db Q)")
+	do { repeat = F_loadNextImpQ(detElem) } while ( repeat == true )
 }
-/*function F_impQfew(detElem){ // ?ms/Q a betöltési ideje
-	MISSID = ""
-	var allImpQs = detElem.querySelectorAll('.imp')
-	for ( var i=0;  i<allImpQs.length;  i++ ) {
-		if ( allImpQs[i].offsetParent === null ) { continue }
-		if ( allImpQs[i].classList.contains("imported") == true ) { continue }
-		allImpQs[i].className = allImpQs[i].className+" imported"
-		
-		var impID = allImpQs[i].className
-		impID = impID.replace(" ","")
-		impID = impID.replace("imp","")
-		
-		F_loadQtxt(impID,allImpQs[i].tagName)
-		F_loadImpQ(Qtxt)
-		
-		allImpQs[i].innerHTML = Qtxt
-		//console.log(Qtxt)
-	}
-	
-	if ( MISSID != "" ) { alert("F_impQfew: Az alábbi EXPid-k még nincsenek LS-be reigsztrálva: "+MISSID + "\nNyisd meg a tárgyválasztás ablaknál az adott tárgyhoz kapcsolódó egyéb tárgy(ak)at egyszer -> pl. Biokémia II esetén nyisd meg Biokémia I, Élettan, Molekuláris Sejtbiológia") }
-}*/
-function F_impQlot(detElem){ // 0,4ms/Q a betöltési ideje
-	F_getTime()
-	var diffTime = myTime-oldTime
-	console.log("– F_impQlot –")
-	
-	if ( detElem.classList.contains("imported") == true ) { return }
-	detElem.className = detElem.className+" imported"
-	
-	MISSID = ""
-	var oldHTML = detElem.innerHTML
-	var newHTML = ""
-	
-	count = 0
-	do {
-		if ( oldHTML.indexOf(' class="imp ') == -1 ) { break }
-		count = count +1
-		
-		var mEXPid
-		function F_getImpQ() {
-			var divSpan = ""
-			if ( oldHTML.indexOf('<div class="imp ') == -1 ) {
-				divSpan = "span"
-			} else if ( oldHTML.indexOf('<span class="imp ') == -1 ) {
-				divSpan = "div"
-			} else if ( oldHTML.indexOf('<div class="imp ') > oldHTML.indexOf('<span class="imp ') ) {
-				divSpan = "span" // span volt valamiért és átírtam div-re, de lehet rossz (mert error-ozott, és így jó lett)
-			} else {
-				divSpan = "div"
-				//if ( oldHTML.indexOf('<div class="imp [') == -1 ) { alert(oldHTML.indexOf('<span class="imp [')) }
-			}
-			
-			var impBlock = oldHTML.slice(oldHTML.indexOf('<'+divSpan+' class="imp '))
-			newHTML = newHTML + oldHTML.slice(0,oldHTML.indexOf('<'+divSpan+' class="imp '))
-			oldHTML = oldHTML.slice(oldHTML.indexOf('<'+divSpan+' class="imp '))
-			
-			impBlock = impBlock.slice(0,impBlock.indexOf('">')+2)
-			newHTML = newHTML + impBlock
-			oldHTML = oldHTML.slice(oldHTML.indexOf('">')+2)
-			
-			F_loadQtxt(impBlock,divSpan)
-			//alert(impBlock)
-		}
-		F_getImpQ()
-		if ( Qtxt == undefined ) { continue }
-		F_loadImpQ(Qtxt)
 
-		newHTML = newHTML + Qtxt
-	}
-	while ( oldHTML.indexOf(' class="imp ') != -1 )
-	
-	detElem.innerHTML = newHTML + oldHTML // emiatt kurva lassú
-	if ( MISSID != "" ) { alert("F_impQlot: Az alábbi EXPid-k még nincsenek LS-be reigsztrálva: "+MISSID+"\nNyisd meg a tárgyválasztás ablaknál az adott tárgyhoz kapcsolódó egyéb tárgy(ak)at egyszer --> pl. Biokémia II esetén nyisd meg Biokémia I, Élettan, Molekuláris Sejtbiológia") }
-	
-	F_getTime()
-	var endTime = myTime-oldTime-diffTime
-	var unitTime = (endTime*1000/count).toFixed(2);
-	//console.log("– F_impQlot – "+endTime.toFixed(2)+"sec ("+unitTime+"ms/Q, "+count+"db Q)")
-}
-//F_impQlot(document.documentElement)
-function F_getImpID(impID) {
-	if ( impID.indexOf("[") != -1 ) {
-		begin = impID.indexOf("[")
-		end = impID.indexOf("]") +1
+function F_clickAutoLoadPagesBtn(btn) {
+	if ( localStorage.getItem("autoLoadPages") == "true" ) {
+		localStorage.setItem("autoLoadPages", "false")
+		btn.style.backgroundColor = ""
 	} else {
-		begin = impID.indexOf("{")
-		end = impID.indexOf("}") +1
+		localStorage.setItem("autoLoadPages", "true")
+		btn.style.backgroundColor = "green"
 	}
-	impID = impID.slice(begin,end)
-	return impID
+	console.log("– F_clickAutoLoadPagesBtn – "+localStorage.getItem("autoLoadPages"))
 }
-function F_loadQtxt(impID,divSpan,origin){
-	var begin,end,hidden
-	//console.log(impID+" "+divSpan)
-	if ( impID.indexOf("hide") != -1 ) { hidden = true }
-	impID = F_getImpID(impID)
-	//console.log(impID)
-	if ( impID.indexOf("[") != -1 ) {
-		var origin = document.getElementById("div_MidQ").dataset.origin
-		Qtxt = arrImpQs[origin][impID.slice(1,-1)]
+function F_loadAutoLoadPagesBtn() {
+	var btn = document.getElementById("btn_toggleLoad")
+	if ( localStorage.getItem("autoLoadPages") == "true" ) {
+		btn.style.backgroundColor = "green"
 	} else {
-		Qtxt = arrImpQs["expQs"][impID.slice(1,-1)]
-	}
-	if ( Qtxt == null ) { 
-		if ( MISSID.indexOf(impID) == -1 ) { MISSID = MISSID + impID + "," }
-		return
-	}
-	if ( hidden == true ) {
-		if ( divSpan == "div" || divSpan == "DIV" ) {
-			var title = Qtxt
-			title = title.slice(0,title.indexOf('</summary>'))
-			title = title.slice(title.indexOf('<summary'))
-			title = title.slice(title.indexOf('>')+1)
-			title = "<div><strong>"+title+"</strong></div>"
-			Qtxt = Qtxt.replace('<ul class="normal">', '<ul class="normal">'+title);
-		}
-
-		Qtxt = Qtxt.replace(/kerdes/g, "");
-	}
-	if ( divSpan == "div" || divSpan == "DIV" ) {
-		Qtxt = Qtxt.slice(Qtxt.indexOf('<ul class="normal">')+19)
-		Qtxt = Qtxt.slice(0,Qtxt.lastIndexOf('</ul></details>'))
+		btn.style.backgroundColor = ""
 	}
 }
-function F_loadImpQ(locTXT){
-/* method:
-	végig importálja az altkérdéseket is, amíg olyanba nem ütközik, ami már volt
-	megkeresi az elso altImpQ-t.
-	megnézi az ID-jét.
-	megnézi, hogy az eddigi Qtext-ben van-e már: visszafele indul, a hozzá legközelebbi utolsót keresi!, ha van:
-	megnézi, hogy a parentje-e, vagyis: 
-	megnézi hogy div/span-e, legyen pl. div --> a (num = 1)
-	utána megkeresi a következo <div vagy </div-et: ha <div akkor a (num = num+1) ha </div akkor a num = num-1
-	addig csinálj amíg a num = 0
-	ha közben áthaladt az altImpQ-n (ami elbírálás alatt) áll, akkor nem lesz importálva -> ha nem, akkor importálva lesz
-*/
-	var startP = 0
-	do {
-		if ( locTXT.indexOf(' class="imp ',startP) == -1 ) { break }
-		startP = locTXT.indexOf(' class="imp ',startP) +1
-		var EXPid = locTXT.slice(startP+12)
-		var prevQtxt = locTXT.slice(0,startP)
-		var newTXT = false
-		/*console.clear()
-		console.log(startP)
-		console.log(mEXPid)
-		console.log(prevQtxt)
-		console.log(EXPid)
-		alert("sajt")*/
-		var nextQtype = false
-		if ( EXPid.indexOf("}") != -1 && EXPid.indexOf("]") == -1 ) {
-			nextQtype = "expQ"
-		} else if ( EXPid.indexOf("]") != -1 && EXPid.indexOf("}") == -1 ) {
-			nextQtype = "impQ"
-		} else if  ( EXPid.indexOf("}") > EXPid.indexOf("]") ) {
-			nextQtype = "impQ"
-		} else if  ( EXPid.indexOf("]") > EXPid.indexOf("}") ) {
-			nextQtype = "expQ"
-		}
-		if ( nextQtype == "expQ" ) {
-			EXPid = EXPid.slice(0,EXPid.indexOf('}'))
-			EXPid = EXPid.slice(EXPid.indexOf('{')+1)
-			if ( prevQtxt.lastIndexOf("{"+EXPid+"}") != -1 ) {
-				var elemType = prevQtxt.slice(0,prevQtxt.lastIndexOf('class="imp {'+EXPid+'}'))
-				F_checkSearchTXT(prevQtxt,elemType)
-				if ( newTXT == true ) { arrImpQs["expQs"][EXPid] }
-			} else { 
-				newTXT = arrImpQs["expQs"][EXPid] 
-			}
-		}
-		if ( nextQtype == "impQ" ) {
-			var origin = document.getElementById("div_MidQ").dataset.origin
-			EXPid = EXPid.slice(0,EXPid.indexOf(']'))
-			if ( prevQtxt.lastIndexOf("["+EXPid+"]") != -1 ) {
-				var elemType = prevQtxt.slice(0,prevQtxt.lastIndexOf('class="imp ['+EXPid+']'))
-				F_checkSearchTXT(prevQtxt,elemType)
-				if ( newTXT == true ) { newTXT = arrImpQs[origin][EXPid] } 
-			} else { 
-				newTXT = arrImpQs[origin][EXPid] 
-			}
-		}
-		if ( newTXT != false ) { // importQ
-			count = count +1
-			if ( newTXT != null ) {
-				var oldTXT = locTXT.slice(locTXT.indexOf('<',startP-6),locTXT.indexOf('>',startP)+1)
-				if ( oldTXT.indexOf("hide") != -1 ) {
-					if ( oldTXT.slice(1,4) == "div" ) {
-						var title = newTXT
-						title = title.slice(0,title.indexOf('</summary>'))
-						title = title.slice(title.indexOf('<summary'))
-						title = title.slice(title.indexOf('>')+1)
-						title = "<strong>"+title+"</strong>"
-						newTXT = newTXT.replace('<ul class="normal">', '<ul class="normal">'+title);
-					}
-
-					newTXT = newTXT.replace(/kerdes/g, "");
-				}
-				if ( oldTXT.slice(1,4) == "div" ) {
-					newTXT = newTXT.slice(newTXT.indexOf('<ul class="normal">')+19)
-					newTXT = newTXT.slice(0,-15)
-				}
-				newTXT = oldTXT + newTXT
-				locTXT = locTXT.slice(0,locTXT.indexOf('<',startP-6)) + newTXT + locTXT.slice(locTXT.indexOf('>',startP)+1)
-			} else {
-				if ( nextQtype == "expQ" ) { EXPid = "{"+EXPid+"}" }
-				if ( nextQtype == "impQ" ) { EXPid = "["+EXPid+"]" }
-				if ( MISSID.indexOf(EXPid) == -1 ) { MISSID = MISSID + EXPid + "," }
-			}
-		}
-	} while ( locTXT.indexOf(' class="imp [',startP) != -1 )
-	Qtxt = locTXT
+F_loadAutoLoadPagesBtn()
+function F_loadAndSavePageText(path,click) {
+	if ( document.getElementById("iframe_targyak") == null ) {
+		var iframe = document.createElement("iframe") // ebbe tölti be a webpage-ket, majd innen másolja ki innerhtml-üket
+		document.body.appendChild(iframe)
+		iframe.style.display = "none"
+		iframe.id = "iframe_targyak"
+	}
+	function F_loadPage(pageText,id) { // ráklikkeléskor kiírja az aktuális tárgyat
+		pageLinks[id].style.backgroundColor = "yellow"
+		var pageDiv = document.getElementById("div_pageQTargy")
+		pageDiv.innerHTML = pageText
+		/* */var startTime = F_getTime()
+		F_loadElem(pageDiv)
+		/* */var endTime = F_getTime()
+		/* */console.log(endTime-startTime)
+	}
+	
+	document.getElementById("iframe_targyak").src = path
+	var handler = function(e) {
+		removeEventListener('message', handler, false)
+		var pageText = e.data[1]
+		pageTexts[path] = pageText
+		
+		var id
+		for ( var i=0; i<pageLinks.length; i++ ) { if ( pageLinks[i].dataset.src == path ) { id = i } }
+		F_saveIDB(path,pageText,id)
+		if ( click == true ) { F_loadPage(pageText,id) }
+	}
+	window.addEventListener('message', handler, false)
 }
-function F_midQText(qTxt){
-	qTxt = qTxt.slice(qTxt.indexOf("<summary"),qTxt.lastIndexOf("</details"))
-	var qTitle = qTxt.slice(qTxt.indexOf(">")+1,qTxt.indexOf("</summary"))
+function F_loadPageLinks() { // IDB, favicons, setClick
+	function F_loadFavIcons() {
+		var table = document.getElementById("table_weboldalak")
+		var favicons = table.getElementsByClassName("targy")
+		for ( var i=0; i<favicons.length; i++ ) {
+			if ( favicons[i].src ) { continue }
+			var path = favicons[i].parentElement.dataset.src
+			favicons[i].src = path.slice(0,path.lastIndexOf("/")+1)+"favicon.bmp"
+		}
+	}
+	F_loadFavIcons()
+	
+	function F_setPageClick() {
+		for ( var i=0; i<pageLinks.length; i++ ) { 
+			pageLinks[i].onclick = function() {
+				threeSec = 0 // ez azért kéne, hogy auto betöltésnél ne essen szét, hogy egyszerre kettőt akar
+				for ( var x=0; x<pageLinks.length; x++ ) { pageLinks[x].style.backgroundColor = "" }
+				// loadAllPage = false // ez gondolom azért kéne, hogy megálljon a search speed-betöltése !?
+				currPath = this.dataset.src
+				targyPath = this.dataset.src
+				F_loadAndSavePageText(this.dataset.src,true)
+			}
+		}
+	}
+	F_setPageClick()
+	
+	function F_loadIDB(page) {
+		var path = page.dataset.src
+		var request = indexedDB.open(path, 1);
+		request.onerror = function(event) { console.log("database ERROR: " + event.target.errorCode) }
+		request.onsuccess = function(event) {
+			var db = event.target.result;
+			//console.log(path+" – "+db.objectStoreNames.contains('webpage'))
+			//console.log(db.objectStoreNames)
+			if ( db.objectStoreNames.contains('webpage') != true ) { return }
+			var transaction = db.transaction("webpage","readwrite")
+			var store = transaction.objectStore("webpage");  
+			store.get(1).onsuccess = function(event) { 
+				var text = this.result[0]["pageHTML"]
+				//console.log(path+" : "+text)
+				if ( this.result.length == 1 ) { // ez azért kell...
+					// a time-ot idb-be régen nem mentette el, így amikor leakarom hívni hibát ír ki. ezért akik abban az 1hónapban felmentek weboldalra, azoknál hiba lenne, így kell egy 'frissítés' (későbbiekben is, ha hozzáakarok majd adni egy új változót idb-be a path-hez lehet ez ilyen fog kelleni)
+					clearIDB(path,page)
+					return
+				}
+				
+				pageTexts[path] = text
+				var time = F_getTime() - this.result[1]["pageTIME"]
+				//console.log(path+" : "+this.result[1]["pageTIME"])
+				if ( time < 604800 ) { // 1 hét
+					page.style.color = "blue"
+					page.dataset.loaded = true
+				} else {
+					page.style.color = "red"
+				}
+			}
+			transaction.oncomplete = function() { db.close() }
+		}
+	}
+	for ( var i=0; i<pageLinks.length; i++ ) { F_loadIDB(pageLinks[i]) }
+}
+F_loadPageLinks()
+
+function F_saveIDB(path,pageText,id) {
+	var currTime = F_getTime()
+	var objectData = [ { pageHTML: pageText }, { pageTIME: currTime } ]
+	clearIDB(path,pageLinks[id])
+	
+	var request = indexedDB.open(path, 1);
+	request.onupgradeneeded = function (event) {
+		var db = event.target.result;
+		var store = db.createObjectStore("webpage", { keyPath: "id", autoIncrement: true });
+		store.put(objectData)
+	}
+	request.onerror = function(event) { console.log("database ERROR: " + event.target.errorCode) }
+	request.onsuccess = function(event) {
+		var db = event.target.result;
+		var transaction = db.transaction("webpage","readwrite")
+		var store = transaction.objectStore("webpage");  
+		//store.get(1).onsuccess = function(event) { console.log("database SAVED – "+path /* this.result */) }
+		transaction.oncomplete = function() { db.close() }
+		
+		pageLinks[id].style.color = "blue"
+	}
+}
+function clearIDB(path,page) {
+	var request = indexedDB.deleteDatabase(path);
+	//request.onsuccess = function(event) { console.log("database DELETE – "+path) }
+	if ( pageTexts[path] == undefined ) { 
+		page.style.color = ""
+	} else {
+		page.style.color = "darkviolet"
+	}
+}
+function clearFullIDB() { for ( var i=0; i<pageLinks.length; i++ ) { clearIDB(pageLinks[i].dataset.src,pageLinks[i]) } }
+
+var threeSec = 0
+var F_seekBar = window.setInterval(function(){
+	threeSec = threeSec +1
+	if ( localStorage.getItem("autoLoadPages") == "true" ) {
+		//console.log(threeSec)
+		var loadTime = 3
+		if ( threeSec > loadTime ) {
+			for ( var i=0; i<pageLinks.length; i++ ) { 
+				if ( pageLinks[i].style.color != "blue" ) {
+					F_loadAndSavePageText(pageLinks[i].dataset.src,false)
+					break
+				}
+			}
+			threeSec = 0
+		}
+	}
+}, 1000);
+// –––––––––––––––  impQs END   –––––––––––––––
+
+// –––––––––––––––  midQs BEGIN   –––––––––––––––
+var prevMidQs = []
+function F_divMidQ() { // lekreálja középre a divet, ahova kidobja majd a midQ/searchQ-kat
+	function F_divMidQ() { // mainDiv: ebbe lesz minden, sárga bordere van ...
+		var div = document.createElement("div")
+		document.getElementById("div_body").appendChild(div)
+		//document.body.appendChild(div)
+		div.id = "div_MidQ"
+		div.dataset.origin = "pageQs"
+		div.style.backgroundColor = "white"
+		div.style.overflow = "auto"
+		div.style.border = "8px solid black"
+		div.style.outline = "5px solid yellow"
+		div.style.display = "none"
+		div.style.position = "absolute"
+		div.style.left = "5px"
+		div.style.right = "5px"
+		div.style.top = "4px"
+		div.style.bottom = "4px"
+		div.style.zIndex = "3"
+	}
+	F_divMidQ()
+	var div = document.getElementById("div_MidQ")
+	function F_btnBack() { // bal felső sarokban a vissza
+		var button = document.createElement("span")
+		div.appendChild(button)
+		button.id = "btn_MidQback"
+		button.style.backgroundColor = "Gainsboro"
+		button.style.fontWeight = "bold"
+		button.style.border = "3px solid black"
+		button.style.cursor = "pointer";
+		button.innerHTML = "&#x27A4;"
+		button.style.transform = "scale(-1, 1)"
+		button.style.width = "30px"
+		button.style.position = "absolute"
+		button.style.textAlign = "center"
+		button.onclick = function(){ 
+			prevMidQs.pop() // uccsót (ami a jelenlegi letörli)
+			var text = prevMidQs[prevMidQs.length-1] // uccsót (ami így már az előző lett) betölti
+			var impID = text.slice(0,text.indexOf("-")-1)
+			var path = text.slice(text.indexOf("-")+2)
+			var qText = F_getQText(path,impID)
+			F_setMidQ(qText,path)
+			//F_midQload(prevMidQs[prevMidQs.length-1]) 
+		}
+	}
+	F_btnBack()
+	function F_btnTitle() { // Q title-je középen fenn
+		var title = document.createElement("div")
+		div.appendChild(title)
+		title.style.textAlign = "center"
+		title.style.height = "30px"
+		var span = document.createElement("span")
+		title.appendChild(span)
+		span.id = "btn_MidQ"
+		//span.style.fontWeight = "bold"
+		span.style.border = "3px solid black"
+		span.style.fontSize  = "large"
+		span.style.backgroundColor = "red"
+		span.style.color = "white"
+		span.style.cursor = "pointer";
+		span.onclick = function(){ 
+			prevMidQs = []
+			document.getElementById("div_MidQ").style.display = "none" 
+			if ( document.getElementById("div_searchBg").style.display != "block" ) {
+				document.getElementById("div_pageQTargy").style.display = "block"
+				document.getElementById("table_weboldalak").style.display = "block"
+				document.getElementById("btn_toggleQing").style.display = "block"
+				document.body.parentElement.scrollTop = prevScrollTop
+			}
+			
+			//currPath = targyPath
+		}
+	}
+	F_btnTitle()
+	function F_divText() { // Q szövege ide jön
+		var divText = document.createElement("div")
+		div.appendChild(divText)
+		divText.id = "div_MidQText"
+		divText.style.paddingBottom = "10px"
+		//divText.style.paddingTop = "30px"
+	}
+	F_divText()
+}
+F_divMidQ()
+function F_setMidQ(qText,path) { // középen megjeleníti a div-et, benne a szöveggel
+	prevScrollTop = document.body.parentElement.scrollTop // ez előbb kell legyen, minthogy megjelenne a div_MidQ --> elmentse, hogy hol voltam az oldalon(mondjuk a közepe tájékán), hogy miután bezárom oda scrolloljon vissza(ne a tetejére ugorjon!)
+	
+	document.getElementById("div_MidQ").style.display = "block" // ez előbb kell legyen, mint az F_loadElem --> hogy láthatók legyenek az impQ-k, amiket be kell töltenie
+	document.getElementById("div_pageQTargy").style.display = "none"
+	document.getElementById("table_weboldalak").style.display = "none"
+	document.getElementById("btn_toggleQing").style.display = "none"
+	
+	//console.log(prevMidQs)
+	qText = qText.slice(qText.indexOf("<summary"),qText.lastIndexOf("</details"))
+	var qTitle = qText.slice(qText.indexOf(">")+1,qText.indexOf("</summary"))
 	document.getElementById("btn_MidQ").innerHTML = qTitle
-	qTxt = qTxt.slice(qTxt.indexOf("</summary"))
-	qTxt = qTxt.slice(qTxt.indexOf(">")+1)
-	//qTxt = qTxt.replace('<ul class="normal">','<ul>')
-	document.getElementById("div_MidQText").innerHTML = qTxt
-
-	if ( document.getElementById("div_MidQ").style.display != "block" ) {
-		prevScrollTop = document.body.parentElement.scrollTop
-		document.getElementById("btn_toggleAll").style.display = 'none'
-		document.getElementById("table_weboldalak").style.display = 'none'
-		document.getElementById("div_pageQTargy").style.display = 'none'
-		document.getElementById("div_MainFrame").style.display = 'none'
-	}
 	
-	document.getElementById("div_MidQ").style.display = "block"
-	//F_impQfew(document.getElementById("div_MidQText"))
-	F_detailsToggle(document.getElementById("div_MidQText"))
-	//F_imgClick(document.getElementById("div_MidQText"))
-	//F_titleChange(document.getElementById("div_MidQText"))
-}
-function F_midQload(impID){
-	if ( impID.indexOf("{") != -1 ) { 
-		midQisExp = true
-	} else {
-		midQisExp = false
-	}
-	F_loadQtxt(impID,this.tagName)
-	F_midQText(Qtxt)
-	if ( prevMidQ.length > 1 ) {
+	qText = qText.slice(qText.indexOf("</summary"))
+	qText = qText.slice(qText.indexOf(">")+1)
+	document.getElementById("div_MidQText").innerHTML = qText
+	
+	F_setAltQsPath(document.getElementById("div_MidQText"),path)
+	F_loadElem(document.getElementById("div_MidQText"))
+	if ( prevMidQs.length > 1 ) {
 		document.getElementById("btn_MidQback").style.display = "block"
 	} else {
 		document.getElementById("btn_MidQback").style.display = "none"
 	}
 }
-function F_midQ(detElem){
+function F_loadMidQs(detElem) { // midQ[x] elemeket beállítja: kék fontColor, rájuk click-elve mi történjen
 	var midQs = detElem.getElementsByClassName("midQ")
 	for ( var x=0; x<midQs.length; x++ ) {
 		var midQ = midQs[x]
 		//console.log(midQ.innerHTML)
 		midQ.style.color = "blue"
 		midQ.style.textShadow = "0 0 1px yellow, 0 0 1px black"
-		midQ.style.cursor = "pointer"; 
+		midQ.style.cursor = "pointer"
 		midQ.onmouseover = function(){ this.style.color = "green" }
 		midQ.onmouseout = function(){ this.style.color = "blue" }
-		midQ.onclick = function(){ 
-			midQloaded = false
-			var impID = this.className
-			prevMidQ.push(impID)
-			F_midQload(impID)
+		midQ.onclick = function() {
+			var begin = this.className.indexOf("[")
+			var end = this.className.indexOf("]")
+			var impID = this.className.slice(begin+1,end)
+			var path = F_getQPath(this,impID) 
+			prevMidQs.push(impID+" - "+path)
+			var qText = F_getQText(path,impID)
+			F_setMidQ(qText,path) 
 		}
 	}
 }
-F_midQ(document)
-var midQisExp = false
+// –––––––––––––––  midQs END   –––––––––––––––
 
-/* IMG-load mechanizmusa
-	+ toggle esetén 'for összes image'
-	+ amelyik nem visible, az return
-	+ amelyik nem data-src (tehát már be van töltve) az return
-	- ezután azt nézi meg, hogy impQ image-e:
-		felmegy a toggle eventes details elem-ig, és megnézi volt-e közte {} vagy [] class-ú elem (lehet div,span,details is)
-		amennyiben van, akkor az elsönél megáll és az lesz a location-je
-		ha nincs, akkor a default location
-*/
-var testLoad = false
-var missImgs = ""
-function F_loadImgVideo(detElem){
-	//console.clear()
-	//console.log("F_loadImgVideo")
-	var path
-	var origin = document.getElementById("div_MidQ").dataset.origin
-	if ( origin == "searchQs" ) { path = searchPath }
-	if ( origin == "pageQs" ) { path = pagePath }
-	//console.log(path)
-	
-	var imgs = detElem.getElementsByTagName("IMG")
-	for ( var x=0; x<imgs.length; x++ ) { 
-		if ( imgs[x].offsetParent == null && testLoad == false ) { continue }
-		if ( imgs[x].dataset.src == undefined ) { continue } // ha elotte a fooldalon megnyitottam már a Q-t, akkor nem kell újra betöltenie
-		
-		//imgs[x].onerror = function(){ missImgs = missImgs + this.src + ", " };
-		imgs[x].onerror = function(){
-			var textVar = this.src.slice(this.src.lastIndexOf("/")+1)
-			if ( missImgs.indexOf(textVar+",") == -1 ) { missImgs = missImgs + textVar + ", " }
-		};
-		
-		imgs[x].src = "images/" + imgs[x].dataset.src
-		imgs[x].removeAttribute("data-src")
-		
-		imgs[x].style.border = "3px solid black"
-		imgs[x].style.maxWidth = "40%"
-		imgs[x].style.float = "right"
-		
-		if ( imgs[x].className.indexOf("mwsw") != -1 ) {
-			var width = imgs[x].className.slice(imgs[x].className.indexOf("mwsw")+5)
-			width = Number(width) * screen.width /100
-			width = Math.floor(width)
-			imgs[x].style.maxWidth = width+"px"
-			//console.log(width)
-		}
+// –––––––––––––––  Videos BEGIN  –––––––––––––––
+function F_clickSeekBar(seekBarDiv,e){
+	var parentDiv = seekBarDiv.parentElement
+	var videoElems = parentDiv.getElementsByTagName("video")
+	var thisVideo = videoElems[0]
+	x = e.pageX - thisVideo.offsetLeft
+	clickedValue = x * thisVideo.max / thisVideo.offsetWidth
+	var percent = x / thisVideo.offsetWidth
+	var currTime = percent * thisVideo.duration
+	currTime = Math.floor(currTime)
+	thisVideo.currentTime = currTime
+	F_stopVideo(thisVideo)
+}
+function F_setSeekBarWidth(thisVideo){
+	var parentDiv = thisVideo.parentElement
+	var seekBars = parentDiv.getElementsByTagName("span")
+	var seekBarSpan = seekBars[0]
+	//var seekBarSpan = document.getElementById("centVideoBar")
+	seekBarSpan.style.width = thisVideo.offsetWidth *thisVideo.currentTime /thisVideo.duration +"px"
+	seekBarSpan.style.left = thisVideo.offsetLeft
+}
+function F_stopVideo(thisVideo){
+	if ( thisVideo.id != "video_cent" ) { thisVideo.id = "" }
+	thisVideo.style.borderColor = "black"
+	thisVideo.pause()
+	F_setSeekBarWidth(thisVideo)
+}
+function F_playVideo(thisVideo){
+	if ( document.getElementById("playedVideo") ) { F_stopVideo(document.getElementById("playedVideo")) }
+	if ( thisVideo.id != "video_cent" ) { thisVideo.id = "playedVideo" }
+	thisVideo.style.borderColor = "springgreen"
+	thisVideo.play()
+	var F_seekBar = window.setInterval(function(){
+		F_setSeekBarWidth(thisVideo)
+		if ( thisVideo.id != "playedVideo" && thisVideo.id != "video_cent" ) { clearInterval(F_seekBar) }
+	}, 1000)
+}
+function F_setVideoSource(videoElem,srcTxt){
+	srcTxt = srcTxt.slice(srcTxt.lastIndexOf("/")+1) // a régi jegyzetekben még benne van, hogy 'videos/', ezért kell
+	videoElem.setAttribute('src', "videos/"+srcTxt)
+	videoElem.onerror = function(){
+		console.log("'"+srcTxt+"' video is missing!") 
+		alert("'"+srcTxt+"' video is missing! --> console.log: line number") 
 	}
-	
-	F_abbrSet(detElem)
-	F_synonyms(detElem)
-	
-	// metszet img-ek
-	var imgs = detElem.getElementsByTagName("img")
-	for ( var x=0; x<imgs.length; x++ ) {
-		if ( imgs[x].classList.contains("metszet") == true ) {
-			if ( imgs[x].src ) {
-				if ( imgs[x].style.borderColor == "limegreen" ) {
-					var source = imgs[x].src
-					source = source.slice(0,source.indexOf("."))
-					source = source.slice(0,-1)
-					source = source + imgs[x].src.slice(imgs[x].src.indexOf("."))
-					
-					console.log(imgs[x].src +" "+ source)
-					imgs[x].src = source
-					imgs[x].style.borderColor = "red"
-				}
-			}
-		}
-	}
-	
-	// Youtube Video Load ---- ezektől meg kéne szabadulni!!!
-	var allYoutube = detElem.getElementsByTagName("iframe")
-	for ( var i=0; i<allYoutube.length; i++ ) {
-		if ( allYoutube[i].dataset.src && allYoutube[i].offsetParent != null ) {
-			allYoutube[i].src = allYoutube[i].dataset.src
-			allYoutube[i].removeAttribute("data-src")
-		}
-	}
-	
-	// PDF Load
-	var allPDF = detElem.getElementsByTagName("embed")
-	for ( var i=0; i<allPDF.length; i++ ) {
-		if ( allPDF[i].dataset.src && allPDF[i].offsetParent != null ) {
-			allPDF[i].src = allPDF[i].dataset.src
-			allPDF[i].removeAttribute("data-src")
-		}
-	}
-	
-	// Video Load
+}
+
+function F_loadVideos(detElem){
 	var allVideo = detElem.getElementsByTagName("video")
 	for ( var i=0; i<allVideo.length; i++ ) {
-		if ( allVideo[i].offsetParent == null && testLoad == false ) { continue }
-		if ( allVideo[i].dataset.src == undefined ) { continue } 
-		var source = document.createElement('source')
-		source.setAttribute('src', "videos/"+ allVideo[i].dataset.src)
-		/*if ( midQisExp == true ) {
-			source.setAttribute('src', allVideo[i].dataset.src)
-		} else {
-			source.setAttribute('src', path.slice(0,path.lastIndexOf("/")+1) + allVideo[i].dataset.src)
-		}*/
-		source.onerror = function(){
-			var textVar = this.src.slice(this.src.lastIndexOf("/")+1)
-			if ( missImgs.indexOf(textVar) == -1 ) { missImgs = missImgs+"\n"+textVar }
-		};
-	
-		allVideo[i].removeAttribute("data-src")
-		allVideo[i].appendChild(source)
-		allVideo[i].style.maxWidth = "98%"
-		allVideo[i].style.borderColor = "red"
-		//allVideo[i].muted = true;
-		allVideo[i].onloadeddata = function() { // kell, különben ha elobb kattolok rá, már nem tölti be
-			// controlBar fix!
-			this.onclick = function(){
-				if ( this.parentElement.className != "videoParentDiv" ) {
-					var div = document.createElement("div");
-					var parent = this.parentNode;
-					parent.insertBefore(div, this);
-					div.appendChild(this);
-					div.className = "videoParentDiv"
-					
-					var seekBar = document.createElement("div");
-					seekBar.className = "seekBar"
-					div.appendChild(seekBar)
-					var span = document.createElement("span");
-					span.className = "seekBar"
-					span.innerHTML = "&nbsp;"
-					seekBar.appendChild(span)
-				}
+		var videoElem = allVideo[i]
+		if ( videoElem.offsetParent === null ) { continue }
+		if ( videoElem.dataset.src == undefined ) { continue } 
+		
+		function F_setSource(videoElem){
+			//var source = document.createElement('source')
+			F_setVideoSource(videoElem,videoElem.dataset.src)
+			videoElem.removeAttribute("data-src")
+			//videoElem.appendChild(source)
+		}
+		F_setSource(videoElem)
+		
+		videoElem.style.borderColor = "black"
+		videoElem.style.cursor = "pointer"
+		videoElem.style.maxWidth = "100%" // kell! különben kilóg a képernyőről, ha nagyobb, mint 60%
+		
+		videoElem.onloadeddata = function() { // meg kell várja, különben seekBar mérete nem jó
+			var videoElem = this
+			function F_createSeekBar(){ 
+				var parentDiv = document.createElement("div") // border, ebbe van a video + szürke + sárga
+				var parent = videoElem.parentNode
+				parent.insertBefore(parentDiv,videoElem)
+				parentDiv.appendChild(videoElem)
+				parentDiv.style.border = "15px solid black"
+				parentDiv.style.maxWidth = "60%"
+				parentDiv.style.width = videoElem.offsetWidth
+				parentDiv.style.float = "right"
 				
-				if ( this.paused == false ) {
-					this.style.borderColor = "red"
-					
-					var widthPx = this.offsetWidth *this.currentTime /this.duration
-					var parentDiv = this.parentElement
-					var seekBars = parentDiv.getElementsByTagName("span")
-					seekBars[0].style.width = widthPx
-					seekBars[0].style.left = this.offsetLeft
-					
-					this.pause(); 
-				} else {
-					if ( document.getElementById("playedVideo") ) {
-						if ( document.getElementById("playedVideo") != this ) {
-							document.getElementById("playedVideo").pause();
-							document.getElementById("playedVideo").id = "";
-						}
-					}
-					this.id = "playedVideo";
-					this.style.borderColor = "springgreen"
-					this.play();
-					
-					//ezt elég 1x megcsinálni, amikor elindítom (fix majd, mert lehet egyszerusíteni)
-					var parentDiv = this.parentElement
-					var seekBars = parentDiv.getElementsByTagName("span")
-					theSeekBar = seekBars[0].parentElement
-					theSeekBar.style.width = this.offsetWidth
-					theSeekBar.style.opacity = "1"; 
-					theSeekBar.onclick = function(e){
-						x = e.pageX - this.offsetLeft
-						clickedValue = x * this.max / this.offsetWidth;
-						var percent = x / this.offsetWidth
-						var playedVideo = document.getElementById("playedVideo")
-						playedVideo.style.borderColor = "black"
-						playedVideo.pause();
-						var currTime = percent * playedVideo.duration
-						currTime = Math.floor(currTime);
-						//console.log(currTime);
-						playedVideo.currentTime = currTime
-						
-						var seekBars = parentDiv.getElementsByTagName("span")
-						var widthPx = playedVideo.offsetWidth *playedVideo.currentTime /playedVideo.duration
-						seekBars[0].style.width = widthPx
-						seekBars[0].style.left = playedVideo.offsetLeft
-					}
-				}
-			};
+				var seekBarDiv = document.createElement("div") // szürke háttér
+				seekBarDiv.className = "seekBar"
+				parentDiv.appendChild(seekBarDiv)
+				seekBarDiv.style.width = videoElem.offsetWidth
+				seekBarDiv.style.opacity = "1"; 
+				seekBarDiv.style.backgroundColor = "grey"; 
+				seekBarDiv.style.height = "21px"; 
+				seekBarDiv.onclick = function(e){ F_clickSeekBar(this,e) }
+				
+				var seekBarSpan = document.createElement("span") // sárga, hogy hol tart
+				seekBarSpan.className = "seekBar"
+				seekBarDiv.appendChild(seekBarSpan)
+				seekBarSpan.style.backgroundColor = "gold"; 
+				seekBarSpan.style.height = "21px"; 
+				seekBarSpan.style.position = "absolute"; 
+			}
+			F_createSeekBar()
+		}
+		videoElem.onclick = function(){
+			var videoElem = this
+			if ( videoElem.paused == false ) {
+				F_stopVideo(videoElem)
+			} else {
+				F_playVideo(videoElem)
+			}
 		}
 	}
-	
-	// centVideos Load
-	var centVideo = F_centVideoElem()
+
 	var allVideoCent = detElem.getElementsByClassName("video")
 	for ( var i=0; i<allVideoCent.length; i++ ) {
-		allVideoCent[i].onclick = function(){
-			var parent = this
-			var impElem = false
-			//var alt_impElem = false
-			do {
-				parent = parent.parentElement
-				if ( parent.className.indexOf("imp") != -1 ) { impElem = parent }
-			} while ( parent.className.indexOf("imp") == -1 && parent != document.documentElement )
-			
-			var isExp = false
-			if ( impElem != false ) { if ( impElem.className.indexOf("{") != -1 ) { isExp = true } }
-
-			centVideo.setAttribute('src', "videos/"+ this.dataset.src)
-			
-			console.log(isExp+"-"+midQisExp+" "+centVideo.getAttribute("src"))
-			document.getElementById("div_centVideoBg").style.visibility = 'visible';
+		allVideoCent[i].onclick = function() {
+			document.getElementById("div_centVideoBg").style.visibility = 'visible'
+			var centVideo = document.getElementById("video_cent")
+			F_setVideoSource(centVideo,this.dataset.src)
+			F_playVideo(centVideo)
 		}
 	}
-	
-	// centVideo Load
-	//ezt elég 1x megcsinálni, amikor elindítom (fix majd, mert lehet egyszerusíteni)
+}
+function F_loadCentVideo(){
 	var keepVideo
+	var centVideo = document.getElementById("video_cent")
 	centVideo.onclick = function(){
-		if ( this.paused == false ) {
-			this.style.borderColor = "black"
-			
-			var widthPx = this.offsetWidth *this.currentTime /this.duration
-			centVideoBar.style.width = widthPx
-			centVideoBar.style.left = this.offsetLeft
-			
-			this.pause(); 
+		var thisVideo = this
+		if ( thisVideo.paused == false ) {
+			F_stopVideo(thisVideo)
 		} else {
-			this.style.borderColor = "springgreen"
-			this.play();
-			
-			var centVideoSeek = document.getElementById("div_centVideoSeek")
-			centVideoSeek.onclick = function(e){
-				var rect = e.target.getBoundingClientRect();
-				//var testX = e.clientX - centVideoSeek.left
-				//var testX = rect.left
-				var x = e.pageX - rect.left
-				var percent = x / this.offsetWidth
-				//alert(e.pageX+" - "+rect.left+" = "+x)
-				//alert(x+" "+this.offsetWidth+" "+percent)
-				centVideo.style.borderColor = "black"
-				centVideo.pause();
-				var currTime = percent * centVideo.duration
-				currTime = Math.floor(currTime);
-				//console.log(currTime);
-				centVideo.currentTime = currTime
-				
-				var widthPx = centVideo.offsetWidth *centVideo.currentTime /centVideo.duration
-				centVideoBar.style.width = widthPx
-				centVideoBar.style.left = centVideo.offsetLeft
-			}
+			F_playVideo(thisVideo)
 		}
 		keepVideo = true
 	}
 
+	var centVideoSeek = document.getElementById("div_centVideoSeek")
+	centVideoSeek.onclick = function(e){
+		var rect = e.target.getBoundingClientRect();
+		//var testX = e.clientX - centVideoSeek.left
+		//var testX = rect.left
+		var x = e.pageX - rect.left
+		var percent = x / this.offsetWidth
+		//alert(e.pageX+" - "+rect.left+" = "+x)
+		//alert(x+" "+this.offsetWidth+" "+percent)
+		var currTime = percent * centVideo.duration
+		currTime = Math.floor(currTime);
+		centVideo.currentTime = currTime
+		F_stopVideo(centVideo)
+		
+		keepVideo = true
+	}
+	
 	var centVideoBG = document.getElementById("div_centVideoBg")
 	centVideoBG.onclick = function(){
 		if ( keepVideo != true ) { 
 			this.style.visibility = 'hidden'
-			centVideo.pause()
-			centVideo.style.borderColor = "black"
-			
-			centVideoBar.style.width = 0
-			centVideoBar.style.left = centVideo.offsetLeft
+			F_stopVideo(centVideo)
 		}
 		keepVideo = false
 	}
+}
+F_loadCentVideo()
+// –––––––––––––––  Videos END  –––––––––––––––
+
+// –––––––––––––––  Search BEGIN  –––––––––––––––
+var breakSearch = false
+var objSearchTexts = {} // Qname to Qtxt (ráklikk a resultra, dobja ki a szöveget)
+function F_searchStart() { // search-re klikkelésnél vagy enter lenyomásnál ez történik először
+	document.getElementById("btn_searchBreak").style.display = "block"
+	document.getElementById("div_searchingBg").style.display = "block"
+	if ( document.getElementById("btn_SearchW") ) {
+		document.getElementById("btn_SearchW").style.backgroundColor = "black"
+		document.getElementById("btn_SearchW").style.color = "white"
+	}
+	var int_Click = window.setInterval(function(){
+		F_searchResult()
+		clearInterval(int_Click) 
+	}, 100)
+}
+function F_searchResult() { // találati eredmények betöltése...
+	/* method
+		+ adott oldal szövegét stringbe teszi -> targyText
+		+ ebbe megnézi, hol van először a keresett szó -> utána megkeresi az előtte lévő details-t, ami parentje + a végét -> azt elmenti egy array/object-be
+		+ utána következőt találatnál ugyanez
+		+ de! ha annál is ugyanaz a details lenne a parent, akkor azt nem menti el fölösen még1x
+	*/
+	var paths = Object.keys(pageTexts)
+	var searchText = document.getElementById("input_SearchW").value
+	searchText = searchText.toLowerCase() // kis és nagybetű ellen gondolom
+	document.getElementById("div_searchResults").innerHTML = ""
+	var fullText = ""
+	var hianyzik = ""
 	
+	var spanStatus = document.getElementById("span_searchStatus")
+	spanStatus.parentElement.style.display = "block" 
+	//spanStatus.parentElement.style.top = "60px"
 	
-	//if ( e ) { e.stopPropagation() }
-}
-
-// TITLE (abbr tooltip)
-var tooltipSpan = document.createElement("span");
-function func_tooltipFuncs(){
-	document.body.appendChild(tooltipSpan)
-	tooltipSpan.style.visibility = "hidden";
-	tooltipSpan.style.border = "2px solid black";
-	tooltipSpan.style.backgroundColor = "azure";
-	tooltipSpan.style.position = "absolute";
-	tooltipSpan.style.left = "50%";
-	tooltipSpan.style.top = "50%";
-	tooltipSpan.style.fontSize = "smaller";
-	tooltipSpan.style.padding = "2px 2px 2px 5px";
-	tooltipSpan.style.zIndex = "4";
-}
-func_tooltipFuncs()
-function func_showTooltip(element){
-
-	defText = element.title
-	tooltipSpan.style.visibility = "visible";
-	tooltipSpan.innerHTML = element.title
+	var x = 0
+	var summaryID = 0
+	var progress = false
+	var int_Click = window.setInterval(function(){
+		if (progress == true) { return } 
+		progress = true
+		var statusWidth = spanStatus.parentElement.offsetWidth * x / paths.length
+		spanStatus.style.width = statusWidth+"px"
+		console.log(spanStatus.parentElement.offsetWidth)
+		console.log(x / paths.length)
+		console.log(spanStatus.parentElement.offsetWidth * x / paths.length)
 		
-	var posX = element.offsetLeft
-	var posY = element.offsetTop 
-	var par = element.offsetParent
-
-	tooltipSpan.style.minWidth = null;
-	tooltipSpan.style.maxWidth = 300;
-	if ( tooltipSpan.offsetWidth > 100 ) {
-		tooltipSpan.style.minWidth = 100;
-	} else {
-		tooltipSpan.style.minWidth = tooltipSpan.offsetWidth
-	}
-	if ( tooltipSpan.offsetWidth > par.offsetWidth - posX -10 ) {
-		tooltipSpan.style.left = posX - tooltipSpan.offsetWidth + par.offsetWidth - posX - 10
-	} else {
-		tooltipSpan.style.left = posX;
-	}
-	tooltipSpan.style.top = posY +20;
-	element.title = '';
-}
-var table_defText = []
-function func_titleVerChange(velement){
-	table_defText[velement] = velement.title
-	tooltipSpan.style.position = "fixed";
-	velement.onclick = function(event){
-		tooltipSpan.style.visibility = "visible";
-		tooltipSpan.innerHTML = table_defText[this]
-		tooltipStatus = 1
-		event.stopPropagation();
-			
-		var posX = this.offsetLeft
-		var posY = this.offsetTop 
-
-		tooltipSpan.style.minWidth = null;
-		tooltipSpan.style.maxWidth = 300;
-		
-		var x = event.clientX;
-		var y = event.clientY;
-		if ( tooltipSpan.offsetWidth > document.body.offsetWidth - posX -10 ) {
-			tooltipSpan.style.left = posX - tooltipSpan.offsetWidth + document.body.offsetWidth - posX - 10
-		} else {
-			tooltipSpan.style.left = x
+		var path = paths[x]
+		x = x +1
+		if ( Number(x) == Number(paths.length) || breakSearch == true ) { // ha a végére ért / megszakítom
+			clearInterval(int_Click)
+			breakSearch = false
+			spanStatus.parentElement.style.display = "none" 
+			spanStatus.style.width = 0
+			document.getElementById("btn_searchBreak").style.display = "none"
+			document.getElementById("div_searchingBg").style.display = "none"
+			if ( document.getElementById("btn_SearchW") ) {
+				document.getElementById("btn_SearchW").style.color = ""
+				document.getElementById("btn_SearchW").style.backgroundColor = ""
+			}
 		}
-		tooltipSpan.style.top = y+10
-	};
-	velement.onmouseover = function(event){
-		tooltipSpan.style.visibility = "visible";
-		tooltipSpan.innerHTML = this.title
-			
-		var posX = this.offsetLeft
-		var posY = this.offsetTop
-
-		tooltipSpan.style.minWidth = null
-		tooltipSpan.style.maxWidth = 300
-		
-		var x = event.clientX
-		var y = event.clientY
-		if ( tooltipSpan.offsetWidth > document.body.offsetWidth - posX -10 ) {
-			tooltipSpan.style.left = posX - tooltipSpan.offsetWidth + document.body.offsetWidth - posX - 10
-		} else {
-			tooltipSpan.style.left = x
+		var targyText = pageTexts[path]
+		if ( targyText == null ) { 
+			hianyzik = hianyzik +path.slice(path.lastIndexOf("/"))+" "
+			progress = false
+			return
 		}
-		tooltipSpan.style.top = y+10
+		if ( targyText.toLowerCase().indexOf(searchText) == -1 ) {
+			progress = false
+			return
+		}
+		fullText = fullText+ path
 
-		table_defText[this] = this.title
-		this.title = ''
+		var locST = 0 // keresett szó heje a targytext-ben; végén mindig növelem +1el, hogy a következőre keressen utána
+		var detaLocs = "" // amikor ráklikkelek a kidobott találatra akkor betölt egy detailst; ebben a string-ben azoknak a location-je van felsorolva a targytext-ben; azért kell, hogy 2x ugyanazt ne tegye ki (hiába van 1detan belül 2x a keresett szó) -> ezzel tudom ellenőrizni, hogy volt-e már
+		do {
+			locST = targyText.toLowerCase().indexOf(searchText,locST+1)
+			var prevText, postText, positive, index
+			function F_searchPrevText(){
+				positive = false
+				prevText = targyText.slice(0 , locST)
+				var string
+				do {
+					// megkeresi a parent details-ét (lehet közben 'testvér' is, amit kiszűr!)
+					index = prevText.lastIndexOf("<details")
+					string = prevText.slice(prevText.lastIndexOf("<details"))
+					prevText = prevText.slice(0 , prevText.lastIndexOf("<details"))
+					if ( string.indexOf("</details") == -1 ) { positive = true }
+				} while ( prevText.indexOf("<details") != -1 && positive != true )
+				// előbbi feltétel csak azért kell, különben végtelen loop lenne
+				if ( positive == true ) { prevText = targyText.slice(index , locST) }
+			}
+			F_searchPrevText()
+			if ( detaLocs.indexOf(index+", ") != -1 ) { continue } // ha már volt az a details, akkor ne dobja ki még1x (hiába van 2x benne a keresett szó)
+			detaLocs = detaLocs + index + ", "
+			function F_searchPostText(){
+				positive = false
+				postText = targyText.slice(locST)
+				var string
+				index = 0
+				do {
+					index = index + postText.indexOf("</details") +10
+					string = postText.slice(0 , postText.indexOf("</details"))
+					postText = postText.slice(postText.indexOf("</details")+10)
+					if ( string.indexOf("<details") == -1 ) { positive = true }
+				} while ( postText.indexOf("</details") != -1 && positive != true )
+				if ( positive = true ) { postText = targyText.slice(locST , locST +index) }
+			}
+			if ( positive == true ) { F_searchPostText() }
+			
+			if ( positive == false ) { continue }
+			var resultText = prevText + postText
+			/*console.clear()
+			console.log(detaLocs)
+			console.log(prevText)
+			console.log(postText)
+			alert(searchText)*/
+			
+			var summaryText = resultText.slice(resultText.indexOf("summary")+2)
+			summaryText = summaryText.slice(summaryText.indexOf(">")+1)
+			summaryText = summaryText.slice(0,summaryText.indexOf("</summary"))
+			summaryID = summaryID +1
+			objSearchTexts[summaryID] = resultText
+			
+			fullText = fullText+ "<li><span data-id='"+summaryID+"' data-path='"+path+"' style='color:green; cursor:pointer' onclick='F_clickSearchResult(this)'>"+summaryText+"</span></li>"
+			//targyText = targyText.slice(targyText.indexOf(resultText)+resultText.length)
+		} while ( targyText.toLowerCase().indexOf(searchText,locST+1) != -1 )
+		document.getElementById("div_searchResults").innerHTML = "<ul class='normal'>" +fullText+ "</ul>"
+		
+		//console.log(x+" "+progress+" "+path)
+		progress = false
+	}, 10);
+	if ( hianyzik != "" ) { console.log("HIÁNYZIK:"+hianyzik) }
+}
+function F_clickSearchResult(detElem) { // egy találati eredményre klikk
+	detElem.style.backgroundColor  = "yellow"
+	var int_Click = window.setInterval(function(){
+		var qTxt = objSearchTexts[detElem.dataset.id]
+		var path = detElem.dataset.path
+		F_setMidQ(qTxt,path)
+		
+		detElem.style.backgroundColor = ""
+		clearInterval(int_Click) 
+	}, 100);
+}
+function F_createSearchElems() {
+	function F_btnNagyito() { // fő oldalon a nagyító
+		var button = document.createElement("input")
+		button.type = "button"
+		button.id = "btn_toggleSearch"
+		document.getElementById("table_weboldalak").parentElement.parentElement.appendChild(button)
+		document.getElementById("table_weboldalak").parentElement.parentElement.style.position = "relative"
+		button.style.position = "absolute"
+		button.style.right = "0px"
+		button.style.bottom = "0px" // parent position-jént relative-ra kellett állítani, illetve ezt absolute-ra, hogy működjön!!
+		//button.style.width = "90px"
+		button.style.maxWidth = "90px"
+		//button.style.height = "90px"
+		button.style.maxHeight = "90px"
+		button.value = "🔍"
+		button.style.cursor = "pointer"
+
+		button.onclick = function(){ 
+			if ( document.getElementById("div_searchBg").style.display == "none" ) {
+				this.style.backgroundColor  = "black"
+				this.style.color  = "white"
+			}
+			var int_Click = window.setInterval(function(){
+				document.getElementById("btn_toggleQing").style.display = 'none'
+				document.getElementById("table_weboldalak").style.display = 'none'
+				document.getElementById("div_pageQTargy").style.display = 'none'
+				document.getElementById("btn_toggleSearch").style.display = 'none'
+				// első kettő azért kell, hogy a fölös scrollbar eltűnjön bal oldalt (pl. megvan nyitva farmakológia, majd ráklikkelnék nagyítóra...)
+				document.getElementById("div_searchBg").style.display = "block"
+				button.style.color = ""
+				button.style.backgroundColor = ""
+				clearInterval(int_Click)
+			}, 100)
+		}
 	}
-	velement.onmouseout = function(){
-		this.title = table_defText[this]
-		if ( tooltipStatus != 1 ) { tooltipSpan.style.visibility = "hidden" }
+	F_btnNagyito()
+	function F_divBg() { // ezt nyitom meg, ez a mainDiv --> ebbe az összes többi
+		var div = document.createElement("div")
+		document.getElementById("div_body").appendChild(div)
+		//document.body.appendChild(div)
+		div.id = "div_searchBg"
+		div.style.backgroundColor = "white"
+		div.style.overflow = "auto"
+		div.style.border = "8px solid black"
+		div.style.outline = "5px solid aqua"
+		div.style.display = "none"
+		div.style.position = "absolute"
+		div.style.left = "5px"
+		div.style.right = "5px"
+		div.style.top = "4px"
+		div.style.bottom = "4px"
+		//div.style.zIndex = "3"
+	}
+	F_divBg()
+	var divBg = document.getElementById("div_searchBg")
+	function F_btnClose() { // jobb felső sarok, close btn
+		var button = document.createElement("input")
+		button.type = "button"
+		divBg.appendChild(button)
+		button.style.position = "absolute"
+		button.style.right = "2px"
+		button.style.top = "2px"
+		button.value = "✖"
+		button.style.fontSize = 'xx-large'
+		button.style.cursor = "pointer"
+		button.style.color = "white"
+		button.style.backgroundColor = "red"
+		button.style.border = "3px solid black"
+		if ( isAndroid ) { button.style.width = "50px" }
+		button.onclick = function(){
+			document.getElementById("table_weboldalak").style.display = 'block';
+			document.getElementById("div_pageQTargy").style.display = 'block';
+			document.getElementById("btn_toggleQing").style.display = 'block'
+			document.getElementById("btn_toggleSearch").style.display = 'block'
+			document.getElementById("div_searchBg").style.display = "none"
+		}
+	}
+	F_btnClose()
+	function F_inpText() { // ebbe írom a keresett szót -> entert lenyomva megkezdi a keresést
+		var input = document.createElement("input")
+		divBg.appendChild(input)
+		input.type = "text"
+		input.id = "input_SearchW"
+		input.style.fontSize = "xx-large"
+		input.style.position = "absolute"
+		input.style.top = "1%"
+		if ( isAndroid ) {
+			input.style.left = "1%"
+			var width = screen.width -53
+			input.style.width = width+"px"
+		} else {
+			input.style.left = "50%"
+			input.style.paddingLeft = "3px"
+			input.style.paddingRight = "3px"
+			input.style.transform = "translate(-50%)"
+		}
+		input.addEventListener("keyup", function(event) { if (event.keyCode === 13) { 
+			// entert ha lenyomom search!
+			F_searchStart()
+		} })
+	}
+	F_inpText()
+	function F_btnSearch() { // bal felső sarokban SEARCH -> erre klikkelve megkezdi a keresést
+		var button = document.createElement("button")
+		divBg.appendChild(button)
+		button.id = "btn_SearchW"
+		button.style.fontSize = "xx-large"
+		button.innerHTML = "search"
+		button.style.position = "relative"
+		button.style.top = "1%"
+		button.style.cursor = "pointer"
+		button.onclick = function(){ F_searchStart() }
+	}
+	if ( isAndroid == false ) { F_btnSearch() }
+	function F_divResults() { // ebbe írja a találati eredmény(eke)t
+		var divText = document.createElement("div") 
+		divBg.appendChild(divText)
+		divText.id = "div_searchResults"
+		divText.style.marginLeft = "3px"
+		divText.style.paddingBottom = "10px"
+		if ( isAndroid ) { divText.style.paddingTop = "15px" } else { divText.style.paddingTop = "10px" }
+		divText.style.fontSize = "x-large"
+	}
+	F_divResults()
+	function F_divSearchingBg() { // search alatt elszürkül (+a cancel btn ezen lesz)
+		var div = document.createElement("div")
+		document.body.appendChild(div)
+		div.id = "div_searchingBg"
+		div.style.backgroundColor = "black"
+		div.style.opacity = "0.35"
+		div.style.overflow = "auto"
+		div.style.display = "none"
+		div.style.position = "fixed"
+		div.style.left = "5px"
+		div.style.right = "5px"
+		div.style.top = "4px"
+		div.style.bottom = "4px"
+		div.style.zIndex = "1"
+	}
+	F_divSearchingBg()
+	function F_btnBreak() { // ha ojan szóra keresnék, ami túl sok találat 
+		var button = document.createElement("button")
+		document.body.appendChild(button)
+		button.id = "btn_searchBreak"
+		button.innerHTML = "cancel"
+		
+		button.style.fontSize = "xx-large"
+		button.style.color = "white"
+		button.style.backgroundColor = "red"
+		button.style.border = "3px solid black"
+		button.style.cursor = "pointer"
+		
+		button.style.zIndex = "2"
+		button.style.display = "none"
+		button.style.position = "fixed"
+		button.style.top = "30%"
+		button.style.left = "50%"
+		button.style.transform = "translate(-50%)"
+		button.onclick = function() { breakSearch = true }
+	}
+	F_btnBreak()
+	function F_spanStatus() { // statusbar, hogy a search hol tart
+		// szürke háttér & fehér border fojton látszik
+		var spanStatus = document.createElement("div")
+		divBg.appendChild(spanStatus)
+		spanStatus.style.display = "none"
+		spanStatus.style.position = "absolute"
+		spanStatus.style.backgroundColor = "grey"
+		spanStatus.style.border = "2px solid white"
+		spanStatus.style.width = "30%"
+		spanStatus.style.height = "21px"
+		spanStatus.style.top = "20%"
+		spanStatus.style.left = "50%"
+		spanStatus.style.transform = "translate(-50%)"
+		spanStatus.style.zIndex = "2"
+		
+		// gold színű, ami 0-ról indul és 100-ig jut el
+		var spanStatusChild = document.createElement("span")
+		spanStatus.appendChild(spanStatusChild)
+		spanStatusChild.id = "span_searchStatus"
+		spanStatusChild.style.backgroundColor = "gold"
+		spanStatusChild.style.position = "absolute"
+		spanStatusChild.style.height = "21px"
+	}
+	F_spanStatus()
+}
+F_createSearchElems()
+// –––––––––––––––  Search END  –––––––––––––––
+
+// –––––––––––––––  Qing BEGIN  –––––––––––––––
+function F_clickTetel(detElem) {
+	if ( detElem.style.backgroundColor == "lightgreen" ) {
+		detElem.style.backgroundColor = ""
+	} else {
+		detElem.style.backgroundColor = "lightgreen"
 	}
 }
-function F_titleChange(detElem){
-	var abbrok = detElem.querySelectorAll("*[title]");
-	for ( var i = 0; i < abbrok.length; i++ ) { func_titleVerChange(abbrok[i]) }
+function F_loadTetels() {
+	var elems = document.getElementById("div_QingTargyText").getElementsByTagName("*")
+	var string = ""
+	var fontSize
+	if ( isAndroid ) { fontSize = 420 } else { fontSize = 140 }
+	var titleStyle = ' style="background-color:gainsboro; font-size:'+fontSize+'%; font-weight:bold; color:black;"'
+	if ( isAndroid ) { fontSize = 360 } else { fontSize = 120 }
+	var spanStyle = ' style="font-size:'+fontSize+'%; font-weight:bold; cursor:pointer" onclick="F_clickTetel(this)"'
+	for ( var x = 0;   x < elems.length;   x++ ) {
+		if ( elems[x].className.indexOf("mainTitle") != -1 ) {
+			string = string+ "<details><summary" +titleStyle+ ">" +elems[x].innerHTML+ "</summary>"
+			var childs = elems[x].parentElement.getElementsByTagName("*")
+			for ( var y = 0;   y < childs.length;   y++ ) {
+				if ( childs[y].className.indexOf("phase") != -1 || childs[y].className.indexOf("status") != -1 ) {
+					string = string+ "<div><span" +spanStyle+ ">" +childs[y].innerHTML+ "</span></div>"
+				}
+			}
+			string = string+ "</details>"
+			x = x + childs.length
+		} else if ( elems[x].className.indexOf("phase") != -1 || elems[x].className.indexOf("status") != -1 ) {
+			string = string + "<div><span>" +elems[x].innerHTML+ "</span></div>"
+		}
+	}
+	document.getElementById("div_QingTetels").innerHTML = string
 }
-F_titleChange(document)
+function F_createQingElems() {
+	function F_btnToggleQing() { // jobb felső sarokban a Toggle ... mindig látható
+		var button = document.createElement("input")
+		button.id = "btn_toggleQing"
+		button.type = "button"
+		document.body.appendChild(button)
+		button.style.width = "90px"
+		button.style.height = "90px"
+		button.style.position = "absolute"
+		button.style.right = "2px"
+		button.style.top = "2px"
+		button.style.cursor = "pointer"
+		button.style.zIndex = "2"
+
+		var lastClickTime = 0
+		button.onclick = function(){ 
+			var currTime = F_getTime()
+			var diffTime = currTime - lastClickTime
+			//console.log(myTime+" vs "+lastClickTime)
+			if ( diffTime < 1 ) { return }
+			lastClickTime = currTime
+			document.getElementById("div_QingBg").style.display = "block"
+			this.style.backgroundColor  = "black"
+			var int_Click = window.setInterval(function(){
+				clearInterval(int_Click) 
+				F_toggleQing()
+				document.getElementById("div_QingBg").style.display = "none"
+				document.getElementById("btn_toggleQing").style.backgroundColor = ""
+			}, 100)
+		}
+	}
+	F_btnToggleQing()
+	function F_divQingBg() { // töltés(toggle,) alatt elszürkül
+		var div = document.createElement("div")
+		document.body.appendChild(div)
+		div.id = "div_QingBg"
+		div.style.backgroundColor = "black"
+		div.style.opacity = "0.35"
+		div.style.overflow = "auto"
+		div.style.display = "none"
+		div.style.position = "fixed"
+		div.style.left = "5px"
+		div.style.right = "5px"
+		div.style.top = "4px"
+		div.style.bottom = "4px"
+		div.style.zIndex = "1"
+	}
+	F_divQingBg()
+	function F_divMain() { // ebbe az összes Qing element --> elhide-lásuk easy legyen, azért kell
+		var div = document.createElement("div")
+		div.id = "div_QingMain"
+		div.style.display = "none"
+		div.style.position = "relative"
+		document.body.appendChild(div)
+		/*var parent = document.body
+		parent.insertBefore(div,parent.firstChild)*/
+	}
+	F_divMain()
+	function F_divUpperPart() { // felső kis rész: kiírások (tételszám, Q szám) + Q-ek osztájzása
+		var div = document.createElement("div")
+		document.getElementById("div_QingMain").appendChild(div)
+		div.id = "div_QingUpperPart"
+		//div.className = "normal"
+		div.style.borderBottom = "4px solid black"
+		div.style.marginBottom = "2px"
+		div.style.paddingBottom = "10px"
+		div.style.height = "80px" // 17vh
+	}
+	F_divUpperPart()
+	function F_divLowerPart() { // alsó nagy rész: Q amit kidob
+		var div = document.createElement("div")
+		div.id = "div_QingLowerPart"
+		div.className = "normal"
+		div.style.backgroundColor = "yellow"
+		document.getElementById("div_QingMain").appendChild(div)
+	}
+	F_divLowerPart()
+	
+	function F_divSettings() { // bal felső sarok kiírások: tételszám, Q szám, ...
+		var div = document.createElement("div")
+		document.getElementById("div_QingUpperPart").appendChild(div)
+		div.id = "div_QingSettings"
+		div.style.height = "80px"
+	}
+	F_divSettings()
+	function F_btnNextQ() {
+		var button = document.createElement("button")
+		button.id = "btn_QingNextQ"
+		document.getElementById("div_QingUpperPart").appendChild(button)
+		button.innerHTML = " ► "
+		
+		button.style.height = "50px"
+		button.style.width = "50px"
+		button.style.border = "3px solid black"
+		button.style.backgroundColor = "white"
+		button.style.cursor = "pointer"
+		
+		button.style.position = "absolute"
+		button.style.left = "235px"
+		button.style.top = "18px"
+		button.style.right = "90px"
+		button.style.overflow = "auto"
+		button.onclick = function(){ 
+			/*
+			F_getTime()
+			var diffTime = myTime - lastClickTime
+			//console.log(myTime+" vs "+lastClickTime)
+			if ( diffTime < 1 ) { return }
+			if ( this.style.backgroundColor == "aqua" ) { 
+				document.body.style.backgroundColor = "Gainsboro"
+			} else {
+				this.style.backgroundColor  = "black"
+				this.style.color  = "white"
+			}
+			var int_Click = window.setInterval(function(){
+				F_nextQ()
+				clearInterval(int_Click) 
+				document.body.style.backgroundColor = ""
+			}, 100)
+			*/
+		}
+	}
+	F_btnNextQ()
+	// 1st line
+	function F_btnTetels() {
+		var button = document.createElement("button")
+		document.getElementById("div_QingSettings").appendChild(button)
+		button.id = "btn_QingTetels"
+		button.style.border = "3px solid black"
+		button.style.backgroundColor = "Bisque"
+		button.style.cursor = "pointer"
+		button.innerHTML = "tétel"
+		var firstime = true
+		button.onclick = function(){ 
+			if ( this.style.borderColor == "limegreen" ) {
+				document.getElementById("div_QingLowerPart").style.display = "block"
+				this.style.borderColor = "black"
+				document.getElementById("div_QingTetels").style.display = "none"
+			} else {
+				if ( firstime == true ) {
+					firstime = false
+					F_loadTetels()
+				}
+				F_hideAllower()
+				this.style.borderColor = "limegreen"
+				document.getElementById("div_QingTetels").style.display = "block"
+			}
+		}
+	}
+	F_btnTetels()
+	function F_spanTime() { // mennyi ideje oldottam meg átlagosan őket
+		var span = document.createElement("span")
+		document.getElementById("div_QingSettings").appendChild(span)
+		span.id = "span_QingTime"
+		span.style.border = "1px solid black"
+		span.style.backgroundColor = "White"
+
+		span.style.paddingLeft = "5px"
+		span.style.paddingRight = "5px"
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
+		
+		span.innerHTML = "?"
+	}
+	F_spanTime()
+	function F_btnQingMenu() { // nagy menü lehívása részletekért (saveLS, loadLS...)
+		var button = document.createElement("button")
+		document.getElementById("div_QingSettings").appendChild(button)
+		button.id = "btn_QingMenu"
+		button.style.border = "3px solid black"
+		button.style.backgroundColor = "Bisque"
+		button.style.cursor = "pointer"
+		button.innerHTML = "&#9881;"
+		button.onclick = function(){ 
+			if ( this.style.borderColor == "limegreen" ) {
+				document.getElementById("div_QingLowerPart").style.display = "block"
+				this.style.borderColor = "black"
+				document.getElementById("div_QingMenu").style.display = "none"
+			} else {
+				F_hideAllower()
+				this.style.borderColor = "limegreen"
+				document.getElementById("div_QingMenu").style.display = "block"
+			}
+		}
+	}
+	F_btnQingMenu()
+	function F_spanJegy() { // mennyi az átlag jegy
+		var span = document.createElement("span")
+		document.getElementById("div_QingSettings").appendChild(span)
+		span.id = "span_QingJegy"
+		span.style.border = "1px solid black"
+		span.style.backgroundColor = "White"
+
+		span.style.paddingLeft = "5px"
+		span.style.paddingRight = "5px"
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
+		
+		span.innerHTML = "?"
+	}
+	F_spanJegy()
+	function F_btnQuests() {
+		var button = document.createElement("button")
+		document.getElementById("div_QingSettings").appendChild(button)
+		button.id = "btn_QingQuests"
+		button.style.border = "3px solid black"
+		button.style.backgroundColor = "Bisque"
+		button.style.cursor = "pointer"
+		button.onclick = function(){ 
+			if ( this.style.borderColor == "limegreen" ) {
+				document.getElementById("div_QingLowerPart").style.display = "block"
+				this.style.borderColor = "black"
+				document.getElementById("div_QingQuests").style.display = "none"
+			} else {
+				F_hideAllower()
+				this.style.borderColor = "limegreen"
+				document.getElementById("div_QingQuests").style.display = "block"
+			}
+		}
+		
+		button.innerHTML = "?"
+	}
+	F_btnQuests()
+	// 2nd line
+	var br = document.createElement("br")
+	document.getElementById("div_QingSettings").appendChild(br)
+	var br = document.createElement("br")
+	document.getElementById("div_QingSettings").appendChild(br)
+	function F_btnNewQ() {
+		var button = document.createElement("button")
+		button.id = "span_newQuest"
+		document.getElementById("div_QingSettings").appendChild(button)
+		button.style.border = "3px solid black"
+		button.style.backgroundColor = "White"
+		button.style.cursor = "pointer"
+
+		button.onclick = function(){ 
+			if ( this.style.borderColor == "limegreen" ) {
+				this.style.borderColor = "black"
+				localStorage.removeItem("hk.newQ")
+			} else {
+				this.style.borderColor = "limegreen"
+				localStorage.setItem("hk.newQ",true)
+			}
+		}
+		
+		button.innerHTML = "?"
+	}
+	F_btnNewQ()
+	function F_spanRepSlow() {
+		var span = document.createElement("span")
+		span.id = "span_RepSlow"
+		document.getElementById("div_QingSettings").appendChild(span)
+		span.style.border = "1px solid black"
+		span.style.backgroundColor = "Gainsboro"
+
+		span.style.paddingLeft = "5px"
+		span.style.paddingRight = "5px"
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
+		
+		span.innerHTML = "?"
+	}
+	F_spanRepSlow()
+	function F_btnRepFast() {
+		var button = document.createElement("button")
+		button.id = "span_repFast"
+		document.getElementById("div_QingSettings").appendChild(button)
+		button.style.border = "3px solid black"
+		button.style.backgroundColor = "pink"
+		button.style.cursor = "pointer"
+		
+		button.onclick = function(){ 
+			if ( this.style.borderColor == "limegreen" ) {
+				this.style.borderColor = "black"
+			} else {
+				this.style.borderColor = "limegreen"
+			}
+		}
+		
+		button.innerHTML = "?"
+	}
+	F_btnRepFast()
+	function F_spanNewOldBorder() {
+		var span = document.createElement("span")
+		span.id = "span_QingNewOldBorder"
+		document.getElementById("div_QingSettings").appendChild(span)
+		span.style.border = "3px solid limegreen"
+		span.style.cursor = "ponter"
+
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
+		span.onclick = function(){ 
+			if ( this.style.borderColor == "limegreen" ) {
+				this.style.borderColor = "black"
+			} else {
+				this.style.borderColor = "limegreen"
+			}
+		}
+	}
+	F_spanNewOldBorder()
+	function F_spanRepNew() {
+		var span = document.createElement("span")
+		span.id = "span_QingRepNew"
+		document.getElementById("span_QingNewOldBorder").appendChild(span)
+		span.style.backgroundColor = "White"
+
+		span.style.paddingLeft = "5px"
+		span.style.paddingRight = "5px"
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
+		
+		span.innerHTML = "?"
+	}
+	F_spanRepNew()
+	function F_spanRepOld() {
+		var span = document.createElement("span")
+		span.id = "span_QingRepOld"
+		document.getElementById("span_QingNewOldBorder").appendChild(span)
+		span.style.backgroundColor = "Gainsboro"
+
+		span.style.paddingLeft = "5px"
+		span.style.paddingRight = "5px"
+		span.style.paddingTop = "1px"
+		span.style.paddingBottom = "2px"
+		
+		span.innerHTML = "?"
+	}
+	F_spanRepOld()
+	
+	function F_divMenu() { // specific: save/clear/load LS, stb. ennél
+		var div = document.createElement("div")
+		div.id = "div_QingMenu"
+		document.getElementById("div_QingMain").appendChild(div)
+		div.style.backgroundColor = "white"
+		div.style.border = "10px solid black"
+		div.style.display = "none"
+		div.style.height =  document.body.clientHeight - 80 - 20/*border*/ - 25/*passz, de még vannak margin & padding-ek*/
+		div.style.overflow = "auto"
+	}
+	F_divMenu()
+	function F_btnSaveLS() {
+		var button = document.createElement("button")
+		document.getElementById("div_QingMenu").appendChild(button)
+		button.id = "btn_saveLS"
+		button.innerHTML = "LS"
+		button.style.cursor = "pointer"
+		
+		button.style.fontWeight = "bold"
+		button.style.backgroundColor = "Chartreuse"
+		button.style.border = "3px solid black"
+		
+		button.style.width = "90px"
+		button.style.height = "90px"
+		var lastClickTime = 0
+		button.onclick = function() {
+			var currTime = F_getTime()
+			var diffTime = currTime - lastClickTime
+			if ( diffTime < 1 ) { return }
+			lastClickTime = currTime
+			
+			this.style.backgroundColor = "aqua"
+			var int_Click = window.setInterval(function(){
+				// saveLS
+				document.getElementById('btn_saveLS').style.backgroundColor = "Chartreuse"
+			}, 500)
+		}
+	}
+	F_btnSaveLS()
+	function F_btnLoadLS() {
+		var button = document.createElement("button")
+		document.getElementById("div_QingMenu").appendChild(button)
+		button.id = "btn_clearLS"
+		button.innerHTML = "LS"
+		button.style.cursor = "pointer"
+		
+		button.style.fontWeight = "bold"
+		button.style.border = "3px solid black"
+		
+		button.style.width = "90px"
+		button.style.height = "90px"
+		var lastClickTime = 0
+		button.onclick = function() {
+			var currTime = F_getTime()
+			var diffTime = currTime - lastClickTime
+			if ( diffTime < 1 ) { return }
+			lastClickTime = currTime
+			
+			this.style.backgroundColor = "aqua"
+			var int_Click = window.setInterval(function(){
+				document.getElementById('fileinput').click()
+				document.getElementById('btn_clearLS').style.backgroundColor = ""
+			}, 500)
+		}
+	}
+	F_btnLoadLS()
+	function F_btnClearLS() {
+		var button = document.createElement("button")
+		document.getElementById("div_QingMenu").appendChild(button)
+		button.innerHTML = "LS"
+		button.style.cursor = "pointer"
+		
+		button.style.color = "white"
+		button.style.backgroundColor = "red"
+		button.style.fontWeight = "bold"
+		button.style.border = "3px solid black"
+		
+		button.style.width = "90px"
+		button.style.height = "90px"
+		var lastClickTime = 0
+		button.onclick = function() {
+			var currTime = F_getTime()
+			var diffTime = currTime - lastClickTime
+			if ( diffTime < 1 ) { return }
+			lastClickTime = currTime
+			
+			this.style.backgroundColor = "aqua"
+			var int_Click = window.setInterval(function(){
+				localStorage.clear()
+				localStorage.setItem("lsCount",0)
+				document.getElementById('btn_saveLS').style.backgroundColor = "red"
+			}, 500)
+		}
+	}
+	F_btnClearLS()
+	
+	function F_divTargyText() { // láthatatlan -> tárgy full textje ebben
+		var div = document.createElement("div")
+		div.id = "div_QingTargyText"
+		div.className = "normal"
+		div.style.display = "none"
+		document.body.appendChild(div)
+	}
+	F_divTargyText()
+	function F_divTetels() { // tételválasztás
+		var div = document.createElement("div")
+		div.id = "div_QingTetels"
+		document.getElementById("div_QingMain").appendChild(div)
+		div.style.backgroundColor = "white"
+		div.style.border = "10px solid black"
+		div.style.display = "none"
+		div.style.height =  document.body.clientHeight - 80 - 20/*border*/ - 25/*passz, de még vannak margin & padding-ek*/
+		div.style.overflow = "auto"
+		
+		div.innerHTML = "tételek"
+	}
+	F_divTetels()
+	function F_divQuests() { // questek státusza
+		var div = document.createElement("div")
+		div.id = "div_QingQuests"
+		document.getElementById("div_QingMain").appendChild(div)
+		div.style.backgroundColor = "white"
+		div.style.border = "10px solid black"
+		div.style.display = "none"
+		div.style.height =  document.body.clientHeight - 80 - 20/*border*/ - 25/*passz, de még vannak margin & padding-ek*/
+		div.style.overflow = "auto"
+		
+		div.innerHTML = "questek"
+	}
+	F_divQuests()
+	
+	function F_hideAllower() {
+		document.getElementById("div_QingLowerPart").style.display = "none"
+		document.getElementById("div_QingMenu").style.display = "none"
+		document.getElementById("div_QingTetels").style.display = "none"
+		document.getElementById("div_QingQuests").style.display = "none"
+		
+		document.getElementById("btn_QingMenu").style.borderColor = "black"
+		document.getElementById("btn_QingTetels").style.borderColor = "black"
+		document.getElementById("btn_QingQuests").style.borderColor = "black"
+	}
+}
+F_createQingElems()
+function F_toggleQing() {
+	if ( document.getElementById("div_pageQTargy").style.display == 'none' ) {
+		localStorage.removeItem("hk.ToggleAll")
+		document.getElementById("table_weboldalak").parentElement.parentElement.style.display = 'block';
+		document.getElementById("div_pageQTargy").style.display = 'block';
+		document.getElementById("div_QingMain").style.display = 'none';
+	} else {
+		localStorage.setItem("hk.ToggleAll","true")
+		document.getElementById("table_weboldalak").parentElement.parentElement.style.display = 'none';
+		document.getElementById("div_pageQTargy").style.display = 'none';
+		document.getElementById("div_QingMain").style.display = 'block';
+		
+		document.getElementById("div_QingTargyText").innerHTML = document.getElementById("div_pageQTargy").innerHTML
+	}
+}
+// –––––––––––––––  Qing END  –––––––––––––––
+
+function F_andrSize() { if ( isAndroid ) { 
+	//document.body.style.fontSize = "300%" // android font size
+	document.getElementById('link_style').href = 'styleAndroid.css'; // android li,table position
+	
+	//imgMiniHeight = "54px"
+	document.getElementById('btn_toggleSearch').style.fontSize = '100%'
+	document.getElementById('btn_toggleLoad').style.width = "90px"
+	document.getElementById('btn_toggleLoad').style.height = "90px"
+	//document.getElementById('btn_clearIDB').style.width = "90px"
+	document.getElementById('btn_clearIDB').style.height = "90px"
+  } else {
+	//imgMiniHeight = "18px"
+	document.getElementById('btn_toggleSearch').style.fontSize = '300%'
+	document.getElementById('btn_toggleLoad').style.width = "40px"
+	document.getElementById('btn_toggleLoad').style.height = "40px"
+	//document.getElementById('btn_clearIDB').style.width = "40px"
+	document.getElementById('btn_clearIDB').style.height = "40px"
+} }
+F_andrSize()
+function F_tableScrollable(detElem) { // table ha nem fér ki, akkor vízszintesen scrollable (ANDROID)
+/* Hogyan?
+	✔ megnézi a detElem összes table child-ját
+		detElem = amit megnyitottam (details / page)
+	✔ feltételek: (1) visible (2) parentje még nem lett le kreálva
+	✔ kreál egy parent div-et, ami overflow-X:auto
+*/
+	var allTable = detElem.getElementsByTagName("TABLE")
+	for ( var i=0; i<allTable.length; i++ ) { 
+		var tableElem = allTable[i]
+		
+		if ( tableElem.offsetParent === null ) { continue }
+		if ( tableElem.parentElement.style.overflowX == "auto" ) { continue }
+		
+		// `element` is the element you want to wrap
+		var parent = tableElem.parentNode;
+		var wrapper = document.createElement('div');
+
+		// set the wrapper as child (instead of the element)
+		parent.replaceChild(wrapper, tableElem);
+		// set element as child of wrapper
+		wrapper.appendChild(tableElem);
+		wrapper.style.overflowX = "auto"
+	}
+}
 
 function F_synonyms(detElem){
 	function getRandomInt(max) { return Math.floor(Math.random() * Math.floor(max)) }
@@ -1087,4204 +1553,103 @@ function F_synonyms(detElem){
 	}
 }
 
-var imgStatus
-function F_abbrSet(elem){ 
-// azt csináljam, hogy a li textet írja át alapból: <span style="visibility:hidden"> ..text.. <span>, majd amikor ráklikkelek removeolja a spant --> megmaradnak a pontok
-// func_saveQuest elott kell legyen, de a F_impQs után
-	var abbrSpan = elem.getElementsByClassName("abbr");
-	for ( var j = 0; j < abbrSpan.length; j++ ) {
-		if ( elem.open != false ) {
-			abbrSpan[j].style.cursor = "pointer"
-			if ( !abbrSpan[j].Text ) {
-				abbrSpan[j].parentElement.style.visibility = "hidden"
-				abbrSpan[j].style.visibility = "visible"
-				abbrSpan[j].style.backgroundColor = "Bisque";
-			}
-		} 
-		abbrSpan[j].onclick = function(){
-			if ( this.parentElement.style.visibility != "visible" ) { 
-				this.style.cursor = ""
-				this.style.backgroundColor = "";
-				this.parentElement.style.visibility = "visible"
-			}
-		}
-	}
-}
-function F_imgClick(detElem){ // képnagyítás balKlikkel középre
-	var centerDiv = document.getElementById("div_centIMG")
-	var centerImage = document.getElementById("img_centIMG")
-	function F_showCenterDiv(detElem) {
-		imgStatus = "show"
-		centerDiv.style.visibility = "visible";
-		centerImage.src = detElem.src
-		centerDiv.style.maxHeight = "95%";
-		centerDiv.style.maxWidth = "95%";
-		centerDiv.style.overflow = "auto";
-
-		centerDiv.style.position = "fixed";
-		centerDiv.style.left = "50%";
-		centerDiv.style.top = "50%";
-		centerDiv.style.transform = "translate(-50%, -50%)";
-	}
+function F_loadIMGs(detElem) {
 	var imgs = detElem.getElementsByTagName("IMG")
-	for ( var i=0;  i<imgs.length;  i++ ) {
-		imgs[i].onclick = function() { F_showCenterDiv(this) }
+	for ( var i=0; i<imgs.length; i++ ) { 
+		if ( imgs[i].offsetParent === null ) { continue }
+		if ( imgs[i].dataset.src == undefined ) { continue } // ha előtte a főoldalon megnyitottam már a Q-t, akkor nem kell újra betöltenie
+		
+		/*imgs[i].onerror = function(){
+			var textVar = this.src.slice(this.src.lastIndexOf("/")+1)
+			missImgs = missImgs + textVar + "\n"
+		}*/
+		
+		imgs[i].src = "images/" + imgs[i].dataset.src
+		imgs[i].removeAttribute("data-src")
+		
+		imgs[i].style.border = "3px solid black"
+		imgs[i].style.maxWidth = "40%"
+		imgs[i].style.float = "right"
+	
+		imgs[i].onclick = function() { // középen kinagyítja
+			document.getElementById("div_centImgBg").style.visibility = "visible"
+			document.getElementById("img_cent").src = this.src
+		}
 		if ( imgs[i].classList.contains("mini") == true ) {
 			imgs[i].style.border = "2px solid DeepSkyBlue"
-			imgs[i].style.maxHeight = "14px"
+			imgs[i].style.maxHeight = "16px"
+			//imgs[i].style.maxHeight = imgMiniHeight
 			imgs[i].style.marginBottom = "-2px"
 			imgs[i].style.float = "none"
 			if ( isAndroid == false ) {
 				imgs[i].onmouseover = function() { 
-					this.style.position = "absolute"
-					var rect = this.getBoundingClientRect()
-					var thisW = this.width *4
-					if ( rect.left < thisW ) { this.style.left = thisW }
-					this.style.transform = "scale(8,8)"
-					this.style.zIndex = "4"
-				}
-				imgs[i].onmouseout = function() {
-					this.style.position = ""
-					this.style.transform = "scale(1,1)"
-					this.style.left = ""
-					this.style.zIndex = "1"
-				}
-			}
-		}
-		if ( imgs[i].classList.contains("metszet") == true ) {
-			imgs[i].onclick=function(){
-				if ( this.style.borderColor != "limegreen" ) {
-					var locX = this.src.lastIndexOf(".")
-					this.src = this.src.slice(0,locX)+"m"+this.src.slice(locX)
-					this.style.borderColor = "limegreen"
-				} else {
-					F_showCenterDiv(this)
-				}
-			};
-		}
-	}
-}
-function F_centIMG(){ // create center div + image
-	var centerDiv = document.createElement("div")
-	centerDiv.id = "div_centIMG"
-	document.body.appendChild(centerDiv)
-	centerDiv.style.visibility = "hidden"
-	centerDiv.style.border = "5px ridge LightGray"
-	centerDiv.style.zIndex = "4"
-	var centerImage = document.createElement("img")
-	centerImage.id = "img_centIMG"
-	centerDiv.appendChild(centerImage)
-	centerImage.style.maxWidth = "none"
-	centerImage.style.float = "none"
-	
-	document.body.onclick = function(){
-		if ( imgStatus == "hide" ) { centerDiv.style.visibility = "hidden" }
-		imgStatus = "hide"
-
-		tooltipStatus = tooltipStatus -1
-		if ( tooltipStatus != 1 ) { tooltipSpan.style.visibility = "hidden" }
-	}
-}
-F_centIMG()
-tooltipSpan.onclick = function(){ tooltipStatus = tooltipStatus +1 }
-
-function F_clearLS(detElem) {
-	var bgColor = detElem.style.backgroundColor
-	detElem.style.backgroundColor = "aqua"
-	setTimeout(localStorage.clear(), 500)
-	setTimeout(function () { detElem.style.backgroundColor = bgColor  }, 500);
-	
-	localStorage.setItem("lsCount",0)
-	//localStorage.setItem("toggleLoad", "false")
-}
-function F_InputLoad(detElem) {
-	var bgColor = detElem.style.backgroundColor
-	detElem.style.backgroundColor = "aqua"
-	setTimeout(document.getElementById('fileinput').click(), 500)
-	setTimeout(function () { detElem.style.backgroundColor = bgColor }, 500);
-}
-function F_InputSave(detElem) {
-	detElem.style.backgroundColor  = "green"
-	setTimeout(function () { F_saveLS() }, 500) 
-}
-
-// LOAD LS
-function F_openLS() {
-	var text = ""
-	
-	var lsLength = localStorage.length
-	for ( var i=0; i<lsLength; i++ ) { 
-		text = text + localStorage.key(i) + " = " + localStorage.getItem(localStorage.key(i)) + " NEXTONE \n"
-	}
-	
-	var wnd = window.open("about:blank", "", "_blank");
-	wnd.document.write(text);
-	
-	document.getElementById("btn_openLS").style.backgroundColor = ""
-	document.getElementById("btn_openLS").style.color = ""
-}
-function func_loadLS(content) {
-	do {
-		var phaseText = content.slice(0,content.indexOf(" NEXTONE \n"));
-		content = content.slice(content.indexOf(" NEXTONE ") +10)
-		var variable = phaseText.slice(0,phaseText.indexOf(" == "));
-		var price = phaseText.slice(phaseText.indexOf(" == ") +4);
-		localStorage.setItem(variable, price)
-	}
-	while (phaseText.length > 1);
-}
-var fileInput = document.getElementById('fileinput');
-fileInput.addEventListener('change', function(e){
-	var file = fileInput.files[0];
-	var textType = /text.*/;
-	var content
-
-	if (file.type.match(textType)) {
-		var reader = new FileReader();
-
-		reader.onload = function(e) {
-			content = reader.result
-			func_loadLS(content)
-		}
-
-		reader.readAsText(file);    
-	} else {
-		alert("File not supported!")
-	}
-});
-
-// SAVE LS
-var downA = document.createElement('a');
-function download(fileName,text) { // (netről copyztam) --> (azért kellett, mert androidon máshogy nemtudom lementeni)
-	/*var element = document.createElement('a');
-	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-	element.setAttribute('download', filename);
-	element.appendChild(document.createTextNode("Save file"));
-  
-	element.style.display = 'none';
-	document.body.appendChild(element);
-	element.click();
-	document.body.removeChild(element);
-	*/
-
-	function F_downloadTXT(text,fileName){
-		downA.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-		downA.setAttribute('download', fileName);
-		if (document.createEvent) {
-			var event = document.createEvent('MouseEvents');
-			event.initEvent('click', true, true);
-			downA.dispatchEvent(event);
-		} else {
-			downA.click();
-		}
-	}
-	
-	//alert(text.length) 
-	/* if ( isAndroid ) { // androidon crashelne, akkor ezzel megtudom oldani (túl sok a karakter)
-		var num = text.length / 100000
-		num = Math.ceil(num)
-		for ( var i=0; i<num; i++ ) {
-			var acText = text.slice(0,100000)
-			text = text.slice(100000)
-			fileName = fileName.replace(".txt","_"+i+".txt")
-			F_downloadTXT(acText,fileName)
-		}
-	} else { */
-		F_downloadTXT(text,fileName)
-	// }
-}
-function F_saveLS() {
-	if ( localStorage.getItem("lsName") == null ) { localStorage.setItem("lsName","localStorage") }
-	
-	localStorage.setItem("hk.lastSavedLS",0)
-	var text = ""
-	
-	var count = localStorage.getItem("lsCount")
-	count = Number(count) +1
-	localStorage.setItem("lsCount",count)
-	
-	
-	var lsLength = localStorage.length
-	var expQk = []
-	for ( var i=0; i<lsLength; i++ ) {
-		if ( localStorage.key(i).indexOf("hkExpQ.") != -1 ) {
-			var qID = localStorage.getItem(localStorage.key(i))
-			qID = qID.slice(0,qID.indexOf(" "))
-			expQk[qID] = true
-		}
-	}
-	for ( var i=0; i<lsLength; i++ ) {
-		//if ( localStorage.key(i).indexOf("hkExpQ.") != -1 ) { continue }
-		if ( localStorage.key(i) == "loadQs.lastTime" ) { continue }
-		if ( expQk[localStorage.key(i)] == true ) { continue }
-		text = text + localStorage.key(i) + " == " + localStorage.getItem(localStorage.key(i)) + " NEXTONE \n"
-	}
-	var fileName = localStorage.getItem("lsName") +count +'.txt'
-	download(fileName, text);
-	
-	if ( document.getElementById("btn_saveLS") ) {
-		document.getElementById("btn_saveLS").style.backgroundColor = "Chartreuse"
-		document.getElementById("btn_saveLS").style.color = ""
-	}
-}
-//JSON.stringify(localStorage)
-
-
-function F_clickAutoLoadPagesBtn(btn) {
-	if ( localStorage.getItem("toggleLoad") == "disabled" ) {
-		localStorage.removeItem("toggleLoad")
-		btn.style.backgroundColor = "green"
-	} else {
-		localStorage.setItem("toggleLoad", "disabled")
-		btn.style.backgroundColor = ""
-	}
-}
-if ( localStorage.getItem("toggleLoad") != "disabled" ) { 
-	document.getElementById("btn_toggleLoad").style.backgroundColor = "green"
-}
-
-var newText
-function F_cutImpQs(text){
-	// kivágom a <span class="imp [x]"> itt lévo szöveget vágom ki </span> (div-nél is)
-	
-	do {
-		var begin = text.indexOf('class="imp [')
-		var end
-		var cuttenText
-		var otherText = ""
-		
-		cuttenText = text.slice(begin)
-		begin = begin + cuttenText.indexOf(">") +1
-		cuttenText = text.slice(begin)
-		
-		if ( cuttenText.indexOf('class="imp [') != -1 ) {
-			var num = 0
-			otherText = cuttenText
-			do {
-				if ( otherText.indexOf('class="imp [') != -1 && otherText.indexOf('class="imp [') < otherText.indexOf("> <!---") ) {
-					num = num +1
-					otherText = otherText.slice(otherText.indexOf('class="imp [')+1)
-				} else if ( num > 0 ) {
-					num = num -1
-					otherText = otherText.slice(otherText.indexOf('> <!---')+1)
-				}
-			}
-			while ( num > 0 )
-		}
-		
-		if ( otherText.indexOf('> <!---') != -1 ) {
-			end = cuttenText.indexOf(otherText) + otherText.indexOf('> <!---') + begin
-			//alert("van" + end)
-		} else {
-			end = cuttenText.indexOf('> <!---') + begin
-		}
-		cuttenText = text.slice(begin,end)
-		cuttenText = cuttenText.slice(0,cuttenText.lastIndexOf("<"))
-		
-		text = text.replace(cuttenText,"")
-		findNext = text.slice(text.indexOf('class="imp ['))
-	}
-	while (findNext.indexOf('class="imp ['))
-	newText = text
-}
-
-function F_QtxtQname(text){
-	var qName = null
-	/*if ( text.slice(0,1) == "<" ) { 
-		qName = text.slice(text.indexOf(">"),text.lastIndexOf("</")) 
-		//console.log(text)
-		//alert("stop")
-	}*/
-	if ( text.indexOf("<summary") != -1 ) { 
-		qName = text.slice(text.indexOf("<summary"),text.indexOf("</summary>")) 
-		qName = qName.slice(qName.indexOf(">")+1)
-	} else if ( text.indexOf("<font") != -1 ) { 
-		qName = text.slice(text.indexOf("<font")+1,text.indexOf("</font")) 
-		qName = qName.slice(qName.indexOf(">")+1)
-	} else if ( text.indexOf("<div") != -1 ) { 
-		qName = text.slice(text.indexOf("<div")+1,text.indexOf("</div")) 
-		qName = qName.slice(qName.indexOf(">")+1)
-	} else if ( text.indexOf("<span") != -1 ) { 
-		qName = text.slice(text.indexOf("<span")+1,text.indexOf("</span")) 
-		qName = qName.slice(qName.indexOf(">")+1)
-	}
-	if ( qName == null ) { 
-		//console.log(text)
-		qName = text
-		/*if ( qName.indexOf("kerdes") != -1 ) { // span,div
-			qName = qName.slice(qName.indexOf(">")+1)
-			qName = qName.slice(0,qName.indexOf("</"))
-		}*/
-		//console.log("ha hiba van, lehet itt találok megoldást: "+Qtxt)  // a funkcióra hivatkozás még különbözo Qtxt-ekkel történik, és nem volt idom szépen megírni, de egyenlore elvileg jó így is, csak hibára fogékonyabb így
-	}
-	if ( qName.slice(0,1) == "[" ) { qName = qName.slice(qName.indexOf("]")+2) }
-	return qName
-}
-
-function F_setCount(Qelem) {
-	var count
-	if ( Qelem.className.indexOf("[") != -1  || Qelem.className.indexOf("{") != -1 ) { 
-		count = F_getImpID(Qelem.className)
-		var altQk = Qelem.getElementsByClassName("kerdes")
-		for ( var i = 0; i < altQk.length; i++ ) {
-			var altQ = altQk[i]
-			var qName = F_QtxtQname(altQ.innerHTML)
-			if ( qName.slice(-3) == "-->" ) { continue }
-			if ( altQ.className.indexOf("[") != -1  || altQ.className.indexOf("{") != -1 ) { continue }
-			altQ.innerHTML = altQ.innerHTML.replace(qName,qName+ "<!--" +count+ "-->")
-		}
-	} else if ( Qelem.className.indexOf("abbr") != -1 ) { 
-		count = Qelem.parentElement.innerHTML
-		count = count.length
-	} else { // details, span, font, abbr
-		count = Qelem.innerHTML
-		count = count.length
-	}
-	var qName = F_QtxtQname(Qelem.innerHTML)
-	count = qName+ "<!--" +count+ "-->"
-	Qelem.innerHTML = Qelem.innerHTML.replace(qName,count)
-}
-function F_checkQs(){
-	/*F_getTime()
-	var diffTime = myTime-oldTime
-	console.log("– F_checkQs BEGIN – " + diffTime)*/
-	
-//console.clear()
-	for ( var i=0; i<kerdesek.length; i++ ) { 
-		var Qelem = kerdesek[i]
-		var qName = F_QtxtQname(Qelem.innerHTML)
-		if ( qName == "" || qName == " " ) { continue }
-		//if ( qName.slice(-3) != "-->" ) { F_setCount(Qelem) }
-		qName = F_QtxtQname(Qelem.innerHTML)
-		arrQnames[qName] = true
-		//console.log("checkQ: "+qName)
-		var Qtxt = '<'+Qelem.tagName+' class="'+Qelem.className+'">'+Qelem.innerHTML+'</'+Qelem.tagName+'>'
-		arrQtxts.push(Qtxt)
-	}
-	var details = document.body.getElementsByTagName("DETAILS");
-	for ( var i=0; i<details.length; i++ ) { 
-		var childs = details[i].childNodes;
-		objQnameQtxt[childs[0].innerHTML] = details[i].innerHTML
-	}
-	
-	/*F_getTime()
-	var diffTime = myTime-oldTime
-	console.log("– F_checkQs END – " + diffTime)*/
-}
-
-var changeStatus = false
-function F_oldQchange(oldLSid){
-	//console.clear()
-	var oldQtxt = localStorage.getItem(oldLSid)
-	console.log("– F_oldQchange –")
-	console.log("oldLSid: "+oldLSid+": "+oldQtxt)
-	//console.log("oldQtxt: "+oldQtxt)
-	changeStatus = true
-	document.getElementById("div_upgQ").style.display = 'block';
-	
-	var jegy = localStorage.getItem(oldLSid+"_jegy")
-	var repeat = localStorage.getItem(oldLSid+"_repeat")
-	var date = new Date();
-	var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(oldLSid+'_idopont')
-	if ( jegy != null ) {
-		document.getElementById("div_oldJEGY").innerHTML = repeat+" – "+idopont
-	} else {
-		document.getElementById("div_oldJEGY").innerHTML = "– – –"
-	}
-	
-	var newQtxt
-	
-	var arrNEWtxt = []
-	console.log(oldQtxt)
-	var summaryQ = oldQtxt.slice(0,oldQtxt.lastIndexOf("<!--"))
-	
-	for ( var i=0; i<kerdesek.length; i++ ) { 
-		var Qelem = kerdesek[i]
-		var Qtext = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
-		var Qname = F_QtxtQname(Qtext)
-		Qname = Qname.slice(0,Qname.lastIndexOf("<!--"))
-		if ( Qname == summaryQ && arrNEWtxt.indexOf(Qtext) == -1 ) {
-			//console.log(Qtext)
-			arrNEWtxt.push(Qtext)
-		}
-	}
-	document.getElementById("div_upgQ").innerHTML = defaultText + oldQtxt + "<hr>" // utána kell legyen, különben ezt is beleveszi a kerdesek[i]-be
-	//alert("stop")
-
-	// skip BEGIN
-		var option = document.createElement("option")
-		option.id = "option_ReplaceQ_skip"
-		document.getElementById("select_replaceQ").appendChild(option)
-		var text = document.createTextNode(" ––– ")
-		option.appendChild(text)
-	// skip END
-	for ( var i=0; i<arrNEWtxt.length; i++ ) {
-		var newQtxt = arrNEWtxt[i]
-		var text = document.getElementById("div_upgQ").innerHTML // (kell hogy megorizze a buttont + selectet)
-		document.getElementById("div_upgQ").innerHTML = text + newQtxt
-		var x = i +1
-		if ( !document.getElementById("option_ReplaceQ_"+x) ) {
-			var option = document.createElement("option")
-			option.id = "option_ReplaceQ_"+x
-			document.getElementById("select_replaceQ").appendChild(option)
-			var text = document.createTextNode(x)
-			option.appendChild(text)
-		}
-		//document.getElementById("option_ReplaceQ_"+i).value = newLSid
-	}
-	if ( arrNEWtxt.length == 1 ) { 
-		document.getElementById("select_replaceQ").value = 1 
-		// itt valami autoupgrage kéne, ha megegyezik nagyjából, így gyorsabb (ha feltétel azért szükséges, mert sajna azis lehet, hogy két ugyanolyan nevu kveszt volt, és egyiknek megváltoztattam a nevét, erre a másikra akarja felupgradelni) --> ha két azonos nevu Q van, jelezze oket oldal betöltésnél már, és tána írok commentbe mögé egy v1/2/3 stb.-t
-	} else {
-		// alert("stop")
-	}
-	
-	document.getElementById("select_replaceQ").onchange = function() {
-		var value = document.getElementById("select_replaceQ").value
-		var Qtxt = arrNEWtxt[value]
-		var LSid = arrQnameLSid[Qtxt]
-		if ( typeof LSid !== "undefined" ) {
-			var jegy = localStorage.getItem(LSid+"_jegy")
-			var date = new Date();
-			var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-			document.getElementById("div_newJEGY").innerHTML = jegy+" – "+idopont
-		} else {
-			document.getElementById("div_newJEGY").innerHTML = "– – –"
-		}
-	}
-	
-	document.getElementById("button_replaceQ").onclick = function() {
-		console.log("– button_replaceQ CLICK")
-		
-		var value = document.getElementById("select_replaceQ").value
-
-		if ( value != "–––" ) {
-			var Qtxt = arrNEWtxt[value-1]
-			//alert(Qtxt)
-			var qName = F_QtxtQname(Qtxt)
-			
-			localStorage.removeItem(oldQtxt) // régit letörli
-			localStorage.setItem(oldLSid,qName) // frissíti
-			localStorage.setItem(qName,oldLSid) // újat beteszi
-			
-			arrQtxts.push(Qtxt) // ez nemtudom miért kell
-		} else {
-			localStorage.removeItem(oldLSid)
-			// note ido stb. is remove-olni kéne !!!
-			
-			var fullString = localStorage.getItem(document.title+"_LSids")
-			fullString = fullString.replace(" "+oldLSid,'')
-			localStorage.setItem(document.title+"_LSids",fullString)
-		}
-		F_oldQcheck()
-		func_calcOldNew()
-	}
-	var allDetails = document.getElementById("div_upgQ").getElementsByTagName("details")
-	for ( var i=0; i<allDetails.length; i++ ) {
-		allDetails[i].ontoggle = function(){
-			F_loadImgVideo(this)
-			if ( isAndroid ) { F_setAbbrAndroid(this) }
-		}
-	}
-
-}
-
-function F_setAbbrAndroid(detElem) {
-	var allAbbr = detElem.getElementsByTagName("abbr")
-	for ( var i=0; i<allAbbr.length; i++ ) { allAbbr[i].style.lineHeight = "30" }
-}
-
-function F_oldQcheck(){
-	/*F_getTime()
-	var startTime = myTime*/
-	
-	var oldString = []
-	
-	function doStuffs(LSid){
-		var Qname = localStorage.getItem(LSid)
-		if ( arrQnames[Qname] == true ) { return } 
-		
-		console.log(LSid+"(LSid)-missing: "+Qname)
-		var jegy = localStorage.getItem(LSid+"_jegy")
-		var skip = localStorage.getItem(LSid+"_skip")
-		if ( jegy != null || skip != null ) {
-			oldString.push(LSid)
-			console.log(LSid+"(LSid)-missing: "+Qname)
-			//alert("w1: missing: "+Qname)
-		} else {
-			console.log("remove Old: "+LSid)
-			localStorage.removeItem(LSid)
-			// note ido stb. is remove-olni kéne !!!
-			fullString = fullString.replace(LSid,'')
-			localStorage.setItem(document.title+"_LSids",fullString)
-		}
-	}
-	
-	// upgradelt Q-ket csekkolja
-	var fullString = localStorage.getItem(document.title+"_LSids")
-	if ( fullString ) {
-		fullArray = fullString.split(" ") // elso alkalommal különben error lesz
-		for ( var i=0; i<fullArray.length; i++ ) {
-			var LSid = fullArray[i]
-			if ( LSid == "" || LSid == "null" ) { continue } // ilyenek bekerülnek valamiért
-			doStuffs(LSid)
-		}
-	}
-
-	var oldQtxt
-	var oldLSid = false
-
-	var size = oldString.length;
-	if ( size > 0 ) {
-		document.getElementById("btn_upgQ").value = size
-	} else {
-		document.getElementById("btn_upgQ").style.display = 'none'
-	}
-	
-
-	if ( size > 0 ) { // itt nem kell for ciklus, elég csak megnézni, hogy van-e egy, hiszen amikor rákattolok az upgrade-re, akkor kidobja kövit
-		//alert("w2: "+size)
-		for ( var i=0; i<oldString.length; i++ ) {
-			var LSid = oldString[i]
-			if ( LSid != 0 ) { //valamiért van ilyen is benne
-				F_oldQchange(LSid) 
-				//delete arrQnameLSid[oldQtxt]
-				break;
-			}
-		}
-	} else { // ez 1x mindenképp lefut (max a legvégén, amikor már az összes upgradeQ megvolt)
-		document.getElementById("div_upgQ").innerHTML = ""
-		document.getElementById("div_upgQ").style.display = 'none'
-	}
-	/*F_getTime()
-	var diffTime = (myTime-startTime).toFixed(2)
-	console.log("– F_oldQcheck – " + diffTime+"s")*/
-}
-
-var myTestTable = []
-
-function escapeRegExp(oldTxt) {
-	return oldTxt.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
-}
-function replaceAll(string,oldTxt,newTxt) {
-	return string.replace(new RegExp(escapeRegExp(oldTxt), 'g'), newTxt);
-}		
-//INNERhtml = replaceAll(INNERhtml, oldTxt, newTxt)
-
-
-/* // pl. ez a button nem fog muködni, mert az impQbegin elott van!
-var buttonX = document.createElement("BUTTON")
-buttonX.innerHTML = "anyad"
-document.body.appendChild(buttonX)
-buttonX.style.position = "absolute"
-buttonX.style.right = "100px"
-buttonX.style.top = "20px"
-buttonX.onclick = function(){ 
-	alert("sajt")
-}*/
-/* 
- ha ráklikkelek egy details-ra, akkor csak azokat kell betöltse, amik visible-k!! -> erre írjak egyet
- egyrészt ha ki van jelölve a tétel, akkor be kell töltse az összeset 
-	// ha F_detailsToggle -ba is ezt használnám, akkor látható, hogy ha egy detailst megnyitok, majd csukom, akkor 2x lesznek ott a Q-k
-*/
-/* impQ - megoldás ?!
- + csak a impQ-ban töltse be az elején az altQ-kat (oldMethoddal: nem replace, hanem innerHTML)
- + csak akkor töltse be a többinél az impQ-kat, ha megnyitom --> probléma elvileg, hogy a feladatmegoldó oldalra átklikkelve nem jelenik meg akkor az összes quest ?
-*/
-var Qtxt,count
-function F_checkSearchTXT(newQtxt,elemType) {
-	var oldTxt = newQtxt
-	newQtxt = elemType
-	oldTxt = oldTxt.slice(newQtxt.length)
-	newTXT = 1
-	elemType = elemType.slice(elemType.lastIndexOf("<")+1,-1)
-	//console.clear()
-	console.log(elemType)
-	do {
-		var divStart = oldTxt.indexOf('<'+elemType) +4
-		var divEnd = oldTxt.indexOf('</'+elemType) +4
-		//console.clear()
-		console.log(divStart+" vs "+divEnd)
-		console.log(newQtxt)
-		console.log(oldTxt)
-		//alert("newTXTstart: "+newTXT)
-		if ( divStart < divEnd && divStart != 3 ) { 
-			newTXT = newTXT +1
-			newQtxt = newQtxt + oldTxt.slice(0,divStart)
-			oldTxt = oldTxt.slice(divStart)
-		}
-		if ( divStart > divEnd && divEnd != 3 ) { 
-			newTXT = newTXT -1
-			newQtxt = newQtxt + oldTxt.slice(0,divEnd)
-			oldTxt = oldTxt.slice(divEnd)
-		}
-		if ( divEnd == 3 ) { newTXT = -1 }
-		//console.clear()
-		console.log(" – – – – – – – – – ")
-		console.log(divStart+" vs "+divEnd)
-		console.log(newQtxt)
-		console.log(oldTxt)
-		//alert("newTXTend: "+newTXT)
-	} while ( newTXT > 0 )
-	if ( newTXT == 0 ) { newTXT = true }
-	if ( newTXT == -1 ) { newTXT = false }
-	//alert(newTXT)
-	/*console.clear()
-	console.log(newQtxt)
-	alert(startP+" vs "+newQtxt.length)*/
-}
-function F_loadTetelQs(){ // impQnew-al betölti az aktív tételeket
-	// azért elején töltööm be, mert toggleAll-ra klikk így gyorsabb lesz (nem kell ott még ezt is betöltenie)
-	// de ha akarom, akkor elég ezt a funkció lehívást commentbe tenni, akkor is betölti ToggleAll-nál (beírtam kódba már azt is)
-	var Table = document.querySelectorAll('.phase,.status')
-	for ( var i=0;  i<Table.length;  i++ ) { // tetelek
-		var tetelID = i+","+ Table[i].innerHTML +"_button"
-		var phaseDiv = Table[i].parentElement
-		if ( localStorage.getItem(tetelID) == "true" ) { F_impQlot(phaseDiv) }
-	}
-}
-//F_loadTetelQs()
-
-var searchMidQ = false
-var pageLinks = document.getElementsByClassName("page")
-var pagePath, searchPath // img betöltésnél használja
-var pageTexts = {}
-function F_andrHide() { // androidon elrejti a könyveket + tételeket
-	var ua = navigator.userAgent.toLowerCase();
-	if ( isAndroid ) { document.getElementById("tetelek").style.display = "none" }
-}
-//F_andrHide()
-function F_andrFont() { // android font size
-	if ( isAndroid ) { document.body.style.fontSize = "300%" }
-}
-F_andrFont()
-function F_pageOpen() {
-	for ( var i=0; i<pageLinks.length; i++ ) { 
-		var detElem = pageLinks[i]
-		detElem.onmousedown = function(event) {
-			threeSec = 0
-			if ( event.button == 1 ) { // middle click
-				pagePath = this.dataset.src
-				var currPath = window.location.href
-				currPath = currPath.slice(0,currPath.lastIndexOf("/")+1)
-				currPath = currPath +pagePath
-				window.location.href = currPath
-			} else if ( event.button == 0 ) { // left click
-				for ( var x=0; x<pageLinks.length; x++ ) { pageLinks[x].style.backgroundColor = "" }
-				loadAllPage = false
-				F_loadPageText(this.dataset.src,true)
-			}
-		}
-		// favicon
-		var favicons = detElem.getElementsByClassName("targy")
-		var path = detElem.dataset.src
-		if (favicons[0] ) { favicons[0].src = path.slice(0,path.lastIndexOf("/")+1)+"favicon.bmp" }
-	}
-}
-F_pageOpen()
-function F_targyTetelek() { // hány %-on állok velük
-	var howmany = 2 // ezt kell csak átírnom
-	var oszto = 100 ** (howmany-1)
-	howmany += 1
-	for (i = 1; i < howmany; i++) { document.getElementById("elet"+i+"2").value = localStorage.getItem("elettPerc."+i) }
-	function calcValPerc(){
-		document.getElementById("percentX").innerHTML = 1/oszto
-		for (i = 1; i < howmany; i++) { 
-			var max = document.getElementById("elet"+i+"1").innerHTML
-			max = Number(max)
-			var now = document.getElementById("elet"+i+"2").value
-			now = Number(now)
-			var perc = 100*now/max
-			document.getElementById("elet"+i+"3").innerHTML = Math.round(perc) + "%"
-			
-			perc = 100*now* Number(document.getElementById("percentX").innerHTML) /max
-			document.getElementById("percentX").innerHTML = perc
-		}
-		var num = Number(document.getElementById("percentX").innerHTML)
-		document.getElementById("percentX").innerHTML = num.toFixed(2)
-		
-		for (i = 1; i < howmany; i++) { 
-			document.getElementById("elet"+i+"4").innerHTML = 1/oszto
-			for (x = 1; x < howmany; x++) { 
-				var max = document.getElementById("elet"+x+"1").innerHTML
-				max = Number(max)
-				var now = document.getElementById("elet"+x+"2").value
-				now = Number(now)
-				if ( x == i ) { now = now+1 }
-				
-				perc = 100*now* Number(document.getElementById("elet"+i+"4").innerHTML) /max
-				document.getElementById("elet"+i+"4").innerHTML = perc
-			}
-			var num = Number(document.getElementById("elet"+i+"4").innerHTML)
-			num = num.toFixed(2)
-			num = num - Number(document.getElementById("percentX").innerHTML)
-			document.getElementById("elet"+i+"4").innerHTML = "+"+num.toFixed(2)+"%"
-		}
-	}
-	calcValPerc()
-	for (i = 1; i < howmany; i++) { 
-		document.getElementById("elet"+i+"2").oninput = function(){ 
-			calcValPerc()
-			var id = this.id
-			id = id.slice(-2)
-			id = id.slice(0,1)
-			localStorage.setItem("elettPerc."+id,this.value)
-		} 
-	}
-	calcValPerc()
-}
-F_targyTetelek()
-function F_searchQText(detElem){
-	F_getTime()
-	var diffTime = myTime - lastClickTime
-	//console.log(myTime+" vs "+lastClickTime)
-	
-	detElem.style.backgroundColor  = "yellow"
-	var int_Click = window.setInterval(function(){
-		searchPath = detElem.dataset.path
-		//console.log(searchPath)
-		var targyText = pageTexts[searchPath]
-		document.getElementById("div_searchQTargy").innerHTML = targyText
-		document.getElementById("div_MidQ").dataset.origin = "searchQs"
-		F_checkEXPs()
-		
-		var qTxt = objQnameQtxt[detElem.dataset.id]
-		qTxt = qTxt.slice(qTxt.indexOf("<summary"),qTxt.lastIndexOf("</details"))
-		var qTitle = qTxt.slice(qTxt.indexOf(">")+1,qTxt.indexOf("</summary"))
-		document.getElementById("btn_MidQ").innerHTML = qTitle
-		qTxt = qTxt.slice(qTxt.indexOf("</summary"))
-		qTxt = qTxt.slice(qTxt.indexOf(">")+1)
-		document.getElementById("div_MidQText").innerHTML = qTxt
-
-		searchMidQ = true
-		prevScrollTop = document.body.parentElement.scrollTop
-		document.getElementById("div_SearchW").style.display = "none"
-		document.getElementById("div_MidQ").style.display = "block"
-		F_detailsToggle(document.getElementById("div_MidQText"))
-		
-		detElem.style.backgroundColor  = ""
-		clearInterval(int_Click) 
-	}, 100);
-}
-function F_searchWord() {
-	function F_searchResult() {
-		var paths = Object.keys(pageTexts)
-		//document.getElementById("input_SearchW").value = "stressz"
-		var searchText = document.getElementById("input_SearchW").value
-		searchText = searchText.toLowerCase()
-		var fullText = ""
-		document.getElementById("div_SearchWText").innerHTML = ""
-		var hianyzik = ""
-		
-		var spanStatus = document.getElementById("span_searchStatus")
-		spanStatus.parentElement.style.display = "block" 
-		spanStatus.parentElement.style.top = "60px"
-		
-		var x = 0
-		var summaryID = 0
-		var progress = false
-		var int_Click = window.setInterval(function(){
-			if (progress == true) { return } 
-			progress = true
-			spanStatus.style.width = spanStatus.parentElement.offsetWidth * x / paths.length
-			
-			var path = paths[x]
-			x = x +1
-			if ( Number(x) == Number(paths.length) ) { 
-				clearInterval(int_Click)
-				spanStatus.parentElement.style.display = "none" 
-				spanStatus.style.width = 0
-				document.getElementById("div_SearchW").style.backgroundColor = "white"
-				document.getElementById("btn_SearchW").style.color = ""
-				document.getElementById("btn_SearchW").style.backgroundColor = ""
-				F_getTime()
-				lastClickTime = myTime
-			}
-			var targyText = pageTexts[path]
-			if ( targyText == null ) { 
-				hianyzik = hianyzik +path.slice(path.lastIndexOf("/"))+" "
-				progress = false
-				return
-			}
-			if ( targyText.toLowerCase().indexOf(searchText) == -1 ) {
-				progress = false
-				return
-			}
-			fullText = fullText+ path
-			do {
-				//var locST = targyText.toLowerCase().indexOf(searchText)
-				var prevText, postText, positive
-				function F_searchPrevText(){
-					positive = false
-					prevText = targyText.slice(0 , targyText.toLowerCase().indexOf(searchText))
-					var string
-					do {
-						index = prevText.lastIndexOf("<details")
-						string = prevText.slice(prevText.lastIndexOf("<details"))
-						//console.clear()
-						//console.log(string)
-						//console.log(prevText)
-						//alert("stop")
-						prevText = prevText.slice(0 , prevText.lastIndexOf("<details"))
-						if ( string.indexOf("</details") == -1 ) { positive = true }
-					} while ( prevText.indexOf("<details") != -1 && positive != true )
-					if ( positive = true ) { prevText = targyText.slice(index , targyText.toLowerCase().indexOf(searchText)) }
-				}
-				F_searchPrevText()
-				function F_searchPostText(){
-					positive = false
-					postText = targyText.slice(targyText.toLowerCase().indexOf(searchText))
-					var string
-					var index = 0
-					do {
-						index = index + postText.indexOf("</details") +10
-						string = postText.slice(0 , postText.indexOf("</details"))
-						//console.clear()
-						//console.log(string)
-						//console.log(postText)
-						//alert(index)
-						postText = postText.slice(postText.indexOf("</details")+10)
-						if ( string.indexOf("<details") == -1 ) { positive = true }
-					} while ( postText.indexOf("</details") != -1 && positive != true )
-					if ( positive = true ) { postText = targyText.slice(targyText.toLowerCase().indexOf(searchText) , targyText.toLowerCase().indexOf(searchText) +index) }
-				} // <a>ez itt <a>egy</a> teszt szöveg, melyben <a>azt</a> teszt-elem</a>
-				if ( positive == true ) { F_searchPostText() }
-				
-				if ( positive == false ) { continue }
-				var resultText = prevText + postText
-				//console.clear()
-				//console.log(prevText)
-				//console.log(postText)
-				//alert(searchText)
-				
-				var summaryText = resultText.slice(resultText.indexOf("summary")+2)
-				summaryText = summaryText.slice(summaryText.indexOf(">")+1)
-				summaryText = summaryText.slice(0,summaryText.indexOf("</summary"))
-				summaryID = summaryID +1
-				objQnameQtxt[summaryID] = resultText
-				
-				fullText = fullText+ "<li><span data-id='"+summaryID+"' data-path='"+path+"' style='color:green; cursor:pointer' onclick='F_searchQText(this)'>"+summaryText+"</span></li>"
-				targyText = targyText.slice(targyText.indexOf(resultText)+resultText.length)
-			} while ( targyText.toLowerCase().indexOf(searchText) != -1 )
-			document.getElementById("div_SearchWText").innerHTML = fullText
-			
-			//console.log(x+" "+progress+" "+path)
-			progress = false
-		}, 5);
-		if ( hianyzik != "" ) { console.log("HIÁNYZIK:"+hianyzik) }
-	}
-	
-	function F_DivSearchWord() {
-		var div = document.createElement("div")
-		document.body.appendChild(div)
-		div.id = "div_SearchW"
-		div.style.backgroundColor = "white"
-		div.style.overflow = "auto"
-		div.style.border = "8px solid black"
-		div.style.outline = "5px solid aqua"
-		div.style.display = "none"
-		//div.style.display = "block"
-		div.style.position = "fixed"
-		div.style.left = "5px"
-		div.style.right = "5px"
-		div.style.top = "4px"
-		div.style.bottom = "4px"
-		div.style.zIndex = "1"
-		
-		var iframe = document.createElement("iframe") // ebbe tölti be a webpage-ket, majd innen másolja ki innerhtml-üket
-		document.body.appendChild(iframe)
-		iframe.style.display = "none"
-		iframe.id = "iframe_targyak"
-		iframe.name = "iframe_targyak"
- 		
-		var input = document.createElement("input") // ebbe írom a keresett szót
-		div.appendChild(input)
-		input.type = "text"
-		input.id = "input_SearchW"
-		input.style.fontSize = "xx-large"
-		input.style.position = "absolute"
-		input.style.top = "1%"
-		input.style.left = "50%"
-		input.style.paddingLeft = "3px"
-		input.style.paddingRight = "3px"
-		input.style.transform = "translate(-50%)"
-		input.addEventListener("keyup", function(event) { if (event.keyCode === 13) { 
-			F_getTime()
-			var diffTime = myTime - lastClickTime
-			//console.log(myTime+" vs "+lastClickTime)
-			if ( diffTime < 1 ) { return }
-			document.getElementById("div_SearchW").style.backgroundColor = "grey"
-			var int_Click = window.setInterval(function(){
-				document.getElementById("btn_SearchW").style.color = "white"
-				document.getElementById("btn_SearchW").style.backgroundColor = "black"
-				F_searchResult()
-				clearInterval(int_Click) 
-			}, 100)
-		} })
-		//input.onchange = function() { F_searchResult() }
-		//input.value = "inzulin";
-		
-		var button = document.createElement("button")
-		div.appendChild(button)
-		button.id = "btn_SearchW"
-		button.style.fontSize = "xx-large"
-		button.innerHTML = "search"
-		button.style.position = "relative"
-		button.style.top = "1%"
-		button.style.cursor = "pointer"
-		button.onclick = function(){ 
-			F_getTime()
-			var diffTime = myTime - lastClickTime
-			//console.log(myTime+" vs "+lastClickTime)
-			if ( diffTime < 1 ) { return }
-			this.style.backgroundColor  = "black"
-			this.style.color  = "white"
-			document.getElementById("div_SearchW").style.backgroundColor = "grey"
-			var int_Click = window.setInterval(function(){
-				F_searchResult()
-				clearInterval(int_Click) 
-			}, 100)
-		}
-		
-		var divText = document.createElement("div")
-		button.appendChild(divText)
-		divText.style.fontSize = "medium"
-		divText.id = "div_RefreshStatus"
-		divText.style.position = "absolute"
-		divText.style.top = "50%"
-		divText.style.transform = "translateY(-50%)";
-		divText.style.bottom = "1%"
-		divText.style.left = "105%"
-
-		/*var button = document.createElement("input") // refresh
-		button.type = "button"
-		div.appendChild(button)
-		button.style.position = "absolute"
-		button.style.right = "150px"
-		button.style.top = "2px"
-		button.value = "⟳"
-		button.style.fontSize = 'xx-large'
-		button.style.cursor = "pointer"
-		button.style.border = "3px solid black"
-		//button.style.width = "50px"
-		button.onclick = function(){
-			for ( var x=0; x<pageLinks.length; x++ ) { 
-				pageLinks[x].style.color = "black"
-				pageLinks[x].dataset.loaded = false
-			}
-			F_loadAllPageTexts()
-		}*/
-		
-		var button = document.createElement("input")
-		button.type = "button"
-		div.appendChild(button)
-		button.style.position = "absolute"
-		button.style.right = "2px"
-		button.style.top = "2px"
-		button.value = "✖"
-		button.style.fontSize = 'xx-large'
-		button.style.cursor = "pointer"
-		button.style.color = "white"
-		button.style.backgroundColor = "red"
-		button.style.border = "3px solid black"
-		//button.style.width = "50px"
-		button.onclick = function(){
-			document.getElementById("table_weboldalak").style.display = 'block';
-			document.getElementById("div_pageQTargy").style.display = 'block';
-			document.getElementById("div_SearchW").style.display = "none"
-		}
-		
-		var divText = document.createElement("div") // ebbe írja a találati eredményt
-		div.appendChild(divText)
-		divText.id = "div_SearchWText"
-		divText.style.marginLeft = "3px"
-		divText.style.paddingBottom = "10px"
-		divText.style.paddingTop = "10px"
-		divText.style.fontSize = "x-large"
-		
-		var divText = document.createElement("div") // mennyi idő alatt töltötte be, melyik oldalt tölti be stb. (ez lehet fölös)
-		document.getElementById("table_weboldalak").appendChild(divText)
-		divText.id = "div_Refreshng"
-		divText.style.position = "absolute"
-		divText.style.right = "1%"
-		
-		var spanStatus = document.createElement("span")
-		document.body.appendChild(spanStatus)
-		spanStatus.style.display = "none"
-		spanStatus.style.position = "absolute"
-		spanStatus.style.backgroundColor = "grey"
-		spanStatus.style.border = "2px solid white"
-		spanStatus.style.width = "30%"
-		spanStatus.style.height = "21px"
-		spanStatus.style.top = "60px"
-		spanStatus.style.left = "50%"
-		spanStatus.style.transform = "translate(-50%)"
-		spanStatus.style.zIndex = "2"
-		
-		var spanStatusChild = document.createElement("span")
-		spanStatus.appendChild(spanStatusChild)
-		spanStatusChild.id = "span_searchStatus"
-		spanStatusChild.style.backgroundColor = "gold"
-		spanStatusChild.style.position = "absolute"
-		spanStatusChild.innerHTML = "&nbsp;"
-	}
-	F_DivSearchWord()
-	function F_DivMidQ() {
-		var div = document.createElement("div")
-		document.body.appendChild(div)
-		div.id = "div_searchQTargy"
-		div.style.display = "none"
-		
-		var div = document.createElement("div")
-		document.body.appendChild(div)
-		div.id = "div_expQTargy"
-		div.style.display = "none"
-		
-		var div = document.createElement("div")
-		document.body.appendChild(div)
-		//document.body.insertBefore(div, document.body.firstChild);
-		div.id = "div_MidQ"
-		div.dataset.origin = "pageQs"
-		div.style.backgroundColor = "white"
-		div.style.overflow = "auto"
-		div.style.border = "8px solid black"
-		div.style.outline = "5px solid yellow"
-		div.style.display = "none"
-		div.style.position = "absolute"
-		div.style.left = "5px"
-		div.style.right = "5px"
-		div.style.top = "4px"
-		div.style.bottom = "4px"
-		div.style.zIndex = "3"
-		
-		var button = document.createElement("span")
-		div.appendChild(button)
-		button.style.backgroundColor = "red"
-		button.style.color = "white"
-		button.style.fontWeight = "bold"
-		button.style.border = "3px solid black"
-		button.onclick = function(){ 
-			prevMidQ = []
-			document.getElementById("div_MidQ").style.display = "none" 
-			document.getElementById("div_MidQ").dataset.origin = "pageQs"
-			midQloaded = false
-			midQisExp = false
-			
-			if ( searchMidQ == true ) {
-				searchMidQ = false
-				document.getElementById("div_SearchW").style.display = "block"
-			} else {
-				document.getElementById("btn_toggleAll").style.display = 'block'
-				if ( toggleAll == true ) {
-					document.getElementById("table_weboldalak").style.display = 'none'
-					document.getElementById("div_pageQTargy").style.display = 'none'
-					document.getElementById("div_MainFrame").style.display = 'block'
-				} else {
-					document.getElementById("table_weboldalak").style.display = 'block'
-					document.getElementById("div_pageQTargy").style.display = 'block'
-					document.getElementById("div_MainFrame").style.display = 'none'
-				}
-			}
-			document.body.parentElement.scrollTop = prevScrollTop
-		}
-		button.style.cursor = "pointer";
-		button.innerHTML = "✖"
-		button.style.width = "30px"
-		button.style.position = "absolute"
-		button.style.right = "0px"
-		button.style.textAlign = "center"
-		button.style.fontSize  = "large"
-		
-		var button = document.createElement("span")
-		div.appendChild(button)
-		button.id = "btn_MidQback"
-		button.style.backgroundColor = "Gainsboro"
-		button.style.fontWeight = "bold"
-		button.style.border = "3px solid black"
-		button.onclick = function(){ 
-			prevMidQ.pop() // uccsót (ami a jelenlegi letörli)
-			F_midQload(prevMidQ[prevMidQ.length-1]) // uccsót (ami így már az előző lett) betölti
-		}
-		button.style.cursor = "pointer";
-		button.innerHTML = "&#x27A4;"
-		button.style.transform = "scale(-1, 1)"
-		button.style.width = "30px"
-		button.style.position = "absolute"
-		button.style.textAlign = "center"
-		
-		var title = document.createElement("div")
-		div.appendChild(title)
-		title.style.textAlign = "center"
-		title.style.height = "30px"
-		var span = document.createElement("span")
-		title.appendChild(span)
-		span.id = "btn_MidQ"
-		span.style.fontWeight = "bold"
-		span.style.fontSize  = "large"
-		//span.style.position = "absolute"
-		//span.style.left = "50%";
-		//span.style.transform = "translate(-50%)";
-		//span.style.paddingLeft = "3px"
-		//span.style.paddingRight = "3px"
-		
-		var divText = document.createElement("div")
-		div.appendChild(divText)
-		divText.id = "div_MidQText"
-		divText.style.paddingBottom = "10px"
-		//divText.style.paddingTop = "30px"
-	}
-	F_DivMidQ()
-}
-F_searchWord()
-
-function F_centVideoElem(){
-	return document.getElementById("video_cent")
-}
-
-var replaceQs = []
-
-var varNextQ = false
-var midQloaded = false
-var threeSec = 0
-var currPageId
-var F_seekBar = window.setInterval(function(){
-	var centVideo = F_centVideoElem()
-	if ( centVideo.paused == false ) {
-		var centVideoBar = document.getElementById("centVideoBar")
-		var widthPx = centVideo.offsetWidth *centVideo.currentTime /centVideo.duration
-		centVideoBar.style.width = widthPx
-		centVideoBar.style.left = centVideo.offsetLeft
-	} else if ( centVideo.currentTime == centVideo.duration ) {
-		centVideo.currentTime = 0;
-		centVideo.play();
-	}
-	
-	if ( document.getElementById("playedVideo") ) {
-		var playedVideo = document.getElementById("playedVideo")
-		var parentDiv = playedVideo.parentElement
-		var seekBars = parentDiv.getElementsByTagName("span")
-		//console.log(widthPx)
-		var widthPx = playedVideo.offsetWidth *playedVideo.currentTime /playedVideo.duration
-		seekBars[0].style.width = widthPx
-		seekBars[0].style.left = playedVideo.offsetLeft
-	}
-	if ( document.getElementById("div_MidQ").style.display == "block" && midQloaded == false ) {
-		F_midQ(document.getElementById("div_MidQ"))
-		midQloaded = true
-	}
-	
-	if ( document.getElementById("btn_toggleLoad").style.backgroundColor == "green" ) {
-		threeSec = threeSec +1
-		if ( localStorage.getItem("toggleLoad") != "false" ) {
-			var loadTime = 2
-			if ( threeSec > loadTime && document.getElementById("div_SearchW").style.display != "block" ) {
-				var full = pageLinks.length -1
-				for ( var i=0; i<pageLinks.length; i++ ) { 
-					document.getElementById("div_RefreshStatus").innerHTML = i+"/"+full
-					if ( pageLinks[i].dataset.loaded != "true" ) {
-						F_loadPageText(pageLinks[i].dataset.src,false)
-						break
-					}
-				}
-				threeSec = 0
-			}
-		}
-	}
-}, 1000);
-
-function F_answerQ(detElem){ 
-	var trueA = detElem.getElementsByClassName("trueA")
-	var tippA = detElem.getElementsByClassName("tippA")
-	var falseA = detElem.getElementsByClassName("falseA")
-	var answers = detElem.getElementsByClassName("answer")
-	var hiddens = detElem.getElementsByClassName("hidden")
-	//if ( trueA.length == 0 ) { return }
-	
-	if ( detElem.open != true ) {
-		for ( var i=0; i<trueA.length; i++ ) { trueA[i].style.backgroundColor = "" }
-		for ( var i=0; i<tippA.length; i++ ) { tippA[i].style.backgroundColor = "" }
-		for ( var i=0; i<falseA.length; i++ ) { falseA[i].style.backgroundColor = "" }
-		for ( var i=0; i<answers.length; i++ ) { answers[i].style.backgroundColor = "gold" }
-		for ( var i=0; i<hiddens.length; i++ ) { hiddens[i].style.display = "none" }
-		//return // ez nem tudom miért kellett anno, de kivettem így a search esetén is működik már
-	}
-	
-	var div = detElem.getElementsByClassName("random")
-	if ( div.length == 0 ) { return }
-	if ( div[0].offsetParent === null ) { return }
-	var liA = div[0].getElementsByTagName("li")
-	for (var i=0; i<liA.length; i++) { div[0].appendChild(liA[Math.random() * i | 0]) }
-	
-	//trueA = detElem.getElementsByClassName("trueA")
-	//falseA = detElem.getElementsByClassName("falseA")
-	for ( var x=0; x<answers.length; x++ ) { 
-		//alert(answers[x].offsetParent)
-		answers[x].style.cursor = "pointer"
-		answers[x].onclick = function(){
-			for ( var i=0; i<trueA.length; i++ ) { trueA[i].style.backgroundColor = "springgreen" }
-			for ( var i=0; i<tippA.length; i++ ) { tippA[i].style.backgroundColor = "yellow" }
-			for ( var i=0; i<falseA.length; i++ ) {  falseA[i].style.backgroundColor = "tomato" }
-			for ( var i=0; i<hiddens.length; i++ ) { hiddens[i].style.display = "block" }
-			this.style.cursor = ""
-			this.style.backgroundColor = "white"
-		}
-	}
-}
-
-function F_testVideoError() {
-	var allVideo = document.getElementsByTagName("video")
-	for ( var i=0; i<allVideo.length; i++ ) { allVideo[i].onerror = function(){ alert("video betöltési hiba") } }
-}
-F_testVideoError()
-function F_imgActLoad(IMGelem){ 
-	var parent = IMGelem
-	do { // megkeresi az elso details-t
-		parent = parent.parentElement
-	} while ( parent.className.indexOf("[") == -1 && parent.tagName != "DETAILS" && parent.tagName != "BODY" )
-	if ( IMGelem.dataset.src ) {
-		if ( IMGelem.dataset.src.indexOf("images") == -1 /*&& IMGelem.dataset.src.indexOf("100") == -1*/ ) {
-			IMGelem.src = "images/" + IMGelem.dataset.src
-		} else {
-			IMGelem.src = IMGelem.dataset.src
-		}
-		IMGelem.removeAttribute("data-src")
-	}
-}
-var tooltipStatus
-
-F_imgClick(document)
-
-var refreshAll = false
-function F_toggleAll() {
-	F_getTime()
-	var startTime = myTime
-	console.log("– F_toggleAll – 0s")
-
-	if ( refreshAll != true ) {
-		refreshAll = true
-		F_impQfew(document.documentElement,true)
-		F_checkQs()
-		F_tetelQs()
-		F_getTexts()
-		F_oldQcheck()
-		F_tetelChoose() //
-		func_tableSkipFix()
-		F_valFix()
-		F_valSkip()
-		func_calcJegy()
-		func_calcWork()
-		func_calcDate()
-		func_calcOldNew()
-		func_calcRepeat()
-		F_calcqTimer(document.getElementById("btn_qTimer"))
-	}
-	var childs = document.body.children; 
-	if ( document.getElementById("div_MainFrame").style.display != 'none' ) {
-		localStorage.removeItem("hk.ToggleAll")
-		toggleAll = false
-		document.getElementById("table_weboldalak").parentElement.parentElement.style.display = 'block';
-		document.getElementById("div_pageQTargy").style.display = 'block';
-		document.getElementById("div_MainFrame").style.display = 'none';
-		
-		//document.getElementById("div_SearchW").style.display = 'none';
-		//document.getElementById("div_MidQ").style.display = 'none';
-		//document.getElementById("div_upgQ").style.display = 'none';
-	} else {
-		localStorage.setItem("hk.ToggleAll","true")
-		toggleAll = true
-		document.getElementById("table_weboldalak").parentElement.parentElement.style.display = 'none';
-		document.getElementById("div_pageQTargy").style.display = 'none';
-		document.getElementById("div_MainFrame").style.display = 'block';
-	}
-	document.getElementById("div_centIMG").style.display = "block";
-	document.getElementById("btn_toggleAll").style.backgroundColor  = ""
-	
-	F_getTime()
-	lastClickTime = myTime
-	
-	F_getTime()
-	var diffTime = (myTime-startTime).toFixed(2)
-	console.log("– F_toggleAll – " + diffTime+"s")
-}
-
-var var_note = false
-function toggleNote() {
-	if ( var_note == false ) {
-		document.getElementById("note").style.display = 'block';
-		var_note = true
-	} else {
-		document.getElementById("note").style.display = 'none';
-		var_note = false
-	}
-}
-
-function F_calcqTimer(detElem) {
-	var table = document.getElementById("table_qTimer")
-	table.innerHTML = ""
-	var objQtime = []
-	var arrUsedQs = []
-	var arrLSids = []
-	var numTetel = 0
-	
-	for ( var tetelID in tetelek ) {
-		if ( localStorage.getItem(tetelID+"_button") == "true" ) {
-			var tetelQ = document.getElementById(tetelID)
-			var tetelQs = tetelQ.getElementsByClassName("kerdes")
-			if ( tetelQ.classList.contains("kerdes") == true ) { 
-				F_calcLSid(tetelQ)
-				var qName = F_QtxtQname(tetelQ.innerHTML)
-				if ( arrLSids.includes(actLSid) != true ) { arrLSids.push(actLSid+" – "+qName) }
-			}
-			for ( var x=0; x<tetelQs.length; x++ ) {
-				F_calcLSid(tetelQs[x])
-				var qName = F_QtxtQname(tetelQs[x].innerHTML)
-				if ( arrLSids.includes(actLSid) != true ) { arrLSids.push(actLSid+" – "+qName) }
-			}
-			numTetel = numTetel +1
-		}
-	}
-	for ( var x in arrLSids ) {
-		var LSid = arrLSids[x]
-		qName = LSid.slice(LSid.indexOf(" – ")+3)
-		LSid = LSid.slice(0,LSid.indexOf(" – "))
-		var date = new Date();
-		var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-		
-		var Qname = localStorage.getItem(LSid)
-		var jegy = localStorage.getItem(LSid+"_jegy")
-		if ( Qname == null ) { 
-			if ( qName.indexOf('">') != -1 ) {
-				Qname = qName.slice(qName.indexOf(">")+1,qName.indexOf("-->")+3)
-			} else {
-				Qname = qName
-			}
-			if ( Qname == "" ) { console.log(qName) }
-		}
-		Qname = LSid+" "+Qname
-		if ( LSid == null || Qname == null || jegy == null ) { continue }
-		if ( localStorage.getItem(LSid+"_skip") == "perma" ) { continue }
-		if ( localStorage.getItem(LSid+"_skip") == "vizsgaSkip" ) { continue }
-		if ( arrUsedQs.includes(Qname) ) { continue } // 2x ne rakja be
-		
-		objQtime.push([Qname, idopont])
-		arrUsedQs.push(Qname)
-	}
-	document.getElementById("button_Tetel").textContent = numTetel
-
-	objQtime.sort(function(a, b) { return b[1] - a[1]})
-	
-	var numX = 0
-	var numY = 0
-	var date = new Date();
-	var remain = Math.floor(date.getTime()/3600000)
-	remain = localStorage.getItem("vizsgaSkip") - remain
-	for ( var Qname in objQtime ) {
-		numX = numX +1
-		var tr = document.createElement("TR")
-		table.appendChild(tr)
-		var td = document.createElement("TD")
-		tr.appendChild(td)
-		td.innerHTML = numX
-		var td = document.createElement("TD")
-		tr.appendChild(td)
-		td.innerHTML = objQtime[Qname].slice(0,-1)
-		var LSid = td.innerHTML.slice(0,td.innerHTML.indexOf(" "))
-		td.id = LSid
-		td.innerHTML = td.innerHTML.slice(td.innerHTML.indexOf(" "))
-		if ( localStorage.getItem(LSid+"_skip") == "important" ) { td.style.backgroundColor = "lawngreen" }
-		if ( localStorage.getItem(LSid+"_skip") == "tempskip" ) { td.style.backgroundColor = "gold" }
-
-		function F_clickEvent() {
-			var LSid = this.id
-			console.log(event)
-			if ( LSid == undefined ) { alert("F_calcqTimer hiba: undefined LSid") }
-			
-			var statusX
-			if ( this.style.backgroundColor == "" ) { statusX == 0 }
-			if ( this.style.backgroundColor == "lawngreen" ) { statusX == 1 }
-			if ( this.style.backgroundColor == "gold" ) { statusX == 0 }
-			
-			if ( event == "click" ) { statusX = statusX +1 }
-			if ( event.button == "contextmenu" ) { statusX = statusX -1 }
-			
-			if ( statusX == 0 ) { this.style.backgroundColor == "" }
-			if ( statusX == 1 ) { this.style.backgroundColor == "lawngreen" }
-			if ( statusX == 2 ) { this.style.backgroundColor == "gold" }
-			
-			if ( this.style.backgroundColor == "" ) { localStorage.setItem(LSid+"_skip","") }
-			if ( this.style.backgroundColor == "lawngreen" ) { localStorage.setItem(LSid+"_skip","important") }
-			if ( this.style.backgroundColor == "gold" ) { localStorage.setItem(LSid+"_skip","tempskip") }
-			
-			func_calcOldNew()
-		}
-
-		td.addEventListener("contextmenu",function(ev){ ev.preventDefault() })
-		td.addEventListener("mousedown",function(){
-			var LSid = this.id
-			if ( LSid == undefined ) { alert("F_calcqTimer hiba: undefined LSid") }
-			
-			var statusX
-			if ( this.style.backgroundColor == "" ) { statusX = 0 }
-			if ( this.style.backgroundColor == "lawngreen" ) { statusX = 1 }
-			if ( this.style.backgroundColor == "gold" ) { statusX = 2 }
-			
-			if ( event.button == 0 ) { statusX = statusX +1 }
-			if ( event.button == 2 ) { statusX = statusX -1 }
-			
-			if ( statusX == 0 || statusX == 3 ) { this.style.backgroundColor = "" }
-			if ( statusX == 1 ) { this.style.backgroundColor = "lawngreen" }
-			if ( statusX == 2 || statusX == -1 ) { this.style.backgroundColor = "gold" }
-			
-			if ( this.style.backgroundColor == "" ) { localStorage.setItem(LSid+"_skip","") }
-			if ( this.style.backgroundColor == "lawngreen" ) { localStorage.setItem(LSid+"_skip","important") }
-			if ( this.style.backgroundColor == "gold" ) { localStorage.setItem(LSid+"_skip","tempskip") }
-			
-			func_calcOldNew()
-		})
-
-		var td = document.createElement("TD")
-		tr.appendChild(td)
-		var repTime = objQtime[Qname].slice(objQtime[Qname].lastIndexOf(","))
-		td.innerHTML = objQtime[Qname].slice(objQtime[Qname].lastIndexOf(",")) // repTime
-		//numY = numX
-		if ( repTime < remain*60 ) { 
-			td.style.color = "red" 
-		} else {
-			numY = numY +1
-		}
-		//if ( repTime > 4500 ) { numY = numX }
-	}
-	detElem.textContent = numY
-}
-
-function F_hideQArea() {
-	document.getElementById("divQloc").style.display = "none" // nextQ-t ahova kidobja
-	
-	document.getElementById("div_skipFix").style.display = "none" // kék-piros-fekete-sárga
-	document.getElementById("div_qProp").style.display = "none" // android osztályzás
-	document.getElementById("div_qMarks").style.display = "none" // már osztályzott kérdések sorrendbe egymás alatt
-	document.getElementById("Div_Tetelek").style.display = "none" // tételválasztás
-	document.getElementById("note").style.display = 'none'
-	
-	document.getElementById("btn_qTimer").style.borderColor = "black" // már osztályzott kérdések sorrendbe egymás alatt
-	document.getElementById("button_Tetel").style.borderColor = "black" // tételválasztás
-	document.getElementById("btn_skip").style.borderColor = "black" // fekete
-	document.getElementById("btn_fix").style.borderColor = "black" // piros
-	document.getElementById("btn_tempskip").style.borderColor = "black" // gold
-	document.getElementById("btn_vizsgaskip").style.borderColor = "black" // kek
-	document.getElementById("btn_note").style.borderColor = "black"
-}
-
-var lastClickTime = 0
-function F_CreateQDiv() {
-	
-	function F_ButtonToggleAll() {
-		var button = document.createElement("input")
-		button.id = "btn_toggleAll"
-		button.type = "button"
-		document.body.appendChild(button)
-		//document.getElementById("table_weboldalak").parentElement.style.position = "relative"
-		button.style.width = "90px"
-		button.style.height = "90px"
-		button.style.position = "absolute"
-		button.style.right = "7px"
-		button.style.top = "4px"
-		button.style.cursor = "pointer"
-
-		button.onclick = function(){ 
-			F_getTime()
-			var diffTime = myTime - lastClickTime
-			console.log(myTime+" vs "+lastClickTime)
-			if ( diffTime < 1 ) { return }
-			document.body.style.backgroundColor = "Gainsboro"
-			this.style.backgroundColor  = "black"
-			var int_Click = window.setInterval(function(){
-				F_toggleAll()
-				clearInterval(int_Click) 
-				document.body.style.backgroundColor = ""
-			}, 100)
-		}
-	}
-	F_ButtonToggleAll()
-	function F_ButtonSearchWord() {
-		var button = document.createElement("input")
-		button.type = "button"
-		document.getElementById("table_weboldalak").parentElement.parentElement.appendChild(button)
-		document.getElementById("table_weboldalak").parentElement.parentElement.style.position = "relative"
-		button.style.position = "absolute"
-		button.style.right = "0px"
-		button.style.bottom = "0px" // parent position-jént relative-ra kellett állítani, illetve ezt absolute-ra, hogy működjön!!
-		button.style.width = "90px"
-		button.style.height = "90px"
-		button.value = "🔍"
-		button.style.fontSize = '300%'
-		button.style.cursor = "pointer"
-
-		button.onclick = function(){ 
-			if ( document.getElementById("div_SearchW").style.display == "none" ) {
-				this.style.backgroundColor  = "black"
-				this.style.color  = "white"
-			}
-			var int_Click = window.setInterval(function(){
-				document.getElementById("table_weboldalak").style.display = 'none';
-				document.getElementById("div_pageQTargy").style.display = 'none';
-				document.getElementById("div_SearchW").style.display = "block"
-				button.style.color = ""
-				button.style.backgroundColor = ""
-				F_getTime() // időt elvileg innen számolja: F_loadAllPageTexts-ben használja fel az iteni myTime-ot startTime-nak
-				loadAllPage = true
-				F_loadAllPageTexts()
-				clearInterval(int_Click) 
-			}, 100)
-		}
-	}
-	F_ButtonSearchWord()
-	function F_skipTime() { // következő vizsga hány óra múlva lesz
-		var input = document.createElement("input")
-		document.getElementById("table_weboldalak").parentElement.parentElement.appendChild(input)
-		document.getElementById("table_weboldalak").parentElement.parentElement.style.position = "relative"
-		input.type = "number"
-		input.style.width = "50px"
-		input.style.position = "absolute"
-		input.style.right = "5px"
-		input.style.bottom = "47%"
-		
-		var date = new Date();
-		var remain = Math.floor(date.getTime()/3600000)
-		remain = localStorage.getItem("vizsgaSkip") - remain
-		if ( remain < 0 ) { remain = 0 }
-		input.value = remain
-		
-		input.oninput = function(){ 
-			var date = new Date();
-			var time = Math.floor(date.getTime()/3600000)
-			time = time + Number(this.value)
-			localStorage.setItem("vizsgaSkip",time)
-		}
-	}
-	F_skipTime()
-
-	function F_DivMainFrame() {
-		var div = document.createElement("div")
-		div.id = "div_MainFrame"
-		div.style.display = "none"
-		div.style.position = "relative"
-		//div.style.maxHeight = "50%"
-		var parent = document.body
-		parent.insertBefore(div,parent.firstChild)
-	}
-	F_DivMainFrame()
-	var MainFrame = document.getElementById("div_MainFrame");
-
-	function F_DivQSettings() {
-		var div = document.createElement("div")
-		div.id = "div_QSettings"
-		//div.className = "normal"
-		div.style.borderBottom = "4px solid black"
-		div.style.marginBottom = "10px"
-		div.style.paddingBottom = "10px"
-		MainFrame.appendChild(div)
-	}
-	F_DivQSettings()
-	var divSettings = document.getElementById("div_QSettings");
-
-	function F_ButtonTetelek() {
-		var button = document.createElement("button")
-		button.id = "button_Tetel"
-		button.style.border = "3px solid black"
-		button.style.backgroundColor = "Bisque"
-		button.textContent = "TÉTEL"
-		divSettings.appendChild(button)
-		button.onclick = function() {
-			if ( document.getElementById("Div_Tetelek").style.display == "none" ) {
-				F_hideQArea()
-				document.getElementById("Div_Tetelek").style.display = "block"
-				this.style.borderColor = "limegreen"
-			} else {
-				F_hideQArea()
-				document.getElementById("divQloc").style.display = "block"
-			}
-		}
-	}
-	F_ButtonTetelek()
-	function F_SpanDate() {
-		var span = document.createElement("span")
-		span.id = "span_Date"
-		divSettings.appendChild(span)
-		span.className = "white"
-		span.style.border = "1px solid black"
-
-		span.style.paddingLeft = "5px"
-		span.style.paddingRight = "5px"
-		span.style.paddingTop = "1px"
-		span.style.paddingBottom = "2px"
-	}
-	F_SpanDate()
-	function F_BtnAtlag() {
-		var button = document.createElement("input")
-		button.type = "button"
-		button.id = "btn_Jegy"
-		divSettings.appendChild(button)
-		button.style.border = "3px solid black"
-		button.style.backgroundColor = "Bisque"
-		button.onclick = function(){
-			if ( document.getElementById("div_nextQMark").style.display == 'none' ) {
-				document.getElementById("div_nextQMark").style.display = 'block'
-			} 
-			if ( document.getElementById("repTable").style.display == 'block' ) {
-				document.getElementById("repTable").style.display = 'none'
-				this.style.borderColor = "black"
-			} else {
-				func_calcRepTable()
-				document.getElementById("repTable").style.display = 'block'
-				this.style.borderColor = "limegreen"
-			} 
-		}
-	}
-	F_BtnAtlag()
-	function F_SpanRepAll() {
-		var span = document.createElement("span")
-		span.id = "span_Repeat"
-		divSettings.appendChild(span)
-		span.className = "WHITE"
-
-		span.style.paddingLeft = "5px"
-		span.style.paddingRight = "5px"
-		span.style.paddingTop = "1px"
-		span.style.paddingBottom = "2px"
-	}
-	F_SpanRepAll()
-	function F_ButtonMarks() {
-		var button = document.createElement("button")
-		button.id = "btn_qTimer"
-		button.style.border = "3px solid black"
-		button.style.backgroundColor = "Bisque"
-		button.textContent = "0"
-		divSettings.appendChild(button)
-		
-		var div = document.createElement("div")
-		div.id = "div_qMarks"
-		MainFrame.appendChild(div)
-		div.style.backgroundColor = "white"
-		div.style.border = "10px solid black"
-		div.style.display = "none"
-		div.style.height = "73vh"
-		div.style.overflow = "auto"
-		div.style.zIndex = "2"
-		
-		var center = document.createElement("center")
-		div.appendChild(center)
-		
-		var table = document.createElement("TABLE")
-		table.id = "table_qTimer"
-		center.appendChild(table)
-
-		button.onclick = function(){
-			if ( div.style.display == "none" ) {
-				F_hideQArea()
-				div.style.display = "block"
-				this.style.borderColor = "limegreen"
-			} else {
-				F_hideQArea()
-				document.getElementById("divQloc").style.display = "block"
-			}
-		}
-	}
-	F_ButtonMarks()
-
-	function F_DivAlertEXPQrosszNum() {
-		var div = document.createElement("div")
-		MainFrame.appendChild(div)
-		div.style.backgroundColor = "white"
-		div.style.overflow = "auto"
-		div.style.width = "200px"
-		div.style.height = "70px"
-		div.style.position = "fixed"
-		div.style.top = "1%"
-		div.style.left = "100%"
-		div.style.marginLeft = "-300px"
-		div.style.border = "10px solid red"
-		div.innerHTML = wrongEXPid
-		if ( wrongEXPid != "foglalt vagy upgradelve lett:<br>" ) { 
-			div.style.display = 'block';
-		} else {
-			div.style.display = 'none';
-		}
-	}
-	F_DivAlertEXPQrosszNum()
-	
-	function F_ButtonUpgQ() {
-		var button = document.createElement("input")
-		button.id = "btn_upgQ"
-		button.type = "button"
-		divSettings.appendChild(button)
-		button.style.color = "white"
-		button.style.fontWeight = "bold"
-		button.style.backgroundColor = "red"
-		button.style.border = "3px solid black"
-		/*button.style.position = "fixed"
-		button.style.right = "50%"
-		button.style.top = "5px"*/
-		button.onclick = function() {
-			if ( document.getElementById("div_upgQ").style.display == 'block' ) {
-				document.getElementById("div_upgQ").style.display = 'none';
-			} else {
-				document.getElementById("div_upgQ").style.display = 'block';
-			}
-		}
-	}
-	F_ButtonUpgQ()
-
-	var br = document.createElement("br")
-	divSettings.appendChild(br)
-	
-	function F_ButtonNewQ() {
-		var button = document.createElement("input")
-		button.id = "btn_newQuest"
-		button.type = "button"
-		divSettings.appendChild(button)
-		button.style.backgroundColor = "white"
-		button.style.border = "3px solid black"
-		button.onclick = function(){ 
-			if ( this.style.borderColor == "limegreen" ) {
-				this.style.borderColor = "black"
-				localStorage.removeItem("hk.newQ")
-			} else {
-				this.style.borderColor = "limegreen"
-				localStorage.setItem("hk.newQ",true)
-			}
-		}
-		button.value = "0"
-	}
-	F_ButtonNewQ()
-	function F_SpanRepSlow() {
-		var span = document.createElement("span")
-		span.id = "span_RepSlow"
-		divSettings.appendChild(span)
-		span.className = "vocab"
-		span.style.border = "1px solid black"
-
-		span.style.paddingLeft = "5px"
-		span.style.paddingRight = "5px"
-		span.style.paddingTop = "1px"
-		span.style.paddingBottom = "2px"
-	}
-	F_SpanRepSlow()
-	function F_ButtonRepFast() {
-		var button = document.createElement("input")
-		button.id = "btn_RepFast"
-		button.type = "button"
-		divSettings.appendChild(button)
-		button.className = "MISS"
-		button.style.border = "3px solid black"
-		button.onclick = function(){ 
-			if ( this.style.borderColor == "limegreen" ) {
-				this.style.borderColor = "black"
-			} else {
-				this.style.borderColor = "limegreen"
-			}
-		}
-		button.value = "0"
-	}
-	F_ButtonRepFast()
-	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
-	function F_ButtonNote() {
-		var button = document.createElement("input")
-		button.type = "button"
-		button.id = "btn_note"
-		divSettings.appendChild(button)
-		button.style.border = "3px solid black"
-		button.style.backgroundColor = "Bisque"
-		button.onclick = function(){ 
-			if ( this.style.borderColor == "limegreen" ) {
-				F_hideQArea()
-				document.getElementById("divQloc").style.display = 'block';
-			} else {
-				F_hideQArea()
-				this.style.borderColor = "limegreen"
-				document.getElementById("note").style.display = 'block';
-				func_SetTextOfSkipFixDiv(this.id)
-			}
-		}
-		button.value = "✍"
-		
-		var div = document.createElement("div")
-		div.id = "div_nextQMark"
-		div.style.display = "none"
-		div.style.position = "fixed"
-		div.style.right = "2px"
-		div.style.top = "30px"
-		div.style.backgroundColor = "white"
-		div.style.border = "2px solid black"
-		div.onclick = function(){ document.getElementById("div_nextQMark").style.display = 'none' }
-		//document.body.appendChild(div)
-		MainFrame.appendChild(div)
-	}
-	F_ButtonNote()
-	divSettings.appendChild( document.createTextNode( '\u00A0' ) );
-	function F_ButtonNextQdiff() {
-		var button = document.createElement("input")
-		button.id = "btn_nextQdiff"
-		button.type = "button"
-		divSettings.appendChild(button)
-		button.style.backgroundColor = "coral"
-
-		button.onclick = function(){ 
-			if ( this.style.backgroundColor != "limegreen" ) {
-				this.style.backgroundColor = "limegreen"
-				console.clear()
-				missImgs = ""
-				testLoad = true
-				F_loadImgVideo(document.body)
-				testLoad = false
-			} else {
-				this.style.backgroundColor = "coral"
-				alert(missImgs)
-			}
-		}
-		button.value = " "
-	}
-	F_ButtonNextQdiff()
-
-	var br = document.createElement("br")
-	divSettings.appendChild(br)
-
-	function F_ButtonVizsgaSkip() {
-		var button = document.createElement("input")
-		button.id = "btn_vizsgaskip"
-		button.type = "button"
-		divSettings.appendChild(button)
-		button.style.backgroundColor = "blue"
-		button.style.color = "white"
-		button.style.fontWeight = "bold"
-		button.style.border = "3px solid black"
-		button.onclick = function(){ 
-			if ( this.style.borderColor == "limegreen" ) {
-				F_hideQArea()
-				document.getElementById("divQloc").style.display = 'block';
-			} else {
-				F_hideQArea()
-				this.style.borderColor = "limegreen"
-				document.getElementById("div_skipFix").style.display = 'block';
-				func_SetTextOfSkipFixDiv(this.id)
-			}
-		}
-		button.value = "0"
-	}
-	F_ButtonVizsgaSkip()
-	function F_ButtonFix() {
-		var button = document.createElement("input")
-		button.id = "btn_fix"
-		button.type = "button"
-		divSettings.appendChild(button)
-		button.className = "fix"
-		button.style.border = "3px solid black"
-		button.onclick = function(){ 
-			if ( this.style.borderColor == "limegreen" ) {
-				F_hideQArea()
-				document.getElementById("divQloc").style.display = 'block';
-			} else {
-				F_hideQArea()
-				this.style.borderColor = "limegreen"
-				document.getElementById("div_skipFix").style.display = 'block';
-				func_SetTextOfSkipFixDiv(this.id)
-			}
-		}
-		button.value = "0"
-	}
-	F_ButtonFix()
-	function F_ButtonSkip() {
-		var button = document.createElement("input")
-		button.id = "btn_skip"
-		button.type = "button"
-		divSettings.appendChild(button)
-		button.className = "dark"
-		button.style.border = "3px solid black"
-		button.onclick = function(){ 
-			if ( this.style.borderColor == "limegreen" ) {
-				F_hideQArea()
-				document.getElementById("divQloc").style.display = 'block';
-			} else {
-				F_hideQArea()
-				this.style.borderColor = "limegreen"
-				document.getElementById("div_skipFix").style.display = 'block';
-				func_SetTextOfSkipFixDiv(this.id)
-			}
-		}
-		button.value = "0"
-	}
-	F_ButtonSkip()
-	function F_ButtonTempSkip() {
-		var button = document.createElement("input")
-		button.id = "btn_tempskip"
-		button.type = "button"
-		divSettings.appendChild(button)
-		button.style.backgroundColor = "gold"
-		button.style.fontWeight = "bold"
-		button.style.border = "3px solid black"
-		button.onclick = function(){ 
-			if ( this.style.borderColor == "limegreen" ) {
-				F_hideQArea()
-				document.getElementById("divQloc").style.display = 'block';
-			} else {
-				F_hideQArea()
-				this.style.borderColor = "limegreen"
-				document.getElementById("div_skipFix").style.display = 'block';
-				func_SetTextOfSkipFixDiv(this.id)
-			}
-		}
-	}
-	F_ButtonTempSkip()
-	function F_spanImportant() {
-		var span = document.createElement("span")
-		span.id = "span_important"
-		divSettings.appendChild(span)
-		span.style.border = "3px solid limegreen"
-		span.onclick = function(){ 
-			if ( this.style.borderColor == "limegreen" ) {
-				this.style.borderColor = "black"
-			} else {
-				this.style.borderColor = "limegreen"
-			}
-		}
-	}
-	F_spanImportant()
-	function F_SpanRepNew() {
-		var span = document.createElement("span")
-		span.id = "span_RepNew"
-		document.getElementById("span_important").appendChild(span)
-		span.style.backgroundColor = "White"
-		span.style.paddingLeft = "5px"
-		span.style.paddingRight = "5px"
-	}
-	F_SpanRepNew()
-	function F_SpanRepOld() {
-		var span = document.createElement("span")
-		span.id = "span_RepOld"
-		document.getElementById("span_important").appendChild(span)
-		span.style.backgroundColor = "Gainsboro"
-		span.style.paddingLeft = "5px"
-		span.style.paddingRight = "5px"
-	}
-	F_SpanRepOld()
-
-	function F_divSkipFix() {
-		var div = document.createElement("div")
-		div.id = "div_skipFix"
-		MainFrame.appendChild(div)
-		div.style.backgroundColor = "white"
-		div.style.overflow = "auto"
-		div.style.height = "73vh"
-		div.style.border = "10px solid black"
-		div.style.display = "none"
-	}
-	F_divSkipFix()
-	function F_DivUpgQ() {
-		var div = document.createElement("div")
-		div.id = "div_upgQ"
-		MainFrame.appendChild(div)
-		div.style.backgroundColor = "white"
-		div.style.overflow = "auto"
-		div.style.width = "80vw"
-		div.style.height = "60vh"
-		div.style.position = "fixed"
-		div.style.top = "50%"
-		div.style.left = "50%"
-		div.style.marginTop = "-30vh"
-		div.style.marginLeft = "-40vw"
-		div.style.border = "10px solid red"
-		div.style.display = "none"
-		
-		var oldJEGY = document.createElement('div');
-		oldJEGY.id = "div_oldJEGY"
-		div.appendChild(oldJEGY)
-		oldJEGY.style.border = "1px solid black"
-		oldJEGY.style.position = "absolute"
-		oldJEGY.style.bottom ='2px'
-		oldJEGY.style.left = '35%'
-		
-		var newJEGY = document.createElement('div');
-		newJEGY.id = "div_newJEGY"
-		div.appendChild(newJEGY)
-		newJEGY.style.border = "1px solid black"
-		newJEGY.style.position = "absolute"
-		newJEGY.style.bottom ='2px'
-		newJEGY.style.left = '65%'
-
-		var button = document.createElement("input")
-		button.id = "button_replaceQ"
-		button.type = "button";
-		div.appendChild(button)
-		button.style.position = "absolute"
-		button.style.bottom = "10px"
-		button.style.right = "10px"
-		button.value = "upgrade"
-		
-		var select = document.createElement("SELECT")
-		select.id = "select_replaceQ"
-		div.appendChild(select)
-		select.style.position = "absolute"
-		select.style.bottom = "10px"
-		select.style.left = "10px"
-	}
-	F_DivUpgQ()
-
-	function F_DivQLoc() {
-		var divQloc = document.createElement("div")
-		divQloc.id = "divQloc"
-		MainFrame.appendChild(divQloc)
-		//divQloc.style.overflow = "auto"
-		//divQloc.style.height = "87vh"
-		
-	}
-	F_DivQLoc()
-	var divQloc = document.getElementById("divQloc");
-	function F_DivQTitle() {
-		var div = document.createElement("div")
-		div.id = "questTitle"
-		div.style.fontWeight = "bold"
-		div.style.fontSize = "large"
-		divQloc.appendChild(div)
-	}
-	F_DivQTitle()
-	function F_DivQuest() {
-		var div = document.createElement("div")
-		div.id = "kerdeslocation"
-		divQloc.appendChild(div)
-	}
-	F_DivQuest()
-
-	function F_TextAreaNote() {
-		var textArea = document.createElement("textarea")
-		divSettings.appendChild(textArea)
-		textArea.style.display = "none"
-		textArea.id = "note"
-		textArea.style.zIndex = "1"; 
-		if ( isAndroid ) { 
-			textArea.rows = "2"
-		} else {
-			textArea.rows = "5"
-		}
-		//textArea.cols = "60"
-
-		textArea.style.position = "fixed"
-		textArea.style.width = "50vw"
-		textArea.style.left = "25%"
-		if ( isAndroid ) { 
-			textArea.style.top = "5px"
-		} else {
-			textArea.style.top = "15%"
-		}
-		textArea.style.border = "thick solid black"
-	}
-	F_TextAreaNote()
-
-/*
-
-	<select id="skip"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="5">5</option><option value="10">10</option><option value="20">20</option></select> 
-*/
-
-	function F_ButtonNextQ() {
-		var button = document.createElement("input")
-		button.type = "button"
-		button.id = "button_NextQ"
-		divSettings.appendChild(button)
-		button.onclick = function(){ 
-			F_getTime()
-			var diffTime = myTime - lastClickTime
-			//console.log(myTime+" vs "+lastClickTime)
-			if ( diffTime < 1 ) { return }
-			if ( this.style.backgroundColor == "aqua" ) { 
-				document.body.style.backgroundColor = "Gainsboro"
-			} else {
-				this.style.backgroundColor  = "black"
-				this.style.color  = "white"
-			}
-			var int_Click = window.setInterval(function(){
-				F_nextQ()
-				clearInterval(int_Click) 
-				document.body.style.backgroundColor = ""
-			}, 100)
-		}
-		button.value = " ► "
-		
-		button.style.height = "40px"
-		button.style.width = "40px"
-		
-		button.style.position = "absolute"
-		button.style.left = "235px"
-		button.style.top = "26px"
-		button.style.right = "90px"
-		button.style.overflow = "auto"
-		button.style.border = "3px solid black"
-		button.style.backgroundColor = "white"
-	}
-	F_ButtonNextQ()
-	function F_DivMark() {
-		var div = document.createElement("DIV")
-		div.id = "Div_QsMark"
-		MainFrame.appendChild(div)
-
-		div.style.position = "absolute"
-		div.style.left = "275px"
-		div.style.top = "-10px"
-		div.style.right = "90px"
-	}
-	F_DivMark()
-
-	function F_TableTetelek() {
-		var table = document.createElement("TABLE")
-		table.id = "Table_QsMark"
-		document.getElementById("Div_QsMark").appendChild(table)
-		table.style.borderSpacing = "0px 0px"
-		table.style.borderCollapse = "separate"
-		table.style.display = "block"
-		table.style.maxWidth = "100%"
-		table.style.overflow = "auto"
-
-		for ( var i=0; i<3; i++ ) {
-			var tr = document.createElement("TR")
-			tr.id  = "Tr_QsMark."+i
-			table.appendChild(tr)
-		}
-	}
-	F_TableTetelek()
-
-	function F_TableRepeat() {
-		var table = document.createElement("TABLE")
-		table.id = "repTable"
-		MainFrame.appendChild(table)
-
-		table.style.display = "none"
-		table.style.position = "fixed"
-		table.style.left = "40%"
-		table.style.top = "30%"
-		table.style.backgroundColor = "white"
-
-		var tr = document.createElement("TR")
-		table.appendChild(tr)
-		var th = document.createElement("TH")
-		th.innerHTML = "rep"
-		tr.appendChild(th)
-		var th = document.createElement("TH")
-		th.innerHTML = "min"
-		tr.appendChild(th)
-		var th = document.createElement("TH")
-		th.innerHTML = "hossz"
-		tr.appendChild(th)
-		var th = document.createElement("TH")
-		th.innerHTML = "left"
-		tr.appendChild(th)
-		var th = document.createElement("TH")
-		th.innerHTML = "still"
-		tr.appendChild(th)
-		var th = document.createElement("TH")
-		th.innerHTML = "average"
-		tr.appendChild(th)
-		
-		for ( var i=1; i<5; i++ ) {
-			var tr = document.createElement("TR")
-			table.appendChild(tr)
-
-			var th = document.createElement("TH")
-			th.innerHTML = i
-			th.id = "hkQ.nextRep"+i
-			tr.appendChild(th)
-			if ( localStorage.getItem("hkQ.nextRep"+i) ) {
-				th.style.backgroundColor = localStorage.getItem("hkQ.nextRep"+i)
-			} else {
-				th.style.backgroundColor = "limegreen"
-			}
-			th.onclick = function(){
-				if ( this.style.backgroundColor == "limegreen" ) {
-					this.style.backgroundColor = "coral"
-				} else {
-					this.style.backgroundColor = "limegreen"
-				}
-				var nextRepID = this.id
-				localStorage.setItem(nextRepID,this.style.backgroundColor)
-			}
-
-			var td = document.createElement("TD")
-			td.id = i+"min"
-			td.innerHTML = obj_repCount[i]
-			tr.appendChild(td)
-
-			var td = document.createElement("TD")
-			td.id = i+"hossz"
-			tr.appendChild(td)
-
-			var td = document.createElement("TD")
-			td.id = i+"left"
-			tr.appendChild(td)
-
-			var td = document.createElement("TD")
-			td.id = i+"still"
-			tr.appendChild(td)
-
-			var td = document.createElement("TD")
-			td.id = i+"average"
-			tr.appendChild(td)
-		}
-	}
-	F_TableRepeat()
-}
-F_CreateQDiv()
-
-var defaultText = document.getElementById("div_upgQ").innerHTML
-var vizsgaTime = Number(localStorage.getItem("vizsgaSkip"))*60
-
-var nextMark = 0
-var nextRep = "zerus"
-function F_nextMark(jegy){ // következo kérdés nehézségét beállítja, 
-	// repeat alapján
-	//console.clear()
-	//console.log("– – – – – – – F_nextMark – – – – – – – –")
-	var zeroVal = 0
-	var arany = []
-	document.getElementById("div_nextQMark").innerHTML = ""
-	for ( var i=1;  i<5;  i++ ) {
-		var averageTime = Number(document.getElementById(i+"average").title)
-		var defTime
-		defTime = obj_repCount[i]
-		
-		if ( isNaN(averageTime) == false ) {
-			zeroVal = zeroVal + averageTime/defTime
-			arany[i] = zeroVal
-		} else {
-			arany[i] = 0
-		}
-		//console.log(i+"i: "+arany[i])
-	}
-	
-	var diff = 0
-	for ( var i=0;  i<6;  i++ ) {
-		var num = arany[i] - diff
-		num = 100*num/zeroVal
-		num = num.toFixed(0);
-		if ( arany[i] == 0 ) { num = 0 }
-		document.getElementById("div_nextQMark").innerHTML = document.getElementById("div_nextQMark").innerHTML + i + ": " + num + "%<br>"
-		if ( arany[i] != 0 ) { diff = arany[i] }
-	}
-	//console.log("- - - - - - - - -")
-	var randNum  = Math.random() * zeroVal
-	//console.log(randNum)
-	nextRep = "zerus"
-	if 			 ( randNum < arany[0] ) { nextRep = 0 
-		} else if ( randNum < arany[1] ) { nextRep = 1 
-		} else if ( randNum < arany[2] ) { nextRep = 2 
-		} else if ( randNum < arany[3] ) { nextRep = 3 
-		} else if ( randNum < arany[4] ) { nextRep = 4 
-		} else if ( randNum < arany[5] ) { nextRep = 5 
-	}
-	//console.log(nextRep)
-	//alert("STOP")
-	
-
-	// az elozo sikere alapján
-	/*jegy = parseInt(jegy,10)
-	if ( Math.random() > 0.5 ) {
-		if ( jegy == 1 ) {
-			nextMark = 3
-		} else if ( jegy == 3 || jegy == 4 ) {
-			nextMark = 1
-		}
-	} else {
-		nextMark = 0
-	}*/
-}
-
-var tetelek = []
-function F_tetelChoose(){ // createli a választható tételek listáját
-	F_getTime()
-	var startTime = myTime
-	function F_MainDiv() {
-		var div = document.createElement("div")
-		div.id = "Div_Tetelek"
-		var questDiv = document.getElementById("div_MainFrame");
-		questDiv.appendChild(div)
-		div.style.backgroundColor = "white"
-		div.style.border = "10px solid black"
-		div.style.display = "none"
-		div.style.height = "73vh"
-		div.style.overflow = "auto"
-	}
-	F_MainDiv()
-
-	function createTemakor(szoveg) {
-		var details = document.createElement("DETAILS")
-		var summary = document.createElement("SUMMARY")
-		details.id = szoveg+"_details"
-		details.appendChild(summary)
-		document.getElementById("Div_Tetelek").appendChild(details)
-		summary.innerHTML = szoveg.bold()
-		summary.style.backgroundColor = "gainsboro";
-		summary.style.color = "black";
-		summary.style.fontSize = "120%"
-		
-		var div = document.createElement("div") // firefoxba kellett
-		details.appendChild(div)
-		
-		var pageName = document.title
-		if ( localStorage.getItem(pageName+" "+szoveg) ) {
-			details.open = true
-		}
-		summary.onclick = function(){
-			if ( details.open != true ) {
-				localStorage.setItem(pageName+" "+szoveg,true)
-			} else {
-				localStorage.removeItem(pageName+" "+szoveg)
-			}
-		}
-	}
-
-	var Table = document.getElementsByClassName("mainTitle")
-	for ( var i = 0;   i < Table.length;   i++ ) { // temakorok
-		Table[i].parentElement.className = "temakor"
-		Table[i].parentElement.id = Table[i].innerHTML
-		createTemakor(Table[i].innerHTML)
-	}
-	createTemakor("uncategorized")
-
-	var Table = document.querySelectorAll('.phase,.status')
-	for ( var i = 0;   i < Table.length;   i++ ) { // tetelek
-		var phaseDiv = Table[i].parentElement // ez maga a tétel DETAILS-a, amiben az összes kérdése megtalálható
-		var tetelID = i + "," + Table[i].innerHTML
-		//phaseDiv.id = tetelID  --> F_tetelQs() -ban csinálja meg, valahogy összekéne vonnom a kettőt (ezt ki kellett törölnöm, hogy jó legyen, de messze nem stabil)
-		//console.log(tetelID)
-		var div = document.createElement("div");
-
-		var label = document.createElement("label")
-		label.id = tetelID+"_button"
-		label.innerHTML = '<b>'+ Table[i].innerHTML +'</b>'
-		label.style.cursor = "pointer"; 
-		div.appendChild(label)
-
-		if ( Table[i].parentElement.parentElement.className == "temakor" ) {
-			var elem = document.getElementById(Table[i].parentElement.parentElement.id + "_details")
-			elem.appendChild(div)
-		} else {
-			var elem = document.getElementById("uncategorized_details")
-			elem.appendChild(div)
-		}
-
-		if ( localStorage.getItem(tetelID+"_button") == "true" ) {
-			label.style.backgroundColor = "paleGreen";
-			//F_impQfew(phaseDiv,true)
-			//F_impQlot(phaseDiv)
-		} else {
-			label.style.backgroundColor = "";
-		}
-		
-		label.onclick = function(){
-			if ( localStorage.getItem(this.id) == "true" ) {
-				localStorage.setItem(this.id,false)
-				this.style.backgroundColor = "";
-			} else {
-				localStorage.setItem(this.id,true)
-				this.style.backgroundColor= "paleGreen";
-				var tetelID = this.id
-				tetelID = tetelID.slice(0,tetelID.indexOf(","))
-				//console.log(tetelID)
-				var Table = document.querySelectorAll('.phase,.status')
-				//F_impQfew(Table[tetelID].parentElement,true)
-				//F_impQlot(Table[tetelID].parentElement)
-			}
-			
-			func_calcOldNew();
-			func_calcJegy()
-			func_calcWork()
-			func_calcDate()
-			func_calcRepeat()
-			F_calcqTimer(document.getElementById("btn_qTimer"))
-		}
-	}
-	F_getTime()
-	var diffTime = (myTime-startTime).toFixed(2)
-	//console.log("– F_tetelChoose – " + diffTime+"s")
-}
-
-// –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– –––– ––––*/
-function F_tetelQs() { // impID-ket tételhez kapcsolja - későbbiekre (F_createTable -vel látni fogom! ha commentből kiveszem)
-	/*F_getTime()
-	var diffTime = myTime-oldTime
-	console.log("– F_tetelQs BEGIN – " + diffTime)*/
-	
-	function F_createTable(){
-		var div = document.createElement("div")
-		document.body.appendChild(div)
-		div.style.top = "10px"
-		div.style.position = "fixed"
-		div.style.width = "98%"
-		div.style.height = "90%"
-		div.style.backgroundColor = "white"
-		div.style.border = "thick solid black"
-		div.style.overflow = "auto"
-		var table = document.createElement("TABLE")
-		div.appendChild(table)
-		
-		var tr = document.createElement("TR")
-		tr.id = "impRow1"
-		table.appendChild(tr)
-		
-		var tr = document.createElement("TR")
-		tr.id = "impRow2"
-		table.appendChild(tr)
-	}
-	//F_createTable()
-		
-	MISSID = ""
-	var Table = document.querySelectorAll('.phase,.status')
-	for ( var i=0;  i<Table.length;  i++ ) { // tetelek
-		var tetelQ = Table[i]
-		if ( tetelQ.classList.contains("phase") == true ) { tetelQ.parentElement.classList.add("tetel") }
-		if ( tetelQ.classList.contains("status") == true ) { tetelQ.parentElement.classList.add("feltetel") }
-		var tetelID = i + "," + tetelQ.innerHTML
-		tetelQ.parentElement.id = tetelID
-		//console.log(tetelQ.parentElement.id)
-		tetelek[tetelID] = []
-		
-		if ( document.getElementById("impRow1") ) {
-			var th = document.createElement("TH")
-			th.id = i+"th"
-			th.innerHTML = i
-			th.title = tetelQ.innerHTML
-			document.getElementById("impRow1").appendChild(th)
-			var td = document.createElement("TD")
-			td.style.verticalAlign = "top"
-			td.id = i+"td"
-			document.getElementById("impRow2").appendChild(td)
-		}
-		
-		function F_impQAdd(impID,tagName){
-			if ( impID.indexOf("{") != -1 ) {
-				var begin = impID.indexOf("{")
-				var end = impID.indexOf("}") +1
-				impID = impID.slice(begin,end)
-			} else if ( impID.indexOf("[") != -1 ) {
-				var begin = impID.indexOf("[")
-				var end = impID.indexOf("]") +1
-				impID = impID.slice(begin,end)
-			}
-			//console.log(tetelek[tetelID][impID])
-			if ( tetelek[tetelID][impID] == true ) { return }
-			if ( tetelek[tetelID][impID] == false && tagName == "DIV" ) { return }
-			if ( tetelek[tetelID][impID] == false && tagName == "div" ) { return }
-			if ( document.getElementById("impRow1") ) { td.innerHTML = td.innerHTML+"<div>"+impID+"</div>" }
-			if ( tagName == "DIV" || tagName == "div" ) {
-				tetelek[tetelID][impID] = false
-			} else if ( tagName == "SPAN" || tagName == "span" ) {
-				tetelek[tetelID][impID] = true
-			}
-		}
-		function F_newImpQAdd(impID){
-			Qtxt = null
-			/*if ( impID.indexOf("[") == 0 ) {
-				impID = impID.slice(1,-1)
-				Qtxt = arrImpQs[impID]
-			} else if ( impID.indexOf("{") == 0 ) {
-				impID = impID.slice(1,-1)
-				Qtxt = localStorage.getItem("hkExpQ."+impID)
-				if ( Qtxt == null ) { 
-					return 
-				}
-				var LSid = Qtxt.slice(0,Qtxt.indexOf(" "))
-				Qtxt = localStorage.getItem(LSid)
-			}
-			F_loadQtxt(impID,divSpan)*/
-			F_loadQtxt(impID,"")
-			if ( Qtxt == null ) { return }
-			if ( Qtxt.indexOf(' class="imp ') == -1 ) { return }
-			do {
-				var newImpID
-				var tagName = Qtxt.slice(0,Qtxt.indexOf(' class="imp '))
-				tagName = tagName.slice(tagName.lastIndexOf("<")+1)
-				Qtxt = Qtxt.slice(Qtxt.indexOf(' class="imp ')+12)
-				newImpID = Qtxt.slice(0,Qtxt.indexOf('"'))
-				F_impQAdd(newImpID,tagName)
-				//alert("newImpID: "+newImpID)
-			} while ( Qtxt.indexOf(' class="imp ') != -1 )
-		}
-		
-		var impQs = tetelQ.parentElement.querySelectorAll('.imp')
-		for ( var x=0;  x<impQs.length;  x++ ) {
-			var impQ = impQs[x]
-			if ( impQ.classList.contains("imp") == true ) { 
-				var impID = impQ.className
-				var tagName = impQ.tagName
-				F_impQAdd(impID,tagName) 
-			}
-		}
-		
-		do {
-			var count = 0
-			for ( var impID in tetelek[tetelID] ) {
-				count = count +1
-				F_newImpQAdd(impID)
-			}
-			if ( count == 0 ) { break }
-			for ( var impID in tetelek[tetelID] ) {
-				count = count -1
-				F_newImpQAdd(impID)
-			}
-		} while ( count != 0 )
-	}
-	
-	if ( MISSID != "" ) { alert("F_impQ: Az alábbi EXPid-k még nincsenek LS-be reigsztrálva: "+MISSID + "\nNyisd meg a tárgyválasztás ablaknál az adott tárgyhoz kapcsolódó egyéb tárgy(ak)at egyszer --> pl. Biokémia II esetén nyisd meg Biokémia I, Élettan, Molekuláris Sejtbiológia") }
-	
-	/*F_getTime()
-	var diffTime = myTime-oldTime
-	console.log("– F_tetelQs END – " + diffTime)*/
-}
-
-var hossz,jegy
-function F_calcHosszJegy(elem){
-	hossz = 1
-	if ( elem.classList.contains("jr") == true ) { hossz = 0 }
-	if ( isNaN(hossz) == true ) { hossz = 0 }
-	F_calcLSid(elem)
-	var LSid = actLSid
-	jegy = localStorage.getItem(LSid+'_jegy')
-	if ( jegy == 1 ) {
-		jegy = 0
-	} else if ( jegy == 2 ) {
-		jegy = 4
-	} else if ( jegy == 3 ) {
-		jegy = 8
-	} else if ( jegy == 4 ) {
-		jegy = 10
-	} else {
-		jegy = 0
-	}
-}
-
-function F_kerdesStatus(){ // kérdés hány %-on áll?
-	var allStatusQs = document.getElementsByClassName("status")
-	function F_calculateThis(thisQ){
-		F_calcLSid(thisQ)
-		var LSid = actLSid
-		
-		F_calcHosszJegy(thisQ)
-		
-		var date = new Date();
-		var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-
-		if ( localStorage.getItem(LSid+'_repeat') == null) {
-			localStorage.setItem(LSid+'_repeat', 0);
-		}
-		//console.log(LSid+ " " +hossz)
-
-		// if ( localStorage.getItem(LSid+"_skip") != "perma" ){
-		var timeDiff = obj_repCount[repCount]
-		trueJegy = trueJegy + Math.pow(0.8, idopont / timeDiff) * hossz * jegy
-		maxJegy = maxJegy + hossz * 10
-		// }
-	}
-	
-	for ( var i = 0;   i < allStatusQs.length;   i++ ) {
-		var maxJegy = 0
-		var trueJegy = 0
-		var statusQ = allStatusQs[i].parentElement
-		if ( statusQ.parentElement.id != "kerdeslocation" ) {
-			if ( statusQ.className.indexOf("kerdes") != -1 ) { F_calculateThis(statusQ) }
-			var altQs = statusQ.getElementsByTagName("*")
-			for ( var y = 0;   y < altQs.length;   y++ ) {
-				if ( altQs[y].className.indexOf("kerdes") != -1 ) {
-					F_calculateThis(altQs[y])
-				}
-			}
-			var red, green
-			if ( 2*trueJegy/maxJegy > 1 ) {
-				var more = 2*trueJegy/maxJegy -1
-				red = Math.round(255*(1-more))
-				green = 255
-			} else {
-				var less = 2*trueJegy/maxJegy
-				green = Math.round(255*less)
-				red = 255
-			}
-			document.getElementById(i+"_markja").innerHTML = Math.round(100 * trueJegy/maxJegy)
-			document.getElementById(i+"_markja").style.backgroundColor = "rgb("+red+", "+green+", 0)";
-		}
-	}
-}
-
-var obj_fixNote = [] // object (nem table és nem array!)
-var obj_skip = [] // object (nem table és nem array!)
-
-function F_calcLSid(detElem){
-	actLSid = undefined
-	var tagName = detElem.tagName
-	tagName = tagName.toLowerCase()
-	//console.log(actQtext)
-	actQtext = '<'+tagName+' class="'+detElem.className+'">'+detElem.innerHTML+'</'+tagName+'>'
-	var EXPid = null
-	if ( detElem.className.indexOf("{") > -1 ) {
-		var begin = detElem.className.indexOf("{")
-		var end = detElem.className.indexOf("}")
-		EXPid = detElem.className.slice(begin,end+1)
-	
-		var qName = F_QtxtQname(detElem.innerHTML + " " + EXPid)
-		actLSid = localStorage.getItem(qName)
-	} 
-	if ( detElem.className.indexOf("[") > -1 ) {
-		var begin = detElem.className.indexOf("[")
-		var end = detElem.className.indexOf("]")
-		EXPid = detElem.className.slice(begin,end+1)
-		
-		var qName = F_QtxtQname(detElem.innerHTML + " " + EXPid)
-		actLSid = localStorage.getItem(qName)
-	} 
-	if ( actLSid == undefined )  {
-		var qName = F_QtxtQname(actQtext)
-		if ( localStorage.getItem(qName) ) { actLSid = localStorage.getItem(qName) }
-		//if ( actLSid != null ) { console.log(qName) }
-	}
-}
-
-function func_tableSkipFix(){
-	F_getTime()
-	var startTime = myTime
-	for ( var i=0;  i<kerdesek.length;  i++ ) {
-		F_calcLSid(kerdesek[i])
-		var Qtext = actQtext
-		var LSid = actLSid
-
-		if ( typeof LSid == "undefined" ) {
-			// alert(kerdesek[i].id+" + LSid=undefined + "+Qtext)
-			// azoknak undefinied egyenlore, melyek épp az aktuálisak
-		} else if ( localStorage.getItem(LSid+"_note") ) {
-			//if ( LSid == "undefined" ) { alert("a: " + kerdesek[i].innerHTML) }
-			//if ( LSid == "undefined" ) { alert("a: " + kerdesek[i].innerHTML) }
-			/*if ( LSid ) { 
-			} else {
-				alert(kerdesek[i].innerHTML) 
-			}*/
-			//if ( Qtext.indexOf("vese - anterior") !== -1 ) { alert(LSid + ": " + Qtext) }
-			obj_fixNote[LSid] = localStorage.getItem(LSid+"_note")
-		} else {
-			if ( obj_fixNote[LSid] ) { delete obj_fixNote[LSid] }
-		}
-		if ( localStorage.getItem(LSid+"_skip") ) {
-			if ( localStorage.getItem(LSid+"_skip") == "perma" ){
-				obj_skip[LSid] = localStorage.getItem(LSid+"_skip")
-			} else if ( localStorage.getItem(LSid+"_skip") == "important" ){
-				obj_skip[LSid] = localStorage.getItem(LSid+"_skip")
-			} else if ( localStorage.getItem(LSid+"_skip") == "tempskip" ){
-				obj_skip[LSid] = localStorage.getItem(LSid+"_skip")
-			} else if ( localStorage.getItem(LSid+"_skip") == "vizsgaSkip" ){
-				var date = new Date();
-				date = Math.floor(date.getTime()/60000)
-				if ( date > vizsgaTime ) {
-					localStorage.removeItem(LSid+'_skip')
-				} else {
-					obj_skip[LSid] = localStorage.getItem(LSid+"_skip")
-				}
-				//if ( obj_skip[LSid] ) { delete obj_skip[LSid] }
-			} else {
-				var date = new Date();
-				date = Math.floor(date.getTime()/60000)
-				var difference = date - localStorage.getItem(LSid+"_idopont")
-				difference = difference /60 // átállítja órára
-				if ( difference < localStorage.getItem(LSid+"_skip") ) {
-					obj_skip[LSid] = localStorage.getItem(LSid+"_skip")
-				} else {
-					if ( obj_skip[LSid] ) { delete obj_skip[LSid] }
-					localStorage.removeItem(LSid+'_skip')
-				}
-			}
-		} else {
-			if ( obj_skip[LSid] ) { delete obj_skip[LSid] }
-		}
-	}
-	F_getTime()
-	var diffTime = (myTime-startTime).toFixed(2)
-	//console.log("– func_tableSkipFix – " + diffTime+"s")
-}
-function F_valFix(){
-	var x = 0
-	for ( var id in obj_fixNote ) {
-		if ( obj_fixNote[id] ) {
-			x = x+1
-		}
-	}
-	document.getElementById("btn_fix").value = x;
-}
-F_valFix()
-function F_valSkip(){
-	var x = 0
-	var y = 0
-	var z = 0
-	for ( var id in obj_skip ) {
-		if ( obj_skip[id] == "perma" ) {
-			x = x+1
-		}
-		if ( obj_skip[id] == "vizsgaSkip" ) {
-			y = y+1
-			//console.log(id+"_skip = vizsgaSkip")
-		}
-		if ( obj_skip[id] == "tempskip" ) {
-			z = z+1
-			//console.log(id+"_skip = vizsgaSkip")
-		}
-	}
-	document.getElementById("btn_skip").value = x;
-	document.getElementById("btn_vizsgaskip").value = y;
-	document.getElementById("btn_tempskip").value = z;
-}
-F_valSkip()
-
-function func_showQtext(LSid){
-	LSid = LSid.slice(0,LSid.indexOf('_fullText'))
-	var text = objQnameQtxt[localStorage.getItem(LSid)]
-	text = text.replace('DETAILS','DETAILS open')
-	F_midQText(text)
-}
-
-function func_DeleteSkipFix(kerdes){
-	if (confirm('biztos törlöd? '+kerdes)) {
-		skipfix = kerdes.slice(kerdes.indexOf("_"))
-		skipfix = skipfix.slice(1,skipfix.length-5)
-		kerdes = kerdes.slice(0,kerdes.indexOf("_"));  // remove "_skipClear" vagy "_fixClear" a nevébol és csak az id marad
-		//alert(skipfix+": "+kerdes)
-		if ( localStorage.getItem(kerdes+'_skip') == "vizsgaSkip" ) { skipfix = "vizsgaskip" }
-		if ( skipfix == "fix" ) {
-			localStorage.removeItem(kerdes+'_note')
-		} else if ( skipfix == "skip" || skipfix == "vizsgaskip" || skipfix == "tempskip" ) {
-			localStorage.removeItem(kerdes+'_skip')
-		}
-		func_tableSkipFix()
-		func_SetTextOfSkipFixDiv("btn_"+skipfix)
-		F_valFix()
-		F_valSkip()
-	}
-}
-var lastQSkip
-function func_SetTextOfSkipFixDiv(SkipFix){
-	console.clear()
-	var fullText = ""
-	var qCount = 0
-	var div = document.getElementById("div_skipFix")
-	div.innerHTML = fullText
-	if ( SkipFix == "btn_fix" ) {
-		div.style.borderColor = "red"
-		for ( var LSid in obj_fixNote ) {
-			if ( obj_fixNote[LSid] ) {
-				var qName = localStorage.getItem(LSid)
-				if ( qName != null ) {
-					var qButton = "<button id='"+LSid+"_fixClear' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>"
-					qName = '<details><summary>'+qButton+' '+qName+'</summary><ul class="normal">'+obj_fixNote[LSid]+'</ul></details>'
-					fullText = fullText + qName
-					qCount = qCount +1
-				}
-			}
-		}
-		fullText = "qCount:" +qCount+ "<br>" +fullText
-	}
-	if ( SkipFix == "btn_skip" ) {
-		div.style.borderColor = "black"
-		for ( var LSid in obj_skip ) {
-			if ( obj_skip[LSid] == "perma" ) {
-				var qName = localStorage.getItem(LSid)
-				if ( qName != null ) {
-					var qButton = "<button id='"+LSid+"_skipClear' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>"
-					qName = qButton+'<summary id="'+LSid+'_fullText" onclick="func_showQtext(this.id)">' + qName + '</summary><br>'
-					fullText = fullText + qName
-					qCount = qCount +1
-				}
-			}
-		}
-		fullText = "qCount:" +qCount+ "<br>" +fullText
-	}
-	if ( SkipFix == "btn_vizsgaskip" ) {
-		div.style.borderColor = "blue"
-		var fullText = ""
-		var qCount = 0
-		for ( var LSid in obj_skip ) {
-			if ( obj_skip[LSid] == "vizsgaSkip" ) {
-				var qName = localStorage.getItem(LSid)
-				if ( qName != null ) {
-					var qButton = "<button id='"+LSid+"_vizsgaskipClear' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>"
-					qName = qButton+'<summary id="'+LSid+'_fullText" onclick="func_showQtext(this.id)">' + qName + '</summary><br>'
-					fullText = fullText + qName
-					qCount = qCount +1
-				}
-			}
-		}
-		var date = new Date();
-		var timeText = Math.floor(date.getTime()/60000)
-		timeText = vizsgaTime - timeText
-		timeText = timeText + "perc van még vissza viszga-resethez. <br>"
-		fullText = timeText + fullText
-	}
-	if ( SkipFix == "btn_tempskip" ) {
-		div.style.borderColor = "gold"
-		for ( var LSid in obj_skip ) {
-			if ( obj_skip[LSid] == "tempskip" ) {
-				var qName = localStorage.getItem(LSid)
-				if ( qName != null ) {
-					var qButton = "<button id='"+LSid+"_tempskipClear' class='fix' style='border: 3px solid black;' type='button' onclick='func_DeleteSkipFix(this.id)'>✖</button>"
-					qName = qButton+'<summary id="'+LSid+'_fullText" onclick="func_showQtext(this.id)">' + qName + '</summary><br>'
-					fullText = fullText + qName
-					qCount = qCount +1
-				}
-			}
-		}
-		fullText = "qCount:" +qCount+ "<br>" +fullText
-	}
-	div.innerHTML = fullText
-}
-
-function func_calcJegy() { // átlagJegyet kiszámolja
-	F_getTime()
-	var startTime = myTime
-
-	var maxJegy = 0
-	var trueJegy = 0
-	for ( var tetel in tetelek ) {
-		if ( localStorage.getItem(tetel+"_button") == "true" ) {
-			//console.log("tetelID: "+tetel)
-			var childs = document.getElementById(tetel).getElementsByTagName("*")
-			for ( var i = 0;   i < childs.length;   i++ ) {
-				if ( childs[i].classList.contains("kerdes") == true ) {
-					F_calcHosszJegy(childs[i])
-					maxJegy = maxJegy + hossz * 10
-					//if ( isNaN(maxJegy) ==  true ) { alert(jegy) }
-					trueJegy = trueJegy + hossz * jegy
-				}
-			}
-		}
-	}
-	document.getElementById("btn_Jegy").value = Math.floor(100*trueJegy/maxJegy) + "%" 
-	
-	F_getTime()
-	var diffTime = (myTime-startTime).toFixed(2)
-	//console.log("– func_calcJegy – " + diffTime+"s")
-}
-function func_calcWork() { // LS mentés mikor lesz 1-10+
-	document.getElementById("button_NextQ").value = localStorage.getItem("hk.lastSavedLS")
-}
-function func_calcDate() { // átlagIdot kiszámolja
-	F_getTime()
-	var startTime = myTime
-	
-	var allDate = 0
-	var countDate = 0
-	for ( var tetel in tetelek ) {
-		if ( localStorage.getItem(tetel+"_button") == "true" ) {
-			var childs = document.getElementById(tetel).getElementsByTagName("*")
-			for ( var i = 0;   i < childs.length;   i++ ) {
-				if ( childs[i].classList.contains("kerdes") == true ) {
-					// itt elvileg még kell egy feltétel, hogy beleszámolja (talán a skippel kapcsolatos lehet, de csak tipp)
-					// if ( kerdesID[fotema][temaKerdes][kerdes] == true ) { // ez volt a régiben
-					F_calcLSid(childs[i])
-					var LSid = actLSid
-					if ( LSid+'_jegy' in localStorage ) {
-						var date = new Date();
-						var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-						allDate = allDate + idopont
-						countDate = countDate + 1
-					}
-				}
-			}
-		}
-	}
-	var date = allDate / countDate
-	date = date / 60 / 24
-	date = parseFloat(Math.round(date * 100) / 100).toFixed(1);
-	document.getElementById("span_Date").innerHTML = date
-	
-	F_getTime()
-	var diffTime = (myTime-startTime).toFixed(2)
-	//console.log("– func_calcDate – " + diffTime+"s")
-}
-function func_calcRepeat() { // átlagIsmétlések számát kiszámolja
-	F_getTime()
-	var startTime = myTime
-	
-	var questCount = 0
-	var allRepVal = 0
-	for ( var tetel in tetelek ) {
-		if ( localStorage.getItem(tetel+"_button") == "true" ) {
-			var childs = document.getElementById(tetel).getElementsByTagName("*")
-			for ( var i = 0;   i < childs.length;   i++ ) {
-				if ( childs[i].classList.contains("kerdes") == true ) {
-					// itt elvileg még kell egy feltétel, hogy beleszámolja (talán a skippel kapcsolatos lehet, de csak tipp)
-					// if ( kerdesID[fotema][temaKerdes][kerdes] == true ) { // ez volt a régiben
-					F_calcLSid(childs[i])
-					var Qtext = actQtext
-					var LSid = actLSid
+					var minImg = document.getElementById("img_mini")
+					minImg.style.display = "inline-block" //block esetén új sor lenne; inline esetén nem lehetne width állítani
+					minImg.src = this.src
 					
-					F_calcHosszJegy(childs[i])
+					minImg.width = this.width*8
+					//minImg.style.transform = "scale(8,8)"
 
-					var repeat
-					if ( LSid == undefined ) { 
-						repeat = 0
+					function offset(elem) { // absolute position-t (top,left) kér vissza: tehát a görgő is benne (y>1000 is lehet)
+						var rect = elem.getBoundingClientRect(),
+						scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+						scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+						return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+					}
+					var divOffset = offset(this);
+					//console.log(divOffset.left, divOffset.top);
+					var posX = divOffset.left -minImg.width/2 +this.width/2
+					var posXright = posX + minImg.width
+					if ( posX < 0 ) {
+						minImg.style.left = "0px"
+					} else if ( document.body.clientWidth < posXright ) {
+						posX = document.body.clientWidth - minImg.width -10/*border*/
+						minImg.style.left = posX +"px"
 					} else {
-						repeat = Number(localStorage.getItem(LSid+'_repeat'))
+						minImg.style.left = posX +"px"
 					}
-					
-					
-					if ( isNaN(hossz) ==  false ) {
-						questCount = questCount + hossz
-						allRepVal = allRepVal + hossz *repeat
-					}
+					var posY = divOffset.top -minImg.height/2 +this.height/2
+					minImg.style.top = posY +"px"
 				}
-			}
-		}
-	}
-	var atlag = allRepVal / questCount
-	atlag = +atlag.toFixed(1);
-	document.getElementById("span_Repeat").innerHTML = atlag
-	
-	F_getTime()
-	var diffTime = (myTime-startTime).toFixed(2)
-	//console.log("– func_calcRepeat – " + diffTime+"s")
-}
-function func_calcRepTable() { // adott repeatesek hogyan állnak kiszámolja
-	F_getTime()
-	var startTime = myTime
-	
-	var doneLSid = ","
-	for ( var i in obj_repCount ) { // resetelje a Tablekat 0-ra
-		document.getElementById(i+"left").innerHTML = 0
-		document.getElementById(i+"still").innerHTML = 0
-		document.getElementById(i+"average").innerHTML = 0
-		document.getElementById(i+"average").title = 0
-		document.getElementById(i+"hossz").innerHTML = 0
-	}
-	//console.clear()
-	for ( var tetel in tetelek ) {
-		if ( localStorage.getItem(tetel+"_button") == "true" ) {
-			var childs = document.getElementById(tetel).getElementsByTagName("*")
-			for ( var i = 0;   i < childs.length;   i++ ) {
-				if ( childs[i].classList.contains("kerdes") == true ) {
-					// itt elvileg még kell egy feltétel, hogy beleszámolja (talán a skippel kapcsolatos lehet, de csak tipp)
-					// if ( kerdesID[fotema][temaKerdes][kerdes] == true ) { // ez volt a régiben
-					
-					F_calcHosszJegy(childs[i])
-					var actQhossz = Number(hossz)
-					
-					var Qtxt = childs[i].innerHTML
-					/*console.clear()
-					console.log(Qid)
-					console.log(Qtxt)
-					alert("stop")*/
-					var qName = F_QtxtQname(Qtxt)
-					var LSid = localStorage.getItem(qName)
-					
-					if ( doneLSid.indexOf(LSid) == -1 || LSid == undefined ) { 
-						doneLSid = doneLSid +LSid+ ","
-						
-						var kerdes = localStorage.getItem(childs[i].innerHTML)
-						if ( localStorage.getItem(LSid+'_idopont') != null && localStorage.getItem(LSid+'_repeat') != "" ) {
-							if ( localStorage.getItem(LSid+'_skip') === null || localStorage.getItem(LSid+'_skip') === "important" ) {
-								var repCount = localStorage.getItem(LSid+'_repeat')
-								var min = document.getElementById(repCount+"min").innerHTML
-								var date = new Date();
-								var idopont = localStorage.getItem(LSid+'_idopont')
-								idopont = Math.floor(date.getTime()/60000) - idopont
-								if ( repCount == 0 && idopont > 100 ) {
-									if ( localStorage.getItem(LSid+"_skip") == null ) {
-										//alert(repCount+ " " +idopont+ " " +LSid+ " " +Qtxt)
-									}
-								}
-
-								if ( idopont > min ) { // Tableba hozzáad 1et left-hez
-									document.getElementById(repCount+"left").innerHTML = parseInt(document.getElementById(repCount+"left").innerHTML) +1
-									document.getElementById(repCount+"average").title = parseInt(document.getElementById(repCount+"average").title) +idopont
-								} else { // Tableba hozzáad 1et still-hez
-									document.getElementById(repCount+"still").innerHTML = parseInt(document.getElementById(repCount+"still").innerHTML) +1
-								}
-								document.getElementById(repCount+"average").innerHTML = parseInt(document.getElementById(repCount+"average").innerHTML) +idopont
-								document.getElementById(repCount+"hossz").innerHTML = parseInt(document.getElementById(repCount+"hossz").innerHTML) +actQhossz
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	for ( var i in obj_repCount ) { // resetelje a Tablekat 0-ra
-		var average = parseInt(document.getElementById(i+"average").innerHTML)
-		var count = parseInt(document.getElementById(i+"still").innerHTML) + parseInt(document.getElementById(i+"left").innerHTML)
-		average = average / count
-		average = +average.toFixed(0);
-		document.getElementById(i+"average").innerHTML = average
-		
-		average = parseInt(document.getElementById(i+"average").title)
-		count = parseInt(document.getElementById(i+"left").innerHTML)
-		average = average / count
-		average = +average.toFixed(0);
-		document.getElementById(i+"average").title = average
-	}
-	
-	F_getTime()
-	var diffTime = (myTime-startTime).toFixed(2)
-	console.log("– func_calcRepTable – " + diffTime+"s")
-}
-function func_calcOldNew(){
-	F_getTime()
-	var startTime = myTime
-	
-	var doneLSid = ","
-	var kerdesNew = 0
-	var repNew = 0
-	var repOld = 0
-	var repFast = 0
-	var repSlow = 0
-	var allCount = 0
-	
-	function F_calculating(LSid){
-		if ( LSid != undefined ) {
-			if ( doneLSid.indexOf(","+LSid+",") == -1 ) { 
-				allCount = allCount +1
-				doneLSid = doneLSid +LSid+ ","
-				//console.log(allCount+". "+LSid)
-				if ( localStorage.getItem(LSid+"_skip") != "perma" && localStorage.getItem(LSid+"_skip") != "vizsgaSkip" && localStorage.getItem(LSid+"_skip") != "tempskip" ) {
-					if ( localStorage.getItem(LSid+'_jegy') != null && localStorage.getItem(LSid+'_jegy') != "" ) {
-						var repCount = Number(localStorage.getItem(LSid+'_repeat'))
-						var date = new Date();
-						var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-						
-						//ez az, hogy csak azt dobhatja ki, melynél a vizsga már közelebb van, mint a repTime
-						var remain = Math.floor(date.getTime()/60000)
-						remain = vizsgaTime - remain
-						
-						if ( localStorage.getItem(LSid+"_jegy") >= 1 ) {
-							if ( obj_repCount[repCount] >= idopont ) {
-							//if ( remain > idopont ) {
-								repFast = repFast +1
-							} else {
-								repSlow = repSlow +1
-							}
-						}
-					} else {
-						kerdesNew = kerdesNew +1
-					}
-					if ( localStorage.getItem(LSid+"_skip") == "important" ) {
-						if ( obj_repCount[repCount] >= idopont ) {
-							repOld = repOld +1
-						} else {
-							repNew = repNew +1
-						}
-					}
-				}
-			}
-		} else {
-			kerdesNew = kerdesNew +1
-		}
-		//console.log(kerdesNew+" "+LSid)
-	}
-	var text = objQnameQtxt[localStorage.getItem("hkQ.257")]
-	for ( var tetel in tetelek ) { // végignézi az összes kérdést
-		if ( localStorage.getItem(tetel+"_button") == "true" ) {
-			//console.log(tetel)
-			var tetelQ = document.getElementById(tetel)
-			if ( tetelQ.classList.contains("kerdes") == true ) {
-				F_calcLSid(tetelQ)
-				F_calculating(actLSid)
-			}
-			var tetelQs = tetelQ.getElementsByClassName("kerdes")
-			for ( var x=0; x<tetelQs.length; x++ ) {
-				F_calcLSid(tetelQs[x])
-				F_calculating(actLSid)
-			}
-		}
-	}
-	document.getElementById("btn_newQuest").value = kerdesNew
-	document.getElementById("span_RepNew").innerHTML = repNew;
-	document.getElementById("span_RepOld").innerHTML = repOld;
-	document.getElementById("btn_RepFast").value = repFast;
-	document.getElementById("span_RepSlow").innerHTML = repSlow
-	
-	F_getTime()
-	var diffTime = (myTime-startTime).toFixed(2)
-	//console.log("– func_calcOldNew – " + diffTime+"s")
-}
-
-function func_clearOldHistory() {
-	for ( var i = 0;   i < kerdesek.length;   i++ ) {
-		var kerdes = localStorage.getItem(kerdesek[i].innerHTML)
-		var date = new Date();
-		var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(kerdes+'_idopont')
-		if ( localStorage.getItem(kerdes+"_skip") == "skip" ) {
-			if ( idopont < 90 ) {
-			} else { //azért így oldottam meg, mertha idopont == null vagy mi akkor is muködjön
-				localStorage.removeItem(kerdes+'_skip');
-				localStorage.removeItem(kerdes+'_jegy');
 			}
 		}
 	}
 }
-//func_clearOldHistory() // sokáig tart a betöltésnél szóval remove-oltam (max ha megnott a localstorage, akkor legyen egy button amivel lehívom és kitakarítja)
-
-if ( localStorage.getItem("hk.newQ") == "true" ) {
-	document.getElementById("btn_newQuest").style.borderColor = "limegreen"
-} else {
-	document.getElementById("btn_newQuest").style.borderColor = "black"
-}
-
-function F_divQprop() {
-	var div = document.createElement("div")
-	div.id = "div_qProp"
-	var questDiv = document.getElementById("div_MainFrame");
-	questDiv.appendChild(div)
-	div.style.backgroundColor = "white"
-	div.style.border = "10px solid black"
-	div.style.display = "none"
-	div.style.height = "73vh"
-	div.style.overflow = "auto"
-	
-	var qProp = document.createElement("span")
-	div.appendChild(qProp)
-	qProp.id = "span_qProp"
-	
-	/*var input = document.createElement("INPUT")
-	input.setAttribute("type", "text")
-	input.setAttribute("value", "")
-	div.appendChild(input)
-	input.id = "input_qProp"*/
-	
-	function F_clickColor(){
-		var num = this.parentElement.innerHTML
-		alert(num)
-		num = num.slice(num.indexOf('td.0.')+5,num.indexOf('<br>'))
-		document.getElementById("td.2."+num).style.backgroundColor = this.style.backgroundColor
+function F_loadImg_cent_mini() {
+	var keepImg = false
+	document.getElementById("img_cent").onclick = function() {
+		keepImg = true
+	}
+	document.getElementById("div_centImgBg").onclick = function() {
+		if ( keepImg != true ) { this.style.visibility = "hidden" }
+		keepImg = false
 	}
 	
-	var snow = document.createElement("span")
-	div.appendChild(snow)
-	snow.style.backgroundColor = "snow"
-	snow.style.height = "25%"
-	snow.style.width = "120px"
-	snow.style.border = "2px solid black"
-	snow.style.display = "inline-block"
-	snow.style.position = "absolute"
-	snow.style.left = "15px"
-	snow.style.bottom = "15px"
-	snow.onclick = function(){ F_clickColor()}
-	
-	var lawngreen = document.createElement("span")
-	div.appendChild(lawngreen)
-	lawngreen.style.backgroundColor = "lawngreen"
-	lawngreen.style.height = "25%"
-	lawngreen.style.width = "120px"
-	lawngreen.style.border = "2px solid black"
-	lawngreen.style.display = "inline-block"
-	lawngreen.style.position = "absolute"
-	lawngreen.style.left = "20%"
-	lawngreen.style.bottom = "15px"
-	lawngreen.onclick = function(){ F_clickColor() }
-	
-	var blue = document.createElement("span")
-	div.appendChild(blue)
-	blue.style.backgroundColor = "blue"
-	blue.style.height = "25%"
-	blue.style.width = "120px"
-	blue.style.border = "2px solid black"
-	blue.style.display = "inline-block"
-	blue.style.position = "absolute"
-	blue.style.left = "40%"
-	blue.style.bottom = "15px"
-	blue.onclick = function(){ F_clickColor() }
-	
-	var black = document.createElement("span")
-	div.appendChild(black)
-	black.style.backgroundColor = "black"
-	black.style.height = "25%"
-	black.style.width = "120px"
-	black.style.border = "2px solid black"
-	black.style.display = "inline-block"
-	black.style.position = "absolute"
-	black.style.left = "60%"
-	black.style.bottom = "15px"
-	black.onclick = function(){ F_clickColor() }
-
-	var gold = document.createElement("span")
-	div.appendChild(gold)
-	gold.style.backgroundColor = "gold"
-	gold.style.height = "25%"
-	gold.style.width = "120px"
-	gold.style.border = "2px solid black"
-	gold.style.display = "inline-block"
-	gold.style.position = "absolute"
-	gold.style.left = "80%"
-	gold.style.bottom = "15px"
-	gold.onclick = function(){ F_clickColor() }
-}
-F_divQprop()
-
-var parentQ = ""
-var childQ = ""
-var parQord = ""
-function F_searchParent(elem) { // megkeresi a 'családfában' legfelül lévo 'kerdes'-t (ami nem feltétlen az, lehet csak 'open' is)
-	parentQ = elem
-	childQ = elem
-	parQord = ""
-	do { // megkeresi a 'családfában' legfelül lévo kérdést!
-		if ( parentQ.classList.contains("kerdes") == true ) { 
-			F_calcLSid(parentQ)
-			var LSid = actLSid
-			parQord = LSid+" + "+parQord
-		}
-		childQ = parentQ
-		parentQ = parentQ.parentElement
-		//console.log(childQ.className)
-		//console.log(parentQ.className)
-	} while ( 
-		parentQ.classList.contains("altetel") != true &&
-		parentQ.classList.contains("tetel") != true && 
-		parentQ.classList.contains("feltetel") != true &&
-		// parentQ kell pl. mikrobiológia minimum kérdéseknél, különben egybe dobja ki összeset
-		childQ.classList.contains("altetel") != true && 
-		childQ.classList.contains("tetel") != true && 
-		childQ.classList.contains("feltetel") != true
-	)
-}
-
-var actQid
-function F_prevQ(){
-	//console.clear()
-	console.log("– – – – – – – – F_prevQ – – – – – – – – –")
-	var QlocElem = document.getElementById("kerdeslocation")
-	var arrayQ = QlocElem.getElementsByClassName("kerdes")
-	var qCountLS = 0
-	
-	// BEGIN – ez a note-hoz kell, hogy a legfelül lévo details-hoz kapcsoltan mentse el (annak sajnos nem mindig van ID-je, mert nem feltétlen kérdés a class-a)
-	F_searchParent(priorQelem)
-	var parent = parentQ
-	//console.log(Qelem.className)
-	// END
-	if ( document.getElementById("note").value != "" ) {
-		//localStorage.setItem(Qelem.innerHTML, document.getElementById("note").value);
-		var LSid = "hkQ."+actQid
-		localStorage.setItem(LSid+'_note', document.getElementById("note").value);
-		document.getElementById("note").value = ""
-	}
-
-	for ( var i in activeQs ) {
-		var LSid = activeQs[i]
-		var jegy = document.getElementById("div_jegy."+i).innerHTML
-		var newQvolt = false
-		//console.log(i+" : "+LSid+" : "+jegy)
-		document.getElementById("div_jegy."+i).innerHTML = "&nbsp;"
-		
-		// jegy
-		if ( jegy != "&nbsp;" ) {
-			newQvolt = true
-			var repCount = Number(localStorage.getItem(LSid+"_repeat"))
-			if ( jegy > repCount ) {
-				repCount = repCount+1
-			} else {
-				repCount = jegy
-			}
-			localStorage.setItem(LSid+"_repeat", repCount)
-
-			if ( jegy == 0 ) { jegy = 1 }
-			localStorage.setItem(LSid+"_jegy", jegy)
-
-			var date = new Date();
-			localStorage.setItem(LSid+"_idopont", Math.floor(date.getTime()/60000));
-			//console.log(jegy+" :idopontot ment el, ezen LSid-re: "+LSid)
-		}
-		
-		// skip
-		if ( document.getElementById("td.2."+i).style.backgroundColor == "black" ) {
-			localStorage.setItem(LSid+'_skip', "perma")
-			newQvolt = true
-		} else if ( document.getElementById("td.2."+i).style.backgroundColor == "lawngreen" ) {
-			if ( localStorage.getItem(LSid+'_skip') != "important" ) { 
-				localStorage.setItem(LSid+'_skip', "important")
-				newQvolt = true 
-			}
-		} else if ( document.getElementById("td.2."+i).style.backgroundColor == "blue" ) {
-			localStorage.setItem(LSid+'_skip', "vizsgaSkip")
-			newQvolt = true
-		} else if ( document.getElementById("td.2."+i).style.backgroundColor == "gold" ) {
-			localStorage.setItem(LSid+'_skip', "tempskip")
-			newQvolt = true
-		} else if ( localStorage.getItem(LSid+'_skip') == "important" ) {
-			localStorage.removeItem(LSid+'_skip')
-			newQvolt = true
-		}
-		
-		if ( newQvolt == true ) { qCountLS = qCountLS +1 }
-	}
-
-
-	document.getElementById("questTitle").innerHTML = "";
-	document.getElementById("note").style.display = 'none';
-
-	func_tableSkipFix()
-	F_valFix()
-	F_valSkip()
-
-	var lastSavedLS = localStorage.getItem("hk.lastSavedLS")
-	if ( lastSavedLS > 4 ) {
-		F_saveLS() // androidon crashel, mert a text length-el baja van
-	} else {
-		lastSavedLS = Number(lastSavedLS)
-		lastSavedLS = lastSavedLS +qCountLS
-		localStorage.setItem("hk.lastSavedLS",lastSavedLS)
-	}
-}
-
-var intervalOfs = "nincs"
-var priorQelem = "nincs"
-var fullTema, checkNum, cloneKerdes
-var activeQs = []
-function F_nextQ(){
-	//console.clear()
-	console.log("– – – – – – – – F_nextQ – – – – – – – – –")
-	
-	F_getTime()
-	var startTime = myTime
-	var diffTimeX = myTime-startTime
-	console.log("– F_nextQ BEGIN – " + diffTimeX)
-	
-	var QlocElem = document.getElementById("kerdeslocation")
-	//var averageCV = 0
-	var countCV = 0
-	var nextDiff = 0
-
-	// elozo kérdés
-	if ( priorQelem != "nincs" ) { F_prevQ() }
-	activeQs = [] // ezzel resetelem (szükséges mindig!)
-	QlocElem.innerHTML = ""
-
-	// következo kérdés
-	for ( var x=0; x<50; x++ ) { // custom számot írtam, ennél több egyenlore nincs (egy változó kéne helyette, ami az eddigi max)
-		if ( document.getElementById("td.0."+x) ) { 
-			document.getElementById("td.0."+x).hidden = true 
-			document.getElementById("td.1."+x).hidden = true 
-			document.getElementById("td.2."+x).hidden = true 
-			
-			document.getElementById("td.2."+x).innerHTML = "&nbsp;"
-		}
-	}
-	priorQelem = "nincs";
-	var priorQ_alt = "nincs"
-	var priorValue2 = -1
-	var priorValue = -1
-	var priorValue_alt = -1
-	var priorType = 1
-	var checkValue = 0
-	
-	F_nextMark()
-
-	var newQs = []
-	function F_calcQValue(Qelem) { // kérdés value-ját kiszámolja, és ha nagyobb, akkor kiválasztja
-		var LSid
-		F_calcLSid(Qelem)
-		LSid = actLSid
-		/* newQ */ if ( LSid == undefined || LSid == null ) {
-			if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" ) {
-				if ( document.getElementById("btn_nextQdiff").style.backgroundColor != "coral" ) {
-					newQs.push(Qelem)
-				} else if ( priorType < 2 ) {
-					priorQelem = Qelem
-				}
-				priorType = 2
-			}
-			return
-		}
-		/* skipQ */if ( localStorage.getItem(LSid+"_skip") && localStorage.getItem(LSid+"_skip") != "atlag" && localStorage.getItem(LSid+"_skip") != "important" ) { return }
-		/* newQ */if ( localStorage.getItem(LSid+"_jegy") == null ) {
-			if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" ) {
-				if ( document.getElementById("btn_nextQdiff").style.backgroundColor != "coral" ) {
-					newQs.push(Qelem)
-					return
-				}
-				if (  priorType < 2 ) { priorQelem = Qelem }
-				priorType = 2
-			}
-		}
-		/* important */if ( localStorage.getItem(LSid+"_skip") == "important" ) {
-			if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" ) {
-				if ( document.getElementById("span_important").style.borderColor != "limegreen" ) { return }
-			}
-			var repCount = Number(localStorage.getItem(LSid+'_repeat'))
-			if ( document.getElementById("hkQ.nextRep"+repCount).style.backgroundColor == "limegreen" ) {
-				var date = new Date();
-				var idopont2 = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-				if ( idopont2 > obj_repCount[repCount] ) { 
-					priorType = 2
-					
-					var checkValue2 = idopont2 / obj_repCount[repCount]
-					if ( checkValue2 > priorValue2 ) {
-						priorValue2 = checkValue2
-						priorQelem = Qelem
-					}
-				}
-			}
-		}
-		/* gold */if ( document.getElementById("btn_newQuest").style.borderColor != "limegreen" && localStorage.getItem(LSid+"_skip") == "gold" ) {
-			var repCount = Number(localStorage.getItem(LSid+'_repeat'))
-			if ( document.getElementById("hkQ.nextRep"+repCount).style.backgroundColor == "limegreen" ) {
-				var date = new Date();
-				var remain = Math.floor(date.getTime()/3600000)
-				remain = localStorage.getItem("vizsgaSkip") - remain
-				
-				if ( remain < 12 ) { 
-					priorType = 2
-					
-					var idopont2 = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-					var checkValue2 = idopont2 / obj_repCount[repCount]
-					if ( checkValue2 > priorValue2 ) {
-						priorValue2 = checkValue2
-						priorQelem = Qelem
-					}
-				}
-			}
-		}
-		/* oldQ */if ( priorType == 1 && localStorage.getItem(LSid+"_jegy") != null ) {
-			var date = new Date();
-			var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-			var repCount = Number(localStorage.getItem(LSid+'_repeat'))
-
-			if ( document.getElementById("btn_RepFast").style.borderColor != "limegreen" ) {
-				if ( obj_repCount[repCount] > idopont ) { return }
-			}
-
-			F_calcHosszJegy(Qelem)
-
-			checkValue = idopont / obj_repCount[repCount]
-			//averageCV = averageCV + checkValue
-			countCV = countCV + 1
-			if ( document.getElementById("hkQ.nextRep"+repCount).style.backgroundColor != "limegreen" ) { return }
-
-			if ( checkValue > priorValue_alt ) {
-				priorValue_alt = checkValue;
-				priorQ_alt = Qelem;
-			}
-			
-			if ( document.getElementById("btn_nextQdiff").style.backgroundColor != "coral" ) {
-				nextDiff = nextDiff +1
-				var xyz = Math.random();
-				var refX = 1/nextDiff
-				console.log(xyz+" vs "+refX)
-				if ( xyz < refX ) {
-					priorValue = checkValue;
-					priorQelem = Qelem
-				}
-			} else if ( localStorage.getItem(LSid+"_repeat") == nextRep || nextRep == "zerus" ) { 
-				if ( checkValue > priorValue ) {
-					priorValue = checkValue;
-					priorQelem = Qelem
-				}
-			}
-		}
-	}
-
-	//averageCV = 0
-	countCV = 0
-	
-	for ( var tetelID in tetelek ) {
-		if ( localStorage.getItem(tetelID+"_button") == "true" ) {
-			var tetelQ = document.getElementById(tetelID)
-			var tetelQs = tetelQ.getElementsByClassName("kerdes")
-			if ( tetelQ.classList.contains("kerdes") == true ) { F_calcQValue(tetelQ) }
-			for ( var x=0; x<tetelQs.length; x++ ) { F_calcQValue(tetelQs[x]) }
-		}
-	}
-	
-	if ( priorQelem == "nincs" && document.getElementById("btn_nextQdiff").style.backgroundColor != "coral" ) {
-		var rand = newQs[Math.floor(Math.random() * newQs.length)]
-		priorQelem = rand
-	}
-	//averageCV = averageCV/countCV
-	if ( priorQelem == "nincs" ) {
-		if ( priorQ_alt != "nincs" ) {
-			priorQelem = priorQ_alt
-		} else {
-			alert("elfogytak a kérdések");
-		}
-	}
-
-	if ( priorQelem != "nincs" ) {
-		F_searchParent(priorQelem)
-		//console.log(priorQelem.innerHTML)
-		var parent = parentQ
-		var Qelem = childQ
-		if ( parent.classList.contains("feltetel") == true ) { Qelem = parent }
-		//console.log(Qelem.innerHTML)
-		
-		function func_setTitle(){
-			var titleText = ""
-			var parent = Qelem.parentElement
-			var altetelcim = ""
-			var hiddenText = ""
-			if ( parent.className == "altetel" ) { // altetel Címet adja hozzá
-				altetelcim = parent.id 
-				altetelcim = altetelcim.slice(altetelcim.indexOf(",")+1)
-				altetelcim = " &#10140; " + altetelcim
-				titleText = altetelcim
-				parent = parent.parentElement
-			}
-			var tetelcim = parent.id
-			//tetelcim = tetelcim.slice(tetelcim.indexOf(",")+1)
-			
-			if ( Qelem.className.indexOf("if") == -1 ) { 
-				titleText = tetelcim + titleText 
-			} else {
-				hiddenText = tetelcim + altetelcim
-				QlocElem.innerHTML = '<div><font class="abbr"><strong>téma: </font>'+hiddenText+'</strong></div>'
-			}
-			document.getElementById("questTitle").innerHTML = titleText;
-		}
-		func_setTitle()
-		
-		//F_impQlot(QlocElem) // szvsz ez fölös, mert a QlocElem.innerHTML empty itt még
-		
-		function F_copyQs(Qelem){
-			F_calcLSid(Qelem)
-			var LSid = actLSid
-			var Qtext = actQtext
-			if ( Qelem.classList.contains("open") == true ) { Qtext = Qtext.replace(">"," open>") }
-			QlocElem.innerHTML = QlocElem.innerHTML + Qtext
-		}
-		F_copyQs(Qelem) // nem feltétlen van id-je !! (mármint ez nem hiba)
-		function F_saveNewQs(){
-			var arrayQ = QlocElem.getElementsByClassName("kerdes")
-			//alert("start")
-			for ( var i=0; i<arrayQ.length; i++ ) {
-				var Qelem = arrayQ[i]
-				F_calcLSid(Qelem)
-				var LSid = actLSid
-				var Qtext = actQtext
-				if ( LSid != undefined ) { continue }
-				
-				LSid = F_newLSid() 
-				var string = localStorage.getItem(document.title+"_LSids")
-				string = string+ " " +LSid
-				localStorage.setItem(document.title+"_LSids",string)
-				
-				var qName = F_QtxtQname(Qtext)
-				//if ( qName.slice(-3) != "-->" ) { F_setCount(Qelem) }
-				localStorage.setItem(qName,LSid)
-				localStorage.setItem(LSid,qName)
-				//console.log(LSid+" "+qName)
-			}
-		}
-		F_saveNewQs()
-		
-		QlocElem.innerHTML = QlocElem.innerHTML + "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>"
-		
-		var allImpQs = QlocElem.querySelectorAll('.imp')
-		for ( var i=0;  i<allImpQs.length;  i++ ) { 
-			if ( allImpQs[i].className.indexOf("imported") != -1 ) { continue } 
-			allImpQs[i].className = allImpQs[i].className+" imported" 
-		} // ez kell
-		
-		var numQs = 0
-		function F_SetMarks(parQ) { // minden kérdés mellé kreál egy osztályzás lehetoséget
-			//console.clear()
-			console.log(" – F_SetMarks – ")
-			var arrayQ = parQ.getElementsByClassName("kerdes")
-			var num
-			for ( var i=0; i<arrayQ.length; i++ ) {
-				var Qelem = arrayQ[i]
-				if ( Qelem.offsetParent === null ) { continue } // így altkérdések rejtve maradnak elején
-
-		//console.clear()
-		//console.log(i)
-				F_calcLSid(Qelem)
-				var LSid = actLSid
-				var Qtext = actQtext
-				/* csak ellenorzés: */ if ( LSid == undefined ) { alert("F_SetMarks() - "+ num +": "+ LSid +" (az LSid)") }
-				
-				var isNewQ = true
-				for ( var x in activeQs ) {
-					if ( activeQs[x] == LSid ) { 
-						num = Number(x) 
-						isNewQ = false
-					}
-				}
-				if ( isNewQ == true ) {
-					numQs = numQs +1
-					num = numQs
-					activeQs[num] = LSid
-				}
-				
-				if ( Qelem.innerHTML.indexOf("<summary") != -1 ) {  // kérdésbe bekerül, hogy a táblázatban hányas
-					if ( Qelem.innerHTML.indexOf('>['+num+'] ') == -1 ) { 
-						Qelem.innerHTML = Qelem.innerHTML.replace(">",">["+num+"] ")
-					}
-				} else if ( Qelem.innerHTML.slice(0,Qelem.innerHTML.indexOf(' ')) != '['+num+']' ) {
-					//alert("new: "+Qelem.innerHTML.slice(0,Qelem.innerHTML.indexOf(' ')))
-					Qelem.innerHTML = '['+num+'] '+Qelem.innerHTML
-				} else {
-					//alert("old: "+Qelem.slice(0,Qelem.innerHTML.indexOf(' ')))
-				}
-
-				if ( isNewQ == false ) { continue }
-
-				function F_CreateSelect(i) {
-					for ( var x=0;  x<3;  x++ ) {
-						var td = document.createElement("TD")
-						td.id = "td."+x+"."+i
-						document.getElementById("Tr_QsMark."+x).appendChild(td)
-						td.style.minWidth = "45px"
-						td.style.height = "31px"
-						if ( x == 0 ) {
-							td.innerHTML = i
-							td.style.fontWeight = "bold"
-							if ( isAndroid == true ) { 
-								td.onclick = function(){
-									var div = document.getElementById("div_qProp")
-									var span = document.getElementById("span_qProp")
-									
-									var num = this.innerHTML
-									var LSid = activeQs[num]
-									var jegy = localStorage.getItem(LSid+'_jegy')
-									var repeat = localStorage.getItem(LSid+'_repeat')
-									
-									if ( div.style.display == "none" ) {
-										F_hideQArea()
-										div.style.display = "block"
-										span.innerHTML = num+"<br>"+LSid+"<br> Jegy:"+jegy+"<br>Repeat:"+repeat+"<br>"
-									} else {
-										F_hideQArea()
-										document.getElementById("divQloc").style.display = "block"
-									}
-								}
-							}
-						} else if ( x == 1 ) {
-							var div = document.createElement("DIV")
-							td.appendChild(div)
-							div.id = "div_jegy."+i
-							div.innerHTML = "&nbsp"
-							td.onclick = function(){ 
-								var dropdown = document.getElementById("div_selectJegy")
-								this.appendChild(dropdown) // cseréljem le az egész táblázatot majd div + borderre, abba csak jó lesz már (a JSnew.js-ben, addig jóez)
-								var num = this.id
-								num = num.slice(num.lastIndexOf(".")+1)
-								if ( dropdown.style.display == "block" && jegyNum == num ) {
-									dropdown.style.display = "none"
-								} else if ( this.style.backgroundColor != "black" ) {
-									jegyStatus = true
-									jegyNum = num
-									dropdown.style.display = "block"
-									
-									// repeatest beállítja vastagbetusre
-									var LSid = activeQs[jegyNum]
-									var child = dropdown.childNodes
-									for (var y=0; y < child.length; y++) {
-										if ( child[y].innerHTML == localStorage.getItem(LSid+"_repeat") ) {
-											child[y].style.fontWeight = "bolder"
-										} else {
-											child[y].style.fontWeight = "normal"
-										}
-									}
-								}
-							}
-						} else if ( x == 2 ) {
-							td.style.fontSize = "small"
-							td.addEventListener("click",function(){
-								if ( this.style.backgroundColor == "snow" ) { 
-									this.style.backgroundColor = "lawngreen" 
-								} else if ( this.style.backgroundColor == "lawngreen" ) { 
-									this.style.backgroundColor = "gold" 
-								} else if ( this.style.backgroundColor == "gold" ) { 
-									this.style.backgroundColor = "blue" 
-								} else if ( this.style.backgroundColor == "blue" ) { 
-									this.style.backgroundColor = "black" 
-								} else if ( this.style.backgroundColor == "black" ) { 
-									this.style.backgroundColor = "snow" 
-								}
-							});
-							td.addEventListener("contextmenu",function(ev){
-								ev.preventDefault();
-								if ( this.style.backgroundColor == "snow" ) { 
-									this.style.backgroundColor = "black" 
-								} else if ( this.style.backgroundColor == "black" ) { 
-									this.style.backgroundColor = "blue" 
-								} else if ( this.style.backgroundColor == "blue" ) { 
-									this.style.backgroundColor = "gold" 
-								} else if ( this.style.backgroundColor == "gold" ) { 
-									this.style.backgroundColor = "lawngreen" 
-								} else if ( this.style.backgroundColor == "lawngreen" ) { 
-									this.style.backgroundColor = "snow" 
-								}
-								return false;
-							}, false);
-						}
-						/*var td = document.createElement("TD")
-						td.style.border = "0px solid black"
-						td.style.width = "50px"
-						document.getElementById("Tr_QsMark."+x).appendChild(td)*/
-					}
-				}
-				if ( !document.getElementById('td.1.'+num) ) { F_CreateSelect(num) }
-				if ( isAndroid != true ) { 
-					var jegy = localStorage.getItem(LSid+'_jegy')
-					var repeat = localStorage.getItem(LSid+'_repeat')
-					
-					document.getElementById("td.0."+num).title = LSid+"<br> Jegy:"+jegy+"<br>Repeat:"+repeat
-					F_titleChange(document.getElementById("td.0."+num).parentElement)
-				}
-				var jegySelect = document.getElementById('div_jegy.'+num)
-				document.getElementById("td.0."+num).hidden = false 
-				document.getElementById("td.1."+num).hidden = false 
-				document.getElementById("td.2."+num).hidden = false 
-				if ( localStorage.getItem(LSid+"_skip") == "important" ) {
-					document.getElementById("td.2."+num).style.backgroundColor = "lawngreen"
-				} else if ( localStorage.getItem(LSid+"_skip") == "tempskip" ) {
-					document.getElementById("td.2."+num).style.backgroundColor = "gold"
-				} else {
-					document.getElementById("td.2."+num).style.backgroundColor = "snow"
-				}
-				
-				document.getElementById("td.0."+num).style.borderColor = "black"
-
-				var jegy = localStorage.getItem(LSid+'_jegy')
-				var repeat = localStorage.getItem(LSid+'_repeat')
-				F_calcHosszJegy(arrayQ[i])
-
-				//ido
-				document.getElementById("td.0."+num).style.backgroundColor = "white"
-				var date = new Date();
-				jegySelect.style.backgroundColor = "White"
-				if ( localStorage.getItem(LSid+'_idopont') ) {
-					var idopont = Math.floor(date.getTime()/60000) - localStorage.getItem(LSid+'_idopont')
-					// console.log("Qid:"+Qid+" ––– time:"+idopont)
-					if ( idopont > 99 ) {
-						document.getElementById("td.2."+num).innerHTML = Math.floor(idopont/60)
-					} else {
-						document.getElementById("td.2."+num).innerHTML = "<strong>"+idopont+"</strong>"
-					}
-					//document.getElementById("td.2."+num).innerHTML = idopont
-					
-					var date = new Date();
-					var remain = Math.floor(date.getTime()/3600000)
-					remain = localStorage.getItem("vizsgaSkip") - remain
-					remain = remain*60
-					if ( idopont < remain ) {
-						document.getElementById("td.2."+num).style.borderColor = "red"
-					} else {
-						document.getElementById("td.2."+num).style.borderColor = "black"
-					}
-
-					checkValue = idopont / obj_repCount[localStorage.getItem(LSid+'_repeat')]
-					if ( obj_repCount[localStorage.getItem(LSid+'_repeat')] > idopont ) { // és nincs enabledelve az 'ultiLearn' (hiányzik még)
-						//document.getElementById("td.0."+i).style.backgroundColor = "LawnGreen"
-						jegySelect.style.backgroundColor = "Black"
-					/*
-					} else if ( idopont > timeDiff*3 ) {
-						document.getElementById("td.0."+i).style.backgroundColor = "red"
-					} else if ( idopont > timeDiff*2 ) {
-						document.getElementById("td.0."+i).style.backgroundColor = "orange"
-					} else if ( idopont > timeDiff ) {
-						document.getElementById("td.0."+i).style.backgroundColor = "yellow"
-					*/
-					}
-					
-					if ( repeat == 0 ) {
-						document.getElementById("td.0."+num).style.backgroundColor = "red"
-					} else if ( repeat == 1 ) {
-						document.getElementById("td.0."+num).style.backgroundColor = "orange"
-					} else if ( repeat == 2 ) {
-						document.getElementById("td.0."+num).style.backgroundColor = "yellow"
-					} else {
-						document.getElementById("td.0."+num).style.backgroundColor = "LawnGreen"
-					}
-				}
-				document.getElementById("td.0."+num).style.backgroundColor = "White"
-				if ( hossz == "0" ) { document.getElementById("td.0."+num).style.backgroundColor = "lightgrey" }
-				if ( localStorage.getItem(LSid+'_skip') && localStorage.getItem(LSid+'_skip') != "important" ) {
-					document.getElementById("td.0."+num).style.backgroundColor = "Black"
-					if ( localStorage.getItem(LSid+'_skip') == "vizsgaSkip" ) {
-						document.getElementById("td.0."+num).style.backgroundColor = "Blue"
-					}
-					jegySelect.style.backgroundColor = "Black"
-				}
-				if ( document.getElementById("td.0."+num).style.backgroundColor == "blue" || document.getElementById("td.0."+num).style.backgroundColor == "black" || document.getElementById("td.0."+num).style.backgroundColor == "red" ) {
-					document.getElementById("td.0."+num).style.color = "white" // fontColor
-				} else {
-					document.getElementById("td.0."+num).style.color = "black" // fontColor
-				}
-			}
-		}
-		F_SetMarks(QlocElem)
-		
-		F_loadDetails(QlocElem)
-		function F_onToggle(){
-			var arrayDetails = QlocElem.getElementsByTagName("DETAILS")
-			for ( var i=0; i<arrayDetails.length; i++ ) { arrayDetails[i].ontoggle = function(){ 
-				F_SetMarks(this) 
-				F_loadDetails(this)
-				F_highlightQ()
-				F_onToggle()
-			} }
-		}
-		F_onToggle()
-		
-		function F_setIfQs(){
-			var arrayQ = QlocElem.getElementsByClassName("kerdes")
-			for ( var i=0; i<arrayQ.length; i++ ) {
-				if ( arrayQ[i].className.indexOf("if") != -1 ) { 
-					var newTxt = arrayQ[i].innerHTML
-					
-					// kikeresi a megoldást egy változóba (str)
-					var end = newTxt.indexOf("</summary")
-					var str = newTxt.slice(0,end)
-					var begin = str.indexOf("<summary")
-					str = str.slice(begin)
-					begin = str.indexOf(">")+1
-					str = str.slice(begin)
-					var num = str.slice(0,str.indexOf("]")+1)
-					str = str.slice(str.indexOf("]")+1)
-					
-					// elrejti a megoldást
-					newTxt = newTxt.replace(">"+num+str+'</summary><ul class="normal">', '><font class="abbr">'+num+'ismerd fel<!--'+LSid+'--> ►</font>'+str+'</summary><ul class="normal">')
-					arrayQ[i].innerHTML = newTxt
-					
-					// div-re cseréli a details-t
-					var d = document.createElement('div');
-					d.innerHTML = arrayQ[i].innerHTML;
-					d.className = arrayQ[i].className;
-					arrayQ[i].parentNode.replaceChild(d, arrayQ[i]);
-					F_detailsToggle(d)
-				}
-			}
-		}
-		F_setIfQs()
-
-		function F_highlightQ(){
-			for ( var i=1; i<activeQs.length; i++ ) { document.getElementById("td.0."+i).style.borderColor = "black" }
-			
-			F_calcLSid(priorQelem)
-			for ( var i=1; i<activeQs.length; i++ ) {
-				if ( activeQs[i] == actLSid ) { 
-					document.getElementById("td.0."+i).style.borderColor = "yellow"
-					//console.log(actLSid)
-					return
-				}
-			}
-			
-			var subLSid = null
-			var priorNum = -1
-			//console.log(parQord)
-			for ( var i=0; i<activeQs.length; i++ ) { if  ( parQord.indexOf(activeQs[i]) > priorNum ) { subLSid = activeQs[i] } }
-			for ( var i=1; i<activeQs.length; i++ ) {
-				//console.log(activeQs[i])
-				if ( activeQs[i] == subLSid ) { 
-					document.getElementById("td.0."+i).style.borderColor = "yellow"
-					return
-				}
-			}
-			if ( subLSid = null ) { console.log("HIBA: F_highlightQ()") }
-			
-		}
-		F_highlightQ()
-
-		var childs = QlocElem.childNodes;
-		for ( var i=0; i<childs.length; i++ ) { if ( childs[i].className.indexOf("open") != -1 ) { childs[i].open = true } }
-
-		var Qtext
-		Qtext = '<details class="' +Qelem.className+ '">' +Qelem.innerHTML+ "</details>"
-		
-		actQid = "none"
-		F_calcLSid(priorQelem)
-		actQid = actLSid.slice(4)
-		var LSid = "hkQ." + actQid
-		
-		var date = new Date();
-		var remain = Math.floor(date.getTime()/3600000)
-		remain = localStorage.getItem("vizsgaSkip") - remain
-		
-		if ( localStorage.getItem(LSid+"_note") ) { // note
-			//alert(LSid+" "+localStorage.getItem(LSid))
-			document.getElementById("note").value = localStorage.getItem(LSid+"_note")
-			document.getElementById("button_NextQ").style.borderColor = "red";
-			var_note = true
-		} else {
-			document.getElementById("button_NextQ").style.borderColor = "black";
-			var_note = false
-		}
-	}
-	
-	
-	F_getTime()
-	diffTimeX = myTime-startTime
-	//console.log("– F_nextQ test – " + diffTimeX)
-	
-	func_calcJegy()
-	func_calcWork()
-	func_calcDate()
-	func_calcOldNew()
-	func_calcRepeat()
-	
-	F_getTime()
-	diffTimeX = myTime-startTime
-	//console.log("– F_nextQ test – " + diffTimeX)
-	
-	F_abbrSet(QlocElem)
-	F_imgClick(QlocElem)
-	F_titleChange(QlocElem)
-
-	F_midQ(QlocElem)
-	F_calcqTimer(document.getElementById("btn_qTimer"))
-	
-	document.getElementById("button_NextQ").style.color = ""
-	if ( localStorage.getItem("hk.lastSavedLS") > 4 ) { 
-		document.getElementById("button_NextQ").style.backgroundColor = "aqua" 
-	} else {
-		document.getElementById("button_NextQ").style.backgroundColor = "white"
-	}
-	
-	F_getTime()
-	diffTimeX = myTime-startTime
-	lastClickTime = myTime
-
-	console.log("– F_nextQ END – " + diffTimeX)
-}
-
-var jegyStatus, jegyNum
-window.onclick = function(event) {
-	if ( jegyStatus != true ) { document.getElementById("div_selectJegy").style.display = "none" }
-	jegyStatus = false
-}
-function F_divSelectJegy() {
-	var div = document.createElement("div")
-	div.id = "div_selectJegy"
-	document.getElementById("div_MainFrame").appendChild(div)
-	//div.style.position = "absolute"
-	div.style.width = "45px"
-	div.style.display = "none"
-	div.style.backgroundColor = "#f1f1f1"
-	div.style.boxShadow = "0px 8px 16px 0px rgba(0,0,0,0.4)"
-	div.style.border = "1px solid grey"
-	var array = ["&nbsp","1","2","3"]
-	for ( var x=0;  x<array.length;  x++ ) {
-		var a = document.createElement("a")
-		div.appendChild(a)
-		a.innerHTML = array[x]
-		a.style.padding = "5px 10px"
-		a.style.display = "block"
-		a.style.cursor = "pointer"
-		a.onclick = function() { 
-			var td = this.parentElement.parentElement
-			var num = td.id
-			num = num.slice(num.lastIndexOf(".")+1)
-			document.getElementById("div_jegy."+num).innerHTML = this.innerHTML
+	if ( isAndroid == false ) {
+		document.getElementById("img_mini").onmouseout = function() { this.style.display = "none" }
+		document.getElementById("img_mini").onclick = function() { // középen kinagyítja
+			document.getElementById("div_centImgBg").style.visibility = "visible"
+			document.getElementById("img_cent").src = this.src
 		}
 	}
 }
-F_divSelectJegy()
+F_loadImg_cent_mini()
 
-var expQsLoaded = false
-var loadAllPage = false
-function F_loadPageText(path,kiiras) {
-	document.getElementById("iframe_targyak").src = path
-	var handler = function(e) {
-		var path = document.getElementById("iframe_targyak").src
-		//console.log(path)
-		if ( path.indexOf("learn/") != -1 ) { path = path.slice(path.indexOf("learn/")+6) } // git
-		if ( path.indexOf("master/") != -1 ) { // git-ben van egy 'master/' is, amit ki kell vágni
-			path = path.slice(0,path.indexOf("master/")) + path.slice(path.indexOf("master/")+7)
-		}
-		if ( path.indexOf("LEARN/") != -1 ) { path = path.slice(path.indexOf("LEARN/")+6) } // gép
-		// learn átnevezése után a könyvjelzőket is átkéne notepad-ban, szóval maradjon így inkább (gitnél meg nem tudom mi lenne)
-		//console.log(path+" – LOADED")
-		var targyText = e.data[1]
-		pageTexts[path] = targyText
-		
-		var id
-		for ( var i=0; i<pageLinks.length; i++ ) { if ( pageLinks[i].dataset.src == path ) { id = i } }
-		saveIDB(path,targyText,id)
-		pageLinks[id].dataset.loaded = true 
-		
-		localStorage.setItem("hk.pagePath",path) 
-		if ( kiiras == true ) {
-			pagePath = path // képek betöltéséhez kell pl
-			var pageDiv = document.getElementById("div_pageQTargy")
-			pageDiv.innerHTML = pageTexts[pagePath]
-			F_checkEXPs()
-			F_detailsToggle(pageDiv)
-			pageLinks[id].style.backgroundColor = "yellow"
-			if ( localStorage.getItem("hk.ToggleAll") == "true" && refreshAll != true ) { 
-				document.getElementById("btn_toggleAll").style.backgroundColor  = "black"
-				var int_Click = window.setInterval(function(){
-					F_toggleAll()
-					document.body.style.backgroundColor = ""
-					clearInterval(int_Click) 
-				}, 100)
-			}
-		}
-		document.getElementById("iframe_targyak").src = ""
-		
-		if ( loadAllPage == true ) { F_loadAllPageTexts() }
-		removeEventListener('message', handler, false)
-	}
-	window.addEventListener('message', handler, false)
-}
-function F_loadAllPageTexts() {
-	//removeEventListener('message', handler, false)
-	document.getElementById("div_SearchW").style.backgroundColor = "grey"
+function F_loadElem(detElem){ // detailsok megnyitásánál is ezt a funkciót használjam!
+	//console.log(detElem.innerHTML)
+	F_loadImpQs(detElem)
+	F_loadMidQs(detElem)
+	F_loadIMGs(detElem)
+	F_loadVideos(detElem)
+	F_tableScrollable(detElem)
+	F_synonyms(detElem)
 	
-	var full = pageLinks.length -1
-	var count
-	for ( var i=0; i<pageLinks.length; i++ ) { 
-		count = i
-		document.getElementById("div_RefreshStatus").innerHTML = count+"/"+full
-		if ( pageLinks[count].dataset.loaded != "true" ) {
-			F_loadPageText(pageLinks[count].dataset.src,false)
-			break
-		}
-		if ( count == full ) {
-			document.getElementById("div_SearchW").style.backgroundColor = "white"
-			var startTime = myTime
-			F_getTime()
-			var diffTime = (myTime-startTime).toFixed(2)
-			//var timeX = Math.round((myTime-oldTime)*100)/100
-			document.getElementById("div_Refreshng").innerHTML = diffTime+"s"
-			document.getElementById("div_RefreshStatus").style.display = "none"
-		} else {
-			document.getElementById("div_RefreshStatus").style.display = "block"
-		}
-	}
-}
-
-function clearIDB(path,id){
-	var request = indexedDB.deleteDatabase(path);
-	request.onsuccess = function(event) { console.log("database DELETE – "+path) }
-	if ( pageTexts[path] == undefined ) { 
-		pageLinks[id].style.color = ""
-	} else {
-		pageLinks[id].style.color = "red"
-	}
-}
-function clearFullIDB(){ 
-	for ( var i=0; i<pageLinks.length; i++ ) { clearIDB(pageLinks[i].dataset.src,i) }
-	localStorage.removeItem("idbPaths")
-}
-
-function F_lsADDidbPath(path){
-	var lsPaths = JSON.parse(localStorage.getItem("idbPaths"))
-	if ( lsPaths == null ) { lsPaths = [] }
-	if ( lsPaths.includes(path) == false ) { lsPaths.push(path) }
-	localStorage.setItem("idbPaths", JSON.stringify(lsPaths))
-}
-function saveIDB(path,text,id){
-	F_getTime()
-	var objectData = [ { pageHTML: text }, { pageTIME: myTime } ]
-	var request = indexedDB.deleteDatabase(path);
-	//request.onsuccess = function(event) { console.log("database DELETE – "+path) }
-	pageLinks[id].style.color = "red"
+	var allDetails = detElem.getElementsByTagName("details")
+	for ( var i=0; i<allDetails.length; i++ ) { allDetails[i].ontoggle = function(){ F_loadElem(this) } }
 	
-	var request = indexedDB.open(path, 1);
-	request.onupgradeneeded = function (event) {
-		var db = event.target.result;
-		var store = db.createObjectStore("webpage", { keyPath: "id", autoIncrement: true });
-		store.put(objectData)
-	}
-	request.onerror = function(event) { console.log("database ERROR: " + event.target.errorCode) }
-	request.onsuccess = function(event) {
-		var db = event.target.result;
-		var transaction = db.transaction("webpage","readwrite")
-		var store = transaction.objectStore("webpage");  
-		//store.get(1).onsuccess = function(event) { console.log("database REFRESH – "+path /* this.result */) }
-		transaction.oncomplete = function() { db.close() }
-		
-		pageLinks[id].style.color = "blue"
-		F_lsADDidbPath(path)
-	}
+	// img-ek is!
+	// stb.
 }
-function loadIDB(path){
-	var request = indexedDB.open(path, 1);
-	request.onerror = function(event) { console.log("database ERROR: " + event.target.errorCode) }
-	request.onsuccess = function(event) {
-		var db = event.target.result;
-		//console.log(path+" – "+db.objectStoreNames.contains('webpage'))
-		//console.log(db.objectStoreNames)
-		if ( db.objectStoreNames.contains('webpage') != true ) { return }
-		var transaction = db.transaction("webpage","readwrite")
-		var store = transaction.objectStore("webpage")
-		store.get(1).onsuccess = function(event) { 
-			if ( arrLSpaths.includes(path) == true ) { 
-				var lsPaths = JSON.parse(localStorage.getItem("idbPaths")) // ezt csak első betöltésnél használja
-				var ctMax = lsPaths.length
-				
-				var index = arrLSpaths.indexOf(path)
-				arrLSpaths.splice(index,1) // kiveszem array-ból a path-et
-				var ctCurr = ctMax - arrLSpaths.length
-				var spanStatus = document.getElementById("span_searchStatus")
-				spanStatus.style.width = spanStatus.parentElement.offsetWidth * ctCurr / ctMax
-				if ( ctCurr == ctMax ) {
-					spanStatus.parentElement.style.display = "none"
-					if ( localStorage.getItem("hk.ToggleAll") == "true" ) {
-						F_loadPageText(localStorage.getItem("hk.pagePath"),true)
-					} else {
-						document.body.style.backgroundColor = ""
-					}
-				}
-			}
-			
-			var text = this.result[0]["pageHTML"]
-			//console.log(path+" : "+text)
-			var id
-			for ( var x=0; x<pageLinks.length; x++ ) { 
-				if ( pageLinks[x].dataset.src == path ) {
-					id = x
-					break
-				}
-			}
-			if ( this.result.length == 1 ) { // ez azért kell...
-				// a time-ot idb-be régen nem mentette el, így amikor leakarom hívni hibát ír ki. ezért akik abban az 1hónapban felmentek weboldalra, azoknál hiba lenne, így kell egy 'frissítés' (későbbiekben is, ha hozzáakarok majd adni egy új változót idb-be a path-hez lehet ez ilyen fog kelleni)
-				clearIDB(path,id)
-				return
-			}
-			
-			pageTexts[path] = text
-			if ( expQsLoaded == false && path == "expqs.html" ) {
-				parentDiv = document.getElementById("div_expQTargy")
-				parentDiv.innerHTML = pageTexts["expqs.html"]
-				arrImpQs["expQs"] = []
-				F_loadExpQs(parentDiv,"expQs")
-				expQsLoaded = true
-			}
-			F_getTime()
-			var time = myTime - this.result[1]["pageTIME"]
-			//console.log(path+" : "+this.result[1]["pageTIME"])
-			if ( time < 604800 ) { // 1 hét
-				pageLinks[id].style.color = "blue"
-				pageLinks[id].dataset.loaded = true
-			} else {
-				pageLinks[id].style.color = "red"
-			}
-		}
-		transaction.oncomplete = function() { db.close() }
-	}
-}
-var arrLSpaths = JSON.parse(localStorage.getItem("idbPaths")) // ezt csak első betöltésnél használja
-function F_loadpageIDBs(){
-	if ( arrLSpaths == null ) { return }
-	document.body.style.backgroundColor = "Gainsboro"
-	var spanStatus = document.getElementById("span_searchStatus")
-	spanStatus.parentElement.style.display = "block" 
-	spanStatus.parentElement.style.top = "80%"
-	for ( var x in arrLSpaths ) { loadIDB(arrLSpaths[x]) }
-}
-F_loadpageIDBs()
-
-F_getTime()
-var diffTime = myTime-oldTime
-//console.log("– – – Loading finished – – – " + diffTime)
-
-
-/* Replace text (regular expression)
-	<li><span class="WHITE">(.*?)</span>(.*?)</li>
-	<div><font class="abbr"><span class="WHITE">\1</span> ►</font>\2</div>
-*/
-
-
-
-
-
-
-
 
 
 
