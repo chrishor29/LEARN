@@ -1664,6 +1664,3 @@ function F_loadElem(detElem){ // detailsok megnyitásánál is ezt a funkciót h
 
 
 
-
-
-
