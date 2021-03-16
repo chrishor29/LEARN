@@ -20,11 +20,20 @@ if ( isAndroid ) { // ezis egy variáció, font size hejett, de pl. middle img p
 	document.body.appendChild(document.getElementById("div_centImgBg"))
 }
 
+
 function F_getTime() {
 	var myDate = new Date()
 	//var time = myDate.getTime() /1000
 	//return time
 	return myDate.getTime() /1000
+}
+function F_getImpID(detElem){
+	var impID = undefined
+	var begin = detElem.className.indexOf("[")
+	var end = detElem.className.indexOf("]")
+	impID = detElem.className.slice(begin+1,end)
+	if ( impID == undefined ) { console.log("# nincs impID-je: "+detElem.className) }
+	return impID
 }
 
 // –––––––––––––––  impQs BEGIN   –––––––––––––––
@@ -48,20 +57,29 @@ function F_saveImpQs(path) {
 	var childs = span.getElementsByTagName("*");
 	for ( var i = 0; i < childs.length; i++ ) {
 		var impQ = childs[i]
-		if ( impQ.className.indexOf("{") == -1 ) { continue }
-		if ( impQ.className.indexOf("imp") != -1 ) { continue }
-		if ( impQ.className.indexOf("midQ") != -1 ) { continue }
-		var begin = impQ.className.indexOf("{")
-		var end = impQ.className.indexOf("}")
-		var impID = impQ.className.slice(begin+1,end)
+		if ( impQ.className.indexOf("[") == -1 ) { continue }
+		if ( impQ.tagName != "DETAILS" ) { continue }
+		if ( impQ.className.indexOf("imp") != -1 ) { continue } // ez már fölös igazából, de nem baj biztos ami biztos
+		if ( impQ.className.indexOf("midQ") != -1 ) { continue } // ez már fölös igazából, de nem baj biztos ami biztos
+		var impID = F_getImpID(impQ)
 		pageImpQs[path][impID] = '<details class="'+impQ.className+'">'+impQ.innerHTML+'</details>'
 	}
 }
 function F_getQPath(detElem,impID) {
 	var path = currPath
 	if ( detElem.dataset.src ) { 
+		path = detElem.dataset.src
+	} else {
+		var parent = detElem
+		do {
+			parent = parent.parentElement
+		} while ( parent.tagName != "BODY" && parent.dataset.src == undefined )
+		if ( parent.dataset.src ) { path = parent.dataset.src }
+	}
+	//console.log(impID+": "+path)
+	if ( path != currPath ) {
 		var count = 0
-		for ( var pagePath in pageTexts ) { if ( pagePath.indexOf(detElem.dataset.src) != -1 ) { 
+		for ( var pagePath in pageTexts ) { if ( pagePath.indexOf(path) != -1 ) { 
 			count = count +1
 			path = pagePath
 		} }
@@ -74,28 +92,13 @@ function F_getQText(path,impID) {
 	var qText = pageImpQs[path][impID]
 	return qText
 }
-function F_setAltQsPath(detElem,path) {
-	if ( currPath == path ) { return }
-	var altImpQs = detElem.getElementsByClassName("imp")
-	for ( var x=0; x<altImpQs.length; x++ ) { 
-		if ( altImpQs[x].className.indexOf("[") == -1 ) { continue }
-		if ( altImpQs[x].dataset.src ) { continue } // kivéve ha az altImpQ-nak van jelölve path már
-		altImpQs[x].dataset.src = path
-	}
-	
-	var altMidQs = detElem.getElementsByClassName("midQ")
-	for ( var x=0; x<altMidQs.length; x++ ) { 
-		if ( altMidQs[x].className.indexOf("[") == -1 ) { continue }
-		if ( altMidQs[x].dataset.src ) { continue } // kivéve ha az altImpQ-nak van jelölve path már
-		altMidQs[x].dataset.src = path
-	}
-}
-function F_loadImpQs(detElem) {
+function F_loadImpQs(detElem,full) {
 /* Hogyan?
-  adott tárgy impQ-it nézzem meg, nincsenek-e véletlen az alján üres 1,2,3 impQ-k, mert akkor azok felülírják a fenntieket!
+  'hiba:' adott tárgy impQ-it nézzem meg, nincsenek-e véletlen az alján üres 1,2,3 impQ-k, mert akkor azok felülírják a fenntieket!
 	✔ megnézi a detElem összes imp child-ját
 	✔ feltételek: visible, van benne [], még nem volt betöltve
 		detElem = amit megnyitottam (details / page)
+		visible feltétel nem mindig! -> pl. Qing esetén, az első kiválasztásnál betölti összeset
 	✔ ha talált köztük egyet, ami a feltételnek megfelel, akkor újra visszaugrik az elejére és végigmegy rajtuk, de ezt nem fogja már még1x (return) -> azért kell, hogy mindegyiket betöltse, tehát pl. ha van a betöltöttben is egy, azt is (biztos van ennél jobb módszer is, de én ezt választottam)
 	✔ path beállítása: ha nincs 'data-source', akkor az aktuális megnyitott tárgy lesz
 	✔ parentek között(detElem-ig) nem-e volt már? végtelen loop elkerülése
@@ -109,14 +112,12 @@ function F_loadImpQs(detElem) {
 		var repeat = false
 		var impQs = detElem.getElementsByClassName("imp")
 		for ( var i=0; i<impQs.length; i++ ) { 
-			if ( impQs[i].offsetParent === null ) { continue }
+			if ( impQs[i].offsetParent === null && full != "full" ) { continue }
 			if ( impQs[i].className.indexOf("[") == -1 ) { continue }
 			if ( impQs[i].dataset.loaded == "true" ) { continue } else { impQs[i].dataset.loaded = "true" }
 			repeat = true
 			
-			var begin = impQs[i].className.indexOf("[")
-			var end = impQs[i].className.indexOf("]")
-			var impID = impQs[i].className.slice(begin+1,end)
+			var impID = F_getImpID(impQs[i])
 			
 			// path beállítása
 			var path = F_getQPath(impQs[i],impID)
@@ -127,16 +128,14 @@ function F_loadImpQs(detElem) {
 				var parent = impQs[i]
 				do {
 					parent = parent.parentElement
-					// checkolja, hogy az [impID]-jük megyegyezik-e
+					// checkolja, hogy az [impID]-jük megyegyezik-e --> ha nem, akkor nézi a kövi parentet
 					if ( parent.className.indexOf("["+impID+"]") == -1 ) { continue } 
-					// checkolja hogy a path-jük megegyezik-e
-					if ( path == currPath ) { 
-						if ( parent.dataset.src ) { continue }
-					} else {
-						if ( parent.dataset.src == undefined ) { continue }
-						if ( path.indexOf(parent.dataset.src) == -1 ) { continue }
-					}
-					contains = true
+					// checkolja hogy a path-jük megegyezik-e --> ha nem, akkor nézi a kövi parentet
+					if ( parent.dataset.src == undefined && path == currPath ) { contains = true }
+					if ( path.indexOf(parent.dataset.src) != -1 ) { contains = true }
+					/* ha átakarom írni, változtatás után teszteljem: ..
+						span/div/midQ + datasrc(akár ugyanez az oldalé) + full load(tehát kiveszem feltételből, hogy csak akkor ha visible)
+					*/
 				} while ( parent != detElem && contains == false )
 			}
 			F_checkParents()
@@ -154,9 +153,6 @@ function F_loadImpQs(detElem) {
 				qText = qText.slice(0,qText.lastIndexOf('</ul></details>'))
 			}
 			impQs[i].innerHTML = qText
-			
-			// ha más pageről származik, akkor az altImpQ-i is onnan származzanak!
-			F_setAltQsPath(impQs[i],path)
 		}
 		// ha hiányzott valamelyik [impQ]
 		if ( error != "" ) { 
@@ -187,7 +183,7 @@ function F_loadAutoLoadPagesBtn() {
 	}
 }
 F_loadAutoLoadPagesBtn()
-function F_loadAndSavePageText(path,click) {
+function F_loadAndSavePageText(path,click,toggle) {
 	if ( document.getElementById("iframe_targyak") == null ) {
 		var iframe = document.createElement("iframe") // ebbe tölti be a webpage-ket, majd innen másolja ki innerhtml-üket
 		document.body.appendChild(iframe)
@@ -202,6 +198,7 @@ function F_loadAndSavePageText(path,click) {
 		F_loadElem(pageDiv)
 		/* */var endTime = F_getTime()
 		/* */console.log(endTime-startTime)
+		if ( toggle == true ) { F_toggleQing()  }
 	}
 	
 	document.getElementById("iframe_targyak").src = path
@@ -434,7 +431,7 @@ function F_setMidQ(qText,path) { // középen megjeleníti a div-et, benne a sz�
 	qText = qText.slice(qText.indexOf(">")+1)
 	document.getElementById("div_MidQText").innerHTML = qText
 	
-	F_setAltQsPath(document.getElementById("div_MidQText"),path)
+	document.getElementById("div_MidQText").dataset.src = path // kell, h a benne lévő impQ-k path-jét lekérhesse: F_getQPath()
 	F_loadElem(document.getElementById("div_MidQText"))
 	if ( prevMidQs.length > 1 ) {
 		document.getElementById("btn_MidQback").style.display = "block"
@@ -453,9 +450,7 @@ function F_loadMidQs(detElem) { // midQ[x] elemeket beállítja: kék fontColor,
 		midQ.onmouseover = function(){ this.style.color = "green" }
 		midQ.onmouseout = function(){ this.style.color = "blue" }
 		midQ.onclick = function() {
-			var begin = this.className.indexOf("[")
-			var end = this.className.indexOf("]")
-			var impID = this.className.slice(begin+1,end)
+			var impID = F_getImpID(this)
 			var path = F_getQPath(this,impID) 
 			prevMidQs.push(impID+" - "+path)
 			var qText = F_getQText(path,impID)
@@ -955,12 +950,79 @@ F_createSearchElems()
 // –––––––––––––––  Search END  –––––––––––––––
 
 // –––––––––––––––  Qing BEGIN  –––––––––––––––
+var arrTetelQs = {} // mainTitle-k, azon belül phase/status-ok, azok pedig egy stringet tartalmaznak, hogy mely Q-k
+var arrActTetels = [] // active tételek
+var arrQnev = [] // qNev -> id: qNev + tartalom
+function F_loadLS() {
+	function F_checkTetels() {
+		arrActTetels = JSON.parse(localStorage.getItem("activeTetels"))
+		//console.log(arrActTetels)
+		if ( arrActTetels == null ) { 
+			arrActTetels = []
+			return 
+		}
+		var allTetels = document.getElementById("div_QingTetels").getElementsByClassName("tetel")
+		for ( var i=0; i<allTetels.length; i++ ) {
+			var tetel = allTetels[i].innerHTML
+			if ( arrActTetels.includes(tetel) == true ) { 
+				allTetels[i].style.backgroundColor = "lightgreen"
+				//console.log(tetel)
+			}
+		}
+	}
+	F_checkTetels()
+	
+	var arrOldQs = [] // LS-ben mentett Q-k
+	var arrNewQs = [] // LS-ben még nem mentett Q-k (nem osztályzott)
+	function F_checkQs() {
+		// phase 1 --> megnézi, melyek az aktuális questek
+		var actQs = ""
+		var allTetels = document.getElementById("div_QingTetels").getElementsByClassName("tetel")
+		for ( var i=0; i<allTetels.length; i++ ) {
+			if ( allTetels[i].style.backgroundColor == "lightgreen" ) { 
+				var tetelName = allTetels[i].innerHTML
+				//console.log(tetelName)
+				//console.log(arrTetelQs[tetelName])
+				actQs = actQs + arrTetelQs[tetelName] +","
+			}
+		}
+		actQs = actQs.substring(0, actQs.length - 1) // végén lévő vesszőt kiveszi, hogy ne legyen empty Q benne
+		actQs = actQs.split(",")
+		
+		// phase 2 --> egyesével lehívja qNev, és megnézi, hogy benne van-e LS-ben
+			// ha nincs --> arrNewQs-ba adja a nevét (ha még nincs benne)
+			// ha igen --> arrOldQs-ba adja a nevét (ha még nincs benne)
+		for ( var i=0; i<actQs.length; i++ ) {
+			if ( actQs[i] == "" ) { continue }
+			var qNev = arrQnev[actQs[i]].qNev
+			//console.log(actQs[i]+": "+qNev)
+			if ( localStorage.getItem(qNev) != null ) { 
+				if ( arrOldQs.includes(actQs[i]) != true ) { arrOldQs.push(actQs[i]) }
+			} else {
+				if ( arrNewQs.includes(actQs[i]) != true ) { arrNewQs.push(actQs[i]) }
+			}
+		}
+		document.getElementById("span_newQuest").innerHTML = arrNewQs.length
+		//console.log("newQs: "+arrNewQs)
+		//console.log("oldQs: "+arrOldQs)
+	}
+	F_checkQs()
+}
 function F_clickTetel(detElem) {
+	//console.log(detElem.innerHTML)
+	//console.log(arrTetelQs[detElem.innerHTML])
 	if ( detElem.style.backgroundColor == "lightgreen" ) {
 		detElem.style.backgroundColor = ""
+		arrActTetels.splice(arrActTetels.indexOf(detElem.innerHTML),1)
+		//console.log(arrActTetels)
+		localStorage.setItem("activeTetels", JSON.stringify(arrActTetels))
 	} else {
 		detElem.style.backgroundColor = "lightgreen"
+		arrActTetels.push(detElem.innerHTML)
+		//console.log(arrActTetels)
+		localStorage.setItem("activeTetels", JSON.stringify(arrActTetels))
 	}
+	F_loadLS()
 }
 function F_loadTetels() {
 	var elems = document.getElementById("div_QingTargyText").getElementsByTagName("*")
@@ -969,20 +1031,20 @@ function F_loadTetels() {
 	if ( isAndroid ) { fontSize = 420 } else { fontSize = 140 }
 	var titleStyle = ' style="background-color:gainsboro; font-size:'+fontSize+'%; font-weight:bold; color:black;"'
 	if ( isAndroid ) { fontSize = 360 } else { fontSize = 120 }
-	var spanStyle = ' style="font-size:'+fontSize+'%; font-weight:bold; cursor:pointer" onclick="F_clickTetel(this)"'
+	var tetelStyle = ' style="font-size:'+fontSize+'%; font-weight:bold; cursor:pointer" onclick="F_clickTetel(this)"'
 	for ( var x = 0;   x < elems.length;   x++ ) {
 		if ( elems[x].className.indexOf("mainTitle") != -1 ) {
 			string = string+ "<details><summary" +titleStyle+ ">" +elems[x].innerHTML+ "</summary>"
 			var childs = elems[x].parentElement.getElementsByTagName("*")
 			for ( var y = 0;   y < childs.length;   y++ ) {
 				if ( childs[y].className.indexOf("phase") != -1 || childs[y].className.indexOf("status") != -1 ) {
-					string = string+ "<div><span" +spanStyle+ ">" +childs[y].innerHTML+ "</span></div>"
+					string = string+ '<div><span class="tetel"' +tetelStyle+ ">" +childs[y].innerHTML+ " <!--" +elems[x].innerHTML+ "--></span></div>"
 				}
 			}
 			string = string+ "</details>"
 			x = x + childs.length
 		} else if ( elems[x].className.indexOf("phase") != -1 || elems[x].className.indexOf("status") != -1 ) {
-			string = string + "<div><span>" +elems[x].innerHTML+ "</span></div>"
+			string = string + '<div><span class="tetel"' +tetelStyle+ ">" +elems[x].innerHTML+ "</span></div>"
 		}
 	}
 	document.getElementById("div_QingTetels").innerHTML = string
@@ -1119,17 +1181,12 @@ function F_createQingElems() {
 		button.style.backgroundColor = "Bisque"
 		button.style.cursor = "pointer"
 		button.innerHTML = "tétel"
-		var firstime = true
 		button.onclick = function(){ 
 			if ( this.style.borderColor == "limegreen" ) {
 				document.getElementById("div_QingLowerPart").style.display = "block"
 				this.style.borderColor = "black"
 				document.getElementById("div_QingTetels").style.display = "none"
 			} else {
-				if ( firstime == true ) {
-					firstime = false
-					F_loadTetels()
-				}
 				F_hideAllower()
 				this.style.borderColor = "limegreen"
 				document.getElementById("div_QingTetels").style.display = "block"
@@ -1428,10 +1485,11 @@ function F_createQingElems() {
 		div.style.backgroundColor = "white"
 		div.style.border = "10px solid black"
 		div.style.display = "none"
-		div.style.height =  document.body.clientHeight - 80 - 20/*border*/ - 25/*passz, de még vannak margin & padding-ek*/
+		div.style.maxHeight = "90%"
+		//div.style.height = document.body.clientHeight - 80 - 20/*border*/ - 25/*passz, de még vannak margin & padding-ek*/
 		div.style.overflow = "auto"
 		
-		div.innerHTML = "tételek"
+		//div.innerHTML = "tételek"
 	}
 	F_divTetels()
 	function F_divQuests() { // questek státusza
@@ -1467,12 +1525,135 @@ function F_toggleQing() {
 		document.getElementById("div_pageQTargy").style.display = 'block';
 		document.getElementById("div_QingMain").style.display = 'none';
 	} else {
-		localStorage.setItem("hk.ToggleAll","true")
+		localStorage.setItem("hk.ToggleAll",currPath)
 		document.getElementById("table_weboldalak").parentElement.parentElement.style.display = 'none';
 		document.getElementById("div_pageQTargy").style.display = 'none';
 		document.getElementById("div_QingMain").style.display = 'block';
 		
-		document.getElementById("div_QingTargyText").innerHTML = document.getElementById("div_pageQTargy").innerHTML
+		document.getElementById("div_QingTargyText").innerHTML = pageTexts[currPath]
+		var allQs = document.getElementById("div_QingTargyText").getElementsByClassName("kerdes")
+		//console.log(allQs.length)
+		F_loadImpQs(document.getElementById("div_QingTargyText"),"full")
+		//console.log(allQs.length)
+		//console.log(document.getElementById("div_QingTargyText").innerHTML)
+		
+		function F_getQnev(detElem){
+			var qNev = undefined
+			if ( detElem.tagName == "DETAILS" ) { qNev = detElem.firstChild.innerHTML }
+			if ( detElem.tagName == "TH" ) { qNev = detElem.innerHTML }
+			if ( detElem.tagName == "TD" ) { qNev = detElem.innerHTML }
+			if ( detElem.tagName == "LI" ) { qNev = detElem.innerHTML }
+			if ( detElem.classList.contains("abbr") ) { qNev = detElem.innerHTML }
+			if ( detElem.classList.contains("midQ") ) { qNev = detElem.innerHTML }
+			if ( qNev == undefined ) { // div, span
+				qNev = detElem.firstChild.innerHTML
+				console.log('A <'+detElem.tagName+' class="'+detElem.className+'">-nek a qNeve: '+qNev)
+			}
+			
+			if ( detElem.className.indexOf("[") != -1 ) { 
+				var impID = F_getImpID(detElem)
+				// de! csak akkor teszi mögé, ha ezen oldalról származik
+				var path = F_getQPath(detElem,impID)
+				if ( path == currPath ) { qNev = qNev + " <!--["+impID+"]-->" }
+			}
+			var impID = F_getImpID(detElem)
+			return qNev
+		}
+		function F_arrQs(){
+			var arrQnevMulti = [] // csak, amelyik ismétlődik
+			for ( var i=0; i<allQs.length; i++ ) { 
+				var qNev = F_getQnev(allQs[i])
+				//console.log(qNev)
+				// if ( typeof arrQnev[qNev] === 'undefined' ) { // does not exist
+				if ( arrQnev.includes(qNev) == false ) { // does not exist
+					arrQnev.push(qNev)
+				} else if ( arrQnevMulti.includes(qNev) == false && qNev.indexOf("[") == -1 ) {  // does not exist
+					arrQnevMulti.push(qNev)
+					//var impID = F_getImpID(allQs[i])
+					//console.log("# "+i+": "+allQs[i].className+": "+qNev)
+				}
+			}
+			arrQnev = []
+			for ( var i=0; i<allQs.length; i++ ) { 
+				var qNev = F_getQnev(allQs[i])
+				var qText = allQs[i].innerHTML
+				//console.log(i+": "+qNev)
+				
+				// ha többször van a qNev, akkor hozzáadja note-ba a shortent
+				if ( arrQnevMulti.includes(qNev) == true ) {
+					var noteText = ""
+					if ( qText.length > 100 ) {
+						noteText = "<!-- "+qText.length+" -->"
+					} else {
+						var string = qText
+						string = string.replaceAll("<!--","")
+						string = string.replaceAll("-->","")
+						noteText = "<!-- "+string+" -->"
+					}
+				}
+				
+				arrQnev[i] = {}
+				arrQnev[i].qNev = qNev
+				arrQnev[i].content = qText
+				
+				var inTetel = false
+				var inTitle = false
+				var parent = allQs[i]
+				do {
+					if ( parent.firstChild.className == "phase" ) { inTetel = parent.firstChild.innerHTML }
+					if ( parent.firstChild.className == "status" ) { inTetel = parent.firstChild.innerHTML }
+					parent = parent.parentElement
+				} while ( inTetel == false && parent != document.body )
+				if ( inTetel != false ) {
+					do {
+						if ( parent.firstChild.className == "mainTitle" ) { 
+							inTitle = parent.firstChild.innerHTML
+							inTetel = inTetel+" <!--"+inTitle+"-->"
+						}
+						parent = parent.parentElement
+					} while ( inTitle == false && parent != document.body )
+					if ( arrTetelQs[inTetel] ) {
+						arrTetelQs[inTetel] = arrTetelQs[inTetel] +","+ i
+					} else {
+						arrTetelQs[inTetel] = i
+					}
+					//console.log(i+": "+inTetel+": "+arrTetelQs[inTetel])
+				}
+				
+				/*if ( typeof arrQnevMulti[qNev] != 'undefined' ) { // többször van
+					//console.log(i+": "+qNev)
+					if ( arrQnevMulti.includes(qNev) == true ) { 
+						arrQnevMulti[qNev] = i+""
+						//console.log("new: "+i)
+					} else {
+						var skip = false
+						var string = arrQnevMulti[qNev]
+						//console.log(string)
+						var arrPrev = string.split(" ")
+						for ( var x in arrPrev ) {
+							var num = arrPrev[x]
+							var numText = arrQnev[num].content
+							//console.log(num)
+							//console.log(numText)
+							//console.log(qText)
+							if ( qText == numText ) { 
+								skip = true
+								break
+							}
+						}
+						if ( skip == true ) { continue }
+						arrQnevMulti[qNev] = arrQnevMulti[qNev] +" "+ i 
+						//console.log(arrQnevMulti[qNev])
+						//alert("stop")
+					}
+				}*/
+				
+			}
+		}
+		F_arrQs()
+		
+		F_loadTetels()
+		F_loadLS()
 	}
 }
 // –––––––––––––––  Qing END  –––––––––––––––
@@ -1651,6 +1832,11 @@ function F_loadElem(detElem){ // detailsok megnyitásánál is ezt a funkciót h
 	// stb.
 }
 
+if ( localStorage.getItem("hk.ToggleAll") != null ) { 
+	currPath = localStorage.getItem("hk.ToggleAll")
+	targyPath = localStorage.getItem("hk.ToggleAll")
+	F_loadAndSavePageText(localStorage.getItem("hk.ToggleAll"),true,true)
+}
 
 
 
