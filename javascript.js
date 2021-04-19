@@ -953,21 +953,33 @@ F_createSearchElems()
 // –––––––––––––––  Qing BEGIN  –––––––––––––––
 var arrTetelQs = {} // mainTitle-k, azon belül phase/status-ok, azok pedig egy stringet tartalmaznak, hogy mely Q-k
 var arrActTetels = [] // active tételek
-var arrQnev = [] // id -> qNev + tartalom
-var arrOldQs = [] // LS-ben mentett Q-k
-var arrNewQs = [] // LS-ben még nem mentett Q-k (nem osztályzott)
+var arrQnev = [] // (i) -> qNev + tartalom
+var arrOldQs = [] // (i) -> LS-ben mentett Q-k
+var arrNewQs = [] // (i) -> LS-ben még nem mentett Q-k (nem osztályzott)
 function F_saveLS() {
 	// osztályzott Q-k: jegy, név --> LSid rendel hozzá
-	var num = document.getElementById("div_QingLowerPart").dataset.numQ
-	for ( var j=0;  j<num;  j++ ) {
-		var i = j +1
-		var jegy = document.getElementById("span.1."+i).innerHTML
-		console.log(jegy)
+	var maxNum = document.getElementById("div_QingLowerPart").dataset.numQ // hány db Q látszik összesen
+	if ( maxNum == undefined ) { return }
+	
+	var currTime = F_getTime()
+	currTime = Math.round(currTime)
+	for ( var num=1;  num<Number(maxNum)+1;  num++ ) { // (hagyomános számozás itt 1el el van tolva pozitív irányba)
+		var jegy = document.getElementById("span.1."+num).innerHTML
+		var i = document.getElementById('parSpan.'+num).dataset.elemi
+		
+		document.getElementById("span.1."+num).innerHTML = "&nbsp;"
+		document.getElementById('parSpan.'+num).style.display = "none"
+		document.getElementById('parSpan.'+num).dataset.elemi = ""
+		
+		if ( jegy == "&nbsp;" ) { continue }
+		var qNev = arrQnev[i].qNev
+		
+		localStorage.setItem(currPath+" | "+qNev,jegy+" , "+currTime)
 	}
 }
 function F_loadLS() {
 	function F_checkTetels() {
-		arrActTetels = JSON.parse(localStorage.getItem("activeTetels"))
+		arrActTetels = JSON.parse(localStorage.getItem(currPath+" | activeTetels"))
 		//console.log(arrActTetels)
 		if ( arrActTetels == null ) { 
 			arrActTetels = []
@@ -988,9 +1000,9 @@ function F_loadLS() {
 		// phase 1 --> megnézi, melyek az aktuális questek
 		var actQs = ""
 		var allTetels = document.getElementById("div_QingTetels").getElementsByClassName("tetel")
-		for ( var i=0; i<allTetels.length; i++ ) {
-			if ( allTetels[i].style.backgroundColor == "lightgreen" ) { 
-				var tetelName = allTetels[i].innerHTML
+		for ( var x=0; x<allTetels.length; x++ ) {
+			if ( allTetels[x].style.backgroundColor == "lightgreen" ) { 
+				var tetelName = allTetels[x].innerHTML
 				//console.log(tetelName)
 				//console.log(arrTetelQs[tetelName])
 				actQs = actQs + arrTetelQs[tetelName] +","
@@ -1002,19 +1014,30 @@ function F_loadLS() {
 		// phase 2 --> egyesével lehívja qNev, és megnézi, hogy benne van-e LS-ben
 			// ha nincs --> arrNewQs-ba adja a nevét (ha még nincs benne)
 			// ha igen --> arrOldQs-ba adja a nevét (ha még nincs benne)
-		for ( var i=0; i<actQs.length; i++ ) {
-			if ( actQs[i] == "" ) { continue }
-			var qNev = arrQnev[actQs[i]].qNev
-			//console.log(actQs[i]+": "+qNev)
-			if ( localStorage.getItem(qNev) != null ) { 
-				if ( arrOldQs.includes(actQs[i]) != true ) { arrOldQs.push(actQs[i]) }
+		arrOldQs = []
+		arrNewQs = []
+		for ( var x=0; x<actQs.length; x++ ) {
+			if ( actQs[x] == "" ) { continue }
+			var qNev = arrQnev[actQs[x]].qNev
+			//console.log(actQs[x]+": "+qNev)
+			
+			if ( localStorage.getItem(currPath+" | "+qNev) != null ) { 
+				if ( arrOldQs.includes(actQs[x]) != true ) { arrOldQs.push(actQs[x]) }
 			} else {
-				if ( arrNewQs.includes(actQs[i]) != true ) { arrNewQs.push(actQs[i]) }
+				if ( arrNewQs.includes(actQs[x]) != true ) { arrNewQs.push(actQs[x]) }
 			}
 		}
 		document.getElementById("btn_newQuest").innerHTML = arrNewQs.length
 		//console.log("newQs: "+arrNewQs)
 		//console.log("oldQs: "+arrOldQs)
+		
+		for ( var x=0; x<arrOldQs.length; x++ ) {
+			var i = arrOldQs[x]
+			var qNev = arrQnev[i].qNev
+			var jegyName = localStorage.getItem(currPath+" | "+qNev)
+			var jegy = jegyName.slice(0,jegyName.indexOf(" , "))
+			var date = jegyName.slice(jegyName.indexOf(" , ")+3)
+		}
 	}
 	F_checkQs()
 }
@@ -1025,12 +1048,12 @@ function F_clickTetel(detElem) {
 		detElem.style.backgroundColor = ""
 		arrActTetels.splice(arrActTetels.indexOf(detElem.innerHTML),1)
 		//console.log(arrActTetels)
-		localStorage.setItem("activeTetels", JSON.stringify(arrActTetels))
+		localStorage.setItem(currPath+" | activeTetels", JSON.stringify(arrActTetels))
 	} else {
 		detElem.style.backgroundColor = "lightgreen"
 		arrActTetels.push(detElem.innerHTML)
 		//console.log(arrActTetels)
-		localStorage.setItem("activeTetels", JSON.stringify(arrActTetels))
+		localStorage.setItem(currPath+" | activeTetels", JSON.stringify(arrActTetels))
 	}
 	F_loadLS()
 }
@@ -1696,20 +1719,44 @@ function F_toggleQing() {
 }
 function F_calcNextQ(){
 	var questID = "none"
+	var currTime = F_getTime()
+	currTime = Math.round(currTime)
 	
 	/* prior
 		newQ, ha engedélyezve(btn_newQuest) és van is még olyan
 	*/
 	if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" ) {
 		if ( arrNewQs.length > 0 ) { questID = arrNewQs[0] }
+	} else {
+		var qPoint = 0
+		for ( var x=0; x<arrOldQs.length; x++ ) {
+			var i = arrOldQs[x]
+			var qNev = arrQnev[i].qNev
+			var jegyName = localStorage.getItem(currPath+" | "+qNev)
+			var jegy = jegyName.slice(0,jegyName.indexOf(" , "))
+			var date = jegyName.slice(jegyName.indexOf(" , ")+3)
+			var diffTime = Number(currTime) - Number(date)
+			var currPoint = Number(diffTime) / Number(jegy)
+			if ( Number(currPoint) > Number(qPoint) ) {
+				qPoint = currPoint
+				questID = i
+			}
+			//console.log(i+" "+jegy+" "+diffTime)
+		}
 	}
-	
 	return questID
 }
 function F_nextQ() {
+	var currTime = F_getTime()
+	currTime = Math.round(currTime)
+	
 	F_saveLS()
 	F_loadLS()
 	var questID = F_calcNextQ()  // megnézi melyik Q lesz a kövi
+	if ( questID == "none" ) { 
+		alert("elfogytak a kérdések")
+		return
+	}
 	
 	var allQs = document.getElementById("div_QingTargyText").getElementsByClassName("kerdes")
 	var qElem = allQs[questID]
@@ -1728,8 +1775,8 @@ function F_nextQ() {
 	}
 	var parQ = F_getParentQ(qElem)
 	
-	var xTOi = []
-	var iTOnum = []
+	var xTOi = [] // x = amit kidob kérdések, ott hányadik fenntről lefele; i = tárgy összes kérdése közül hányadik
+	var iTOnum = [] // num = amit kidob kérdések, ott hányadik fenntről lefele DE! ami többször van, az ugyanazt kapja!
 	var QsNum = 0 // számozásnál kell
 	
 	// megnézi mindegyik Q-t, hogy az allQs-ban hányadik --> ugyanis úgy tudom lekérni a nevét majd
@@ -1753,7 +1800,7 @@ function F_nextQ() {
 	
 	// lehívja(/craftolja) az osztályzás opciókat mellé!
 	function F_createMarks() {
-		function F_getNum(i) { // lekéri a visible Q számozását (ami többször szerepel, az ugyanat kapja)
+		function F_getNum(i) { // lekéri a kidobott Q számozását (ami többször szerepel, az ugyanazt kapja)
 			if ( iTOnum[i] ) {
 				num = iTOnum[i]
 			} else {
@@ -1762,24 +1809,28 @@ function F_nextQ() {
 			}
 			return QsNum
 		}
-		function F_createSelect(i) {
+		function F_createSelect(num) {
+			var parSpan = document.createElement("span")
+			parSpan.id = "parSpan."+num
+			document.getElementById("div_QingUpperPart").appendChild(parSpan)
 			for ( var x=0;  x<3;  x++ ) {
 				var span = document.createElement("span")
-				span.id = "span."+x+"."+i
-				document.getElementById("div_QingUpperPart").appendChild(span)
+				span.id = "span."+x+"."+num
+				parSpan.appendChild(span)
 				span.style.textAlign = "center"
 				
 				span.style.minWidth = "45px"
 				span.style.height = "27px"
+				span.style.lineHeight = "27px" // hogy középen legyen vertically(y-tengely) is a text
 				span.style.border = "2px solid black"
 				
 				span.style.position = "absolute"
-				var leftPos = i*48 + 250
+				var leftPos = num*48 + 250
 				span.style.left = leftPos +"px"
 				
 				if ( x == 0 ) {
 					span.style.top = "0px"
-					span.innerHTML = i
+					span.innerHTML = num
 					span.style.fontWeight = "bold"
 					/*if ( isAndroid == true ) { 
 						td.onclick = function(){
@@ -1820,21 +1871,26 @@ function F_nextQ() {
 							if ( jegyStatus == "hide" ) { document.getElementById("div_selectJegy").style.display = "none" }
 							jegyStatus = "hide"
 						}
-							
+						
 						// repeatest beállítja vastagbetusre
-						/*var LSid = activeQs[jegyNum]
-						var child = dropdown.childNodes
-						for (var y=0; y < child.length; y++) {
-							if ( child[y].innerHTML == localStorage.getItem(LSid+"_repeat") ) {
-								child[y].style.fontWeight = "bolder"
-							} else {
-								child[y].style.fontWeight = "normal"
+						var i = document.getElementById('parSpan.'+num).dataset.elemi
+						var qNev = arrQnev[i].qNev
+						if ( localStorage.getItem(currPath+" | "+qNev) ) {
+							var jegyName = localStorage.getItem(currPath+" | "+qNev)
+							var jegy = jegyName.slice(0,jegyName.indexOf(" , "))
+							var child = dropdown.childNodes
+							for ( var y=0; y < child.length; y++ ) {
+								if ( child[y].innerHTML == jegy ) {
+									child[y].style.fontWeight = "bolder"
+								} else {
+									child[y].style.fontWeight = "normal"
+								}
 							}
-						}*/
+						}
 					}
 				} else if ( x == 2 ) {
 					span.style.top = "60px"
-					span.style.fontSize = "small"
+					span.style.fontSize = "x-small"
 				}
 			}
 		}
@@ -1844,13 +1900,41 @@ function F_nextQ() {
 			if ( Qs[x].dataset.numed == "true" ) { continue }
 			var i = xTOi[x]
 			var num = F_getNum(i)
-			document.getElementById("div_QingLowerPart").dataset.numQ = num
+			document.getElementById("div_QingLowerPart").dataset.numQ = num // hány db Q látszik összesen
 			
 			// Q elé beírja a számát
 			Qs[x].firstChild.innerHTML = "["+num+"] "+Qs[x].firstChild.innerHTML
 			Qs[x].dataset.numed = "true"
 			
-			if ( !document.getElementById('td.1.'+num) ) { F_createSelect(num) }
+			if ( !document.getElementById('parSpan.'+num) ) { F_createSelect(num) }
+			document.getElementById('parSpan.'+num).style.display = "block"
+			document.getElementById('parSpan.'+num).dataset.elemi = i
+			
+			// sárga keretet tesz az aktuális Q-ra
+			if ( questID == i ) { 
+				document.getElementById('span.0.'+num).style.border = "2px solid gold"
+			} else {
+				document.getElementById('span.0.'+num).style.border = "2px solid black"
+			}
+			
+			// beírja a dátumot, ha van
+			var qNev = arrQnev[i].qNev
+			if ( localStorage.getItem(currPath+" | "+qNev) ) {
+				var jegyName = localStorage.getItem(currPath+" | "+qNev)
+				var date = jegyName.slice(jegyName.indexOf(" , ")+3)
+				var diffTime = Number(currTime) - Number(date)
+				diffTime = Number(diffTime)
+				diffTime = diffTime/60
+				diffTime = Math.floor(diffTime)
+				if ( diffTime > 99 ) {
+					document.getElementById("span.2."+num).innerHTML = Math.floor(diffTime/60)
+				} else {
+					document.getElementById("span.2."+num).innerHTML = "<strong>"+diffTime+"</strong>"
+				}
+			} else {
+				document.getElementById('span.1.'+num).innerHTML = "&nbsp"
+				document.getElementById('span.2.'+num).innerHTML = "&nbsp"
+			}
 		}
 	}
 	F_createMarks()
