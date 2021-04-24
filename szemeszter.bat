@@ -115,7 +115,7 @@ xcopy /y %source%\done\FejlodesBiosz\FejlBiosz.html %destination%\done\FejlodesB
 xcopy /y %source%\done\FejlodesBiosz\favicon.bmp %destination%\done\FejlodesBiosz\ /d
 xcopy /y %source%\done\ModMem\ModMem.html %destination%\done\ModMem\ /d
 xcopy /y %source%\done\ModMem\favicon.bmp %destination%\done\ModMem\ /d
-
+xcopy /y %source%\done\Apolastan\apolastan.html %destination%\done\Apolastan\ /d
 
 goto commonexit
 
