@@ -95,7 +95,9 @@ function F_getQText(path,impID) {
 }
 function F_loadImpQs(detElem,full) {
 /* Hogyan?
-  'hiba:' adott tárgy impQ-it nézzem meg, nincsenek-e véletlen az alján üres 1,2,3 impQ-k, mert akkor azok felülírják a fenntieket!
+  'gyakori hibák:' 
+		adott tárgy impQ-it nézzem meg, nincsenek-e véletlen az alján üres 1,2,3 impQ-k, mert akkor azok felülírják a fenntieket!
+		impQs-nál még {}-van, pedig már [] kell!!
 	✔ megnézi a detElem összes imp child-ját
 	✔ feltételek: visible, van benne [], még nem volt betöltve
 		detElem = amit megnyitottam (details / page)

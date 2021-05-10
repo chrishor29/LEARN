@@ -25,6 +25,7 @@ xcopy /y %source%\IgOr\igor.html %destination%\IgOr\ /d
 xcopy /y %source%\KlinGen\klingen.html %destination%\KlinGen\ /d
 xcopy /y %source%\Nepegeszsegtan\nepeg.html %destination%\Nepegeszsegtan\ /d
 xcopy /y %source%\Neurologia\neurologia.html %destination%\Neurologia\ /d
+xcopy /y %source%\Pszichiatria\pszichi.html %destination%\Pszichiatria\ /d
 xcopy /y %source%\Sportorvostan\Sportorvostan.html %destination%\Sportorvostan\ /d
 xcopy /y %source%\Szemeszet\szemeszet.html %destination%\Szemeszet\ /d
 xcopy /y %source%\Szuleszet\szuleszet.html %destination%\Szuleszet\ /d
