@@ -464,6 +464,10 @@ function F_loadMidQs(detElem) { // midQ[x] elemeket beállítja: kék fontColor,
 // –––––––––––––––  midQs END   –––––––––––––––
 
 // –––––––––––––––  Videos BEGIN  –––––––––––––––
+/* how to - tutorial
+	mute: <video muted data-src...
+	max-width: alapból 60%; <video data-width="30%" data-src
+*/
 function F_clickSeekBar(seekBarDiv,e){
 	var parentDiv = seekBarDiv.parentElement
 	var videoElems = parentDiv.getElementsByTagName("video")
@@ -537,6 +541,7 @@ function F_loadVideos(detElem){
 				parentDiv.appendChild(videoElem)
 				parentDiv.style.border = "15px solid black"
 				parentDiv.style.maxWidth = "60%"
+				if ( videoElem.dataset.width ) { parentDiv.style.maxWidth = videoElem.dataset.width }
 				parentDiv.style.width = videoElem.offsetWidth
 				parentDiv.style.float = "right"
 				
@@ -2049,7 +2054,7 @@ function F_loadIMGs(detElem) {
 		
 		imgs[i].style.border = "3px solid black"
 		imgs[i].style.maxWidth = "40%"
-		imgs[i].style.float = "right"
+		if ( imgs[i].style.float == "" ) { imgs[i].style.float = "right" }
 	
 		imgs[i].onclick = function() { // középen kinagyítja
 			document.getElementById("div_centImgBg").style.visibility = "visible"
