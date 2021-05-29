@@ -30,7 +30,7 @@ traumatológia: kötések, gipsz, ezeket kéne tudnom (+1st aid)
 <!-- mind2 div kell! -->
 <div><div style="max-width:90%; overflow-x:auto;"><table id="table_weboldalak"><tr> <!-- weboldalak -->
 	<!-- V.év --> <td style="text-align:left"> 
-		<span class="page" data-src="Aneszt/aneszt.html">Aneszteziológia-
+		<span class="page" data-src="done/Aneszt/aneszt.html">Aneszteziológia-
 			<br> Intenzív terápia
 		</span><br>
 		<span class="page" data-src="Belgyogy/HIIRLm/hiirlm.html">Hematológia 
@@ -38,12 +38,13 @@ traumatológia: kötések, gipsz, ezeket kéne tudnom (+1st aid)
 			<br> Immuno-Rheumatológia
 		</span> <br>
 		<span class="page" data-src="IgOr/igor.html"><strong>Ig.Orvostan</strong></span><br>
-		<span class="page" data-src="KlinGen/klingen.html"><font style="color:red">K</font>linikai Genetika</span><br>
-		<span class="page" data-src="Nepegeszsegtan/nepeg.html">Népegészségtan</span><br>
-		<span class="page" data-src="Neurologia/neurologia.html"><font style="color:red">N</font>eurológia</span><br>
-		<span class="page" data-src="Pszichiatria/pszichi.html"><strong><font style="color:red">P</font>szichiátria</strong></span><br>
-		<span class="page" data-src="Sportorvostan/Sportorvostan.html"><font style="color:red">S</font>portorvostan</span><br>
-		<span class="page" data-src="Szemeszet/szemeszet.html"><font style="color:red">S</font>zemeszet</span><br>
+		<span class="page" data-src="done/KlinGen/klingen.html"><font style="color:red">K</font>linikai Genetika</span><br>
+		<span class="page" data-src="done/Nepegeszsegtan/nepeg.html">Népegészségtan</span><br>
+		<span class="page" data-src="Neurologia/neurologia.html"><strong><font style="color:red">N</font>eurológia</strong></span>
+			<span style="font-size:80%"><span class="page" data-src="Neurologia/neuroteszt.html">(teszt+eset)</span></span><br>
+		<span class="page" data-src="Pszichiatria/pszichi.html"><font style="color:red">P</font>szichiátria</span><br>
+		<span class="page" data-src="done/Sportorvostan/Sportorvostan.html"><font style="color:red">S</font>portorvostan</span><br>
+		<span class="page" data-src="done/Szemeszet/szemeszet.html"><font style="color:red">S</font>zemeszet</span><br>
 		<span class="page" data-src="Szuleszet/szuleszet.html"> Szülészet-
 			<br> Nőgyógyászat
 		</span> <br>
@@ -111,19 +112,19 @@ traumatológia: kötések, gipsz, ezeket kéne tudnom (+1st aid)
 
 <input type="file" id="fileinput" style="display:none;"></input>
 
-<div id="div_centVideoBg" style="position:fixed; top:5px; left:5px; right:5px; bottom:5px; visibility:hidden; z-index:4; background-color:rgba(0,0,0,0.7);">
+<div id="div_centVideoBg" style="position:fixed; top:5px; left:5px; right:5px; bottom:5px; visibility:hidden; z-index:5; background-color:rgba(0,0,0,0.7);">
 	<div style="border:15px solid black; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); max-width:90%; max-height:90%">
 		<video id="video_cent" style="cursor:pointer"></video>
 		<div id="div_centVideoSeek" style="height:21px; background:grey;"><span style="height:21px; position:absolute; background:gold;" id="centVideoBar"></span></div>
 	</div>
 </div>
-<div id="div_centImgBg" style="position:fixed; top:5px; left:5px; right:5px; bottom:5px; visibility:hidden; z-index:4; background-color:rgba(0,0,0,0.7);">
+<div id="div_centImgBg" style="position:fixed; top:5px; left:5px; right:5px; bottom:5px; display:none; z-index:5; background-color:rgba(0,0,0,0.7);">
 	<div style="position:fixed; overflow:auto; transform:translate(-50%,-50%); top:50%; left:50%; max-width:90%; max-height:90%"> <!-- hozzá ne nyúljak, mert 2órát baszakodtam mire sikerült (előtte SAFETY!!) -->
 		<img id="img_cent" style="border:15px solid black"></img>
 	</div>
 </div>
 
-<img id="img_mini" style="position:absolute; border:5px solid deepskyblue; display:none; margin-bottom:-2px;"></img>
+<img id="img_mini" style="position:absolute; border:5px solid deepskyblue; display:none; margin-bottom:-2px; z-index:4;"></img>
 
 <div id="div_pageQTargy"></div>
 

@@ -19,15 +19,15 @@ xcopy /y %source%\favicon.png %destination%\ /d
 
 REM 5.év
 xcopy /y %source%\Belgyogy\HIIRLm\hiirlm.html %destination%\Belgyogy\HIIRLm\ /d
-xcopy /y %source%\Aneszt\aneszt.html %destination%\Aneszt\ /d
+xcopy /y %source%\done\Aneszt\aneszt.html %destination%\done\Aneszt\ /d
 xcopy /y %source%\Bioetika\bioetika.html %destination%\Bioetika\ /d
 xcopy /y %source%\IgOr\igor.html %destination%\IgOr\ /d
-xcopy /y %source%\KlinGen\klingen.html %destination%\KlinGen\ /d
-xcopy /y %source%\Nepegeszsegtan\nepeg.html %destination%\Nepegeszsegtan\ /d
+xcopy /y %source%\done\KlinGen\klingen.html %destination%\done\KlinGen\ /d
+xcopy /y %source%\done\Nepegeszsegtan\nepeg.html %destination%\done\Nepegeszsegtan\ /d
 xcopy /y %source%\Neurologia\neurologia.html %destination%\Neurologia\ /d
 xcopy /y %source%\Pszichiatria\pszichi.html %destination%\Pszichiatria\ /d
-xcopy /y %source%\Sportorvostan\Sportorvostan.html %destination%\Sportorvostan\ /d
-xcopy /y %source%\Szemeszet\szemeszet.html %destination%\Szemeszet\ /d
+xcopy /y %source%\done\Sportorvostan\Sportorvostan.html %destination%\done\Sportorvostan\ /d
+xcopy /y %source%\done\Szemeszet\szemeszet.html %destination%\done\Szemeszet\ /d
 xcopy /y %source%\Szuleszet\szuleszet.html %destination%\Szuleszet\ /d
 xcopy /y %source%\done\Urologia\urologia.html %destination%\done\Urologia\ /d
 

@@ -36,6 +36,38 @@ function F_getImpID(detElem){
 	if ( impID == undefined ) { console.log("# nincs impID-je: "+detElem.className) }
 	return impID
 }
+function F_offsetXY(detElem) { // absolute x & y position-t lekéri!
+	// azért kell, mert az offsetLeft nem elég, ha table-ban van egy element (akkor nem a body-hoz viszonyatva adja meg, hanem a table-hoz)
+	/* alap pozíció lekérés kommandok:
+		// var x = event.clientX
+			// klikkelés/mouseover-kor az egér fixed x-pozíciója (tehát a képernyőn hol,scrollbartól független)
+			// fixed position-re jó
+		// var posX = this.offsetLeft 
+			// ez a scrollt is beleszámítja --> absolute position-re jó
+			// és element pozícióját kéri, de ez részlet kérdés szinte
+			// table-ban magában nem jó, azért kell az F_offsetXY funkció
+	*/
+	var rect = detElem.getBoundingClientRect(),
+	scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+	scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+	return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+	
+	/*if(!detElem) detElem = this; // másik módszer, ha a fennti nem lesz jó valamiért
+
+	var x = detElem.offsetLeft;
+	var y = detElem.offsetTop;
+
+	while (detElem = detElem.offsetParent) {
+		x += detElem.offsetLeft;
+		y += detElem.offsetTop;
+	}
+
+	return { left: x, top: y };*/
+}
+function F_fixedXY(detElem) { // fixed x & y position-t lekéri!
+	var rect = detElem.getBoundingClientRect()
+	return { top: rect.top, left: rect.left, bottom: rect.bottom }
+}
 
 // –––––––––––––––  impQs BEGIN   –––––––––––––––
 var pageImpQs = [] // path to impQs --> tárgyak {expQ}-jait lementi ide is
@@ -314,7 +346,7 @@ function clearIDB(path,page) {
 function clearFullIDB() { for ( var i=0; i<pageLinks.length; i++ ) { clearIDB(pageLinks[i].dataset.src,pageLinks[i]) } }
 
 var threeSec = 0
-var F_seekBar = window.setInterval(function(){
+var F_seekBar = window.setInterval(function() {
 	threeSec = threeSec +1
 	if ( localStorage.getItem("autoLoadPages") == "true" ) {
 		//console.log(threeSec)
@@ -351,6 +383,7 @@ function F_divMidQ() { // lekreálja középre a divet, ahova kidobja majd a mid
 		div.style.right = "5px"
 		div.style.top = "4px"
 		div.style.bottom = "4px"
+		div.style.opacity = "1"
 		div.style.zIndex = "3"
 	}
 	F_divMidQ()
@@ -418,7 +451,9 @@ function F_divMidQ() { // lekreálja középre a divet, ahova kidobja majd a mid
 }
 F_divMidQ()
 function F_setMidQ(qText,path) { // középen megjeleníti a div-et, benne a szöveggel
-	prevScrollTop = document.body.parentElement.scrollTop // ez előbb kell legyen, minthogy megjelenne a div_MidQ --> elmentse, hogy hol voltam az oldalon(mondjuk a közepe tájékán), hogy miután bezárom oda scrolloljon vissza(ne a tetejére ugorjon!)
+	if ( document.getElementById("div_MidQ").style.display == "none" ) {
+		prevScrollTop = document.body.parentElement.scrollTop // ez előbb kell legyen, minthogy megjelenne a div_MidQ --> elmentse, hogy hol voltam az oldalon(mondjuk a közepe tájékán), hogy miután bezárom oda scrolloljon vissza(ne a tetejére ugorjon!)
+	}
 	
 	document.getElementById("div_MidQ").style.display = "block" // ez előbb kell legyen, mint az F_loadElem --> hogy láthatók legyenek az impQ-k, amiket be kell töltenie
 	document.getElementById("div_pageQTargy").style.display = "none"
@@ -462,6 +497,61 @@ function F_loadMidQs(detElem) { // midQ[x] elemeket beállítja: kék fontColor,
 	}
 }
 // –––––––––––––––  midQs END   –––––––––––––––
+
+// –––––––––––––––  title(abbr) BEGIN   –––––––––––––––
+function F_tooltipFuncs(){
+	var span = document.createElement("span")
+	span.id = "span_abbrTitle"
+	document.body.appendChild(span)
+	span.style.display = "none"
+	span.style.border = "2px solid black"
+	span.style.backgroundColor = "azure"
+	span.style.position = "absolute"
+	span.style.maxWidth = "300px"
+	span.style.fontSize = "smaller"
+	span.style.padding = "2px 2px 2px 5px"
+	span.style.zIndex = "4"
+	span.onclick = function() { event.stopPropagation() /* ne tűnjön el, mert a document.body-ra is klikkelek közben! */ }
+}
+F_tooltipFuncs()
+function F_titleVerChange(velement){
+	function F_posTitle(detElem,mouseX) {
+		var span = document.getElementById("span_abbrTitle")
+		// title
+		span.style.display = "block"
+		if ( detElem.title != '' ) {
+			detElem.dataset.title = detElem.title
+			detElem.title = '' // ezzel akadályozom meg, hogy az eredeti ne jelenjen meg
+		}
+		span.innerHTML = detElem.dataset.title
+		
+		// Y pozíció
+		var posY = F_offsetXY(detElem).top
+		span.style.top = posY + detElem.offsetHeight +2 +"px"
+		  // ide kéne valami, hogy ha uccsó sorban van (midQ) a title, akkor ha nem fér ki, akkor felfele tolja.. (mint X-nél)
+		
+		// X pozíció
+		var posX = F_offsetXY(detElem).left
+		if ( span.offsetWidth > document.body.offsetWidth - posX -10 ) {
+			span.style.left = document.body.offsetWidth - span.offsetWidth - 10 +"px"
+		} else {
+			span.style.left = mouseX +"px"
+		}
+	}
+	var span = document.getElementById("span_abbrTitle")
+	velement.onclick = function(event) {
+		F_posTitle(this,event.clientX)
+		span.dataset.status = 1 // ne tűnjön el, ha egeret lehúzom
+		event.stopPropagation() // ne tűnjön el, mert a document.body-ra is klikkelek közben (azonban így csak az első klikk számít: lásd w3school)
+	}
+	velement.onmouseover = function(event) { F_posTitle(this,event.clientX) }
+	velement.onmouseout = function() { if ( span.dataset.status != 1 ) { span.style.display = "none" } }
+}
+function F_titleChange(detElem){
+	var abbrok = detElem.querySelectorAll("*[title]");
+	for ( var i = 0; i < abbrok.length; i++ ) { F_titleVerChange(abbrok[i]) }
+}
+// –––––––––––––––  title(abbr) END   –––––––––––––––
 
 // –––––––––––––––  Videos BEGIN  –––––––––––––––
 /* how to - tutorial
@@ -598,7 +688,7 @@ function F_loadCentVideo(){
 
 	var centVideoSeek = document.getElementById("div_centVideoSeek")
 	centVideoSeek.onclick = function(e){
-		var rect = e.target.getBoundingClientRect();
+		var rect = e.target.getBoundingClientRect()
 		//var testX = e.clientX - centVideoSeek.left
 		//var testX = rect.left
 		var x = e.pageX - rect.left
@@ -1166,6 +1256,21 @@ function F_createQingElems() {
 		document.getElementById("div_QingMain").appendChild(div)
 	}
 	F_divLowerPart()
+	function F_divMarkPart() { // jobb felső rész: Q-ek osztájzása
+		var span = document.createElement("span")
+		document.getElementById("div_QingUpperPart").appendChild(span)
+		span.id = "span_QingMarkPart"
+		
+		span.style.position = "absolute"
+		span.style.left = "290px"
+		span.style.right = "90px"
+		span.style.top = "0px"
+		span.style.height = "111px"
+		span.style.maxHeight = "300px"
+		
+		span.style.overflowX = "auto"
+	}
+	F_divMarkPart()
 	function F_spanSettings() { // bal felső sarok kiírások: tételszám, Q szám, ...
 		var span = document.createElement("span")
 		document.getElementById("div_QingUpperPart").appendChild(span)
@@ -1210,20 +1315,6 @@ function F_createQingElems() {
 		}
 	}
 	F_btnNextQ()
-	function F_divMarkPart() { // felső kis rész: Q-ek osztájzása
-		var span = document.createElement("span")
-		document.getElementById("div_QingUpperPart").appendChild(span)
-		span.id = "span_QingMarkPart"
-		
-		span.style.position = "absolute"
-		span.style.left = "290px"
-		span.style.right = "90px"
-		span.style.top = "0px"
-		span.style.height = "111px"
-		
-		span.style.overflowX = "auto"
-	}
-	F_divMarkPart()
 	// 1st line
 	function F_btnTetels() {
 		var button = document.createElement("button")
@@ -1562,7 +1653,7 @@ function F_createQingElems() {
 		var div = document.createElement("div")
 		div.id = "div_selectJegy"
 		document.getElementById("div_QingUpperPart").appendChild(div)
-		div.style.position = "fixed"
+		div.style.position = "absolute"
 		div.style.top = "60px"
 		div.style.width = "45px"
 		div.style.display = "none"
@@ -1884,7 +1975,10 @@ function F_nextQ() {
 						num = num.slice(num.lastIndexOf(".")+1)
 						dropdown.dataset.numQ = num
 						
-						this.parentElement.appendChild(dropdown)
+						dropdown.style.left = F_offsetXY(this).left -1 +"px"
+						
+						// this.parentElement.appendChild(dropdown)
+						
 						dropdown.style.display = "block"
 						jegyStatus = "show"
 						window.onclick = function(event) { 
@@ -2070,7 +2164,7 @@ function F_loadIMGs(detElem) {
 		if ( imgs[i].style.float == "" ) { imgs[i].style.float = "right" }
 	
 		imgs[i].onclick = function() { // középen kinagyítja
-			document.getElementById("div_centImgBg").style.visibility = "visible"
+			document.getElementById("div_centImgBg").style.display = "none"
 			document.getElementById("img_cent").src = this.src
 		}
 		if ( imgs[i].classList.contains("mini") == true ) {
@@ -2088,15 +2182,7 @@ function F_loadIMGs(detElem) {
 					minImg.width = this.width*8
 					//minImg.style.transform = "scale(8,8)"
 
-					function offset(elem) { // absolute position-t (top,left) kér vissza: tehát a görgő is benne (y>1000 is lehet)
-						var rect = elem.getBoundingClientRect(),
-						scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-						scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-						return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
-					}
-					var divOffset = offset(this);
-					//console.log(divOffset.left, divOffset.top);
-					var posX = divOffset.left -minImg.width/2 +this.width/2
+					var posX = F_offsetXY(this).left -minImg.width/2 +this.width/2
 					var posXright = posX + minImg.width
 					if ( posX < 0 ) {
 						minImg.style.left = "0px"
@@ -2106,7 +2192,7 @@ function F_loadIMGs(detElem) {
 					} else {
 						minImg.style.left = posX +"px"
 					}
-					var posY = divOffset.top -minImg.height/2 +this.height/2
+					var posY = F_offsetXY(this).top -minImg.height/2 +this.height/2
 					minImg.style.top = posY +"px"
 				}
 			}
@@ -2119,14 +2205,14 @@ function F_loadImg_cent_mini() {
 		keepImg = true
 	}
 	document.getElementById("div_centImgBg").onclick = function() {
-		if ( keepImg != true ) { this.style.visibility = "hidden" }
+		if ( keepImg != true ) { this.style.display = "none" }
 		keepImg = false
 	}
 	
 	if ( isAndroid == false ) {
 		document.getElementById("img_mini").onmouseout = function() { this.style.display = "none" }
 		document.getElementById("img_mini").onclick = function() { // középen kinagyítja
-			document.getElementById("div_centImgBg").style.visibility = "visible"
+			document.getElementById("div_centImgBg").style.display = "block"
 			document.getElementById("img_cent").src = this.src
 		}
 	}
@@ -2141,12 +2227,19 @@ function F_loadElem(detElem){ // detailsok megnyitásánál is ezt a funkciót h
 	F_loadVideos(detElem)
 	F_tableScrollable(detElem)
 	F_synonyms(detElem)
+	F_titleChange(detElem)
 	
 	var allDetails = detElem.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) { allDetails[i].ontoggle = function() { F_loadElem(this) } }
 	
 	// img-ek is!
 	// stb.
+}
+
+document.body.onclick = function(){
+	var span = document.getElementById("span_abbrTitle")
+	span.dataset.status = span.dataset.status -1
+	if ( span.dataset.status != 1 ) { span.style.display = "none" }
 }
 
 if ( localStorage.getItem("hk.ToggleAll") != null ) { 
