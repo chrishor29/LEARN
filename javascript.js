@@ -1153,9 +1153,9 @@ function F_createQingElems() {
 		div.id = "div_QingUpperPart"
 		//div.className = "normal"
 		div.style.borderBottom = "4px solid black"
-		div.style.marginBottom = "2px"
-		div.style.paddingBottom = "10px"
-		div.style.height = "80px" // 17vh
+		//div.style.marginBottom = "2px"
+		div.style.paddingBottom = "5px"
+		div.style.height = "85px" // 17vh
 	}
 	F_divUpperPart()
 	function F_divLowerPart() { // alsó nagy rész: Q amit kidob
@@ -1166,14 +1166,13 @@ function F_createQingElems() {
 		document.getElementById("div_QingMain").appendChild(div)
 	}
 	F_divLowerPart()
-	
-	function F_divSettings() { // bal felső sarok kiírások: tételszám, Q szám, ...
-		var div = document.createElement("div")
-		document.getElementById("div_QingUpperPart").appendChild(div)
-		div.id = "div_QingSettings"
-		div.style.height = "80px"
+	function F_spanSettings() { // bal felső sarok kiírások: tételszám, Q szám, ...
+		var span = document.createElement("span")
+		document.getElementById("div_QingUpperPart").appendChild(span)
+		span.id = "span_QingSettings"
+		span.style.height = "80px"
 	}
-	F_divSettings()
+	F_spanSettings()
 	function F_btnNextQ() {
 		var button = document.createElement("button")
 		button.id = "btn_QingNextQ"
@@ -1211,10 +1210,24 @@ function F_createQingElems() {
 		}
 	}
 	F_btnNextQ()
+	function F_divMarkPart() { // felső kis rész: Q-ek osztájzása
+		var span = document.createElement("span")
+		document.getElementById("div_QingUpperPart").appendChild(span)
+		span.id = "span_QingMarkPart"
+		
+		span.style.position = "absolute"
+		span.style.left = "290px"
+		span.style.right = "90px"
+		span.style.top = "0px"
+		span.style.height = "111px"
+		
+		span.style.overflowX = "auto"
+	}
+	F_divMarkPart()
 	// 1st line
 	function F_btnTetels() {
 		var button = document.createElement("button")
-		document.getElementById("div_QingSettings").appendChild(button)
+		document.getElementById("span_QingSettings").appendChild(button)
 		button.id = "btn_QingTetels"
 		button.style.border = "3px solid black"
 		button.style.backgroundColor = "Bisque"
@@ -1235,7 +1248,7 @@ function F_createQingElems() {
 	F_btnTetels()
 	function F_spanTime() { // mennyi ideje oldottam meg átlagosan őket
 		var span = document.createElement("span")
-		document.getElementById("div_QingSettings").appendChild(span)
+		document.getElementById("span_QingSettings").appendChild(span)
 		span.id = "span_QingTime"
 		span.style.border = "1px solid black"
 		span.style.backgroundColor = "White"
@@ -1250,7 +1263,7 @@ function F_createQingElems() {
 	F_spanTime()
 	function F_btnQingMenu() { // nagy menü lehívása részletekért (saveLS, loadLS...)
 		var button = document.createElement("button")
-		document.getElementById("div_QingSettings").appendChild(button)
+		document.getElementById("span_QingSettings").appendChild(button)
 		button.id = "btn_QingMenu"
 		button.style.border = "3px solid black"
 		button.style.backgroundColor = "Bisque"
@@ -1271,7 +1284,7 @@ function F_createQingElems() {
 	F_btnQingMenu()
 	function F_spanJegy() { // mennyi az átlag jegy
 		var span = document.createElement("span")
-		document.getElementById("div_QingSettings").appendChild(span)
+		document.getElementById("span_QingSettings").appendChild(span)
 		span.id = "span_QingJegy"
 		span.style.border = "1px solid black"
 		span.style.backgroundColor = "White"
@@ -1286,7 +1299,7 @@ function F_createQingElems() {
 	F_spanJegy()
 	function F_btnQuests() {
 		var button = document.createElement("button")
-		document.getElementById("div_QingSettings").appendChild(button)
+		document.getElementById("span_QingSettings").appendChild(button)
 		button.id = "btn_QingQuests"
 		button.style.border = "3px solid black"
 		button.style.backgroundColor = "Bisque"
@@ -1308,13 +1321,13 @@ function F_createQingElems() {
 	F_btnQuests()
 	// 2nd line
 	var br = document.createElement("br")
-	document.getElementById("div_QingSettings").appendChild(br)
+	document.getElementById("span_QingSettings").appendChild(br)
 	var br = document.createElement("br")
-	document.getElementById("div_QingSettings").appendChild(br)
+	document.getElementById("span_QingSettings").appendChild(br)
 	function F_btnNewQ() {
 		var button = document.createElement("button")
 		button.id = "btn_newQuest"
-		document.getElementById("div_QingSettings").appendChild(button)
+		document.getElementById("span_QingSettings").appendChild(button)
 		button.style.border = "3px solid black"
 		button.style.backgroundColor = "White"
 		button.style.cursor = "pointer"
@@ -1335,7 +1348,7 @@ function F_createQingElems() {
 	function F_spanRepSlow() {
 		var span = document.createElement("span")
 		span.id = "span_RepSlow"
-		document.getElementById("div_QingSettings").appendChild(span)
+		document.getElementById("span_QingSettings").appendChild(span)
 		span.style.border = "1px solid black"
 		span.style.backgroundColor = "Gainsboro"
 
@@ -1350,7 +1363,7 @@ function F_createQingElems() {
 	function F_btnRepFast() {
 		var button = document.createElement("button")
 		button.id = "span_repFast"
-		document.getElementById("div_QingSettings").appendChild(button)
+		document.getElementById("span_QingSettings").appendChild(button)
 		button.style.border = "3px solid black"
 		button.style.backgroundColor = "pink"
 		button.style.cursor = "pointer"
@@ -1369,7 +1382,7 @@ function F_createQingElems() {
 	function F_spanNewOldBorder() {
 		var span = document.createElement("span")
 		span.id = "span_QingNewOldBorder"
-		document.getElementById("div_QingSettings").appendChild(span)
+		document.getElementById("span_QingSettings").appendChild(span)
 		span.style.border = "3px solid limegreen"
 		span.style.cursor = "ponter"
 
@@ -1549,14 +1562,14 @@ function F_createQingElems() {
 		var div = document.createElement("div")
 		div.id = "div_selectJegy"
 		document.getElementById("div_QingUpperPart").appendChild(div)
-		div.style.position = "absolute"
+		div.style.position = "fixed"
 		div.style.top = "60px"
 		div.style.width = "45px"
 		div.style.display = "none"
 		div.style.backgroundColor = "#f1f1f1"
 		div.style.boxShadow = "0px 8px 16px 0px rgba(0,0,0,0.4)"
 		div.style.border = "1px solid grey"
-		div.style.zIndex = "1"
+		div.style.zIndex = "2"
 		div.style.textAlign = "center"
 		var array = ["&nbsp","1","2","3"]
 		for ( var x=0;  x<array.length;  x++ ) {
@@ -1819,21 +1832,21 @@ function F_nextQ() {
 		function F_createSelect(num) {
 			var parSpan = document.createElement("span")
 			parSpan.id = "parSpan."+num
-			document.getElementById("div_QingUpperPart").appendChild(parSpan)
+			parSpan.style.position = "absolute"
+			var leftPos = num*48 -48
+			parSpan.style.left = leftPos +"px"
+			document.getElementById("span_QingMarkPart").appendChild(parSpan)
 			for ( var x=0;  x<3;  x++ ) {
 				var span = document.createElement("span")
 				span.id = "span."+x+"."+num
 				parSpan.appendChild(span)
 				span.style.textAlign = "center"
 				
-				span.style.minWidth = "45px"
+				span.style.position = "absolute"
+				span.style.width = "45px"
 				span.style.height = "27px"
 				span.style.lineHeight = "27px" // hogy középen legyen vertically(y-tengely) is a text
 				span.style.border = "2px solid black"
-				
-				span.style.position = "absolute"
-				var leftPos = num*48 + 250
-				span.style.left = leftPos +"px"
 				
 				if ( x == 0 ) {
 					span.style.top = "0px"
@@ -1860,6 +1873,8 @@ function F_nextQ() {
 						}
 					}*/
 				} else if ( x == 1 ) {
+					var div = document.createElement("DIV")
+					span.appendChild(div)
 					span.style.top = "30px"
 					span.innerHTML = "&nbsp"
 					var jegyStatus = "hide"
@@ -1867,11 +1882,9 @@ function F_nextQ() {
 						var dropdown = document.getElementById("div_selectJegy")
 						var num = this.id
 						num = num.slice(num.lastIndexOf(".")+1)
-						var leftPos = num*48 + 250 +1
-						dropdown.style.left = leftPos +"px"
-						
 						dropdown.dataset.numQ = num
 						
+						this.parentElement.appendChild(dropdown)
 						dropdown.style.display = "block"
 						jegyStatus = "show"
 						window.onclick = function(event) { 
