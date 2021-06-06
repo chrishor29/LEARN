@@ -553,7 +553,7 @@ function F_titleChange(detElem){
 }
 // –––––––––––––––  title(abbr) END   –––––––––––––––
 
-// –––––––––––––––  Videos BEGIN  –––––––––––––––
+// –––––––––––––––  videos BEGIN  –––––––––––––––
 /* how to - tutorial
 	mute: <video muted data-src...
 	max-width: alapból 60%; <video data-width="30%" data-src
@@ -713,9 +713,9 @@ function F_loadCentVideo(){
 	}
 }
 F_loadCentVideo()
-// –––––––––––––––  Videos END  –––––––––––––––
+// –––––––––––––––  videos END  –––––––––––––––
 
-// –––––––––––––––  Search BEGIN  –––––––––––––––
+// –––––––––––––––  search BEGIN  –––––––––––––––
 var breakSearch = false
 var objSearchTexts = {} // Qname to Qtxt (ráklikk a resultra, dobja ki a szöveget)
 function F_searchStart() { // search-re klikkelésnél vagy enter lenyomásnál ez történik először
@@ -1045,7 +1045,7 @@ function F_createSearchElems() {
 	F_spanStatus()
 }
 F_createSearchElems()
-// –––––––––––––––  Search END  –––––––––––––––
+// –––––––––––––––  search END  –––––––––––––––
 
 // –––––––––––––––  Qing BEGIN  –––––––––––––––
 var arrTetelQs = {} // mainTitle-k, azon belül phase/status-ok, azok pedig egy stringet tartalmaznak, hogy mely Q-k
@@ -2145,6 +2145,7 @@ function F_synonyms(detElem){
 	}
 }
 
+// –––––––––––––––  img BEGIN  –––––––––––––––
 function F_loadIMGs(detElem) {
 	var imgs = detElem.getElementsByTagName("IMG")
 	for ( var i=0; i<imgs.length; i++ ) { 
@@ -2164,7 +2165,7 @@ function F_loadIMGs(detElem) {
 		if ( imgs[i].style.float == "" ) { imgs[i].style.float = "right" }
 	
 		imgs[i].onclick = function() { // középen kinagyítja
-			document.getElementById("div_centImgBg").style.display = "none"
+			document.getElementById("div_centImgBg").style.display = "block"
 			document.getElementById("img_cent").src = this.src
 		}
 		if ( imgs[i].classList.contains("mini") == true ) {
@@ -2218,6 +2219,7 @@ function F_loadImg_cent_mini() {
 	}
 }
 F_loadImg_cent_mini()
+// –––––––––––––––  img END  –––––––––––––––
 
 function F_loadElem(detElem){ // detailsok megnyitásánál is ezt a funkciót használjam!
 	//console.log(detElem.innerHTML)

@@ -23,6 +23,7 @@ xcopy /y %source%\done\Aneszt\aneszt.html %destination%\done\Aneszt\ /d
 xcopy /y %source%\Bioetika\bioetika.html %destination%\Bioetika\ /d
 xcopy /y %source%\IgOr\igor.html %destination%\IgOr\ /d
 xcopy /y %source%\done\KlinGen\klingen.html %destination%\done\KlinGen\ /d
+xcopy /y %source%\Gyerekgyogy\gyermek.html %destination%\Gyerekgyogy\ /d
 xcopy /y %source%\done\Nepegeszsegtan\nepeg.html %destination%\done\Nepegeszsegtan\ /d
 xcopy /y %source%\Neurologia\neurologia.html %destination%\Neurologia\ /d
 xcopy /y %source%\Pszichiatria\pszichi.html %destination%\Pszichiatria\ /d
