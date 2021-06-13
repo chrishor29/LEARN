@@ -2161,7 +2161,7 @@ function F_loadIMGs(detElem) {
 		imgs[i].removeAttribute("data-src")
 		
 		imgs[i].style.border = "3px solid black"
-		imgs[i].style.maxWidth = "40%"
+		if ( imgs[i].style.maxWidth == "" ) { imgs[i].style.maxWidth = "40%" }
 		if ( imgs[i].style.float == "" ) { imgs[i].style.float = "right" }
 	
 		imgs[i].onclick = function() { // középen kinagyítja
@@ -2221,7 +2221,7 @@ function F_loadImg_cent_mini() {
 F_loadImg_cent_mini()
 // –––––––––––––––  img END  –––––––––––––––
 
-function F_loadElem(detElem){ // detailsok megnyitásánál is ezt a funkciót használjam!
+function F_loadElem(detElem) { // detailsok megnyitásánál is ezt a funkciót használjam!
 	//console.log(detElem.innerHTML)
 	F_loadImpQs(detElem)
 	F_loadMidQs(detElem)
