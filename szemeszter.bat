@@ -26,6 +26,7 @@ xcopy /y %source%\done\KlinGen\klingen.html %destination%\done\KlinGen\ /d
 xcopy /y %source%\Gyerekgyogy\gyermek.html %destination%\Gyerekgyogy\ /d
 xcopy /y %source%\done\Nepegeszsegtan\nepeg.html %destination%\done\Nepegeszsegtan\ /d
 xcopy /y %source%\Neurologia\neurologia.html %destination%\Neurologia\ /d
+xcopy /y %source%\Neurologia\neuroteszt.html %destination%\Neurologia\ /d
 xcopy /y %source%\Pszichiatria\pszichi.html %destination%\Pszichiatria\ /d
 xcopy /y %source%\done\Sportorvostan\Sportorvostan.html %destination%\done\Sportorvostan\ /d
 xcopy /y %source%\done\Szemeszet\szemeszet.html %destination%\done\Szemeszet\ /d
