@@ -1915,6 +1915,8 @@ function F_nextQ() {
 			if ( parQ.classList.contains("kerdes") ) { stuff = ' class="kerdes"' }
 			if ( parQ.classList.contains("open") ) { stuff = stuff+ " open" }
 			text = "<details"+stuff+">"+parQ.innerHTML+"</details>"
+		} else if ( parQ.parentElement.firstChild.className == "phase" ) {
+			
 		}
 		document.getElementById("div_QingLowerPart").innerHTML = text
 	}
