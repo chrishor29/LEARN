@@ -184,8 +184,8 @@ function F_loadImpQs(detElem,full) {
 				continue
 			}
 			if ( impQs[i].tagName == "div" || impQs[i].tagName == "DIV" ) {
-				qText = qText.slice(qText.indexOf('<ul class="normal">')+19)
-				qText = qText.slice(0,qText.lastIndexOf('</ul></details>'))
+				qText = qText.slice(qText.indexOf('</summary>')+10)
+				qText = qText.slice(0,qText.lastIndexOf('</details>'))
 			}
 			impQs[i].innerHTML = qText
 		}
@@ -308,7 +308,18 @@ function F_loadPageLinks() { // IDB, favicons, setClick
 			transaction.oncomplete = function() { db.close() }
 		}
 	}
-	for ( var i=0; i<pageLinks.length; i++ ) { F_loadIDB(pageLinks[i]) }
+	for ( var i=0; i<pageLinks.length; i++ ) { 
+		F_loadIDB(pageLinks[i])
+		if ( i == pageLinks.length-1 ) { // betöltötte mindegyik tárgyat
+			setTimeout(function(){ // kell fél sec wait még
+				if ( localStorage.getItem("hk.ToggleAll") != null ) { 
+					currPath = localStorage.getItem("hk.ToggleAll")
+					targyPath = localStorage.getItem("hk.ToggleAll")
+					F_loadAndSavePageText(localStorage.getItem("hk.ToggleAll"),true,true)
+				}
+			}, 500)
+		}
+	}
 }
 F_loadPageLinks()
 
@@ -1891,15 +1902,39 @@ function F_nextQ() {
 	var iTOnum = [] // num = amit kidob kérdések, ott hányadik fenntről lefele DE! ami többször van, az ugyanazt kapja!
 	var QsNum = 0 // számozásnál kell
 	
+	// kérdéseket kiírja
+	/*function F_writeQs() {
+		var text = ""
+		text = parQ.outerHTML
+		var stuff = ""
+		if ( parQ.classList.contains("kerdes") ) { stuff = ' class="kerdes"' }
+		if ( parQ.classList.contains("open") ) { stuff = stuff+ " open" }
+		text = "<details"+stuff+">"+parQ.innerHTML+"</details>"
+		document.getElementById("div_QingLowerPart").innerHTML = text
+	}
+	F_writeQs()*/
+	
 	// megnézi mindegyik Q-t, hogy az allQs-ban hányadik --> ugyanis úgy tudom lekérni a nevét majd
 	function F_checkNum() { 
-		var parQs = parQ.getElementsByClassName("kerdes")
-		for ( var x=0; x<parQs.length; x++ ) { 
+		var x = 0
+		if ( parQ.classList.contains("kerdes") ) { 
 			for ( var i=0; i<allQs.length; i++ ) { 
-				if ( parQs[x] == allQs[i] ) {
+				if ( parQ == allQs[i] ) {
 					xTOi[x] = i
 					// ellenőrzésnek: 
-					// parQs[x].firstChild.innerHTML = "["+x+","+i+"] "+parQs[x].firstChild.innerHTML
+					// parQ.firstChild.innerHTML = "["+x+","+i+"] "+parQ.firstChild.innerHTML
+					continue
+				}
+			}
+		}
+		var parQs = parQ.getElementsByClassName("kerdes")
+		for ( var count=0; count<parQs.length; count++ ) { 
+			x = x +1
+			for ( var i=0; i<allQs.length; i++ ) { 
+				if ( parQs[count] == allQs[i] ) {
+					xTOi[x] = i
+					// ellenőrzésnek: 
+					// parQs[count].firstChild.innerHTML = "["+x+","+i+"] "+parQs[count].firstChild.innerHTML
 					continue
 				}
 			}
@@ -1907,20 +1942,7 @@ function F_nextQ() {
 	}
 	F_checkNum()
 	
-	// kérdéseket kiírja
-	function F_writeQs() {
-		var text = ""
-		if ( parQ.firstChild.className == "status" ) {
-			var stuff = ""
-			if ( parQ.classList.contains("kerdes") ) { stuff = ' class="kerdes"' }
-			if ( parQ.classList.contains("open") ) { stuff = stuff+ " open" }
-			text = "<details"+stuff+">"+parQ.innerHTML+"</details>"
-		} else if ( parQ.parentElement.firstChild.className == "phase" ) {
-			
-		}
-		document.getElementById("div_QingLowerPart").innerHTML = text
-	}
-	F_writeQs()
+	document.getElementById("div_QingLowerPart").innerHTML = parQ.outerHTML
 	
 	// lehívja(/craftolja) az osztályzás opciókat mellé!
 	function F_createMarks() {
@@ -2266,11 +2288,6 @@ document.body.onclick = function(){
 	if ( span.dataset.status != 1 ) { span.style.display = "none" }
 }
 
-if ( localStorage.getItem("hk.ToggleAll") != null ) { 
-	currPath = localStorage.getItem("hk.ToggleAll")
-	targyPath = localStorage.getItem("hk.ToggleAll")
-	F_loadAndSavePageText(localStorage.getItem("hk.ToggleAll"),true,true)
-}
 
 
 
