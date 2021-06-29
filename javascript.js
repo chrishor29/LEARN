@@ -1193,7 +1193,6 @@ function F_createQingElems() {
 		button.style.cursor = "pointer"
 		button.style.zIndex = "2"
 
-		var lastClickTime = 0
 		button.onclick = function(){ 
 			var currTime = F_getTime()
 			var diffTime = currTime - lastClickTime
@@ -1295,7 +1294,8 @@ function F_createQingElems() {
 		button.style.top = "18px"
 		button.style.right = "90px"
 		button.style.overflow = "auto"
-		button.onclick = function(){ 
+		
+		button.onclick = function() { 
 			var thisTime = F_getTime()
 			var diffTime = thisTime - lastClickTime
 			//console.log(myTime+" vs "+lastClickTime)
@@ -1307,9 +1307,9 @@ function F_createQingElems() {
 				this.style.color  = "white"
 			}
 			var int_Click = window.setInterval(function(){
+				clearInterval(int_Click) 
 				lastClickTime = F_getTime()
 				F_nextQ()
-				clearInterval(int_Click) 
 				document.body.style.backgroundColor = ""
 			}, 100)
 		}
@@ -1876,6 +1876,7 @@ function F_nextQ() {
 	function F_getParentQ(qElem) {
 		var parent = qElem
 		var parQ = false
+		var parQtype = "status"
 		do {
 			if ( parent.firstChild.className == "status" ) { parQ = parent }
 			if ( parent.parentElement.firstChild.className == "phase" ) { parQ = parent }
@@ -1907,7 +1908,17 @@ function F_nextQ() {
 	F_checkNum()
 	
 	// kérdéseket kiírja
-	document.getElementById("div_QingLowerPart").innerHTML = parQ.innerHTML
+	function F_writeQs() {
+		var text = ""
+		if ( parQ.firstChild.className == "status" ) {
+			var stuff = ""
+			if ( parQ.classList.contains("kerdes") ) { stuff = ' class="kerdes"' }
+			if ( parQ.classList.contains("open") ) { stuff = stuff+ " open" }
+			text = "<details"+stuff+">"+parQ.innerHTML+"</details>"
+		}
+		document.getElementById("div_QingLowerPart").innerHTML = text
+	}
+	F_writeQs()
 	
 	// lehívja(/craftolja) az osztályzás opciókat mellé!
 	function F_createMarks() {
@@ -2066,6 +2077,15 @@ function F_nextQ() {
 	F_onToggle()
 	
 	// bejelöli melyik a main!
+	
+	
+	/* document.getElementById("btn_QingNextQ").style.color = ""
+	if ( localStorage.getItem("hk.lastSavedLS") > 4 ) { 
+		document.getElementById("btn_QingNextQ").style.backgroundColor = "aqua" 
+	} else {
+		document.getElementById("btn_QingNextQ").style.backgroundColor = "white"
+	} */
+	
 }
 // –––––––––––––––  Qing END  –––––––––––––––
 
