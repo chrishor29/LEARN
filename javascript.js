@@ -1902,17 +1902,6 @@ function F_nextQ() {
 	var iTOnum = [] // num = amit kidob kérdések, ott hányadik fenntről lefele DE! ami többször van, az ugyanazt kapja!
 	var QsNum = 0 // számozásnál kell
 	
-	// kérdéseket kiírja
-	/*function F_writeQs() {
-		var text = ""
-		text = parQ.outerHTML
-		var stuff = ""
-		if ( parQ.classList.contains("kerdes") ) { stuff = ' class="kerdes"' }
-		if ( parQ.classList.contains("open") ) { stuff = stuff+ " open" }
-		text = "<details"+stuff+">"+parQ.innerHTML+"</details>"
-		document.getElementById("div_QingLowerPart").innerHTML = text
-	}
-	F_writeQs()*/
 	
 	// megnézi mindegyik Q-t, hogy az allQs-ban hányadik --> ugyanis úgy tudom lekérni a nevét majd
 	function F_checkNum() { 
@@ -1942,6 +1931,7 @@ function F_nextQ() {
 	}
 	F_checkNum()
 	
+	// kérdéseket kiírja
 	document.getElementById("div_QingLowerPart").innerHTML = parQ.outerHTML
 	
 	// lehívja(/craftolja) az osztályzás opciókat mellé!
@@ -2093,6 +2083,7 @@ function F_nextQ() {
 		//for ( var i=0; i<arrayDetails.length; i++ ) { arrayDetails[i].addEventListener("toggle", alert("toggle")) } 
 		for ( var i=0; i<arrayDetails.length; i++ ) { arrayDetails[i].ontoggle = function() { 
 			F_createMarks() 
+			F_loadElem(this)
 			/*F_loadDetails(this)
 			F_highlightQ()*/
 			//F_onToggle()
