@@ -1456,16 +1456,17 @@ function F_createQingElems() {
 		button.id = "btn_newQuest"
 		document.getElementById("span_QingSettings").appendChild(button)
 		button.style.border = "3px solid black"
+		if ( localStorage.getItem("newQ") == "true" ) { button.style.borderColor = "limegreen" }
 		button.style.backgroundColor = "White"
 		button.style.cursor = "pointer"
 
 		button.onclick = function(){ 
 			if ( this.style.borderColor == "limegreen" ) {
 				this.style.borderColor = "black"
-				localStorage.removeItem("hk.newQ")
+				localStorage.removeItem("newQ")
 			} else {
 				this.style.borderColor = "limegreen"
-				localStorage.setItem("hk.newQ",true)
+				localStorage.setItem("newQ",true)
 			}
 		}
 		
@@ -1868,7 +1869,7 @@ function F_toggleQing() {
 	}
 }
 function F_calcNextQ(){
-	var questID = "none"
+	var priorID = "none"
 	var currTime = F_getTime()
 	currTime = Math.round(currTime)
 	
@@ -1876,7 +1877,7 @@ function F_calcNextQ(){
 		newQ, ha engedélyezve(btn_newQuest) és van is még olyan
 	*/
 	if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" ) {
-		if ( arrNewQs.length > 0 ) { questID = arrNewQs[0] }
+		if ( arrNewQs.length > 0 ) { priorID = arrNewQs[0] }
 	} else {
 		var qPoint = 0
 		for ( var x=0; x<arrOldQs.length; x++ ) {
@@ -1889,12 +1890,12 @@ function F_calcNextQ(){
 			var currPoint = Number(diffTime) / Number(jegy)
 			if ( Number(currPoint) > Number(qPoint) ) {
 				qPoint = currPoint
-				questID = i
+				priorID = i
 			}
 			//console.log(i+" "+jegy+" "+diffTime)
 		}
 	}
-	return questID
+	return priorID
 }
 function F_nextQ() {
 	var currTime = F_getTime()
@@ -1902,14 +1903,14 @@ function F_nextQ() {
 	
 	F_saveLS()
 	F_loadLS()
-	var questID = F_calcNextQ()  // megnézi melyik Q lesz a kövi
-	if ( questID == "none" ) { 
+	var priorID = F_calcNextQ()  // megnézi melyik Q lesz a kövi
+	if ( priorID == "none" ) { 
 		alert("elfogytak a kérdések")
 		return
 	}
 	
 	var allQs = document.getElementById("div_QingTargyText").getElementsByClassName("kerdes")
-	var qElem = allQs[questID]
+	var qElem = allQs[priorID]
 	
 	// felmegy document.body -> ha status van, az lesz amit bemásol; (de! a Q ami ugye ki lesz jelölve változatlan)
 	function F_getParentQ(qElem) {
@@ -1968,6 +1969,7 @@ function F_nextQ() {
 		for ( var i=0; i<arrayDetails.length; i++ ) { arrayDetails[i].ontoggle = function() { 
 			F_createMarks() 
 			F_loadElem(this)
+			F_highlightQ()
 			/*F_loadDetails(this)
 			F_highlightQ()*/
 			//F_onToggle()
@@ -2077,25 +2079,18 @@ function F_nextQ() {
 		var Qs = document.getElementById("div_QingLowerPart").getElementsByClassName("kerdes")
 		for ( var x=0; x<Qs.length; x++ ) { 
 			if ( Qs[x].offsetParent === null ) { continue }
-			if ( Qs[x].dataset.numed == "true" ) { continue }
+			if ( Qs[x].dataset.num ) { continue }
 			var i = xTOi[x]
 			var num = F_getNum(i)
 			document.getElementById("div_QingLowerPart").dataset.numQ = num // hány db Q látszik összesen
 			
 			// Q elé beírja a számát
 			Qs[x].firstChild.innerHTML = "["+num+"] "+Qs[x].firstChild.innerHTML
-			Qs[x].dataset.numed = "true"
+			Qs[x].dataset.num = num
 			
 			if ( !document.getElementById('parSpan.'+num) ) { F_createSelect(num) }
 			document.getElementById('parSpan.'+num).style.display = "block"
 			document.getElementById('parSpan.'+num).dataset.elemi = i
-			
-			// sárga keretet tesz az aktuális Q-ra
-			if ( questID == i ) { 
-				document.getElementById('span.0.'+num).style.border = "2px solid gold"
-			} else {
-				document.getElementById('span.0.'+num).style.border = "2px solid black"
-			}
 			
 			// beírja a dátumot, ha van
 			var qNev = arrQnev[i].qNev
@@ -2120,6 +2115,28 @@ function F_nextQ() {
 	F_createMarks()
 	
 	// bejelöli melyik a mainQ!
+	function F_highlightQ() {
+		// először összeset feketére festi (ha toggleztam, akkor ami sárga volt, most már fekete legyen)
+		var numQ = document.getElementById("div_QingLowerPart").dataset.numQ // hány db Q látszik összesen
+		for ( var y=1; y<=numQ; y++ ) { document.getElementById('span.0.'+y).style.border = "2px solid black" }
+
+		// priorQ elemet megkeresi először
+		var priorX
+		for ( var x in xTOi ) { if ( xTOi[x] == priorID ) { priorX = x } }
+		var Qs = document.getElementById("div_QingLowerPart").getElementsByClassName("kerdes")
+		var priorQ = Qs[priorX]
+		// megnézi látható-e, ha ha nem, felmegy egyesével parQ-ig, amíg valamelyik nem látható
+		var num = false
+		do {
+			if ( priorQ.dataset.num ) { 
+				num = priorQ.dataset.num
+				document.getElementById('span.0.'+num).style.border = "2px solid gold" 
+			}
+			priorQ = priorQ.parentElement
+		}
+		while ( num == false )
+	}
+	F_highlightQ()
 	
 	// ► (color:download)
 	document.getElementById("btn_QingNextQ").style.color = ""
