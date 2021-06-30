@@ -74,7 +74,8 @@ var pageImpQs = [] // path to impQs --> tárgyak {expQ}-jait lementi ide is
 var pageTexts = [] // path to txt --> tárgyak textjét lementi ide is
 var pageLinks = document.getElementsByClassName("page")
 var currPath = null // betöltött tárgyé (ami látható is)
-var prevScrollTop = 0 // midQ betöltése után, ha bezárom ugyanott legyen a scrollbar
+var prevDivShown = "" // midQ betöltése előtt mi volt (alap,search,Qing)
+var prevScrollTop = 0 // midQ betöltése előtt, hogy állt a scrollbar
 
 function F_saveImpQs(path) {
 	pageImpQs[path] = {}
@@ -311,13 +312,13 @@ function F_loadPageLinks() { // IDB, favicons, setClick
 	for ( var i=0; i<pageLinks.length; i++ ) { 
 		F_loadIDB(pageLinks[i])
 		if ( i == pageLinks.length-1 ) { // betöltötte mindegyik tárgyat
-			setTimeout(function(){ // kell fél sec wait még
-				if ( localStorage.getItem("hk.ToggleAll") != null ) { 
+			if ( localStorage.getItem("hk.ToggleAll") != null ) { 
+				setTimeout(function(){ // kell fél sec wait még
 					currPath = localStorage.getItem("hk.ToggleAll")
 					targyPath = localStorage.getItem("hk.ToggleAll")
 					F_loadAndSavePageText(localStorage.getItem("hk.ToggleAll"),true,true)
-				}
-			}, 500)
+				}, 500)
+			}
 		}
 	}
 }
@@ -423,7 +424,7 @@ function F_divMidQ() { // lekreálja középre a divet, ahova kidobja majd a mid
 		}
 	}
 	F_btnBack()
-	function F_btnTitle() { // Q title-je középen fenn
+	function F_btnTitle() { // középen fenn a close (Q title) 
 		var title = document.createElement("div")
 		div.appendChild(title)
 		title.style.textAlign = "center"
@@ -440,13 +441,18 @@ function F_divMidQ() { // lekreálja középre a divet, ahova kidobja majd a mid
 		span.onclick = function(){ 
 			prevMidQs = []
 			document.getElementById("div_MidQ").style.display = "none" 
-			if ( document.getElementById("div_searchBg").style.display != "block" ) {
+			if ( prevDivShown == "div_pageQTargy" ) {
 				document.getElementById("div_pageQTargy").style.display = "block"
-				document.getElementById("table_weboldalak").style.display = "block"
+				document.getElementById("table_weboldalak").parentElement.parentElement.style.display = "block"
+				document.getElementById("btn_toggleQing").style.display = "block"
+				document.body.parentElement.scrollTop = prevScrollTop
+			} else if ( prevDivShown == "div_searchBg" ) {
+				document.getElementById("div_searchBg").style.display = "block"
+			} else if ( prevDivShown == "div_QingMain" ) {
+				document.getElementById("div_QingMain").style.display = "block"
 				document.getElementById("btn_toggleQing").style.display = "block"
 				document.body.parentElement.scrollTop = prevScrollTop
 			}
-			
 			//currPath = targyPath
 		}
 	}
@@ -463,13 +469,25 @@ function F_divMidQ() { // lekreálja középre a divet, ahova kidobja majd a mid
 F_divMidQ()
 function F_setMidQ(qText,path) { // középen megjeleníti a div-et, benne a szöveggel
 	if ( document.getElementById("div_MidQ").style.display == "none" ) {
-		prevScrollTop = document.body.parentElement.scrollTop // ez előbb kell legyen, minthogy megjelenne a div_MidQ --> elmentse, hogy hol voltam az oldalon(mondjuk a közepe tájékán), hogy miután bezárom oda scrolloljon vissza(ne a tetejére ugorjon!)
+		// ez előbb kell legyen, minthogy megjelenne a div_MidQ --> 
+			// egyrészt megnézze mi volt előtte (search, tárgy, Qing)
+			// elmentse, hogy hol voltam az oldalon(mondjuk a közepe tájékán), hogy miután bezárom oda scrolloljon vissza(ne a tetejére ugorjon!)
+		if ( document.getElementById("div_pageQTargy").style.display == "block" ) { 
+			prevDivShown = "div_pageQTargy"
+			prevScrollTop = document.body.parentElement.scrollTop
+		} else if ( document.getElementById("div_searchBg").style.display == "block" ) { 
+			prevDivShown = "div_searchBg"
+		} else if ( document.getElementById("div_QingMain").style.display == "block" ) {
+			prevDivShown = "div_QingMain" 
+			prevScrollTop = document.body.parentElement.scrollTop
+		}
 	}
 	
 	document.getElementById("div_MidQ").style.display = "block" // ez előbb kell legyen, mint az F_loadElem --> hogy láthatók legyenek az impQ-k, amiket be kell töltenie
 	document.getElementById("div_pageQTargy").style.display = "none"
-	document.getElementById("table_weboldalak").style.display = "none"
+	document.getElementById("table_weboldalak").parentElement.parentElement.style.display = "none"
 	document.getElementById("btn_toggleQing").style.display = "none"
+	document.getElementById("div_QingMain").style.display = "none"
 	
 	//console.log(prevMidQs)
 	qText = qText.slice(qText.indexOf("<summary"),qText.lastIndexOf("</details"))
@@ -870,7 +888,7 @@ function F_clickSearchResult(detElem) { // egy találati eredményre klikk
 	}, 100);
 }
 function F_createSearchElems() {
-	function F_btnNagyito() { // fő oldalon a nagyító
+	function F_btnNagyito() { // 🔍
 		var button = document.createElement("input")
 		button.type = "button"
 		button.id = "btn_toggleSearch"
@@ -892,9 +910,9 @@ function F_createSearchElems() {
 				this.style.color  = "white"
 			}
 			var int_Click = window.setInterval(function(){
-				document.getElementById("btn_toggleQing").style.display = 'none'
-				document.getElementById("table_weboldalak").style.display = 'none'
-				document.getElementById("div_pageQTargy").style.display = 'none'
+				document.getElementById("div_pageQTargy").style.display = "none"
+				document.getElementById("table_weboldalak").parentElement.parentElement.style.display = "none"
+				document.getElementById("btn_toggleQing").style.display = "none"
 				document.getElementById("btn_toggleSearch").style.display = 'none'
 				// első kettő azért kell, hogy a fölös scrollbar eltűnjön bal oldalt (pl. megvan nyitva farmakológia, majd ráklikkelnék nagyítóra...)
 				document.getElementById("div_searchBg").style.display = "block"
@@ -924,7 +942,7 @@ function F_createSearchElems() {
 	}
 	F_divBg()
 	var divBg = document.getElementById("div_searchBg")
-	function F_btnClose() { // jobb felső sarok, close btn
+	function F_btnClose() { // ✖
 		var button = document.createElement("input")
 		button.type = "button"
 		divBg.appendChild(button)
@@ -939,9 +957,9 @@ function F_createSearchElems() {
 		button.style.border = "3px solid black"
 		if ( isAndroid ) { button.style.width = "50px" }
 		button.onclick = function(){
-			document.getElementById("table_weboldalak").style.display = 'block';
-			document.getElementById("div_pageQTargy").style.display = 'block';
-			document.getElementById("btn_toggleQing").style.display = 'block'
+			document.getElementById("div_pageQTargy").style.display = "block"
+			document.getElementById("table_weboldalak").parentElement.parentElement.style.display = "block"
+			document.getElementById("btn_toggleQing").style.display = "block"
 			document.getElementById("btn_toggleSearch").style.display = 'block'
 			document.getElementById("div_searchBg").style.display = "none"
 		}
@@ -1288,7 +1306,7 @@ function F_createQingElems() {
 		span.style.height = "80px"
 	}
 	F_spanSettings()
-	function F_btnNextQ() {
+	function F_btnNextQ() { // ►
 		var button = document.createElement("button")
 		button.id = "btn_QingNextQ"
 		document.getElementById("div_QingUpperPart").appendChild(button)
