@@ -1097,13 +1097,29 @@ function F_saveLS() {
 		document.getElementById('parSpan.'+num).style.display = "none"
 		document.getElementById('parSpan.'+num).dataset.elemi = ""
 		
-		if ( jegy == "&nbsp;" ) { continue }
+		var skip = "false"
+		if ( document.getElementById("span.2."+num).style.backgroundColor == "black" ) {
+			skip = "true"
+			document.getElementById("span.2."+num).style.backgroundColor = ""
+		}
+		
+		if ( jegy == "&nbsp;" && skip == "false" ) { continue }
+		
+		var date = currTime
 		
 		newCount = Number(localStorage.getItem("newCount")) +1
 		localStorage.setItem("newCount",newCount)
 		
 		var qNev = arrQnev[i].qNev
-		localStorage.setItem(currPath+" | "+qNev,jegy+" , "+currTime)
+		if ( jegy == "&nbsp;" ) { 
+			if ( localStorage.getItem(currPath+" | "+qNev) ) {
+				date = localStorage.getItem(currPath+" | "+qNev)
+				jegy = date.slice(0,date.indexOf(" , "))
+				date = date.slice(date.indexOf(" , ")+3)
+				date = date.slice(date.indexOf(" , ")+3)
+			}
+		}
+		localStorage.setItem(currPath+" | "+qNev,jegy+" , "+skip+" , "+date)
 	}
 	if ( document.getElementById("btn_QingNextQ").style.backgroundColor == "aqua" ) { 
 		F_downloadLS()
@@ -1163,14 +1179,6 @@ function F_loadLS() {
 		document.getElementById("btn_newQuest").innerHTML = arrNewQs.length
 		//console.log("newQs: "+arrNewQs)
 		//console.log("oldQs: "+arrOldQs)
-		
-		for ( var x=0; x<arrOldQs.length; x++ ) {
-			var i = arrOldQs[x]
-			var qNev = arrQnev[i].qNev
-			var jegyName = localStorage.getItem(currPath+" | "+qNev)
-			var jegy = jegyName.slice(0,jegyName.indexOf(" , "))
-			var date = jegyName.slice(jegyName.indexOf(" , ")+3)
-		}
 	}
 	F_checkQs()
 }
@@ -1883,9 +1891,12 @@ function F_calcNextQ(){
 		for ( var x=0; x<arrOldQs.length; x++ ) {
 			var i = arrOldQs[x]
 			var qNev = arrQnev[i].qNev
-			var jegyName = localStorage.getItem(currPath+" | "+qNev)
-			var jegy = jegyName.slice(0,jegyName.indexOf(" , "))
-			var date = jegyName.slice(jegyName.indexOf(" , ")+3)
+				var date = localStorage.getItem(currPath+" | "+qNev)
+				var jegy = date.slice(0,date.indexOf(" , "))
+				date = date.slice(date.indexOf(" , ")+3)
+				var skip = date.slice(0,date.indexOf(" , "))
+				date = date.slice(date.indexOf(" , ")+3)
+			if ( skip == "true" ) { continue }
 			var diffTime = Number(currTime) - Number(date)
 			var currPoint = Number(diffTime) / Number(jegy)
 			if ( Number(currPoint) > Number(qPoint) ) {
@@ -2007,6 +2018,22 @@ function F_nextQ() {
 					span.style.top = "0px"
 					span.innerHTML = num
 					span.style.fontWeight = "bold"
+					span.onclick = function(){ 
+						if ( this.style.backgroundColor == "black" ) {
+							if ( confirm('mégse skip? ('+this.innerHTML+")") ) {
+								var num = this.id
+								num = num.slice(num.lastIndexOf(".")+1)
+								var i = document.getElementById('parSpan.'+num).dataset.elemi
+								var qNev = arrQnev[i].qNev
+								var jegyName = localStorage.getItem(currPath+" | "+qNev)
+								jegyName = jegyName.replace("true","false")
+								localStorage.setItem(currPath+" | "+qNev,jegyName)
+								
+								this.style.backgroundColor = "white"
+								this.style.color = "black"
+							}
+						}
+					}
 					/*if ( isAndroid == true ) { 
 						td.onclick = function(){
 							var div = document.getElementById("div_qProp")
@@ -2053,27 +2080,30 @@ function F_nextQ() {
 						// repeatest beállítja vastagbetusre
 						var i = document.getElementById('parSpan.'+num).dataset.elemi
 						var qNev = arrQnev[i].qNev
-						if ( localStorage.getItem(currPath+" | "+qNev) ) {
-							var jegyName = localStorage.getItem(currPath+" | "+qNev)
-							var jegy = jegyName.slice(0,jegyName.indexOf(" , "))
-							var child = dropdown.childNodes
-							for ( var y=0; y < child.length; y++ ) {
-								if ( child[y].innerHTML == jegy ) {
-									child[y].style.fontWeight = "bolder"
-								} else {
-									child[y].style.fontWeight = "normal"
-								}
+						var child = dropdown.childNodes
+						for ( var y=0; y < child.length; y++ ) { 
+							child[y].style.fontWeight = "normal"
+							if ( localStorage.getItem(currPath+" | "+qNev) ) {
+								var jegyName = localStorage.getItem(currPath+" | "+qNev)
+								var jegy = jegyName.slice(0,jegyName.indexOf(" , "))
+								if ( child[y].innerHTML == jegy ) { child[y].style.fontWeight = "bolder" }
 							}
 						}
 					}
 				} else if ( x == 2 ) {
 					span.style.top = "60px"
 					span.style.fontSize = "x-small"
+					span.onclick = function(){ 
+						if ( this.style.backgroundColor == "black" ) {
+							this.style.backgroundColor = ""
+						} else {
+							this.style.backgroundColor = "black"
+						}
+					}
 				}
 			}
 		}
 		var Qs = document.getElementById("div_QingLowerPart").getElementsByClassName("kerdes")
-				console.log(Qs.length)
 		for ( var x=0; x<Qs.length; x++ ) { 
 			if ( Qs[x].offsetParent === null ) { continue }
 			if ( Qs[x].dataset.num ) { continue }
@@ -2084,7 +2114,7 @@ function F_nextQ() {
 			// Q elé beírja a számát
 			if ( Qs[x].firstChild.tagName == "SUMMARY" ) { 
 				Qs[x].firstChild.innerHTML = "["+num+"] "+Qs[x].firstChild.innerHTML
-			} else {
+			} else { // midQ, stb.
 				Qs[x].innerHTML = "["+num+"] "+Qs[x].innerHTML
 			}
 			Qs[x].dataset.num = num
@@ -2093,11 +2123,21 @@ function F_nextQ() {
 			document.getElementById('parSpan.'+num).style.display = "block"
 			document.getElementById('parSpan.'+num).dataset.elemi = i
 			
+			document.getElementById("span.0."+num).style.backgroundColor = "white" 
+			document.getElementById("span.0."+num).style.color = "black" 
+			
 			// beírja a dátumot, ha van
 			var qNev = arrQnev[i].qNev
 			if ( localStorage.getItem(currPath+" | "+qNev) ) {
-				var jegyName = localStorage.getItem(currPath+" | "+qNev)
-				var date = jegyName.slice(jegyName.indexOf(" , ")+3)
+				var date = localStorage.getItem(currPath+" | "+qNev)
+				var jegy = date.slice(0,date.indexOf(" , "))
+				date = date.slice(date.indexOf(" , ")+3)
+				var skip = date.slice(0,date.indexOf(" , "))
+				date = date.slice(date.indexOf(" , ")+3)
+				if ( skip == "true" ) { 
+					document.getElementById("span.0."+num).style.backgroundColor = "black" 
+					document.getElementById("span.0."+num).style.color = "white" 
+				}
 				var diffTime = Number(currTime) - Number(date)
 				diffTime = Number(diffTime)
 				diffTime = diffTime/60
