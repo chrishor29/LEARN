@@ -1963,19 +1963,15 @@ function F_nextQ() {
 	document.getElementById("div_QingLowerPart").innerHTML = parQ.outerHTML
 	
 	// detailsra klikk
-	function F_onToggle() {
-		var arrayDetails = document.getElementById("div_QingLowerPart").getElementsByTagName("details")
-		//for ( var i=0; i<arrayDetails.length; i++ ) { arrayDetails[i].addEventListener("toggle", alert("toggle")) } 
-		for ( var i=0; i<arrayDetails.length; i++ ) { arrayDetails[i].ontoggle = function() { 
-			F_createMarks() 
-			F_loadElem(this)
-			F_highlightQ()
-			/*F_loadDetails(this)
-			F_highlightQ()*/
-			//F_onToggle()
-		} }
+	function F_onToggle(detElem) {
+		F_loadElem(detElem)
+		F_createMarks() 
+		F_highlightQ()
+		
+		var arrayDetails = detElem.getElementsByTagName("details")
+		for ( var i=0; i<arrayDetails.length; i++ ) { arrayDetails[i].ontoggle = function() { F_onToggle(this) } }
 	}
-	F_onToggle()
+	F_onToggle(document.getElementById("div_QingLowerPart"))
 	
 	// lehívja(/craftolja) az osztályzás opciókat mellé!
 	function F_createMarks() {
@@ -2077,6 +2073,7 @@ function F_nextQ() {
 			}
 		}
 		var Qs = document.getElementById("div_QingLowerPart").getElementsByClassName("kerdes")
+				console.log(Qs.length)
 		for ( var x=0; x<Qs.length; x++ ) { 
 			if ( Qs[x].offsetParent === null ) { continue }
 			if ( Qs[x].dataset.num ) { continue }
@@ -2085,7 +2082,11 @@ function F_nextQ() {
 			document.getElementById("div_QingLowerPart").dataset.numQ = num // hány db Q látszik összesen
 			
 			// Q elé beírja a számát
-			Qs[x].firstChild.innerHTML = "["+num+"] "+Qs[x].firstChild.innerHTML
+			if ( Qs[x].firstChild.tagName == "SUMMARY" ) { 
+				Qs[x].firstChild.innerHTML = "["+num+"] "+Qs[x].firstChild.innerHTML
+			} else {
+				Qs[x].innerHTML = "["+num+"] "+Qs[x].innerHTML
+			}
 			Qs[x].dataset.num = num
 			
 			if ( !document.getElementById('parSpan.'+num) ) { F_createSelect(num) }
