@@ -1098,9 +1098,16 @@ function F_saveLS() {
 		document.getElementById('parSpan.'+num).dataset.elemi = ""
 		
 		if ( jegy == "&nbsp;" ) { continue }
-		var qNev = arrQnev[i].qNev
 		
+		newCount = Number(localStorage.getItem("newCount")) +1
+		localStorage.setItem("newCount",newCount)
+		
+		var qNev = arrQnev[i].qNev
 		localStorage.setItem(currPath+" | "+qNev,jegy+" , "+currTime)
+	}
+	if ( document.getElementById("btn_QingNextQ").style.backgroundColor == "aqua" ) { 
+		F_downloadLS()
+		document.getElementById("btn_QingNextQ").style.backgroundColor = "white"
 	}
 }
 function F_loadLS() {
@@ -1579,7 +1586,8 @@ function F_createQingElems() {
 			
 			this.style.backgroundColor = "aqua"
 			var int_Click = window.setInterval(function(){
-				// saveLS
+				clearInterval(int_Click)
+				F_downloadLS()
 				document.getElementById('btn_saveLS').style.backgroundColor = "Chartreuse"
 			}, 500)
 		}
@@ -1588,7 +1596,7 @@ function F_createQingElems() {
 	function F_btnLoadLS() {
 		var button = document.createElement("button")
 		document.getElementById("div_QingMenu").appendChild(button)
-		button.id = "btn_clearLS"
+		button.id = "btn_loadLS"
 		button.innerHTML = "LS"
 		button.style.cursor = "pointer"
 		
@@ -1606,8 +1614,9 @@ function F_createQingElems() {
 			
 			this.style.backgroundColor = "aqua"
 			var int_Click = window.setInterval(function(){
+				clearInterval(int_Click)
 				document.getElementById('fileinput').click()
-				document.getElementById('btn_clearLS').style.backgroundColor = ""
+				document.getElementById('btn_loadLS').style.backgroundColor = ""
 			}, 500)
 		}
 	}
@@ -1615,6 +1624,7 @@ function F_createQingElems() {
 	function F_btnClearLS() {
 		var button = document.createElement("button")
 		document.getElementById("div_QingMenu").appendChild(button)
+		button.id = "btn_clearLS"
 		button.innerHTML = "LS"
 		button.style.cursor = "pointer"
 		
@@ -1634,9 +1644,9 @@ function F_createQingElems() {
 			
 			this.style.backgroundColor = "aqua"
 			var int_Click = window.setInterval(function(){
+				clearInterval(int_Click)
 				localStorage.clear()
-				localStorage.setItem("lsCount",0)
-				document.getElementById('btn_saveLS').style.backgroundColor = "red"
+				document.getElementById('btn_clearLS').style.backgroundColor = "red"
 			}, 500)
 		}
 	}
@@ -1920,7 +1930,6 @@ function F_nextQ() {
 	var iTOnum = [] // num = amit kidob kérdések, ott hányadik fenntről lefele DE! ami többször van, az ugyanazt kapja!
 	var QsNum = 0 // számozásnál kell
 	
-	
 	// megnézi mindegyik Q-t, hogy az allQs-ban hányadik --> ugyanis úgy tudom lekérni a nevét majd
 	function F_checkNum() { 
 		var x = 0
@@ -1951,6 +1960,20 @@ function F_nextQ() {
 	
 	// kérdéseket kiírja
 	document.getElementById("div_QingLowerPart").innerHTML = parQ.outerHTML
+	
+	// detailsra klikk
+	function F_onToggle() {
+		var arrayDetails = document.getElementById("div_QingLowerPart").getElementsByTagName("details")
+		//for ( var i=0; i<arrayDetails.length; i++ ) { arrayDetails[i].addEventListener("toggle", alert("toggle")) } 
+		for ( var i=0; i<arrayDetails.length; i++ ) { arrayDetails[i].ontoggle = function() { 
+			F_createMarks() 
+			F_loadElem(this)
+			/*F_loadDetails(this)
+			F_highlightQ()*/
+			//F_onToggle()
+		} }
+	}
+	F_onToggle()
 	
 	// lehívja(/craftolja) az osztályzás opciókat mellé!
 	function F_createMarks() {
@@ -2096,31 +2119,78 @@ function F_nextQ() {
 	}
 	F_createMarks()
 	
-	function F_onToggle() {
-		var arrayDetails = document.getElementById("div_QingLowerPart").getElementsByTagName("details")
-		//for ( var i=0; i<arrayDetails.length; i++ ) { arrayDetails[i].addEventListener("toggle", alert("toggle")) } 
-		for ( var i=0; i<arrayDetails.length; i++ ) { arrayDetails[i].ontoggle = function() { 
-			F_createMarks() 
-			F_loadElem(this)
-			/*F_loadDetails(this)
-			F_highlightQ()*/
-			//F_onToggle()
-		} }
-	}
-	F_onToggle()
+	// bejelöli melyik a mainQ!
 	
-	// bejelöli melyik a main!
-	
-	
-	/* document.getElementById("btn_QingNextQ").style.color = ""
-	if ( localStorage.getItem("hk.lastSavedLS") > 4 ) { 
+	// ► (color:download)
+	document.getElementById("btn_QingNextQ").style.color = ""
+	if ( localStorage.getItem("newCount") > 4 ) { 
 		document.getElementById("btn_QingNextQ").style.backgroundColor = "aqua" 
 	} else {
 		document.getElementById("btn_QingNextQ").style.backgroundColor = "white"
-	} */
-	
+	}
 }
 // –––––––––––––––  Qing END  –––––––––––––––
+
+// open LS
+function F_openLS(content) {
+	do {
+		content = content.slice(content.indexOf("NEXTONE: ") +9)
+		var phaseText = content.slice(0,content.indexOf("\n"));
+		var variable = phaseText.slice(0,phaseText.indexOf(" == "));
+		var price = phaseText.slice(phaseText.indexOf(" == ") +4);
+		localStorage.setItem(variable, price)
+	}
+	while (phaseText.length > 1);
+}
+var fileInput = document.getElementById('fileinput');
+fileInput.addEventListener('change', function(e){
+	var file = fileInput.files[0];
+	var textType = /text.*/;
+	var content
+
+	if (file.type.match(textType)) {
+		var reader = new FileReader();
+
+		reader.onload = function(e) {
+			content = reader.result
+			F_openLS(content)
+		}
+
+		reader.readAsText(file);    
+	} else {
+		alert("File not supported!")
+	}
+})
+// download LS
+var downA = document.createElement('a');
+function F_downloadLS() {
+	localStorage.setItem("newCount",0)
+	
+	var count = localStorage.getItem("lsCount")
+	count = Number(count) +1
+	localStorage.setItem("lsCount",count)
+	var fileName = "localStorage" +count+ '.txt'
+	
+	var text = ""
+	var lsLength = localStorage.length
+	for ( var i=0; i<lsLength; i++ ) {
+		text = text+ "NEXTONE: " +localStorage.key(i)+ " == " +localStorage.getItem(localStorage.key(i))+ "\n"
+	}
+	
+	function F_downloadTXT(text,fileName){
+		downA.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+		downA.setAttribute('download', fileName);
+		if (document.createEvent) {
+			var event = document.createEvent('MouseEvents');
+			event.initEvent('click', true, true);
+			downA.dispatchEvent(event);
+		} else {
+			downA.click();
+		}
+	}
+	F_downloadTXT(text,fileName)
+}
+
 
 function F_andrSize() { if ( isAndroid ) { 
 	//document.body.style.fontSize = "300%" // android font size
