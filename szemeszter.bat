@@ -19,18 +19,18 @@ xcopy /y %source%\favicon.png %destination%\ /d
 
 REM 5.év
 xcopy /y %source%\Belgyogy\HIIRLm\hiirlm.html %destination%\Belgyogy\HIIRLm\ /d
-xcopy /y %source%\done\Aneszt\aneszt.html %destination%\done\Aneszt\ /d
-xcopy /y %source%\Bioetika\bioetika.html %destination%\Bioetika\ /d
-xcopy /y %source%\IgOr\igor.html %destination%\IgOr\ /d
-xcopy /y %source%\done\KlinGen\klingen.html %destination%\done\KlinGen\ /d
 xcopy /y %source%\Gyerekgyogy\gyermek.html %destination%\Gyerekgyogy\ /d
-xcopy /y %source%\done\Nepegeszsegtan\nepeg.html %destination%\done\Nepegeszsegtan\ /d
 xcopy /y %source%\Neurologia\neurologia.html %destination%\Neurologia\ /d
 xcopy /y %source%\Neurologia\neuroteszt.html %destination%\Neurologia\ /d
 xcopy /y %source%\Pszichiatria\pszichi.html %destination%\Pszichiatria\ /d
+xcopy /y %source%\Szuleszet\szuleszet.html %destination%\Szuleszet\ /d
+xcopy /y %source%\done\Aneszt\aneszt.html %destination%\done\Aneszt\ /d
+xcopy /y %source%\done\Bioetika\bioetika.html %destination%\done\Bioetika\ /d
+xcopy /y %source%\done\IgOr\igor.html %destination%\done\IgOr\ /d
+xcopy /y %source%\done\KlinGen\klingen.html %destination%\done\KlinGen\ /d
+xcopy /y %source%\done\Nepegeszsegtan\nepeg.html %destination%\done\Nepegeszsegtan\ /d
 xcopy /y %source%\done\Sportorvostan\Sportorvostan.html %destination%\done\Sportorvostan\ /d
 xcopy /y %source%\done\Szemeszet\szemeszet.html %destination%\done\Szemeszet\ /d
-xcopy /y %source%\Szuleszet\szuleszet.html %destination%\Szuleszet\ /d
 xcopy /y %source%\done\Urologia\urologia.html %destination%\done\Urologia\ /d
 
 REM 4.év
@@ -60,6 +60,7 @@ REM 3.év
 xcopy /y %source%\Belgyogy\Endokrin\favicon.bmp %destination%\Belgyogy\Endokrin\ /d
 xcopy /y %source%\Belgyogy\Endokrin\belgyogy.html %destination%\Belgyogy\Endokrin\ /d
 xcopy /y %source%\Belgyogy\Endokrin\favicon.bmp %destination%\Belgyogy\Endokrin\ /d
+xcopy /y %source%\Belgyogy\\Proped\proped.html %destination%\Belgyogy\\Proped\ /d
 xcopy /y %source%\done\Genetika\favicon.bmp %destination%\done\Genetika\ /d
 xcopy /y %source%\done\Genetika\genetika.html %destination%\done\Genetika\ /d
 xcopy /y %source%\done\Genetika\Genetika_genomika_2018.pdf %learnStuff%\done\Genetika\ /d
@@ -81,7 +82,6 @@ xcopy /y %source%\done\Mutettan\mutettan.html %destination%\done\Mutettan\ /d
 xcopy /y %source%\done\Mutettan\Wéber Gy., Ferencz A., Sándor J. - Műtéttan (2015).pdf %learnStuff%\done\Mutettan\ /d
 xcopy /y %source%\done\Patosz\patosz.html %destination%\done\Patosz\ /d
 xcopy /y %source%\done\Patosz\favicon.bmp %destination%\done\Patosz\ /d
-xcopy /y %source%\Belgyogy\\Proped\proped.html %destination%\Belgyogy\\Proped\ /d
 xcopy /y %source%\done\Pszicho\pszicho.html %destination%\done\Pszicho\ /d
 xcopy /y %source%\done\Pszicho\favicon.bmp %destination%\done\Pszicho\ /d
 

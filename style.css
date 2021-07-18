@@ -8,6 +8,14 @@ details[open] > summary.mainTitle {
 	color: yellow;
 }
 
+details[open] {
+	border-bottom: 3px solid black;
+	margin-bottom: 8px; /* vonal felett kis hej */
+	padding-bottom: 8px; /* vonal alatt kis hej */
+	overflow: hidden; /* ha van egy kép, akkor az ne lógjon át az alatta lévő kérdésekre, hanem 'tegye lejjeb a vonalat' */
+	/* text-align: left; */
+}
+
 .mainTitle {
 	font-weight: bold;
 	font-size: larger;
@@ -43,10 +51,10 @@ details[open] > summary.mainTitle {
 	border: 1px solid Black;
 	
 	display: inline-block;
-	/*
+
 	padding-left: 2px;
 	padding-right: 2px;
-	*/
+
 }
 
 * {
@@ -83,13 +91,6 @@ th { background: Silver }
 ul, ol { 
 	margin-top: 0; /* fölötte ne legyen hej */
 	margin-bottom: 0; /* alatta ne legyen hej */
-}
-details[open] {
-	border-bottom: 3px solid black;
-	margin-bottom: 8px; /* vonal felett kis hej */
-	padding-bottom: 8px; /* vonal alatt kis hej */
-	overflow: hidden; /* ha van egy kép, akkor az ne lógjon át az alatta lévő kérdésekre, hanem 'tegye lejjeb a vonalat' */
-	/* text-align: left; */
 }
 
 .mirror {

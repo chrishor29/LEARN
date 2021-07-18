@@ -1951,13 +1951,13 @@ function F_nextQ() {
 					xTOi[x] = i
 					// ellenőrzésnek: 
 					// parQ.firstChild.innerHTML = "["+x+","+i+"] "+parQ.firstChild.innerHTML
+					x = x +1
 					continue
 				}
 			}
 		}
 		var parQs = parQ.getElementsByClassName("kerdes")
 		for ( var count=0; count<parQs.length; count++ ) { 
-			x = x +1
 			for ( var i=0; i<allQs.length; i++ ) { 
 				if ( parQs[count] == allQs[i] ) {
 					xTOi[x] = i
@@ -1966,12 +1966,16 @@ function F_nextQ() {
 					continue
 				}
 			}
+			x = x +1
 		}
 	}
 	F_checkNum()
 	
 	// kérdéseket kiírja
 	document.getElementById("div_QingLowerPart").innerHTML = parQ.outerHTML
+	
+	var childs = document.getElementById("div_QingLowerPart").childNodes;
+	for ( var i=0; i<childs.length; i++ ) { if ( childs[i].className.indexOf("open") != -1 ) { childs[i].open = true } }
 	
 	// detailsra klikk
 	function F_onToggle(detElem) {
@@ -2127,6 +2131,7 @@ function F_nextQ() {
 			document.getElementById("span.0."+num).style.color = "black" 
 			
 			// beírja a dátumot, ha van
+			console.log(i)
 			var qNev = arrQnev[i].qNev
 			if ( localStorage.getItem(currPath+" | "+qNev) ) {
 				var date = localStorage.getItem(currPath+" | "+qNev)
@@ -2255,17 +2260,17 @@ function F_andrSize() { if ( isAndroid ) {
 	document.getElementById('link_style').href = 'styleAndroid.css'; // android li,table position
 	
 	//imgMiniHeight = "54px"
-	document.getElementById('btn_toggleSearch').style.fontSize = '100%'
+	document.getElementById('btn_toggleSearch').style.fontSize = '300%'
 	document.getElementById('btn_toggleLoad').style.width = "90px"
 	document.getElementById('btn_toggleLoad').style.height = "90px"
-	//document.getElementById('btn_clearIDB').style.width = "90px"
+	document.getElementById('btn_clearIDB').style.width = "90px"
 	document.getElementById('btn_clearIDB').style.height = "90px"
   } else {
 	//imgMiniHeight = "18px"
 	document.getElementById('btn_toggleSearch').style.fontSize = '300%'
 	document.getElementById('btn_toggleLoad').style.width = "40px"
 	document.getElementById('btn_toggleLoad').style.height = "40px"
-	//document.getElementById('btn_clearIDB').style.width = "40px"
+	document.getElementById('btn_clearIDB').style.width = "40px"
 	document.getElementById('btn_clearIDB').style.height = "40px"
 } }
 F_andrSize()
