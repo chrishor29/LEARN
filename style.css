@@ -16,10 +16,6 @@ details[open] {
 	/* text-align: left; */
 }
 
-li {
-  padding-left: 40px;
-}
-
 .mainTitle {
 	font-weight: bold;
 	font-size: larger;
@@ -64,6 +60,16 @@ li {
 * {
 	font-family: Tahoma;
 	list-style-type: disc;
+}
+
+li  {
+	list-style-type:none; /* removes default bullet */
+	position:relative;      /* positioning context for bullet */
+}
+li:before  {
+	content:"•";    /* escaped unicode character */
+	line-height:0;        /* kills huge line height on resized bullet */
+	position:absolute;  /* position bullet relative to list item */
 }
 
 summary {
