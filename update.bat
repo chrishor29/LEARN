@@ -1,5 +1,5 @@
 
-git rm videos\drainage.mp4
+REM git rm videos\drainage.mp4
 
 git config --global user.name "chrishor29"
 git config --global user.email "chrishor29@gmail.com"

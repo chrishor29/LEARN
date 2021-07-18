@@ -16,6 +16,10 @@ details[open] {
 	/* text-align: left; */
 }
 
+li {
+  padding-left: 40px;
+}
+
 .mainTitle {
 	font-weight: bold;
 	font-size: larger;
