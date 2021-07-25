@@ -41,6 +41,9 @@
             <Filter>
                 <Include>
                     <Item>mix.html</Item>
+                    <Item>style.css</Item>
+                    <Item>styleAndroid.css</Item>
+                    <Item>stylePC.css</Item>
                 </Include>
                 <Exclude/>
                 <TimeSpan Type="None">0</TimeSpan>
