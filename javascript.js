@@ -1334,6 +1334,7 @@ function F_createQingElems() {
 		div.style.paddingTop = "2px"
 		div.style.paddingBottom = "2px"
 		div.style.height = "25px"
+		div.style.display = "none"
 	}
 	F_divBottomPart()
 	function F_divLowerPart() { // alsó nagy rész: Q amit kidob
@@ -1801,6 +1802,7 @@ function F_createQingElems() {
 	
 	if ( isAndroid ) {
 		document.getElementById("div_QingBottomPart").appendChild(document.getElementById("span_QingSettings"))
+		document.getElementById("div_QingBottomPart").style.display = "block"
 		document.getElementById("span_QingSettings").appendChild(document.getElementById("btn_newQuest"))
 		document.getElementById("span_QingSettings").appendChild(document.getElementById("span_RepSlow"))
 		document.getElementById("span_QingSettings").appendChild(document.getElementById("span_repFast"))
