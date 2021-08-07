@@ -61,14 +61,14 @@ details[open] {
 	list-style-type: disc;
 }
 
-li  {
+li {
 	list-style-type:none; /* removes default bullet */
-	position:relative;      /* positioning context for bullet */
 }
 li:before  {
 	content:"•";    /* escaped unicode character */
-	line-height:0;        /* kills huge line height on resized bullet */
-	position:absolute;  /* position bullet relative to list item */
+	float: left;
+	line-height:0;  /* kills huge line height on resized bullet */
+	position:relative;  /* position bullet relative to list item */
 }
 
 summary {
