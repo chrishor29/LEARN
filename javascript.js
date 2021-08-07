@@ -286,6 +286,17 @@ function F_loadPageLinks() { // IDB, favicons, setClick
 	}
 	F_setPageClick()
 	
+	function F_checkFinish(count) {
+		if ( count == pageLinks.length ) {
+			console.log("All pages Loaded!!")
+			if ( localStorage.getItem("hk.ToggleAll") != null ) { 
+				F_starToggleAll() // átvált toggleQ nézetbe
+			} else {
+				document.getElementById("div_QingBg").style.display = "none"
+			}
+		}
+	}
+	
 	var count = 0
 	function F_loadIDB(page) {
 		var path = page.dataset.src
@@ -295,7 +306,12 @@ function F_loadPageLinks() { // IDB, favicons, setClick
 			var db = event.target.result;
 			//console.log(path+" – "+db.objectStoreNames.contains('webpage'))
 			//console.log(db.objectStoreNames)
-			if ( db.objectStoreNames.contains('webpage') != true ) { return }
+			if ( db.objectStoreNames.contains('webpage') != true ) { 
+				count = count +1 // ha fekete marad
+				F_checkFinish(count)
+				//console.log(count+" - black")
+				return
+			}
 			var transaction = db.transaction("webpage","readwrite")
 			var store = transaction.objectStore("webpage");  
 			store.get(1).onsuccess = function(event) { 
@@ -318,11 +334,9 @@ function F_loadPageLinks() { // IDB, favicons, setClick
 				}
 				
 				count = count +1
+				//console.log(count+" + blue/red")
 				// console.log(count+" vs "+pageLinks.length)
-				if ( count == pageLinks.length ) { // betöltötte mindegyik tárgyat, akkor toggleQ nézetbe, ha szükséges
-					// console.log("All pages Loaded!!")
-					F_starToggleAll()
-				}
+				F_checkFinish(count)
 			}
 			transaction.oncomplete = function() { db.close() }
 		}
@@ -1283,7 +1297,6 @@ function F_createQingElems() {
 			var int_Click = window.setInterval(function(){
 				clearInterval(int_Click) 
 				F_toggleQing()
-				document.getElementById("div_QingBg").style.display = "none"
 				document.getElementById("btn_toggleQing").style.backgroundColor = ""
 			}, 100)
 		}
@@ -1296,7 +1309,7 @@ function F_createQingElems() {
 		div.style.backgroundColor = "black"
 		div.style.opacity = "0.35"
 		div.style.overflow = "auto"
-		div.style.display = "none"
+		div.style.display = "block"
 		div.style.position = "fixed"
 		div.style.left = "5px"
 		div.style.right = "5px"
@@ -1936,6 +1949,7 @@ function F_toggleQing() {
 		document.getElementById("table_weboldalak").parentElement.parentElement.style.display = 'block';
 		document.getElementById("div_pageQTargy").style.display = 'block';
 		document.getElementById("div_QingMain").style.display = 'none';
+		document.getElementById("div_QingBg").style.display = "none"
 	} else {
 		localStorage.setItem("hk.ToggleAll",currPath)
 		document.getElementById("table_weboldalak").parentElement.parentElement.style.display = 'none';
@@ -1951,6 +1965,8 @@ function F_toggleQing() {
 		F_arrQs()
 		F_loadTetels()
 		F_loadLS()
+		document.getElementById("div_QingBg").style.display = "none"
+		//console.log("toggleQ finished")
 	}
 }
 function F_calcNextQ(){
@@ -2409,11 +2425,9 @@ function F_synonyms(detElem){
 }
 
 function F_starToggleAll() { // oldal betöltésénél váltson-e át Questelős nézetbe
-	if ( localStorage.getItem("hk.ToggleAll") != null ) { 
-		currPath = localStorage.getItem("hk.ToggleAll")
-		targyPath = localStorage.getItem("hk.ToggleAll")
-		F_loadAndSavePageText(localStorage.getItem("hk.ToggleAll"),true,true)
-	}
+	currPath = localStorage.getItem("hk.ToggleAll")
+	targyPath = localStorage.getItem("hk.ToggleAll")
+	F_loadAndSavePageText(localStorage.getItem("hk.ToggleAll"),true,true)
 }
 
 // –––––––––––––––  img BEGIN  –––––––––––––––
