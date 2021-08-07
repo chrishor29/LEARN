@@ -565,7 +565,7 @@ function F_loadMidQs(detElem) { // midQ[x] elemeket beállítja: kék fontColor,
 function F_tooltipFuncs(){
 	var span = document.createElement("span")
 	span.id = "span_abbrTitle"
-	document.body.appendChild(span)
+	document.getElementById("div_body").appendChild(span)
 	span.style.display = "none"
 	span.style.border = "2px solid black"
 	span.style.backgroundColor = "azure"
