@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FreeFileSync XmlType="BATCH" XmlFormat="17">
     <Compare>
-        <Variant>TimeAndSize</Variant>
+        <Variant>Size</Variant>
         <Symlinks>Exclude</Symlinks>
         <IgnoreTimeShift/>
     </Compare>
@@ -35,8 +35,8 @@
     </Filter>
     <FolderPairs>
         <Pair>
-            <Left>D:\zene</Left>
-            <Right>mtp:\HUAWEI P20 lite\Internal shared storage\ZENE</Right>
+            <Left>mtp:\HUAWEI P20 lite\Internal shared storage\ZENE</Left>
+            <Right>D:\zene</Right>
         </Pair>
     </FolderPairs>
     <Errors Ignore="false" Retry="0" Delay="5"/>

@@ -114,18 +114,18 @@ ul, ol {
 	background-color: orange;
 }
 .plus { 
-	border: Black 1px solid; 
-	padding-left: 3px; 
-	padding-right: 3px; 
+	padding-left: 2px; 
+	padding-right: 2px; 
 	background-color: green;
 	color: white;
+	font-weight: bold;
 }
 .minus { 
-	border: Black 1px solid; 
-	padding-left: 4px; 
-	padding-right: 4px; 
+	padding-left: 3px; 
+	padding-right: 3px; 
 	background-color: red;
 	color: white;
+	font-weight: bold;
 }
 .important { background-color: Lime /*SpringGreen*/ }
 .done { background-color: Aqua /*PaleTurquoise < Aqua < aquamarine < DarkTurquoise < deepskyblue < LightSeaGreen < dodgerblue*/ }

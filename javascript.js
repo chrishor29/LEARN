@@ -5,7 +5,7 @@ document.body.style.margin = "2px" // ez valahol nagyobbra van állítva, vissza
 var ua = navigator.userAgent.toLowerCase()
 var isAndroid = ua.indexOf("android") > -1 
 
-if ( isAndroid ) { // ezis egy variáció, font size hejett, de pl. middle img problem (bonyolultabb?)
+if ( isAndroid ) { // ezis egy variáció, font size hejett, de pl. middle img, title problem (bonyolultabb?)
 	andrScale = 2.5
 	//var divBody = document.body
 	var divBody = document.getElementById("div_body")
@@ -52,7 +52,7 @@ function F_offsetXY(detElem) { // absolute x & y position-t lekéri!
 	scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 	return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
 	
-	/*if(!detElem) detElem = this; // másik módszer, ha a fennti nem lesz jó valamiért
+	/*if(!detElem) detElem = this; // másik módszer, ha a fennti nem lesz jó valamiért 
 
 	var x = detElem.offsetLeft;
 	var y = detElem.offsetTop;
@@ -62,7 +62,8 @@ function F_offsetXY(detElem) { // absolute x & y position-t lekéri!
 		y += detElem.offsetTop;
 	}
 
-	return { left: x, top: y };*/
+	return { left: x, top: y };
+	*/
 }
 function F_fixedXY(detElem) { // fixed x & y position-t lekéri!
 	var rect = detElem.getBoundingClientRect()
@@ -580,12 +581,12 @@ function F_tooltipFuncs(){
 	var span = document.createElement("span")
 	span.id = "span_abbrTitle"
 	document.getElementById("div_body").appendChild(span)
+	//document.body.appendChild(span)
 	span.style.display = "none"
 	span.style.border = "2px solid black"
 	span.style.backgroundColor = "azure"
 	span.style.position = "absolute"
 	span.style.maxWidth = "300px"
-	span.style.fontSize = "smaller"
 	span.style.padding = "2px 2px 2px 5px"
 	span.style.zIndex = "4"
 	span.onclick = function() { event.stopPropagation() /* ne tűnjön el, mert a document.body-ra is klikkelek közben! */ }
@@ -604,16 +605,20 @@ function F_titleVerChange(velement){
 		
 		// Y pozíció
 		var posY = F_offsetXY(detElem).top
-		span.style.top = posY + detElem.offsetHeight +2 +"px"
+		posY = posY + detElem.offsetHeight +2
+		if ( isAndroid ) { posY = posY / andrScale }
+		span.style.top = posY +"px"
 		  // ide kéne valami, hogy ha uccsó sorban van (midQ) a title, akkor ha nem fér ki, akkor felfele tolja.. (mint X-nél)
 		
 		// X pozíció
 		var posX = F_offsetXY(detElem).left
 		if ( span.offsetWidth > document.body.offsetWidth - posX -10 ) {
-			span.style.left = document.body.offsetWidth - span.offsetWidth - 10 +"px"
+			posX = document.body.offsetWidth - span.offsetWidth - 10
 		} else {
-			span.style.left = mouseX +"px"
+			posX = mouseX
 		}
+		if ( isAndroid ) { posX = posX / andrScale }
+		span.style.left = posX +"px"
 	}
 	var span = document.getElementById("span_abbrTitle")
 	velement.onclick = function(event) {
@@ -2405,11 +2410,13 @@ function F_synonyms(detElem){
 		synonyms[x].style.cursor = "pointer"
 
 		// egy randomot kiválaszt
-		synonyms[x].dataset.syno = synonyms[x].innerHTML
-		var synos = synonyms[x].dataset.syno
-		synos = synos.split(" | ")
-		var num = getRandomInt(synos.length)
-		synonyms[x].innerHTML = synos[num]
+		if ( synonyms[x].dataset.syno == null ) { 
+			synonyms[x].dataset.syno = synonyms[x].innerHTML 
+			var synos = synonyms[x].dataset.syno
+			synos = synos.split(" | ")
+			var num = getRandomInt(synos.length)
+			synonyms[x].innerHTML = synos[num]
+		}
 
 		synonyms[x].onclick = function() { // sorban következőt kiválasztja
 			var synos = this.dataset.syno
