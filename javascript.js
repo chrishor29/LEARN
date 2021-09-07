@@ -662,14 +662,18 @@ function F_setSeekBarWidth(thisVideo){
 }
 function F_stopVideo(thisVideo){
 	if ( thisVideo.id != "video_cent" ) { thisVideo.id = "" }
-	thisVideo.style.borderColor = "black"
+	thisVideo.parentElement.style.borderColor = "black"
+	//thisVideo.style.borderColor = "black"
+	//thisVideo.parentElement.style.backgroundColor = "black"
 	thisVideo.pause()
 	F_setSeekBarWidth(thisVideo)
 }
 function F_playVideo(thisVideo){
 	if ( document.getElementById("playedVideo") ) { F_stopVideo(document.getElementById("playedVideo")) }
 	if ( thisVideo.id != "video_cent" ) { thisVideo.id = "playedVideo" }
-	thisVideo.style.borderColor = "springgreen"
+	thisVideo.parentElement.style.borderColor = "springgreen"
+	//thisVideo.style.borderColor = "springgreen"
+	//thisVideo.parentElement.style.backgroundColor = "springgreen"
 	thisVideo.play()
 	var F_seekBar = window.setInterval(function(){
 		F_setSeekBarWidth(thisVideo)
@@ -702,7 +706,8 @@ function F_loadVideos(detElem){
 		
 		videoElem.style.borderColor = "black"
 		videoElem.style.cursor = "pointer"
-		videoElem.style.maxWidth = "100%" // kell! különben kilóg a képernyőről, ha nagyobb, mint 60%
+		videoElem.style.maxWidth = "100%"
+		//videoElem.style.maxWidth = "calc(100% - 10px)" // bordert kivonja belőle
 		
 		videoElem.onloadeddata = function() { // meg kell várja, különben seekBar mérete nem jó
 			var videoElem = this
@@ -711,11 +716,11 @@ function F_loadVideos(detElem){
 				var parent = videoElem.parentNode
 				parent.insertBefore(parentDiv,videoElem)
 				parentDiv.appendChild(videoElem)
-				parentDiv.style.border = "15px solid black"
 				parentDiv.style.maxWidth = "60%"
-				if ( videoElem.dataset.width ) { parentDiv.style.maxWidth = videoElem.dataset.width }
-				parentDiv.style.width = videoElem.offsetWidth
 				parentDiv.style.float = "right"
+				parentDiv.style.backgroundColor = "black"
+				parentDiv.style.padding = "6px"; 
+				parentDiv.style.border = "6px solid black"
 				
 				var seekBarDiv = document.createElement("div") // szürke háttér
 				seekBarDiv.className = "seekBar"
@@ -866,7 +871,7 @@ function F_searchResult() { // találati eredmények betöltése...
 			progress = false
 			return
 		}
-		fullText = fullText+ path
+		fullText = fullText+ "<strong>"+path+"</strong>"
 
 		var locST = 0 // keresett szó heje a targytext-ben; végén mindig növelem +1el, hogy a következőre keressen utána
 		var detaLocs = "" // amikor ráklikkelek a kidobott találatra akkor betölt egy detailst; ebben a string-ben azoknak a location-je van felsorolva a targytext-ben; azért kell, hogy 2x ugyanazt ne tegye ki (hiába van 1detan belül 2x a keresett szó) -> ezzel tudom ellenőrizni, hogy volt-e már
@@ -922,7 +927,7 @@ function F_searchResult() { // találati eredmények betöltése...
 			fullText = fullText+ "<li><span data-id='"+summaryID+"' data-path='"+path+"' style='color:green; cursor:pointer' onclick='F_clickSearchResult(this)'>"+summaryText+"</span></li>"
 			//targyText = targyText.slice(targyText.indexOf(resultText)+resultText.length)
 		} while ( targyText.toLowerCase().indexOf(searchText,locST+1) != -1 )
-		document.getElementById("div_searchResults").innerHTML = "<ul class='normal'>" +fullText+ "</ul>"
+		document.getElementById("div_searchResults").innerHTML = fullText
 		
 		//console.log(x+" "+progress+" "+path)
 		progress = false
@@ -1341,7 +1346,7 @@ function F_createQingElems() {
 		div.style.borderBottom = "4px solid black"
 		//div.style.marginBottom = "2px"
 		div.style.paddingBottom = "5px"
-		div.style.height = "85px" // 17vh
+		div.style.height = "100px" // 17vh
 	}
 	F_divUpperPart()
 	function F_divBottomPart() { // felső kis rész v2 Androidra: kiírások (tételszám, Q szám)
@@ -1369,10 +1374,10 @@ function F_createQingElems() {
 		span.id = "span_QingMarkPart"
 		
 		span.style.position = "absolute"
-		span.style.left = "255px"
-		span.style.right = "90px"
+		span.style.left = "253px"
+		span.style.right = "95px"
 		span.style.top = "0px"
-		span.style.height = "111px"
+		span.style.height = "105px"
 		span.style.maxHeight = "300px"
 		
 		span.style.overflowX = "auto"
@@ -1400,7 +1405,7 @@ function F_createQingElems() {
 		button.style.height = "50px"
 		button.style.width = "50px"
 		button.style.top = "18px"
-		button.style.right = "90px"
+		button.style.right = "93px"
 		button.style.overflow = "auto"
 		
 		button.onclick = function() { 
@@ -1515,7 +1520,7 @@ function F_createQingElems() {
 	F_btnNewQ()
 	function F_spanRepSlow() {
 		var span = document.createElement("span")
-		span.id = "span_RepSlow"
+		span.id = "span_oldQs"
 		document.getElementById("span_secondLine").appendChild(span)
 		span.style.border = "1px solid black"
 		span.style.backgroundColor = "Gainsboro"
@@ -1530,7 +1535,7 @@ function F_createQingElems() {
 	F_spanRepSlow()
 	function F_btnRepFast() {
 		var button = document.createElement("button")
-		button.id = "span_repFast"
+		button.id = "span_youngQs"
 		document.getElementById("span_secondLine").appendChild(button)
 		button.style.border = "3px solid black"
 		button.style.backgroundColor = "pink"
@@ -1822,14 +1827,17 @@ function F_createQingElems() {
 		document.getElementById("div_QingBottomPart").appendChild(document.getElementById("span_QingSettings"))
 		document.getElementById("div_QingBottomPart").style.display = "block"
 		document.getElementById("span_QingSettings").appendChild(document.getElementById("btn_newQuest"))
-		document.getElementById("span_QingSettings").appendChild(document.getElementById("span_RepSlow"))
-		document.getElementById("span_QingSettings").appendChild(document.getElementById("span_repFast"))
+		document.getElementById("span_QingSettings").appendChild(document.getElementById("span_oldQs"))
+		document.getElementById("span_QingSettings").appendChild(document.getElementById("span_youngQs"))
 		document.getElementById("span_QingSettings").appendChild(document.getElementById("span_thirdLine"))
 		document.getElementById("span_QingSettings").appendChild(document.getElementById("span_QingNewOldBorder"))
 		document.getElementById("span_QingSettings").appendChild(document.getElementById("span_QingJegy"))
 		document.getElementById("span_QingSettings").appendChild(document.getElementById("btn_QingQuests"))
 		document.getElementById("btn_QingNextQ").style.left = "0px"
+		document.getElementById("div_QingUpperPart").style.height = "88px"
+		document.getElementById("span_QingMarkPart").style.height = "95px"
 		document.getElementById("span_QingMarkPart").style.left = "55px"
+		document.getElementById("span_QingMarkPart").style.right = "65px"
 		document.getElementById("btn_toggleQing").style.width = "60px"
 		document.getElementById("btn_toggleQing").style.height = "60px"
 	}
@@ -1974,6 +1982,36 @@ function F_toggleQing() {
 		//console.log("toggleQ finished")
 	}
 }
+function F_calcOldQs(){
+	var currTime = F_getTime()
+	currTime = Math.round(currTime)
+	
+	var oldQs = 0
+	var youngQs = 0
+	var skipQs = 0
+	for ( var x=0; x<arrOldQs.length; x++ ) {
+		var i = arrOldQs[x]
+		var qNev = arrQnev[i].qNev
+			var date = localStorage.getItem(currPath+" | "+qNev)
+			var jegy = date.slice(0,date.indexOf(" , "))
+			date = date.slice(date.indexOf(" , ")+3)
+			var skip = date.slice(0,date.indexOf(" , "))
+			date = date.slice(date.indexOf(" , ")+3)
+		if ( skip == "true" ) { 
+			skipQs = skipQs +1
+			continue
+		}
+		var diffTime = Number(currTime) - Number(date)
+		if ( diffTime > 600 ) {
+			oldQs = oldQs +1
+		} else {
+			youngQs = youngQs +1
+		}
+		//console.log(i+" "+jegy+" "+diffTime)
+	}
+	document.getElementById("span_oldQs").innerHTML = oldQs
+	document.getElementById("span_youngQs").innerHTML = youngQs
+}
 function F_calcNextQ(){
 	var priorID = "none"
 	var currTime = F_getTime()
@@ -2012,6 +2050,7 @@ function F_nextQ() {
 	
 	F_saveLS()
 	F_loadLS()
+	F_calcOldQs()
 	var priorID = F_calcNextQ()  // megnézi melyik Q lesz a kövi
 	if ( priorID == "none" ) { 
 		alert("elfogytak a kérdések")
@@ -2398,7 +2437,7 @@ function F_tableScrollable(detElem) { // table ha nem fér ki, akkor vízszintes
 	}
 }
 
-function F_synonyms(detElem){
+function F_synonyms(detElem) {
 	function getRandomInt(max) { return Math.floor(Math.random() * Math.floor(max)) }
 	var synonyms = detElem.getElementsByClassName("syno")
 	for ( var x=0; x<synonyms.length; x++ ) {
@@ -2427,6 +2466,45 @@ function F_synonyms(detElem){
 				this.dataset.syno = synos.join(" | ")
 			}
 			this.innerHTML = synos[0]
+		}
+	}
+}
+
+function F_answerQ(detElem) { 
+	var trueA = detElem.getElementsByClassName("trueA")
+	var tippA = detElem.getElementsByClassName("tippA")
+	var falseA = detElem.getElementsByClassName("falseA")
+	var answers = detElem.getElementsByClassName("answer")
+	var hiddens = detElem.getElementsByClassName("hidden")
+	//if ( trueA.length == 0 ) { return }
+	
+	if ( detElem.open != true ) {
+		for ( var i=0; i<trueA.length; i++ ) { trueA[i].style.backgroundColor = "" }
+		for ( var i=0; i<tippA.length; i++ ) { tippA[i].style.backgroundColor = "" }
+		for ( var i=0; i<falseA.length; i++ ) { falseA[i].style.backgroundColor = "" }
+		for ( var i=0; i<answers.length; i++ ) { answers[i].style.backgroundColor = "gold" }
+		for ( var i=0; i<hiddens.length; i++ ) { hiddens[i].style.display = "none" }
+		//return // ez nem tudom miért kellett anno, de kivettem így a search esetén is működik már
+	}
+	
+	var div = detElem.getElementsByClassName("random")
+	if ( div.length == 0 ) { return }
+	if ( div[0].offsetParent === null ) { return }
+	var liA = div[0].getElementsByTagName("li")
+	for (var i=0; i<liA.length; i++) { div[0].appendChild(liA[Math.random() * i | 0]) }
+	
+	//trueA = detElem.getElementsByClassName("trueA")
+	//falseA = detElem.getElementsByClassName("falseA")
+	for ( var x=0; x<answers.length; x++ ) { 
+		//alert(answers[x].offsetParent)
+		answers[x].style.cursor = "pointer"
+		answers[x].onclick = function(){
+			for ( var i=0; i<trueA.length; i++ ) { trueA[i].style.backgroundColor = "springgreen" }
+			for ( var i=0; i<tippA.length; i++ ) { tippA[i].style.backgroundColor = "yellow" }
+			for ( var i=0; i<falseA.length; i++ ) {  falseA[i].style.backgroundColor = "tomato" }
+			for ( var i=0; i<hiddens.length; i++ ) { hiddens[i].style.display = "block" }
+			this.style.cursor = ""
+			this.style.backgroundColor = "white"
 		}
 	}
 }
@@ -2522,6 +2600,7 @@ function F_loadElem(detElem) { // detailsok megnyitásánál is ezt a funkciót 
 	F_tableScrollable(detElem)
 	F_synonyms(detElem)
 	F_titleChange(detElem)
+	F_answerQ(detElem)
 	
 	var allDetails = detElem.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) { allDetails[i].ontoggle = function() { F_loadElem(this) } }

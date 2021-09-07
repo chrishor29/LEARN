@@ -19,6 +19,7 @@ xcopy /y %source%\favicon.png %destination%\ /d
 
 REM 5.év
 xcopy /y %source%\Belgyogy\HIIRLm\hiirlm.html %destination%\Belgyogy\HIIRLm\ /d
+xcopy /y %source%\Transzfuziologia\trafo.html %destination%\Transzfuziologia\ /d
 xcopy /y %source%\Gyerekgyogy\gyermek.html %destination%\Gyerekgyogy\ /d
 xcopy /y %source%\Neurologia\neurologia.html %destination%\Neurologia\ /d
 xcopy /y %source%\Neurologia\neuroteszt.html %destination%\Neurologia\ /d

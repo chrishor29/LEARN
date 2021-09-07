@@ -78,9 +78,9 @@ summary {
 }
 
 video{
-	border: 5px solid black;
-	background-color: blueviolet;
-	display: block;
+	border-bottom: 5px solid black;
+	background-color: black;
+	display: block; 
 }
 
 table {
