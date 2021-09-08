@@ -1164,14 +1164,14 @@ function F_saveLS() {
 		
 		if ( jegy == "&nbsp;" && skip == "false" ) { continue }
 		
-		var date = currTime
-		
 		newCount = Number(localStorage.getItem("newCount")) +1
 		localStorage.setItem("newCount",newCount)
 		
+		var date = currTime
+		
 		var qNev = arrQnev[i].qNev
 		if ( jegy == "&nbsp;" ) { 
-			if ( localStorage.getItem(currPath+" | "+qNev) ) {
+			if ( localStorage.getItem(currPath+" | "+qNev) ) {  // ha már volt osztályozva korábban
 				date = localStorage.getItem(currPath+" | "+qNev)
 				jegy = date.slice(0,date.indexOf(" , "))
 				date = date.slice(date.indexOf(" , ")+3)
@@ -1635,10 +1635,12 @@ function F_createQingElems() {
 				document.getElementById("div_QingLowerPart").style.display = "block"
 				this.style.borderColor = "black"
 				document.getElementById("div_QingQuests").style.display = "none"
+				F_resetQtab()
 			} else {
 				F_hideAllower()
 				this.style.borderColor = "limegreen"
 				document.getElementById("div_QingQuests").style.display = "block"
+				F_createQtab()
 			}
 		}
 		
@@ -1757,14 +1759,17 @@ function F_createQingElems() {
 		var div = document.createElement("div")
 		div.id = "div_QingTetels"
 		document.getElementById("div_QingMain").appendChild(div)
+		//document.getElementById("div_QingLowerPart").appendChild(div)
 		div.style.backgroundColor = "white"
 		div.style.border = "10px solid black"
 		div.style.display = "none"
-		div.style.maxHeight = "90%"
+		div.style.position = "fixed"
+		div.style.top = "110px"
+		div.style.left = "3px"
+		div.style.right = "3px"
+		div.style.bottom = "3px"
 		//div.style.height = document.body.clientHeight - 80 - 20/*border*/ - 25/*passz, de még vannak margin & padding-ek*/
 		div.style.overflow = "auto"
-		
-		//div.innerHTML = "tételek"
 	}
 	F_divTetels()
 	function F_divQuests() { // questek státusza
@@ -1774,10 +1779,17 @@ function F_createQingElems() {
 		div.style.backgroundColor = "white"
 		div.style.border = "10px solid black"
 		div.style.display = "none"
-		div.style.height =  document.body.clientHeight - 80 - 20/*border*/ - 25/*passz, de még vannak margin & padding-ek*/
+		div.style.position = "fixed"
+		div.style.top = "110px"
+		div.style.left = "3px"
+		div.style.right = "3px"
+		div.style.bottom = "3px"
+		//div.style.height =  document.body.clientHeight - 80 - 20/*border*/ - 25/*passz, de még vannak margin & padding-ek*/
 		div.style.overflow = "auto"
 		
-		div.innerHTML = "questek"
+		var table = document.createElement("TABLE")
+		table.id = "table_oldQs"
+		div.appendChild(table)
 	}
 	F_divQuests()
 	
@@ -1838,6 +1850,8 @@ function F_createQingElems() {
 		document.getElementById("span_QingMarkPart").style.height = "95px"
 		document.getElementById("span_QingMarkPart").style.left = "55px"
 		document.getElementById("span_QingMarkPart").style.right = "65px"
+		document.getElementById("div_QingTetels").style.top = "125px"
+		document.getElementById("div_QingQuests").style.top = "125px"
 		document.getElementById("btn_toggleQing").style.width = "60px"
 		document.getElementById("btn_toggleQing").style.height = "60px"
 	}
@@ -1978,6 +1992,7 @@ function F_toggleQing() {
 		F_arrQs()
 		F_loadTetels()
 		F_loadLS()
+		F_calcOldQs()
 		document.getElementById("div_QingBg").style.display = "none"
 		//console.log("toggleQ finished")
 	}
@@ -2011,6 +2026,7 @@ function F_calcOldQs(){
 	}
 	document.getElementById("span_oldQs").innerHTML = oldQs
 	document.getElementById("span_youngQs").innerHTML = youngQs
+	document.getElementById("btn_QingQuests").innerHTML = arrOldQs.length
 }
 function F_calcNextQ(){
 	var priorID = "none"
@@ -2168,7 +2184,12 @@ function F_nextQ() {
 								var qNev = arrQnev[i].qNev
 								var jegyName = localStorage.getItem(currPath+" | "+qNev)
 								jegyName = jegyName.replace("true","false")
-								localStorage.setItem(currPath+" | "+qNev,jegyName)
+								var jegy = jegyName.slice(0,jegyName.indexOf(" , "))
+								if ( jegy == "&nbsp;" ) {
+									localStorage.removeItem(currPath+" | "+qNev)
+								} else {
+									localStorage.setItem(currPath+" | "+qNev,jegyName)
+								}
 								
 								this.style.backgroundColor = "white"
 								this.style.color = "black"
@@ -2266,6 +2287,8 @@ function F_nextQ() {
 			
 			document.getElementById("span.0."+num).style.backgroundColor = "white" 
 			document.getElementById("span.0."+num).style.color = "black" 
+			document.getElementById('span.1.'+num).innerHTML = "&nbsp"
+			document.getElementById('span.2.'+num).innerHTML = "&nbsp"
 			
 			// beírja a dátumot, ha van
 			// console.log(i)
@@ -2280,18 +2303,17 @@ function F_nextQ() {
 					document.getElementById("span.0."+num).style.backgroundColor = "black" 
 					document.getElementById("span.0."+num).style.color = "white" 
 				}
-				var diffTime = Number(currTime) - Number(date)
-				diffTime = Number(diffTime)
-				diffTime = diffTime/60
-				diffTime = Math.floor(diffTime)
-				if ( diffTime > 99 ) {
-					document.getElementById("span.2."+num).innerHTML = Math.floor(diffTime/60)
-				} else {
-					document.getElementById("span.2."+num).innerHTML = "<strong>"+diffTime+"</strong>"
+				if ( jegy != "&nbsp;" ) { 
+					var diffTime = Number(currTime) - Number(date)
+					diffTime = Number(diffTime)
+					diffTime = diffTime/60
+					diffTime = Math.floor(diffTime)
+					if ( diffTime > 99 ) {
+						document.getElementById("span.2."+num).innerHTML = Math.floor(diffTime/60)
+					} else {
+						document.getElementById("span.2."+num).innerHTML = "<strong>"+diffTime+"</strong>"
+					}
 				}
-			} else {
-				document.getElementById('span.1.'+num).innerHTML = "&nbsp"
-				document.getElementById('span.2.'+num).innerHTML = "&nbsp"
 			}
 		}
 	}
@@ -2330,6 +2352,111 @@ function F_nextQ() {
 	}
 }
 // –––––––––––––––  Qing END  –––––––––––––––
+
+
+// oldQ TAB
+function F_resetQtab() {
+	var table = document.getElementById("table_oldQs")
+	table.innerHTML = ""
+}
+function F_createQtab() {
+	var currTime = F_getTime()
+	currTime = Math.round(currTime)
+	var table = document.getElementById("table_oldQs")
+	
+	function F_addElem(trElem,skip,val) {
+		var TRs = table.childNodes
+		if ( skip == true ) { 
+			table.appendChild(trElem)
+			return
+		}
+		for ( var i=0; i<TRs.length; i++ ) {
+			var TDs = TRs[i].childNodes
+			var qNev = TDs[0].innerHTML
+			var jegy = TDs[1].innerHTML
+			var date = TDs[2].innerHTML
+			var skipOther = TDs[0].dataset.skip
+			if ( skipOther == "true" ) { 
+				table.insertBefore(trElem,TRs[i])
+				return
+			}
+			var valOther = Number(date) / Number(jegy)
+			if ( val > valOther ) { 
+				table.insertBefore(trElem,TRs[i])
+				return
+			}
+		}
+		table.appendChild(trElem)
+	}
+	function F_createElem(qNev) {
+		var tr = document.createElement("TR")
+		
+		var td = document.createElement("TD")
+		tr.appendChild(td)
+		td.innerHTML = qNev
+		td.onclick = function() {
+			var jegySkipDate = localStorage.getItem(currPath+" | "+qNev)  // jegy , skip , date
+			var oldSkip, newSkip
+			if ( this.dataset.skip == "true" ) {
+				oldSkip = " , true , "
+				newSkip = " , false , "
+			} else {
+				oldSkip = " , false , "
+				newSkip = " , true , "
+			}
+			
+			if ( this.style.backgroundColor == "grey"  || this.style.backgroundColor == "" ) {
+				this.style.backgroundColor = "coral"
+				jegySkipDate = jegySkipDate.replace(oldSkip,newSkip)
+			} else if ( this.dataset.skip == "true" ) {
+				this.style.backgroundColor = "grey"
+				jegySkipDate = jegySkipDate.replace(newSkip,oldSkip)
+			} else {
+				this.style.backgroundColor = ""
+				jegySkipDate = jegySkipDate.replace(newSkip,oldSkip)
+			}
+			localStorage.setItem(currPath+" | "+qNev,jegySkipDate)
+		}
+		
+		var date = localStorage.getItem(currPath+" | "+qNev)  // jegy , skip , date
+		var jegy = date.slice(0,date.indexOf(" , "))
+		date = date.slice(date.indexOf(" , ")+3)
+		var skip = date.slice(0,date.indexOf(" , "))
+		date = date.slice(date.indexOf(" , ")+3)
+		
+		if ( skip == "true" ) { 
+			td.style.backgroundColor = "grey"
+			td.dataset.skip = "true"
+		}
+		
+		var td = document.createElement("TD")
+		tr.appendChild(td)
+		td.innerHTML = jegy
+		
+		// percben, kerekítve
+		var diffTime = Number(currTime) - Number(date)
+		diffTime = diffTime /60
+		diffTime = Math.round(diffTime)
+		var td = document.createElement("TD")
+		tr.appendChild(td)
+		td.innerHTML = diffTime
+		
+		var val = Number(diffTime) / Number(jegy)
+		F_addElem(tr,skip,val)
+	}
+	
+	for ( var x=0; x<arrOldQs.length; x++ ) {
+		var i = arrOldQs[x]
+		var qNev = arrQnev[i].qNev
+		F_createElem(qNev)
+	}
+	for ( var i=0; i<table.childNodes.length; i++ ) {
+		var td = document.createElement("TD")
+		td.innerHTML = Number(i) +1
+		table.childNodes[i].insertBefore(td, table.childNodes[i].childNodes[0])
+	}
+}
+
 
 // open LS
 function F_openLS(content) {
