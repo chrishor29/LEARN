@@ -20,7 +20,7 @@ if ( isAndroid ) { // ezis egy variáció, font size hejett, de pl. middle img, 
 	document.body.appendChild(document.getElementById("div_centImgBg"))
 }
 
-alert("update1")
+alert("update2")
 
 function F_getTime() {
 	var myDate = new Date()
@@ -48,10 +48,22 @@ function F_offsetXY(detElem) { // absolute x & y position-t lekéri!
 			// és element pozícióját kéri, de ez részlet kérdés szinte
 			// table-ban magában nem jó, azért kell az F_offsetXY funkció
 	*/
+	
+	/*
 	var rect = detElem.getBoundingClientRect(),
 	scrollLeft = detElem.scrollLeft,
 	scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 	return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+	*/
+	
+	var _x = 0;
+	var _y = 0;
+	while( detElem && !isNaN( detElem.offsetLeft ) && !isNaN( detElem.offsetTop ) ) {
+		_x += detElem.offsetLeft - detElem.scrollLeft;
+		_y += detElem.offsetTop - detElem.scrollTop;
+		detElem = detElem.offsetParent;
+	 }
+	 return { top: _y, left: _x };
 	
 	/*if(!detElem) detElem = this; // másik módszer, ha a fennti nem lesz jó valamiért  --> ez nem jó scroll-nál
 
