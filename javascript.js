@@ -20,7 +20,7 @@ if ( isAndroid ) { // ezis egy variáció, font size hejett, de pl. middle img, 
 	document.body.appendChild(document.getElementById("div_centImgBg"))
 }
 
-alert("update2")
+alert("update3")
 
 function F_getTime() {
 	var myDate = new Date()
