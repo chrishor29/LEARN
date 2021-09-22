@@ -20,8 +20,6 @@ if ( isAndroid ) { // ezis egy variáció, font size hejett, de pl. middle img, 
 	document.body.appendChild(document.getElementById("div_centImgBg"))
 }
 
-alert("update3")
-
 function F_getTime() {
 	var myDate = new Date()
 	//var time = myDate.getTime() /1000
@@ -1170,10 +1168,12 @@ function F_saveLS() {
 		document.getElementById('parSpan.'+num).dataset.elemi = ""
 		
 		var skip = "false"
-		if ( document.getElementById("span.2."+num).style.backgroundColor == "black" ) {
-			skip = "true"
-			document.getElementById("span.2."+num).style.backgroundColor = ""
+		if ( document.getElementById("span.2."+num).style.backgroundColor == "yellow" ) {
+			skip = "top"
+		} else if ( document.getElementById("span.2."+num).style.backgroundColor == "black" ) {
+			skip = "skip"
 		}
+		document.getElementById("span.2."+num).style.backgroundColor = ""
 		
 		if ( jegy == "&nbsp;" && skip == "false" ) { continue }
 		
@@ -1593,9 +1593,9 @@ function F_createQingElems() {
 		}
 	}
 	F_spanNewOldBorder()
-	function F_spanRepNew() {
+	function F_spanTopNew() {
 		var span = document.createElement("span")
-		span.id = "span_QingRepNew"
+		span.id = "span_QingTopNew"
 		document.getElementById("span_QingNewOldBorder").appendChild(span)
 		span.style.backgroundColor = "White"
 
@@ -1606,10 +1606,10 @@ function F_createQingElems() {
 		
 		span.innerHTML = "?"
 	}
-	F_spanRepNew()
-	function F_spanRepOld() {
+	F_spanTopNew()
+	function F_spanTopOld() {
 		var span = document.createElement("span")
-		span.id = "span_QingRepOld"
+		span.id = "span_QingTopOld"
 		document.getElementById("span_QingNewOldBorder").appendChild(span)
 		span.style.backgroundColor = "Gainsboro"
 
@@ -1620,7 +1620,7 @@ function F_createQingElems() {
 		
 		span.innerHTML = "?"
 	}
-	F_spanRepOld()
+	F_spanTopOld()
 	function F_spanJegy() { // mennyi az átlag jegy
 		var span = document.createElement("span")
 		document.getElementById("span_thirdLine").appendChild(span)
@@ -1802,6 +1802,18 @@ function F_createQingElems() {
 		
 		var table = document.createElement("TABLE")
 		table.id = "table_oldQs"
+		div.appendChild(table)
+		
+		var table = document.createElement("TABLE")
+		table.id = "table_oldQsTop"
+		div.appendChild(table)
+		
+		var table = document.createElement("TABLE")
+		table.id = "table_oldQsNorm"
+		div.appendChild(table)
+		
+		var table = document.createElement("TABLE")
+		table.id = "table_oldQsSkip"
 		div.appendChild(table)
 	}
 	F_divQuests()
@@ -2017,60 +2029,83 @@ function F_calcOldQs(){
 	var oldQs = 0
 	var youngQs = 0
 	var skipQs = 0
+	var topNew = 0
+	var topOld = 0
 	for ( var x=0; x<arrOldQs.length; x++ ) {
 		var i = arrOldQs[x]
-		var qNev = arrQnev[i].qNev
+		var qNev = arrQnev[i].qNev  // jegy , repeat , date
 			var date = localStorage.getItem(currPath+" | "+qNev)
 			var jegy = date.slice(0,date.indexOf(" , "))
 			date = date.slice(date.indexOf(" , ")+3)
-			var skip = date.slice(0,date.indexOf(" , "))
+			var repeat = date.slice(0,date.indexOf(" , "))
 			date = date.slice(date.indexOf(" , ")+3)
-		if ( skip == "true" ) { 
+		if ( repeat == "skip" ) { 
 			skipQs = skipQs +1
 			continue
 		}
 		var diffTime = Number(currTime) - Number(date)
 		if ( diffTime > 600 ) {
 			oldQs = oldQs +1
+			if ( repeat == "top" ) { topNew = topNew +1 }
 		} else {
 			youngQs = youngQs +1
+			if ( repeat == "top" ) { topOld = topOld +1 }
 		}
 		//console.log(i+" "+jegy+" "+diffTime)
 	}
 	document.getElementById("span_oldQs").innerHTML = oldQs
 	document.getElementById("span_youngQs").innerHTML = youngQs
 	document.getElementById("btn_QingQuests").innerHTML = arrOldQs.length
+	document.getElementById("span_QingTopNew").innerHTML = topNew
+	document.getElementById("span_QingTopOld").innerHTML = topOld
 }
 function F_calcNextQ(){
 	var priorID = "none"
+	var normPrior = "none"
+	var repPrior = "none"
 	var currTime = F_getTime()
 	currTime = Math.round(currTime)
 	
 	/* prior
-		newQ, ha engedélyezve(btn_newQuest) és van is még olyan
+		+ newQ, ha engedélyezve(btn_newQuest) és van is még olyan
+		+ egyébként:
+			1) ha 'skip', akkor következő
+			2) kiszámolja number-t összesnél -> bejelöli a priort
+			3) kiszámolja number-t csak 'repeatesnél' -> bejelöli a priort
+			4) ha fastrep engedélyezve, akkor 
+				a) utóbbi prior lesz a prior 
+				b) ha nincs, akkor előbbi
 	*/
 	if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" ) {
-		if ( arrNewQs.length > 0 ) { priorID = arrNewQs[0] }
+		if ( arrNewQs.length > 0 ) { normPrior = arrNewQs[0] }
 	} else {
-		var qPoint = 0
+		var normQPoint = 0
+		var repQPoint = 0
 		for ( var x=0; x<arrOldQs.length; x++ ) {
 			var i = arrOldQs[x]
-			var qNev = arrQnev[i].qNev
+			var qNev = arrQnev[i].qNev // jegy , repeat , date
 				var date = localStorage.getItem(currPath+" | "+qNev)
 				var jegy = date.slice(0,date.indexOf(" , "))
 				date = date.slice(date.indexOf(" , ")+3)
-				var skip = date.slice(0,date.indexOf(" , "))
+				var repeat = date.slice(0,date.indexOf(" , "))
 				date = date.slice(date.indexOf(" , ")+3)
-			if ( skip == "true" ) { continue }
+			if ( repeat == "skip" ) { continue }
 			var diffTime = Number(currTime) - Number(date)
 			var currPoint = Number(diffTime) / Number(jegy)
-			if ( Number(currPoint) > Number(qPoint) ) {
-				qPoint = currPoint
-				priorID = i
+			if ( Number(currPoint) > Number(normQPoint) ) {
+				normQPoint = currPoint
+				normPrior = i
+			}
+			if ( repeat == "top" && document.getElementById("span_QingNewOldBorder").style.borderColor == "limegreen" ) { 
+				if ( Number(currPoint) > Number(repQPoint) ) {
+					repQPoint = currPoint
+					repPrior = i
+				}
 			}
 			//console.log(i+" "+jegy+" "+diffTime)
 		}
 	}
+	if ( repPrior != "none" ) { priorID = repPrior } else { priorID = normPrior }
 	return priorID
 }
 function F_nextQ() {
@@ -2196,7 +2231,7 @@ function F_nextQ() {
 								var i = document.getElementById('parSpan.'+num).dataset.elemi
 								var qNev = arrQnev[i].qNev
 								var jegyName = localStorage.getItem(currPath+" | "+qNev)
-								jegyName = jegyName.replace("true","false")
+								jegyName = jegyName.replace("skip","false")
 								var jegy = jegyName.slice(0,jegyName.indexOf(" , "))
 								if ( jegy == "&nbsp;" ) {
 									localStorage.removeItem(currPath+" | "+qNev)
@@ -2271,8 +2306,10 @@ function F_nextQ() {
 					span.onclick = function(){ 
 						if ( this.style.backgroundColor == "black" ) {
 							this.style.backgroundColor = ""
-						} else {
+						} else if ( this.style.backgroundColor == "yellow" ) {
 							this.style.backgroundColor = "black"
+						} else {
+							this.style.backgroundColor = "yellow"
 						}
 					}
 				}
@@ -2310,11 +2347,16 @@ function F_nextQ() {
 				var date = localStorage.getItem(currPath+" | "+qNev)
 				var jegy = date.slice(0,date.indexOf(" , "))
 				date = date.slice(date.indexOf(" , ")+3)
-				var skip = date.slice(0,date.indexOf(" , "))
+				var repeat = date.slice(0,date.indexOf(" , "))
 				date = date.slice(date.indexOf(" , ")+3)
-				if ( skip == "true" ) { 
+				if ( repeat == "skip" ) { 
 					document.getElementById("span.0."+num).style.backgroundColor = "black" 
 					document.getElementById("span.0."+num).style.color = "white" 
+				} 
+				if ( repeat == "top" ) {
+					document.getElementById("span.2."+num).style.backgroundColor = "yellow" 
+				} else {
+					document.getElementById("span.2."+num).style.backgroundColor = "" 
 				}
 				if ( jegy != "&nbsp;" ) { 
 					var diffTime = Number(currTime) - Number(date)
@@ -2371,28 +2413,41 @@ function F_nextQ() {
 function F_resetQtab() {
 	var table = document.getElementById("table_oldQs")
 	table.innerHTML = ""
+	
+	// ha valamelyik skip Q-t átállítottam normalQ-ra és nem volt osztályozva akkor remove-olja
+	for ( var x=0; x<arrOldQs.length; x++ ) {
+		var i = arrOldQs[x]
+		var qNev = arrQnev[i].qNev
+		var jegyRepDate = localStorage.getItem(currPath+" | "+qNev)
+		var jegy = jegyRepDate.slice(0,jegyRepDate.indexOf(" , "))
+		var repDate = jegyRepDate.slice(jegyRepDate.indexOf(" , ")+3)
+		var repeat = repDate.slice(0,repDate.indexOf(" , "))
+		if ( jegy == "&nbsp;" && repeat == "false" ) { 
+			localStorage.removeItem(currPath+" | "+qNev)
+			arrOldQs.splice(x,1)
+		} else if ( jegy == "&nbsp;" && repeat == "top" ) { 
+			jegyRepDate = jegyRepDate.replace("&nbsp;","1")
+			localStorage.setItem(currPath+" | "+qNev,jegyRepDate)
+		}
+		F_calcOldQs()
+	}
 }
 function F_createQtab() {
 	var currTime = F_getTime()
 	currTime = Math.round(currTime)
 	var table = document.getElementById("table_oldQs")
 	
-	function F_addElem(trElem,skip,val) {
+	function F_addElem(trElem,repeat,val) {
+		var table
+		if ( repeat == "skip" ) { table = document.getElementById("table_oldQsSkip") }
+		if ( repeat == "false" ) { table = document.getElementById("table_oldQsNorm") }
+		if ( repeat == "top" ) { table = document.getElementById("table_oldQsTop") }
 		var TRs = table.childNodes
-		if ( skip == true ) { 
-			table.appendChild(trElem)
-			return
-		}
 		for ( var i=0; i<TRs.length; i++ ) {
 			var TDs = TRs[i].childNodes
 			var qNev = TDs[0].innerHTML
 			var jegy = TDs[1].innerHTML
 			var date = TDs[2].innerHTML
-			var skipOther = TDs[0].dataset.skip
-			if ( skipOther == "true" ) { 
-				table.insertBefore(trElem,TRs[i])
-				return
-			}
 			var valOther = Number(date) / Number(jegy)
 			if ( val > valOther ) { 
 				table.insertBefore(trElem,TRs[i])
@@ -2409,38 +2464,47 @@ function F_createQtab() {
 		td.innerHTML = qNev
 		td.onclick = function() {
 			var jegySkipDate = localStorage.getItem(currPath+" | "+qNev)  // jegy , skip , date
-			var oldSkip, newSkip
-			if ( this.dataset.skip == "true" ) {
-				oldSkip = " , true , "
-				newSkip = " , false , "
+			
+			if ( this.style.backgroundColor == "yellow" ) { 
+				this.style.backgroundColor = "grey"
+				jegySkipDate = jegySkipDate.replace(" , top , "," , skip , ")
+			} else if ( this.style.backgroundColor == "grey" ) { 
+				this.style.backgroundColor = ""
+				jegySkipDate = jegySkipDate.replace(" , skip , "," , false , ")
 			} else {
-				oldSkip = " , false , "
-				newSkip = " , true , "
+				this.style.backgroundColor = "yellow"
+				jegySkipDate = jegySkipDate.replace(" , false , "," , top , ")
+			}
+			if ( jegySkipDate.indexOf(this.dataset.repeat) == -1 ) { 
+				this.parentElement.childNodes[0].style.backgroundColor = "red"
+				this.parentElement.childNodes[0].style.color = "white"
+			} else {
+				this.parentElement.childNodes[0].style.backgroundColor = ""
+				this.parentElement.childNodes[0].style.color = "black"
 			}
 			
-			if ( this.style.backgroundColor == "grey"  || this.style.backgroundColor == "" ) {
-				this.style.backgroundColor = "coral"
-				jegySkipDate = jegySkipDate.replace(oldSkip,newSkip)
-			} else if ( this.dataset.skip == "true" ) {
-				this.style.backgroundColor = "grey"
-				jegySkipDate = jegySkipDate.replace(newSkip,oldSkip)
-			} else {
-				this.style.backgroundColor = ""
-				jegySkipDate = jegySkipDate.replace(newSkip,oldSkip)
-			}
+			//var jegyName = localStorage.getItem(currPath+" | "+qNev)
+			//var jegy = jegyName.slice(0,jegyName.indexOf(" , "))
+			//console.log(jegyName)
+			//console.log(jegy+" "+qNev)
 			localStorage.setItem(currPath+" | "+qNev,jegySkipDate)
+			F_calcOldQs()
 		}
 		
-		var date = localStorage.getItem(currPath+" | "+qNev)  // jegy , skip , date
+		var date = localStorage.getItem(currPath+" | "+qNev)  // jegy , repeat , date
 		var jegy = date.slice(0,date.indexOf(" , "))
 		date = date.slice(date.indexOf(" , ")+3)
-		var skip = date.slice(0,date.indexOf(" , "))
+		var repeat = date.slice(0,date.indexOf(" , "))
 		date = date.slice(date.indexOf(" , ")+3)
 		
-		if ( skip == "true" ) { 
+		if ( repeat == "skip" ) { 
 			td.style.backgroundColor = "grey"
-			td.dataset.skip = "true"
+		} else if ( repeat == "top" ) { 
+			td.style.backgroundColor = "yellow"
+		} else { 
+			td.style.backgroundColor = ""
 		}
+		td.dataset.repeat = repeat
 		
 		var td = document.createElement("TD")
 		tr.appendChild(td)
@@ -2455,7 +2519,7 @@ function F_createQtab() {
 		td.innerHTML = diffTime
 		
 		var val = Number(diffTime) / Number(jegy)
-		F_addElem(tr,skip,val)
+		F_addElem(tr,repeat,val)
 	}
 	
 	for ( var x=0; x<arrOldQs.length; x++ ) {
@@ -2463,6 +2527,14 @@ function F_createQtab() {
 		var qNev = arrQnev[i].qNev
 		F_createElem(qNev)
 	}
+	
+	var TRs = document.getElementById("table_oldQsTop").childNodes
+	while ( TRs.length > 0 ) { table.appendChild(TRs[0]) }
+	var TRs = document.getElementById("table_oldQsNorm").childNodes
+	while ( TRs.length > 0 ) { table.appendChild(TRs[0]) }
+	var TRs = document.getElementById("table_oldQsSkip").childNodes
+	while ( TRs.length > 0 ) { table.appendChild(TRs[0]) }
+	
 	for ( var i=0; i<table.childNodes.length; i++ ) {
 		var td = document.createElement("TD")
 		td.innerHTML = Number(i) +1
