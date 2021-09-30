@@ -35,7 +35,7 @@ function F_getImpID(detElem){
 	if ( impID == undefined ) { console.log("# nincs impID-je: "+detElem.className) }
 	return impID
 }
-function F_offsetXY(detElem) { // absolute x & y position-t lekéri!
+function F_offsetXY(detElem,num) { // absolute x & y position-t lekéri!
 	// azért kell, mert az offsetLeft nem elég, ha table-ban van egy element (akkor nem a body-hoz viszonyatva adja meg, hanem a table-hoz)
 	/* alap pozíció lekérés kommandok:
 		// var x = event.clientX
@@ -47,21 +47,22 @@ function F_offsetXY(detElem) { // absolute x & y position-t lekéri!
 			// table-ban magában nem jó, azért kell az F_offsetXY funkció
 	*/
 	
-	/*
-	var rect = detElem.getBoundingClientRect(),
-	scrollLeft = detElem.scrollLeft,
-	scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-	return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
-	*/
-	
-	var _x = 0;
-	var _y = 0;
-	while( detElem && !isNaN( detElem.offsetLeft ) && !isNaN( detElem.offsetTop ) ) {
-		_x += detElem.offsetLeft - detElem.scrollLeft;
-		_y += detElem.offsetTop - detElem.scrollTop;
-		detElem = detElem.offsetParent;
-	 }
-	 return { top: _y, left: _x };
+	if ( num == "1" ) {
+		var rect = detElem.getBoundingClientRect(),
+		scrollLeft = detElem.scrollLeft,
+		scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+		return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+	}
+	if ( num == "2" ) {
+		var _x = 0;
+		var _y = 0;
+		while( detElem && !isNaN( detElem.offsetLeft ) && !isNaN( detElem.offsetTop ) ) {
+			_x += detElem.offsetLeft - detElem.scrollLeft;
+			_y += detElem.offsetTop - detElem.scrollTop;
+			detElem = detElem.offsetParent;
+		 }
+		 return { top: _y, left: _x };
+	}
 	
 	/*if(!detElem) detElem = this; // másik módszer, ha a fennti nem lesz jó valamiért  --> ez nem jó scroll-nál
 
@@ -615,14 +616,14 @@ function F_titleVerChange(velement){
 		span.innerHTML = detElem.dataset.title
 		
 		// Y pozíció
-		var posY = F_offsetXY(detElem).top
+		var posY = F_offsetXY(detElem,"1").top
 		posY = posY + detElem.offsetHeight +2
 		if ( isAndroid ) { posY = posY / andrScale }
 		span.style.top = posY +"px"
 		  // ide kéne valami, hogy ha uccsó sorban van (midQ) a title, akkor ha nem fér ki, akkor felfele tolja.. (mint X-nél)
 		
 		// X pozíció
-		var posX = F_offsetXY(detElem).left
+		var posX = F_offsetXY(detElem,"1").left
 		if ( span.offsetWidth > document.body.offsetWidth - posX -10 ) {
 			posX = document.body.offsetWidth - span.offsetWidth - 10
 		} else {
@@ -1359,7 +1360,7 @@ function F_createQingElems() {
 		div.style.borderBottom = "4px solid black"
 		//div.style.marginBottom = "2px"
 		div.style.paddingBottom = "5px"
-		div.style.height = "100px" // 17vh
+		div.style.height = "95px" // 17vh
 	}
 	F_divUpperPart()
 	function F_divBottomPart() { // felső kis rész v2 Androidra: kiírások (tételszám, Q szám)
@@ -1499,6 +1500,23 @@ function F_createQingElems() {
 		}
 	}
 	F_btnQingMenu()
+	function F_btnQrandom() { // random
+		var button = document.createElement("button")
+		document.getElementById("span_QingSettings").appendChild(button)
+		button.id = "btn_randomQ"
+		button.style.border = "3px solid black"
+		button.style.backgroundColor = "white"
+		button.style.cursor = "pointer"
+		button.innerHTML = "&#10536;"
+		button.onclick = function(){ 
+			if ( this.style.borderColor == "limegreen" ) {
+				this.style.borderColor = "black"
+			} else {
+				this.style.borderColor = "limegreen"
+			}
+		}
+	}
+	F_btnQrandom()
 	// 2nd line
 	function F_spanSecondLine() {
 		var span = document.createElement("span")
@@ -1584,6 +1602,7 @@ function F_createQingElems() {
 
 		span.style.paddingTop = "1px"
 		span.style.paddingBottom = "2px"
+		span.style.cursor = "pointer"
 		span.onclick = function(){ 
 			if ( this.style.borderColor == "limegreen" ) {
 				this.style.borderColor = "black"
@@ -2067,6 +2086,7 @@ function F_calcNextQ(){
 	currTime = Math.round(currTime)
 	
 	/* prior
+		+ randomQ, ha engedélyezve van
 		+ newQ, ha engedélyezve(btn_newQuest) és van is még olyan
 		+ egyébként:
 			1) ha 'skip', akkor következő
@@ -2076,7 +2096,17 @@ function F_calcNextQ(){
 				a) utóbbi prior lesz a prior 
 				b) ha nincs, akkor előbbi
 	*/
-	if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" ) {
+	if ( document.getElementById("btn_randomQ").style.borderColor == "limegreen" ) {
+		var maxNum = arrOldQs.length + arrNewQs.length
+		var randomNum = Math.floor(Math.random() * maxNum) +1
+		if ( randomNum > arrOldQs.length ) {
+			var i = randomNum - arrOldQs.length -1
+			normPrior = arrNewQs[i]
+		} else {
+			var i = randomNum -1
+			normPrior = arrOldQs[i]
+		}
+	} else if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" ) {
 		if ( arrNewQs.length > 0 ) { normPrior = arrNewQs[0] }
 	} else {
 		var normQPoint = 0
@@ -2116,8 +2146,19 @@ function F_nextQ() {
 	F_loadLS()
 	F_calcOldQs()
 	var priorID = F_calcNextQ()  // megnézi melyik Q lesz a kövi
-	if ( priorID == "none" ) { 
+	
+	function F_setBtnColor() {
+		document.getElementById("btn_QingNextQ").style.color = ""
+		if ( localStorage.getItem("newCount") > 4 ) { 
+			document.getElementById("btn_QingNextQ").style.backgroundColor = "aqua" 
+		} else {
+			document.getElementById("btn_QingNextQ").style.backgroundColor = "white"
+		}
+	}
+	
+	if ( priorID == "none" || priorID == undefined ) { 
 		alert("elfogytak a kérdések")
+		F_setBtnColor()
 		return
 	}
 	
@@ -2276,7 +2317,7 @@ function F_nextQ() {
 						num = num.slice(num.lastIndexOf(".")+1)
 						dropdown.dataset.numQ = num
 						
-						dropdown.style.left = F_offsetXY(this).left -1 +"px"
+						dropdown.style.left = F_offsetXY(this,"2").left -1 +"px"
 						
 						// this.parentElement.appendChild(dropdown)
 						
@@ -2399,12 +2440,7 @@ function F_nextQ() {
 	F_highlightQ()
 	
 	// ► (color:download)
-	document.getElementById("btn_QingNextQ").style.color = ""
-	if ( localStorage.getItem("newCount") > 4 ) { 
-		document.getElementById("btn_QingNextQ").style.backgroundColor = "aqua" 
-	} else {
-		document.getElementById("btn_QingNextQ").style.backgroundColor = "white"
-	}
+	F_setBtnColor()
 }
 // –––––––––––––––  Qing END  –––––––––––––––
 
@@ -2765,7 +2801,7 @@ function F_loadIMGs(detElem) {
 					minImg.width = this.width*8
 					//minImg.style.transform = "scale(8,8)"
 
-					var posX = F_offsetXY(this).left -minImg.width/2 +this.width/2
+					var posX = F_offsetXY(this,"2").left -minImg.width/2 +this.width/2
 					var posXright = posX + minImg.width
 					if ( posX < 0 ) {
 						minImg.style.left = "0px"
@@ -2775,7 +2811,7 @@ function F_loadIMGs(detElem) {
 					} else {
 						minImg.style.left = posX +"px"
 					}
-					var posY = F_offsetXY(this).top -minImg.height/2 +this.height/2
+					var posY = F_offsetXY(this,"2").top -minImg.height/2 +this.height/2
 					minImg.style.top = posY +"px"
 				}
 			}
