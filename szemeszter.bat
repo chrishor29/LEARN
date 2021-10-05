@@ -18,6 +18,7 @@ xcopy /y %source%\favicon.png %destination%\ /d
 
 
 REM 5.év
+xcopy /y %source%\Belgyogy\Szigorlat\belgyogy.html %destination%\Belgyogy\Szigorlat\ /d
 xcopy /y %source%\Belgyogy\HIIRLm\hiirlm.html %destination%\Belgyogy\HIIRLm\ /d
 xcopy /y %source%\Transzfuziologia\trafo.html %destination%\Transzfuziologia\ /d
 xcopy /y %source%\Gyerekgyogy\gyermek.html %destination%\Gyerekgyogy\ /d

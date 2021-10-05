@@ -291,10 +291,11 @@ function F_loadPageLinks() { // IDB, favicons, setClick
 			pageLinks[i].onclick = function() {
 				threeSec = 0 // ez azért kéne, hogy auto betöltésnél ne essen szét, hogy egyszerre kettőt akar
 				for ( var x=0; x<pageLinks.length; x++ ) { pageLinks[x].style.backgroundColor = "" }
-				this.style.backgroundColor = "pink"
+				this.style.backgroundColor = "orange"
 				currPath = this.dataset.src
 				targyPath = this.dataset.src
 				
+				// androidon hátha kell, hogy farmak/anat-ra klikkelésnél a rózsaszín megjelenjen:
 				// var srcTest = this.dataset.src // currPath - targyPath is jó lenne tutti, csak nem emlékszem melyik mi
 				// setTimeout(function() { 
 					F_loadAndSavePageText(this.dataset.src,true)
