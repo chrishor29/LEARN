@@ -1182,22 +1182,35 @@ function F_saveLS() {
 		}
 		document.getElementById("span.2."+num).style.backgroundColor = ""
 		
-		if ( jegy == "&nbsp;" && skip == "false" ) { continue }
-		
-		newCount = Number(localStorage.getItem("newCount")) +1
-		localStorage.setItem("newCount",newCount)
-		
-		var date = currTime
-		
+		/* mechanizmus: van-e a jegy?
+			(1) ha igen, új dátum és elmenti LS-be
+			(2) ha nem -> változott-e skip -> akkor változott...
+				(2.a) amennyiben nem volt LS-ben és fekete (fehér értelmetlen, sárga szintén mert nincs jegy) --> új dátummal elmenti LS-be
+				(2.b) amennyiben volt LS-ben és
+					sárga volt, de most fehér lett
+					fehér volt, de most sárga lett
+					--> régi dátummal elmenti LS-be
+		*/
+		var date = "false"
 		var qNev = arrQnev[i].qNev
-		if ( jegy == "&nbsp;" ) { 
-			if ( localStorage.getItem(currPath+" | "+qNev) ) {  // ha már volt osztályozva korábban
+		/*(1)*/if ( jegy != "&nbsp;" ) { 
+			date = currTime
+		} else {
+			/*(2.b)*/ if ( localStorage.getItem(currPath+" | "+qNev) ) {
 				date = localStorage.getItem(currPath+" | "+qNev)
 				jegy = date.slice(0,date.indexOf(" , "))
 				date = date.slice(date.indexOf(" , ")+3)
+				var oldSkip = date.slice(0,date.indexOf(" , "))
 				date = date.slice(date.indexOf(" , ")+3)
+				if ( oldSkip == skip ) { date = "false" } // ha megegyeznek, akkor continue lesz
+				if ( oldSkip == "skip" ) { date = "false" } // ha fekete volt, akkor continue lesz
+			/*(2.a)*/ } else if ( skip == "skip" ) {
+				date = currTime
 			}
 		}
+		if ( date == "false" ) { continue }
+		newCount = Number(localStorage.getItem("newCount")) +1
+		localStorage.setItem("newCount",newCount)
 		localStorage.setItem(currPath+" | "+qNev,jegy+" , "+skip+" , "+date)
 	}
 	if ( document.getElementById("btn_QingNextQ").style.backgroundColor == "aqua" ) { 
@@ -1851,7 +1864,7 @@ function F_createQingElems() {
 		div.style.top = "60px"
 		div.style.width = "45px"
 		div.style.display = "none"
-		div.style.backgroundColor = "#f1f1f1"
+		div.style.backgroundColor = "#f1f1f1" // fehér kb.
 		div.style.boxShadow = "0px 8px 16px 0px rgba(0,0,0,0.4)"
 		div.style.border = "1px solid grey"
 		div.style.zIndex = "2"
@@ -2350,7 +2363,7 @@ function F_nextQ() {
 				} else if ( x == 2 ) {
 					span.style.top = "60px"
 					span.style.fontSize = "x-small"
-					span.onclick = function(){ 
+					span.onclick = function(){  // left click
 						if ( this.style.backgroundColor == "black" ) {
 							this.style.backgroundColor = ""
 						} else if ( this.style.backgroundColor == "yellow" ) {
@@ -2359,6 +2372,17 @@ function F_nextQ() {
 							this.style.backgroundColor = "yellow"
 						}
 					}
+					span.addEventListener('contextmenu', function(ev) { // right click
+						ev.preventDefault();
+						if ( this.style.backgroundColor == "black" ) {
+							this.style.backgroundColor = "yellow"
+						} else if ( this.style.backgroundColor == "yellow" ) {
+							this.style.backgroundColor = ""
+						} else {
+							this.style.backgroundColor = "black"
+						}
+						return false
+					}, false)
 				}
 			}
 		}
