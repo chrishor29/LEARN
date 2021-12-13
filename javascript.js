@@ -611,6 +611,8 @@ function F_tooltipFuncs(){
 }
 F_tooltipFuncs()
 function F_titleVerChange(velement){
+	//console.log("load Title")
+	//console.log(velement.innerHTML)
 	function F_posTitle(detElem,mouseX) {
 		var span = document.getElementById("span_abbrTitle")
 		// title
@@ -648,6 +650,8 @@ function F_titleVerChange(velement){
 	velement.onmouseout = function() { if ( span.dataset.status != 1 ) { span.style.display = "none" } }
 }
 function F_titleChange(detElem){
+	//console.log("load detElem")
+	//console.log(detElem.innerHTML)
 	var abbrok = detElem.querySelectorAll("*[title]");
 	for ( var i = 0; i < abbrok.length; i++ ) { F_titleVerChange(abbrok[i]) }
 }
@@ -2244,8 +2248,10 @@ function F_nextQ() {
 		F_createMarks() 
 		F_highlightQ()
 		
+		/* kivettem, mert summary-ben lévő abbr-ét nem tölt be, csak ha megnyitom a detailst + amúgy is fölösnek tűnt
 		var arrayDetails = detElem.getElementsByTagName("details")
-		for ( var i=0; i<arrayDetails.length; i++ ) { arrayDetails[i].ontoggle = function() { F_onToggle(this) } }
+		/for ( var i=0; i<arrayDetails.length; i++ ) { arrayDetails[i].ontoggle = function() { F_onToggle(this) } }
+		*/
 	}
 	F_onToggle(document.getElementById("div_QingLowerPart"))
 	
@@ -2879,6 +2885,7 @@ function F_loadElem(detElem) { // detailsok megnyitásánál is ezt a funkciót 
 	F_synonyms(detElem)
 	F_titleChange(detElem)
 	F_answerQ(detElem)
+	//console.log(detElem.innerHTML)
 	
 	var allDetails = detElem.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) { allDetails[i].ontoggle = function() { F_loadElem(this) } }
