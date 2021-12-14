@@ -2409,9 +2409,6 @@ function F_nextQ() {
 			var qNev = arrQnev[i].qNev
 			var num = F_getNum(qNev)
 			
-			if ( arrNumQs.indexOf(qNev) == -1 ) { arrNumQs.push(qNev) }
-			document.getElementById("div_QingLowerPart").dataset.numQ = arrNumQs.length
-			
 			// Q elé beírja a számát
 			if ( Qs[x].firstChild.tagName == "SUMMARY" ) { 
 				Qs[x].firstChild.innerHTML = "["+num+"] "+Qs[x].firstChild.innerHTML
@@ -2460,6 +2457,7 @@ function F_nextQ() {
 				}
 			}
 		}
+		document.getElementById("div_QingLowerPart").dataset.numQ = QsNum
 	}
 	F_createMarks()
 	
