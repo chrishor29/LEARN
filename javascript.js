@@ -1162,7 +1162,7 @@ var arrNewQs = [] // (i) -> LS-ben még nem mentett Q-k (nem osztályzott)
 function F_saveLS() {
 	// osztályzott Q-k: jegy, név --> LSid rendel hozzá
 	var maxNum = document.getElementById("div_QingLowerPart").dataset.numQ // hány db Q látszik összesen
-	if ( maxNum == undefined ) { return }
+	if ( maxNum == undefined || maxNum == 0 ) { return }
 	
 	var currTime = F_getTime()
 	currTime = Math.round(currTime)
@@ -2186,6 +2186,7 @@ function F_nextQ() {
 	
 	if ( priorID == "none" || priorID == undefined ) { 
 		alert("elfogytak a kérdések")
+		document.getElementById("div_QingLowerPart").dataset.numQ = 0
 		F_setBtnColor()
 		return
 	}
@@ -2400,13 +2401,16 @@ function F_nextQ() {
 			}
 		}
 		var Qs = document.getElementById("div_QingLowerPart").getElementsByClassName("kerdes")
+		var arrNumQs = [] // hány db Q látszik összesen
 		for ( var x=0; x<Qs.length; x++ ) { 
 			if ( Qs[x].offsetParent === null ) { continue }
 			if ( Qs[x].dataset.num ) { continue }
 			var i = xTOi[x]
 			var qNev = arrQnev[i].qNev
 			var num = F_getNum(qNev)
-			document.getElementById("div_QingLowerPart").dataset.numQ = num // hány db Q látszik összesen
+			
+			if ( arrNumQs.indexOf(qNev) == -1 ) { arrNumQs.push(qNev) }
+			document.getElementById("div_QingLowerPart").dataset.numQ = arrNumQs.length
 			
 			// Q elé beírja a számát
 			if ( Qs[x].firstChild.tagName == "SUMMARY" ) { 
