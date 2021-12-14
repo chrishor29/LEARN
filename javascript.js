@@ -1963,7 +1963,7 @@ function F_arrQs(){
 		var qText = allQs[i].innerHTML
 		//console.log(i+": "+qNev)
 		
-		// ha többször van a qNev, akkor hozzáadja note-ba a shortent
+		// ha többször van a qNev, akkor hozzáadja note-ba a shortent: (text length / ha rövid a text, akkor azt)
 		var noteText = ""
 		if ( arrQnevMulti.includes(qNev) == true ) {
 			if ( qText.length > 100 ) {
@@ -2242,6 +2242,9 @@ function F_nextQ() {
 	function F_onToggle(detElem) {
 		F_loadElem(detElem)
 		F_createMarks() 
+		F_titleChange(detElem) /* F_createMarks() után kell még1x
+			különben ha details-ban van az abbr, akkor nem működik (ugyanis, amikor a kérdés számát beleírja a summary elejére(F_createMarks), akkor letörli az F_titleChange scriptet)
+		*/
 		F_highlightQ()
 		
 		var arrayDetails = detElem.getElementsByTagName("details")
