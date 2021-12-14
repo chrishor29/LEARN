@@ -1239,7 +1239,7 @@ function F_loadLS() {
 	
 	function F_checkQs() {
 		// phase 1 --> megnézi, melyek az aktuális questek
-		var actQs = ""
+		var actQs = "" // (i)-ket tartalmaz, amik a kijelölt tételekben vannak
 		var allTetels = document.getElementById("div_QingTetels").getElementsByClassName("tetel")
 		for ( var x=0; x<allTetels.length; x++ ) {
 			if ( allTetels[x].style.backgroundColor == "lightgreen" ) { 
@@ -1257,6 +1257,7 @@ function F_loadLS() {
 			// ha igen --> arrOldQs-ba adja a nevét (ha még nincs benne)
 		arrOldQs = []
 		arrNewQs = []
+		var newQcount = [] // szükséges, mert az (i)-knél többször ugyanazon qNev is szerepelne
 		for ( var x=0; x<actQs.length; x++ ) {
 			if ( actQs[x] == "" ) { continue }
 			var qNev = arrQnev[actQs[x]].qNev
@@ -1266,9 +1267,10 @@ function F_loadLS() {
 				if ( arrOldQs.includes(actQs[x]) != true ) { arrOldQs.push(actQs[x]) }
 			} else {
 				if ( arrNewQs.includes(actQs[x]) != true ) { arrNewQs.push(actQs[x]) }
+				if ( newQcount.indexOf(qNev) == -1 ) { newQcount.push(qNev) }
 			}
 		}
-		document.getElementById("btn_newQuest").innerHTML = arrNewQs.length
+		document.getElementById("btn_newQuest").innerHTML = newQcount.length
 		//console.log("newQs: "+arrNewQs)
 		//console.log("oldQs: "+arrOldQs)
 	}
@@ -1289,6 +1291,7 @@ function F_clickTetel(detElem) {
 		localStorage.setItem(currPath+" | activeTetels", JSON.stringify(arrActTetels))
 	}
 	F_loadLS()
+	F_calcOldQs()
 }
 function F_loadTetels() {
 	var elems = document.getElementById("div_QingTargyText").getElementsByTagName("*")
@@ -2069,9 +2072,15 @@ function F_calcOldQs(){
 	var skipQs = 0
 	var topNew = 0
 	var topOld = 0
+	var arrQsDone = [] // annyi, hogy ne számolja többször azon Q-kat, amik ugyanazok, csak többhelyen is szerepelnek
 	for ( var x=0; x<arrOldQs.length; x++ ) {
 		var i = arrOldQs[x]
 		var qNev = arrQnev[i].qNev  // jegy , repeat , date
+		if ( arrQsDone.indexOf(qNev) == -1 ) {
+			arrQsDone.push(qNev)
+		} else {
+			continue
+		}
 			var date = localStorage.getItem(currPath+" | "+qNev)
 			var jegy = date.slice(0,date.indexOf(" , "))
 			date = date.slice(date.indexOf(" , ")+3)
@@ -2093,7 +2102,7 @@ function F_calcOldQs(){
 	}
 	document.getElementById("span_oldQs").innerHTML = oldQs
 	document.getElementById("span_youngQs").innerHTML = youngQs
-	document.getElementById("btn_QingQuests").innerHTML = arrOldQs.length
+	document.getElementById("btn_QingQuests").innerHTML = arrQsDone.length
 	document.getElementById("span_QingTopNew").innerHTML = topNew
 	document.getElementById("span_QingTopOld").innerHTML = topOld
 }
@@ -2481,6 +2490,7 @@ function F_nextQ() {
 
 
 // oldQ TAB
+var arrTabQs = []
 function F_resetQtab() {
 	var table = document.getElementById("table_oldQs")
 	table.innerHTML = ""
@@ -2593,10 +2603,14 @@ function F_createQtab() {
 		F_addElem(tr,repeat,val)
 	}
 	
+	arrTabQs = []
 	for ( var x=0; x<arrOldQs.length; x++ ) {
 		var i = arrOldQs[x]
 		var qNev = arrQnev[i].qNev
-		F_createElem(qNev)
+		if ( arrTabQs.indexOf(qNev) == -1 ) {
+			arrTabQs.push(qNev)
+			F_createElem(qNev)
+		}
 	}
 	
 	var TRs = document.getElementById("table_oldQsTop").childNodes
