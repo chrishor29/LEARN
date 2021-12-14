@@ -611,8 +611,6 @@ function F_tooltipFuncs(){
 }
 F_tooltipFuncs()
 function F_titleVerChange(velement){
-	//console.log("load Title")
-	//console.log(velement.innerHTML)
 	function F_posTitle(detElem,mouseX) {
 		var span = document.getElementById("span_abbrTitle")
 		// title
@@ -650,8 +648,6 @@ function F_titleVerChange(velement){
 	velement.onmouseout = function() { if ( span.dataset.status != 1 ) { span.style.display = "none" } }
 }
 function F_titleChange(detElem){
-	//console.log("load detElem")
-	//console.log(detElem.innerHTML)
 	var abbrok = detElem.querySelectorAll("*[title]");
 	for ( var i = 0; i < abbrok.length; i++ ) { F_titleVerChange(abbrok[i]) }
 }
@@ -2204,7 +2200,7 @@ function F_nextQ() {
 	var parQ = F_getParentQ(qElem)
 	
 	var xTOi = [] // x = amit kidob kérdések, ott hányadik fenntről lefele; i = tárgy összes kérdése közül hányadik
-	var iTOnum = [] // num = amit kidob kérdések, ott hányadik fenntről lefele DE! ami többször van, az ugyanazt kapja!
+	var nevTOnum = [] // num = amit kidob kérdések, ott hányadik fenntről lefele DE! ami többször van, az ugyanazt kapja!
 	var QsNum = 0 // számozásnál kell
 	
 	// megnézi mindegyik Q-t, hogy az allQs-ban hányadik --> ugyanis úgy tudom lekérni a nevét majd
@@ -2248,23 +2244,22 @@ function F_nextQ() {
 		F_createMarks() 
 		F_highlightQ()
 		
-		/* kivettem, mert summary-ben lévő abbr-ét nem tölt be, csak ha megnyitom a detailst + amúgy is fölösnek tűnt
 		var arrayDetails = detElem.getElementsByTagName("details")
-		/for ( var i=0; i<arrayDetails.length; i++ ) { arrayDetails[i].ontoggle = function() { F_onToggle(this) } }
-		*/
+		for ( var i=0; i<arrayDetails.length; i++ ) { arrayDetails[i].ontoggle = function() { F_onToggle(this) } }
 	}
 	F_onToggle(document.getElementById("div_QingLowerPart"))
 	
 	// lehívja(/craftolja) az osztályzás opciókat mellé!
 	function F_createMarks() {
-		function F_getNum(i) { // lekéri a kidobott Q számozását (ami többször szerepel, az ugyanazt kapja)
-			if ( iTOnum[i] ) {
-				num = iTOnum[i]
+		function F_getNum(qNev) { // lekéri a kidobott Q számozását (ami többször szerepel, az ugyanazt kapja)
+			if ( nevTOnum[qNev] ) {
+				num = nevTOnum[qNev]
 			} else {
 				QsNum = QsNum +1
-				iTOnum[i] = QsNum
+				nevTOnum[qNev] = QsNum
+				num = QsNum
 			}
-			return QsNum
+			return num
 		}
 		function F_createSelect(num) {
 			var parSpan = document.createElement("span")
@@ -2397,7 +2392,8 @@ function F_nextQ() {
 			if ( Qs[x].offsetParent === null ) { continue }
 			if ( Qs[x].dataset.num ) { continue }
 			var i = xTOi[x]
-			var num = F_getNum(i)
+			var qNev = arrQnev[i].qNev
+			var num = F_getNum(qNev)
 			document.getElementById("div_QingLowerPart").dataset.numQ = num // hány db Q látszik összesen
 			
 			// Q elé beírja a számát
@@ -2885,7 +2881,6 @@ function F_loadElem(detElem) { // detailsok megnyitásánál is ezt a funkciót 
 	F_synonyms(detElem)
 	F_titleChange(detElem)
 	F_answerQ(detElem)
-	//console.log(detElem.innerHTML)
 	
 	var allDetails = detElem.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) { allDetails[i].ontoggle = function() { F_loadElem(this) } }
