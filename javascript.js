@@ -1159,6 +1159,14 @@ var arrActTetels = [] // active tételek
 var arrQnev = [] // (i) -> qNev + tartalom
 var arrOldQs = [] // (i) -> LS-ben mentett Q-k
 var arrNewQs = [] // (i) -> LS-ben még nem mentett Q-k (nem osztályzott)
+function F_getQinf(qNev) { // LS-ben mentett jegy,repeat,date
+	var date = localStorage.getItem(currPath+" | "+qNev)
+	var jegy = date.slice(0,date.indexOf(" , "))
+	date = date.slice(date.indexOf(" , ")+3)
+	var repeat = date.slice(0,date.indexOf(" , "))
+	date = date.slice(date.indexOf(" , ")+3)
+	return [jegy, repeat, date];
+}
 function F_saveLS() {
 	// osztályzott Q-k: jegy, név --> LSid rendel hozzá
 	var maxNum = document.getElementById("div_QingLowerPart").dataset.numQ // hány db Q látszik összesen
@@ -2081,11 +2089,10 @@ function F_calcOldQs(){
 		} else {
 			continue
 		}
-			var date = localStorage.getItem(currPath+" | "+qNev)
-			var jegy = date.slice(0,date.indexOf(" , "))
-			date = date.slice(date.indexOf(" , ")+3)
-			var repeat = date.slice(0,date.indexOf(" , "))
-			date = date.slice(date.indexOf(" , ")+3)
+		var arrQinf = F_getQinf(qNev)
+		var repeat = arrQinf[1]
+		var date = arrQinf[2]
+		
 		if ( repeat == "skip" ) { 
 			skipQs = skipQs +1
 			continue
@@ -2125,14 +2132,30 @@ function F_calcNextQ(){
 				b) ha nincs, akkor előbbi
 	*/
 	if ( document.getElementById("btn_randomQ").style.borderColor == "limegreen" ) {
-		var maxNum = arrOldQs.length + arrNewQs.length
+		/* 3 array van:
+			arrNewQs ➜ nincs LS-ben még mentve
+			arrOldQs ➜ LS-ben mentve ➜ ezt itt először ketté kell választani:
+				arrSkipQs ➜ skippelt ➜ ezt ugyanis ne dobja ki, ha randomot kell dobjon!
+				arrNoSkipQs ➜ nem skippelt ➜ valójában csak erre van tehát szükség
+		*/
+		var arrNoSkipQs = []
+		for ( var x=0; x<arrOldQs.length; x++ ) {
+			var i = arrOldQs[x]
+			var qNev = arrQnev[i].qNev  // jegy , repeat , date
+			var arrQinf = F_getQinf(qNev)
+			var repeat = arrQinf[1]
+			if ( repeat != "skip" && arrNoSkipQs.indexOf(i) == -1 ) { arrNoSkipQs.push(i) }
+		}
+		
+		
+		var maxNum = arrNoSkipQs.length + arrNewQs.length
 		var randomNum = Math.floor(Math.random() * maxNum) +1
-		if ( randomNum > arrOldQs.length ) {
-			var i = randomNum - arrOldQs.length -1
+		if ( randomNum > arrNoSkipQs.length ) {
+			var i = randomNum - arrNoSkipQs.length -1
 			normPrior = arrNewQs[i]
 		} else {
 			var i = randomNum -1
-			normPrior = arrOldQs[i]
+			normPrior = arrNoSkipQs[i]
 		}
 	} else if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" ) {
 		if ( arrNewQs.length > 0 ) { normPrior = arrNewQs[0] }
@@ -2142,11 +2165,10 @@ function F_calcNextQ(){
 		for ( var x=0; x<arrOldQs.length; x++ ) {
 			var i = arrOldQs[x]
 			var qNev = arrQnev[i].qNev // jegy , repeat , date
-				var date = localStorage.getItem(currPath+" | "+qNev)
-				var jegy = date.slice(0,date.indexOf(" , "))
-				date = date.slice(date.indexOf(" , ")+3)
-				var repeat = date.slice(0,date.indexOf(" , "))
-				date = date.slice(date.indexOf(" , ")+3)
+				var arrQinf = F_getQinf(qNev)
+				var jegy = arrQinf[0]
+				var repeat = arrQinf[1]
+				var date = arrQinf[2]
 			if ( repeat == "skip" ) { continue }
 			var diffTime = Number(currTime) - Number(date)
 			var currPoint = Number(diffTime) / Number(jegy)
@@ -2430,11 +2452,10 @@ function F_nextQ() {
 			// console.log(i)
 			var qNev = arrQnev[i].qNev
 			if ( localStorage.getItem(currPath+" | "+qNev) ) {
-				var date = localStorage.getItem(currPath+" | "+qNev)
-				var jegy = date.slice(0,date.indexOf(" , "))
-				date = date.slice(date.indexOf(" , ")+3)
-				var repeat = date.slice(0,date.indexOf(" , "))
-				date = date.slice(date.indexOf(" , ")+3)
+					var arrQinf = F_getQinf(qNev)
+					var jegy = arrQinf[0]
+					var repeat = arrQinf[1]
+					var date = arrQinf[2]
 				if ( repeat == "skip" ) { 
 					document.getElementById("span.0."+num).style.backgroundColor = "black" 
 					document.getElementById("span.0."+num).style.color = "white" 
@@ -2574,11 +2595,10 @@ function F_createQtab() {
 			F_calcOldQs()
 		}
 		
-		var date = localStorage.getItem(currPath+" | "+qNev)  // jegy , repeat , date
-		var jegy = date.slice(0,date.indexOf(" , "))
-		date = date.slice(date.indexOf(" , ")+3)
-		var repeat = date.slice(0,date.indexOf(" , "))
-		date = date.slice(date.indexOf(" , ")+3)
+		var arrQinf = F_getQinf(qNev)
+		var jegy = arrQinf[0]
+		var repeat = arrQinf[1]
+		var date = arrQinf[2]
 		
 		if ( repeat == "skip" ) { 
 			td.style.backgroundColor = "grey"
