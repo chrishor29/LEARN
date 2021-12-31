@@ -26,6 +26,7 @@ xcopy /y %source%\Neurologia\neurologia.html %destination%\Neurologia\ /d
 xcopy /y %source%\Neurologia\neuroteszt.html %destination%\Neurologia\ /d
 xcopy /y %source%\Pszichiatria\pszichi.html %destination%\Pszichiatria\ /d
 xcopy /y %source%\Szuleszet\szuleszet.html %destination%\Szuleszet\ /d
+xcopy /y %source%\Szuleszet\nogyogy.html %destination%\Szuleszet\ /d
 xcopy /y %source%\done\Aneszt\aneszt.html %destination%\done\Aneszt\ /d
 xcopy /y %source%\done\Bioetika\bioetika.html %destination%\done\Bioetika\ /d
 xcopy /y %source%\done\IgOr\igor.html %destination%\done\IgOr\ /d

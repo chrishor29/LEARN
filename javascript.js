@@ -2147,7 +2147,6 @@ function F_calcNextQ(){
 			if ( repeat != "skip" && arrNoSkipQs.indexOf(i) == -1 ) { arrNoSkipQs.push(i) }
 		}
 		
-		
 		var maxNum = arrNoSkipQs.length + arrNewQs.length
 		var randomNum = Math.floor(Math.random() * maxNum) +1
 		if ( randomNum > arrNoSkipQs.length ) {
@@ -2165,10 +2164,11 @@ function F_calcNextQ(){
 		for ( var x=0; x<arrOldQs.length; x++ ) {
 			var i = arrOldQs[x]
 			var qNev = arrQnev[i].qNev // jegy , repeat , date
-				var arrQinf = F_getQinf(qNev)
-				var jegy = arrQinf[0]
-				var repeat = arrQinf[1]
-				var date = arrQinf[2]
+			var arrQinf = F_getQinf(qNev)
+			var jegy = arrQinf[0]
+			var repeat = arrQinf[1]
+			var date = arrQinf[2]
+			
 			if ( repeat == "skip" ) { continue }
 			var diffTime = Number(currTime) - Number(date)
 			var currPoint = Number(diffTime) / Number(jegy)
