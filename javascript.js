@@ -1229,6 +1229,7 @@ function F_saveLS() {
 function F_loadLS() {
 	function F_checkTetels() {
 		arrActTetels = JSON.parse(localStorage.getItem(currPath+" | activeTetels"))
+		document.getElementById("btn_QingTetels").innerHTML = "tétel("+arrActTetels.length+")"
 		//console.log(arrActTetels)
 		if ( arrActTetels == null ) { 
 			arrActTetels = []
