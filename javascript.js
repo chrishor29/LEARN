@@ -1,5 +1,38 @@
 
-document.body.style.backgroundColor = "azure"
+// Night mode
+var bodyBGcolor, abbrBGcolor, abbrBorderColor, midQColor, midQBGColor, timerColor, pageLinksColor, selectJegyBGColor
+if ( localStorage.getItem("nightMode") == "true" ) {
+	bodyBGcolor = "rgb(30, 30, 30)"
+	abbrBGcolor = "rgb(30, 30, 30)"
+	abbrBorderColor = "2px solid white"
+	midQColor = "dodgerblue"
+	midQBGColor = "rgb(30, 30, 30)"
+	timerColor = "crimson"
+	pageLinksColor = "aqua"
+	selectJegyBGColor = "black"
+	
+	document.body.style.color = "white"
+	document.getElementById("btn_toggleNightMode").innerHTML = "☀️" // &#9728;
+} else {
+	bodyBGcolor = "azure"
+	abbrBGcolor = "azure"
+	abbrBorderColor = "2px solid black"
+	midQColor = "blue"
+	midQBGColor = "white"
+	timerColor = "black"
+	pageLinksColor = "blue"
+	selectJegyBGColor = "#f1f1f1"
+}
+function F_toggleNightMode(){
+	if ( localStorage.getItem("nightMode") == "true" ) {
+		localStorage.removeItem("nightMode")
+	} else {
+		localStorage.setItem("nightMode",true)
+	}
+	location.reload();
+}
+
+document.body.style.backgroundColor = bodyBGcolor
 document.body.style.margin = "2px" // ez valahol nagyobbra van állítva, visszakéne
 
 var ua = navigator.userAgent.toLowerCase()
@@ -346,7 +379,7 @@ function F_loadPageLinks() { // IDB, favicons, setClick
 				var time = F_getTime() - this.result[1]["pageTIME"]
 				//console.log(path+" : "+this.result[1]["pageTIME"])
 				if ( time < 604800 ) { // 1 hét
-					page.style.color = "blue"
+					page.style.color = pageLinksColor
 					page.dataset.loaded = true
 				} else {
 					page.style.color = "red"
@@ -383,7 +416,7 @@ function F_saveIDB(path,pageText,id) {
 		//store.get(1).onsuccess = function(event) { console.log("database SAVED – "+path /* this.result */) }
 		transaction.oncomplete = function() { db.close() }
 		
-		pageLinks[id].style.color = "blue"
+		pageLinks[id].style.color = pageLinksColor
 	}
 }
 function clearIDB(path,page) {
@@ -399,7 +432,7 @@ function clearFullIDB() { for ( var i=0; i<pageLinks.length; i++ ) { clearIDB(pa
 function F_loadAllPages() { 
 	loadAllPages = true
 	for ( var i=0; i<pageLinks.length; i++ ) { 
-		if ( pageLinks[i].style.color != "blue" && pageLinks[i].style.color != "darkviolet" ) {
+		if ( pageLinks[i].style.color != pageLinksColor && pageLinks[i].style.color != "darkviolet" ) {
 			//console.log(i+" vs "+pageLinks.length)
 			//console.log(pageLinks[i].dataset.src)
 			document.getElementById("div_searchingBg").style.display = "block"
@@ -432,7 +465,7 @@ var F_seekBar = window.setInterval(function() {
 		var loadTime = 3
 		if ( threeSec > loadTime ) {
 			for ( var i=0; i<pageLinks.length; i++ ) { 
-				if ( pageLinks[i].style.color != "blue" ) {
+				if ( pageLinks[i].style.color != pageLinksColor ) {
 					F_loadAndSavePageText(pageLinks[i].dataset.src,false,false)
 					break
 				}
@@ -452,7 +485,7 @@ function F_divMidQ() { // lekreálja középre a divet, ahova kidobja majd a mid
 		//document.body.appendChild(div)
 		div.id = "div_MidQ"
 		div.dataset.origin = "pageQs"
-		div.style.backgroundColor = "white"
+		div.style.backgroundColor = midQBGColor
 		div.style.overflow = "auto"
 		div.style.border = "8px solid black"
 		div.style.outline = "5px solid yellow"
@@ -578,11 +611,11 @@ function F_loadMidQs(detElem) { // midQ[x] elemeket beállítja: kék fontColor,
 	for ( var x=0; x<midQs.length; x++ ) {
 		var midQ = midQs[x]
 		//console.log(midQ.innerHTML)
-		midQ.style.color = "blue"
+		midQ.style.color = midQColor
 		midQ.style.textShadow = "0 0 1px yellow, 0 0 1px black"
 		midQ.style.cursor = "pointer"
 		midQ.onmouseover = function(){ this.style.color = "green" }
-		midQ.onmouseout = function(){ this.style.color = "blue" }
+		midQ.onmouseout = function(){ this.style.color = midQColor }
 		midQ.onclick = function() {
 			var impID = F_getImpID(this)
 			var path = F_getQPath(this,impID) 
@@ -601,8 +634,8 @@ function F_tooltipFuncs(){
 	document.getElementById("div_body").appendChild(span)
 	//document.body.appendChild(span)
 	span.style.display = "none"
-	span.style.border = "2px solid black"
-	span.style.backgroundColor = "azure"
+	span.style.border = abbrBorderColor
+	span.style.backgroundColor = abbrBGcolor
 	span.style.position = "absolute"
 	span.style.maxWidth = "300px"
 	span.style.padding = "2px 2px 2px 5px"
@@ -1229,20 +1262,26 @@ function F_saveLS() {
 function F_loadLS() {
 	function F_checkTetels() {
 		arrActTetels = JSON.parse(localStorage.getItem(currPath+" | activeTetels"))
-		document.getElementById("btn_QingTetels").innerHTML = "tétel("+arrActTetels.length+")"
 		//console.log(arrActTetels)
 		if ( arrActTetels == null ) { 
 			arrActTetels = []
 			return 
 		}
+		var newTetels = [] // kell, mert ha egy tétel nevét megváltoztatom, akkor a régit vegye ki LS-ből
 		var allTetels = document.getElementById("div_QingTetels").getElementsByClassName("tetel")
 		for ( var i=0; i<allTetels.length; i++ ) {
 			var tetel = allTetels[i].innerHTML
 			if ( arrActTetels.includes(tetel) == true ) { 
 				allTetels[i].style.backgroundColor = "lightgreen"
+				newTetels.push(tetel)
 				//console.log(tetel)
 			}
+			//console.log(tetel)
 		}
+		
+		localStorage.setItem(currPath+" | activeTetels",JSON.stringify(newTetels))
+		//document.getElementById("span_QingTime").innerHTML = arrActTetels.length
+		document.getElementById("span_QingTime").innerHTML = newTetels.length
 	}
 	F_checkTetels()
 	
@@ -1308,7 +1347,7 @@ function F_loadTetels() {
 	var fontSize = 140
 	var titleStyle = ' style="background-color:gainsboro; font-size:'+fontSize+'%; font-weight:bold; color:black;"'
 	fontSize = 120
-	var tetelStyle = ' style="font-size:'+fontSize+'%; font-weight:bold; cursor:pointer" onclick="F_clickTetel(this)"'
+	var tetelStyle = ' style="font-size:'+fontSize+'%; font-weight:bold; color:black; cursor:pointer" onclick="F_clickTetel(this)"'
 	for ( var x = 0;   x < elems.length;   x++ ) {
 		if ( elems[x].className.indexOf("mainTitle") != -1 ) {
 			string = string+ "<details><summary" +titleStyle+ ">" +elems[x].innerHTML+ "</summary>"
@@ -1468,7 +1507,7 @@ function F_createQingElems() {
 				clearInterval(int_Click) 
 				lastClickTime = F_getTime()
 				F_nextQ()
-				document.body.style.backgroundColor = ""
+				document.body.style.backgroundColor = bodyBGcolor
 			}, 100)
 		}
 	}
@@ -1501,6 +1540,7 @@ function F_createQingElems() {
 		span.id = "span_QingTime"
 		span.style.border = "1px solid black"
 		span.style.backgroundColor = "White"
+		span.style.color = "black"
 
 		span.style.paddingLeft = "5px"
 		span.style.paddingRight = "5px"
@@ -1586,6 +1626,7 @@ function F_createQingElems() {
 		document.getElementById("span_secondLine").appendChild(span)
 		span.style.border = "1px solid black"
 		span.style.backgroundColor = "Gainsboro"
+		span.style.color = "Black"
 
 		span.style.paddingLeft = "5px"
 		span.style.paddingRight = "5px"
@@ -1648,6 +1689,7 @@ function F_createQingElems() {
 		span.id = "span_QingTopNew"
 		document.getElementById("span_QingNewOldBorder").appendChild(span)
 		span.style.backgroundColor = "White"
+		span.style.color = "Black"
 
 		span.style.paddingLeft = "5px"
 		span.style.paddingRight = "5px"
@@ -1662,6 +1704,7 @@ function F_createQingElems() {
 		span.id = "span_QingTopOld"
 		document.getElementById("span_QingNewOldBorder").appendChild(span)
 		span.style.backgroundColor = "Gainsboro"
+		span.style.color = "Black"
 
 		span.style.paddingLeft = "5px"
 		span.style.paddingRight = "5px"
@@ -1677,6 +1720,7 @@ function F_createQingElems() {
 		span.id = "span_QingJegy"
 		span.style.border = "1px solid black"
 		span.style.backgroundColor = "White"
+		span.style.color = "Black"
 
 		span.style.paddingLeft = "5px"
 		span.style.paddingRight = "5px"
@@ -1840,6 +1884,7 @@ function F_createQingElems() {
 		div.id = "div_QingQuests"
 		document.getElementById("div_QingMain").appendChild(div)
 		div.style.backgroundColor = "white"
+		div.style.color = "black"
 		div.style.border = "10px solid black"
 		div.style.display = "none"
 		div.style.position = "fixed"
@@ -1876,7 +1921,7 @@ function F_createQingElems() {
 		div.style.top = "60px"
 		div.style.width = "45px"
 		div.style.display = "none"
-		div.style.backgroundColor = "#f1f1f1" // fehér kb.
+		div.style.backgroundColor = selectJegyBGColor // fehér kb.
 		div.style.boxShadow = "0px 8px 16px 0px rgba(0,0,0,0.4)"
 		div.style.border = "1px solid grey"
 		div.style.zIndex = "2"
@@ -2159,7 +2204,8 @@ function F_calcNextQ(){
 		}
 	} else if ( document.getElementById("btn_newQuest").style.borderColor == "limegreen" ) {
 		if ( arrNewQs.length > 0 ) { normPrior = arrNewQs[0] }
-	} else {
+	} 
+	if ( normPrior == "none" ) {
 		var normQPoint = 0
 		var repQPoint = 0
 		for ( var x=0; x<arrOldQs.length; x++ ) {
@@ -2400,6 +2446,7 @@ function F_nextQ() {
 				} else if ( x == 2 ) {
 					span.style.top = "60px"
 					span.style.fontSize = "x-small"
+					span.style.color = timerColor
 					span.onclick = function(){  // left click
 						if ( this.style.backgroundColor == "black" ) {
 							this.style.backgroundColor = ""

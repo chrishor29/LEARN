@@ -149,7 +149,7 @@ abbr {
 	/*padding-top: 0px; 
 	padding-bottom: 0px;*/
 	text-decoration: none;
-	background-color: gainsboro;
+	background-color: grey; /* gainsboro; */
 }
 /*abbr.test {
 	position: relative;
