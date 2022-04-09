@@ -1410,6 +1410,7 @@ function F_createQingElems() {
 		div.style.top = "4px"
 		div.style.bottom = "4px"
 		div.style.zIndex = "1"
+		div.onclick = function() { if (confirm("Fast click! Hide bg?") == true) { div.style.display = "none" } } 
 	}
 	F_divQingBg()
 	function F_divMain() { // ebbe az összes Qing element --> elhide-lásuk easy legyen, azért kell
