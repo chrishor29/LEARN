@@ -3,9 +3,9 @@ set source=D:\LEARN
 set destination=C:\Users\Kristof\Desktop\MIX\learn
 set learnStuff=C:\Users\Kristof\Desktop\MIX\learnStuff
 
-robocopy %source%\Sajat %destination%\Sajat /mir /max:50000000
 robocopy %source%\images %destination%\images /mir /max:50000000
 robocopy %source%\videos %destination%\videos /mir /max:50000000
+xcopy /y %source%\Sajat\sajat.html %destination%\Sajat /d
 xcopy /y %source%\expqs.html %destination%\ /d
 xcopy /y %source%\targyvalasztas.html %destination%\ /d
 xcopy /y %source%\targyvalasztasOLD.html %destination%\ /d
