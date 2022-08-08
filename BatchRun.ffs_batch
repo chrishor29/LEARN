@@ -37,7 +37,7 @@
     <FolderPairs>
         <Pair>
             <Left>D:\mix</Left>
-            <Right>mtp:\HUAWEI P20 lite\Internal shared storage\mix</Right>
+            <Right>mtp:\Galaxy A13\Internal storage\Android\data\com.opera.browser\files\Download\mix</Right>
             <Filter>
                 <Include>
                     <Item>mix.html</Item>
@@ -53,15 +53,15 @@
         </Pair>
         <Pair>
             <Left>D:\mix\KOTTA</Left>
-            <Right>mtp:\HUAWEI P20 lite\Internal shared storage\mix\KOTTA</Right>
+            <Right>mtp:\Galaxy A13\Internal storage\Android\data\com.opera.browser\files\Download\mix\KOTTA</Right>
         </Pair>
         <Pair>
             <Left>D:\mix\images</Left>
-            <Right>mtp:\HUAWEI P20 lite\Internal shared storage\mix\images</Right>
+            <Right>mtp:\Galaxy A13\Internal storage\Android\data\com.opera.browser\files\Download\mix\images</Right>
         </Pair>
         <Pair>
             <Left>C:\Users\Kristof\Desktop\MIX\learn</Left>
-            <Right>mtp:\HUAWEI P20 lite\Internal shared storage\LEARN</Right>
+            <Right>mtp:\Galaxy A13\Internal storage\Android\data\com.opera.browser\files\Download\LEARN</Right>
             <Filter>
                 <Include>
                     <Item>*</Item>
@@ -70,7 +70,15 @@
                     <Item>/.git/</Item>
                     <Item>BatchRun.ffs_batch</Item>
                     <Item>BatchRunStuff.ffs_batch</Item>
+                    <Item>BatchRunImages.ffs_batch</Item>
+                    <Item>ZeneBatch.ffs_batch</Item>
+                    <Item>ZeneBatch_old.ffs_batch</Item>
                     <Item>update.bat</Item>
+                    <Item>update.ahk</Item>
+                    <Item>*.png</Item>
+                    <Item>*.jpg</Item>
+                    <Item>*.mp4</Item>
+                    <Item>*.mp3</Item>
                 </Exclude>
                 <TimeSpan Type="None">0</TimeSpan>
                 <SizeMin Unit="None">0</SizeMin>

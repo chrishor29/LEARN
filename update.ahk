@@ -1,6 +1,7 @@
 ﻿Run szemeszter.bat,,Min, szemPID
 
 Gui, Add, CheckBox, vTelefon, Telefon
+Gui, Add, CheckBox, vImages, Images
 Gui, Add, CheckBox, vWebPage, WebPage
 Gui, Add, CheckBox, vZene, Zene
 Gui, Add, Button, Default w80 gGuiClose, OK
@@ -16,6 +17,12 @@ if ( Telefon == 1 ) {
 	varTelefon = true
 } else {
 	varTelefon = false
+}
+
+if ( Images == 1 ) {
+	varImages = true
+} else {
+	varImages = false
 }
 
 if ( WebPage == 1 ) {
@@ -50,9 +57,14 @@ if varZene = true
 	Process,WaitClose,%zenePID%
 	Run ZeneBatch_old.ffs_batch,,, zeneoldPID ; %destination%\ZeneBatch.ffs_batch
 }
+if varImages = true
+{
+	Run BatchRunImages.ffs_batch,,, andIPID 
+}
 Process,WaitClose,%updPID%
 Process,WaitClose,%andPID%
 Process,WaitClose,%andrPID%
+Process,WaitClose,%andIPID%
 Process,WaitClose,%zeneoldPID%
 MsgBox done
 ExitApp

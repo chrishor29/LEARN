@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FreeFileSync XmlType="BATCH" XmlFormat="17">
     <Compare>
-        <Variant>TimeAndSize</Variant>
+        <Variant>Size</Variant>
         <Symlinks>Exclude</Symlinks>
         <IgnoreTimeShift/>
     </Compare>
@@ -36,8 +36,26 @@
     </Filter>
     <FolderPairs>
         <Pair>
-            <Left>C:\Users\Kristof\Desktop\MIX\learnStuff</Left>
+            <Left>C:\Users\Kristof\Desktop\MIX\learn</Left>
             <Right>mtp:\Galaxy A13\Internal storage\Android\data\com.opera.browser\files\Download\LEARN</Right>
+            <Filter>
+                <Include>
+                    <Item>*</Item>
+                </Include>
+                <Exclude>
+                    <Item>/.git/</Item>
+                    <Item>BatchRun.ffs_batch</Item>
+                    <Item>BatchRunStuff.ffs_batch</Item>
+                    <Item>BatchRunImages.ffs_batch</Item>
+                    <Item>ZeneBatch.ffs_batch</Item>
+                    <Item>ZeneBatch_old.ffs_batch</Item>
+                    <Item>update.bat</Item>
+                    <Item>update.ahk</Item>
+                </Exclude>
+                <TimeSpan Type="None">0</TimeSpan>
+                <SizeMin Unit="None">0</SizeMin>
+                <SizeMax Unit="None">0</SizeMax>
+            </Filter>
         </Pair>
     </FolderPairs>
     <Errors Ignore="false" Retry="0" Delay="5"/>
