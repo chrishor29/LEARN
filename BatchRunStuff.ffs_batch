@@ -37,7 +37,7 @@
     <FolderPairs>
         <Pair>
             <Left>C:\Users\Kristof\Desktop\MIX\learnStuff</Left>
-            <Right>mtp:\Galaxy A13\Internal storage\Android\data\com.opera.browser\files\Download\LEARN</Right>
+            <Right>mtp:\Galaxy A13\Internal storage\Android\data\org.mozilla.firefox\files\Download\LEARN</Right>
         </Pair>
     </FolderPairs>
     <Errors Ignore="false" Retry="0" Delay="5"/>

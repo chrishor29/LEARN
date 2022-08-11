@@ -1,7 +1,8 @@
 ﻿Run szemeszter.bat,,Min, szemPID
 
-Gui, Add, CheckBox, vTelefon, Telefon
-Gui, Add, CheckBox, vImages, Images
+Gui, Add, CheckBox, vTeloLearn, Telo - LEARN
+Gui, Add, CheckBox, vTeloMix, Telo - Mix
+Gui, Add, CheckBox, vTeloImages, Telo - Images
 Gui, Add, CheckBox, vWebPage, WebPage
 Gui, Add, CheckBox, vZene, Zene
 Gui, Add, Button, Default w80 gGuiClose, OK
@@ -13,13 +14,13 @@ GuiClose: ; ha megnyomtan az OK, akkor megy tovább itt
 
 Gui, Submit ; elmenti a beállított értékeket
 
-if ( Telefon == 1 ) {
+if ( TeloLearn == 1 ) {
 	varTelefon = true
 } else {
 	varTelefon = false
 }
 
-if ( Images == 1 ) {
+if ( TeloImages == 1 ) {
 	varImages = true
 } else {
 	varImages = false
@@ -56,6 +57,7 @@ if varZene = true
 	Run ZeneBatch.ffs_batch,,, zenePID ; %destination%\ZeneBatch.ffs_batch
 	Process,WaitClose,%zenePID%
 	Run ZeneBatch_old.ffs_batch,,, zeneoldPID ; %destination%\ZeneBatch.ffs_batch
+	
 }
 if varImages = true
 {
@@ -66,5 +68,11 @@ Process,WaitClose,%andPID%
 Process,WaitClose,%andrPID%
 Process,WaitClose,%andIPID%
 Process,WaitClose,%zeneoldPID%
+
+if ( TeloMix == 1 ) {
+	Run BatchTeloMix.ffs_batch,,, TeloMixPID 
+}
+Process,WaitClose,%TeloMixPID%
+
 MsgBox done
 ExitApp

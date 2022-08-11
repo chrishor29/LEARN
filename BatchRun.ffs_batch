@@ -36,32 +36,8 @@
     </Filter>
     <FolderPairs>
         <Pair>
-            <Left>D:\mix</Left>
-            <Right>mtp:\Galaxy A13\Internal storage\Android\data\com.opera.browser\files\Download\mix</Right>
-            <Filter>
-                <Include>
-                    <Item>mix.html</Item>
-                    <Item>style.css</Item>
-                    <Item>styleAndroid.css</Item>
-                    <Item>stylePC.css</Item>
-                </Include>
-                <Exclude/>
-                <TimeSpan Type="None">0</TimeSpan>
-                <SizeMin Unit="None">0</SizeMin>
-                <SizeMax Unit="None">0</SizeMax>
-            </Filter>
-        </Pair>
-        <Pair>
-            <Left>D:\mix\KOTTA</Left>
-            <Right>mtp:\Galaxy A13\Internal storage\Android\data\com.opera.browser\files\Download\mix\KOTTA</Right>
-        </Pair>
-        <Pair>
-            <Left>D:\mix\images</Left>
-            <Right>mtp:\Galaxy A13\Internal storage\Android\data\com.opera.browser\files\Download\mix\images</Right>
-        </Pair>
-        <Pair>
             <Left>C:\Users\Kristof\Desktop\MIX\learn</Left>
-            <Right>mtp:\Galaxy A13\Internal storage\Android\data\com.opera.browser\files\Download\LEARN</Right>
+            <Right>mtp:\Galaxy A13\Internal storage\Android\data\org.mozilla.firefox\files\Download\LEARN</Right>
             <Filter>
                 <Include>
                     <Item>*</Item>
