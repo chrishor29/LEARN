@@ -21,7 +21,10 @@
     </Synchronize>
     <Filter>
         <Include>
-            <Item>*</Item>
+            <Item>*.wmw</Item>
+            <Item>*.wma</Item>
+            <Item>*.mp4</Item>
+            <Item>*.mp3</Item>
         </Include>
         <Exclude>
             <Item>\System Volume Information\</Item>
@@ -35,8 +38,8 @@
     </Filter>
     <FolderPairs>
         <Pair>
-            <Left>mtp:\HUAWEI P20 lite\Internal shared storage\ZENE</Left>
-            <Right>D:\zene</Right>
+            <Left>D:\zene</Left>
+            <Right>mtp:\Galaxy A13\Internal storage\Zene</Right>
         </Pair>
     </FolderPairs>
     <Errors Ignore="false" Retry="0" Delay="5"/>
