@@ -286,7 +286,8 @@ function F_loadAndSavePageText(path,click,toggle) {
 		F_loadElem(pageDiv)
 		/* */var endTime = F_getTime()
 		/* */console.log(endTime-startTime)
-		if ( toggle == true ) { F_toggleQing()  }
+		document.getElementById("div_QingBg").style.display = "none"
+		if ( toggle == true ) { F_toggleQing() }
 	}
 	
 	document.getElementById("iframe_targyak").src = path
@@ -300,7 +301,10 @@ function F_loadAndSavePageText(path,click,toggle) {
 		F_saveIDB(path,pageText,id)
 		
 		if ( click == true ) {
-			F_loadPage(pageText,id) 
+			document.getElementById("div_QingBg").style.display = "block"
+			setTimeout(function() { 
+				F_loadPage(pageText,id) 
+			}, 100);
 		} else if ( toggle == "all" ) { 
 			F_loadAllPages()
 		}
