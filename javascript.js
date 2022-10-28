@@ -1,3 +1,9 @@
+var editPage = "Gyerekgyogy/gyermek.html"
+/* 
+vagy 'editPage = false'
+vagy beírom a címét pl. 'editPage = Gyerekgyogy/gyermek.html'
+ha kiakarom venni ezt a funkciót, akkor editPage-re keressek rá a kódban, és azokat töröljem
+*/
 
 // Night mode
 var bodyBGcolor, abbrBGcolor, abbrBorderColor, midQColor, midQBGColor, timerColor, pageLinksColor, selectJegyBGColor
@@ -311,18 +317,7 @@ function F_loadAndSavePageText(path,click,toggle) {
 	}
 	window.addEventListener('message', handler, false)
 }
-function F_loadPageLinks() { // IDB, favicons, setClick
-	function F_loadFavIcons() {
-		var table = document.getElementById("table_weboldalak")
-		var favicons = table.getElementsByClassName("targy")
-		for ( var i=0; i<favicons.length; i++ ) {
-			if ( favicons[i].src ) { continue }
-			var path = favicons[i].parentElement.dataset.src
-			favicons[i].src = path.slice(0,path.lastIndexOf("/")+1)+"favicon.bmp"
-		}
-	}
-	F_loadFavIcons()
-	
+function F_loadPageLinks() { // IDB, setClick
 	function F_setPageClick() {
 		for ( var i=0; i<pageLinks.length; i++ ) { 
 			pageLinks[i].onclick = function() {
@@ -330,10 +325,9 @@ function F_loadPageLinks() { // IDB, favicons, setClick
 				for ( var x=0; x<pageLinks.length; x++ ) { pageLinks[x].style.backgroundColor = "" }
 				this.style.backgroundColor = "orange"
 				currPath = this.dataset.src
-				targyPath = this.dataset.src
 				
 				// androidon hátha kell, hogy farmak/anat-ra klikkelésnél a rózsaszín megjelenjen:
-				// var srcTest = this.dataset.src // currPath - targyPath is jó lenne tutti, csak nem emlékszem melyik mi
+				// var srcTest = this.dataset.src // currPath is jó lenne tutti, csak nem emlékszem melyik mi
 				// setTimeout(function() { 
 					F_loadAndSavePageText(this.dataset.src,true)
 				// }, 100);
@@ -557,7 +551,6 @@ function F_divMidQ() { // lekreálja középre a divet, ahova kidobja majd a mid
 				document.getElementById("btn_toggleQing").style.display = "block"
 				document.body.parentElement.scrollTop = prevScrollTop
 			}
-			//currPath = targyPath
 		}
 	}
 	F_btnTitle()
@@ -2564,6 +2557,36 @@ function F_nextQ() {
 }
 // –––––––––––––––  Qing END  –––––––––––––––
 
+// refresh editPage
+if ( editPage != false ) { 
+	var button = document.createElement("button")
+	document.body.appendChild(button)
+	button.innerHTML = " &#8635; "
+	
+	button.style.border = "2px solid black"
+	button.style.backgroundColor = "white"
+	button.style.cursor = "pointer"
+	
+	button.style.position = "fixed"
+	button.style.right = "20px"
+	button.style.top = "20px"
+	
+	button.onclick = function() { 
+		// elmenti a detailst + scrollbart
+		var scrollPos = window.pageYOffset // nem pontos valamiért
+		
+		// betölti újra
+		currPath = editPage
+		F_loadAndSavePageText(editPage,true,false)
+		
+		// beállítja a detailst + scrollbart
+		window.scrollTo(0, scrollPos) // nem pontos valamiért
+	}
+}
+
+
+
+
 
 // oldQ TAB
 var arrTabQs = []
@@ -2883,7 +2906,6 @@ function F_answerQ(detElem) {
 
 function F_starToggleAll() { // oldal betöltésénél váltson-e át Questelős nézetbe
 	currPath = localStorage.getItem("hk.ToggleAll")
-	targyPath = localStorage.getItem("hk.ToggleAll")
 	F_loadAndSavePageText(localStorage.getItem("hk.ToggleAll"),true,true)
 }
 

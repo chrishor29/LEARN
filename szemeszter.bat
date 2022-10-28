@@ -20,7 +20,6 @@ xcopy /y %source%\favicon.png %destination%\ /d
 REM 5.év
 xcopy /y %source%\Belgyogy\Szigorlat\belgyogy.html %destination%\Belgyogy\Szigorlat\ /d
 xcopy /y %source%\Belgyogy\HIIRLm\hiirlm.html %destination%\Belgyogy\HIIRLm\ /d
-xcopy /y %source%\Transzfuziologia\trafo.html %destination%\Transzfuziologia\ /d
 xcopy /y %source%\Gyerekgyogy\gyermek.html %destination%\Gyerekgyogy\ /d
 xcopy /y %source%\Neurologia\neurologia.html %destination%\Neurologia\ /d
 xcopy /y %source%\Neurologia\neuroteszt.html %destination%\Neurologia\ /d
@@ -34,6 +33,7 @@ xcopy /y %source%\done\KlinGen\klingen.html %destination%\done\KlinGen\ /d
 xcopy /y %source%\done\Nepegeszsegtan\nepeg.html %destination%\done\Nepegeszsegtan\ /d
 xcopy /y %source%\done\Sportorvostan\Sportorvostan.html %destination%\done\Sportorvostan\ /d
 xcopy /y %source%\done\Szemeszet\szemeszet.html %destination%\done\Szemeszet\ /d
+xcopy /y %source%\done\Transzfuziologia\trafo.html %destination%\done\Transzfuziologia\ /d
 xcopy /y %source%\done\Urologia\urologia.html %destination%\done\Urologia\ /d
 
 REM 4.év
