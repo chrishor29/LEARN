@@ -121,6 +121,7 @@ function F_fixedXY(detElem) { // fixed x & y position-t lekéri!
 	return { top: rect.top, left: rect.left, bottom: rect.bottom }
 }
 
+
 // –––––––––––––––  impQs BEGIN   –––––––––––––––
 var pageImpQs = [] // path to impQs --> tárgyak {expQ}-jait lementi ide is
 var pageTexts = [] // path to txt --> tárgyak textjét lementi ide is
@@ -128,6 +129,7 @@ var pageLinks = document.getElementsByClassName("page")
 var currPath = null // betöltött tárgyé (ami látható is)
 var prevDivShown = "" // midQ betöltése előtt mi volt (alap,search,Qing)
 var prevScrollTop = 0 // midQ betöltése előtt, hogy állt a scrollbar
+var vToggleSearch = false
 
 function F_saveImpQs(path) {
 	pageImpQs[path] = {}
@@ -448,6 +450,18 @@ function F_loadAllPages() {
 			var spanStatus = document.getElementById("span_searchStatus")
 			spanStatus.parentElement.style.display = "none" 
 			document.getElementById("div_searchingBg").style.display = "none"
+			
+			if ( vToggleSearch == true ) {
+				document.getElementById("div_pageQTargy").style.display = "none"
+				document.getElementById("table_weboldalak").parentElement.parentElement.style.display = "none"
+				document.getElementById("btn_toggleQing").style.display = "none"
+				document.getElementById("btn_toggleSearch").style.display = 'none'
+				// első kettő azért kell, hogy a fölös scrollbar eltűnjön bal oldalt (pl. megvan nyitva farmakológia, majd ráklikkelnék nagyítóra...)
+				document.getElementById("div_searchBg").style.display = "block"
+				document.getElementById("btn_toggleSearch").style.color = ""
+				document.getElementById("btn_toggleSearch").style.backgroundColor = ""
+				vToggleSearch = false
+			}
 		}
 	}
 }
@@ -1003,27 +1017,16 @@ function F_createSearchElems() {
 		button.style.position = "absolute"
 		button.style.right = "0px"
 		button.style.bottom = "0px" // parent position-jént relative-ra kellett állítani, illetve ezt absolute-ra, hogy működjön!!
-		//button.style.width = "90px"
 		button.style.maxWidth = "90px"
-		//button.style.height = "90px"
 		button.style.maxHeight = "90px"
 		button.value = "🔍"
 		button.style.cursor = "pointer"
 
 		button.onclick = function() { 
-			if ( document.getElementById("div_searchBg").style.display == "none" ) {
-				this.style.backgroundColor  = "black"
-				this.style.color  = "white"
-			}
+			this.style.backgroundColor  = "black"
+			this.style.color  = "white"
 			var int_Click = window.setInterval(function(){
-				document.getElementById("div_pageQTargy").style.display = "none"
-				document.getElementById("table_weboldalak").parentElement.parentElement.style.display = "none"
-				document.getElementById("btn_toggleQing").style.display = "none"
-				document.getElementById("btn_toggleSearch").style.display = 'none'
-				// első kettő azért kell, hogy a fölös scrollbar eltűnjön bal oldalt (pl. megvan nyitva farmakológia, majd ráklikkelnék nagyítóra...)
-				document.getElementById("div_searchBg").style.display = "block"
-				button.style.color = ""
-				button.style.backgroundColor = ""
+				vToggleSearch = true
 				if ( loadAllPages == false ) { F_loadAllPages() }
 				clearInterval(int_Click)
 			}, 100)
@@ -1177,7 +1180,7 @@ function F_createSearchElems() {
 	function F_spanStatus() { // statusbar, hogy a search hol tart
 		// szürke háttér & fehér border fojton látszik
 		var spanStatus = document.createElement("div")
-		document.getElementById("div_searchBg").appendChild(spanStatus)
+		document.body.appendChild(spanStatus)
 		spanStatus.style.display = "none"
 		spanStatus.style.position = "absolute"
 		spanStatus.style.backgroundColor = "grey"
