@@ -141,6 +141,8 @@ ul, ol {
 	background-color: White;
 }
 .miss { background-color: pink }
+.lasd { font-variant: small-caps }
+/*.lasd { font-style: italic }*/
 
 abbr {
 	/*position: relative;*/

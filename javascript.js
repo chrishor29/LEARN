@@ -2839,7 +2839,10 @@ function F_synonyms(detElem) {
 		if ( synonyms[x].offsetParent == null ) { continue }
 		//if ( synonyms[x].dataset.syno == null ) { continue }
 		
-		synonyms[x].style.fontStyle = "italic"
+		//synonyms[x].style.fontStyle = "italic"
+		//synonyms[x].style.textDecoration = "underline"
+		synonyms[x].style.fontFamily = "Georgia"
+		//synonyms[x].style.fontFamily = "Courier New"
 		//synonyms[x].style.backgroundColor = "#FFFFB0"
 		synonyms[x].style.cursor = "pointer"
 
