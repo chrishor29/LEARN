@@ -1046,16 +1046,71 @@ function F_createSearchElems() {
 		div.style.top = "4px"
 		div.style.bottom = "4px"
 		//div.style.zIndex = "3"
+		div.style.flexDirection = "column"
 	}
 	F_divBg()
-	var divBg = document.getElementById("div_searchBg")
+	function F_divUpperPart() { // ez a felső fele, tehát ezek vannak benne: search .... 'keresendő szöveg' ... X
+		var div = document.createElement("div")
+		div.id = "div_searchUpperPart"
+		document.getElementById("div_searchBg").appendChild(div)
+		div.style.display = "flex"
+		//div.style.backgroundColor = "yellow"
+	}
+	F_divUpperPart()
+	function F_divLowerPart() { // ez az alsó fele, itt a találati eredmények stb
+		var div = document.createElement("div")
+		div.id = "div_searchLowerPart"
+		document.getElementById("div_searchBg").appendChild(div)
+		//div.style.backgroundColor = "grey"
+		div.style.height = "100%"
+		//div.style.border = "2px solid black"
+	}
+	F_divLowerPart()
+	function F_btnSearch() { // bal felső sarokban SEARCH -> erre klikkelve megkezdi a keresést
+		var button = document.createElement("button")
+		button.id = "btn_SearchW"
+		//divBg.appendChild(button)
+		document.getElementById("div_searchUpperPart").appendChild(button)
+		button.style.fontSize = "xx-large"
+		button.innerHTML = "search"
+		//button.style.position = "relative"
+		//button.style.top = "1%"
+		button.style.cursor = "pointer"
+		button.onclick = function(){ F_searchStart() }
+	}
+	if ( isAndroid == false ) { F_btnSearch() }
+	function F_inpText() { // ebbe írom a keresett szót -> entert lenyomva megkezdi a keresést
+		var input = document.createElement("input")
+		document.getElementById("div_searchUpperPart").appendChild(input)
+		input.type = "text"
+		input.id = "input_SearchW"
+		input.style.fontSize = "xx-large"
+		//input.style.position = "absolute"
+		//input.style.top = "1%"
+		if ( isAndroid ) {
+			input.style.width = "100%"
+		} else {
+			input.style.position = "absolute"
+			//input.style.width = "50%"
+			//input.style.align = "center"
+			input.style.left = "50%"
+			input.style.paddingLeft = "3px"
+			input.style.paddingRight = "3px"
+			input.style.transform = "translate(-50%)"
+		}
+		input.addEventListener("keyup", function(event) { if (event.keyCode === 13) { 
+			// entert ha lenyomom search!
+			F_searchStart()
+		} })
+	}
+	F_inpText()
 	function F_btnClose() { // ✖
 		var button = document.createElement("input")
 		button.type = "button"
-		divBg.appendChild(button)
+		document.getElementById("div_searchUpperPart").appendChild(button)
 		button.style.position = "absolute"
-		button.style.right = "2px"
-		button.style.top = "2px"
+		button.style.right = "0px"
+		//button.style.top = "2px"
 		button.value = "✖"
 		button.style.fontSize = 'xx-large'
 		button.style.cursor = "pointer"
@@ -1072,45 +1127,9 @@ function F_createSearchElems() {
 		}
 	}
 	F_btnClose()
-	function F_inpText() { // ebbe írom a keresett szót -> entert lenyomva megkezdi a keresést
-		var input = document.createElement("input")
-		divBg.appendChild(input)
-		input.type = "text"
-		input.id = "input_SearchW"
-		input.style.fontSize = "xx-large"
-		input.style.position = "absolute"
-		input.style.top = "1%"
-		if ( isAndroid ) {
-			input.style.left = "1%"
-			var width = screen.width -53
-			input.style.width = width+"px"
-		} else {
-			input.style.left = "50%"
-			input.style.paddingLeft = "3px"
-			input.style.paddingRight = "3px"
-			input.style.transform = "translate(-50%)"
-		}
-		input.addEventListener("keyup", function(event) { if (event.keyCode === 13) { 
-			// entert ha lenyomom search!
-			F_searchStart()
-		} })
-	}
-	F_inpText()
-	function F_btnSearch() { // bal felső sarokban SEARCH -> erre klikkelve megkezdi a keresést
-		var button = document.createElement("button")
-		divBg.appendChild(button)
-		button.id = "btn_SearchW"
-		button.style.fontSize = "xx-large"
-		button.innerHTML = "search"
-		button.style.position = "relative"
-		button.style.top = "1%"
-		button.style.cursor = "pointer"
-		button.onclick = function(){ F_searchStart() }
-	}
-	if ( isAndroid == false ) { F_btnSearch() }
 	function F_divResults() { // ebbe írja a találati eredmény(eke)t
 		var divText = document.createElement("div") 
-		divBg.appendChild(divText)
+		document.getElementById("div_searchLowerPart").appendChild(divText)
 		divText.id = "div_searchResults"
 		divText.style.marginLeft = "3px"
 		divText.style.paddingBottom = "10px"
@@ -1120,8 +1139,8 @@ function F_createSearchElems() {
 	F_divResults()
 	function F_divSearchingBg() { // search alatt elszürkül (+a cancel btn ezen lesz)
 		var div = document.createElement("div")
-		document.body.appendChild(div)
 		div.id = "div_searchingBg"
+		document.body.appendChild(div)
 		div.style.backgroundColor = "black"
 		div.style.opacity = "0.35"
 		div.style.overflow = "auto"
@@ -1136,8 +1155,8 @@ function F_createSearchElems() {
 	F_divSearchingBg()
 	function F_btnBreak() { // ha ojan szóra keresnék, ami túl sok találat 
 		var button = document.createElement("button")
-		document.body.appendChild(button)
 		button.id = "btn_searchBreak"
+		document.body.appendChild(button)
 		button.innerHTML = "cancel"
 		
 		button.style.fontSize = "xx-large"
@@ -1158,7 +1177,7 @@ function F_createSearchElems() {
 	function F_spanStatus() { // statusbar, hogy a search hol tart
 		// szürke háttér & fehér border fojton látszik
 		var spanStatus = document.createElement("div")
-		divBg.appendChild(spanStatus)
+		document.getElementById("div_searchBg").appendChild(spanStatus)
 		spanStatus.style.display = "none"
 		spanStatus.style.position = "absolute"
 		spanStatus.style.backgroundColor = "grey"
@@ -2583,9 +2602,6 @@ if ( editPage != false ) {
 		window.scrollTo(0, scrollPos) // nem pontos valamiért
 	}
 }
-
-
-
 
 
 // oldQ TAB
