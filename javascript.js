@@ -301,6 +301,9 @@ function F_loadAndSavePageText(path,click,toggle) {
 	document.getElementById("iframe_targyak").src = path
 	var handler = function(e) { // #1 amikor betölti az oldalt, akkor indul meg ez
 		removeEventListener('message', handler, false)
+		
+		pageImpQs[path] = undefined // azért, hogy újratöltse majd az impQ-kat is
+		
 		var pageText = e.data[1]
 		pageTexts[path] = pageText
 		
@@ -450,18 +453,7 @@ function F_loadAllPages() {
 			var spanStatus = document.getElementById("span_searchStatus")
 			spanStatus.parentElement.style.display = "none" 
 			document.getElementById("div_searchingBg").style.display = "none"
-			
-			if ( vToggleSearch == true ) {
-				document.getElementById("div_pageQTargy").style.display = "none"
-				document.getElementById("table_weboldalak").parentElement.parentElement.style.display = "none"
-				document.getElementById("btn_toggleQing").style.display = "none"
-				document.getElementById("btn_toggleSearch").style.display = 'none'
-				// első kettő azért kell, hogy a fölös scrollbar eltűnjön bal oldalt (pl. megvan nyitva farmakológia, majd ráklikkelnék nagyítóra...)
-				document.getElementById("div_searchBg").style.display = "block"
-				document.getElementById("btn_toggleSearch").style.color = ""
-				document.getElementById("btn_toggleSearch").style.backgroundColor = ""
-				vToggleSearch = false
-			}
+			F_toggleSearch()
 		}
 	}
 }
@@ -867,6 +859,19 @@ F_loadCentVideo()
 // –––––––––––––––  search BEGIN  –––––––––––––––
 var breakSearch = false
 var objSearchTexts = {} // Qname to Qtxt (ráklikk a resultra, dobja ki a szöveget)
+function F_toggleSearch() {
+	if ( vToggleSearch == true ) {
+		document.getElementById("div_pageQTargy").style.display = "none"
+		document.getElementById("table_weboldalak").parentElement.parentElement.style.display = "none"
+		document.getElementById("btn_toggleQing").style.display = "none"
+		document.getElementById("btn_toggleSearch").style.display = 'none'
+		// első kettő azért kell, hogy a fölös scrollbar eltűnjön bal oldalt (pl. megvan nyitva farmakológia, majd ráklikkelnék nagyítóra...)
+		document.getElementById("div_searchBg").style.display = "block"
+		document.getElementById("btn_toggleSearch").style.color = ""
+		document.getElementById("btn_toggleSearch").style.backgroundColor = ""
+		vToggleSearch = false
+	}
+}
 function F_searchStart() { // search-re klikkelésnél vagy enter lenyomásnál ez történik először
 	document.getElementById("btn_searchBreak").style.display = "block"
 	document.getElementById("div_searchingBg").style.display = "block"
@@ -1027,7 +1032,11 @@ function F_createSearchElems() {
 			this.style.color  = "white"
 			var int_Click = window.setInterval(function(){
 				vToggleSearch = true
-				if ( loadAllPages == false ) { F_loadAllPages() }
+				if ( loadAllPages == false ) { 
+					F_loadAllPages() 
+				} else {
+					F_toggleSearch()
+				}
 				clearInterval(int_Click)
 			}, 100)
 		}
