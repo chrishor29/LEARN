@@ -553,15 +553,11 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 		div.id = "btn_MidQ"
 		document.getElementById("div_midQUpperPart").appendChild(div)
 		
-		if ( isAndroid ) {
-			div.style.width = "100%"
-		} else {
-			div.style.position = "absolute"
-			div.style.left = "50%"
-			div.style.paddingLeft = "3px"
-			div.style.paddingRight = "3px"
-			div.style.transform = "translate(-50%)"
-		}
+		div.style.position = "absolute"
+		div.style.left = "50%"
+		div.style.paddingLeft = "3px"
+		div.style.paddingRight = "3px"
+		div.style.transform = "translate(-50%)"
 		
 		div.style.border = "3px solid black"
 		div.style.fontSize  = "large"
