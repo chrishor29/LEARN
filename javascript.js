@@ -536,7 +536,7 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 		span.style.fontWeight = "bold"
 		span.style.border = "3px solid black"
 		span.style.cursor = "pointer";
-		span.innerHTML = "&#x1F868;"
+		span.innerHTML = "&#129128;"
 		span.style.fontSize = "large"
 		
 		span.style.width = "30px"
