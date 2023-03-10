@@ -510,9 +510,8 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 		div.id = "div_midQUpperPart"
 		document.getElementById("div_MidQ").appendChild(div)
 		div.style.textAlign = "center"
-		div.style.textAlign = "center"
-		div.style.paddingBottom = "2px"
-		div.style.paddingTop = "2px"
+		div.style.paddingBottom = "5px"
+		div.style.paddingTop = "5px"
 		//div.style.backgroundColor = "yellow"
 		//div.style.display = "flex"
 		//div.style.justifyContent = "space-between"
@@ -542,11 +541,10 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 		
 		span.style.width = "30px"
 		span.style.textAlign = "center"
-		//span.style.display = "flex"
-		//span.style.alignItems = "center"
+
 		span.style.position = "absolute"
-		span.style.top = "0%"
-		span.style.left = "0%"
+		span.style.top = "1px"
+		span.style.left = "1px"
 		
 		span.onclick = function(){ 
 			prevMidQs.pop() // uccsót (ami a jelenlegi letörli)
@@ -578,9 +576,9 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 		
 		span.style.paddingLeft = "5px"
 		span.style.paddingRight = "5px"
-		span.style.paddingBottom = "2px"
-		span.style.paddingTop = "2px"
-		span.style.border = "3px solid black"
+		span.style.paddingBottom = "5px"
+		span.style.paddingTop = "5px"
+		//span.style.border = "3px solid black"
 		span.style.fontSize  = "large"
 		span.style.backgroundColor = "red"
 		span.style.color = "white"
