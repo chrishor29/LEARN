@@ -510,15 +510,15 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 		div.id = "div_midQUpperPart"
 		document.getElementById("div_MidQ").appendChild(div)
 		
-		div.style.textAlign = "center"
+		//div.style.backgroundColor = "yellow"
 		
-		div.style.paddingBottom = "5px"
-		div.style.paddingTop = "5px"
+		//div.style.paddingBottom = "3px"
+		//div.style.paddingTop = "3px"
 		
-		div.style.backgroundColor = "yellow"
 		div.style.display = "flex"
 		div.style.justifyContent = "space-between"
-		div.style.alignItems = "center"
+		div.style.textAlign = "center"
+		div.style.alignItems = "flex-start"
 	}
 	F_divUpperPart()
 	function F_divLowerPart() { // ez az alsó fele, itt a szöveg
@@ -531,6 +531,10 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 	}
 	F_divLowerPart()
 	function F_btnBack() { // bal felső sarokban a 'vissza'
+		var span = document.createElement("span") // kell, hogy középen legyen a title mindig
+		span.id = "btn_MidQbackFalse"
+		document.getElementById("div_midQUpperPart").appendChild(span)
+		
 		var span = document.createElement("span")
 		span.id = "btn_MidQback"
 		document.getElementById("div_midQUpperPart").appendChild(span)
@@ -539,8 +543,9 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 		span.style.fontWeight = "bold"
 		span.style.border = "3px solid black"
 		span.style.cursor = "pointer";
-		span.innerHTML = "&#129128;"
+		span.innerHTML = "🡨"
 		span.style.fontSize = "large"
+		//span.style.height = "15px"
 		
 		span.style.width = "30px"
 		//span.style.textAlign = "center"
@@ -653,9 +658,11 @@ function F_setMidQ(qText,path) { // középen megjeleníti a div-et, benne a sz�
 	document.getElementById("div_MidQText").dataset.src = path // kell, h a benne lévő impQ-k path-jét lekérhesse: F_getQPath()
 	F_loadElem(document.getElementById("div_MidQText"))
 	if ( prevMidQs.length > 1 ) {
-		document.getElementById("btn_MidQback").style.visibility = "visible" /* ez kell, ugyanis a felső sorban 3 item van: ez bal oldalt, középen a 'title(amire ráklikkelve close)', és jobbra egy üres. Így osztja fel a 'flex' normálisan őket */
+		document.getElementById("btn_MidQback").style.display = "block" 
+		document.getElementById("btn_MidQbackFalse").style.display = "none" /* ez kell, ugyanis a felső sorban 3 item van: ez/true bal oldalt, középen a 'title(amire ráklikkelve close)', és jobbra egy üres. Így osztja fel a 'flex' normálisan őket */
 	} else {
-		document.getElementById("btn_MidQback").style.visibility = "hidden"
+		document.getElementById("btn_MidQback").style.display = "none"
+		document.getElementById("btn_MidQbackFalse").style.display = "block" /* ez kell, ugyanis a felső sorban 3 item van: ez/true bal oldalt, középen a 'title(amire ráklikkelve close)', és jobbra egy üres. Így osztja fel a 'flex' normálisan őket */
 	}
 }
 function F_loadMidQs(detElem) { // midQ[x] elemeket beállítja: kék fontColor, rájuk click-elve mi történjen

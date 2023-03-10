@@ -37,7 +37,7 @@
     <FolderPairs>
         <Pair>
             <Left>C:\Users\Kristof\Desktop\MIX\learn</Left>
-            <Right>mtp:\Galaxy A13\Internal storage\Android\data\org.mozilla.firefox\files\Download\LEARN</Right>
+            <Right>mtp:\Galaxy A13\Internal storage\Download\LEARN</Right>
             <Filter>
                 <Include>
                     <Item>*</Item>
