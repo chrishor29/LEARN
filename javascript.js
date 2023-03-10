@@ -485,9 +485,9 @@ var prevMidQs = []
 function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja majd a midQ/searchQ-kat
 	function F_divMidQ() { // mainDiv: ebbe lesz minden, sárga bordere van ...
 		var div = document.createElement("div")
+		div.id = "div_MidQ"
 		document.getElementById("div_body").appendChild(div)
 		//document.body.appendChild(div)
-		div.id = "div_MidQ"
 		div.dataset.origin = "pageQs"
 		div.style.backgroundColor = midQBGColor
 		div.style.overflow = "auto"
@@ -504,14 +504,19 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 		div.style.flexDirection = "column"
 	}
 	F_divMidQ()
-	var div = document.getElementById("div_MidQ")
-	function F_divUpperPart() { // ez a felső fele, tehát ezek vannak benne: 'vissza' .... 'close (Q title)'
+	//var div = document.getElementById("div_MidQ")
+	function F_divUpperPart() { // ez a felső fele, tehát ez van benne: 'close (Q title)'
 		var div = document.createElement("div")
 		div.id = "div_midQUpperPart"
 		document.getElementById("div_MidQ").appendChild(div)
-		div.style.display = "flex"
-		//div.style.textAlign = "center"
+		div.style.textAlign = "center"
+		div.style.textAlign = "center"
+		div.style.paddingBottom = "2px"
+		div.style.paddingTop = "2px"
 		//div.style.backgroundColor = "yellow"
+		//div.style.display = "flex"
+		//div.style.justifyContent = "space-between"
+		//div.style.alignItems = "center"
 	}
 	F_divUpperPart()
 	function F_divLowerPart() { // ez az alsó fele, itt a szöveg
@@ -526,17 +531,23 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 	function F_btnBack() { // bal felső sarokban a 'vissza'
 		var span = document.createElement("span")
 		span.id = "btn_MidQback"
-		document.getElementById("div_midQUpperPart").appendChild(span)
+		document.getElementById("div_MidQ").appendChild(span)
 		
 		span.style.backgroundColor = "Gainsboro"
 		span.style.fontWeight = "bold"
 		span.style.border = "3px solid black"
 		span.style.cursor = "pointer";
-		span.innerHTML = "&#x1F860;"
+		span.innerHTML = "&#x1F868;"
 		span.style.fontSize = "large"
 		
 		span.style.width = "30px"
 		span.style.textAlign = "center"
+		//span.style.display = "flex"
+		//span.style.alignItems = "center"
+		span.style.position = "absolute"
+		span.style.top = "0%"
+		span.style.left = "0%"
+		
 		span.onclick = function(){ 
 			prevMidQs.pop() // uccsót (ami a jelenlegi letörli)
 			var text = prevMidQs[prevMidQs.length-1] // uccsót (ami így már az előző lett) betölti
@@ -549,23 +560,33 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 	}
 	F_btnBack()
 	function F_btnTitle() { // középen fenn a 'close (Q title)'
-		var div = document.createElement("div")
-		div.id = "btn_MidQ"
-		document.getElementById("div_midQUpperPart").appendChild(div)
+		var span = document.createElement("span")
+		span.id = "btn_MidQ"
+		document.getElementById("div_midQUpperPart").appendChild(span)
 		
-		div.style.position = "absolute"
+		//var p = document.createElement("p")
+		//p.id = "btn_MidQ"
+		//div.appendChild(p)
+		
+		//div.style.display = "flex"
+  
+		/*div.style.position = "absolute"
 		div.style.left = "50%"
 		div.style.paddingLeft = "3px"
 		div.style.paddingRight = "3px"
-		div.style.transform = "translate(-50%)"
+		div.style.transform = "translate(-50%)"*/
 		
-		div.style.border = "3px solid black"
-		div.style.fontSize  = "large"
-		div.style.backgroundColor = "red"
-		div.style.color = "white"
-		div.style.cursor = "pointer";
+		span.style.paddingLeft = "5px"
+		span.style.paddingRight = "5px"
+		span.style.paddingBottom = "2px"
+		span.style.paddingTop = "2px"
+		span.style.border = "3px solid black"
+		span.style.fontSize  = "large"
+		span.style.backgroundColor = "red"
+		span.style.color = "white"
+		span.style.cursor = "pointer"
 		
-		div.onclick = function(){ 
+		span.onclick = function(){ 
 			prevMidQs = []
 			document.getElementById("div_MidQ").style.display = "none" 
 			if ( prevDivShown == "div_pageQTargy" ) {
