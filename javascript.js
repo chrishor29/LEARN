@@ -487,7 +487,6 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 		var div = document.createElement("div")
 		div.id = "div_MidQ"
 		document.getElementById("div_body").appendChild(div)
-		//document.body.appendChild(div)
 		div.dataset.origin = "pageQs"
 		div.style.backgroundColor = midQBGColor
 		div.style.overflow = "auto"
@@ -504,16 +503,10 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 		div.style.flexDirection = "column"
 	}
 	F_divMidQ()
-	//var div = document.getElementById("div_MidQ")
 	function F_divUpperPart() { // ez a felső fele, tehát ez van benne: 'vissza' ... 'close (Q title)'
 		var div = document.createElement("div")
 		div.id = "div_midQUpperPart"
 		document.getElementById("div_MidQ").appendChild(div)
-		
-		//div.style.backgroundColor = "yellow"
-		
-		//div.style.paddingBottom = "3px"
-		//div.style.paddingTop = "3px"
 		
 		div.style.display = "flex"
 		div.style.justifyContent = "space-between"
@@ -525,9 +518,7 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 		var div = document.createElement("div")
 		div.id = "div_midQLowerPart"
 		document.getElementById("div_MidQ").appendChild(div)
-		//div.style.backgroundColor = "grey"
 		div.style.height = "100%"
-		//div.style.border = "2px solid black"
 	}
 	F_divLowerPart()
 	function F_btnBack() { // bal felső sarokban a 'vissza'
@@ -543,16 +534,11 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 		span.style.fontWeight = "bold"
 		span.style.border = "3px solid black"
 		span.style.cursor = "pointer";
-		span.innerHTML = "🡨"
+		//span.innerHTML = "🡨" // androidon nem jó még :(
+		span.innerHTML = "➜"
+		span.style.transform = "scale(-1,1)"
 		span.style.fontSize = "large"
-		//span.style.height = "15px"
-		
 		span.style.width = "30px"
-		//span.style.textAlign = "center"
-
-		//span.style.position = "absolute"
-		//span.style.top = "1px"
-		//span.style.left = "1px"
 		
 		span.onclick = function(){ 
 			prevMidQs.pop() // uccsót (ami a jelenlegi letörli)
@@ -570,23 +556,13 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 		span.id = "btn_MidQ"
 		document.getElementById("div_midQUpperPart").appendChild(span)
 		
-		//var p = document.createElement("p")
-		//p.id = "btn_MidQ"
-		//div.appendChild(p)
-		
-		span.style.display = "inline-block"
-		//div.style.display = "flex"
-  
-		/*div.style.position = "absolute"
-		div.style.left = "50%"
-		div.style.paddingLeft = "3px"
-		div.style.paddingRight = "3px"
-		div.style.transform = "translate(-50%)"*/
+		span.style.display = "inline-block" // border egy nagy téglalap ha többsoros, nem külön soronként 1-1
 		
 		span.style.paddingLeft = "5px"
 		span.style.paddingRight = "5px"
 		span.style.paddingBottom = "3px"
 		span.style.paddingTop = "3px"
+		
 		span.style.border = "3px solid black"
 		span.style.fontSize  = "large"
 		span.style.backgroundColor = "red"
@@ -619,7 +595,6 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 		document.getElementById("div_midQLowerPart").appendChild(divText)
 		divText.id = "div_MidQText"
 		divText.style.paddingBottom = "10px"
-		//divText.style.paddingTop = "30px"
 	}
 	F_divText()
 }
@@ -675,13 +650,7 @@ function F_loadMidQs(detElem) { // midQ[x] elemeket beállítja: kék fontColor,
 		midQ.style.cursor = "pointer"
 		midQ.onmouseover = function(){ this.style.color = "green" }
 		midQ.onmouseout = function(){ this.style.color = midQColor }
-		midQ.onclick = function() {
-			var impID = F_getImpID(this)
-			var path = F_getQPath(this,impID) 
-			prevMidQs.push(impID+" - "+path)
-			var qText = F_getQText(path,impID)
-			F_setMidQ(qText,path) 
-		}
+		midQ.onclick = function() { F_clickWord(this) }
 	}
 }
 // –––––––––––––––  midQs END   –––––––––––––––
@@ -2916,6 +2885,29 @@ function F_tableScrollable(detElem) { // table ha nem fér ki, akkor vízszintes
 	}
 }
 
+function F_clickWord(thatWord) { // midQ, syno
+	// syno ➜ sorban következőt kiválasztja
+	if ( thatWord.classList.contains("syno") ) {
+		var synos = thatWord.dataset.syno
+		synos = synos.split(" | ")
+		if ( thatWord.innerHTML == synos[0] ) { 
+			synos.push(synos[0])
+			synos.shift()
+			thatWord.dataset.syno = synos.join(" | ")
+		}
+		thatWord.innerHTML = synos[0]
+	}
+	
+	// midQ
+	if ( thatWord.classList.contains("midQ") ) {
+		var impID = F_getImpID(thatWord)
+		var path = F_getQPath(thatWord,impID) 
+		prevMidQs.push(impID+" - "+path)
+		var qText = F_getQText(path,impID)
+		F_setMidQ(qText,path) 
+	}
+}
+
 function F_synonyms(detElem) {
 	function getRandomInt(max) { return Math.floor(Math.random() * Math.floor(max)) }
 	var synonyms = detElem.getElementsByClassName("syno")
@@ -2939,16 +2931,7 @@ function F_synonyms(detElem) {
 			synonyms[x].innerHTML = synos[num]
 		}
 
-		synonyms[x].onclick = function() { // sorban következőt kiválasztja
-			var synos = this.dataset.syno
-			synos = synos.split(" | ")
-			if ( this.innerHTML == synos[0] ) { 
-				synos.push(synos[0])
-				synos.shift()
-				this.dataset.syno = synos.join(" | ")
-			}
-			this.innerHTML = synos[0]
-		}
+		synonyms[x].onclick = function() { F_clickWord(this) }
 	}
 }
 
