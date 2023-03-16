@@ -132,6 +132,8 @@ ul, ol {
 	color: white;
 	font-weight: bold;
 }
+.bgBlue { background-color: Aqua }
+.bgGreen { background-color: Lime }
 .important { background-color: Lime /*SpringGreen*/ }
 .done { background-color: Aqua /*PaleTurquoise < Aqua < aquamarine < DarkTurquoise < deepskyblue < LightSeaGreen < dodgerblue*/ }
 .fix { 

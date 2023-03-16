@@ -18,8 +18,8 @@ xcopy /y %source%\favicon.png %destination%\ /d
 
 
 REM 5.év
-xcopy /y %source%\Belgyogy\Szigorlat\belgyogy.html %destination%\Belgyogy\Szigorlat\ /d
-xcopy /y %source%\Belgyogy\HIIRLm\hiirlm.html %destination%\Belgyogy\HIIRLm\ /d
+xcopy /y %source%\Belgyogy\belgyogy.html %destination%\Belgyogy\Szigorlat\ /d
+xcopy /y %source%\Belgyogy\hiirlm.html %destination%\Belgyogy\HIIRLm\ /d
 xcopy /y %source%\Gyerekgyogy\gyermek.html %destination%\Gyerekgyogy\ /d
 xcopy /y %source%\Neurologia\neurologia.html %destination%\Neurologia\ /d
 xcopy /y %source%\Neurologia\neuroteszt.html %destination%\Neurologia\ /d
@@ -40,15 +40,12 @@ REM 4.év
 xcopy /y %source%\Sebeszet\sebeszet.html %destination%\Sebeszet\ /d
 xcopy /y %source%\Sebeszet\2011_0001_524_Sebeszet.pdf %learnStuff%\Sebeszet\ /d
 robocopy %source%\Belgyogy\könyvek %destination%\Belgyogy\könyvek /mir /max:50000000
-xcopy /y %source%\Belgyogy\Nefro\favicon.bmp %destination%\Belgyogy\Nefro\ /d
-xcopy /y %source%\Belgyogy\Nefro\nephro.html %destination%\Belgyogy\Nefro\ /d
+xcopy /y %source%\Belgyogy\nephro.html %destination%\Belgyogy\Nefro\ /d
 xcopy /y %source%\done\Borgyogy\borgyogy.html %destination%\done\Borgyogy\ /d
 xcopy /y %source%\done\Onkologia\onko.html %destination%\done\Onkologia\ /d
 xcopy /y %source%\done\Ortopedia\ortop.html %destination%\done\Ortopedia\ /d
 xcopy /y %source%\done\Pulmo\pulmo.html %destination%\done\Pulmo\ /d
-xcopy /y %source%\done\Pulmo\favicon.bmp %destination%\done\Pulmo\ /d
 xcopy /y %source%\done\Radiologia\radio.html %destination%\done\Radiologia\ /d
-xcopy /y %source%\done\Farmak\favicon.bmp %destination%\done\Farmak\ /d
 xcopy /y %source%\done\Farmak\farmak.html %destination%\done\Farmak\ /d
 xcopy /y %source%\done\Farmak\farmak1.html %destination%\done\Farmak\ /d
 xcopy /y %source%\done\Farmak\2011_0001_524_Farmakologia.pdf %learnStuff%\done\Farmak\ /d
@@ -61,9 +58,8 @@ xcopy /y %source%\done\Kardio\kardio.html %destination%\done\Kardio\ /d
 
 REM 3.év
 xcopy /y %source%\Belgyogy\Endokrin\favicon.bmp %destination%\Belgyogy\Endokrin\ /d
-xcopy /y %source%\Belgyogy\Endokrin\belgyogy.html %destination%\Belgyogy\Endokrin\ /d
-xcopy /y %source%\Belgyogy\Endokrin\favicon.bmp %destination%\Belgyogy\Endokrin\ /d
-xcopy /y %source%\Belgyogy\\Proped\proped.html %destination%\Belgyogy\\Proped\ /d
+xcopy /y %source%\Belgyogy\endokrin.html %destination%\Belgyogy\Endokrin\ /d
+xcopy /y %source%\Belgyogy\proped.html %destination%\Belgyogy\Proped\ /d
 xcopy /y %source%\done\Genetika\favicon.bmp %destination%\done\Genetika\ /d
 xcopy /y %source%\done\Genetika\genetika.html %destination%\done\Genetika\ /d
 xcopy /y %source%\done\Genetika\Genetika_genomika_2018.pdf %learnStuff%\done\Genetika\ /d
