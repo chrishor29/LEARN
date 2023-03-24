@@ -579,6 +579,7 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 				document.body.parentElement.scrollTop = prevScrollTop
 			} else if ( prevDivShown == "div_searchBg" ) {
 				document.getElementById("div_searchBg").style.display = "block"
+				document.getElementById("div_searchResults").style.display = "block"
 			} else if ( prevDivShown == "div_QingMain" ) {
 				document.getElementById("div_QingMain").style.display = "block"
 				document.getElementById("btn_toggleQing").style.display = "block"
@@ -1029,6 +1030,7 @@ function F_searchResult() { // találati eredmények betöltése...
 function F_clickSearchResult(detElem) { // egy találati eredményre klikk
 	detElem.style.backgroundColor  = "yellow"
 	var int_Click = window.setInterval(function(){
+		document.getElementById("div_searchResults").style.display = "none"
 		var qTxt = objSearchTexts[detElem.dataset.id]
 		var path = detElem.dataset.path
 		F_setMidQ(qTxt,path)
