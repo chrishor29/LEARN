@@ -132,8 +132,11 @@ ul, ol {
 	color: white;
 	font-weight: bold;
 }
+.fsMini { font-size: 80% }
 .bgBlue { background-color: Aqua }
 .bgGreen { background-color: Lime }
+.bgPink { background-color: Pink }
+.bgYellow { background-color: Yellow }
 .important { background-color: Lime /*SpringGreen*/ }
 .done { background-color: Aqua /*PaleTurquoise < Aqua < aquamarine < DarkTurquoise < deepskyblue < LightSeaGreen < dodgerblue*/ }
 .fix { 
