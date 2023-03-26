@@ -14,8 +14,17 @@ if ( localStorage.getItem("nightMode") == "true" ) {
 	midQColor = "dodgerblue"
 	midQBGColor = "rgb(30, 30, 30)"
 	timerColor = "crimson"
-	pageLinksColor = "aqua"
+	pageLinksColor = "CornflowerBlue"
 	selectJegyBGColor = "black"
+
+
+	var style = document.createElement("style");
+	document.head.appendChild(style);
+	style.innerHTML = ".bgYellow { color:black }"
+	style.innerHTML = style.innerHTML + ".bgBlue { color:black }"
+	style.innerHTML = style.innerHTML + "abbr { color:black }"
+	style.innerHTML = style.innerHTML + "summary { color:seagreen }"
+
 	
 	document.body.style.color = "white"
 	document.getElementById("btn_toggleNightMode").innerHTML = "☀️" // &#9728;
