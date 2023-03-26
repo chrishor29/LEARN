@@ -21,9 +21,11 @@ if ( localStorage.getItem("nightMode") == "true" ) {
 
 	var style = document.createElement("style");
 	document.head.appendChild(style);
-	style.innerHTML = ".bgYellow { color:black }"
-	style.innerHTML = style.innerHTML + ".bgBlue { color:black }"
-	style.innerHTML = style.innerHTML + "abbr { color:black }"
+	//style.innerHTML = ".bgYellow { color:black }"
+	style.innerHTML = ".bgYellow { background-color:darkgoldenrod }"
+	style.innerHTML = style.innerHTML + ".bgBlue { background-color:dodgerblue }"
+	style.innerHTML = style.innerHTML + "abbr { background-color:dimgray }"
+	style.innerHTML = style.innerHTML + "th { background-color:dimgray }"
 	style.innerHTML = style.innerHTML + "summary { color:seagreen }"
 
 	
