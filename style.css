@@ -100,7 +100,10 @@ th, td {
 	padding: 3px;
 	/* padding-top: 3px; */
 }
-th { background: Silver }
+th { 
+	background: Silver;
+	color: black;
+}
 
 ul, ol { 
 	margin-top: 0; /* fölötte ne legyen hej */

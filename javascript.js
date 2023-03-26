@@ -6,15 +6,16 @@ ha kiakarom venni ezt a funkciót, akkor editPage-re keressek rá a kódban, és
 */
 
 // Night mode
-var bodyBGcolor, abbrBGcolor, abbrBorderColor, midQColor, midQBGColor, timerColor, pageLinksColor, selectJegyBGColor
+var bodyBGcolor, abbrBGcolor, abbrBorderColor, midQColor, midQBGColor, searchBGColor, timerColor, pageLinksColor, selectJegyBGColor
 if ( localStorage.getItem("nightMode") == "true" ) {
 	bodyBGcolor = "rgb(30, 30, 30)"
 	abbrBGcolor = "rgb(30, 30, 30)"
 	abbrBorderColor = "2px solid white"
 	midQColor = "dodgerblue"
 	midQBGColor = "rgb(30, 30, 30)"
+	searchBGColor = "rgb(30, 30, 30)"
 	timerColor = "crimson"
-	pageLinksColor = "CornflowerBlue"
+	pageLinksColor = "cornflowerblue" // kis betűvel kell írni különben F_loadAllPages-nél amikor lecheckolja hiba lenne
 	selectJegyBGColor = "black"
 
 
@@ -34,6 +35,7 @@ if ( localStorage.getItem("nightMode") == "true" ) {
 	abbrBorderColor = "2px solid black"
 	midQColor = "blue"
 	midQBGColor = "white"
+	searchBGColor = "white"
 	timerColor = "black"
 	pageLinksColor = "blue"
 	selectJegyBGColor = "#f1f1f1"
@@ -1083,7 +1085,7 @@ function F_createSearchElems() {
 		document.getElementById("div_body").appendChild(div)
 		//document.body.appendChild(div)
 		div.id = "div_searchBg"
-		div.style.backgroundColor = "white"
+		div.style.backgroundColor = searchBGColor
 		div.style.overflow = "auto"
 		div.style.border = "8px solid black"
 		div.style.outline = "5px solid aqua"
