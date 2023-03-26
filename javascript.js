@@ -23,7 +23,8 @@ if ( localStorage.getItem("nightMode") == "true" ) {
 	document.head.appendChild(style);
 	//style.innerHTML = ".bgYellow { color:black }"
 	style.innerHTML = ".bgYellow { background-color:darkgoldenrod }"
-	style.innerHTML = style.innerHTML + ".bgBlue { background-color:dodgerblue }"
+	//style.innerHTML = style.innerHTML + ".bgBlue { background-color:deepskyblue }"
+	style.innerHTML = style.innerHTML + ".bgGreen { background-color:limegreen }"
 	style.innerHTML = style.innerHTML + "abbr { background-color:dimgray }"
 	style.innerHTML = style.innerHTML + "th { background-color:dimgray }"
 	style.innerHTML = style.innerHTML + "summary { color:seagreen }"
@@ -592,7 +593,6 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 				document.body.parentElement.scrollTop = prevScrollTop
 			} else if ( prevDivShown == "div_searchBg" ) {
 				document.getElementById("div_searchBg").style.display = "block"
-				document.getElementById("div_searchResults").style.display = "block"
 			} else if ( prevDivShown == "div_QingMain" ) {
 				document.getElementById("div_QingMain").style.display = "block"
 				document.getElementById("btn_toggleQing").style.display = "block"
@@ -631,6 +631,7 @@ function F_setMidQ(qText,path) { // középen megjeleníti a div-et, benne a sz�
 	
 	document.getElementById("div_MidQ").style.display = "block" // ez előbb kell legyen, mint az F_loadElem --> hogy láthatók legyenek az impQ-k, amiket be kell töltenie
 	document.getElementById("div_pageQTargy").style.display = "none"
+	document.getElementById("div_searchBg").style.display = "none"
 	document.getElementById("table_weboldalak").parentElement.parentElement.style.display = "none"
 	document.getElementById("btn_toggleQing").style.display = "none"
 	document.getElementById("div_QingMain").style.display = "none"
@@ -1043,7 +1044,7 @@ function F_searchResult() { // találati eredmények betöltése...
 function F_clickSearchResult(detElem) { // egy találati eredményre klikk
 	detElem.style.backgroundColor  = "yellow"
 	var int_Click = window.setInterval(function(){
-		document.getElementById("div_searchResults").style.display = "none"
+		
 		var qTxt = objSearchTexts[detElem.dataset.id]
 		var path = detElem.dataset.path
 		F_setMidQ(qTxt,path)
@@ -2644,15 +2645,18 @@ if ( editPage != false ) {
 	
 	button.onclick = function() { 
 		// elmenti a detailst + scrollbart
-		var scrollPos = window.pageYOffset // nem pontos valamiért
+		var scrollPos = document.body.parentElement.scrollTop // nem pontos valamiért
+			//var scrollPos = window.pageYOffset // ez se
 		
 		// betölti újra
 		currPath = editPage
 		F_loadAndSavePageText(editPage,true,false)
 		
 		// beállítja a detailst + scrollbart
-		window.scrollTo(0, scrollPos) // nem pontos valamiért
+		document.body.parentElement.scrollTop = scrollPos  // nem pontos valamiért
+			//window.scrollTo(0, scrollPos) // ez se
 	}
+		//document.getElementById("div_searchBg").dataset.scrollY = document.getElementById("div_searchBg").scrollTop
 }
 
 
