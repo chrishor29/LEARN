@@ -6,42 +6,49 @@ ha kiakarom venni ezt a funkciót, akkor editPage-re keressek rá a kódban, és
 */
 
 // Night mode
-var bodyBGcolor, abbrBGcolor, abbrBorderColor, midQColor, midQBGColor, searchBGColor, timerColor, pageLinksColor, selectJegyBGColor
+var bodyBGcolor, abbrBGcolor, abbrBorderColor, midQColor, midQSrcColor, midQBGColor, searchBGColor, timerColor, pageLinksColor, selectJegyBGColor, summaryColor
 if ( localStorage.getItem("nightMode") == "true" ) {
 	bodyBGcolor = "rgb(30, 30, 30)"
 	abbrBGcolor = "rgb(30, 30, 30)"
 	abbrBorderColor = "2px solid white"
-	midQColor = "dodgerblue"
+	midQColor = "aqua"
+	midQSrcColor = "mediumpurple"
 	midQBGColor = "rgb(30, 30, 30)"
 	searchBGColor = "rgb(30, 30, 30)"
 	timerColor = "crimson"
 	pageLinksColor = "cornflowerblue" // kis betűvel kell írni különben F_loadAllPages-nél amikor lecheckolja hiba lenne
 	selectJegyBGColor = "black"
+	summaryColor = "mediumseagreen" // search resultoknál is kell!
+	//summaryColor = "chartreuse" // search resultoknál is kell!
 
 
 	var style = document.createElement("style");
 	document.head.appendChild(style);
 	//style.innerHTML = ".bgYellow { color:black }"
 	style.innerHTML = ".bgYellow { background-color:darkgoldenrod }"
-	//style.innerHTML = style.innerHTML + ".bgBlue { background-color:deepskyblue }"
-	style.innerHTML = style.innerHTML + ".bgGreen { background-color:limegreen }"
+	style.innerHTML = style.innerHTML + ".bgBlue { background-color:blue }"
+	style.innerHTML = style.innerHTML + ".bgGreen { background-color:green }"
+	style.innerHTML = style.innerHTML + ".WHITE { background-color:black; border: white 1px solid; }"
 	style.innerHTML = style.innerHTML + "abbr { background-color:dimgray }"
-	style.innerHTML = style.innerHTML + "th { background-color:dimgray }"
-	style.innerHTML = style.innerHTML + "summary { color:seagreen }"
+	style.innerHTML = style.innerHTML + "th { background-color:darkslategray }"
+	style.innerHTML = style.innerHTML + "th,td { border: 3px solid gray; }"
+	style.innerHTML = style.innerHTML + "summary { color:"+summaryColor+"}"
 
 	
-	document.body.style.color = "white"
+	document.body.style.color = "ghostwhite"
 	document.getElementById("btn_toggleNightMode").innerHTML = "☀️" // &#9728;
 } else {
 	bodyBGcolor = "azure"
 	abbrBGcolor = "azure"
 	abbrBorderColor = "2px solid black"
 	midQColor = "blue"
+	midQSrcColor = "purple"
 	midQBGColor = "white"
 	searchBGColor = "white"
 	timerColor = "black"
 	pageLinksColor = "blue"
 	selectJegyBGColor = "#f1f1f1"
+	summaryColor = "green" // search resultoknál kell!
 }
 function F_toggleNightMode(){
 	if ( localStorage.getItem("nightMode") == "true" ) {
@@ -660,11 +667,21 @@ function F_loadMidQs(detElem) { // midQ[x] elemeket beállítja: kék fontColor,
 	for ( var x=0; x<midQs.length; x++ ) {
 		var midQ = midQs[x]
 		//console.log(midQ.innerHTML)
-		midQ.style.color = midQColor
+		if ( midQ.dataset.src ) { 
+			midQ.style.color = midQSrcColor
+		} else {
+			midQ.style.color = midQColor
+		}
 		midQ.style.textShadow = "0 0 1px yellow, 0 0 1px black"
 		midQ.style.cursor = "pointer"
-		midQ.onmouseover = function(){ this.style.color = "green" }
-		midQ.onmouseout = function(){ this.style.color = midQColor }
+		midQ.onmouseover = function() { this.style.color = "green" }
+		midQ.onmouseout = function() {
+			if ( this.dataset.src ) { 
+				this.style.color = midQSrcColor
+			} else {
+				this.style.color = midQColor
+			}
+		}
 		midQ.onclick = function() { F_clickWord(this) }
 	}
 }
@@ -1031,7 +1048,7 @@ function F_searchResult() { // találati eredmények betöltése...
 			summaryID = summaryID +1
 			objSearchTexts[summaryID] = resultText
 			
-			fullText = fullText+ "<li><span data-id='"+summaryID+"' data-path='"+path+"' style='color:green; cursor:pointer' onclick='F_clickSearchResult(this)'>"+summaryText+"</span></li>"
+			fullText = fullText+ "<li><span data-id='"+summaryID+"' data-path='"+path+"' style='color:"+summaryColor+"; cursor:pointer' onclick='F_clickSearchResult(this)'>"+summaryText+"</span></li>"
 			//targyText = targyText.slice(targyText.indexOf(resultText)+resultText.length)
 		} while ( targyText.toLowerCase().indexOf(searchText,locST+1) != -1 )
 		document.getElementById("div_searchResults").innerHTML = fullText
