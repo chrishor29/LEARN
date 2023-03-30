@@ -33,6 +33,7 @@ if ( localStorage.getItem("nightMode") == "true" ) {
 	style.innerHTML = style.innerHTML + "th { background-color:darkslategray }"
 	style.innerHTML = style.innerHTML + "th,td { border: 3px solid gray; }"
 	style.innerHTML = style.innerHTML + "summary { color:"+summaryColor+"}"
+	style.innerHTML = style.innerHTML + "details[open] { border-bottom: 3px solid gray; }"
 
 	
 	document.body.style.color = "ghostwhite"
