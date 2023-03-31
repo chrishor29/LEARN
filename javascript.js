@@ -6,10 +6,12 @@ ha kiakarom venni ezt a funkciót, akkor editPage-re keressek rá a kódban, és
 */
 
 // Night mode
-var bodyBGcolor, abbrBGcolor, abbrBorderColor, midQColor, midQSrcColor, midQBGColor, searchBGColor, timerColor, pageLinksColor, selectJegyBGColor, summaryColor
+var bodyBGcolor, abbrBGcolor, QingTetelsBG, QingBg, abbrBorderColor, midQColor, midQSrcColor, midQBGColor, searchBGColor, timerColor, pageLinksColor, selectJegyBGColor, summaryColor
 if ( localStorage.getItem("nightMode") == "true" ) {
 	bodyBGcolor = "rgb(30, 30, 30)"
 	abbrBGcolor = "rgb(30, 30, 30)"
+	QingTetelsBG = "rgb(30, 30, 30)"
+	QingBgBG = "grey"
 	abbrBorderColor = "2px solid white"
 	midQColor = "aqua"
 	midQSrcColor = "mediumpurple"
@@ -41,6 +43,8 @@ if ( localStorage.getItem("nightMode") == "true" ) {
 } else {
 	bodyBGcolor = "azure"
 	abbrBGcolor = "azure"
+	QingTetelsBG = "azure"
+	QingBgBG = "black"
 	abbrBorderColor = "2px solid black"
 	midQColor = "blue"
 	midQSrcColor = "purple"
@@ -1434,7 +1438,7 @@ function F_loadTetels() {
 	var fontSize = 140
 	var titleStyle = ' style="background-color:gainsboro; font-size:'+fontSize+'%; font-weight:bold; color:black;"'
 	fontSize = 120
-	var tetelStyle = ' style="font-size:'+fontSize+'%; font-weight:bold; color:black; cursor:pointer" onclick="F_clickTetel(this)"'
+	var tetelStyle = ' style="font-size:'+fontSize+'%; color:green; cursor:pointer" onclick="F_clickTetel(this)"'
 	for ( var x = 0;   x < elems.length;   x++ ) {
 		if ( elems[x].className.indexOf("mainTitle") != -1 ) {
 			string = string+ "<details><summary" +titleStyle+ ">" +elems[x].innerHTML+ "</summary>"
@@ -1487,7 +1491,7 @@ function F_createQingElems() {
 		var div = document.createElement("div")
 		document.body.appendChild(div)
 		div.id = "div_QingBg"
-		div.style.backgroundColor = "black"
+		div.style.backgroundColor = QingBgBG
 		div.style.opacity = "0.35"
 		div.style.overflow = "auto"
 		div.style.display = "block"
@@ -1955,7 +1959,7 @@ function F_createQingElems() {
 		div.id = "div_QingTetels"
 		document.getElementById("div_QingMain").appendChild(div)
 		//document.getElementById("div_QingLowerPart").appendChild(div)
-		div.style.backgroundColor = "white"
+		div.style.backgroundColor = QingTetelsBG
 		div.style.border = "10px solid black"
 		div.style.display = "none"
 		div.style.position = "fixed"
