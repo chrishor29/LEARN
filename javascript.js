@@ -1543,6 +1543,7 @@ function F_createQingElems() {
 		div.id = "div_QingLowerPart"
 		//div.className = "normal"
 		//div.style.backgroundColor = "yellow"
+		//document.getElementById("div_body").appendChild(div)
 		document.getElementById("div_QingMain").appendChild(div)
 	}
 	F_divLowerPart()
@@ -2406,7 +2407,7 @@ function F_nextQ() {
 	F_checkNum()
 	
 	// kérdéseket kiírja
-	document.getElementById("div_QingLowerPart").innerHTML = parQ.outerHTML
+	document.getElementById("div_QingLowerPart").innerHTML = parQ.outerHTML + "<br><br><br><br><br><br><br><br><br><br>"
 	
 	var childs = document.getElementById("div_QingLowerPart").childNodes;
 	for ( var i=0; i<childs.length; i++ ) { if ( childs[i].className.indexOf("open") != -1 ) { childs[i].open = true } }
