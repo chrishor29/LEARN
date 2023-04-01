@@ -6,11 +6,12 @@ ha kiakarom venni ezt a funkciót, akkor editPage-re keressek rá a kódban, és
 */
 
 // Night mode
-var bodyBGcolor, abbrBGcolor, QingTetelsBG, QingBg, abbrBorderColor, midQColor, midQSrcColor, midQBGColor, searchBGColor, timerColor, pageLinksColor, selectJegyBGColor, summaryColor
+var bodyBGcolor, abbrBGcolor, QingTetelsBG, QingQuestsBG, QingBg, abbrBorderColor, midQColor, midQSrcColor, midQBGColor, searchBGColor, timerColor, pageLinksColor, selectJegyBGColor, summaryColor
 if ( localStorage.getItem("nightMode") == "true" ) {
 	bodyBGcolor = "rgb(30, 30, 30)"
 	abbrBGcolor = "rgb(30, 30, 30)"
 	QingTetelsBG = "rgb(30, 30, 30)"
+	QingQuestsBG = "rgb(30, 30, 30)"
 	QingBgBG = "grey"
 	abbrBorderColor = "2px solid white"
 	midQColor = "aqua"
@@ -44,6 +45,7 @@ if ( localStorage.getItem("nightMode") == "true" ) {
 	bodyBGcolor = "azure"
 	abbrBGcolor = "azure"
 	QingTetelsBG = "azure"
+	QingQuestsBG = "azure"
 	QingBgBG = "black"
 	abbrBorderColor = "2px solid black"
 	midQColor = "blue"
@@ -1975,8 +1977,8 @@ function F_createQingElems() {
 		var div = document.createElement("div")
 		div.id = "div_QingQuests"
 		document.getElementById("div_QingMain").appendChild(div)
-		div.style.backgroundColor = "white"
-		div.style.color = "black"
+		div.style.backgroundColor = QingQuestsBG
+		//div.style.color = "green"
 		div.style.border = "10px solid black"
 		div.style.display = "none"
 		div.style.position = "fixed"
@@ -2736,17 +2738,21 @@ function F_createQtab() {
 		var td = document.createElement("TD")
 		tr.appendChild(td)
 		td.innerHTML = qNev
+		td.style.color = "green"
+		td.style.cursor = "pointer"
 		td.onclick = function() {
 			var jegySkipDate = localStorage.getItem(currPath+" | "+qNev)  // jegy , skip , date
 			
 			if ( this.style.backgroundColor == "yellow" ) { 
-				this.style.backgroundColor = "grey"
+			//if ( this.style.backgroundColor == "goldenrod" ) { 
+				this.style.backgroundColor = "darkgrey"
 				jegySkipDate = jegySkipDate.replace(" , top , "," , skip , ")
-			} else if ( this.style.backgroundColor == "grey" ) { 
+			} else if ( this.style.backgroundColor == "darkgrey" ) { 
 				this.style.backgroundColor = ""
 				jegySkipDate = jegySkipDate.replace(" , skip , "," , false , ")
 			} else {
 				this.style.backgroundColor = "yellow"
+				//this.style.backgroundColor = "goldenrod"
 				jegySkipDate = jegySkipDate.replace(" , false , "," , top , ")
 			}
 			if ( jegySkipDate.indexOf(this.dataset.repeat) == -1 ) { 
@@ -2754,7 +2760,7 @@ function F_createQtab() {
 				this.parentElement.childNodes[0].style.color = "white"
 			} else {
 				this.parentElement.childNodes[0].style.backgroundColor = ""
-				this.parentElement.childNodes[0].style.color = "black"
+				this.parentElement.childNodes[0].style.color = ""
 			}
 			
 			//var jegyName = localStorage.getItem(currPath+" | "+qNev)
@@ -2771,9 +2777,10 @@ function F_createQtab() {
 		var date = arrQinf[2]
 		
 		if ( repeat == "skip" ) { 
-			td.style.backgroundColor = "grey"
+			td.style.backgroundColor = "darkgrey"
 		} else if ( repeat == "top" ) { 
 			td.style.backgroundColor = "yellow"
+			//td.style.backgroundColor = "goldenrod"
 		} else { 
 			td.style.backgroundColor = ""
 		}
