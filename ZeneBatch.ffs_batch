@@ -39,7 +39,7 @@
     <FolderPairs>
         <Pair>
             <Left>D:\zene</Left>
-            <Right>mtp:\Galaxy A13\Internal storage\Zene</Right>
+            <Right>mtp:\Kristof's A13\Internal storage\Zene</Right>
         </Pair>
     </FolderPairs>
     <Errors Ignore="false" Retry="0" Delay="5"/>
