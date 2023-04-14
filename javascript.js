@@ -8,16 +8,16 @@ ha kiakarom venni ezt a funkciót, akkor editPage-re keressek rá a kódban, és
 // Night mode
 var bodyBGcolor, abbrBGcolor, QingTetelsBG, QingQuestsBG, QingBg, abbrBorderColor, midQColor, midQSrcColor, midQBGColor, searchBGColor, timerColor, pageLinksColor, selectJegyBGColor, summaryColor
 if ( localStorage.getItem("nightMode") == "true" ) {
-	bodyBGcolor = "rgb(30, 30, 30)"
+	bodyBGcolor = "rgb(24, 26, 27)"
 	abbrBGcolor = "rgb(30, 30, 30)"
-	QingTetelsBG = "rgb(30, 30, 30)"
-	QingQuestsBG = "rgb(30, 30, 30)"
+	QingTetelsBG = "rgb(24, 26, 27)"
+	QingQuestsBG = "rgb(24, 26, 27)"
 	QingBgBG = "grey"
 	abbrBorderColor = "2px solid white"
 	midQColor = "aqua"
 	midQSrcColor = "mediumpurple"
-	midQBGColor = "rgb(30, 30, 30)"
-	searchBGColor = "rgb(30, 30, 30)"
+	midQBGColor = "rgb(24, 26, 27)"
+	searchBGColor = "rgb(24, 26, 27)"
 	timerColor = "crimson"
 	pageLinksColor = "cornflowerblue" // kis betűvel kell írni különben F_loadAllPages-nél amikor lecheckolja hiba lenne
 	selectJegyBGColor = "black"
