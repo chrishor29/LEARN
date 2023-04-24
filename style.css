@@ -148,7 +148,7 @@ ul, ol {
 	border: Black 1px solid; 
 	padding-left: 1px; 
 	padding-right: 1px; 
-	background-color: White;
+	/* background-color: White; */
 }
 .miss { background-color: pink }
 .lasd { font-variant: small-caps }
