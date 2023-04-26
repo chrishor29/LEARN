@@ -1403,7 +1403,7 @@ function F_loadLS() {
 		for ( var x=0; x<actQs.length; x++ ) {
 			if ( actQs[x] == "" ) { continue }
 			var qNev = arrQnev[actQs[x]].qNev
-			console.log(actQs[x]+": "+qNev)
+			//console.log(actQs[x]+": "+qNev)
 			
 			if ( localStorage.getItem(currPath+" | "+qNev) != null ) { 
 				if ( arrOldQs.includes(actQs[x]) != true ) { arrOldQs.push(actQs[x]) }
