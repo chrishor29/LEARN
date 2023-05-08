@@ -1,4 +1,4 @@
-var editPage = "Gyerekgyogy/gyermek.html"
+var editPage = "Belgyogy/belgyogy.html"
 /* 
 vagy 'editPage = false'
 vagy beírom a címét pl. 'editPage = Gyerekgyogy/gyermek.html'
