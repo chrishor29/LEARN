@@ -31,6 +31,7 @@ if ( localStorage.getItem("nightMode") == "true" ) {
 	style.innerHTML = ".bgYellow { background-color:darkgoldenrod }"
 	style.innerHTML = style.innerHTML + ".bgBlue { background-color:blue }"
 	style.innerHTML = style.innerHTML + ".bgGreen { background-color:green }"
+	style.innerHTML = style.innerHTML + ".bgPink { background-color:deeppink }"
 	style.innerHTML = style.innerHTML + ".WHITE { border: white 1px solid; }"
 	//style.innerHTML = style.innerHTML + ".WHITE { background-color:black; border: white 1px solid; }"
 	style.innerHTML = style.innerHTML + "abbr { background-color:dimgray }"
