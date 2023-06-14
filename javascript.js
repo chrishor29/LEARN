@@ -2668,7 +2668,7 @@ if ( editPage != false ) {
 	
 	button.style.position = "fixed"
 	button.style.right = "20px"
-	button.style.top = "20px"
+	button.style.bottom = "20px"
 	
 	button.onclick = function() { 
 		// elmenti a detailst + scrollbart
