@@ -601,9 +601,16 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 		span.onclick = function(){ 
 			prevMidQs.pop() // uccsót (ami a jelenlegi letörli)
 			var text = prevMidQs[prevMidQs.length-1] // uccsót (ami így már az előző lett) betölti
-			var impID = text.slice(0,text.indexOf("-")-1)
-			var path = text.slice(text.indexOf("-")+2)
-			var qText = F_getQText(path,impID)
+			var impID,path,qText
+			if ( text.indexOf("search: ") == false ) {
+				impID = text.slice(text.indexOf("search: ")+8,text.indexOf("-")-1)
+				path = text.slice(text.indexOf("-")+2)
+				qText = objSearchTexts[impID]
+			} else {
+				impID = text.slice(0,text.indexOf("-")-1)
+				path = text.slice(text.indexOf("-")+2)
+				qText = F_getQText(path,impID)
+			}
 			F_setMidQ(qText,path)
 			//F_midQload(prevMidQs[prevMidQs.length-1]) 
 		}
@@ -1136,6 +1143,7 @@ function F_clickSearchResult(detElem) { // egy találati eredményre klikk
 		
 		var qTxt = objSearchTexts[detElem.dataset.id]
 		var path = detElem.dataset.path
+		prevMidQs.push("search: "+detElem.dataset.id+" - "+path)
 		F_setMidQ(qTxt,path)
 		
 		detElem.style.backgroundColor = ""
