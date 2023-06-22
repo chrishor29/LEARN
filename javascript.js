@@ -284,6 +284,37 @@ function F_loadImpQs(detElem,full) {
 	do { repeat = F_loadNextImpQ(detElem) } while ( repeat == true )
 }
 
+
+function F_removeUlNormal() { // ezzel vettem ki az <ul class="normal"> tagokat
+	var pageDiv = document.getElementById("div_pageQTargy")
+	
+	/*console.clear()
+	console.log(pageDiv.innerHTML)
+	alert("prevHtml in console")*/
+	
+	// Find all <ul class="normal"> elements
+	var ulElements = pageDiv.querySelectorAll('ul.normal');
+	// Iterate through each <ul class="normal"> element
+	ulElements.forEach(function(ulElement) {
+	  // Get the parent element of the <ul class="normal"> element
+	  var parentElement = ulElement.parentElement;
+
+	  // Create a document fragment to hold the child elements
+	  var fragment = document.createDocumentFragment();
+	  // Move all child elements of <ul class="normal"> to the document fragment
+	  while (ulElement.firstChild) {
+		 fragment.appendChild(ulElement.firstChild);
+	  }
+	  // Replace the <ul class="normal"> element with its child elements
+	  parentElement.replaceChild(fragment, ulElement);
+	});
+	
+	console.clear()
+	console.log(pageDiv.innerHTML)
+	alert("postHtml in console")
+}
+
+
 function F_clickAutoLoadPagesBtn(btn) {
 	if ( localStorage.getItem("autoLoadPages") == "true" ) {
 		localStorage.setItem("autoLoadPages", "false")
@@ -322,6 +353,7 @@ function F_loadAndSavePageText(path,click,toggle) {
 		pageDiv.innerHTML = pageText
 		/* */var startTime = F_getTime()
 		F_loadElem(pageDiv)
+	 // F_removeUlNormal()                ---- EZZEL VETTEM KI: <ul class="normal"> tagokat
 		/* */var endTime = F_getTime()
 		/* */console.log(endTime-startTime)
 		document.getElementById("div_QingBg").style.display = "none"
@@ -552,10 +584,6 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 	}
 	F_divLowerPart()
 	function F_btnBack() { // bal felső sarokban a 'vissza'
-		var span = document.createElement("span") // kell, hogy középen legyen a title mindig
-		span.id = "btn_MidQbackFalse"
-		document.getElementById("div_midQUpperPart").appendChild(span)
-		
 		var span = document.createElement("span")
 		span.id = "btn_MidQback"
 		document.getElementById("div_midQUpperPart").appendChild(span)
@@ -620,6 +648,39 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 		document.getElementById("div_midQUpperPart").appendChild(span)
 	}
 	F_btnTitle()
+	function F_btnPath() { // jobb felső sarokban a 'tárgy'
+		var span = document.createElement("span")
+		span.id = "btn_MidQPath"
+		document.getElementById("div_midQUpperPart").appendChild(span)
+		
+		span.style.backgroundColor = "Gainsboro"
+		//span.style.fontWeight = "bold"
+		span.style.border = "3px solid black"
+		span.style.cursor = "pointer";
+		span.style.position = "absolute"
+		span.style.right = "0px"
+		span.style.top = "2px"
+
+		var input = document.createElement("input")
+		input.id = "input_MidQPath"
+		document.getElementById("div_midQUpperPart").appendChild(input)
+		input.style.display = "none"
+		
+		span.onclick = function(){ 
+			// Get the text field
+			var copyText = document.getElementById("input_MidQPath")
+
+			// Select the text field
+			copyText.select();
+			copyText.setSelectionRange(0, 99999); // For mobile devices
+
+			// Copy the text inside the text field
+			navigator.clipboard.writeText(copyText.value)
+			
+			alert("path on clipboard: " + copyText.value)
+		}
+	}
+	F_btnPath()
 	function F_divText() { // Q szövege ide jön
 		var divText = document.createElement("div")
 		document.getElementById("div_midQLowerPart").appendChild(divText)
@@ -663,12 +724,14 @@ function F_setMidQ(qText,path) { // középen megjeleníti a div-et, benne a sz�
 	
 	document.getElementById("div_MidQText").dataset.src = path // kell, h a benne lévő impQ-k path-jét lekérhesse: F_getQPath()
 	F_loadElem(document.getElementById("div_MidQText"))
+	
+	document.getElementById("btn_MidQPath").innerHTML = path.slice(path.lastIndexOf("/")+1)
+	document.getElementById("input_MidQPath").value = path
+	
 	if ( prevMidQs.length > 1 ) {
-		document.getElementById("btn_MidQback").style.display = "block" 
-		document.getElementById("btn_MidQbackFalse").style.display = "none" /* ez kell, ugyanis a felső sorban 3 item van: ez/true bal oldalt, középen a 'title(amire ráklikkelve close)', és jobbra egy üres. Így osztja fel a 'flex' normálisan őket */
+		document.getElementById("btn_MidQback").style.visibility = "visible" 
 	} else {
-		document.getElementById("btn_MidQback").style.display = "none"
-		document.getElementById("btn_MidQbackFalse").style.display = "block" /* ez kell, ugyanis a felső sorban 3 item van: ez/true bal oldalt, középen a 'title(amire ráklikkelve close)', és jobbra egy üres. Így osztja fel a 'flex' normálisan őket */
+		document.getElementById("btn_MidQback").style.visibility = "hidden"
 	}
 }
 function F_loadMidQs(detElem) { // midQ[x] elemeket beállítja: kék fontColor, rájuk click-elve mi történjen
