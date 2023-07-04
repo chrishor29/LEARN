@@ -353,7 +353,7 @@ function F_loadAndSavePageText(path,click,toggle) {
 		pageDiv.innerHTML = pageText
 		/* */var startTime = F_getTime()
 		F_loadElem(pageDiv)
-	 // F_removeUlNormal()                ---- EZZEL VETTEM KI: <ul class="normal"> tagokat
+	  //F_removeUlNormal()          //      ---- EZZEL VETTEM KI: <ul class="normal"> tagokat
 		/* */var endTime = F_getTime()
 		/* */console.log(endTime-startTime)
 		document.getElementById("div_QingBg").style.display = "none"
