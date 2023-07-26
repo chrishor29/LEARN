@@ -15,7 +15,7 @@ if ( localStorage.getItem("nightMode") == "true" ) {
 	QingBgBG = "grey"
 	abbrBorderColor = "2px solid white"
 	midQColor = "aqua"
-	midQSrcColor = "mediumpurple"
+	midQSrcColor = "plum"
 	midQBGColor = "rgb(24, 26, 27)"
 	searchBGColor = "rgb(24, 26, 27)"
 	timerColor = "crimson"
@@ -28,9 +28,9 @@ if ( localStorage.getItem("nightMode") == "true" ) {
 	var style = document.createElement("style");
 	document.head.appendChild(style);
 	//style.innerHTML = ".bgYellow { color:black }"
-	style.innerHTML = ".bgYellow { background-color:darkgoldenrod }"
+	style.innerHTML = ".bgYellow { background-color:saddlebrown }"
 	style.innerHTML = style.innerHTML + ".bgBlue { background-color:blue }"
-	style.innerHTML = style.innerHTML + ".bgGreen { background-color:green }"
+	style.innerHTML = style.innerHTML + ".bgGreen { background-color:darkgreen }"
 	style.innerHTML = style.innerHTML + ".bgPink { background-color:deeppink }"
 	style.innerHTML = style.innerHTML + ".WHITE { border: white 1px solid; }"
 	//style.innerHTML = style.innerHTML + ".WHITE { background-color:black; border: white 1px solid; }"
