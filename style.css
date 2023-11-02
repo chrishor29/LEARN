@@ -133,6 +133,7 @@ ul, ol {
 	font-weight: bold;
 }
 .fsMini { font-size: 80% }
+.bgGrey { background-color: Gainsboro }
 .bgBlue { background-color: Aqua }
 .bgGreen { background-color: Lime }
 .bgPink { background-color: Pink }

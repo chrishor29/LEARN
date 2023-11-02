@@ -1,4 +1,4 @@
-var editPage = "Belgyogy/belgyogy.html"
+var editPage = "Belgyogy/belgyogyAV.html"
 /* 
 vagy 'editPage = false'
 vagy beírom a címét pl. 'editPage = Gyerekgyogy/gyermek.html'
@@ -3089,7 +3089,7 @@ function F_answerQ(detElem) {
 			for ( var i=0; i<trueA.length; i++ ) { trueA[i].style.backgroundColor = "springgreen" }
 			for ( var i=0; i<tippA.length; i++ ) { tippA[i].style.backgroundColor = "yellow" }
 			for ( var i=0; i<falseA.length; i++ ) {  falseA[i].style.backgroundColor = "tomato" }
-			for ( var i=0; i<hiddens.length; i++ ) { hiddens[i].style.display = "block" }
+			for ( var i=0; i<hiddens.length; i++ ) { hiddens[i].style.display = "inline" }
 			this.style.cursor = ""
 			this.style.backgroundColor = "white"
 		}
