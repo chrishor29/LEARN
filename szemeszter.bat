@@ -17,14 +17,24 @@ xcopy /y %source%\styleAndroid.css %destination%\ /d
 xcopy /y %source%\favicon.png %destination%\ /d
 
 
-REM 5.év
+REM 6.év
+xcopy /y %source%\Allamvizsga\zarov.html %destination%\Allamvizsga\ /d
+xcopy /y %source%\Belgyogy\belgyogyAV.html %destination%\Belgyogy\ /d
 xcopy /y %source%\Belgyogy\belgyogy.html %destination%\Belgyogy\ /d
-xcopy /y %source%\Belgyogy\hiirlm.html %destination%\Belgyogy\ /d
-xcopy /y %source%\Gyerekgyogy\gyermek.html %destination%\Gyerekgyogy\ /d
+xcopy /y %source%\Neurologia\neuroAV.html %destination%\Neurologia\ /d
 xcopy /y %source%\Neurologia\neurologia.html %destination%\Neurologia\ /d
-xcopy /y %source%\Neurologia\neuroteszt.html %destination%\Neurologia\ /d
+xcopy /y %source%\Gyerekgyogy\gyermekAV.html %destination%\Gyerekgyogy\ /d
+xcopy /y %source%\Gyerekgyogy\gyermek.html %destination%\Gyerekgyogy\ /d
+xcopy /y %source%\Pszichiatria\pszichiAV.html %destination%\Pszichiatria\ /d
 xcopy /y %source%\Pszichiatria\pszichi.html %destination%\Pszichiatria\ /d
+xcopy /y %source%\Szuleszet\szuleszetAV.html %destination%\Szuleszet\ /d
 xcopy /y %source%\Szuleszet\szuleszet.html %destination%\Szuleszet\ /d
+xcopy /y %source%\Sebeszet\sebeszetAV.html %destination%\Sebeszet\ /d
+xcopy /y %source%\Sebeszet\sebeszet.html %destination%\Sebeszet\ /d
+
+REM 5.év
+xcopy /y %source%\Belgyogy\hiirlm.html %destination%\Belgyogy\ /d
+xcopy /y %source%\Neurologia\neuroteszt.html %destination%\Neurologia\ /d
 xcopy /y %source%\Szuleszet\nogyogy.html %destination%\Szuleszet\ /d
 xcopy /y %source%\done\Aneszt\aneszt.html %destination%\done\Aneszt\ /d
 xcopy /y %source%\done\Bioetika\bioetika.html %destination%\done\Bioetika\ /d
@@ -37,7 +47,6 @@ xcopy /y %source%\done\Transzfuziologia\trafo.html %destination%\done\Transzfuzi
 xcopy /y %source%\done\Urologia\urologia.html %destination%\done\Urologia\ /d
 
 REM 4.év
-xcopy /y %source%\Sebeszet\sebeszet.html %destination%\Sebeszet\ /d
 xcopy /y %source%\Sebeszet\2011_0001_524_Sebeszet.pdf %learnStuff%\Sebeszet\ /d
 robocopy %source%\Belgyogy\könyvek %destination%\Belgyogy\könyvek /mir /max:50000000
 xcopy /y %source%\Belgyogy\nephro.html %destination%\Belgyogy\ /d
