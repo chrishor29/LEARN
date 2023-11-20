@@ -18,6 +18,7 @@ xcopy /y %source%\favicon.png %destination%\ /d
 
 
 REM 6.év
+xcopy /y %source%\Allamvizsga\teszt.html %destination%\Allamvizsga\ /d
 xcopy /y %source%\Allamvizsga\zarov.html %destination%\Allamvizsga\ /d
 xcopy /y %source%\Belgyogy\belgyogyAV.html %destination%\Belgyogy\ /d
 xcopy /y %source%\Belgyogy\belgyogy.html %destination%\Belgyogy\ /d
