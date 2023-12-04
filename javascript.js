@@ -197,12 +197,23 @@ function F_getQPath(detElem,impID) {
 	//console.log(impID+": "+path)
 	if ( path != currPath ) {
 		var count = 0
-		for ( var pagePath in pageTexts ) { if ( pagePath.indexOf(path) != -1 ) { 
-			count = count +1
-			path = pagePath
-		} }
-		if ( count != 1 ) { console.log("ERROR: ["+impID+"] dataset-src("+count+"): nem található(0) / több page-re utal(1+)") }
+		if ( path.indexOf(".html") == -1 ) {
+			for ( var i=0; i<pageLinks.length; i++ ) { 
+				if ( path == pageLinks[i].dataset.path ) {
+					count = count +1
+					path = pageLinks[i].dataset.src
+				}
+			}
+			if ( count != 1 ) { console.log("ERROR: ["+impID+"] dataset-path("+count+"): nem található(0) / több page-re utal(1+)") }
+		} else {
+			for ( var pagePath in pageTexts ) { if ( pagePath.indexOf(path) != -1 ) { 
+				count = count +1
+				path = pagePath
+			} }
+			if ( count != 1 ) { console.log("ERROR: ["+impID+"] dataset-src("+count+"): nem található(0) / több page-re utal(1+)") }
+		}
 	}
+	//alert(impID+" "+path)
 	return path
 }
 function F_getQText(path,impID) {
@@ -252,7 +263,9 @@ function F_loadImpQs(detElem,full) {
 					if ( parent.className.indexOf("["+impID+"]") == -1 ) { continue } 
 					// checkolja hogy a path-jük megegyezik-e --> ha nem, akkor nézi a kövi parentet
 					if ( parent.dataset.src == undefined && path == currPath ) { contains = true }
-					if ( path.indexOf(parent.dataset.src) != -1 ) { contains = true }
+					
+					//if ( path.indexOf(parent.dataset.src) != -1 ) { contains = true }
+					if ( path == F_getQPath(parent,F_getImpID(parent)) ) { contains = true }
 					/* ha átakarom írni, változtatás után teszteljem: ..
 						span/div/midQ + datasrc(akár ugyanez az oldalé) + full load(tehát kiveszem feltételből, hogy csak akkor ha visible)
 					*/
@@ -264,6 +277,7 @@ function F_loadImpQs(detElem,full) {
 			// betöltés
 			var qText = F_getQText(path,impID)
 			if ( qText == undefined ) { // ha hiányozna az [impQ]
+				//var string = i+" ["+impID+"] - "+path +" - "+detElem.innerHTML.slice(0,100) +"\n"
 				var string = i+" ["+impID+"] - "+path +"\n"
 				if ( error.indexOf(string) == -1 ) { error = error + string }
 				continue
@@ -659,10 +673,14 @@ function F_createMidQElems() { // lekreálja középre a divet, ahova kidobja ma
 		var span = document.createElement("span")
 		span.id = "btn_MidQPath"
 		document.getElementById("div_midQUpperPart").appendChild(span)
-		
-		span.style.backgroundColor = "Gainsboro"
 		//span.style.fontWeight = "bold"
-		span.style.border = "3px solid black"
+		if ( localStorage.getItem("nightMode") == "true" ) {
+			span.style.backgroundColor = "black"
+			span.style.border = "3px solid Gainsboro"
+		} else {
+			span.style.backgroundColor = "Gainsboro"
+			span.style.border = "3px solid black"
+		}
 		span.style.cursor = "pointer";
 		span.style.position = "absolute"
 		span.style.right = "0px"
