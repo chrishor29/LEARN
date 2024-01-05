@@ -1370,8 +1370,6 @@ function F_createSearchElems() {
 F_createSearchElems()
 // –––––––––––––––  search END  –––––––––––––––
 
-				localStorage.clear()
-
 // –––––––––––––––  Qing BEGIN  –––––––––––––––
 var arrTetelQs = {} // mainTitle-k, azon belül phase/status-ok, azok pedig egy stringet tartalmaznak, hogy mely Q-k
 var arrActTetels = [] // active tételek
