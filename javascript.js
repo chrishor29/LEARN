@@ -510,15 +510,32 @@ function clearIDB(path,page) {
 function clearFullIDB() { for ( var i=0; i<pageLinks.length; i++ ) { clearIDB(pageLinks[i].dataset.src,pageLinks[i]) } }
 function F_loadAllPages() { 
 	loadAllPages = true
+	// statusbar beállítása (hogy állunk)
+	if ( document.getElementById("span_searchStatusText").dataset.loaded == "nothing" ) {
+		var missing = 0
+		for ( var i=0; i<pageLinks.length; i++ ) { 
+			if ( pageLinks[i].style.color != pageLinksColor && pageLinks[i].style.color != "darkviolet" ) {
+				missing = missing +1
+			}
+		}
+		document.getElementById("span_searchStatusText").dataset.missing = missing
+		document.getElementById("span_searchStatusText").dataset.loaded = "-1"
+	}
+	var missing = document.getElementById("span_searchStatusText").dataset.missing
+	var loaded = Number(document.getElementById("span_searchStatusText").dataset.loaded) +1
+	document.getElementById("span_searchStatusText").dataset.loaded = loaded
+	document.getElementById("span_searchStatusText").innerHTML = loaded +" / "+ missing
+	var spanStatus = document.getElementById("span_searchStatus")
+	spanStatus.parentElement.style.display = "block" 
+	var statusWidth = spanStatus.parentElement.offsetWidth * loaded / missing
+	spanStatus.style.width = statusWidth+"px"
+	
+	// maga az oldal betöltése
 	for ( var i=0; i<pageLinks.length; i++ ) { 
 		if ( pageLinks[i].style.color != pageLinksColor && pageLinks[i].style.color != "darkviolet" ) {
 			//console.log(i+" vs "+pageLinks.length)
 			//console.log(pageLinks[i].dataset.src)
 			document.getElementById("div_searchingBg").style.display = "block"
-			var spanStatus = document.getElementById("span_searchStatus")
-			spanStatus.parentElement.style.display = "block" 
-			var statusWidth = spanStatus.parentElement.offsetWidth * i / pageLinks.length
-			spanStatus.style.width = statusWidth+"px"
 			
 			F_loadAndSavePageText(pageLinks[i].dataset.src,false,"all")
 			break
@@ -529,6 +546,7 @@ function F_loadAllPages() {
 			var spanStatus = document.getElementById("span_searchStatus")
 			spanStatus.parentElement.style.display = "none" 
 			document.getElementById("div_searchingBg").style.display = "none"
+			document.getElementById("span_searchStatusText").dataset.loaded = "nothing"
 			F_toggleSearch()
 		}
 	}
@@ -1346,6 +1364,7 @@ function F_createSearchElems() {
 		// szürke háttér & fehér border fojton látszik
 		var spanStatus = document.createElement("div")
 		document.body.appendChild(spanStatus)
+		spanStatus.id = "div_searchStatus"
 		spanStatus.style.display = "none"
 		spanStatus.style.position = "absolute"
 		spanStatus.style.backgroundColor = "grey"
@@ -1364,6 +1383,16 @@ function F_createSearchElems() {
 		spanStatusChild.style.backgroundColor = "gold"
 		spanStatusChild.style.position = "absolute"
 		spanStatusChild.style.height = "21px"
+		
+		// text
+		var spanStatusText = document.createElement("span")
+		spanStatus.appendChild(spanStatusText)
+		spanStatusText.id = "span_searchStatusText"
+		spanStatusText.style.position = "absolute"
+		spanStatusText.style.width = "100%"
+		spanStatusText.style.textAlign = "center"
+		spanStatusText.dataset.loaded = "nothing"
+		spanStatusText.dataset.missing = "nothing"
 	}
 	F_spanStatus()
 }
@@ -1464,8 +1493,8 @@ function F_loadLS() {
 		}
 		
 		localStorage.setItem(currPath+" | activeTetels",JSON.stringify(newTetels))
-		//document.getElementById("span_QingTime").innerHTML = arrActTetels.length
-		document.getElementById("span_QingTime").innerHTML = newTetels.length
+		//document.getElementById("span_tetelCount").innerHTML = arrActTetels.length
+		document.getElementById("span_tetelCount").innerHTML = newTetels.length
 	}
 	F_checkTetels()
 	
@@ -1723,7 +1752,7 @@ function F_createQingElems() {
 	function F_spanTime() { // mennyi ideje oldottam meg átlagosan őket
 		var span = document.createElement("span")
 		document.getElementById("span_QingSettings").appendChild(span)
-		span.id = "span_QingTime"
+		span.id = "span_tetelCount"
 		span.style.border = "1px solid black"
 		span.style.backgroundColor = "White"
 		span.style.color = "black"
@@ -1753,6 +1782,7 @@ function F_createQingElems() {
 				F_hideAllower()
 				this.style.borderColor = "limegreen"
 				document.getElementById("div_QingMenu").style.display = "block"
+				F_calcOldQs()
 			}
 		}
 	}
@@ -2039,6 +2069,46 @@ function F_createQingElems() {
 		}
 	}
 	F_btnClearLS()
+	function F_tableQJegy() {
+		var table = document.createElement("table")
+		document.getElementById("div_QingMenu").appendChild(table)
+		var tr = document.createElement("TR")
+		table.appendChild(tr)
+		var th = document.createElement("TH")
+		tr.appendChild(th)
+		th.innerHTML = "jegy"
+		var th = document.createElement("TH")
+		tr.appendChild(th)
+		th.innerHTML = "db"
+		
+		for ( var i=1; i<4; i++ ) { 
+			var tr = document.createElement("TR")
+			table.appendChild(tr)
+			var td = document.createElement("TD")
+			td.innerHTML = i
+			tr.appendChild(td)
+			td.style.cursor = "pointer"
+			if ( localStorage.getItem("hk.qJegyDisable"+i) ) { 
+				td.style.backgroundColor = "coral"
+			} else {
+				td.style.backgroundColor = "lightgreen"
+			}
+			td.onclick = function() {
+				if ( localStorage.getItem("hk.qJegyDisable"+this.innerHTML) ) { 
+					localStorage.removeItem("hk.qJegyDisable"+this.innerHTML)
+					this.style.backgroundColor = "lightgreen"
+				} else {
+					localStorage.setItem("hk.qJegyDisable"+this.innerHTML,true)
+					this.style.backgroundColor = "coral"
+				}
+			}
+			
+			var td = document.createElement("TD")
+			td.id = "td_jegy"+i
+			tr.appendChild(td)
+		}
+	}
+	F_tableQJegy()
 	
 	function F_divTargyText() { // láthatatlan -> tárgy full textje ebben
 		var div = document.createElement("div")
@@ -2312,6 +2382,8 @@ function F_calcOldQs(){
 	var skipQs = 0
 	var topNew = 0
 	var topOld = 0
+	var arrJegy = []
+	var atlJegy = 0
 	var arrQsDone = [] // annyi, hogy ne számolja többször azon Q-kat, amik ugyanazok, csak többhelyen is szerepelnek
 	for ( var x=0; x<arrOldQs.length; x++ ) {
 		var i = arrOldQs[x]
@@ -2337,6 +2409,10 @@ function F_calcOldQs(){
 			youngQs = youngQs +1
 			if ( repeat == "top" ) { topOld = topOld +1 }
 		}
+		
+		var jegy = arrQinf[0]
+		atlJegy = Number(atlJegy) +Number(jegy)
+		if (arrJegy[jegy]) { arrJegy[jegy] = Number(arrJegy[jegy]) +1 } else { arrJegy[jegy] = 1 }
 		//console.log(i+" "+jegy+" "+diffTime)
 	}
 	document.getElementById("span_oldQs").innerHTML = oldQs
@@ -2344,6 +2420,8 @@ function F_calcOldQs(){
 	document.getElementById("btn_QingQuests").innerHTML = arrQsDone.length
 	document.getElementById("span_QingTopNew").innerHTML = topNew
 	document.getElementById("span_QingTopOld").innerHTML = topOld
+	document.getElementById("span_QingJegy").innerHTML = (atlJegy / (oldQs+youngQs)).toFixed(2)
+	for ( var x=1; x<4; x++ ) { document.getElementById("td_jegy"+x).innerHTML = arrJegy[x] }
 }
 function F_calcNextQ(){
 	var priorID = "none"
@@ -2375,6 +2453,8 @@ function F_calcNextQ(){
 			var i = arrOldQs[x]
 			var qNev = arrQnev[i].qNev  // jegy , repeat , date
 			var arrQinf = F_getQinf(qNev)
+			var jegy = arrQinf[0]
+			if ( localStorage.getItem("hk.qJegyDisable"+jegy) ) { continue }
 			var repeat = arrQinf[1]
 			if ( repeat != "skip" && arrNoSkipQs.indexOf(i) == -1 ) { arrNoSkipQs.push(i) }
 		}
@@ -2402,6 +2482,7 @@ function F_calcNextQ(){
 			var repeat = arrQinf[1]
 			var date = arrQinf[2]
 			
+			if ( localStorage.getItem("hk.qJegyDisable"+jegy) ) { continue }
 			if ( repeat == "skip" ) { continue }
 			var diffTime = Number(currTime) - Number(date)
 			var currPoint = Number(diffTime) / Number(jegy)
