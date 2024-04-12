@@ -21,6 +21,10 @@ if ( localStorage.getItem("nightMode") == "true" ) {
 	timerColor = "crimson"
 	pageLinksColor = "cornflowerblue" // kis betűvel kell írni különben F_loadAllPages-nél amikor lecheckolja hiba lenne
 	selectJegyBGColor = "black"
+	topQColor = "gold"
+	trueColor = "green"
+	falseColor = "brown"
+	answerColor = "darkgoldenrod"
 	summaryColor = "mediumseagreen" // search resultoknál is kell!
 	//summaryColor = "chartreuse" // search resultoknál is kell!
 
@@ -57,6 +61,10 @@ if ( localStorage.getItem("nightMode") == "true" ) {
 	timerColor = "black"
 	pageLinksColor = "blue"
 	selectJegyBGColor = "#f1f1f1"
+	topQColor = "yellow"
+	trueColor = "springgreen"
+	falseColor = "tomato"
+	answerColor = "gold"
 	summaryColor = "green" // search resultoknál kell!
 }
 function F_toggleNightMode(){
@@ -1429,9 +1437,9 @@ function F_saveLS() {
 		document.getElementById('parSpan.'+num).dataset.elemi = ""
 		
 		var skip = "false"
-		if ( document.getElementById("span.2."+num).style.backgroundColor == "yellow" ) {
+		if ( document.getElementById("span.2."+num).style.backgroundColor == topQColor ) {
 			skip = "top"
-		} else if ( document.getElementById("span.2."+num).style.backgroundColor == "black" ) {
+		} else if ( document.getElementById("span.2."+num).style.backgroundColor == QingBgBG ) {
 			skip = "skip"
 		}
 		document.getElementById("span.2."+num).style.backgroundColor = ""
@@ -2715,22 +2723,22 @@ function F_nextQ() {
 					span.style.fontSize = "x-small"
 					span.style.color = timerColor
 					span.onclick = function(){  // left click
-						if ( this.style.backgroundColor == "black" ) {
+						if ( this.style.backgroundColor == QingBgBG ) {
 							this.style.backgroundColor = ""
-						} else if ( this.style.backgroundColor == "yellow" ) {
-							this.style.backgroundColor = "black"
+						} else if ( this.style.backgroundColor == topQColor ) {
+							this.style.backgroundColor = QingBgBG
 						} else {
-							this.style.backgroundColor = "yellow"
+							this.style.backgroundColor = topQColor
 						}
 					}
 					span.addEventListener('contextmenu', function(ev) { // right click
 						ev.preventDefault();
-						if ( this.style.backgroundColor == "black" ) {
-							this.style.backgroundColor = "yellow"
-						} else if ( this.style.backgroundColor == "yellow" ) {
+						if ( this.style.backgroundColor == QingBgBG ) {
+							this.style.backgroundColor = topQColor
+						} else if ( this.style.backgroundColor == topQColor ) {
 							this.style.backgroundColor = ""
 						} else {
-							this.style.backgroundColor = "black"
+							this.style.backgroundColor = QingBgBG
 						}
 						return false
 					}, false)
@@ -2776,7 +2784,7 @@ function F_nextQ() {
 					document.getElementById("span.0."+num).style.color = "white" 
 				} 
 				if ( repeat == "top" ) {
-					document.getElementById("span.2."+num).style.backgroundColor = "yellow" 
+					document.getElementById("span.2."+num).style.backgroundColor = topQColor 
 				} else {
 					document.getElementById("span.2."+num).style.backgroundColor = "" 
 				}
@@ -2813,7 +2821,7 @@ function F_nextQ() {
 		do {
 			if ( priorQ.dataset.num ) { 
 				num = priorQ.dataset.num
-				document.getElementById('span.0.'+num).style.border = "2px solid gold" 
+				document.getElementById('span.0.'+num).style.border = "2px solid GoldenRod" 
 			}
 			priorQ = priorQ.parentElement
 		}
@@ -3168,7 +3176,7 @@ function F_answerQ(detElem) {
 		for ( var i=0; i<trueA.length; i++ ) { trueA[i].style.backgroundColor = "" }
 		for ( var i=0; i<tippA.length; i++ ) { tippA[i].style.backgroundColor = "" }
 		for ( var i=0; i<falseA.length; i++ ) { falseA[i].style.backgroundColor = "" }
-		for ( var i=0; i<answers.length; i++ ) { answers[i].style.backgroundColor = "gold" }
+		for ( var i=0; i<answers.length; i++ ) { answers[i].style.backgroundColor = answerColor }
 		for ( var i=0; i<hiddens.length; i++ ) { hiddens[i].style.display = "none" }
 		//return // ez nem tudom miért kellett anno, de kivettem így a search esetén is működik már
 	}
@@ -3185,12 +3193,13 @@ function F_answerQ(detElem) {
 		//alert(answers[x].offsetParent)
 		answers[x].style.cursor = "pointer"
 		answers[x].onclick = function(){
-			for ( var i=0; i<trueA.length; i++ ) { trueA[i].style.backgroundColor = "springgreen" }
+			for ( var i=0; i<trueA.length; i++ ) { trueA[i].style.backgroundColor = trueColor }
 			for ( var i=0; i<tippA.length; i++ ) { tippA[i].style.backgroundColor = "yellow" }
-			for ( var i=0; i<falseA.length; i++ ) {  falseA[i].style.backgroundColor = "tomato" }
+			for ( var i=0; i<falseA.length; i++ ) {  falseA[i].style.backgroundColor = falseColor }
 			for ( var i=0; i<hiddens.length; i++ ) { hiddens[i].style.display = "inline" }
 			this.style.cursor = ""
-			this.style.backgroundColor = "white"
+			this.style.backgroundColor = ""
+			this.style.color = QingBgBG
 		}
 	}
 }
