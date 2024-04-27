@@ -5,7 +5,7 @@ vagy beírom a címét pl. 'editPage = Gyerekgyogy/gyermek.html'
 ha kiakarom venni ezt a funkciót, akkor editPage-re keressek rá a kódban, és azokat töröljem
 */
 
-				localStorage.clear()
+//				localStorage.clear()
 
 // Night mode
 var bodyBGcolor, abbrBGcolor, QingTetelsBG, QingQuestsBG, QingBg, abbrBorderColor, midQColor, midQSrcColor, midQBGColor, searchBGColor, timerColor, pageLinksColor, selectJegyBGColor, summaryColor
