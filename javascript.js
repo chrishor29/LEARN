@@ -5,6 +5,8 @@ vagy beírom a címét pl. 'editPage = Gyerekgyogy/gyermek.html'
 ha kiakarom venni ezt a funkciót, akkor editPage-re keressek rá a kódban, és azokat töröljem
 */
 
+				localStorage.clear()
+
 // Night mode
 var bodyBGcolor, abbrBGcolor, QingTetelsBG, QingQuestsBG, QingBg, abbrBorderColor, midQColor, midQSrcColor, midQBGColor, searchBGColor, timerColor, pageLinksColor, selectJegyBGColor, summaryColor
 if ( localStorage.getItem("nightMode") == "true" ) {
@@ -52,7 +54,7 @@ if ( localStorage.getItem("nightMode") == "true" ) {
 	abbrBGcolor = "azure"
 	QingTetelsBG = "azure"
 	QingQuestsBG = "azure"
-	QingBgBG = "black"
+	QingBgBG = "grey"
 	abbrBorderColor = "2px solid black"
 	midQColor = "blue"
 	midQSrcColor = "purple"
