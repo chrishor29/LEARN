@@ -5,8 +5,6 @@ vagy beírom a címét pl. 'editPage = Gyerekgyogy/gyermek.html'
 ha kiakarom venni ezt a funkciót, akkor editPage-re keressek rá a kódban, és azokat töröljem
 */
 
-				localStorage.clear()
-
 // Night mode
 var bodyBGcolor, abbrBGcolor, QingTetelsBG, QingQuestsBG, QingBg, abbrBorderColor, midQColor, midQSrcColor, midQBGColor, searchBGColor, timerColor, pageLinksColor, selectJegyBGColor, summaryColor
 if ( localStorage.getItem("nightMode") == "true" ) {
@@ -1415,6 +1413,7 @@ var arrActTetels = [] // active tételek
 var arrQnev = [] // (i) -> qNev + tartalom
 var arrOldQs = [] // (i) -> LS-ben mentett Q-k
 var arrNewQs = [] // (i) -> LS-ben még nem mentett Q-k (nem osztályzott)
+var minTime = 43200 // (i) -> Q-nál mennyi idő, mire újra kidobhatja (secundum)
 function F_getQinf(qNev) { // LS-ben mentett jegy,repeat,date
 	var date = localStorage.getItem(currPath+" | "+qNev)
 	var jegy = date.slice(0,date.indexOf(" , "))
@@ -2098,6 +2097,7 @@ function F_createQingElems() {
 			td.innerHTML = i
 			tr.appendChild(td)
 			td.style.cursor = "pointer"
+			td.style.color = selectJegyBGColor
 			if ( localStorage.getItem("hk.qJegyDisable"+i) ) { 
 				td.style.backgroundColor = "coral"
 			} else {
@@ -2115,6 +2115,7 @@ function F_createQingElems() {
 			
 			var td = document.createElement("TD")
 			td.id = "td_jegy"+i
+			td.style.color = selectJegyBGColor
 			tr.appendChild(td)
 		}
 	}
@@ -2412,7 +2413,7 @@ function F_calcOldQs(){
 			continue
 		}
 		var diffTime = Number(currTime) - Number(date)
-		if ( diffTime > 600 ) {
+		if ( diffTime > minTime ) {
 			oldQs = oldQs +1
 			if ( repeat == "top" ) { topNew = topNew +1 }
 		} else {
@@ -2421,8 +2422,9 @@ function F_calcOldQs(){
 		}
 		
 		var jegy = arrQinf[0]
-		atlJegy = Number(atlJegy) +Number(jegy)
 		if (arrJegy[jegy]) { arrJegy[jegy] = Number(arrJegy[jegy]) +1 } else { arrJegy[jegy] = 1 }
+		if ( jegy == 3 ) { jegy = 2 }
+		atlJegy = Number(atlJegy) +Number(jegy)
 		//console.log(i+" "+jegy+" "+diffTime)
 	}
 	document.getElementById("span_oldQs").innerHTML = oldQs
@@ -2463,10 +2465,16 @@ function F_calcNextQ(){
 			var i = arrOldQs[x]
 			var qNev = arrQnev[i].qNev  // jegy , repeat , date
 			var arrQinf = F_getQinf(qNev)
+			
 			var jegy = arrQinf[0]
 			if ( localStorage.getItem("hk.qJegyDisable"+jegy) ) { continue }
+			
 			var repeat = arrQinf[1]
-			if ( repeat != "skip" && arrNoSkipQs.indexOf(i) == -1 ) { arrNoSkipQs.push(i) }
+			if ( repeat == "skip" || arrNoSkipQs.indexOf(i) != -1 ) { continue }
+			
+			var date = arrQinf[2]
+			var diffTime = Number(currTime) - Number(date)
+			if ( diffTime > minTime ) { arrNoSkipQs.push(i) }
 		}
 		
 		var maxNum = arrNoSkipQs.length + arrNewQs.length
