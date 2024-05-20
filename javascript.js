@@ -1413,7 +1413,7 @@ var arrActTetels = [] // active tételek
 var arrQnev = [] // (i) -> qNev + tartalom
 var arrOldQs = [] // (i) -> LS-ben mentett Q-k
 var arrNewQs = [] // (i) -> LS-ben még nem mentett Q-k (nem osztályzott)
-var minTime = 43200 // (i) -> Q-nál mennyi idő, mire újra kidobhatja (secundum)
+var minTime = 86400 // (i) -> Q-nál mennyi idő, mire újra kidobhatja (secundum)
 function F_getQinf(qNev) { // LS-ben mentett jegy,repeat,date
 	var date = localStorage.getItem(currPath+" | "+qNev)
 	var jegy = date.slice(0,date.indexOf(" , "))
@@ -2097,7 +2097,7 @@ function F_createQingElems() {
 			td.innerHTML = i
 			tr.appendChild(td)
 			td.style.cursor = "pointer"
-			td.style.color = selectJegyBGColor
+			td.style.color = timerColor
 			if ( localStorage.getItem("hk.qJegyDisable"+i) ) { 
 				td.style.backgroundColor = "coral"
 			} else {
@@ -2115,7 +2115,7 @@ function F_createQingElems() {
 			
 			var td = document.createElement("TD")
 			td.id = "td_jegy"+i
-			td.style.color = selectJegyBGColor
+			td.style.color = timerColor
 			tr.appendChild(td)
 		}
 	}
