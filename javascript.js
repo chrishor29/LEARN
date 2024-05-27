@@ -1413,7 +1413,7 @@ var arrActTetels = [] // active tételek
 var arrQnev = [] // (i) -> qNev + tartalom
 var arrOldQs = [] // (i) -> LS-ben mentett Q-k
 var arrNewQs = [] // (i) -> LS-ben még nem mentett Q-k (nem osztályzott)
-var minTime = 132*3600 // (i) -> Q-nál mennyi idő, mire újra kidobhatja (secundum)
+var minTime = 156*3600 // (i) -> Q-nál mennyi idő, mire újra kidobhatja (secundum)
 function F_getQinf(qNev) { // LS-ben mentett jegy,repeat,date
 	var date = localStorage.getItem(currPath+" | "+qNev)
 	var jegy = date.slice(0,date.indexOf(" , "))
