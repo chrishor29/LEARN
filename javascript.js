@@ -1202,8 +1202,8 @@ function F_createSearchElems() {
 		document.getElementById("table_weboldalak").parentElement.parentElement.appendChild(button)
 		document.getElementById("table_weboldalak").parentElement.parentElement.style.position = "relative"
 		button.style.position = "absolute"
-		button.style.right = "0px"
-		button.style.bottom = "0px" // parent position-jént relative-ra kellett állítani, illetve ezt absolute-ra, hogy működjön!!
+		button.style.right = "2px"
+		button.style.bottom = "2px" // parent position-jént relative-ra kellett állítani, illetve ezt absolute-ra, hogy működjön!!
 		button.style.maxWidth = "90px"
 		button.style.maxHeight = "90px"
 		button.value = "🔍"
@@ -1413,7 +1413,7 @@ var arrActTetels = [] // active tételek
 var arrQnev = [] // (i) -> qNev + tartalom
 var arrOldQs = [] // (i) -> LS-ben mentett Q-k
 var arrNewQs = [] // (i) -> LS-ben még nem mentett Q-k (nem osztályzott)
-var minTime = 156*3600 // (i) -> Q-nál mennyi idő, mire újra kidobhatja (secundum)
+var minTime = 600 // (i) -> Q-nál mennyi idő, mire újra kidobhatja (secundum)
 function F_getQinf(qNev) { // LS-ben mentett jegy,repeat,date
 	var date = localStorage.getItem(currPath+" | "+qNev)
 	var jegy = date.slice(0,date.indexOf(" , "))
