@@ -6,7 +6,7 @@ ha kiakarom venni ezt a funkciót, akkor editPage-re keressek rá a kódban, és
 */
 
 // Night mode
-var bodyBGcolor, abbrBGcolor, QingTetelsBG, QingQuestsBG, QingBg, abbrBorderColor, midQColor, midQSrcColor, midQBGColor, searchBGColor, timerColor, pageLinksColor, selectJegyBGColor, summaryColor
+var bodyBGcolor, abbrBGcolor, QingTetelsBG, QingQuestsBG, QingBg, abbrBorderColor, midQColor, midQSrcColor, midQBGColor, searchBGColor, timerColor, pageLinksColor, selectJegyBGColor, summaryColor, selectJegyColor
 if ( localStorage.getItem("nightMode") == "true" ) {
 	bodyBGcolor = "rgb(24, 26, 27)"
 	abbrBGcolor = "rgb(30, 30, 30)"
@@ -27,6 +27,7 @@ if ( localStorage.getItem("nightMode") == "true" ) {
 	answerColor = "darkgoldenrod"
 	summaryColor = "mediumseagreen" // search resultoknál is kell!
 	//summaryColor = "chartreuse" // search resultoknál is kell!
+	selectJegyColor = "white"
 
 
 	var style = document.createElement("style");
@@ -66,6 +67,7 @@ if ( localStorage.getItem("nightMode") == "true" ) {
 	falseColor = "tomato"
 	answerColor = "gold"
 	summaryColor = "green" // search resultoknál kell!
+	selectJegyColor = "black"
 }
 function F_toggleNightMode(){
 	if ( localStorage.getItem("nightMode") == "true" ) {
@@ -2721,10 +2723,14 @@ function F_nextQ() {
 						var child = dropdown.childNodes
 						for ( var y=0; y < child.length; y++ ) { 
 							child[y].style.fontWeight = "normal"
+							child[y].style.color = selectJegyColor
 							if ( localStorage.getItem(currPath+" | "+qNev) ) {
 								var jegyName = localStorage.getItem(currPath+" | "+qNev)
 								var jegy = jegyName.slice(0,jegyName.indexOf(" , "))
-								if ( child[y].innerHTML == jegy ) { child[y].style.fontWeight = "bolder" }
+								if ( child[y].innerHTML == jegy ) { 
+									child[y].style.fontWeight = "bolder"
+									child[y].style.color = midQColor
+								}
 							}
 						}
 					}
