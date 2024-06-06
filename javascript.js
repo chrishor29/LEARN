@@ -2832,6 +2832,7 @@ function F_nextQ() {
 		for ( var x in xTOi ) { if ( xTOi[x] == priorID ) { priorX = x } }
 		var Qs = document.getElementById("div_QingLowerPart").getElementsByClassName("kerdes")
 		var priorQ = Qs[priorX]
+		console.log(priorQ)
 		// megnézi látható-e, ha ha nem, felmegy egyesével parQ-ig, amíg valamelyik nem látható
 		var num = false
 		do {
