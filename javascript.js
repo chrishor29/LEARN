@@ -2554,13 +2554,27 @@ function F_nextQ() {
 	function F_getParentQ(qElem) {
 		var parent = qElem
 		var parQ = false
-		var parQtype = "status"
+		/* régi: ezt azért vettem ki, mert ha (div imp) van egy phase-ben, akkor abban az összes kérdést kidobná egyben
 		do {
 			if ( parent.firstChild.className == "status" ) { parQ = parent }
 			if ( parent.parentElement.firstChild.className == "phase" ) { parQ = parent }
 			parent = parent.parentElement
+		} while ( parQ == false && parent != document.body )*/
+		
+		do {
+			if ( parent.firstChild.className == "status" ) { parQ = parent }
+			if ( parent.parentElement.firstChild.className == "phase" ) { parQ = "phase" }
+			parent = parent.parentElement
 		} while ( parQ == false && parent != document.body )
+		if ( parQ == "phase" ) { 
+			parent = qElem
+			do {
+				if ( parent.classList.contains("kerdes") ) { parQ = parent }
+				parent = parent.parentElement
+			} while ( parent.firstChild.className == "phase" )
+		}
 		if ( parQ == false ) { parQ = qElem }
+		
 		return parQ
 	}
 	var parQ = F_getParentQ(qElem)
@@ -2832,7 +2846,7 @@ function F_nextQ() {
 		for ( var x in xTOi ) { if ( xTOi[x] == priorID ) { priorX = x } }
 		var Qs = document.getElementById("div_QingLowerPart").getElementsByClassName("kerdes")
 		var priorQ = Qs[priorX]
-		console.log(priorQ)
+		//console.log(priorQ)
 		// megnézi látható-e, ha ha nem, felmegy egyesével parQ-ig, amíg valamelyik nem látható
 		var num = false
 		do {
