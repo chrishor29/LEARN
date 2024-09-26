@@ -10,6 +10,7 @@ var bodyBGcolor, abbrBGcolor, QingTetelsBG, QingQuestsBG, QingBg, abbrBorderColo
 if ( localStorage.getItem("nightMode") == "true" ) {
 	bodyBGcolor = "rgb(24, 26, 27)"
 	abbrBGcolor = "rgb(30, 30, 30)"
+	abbrQBGcolor = "brown"
 	QingTetelsBG = "rgb(24, 26, 27)"
 	QingQuestsBG = "rgb(24, 26, 27)"
 	QingBgBG = "grey"
@@ -51,6 +52,7 @@ if ( localStorage.getItem("nightMode") == "true" ) {
 } else {
 	bodyBGcolor = "azure"
 	abbrBGcolor = "azure"
+	abbrQBGcolor = "bisque"
 	QingTetelsBG = "azure"
 	QingQuestsBG = "azure"
 	QingBgBG = "grey"
@@ -3235,6 +3237,33 @@ function F_answerQ(detElem) {
 	}
 }
 
+function F_abbrQ(detElem) { 
+	var abbrQs = detElem.getElementsByClassName("abbr")
+	for ( var i=0; i<abbrQs.length; i++ ) { 
+		if (abbrQs[i].dataset.done == undefined) {
+			var text = abbrQs[i].parentElement.innerHTML
+			text = text.replace(abbrQs[i].innerHTML,"")
+			text = text.slice(text.indexOf("</"))
+			text = text.slice(text.indexOf(">")+1)
+			abbrQs[i].parentElement.innerHTML = '<'+abbrQs[i].tagName+' class="'+abbrQs[i].className+'">'+abbrQs[i].innerHTML+'</'+abbrQs[i].tagName+'>' + '<span class="abbrAnswer" style="display:none">'+text+'</span>'
+			
+			abbrQs[i].dataset.done = "true"
+			abbrQs[i].style.backgroundColor = abbrQBGcolor
+			abbrQs[i].style.cursor = "pointer"
+			
+			abbrQs[i].onclick = function() {
+				var spans = this.parentElement.getElementsByClassName("abbrAnswer");
+				spans[0].style.display = "inline"
+				this.style.backgroundColor = ""
+				this.style.cursor = ""
+				event.target.onclick = null;
+			}
+		}
+		
+
+	}
+}
+
 function F_starToggleAll() { // oldal betöltésénél váltson-e át Questelős nézetbe
 	currPath = localStorage.getItem("hk.ToggleAll")
 	F_loadAndSavePageText(localStorage.getItem("hk.ToggleAll"),true,true)
@@ -3326,6 +3355,7 @@ function F_loadElem(detElem) { // detailsok megnyitásánál is ezt a funkciót 
 	F_synonyms(detElem)
 	F_titleChange(detElem)
 	F_answerQ(detElem)
+	F_abbrQ(detElem)
 	
 	var allDetails = detElem.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) { allDetails[i].ontoggle = function() { F_loadElem(this) } }
