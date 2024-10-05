@@ -173,7 +173,12 @@ var prevDivShown = "" // midQ betöltése előtt mi volt (alap,search,Qing)
 var prevScrollTop = 0 // midQ betöltése előtt, hogy állt a scrollbar
 var vToggleSearch = false
 
-function F_saveImpQs(path) {
+function isElementVisible(detElem) {
+	detElem = detElem.parentElement
+	return !detElem.closest('details:not([open])')
+}
+
+/*function F_saveImpQs(path) {
 	pageImpQs[path] = {}
 	if ( document.getElementById("span_ExpQs") == null ) {
 		var span = document.createElement("span")
@@ -184,14 +189,34 @@ function F_saveImpQs(path) {
 	var span = document.getElementById("span_ExpQs")
 	var pageText = pageTexts[path]
 	span.innerHTML = pageText
-	var childs = span.getElementsByTagName("*");
+	
+	//var childs = span.getElementsByTagName("*");
+	var childs = span.querySelectorAll('details[class*="["]');
 	for ( var i = 0; i < childs.length; i++ ) {
 		var impQ = childs[i]
-		if ( impQ.className.indexOf("[") == -1 ) { continue }
-		if ( impQ.tagName != "DETAILS" ) { continue }
-		if ( impQ.className.indexOf("imp") != -1 ) { continue } // ez már fölös igazából, de nem baj biztos ami biztos
-		if ( impQ.className.indexOf("midQ") != -1 ) { continue } // ez már fölös igazából, de nem baj biztos ami biztos
+		//if ( impQ.className.indexOf("[") == -1 ) { continue }
+		//if ( impQ.tagName != "DETAILS" ) { continue }
+		//if ( impQ.className.indexOf("imp") != -1 ) { continue } // ez már fölös igazából, de nem baj biztos ami biztos
+		//if ( impQ.className.indexOf("midQ") != -1 ) { continue } // ez már fölös igazából, de nem baj biztos ami biztos
 		var impID = F_getImpID(impQ)
+		pageImpQs[path][impID] = '<details class="'+impQ.className+'">'+impQ.innerHTML+'</details>'
+	}
+}*/
+function F_saveImpQs(path) {
+	pageImpQs[path] = {};
+	var pageText = pageTexts[path];
+
+	// Hozzunk létre egy ideiglenes divet és töltsük be a HTML-t
+	var tempDiv = document.createElement("div");
+	tempDiv.innerHTML = pageText;
+
+	// Lekérjük a szükséges elemeket
+	var childs = tempDiv.querySelectorAll('details[class*="["]');
+	for (var i = 0; i < childs.length; i++) {
+		var impQ = childs[i];
+		var impID = F_getImpID(impQ);
+		// Kimentjük az impQ adatait az objektumba
+		//pageImpQs[path][impID] = impQ.outerHTML
 		pageImpQs[path][impID] = '<details class="'+impQ.className+'">'+impQ.innerHTML+'</details>'
 	}
 }
@@ -249,18 +274,26 @@ function F_loadImpQs(detElem,full) {
 		tárgyválasztásnál a tárgy teljes linkjét kell másolnom "data-src"-ba
 		ha azon belül is van impQ, akkor azt is abból a tárgyból fogja értelemszerűen (kivéve, ha meg van adva más)
 */
-	var repeat
+	var repeat = true
+	//var startTime = F_getTime()
+	//console.log("F_loadImpQs START")
 	function F_loadNextImpQ(detElem) {
 		var error = ""
 		var repeat = false
 		var impQs = detElem.getElementsByClassName("imp")
+		//console.log("full: "+full)
+		//console.clear()
 		for ( var i=0; i<impQs.length; i++ ) { 
-			if ( impQs[i].offsetParent === null && full != "full" ) { continue }
+			//console.log(i)
+			var isVisible = isElementVisible(impQs[i])
+			//console.log(F_getImpID(impQs[i])+" - "+isVisible)
+			if ( isVisible == false && full != "full" ) { continue }
 			if ( impQs[i].className.indexOf("[") == -1 ) { continue }
 			if ( impQs[i].dataset.loaded == "true" ) { continue } else { impQs[i].dataset.loaded = "true" }
 			repeat = true
 			
 			var impID = F_getImpID(impQs[i])
+			//console.log(impID)
 			
 			// path beállítása
 			var path = F_getQPath(impQs[i],impID)
@@ -269,7 +302,8 @@ function F_loadImpQs(detElem,full) {
 			var contains = false
 			function F_checkParents() {
 				var parent = impQs[i]
-				do {
+				/*do {
+					console.log("parentCheck")
 					parent = parent.parentElement
 					// checkolja, hogy az [impID]-jük megyegyezik-e --> ha nem, akkor nézi a kövi parentet
 					if ( parent.className.indexOf("["+impID+"]") == -1 ) { continue } 
@@ -278,10 +312,23 @@ function F_loadImpQs(detElem,full) {
 					
 					//if ( path.indexOf(parent.dataset.src) != -1 ) { contains = true }
 					if ( path == F_getQPath(parent,F_getImpID(parent)) ) { contains = true }
+					// ha átakarom írni, változtatás után teszteljem: ..
+					//	span/div/midQ + datasrc(akár ugyanez az oldalé) + full load(tehát kiveszem feltételből, hogy csak akkor ha visible)
+				} while ( parent != detElem && contains == false ) */
+				for (parent = parent.parentElement; parent !== detElem && contains === false; parent = parent.parentElement) {
+					//console.log("parentCheck");
+
+					 // Ellenőrzi, hogy az impID megfelelő-e, ha nem, folytatja a következő parenttel
+					if (parent.className.indexOf("[" + impID + "]") === -1) { continue }
+
+					 // Ellenőrzi, hogy a path megegyezik-e
+					if (parent.dataset.src === undefined && path === currPath) { contains = true }
+
+					if (path === F_getQPath(parent,F_getImpID(parent))) { contains = true }
 					/* ha átakarom írni, változtatás után teszteljem: ..
 						span/div/midQ + datasrc(akár ugyanez az oldalé) + full load(tehát kiveszem feltételből, hogy csak akkor ha visible)
 					*/
-				} while ( parent != detElem && contains == false )
+				}
 			}
 			F_checkParents()
 			if ( contains == true ) { continue }
@@ -307,7 +354,9 @@ function F_loadImpQs(detElem,full) {
 		}
 		return repeat
 	}
-	do { repeat = F_loadNextImpQ(detElem) } while ( repeat == true )
+	while (repeat === true) { repeat = F_loadNextImpQ(detElem) }
+	//var currTime = F_getTime() - startTime
+	//console.log("F_loadImpQs END - "+ currTime)
 }
 
 
@@ -361,6 +410,7 @@ function F_loadAutoLoadPagesBtn() {
 }
 F_loadAutoLoadPagesBtn()
 function F_loadAndSavePageText(path,click,toggle) {
+	/* */var startTime = F_getTime()
 	/* lefutási variációk:
 		a) ha ráklikkeltem -> betölti és vége (click = true, toggle = false)
 		b) ha betölti az oldalt és questeltem legutóbb -> betölti és utána toggleQing (click = true, toggle = true)
@@ -377,17 +427,22 @@ function F_loadAndSavePageText(path,click,toggle) {
 		pageLinks[id].style.backgroundColor = "yellow"
 		var pageDiv = document.getElementById("div_pageQTargy")
 		pageDiv.innerHTML = pageText
-		/* */var startTime = F_getTime()
+		/* */var currTime = F_getTime() - startTime
+		/* */console.log("startLoad - "+ currTime)
 		F_loadElem(pageDiv)
 	  //F_removeUlNormal()          //      ---- EZZEL VETTEM KI: <ul class="normal"> tagokat
-		/* */var endTime = F_getTime()
-		/* */console.log(endTime-startTime)
+		/* */currTime = F_getTime() - startTime
+		/* */console.log("endLoad - "+ currTime)
 		document.getElementById("div_QingBg").style.display = "none"
-		if ( toggle == true ) { F_toggleQing() }
+		if ( toggle == true ) { document.getElementById("btn_toggleQing").click() }
 	}
 	
 	document.getElementById("iframe_targyak").src = path
+	//var currTime = F_getTime() - startTime
+	//console.log("clickLoad1 - "+ currTime)
 	var handler = function(e) { // #1 amikor betölti az oldalt, akkor indul meg ez
+		//currTime = F_getTime() - startTime
+		//console.log("clickLoad2 - "+ currTime)
 		removeEventListener('message', handler, false)
 		
 		pageImpQs[path] = undefined // azért, hogy újratöltse majd az impQ-kat is
@@ -401,9 +456,8 @@ function F_loadAndSavePageText(path,click,toggle) {
 		
 		if ( click == true ) {
 			document.getElementById("div_QingBg").style.display = "block"
-			setTimeout(function() { 
-				F_loadPage(pageText,id) 
-			}, 100);
+			pageLinks[id].style.backgroundColor = "yellow"
+			setTimeout(function() { F_loadPage(pageText,id) }, 100);
 		} else if ( toggle == "all" ) { 
 			F_loadAllPages()
 		}
@@ -489,6 +543,7 @@ function F_loadPageLinks() { // IDB, setClick
 F_loadPageLinks()
 
 function F_saveIDB(path,pageText,id) {
+	//console.log("F_saveIDB - START")
 	var currTime = F_getTime()
 	var objectData = [ { pageHTML: pageText }, { pageTIME: currTime } ]
 	clearIDB(path,pageLinks[id])
@@ -508,6 +563,7 @@ function F_saveIDB(path,pageText,id) {
 		transaction.oncomplete = function() { db.close() }
 		
 		pageLinks[id].style.color = pageLinksColor
+		//console.log("F_saveIDB - END")
 	}
 }
 function clearIDB(path,page) {
@@ -931,7 +987,7 @@ function F_loadVideos(detElem){
 	var allVideo = detElem.getElementsByTagName("video")
 	for ( var i=0; i<allVideo.length; i++ ) {
 		var videoElem = allVideo[i]
-		if ( videoElem.offsetParent === null ) { continue }
+		if ( isElementVisible(videoElem) == false ) { continue }
 		if ( videoElem.dataset.src == undefined ) { continue } 
 		
 		function F_setSource(videoElem){
@@ -1063,10 +1119,7 @@ function F_searchStart() { // search-re klikkelésnél vagy enter lenyomásnál 
 		document.getElementById("btn_SearchW").style.backgroundColor = "black"
 		document.getElementById("btn_SearchW").style.color = "white"
 	}
-	var int_Click = window.setInterval(function(){
-		F_searchResult()
-		clearInterval(int_Click) 
-	}, 100)
+	setTimeout(function() { F_searchResult() }, 100)
 }
 function F_searchResult() { // találati eredmények betöltése...
 	/* method
@@ -1187,16 +1240,14 @@ function F_searchResult() { // találati eredmények betöltése...
 }
 function F_clickSearchResult(detElem) { // egy találati eredményre klikk
 	detElem.style.backgroundColor  = "yellow"
-	var int_Click = window.setInterval(function(){
-		
+	setTimeout(function() { 
 		var qTxt = objSearchTexts[detElem.dataset.id]
 		var path = detElem.dataset.path
 		prevMidQs.push("search: "+detElem.dataset.id+" - "+path)
 		F_setMidQ(qTxt,path)
 		
 		detElem.style.backgroundColor = ""
-		clearInterval(int_Click) 
-	}, 100);
+	}, 100)
 }
 function F_createSearchElems() {
 	function F_btnNagyito() { // 🔍
@@ -1216,14 +1267,13 @@ function F_createSearchElems() {
 		button.onclick = function() { 
 			this.style.backgroundColor  = "black"
 			this.style.color  = "white"
-			var int_Click = window.setInterval(function(){
+			setTimeout(function() { 
 				vToggleSearch = true
 				if ( loadAllPages == false ) { 
 					F_loadAllPages() 
 				} else {
 					F_toggleSearch()
 				}
-				clearInterval(int_Click)
 			}, 100)
 		}
 	}
@@ -1410,6 +1460,19 @@ function F_createSearchElems() {
 }
 F_createSearchElems()
 // –––––––––––––––  search END  –––––––––––––––
+
+//const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
 
 // –––––––––––––––  Qing BEGIN  –––––––––––––––
 var arrTetelQs = {} // mainTitle-k, azon belül phase/status-ok, azok pedig egy stringet tartalmaznak, hogy mely Q-k
@@ -1613,9 +1676,15 @@ function F_createQingElems() {
 			if ( diffTime < 1 ) { return }
 			lastClickTime = currTime
 			document.getElementById("div_QingBg").style.display = "block"
-			this.style.backgroundColor  = "black"
-			var int_Click = window.setInterval(function(){
-				clearInterval(int_Click) 
+			//this.disabled = true;
+
+			// 2024.09.24 - SZOMI HIBA!!
+			// TUDOM (BÁR NEM ÉRTEM) MIÉRT LASSÚ TOGGLE-OFF IS!! F_saveImpQs(path) --> ITT AMIKOR LEMENTI AZ OBJECTBE A QTEXTEKET AZ A SOR A HIBÁS, DE NEM TUDOK EGYENLŐRE JOBBAT --> HA KIVESZEM AZ F_toggleQing() A SETTIMEOUT FUNKCIÓBÓL, ÉS MÖGÉ TESZEM, AKKOR GYORS A TOGGLEOFF, DE A BUZZON A SZÍNÉT AKKOR IS LASSAN NYERI VISSZA.. ÉS A WEBOLDAL FRISSÍTÉSRE NEM REAGÁL UGYANÚGY ADDIG TOVÁBBRA SE, SZÓVAL MARADJON ÍGY INKÁBB
+			// A LEGÉRDEKESEBB, HOGY A MÁSODIK TOGGLE-ON/OFF UTÁN IS MÉG UGYANÚGY SZAR, PEDIG MÁR NEM CSINÁL F_saveImpQs(path)... SŐT TOVÁBB SZAR TOGGLE OFFNÁL (TOGGLE ON RÖVIDEBB)
+			// kiderült a hiba oka !!!! DeepL - translate addon
+			
+			this.style.backgroundColor = "black"
+			setTimeout(function() { 
 				F_toggleQing()
 				document.getElementById("btn_toggleQing").style.backgroundColor = ""
 			}, 100)
@@ -1731,8 +1800,7 @@ function F_createQingElems() {
 				this.style.backgroundColor  = "black"
 				this.style.color  = "white"
 			}
-			var int_Click = window.setInterval(function(){
-				clearInterval(int_Click) 
+			setTimeout(function() { 
 				lastClickTime = F_getTime()
 				F_nextQ()
 				document.body.style.backgroundColor = bodyBGcolor
@@ -2016,8 +2084,7 @@ function F_createQingElems() {
 			lastClickTime = currTime
 			
 			this.style.backgroundColor = "aqua"
-			var int_Click = window.setInterval(function(){
-				clearInterval(int_Click)
+			setTimeout(function() { 
 				F_downloadLS()
 				document.getElementById('btn_saveLS').style.backgroundColor = "Chartreuse"
 			}, 500)
@@ -2044,8 +2111,7 @@ function F_createQingElems() {
 			lastClickTime = currTime
 			
 			this.style.backgroundColor = "aqua"
-			var int_Click = window.setInterval(function(){
-				clearInterval(int_Click)
+			setTimeout(function() { 
 				document.getElementById('fileinput').click()
 				document.getElementById('btn_loadLS').style.backgroundColor = ""
 			}, 500)
@@ -2074,8 +2140,7 @@ function F_createQingElems() {
 			lastClickTime = currTime
 			
 			this.style.backgroundColor = "aqua"
-			var int_Click = window.setInterval(function(){
-				clearInterval(int_Click)
+			setTimeout(function() { 
 				localStorage.clear()
 				document.getElementById('btn_clearLS').style.backgroundColor = "red"
 			}, 500)
@@ -2362,12 +2427,16 @@ function F_arrQs(){
 	}
 }
 function F_toggleQing() {
+	console.log("F_toggleQing START")
 	if ( document.getElementById("div_pageQTargy").style.display == 'none' ) {
 		localStorage.removeItem("hk.ToggleAll")
 		document.getElementById("table_weboldalak").parentElement.parentElement.style.display = 'block';
 		document.getElementById("div_pageQTargy").style.display = 'block';
 		document.getElementById("div_QingMain").style.display = 'none';
 		document.getElementById("div_QingBg").style.display = "none"
+		
+		var diffTime = F_getTime() - lastClickTime
+		console.log("toggleOFF - "+ diffTime)
 	} else {
 		localStorage.setItem("hk.ToggleAll",currPath)
 		document.getElementById("table_weboldalak").parentElement.parentElement.style.display = 'none';
@@ -2375,6 +2444,7 @@ function F_toggleQing() {
 		document.getElementById("div_QingMain").style.display = 'block';
 		
 		document.getElementById("div_QingTargyText").innerHTML = pageTexts[currPath]
+		//var allQs = document.getElementById("div_QingTargyText").getElementsByClassName("kerdes")
 		//console.log(allQs.length)
 		F_loadImpQs(document.getElementById("div_QingTargyText"),"full")
 		//console.log(allQs.length)
@@ -2385,7 +2455,9 @@ function F_toggleQing() {
 		F_loadLS()
 		F_calcOldQs()
 		document.getElementById("div_QingBg").style.display = "none"
-		//console.log("toggleQ finished")
+		
+		var diffTime = F_getTime() - lastClickTime
+		console.log("toggleON - "+ diffTime)
 	}
 }
 function F_calcOldQs(){
@@ -2527,7 +2599,6 @@ function F_calcNextQ(){
 function F_nextQ() {
 	var currTime = F_getTime()
 	currTime = Math.round(currTime)
-	
 	F_saveLS()
 	F_loadLS()
 	F_calcOldQs()
@@ -2563,6 +2634,7 @@ function F_nextQ() {
 			parent = parent.parentElement
 		} while ( parQ == false && parent != document.body )*/
 		
+		//console.log(parent)
 		do {
 			if ( parent.firstChild.className == "status" ) { parQ = parent }
 			if ( parent.parentElement.firstChild.className == "phase" ) { parQ = "phase" }
@@ -2572,8 +2644,10 @@ function F_nextQ() {
 			parent = qElem
 			do {
 				if ( parent.classList.contains("kerdes") ) { parQ = parent }
+					// ez a feltétel nem tudom miért kell.. ugyanis, ha csak egy open-es az egész, akkor is kéne.. mindenesetre nyílván nem ok nélkül kellett, így inkább beraktam kövei sorba az opent is, hogy akkor is jó legyen
+				if ( parent.classList.contains("open") ) { parQ = parent }
 				parent = parent.parentElement
-			} while ( parent.firstChild.className == "phase" )
+			} while ( parent.firstChild.className != "phase" )
 		}
 		if ( parQ == false ) { parQ = qElem }
 		
@@ -2779,8 +2853,9 @@ function F_nextQ() {
 		}
 		var Qs = document.getElementById("div_QingLowerPart").getElementsByClassName("kerdes")
 		var arrNumQs = [] // hány db Q látszik összesen
+		//console.log(document.getElementById("div_QingLowerPart").innerHTML)
 		for ( var x=0; x<Qs.length; x++ ) { 
-			if ( Qs[x].offsetParent === null ) { continue }
+			if ( isElementVisible(Qs[x],true) == false ) { continue }
 			if ( Qs[x].dataset.num ) { continue }
 			var i = xTOi[x]
 			var qNev = arrQnev[i].qNev
@@ -2835,7 +2910,7 @@ function F_nextQ() {
 		}
 		document.getElementById("div_QingLowerPart").dataset.numQ = QsNum
 	}
-	F_createMarks()
+	F_createMarks();
 	
 	// bejelöli melyik a mainQ!
 	function F_highlightQ() {
@@ -2847,8 +2922,10 @@ function F_nextQ() {
 		var priorX
 		for ( var x in xTOi ) { if ( xTOi[x] == priorID ) { priorX = x } }
 		var Qs = document.getElementById("div_QingLowerPart").getElementsByClassName("kerdes")
+	//	console.log(Qs.length)
 		var priorQ = Qs[priorX]
-		//console.log(priorQ)
+	//	console.log(priorQ)
+	//	console.log(Qs[priorX].innerHTML)
 		// megnézi látható-e, ha ha nem, felmegy egyesével parQ-ig, amíg valamelyik nem látható
 		var num = false
 		do {
@@ -2860,7 +2937,7 @@ function F_nextQ() {
 		}
 		while ( num == false )
 	}
-	F_highlightQ()
+	F_highlightQ();
 	
 	// ► (color:download)
 	F_setBtnColor()
@@ -3132,7 +3209,7 @@ function F_tableScrollable(detElem) { // table ha nem fér ki, akkor vízszintes
 	for ( var i=0; i<allTable.length; i++ ) { 
 		var tableElem = allTable[i]
 		
-		if ( tableElem.offsetParent === null ) { continue }
+		if ( isElementVisible(tableElem) == false ) { continue }
 		if ( tableElem.parentElement.style.overflowX == "auto" ) { continue }
 		
 		// `element` is the element you want to wrap
@@ -3174,7 +3251,7 @@ function F_synonyms(detElem) {
 	function getRandomInt(max) { return Math.floor(Math.random() * Math.floor(max)) }
 	var synonyms = detElem.getElementsByClassName("syno")
 	for ( var x=0; x<synonyms.length; x++ ) {
-		if ( synonyms[x].offsetParent == null ) { continue }
+		if ( isElementVisible(synonyms[x]) == false ) { continue }
 		//if ( synonyms[x].dataset.syno == null ) { continue }
 		
 		//synonyms[x].style.fontStyle = "italic"
@@ -3216,14 +3293,13 @@ function F_answerQ(detElem) {
 	
 	var div = detElem.getElementsByClassName("random")
 	if ( div.length == 0 ) { return }
-	if ( div[0].offsetParent === null ) { return }
+	if ( isElementVisible(div[0]) == false ) { return }
 	var liA = div[0].getElementsByTagName("li")
 	for (var i=0; i<liA.length; i++) { div[0].appendChild(liA[Math.random() * i | 0]) }
 	
 	//trueA = detElem.getElementsByClassName("trueA")
 	//falseA = detElem.getElementsByClassName("falseA")
 	for ( var x=0; x<answers.length; x++ ) { 
-		//alert(answers[x].offsetParent)
 		answers[x].style.cursor = "pointer"
 		answers[x].onclick = function(){
 			for ( var i=0; i<trueA.length; i++ ) { trueA[i].style.backgroundColor = trueColor }
@@ -3273,7 +3349,7 @@ function F_starToggleAll() { // oldal betöltésénél váltson-e át Questelős
 function F_loadIMGs(detElem) {
 	var imgs = detElem.getElementsByTagName("IMG")
 	for ( var i=0; i<imgs.length; i++ ) { 
-		if ( imgs[i].offsetParent === null ) { continue }
+		if ( isElementVisible(imgs[i]) == false ) { continue }
 		if ( imgs[i].dataset.src == undefined ) { continue } // ha előtte a főoldalon megnyitottam már a Q-t, akkor nem kell újra betöltenie
 		
 		/*imgs[i].onerror = function(){
@@ -3347,6 +3423,7 @@ F_loadImg_cent_mini()
 
 function F_loadElem(detElem) { // detailsok megnyitásánál is ezt a funkciót használjam!
 	//console.log(detElem.innerHTML)
+	//console.log("F_loadElem - start")
 	F_loadImpQs(detElem)
 	F_loadMidQs(detElem)
 	F_loadIMGs(detElem)
@@ -3356,6 +3433,7 @@ function F_loadElem(detElem) { // detailsok megnyitásánál is ezt a funkciót 
 	F_titleChange(detElem)
 	F_answerQ(detElem)
 	F_abbrQ(detElem)
+	//console.log("F_loadElem - end")
 	
 	var allDetails = detElem.getElementsByTagName("details")
 	for ( var i=0; i<allDetails.length; i++ ) { allDetails[i].ontoggle = function() { F_loadElem(this) } }

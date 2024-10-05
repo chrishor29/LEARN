@@ -3,8 +3,8 @@
 Gui, Add, CheckBox, vTeloLearn, Telo - LEARN
 Gui, Add, CheckBox, vTeloMix, Telo - Mix
 Gui, Add, CheckBox, vTeloImages, Telo - Images
-Gui, Add, CheckBox, vWebPage, WebPage
-Gui, Add, CheckBox, vZene, Zene
+Gui, Add, CheckBox, vWebPage, Web - LEARN
+Gui, Add, CheckBox, vZene, Telo - Zene
 Gui, Add, Button, Default w80 gGuiClose, OK
 Gui, Show
 Return
