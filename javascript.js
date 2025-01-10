@@ -98,7 +98,6 @@ if ( isAndroid ) { // ezis egy variáció, font size hejett, de pl. middle img, 
 	divBody.style.maxHeight = height+'%'
 	
 	document.body.appendChild(document.getElementById("div_centVideoBg"))
-	document.body.appendChild(document.getElementById("div_centImgBg"))
 }
 
 function F_getTime() {
@@ -2767,26 +2766,6 @@ function F_nextQ() {
 							}
 						}
 					}
-					/*if ( isAndroid == true ) { 
-						td.onclick = function(){
-							var div = document.getElementById("div_qProp")
-							var span = document.getElementById("span_qProp")
-							
-							var num = this.innerHTML
-							var LSid = activeQs[num]
-							var jegy = localStorage.getItem(LSid+'_jegy')
-							var repeat = localStorage.getItem(LSid+'_repeat')
-							
-							if ( div.style.display == "none" ) {
-								F_hideQArea()
-								div.style.display = "block"
-								span.innerHTML = num+"<br>"+LSid+"<br> Jegy:"+jegy+"<br>Repeat:"+repeat+"<br>"
-							} else {
-								F_hideQArea()
-								document.getElementById("divQloc").style.display = "block"
-							}
-						}
-					}*/
 				} else if ( x == 1 ) {
 					var div = document.createElement("DIV")
 					span.appendChild(div)
