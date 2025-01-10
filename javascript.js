@@ -437,6 +437,7 @@ function F_loadAndSavePageText(path,click,toggle) {
 		if ( toggle == true ) { document.getElementById("btn_toggleQing").click() }
 	}
 	
+	console.log(path)
 	document.getElementById("iframe_targyak").src = path
 	//var currTime = F_getTime() - startTime
 	//console.log("clickLoad1 - "+ currTime)
@@ -462,7 +463,9 @@ function F_loadAndSavePageText(path,click,toggle) {
 			F_loadAllPages()
 		}
 	}
-	window.addEventListener('message', handler, false)
+	window.addEventListener('message', handler, false) /* ez azért indul el, mert a .html fájl végén ott van, hogy:
+		<script> window.parent.postMessage(['varA', document.body.innerHTML], '*') </script>
+	*/
 }
 function F_loadPageLinks() { // IDB, setClick
 	function F_setPageClick() {
